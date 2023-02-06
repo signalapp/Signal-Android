@@ -354,7 +354,7 @@
     <string name="ConversationActivity_cancel">İmtina</string>
     <string name="ConversationActivity_delete_conversation">Danışıq silinsin?</string>
     <string name="ConversationActivity_delete_and_leave_group">Qrupu silib tərk edirsiniz?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Bu danışıq, bütün cihazlarınızdan silinəcək.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Bu söhbət bütün cihazlarınızdan silinəcək.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Bu qrupu tərk edəcəksiniz və bütün cihazlarınızdan silinəcək.</string>
     <string name="ConversationActivity_delete">Sil</string>
     <string name="ConversationActivity_delete_and_leave">Sil və tərk et</string>
@@ -426,13 +426,13 @@
     <string name="ConversationFragment_delete_on_this_device">Bu cihazdan sil</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Hər yerdən sil</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Bu mesaj, danışıqda Signal-ın ən son versiyasını istifadə edən hər kəs üçün silinəcək. Bir mesajı sildiyinizi görə bilərlər.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Bu mesaj söhbətdə Signal-ın ən son versiyasını istifadə edən hər kəs üçün silinəcək. Bir mesajı sildiyinizi görə bilərlər.</string>
     <string name="ConversationFragment_quoted_message_not_found">Orijinal mesaj tapılmadı</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Orijinal mesaj artıq yoxdur</string>
     <string name="ConversationFragment_failed_to_open_message">Mesaj açılmadı</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Mesajı cəld cavablandırmaq üçün sağa sürüşdürə bilərsiniz</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Mesajı cəld cavablandırmaq üçün sola sürüşdürə bilərsiniz</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Gedən \"bir dəfə baxıla bilən\" media faylları göndərildikdən sonra avtomatik silinəcək</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Çıxan \"bir dəfə baxıla bilən\" media faylları göndərildikdən sonra avtomatik silinəcək</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Artıq bu mesaja baxdınız</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Bu danışıqda özünüzə qeydlər yaza bilərsiniz.\nHesabınızla əlaqə yaradılmış cihazlar varsa, yeni qeydlər eyniləşdiriləcək.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d qrup üzvünün adı eynidir.</string>
@@ -461,8 +461,8 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Oxunmamış çatlar yoxdur</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Seçilmiş danışıq silinsin?</item>
-        <item quantity="other">Seçilmiş danışıqlar silinsin?</item>
+        <item quantity="one">Seçilmiş söhbət silinsin?</item>
+        <item quantity="other">Seçilmiş söhbətlər silinsin?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
         <item quantity="one">Bu, seçilmiş söhbəti birdəfəlik siləcək.</item>
@@ -676,7 +676,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Seçilmiş planlaşdırılan mesaj silinsin?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Planlaşdırılan mesaj silinir…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Planlaşdırılan mesaj silinir...</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Söhbət seansı təzələndi</string>
@@ -899,7 +899,7 @@
     <string name="AddGroupDetailsFragment__try_again_later">Daha sonra yenidən sınayın.</string>
     <string name="AddGroupDetailsFragment__remove">Çıxart</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS əlaqəsi</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s qrupdan çıxarılsın?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s bu qrupdan çıxarılsın?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal qruplarını dəstəkləməyən bir kontakt seçdiniz, buna görə də bu qrup MMS qrupu olacaq. Xüsusi MMS qrupu adları və şəkillərinə yalnız siz baxa bilərsiniz.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -1269,7 +1269,7 @@
     <!-- GV2 member removals -->
     <string name="MessageRecord_you_removed_s">%1$s üzvünü çıxartdınız.</string>
     <string name="MessageRecord_s_removed_s">%1$s, %2$s üzvünü çıxartdı.</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s, sizi qrupdan çıxartdı.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s sizi qrupdan çıxartdı.</string>
     <string name="MessageRecord_you_left_the_group">Qrupu tərk etdiniz.</string>
     <string name="MessageRecord_s_left_the_group">%1$s qrupu tərk etdi.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">Artıq qrupda yoxsunuz.</string>
@@ -1956,6 +1956,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Onun hekayəsinə %1$s reaksiyası verdiniz</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Ödəniş</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal yeniləməsi</string>
@@ -2777,11 +2779,11 @@
     <string name="preferences_storage__files">Fayllar</string>
     <string name="preferences_storage__audio">Səs</string>
     <string name="preferences_storage__review_storage">Anbarı nəzərdən keçir</string>
-    <string name="preferences_storage__delete_older_messages">Köhnə mesajları sil?</string>
+    <string name="preferences_storage__delete_older_messages">Köhnə mesajlar silinsin?</string>
     <string name="preferences_storage__clear_message_history">Mesaj tarixçəsi təmizlənsin?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Bu, %1$s və daha köhnə olan bütün mesaj tarixçəsini və medianı cihazınızdan birdəfəlik siləcək.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Bu, bütün mesajları ən son %1$s mesaja qədər kəsəcək.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Bu, bütün mesaj tarixçəsini və mediaları cihazınızdan birdəfəlik siləcək.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Bu, bütün mesaj tarixçəsini və medianı cihazınızdan birdəfəlik siləcək.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Bütün mesaj tarixçənizi silmək istədiyinizə əminsiniz?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Bütün mesaj tarixçəniz birdəfəlik silənəcək. Bu əməliyyat geri qaytarıla bilməz.</string>
     <string name="preferences_storage__delete_all_now">Hamısını indi sil</string>
@@ -3285,7 +3287,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Hesab kilidləndi</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Hesabınız, gizliliyinizi və təhlükəsizliyinizi qorumaq üçün kilidləndi. Hesabınızda fəaliyyətsiz %1$d gündən sonra, bu telefon nömrəsi ilə PIN-inizə ehtiyac olmadan yenidən qeydiyyatdan keçə biləcəksiniz. Bütün məzmunlar silinəcək.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Hesabınız məxfilik və təhlükəsizliyinizi qorumaq üçün kilidləndi. Hesabınızda fəaliyyətsiz %1$d gündən sonra bu telefon nömrəsi ilə PIN-inizə ehtiyac olmadan yenidən qeydiyyatdan keçə biləcəksiniz. Bütün məzmunlar silinəcək.</string>
     <string name="AccountLockedFragment__next">Növbəti</string>
     <string name="AccountLockedFragment__learn_more">Daha Ətraflı</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3303,8 +3305,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal Qeydiyyatı - Android üçün PIN ilə bağlı kömək lazımdır (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Sizin məxfilik və təhlükəsizliyiniz üçün PİNi geri qaytarmaq mümkün deyil. PİNi yadda saxlaya bilmirsinizsə %1$d fəaliyyətsiz gündən sonra onu SMS-lə yenidən təsdiqləyə bilərsiniz. Belə olduqda hesabınız və bütün məzmun tam silinəcək.</item>
-        <item quantity="other">Gizliliyiniz və təhlükəsizliyiniz üçün, PIN-inizi bərpa etməyin heç bir yolu yoxdur. Əgər PIN-inizi xatırlamırsınızsa, fəaliyyətsiz %1$d gündən sonra SMS ilə yenidən təsdiqləyə bilərsiniz. Bu halda, hesabınız və bütün məzmunlar silinəcək.</item>
+        <item quantity="one">Sizin məxfilik və təhlükəsizliyiniz üçün PIN-i geri qaytarmaq mümkün deyil. PIN-i yadda saxlaya bilmirsinizsə %1$d fəaliyyətsiz gündən sonra onu SMS-lə yenidən təsdiqləyə bilərsiniz. Belə olduqda hesabınız və bütün məzmun tam silinəcək.</item>
+        <item quantity="other">Məxfiliyiniz və təhlükəsizliyiniz üçün PIN-inizi bərpa etməyin heç bir yolu yoxdur. Əgər PIN-inizi xatırlamırsınızsa, fəaliyyətsiz %1$d gündən sonra SMS ilə yenidən təsdiqləyə bilərsiniz. Bu halda hesabınız və bütün məzmunlar silinəcək.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3313,8 +3315,8 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">Сəhdlərin sayını keçsəniz hesabınız %1$d günlük kilidlənəcək. %1$d fəaliyyətsiz gündən sonra, PİN istifadə etmədən qeydiyyatdan keçə bilərsiniz. Hesabınız silinəcək və onun bütün məzmunu məhv ediləcək.</item>
-        <item quantity="other">Cəhdləriniz bitsə, hesabınız %1$d günlük kilidlənəcək. Fəaliyyətsiz %1$d gündən sonra, PIN-iniz olmadan yenidən qeydiyyatdan keçə biləcəksiniz. Hesabınız və bütün məzmunlar silinəcək.</item>
+        <item quantity="one">Сəhdlərin sayını keçsəniz hesabınız %1$d günlük kilidlənəcək. %1$d fəaliyyətsiz gündən sonra PIN istifadə etmədən qeydiyyatdan keçə bilərsiniz. Hesabınız və bütün məzmunu silinəcək.</item>
+        <item quantity="other">Cəhdləriniz bitsə, hesabınız %1$d günlük kilidlənəcək. Fəaliyyətsiz %1$d gündən sonra PIN-iniz olmadan yenidən qeydiyyatdan keçə biləcəksiniz. Hesabınız və bütün məzmunu silinəcək.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3495,7 +3497,7 @@
     <string name="DeviceTransferSetup__location_permission">Yerləşmə icazəsi</string>
     <string name="DeviceTransferSetup__location_services">Yerləşmə xidmətləri</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi Direct ekranında, xatırlanan bütün qrupları çıxardın və dəvət edilən və ya bağlantılı cihazların bağlantısını çıxarın.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi Direct ekranında xatırlanan bütün qrupları çıxardın və dəvət edilən və ya qoşulu cihazların bağlantısını ayırın.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct ekranı</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Hər iki cihazda \"Wi-Fi\"ı bağlayıb açın.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Hər iki cihazın köçürmə rejimində olduğuna əmin olun.</string>
@@ -3577,7 +3579,7 @@
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s qrupdan çıxarılsın?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s, qrupdan çıxarılsın? Qrup bağlantısı vasitəsilə yenidən qoşula bilməyəcək.</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s qrupdan çıxarılsın? Onlar qrup bağlantısı vasitəsilə yenidən qoşula bilməyəcək.</string>
     <string name="RecipientBottomSheet_remove">Çıxart</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">Lövhəyə kopyalandı</string>
 
@@ -3632,9 +3634,9 @@
         <item quantity="one">%1$d ortaq qrupunuz var</item>
         <item quantity="other">%1$d ortaq qrupunuz var</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s , qrupdan çıxarılsın?</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s qrupdan çıxarılsın?</string>
     <string name="ReviewCardDialogFragment__remove">Çıxart</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Qrupdan çıxarılmadı.</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Qrup üzvlüyündən çıxarılmadı.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">Üzv</string>
@@ -3676,7 +3678,7 @@
     <string name="DeleteAccountFragment__the_phone_number">Daxil etdiyiniz telefon nömrəsi hesabınızla uyğunlaşmır.</string>
     <string name="DeleteAccountFragment__are_you_sure">Hesabınızı silmək istədiyinizə əminsiniz?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Bu, Signal hesabınızı siləcək və tətbiqi sıfırlayacaq. Proses tamamlandıqdan sonra tətbiq bağlanacaq.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Yerli verilənlər silinmədi. Sistem tətbiq tənzimləmələrində əllə təmizləyə bilərsiniz.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Yerli verilənlər silinmədi. Sistemin tətbiq parametrlərində əllə təmizləyə bilərsiniz.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Tətbiq başlatma tənzimləmələri</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Qruplardan çıxılır…</string>
@@ -3968,17 +3970,17 @@
     <!-- Preference title to re-export sms -->
     <string name="SmsSettingsFragment__export_sms_messages_again">SMS mesajlarını yenidən ixrac et</string>
     <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">SMS mesajlarını sil</string>
+    <string name="SmsSettingsFragment__remove_sms_messages">SMS mesajlarını çıxart</string>
     <!-- Snackbar text to confirm deletion -->
     <string name="SmsSettingsFragment__removing_sms_messages_from_signal">SMS mesajları Signal-dan silinir…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Parametrlərə keçərək Signal-dan SMS mesajlarını istədiyiniz vaxt silə bilərsiniz.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Parametrlərə keçərək Signal-dan SMS mesajlarını istədiyiniz vaxt çıxarda bilərsiniz.</string>
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">SMS mesajlarınızı telefonunuzun SMS verilənlər bazasına ixrac edə bilərsiniz.</string>
     <!-- Description for re-export sms preference -->
     <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Yenidən ixrac etmə mesajların çoxalması ilə nəticələnə bilər.</string>
     <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Yaddaşda yer açmaq üçün SMS mesajlarını Signal-dan silin.</string>
+    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Yaddaşda yer təmizləmək üçün SMS mesajlarını Signal-dan çıxarın.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
     <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Şifrələnmiş mesajlaşmaya başlamaq üçün SMS dəstəyi tezliklə silinəcək.</string>
 
@@ -4238,11 +4240,11 @@
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">Axtarış zamanı bu şəxsi görməyəcəksiniz. Gələcəkdə həmin şəxs sizə mesaj göndərsə mesaj sorğusu alacaqsınız.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s silindi</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s çıxarılıb</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s əngəlləndi</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">%1$s silmək mümkün olmadı</string>
+    <string name="NewConversationActivity__unable_to_remove_s">%1$s çıxarılmadı</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">Bu əlaqə nömrəsi cihazınızın Kontaktlarında saxlanılır. Kontaktlardan onu silib yenidən cəhd edin.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
@@ -4617,7 +4619,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Profili sil</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">\"%1$s\" silindi.</string>
+    <string name="NotificationProfileDetails__s_removed">\"%1$s\" çıxarıldı.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Geri al</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -4841,11 +4843,11 @@
     <!-- Dialog action to remove viewer from a story -->
     <string name="StoryViewsFragment__remove">Çıxart</string>
     <!-- Dialog title when removing a viewer from a story -->
-    <string name="StoryViewsFragment__remove_viewer">İzləyici silinsin?</string>
+    <string name="StoryViewsFragment__remove_viewer">İzləyici çıxarılsın?</string>
     <!-- Dialog message when removing a viewer from a story -->
     <string name="StoryViewsFragment__s_will_still_be_able">%1$s bu yazınızı yenə də görə biləcək, amma bundan sonra %2$s səhifəsində paylaşdığınız heç bir gələcək yazınızı görə bilməyəcək.</string>
     <!-- Story View context menu action to remove them from a story -->
-    <string name="StoryViewItem__remove_viewer">İzləyicini sil</string>
+    <string name="StoryViewItem__remove_viewer">İzləyicini çıxart</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Hələ ki, cavab yoxdur</string>
     <!-- Displayed when no longer a group member -->
@@ -4964,9 +4966,9 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">Bitdi</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">Qrup hekayəsi silinsin?</string>
+    <string name="StoryDialogs__remove_group_story">Qrup hekayəsi çıxarılsın?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" silinəcək.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" çıxarılacaq.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Çıxart</string>
     <!-- Dialog title for deleting a custom story -->
@@ -5107,7 +5109,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">İndi yox</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Nişan alınır…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Nişan alınır...</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Hədiyyənizi daha sonra ala bilərsiniz.</string>
     <!-- Description text in gift thanks sheet -->
@@ -5154,11 +5156,11 @@
     <!-- Label for context menu item to open story settings -->
     <string name="ContactSearchItems__story_settings">Hekayə parametrləri</string>
     <!-- Label for context menu item to remove a group story from contact results -->
-    <string name="ContactSearchItems__remove_story">Hekayəni sil</string>
+    <string name="ContactSearchItems__remove_story">Hekayəni çıxart</string>
     <!-- Label for context menu item to delete a custom story -->
     <string name="ContactSearchItems__delete_story">Hekayəni sil</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">Qrup hekayəsi silinsin?</string>
+    <string name="ContactSearchMediator__remove_group_story">Qrup hekayəsi çıxarılsın?</string>
     <!-- Dialog message for removing a group story -->
     <string name="ContactSearchMediator__this_will_remove">Bu addım hekayəni həmin siyahıdan çıxaracaq. Siz hələ də bu qrupdan gələn hekayələrə baxa biləcəksiniz.</string>
     <!-- Dialog action item for removing a group story -->
@@ -5235,7 +5237,7 @@
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">Əlaqələr</string>
     <!-- Context menu label for distribution list headers in review fragment -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Hamısını sil</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Hamısını çıxart</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
     <string name="SafetyNumberReviewConnectionsFragment__remove">Çıxart</string>
 
@@ -5295,7 +5297,7 @@
     <!-- Explanation of who can view a group story -->
     <string name="GroupStorySettingsFragment__members_of_the_group_s">"%1$s qrupunun üzvləri bu hekayəni görə və cavablandıra bilər. Qrupda bu çat üzvlüyünü yeniləyə bilərsiniz."</string>
     <!-- Preference label for removing this group story -->
-    <string name="GroupStorySettingsFragment__remove_group_story">Qrup hekayəsini sil</string>
+    <string name="GroupStorySettingsFragment__remove_group_story">Qrup hekayəsini çıxart</string>
 
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">Əlavə menyu</string>
@@ -5312,7 +5314,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">SMS mesajlarınızı ixrac edin</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">SMS mesajlarınızı telefonunuzun SMS məlumat bazasına ixrac edə və onları Signal-dan silə, yaxud da orada saxlaya bilərsiniz. Bu, telefonunuzda olan digər SMS tətbiqlərinə onları idxal etmə imkanı verir. Bu addım SMS tarixçənizin paylaşıla bilən bir faylını yaratmır.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">SMS mesajlarınızı telefonunuzun SMS məlumat bazasına ixrac edə və onları Signal-dan çıxara, yaxud da orada saxlaya bilərsiniz. Bu, telefonunuzda olan digər SMS tətbiqlərinə onları idxal etmə imkanı verir. Bu addım SMS tarixçənizin paylaşıla bilən bir faylını yaratmır.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Davam et</string>
 
@@ -5367,11 +5369,11 @@
     <!-- Action button to keep messages -->
     <string name="RemoveSmsMessagesDialogFragment__keep_messages">Mesajları saxla</string>
     <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Mesajları sil</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Mesajları çıxart</string>
     <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal-dan SMS mesajları silinsin?</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal-dan SMS mesajları çıxarılsın?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Bundan sonra yaddaşda yer boşaltmaq üçün SMS mesajlarınızı Signal-dan silə bilərsiniz. Bu mesajları silsəniz də telefonunuzdakı digər SMS tətbiqləri onlara daxil ola biləcək.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Bundan sonra yaddaşda yer boşaltmaq üçün SMS mesajlarınızı Signal-dan çıxara bilərsiniz. Bu mesajları çıxarsanız da telefonunuzdakı digər SMS tətbiqləri onlara daxil ola biləcək.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5556,8 +5558,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS dəstəyi davam edir</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Tezliklə Signal tətbiqində SMS mesajları artıq dəstəklənməyəcək.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS mesajları Signal mesajlarından fərqlidir. <b> Bu davam edən şifrəli Signal mesajlarına təsir etməyəcək.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5573,9 +5575,9 @@
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">İndi yox</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Davam et</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5589,7 +5591,7 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Davam et</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
 
@@ -5597,7 +5599,7 @@
     <!-- Option to open username editor displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__edit_username">Edit username</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">İstifadəçi adını sil</string>
 
     <!-- EOF -->
 </resources>

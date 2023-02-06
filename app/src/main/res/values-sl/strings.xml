@@ -479,7 +479,7 @@
         <item quantity="other">Izbrišem izbrane pogovore?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">S tem boste nepovratno izbrisali izbran pogovor.</item>
+        <item quantity="one">S tem boste nepovratno izbrisali izbrani pogovor.</item>
         <item quantity="two">S tem boste nepovratno izbrisali oba izbrana pogovora.</item>
         <item quantity="few">S tem boste nepovratno izbrisali vse %1$d izbrane pogovore.</item>
         <item quantity="other">S tem boste nepovratno izbrisali vseh %1$d izbranih pogovorov.</item>
@@ -587,9 +587,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Povlecite navzdol za filtriranje</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Spustite za filtriranje</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
@@ -703,9 +703,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Vsi časi v (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Izbrani čas je v preteklosti. To bo takoj poslalo sporočilo.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Pošlji takoj</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Pošlji zdaj</string>
@@ -2098,6 +2098,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Vaš odziv na zgodbo: %1$s</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Plačilo</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Nadgradnja aplikacije Signal</string>
@@ -2952,7 +2954,7 @@
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">S tem boste nepovratno izbrisali celotno zgodovino pogovorov in medijskih datotek z vaše naprave.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ali ste prepričani, da želite izbrisati celotno zgodovino pogovorov?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Celotna zgodovina vaših pogovorov bo za vedno izbrisana. Ta korak je nepovraten.</string>
-    <string name="preferences_storage__delete_all_now">Izbriši vse zdaj!</string>
+    <string name="preferences_storage__delete_all_now">Izbriši vse zdaj</string>
     <string name="preferences_storage__forever">Za vedno</string>
     <string name="preferences_storage__one_year">1 leto</string>
     <string name="preferences_storage__six_months">6 mesecev</string>
@@ -3342,7 +3344,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtriraj neprebrane klepete</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Počisti filter \"neprebrano\"</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj v odložišče</string>
@@ -3582,7 +3584,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Vaša varnostna kopija vsebuje zelo veliko datoteko, ki je ni mogoče varnostno kopirati. Izbrišite jo in ustvarite novo varnostno kopijo.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tapnite za urejanje varnostnih kopij.</string>
     <string name="RegistrationActivity_wrong_number">Napačna številka?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Pokliči me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontaktiraj center za podporo Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registracija za storitev Signal - verifikacijska koda za Android</string>
     <string name="RegistrationActivity_incorrect_code">Napačna koda</string>
@@ -3858,8 +3860,8 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Z izbrisom vašega računa boste:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Vnesite svojo telefonsko številko</string>
     <string name="DeleteAccountFragment__delete_account">Izbriši račun Signal</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">izbrisali podatke in profilno fotografijo računa</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">izbrisali vsa svoja sporočila</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Izbriši podatke in profilno fotografijo računa</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Izbriši vsa svoja sporočila</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Izbriši %1$s v računu plačil</string>
     <string name="DeleteAccountFragment__no_country_code">Ni vnesene kode države</string>
     <string name="DeleteAccountFragment__no_number">Ni vnesene telefonske številke</string>
@@ -4823,7 +4825,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Izbriši profil</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">Profil \"%1$s\" odstranjen.</string>
+    <string name="NotificationProfileDetails__s_removed">Profil \"%1$s\" je odstranjen.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Razveljavi</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -5073,7 +5075,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Zaseben odgovor za %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Odgovorite osebi %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Kopiraj</string>
@@ -5806,8 +5808,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Podpora za SMS-e se ukinja</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">SMS sporočila v aplikaciji Signal kmalu ne bodo več podprta.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS sporočila se razlikujejo od sporočil Signal. <b>To ne vpliva na šifrirana sporočila Signal, ki bodo še naprej delovala.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5819,13 +5821,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Nastavite svoje uporabniško ime za Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Uporabniška imena vam omogočajo, da vam drugi pošiljajo sporočila, ne da bi potrebovali vašo telefonsko številko</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Ne zdaj</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Nadaljuj</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5839,15 +5841,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Nadaljuj</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Nastavite svoje uporabniško ime za Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Uredi uporabniško ime</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Izbriši uporabniško ime</string>
 
     <!-- EOF -->
 </resources>

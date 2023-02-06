@@ -282,7 +282,7 @@
     <string name="ConversationItem_download_more">  تنزيل المزيد</string>
     <string name="ConversationItem_pending">  معلّق</string>
     <string name="ConversationItem_this_message_was_deleted">حُذفَت هذه الرسالة.</string>
-    <string name="ConversationItem_you_deleted_this_message">لقد حذفت هذه الرسالة.</string>
+    <string name="ConversationItem_you_deleted_this_message">لقد حذفتَ هذه الرسالة.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">تعذّر تحميل الرسالة. سَيحتاج %1$s إلى إرسالها مرة أخرى.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -352,10 +352,10 @@
     <string name="ConversationActivity_new_say_it_with_stickers">جديد! قلها بالملصقات</string>
 
     <string name="ConversationActivity_cancel">إلغاء</string>
-    <string name="ConversationActivity_delete_conversation">حذف المحادثة ؟</string>
+    <string name="ConversationActivity_delete_conversation">حذف المحادثة؟</string>
     <string name="ConversationActivity_delete_and_leave_group">حذف ثم مغادرة المجموعة؟</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ستُحذَف هذه المحادثة من جميع أجهزتك.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">سوف تغادر هذه المجموعة، ثم ستُحذَف من كل أجهزتك.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">سَتغادر هذه المجموعة، ثم ستُحذَف من كل أجهزتك.</string>
     <string name="ConversationActivity_delete">حذف</string>
     <string name="ConversationActivity_delete_and_leave">حذف ثم المغادرة</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">للاتصال بـ %1$s، يحتاج Signal الوصول إلى ميكروفونك.</string>
@@ -397,7 +397,7 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">لم يتم العثور على تطبيق جهات الاتصال</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="zero">حذف المختار؟</item>
+        <item quantity="zero">حذف الرسائل المختارة؟</item>
         <item quantity="one">حذف الرسالة المختارة؟</item>
         <item quantity="two">حذف الرسائل المختارة؟</item>
         <item quantity="few">حذف الرسائل المختارة؟</item>
@@ -450,13 +450,13 @@
     <string name="ConversationFragment_delete_on_this_device">حذف من هذا الجهاز</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">احذف من كل مكان</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">سوف تُحذَف هذه الرسالة لكل من كان في هذه المحادثة شريطة استخدامه إصدار Signal حديث. لن يتمكن أحد من رؤية الرسالة التي قمت بحذفها.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">سَتُحذَف هذه الرسالة لكل من كان في هذه المحادثة شريطة استخدامه إصدار Signal حديث. لن يتمكن أحد من رؤية الرسالة التي قمت بحذفها.</string>
     <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة</string>
     <string name="ConversationFragment_failed_to_open_message">فشل في فتح الرسالة</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">يمكنك السحب إلى اليمين على أي رسالة للرد بسرعة</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">يمكنك السحب إلى اليسار فوق أي رسالة للرد بسرعة</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ملفات الوسائط المرسلة كمشاهدة لمرة واحدة تحذف تلقائيا بعد ارسالها</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ملفات الوسائط المرسلة كمشاهدة لمرة واحدة تحذف تلقائيًا بعد إرسالها</string>
     <string name="ConversationFragment_you_already_viewed_this_message">لقد سبق لك رؤية هذه الرسالة</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">يمكنك إضافة ملاحظات خاصة بك في هذه المحادثة. إن كان حسابك متصلا بأجهزة أخرى، ستتم مزامنة الملاحظات معها.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d عضوا بالمجموعة لهم نفس اﻻسم.</string>
@@ -487,7 +487,7 @@
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="zero">حذف المحادثات المختارة؟</item>
         <item quantity="one">حذف المحادثة المختارة؟</item>
-        <item quantity="two">حذف المحادثتان؟</item>
+        <item quantity="two">حذف المحادثتيْن المختارتين؟</item>
         <item quantity="few">حذف المحادثات المختارة؟</item>
         <item quantity="many">حذف كل المحادثات المختارة؟</item>
         <item quantity="other">حذف المحادثات المختارة؟</item>
@@ -627,9 +627,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">اسحب للأسفل للفلترة</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">اسحب إصبعك للفلترة</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">الملف الشخصي</string>
@@ -743,9 +743,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">جميع الأوقات في (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">الوقت المُحدّد في الماضي. سيُؤدي ذلك إلى إرسال الرسالة فورًا.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">أرسل فورًا</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">أرسل الآن</string>
@@ -868,12 +868,12 @@
         <item quantity="other">يحتاج هؤﻻء اﻷعضاء قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها :</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="zero">تمت إزالة هذا العضو من المجموعة ولن يتمكن من الانضمام إليها مرة أخرى حتى يقوم بالترقية :</item>
-        <item quantity="one">تمت إزالة هذا العضو من المجموعة ولن يتمكن من الانضمام إليها مرة أخرى حتى يقوم بالترقية :</item>
-        <item quantity="two">تمت إزالة هذين العضويْن من المجموعة ولن يتمكنا من الانضمام إليها مرة أخرى حتى يقوما بالترقية :</item>
-        <item quantity="few">تمت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية :</item>
-        <item quantity="many">تمت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية :</item>
-        <item quantity="other">تمت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية :</item>
+        <item quantity="zero">تمت إزالة هذا العضو من المجموعة ولن يتمكن من الانضمام إليها مرة أخرى حتى يقوم بالترقية:</item>
+        <item quantity="one">تمت إزالة هذا العضو من المجموعة ولن يتمكن من الانضمام إليها مرة أخرى حتى يقوم بالترقية:</item>
+        <item quantity="two">تمت إزالة هذين العضويْن من المجموعة ولن يتمكنا من الانضمام إليها مرة أخرى حتى يقوما بالترقية:</item>
+        <item quantity="few">تمت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية:</item>
+        <item quantity="many">تمت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية:</item>
+        <item quantity="other">تمت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -892,12 +892,12 @@
         <item quantity="other">يحتاج هؤﻻء اﻷعضاء قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها :</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="zero">هذا العضو غير قادر على الانضمام إلى المجموعات الجديدة، وستتم إزالته من المجموعة :</item>
-        <item quantity="one">هذا العضو غير قادر على الانضمام إلى المجموعات الجديدة، وستتم إزالته من المجموعة :</item>
-        <item quantity="two">هذان العضوان غير قادرين على الانضمام إلى المجموعات الجديدة، وستتم إزالتهما من المجموعة :</item>
-        <item quantity="few">هؤلاء الأعضاء غير قادرين على الانضمام إلى المجموعات الجديدة، وستتم إزالتهم من المجموعة :</item>
-        <item quantity="many">هؤلاء الأعضاء غير قادرين على الانضمام إلى المجموعات الجديدة، وستتم إزالتهم من المجموعة :</item>
-        <item quantity="other">هؤلاء الأعضاء غير قادرين على الانضمام إلى المجموعات الجديدة، وستتم إزالتهم من المجموعة :</item>
+        <item quantity="zero">هذا العضو غير قادر على الانضمام إلى المجموعات الجديدة، وستتم إزالته من المجموعة:</item>
+        <item quantity="one">هذا العضو غير قادر على الانضمام إلى المجموعات الجديدة، وستتم إزالته من المجموعة:</item>
+        <item quantity="two">هذان العضوان غير قادرين على الانضمام إلى المجموعات الجديدة، وستتم إزالتهما من المجموعة:</item>
+        <item quantity="few">هؤلاء الأعضاء غير قادرين على الانضمام إلى المجموعات الجديدة، وستتم إزالتهم من المجموعة:</item>
+        <item quantity="many">هؤلاء الأعضاء غير قادرين على الانضمام إلى المجموعات الجديدة، وستتم إزالتهم من المجموعة:</item>
+        <item quantity="other">هؤلاء الأعضاء غير قادرين على الانضمام إلى المجموعات الجديدة، وستتم إزالتهم من المجموعة:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -1275,7 +1275,7 @@
     <string name="MediaOverviewActivity_Audio">الصوتيات</string>
     <string name="MediaOverviewActivity_All">الجميع</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="zero">لا يوجد عنصر مختار</item>
+        <item quantity="zero">حذف العنصر المختار؟</item>
         <item quantity="one">حذف العنصر المختار؟</item>
         <item quantity="two">حذف العنصرين المختارين؟</item>
         <item quantity="few">حذف العناصر المختارة؟</item>
@@ -1285,10 +1285,10 @@
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
         <item quantity="zero">هذا سيحذف جميع الـ %1$d ملف التي تمّ اختياره. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
         <item quantity="one">هذا سيحذف الملف الذي تمّ اختياره. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
-        <item quantity="two">هذا سًيحذف %1$d الملفين اللذين تمّ اختيارهما. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
+        <item quantity="two">هذا سيحذف %1$d الملفين اللذين تمّ اختيارهما. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
         <item quantity="few">هذا سيحذف جميع الـ %1$d ملفات التي تمّ اختيارها. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
         <item quantity="many">هذا سيحذف جميع الـ %1$d ملفًا التي تمّ اختيارها. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
-        <item quantity="other">هذا سيحذف جميع الـ %1$d ملفٍ التي تمّ اختيارها. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
+        <item quantity="other">هذا سيحذف جميع الـ %1$d ملف التي تمّ اختيارها. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">جار الحذف</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">جار حذف الرسائل…</string>
@@ -1312,10 +1312,10 @@
     </plurals>
     <plurals name="MediaOverviewActivity_delete_plural">
         <item quantity="zero">حذف</item>
-        <item quantity="one">احذف</item>
+        <item quantity="one">حذف</item>
         <item quantity="two">حذف</item>
         <item quantity="few">حذف</item>
-        <item quantity="many">احذف</item>
+        <item quantity="many">حذف</item>
         <item quantity="other">حذف</item>
     </plurals>
 
@@ -2240,6 +2240,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">تفاعل %1$s مع قِصتهم</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">عمليات الدفع</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">تحديث Signal</string>
@@ -2259,7 +2261,7 @@
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">يُرجى اختيار اسم المستخدم</string>
     <string name="UsernameEditFragment_username">اسم المستخدم</string>
-    <string name="UsernameEditFragment_delete">إحذف</string>
+    <string name="UsernameEditFragment_delete">حذف</string>
     <string name="UsernameEditFragment_successfully_removed_username">تم حذف اسم المستخدم بنجاح.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">حدث خطأ فى الشبكة</string>
     <string name="UsernameEditFragment_this_username_is_taken">اسم المستخدم هذا غير متوفّر.</string>
@@ -2335,8 +2337,8 @@
     <string name="MediaPreviewActivity_draft">مسوَّدة</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">يحتاج Signal إلى إذن سعة التخزين من أجل استخدام الذاكرة الخارجية ولكن تم إيقاف الإذن على نحو دائم. الرجاء زيارة إعدادات التطبيق، واختيار\"الصلاحيات\"، ثم تفعيل \"سعة التخزين\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">لا يمكن الحفظ إلى الذاكرة الخارجية بدون أذونات</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">أَتريد حذف الرسالة ؟</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">سوف يقوم هذا بحذف الرسالة بشكل دائم.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">أَتريد حذف الرسالة؟</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">هذا الإجراء سَيحذف الرسالة بشكل دائم.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s إلى %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">أنت إلى %1$s</string>
@@ -3113,12 +3115,12 @@
     <string name="preferences_storage__files">الملفات</string>
     <string name="preferences_storage__audio">صوت</string>
     <string name="preferences_storage__review_storage">مراجعة سعة التخزين</string>
-    <string name="preferences_storage__delete_older_messages">أأحذف الرسائل القديمة ؟</string>
+    <string name="preferences_storage__delete_older_messages">حذف الرسائل القديمة؟</string>
     <string name="preferences_storage__clear_message_history">محو محفوظات الرسائل؟</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ستُحذَف جميع محفوظات الرسائل والوسائط الأقدم من %1$s من جهازك بصفة نهائية.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">سوف يتم تقليم كل المحادثات إلى أحدث %1$s رسالة.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ستُحذَف جميع محفوظات الرسائل والوسائط من جهازك بصفة نهائية.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">هل أنت متأكد من أنك تريد حذف كل محفوظات الرسائل ؟</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">هل أنت متأكد من أنك تريد حذف كل محفوظات الرسائل؟</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ستُحذف محفوظات الرسائل نهائيًا. لن يتم التراجع عن هذا الإجراء.</string>
     <string name="preferences_storage__delete_all_now">حذف الكل الآن</string>
     <string name="preferences_storage__forever">للأبد</string>
@@ -3514,7 +3516,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">تصفية المحادثات غير المقروءة</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">مَحوُ فلتر المحادثات غير المقروءة</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">نسخ إلى الحافظة</string>
@@ -3555,7 +3557,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol أو بروتوكول سيجنال قام بحماية %1$d%% من رسائلك الصادرة خلال %2$d يوما الماضية. المحادثات بين مستخدمي Signal مُعمَّاة دائما من طرف إلى طرف.</string>
     <string name="InsightsDashboardFragment__spread_the_word">انشر الخبر</string>
     <string name="InsightsDashboardFragment__not_enough_data">لا يوجد بيانات كافية</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">نسبة الرؤى الخاصة بك يتم حسابها بناءً على الرسائل المرسلة خلال %1$d يوما الماضية والتي لم تختفي أو يتم حذفها.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">نسبة الرؤى الخاصة بك يتم حسابها بناءً على الرسائل المرسلة خلال %1$d يومًا الماضية والتي لم تختفي أو يتم حذفها.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">ابدأ محادثة</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">ابدؤوا بالتواصل بأمان وقوموا بتفعيل الخصائص الجديدة التي تتعدى الحدود التي تفرضها رسائل SMS المُعمَّاة وذلك عن طريق دعوة المزيد من جهات اتصالكم للانضمام إلى Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">تم توليد هذه الإحصائيات محليّاً على جهازك وأنت الوحيد الذى يستطيع رؤيتها. لا يتم نقلها أبدا إلى أي مكان.</string>
@@ -3673,12 +3675,12 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="zero">إذا نفذت محاولاتك، سيتم قفل حسابك مدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
-        <item quantity="one">إذا نفذت محاولاتك، سيتم قفل حسابك مدة %1$d يوم. وبعد %1$d يوم من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
-        <item quantity="two">إذا نفذت محاولاتك، سيتم قفل حسابك مدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
-        <item quantity="few">إذا نفذت محاولاتك، سيتم قفل حسابك مدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
-        <item quantity="many">إذا نفذت محاولاتك، سيتم قفل حسابك مدة %1$d يوما. وبعد %1$d يوما من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
-        <item quantity="other">إذا نفذت محاولاتك، سيتم قفل حسابك مدة %1$d يوم. وبعد %1$d يوم من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+        <item quantity="zero">إذا نفذت محاولاتك، سيتم قفل حسابك لمدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+        <item quantity="one">إذا نفذت محاولاتك، سيتم قفل حسابك لمدة %1$d يوم. وبعد %1$d يوم من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+        <item quantity="two">إذا نفذت محاولاتك، سيتم قفل حسابك لمدة %1$d يومين. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+        <item quantity="few">إذا نفذت محاولاتك، سيتم قفل حسابك لمدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+        <item quantity="many">إذا نفذت محاولاتك، سيتم قفل حسابك لمدة %1$d يوما. وبعد %1$d يوما من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+        <item quantity="other">إذا نفذت محاولاتك، سيتم قفل حسابك لمدة %1$d يوم. وبعد %1$d يوم من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3759,7 +3761,7 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">‫جارٍ التحقّق من نسخة Signal الاحتياطية…</string>
     <string name="LocalBackupJobApi29_backup_failed">فشل النسخ الاحتياطي</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">حُذف أو نُقل مجلد نسخك الاحتياطية.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">حُذف أو نُقل مجلد نُسخِك الاحتياطية.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">لا يمكن حفظ ملف النسخة الاحتياطية في وحدة التخزين هذه لأنه كبير جدا.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">لم يبق مكان كافٍ لحفظ نسختك الاحتياطية.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
@@ -3768,7 +3770,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">تحتوي نسختك الاحتياطية على ملف كبير جدًا لا يُمكن نسخه احتياطيًا. يُرجى حذفه وإنشاء نسخة احتياطية جديدة.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">يُرجى اللمس لإدارة النسخ الاحتياطية.</string>
     <string name="RegistrationActivity_wrong_number">رقم غير صحيح؟</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">اتصل بي (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">الاتصال بخدمة دعم Signal</string>
     <string name="RegistrationActivity_code_support_subject">تسجيل Signal - رمز التّحقق لِ Android</string>
     <string name="RegistrationActivity_incorrect_code">رمز غير صحيح</string>
@@ -3867,7 +3869,7 @@
     <string name="DeviceTransferSetup__location_permission">إذن الوصول للموقع</string>
     <string name="DeviceTransferSetup__location_services">خدمات الموقع</string>
     <string name="DeviceTransferSetup__wifi">شبكة Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">في شاشة «‫ WiFi المباشر »، يُرجى إزالة كل المجموعات المحفوظة ثم فك الارتباط مع أي جهاز سبق دعوته أو الاتصال به.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">في شاشة \"WiFi المباشر\"، يُرجى إزالة كل المجموعات المحفوظة ثم فك الارتباط مع أي جهاز سبق دعوته أو الاتصال به.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">شاشة «‫ WiFi المباشر »</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">يُرجى محاولة إطفاء ثم تشغيل Wi-Fi في كلا الجهازين.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">يُرجى التأكد من أن كلا الجهازين في وضع النقل.</string>
@@ -3944,12 +3946,12 @@
     <string name="RecipientBottomSheet_remove_as_admin">أزل عنه ميزة الإشراف</string>
     <string name="RecipientBottomSheet_remove_from_group">أزل من المجموعة</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">إزالة ميزة الإشراف على المجموعة عن %1$s ؟</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">إزالة ميزة الإشراف على المجموعة عن %1$s؟</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"سيتمكن العضو \"%1$s\" من تحرير بيانات هذه المجموعة وأيضا تعديل المنخرطين فيها."</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">إزالة %1$s من المجموعة ؟</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">إزالة %1$s من المجموعة؟</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">هل أزيل المستخدم %1$s من المجموعة ؟ لن يتمكن من إعادة الانضمام عبر وصلة المجموعة.</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">هل أزيل المستخدم %1$s من المجموعة؟ لن يتمكن من إعادة الانضمام عبر وصلة المجموعة.</string>
     <string name="RecipientBottomSheet_remove">إزالة</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
 
@@ -4012,7 +4014,7 @@
         <item quantity="many">%1$d مجموعة مشتركة</item>
         <item quantity="other">%1$d مجموعة مشتركة</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">إزالة %1$s من هذه المجموعة ؟</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">إزالة %1$s من هذه المجموعة؟</string>
     <string name="ReviewCardDialogFragment__remove">إزالة</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">فشلت إزالة عضو من المجموعة.</string>
 
@@ -4055,8 +4057,8 @@
     <string name="DeleteAccountFragment__no_number">لم يُحدَّد أي رقم</string>
     <string name="DeleteAccountFragment__the_phone_number">رقم الهاتف الذي أُدخِل لا يطابق رقم حسابك.</string>
     <string name="DeleteAccountFragment__are_you_sure">هل أنت متأكد من أنك تريد حذف حسابك؟</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">سيؤدي هذا إلى حذف حساب Signal الخاص بك وإعادة تعيين التطبيق. سيتم إغلاق التطبيق بعد انتهاء العملية.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">فشل حذف البيانات المحلية. يمكنك مَحْوه يدويا في إعدادات تطبيق النظام.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">سَيؤدي هذا إلى حذف حساب Signal الخاص بك وإعادة تعيين التطبيق. سيتم إغلاق التطبيق بعد انتهاء العملية.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">فشل حذف البيانات المحلية. يمكنك مَحْوه يدويًا في إعدادات تطبيق النظام.</string>
     <string name="DeleteAccountFragment__launch_app_settings">إعدادات تشغيل التطبيق</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">يَجري مغادرة المجموعات…</string>
@@ -4461,14 +4463,14 @@
     <string name="ChatColorSelectionFragment__delete">حذف</string>
     <string name="ChatColorSelectionFragment__delete_color">حذف اللون</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="zero">لا وجود لأي محادثة تستخدم هذا اللون المخصص. أ لديك الرغبة في حذفه من جميع المحادثات ؟ %1$d</item>
-        <item quantity="one">إن هذا اللون المخصص يُستخدَم في محادثة واحدة. أ لديك الرغبة في حذفه من جميع المحادثات ؟ %1$d</item>
-        <item quantity="two">إن هذا اللون المخصص يُستخدَم في محادثتين. أ لديك الرغبة في حذفه من جميع المحادثات ؟ %1$d</item>
-        <item quantity="few">إن هذا اللون المخصص يُستخدَم في %1$d محادثات. أ لديك الرغبة في حذفه من جميع المحادثات ؟</item>
-        <item quantity="many">إن هذا اللون المخصص يُستخدَم في %1$d محادثة. أ لديك الرغبة في حذفه من جميع المحادثات ؟</item>
-        <item quantity="other">إن هذا اللون المخصص يُستخدَم في %1$d محادثة. أ لديك الرغبة في حذفه من جميع المحادثات ؟</item>
+        <item quantity="zero">هذا اللون المخصص يُستخدَم في %1$d دردشة. هل تريد حذفه من جميع المحادثات؟</item>
+        <item quantity="one">هذا اللون المخصص يُستخدَم في %1$d دردشة. هل تريد حذفه من جميع المحادثات؟</item>
+        <item quantity="two">هذا اللون المخصص يُستخدَم في %1$d دردشتين. هل تريد حذفه من جميع المحادثات؟</item>
+        <item quantity="few">هذا اللون المخصص يُستخدَم في %1$d دردشات. هل تريد حذفه من جميع المحادثات؟</item>
+        <item quantity="many">هذا اللون المخصص يُستخدَم في %1$d دردشة. هل تريد حذفه من جميع المحادثات؟</item>
+        <item quantity="other">هذا اللون المخصص يُستخدَم في %1$d دردشات. هل تريد حذفه من جميع المحادثات؟</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">حذف لون المحادثة ؟</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">حذف لون الدردشة؟</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">موحَّد</string>
@@ -4630,7 +4632,7 @@
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">حظر</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">إزالة %1$s ؟</string>
+    <string name="NewConversationActivity__remove_s">إزالة %1$s؟</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">لن يظهر لك هذا الشخص عند البحث. سَتتلقّى طلب رسالة إذا راسلوك في المستقبل.</string>
     <!-- Snackbar message after removing a contact -->
@@ -4791,7 +4793,7 @@
 
     <string name="SubscribeFragment__cancel_subscription">إلغاء الاشتراك</string>
     <string name="SubscribeFragment__confirm_cancellation">تأكيد الإلغاء؟</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">لن يتم خصم المبلغ مرة أخرى. سَتتم إزالة شارتك من حسابك الشخصي في نهاية المدة الزمنية لإعداد الفواتير.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">لن يتم خصم المبلغ مرة أخرى. سَتتم إزالة شارتِك من حسابك الشخصي في نهاية المدة الزمنية لإعداد الفواتير.</string>
     <string name="SubscribeFragment__not_now">ليس الآن</string>
     <string name="SubscribeFragment__confirm">تأكيد</string>
     <string name="SubscribeFragment__update_subscription">تحديث الاشتراك</string>
@@ -5033,7 +5035,7 @@
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">تراجع</string>
     <!-- Dialog message shown to confirm deleting a profile -->
-    <string name="NotificationProfileDetails__permanently_delete_profile">أأحذف نهائيا هذه الهيئة ؟</string>
+    <string name="NotificationProfileDetails__permanently_delete_profile">حذف ملف التعريف نهائيًا؟</string>
     <!-- Dialog button to delete profile -->
     <string name="NotificationProfileDetails__delete">حذف</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
@@ -5285,7 +5287,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">الإجابة بشكل خاص على %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">الردّ على %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">نسخ</string>
@@ -5359,9 +5361,9 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">إضافة مُشاهد</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">حذف القصة المُخصصة</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">إزالة القصة المُخصصة</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove_s">إزالة %1$s ؟</string>
+    <string name="PrivateStorySettingsFragment__remove_s">إزالة %1$s؟</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">لن يتمكن هذا الشخص من رؤية قصتك بعد الآن.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
@@ -5859,7 +5861,7 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">إزالة الرسائل القصيرة من Signal؟</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">يُمكنك الآن إزالة رسائل SMS من Signal لإخلاء مساحة التخزين. لكنها سَتظل متاحة لتطبيقات رسائل SMS الأخرى على هاتفك حتى إذا قمت بإزالتها.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">يُمكنك الآن إزالة رسائل SMS من Signal لإخلاء مساحة التخزين. لكنها سَتظل مُتاحة لتطبيقات رسائل SMS الأخرى على هاتفك حتى إذا قمت بإزالتها.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -6056,8 +6058,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">سَيختفي دعم SMS</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">سَيتوقف دعم رسائل SMS في تطبيق Signal قريبًا.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">تختلف رسائل SMS عن رسائل Signal. <b>لا يُؤثر هذا على رسائل Signal المُشفرة التي ستستمر في العمل.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -6069,13 +6071,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">إعداد اِسمُ المُستخدِم الخاص بك على Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">تسمح أسماء المُستخدمين للآخرين بمراسلتك دون الحاجة إلى رقم هاتفك</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">ليس الآن</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">مواصلة</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -6089,15 +6091,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">مواصلة</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">إعداد اِسمُ المُستخدِم الخاص بك على Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">تعديل اِسمُ المُستخدِم</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">حذف اِسمُ المُستخدِم</string>
 
     <!-- EOF -->
 </resources>

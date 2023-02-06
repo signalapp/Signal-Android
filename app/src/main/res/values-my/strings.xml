@@ -1885,6 +1885,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">၎င်းတို့၏ စတိုရီကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">ငွေပေးချေမှု</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal ဗားရှင်းအသစ်</string>
@@ -5431,8 +5433,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS ပံ့ပိုးမှုကို မကြာမီတွင် ရပ်နားတော့မည် ဖြစ်သည်</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Signal အက်ပ်တွင် SMS မက်ဆေ့ချ်များ ပေးပို့လက်ခံခြင်းကို မကြာမီတွင် ဆက်လက်ပံ့ပိုးတော့မည် မဟုတ်ပါ။</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS မက်ဆေ့ချ်များသည် Signal မက်ဆေ့ချ်များနှင့် ကွဲပြားပါသည်။ <b>ဤသည်က ကုဒ်ပြောင်းဝှက်သည့် Signal မက်ဆေ့ချ်များ ပေးပို့လက်ခံခြင်းကို ထိခိုက်မည်မဟုတ်ဘဲ ၎င်းသည် ဆက်လက်အလုပ်လုပ်ပါမည်။</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5448,9 +5450,9 @@
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">ဆက်လုပ်ရန်</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5464,7 +5466,7 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">ဆက်လုပ်ရန်</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
 
@@ -5472,7 +5474,7 @@
     <!-- Option to open username editor displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__edit_username">Edit username</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">သုံးစွဲသူအမည်ကို ဖျက်ရန်</string>
 
     <!-- EOF -->
 </resources>

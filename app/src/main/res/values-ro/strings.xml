@@ -567,9 +567,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Treci mai jos ca să filtrezi</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Eliberează ca să filtrezi</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
@@ -683,9 +683,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Toate momentele în (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Momentul selectat este în trecut. Asta va trimite mesajul imediat.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Trimite imediat</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Trimite acum</string>
@@ -1294,9 +1294,9 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">Un membru nu a putut fi adăugat noului grup și a fost eliminat.</item>
-        <item quantity="few">%1$s de membri nu au putut fi adăugați noului grup și au fost eliminați.</item>
-        <item quantity="other">%1$s membri nu au putut fi adăugați noului grup și au fost eliminați.</item>
+        <item quantity="one">Un membru nu a putut fi adăugat Noului Grup și a fost eliminat.</item>
+        <item quantity="few">%1$s de membri nu au putut fi adăugați Noului Grup și au fost eliminați.</item>
+        <item quantity="other">%1$s membri nu au putut fi adăugați Noului Grup și au fost eliminați.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -2027,6 +2027,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">A reacționat cu %1$s la povestea lor</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Plată</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Actualizare Signal</string>
@@ -3256,7 +3258,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtrează conversațiile necitite</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Șterge filtrul necitit</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiază în clipboard</string>
@@ -3489,7 +3491,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Backup-ul tău conține un fișier foarte mare care nu poate fi adăugat la backup. Șterge-l și creează un backup nou.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Atinge pentru a gestiona backup-uri.</string>
     <string name="RegistrationActivity_wrong_number">Număr greșit?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Sună-mă (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contactează Asistența Signal</string>
     <string name="RegistrationActivity_code_support_subject">Înregistrare Signal - Cod de Verificare pentru Android</string>
     <string name="RegistrationActivity_incorrect_code">Cod incorect</string>
@@ -4720,7 +4722,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Șterge profilul</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">S-a eliminat \"%1$s\"</string>
+    <string name="NotificationProfileDetails__s_removed">S-a eliminat \"%1$s\".</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Anulează</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -4967,7 +4969,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Răspuns privat către %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Răspunde către %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Copiere</string>
@@ -5681,8 +5683,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Sprijinul SMS dispare</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Trimiterea de mesaje SMS din aplicația Signal nu va mai fi acceptată în curând.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Mesajele SMS sunt diferite față de mesajele Signal. <b>Trimiterea de mesaje criptate Signal nu va fi afectată și va continua să funcționeze.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5694,13 +5696,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Stabilește-ți numele de utilizator Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Numele de utilizator ajută alte persoane să îți dea mesaj fără să aibă nevoie de numărul tău de telefon</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Nu acum</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Continuă</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5714,15 +5716,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Continuă</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Stabilește-ți numele de utilizator Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Editează numele de utilizator</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Șterge numele de utilizator</string>
 
     <!-- EOF -->
 </resources>

@@ -352,7 +352,7 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Novo! Iskaži to naljepnicom</string>
 
     <string name="ConversationActivity_cancel">Otkaži</string>
-    <string name="ConversationActivity_delete_conversation">Izbrisati konverzaciju?</string>
+    <string name="ConversationActivity_delete_conversation">Izbrisati razgovor?</string>
     <string name="ConversationActivity_delete_and_leave_group">Izbrisati i napustiti grupu?</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Ova konverzacija bit će izbrisana sa svih Vaših uređaja.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Napustit ćete ovu grupu i ona će biti izbrisana sa svih Vaših uređaja.</string>
@@ -475,8 +475,8 @@
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">Izbrisati označeni razgovor?</item>
         <item quantity="few">Izbrisati označene razgovore?</item>
-        <item quantity="many">Izbrisati označene razgovore?</item>
-        <item quantity="other">Izbrisati označene razgovore?</item>
+        <item quantity="many">Izbrisati označenih razgovora?</item>
+        <item quantity="other">Izbrisati označenih razgovora?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
         <item quantity="one">Ovo će trajno izbrisati odabrani razgovor.</item>
@@ -587,9 +587,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Povucite prema dolje da filtrirate</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Otpustite da filtrirate</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
@@ -703,9 +703,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Svi termini u (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Odabrano vrijeme je u prošlosti. Ovim ćete odmah poslati poruku.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Pošalji odmah</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Pošalji sada</string>
@@ -973,7 +973,7 @@
     <string name="AddGroupDetailsFragment__try_again_later">Pokušajte ponovo kasnije.</string>
     <string name="AddGroupDetailsFragment__remove">Ukloni</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS kontakt</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Udaljiti %1$s iz ove grupe?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Udalji %1$s iz ove grupe?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Odabrali ste kontakt koji ne podržava Signal grupe pa će ovo biti MMS grupa. Prilagođena MMS imena grupe i fotografije će biti vidljivi samo vama.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -2098,6 +2098,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Reagirali ste %1$s na priču korisnika</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Plaćanje</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Nova verzija Signala</string>
@@ -3342,7 +3344,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtriraj nepročitane chatove</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Obriši nepročitani filter</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj u međuspremnik</string>
@@ -3558,9 +3560,9 @@
     <string name="BackupDialog_enable_local_backups">Aktivirati lokalne rezervne kopije?</string>
     <string name="BackupDialog_enable_backups">Aktiviraj</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Molimo potvrdite da ste razumjeli označivši kućicu za potvrdu.</string>
-    <string name="BackupDialog_delete_backups">Izbrisati rezervne kopije?</string>
+    <string name="BackupDialog_delete_backups">Izbrisati sigurnosne kopije?</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">Deaktivirati i izbrisati sve lokalne rezervne kopije?</string>
-    <string name="BackupDialog_delete_backups_statement">Izbriši rezervne kopije</string>
+    <string name="BackupDialog_delete_backups_statement">Izbriši sigurnosne kopije</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Da biste aktivirali kreiranje rezervnih kopija, izaberite direktorij. Rezervne kopije bit će pohranjene na toj lokaciji.</string>
     <string name="BackupDialog_choose_folder">Odaberi direktorij</string>
     <string name="BackupDialog_copied_to_clipboard">Kopirano u međuspremnik</string>
@@ -3573,7 +3575,7 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Provjera sigurnosne kopije Signala…</string>
     <string name="LocalBackupJobApi29_backup_failed">Neuspjelo kreiranje rezervne kopije</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktorij sa rezervnim kopijama izbrisan je ili premješten.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktorij sa sigurnosnim kopijama je izbrisan ili premješten.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Vaša rezervna kopija prevelika je za pohranjivanje na ovoj lokaciji.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Nema dovoljno prostora za pohranjivanje rezervne kopije.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
@@ -3582,7 +3584,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Vaša sigurnosna kopija sadrži veoma veliku datoteku za koju nije moguće kreirati sigurnosnu kopiju. Izbrišite je i kreirajte novu sigurnosnu kopiju.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Pritisnite da rasporedite rezervne kopije.</string>
     <string name="RegistrationActivity_wrong_number">Pogrešan broj?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Pozovi me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontaktirajte Signalovu podršku</string>
     <string name="RegistrationActivity_code_support_subject">Signal registracija – potvrda kōda za Android</string>
     <string name="RegistrationActivity_incorrect_code">Pogrešan kôd</string>
@@ -5073,7 +5075,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Odgovoriti privatno %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Odgovori kontaktu %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Kopiraj</string>
@@ -5806,8 +5808,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Podrška za SMS uskoro nestaje</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Slanje SMS poruka u aplikaciji Signal uskoro više neće biti podržano.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS poruke se razlikuju od poruka Signala. <b>To neće uticati na šifrirano razmjenjivanje poruka u Signalu koje će i dalje funkcionirati.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5819,13 +5821,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Postavite korisničko ime za Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Korisnička imena omogućavaju drugima da vam šalju poruke bez potrebe za vašim brojem telefona</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Ne sada</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Nastavi</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5839,15 +5841,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Nastavi</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Postavite korisničko ime za Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Uredi korisničko ime</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Brisanje korisničkog imena</string>
 
     <!-- EOF -->
 </resources>

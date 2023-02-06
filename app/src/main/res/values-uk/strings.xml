@@ -197,7 +197,7 @@
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Вилучити</string>
-    <string name="ClearProfileActivity_remove_profile_photo">Видалити фото профіля?</string>
+    <string name="ClearProfileActivity_remove_profile_photo">Видалити фото профілю?</string>
     <string name="ClearProfileActivity_remove_group_photo">Видалити фото групи?</string>
 
     <!-- ClientDeprecatedActivity -->
@@ -587,9 +587,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Потягніть униз, щоби відфільтрувати</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Відпустіть, щоби відфільтрувати</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Профіль</string>
@@ -703,9 +703,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Встановлений час: %2$s (%1$s)</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Вибраний час у минулому. Повідомлення буде надіслано зараз.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Надіслати зараз</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Надіслати зараз</string>
@@ -822,10 +822,10 @@
         <item quantity="other">Цим користувачам потрібно прийняти запит, щоб приєднатись до групи знов. Вони не отримуватимуть повідомлень від групи поки не приймуть запит:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Цього користувача було видалено з групи, та він не зможе приєднатись поки не оновить застосунок:</item>
-        <item quantity="few">Цього користувача було видалено з групи, та він не зможе приєднатись поки не оновить застосунок:</item>
-        <item quantity="many">Цих користувачів було видалено з групи, та вони не зможуть приєднатись поки не оновлять застосунок:</item>
-        <item quantity="other">Цих користувачів було видалено з групи, та вони не зможуть приєднатись поки не оновлять застосунок:</item>
+        <item quantity="one">Цього користувача було вилучено з групи, та він не зможе приєднатись поки не оновить застосунок:</item>
+        <item quantity="few">Цього користувача було вилучено з групи, та він не зможе приєднатись поки не оновить застосунок:</item>
+        <item quantity="many">Цих користувачів було вилучено з групи, та вони не зможуть приєднатись поки не оновлять застосунок:</item>
+        <item quantity="other">Цих користувачів було вилучено з групи, та вони не зможуть приєднатись поки не оновлять застосунок:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -842,10 +842,10 @@
         <item quantity="other">Цим користувачам потрібно прийняти запит, щоб приєднатись до групи знов. Вони не отримуватимуть повідомлень від групи поки не приймуть запит:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Цей учасник не може приєднуватись до Нових груп, та його буде видалено з групи:</item>
-        <item quantity="few">Ці учасники не можуть приєднуватись до Нових груп, та їх буде видалено з групи:</item>
-        <item quantity="many">Ці учасники не можуть приєднуватись до Нових груп, та їх буде видалено з групи:</item>
-        <item quantity="other">Ці учасники не можуть приєднуватись до Нових Груп, та їх буде видалено з групи:</item>
+        <item quantity="one">Цей учасник не може приєднуватись до Нових груп, та його буде вилучено з групи:</item>
+        <item quantity="few">Ці учасники не можуть приєднуватись до Нових груп, та їх буде вилучено з групи:</item>
+        <item quantity="many">Ці учасники не можуть приєднуватись до Нових груп, та їх буде вилучено з групи:</item>
+        <item quantity="other">Ці учасники не можуть приєднуватись до Нових Груп, та їх буде вилучено з групи:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -973,7 +973,7 @@
     <string name="AddGroupDetailsFragment__try_again_later">Спробуйте знову пізніше.</string>
     <string name="AddGroupDetailsFragment__remove">Вилучити</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS контакт</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Видалити %1$s з цієї групи?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Вилучити %1$s з цієї групи?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Ви вибрали контакт, який не підтримує групи Signal, тому ця група буде MMS-групою. Настроювані назви і фото MMS-групи зможете бачити тільки ви.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -1343,10 +1343,10 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">Не вдалося додати учасника до нової групи, тому його було видалено.</item>
-        <item quantity="few">Не вдалося додати %1$s учасників до нової групи, тому їх було видалено.</item>
-        <item quantity="many">Не вдалося додати %1$s учасників до нової групи, тому їх було видалено.</item>
-        <item quantity="other">Не вдалося додати %1$s учасника до нової групи, тому їх було видалено.</item>
+        <item quantity="one">Не вдалося додати учасника до нової групи, тому його було вилучено.</item>
+        <item quantity="few">Не вдалося додати %1$s учасників до нової групи, тому їх було вилучено.</item>
+        <item quantity="many">Не вдалося додати %1$s учасників до нової групи, тому їх було вилучено.</item>
+        <item quantity="other">Не вдалося додати %1$s учасника до нової групи, тому їх було вилучено.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1367,9 +1367,9 @@
     <string name="MessageRecord_s_joined_the_group">%1$s приєдналися до групи.</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">Ви видалили %1$s.</string>
-    <string name="MessageRecord_s_removed_s">%1$s видалив %2$s.</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s видалив вас з групи.</string>
+    <string name="MessageRecord_you_removed_s">Ви вилучили %1$s.</string>
+    <string name="MessageRecord_s_removed_s">%1$s вилучив %2$s.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s вилучив вас з групи.</string>
     <string name="MessageRecord_you_left_the_group">Ви покинули групу.</string>
     <string name="MessageRecord_s_left_the_group">%1$s покинув групу.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">Ви більше не у групі.</string>
@@ -2098,6 +2098,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Реакція %1$s на сторі</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Платіж</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Оновлення Signal</string>
@@ -3342,7 +3344,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Фільтрувати непрочитані чати</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Очистити фільтр непрочитаних</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Скопіювати до буфера обміну</string>
@@ -3479,10 +3481,10 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Реєстрація в Signal - Потрібна допомога з PIN-кодом для Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Для вашої конфіденційності та безпеки відновлення PIN-коду не передбачається. Якщо ви не зможете згадати свій PIN-код, ви зможете наново зареєструватися через SMS, якщо впродовж %1$d дня не буде активності. При цьому ваш обліковий запис буде витерто, а весь вміст видалено.</item>
-        <item quantity="few">Для вашої конфіденційності та безпеки відновлення PIN-коду не передбачається. Якщо ви не зможете згадати свій PIN-код, ви зможете наново зареєструватися через SMS, якщо впродовж %1$d днів не буде активності. При цьому ваш обліковий запис буде витерто, а весь вміст видалено.</item>
-        <item quantity="many">Для вашої конфіденційності та безпеки відновлення PIN-коду не передбачається. Якщо ви не зможете згадати свій PIN-код, ви зможете наново зареєструватися через SMS, якщо впродовж %1$d днів не буде активності. При цьому ваш обліковий запис буде витерто, а весь вміст видалено.</item>
-        <item quantity="other">Для вашої конфіденційності та безпеки відновлення PIN-коду не передбачається. Якщо ви не зможете згадати свій PIN-код, ви зможете наново зареєструватися через SMS, якщо впродовж %1$d днів не буде активності. При цьому ваш обліковий запис буде витерто, а весь вміст видалено.</item>
+        <item quantity="one">Для вашої конфіденційності та безпеки відновлення PIN-коду не передбачається. Якщо ви не зможете згадати свій PIN-код, ви зможете наново зареєструватися через SMS, якщо впродовж %1$d дня не буде активності. При цьому ваш обліковий запис буде видалено, а весь вміст видалено.</item>
+        <item quantity="few">Для вашої конфіденційності та безпеки відновлення PIN-коду не передбачається. Якщо ви не зможете згадати свій PIN-код, ви зможете наново зареєструватися через SMS, якщо впродовж %1$d днів не буде активності. При цьому ваш обліковий запис буде видалено, а весь вміст видалено.</item>
+        <item quantity="many">Для вашої конфіденційності та безпеки відновлення PIN-коду не передбачається. Якщо ви не зможете згадати свій PIN-код, ви зможете наново зареєструватися через SMS, якщо впродовж %1$d днів не буде активності. При цьому ваш обліковий запис буде видалено, а весь вміст видалено.</item>
+        <item quantity="other">Для вашої конфіденційності та безпеки відновлення PIN-коду не передбачається. Якщо ви не зможете згадати свій PIN-код, ви зможете наново зареєструватися через SMS, якщо впродовж %1$d днів не буде активності. При цьому ваш обліковий запис буде видалено, а весь вміст видалено.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3493,10 +3495,10 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">Якщо ви вичерпаєте спроби, ваш обліковий запис буде заблоковано на %1$d день. Якщо впродовж %1$d день в ньому не буде активності, ви зможете зареєструватися знову без введення PIN-коду. При цьому обліковий запис буде витерто, а весь вміст видалено.</item>
-        <item quantity="few">Якщо ви вичерпаєте спроби, ваш обліковий запис буде заблоковано на %1$d день. Якщо впродовж %1$d дня в ньому не буде активності, ви зможете зареєструватися знову без введення PIN-коду. При цьому обліковий запис буде витерто, а весь вміст видалено.</item>
-        <item quantity="many">Якщо ви вичерпаєте спроби, ваш обліковий запис буде заблоковано на %1$d днів. Якщо впродовж %1$d днів в ньому не буде активності, ви зможете зареєструватися знову без введення PIN-коду. При цьому обліковий запис буде витерто, а весь вміст видалено.</item>
-        <item quantity="other">Якщо ви вичерпаєте спроби, ваш обліковий запис буде заблоковано на %1$d днів. Якщо впродовж %1$d днів в ньому не буде активності, ви зможете зареєструватися знову без введення PIN-коду. При цьому обліковий запис буде витерто, а весь вміст видалено.</item>
+        <item quantity="one">Якщо ви вичерпаєте спроби, ваш обліковий запис буде заблоковано на %1$d день. Якщо впродовж %1$d день в ньому не буде активності, ви зможете зареєструватися знову без введення PIN-коду. При цьому обліковий запис буде видалено, а весь вміст видалено.</item>
+        <item quantity="few">Якщо ви вичерпаєте спроби, ваш обліковий запис буде заблоковано на %1$d день. Якщо впродовж %1$d дня в ньому не буде активності, ви зможете зареєструватися знову без введення PIN-коду. При цьому обліковий запис буде видалено, а весь вміст видалено.</item>
+        <item quantity="many">Якщо ви вичерпаєте спроби, ваш обліковий запис буде заблоковано на %1$d днів. Якщо впродовж %1$d днів в ньому не буде активності, ви зможете зареєструватися знову без введення PIN-коду. При цьому обліковий запис буде видалено, а весь вміст видалено.</item>
+        <item quantity="other">Якщо ви вичерпаєте спроби, ваш обліковий запис буде заблоковано на %1$d днів. Якщо впродовж %1$d днів в ньому не буде активності, ви зможете зареєструватися знову без введення PIN-коду. При цьому обліковий запис буде видалено, а весь вміст видалено.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3582,7 +3584,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Резервна копія містить великий файл, який неможливо зберегти. Будь ласка, видаліть його і створіть нову резервну копію.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Натисніть, щоб керувати резервним копіюванням.</string>
     <string name="RegistrationActivity_wrong_number">Невірний номер?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Подзвоніть мені (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Зверніться в службу підтримки Signal</string>
     <string name="RegistrationActivity_code_support_subject">Реєстрація в Signal - код підтвердження для Android</string>
     <string name="RegistrationActivity_incorrect_code">Невірний код</string>
@@ -3755,15 +3757,15 @@
     <string name="RecipientBottomSheet_add_to_another_group">Додати до іншої групи</string>
     <string name="RecipientBottomSheet_view_safety_number">Перевірити номер безпеки</string>
     <string name="RecipientBottomSheet_make_admin">Призначити адміністратором</string>
-    <string name="RecipientBottomSheet_remove_as_admin">Видалити як адміністратора</string>
-    <string name="RecipientBottomSheet_remove_from_group">Видалити з групи</string>
+    <string name="RecipientBottomSheet_remove_as_admin">Вилучити як адміністратора</string>
+    <string name="RecipientBottomSheet_remove_from_group">Вилучити з групи</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">Видалити %1$s як адміністратора групи?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Вилучити %1$s як адміністратора групи?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"«%1$s» зможе змінювати цю групу і її учасників."</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">Видалити %1$s з цієї групи?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">Вилучити %1$s з цієї групи?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Видалити %1$s з групи? Користувач більше не зможе приєднатись за посиланням групи.</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Вилучити %1$s з групи? Користувач більше не зможе приєднатись за посиланням групи.</string>
     <string name="RecipientBottomSheet_remove">Вилучити</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">Скопійовано до буфера обміну</string>
 
@@ -3822,15 +3824,15 @@
         <item quantity="many">%1$d спільних груп</item>
         <item quantity="other">%1$d спільних груп</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">Видалити %1$s з групи?</string>
-    <string name="ReviewCardDialogFragment__remove">Видалити</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Не вдалося видалити учасника групи.</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">Вилучити %1$s з групи?</string>
+    <string name="ReviewCardDialogFragment__remove">Вилучити</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Не вдалося Вилучити учасника групи.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">Учасник</string>
     <string name="ReviewCard__request">Запит</string>
     <string name="ReviewCard__your_contact">Серед ваших контактів</string>
-    <string name="ReviewCard__remove_from_group">Видалити з групи</string>
+    <string name="ReviewCard__remove_from_group">Вилучити з групи</string>
     <string name="ReviewCard__update_contact">Оновити контакт</string>
     <string name="ReviewCard__block">Заблокувати</string>
     <string name="ReviewCard__delete">Видалити</string>
@@ -4166,7 +4168,7 @@
     <!-- Snackbar text to confirm deletion -->
     <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Вилучаємо SMS-повідомлення з Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Ви можете видалити SMS-повідомлення з Signal у налаштуваннях у будь-який момент.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Ви можете вилучити SMS-повідомлення з Signal у налаштуваннях у будь-який момент.</string>
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Ви можете експортувати свої SMS-повідомлення до бази даних з SMS телефону</string>
     <!-- Description for re-export sms preference -->
@@ -4432,7 +4434,7 @@
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">Заблокувати</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">Видалити %1$s?</string>
+    <string name="NewConversationActivity__remove_s">Вилучити %1$s?</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">Ви не бачитиме цю людину під час пошуку. Якщо в майбутньому вона вам напише, ви отримаєте запит на повідомлення.</string>
     <!-- Snackbar message after removing a contact -->
@@ -4440,7 +4442,7 @@
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">Заблоковано: %1$s</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Не вдалося видалити: %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Не вдалося вилучити: %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">Ця людина збережена в контактах вашого пристрою. Видаліть її з контактів і спробуйте знову.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
@@ -4553,7 +4555,7 @@
 
     <string name="MediaCountIndicatorButton__send">Надіслати</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Натисніть для видалення</string>
+    <string name="MediaReviewSelectedItem__tap_to_remove">Натисніть для вилучення</string>
     <string name="MediaReviewSelectedItem__tap_to_select">Нажміть щоб обрати</string>
 
     <string name="MediaReviewImagePageFragment__discard">Відхилити</string>
@@ -4823,7 +4825,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Видалити профіль</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">«%1$s» видалено.</string>
+    <string name="NotificationProfileDetails__s_removed">«%1$s» вилучено.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Відмінити</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -5051,7 +5053,7 @@
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Перейдіть до налаштувань</string>
     <!-- Dialog action to remove viewer from a story -->
-    <string name="StoryViewsFragment__remove">Видалити</string>
+    <string name="StoryViewsFragment__remove">Вилучити</string>
     <!-- Dialog title when removing a viewer from a story -->
     <string name="StoryViewsFragment__remove_viewer">Вилучити глядача?</string>
     <!-- Dialog message when removing a viewer from a story -->
@@ -5073,7 +5075,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Особисто відповісти %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Відповісти користувачу %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Копіювати</string>
@@ -5143,11 +5145,11 @@
     <!-- Clickable option to delete a custom story -->
     <string name="PrivateStorySettingsFragment__delete_custom_story">Видалити настроювану сторі</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove_s">Видалити %1$s?</string>
+    <string name="PrivateStorySettingsFragment__remove_s">Вилучити %1$s?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Ця людина більше не бачитиме вашу сторі.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove">Видалити</string>
+    <string name="PrivateStorySettingsFragment__remove">Вилучити</string>
     <!-- Dialog title when deleting a custom story -->
     <!-- Dialog message when deleting a custom story -->
     <!-- Page title for editing a custom story name -->
@@ -5396,7 +5398,7 @@
     <!-- Dialog message for removing a group story -->
     <string name="ContactSearchMediator__this_will_remove">Сторі буде вилучено з цього переліку. Ви все одно зможете переглядати сторіз у цій групі.</string>
     <!-- Dialog action item for removing a group story -->
-    <string name="ContactSearchMediator__remove">Видалити</string>
+    <string name="ContactSearchMediator__remove">Вилучити</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Видалити сторі?</string>
     <!-- Dialog message for deleting a custom story -->
@@ -5477,9 +5479,9 @@
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">Контакти</string>
     <!-- Context menu label for distribution list headers in review fragment -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Видалити все</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Вилучити все</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove">Видалити</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove">Вилучити</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Конфіденційність сторіз</string>
@@ -5615,7 +5617,7 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Вилучити SMS-повідомлення з Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Тепер ви можете видалити SMS-повідомлення з Signal, щоб звільнити простір зберігання. Повідомлення все одно будуть доступні іншим програмам для SMS на вашому телефоні, навіть якщо ви їх вилучите.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Тепер ви можете видалити SMS-повідомлення з Signal, щоб звільнити простір зберігання. Повідомлення все одно будуть доступні іншим програмам для SMS на вашому телефоні, навіть якщо ви їх видалите.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5806,8 +5808,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Підтримка SMS припиняється</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Невдовзі застосунок Signal припинить підтримувати SMS-повідомлення.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS-повідомлення відрізняються від повідомлень Signal. <b>Ця зміна ніяк не впливатиме на зашифровані повідомлення Signal, які продовжать працювати.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5819,13 +5821,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Встановіть ім\'я користувача Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Завдяки імені користувача вам зможуть писати люди, які не знають вашого номеру телефону</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Не зараз</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Продовжити</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5839,15 +5841,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Продовжити</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Встановіть ім\'я користувача Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Редагувати ім\'я користувача</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Видалити ім\'я користувача</string>
 
     <!-- EOF -->
 </resources>

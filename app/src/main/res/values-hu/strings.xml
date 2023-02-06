@@ -1956,6 +1956,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Reakció a Történetére: %1$s</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Fizetés</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal frissítés</string>
@@ -2490,7 +2492,7 @@
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Keresztnév (kötelező)</string>
-    <string name="CreateProfileActivity_last_name_optional">Vezetéknév (kötelező)</string>
+    <string name="CreateProfileActivity_last_name_optional">Vezetéknév (opcionális)</string>
     <string name="CreateProfileActivity_next">Tovább</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Az egyéni MMS csoport nevek és fotók csak számodra láthatók.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">A csoport leírása a tagok, illetve a meghívottak részére lesz látható.</string>
@@ -2516,7 +2518,7 @@
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Neved</string>
     <string name="EditProfileNameFragment_first_name">Keresztnév</string>
-    <string name="EditProfileNameFragment_last_name_optional">Vezetéknév (kötelező)</string>
+    <string name="EditProfileNameFragment_last_name_optional">Vezetéknév (opcionális)</string>
     <string name="EditProfileNameFragment_save">Mentés</string>
     <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Hálózati hiba miatt nem sikerült a mentés. Próbáld újra később!</string>
 
@@ -5556,8 +5558,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Az SMS-támogatás megszűnik</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Hamarosan megszűnik az SMS-ek támogatása a Signal-alkalmazásban.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Az SMS-ek eltérnek a Signal-üzenetektől. <b>Ez nincs hatással a titkosított Signal-üzenetküldési szolgáltatásra, amely továbbra is működik.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5573,9 +5575,9 @@
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Később</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Tovább</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5589,7 +5591,7 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Tovább</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
 
@@ -5597,7 +5599,7 @@
     <!-- Option to open username editor displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__edit_username">Edit username</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Felhasználónév törlése</string>
 
     <!-- EOF -->
 </resources>

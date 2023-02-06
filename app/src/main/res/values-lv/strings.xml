@@ -567,9 +567,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Velciet uz leju, lai filtrētu</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Atlaidiet, lai filtrētu</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profils</string>
@@ -683,9 +683,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Rādīt laiku (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Atlasītais laiks ir pagātnē. Šādi ziņa tiks nosūtīta uzreiz.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Nosūtīt uzreiz</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Sūtīt tagad</string>
@@ -2027,6 +2027,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Jūsu reakcija uz lietotāja stāstu: %1$s</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Maksājums</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal atjauninājums</string>
@@ -3256,7 +3258,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtrēt nelasītās sarunas</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Notīrīt nelasīto filtru</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopēt starpliktuvē</string>
@@ -3489,7 +3491,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Jūsu rezerves kopija satur ļoti lielu failu, ko nav iespējams dublēt. Lūdzu, izdzēsiet to un izveidojiet jaunu rezerves kopiju.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Pieskarties, lai pārvaldību rezerves kopijas</string>
     <string name="RegistrationActivity_wrong_number">Vai nepareizs numurs?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Piezvaniet man (%1$02d.%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Sazināties ar Signal tehnisko atbalstu</string>
     <string name="RegistrationActivity_code_support_subject">Signal reģistrācija - Android ierīces verifikācijas kods</string>
     <string name="RegistrationActivity_incorrect_code">Nepareizs kods</string>
@@ -4337,7 +4339,7 @@
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">Šī persona nebūs redzama meklēšanas rezultātos. Ja šī persona jums turpmāk nosūtīs ziņu, jūs saņemsiet ziņas pieprasījumu.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s ir dzēsta</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s ir noņemts</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s ir bloķēta</string>
     <!-- Dialog title when remove target contact is in system contacts -->
@@ -4720,7 +4722,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Dzēst profilu</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">\"%1$s\" noņemts</string>
+    <string name="NotificationProfileDetails__s_removed">\"%1$s\" noņemts.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Atsaukt</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -4967,7 +4969,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Atbild privāti uz %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Atbilde lietotājam %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Kopēt</string>
@@ -5681,8 +5683,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Īsziņu atbalsts tiks pārtraukts</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Īsziņu sūtīšana lietotnē Signal drīz vairs netiks atbalstīta.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Īsziņas atšķiras no Signal ziņojumiem. <b>Tas neietekmē šifrētos Signal ziņojumus, kuri darbosies arī turpmāk.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5694,13 +5696,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Izveidojiet savu Signal lietotājvārdu</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Lietotājvārdi ļauj citiem nosūtīt jums ziņas, neizmantojot jūsu tālruņa numuru</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Ne tagad</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Turpināt</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5714,15 +5716,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Turpināt</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Izveidojiet savu Signal lietotājvārdu</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Rediģēt lietotājvārdu</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Dzēst lietotājvārdu</string>
 
     <!-- EOF -->
 </resources>

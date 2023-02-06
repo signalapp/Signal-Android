@@ -587,9 +587,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Проведите пальцем вниз, чтобы отфильтровать</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Отпустите, чтобы отфильтровать</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Профиль</string>
@@ -703,9 +703,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Время всегда в (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Выбранное время уже прошло. Сообщение будет отправлено немедленно.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Отправить немедленно</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Отправить сейчас</string>
@@ -716,7 +716,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Удалить выбранное запланированное сообщение?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Удаление запланированного сообщения…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Удаление запланированного сообщения...</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Сессия чата обновлена</string>
@@ -2098,6 +2098,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Отреагировал(-а) %1$s на их историю</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Платёж</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Обновление Signal</string>
@@ -2951,7 +2953,7 @@
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Все разговоры будут безвозвратно обрезаны до %1$s самых новых сообщений.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Все сообщения и медиафайлы будут безвозвратно удалены с вашего устройства.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Вы действительно хотите удалить всю историю сообщений?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Вся история сообщений будет безвозвратно удалена. Это действие невозможно отменено.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Вся история сообщений будет безвозвратно удалена. Это действие невозможно отменить.</string>
     <string name="preferences_storage__delete_all_now">Удалить всё сейчас</string>
     <string name="preferences_storage__forever">Бессрочно</string>
     <string name="preferences_storage__one_year">1 год</string>
@@ -3342,7 +3344,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Фильтровать непрочитанные чаты</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Очистить фильтр непрочитанного</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копировать в буфер обмена</string>
@@ -3425,13 +3427,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Создать новый PIN-код</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Вы можете изменить свой PIN-код, пока это устройство зарегистрировано.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Создать PIN-код</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">ПИН-коды помогут вам восстановить аккаунт и сохранить вашу информацию в зашифрованном виде в Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN-коды могут помочь вам восстановить вашу учётную запись и сохранить вашу информацию в зашифрованном виде в Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Придумайте более надёжный PIN-код</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-коды не совпадают. Попробуйте ещё раз.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Повторно введите ПИН-код, который вы только что создали.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Повторно введите PIN-код, который вы только что создали.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Подтвердите свой PIN-код.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Не удалось создать PIN-код</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Ваш PIN-код не был сохранён. Мы попросим вас создать PIN-код позднее.</string>
@@ -3582,7 +3584,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Ваша резервная копия содержит очень большой файл, резервное копирование которого невозможно. Пожалуйста, удалите его и создайте новую резервную копию.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Нажмите, чтобы управлять резервным копированием.</string>
     <string name="RegistrationActivity_wrong_number">Неправильный номер?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Позвоните мне (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Связаться с поддержкой Signal</string>
     <string name="RegistrationActivity_code_support_subject">Регистрация в Signal - код подтверждения для Android</string>
     <string name="RegistrationActivity_incorrect_code">Неверный код</string>
@@ -3858,9 +3860,9 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Удаление вашей учётной записи приведёт к:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Введите свой номер телефона</string>
     <string name="DeleteAccountFragment__delete_account">Удалить учётную запись</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Удалению информации вашей учётной записи и фотографии профиля</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Удалению всех ваших сообщений</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Удалению %1$s в вашей платёжной учётной записи</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Удалить информации вашей учётной записи и фотографии профиля</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Удалить всех ваших сообщений</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Удалить %1$s в вашей платёжной учётной записи</string>
     <string name="DeleteAccountFragment__no_country_code">Не указан код страны</string>
     <string name="DeleteAccountFragment__no_number">Не указан номер</string>
     <string name="DeleteAccountFragment__the_phone_number">Номер телефона, который вы ввели, не совпадает с номером телефона вашей учётной записи.</string>
@@ -5073,7 +5075,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Приватный ответ для %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Ответить %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Копировать</string>
@@ -5776,7 +5778,7 @@
     <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Ваша информация конфиденциальна</string>
     <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal не собирает и не хранит вашу личную информацию, когда вы делаете пожертвование.</string>
     <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">Для получения ваших пожертвований мы используем компанию Stripe в качестве оператора платежей. Мы не имеем доступа ни к какой информации, которую вы ей предоставляете, не сохраняем и не храним её.</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal не связывает и не может связать ваше пожертвование с вашим аккаунтом Signal.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal не связывает и не может связать ваше пожертвование с вашей учётной записью Signal.</string>
     <string name="YourInformationIsPrivateBottomSheet__thank_you">Спасибо за вашу поддержку!</string>
 
     <!-- GroupStoryEducationSheet -->
@@ -5806,8 +5808,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Поддержка SMS прекращается</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Приложение Signal скоро перестанет поддерживать обмен SMS-сообщениями.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS-сообщения отличаются от сообщений Signal. <b>Это не влияет на зашифрованные сообщения Signal, которые будут продолжать работать.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5819,13 +5821,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Настройте своё имя пользователя Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Имена пользователей позволяют другим пользователям отправлять вам сообщения без вашего номера телефона</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Не сейчас</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Продолжить</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5833,21 +5835,21 @@
     <!-- Popup menu label for applying italic style -->
     <string name="TextFormatting_italic">Курсив</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Зачеркивание</string>
+    <string name="TextFormatting_strikethrough">Зачёркивание</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Моноспейс</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Продолжить</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Настроить своё имя пользователя Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Редактировать имя пользователя</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Удалить имя пользователя</string>
 
     <!-- EOF -->
 </resources>

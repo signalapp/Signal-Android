@@ -354,10 +354,10 @@
     <string name="ConversationActivity_cancel">Poništi</string>
     <string name="ConversationActivity_delete_conversation">Izbriši razgovor?</string>
     <string name="ConversationActivity_delete_and_leave_group">Izbriši i napusti grupu?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Ovaj razgovor će biti izbrisan s svih vaših uređaja.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Napustiti će te ovu grupu i ona će biti izbrisana sa svih vaših uređaja.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Ovaj će razgovor biti izbrisan sa svih vaših uređaja.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Napustit ćete ovu grupu i ona će biti izbrisana sa svih vaših uređaja.</string>
     <string name="ConversationActivity_delete">Izbriši</string>
-    <string name="ConversationActivity_delete_and_leave">Izbriši i napusti</string>
+    <string name="ConversationActivity_delete_and_leave">Izbriši i napusti grupu</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Da biste uputili poziv za %1$s, omogućite Signalu pristup vašem mikrofonu</string>
 
 
@@ -444,7 +444,7 @@
     <string name="ConversationFragment_failed_to_open_message">Otvaranje poruke nije uspjelo</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Za brzi odgovor, prijeđite prstom udesno po bilo kojoj poruci</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Za brzi odgovor, prijeđite prstom ulijevo po bilo kojoj poruci</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odlazni medijski zapisi koji su vidljivi samo jednom se automatski uklanjaju nakon što su poslani</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odlazni medijski zapisi koji su vidljivi samo jednom automatski se uklanjaju nakon što su poslani</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Već ste pregledali ovu poruku</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">U ovom razgovoru možete dodati osobne bilješke.\nAko vaš račun ima povezane uređaje, nove će se bilješke sinkronizirati.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d člana/ova grupe imaju isto ime.</string>
@@ -587,9 +587,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Povucite prema dolje za filtriranje</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Otpustite za filtriranje</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
@@ -703,9 +703,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Vremenski podaci po (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Odabrano vrijeme već je prošlo. Poruka će odmah biti poslana.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Pošalji odmah</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Pošalji sada</string>
@@ -1093,7 +1093,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Nije moguće pridružiti se grupi</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Ne možete se pridružiti ovoj grupi putem veze grupe jer vas je administrator uklonio.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Ne možete se pridružiti ovoj grupi putem poveznice grupe jer vas je administrator uklonio.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Poveznica grupe je nevažeća.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1343,7 +1343,7 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">Nije bilo moguće dodati člana u Novu grupu, stoga je uklonjen.</item>
+        <item quantity="one">Nije bilo moguće dodati člana u Novu grupu, stoga je uklonjen iz grupe.</item>
         <item quantity="few">%1$s člana nije moguće dodati u Novu grupu, stoga su uklonjeni iz grupe.</item>
         <item quantity="many">%1$s članova nije moguće dodati u Novu grupu, stoga su uklonjeni iz grupe.</item>
         <item quantity="other">%1$s članova nije moguće dodati u Novu grupu, stoga su uklonjeni iz grupe.</item>
@@ -2032,7 +2032,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">Spremanje nije uspjelo</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">Spremanje je dovršeno</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Pritisnite liniju za izbrisati</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Pritisnite liniju za brisanje</string>
     <string name="SubmitDebugLogActivity_submit">Pošalji</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Slanje zapisa nije uspjelo</string>
     <string name="SubmitDebugLogActivity_success">Uspješno!</string>
@@ -2098,6 +2098,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Reagira s %1$s na njihovu priču</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Plaćanje</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal ažuriranje</string>
@@ -2118,7 +2120,7 @@
     <string name="UsernameEditFragment__choose_your_username">Odaberite vaše korisničko ime</string>
     <string name="UsernameEditFragment_username">Korisničko ime</string>
     <string name="UsernameEditFragment_delete">Izbriši</string>
-    <string name="UsernameEditFragment_successfully_removed_username">Uspješno uklonjeno ime profila.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">Korisničko ime uspješno je uklonjeno.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Došlo je do mrežne pogreške.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Korisničko ime je zauzeto.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Korisnička imena smiju sadržavati samo a-Z, 0-9 i podvlake.</string>
@@ -2192,7 +2194,7 @@
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal zahtijeva dopuštenje za prostor za pohranu kako bi mogao spremiti u vanjski prostor za pohranu, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Prostor za pohranu\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nije moguće spremiti u vanjski prostor za pohranu bez dozvola</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Izbriši poruku?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Ovo će trajno izbrisati ovu poruka.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">To će trajno izbrisati ovu poruku.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s za %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Poslano korisniku %1$s</string>
@@ -2741,7 +2743,7 @@
     <string name="AndroidManifest__linked_devices">Povezani uređaji</string>
     <string name="AndroidManifest__invite_friends">Pozovi prijatelje</string>
     <string name="AndroidManifest_archived_conversations">Arhivirani razgovori</string>
-    <string name="AndroidManifest_remove_photo">Ukloni sliku</string>
+    <string name="AndroidManifest_remove_photo">Ukloni fotografiju</string>
 
     <!-- Message Requests Megaphone -->
     <string name="MessageRequestsMegaphone__message_requests">Zahtjevi za razgovorom</string>
@@ -2923,7 +2925,7 @@
     <string name="preferences__advanced_pin_settings">Napredne postavke PIN-a</string>
     <string name="preferences__free_private_messages_and_calls">Besplatne privatne poruke i pozivi sa Signal korisnicima</string>
     <string name="preferences__submit_debug_log">Pošalji zapisnik pogreške</string>
-    <string name="preferences__delete_account">Izbriši račun</string>
+    <string name="preferences__delete_account">Izbriši korisnički račun</string>
     <string name="preferences__support_wifi_calling">Način kompatibilnosti za \'WiFi pozive\'</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Omogućite ako vaš uređaj koristi SMS/MMS dostavu putem Wi-Fi-ja (omogućiti samo kad je na vašem uređaju omogućeni \'WiFi pozivi\')</string>
     <string name="preferences__incognito_keyboard">Inkognito tipkovnica</string>
@@ -2951,8 +2953,8 @@
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Ovo će trenutno skratiti sve razgovore na %1$s najnovijih poruka.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ovo će trajno izbrisati svu povijest razgovora i medijske zapise s vašeg uređaja.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Jeste li sigurni da želite izbrisati svu povijest razgovora?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Sva povijest razgovora bit će trajno izbrisana. Ova se radnja ne može poništiti.</string>
-    <string name="preferences_storage__delete_all_now">Izbriši sve sada</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Sva povijest razgovora bit će trajno uklonjena. Ova se radnja ne može poništiti.</string>
+    <string name="preferences_storage__delete_all_now">Izbriši sve</string>
     <string name="preferences_storage__forever">Zauvijek</string>
     <string name="preferences_storage__one_year">1 godina</string>
     <string name="preferences_storage__six_months">6 mjeseci</string>
@@ -3342,7 +3344,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtriraj nepročitane razgovore</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Ukloni filtar za nepročitane razgovore</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj u međuspremnik</string>
@@ -3461,7 +3463,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Račun je zaključan</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Vaš je račun zaključan radi zaštite vaše privatnosti i sigurnosti. Nakon %1$d dana neaktivnosti vašeg računa moći će te ponovno registrirati ovaj broj telefona bez potrebe za PIN-om. Sav sadržaj bit će izbrisan.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Vaš je račun zaključan radi zaštite vaše privatnosti i sigurnosti. Nakon %1$d dana neaktivnosti vašeg računa moći ćete ponovno registrirati ovaj broj telefona bez potrebe za PIN-om. Sav sadržaj bit će izbrisan.</string>
     <string name="AccountLockedFragment__next">Sljedeće</string>
     <string name="AccountLockedFragment__learn_more">Saznajte više</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3479,10 +3481,10 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Registracija Signala - Trebate pomoć s PIN-om za Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Zbog vaše privatnosti i sigurnosti ne možete oporaviti svoj PIN. Ako se ne možete sjetiti svog PIN-a, možete se ponovno registrirati SMS-om nakon %1$d dana neaktivnosti. U tom će slučaju vaš račun i sav sadržaj biti izbrisani.</item>
-        <item quantity="few">Zbog vaše privatnosti i sigurnosti ne možete oporaviti svoj PIN. Ako se ne možete sjetiti svog PIN-a, možete se ponovno registrirati SMS-om nakon %1$d dana neaktivnosti. U tom će slučaju vaš račun i sav sadržaj biti izbrisani.</item>
-        <item quantity="many">Zbog vaše privatnosti i sigurnosti ne možete oporaviti svoj PIN. Ako se ne možete sjetiti svog PIN-a, možete se ponovno registrirati SMS-om nakon %1$d dana neaktivnosti. U tom će slučaju vaš račun i sav sadržaj biti izbrisani.</item>
-        <item quantity="other">Zbog vaše privatnosti i sigurnosti ne možete oporaviti svoj PIN. Ako se ne možete sjetiti svog PIN-a, možete se ponovno registrirati SMS-om nakon %1$d dana neaktivnosti. U tom će slučaju vaš račun i sav sadržaj biti izbrisani.</item>
+        <item quantity="one">Zbog vaše privatnosti i sigurnosti ne možete oporaviti svoj PIN. Ako se ne možete sjetiti svog PIN-a, možete se ponovno registrirati SMS-om nakon %1$d dana neaktivnosti. U tom će slučaju vaš račun i sav njegov sadržaj biti izbrisani.</item>
+        <item quantity="few">Zbog vaše privatnosti i sigurnosti ne možete oporaviti svoj PIN. Ako se ne možete sjetiti svog PIN-a, možete se ponovno registrirati SMS-om nakon %1$d dana neaktivnosti. U tom će slučaju vaš račun i sav njegov sadržaj biti izbrisani.</item>
+        <item quantity="many">Zbog vaše privatnosti i sigurnosti ne možete oporaviti svoj PIN. Ako se ne možete sjetiti svog PIN-a, možete se ponovno registrirati SMS-om nakon %1$d dana neaktivnosti. U tom će slučaju vaš račun i sav njegov sadržaj biti izbrisani.</item>
+        <item quantity="other">Zbog vaše privatnosti i sigurnosti ne možete oporaviti svoj PIN. Ako se ne možete sjetiti svog PIN-a, možete se ponovno registrirati SMS-om nakon %1$d dana neaktivnosti. U tom će slučaju vaš račun i sav njegov sadržaj biti izbrisani.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3493,10 +3495,10 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">Ako vam ponestane pokušaja, vaš će račun biti zaključan na %1$d dan. Nakon %1$d dana neaktivnosti možete se ponovno registrirati bez PIN-a. Vaš račun kao i sav sadržaj će biti izbrisani.</item>
-        <item quantity="few">Ako vam ponestane pokušaja, vaš će račun biti zaključan na %1$d dana. Nakon %1$d dana neaktivnosti možete se ponovno registrirati bez PIN-a. Vaš račun kao i sav sadržaj će biti izbrisani.</item>
-        <item quantity="many">Ako vam ponestane pokušaja, vaš će račun biti zaključan na %1$d dana. Nakon %1$d dana neaktivnosti možete se ponovno registrirati bez PIN-a. Vaš račun kao i sav sadržaj će biti izbrisani.</item>
-        <item quantity="other">Ako vam ponestane pokušaja, vaš će račun biti zaključan na %1$d dana. Nakon %1$d dana neaktivnosti možete se ponovno registrirati bez PIN-a. Vaš račun kao i sav sadržaj će biti izbrisani.</item>
+        <item quantity="one">Ako vam ponestane pokušaja, vaš će račun biti zaključan na %1$d dan. Nakon %1$d dana neaktivnosti možete se ponovno registrirati bez PIN-a. Vaš račun i sav njegov sadržaj bit će izbrisani.</item>
+        <item quantity="few">Ako vam ponestane pokušaja, vaš će račun biti zaključan na %1$d dana. Nakon %1$d dana neaktivnosti možete se ponovno registrirati bez PIN-a. Vaš račun i sav njegov sadržaj bit će izbrisani.</item>
+        <item quantity="many">Ako vam ponestane pokušaja, vaš će račun biti zaključan na %1$d dana. Nakon %1$d dana neaktivnosti možete se ponovno registrirati bez PIN-a. Vaš račun i sav njegov sadržaj bit će izbrisani.</item>
+        <item quantity="other">Ako vam ponestane pokušaja, vaš će račun biti zaključan na %1$d dana. Nakon %1$d dana neaktivnosti možete se ponovno registrirati bez PIN-a. Vaš račun i sav njegov sadržaj bit će izbrisani.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3582,7 +3584,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Vaša sigurnosna kopija sadrži vrlo veliku datoteku koja se ne može sigurnosno kopirati. Izbrišite je i napravite novu sigurnosnu kopiju.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Pritisnite za upravljanje sigurnosnim kopijama.</string>
     <string name="RegistrationActivity_wrong_number">Pogrešan broj?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Nazovi me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontaktirajte Signalovu podršku</string>
     <string name="RegistrationActivity_code_support_subject">Registracija Signala - Potvrdni kôd za Android</string>
     <string name="RegistrationActivity_incorrect_code">Pogrešan kôd</string>
@@ -3681,7 +3683,7 @@
     <string name="DeviceTransferSetup__location_permission">Dozvola za lokaciju</string>
     <string name="DeviceTransferSetup__location_services">Lokacijske usluge</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Na Wi-Fi Direct zaslonu, uklonite sve zapamćene grupe i prekinite vezu sa svim pozvanim ili povezanim uređajima.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Na Wi-Fi Direct zaslonu uklonite sve zapamćene grupe i prekinite vezu sa svim pozvanim ili povezanim uređajima.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct zaslon</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Pokušajte isključiti i uključiti Wi-Fi na oba uređaja.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Provjerite jesu li oba uređaja u načinu prijenosa.</string>
@@ -3857,9 +3859,9 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Brisanje vašeg računa će:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Unesite vaš broj telefona</string>
-    <string name="DeleteAccountFragment__delete_account">Izbriši račun</string>
+    <string name="DeleteAccountFragment__delete_account">Izbriši korisnički račun</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Izbrišite podatke o računu i fotografiju profila</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Izbrišite sve vaše poruke</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Izbriši sve poruke</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Izbriši %1$s u vašem računu za plaćanja</string>
     <string name="DeleteAccountFragment__no_country_code">Nije naveden kôd države</string>
     <string name="DeleteAccountFragment__no_number">Nije naveden broj</string>
@@ -4162,7 +4164,7 @@
     <!-- Preference title to re-export sms -->
     <string name="SmsSettingsFragment__export_sms_messages_again">Ponovi izvoz SMS poruka</string>
     <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">Brisanje SMS poruka</string>
+    <string name="SmsSettingsFragment__remove_sms_messages">Ukloni SMS poruke</string>
     <!-- Snackbar text to confirm deletion -->
     <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Uklanjanje SMS poruka iz Signala…</string>
     <!-- Snackbar text to indicate can delete later -->
@@ -4436,7 +4438,7 @@
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">Nećete vidjeti ovu osobu prilikom pretraživanja. Dobit ćete zahtjev za poruku ako vam bude slala poruke.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s je uklonjen(a)</string>
+    <string name="NewConversationActivity__s_has_been_removed">Korisnik %1$s je uklonjen</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s je blokiran(a)</string>
     <!-- Dialog title when remove target contact is in system contacts -->
@@ -4823,7 +4825,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Izbriši profil</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">Profil \"%1$s\"2 je izbrisan.</string>
+    <string name="NotificationProfileDetails__s_removed">Primatelj \"%1$s\" je uklonjen.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Poništi</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -5073,7 +5075,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Odgovori privatno korisniku %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Odgovor korisniku %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Kopiraj</string>
@@ -5143,7 +5145,7 @@
     <!-- Clickable option to delete a custom story -->
     <string name="PrivateStorySettingsFragment__delete_custom_story">Izbriši prilagođenu priču</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove_s">Izbrisati %1$s?</string>
+    <string name="PrivateStorySettingsFragment__remove_s">Ukloniti %1$s?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Ova osoba više neće vidjeti vašu priču.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
@@ -5611,9 +5613,9 @@
     <!-- Action button to keep messages -->
     <string name="RemoveSmsMessagesDialogFragment__keep_messages">Zadrži poruke</string>
     <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Izbriši poruke</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Ukloni poruke</string>
     <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Izbrisati SMS poruke sa Signala?</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Ukloniti SMS poruke sa Signala?</string>
     <!-- Message of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Sada možete ukloniti SMS poruke iz Signala kako biste oslobodili prostor za pohranu. One će i dalje biti dostupne drugim SMS aplikacijama na vašem telefonu, čak i ako ih uklonite.</string>
 
@@ -5806,8 +5808,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Ukida se podrška za SMS poruke</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Slanje SMS poruka unutar aplikacije Signal uskoro neće više biti moguće.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS poruke nisu isto što i Signal poruke. <b>Ovo ne utječe na slanje šifriranih poruka unutar Signala koje će nastaviti normalno funkcionirati.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5819,13 +5821,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Postavite svoje korisničko ime za Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Korisnička imena omogućuju drugima da vam šalju poruke bez potrebe za vašim brojem telefona</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Ne sada</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Nastavi</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5839,15 +5841,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Nastavi</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Postavite svoje korisničko ime za Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Uredi korisničko ime</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Izbriši korisničko ime</string>
 
     <!-- EOF -->
 </resources>

@@ -281,7 +281,7 @@
     <string name="ConversationItem_read_more"> Διάβασε περισσότερα</string>
     <string name="ConversationItem_download_more"> Κατέβασε περισσότερα</string>
     <string name="ConversationItem_pending"> Εκκρεμεί</string>
-    <string name="ConversationItem_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
+    <string name="ConversationItem_this_message_was_deleted">Αυτό το μήνυμα διαγράφηκε.</string>
     <string name="ConversationItem_you_deleted_this_message">Διέγραψες αυτό το μήνυμα.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Η λήψη του μηνύματος απέτυχε. Ο χρήστης %1$s πρέπει να το στείλει ξανά.</string>
@@ -353,9 +353,9 @@
 
     <string name="ConversationActivity_cancel">Ακύρωση</string>
     <string name="ConversationActivity_delete_conversation">Διαγραφή συνομιλίας;</string>
-    <string name="ConversationActivity_delete_and_leave_group">Διαγραφή και αποχώρηση απ\' την ομάδα;</string>
+    <string name="ConversationActivity_delete_and_leave_group">Διαγραφή και αποχώρηση από την ομάδα;</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Η συνομιλία θα διαγραφεί από όλες τις συσκευές σου.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Θα αποχωρήσεις από αυτή την ομάδα, και θα διαγραφεί από όλες τις συσκευές σου.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Θα αποχωρήσεις από αυτή την ομάδα και θα διαγραφεί από όλες τις συσκευές σου.</string>
     <string name="ConversationActivity_delete">Διαγραφή</string>
     <string name="ConversationActivity_delete_and_leave">Διαγραφή και αποχώρηση</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Για να καλέσεις τον/την %1$s, το Signal χρειάζεται πρόσβαση στο μικρόφωνό σου.</string>
@@ -420,19 +420,19 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Γίνεται διαγραφή</string>
     <string name="ConversationFragment_deleting_messages">Διαγραφή μηνυμάτων…</string>
-    <string name="ConversationFragment_delete_for_me">Διαγραφή για εμένα</string>
+    <string name="ConversationFragment_delete_for_me">Διαγραφή για μένα</string>
     <string name="ConversationFragment_delete_for_everyone">Διαγραφή για όλους</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Διαγραφή από αυτή τη συσκευή</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Διαγραφή από όλες τις συσκευές</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Αυτό το μήνυμα θα διαγραφεί για όλους σε αυτή τη συνομιλία, αν έχουν πρόσφατη έκδοση του Signal. Θα μπορούν να δούν ότι διέγραψες ένα μήνυμα.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Αυτό το μήνυμα θα διαγραφεί για όλους σε αυτή τη συνομιλία, αν έχουν πρόσφατη έκδοση του Signal. Θα μπορούν να δουν ότι διέγραψες ένα μήνυμα.</string>
     <string name="ConversationFragment_quoted_message_not_found">Το αρχικό μήνυμα δεν βρέθηκε</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Το αρχικό μήνυμα δεν είναι πια διαθέσιμο</string>
     <string name="ConversationFragment_failed_to_open_message">Αποτυχία ανοίγματος μηνύματος</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Μπορείς να σύρεις οποιοδήποτε μήνυμα προς τα δεξιά για γρήγορη απάντηση</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Μπορείς να σύρεις οποιοδήποτε μήνυμα προς τα αριστερά για γρήγορη απάντηση</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Τα εξερχόμενα πολυμέσα μιας μόνο προβολής αφαιρούνται αυτόματα αφού αποσταλούν</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Τα εξερχόμενα πολυμέσα μεμονωμένης προβολής αφαιρούνται αυτόματα αφού αποσταλούν</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Έχεις ήδη δει αυτό το μήνυμα</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Σε αυτή τη συνομιλία, μπορείς να γράψεις προσωπικές σημειώσεις. \nΑν έχεις συνδεμένες συσκευές στον λογαριασμό σου, οι νέες σημειώσεις θα συγχρονίζονται.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d μέλη της ομάδας έχουν το ίδιο όνομα.</string>
@@ -465,8 +465,8 @@
         <item quantity="other">Διαγραφή των επιλεγμένων συνομιλιών;</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">Αυτό θα διαγράψει οριστικά την επιλεγμένη συνομιλία.</item>
-        <item quantity="other">Αυτό θα διαγράψει οριστικά και τις %1$d επιλεγμένες συνομιλίες.</item>
+        <item quantity="one">Αυτή η ενέργεια θα διαγράψει οριστικά την επιλεγμένη συνομιλία.</item>
+        <item quantity="other">Αυτή η ενέργεια θα διαγράψει οριστικά και τις %1$d επιλεγμένες συνομιλίες.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Γίνεται διαγραφή</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Διαγραφή επιλεγμένων συνομιλιών…</string>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Σύρε προς τα κάτω για φιλτράρισμα</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Απελευθέρωσε για φιλτράρισμα</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Προφίλ</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Όλες οι ώρες σε (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Η επιλεγμένη ώρα έχει παρέλθει. Αυτή η ενέργεια θα στείλει αμέσως το μήνυμα.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Άμεση αποστολή</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Αποστολή τώρα</string>
@@ -776,8 +776,8 @@
         <item quantity="other">Αυτά τα μέλη θα πρέπει να αποδεχτούν την πρόσκληση να ξαναμπούν στην ομάδα, και δεν θα λαμβάνουν τα μηνύματα της ομάδας μέχρι να αποδεχτούν:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Αυτό το μέλος αφαιρέθηκε από την ομάδα και δεν θα μπορέσει να ξαναμπεί μέχρι να αναβαθμίσει:</item>
-        <item quantity="other">Αυτά τα μέλη αφαιρέθηκαν από την ομάδα και δεν θα μπορέσουν να ξαναμπούν μέχρι να αναβαθμίσουν:</item>
+        <item quantity="one">Αυτό το μέλος αφαιρέθηκε από την ομάδα και δεν θα μπορεί να ξαναμπεί μέχρι να αναβαθμίσει:</item>
+        <item quantity="other">Αυτά τα μέλη αφαιρέθηκαν από την ομάδα και δεν θα μπορούν να ξαναμπούν μέχρι να αναβαθμίσουν:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -792,8 +792,8 @@
         <item quantity="other">Αυτά τα μέλη θα πρέπει να αποδεχτούν την πρόσκληση να ξαναμπούν στην ομάδα, και δεν θα λαμβάνουν τα μηνύματα της ομάδας μέχρι να αποδεχτούν:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Αυτό το μέλος δεν μπορεί να μπει σε Ομάδες νέου τύπου, και θα αφαιρεθεί από την ομάδα:</item>
-        <item quantity="other">Αυτά τα μέλη δεν μπορούν να μπουν σε Ομάδες νέου τύπου, και θα αφαιρεθούν από την ομάδα:</item>
+        <item quantity="one">Αυτό το μέλος δεν μπορεί να μπει σε Νέες Ομάδες και θα αφαιρεθεί από την ομάδα:</item>
+        <item quantity="other">Αυτά τα μέλη δεν μπορούν να μπουν σε Νέες Ομάδες και θα αφαιρεθούν από την ομάδα:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -1011,7 +1011,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Αδυναμία εισόδου στην ομάδα</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Δεν μπορείς να μπεις στην ομάδα μέσω του συνδέσμου της ομάδας, επειδή ένας/μια διαχειριστής σε αφαίρεσε.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Δεν μπορείς να μπεις στην ομάδα μέσω του συνδέσμου της ομάδας, επειδή κάποιος διαχειριστής σε αφαίρεσε.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Ο σύνδεσμος ομάδας δεν είναι πια έγκυρος</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1103,12 +1103,12 @@
     <string name="MediaOverviewActivity_Audio">Ήχος</string>
     <string name="MediaOverviewActivity_All">Όλα</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">Διαγραφή επιλεγμένου αντικειμένου;</item>
-        <item quantity="other">Διαγραφή επιλεγμένων αντικειμένων;</item>
+        <item quantity="one">Διαγραφή επιλεγμένου στοιχείου;</item>
+        <item quantity="other">Διαγραφή επιλεγμένων στοιχείων;</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">Αυτό θα διαγράψει μόνιμα το επιλεγμένο αρχείο. Οποιοδήποτε κείμενο μηνύματος που σχετίζεται με αυτό τα αρχείο θα διαγραφεί επίσης.</item>
-        <item quantity="other">Αυτό θα διαγράψει μόνιμα τα %1$d επιλεγμένα αρχεία. Οποιοδήποτε κείμενο μηνύματος που σχετίζεται με αυτά τα αρχεία θα διαγραφεί επίσης.</item>
+        <item quantity="one">Αυτή η ενέργεια θα διαγράψει μόνιμα το επιλεγμένο αρχείο. Οποιοδήποτε κείμενο μηνύματος που σχετίζεται με αυτό το αρχείο θα διαγραφεί επίσης.</item>
+        <item quantity="other">Αυτή η ενέργεια θα διαγράψει μόνιμα τα %1$d επιλεγμένα αρχεία. Οποιοδήποτε κείμενο μηνύματος που σχετίζεται με αυτά τα αρχεία θα διαγραφεί επίσης.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Γίνεται διαγραφή</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Διαγραφή μηνυμάτων…</string>
@@ -1245,8 +1245,8 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">Ένα μέλος δεν μπόρεσε να προστεθεί στη Νέα Ομάδα και αφαιρέθηκε.</item>
-        <item quantity="other">%1$s δεν μπόρεσαν να προστεθούν στη Νέα Ομάδα και αφαιρέθηκαν.</item>
+        <item quantity="one">Ένα μέλος δεν ήταν δυνατό να προστεθεί στη Νέα Ομάδα και αφαιρέθηκε.</item>
+        <item quantity="other">%1$s μέλη δεν ήταν δυνατό να προστεθούν στη Νέα Ομάδα και αφαιρέθηκαν.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1269,7 +1269,7 @@
     <!-- GV2 member removals -->
     <string name="MessageRecord_you_removed_s">Αφαίρεσες τον/την %1$s.</string>
     <string name="MessageRecord_s_removed_s">Ο/Η %1$s αφαίρεσε τον/την %2$s.</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">Ο/Η %1$s σε αφαίρεσε απ\' την ομάδα.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">Ο/Η %1$s σε αφαίρεσε από την ομάδα.</string>
     <string name="MessageRecord_you_left_the_group">Έφυγες απ\' την ομάδα.</string>
     <string name="MessageRecord_s_left_the_group">Ο/Η %1$s έφυγε απ\' την ομαδα.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">Δεν είσαι στην ομάδα πια.</string>
@@ -1890,7 +1890,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">Αποτυχία αποθήκευσης</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">Η αποθήκευση ολοκληρώθηκε</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Πάτα πάνω σε μία γραμμή για να τη διαγράψεις</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Πάτα πάνω σε μια γραμμή για να τη διαγράψεις</string>
     <string name="SubmitDebugLogActivity_submit">Αποστολή</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Αποτυχία υποβολής αρχείων καταγραφής</string>
     <string name="SubmitDebugLogActivity_success">Επιτυχία!</string>
@@ -1918,7 +1918,7 @@
     <string name="ThreadRecord_view_once_photo">Φωτογραφία μιας μόνο προβολής</string>
     <string name="ThreadRecord_view_once_video">Βίντεο μιας μόνο προβολής</string>
     <string name="ThreadRecord_view_once_media">Πολυμέσο μιας μόνο προβολής</string>
-    <string name="ThreadRecord_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
+    <string name="ThreadRecord_this_message_was_deleted">Αυτό το μήνυμα διαγράφηκε.</string>
     <string name="ThreadRecord_you_deleted_this_message">Διέγραψες αυτό το μήνυμα.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Έστειλες ένα αίτημα για ενεργοποίηση των πληρωμών</string>
@@ -1956,6 +1956,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Αντέδρασε με %1$s στην ιστορία τους</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Πληρωμή</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Αναβάθμιση Signal</string>
@@ -2093,7 +2095,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Αντέδρασε με %1$s στο ηχητικό σου.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Αντέδρασε με %1$s στο πολυμέσο μιας μόνο προβολής</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Αντέδρασε με %1$s στο αυτοκόλλητό σου.</string>
-    <string name="MessageNotifier_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
+    <string name="MessageNotifier_this_message_was_deleted">Αυτό το μήνυμα διαγράφηκε.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Απενεργοποίηση των ειδοποιήσεων για επαφές που έρχονται στο Signal; Μπορείς να τις ενεργοποιήσεις ξανά στο Signal &gt; Ρυθμίσεις &gt; Ειδοποιήσεις.</string>
 
@@ -2779,11 +2781,11 @@
     <string name="preferences_storage__review_storage">Ανασκόπηση χώρου</string>
     <string name="preferences_storage__delete_older_messages">Διαγραφή παλαιότερων μηνυμάτων;</string>
     <string name="preferences_storage__clear_message_history">Εκκαθάριση του ιστορικού μηνυμάτων;</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Με αυτόν τον τρόπο, θα διαγραφεί μόνιμα όλο το ιστορικό μηνυμάτων και τα πολυμέσα από τη συσκευή σου, τα οποία είναι παλαιότερα από %1$s.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Με αυτή την ενέργεια, θα διαγραφεί μόνιμα όλο το ιστορικό μηνυμάτων και τα πολυμέσα από τη συσκευή σου, τα οποία είναι παλαιότερα από %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Αυτό θα περικόψει όλες τις συνομιλίες στα %1$s πιο πρόσφατα μηνύματα.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Με αυτόν τον τρόπο, θα διαγραφεί μόνιμα όλο το ιστορικό μηνυμάτων και τα πολυμέσα από τη συσκευή σου.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Με αυτή την ενέργεια, θα διαγραφεί μόνιμα όλο το ιστορικό μηνυμάτων και τα πολυμέσα από τη συσκευή σου.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Θέλεις σίγουρα να διαγράψεις όλο το ιστορικό των μηνυμάτων;</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Όλο το ιστορικό των μηνυμάτων θα αφαιρεθεί μόνιμα. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Όλο το ιστορικό των μηνυμάτων θα αφαιρεθεί μόνιμα. Δεν θα έχεις τη δυνατότητα να αναιρέσεις την ενέργεια.</string>
     <string name="preferences_storage__delete_all_now">Διαγραφή όλων τώρα</string>
     <string name="preferences_storage__forever">Για πάντα</string>
     <string name="preferences_storage__one_year">1 έτος</string>
@@ -3170,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Φιλτράρισμα μη αναγνωσμένων συνομιλιών</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Φίλτρο διαγραφής μη αναγνωσμένων</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Αντιγραφή στο πρόχειρο</string>
@@ -3211,7 +3213,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Το Signal Protocol προστάτευσε αυτόματα το %1$d%% των εξερχόμενων μηνυμάτων σου, τις τελευταίες %2$d ημέρες. Οι συνομιλίες μεταξύ χρηστών του Signal είναι πάντα κρυπτογραφημένες από άκρο σε άκρο.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Διαδώστε το</string>
     <string name="InsightsDashboardFragment__not_enough_data">Δεν υπάρχουν αρκετά δεδομένα</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Το ποσοστό στα στατιστικά σου υπολογίζεται με βάση τα εξερχόμενα μηνυμάτων τις τελευταίες %1$d ημέρες, που δεν έχουν εξαφανιστεί ή διαγραφτεί.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Το ποσοστό στα στατιστικά σου υπολογίζεται με βάση τα εξερχόμενα μηνυμάτων τις τελευταίες %1$d ημέρες, που δεν έχουν εξαφανιστεί ή διαγραφεί.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">Ξεκίνα μια συνομιλία</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Ξεκίνα να επικοινωνείς με ασφάλεια και ενεργοποίησε νέες δυνατότητες πέρα από τους περιορισμούς των μη κρυπτογραφημένων SMS, προσκαλώντας περισσότερες επαφές να έρθουν στο Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Αυτά τα στατιστικά υπολογίστηκαν τοπικά, στη συσκευή σου, και μόνο εσύ μπορείς να τα δεις. Δεν αποστέλλονται πουθενά ποτέ.</string>
@@ -3285,7 +3287,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Κλειδωμένος λογαριασμός</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ο λογαριασμός σου έχει κλειδωθεί για να προστατεύσουμε την ιδιωτικότητα και την ασφάλειά σου. Μετά από %1$d ημέρες αδράνειας του λογαριασμού σου, θα μπορείς να επανεγγράψεις αυτό τον αριθμό τηλεφώνου χωρίς να χρειάζεται το PIN σου. Όλα τα περιεχόμενα θα διαγραφτούν.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ο λογαριασμός σου έχει κλειδωθεί για να προστατεύσουμε το απόρρητο και την ασφάλειά σου. Μετά από %1$d ημέρες αδράνειας του λογαριασμού σου, θα μπορείς να επανεγγράψεις αυτό τον αριθμό τηλεφώνου χωρίς να χρειάζεται το PIN σου. Όλα τα περιεχόμενα θα διαγραφούν.</string>
     <string name="AccountLockedFragment__next">Επόμενο</string>
     <string name="AccountLockedFragment__learn_more">Μάθε περισσότερα</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3303,8 +3305,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Εγγραφή Signal - Βοήθεια με το PIN στο Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Για την ασφάλεια και ιδιωτικότητά σου, δεν υπάρχει τρόπος να επανακτήσεις το PIN σου. Αν δεν μπορείς να το θυμηθείς, μπορείς να επανεπιβεβαιώσεις μέσω SMS μετά από %1$d ημέρα αδράνειας. Σε αυτή την περίπτωση, ο λογαριασμός σου θα καθαριστεί και όλα τα περιεχόμενα θα διαγραφτούν.</item>
-        <item quantity="other">Για την ασφάλεια και ιδιωτικότητά σου, δεν υπάρχει τρόπος να επανακτήσεις το PIN σου. Αν δεν μπορείς να το θυμηθείς, μπορείς να επανεπιβεβαιώσεις μέσω SMS μετά από %1$d ημέρες αδράνειας. Σε αυτή την περίπτωση, ο λογαριασμός σου θα καθαριστεί και όλα τα περιεχόμενα θα διαγραφτούν.</item>
+        <item quantity="one">Για την ασφάλεια και το απόρρητό σου, δεν υπάρχει τρόπος να επανακτήσεις το PIN σου. Αν δεν μπορείς να το θυμηθείς, μπορείς να το επιβεβαιώσεις πάλι μέσω SMS μετά από %1$d ημέρα αδράνειας. Σε αυτή την περίπτωση, ο λογαριασμός σου θα καθαριστεί και όλα τα περιεχόμενα θα διαγραφούν.</item>
+        <item quantity="other">Για την ασφάλεια και το απόρρητό σου, δεν υπάρχει τρόπος να επανακτήσεις το PIN σου. Αν δεν μπορείς να το θυμηθείς, μπορείς να το επιβεβαιώσεις πάλι μέσω SMS μετά από %1$d ημέρες αδράνειας. Σε αυτή την περίπτωση, ο λογαριασμός σου θα καθαριστεί και όλα τα περιεχόμενα θα διαγραφούν.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3313,8 +3315,8 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">Άν τελειώσουν οι προσπάθειές σου, ο λογαριασμός σου θα κλειδωθεί για %1$d ημέρα. Μετά από %1$d ημέρα αδράνειας, θα μπορείς να επανεγγραφτείς χωρίς το PIN σου. Ο λογαριασμός σου θα καθαριστεί και όλα τα περιεχόμενα θα διαγραφτούν.</item>
-        <item quantity="other">Άν τελειώσουν οι προσπάθειες, ο λογαριασμός σου θα κλειδωθεί για %1$d ημέρες. Μετά από %1$d ημέρες αδράνειας, θα μπορείς να επανεγγραφτείς χωρίς το PIN σου. Ο λογαριασμός σου θα καθαριστεί και όλα τα περιεχόμενα θα διαγραφτούν.</item>
+        <item quantity="one">Αν τελειώσουν οι προσπάθειές σου, ο λογαριασμός σου θα κλειδωθεί για %1$d ημέρα. Μετά από %1$d ημέρα αδράνειας, θα μπορείς να επανεγγραφείς χωρίς το PIN σου. Ο λογαριασμός σου θα καθαριστεί και όλα τα περιεχόμενα θα διαγραφούν.</item>
+        <item quantity="other">Αν τελειώσουν οι προσπάθειες, ο λογαριασμός σου θα κλειδωθεί για %1$d ημέρες. Μετά από %1$d ημέρες αδράνειας, θα μπορείς να επανεγγραφείς χωρίς το PIN σου. Ο λογαριασμός σου θα καθαριστεί και όλα τα περιεχόμενα θα διαγραφούν.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3372,7 +3374,7 @@
     <string name="BackupDialog_enable_local_backups">Ενεργοποίηση τοπικών αντίγραφων ασφαλείας;</string>
     <string name="BackupDialog_enable_backups">Ενεργοποίηση αντίγραφων ασφαλείας</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Παρακαλώ επιβεβαίωσε ότι κατάλαβες τσεκάροντας το κουτί επιβεβαίωσης.</string>
-    <string name="BackupDialog_delete_backups">Διαγραφή αντίγραφων ασφαλείας;</string>
+    <string name="BackupDialog_delete_backups">Διαγραφή αντιγράφων ασφαλείας;</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">Απενεργοποίηση και διαγραφή όλων των τοπικών αντίγραφων ασφαλείας;</string>
     <string name="BackupDialog_delete_backups_statement">Διαγραφή αντίγραφων ασφαλείας</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Για να ενεργοποιήσεις τα αντίγραφα ασφαλείας, επέλεξε ένα φάκελο. Τα αντίγραφα θα αποθηκεύονται σε αυτή την τοποθεσία.</string>
@@ -3396,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Το αντίγραφο ασφαλείας σου περιέχει ένα πολύ μεγάλο αρχείο που δεν μπορεί να αντιγραφεί. Διάγραψέ το και δημιούργησε ένα καινούργιο αντίγραφο ασφαλείας.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Πάτα για διαχείριση αντίγραφων ασφαλείας.</string>
     <string name="RegistrationActivity_wrong_number">Λάθος αριθμός;</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Κάλεσέ με (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Επικοινωνία με την Υποστήριξη Signal</string>
     <string name="RegistrationActivity_code_support_subject">Εγγραφή Signal - Κωδικός επαλήθευσης για Android</string>
     <string name="RegistrationActivity_incorrect_code">Λάθος κωδικός</string>
@@ -3495,7 +3497,7 @@
     <string name="DeviceTransferSetup__location_permission">Δικαιώματα τοποθεσίας</string>
     <string name="DeviceTransferSetup__location_services">Υπηρεσίες τοποθεσίας</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Στην οθόνη του Wi-Fi Direct, αφαίρεσε όλες τις ομάδες στη μνήμη και αποσύνδεσε οποιαδήποτε προσκεκλημένη ή συνδεδεμένη συσκευή.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Στην οθόνη του WiFi Direct, αφαίρεσε όλες τις ομάδες από τη μνήμη και αποσύνδεσε οποιαδήποτε προσκεκλημένη ή συνδεδεμένη συσκευή.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Οθόνη Wi-Fi Direct</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Δοκίμασε να κλείσεις και να ξανανοίξεις το Wi-Fi και στις δύο συσκευές.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Επιβεβαίωσε πως και οι δύο συσκευές είναι στη κατάσταση μεταφοράς.</string>
@@ -3570,9 +3572,9 @@
     <string name="RecipientBottomSheet_view_safety_number">Προβολή αριθμού ασφαλείας</string>
     <string name="RecipientBottomSheet_make_admin">Ορισμός ως διαχειριστή</string>
     <string name="RecipientBottomSheet_remove_as_admin">Αφαίρεση διαχειριστή</string>
-    <string name="RecipientBottomSheet_remove_from_group">Αφαίρεση απ\' την ομάδα</string>
+    <string name="RecipientBottomSheet_remove_from_group">Αφαίρεση από την ομάδα</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">Αφαίρεση των δικαιωμάτων διαχείρισης της ομάδας από τον/την %1$s;</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Αφαίρεση του/της %1$s από διαχειριστή ομάδας;</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"Ο/Η \"%1$s\" θα μπορεί να επεξεργάζεται αυτή την ομάδα και τα μέλη της."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Αφαίρεση του/της %1$s από την ομάδα;</string>
@@ -3668,15 +3670,15 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Με τη διαγραφή του λογαριασμού σου θα γίνουν τα εξής:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Εισαγωγή αριθμού τηλεφώνου</string>
     <string name="DeleteAccountFragment__delete_account">Διαγραφή λογαριασμού</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Διαγραφη των πληροφοριών του λογαριασμού σου και της φωτογραφίας προφίλ σου</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Διαγραφή των στοιχείων του λογαριασμού σου και της φωτογραφίας προφίλ σου</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Διαγραφή όλων των μηνυμάτων σου</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Διαγραφή %1$s στον λογαριασμό πληρωμών σας</string>
     <string name="DeleteAccountFragment__no_country_code">Δεν διευκρινίστηκε κωδικός χώρας</string>
     <string name="DeleteAccountFragment__no_number">Δεν διευκρινίστηκε αριθμός</string>
     <string name="DeleteAccountFragment__the_phone_number">Ο αριθμός τηλεφώνου που έγραψες δεν αντιστοιχεί στο λογαριασμό σου.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Είσαι σίγουρος/η ότι θέλεις να διαγράψεις το λογαριασμό σου;</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Αυτό θα διαγράψει το λογαριασμό Signal σου και θα επαναφέρει την εφαρμογή στις αρχικές ρυθμίσεις. Η εφαρμογή θα κλείσει με την ολοκλήρωση της διαδικασίας.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Αποτυχία διαγραφής τοπικών δεδομένων. Μπορείς να τα σβήσεις χειροκίνητα στις ρυθμίσεις εφαρμογής του συστήματος.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Θέλεις σίγουρα να διαγράψεις τον λογαριασμό σου;</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Αυτή η ενέργεια θα διαγράψει τον λογαριασμό σου στο Signal και θα επαναφέρει την εφαρμογή στις αρχικές ρυθμίσεις. Η εφαρμογή θα κλείσει με την ολοκλήρωση της διαδικασίας.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Αποτυχία διαγραφής τοπικών δεδομένων. Μπορείς να τα σβήσεις μη αυτόματα από τις ρυθμίσεις εφαρμογής του συστήματος.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Άνοιγμα ρυθμίσεων εφαρμογής</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Αποχώρηση από ομάδες…</string>
@@ -4073,8 +4075,8 @@
     <string name="ChatColorSelectionFragment__delete">Διαγραφή</string>
     <string name="ChatColorSelectionFragment__delete_color">Διαγραφή χρώματος</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">Αυτό το προσαρμοσμένο χρώμα χρησιμοποιείται σε %1$d συνομιλία. Θέλεις να το διαγράψεις για όλες τις συνομιλίες;</item>
-        <item quantity="other">Αυτό το προσαρμοσμένο χρώμα χρησιμοποιείται σε %1$d συνομιλίες. Θέλεις να το διαγράψεις για όλες τις συνομιλίες;</item>
+        <item quantity="one">Αυτό το εξατομικευμένο χρώμα χρησιμοποιείται σε %1$d συνομιλία. Θέλεις να το διαγράψεις από όλες τις συνομιλίες;</item>
+        <item quantity="other">Αυτό το εξατομικευμένο χρώμα χρησιμοποιείται σε %1$d συνομιλίες. Θέλεις να το διαγράψεις από όλες τις συνομιλίες;</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">Διαγραφή του χρώματος της συνομιλίας;</string>
 
@@ -4244,7 +4246,7 @@
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Δεν είναι δυνατή η αφαίρεση του/της %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Αυτό το άτομο έχει αποθηκευτεί στις επαφές της συσκευής σου Διάγραψέ το από τις επαφές σου και δοκίμασε ξανά.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Αυτό το άτομο έχει αποθηκευτεί στις επαφές της συσκευής σου. Διάγραψέ το από τις επαφές σου και δοκίμασε ξανά.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Προβολή επαφής</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -4861,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Ιδιωτική απάντηση στον/στην %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Απάντηση προς %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Αντιγραφή</string>
@@ -4923,7 +4925,7 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Προσθήκη θεατή</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">Διαγραφή προσαρμοσμένης ιστορίας</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">Διαγραφή εξατομικευμένης ιστορίας</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">Αφαίρεση του/της %1$s;</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
@@ -4970,7 +4972,7 @@
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Αφαίρεση</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">Διαγραφή προσαρμοσμένης ιστορίας;</string>
+    <string name="StoryDialogs__delete_custom_story">Διαγραφή εξατομικευμένης ιστορίας;</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">Οι ιστορίες \"%1$s\" και οι ενημερώσεις που κοινοποιούνται σε αυτή θα διαγραφούν.</string>
     <!-- Dialog positive action for deleting a custom story -->
@@ -5107,7 +5109,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">Όχι τώρα</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Εξαργύρωση σήματος…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Εξαργύρωση σήματος...</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Μπορείς να εξαργυρώσεις το σήμα σου αργότερα.</string>
     <!-- Description text in gift thanks sheet -->
@@ -5166,7 +5168,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Διαγραφή ιστορίας;</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">Διαγραφή της προσαρμοσμένης ιστορίας \"%1$s\";</string>
+    <string name="ContactSearchMediator__delete_the_custom">Διαγραφή της εξατομικευμένης ιστορίας \"%1$s\";</string>
     <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">Διαγραφή</string>
     <!-- Donation for a friend expiry days remaining -->
@@ -5415,9 +5417,9 @@
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Το Signal δεν υποστηρίζει πλέον SMS</string>
     <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Το Signal θα καταργήσει σύντομα την υποστήριξη για την αποστολή μηνυμάτων SMS επειδή τα μηνύματα Signal παρέχουν κρυπτογράφηση και ισχυρό απόρρητο που δεν προσφέρουν τα μηνύματα SMS. Με αυτόν τον τρόπο, θα μπορούμε επίσης να βελτιώσουμε την εμπειρία ανταλλαγής μηνυμάτων Signal.</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Η Signal θα καταργήσει σύντομα την υποστήριξη για την αποστολή μηνυμάτων SMS επειδή τα μηνύματα Signal παρέχουν κρυπτογράφηση και ισχυρό απόρρητο που δεν προσφέρουν τα μηνύματα SMS. Με αυτόν τον τρόπο, θα μπορούμε επίσης να βελτιώσουμε την εμπειρία ανταλλαγής μηνυμάτων Signal.</string>
     <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Το Signal έχει καταργήσει την υποστήριξη για την αποστολή μηνυμάτων SMS επειδή τα μηνύματα Signal παρέχουν κρυπτογράφηση και ισχυρό απόρρητο που δεν προσφέρουν τα μηνύματα SMS. Με αυτόν τον τρόπο, θα μπορούμε επίσης να βελτιώσουμε την εμπειρία ανταλλαγής μηνυμάτων Signal.</string>
+    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Η Signal έχει καταργήσει την υποστήριξη για την αποστολή μηνυμάτων SMS επειδή τα μηνύματα Signal παρέχουν κρυπτογράφηση και ισχυρό απόρρητο που δεν προσφέρουν τα μηνύματα SMS. Με αυτόν τον τρόπο, θα μπορούμε επίσης να βελτιώσουμε την εμπειρία ανταλλαγής μηνυμάτων Signal.</string>
     <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
     <string name="SmsExportMegaphoneActivity__export_sms">Εξαγωγή SMS</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
@@ -5556,8 +5558,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Η υποστήριξη SMS καταργείται</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Η ανταλλαγή μηνυμάτων SMS στην εφαρμογή Signal σύντομα δεν θα υποστηρίζεται πλέον.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Τα μηνύματα SMS διαφέρουν από τα μηνύματα Signal. <b>Αυτή η αλλαγή δεν επηρεάζει τα κρυπτογραφημένα μηνύματα Signal, τα οποία θα συνεχίσουν να λειτουργούν.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5569,13 +5571,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Ρύθμισε το όνομα χρήστη σου στο Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Τα ονόματα χρήστη επιτρέπουν σε άλλους χρήστες να σου στείλουν μηνύματα χωρίς τον αριθμό τηλεφώνου σου</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Όχι τώρα</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Συνέχεια</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5589,15 +5591,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Συνέχεια</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Ρύθμισε το όνομα χρήστη σου στο Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Επεξεργασία ονόματος χρήστη</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Διαγραφή ονόματος χρήστη</string>
 
     <!-- EOF -->
 </resources>

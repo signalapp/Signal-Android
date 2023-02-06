@@ -17,7 +17,7 @@
 
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
-    <string name="delete">Verwyder</string>
+    <string name="delete">Skrap</string>
     <string name="please_wait">Wag asseblief…</string>
     <string name="save">Stoor</string>
     <string name="note_to_self">Nota aan myself</string>
@@ -353,7 +353,7 @@
 
     <string name="ConversationActivity_cancel">Kanselleer</string>
     <string name="ConversationActivity_delete_conversation">Skrap gesprek?</string>
-    <string name="ConversationActivity_delete_and_leave_group">Verlaat en skrap groep?</string>
+    <string name="ConversationActivity_delete_and_leave_group">Skrap en verlaat groep?</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Hierdie gesprek sal van al jou toestelle geskrap word.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Jy sal hierdie groep verlaat, en dit sal van al jou toestelle geskrap word.</string>
     <string name="ConversationActivity_delete">Skrap</string>
@@ -393,8 +393,8 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">Kontakte-toepassing nie gevind nie.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="one">Verwyder geselekteerde boodskap?</item>
-        <item quantity="other">Verwyder geselekteerde boodskappe?</item>
+        <item quantity="one">Skrap geselekteerde boodskap?</item>
+        <item quantity="other">Skrap geselekteerde boodskappe?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Stoor op toestel?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -461,7 +461,7 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Geen ongeleesde kletse nie</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Verwyder geselekteerde gesprek?</item>
+        <item quantity="one">Skrap geselekteerde gesprek?</item>
         <item quantity="other">Skrap geselekteerde gesprekke?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Trek ondertoe om te filtreer</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Laat los om te filtreer</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profiel</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Alle tye in (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Geselekteerde tyd is in die verlede. Dit sal dat die boodskap onmiddellik gestuur word.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Stuur onmiddellik</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Stuur nou</string>
@@ -792,7 +792,7 @@
         <item quantity="other">Hierdie lede sal weer ’n uitnodiging moet aanvaar om by die groep aan te sluit en sal geen groepboodskappe ontvang voordat hulle aanvaar het nie:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Hierdie lid kan nie by nuwe groepe aansluit nie en sal van die groep verwyder word:</item>
+        <item quantity="one">Hierdie lid kan nie by Nuwe Groepe aansluit nie en sal van die groep verwyder word:</item>
         <item quantity="other">Hierdie lede kan nie by Nuwe Groepe aansluit nie en sal van die groep verwyder word:</item>
     </plurals>
 
@@ -1918,8 +1918,8 @@
     <string name="ThreadRecord_view_once_photo">Eenkeerkyk-foto</string>
     <string name="ThreadRecord_view_once_video">Eenkeerkyk-video</string>
     <string name="ThreadRecord_view_once_media">Eenkeerkyk-media</string>
-    <string name="ThreadRecord_this_message_was_deleted">Hierdie boodskap is geskrap</string>
-    <string name="ThreadRecord_you_deleted_this_message">Jy het hierdie boodskap geskrap</string>
+    <string name="ThreadRecord_this_message_was_deleted">Hierdie boodskap is geskrap.</string>
+    <string name="ThreadRecord_you_deleted_this_message">Jy het hierdie boodskap geskrap.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Jy het \'n versoek gestuur om Betalings te aktiveer</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -1956,6 +1956,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">%1$s Het op hulle storie gereageer</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Betaling</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal-bywerking</string>
@@ -1975,7 +1977,7 @@
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Kies jou gebruikersnaam</string>
     <string name="UsernameEditFragment_username">Gebruikersnaam</string>
-    <string name="UsernameEditFragment_delete">Verwyder</string>
+    <string name="UsernameEditFragment_delete">Skrap</string>
     <string name="UsernameEditFragment_successfully_removed_username">Gebruikersnaam suksesvol verwyder.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Netwerkfout teëgekom.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Hierdie gebruikersnaam is reeds in gebruik.</string>
@@ -3170,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtreer ongeleesde boodskappe</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Maak ongeleesdes-filter skoon</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopieer na knipbord</string>
@@ -3303,7 +3305,7 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registrasie - Hulp nodig met PIN vir Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Ter wille van privaatheid en sekuriteit is daar geen manier om ’n PIN terug te kry nie. As jy nie jou PIN nie kan onthou nie, kan jy na %1$d dag van onaktiwiteit weer met SMS verifieer. In so ’n geval sal jou rekening uitgevee word en alle inhoud sal gewis word.</item>
+        <item quantity="one">Ter wille van privaatheid en sekuriteit is daar geen manier om ’n PIN terug te kry nie. As jy nie jou PIN nie kan onthou nie, kan jy na %1$d dag van onaktiwiteit weer met SMS verifieer. In so ’n geval sal jou rekening uitgevee word en alle inhoud sal geskrap word.</item>
         <item quantity="other">Ter wille van privaatheid en sekuriteit is daar geen manier om ’n PIN terug te kry nie. As jy nie jou PIN nie kan onthou nie, kan jy na %1$d dae van onaktiwiteit weer met SMS verifieer. In so ’n geval sal jou rekening uitgevee word en alle inhoud sal geskrap word.</item>
     </plurals>
 
@@ -3396,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Jou rugsteun bevat \'n baie groot lêer wat nie gerugsteun kan word nie. Skrap dit asb. en skep \'n nuwe rugsteun.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tik om rugsteunkopieë te bestuur.</string>
     <string name="RegistrationActivity_wrong_number">Verkeerde nommer?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Bel my (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontak Signal-steundiens</string>
     <string name="RegistrationActivity_code_support_subject">Signal-registrasie - verifikasiekode vir Android</string>
     <string name="RegistrationActivity_incorrect_code">Verkeerde kode</string>
@@ -3675,8 +3677,8 @@
     <string name="DeleteAccountFragment__no_number">Geen nommer aangedui nie</string>
     <string name="DeleteAccountFragment__the_phone_number">Die foonnommer wat jy ingevoer het stem nie met dié van jou rekening ooreen nie.</string>
     <string name="DeleteAccountFragment__are_you_sure">Is jy seker jy wil jou rekening skrap?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dit sal jou Signal-rekening skrap en die toepassing terugstel. Die toep sal toemaak nadat die prosesvoltooi is.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Kon nie lokale data skrap nie. Jy kan dit handmatig in die stelsel-toepassingsinstellings wis.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dit sal jou Signal-rekening skrap en die toepassing terugstel. Die toep sal toemaak nadat die proses voltooi is.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Kon nie lokale data skrap nie. Jy kan dit handmatig in die stelsel-toepassingsinstellings skrap.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Lanseer toepassingsinstellings</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Groepe word verlaat…</string>
@@ -4073,7 +4075,7 @@
     <string name="ChatColorSelectionFragment__delete">Skrap</string>
     <string name="ChatColorSelectionFragment__delete_color">Skrap kleur</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">Hierdie pasgemaakte kleur word in %1$d klets gebruik. Wil u dit vir alle kletse skrap?</item>
+        <item quantity="one">Hierdie pasgemaakte kleur word in %1$d klets gebruik. Wil jy dit vir alle kletse skrap?</item>
         <item quantity="other">Hierdie pasgemaakte kleur word in %1$d kletse gebruik. Wil jy dit vir alle kletse skrap?</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">Skrap kletskleur?</string>
@@ -4845,7 +4847,7 @@
     <!-- Dialog message when removing a viewer from a story -->
     <string name="StoryViewsFragment__s_will_still_be_able">%1$s sal steeds hierdie plasing kan sien, maar sal geen toekomstige plasings kan sien wat jy in %2$s deel nie.</string>
     <!-- Story View context menu action to remove them from a story -->
-    <string name="StoryViewItem__remove_viewer">Verwyder kyker.</string>
+    <string name="StoryViewItem__remove_viewer">Verwyder kyker</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Nog geen antwoorde nie</string>
     <!-- Displayed when no longer a group member -->
@@ -4861,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Besig om privaat te antwoord op %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Antwoord aan %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Kopieer</string>
@@ -4986,7 +4988,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Stuur</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Skakel af en vee uit</string>
+    <string name="StoryDialogs__turn_off_and_delete">Skakel af en skrap</string>
     <!-- Privacy Settings toggle title for stories -->
     <!-- Privacy Settings toggle summary for stories -->
     <!-- New story viewer selection screen title -->
@@ -5275,7 +5277,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Wil jy stories afskakel?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Jy sal nie meer stories kan deel of sien nie. Storiebywerkings wat jy onlangs gedeel het, sal ook uitgevee word.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Jy sal nie meer stories kan deel of sien nie. Storiebywerkings wat jy onlangs gedeel het, sal ook geskrap word.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Storieprivaatheid</string>
     <!-- Header for section that lists out stories -->
@@ -5556,8 +5558,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS-ondersteuning gaan beëindig word</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">SMS-boodskappe in die Signal-toepassing sal binnekort nie meer ondersteun word nie.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS-boodskappe verskil van Signal-boodskappe. <b>Dit beïnvloed nie geënkripteerde Signal-boodskappe nie, wat steeds sal werk.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5569,13 +5571,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Stel jou Signal-gebruikersnaam op</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Gebruikersname laat ander mense toe om aan jou boodskappe stuur sonder dat jou telefoonnommer nodig is</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Nie nou nie</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Gaan voort</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5589,15 +5591,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Gaan voort</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Stel jou Signal-gebruikersnaam op</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Wysig gebruikersnaam</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Skrap gebruikersnaam</string>
 
     <!-- EOF -->
 </resources>

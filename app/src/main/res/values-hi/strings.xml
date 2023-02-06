@@ -17,7 +17,7 @@
 
     <string name="yes">हाँ</string>
     <string name="no">नहीं</string>
-    <string name="delete">मिटाओ</string>
+    <string name="delete">डिलीट करें</string>
     <string name="please_wait">कृपया इंतज़ार कीजिए</string>
     <string name="save">संरक्षित करें</string>
     <string name="note_to_self">स्वयं को लिखें</string>
@@ -197,8 +197,8 @@
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">हटा दें</string>
-    <string name="ClearProfileActivity_remove_profile_photo">प्रोफ़ाइल फ़ोटो निकालें?</string>
-    <string name="ClearProfileActivity_remove_group_photo">समूह चित्र को हटाए</string>
+    <string name="ClearProfileActivity_remove_profile_photo">प्रोफ़ाइल फ़ोटो हटाएँ?</string>
+    <string name="ClearProfileActivity_remove_group_photo">समूह फ़ोटो हटाएँ?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Signal अपडेट करें</string>
@@ -281,8 +281,8 @@
     <string name="ConversationItem_read_more">और पढो</string>
     <string name="ConversationItem_download_more">और डाउनलोड करें</string>
     <string name="ConversationItem_pending">बचा हुआ</string>
-    <string name="ConversationItem_this_message_was_deleted">यह मेसेज हटा दिया गया है।</string>
-    <string name="ConversationItem_you_deleted_this_message">आपने यह मेसेज हटाया है</string>
+    <string name="ConversationItem_this_message_was_deleted">यह मेसेज डिलीट कर दिया गया है।</string>
+    <string name="ConversationItem_you_deleted_this_message">आपने यह मेसेज डिलीट किया है।</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">संदेश डाउनलोड नहीं किया जा सकता। %1$s को इसे फिर से भेजना होगा।</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -352,12 +352,12 @@
     <string name="ConversationActivity_new_say_it_with_stickers">नया! स्टीकर के साथ कहें</string>
 
     <string name="ConversationActivity_cancel">रद्द करें</string>
-    <string name="ConversationActivity_delete_conversation">संवाद हटाएं?</string>
-    <string name="ConversationActivity_delete_and_leave_group">हटाएं और समूह छोड़ दें?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">यह संवाद आपके सभी डिवाइस से हटा दिया जाएगा।</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">आप इस ग्रूप को छोङ देंगे और यह ग्रूप आपके सभी डिवाइस से हटा दिया जाएगा।</string>
-    <string name="ConversationActivity_delete">हटाए</string>
-    <string name="ConversationActivity_delete_and_leave">हटाएँ और छोड़ दें</string>
+    <string name="ConversationActivity_delete_conversation">संवाद डिलीट करें?</string>
+    <string name="ConversationActivity_delete_and_leave_group">डिलीट करें और समूह छोड़ दें?</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">यह संवाद आपके सभी डिवाइस से डिलीट कर दिया जाएगा।</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">आप इस ग्रूप को छोङ देंगे और यह ग्रूप आपके सभी डिवाइस से डिलीट कर दिया जाएगा।</string>
+    <string name="ConversationActivity_delete">डिलीट करें</string>
+    <string name="ConversationActivity_delete_and_leave">डिलीट करें और छोड़ दें</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s को कॉल करने के लिए, Signal को आपके माइक्रोफ़ोन तक पहुंच की आवश्यकता है।</string>
 
 
@@ -393,8 +393,8 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">संपर्क ऐप नहीं मिला।</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="one">चयनित मेसेज हटाएं?</item>
-        <item quantity="other">चयनित मेसेज हटाएं?</item>
+        <item quantity="one">चयनित मेसेज डिलीट करें?</item>
+        <item quantity="other">चयनित मेसेज डिलीट करें?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">इसे स्टॉरेज में सेव करे?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -420,19 +420,19 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">हटा दिया जा रहा है</string>
     <string name="ConversationFragment_deleting_messages">मेसेज हटाए जा रहे हैं</string>
-    <string name="ConversationFragment_delete_for_me">मेरे लिये हटाएँ</string>
-    <string name="ConversationFragment_delete_for_everyone">सब के लिये हटाएँ</string>
+    <string name="ConversationFragment_delete_for_me">मेरे लिये डिलीट करें</string>
+    <string name="ConversationFragment_delete_for_everyone">सब के लिये डिलीट करें</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">इस डिवाइस से डिलीट करें</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">हर कहीं से डिलीट करें</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">यह मेसेज वार्तालाप में शामिल सभी के लिए मिटा दिया जाएगा यदि वे Signal के नवीनमत वर्ज़न पर हैं। वे देख सकेंगे कि आपने एक मेसेज को मिटा दिया है।</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">यह मेसेज वार्तालाप में शामिल सभी के लिए डिलीट कर दिया जाएगा यदि वे Signal के नवीनमत वर्ज़न पर हैं। वे देख सकेंगे कि आपने एक मेसेज को डिलीट कर दिया है।</string>
     <string name="ConversationFragment_quoted_message_not_found">मूल मेसेज नहीं मिला</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">मूल मेसेज अब उपलब्ध नहीं है</string>
     <string name="ConversationFragment_failed_to_open_message">मेसेज खोलने में असमर्थ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">आप जल्दी से उत्तर देने के लिए किसी भी मेसेज पर दाईं ओर स्वाइप कर सकते हैं</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">आप जल्दी से उत्तर देने के लिए किसी भी मेसेज पर बाईं ओर स्वाइप कर सकते हैं</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">आउटगोइंग व्यू-एक बार मीडिया फ़ाइलों को उनके भेजे जाने के बाद स्वचालित रूप से हटा दिया जाता है</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">आउटगोइंग देखें-एक बार मीडिया फ़ाइलों को उनके भेजे जाने के बाद स्वचालित रूप से हटा दिया जाता है</string>
     <string name="ConversationFragment_you_already_viewed_this_message">आपने यह मेसेज पहले ही देख लिया है</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">आप इस वार्तालाप में खुद के लिए नोट्स शामिल कर सकते हैं।\\यदि आपके खाते के साथ कोई डिवाइसेस लिंक होंगे, तो नए नोट्स सिंक हो जाएँगे।</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ग्रुप मेंबर्स का एक ही नाम है।</string>
@@ -461,8 +461,8 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">कोई भी अपठित चैट नहीं</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">चयनित मेसेज हटाएं?</item>
-        <item quantity="other">चयनित मेसेज हटाएं?</item>
+        <item quantity="one">चयनित मेसेज डिलीट करें?</item>
+        <item quantity="other">चयनित मेसेज डिलीट करें?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
         <item quantity="one">यह चयनित बातचीत को स्थायी रूप से डिलीट कर देगा।</item>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">फिल्टर करने के लिए नीचे खींचें</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">फिल्टर करने के लिए छोड़ें</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">प्रोफ़ाइल</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">(%1$s) %2$s में हर समय</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">चयनित समय अतीत का है। यह तुरंत संदेश भेजेगा।</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">तुरंत भेजें</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">अभी भेजें</string>
@@ -676,7 +676,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">चयनित शेड्यूल्ड मैसेज डिलीट करें?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">शेड्यूल्ड मैसेज डिलीट किया जा रहा है…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">शेड्यूल्ड मैसेज डिलीट किया जा रहा है...</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">चैट सेशन रीफ्रेश हुआ</string>
@@ -1103,11 +1103,11 @@
     <string name="MediaOverviewActivity_Audio">ऑडियो</string>
     <string name="MediaOverviewActivity_All">सब</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">चयनित आइटम हटाएं?</item>
-        <item quantity="other">चयनित आइटम हटाएं?</item>
+        <item quantity="one">चयनित आइटम डिलीट करें?</item>
+        <item quantity="other">चयनित आइटम डिलीट करें?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">यह चयनित फ़ाइल को स्थायी रूप से हटा देगा। इस आइटम से जुड़ा कोई भी मेसेज टेक्स्ट भी हटा दिया जाएगा।</item>
+        <item quantity="one">यह चयनित फ़ाइल को स्थायी रूप से डिलीट कर देगा। इस आइटम से जुड़ा कोई भी मेसेज टेक्स्ट भी डिलीट कर दिया जाएगा।</item>
         <item quantity="other">%1$d यह सभी चयनित फ़ाइलों को स्थायी रूप से हटा देगा। इन आइटम से जुड़ा कोई भी मेसेज पाठ भी हटा दिया जाएगा।</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">हटाना</string>
@@ -1467,7 +1467,7 @@
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">स्वीकृत</string>
     <string name="MessageRequestBottomView_continue">आगे</string>
-    <string name="MessageRequestBottomView_delete">हटाए</string>
+    <string name="MessageRequestBottomView_delete">डिलीट करें</string>
     <string name="MessageRequestBottomView_block">ब्लॉक</string>
     <string name="MessageRequestBottomView_unblock">अनब्लॉक करें</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s को आपको मेसेज करने देना है और उनके साथ अपना नाम और तस्वीर शेयर करनी है? उन्हें पता नहीं चलेगा कि आपने उनका मेसेज देख लिया है जब तक आप स्वीकार नहीं करते।</string>
@@ -1890,7 +1890,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">सेव नहीं किया जा सका</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">सेव करना पूरा हुआ</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">किसी लाइन को मिटाने के लिए उस पर टैप करें</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">किसी लाइन को डिलीट करने के लिए उस पर टैप करें</string>
     <string name="SubmitDebugLogActivity_submit">सबमिट</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">लॉग जमा करना असफल रहा</string>
     <string name="SubmitDebugLogActivity_success">सफलता</string>
@@ -1918,8 +1918,8 @@
     <string name="ThreadRecord_view_once_photo">देखें-एक बार फोटो</string>
     <string name="ThreadRecord_view_once_video">देखें-एक बार वीडियो</string>
     <string name="ThreadRecord_view_once_media">देखें-एक बार मीडिया</string>
-    <string name="ThreadRecord_this_message_was_deleted">यह मेसेज हटा दिया गया है।</string>
-    <string name="ThreadRecord_you_deleted_this_message">आपने यह मेसेज हटा दिया।</string>
+    <string name="ThreadRecord_this_message_was_deleted">यह मेसेज डिलीट कर दिया गया है।</string>
+    <string name="ThreadRecord_you_deleted_this_message">आपने यह मेसेज डिलीट कर दिया।</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">आपने भुगतान सक्रीय करने हेतु एक अनुरोध भेजा</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -1956,6 +1956,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">अपनी स्टोरी पर %1$s की प्रतिक्रिया दी</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">भुगतान</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal अपडेट</string>
@@ -1975,7 +1977,7 @@
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">अपना यूज़रनेम चुनें</string>
     <string name="UsernameEditFragment_username">उपयोगकर्ता नाम</string>
-    <string name="UsernameEditFragment_delete">हटाए</string>
+    <string name="UsernameEditFragment_delete">डिलीट करें</string>
     <string name="UsernameEditFragment_successfully_removed_username">सफलतापूर्वक उपयोगकर्ता नाम हटा दिया गया।</string>
     <string name="UsernameEditFragment_encountered_a_network_error">एक नेटवर्क त्रुटि का सामना करना पड़ा|</string>
     <string name="UsernameEditFragment_this_username_is_taken">इस उपयोगकर्ता का नाम ले लिया गया है|</string>
@@ -2047,8 +2049,8 @@
     <string name="MediaPreviewActivity_draft">ड्राफ्ट</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">बाहरी स्टॉरेज में सेव करने के लिए Signal को स्टोरेज अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"स्टॉरेज\" सक्षम करें।</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">अनुमति के बिना बाहरी स्टॉरेज में सहेजने में असमर्थ</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">चयनित मेसेज हटाएं?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">यह इस मेसेज को स्थायी रूप से हटा देगा।</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">चयनित मेसेज डिलीट करें?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">यह इस मेसेज को स्थायी रूप से डिलीट कर देगा।</string>
     <string name="MediaPreviewActivity_s_to_s">%1$sसे%2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">आपसे %1$s को</string>
@@ -2093,7 +2095,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">आपके ऑडियो के लिए %1$sप्रतिक्रिया व्यक्त की।</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">आपके एक-बार-देखने-योग्य वीडियो पर %1$s प्रतिक्रिया की।</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">आपके स्टिकर पर %1$sको पुन: सक्रिय किया।</string>
-    <string name="MessageNotifier_this_message_was_deleted">यह मेसेज हटा दिया गया है।</string>
+    <string name="MessageNotifier_this_message_was_deleted">यह मेसेज डिलीट कर दिया गया है।</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">संपर्क से जुड़ी Signal की सूचनाओं को बंद करना है? आप उन्हें Signal &gt; सेटिंग्स &gt; सूचनाएँ में जाकर फिर से एनेबल कर सकते हैं।</string>
 
@@ -2755,7 +2757,7 @@
     <string name="preferences__advanced_pin_settings">एडवांस्ड पिन सेटिंग्स</string>
     <string name="preferences__free_private_messages_and_calls">Signal उपयोगकर्ताओं को मुफ्त निजी मेसेज और कॉल</string>
     <string name="preferences__submit_debug_log">डीबग लॉग जमा करें</string>
-    <string name="preferences__delete_account">खाता मिटाएँ</string>
+    <string name="preferences__delete_account">अकाउंट डिलीट करें</string>
     <string name="preferences__support_wifi_calling">\'वाईफाई कॉलिंग\' संगतता मोड</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">सक्षम करें अगर आपका डिवाइस वाईफाई पर SMS / MMS डिलीवरी का उपयोग करता है (केवल तभी सक्षम करें जब आपके डिवाइस पर \'वाईफाई कॉलिंग\' सक्षम हो)</string>
     <string name="preferences__incognito_keyboard">गुप्त कीबोर्ड</string>
@@ -2777,14 +2779,14 @@
     <string name="preferences_storage__files">फ़ाइलें</string>
     <string name="preferences_storage__audio">ऑडियो</string>
     <string name="preferences_storage__review_storage">स्टॉरेज रिव्यु</string>
-    <string name="preferences_storage__delete_older_messages">पुराने मेसेजेस को मिटाना है?</string>
+    <string name="preferences_storage__delete_older_messages">पुराने मेसेजेस को डिलीट करें?</string>
     <string name="preferences_storage__clear_message_history">संदेश इतिहास को हटाना है?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">इससे आपके डिवाइस से वह सारा संदेश इतिहास और मीडिया स्थाई रूप से डिलीट कर दिया जाएगा जो %1$s से पुराना है।</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">यह स्थाई रूप से सभी संवाद को हाल ही के %1$s मेसेज में ट्रिम कर देगा।</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">इससे आपके डिवाइस से सारा संदेश इतिहास और मीडिया स्थायी रूप से डिलीट कर दिया जाएगा।</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">क्या आप वाकई में सारे संदेश इतिहास को डिलीट करना चाहते हैं?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">सारे संदेश इतिहास को स्थाई रूप से हटा दिया जाएगा। यह कार्रवाई होने के बाद वापस नहीं ली जा सकती।</string>
-    <string name="preferences_storage__delete_all_now">सभी कुछ अभी मिटाएँ</string>
+    <string name="preferences_storage__delete_all_now">सभी कुछ अभी डिलीट करें</string>
     <string name="preferences_storage__forever">हमेशा के लिए</string>
     <string name="preferences_storage__one_year">1 वर्ष</string>
     <string name="preferences_storage__six_months">6 महीने</string>
@@ -3170,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">अपठित चैट फ़िल्टर करें</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">अपठित फिल्टर साफ करें</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">क्लिपबोर्ड पर कॉपी करें</string>
@@ -3211,7 +3213,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal प्रोटोकॉल ने पिछले %2$d दिनों में आपके %1$d%% आउटगोइंग मेसेज की स्वचालित रूप से रक्षा की। Signal उपयोगकर्ताओं के बीच वार्तालाप हमेशा अंत-से-अंत एन्क्रिप्टेड होते हैं।</string>
     <string name="InsightsDashboardFragment__spread_the_word">प्रचार कीजिए</string>
     <string name="InsightsDashboardFragment__not_enough_data">पर्याप्त डाटा नहीं</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">आपके इनसाइट्स प्रतिशत की गणना पिछले %1$d दिनों के आउटगोइंग मेसेज के आधार पर की जाती है जो गायब नहीं हुए हैं या मिटाए नहीं गए हैं।</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">आपके इनसाइट्स प्रतिशत की गणना पिछले %1$d दिनों के आउटगोइंग मेसेज के आधार पर की जाती है जो गायब नहीं हुए हैं या डिलीट नहीं किये गए हैं।</string>
     <string name="InsightsDashboardFragment__start_a_conversation">एक वार्तालाप शुरु करें</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">सुरक्षित रूप से संचार करना शुरू करें और Signal में शामिल होने के लिए अधिक संपर्कों को आमंत्रित करके अनएन्क्रिप्टेड SMS मेसेज की सीमाओं से परे जाने वाली नई फ़ीचर्स को सक्षम करें।</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ये आँकड़े स्थानीय रूप से आपके डिवाइस पर उत्पन्न हुए थे और केवल आपके द्वारा देखे जा सकते हैं। वे कभी भी कहीं भी प्रेषित नहीं होते हैं।</string>
@@ -3285,7 +3287,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">खाता बंद</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">आपकी गोपनीयता और सुरक्षा की रक्षा के लिए आपका खाता लॉक कर दिया गया है। आपके खाते में निष्क्रियता के %1$d दिनों के बाद आप अपने पिन की आवश्यकता के बिना इस फोन नंबर को फिर से रजिस्टर करने में सक्षम होंगे। सभी सामग्री हटा दी जाएगी।</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">आपकी निजता और सुरक्षा की रक्षा के लिए आपका अकाउंट लॉक कर दिया गया है। आपके अकाउंट में निष्क्रियता के %1$d दिनों के बाद आप अपने पिन की आवश्यकता के बिना इस फोन नंबर को फिर से रजिस्टर करने में सक्षम होंगे। सभी सामग्री डिलीट कर दी जाएगी।</string>
     <string name="AccountLockedFragment__next">अगला</string>
     <string name="AccountLockedFragment__learn_more">और जानें</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3303,8 +3305,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal रजिस्ट्रेशन - Android (v2 PIN) के लिए PIN हेतु मदद चाहिए</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">आपकी गोपनीयता और सुरक्षा के लिए, आपके पिन को रिकवर करने का कोई तरीका नहीं है। यदि आपको अपना पिन याद नहीं है, तो आप %1$d दिन निष्क्रिय रहने के बाद SMS के साथ दोबारा वेरिफाई कर सकते हैं। इस मामले में, आपका खाता बंद कर दिया जाएगा और सारी सामग्री मिटा दी जाएगी।</item>
-        <item quantity="other">आपकी गोपनीयता और सुरक्षा के लिए, आपके पिन को रिकवर करने का कोई तरीका नहीं है। यदि आपको अपना पिन याद नहीं है, तो आप %1$d दिन निष्क्रिय रहने के बाद SMS के साथ दोबारा वेरिफाई कर सकते हैं। इस मामले में, आपका खाता मिटा दिया जाएगा और सभी सामग्री हटा दी जाएंगी।</item>
+        <item quantity="one">आपकी निजता और सुरक्षा के लिए, आपके पिन को रिकवर करने का कोई तरीका नहीं है। यदि आपको अपना पिन याद नहीं है, तो आप %1$d दिन निष्क्रिय रहने के बाद SMS के साथ दोबारा वेरिफाई कर सकते हैं। इस मामले में, आपका अकाउंट बंद कर दिया जाएगा और सारी सामग्री डिलीट कर दी जाएगी।</item>
+        <item quantity="other">आपकी निजता और सुरक्षा के लिए, आपके पिन को रिकवर करने का कोई तरीका नहीं है। यदि आपको अपना पिन याद नहीं है, तो आप %1$d दिन निष्क्रिय रहने के बाद SMS के साथ दोबारा वेरिफाई कर सकते हैं। इस मामले में, आपका अकाउंट मिटा दिया जाएगा और सभी सामग्री डिलीट कर दी जाएंगी।</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3313,8 +3315,8 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">यदि आपके प्रयास समाप्त हो जाते हैं तो आपका खाता %1$d दिन के लिए लॉक हो जाएगा। %1$d दिन की निष्क्रियता के बाद, आप अपने पिन के बिना फिर से पंजीकरण कर सकते हैं। आपका खाता मिटा दिया जाएगा और सभी सामग्री हटा दी जाएंगी।</item>
-        <item quantity="other">यदि आपके प्रयास समाप्त हो जाते हैं तो आपका खाता %1$d दिनों के लिए लॉक हो जाएगा। %1$d दिनों की निष्क्रियता के बाद, आप अपने पिन के बिना फिर से पंजीकरण कर सकते हैं। आपका खाता मिटा दिया जाएगा और सभी सामग्री हटा दी जाएंगी।</item>
+        <item quantity="one">यदि आपके प्रयास समाप्त हो जाते हैं तो आपका अकाउंट %1$d दिन के लिए लॉक हो जाएगा। %1$d दिन की निष्क्रियता के बाद, आप अपने पिन के बिना फिर से पंजीकरण कर सकते हैं। आपका अकाउंट मिटा दिया जाएगा और सभी सामग्री डिलीट कर दी जाएंगी।</item>
+        <item quantity="other">यदि आपके प्रयास समाप्त हो जाते हैं तो आपका अकाउंट %1$d दिनों के लिए लॉक हो जाएगा। %1$d दिनों की निष्क्रियता के बाद, आप अपने पिन के बिना फिर से पंजीकरण कर सकते हैं। आपका अकाउंट मिटा दिया जाएगा और सभी सामग्री डिलीट कर दी जाएंगी।</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3372,9 +3374,9 @@
     <string name="BackupDialog_enable_local_backups">स्थानीय बैकअप सक्षम करें?</string>
     <string name="BackupDialog_enable_backups">बैकअप सक्षम करें</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">पुष्टिकरण चेक बॉक्स को चिह्नित करके कृपया अपनी समझ को स्वीकार करें।</string>
-    <string name="BackupDialog_delete_backups">बैकअप हटाएं?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">सभी स्थानीय बैकअप अक्षम करें और हटाएं?</string>
-    <string name="BackupDialog_delete_backups_statement">बैकअप हटाएं</string>
+    <string name="BackupDialog_delete_backups">बैकअप डिलीट करें?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">सभी स्थानीय बैकअप अक्षम करें और डिलीट करें?</string>
+    <string name="BackupDialog_delete_backups_statement">बैकअप डिलीट करें</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">बैकअप सक्षम करने के लिए, फोल्डर का चुनाव करें। बैकअप इस जगह पर संगृहीत किया जाएगा।</string>
     <string name="BackupDialog_choose_folder">फोल्डर को चुनो</string>
     <string name="BackupDialog_copied_to_clipboard">क्लिपबोर्ड पर कॉपी किया गया है</string>
@@ -3387,7 +3389,7 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Signal बैकअप सत्यापित किया जा रहा है…</string>
     <string name="LocalBackupJobApi29_backup_failed">बैकअप विफल</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">आपकी बैकअप डायरेक्टरी या तो मिटा दी गयी है या यहाँ से कहीं और हटा दी गयी है.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">आपकी बैकअप डायरेक्टरी या तो डिलीट कर दी गयी है या यहाँ से कहीं और हटा दी गयी है.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">इस वॉल्यूम में आपकी बैकअप फाइल को संगृहीत करने के लिए पर्याप्त जगह नहीं है।</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">आपके बैकअप को संगृहीत करने के लिए पर्याप्त जगह नहीं है.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
@@ -3396,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">आपके बैकअप में एक बहुत बड़ी फ़ाइल है जिसका बैकअप नहीं किया जा सकता। कृपया उसे डिलीट करके एक नया बैकअप बनाएँ।</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">बैकअप प्रबंधन के लिए टैप करें</string>
     <string name="RegistrationActivity_wrong_number">गलत नंबर?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">मुझे कॉल करें (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal समर्थन से संपर्क करें</string>
     <string name="RegistrationActivity_code_support_subject">Signal पंजीकरण - Android के लिये वेरीफिकेशन कोड</string>
     <string name="RegistrationActivity_incorrect_code">गलत कोड</string>
@@ -3634,7 +3636,7 @@
     </plurals>
     <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s को समूह से हटाया जाए?</string>
     <string name="ReviewCardDialogFragment__remove">हटा दें</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">समूह सदस्य को हटाने में असफलता</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">समूह सदस्य को हटाने में असफलता।</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">सदस्य</string>
@@ -3643,7 +3645,7 @@
     <string name="ReviewCard__remove_from_group">ग्रूप से हटाएँ</string>
     <string name="ReviewCard__update_contact">संपर्क जानकारी अपडेट करें</string>
     <string name="ReviewCard__block">ब्लॉक</string>
-    <string name="ReviewCard__delete">हटाए</string>
+    <string name="ReviewCard__delete">डिलीट करें</string>
     <string name="ReviewCard__recently_changed">हाल ही में अपना प्रोफ़ाइल नाम %1$s से बदलकर %2$s रखा</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
@@ -3667,16 +3669,16 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">अपना खाता मिटाने से:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">अपना फ़ोन नंबर दर्ज करें</string>
-    <string name="DeleteAccountFragment__delete_account">खाता मिटाएँ</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">अपने खाते की जानकारी और प्रोफाइल तस्वीर मिटाएँ</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">अपने सभी मेसेज मिटाएँ</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">अपने भुगतान खाते में %1$s डिलीट करें</string>
+    <string name="DeleteAccountFragment__delete_account">अकाउंट डिलीट करें</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">अपने अकाउंट की जानकारी और प्रोफाइल तस्वीर डिलीट करें</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">अपने सभी मेसेज डिलीट करें</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">अपने भुगतान अकाउंट में %1$s डिलीट करें</string>
     <string name="DeleteAccountFragment__no_country_code">कोई देश कोड निर्दिष्ट नहीं</string>
     <string name="DeleteAccountFragment__no_number">कोई नंबर निर्दिष्ट नहीं</string>
     <string name="DeleteAccountFragment__the_phone_number">आपने जो फोन नंबर दर्ज किया है, वह आपके खाते के फोन नंबर से मेल नहीं खाता।</string>
-    <string name="DeleteAccountFragment__are_you_sure">क्या आपको यकीन है कि आप अपना ख़ाता खत्म करना चाहते हैं?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">इससे आपका Signal का खाता मिटा जाएगा और एप्लिकेशन रीसेट हो जाएगी। प्रक्रिया पूरी होने के बाद ऐप बंद हो जाएगी।</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">स्थानीय डेटा को मिटा पाना असफल रहा। आप इसे स्वंय सिस्टम एप्लिकेशन सेटिंग्स में साफ कर सकते हैं।</string>
+    <string name="DeleteAccountFragment__are_you_sure">क्या आपको यकीन है कि आप अपना अकाउंट डिलीट करना चाहते हैं?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">इससे आपका Signal का अकाउंट डिलीट कर दिया जाएगा और एप्लिकेशन रीसेट हो जाएगी। प्रक्रिया पूरी होने के बाद ऐप बंद हो जाएगी।</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">स्थानीय डेटा को डिलीट करना असफल रहा। आप इसे स्वंय सिस्टम एप्लिकेशन सेटिंग्स में साफ कर सकते हैं।</string>
     <string name="DeleteAccountFragment__launch_app_settings">ऐप सेटिंग्स लांच करें</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">ग्रुप छोड़े जा रहे…</string>
@@ -4070,8 +4072,8 @@
     <string name="ChatColorSelectionFragment__chat_color">चैट का रंग</string>
     <string name="ChatColorSelectionFragment__edit">बदलें</string>
     <string name="ChatColorSelectionFragment__duplicate">नक़ल</string>
-    <string name="ChatColorSelectionFragment__delete">हटाए</string>
-    <string name="ChatColorSelectionFragment__delete_color">रंग हटाएं</string>
+    <string name="ChatColorSelectionFragment__delete">डिलीट करें</string>
+    <string name="ChatColorSelectionFragment__delete_color">रंग डिलीट करें</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
         <item quantity="one">इस कस्टम रंग का उपयोग %1$d चैट में किया गया है। क्या आप सभी चैट के लिए इसे डिलीट करना चाहते हैं?</item>
         <item quantity="other">इस कस्टम रंग का उपयोग %1$d चैट में किया गया है। क्या आप सभी चैट के लिए इसे डिलीट करना चाहते हैं?</item>
@@ -4621,7 +4623,7 @@
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">पूर्ववत</string>
     <!-- Dialog message shown to confirm deleting a profile -->
-    <string name="NotificationProfileDetails__permanently_delete_profile">प्रोफ़ाइल को स्थायी रूप से हटाएं?</string>
+    <string name="NotificationProfileDetails__permanently_delete_profile">प्रोफ़ाइल स्थायी रूप से डिलीट करनी है?</string>
     <!-- Dialog button to delete profile -->
     <string name="NotificationProfileDetails__delete">डिलीट करें</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
@@ -4861,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s को निजी रूप से जवाब दिया जा रहा है</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">%1$s को उत्तर दें</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">कॉपी</string>
@@ -5415,9 +5417,9 @@
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal पर अब SMS सेवा समर्थित नहीं है</string>
     <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal द्वारा जल्द ही SMS संदेश भेजने हेतु समर्थन हटा दिया जाएगा क्योंकि Signal के संदेश एंड-टू-एंड एनक्रिप्शन और सुदृढ़ निजता प्रदान करते हैं जो कि SMS संदेशों के मामले में संभव नहीं है। इससे हमें Signal की संदेश सेवा के अनुभव को बेहतर बनाने में मदद मिलेगी।</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal द्वारा जल्द ही SMS संदेश भेजने हेतु सपोर्ट हटा दिया जाएगा क्योंकि Signal के संदेश एंड-टू-एंड एनक्रिप्शन और सुदृढ़ निजता प्रदान करते हैं जो कि SMS संदेशों के मामले में संभव नहीं है। इससे हमें Signal की संदेश सेवा के अनुभव को बेहतर बनाने में मदद मिलेगी।</string>
     <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal द्वारा SMS संदेश भेजने हेतु समर्थन हटा दिया गया है क्योंकि Signal के संदेश एंड-टू-एंड एनक्रिप्शन और सुदृढ़ निजता प्रदान करते हैं जो कि SMS संदेशों के मामले में संभव नहीं है। इससे हमें Signal की संदेश सेवा के अनुभव को बेहतर बनाने में मदद मिलेगी।</string>
+    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal द्वारा SMS संदेश भेजने हेतु सपोर्ट हटा दिया गया है क्योंकि Signal के संदेश एंड-टू-एंड एनक्रिप्शन और सुदृढ़ निजता प्रदान करते हैं जो कि SMS संदेशों के मामले में संभव नहीं है। इससे हमें Signal की संदेश सेवा के अनुभव को बेहतर बनाने में मदद मिलेगी।</string>
     <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
     <string name="SmsExportMegaphoneActivity__export_sms">SMS निर्यात करें</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
@@ -5556,8 +5558,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS सपोर्ट बंद हो रहा है</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Signal ऐप में SMS मैसेजिंग जल्द ही सपोर्ट नहीं रहेगी।</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS संदेश, Signal संदेशों से अलग होते हैं। <b>इससे एन्क्रिप्टेड Signal मैसेजिंग पर असर नहीं पड़ता जो कि आगे भी काम करती रहेगी।</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5569,13 +5571,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">अपना Signal उपयोगकर्ता नाम सेटअप करें</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">उपयोगकर्ता नाम दूसरों को आपके फोन नंबर के बिना आपको संदेश भेजने देते हैं</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">अभी नहीं</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">जारी रखें</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5589,15 +5591,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">जारी रखें</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">अपना Signal उपयोगकर्ता नाम सेटअप करें</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">उपयोगकर्ता नाम संपादित करें</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">यूज़र नाम डिलीट करें</string>
 
     <!-- EOF -->
 </resources>

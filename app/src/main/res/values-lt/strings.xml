@@ -282,7 +282,7 @@
     <string name="ConversationItem_download_more">  Atsisiųsti daugiau</string>
     <string name="ConversationItem_pending">  Laukiama</string>
     <string name="ConversationItem_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
-    <string name="ConversationItem_you_deleted_this_message">Jūs ištrynėte šią žinutę.</string>
+    <string name="ConversationItem_you_deleted_this_message">Tu ištrynei šią žinutę.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Nepavyksta atsisiųsti žinutės. %1$s turės dar kartą ją išsiųsti.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -354,8 +354,8 @@
     <string name="ConversationActivity_cancel">Atsisakyti</string>
     <string name="ConversationActivity_delete_conversation">Ištrinti pokalbį?</string>
     <string name="ConversationActivity_delete_and_leave_group">Ištrinti ir išeiti iš grupės?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Šis pokalbis bus ištrintas iš visų jūsų įrenginių.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Jūs išeisite iš šios grupės ir ji bus ištrinta iš visų jūsų įrenginių.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Šis pokalbis bus ištrintas iš visų tavo įrenginių.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Tu išeisi iš šios grupės ir ji bus ištrinta iš visų tavo įrenginių.</string>
     <string name="ConversationActivity_delete">Ištrinti</string>
     <string name="ConversationActivity_delete_and_leave">Ištrinti ir išeiti</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Norint skambinti %1$s, Signal reikia prieigos prie jūsų mikrofono</string>
@@ -438,7 +438,7 @@
     <string name="ConversationFragment_delete_on_this_device">Ištrinti šiame įrenginyje</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Ištrinti visur</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ši žinutė šiame pokalbyje bus ištrinta visiems žmonėms tuo atveju, jeigu jie naudoja paskiausią Signal versiją. Jie galės matyti, kad ištrynėte žinutę.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ši žinutė šiame pokalbyje bus ištrinta visiems žmonėms tuo atveju, jeigu jie naudoja naujausią „Signal“ versiją. Jie galės matyti, kad ištrynėte žinutę.</string>
     <string name="ConversationFragment_quoted_message_not_found">Pradinė žinutė nerasta</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Pradinė žinutė daugiau nebeprieinama</string>
     <string name="ConversationFragment_failed_to_open_message">Nepavyko atverti žinutės</string>
@@ -587,9 +587,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Paslink žemyn ir filtruok</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Paleisk ir filtruok</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profilis</string>
@@ -703,9 +703,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Rodomas laikas: (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Pasirinktas laikas yra jau praėjęs. Jei pasirinksi, žinutė bus išsiųsta iškart.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Siųsti iškart</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Siųsti dabar</string>
@@ -977,7 +977,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Pasirinkai adresatą, kuris nepalaiko „Signal“ grupių, todėl tai bus MMS grupė. Tinkintų MMS grupių pavadinimai ir nuotraukos bsu matomos tik tau.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Tu pasirinkai adresatą, kuris nepalaiko „Signal“ grupių, tad ši grupė bus MMS. Tinkinti MMS grupės vardai ir nuotraukos bus matomos tik tau. MMS grupių palaikymo greit nebeliks, kad galėtume sutelkti dėmesį į šifruotas žinutes.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Tu pasirinkai adresatą, kuris nepalaiko „Signal“ grupių, tad ši grupė bus MMS. Tinkinti MMS grupės vardai ir nuotraukos bus matomi tik tau. MMS grupių palaikymo greit nebeliks, kad galėtume sutelkti dėmesį į šifruotas žinutes.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Kas gali pridėti naujus narius?</string>
@@ -1093,7 +1093,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Nepavyksta prisijungti prie grupės</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Jūs negalite prisijungti prie grupės per šią grupės nuorodą, nes administratorius jus pašalino.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Tu negali prisijungti prie grupės per šią grupės nuorodą, nes administratorius tave pašalino.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Ši grupės nuoroda daugiau nebegalioja.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1189,7 +1189,7 @@
     <string name="MediaOverviewActivity_Audio">Garso įrašai</string>
     <string name="MediaOverviewActivity_All">Visi</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">Ištrinti pažymėtą elementą</item>
+        <item quantity="one">Ištrinti pažymėtą elementą?</item>
         <item quantity="few">Ištrinti pažymėtus elementus?</item>
         <item quantity="many">Ištrinti pažymėtus elementus?</item>
         <item quantity="other">Ištrinti pažymėtus elementus?</item>
@@ -1367,9 +1367,9 @@
     <string name="MessageRecord_s_joined_the_group">%1$s prisijungė prie grupės.</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">Jūs pašalinote %1$s.</string>
+    <string name="MessageRecord_you_removed_s">Tu pašalinai %1$s.</string>
     <string name="MessageRecord_s_removed_s">%1$s pašalino naudotoją %2$s.</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s pašalino jus iš grupės.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s pašalino tave iš grupės.</string>
     <string name="MessageRecord_you_left_the_group">Jūs išėjote iš grupės.</string>
     <string name="MessageRecord_s_left_the_group">%1$s išėjo iš grupės.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">Jūs daugiau nebesate grupėje.</string>
@@ -2032,7 +2032,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">Nepavyko išsaugoti</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">Išsaugota</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Bakstelėkite ant eilutės norėdami ją ištrinti</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Bakstelėk ant eilutės, kad ją ištrintum</string>
     <string name="SubmitDebugLogActivity_submit">Pateikti</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Nepavyko pateikti žurnalų</string>
     <string name="SubmitDebugLogActivity_success">Įvykdyta!</string>
@@ -2061,7 +2061,7 @@
     <string name="ThreadRecord_view_once_video">Vienkartinės peržiūros vaizdo įrašas</string>
     <string name="ThreadRecord_view_once_media">Vienkartinės peržiūros medija</string>
     <string name="ThreadRecord_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
-    <string name="ThreadRecord_you_deleted_this_message">Jūs ištrynėte šią žinutę.</string>
+    <string name="ThreadRecord_you_deleted_this_message">Tu ištrynei šią žinutę.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Nusiuntei prašymą įjungti Mokėjimus.</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -2098,6 +2098,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Sureagavai į istoriją „%1$s“</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Mokėjimas</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal atnaujinimas</string>
@@ -3342,7 +3344,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtruoti neskaitytus pokalbius</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Išvalyti neskaitytųjų filtrą</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopijuoti į iškarpinę</string>
@@ -3383,7 +3385,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Per pastarąsias %2$d d. Signal protokolas automatiškai apsaugojo %1$d%% jūsų išsiunčiamų žinučių. Pokalbiai tarp Signal naudotojų yra visada šifruoti ištisiniu būdu.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Skleiskite žinią</string>
     <string name="InsightsDashboardFragment__not_enough_data">Trūksta duomenų</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Jūsų įžvalgų procentinė dalis yra apskaičiuojama remiantis per pastarąsias %1$d d. išsiunčiamų žinučių, kurios neišnyko ir nebuvo ištrintos, skaičiumi.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Tavo įžvalgų procentinė dalis yra apskaičiuojama remiantis per pastarąsias %1$d d. išsiunčiamų žinučių, kurios neišnyko ir nebuvo ištrintos, skaičiumi.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">Pradėti pokalbį</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Nuo šiol, pakvietę daugiau adresatų naudotis Signal, bendraukite saugiai ir įjunkite naujas ypatybes, kurios viršija nešifruotų SMS žinučių apribojimus.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ši statistika buvo sugeneruota jūsų įrenginyje ir ją galite matyti tik jūs. Ji niekada nėra niekur persiunčiama.</string>
@@ -3461,7 +3463,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Paskyra užrakinta</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Siekiant apsaugoti jūsų privatumą ir saugumą, jūsų paskyra buvo užrakinta. Po %1$d dienų neveiklumo, galėsite iš naujo registruoti šį telefono numerį be būtinybės įvesti PIN kodą. Visas turinys bus ištrintas.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Siekiant apsaugoti tavo privatumą ir saugumą, tavo paskyra buvo užrakinta. Po %1$d dienų neveiklumo galėsi iš naujo registruoti šį telefono numerį be būtinybės įvesti PIN kodą. Visas turinys bus ištrintas.</string>
     <string name="AccountLockedFragment__next">Kitas</string>
     <string name="AccountLockedFragment__learn_more">Sužinoti daugiau</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3479,10 +3481,10 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal registracija - Reikia pagalbos su PIN kodu „Android“ įrenginyje (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Dėl jūsų privatumo ir saugumo, nėra jokio būdo atkurti savo PIN kodą. Jei negalėsite prisiminti savo PIN kodą, po %1$d dienos neveiklumo galėsite jį iš naujo patvirtinti naudodami SMS žinutę. Tokiu atveju jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
-        <item quantity="few">Dėl jūsų privatumo ir saugumo, nėra jokio būdo atkurti savo PIN kodą. Jei negalėsite prisiminti savo PIN kodą, po %1$d dienų neveiklumo galėsite jį iš naujo patvirtinti naudodami SMS žinutę. Tokiu atveju jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
-        <item quantity="many">Dėl jūsų privatumo ir saugumo, nėra jokio būdo atkurti savo PIN kodą. Jei negalėsite prisiminti savo PIN kodą, po %1$d dienų neveiklumo galėsite jį iš naujo patvirtinti naudodami SMS žinutę. Tokiu atveju jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
-        <item quantity="other">Dėl jūsų privatumo ir saugumo, nėra jokio būdo atkurti savo PIN kodą. Jei negalėsite prisiminti savo PIN kodą, po %1$d dienos neveiklumo galėsite jį iš naujo patvirtinti naudodami SMS žinutę. Tokiu atveju jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
+        <item quantity="one">Siekiant užtikrinti privatumą ir saugumą, PIN kodo atkurti negalima. Jei pamirši savo PIN kodą, po %1$d dienos neveiklumo galėsi jį iš naujo patvirtinti SMS žinute. Tokiu atveju tavo paskyra bus išvalyta ir visas jos turinys ištrintas.</item>
+        <item quantity="few">Siekiant užtikrinti privatumą ir saugumą, PIN kodo atkurti negalima. Jei pamirši savo PIN kodą, po %1$d dienų neveiklumo galėsi jį iš naujo patvirtinti SMS žinute.Tokiu atveju tavo paskyra bus išvalyta ir visas jos turinys ištrintas.</item>
+        <item quantity="many">Siekiant užtikrinti privatumą ir saugumą, PIN kodo atkurti negalima. Jei pamirši savo PIN kodą, po %1$d d. neveiklumo galėsi jį iš naujo patvirtinti SMS žinute.Tokiu atveju tavo paskyra bus išvalyta ir visas jos turinys ištrintas.</item>
+        <item quantity="other">Siekiant užtikrinti privatumą ir saugumą, PIN kodo atkurti negalima. Jei pamirši savo PIN kodą, po %1$d dienų neveiklumo galėsi jį iš naujo patvirtinti SMS žinute.Tokiu atveju tavo paskyra bus išvalyta ir visas jos turinys ištrintas.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3493,10 +3495,10 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">Jei išnaudosite visus bandymus, jūsų paskyra bus užrakinta %1$d dienai. Po %1$d dienos neveiklumo galėsite iš naujo registruotis be savo PIN kodo. Jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
-        <item quantity="few">Jei išnaudosite visus bandymus, jūsų paskyra bus užrakinta %1$d dienoms. Po %1$d dienų neveiklumo galėsite iš naujo registruotis be savo PIN kodo. Jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
-        <item quantity="many">Jei išnaudosite visus bandymus, jūsų paskyra bus užrakinta %1$d dienų. Po %1$d dienų neveiklumo galėsite iš naujo registruotis be savo PIN kodo. Jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
-        <item quantity="other">Jei išnaudosite visus bandymus, jūsų paskyra bus užrakinta %1$d dienai. Po %1$d dienos neveiklumo galėsite iš naujo registruotis be savo PIN kodo. Jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
+        <item quantity="one">Jei išnaudosi visus bandymus, tavo paskyra bus užrakinta %1$d dienai. Po %1$d dienos neveiklumo galėsi iš naujo registruotis be savo PIN kodo. Tavo paskyra bus išvalyta, o visas turinys ištrintas.</item>
+        <item quantity="few">Jei išnaudosi visus bandymus, tavo paskyra bus užrakinta %1$d dienoms. Po %1$d dienų neveiklumo galėsi iš naujo registruotis be savo PIN kodo. Tavo paskyra bus išvalyta, o visas turinys ištrintas.</item>
+        <item quantity="many">Jei išnaudosi visus bandymus, tavo paskyra bus užrakinta %1$d d. Po %1$d d. neveiklumo galėsi iš naujo registruotis be savo PIN kodo. Tavo paskyra bus išvalyta, o visas turinys ištrintas.</item>
+        <item quantity="other">Jei išnaudosi visus bandymus, tavo paskyra bus užrakinta %1$d dienų. Po %1$d dienų neveiklumo galėsi iš naujo registruotis be savo PIN kodo. Tavo paskyra bus išvalyta, o visas turinys ištrintas.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3573,7 +3575,7 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Tvirtinama „Signal“ atsarginė kopija…</string>
     <string name="LocalBackupJobApi29_backup_failed">Atsarginė kopija nepavyko</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Jūsų atsarginių kopijų katalogas buvo ištrintas ar perkeltas.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Tavo atsarginių kopijų katalogas buvo ištrintas ar perkeltas.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Jūsų atsarginės kopijos failas yra per didelis, kad jį galima būtų laikyti šiame tome.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Nepakanka vietos, kad galima būtų laikyti jūsų atsarginę kopiją.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
@@ -3582,7 +3584,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Tavo atsarginė kopija turi itin didelį failą, kurio negalima nukopijuoti. Ištrink jį ir sukurk naują atsarginę kopiją.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Bakstelėkite norėdami tvarkyti atsargines kopijas.</string>
     <string name="RegistrationActivity_wrong_number">Neteisingas numeris?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Paskambink man (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Susisiekti su Signal palaikymu</string>
     <string name="RegistrationActivity_code_support_subject">Signal registracija - Patvirtinimo kodas, skirtas „Android“</string>
     <string name="RegistrationActivity_incorrect_code">Neteisingas kodas</string>
@@ -3681,7 +3683,7 @@
     <string name="DeviceTransferSetup__location_permission">Įrenginio vietos leidimas</string>
     <string name="DeviceTransferSetup__location_services">Vietos paslaugos</string>
     <string name="DeviceTransferSetup__wifi">Belaidis (Wi-Fi)</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">„Wi-Fi Direct“ lange pašalinkite visas įsimintas grupes ir atsiekite visus pakviestus ar prijungtus įrenginius.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">„Wi-Fi Direct“ lange pašalink visas įsimintas grupes ir atsiek visus pakviestus ar prijungtus įrenginius.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">„Wi-Fi Direct“ langas</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Pabandykite abiejuose įrenginiuose išjungti ir vėl įjungti belaidį (Wi-Fi) ryšį.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Įsitikinkite, kad abu įrenginiai yra perkėlimo veiksenoje.</string>
@@ -3858,15 +3860,15 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Ištrinant jūsų paskyrą bus:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Įveskite savo telefono numerį</string>
     <string name="DeleteAccountFragment__delete_account">Ištrinti paskyrą</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Ištrinta jūsų paskyros informacija ir profilio nuotrauka</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Ištrintos visos jūsų žinutės</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Ištrinti %1$s jūsų mokėjimų paskyroje</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Ištrinti savo paskyros informaciją ir profilio nuotraukas</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Ištrinti visas savo žinutes</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Ištrinti %1$s iš mokėjimų paskyros</string>
     <string name="DeleteAccountFragment__no_country_code">Nenurodytas joks šalies kodas</string>
     <string name="DeleteAccountFragment__no_number">Nenurodytas joks numeris</string>
     <string name="DeleteAccountFragment__the_phone_number">Jūsų įvestas telefono numeris nesutampa su jūsų paskyros telefono numeriu.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Ar tikrai norite ištrinti savo paskyrą?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Tai ištrins jūsų Signal paskyrą ir atstatys programėlę. Užbaigus šį procesą, programėlė bus užverta.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Nepavyko ištrinti vietinių duomenų. Galite rankiniu būdu juos ištrinti sisteminiuose programėlės nustatymuose.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Ar tikrai nori ištrinti savo paskyrą?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Tai ištrins tavo „Signal“ paskyrą ir nustatys programėlę iš naujo. Užbaigus šį procesą, programėlė bus užverta.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Nepavyko ištrinti vietinių duomenų. Gali rankiniu būdu juos ištrinti sisteminiuose programėlės nustatymuose.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Paleisti programėlės nustatymus</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Išeinama iš grupių…</string>
@@ -4267,10 +4269,10 @@
     <string name="ChatColorSelectionFragment__delete">Ištrinti</string>
     <string name="ChatColorSelectionFragment__delete_color">Ištrinti spalvą</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">Ši tinkinta spalva yra naudojama %1$d pokalbyje. Ar norite ją ištrinti visuose pokalbiuose?</item>
-        <item quantity="few">Ši tinkinta spalva yra naudojama %1$d pokalbiuose. Ar norite ją ištrinti visuose pokalbiuose?</item>
-        <item quantity="many">Ši tinkinta spalva yra naudojama %1$d pokalbių. Ar norite ją ištrinti visuose pokalbiuose?</item>
-        <item quantity="other">Ši tinkinta spalva yra naudojama %1$d pokalbyje. Ar norite ją ištrinti visuose pokalbiuose?</item>
+        <item quantity="one">Ši tinkinta spalva yra naudojama %1$d pokalbyje. Ar nori ją ištrinti visuose pokalbiuose?</item>
+        <item quantity="few">Ši tinkinta spalva yra naudojama %1$d pokalbiuose. Ar nori ją ištrinti visuose pokalbiuose?</item>
+        <item quantity="many">Ši tinkinta spalva yra naudojama %1$d pokalbio. Ar nori ją ištrinti visuose pokalbiuose?</item>
+        <item quantity="other">Ši tinkinta spalva yra naudojama %1$d pokalbių. Ar nori ją ištrinti visuose pokalbiuose?</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">Ištrinti pokalbio spalvą?</string>
 
@@ -4553,7 +4555,7 @@
 
     <string name="MediaCountIndicatorButton__send">Siųsti</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Bakstelėkite, norėdami pašalinti</string>
+    <string name="MediaReviewSelectedItem__tap_to_remove">Bakstelėk, kad pašalintum</string>
     <string name="MediaReviewSelectedItem__tap_to_select">Bakstelėkite, norėdami pasirinkti</string>
 
     <string name="MediaReviewImagePageFragment__discard">Atmesti</string>
@@ -4585,7 +4587,7 @@
 
     <string name="SubscribeFragment__cancel_subscription">Nutraukti prenumeratą</string>
     <string name="SubscribeFragment__confirm_cancellation">Patvirtinti nutraukimą?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Mokestis nebebus nuskaičiuojamas. Tavo ženklelis bus pašalintas iš profilio pasibaigus apmokėtam laikotarpui.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Mokestis nebebus nuskaičiuojamas. Tavo ženklelis bus pašalintas iš profilio pasibaigus apmokėtam laikotarpiui.</string>
     <string name="SubscribeFragment__not_now">Ne dabar</string>
     <string name="SubscribeFragment__confirm">Patvirtinkite</string>
     <string name="SubscribeFragment__update_subscription">Atnaujinti prenumeratą</string>
@@ -4823,7 +4825,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Ištrinti profilį</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">„%1$s“ pašalinta(s).</string>
+    <string name="NotificationProfileDetails__s_removed">„%1$s“ pašalintas (-a).</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Atšaukti</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -5073,7 +5075,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Atsakoma privačiai naudotojui %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Atsakyti %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Kopijuoti</string>
@@ -5806,8 +5808,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Nebelieka SMS palaikymo</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Programėlėje „Signal“ greit nebebus SMS žinučių palaikymo.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS žinutės skiriasi nuo „Signal“ žinučių. <b>Pastarųjų šis pokytis nepaveiks – užšifruotos „Signal“ žinutės veiks ir toliau.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5819,13 +5821,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Sukurk savo „Signal“ naudotojo vardą</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Naudotojo vardas leidžia kitiems siųsti tau žinutes be telefono numerio</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Ne dabar</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Tęsti</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5839,15 +5841,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Tęsti</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Sukurk savo „Signal“ naudotojo vardą</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Redaguoti naudotojo vardą</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Ištrinti naudotojo vardą</string>
 
     <!-- EOF -->
 </resources>

@@ -17,7 +17,7 @@
 
     <string name="yes">हो</string>
     <string name="no">नाही</string>
-    <string name="delete">काढून टाका</string>
+    <string name="delete">हटवा</string>
     <string name="please_wait">कृपया थांबा…</string>
     <string name="save">जतन करा</string>
     <string name="note_to_self">स्वतःला संदेश</string>
@@ -196,9 +196,9 @@
     <string name="CensorshipCircumventionMegaphone_no_thanks">नाही धन्यवाद</string>
 
     <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">काढा</string>
-    <string name="ClearProfileActivity_remove_profile_photo">प्रोफाईल फोटो काढायचा?</string>
-    <string name="ClearProfileActivity_remove_group_photo">गट फोटो काढून टाकायचा?</string>
+    <string name="ClearProfileActivity_remove">काढून टाका</string>
+    <string name="ClearProfileActivity_remove_profile_photo">प्रोफाईल फोटो काढून टाकायचा?</string>
+    <string name="ClearProfileActivity_remove_group_photo">ग्रुप फोटो काढून टाकायचा?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Signal अद्यतनित करा</string>
@@ -281,8 +281,8 @@
     <string name="ConversationItem_read_more"> अधिक जाणा</string>
     <string name="ConversationItem_download_more">  अधिक डाऊनलोड करा</string>
     <string name="ConversationItem_pending">  प्रलंबित</string>
-    <string name="ConversationItem_this_message_was_deleted">हा संदेश हटविला गेला.</string>
-    <string name="ConversationItem_you_deleted_this_message">आपण हा संदेश हटविला.</string>
+    <string name="ConversationItem_this_message_was_deleted">हा संदेश हटवला गेला.</string>
+    <string name="ConversationItem_you_deleted_this_message">आपण हा संदेश हटवला.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">संदेश डाउनलोड करु शकत नाही. %1$s ला तो पुन्हा पाठवण्याची गरज आहे.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -352,12 +352,12 @@
     <string name="ConversationActivity_new_say_it_with_stickers">नवीन! स्टिकर सोबत बोला</string>
 
     <string name="ConversationActivity_cancel">रद्द करा</string>
-    <string name="ConversationActivity_delete_conversation">संभाषण काढून टाकायचे?</string>
-    <string name="ConversationActivity_delete_and_leave_group">गटातून बाहेत पडायचे आणि गट हटवायचा?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">हे संभाषण आपल्या सर्व डिव्हाईसेस वरून हटविले जाईल.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">आपण हा गट सोडाल, आणि तो आपल्या सर्व डिव्हाईसेस वरून हटविला जाईल.</string>
+    <string name="ConversationActivity_delete_conversation">संभाषण हटवायचे?</string>
+    <string name="ConversationActivity_delete_and_leave_group">ग्रुप हटवायचा आणि सोडून द्यायचा?</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">हे संभाषण आपल्या सर्व डिव्हाइसेस वरून हटवले जाईल.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">आपण हा ग्रुप सोडाल , आणि तो आपल्या सर्व डिव्हाइसेस वरून हटविला जाईल.</string>
     <string name="ConversationActivity_delete">हटवा</string>
-    <string name="ConversationActivity_delete_and_leave">गटातून बाहेत पडा आणि गट हटवा</string>
+    <string name="ConversationActivity_delete_and_leave">ग्रुप हटवा आणि सोडून द्या</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s ला कॉल करण्यासाठी, Signal ला आपल्या मायक्रोफोनचा अॅक्सेस हवा आहे</string>
 
 
@@ -426,13 +426,13 @@
     <string name="ConversationFragment_delete_on_this_device">या डिव्हाइस वरून हटवा</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">सर्वत्र हटवा</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">हा संदेश संभाषणामधील प्रत्येकासाठी Signal च्या अलीकडील आवृत्ती वर असल्यास तो हटविला जाईल. आपण संदेश हटविला हे ते पाहण्यात सक्षम असतील.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ते Signal च्या अलिकडील आवृत्तीवर असल्यास, हा संदेश संभाषणामधील प्रत्येकासाठी हटवला जाईल. आपण संदेश हटवला हे पाहण्यात ते सक्षम असतील.</string>
     <string name="ConversationFragment_quoted_message_not_found">मूळ संदेश आढळला नाही</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">मूळ संदेश आता उपलब्ध नाही</string>
     <string name="ConversationFragment_failed_to_open_message">संदेश उघडण्यात अयशस्वी</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">जलद प्रतिसाद देण्यासाठी आपण कुठल्याही संदेशावर उजवीकडे स्वाइप करू शकता</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">जलद प्रतिसाद देण्यासाठी आपण कुठल्याही संदेशावर डावीकडे स्वाइप करू शकता</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">पाठविल्यानंतर बाहेर जाणाऱ्या एकदा-बघा मिडिया फाईल स्वयंचलितपणे काढल्या जातील</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">पाठविल्यानंतर बाहेर जाणाऱ्या व्हीव-वन्स मिडिया फाईल स्वयंचलितपणे काढून टाकल्या जातील</string>
     <string name="ConversationFragment_you_already_viewed_this_message">आपण आधीच हा संदेश पाहिला आहे</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">आपण या संभाषणात आपल्यासाठी नोट्स जोडू शकता. \nआपल्या खात्यात कोणतेही लिंक केलेले डिव्हाइस असल्यास, नवीन नोट्स समक्रमित केल्या जातील.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dगट सदस्यांचे समान नाव आहे.</string>
@@ -462,7 +462,7 @@
     <string name="ConversationListFragment__no_unread_chats">न वाचलेल्या कोणत्याही चॅटस् नाहीत</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">निवडलेले संभाषण हटवायचे?</item>
-        <item quantity="other">निवडलेले संभाषणे हटवायचे?</item>
+        <item quantity="other">निवडलेली संभाषणे हटवायची?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
         <item quantity="one">हे निवडलेले संभाषण कायमचे हटवेल.</item>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">फिल्टर करण्यास खाली ओढा</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">फिल्टर करण्यास सोडा</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">प्रोफाईल</string>
@@ -663,16 +663,16 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">(%1$s) %2$s मध्ये सर्व वेळा</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">निवडलेली वेळ ही भूतकाळातील आहे. हे तत्काळ संदेश पाठवेल.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">तत्काळ पाठवा</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">आता पाठवा</string>
     <!-- Context menu option to reschedule a selected message -->
     <string name="ScheduledMessagesBottomSheet_menu_reschedule">रिशेड्यूल करा</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">काढून टाका</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">हटवा</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">निवडलेले शेड्यूल केलेले संदेश हटवायचे?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
@@ -776,8 +776,8 @@
         <item quantity="other">या गटात पुन्हा सामील होण्यासाठी या सदस्यांना आमंत्रण स्वीकार करावे लागेल, आणि स्वीकार करेपर्यंत त्यांना गट संदेश प्राप्त होणार नाहीत:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">हा सदस्य गटातून काढला गेला होता आणि श्रेणीसुधारणा करेपर्यंत तो पुन्हा सामील होऊ शकत नाही:</item>
-        <item quantity="other">हे सदस्य गटातून काढले गेले होते आणि श्रेणीसुधारणा करेपर्यंत ते पुन्हा सामील होऊ शकत नाहीत:</item>
+        <item quantity="one">या सदस्याला ग्रुपमधून काढून टाकले होते आणि श्रेणीसुधारणा करेपर्यंत तो पुन्हा सामील होऊ शकत नाही:</item>
+        <item quantity="other">या सदस्यांना ग्रुपमधून काढून टाकले होते आणि श्रेणीसुधारणा करेपर्यंत ते पुन्हा सामील होऊ शकत नाहीत:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -792,8 +792,8 @@
         <item quantity="other">या गटात पुन्हा सामील होण्यासाठी या सदस्यांना आमंत्रण स्वीकार करावे लागेल, आणि स्वीकार करेपर्यंत त्यांना गट संदेश प्राप्त होणार नाहीत:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">हा सदस्य नवीन गटांमध्ये सामील होण्यास सक्षम नाही, आणि त्यामधून काढला जाईल:</item>
-        <item quantity="other">हे सदस्य नवीन गटांमध्ये सामील होण्यास सक्षम नाहीत, आणि त्यामधून काढले जातील:</item>
+        <item quantity="one">हा सदस्य नवीन ग्रुप्समध्ये सामील होण्यास सक्षम नाही, आणि त्याला ग्रुपमधून काढून टाकले जाईल:</item>
+        <item quantity="other">हे सदस्य नवीन ग्रुप्समध्ये सामील होण्यास सक्षम नाहीत, आणि त्यांना ग्रुपमधून काढून टाकले जाईल:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -897,13 +897,13 @@
     <string name="AddGroupDetailsFragment__this_field_is_required">हे फिल़्ड भरणे आवश्यक आहे.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">गट निर्मिती अयशस्वी.</string>
     <string name="AddGroupDetailsFragment__try_again_later">नंतर पुन्हा प्रयत्न करा.</string>
-    <string name="AddGroupDetailsFragment__remove">काढा</string>
+    <string name="AddGroupDetailsFragment__remove">काढून टाका</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS संपर्क</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">या गटातून %1$s ला काढायचे?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">या ग्रुपमधून %1$s ला काढून टाकायचे?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">आपण Signal गट समर्थन देत नसलेला संपर्क निवडला आहे, त्यामुळे हा गट MMS असेल. सानुकूलित MMS गटाची नावे आणि फोटो हे फक्त आपणाला दृश्यमान असतील.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">आपण Signal ग्रुप्सना सपोर्ट न करणारा संपर्क निवडला आहे, म्हणून हा MMS ग्रुप होईल. सानुकूलित MMS ग्रुपची नावं आणि फोटो फक्त आपल्याला दृश्यमान असतील. एन्क्रिप्टेड संदेशनावर लक्ष केंद्रित करण्यासाठी MMS ग्रुप्ससाठीचा सपोर्ट लवकरच काढला जाईल.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">आपण Signal ग्रुप्सना समर्थन न करणारा संपर्क निवडला आहे, म्हणून हा MMS ग्रुप होईल. सानुकूलित MMS ग्रुपची नावं आणि फोटो फक्त आपल्याला दृश्यमान असतील. एन्क्रिप्टेड संदेशनावर लक्ष केंद्रित करण्यासाठी MMS ग्रुप्ससाठीचे समर्थन लवकरच काढून टाकले जाईल.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">नवीन सदस्य कोण जोडू शकतो?</string>
@@ -1011,7 +1011,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">गटात सामील होऊ शकत नाही</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">आपण ग्रुप लिंकद्वारे या ग्रुपमध्ये सामील होऊ शकत नाही कारण अॅडमिनने आपल्याला काढून टाकले आहे.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">प्रशासकाने आपल्याला काढून टाकले असल्यामुळे, आपण ग्रुप लिंकद्वारे या ग्रुपमध्ये सामील होऊ शकत नाही.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">ही गट लिंक आता वैध नाही.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1107,8 +1107,8 @@
         <item quantity="other">निवडलेले आयटम हटवायचे?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">हे निवडलेली फाईल कायमची हटवेल. या घटकाशी संबंधित कुठलाही संदेश मजकूर देखील हटविला जाईल.</item>
-        <item quantity="other">हे निवडलेल्या सर्व %1$d फायली कायमच्या हटवेल. या घटकांशी संबंधित कुठलाही संदेश मजकूर देखील हटविला जाईल.</item>
+        <item quantity="one">हे निवडलेली फाईल कायमची हटवेल. या घटकाशी संबंधित कुठलाही संदेश मजकूर देखील हटवला जाईल.</item>
+        <item quantity="other">हे निवडलेल्या सर्व %1$d फायली कायमच्या हटवेल. या घटकांशी संबंधित कुठलाही संदेश मजकूर देखील हटवला जाईल.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">हटवत आहे</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">संदेश हटवत आहे…</string>
@@ -1245,8 +1245,8 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">सदस्य नवीन गटात जोडला जाऊ शकत नाही आणि त्यातून त्याला काढून टाकले आहे.</item>
-        <item quantity="other">%1$s सदस्य नवीन गटात जोडले जाऊ शकत नाहीत आणि त्यातून त्यांना काढून टाकले आहे.</item>
+        <item quantity="one">सदस्य नवीन ग्रुपमध्ये जोडला जाऊ शकत नाही आणि त्यातून त्याला काढून टाकले आहे.</item>
+        <item quantity="other">%1$s सदस्यांना नवीन ग्रुपमध्ये जोडले जाऊ शकत नाही आणि त्यातून त्यांना काढून टाकले आहे.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1269,7 +1269,7 @@
     <!-- GV2 member removals -->
     <string name="MessageRecord_you_removed_s">आपण %1$s ला काढले.</string>
     <string name="MessageRecord_s_removed_s">%1$s ने %2$s ला काढले.</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s ने आपल्याला गटातून काढले.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s ने आपल्याला ग्रुपमधून काढून टाकले.</string>
     <string name="MessageRecord_you_left_the_group">आपण गट सोडला.</string>
     <string name="MessageRecord_s_left_the_group">%1$s ने गट सोडला.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">आपण आता गटात नाही.</string>
@@ -1877,7 +1877,7 @@
     <string name="StickerPackPreviewActivity_untitled">अशीर्षकांकित</string>
     <string name="StickerPackPreviewActivity_unknown">अज्ञात</string>
     <string name="StickerPackPreviewActivity_install">स्थापना करा</string>
-    <string name="StickerPackPreviewActivity_remove">काढा</string>
+    <string name="StickerPackPreviewActivity_remove">काढून टाका</string>
     <string name="StickerPackPreviewActivity_stickers">स्टिकर</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">स्टिकर पॅक लोड करण्यात अयशस्वी</string>
 
@@ -1890,7 +1890,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">जतन करण्यात अपयशी</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">जतन करणे पूर्ण</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">लाईन हटवण्यासाठी त्यास टॅप करा</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">लाईन हटवण्यासाठी तिला टॅप करा</string>
     <string name="SubmitDebugLogActivity_submit">सादर करा</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">लॉग प्रविष्ट करण्यात अयशस्वी</string>
     <string name="SubmitDebugLogActivity_success">यश!</string>
@@ -1918,8 +1918,8 @@
     <string name="ThreadRecord_view_once_photo">एकदा-बघा फोटो</string>
     <string name="ThreadRecord_view_once_video">एकदा-बघा व्हिडिओ</string>
     <string name="ThreadRecord_view_once_media">एकदा-बघा मिडिया</string>
-    <string name="ThreadRecord_this_message_was_deleted">हा संदेश हटविला गेला.</string>
-    <string name="ThreadRecord_you_deleted_this_message">आपण हा संदेश हटविला.</string>
+    <string name="ThreadRecord_this_message_was_deleted">हा संदेश हटवला गेला.</string>
+    <string name="ThreadRecord_you_deleted_this_message">आपण हा संदेश हटवला.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">आपण पेमेंट्स सक्रिय करण्याची विनंती पाठवली आहे</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -1956,6 +1956,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">त्यांच्या स्टोरीवर %1$s नी प्रतिक्रिया दिली</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">पेमेंट</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal अद्यतन</string>
@@ -1976,7 +1978,7 @@
     <string name="UsernameEditFragment__choose_your_username">आपले वापरकर्तानाव निवडा</string>
     <string name="UsernameEditFragment_username">वापरकर्तानाव</string>
     <string name="UsernameEditFragment_delete">हटवा</string>
-    <string name="UsernameEditFragment_successfully_removed_username">वापरकर्तानाव यशस्वीरीत्या काढले.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">वापरकर्तानाव यशस्वीरीत्या काढून टाकले.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">एक नेटवर्क त्रुटी आढळली.</string>
     <string name="UsernameEditFragment_this_username_is_taken">हे वापरकर्तानाव घेतलेले आहे.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">वापरकर्तानावांमध्ये फक्त a–Z, 0–9, आणि अंडरस्कोर याचा समावेश असू शकतो.</string>
@@ -2048,7 +2050,7 @@
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">बाह्य संचयनात जतन करण्यासाठी Signal ला संचयन परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संचयन\" सक्षम करा.</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">परवानग्यांविना बाह्य संचयनात जतन करण्यात अक्षम</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">संदेश हटवायचा?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">हे कायमचे ह्या संदेशाला हटवेल.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">हे कायमचे हा संदेश हटवेल.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s ते %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">आपण %1$sकरावे</string>
@@ -2093,7 +2095,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">आपल्या ऑडिओला %1$s प्रतिसाद दिला.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">आपल्या एकदा-बघा मिडियाला %1$s प्रतिसाद दिला.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">आपल्या स्टिकरला %1$s प्रतिसाद दिला.</string>
-    <string name="MessageNotifier_this_message_was_deleted">हा संदेश हटविला गेला.</string>
+    <string name="MessageNotifier_this_message_was_deleted">हा संदेश हटवला गेला.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">संपर्क Signal मध्ये सामील झाला सूचना बंद करायच्या? आपण त्यांना पुन्हा Signal &gt; सेटिंग &gt; सूचना मधून सक्षम करू शकता.</string>
 
@@ -2575,7 +2577,7 @@
     <string name="AndroidManifest__linked_devices">लिंक केलेले डिव्हाईस</string>
     <string name="AndroidManifest__invite_friends">मित्रांना आमंत्रित करा</string>
     <string name="AndroidManifest_archived_conversations">आर्काईव्ह केलेले संभाषण</string>
-    <string name="AndroidManifest_remove_photo">फोटो काढा</string>
+    <string name="AndroidManifest_remove_photo">फोटो काढून टाका</string>
 
     <!-- Message Requests Megaphone -->
     <string name="MessageRequestsMegaphone__message_requests">संदेश विनंत्या</string>
@@ -2755,7 +2757,7 @@
     <string name="preferences__advanced_pin_settings">प्रगत PIN सेटिंग</string>
     <string name="preferences__free_private_messages_and_calls">Signal वापरकर्त्यांना विनामुल्य खाजगी संदेश आणि कॉल</string>
     <string name="preferences__submit_debug_log">डीबग लॉग प्रविष्ट करा</string>
-    <string name="preferences__delete_account">खाते हटवा</string>
+    <string name="preferences__delete_account">अकाऊंट हटवा</string>
     <string name="preferences__support_wifi_calling">\'WiFi कॉलिंग\' सुसंगतता मोड</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">जर आपला डिव्हाईस WiFi वर SMS/MMS पोहचवत असेल तर सक्षम करा(फक्त \'WiFi कॉलिंग\' सक्षम असल्यावरच सक्षम करा)</string>
     <string name="preferences__incognito_keyboard">इनकॉग्निटो कीबोर्ड</string>
@@ -3170,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">न वाचलेल्या चॅटस् फिल्टर करा</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">न वाचलेले फिल्टर साफ करा</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">क्लिपबोर्ड वर कॉपी करा</string>
@@ -3211,7 +3213,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal प्रोटोकॉलने स्वयंचलितपणे %2$d दिवसांमध्ये %1$d%% आपले जाणारे संदेश संरक्षित केलेत. Signal वापरकर्त्यांमधील संभाषण हे नेहमी एंड-टू-एंड एन्क्रिप्टेड असते.</string>
     <string name="InsightsDashboardFragment__spread_the_word">प्रसार करा</string>
     <string name="InsightsDashboardFragment__not_enough_data">पुरेसा डेटा नाही</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">मागील %1$d दिवसांच्या जाणारे संदेश जे अदृश्य झाले नाहीत किंवा हटविले गेले नाहीत त्यांच्या आधारावर आपली ईन्साईट टक्केवारी याची गणना केली जाते.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">मागील %1$d दिवसांचे जाणारे संदेश जे अदृश्य झाले नाहीत किंवा हटविले गेले नाहीत त्यांच्या आधारावर आपली इन्साइट टक्केवारीची गणना केली जाते.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">संभाषण चालू करा</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">सुरक्षितपणे परस्परसंवाद चालू करा आणि Signal मध्ये सामील होण्यासाठी अधिक संपर्कांना आमंत्रित करून नवीन वैशिष्ट्ये सक्षम करा जे अनएन्क्रिप्टेड SMS संदेशांच्या मर्यादेच्या पलीकडे जातात.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ही आकडेवारी आपल्या डिव्हाईस वर स्थानिकरीत्या उत्पन्न केली गेली आहे आणि फक्त आपल्या द्वारा बघितली जाऊ शकते. ते कुठेही प्रक्षेपित केले जात नाही.</string>
@@ -3285,7 +3287,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">खाते लॉक केले गेले</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">आपल्या गोपनीयतेसाठी आणि सुरक्षेसाठी आपले खाते लॉक केले गेले आहे. आपल्या खात्यामध्ये %1$d दिवसांच्या निष्क्रियतेनंतर आपल्या PIN विना आपल्याला या फोन नंबर सोबत पुन्हा नोंदणी करता येईल. सर्व मजकूर हटविला जाईल.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">आपल्या गोपनीयतेसाठी आणि सुरक्षेसाठी आपले अकाऊंट लॉक केले गेले आहे. आपल्या अकाऊंटमध्ये %1$d दिवसांच्या निष्क्रियतेनंतर आपल्या PIN विना आपल्याला या फोन नंबर सोबत पुन्हा नोंदणी करता येईल. सर्व मजकूर हटवला जाईल.</string>
     <string name="AccountLockedFragment__next">पुढे</string>
     <string name="AccountLockedFragment__learn_more">अधिक जाणा</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3303,8 +3305,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal नोंदणी - Android (v2 PIN) साठी PIN ची मदत पाहिजे</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">आपल्या गोपनीयतेसाठी आणि सुरक्षेसाठी, आपला PIN पुनर्स्थापित करण्याचा कुठलाही मार्ग नाही. जर आपल्याला आपला PIN आठवत नसेल, तर आपण %1$d दिवसाच्या निष्क्रियतेनंतर आपण पुनःसत्यापित करू शकता. या परिस्थितीमध्ये, आपले खाते साफ केले जाईल आणि सर्व मजकूर हटविला जाईल.</item>
-        <item quantity="other">आपल्या गोपनीयतेसाठी आणि सुरक्षेसाठी, आपला PIN पुनर्स्थापित करण्याचा कुठलाही मार्ग नाही. जर आपल्याला आपला PIN आठवत नसेल, तर आपण %1$d दिवसांच्या निष्क्रियतेनंतर आपण पुनःसत्यापित करू शकता. या परिस्थितीमध्ये, आपले खाते साफ केले जाईल आणि सर्व मजकूर हटविला जाईल.</item>
+        <item quantity="one">आपल्या गोपनीयतेसाठी आणि सुरक्षेसाठी, आपला PIN पुनर्प्राप्त करण्याचा कुठलाही मार्ग नाही. जर आपल्याला आपला PIN आठवत नसेल, तर आपण %1$d दिवसाच्या निष्क्रियतेनंतर आपण पुनःसत्यापित करू शकता. या परिस्थितीमध्ये, आपले अकाऊंट साफ केले जाईल आणि सर्व मजकूर हटवला जाईल.</item>
+        <item quantity="other">आपल्या गोपनीयतेसाठी आणि सुरक्षेसाठी, आपला PIN पुनर्प्राप्त करण्याचा कुठलाही मार्ग नाही. जर आपल्याला आपला PIN आठवत नसेल, तर आपण %1$d दिवसांच्या निष्क्रियतेनंतर आपण पुनःसत्यापित करू शकता. या परिस्थितीमध्ये, आपले अकाऊंट साफ केले जाईल आणि सर्व मजकूर हटवला जाईल.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3313,8 +3315,8 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">जर आपले प्रयत्न संपले तर आपले खाते %1$d दिवसांकरिता लॉक केले जाईल. %1$d दिवसांच्या निष्क्रियतेनंतर आपण विना PIN पुन्हा नोंदणी करू शकता. आपले खाते साफ केले जाईल आणि सर्व मजकूर हटविला जाईल.</item>
-        <item quantity="other">जर आपले प्रयत्न संपले तर आपले खाते %1$d दिवसांकरिता लॉक केले जाईल. %1$d दिवसांच्या निष्क्रियतेनंतर आपण विना PIN पुन्हा नोंदणी करू शकता. आपले खाते साफ केले जाईल आणि सर्व मजकूर हटविला जाईल.</item>
+        <item quantity="one">जर आपले प्रयत्न संपले तर आपले अकाऊंट %1$d दिवसाकरिता लॉक केले जाईल. %1$d दिवसाच्या निष्क्रियतेनंतर आपण विना PIN पुन्हा नोंदणी करू शकता. आपले अकाऊंट साफ केले जाईल आणि सर्व मजकूर हटवला जाईल.</item>
+        <item quantity="other">जर आपले प्रयत्न संपले तर आपले अकाऊंट %1$d दिवसांकरिता लॉक केले जाईल. %1$d दिवसांच्या निष्क्रियतेनंतर आपण विना PIN पुन्हा नोंदणी करू शकता. आपले अकाऊंट साफ केले जाईल आणि सर्व मजकूर हटवला जाईल.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3393,10 +3395,10 @@
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">आपला अलिकडील बॅकअप तयार करू आणि सत्यापित करू शकत नाही. कृपया नवीन तयार करा.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">आपल्या बॅकअपमध्ये एक अतिशय मोठी फाईल आहे जिचा बॅकअप घेतला जाऊ शकत नाही. कृपया ती हटवा किंवा नवीन तयार करा.</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">आपल्या बॅकअपमध्ये एक अतिशय मोठी फाईल आहे जिचा बॅकअप घेतला जाऊ शकत नाही. कृपया ती हटवा किंवा नवीन बॅकअप तयार करा.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">बॅकअप व्यवस्थापित करण्यासाठी टॅप करा.</string>
     <string name="RegistrationActivity_wrong_number">चुकीचा नंबर?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">(%1$02d:%2$02d) मला कॉल करा</string>
     <string name="RegistrationActivity_contact_signal_support">Signal समर्थनाशी संपर्क साधा</string>
     <string name="RegistrationActivity_code_support_subject">Signal नोंदणी - Android करिता सत्यापन कोड</string>
     <string name="RegistrationActivity_incorrect_code">चुकीचा कोड</string>
@@ -3495,7 +3497,7 @@
     <string name="DeviceTransferSetup__location_permission">स्थान परवानगी</string>
     <string name="DeviceTransferSetup__location_services">स्थान सेवा</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi डिरेक्ट स्क्रीनवर, सर्व लक्षात असलेलेगट काढा आणि कुठलेही आमंत्रित केलेले किंवा कनेक्ट केलेले डिव्हाइस अनलिंक करा.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi डायरेक्ट स्क्रीनवर, सर्व लक्षात असलेले ग्रुप काढून टाका आणि कुठलेही आमंत्रित केलेले किंवा कनेक्ट केलेले डिव्हाइस अनलिंक करा.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">WiFi डिरेक्ट स्क्रीन</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">दोन्ही डिव्हाइसवर, Wi-Fi चालू आणि बंद करून पहा.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">दोन्ही डिव्हाइस स्थानांतर मोडमध्ये असल्याची खात्री करा.</string>
@@ -3569,16 +3571,16 @@
     <string name="RecipientBottomSheet_add_to_another_group">आणखी एका गटात जोडा</string>
     <string name="RecipientBottomSheet_view_safety_number">सुरक्षितता नंबर बघा</string>
     <string name="RecipientBottomSheet_make_admin">प्रशासक बनवा</string>
-    <string name="RecipientBottomSheet_remove_as_admin">अॅडमिन म्हणून काढून टाका</string>
-    <string name="RecipientBottomSheet_remove_from_group">गटातून काढा</string>
+    <string name="RecipientBottomSheet_remove_as_admin">प्रशासक म्हणून काढून टाका</string>
+    <string name="RecipientBottomSheet_remove_from_group">ग्रुपमधून काढून टाका</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s ला गट अॅडमिन म्हणून काढायचे?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s ला ग्रुप प्रशासक म्हणून काढून टाकायचे?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" हा गट आणि त्याचे सदस्य संपादित करू शकतील."</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s ला गटातून काढायचे?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s ला ग्रुपमधून काढून टाकायचे?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s ला गटातून काढून टाकायचे? ते ग्रुप लिंकद्वारे पुन्हा सामील होऊ शकणार नाहीत.</string>
-    <string name="RecipientBottomSheet_remove">काढा</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s ला ग्रुपमधून काढून टाकायचे? ते ग्रुप लिंकद्वारे पुन्हा सामील होऊ शकणार नाहीत.</string>
+    <string name="RecipientBottomSheet_remove">काढून टाका</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">क्लिपबोर्ड वर कॉपी केले</string>
 
     <string name="GroupRecipientListItem_admin">प्रशासक</string>
@@ -3632,15 +3634,15 @@
         <item quantity="one">%1$d गट समाईक</item>
         <item quantity="other">%1$d गट समाईक</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s ला गटातून काढायचे?</string>
-    <string name="ReviewCardDialogFragment__remove">काढा</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">गट सदस्य काढण्यात अयशस्वी.</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s ला ग्रुपमधून काढून टाका?</string>
+    <string name="ReviewCardDialogFragment__remove">काढून टाका</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">ग्रुप सदस्य काढून टाकण्यात अयशस्वी.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">सदस्य</string>
     <string name="ReviewCard__request">विनंती</string>
     <string name="ReviewCard__your_contact">आपला संपर्क</string>
-    <string name="ReviewCard__remove_from_group">गटातून काढा</string>
+    <string name="ReviewCard__remove_from_group">ग्रुपमधून काढून टाका</string>
     <string name="ReviewCard__update_contact">संपर्क अद्यतनित करा</string>
     <string name="ReviewCard__block">अवरोधित करा</string>
     <string name="ReviewCard__delete">हटवा</string>
@@ -3667,16 +3669,16 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">आपले खाते हटवल्याने खालील गोष्टी होतील:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">आपला फोन नंबर प्रविष्ट करा</string>
-    <string name="DeleteAccountFragment__delete_account">खाते हटवा</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">आपली खाते माहिती आणि प्रोफाईल फोटो हटवला जाईल</string>
+    <string name="DeleteAccountFragment__delete_account">अकाऊंट हटवा</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">आपली अकाऊंट माहिती आणि प्रोफाईल फोटो हटवला जाईल</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">आपले सर्व संदेश हटवले जातील</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">आपल्या पेमेंट खात्यामध्ये %1$s हटवा</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">आपल्या पेमेंट अकाऊंटमध्ये %1$s हटवा</string>
     <string name="DeleteAccountFragment__no_country_code">कुठलेही देश कोड निर्दिष्ट नाही</string>
     <string name="DeleteAccountFragment__no_number">कुठलेही नंबर निर्दिष्ट नाही</string>
     <string name="DeleteAccountFragment__the_phone_number">आपण प्रविष्ट केलेला फोन नंबर आपल्या खात्याशी जुळत नाही.</string>
-    <string name="DeleteAccountFragment__are_you_sure">आपले खाते हटवायची आपणास खात्री आहे का?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">हे आपले Signal खाते हटवेल आणि अॅपलिकेशन रीसेट करेल. प्रक्रिया पूर्ण झाल्यावर अॅप बंद होईल.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">स्थानिक डेटा हटवण्यात अयशस्वी. आपण त्यास सिस्टिम अॅपलिकेशन सेटिंग मधून व्यक्तीचलितपणे साफ करू शकता.</string>
+    <string name="DeleteAccountFragment__are_you_sure">आपण खात्रीने आपले अकाऊंट हटवू इच्छिता?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">हे आपले Signal अकाऊंट हटवेल आणि ॲप्लिकेशन रिसेट करेल. प्रक्रिया पूर्ण झाल्यावर ॲप बंद होईल.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">स्थानिक डेटा हटवण्यात अयशस्वी. आपण त्यास सिस्टिम ॲप्लिकेशन सेटिंग मधून व्यक्तीचलितपणे साफ करू शकता.</string>
     <string name="DeleteAccountFragment__launch_app_settings">अॅप सेटिंग लाँच करा</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">गट सोडत आहे…</string>
@@ -3689,7 +3691,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">वापरकर्ता डेटा हटवत आहे आणि अॅप रीसेट करत आहे</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">खाते हटवले नाही</string>
+    <string name="DeleteAccountFragment__account_not_deleted">अकाऊंट हटवले नाही</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">हटवण्याची प्रक्रिया पूर्ण करताना समस्या आली. आपले नेटवर्क कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
 
@@ -4073,8 +4075,8 @@
     <string name="ChatColorSelectionFragment__delete">हटवा</string>
     <string name="ChatColorSelectionFragment__delete_color">रंग हटवा</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">हा कस्टम रंग %1$d चॅटमध्ये वापरला गेला आहे. आपण त्यास सर्व चॅटसाठी हटवू इच्छिता?</item>
-        <item quantity="other">हा कस्टम रंग %1$d चॅटमध्ये वापरला गेला आहे. आपण त्यास सर्व चॅटसाठी हटवू इच्छिता?</item>
+        <item quantity="one">हा कस्टम रंग %1$d चॅटमध्ये वापरला गेला आहे. आपण तो सर्व चॅट्ससाठी हटवू इच्छिता?</item>
+        <item quantity="other">हा कस्टम रंग %1$d चॅट्समध्ये वापरला गेला आहे. आपण तो सर्व चॅट्ससाठी हटवू इच्छिता?</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">चॅटचा रंग हटवायचा?</string>
 
@@ -4230,11 +4232,11 @@
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">व्हिडिओ कॉल</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">काढा</string>
+    <string name="NewConversationActivity__remove">काढून टाका</string>
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">अवरोधित करा</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">%1$s ला काढायचे ?</string>
+    <string name="NewConversationActivity__remove_s">%1$s ला काढून टाकायचे?</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">शोधत असताना आपण ही व्यक्ती पाहू शकणार नाही. त्यांनी आपल्याला भविष्यामध्ये संदेश केल्यास आपणांस एक संदेश विनंती मिळेल.</string>
     <!-- Snackbar message after removing a contact -->
@@ -4242,7 +4244,7 @@
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s ला अवरोधित केले गेले आहे</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">%1$s ला हटवू शकत नाही</string>
+    <string name="NewConversationActivity__unable_to_remove_s">%1$s ला काढून टाकू शकत नाही</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">ही व्यक्ती आपल्या डिव्हाइसच्या संपर्कामध्ये जतन केली. त्यांना आपल्या संपर्कातून हटवा आणि पुन्हा प्रयत्न करा.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
@@ -4347,7 +4349,7 @@
 
     <string name="MediaCountIndicatorButton__send">पाठवा</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">हटवण्यासाठी टॅप करा</string>
+    <string name="MediaReviewSelectedItem__tap_to_remove">काढून टाकण्यासाठी टॅप करा</string>
     <string name="MediaReviewSelectedItem__tap_to_select">निवडण्यासाठी टॅप करा</string>
 
     <string name="MediaReviewImagePageFragment__discard">टाकून द्या</string>
@@ -4617,7 +4619,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">प्रोफाइल हटवा</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">\"%1$s\" ला काढले</string>
+    <string name="NotificationProfileDetails__s_removed">\"%1$s\" ला काढून टाकले.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">अनडू करा</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -4839,13 +4841,13 @@
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">सेटिंग्ज वर जा</string>
     <!-- Dialog action to remove viewer from a story -->
-    <string name="StoryViewsFragment__remove">काढा</string>
+    <string name="StoryViewsFragment__remove">काढून टाका</string>
     <!-- Dialog title when removing a viewer from a story -->
-    <string name="StoryViewsFragment__remove_viewer">दर्शकाला हटवायचे?</string>
+    <string name="StoryViewsFragment__remove_viewer">दर्शकाला काढून टाकायचे?</string>
     <!-- Dialog message when removing a viewer from a story -->
     <string name="StoryViewsFragment__s_will_still_be_able">%1$s हे अद्याप ही पोस्ट पाहू शकतात, मात्र आपण %2$sला सामायिक केलेल्या भविष्यातील कोणत्याही पोस्ट पाहू शकणार नाही.</string>
     <!-- Story View context menu action to remove them from a story -->
-    <string name="StoryViewItem__remove_viewer">दर्शकाला हटवा</string>
+    <string name="StoryViewItem__remove_viewer">दर्शकाला काढून टाका</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">अद्याप कोणतीही प्रत्युत्तरे नाहीत</string>
     <!-- Displayed when no longer a group member -->
@@ -4861,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$sला खाजगीपणे प्रत्त्युत्तर देत आहे</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">%1$s ला उत्तर द्या</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">कॉपी करा</string>
@@ -4925,11 +4927,11 @@
     <!-- Clickable option to delete a custom story -->
     <string name="PrivateStorySettingsFragment__delete_custom_story">सानुकूल स्टोरी हटवा</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove_s">%1$s ला काढायचे ?</string>
+    <string name="PrivateStorySettingsFragment__remove_s">%1$s ला काढून टाकायचे?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">ही व्यक्ती यापुढे आपली स्टोरी पाहू शकणार नाही.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove">काढा</string>
+    <string name="PrivateStorySettingsFragment__remove">काढून टाका</string>
     <!-- Dialog title when deleting a custom story -->
     <!-- Dialog message when deleting a custom story -->
     <!-- Page title for editing a custom story name -->
@@ -4964,17 +4966,17 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">ठीक</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">ग्रुप स्टोरी काढायची?</string>
+    <string name="StoryDialogs__remove_group_story">ग्रुप स्टोरी काढून टाकायची?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" ला हटवण्यात येईल.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" ला काढून टाकले जाईल.</string>
     <!-- Dialog positive action for removing a group story -->
-    <string name="StoryDialogs__remove">काढा</string>
+    <string name="StoryDialogs__remove">काढून टाका</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">सानुकूल स्टोरी हटवायची?</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" आणि या स्टोरीजला शेअर केलेली अद्यतने हटवली जातील.</string>
     <!-- Dialog positive action for deleting a custom story -->
-    <string name="StoryDialogs__delete">काढून टाका</string>
+    <string name="StoryDialogs__delete">हटवा</string>
     <!-- Dialog title for first time sending something to a beta story -->
     <!-- Dialog message for first time sending something to a beta story -->
     <!-- Dialog title for first time adding something to a story -->
@@ -5158,11 +5160,11 @@
     <!-- Label for context menu item to delete a custom story -->
     <string name="ContactSearchItems__delete_story">स्टोरी हटवा</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">ग्रुप स्टोरी काढायची?</string>
+    <string name="ContactSearchMediator__remove_group_story">ग्रुप स्टोरी काढून टाकायची?</string>
     <!-- Dialog message for removing a group story -->
     <string name="ContactSearchMediator__this_will_remove">हे या यादीतून ही स्टोरी काढून टाकेल. आपण अद्याप या ग्रुपमधून स्टोरीज पाहू शकाल.</string>
     <!-- Dialog action item for removing a group story -->
-    <string name="ContactSearchMediator__remove">काढा</string>
+    <string name="ContactSearchMediator__remove">काढून टाका</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">स्टोरी हटवायची?</string>
     <!-- Dialog message for deleting a custom story -->
@@ -5235,9 +5237,9 @@
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">संपर्क</string>
     <!-- Context menu label for distribution list headers in review fragment -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove_all">सर्व हटवा</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove_all">सर्व काढून टाका</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove">काढा</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove">काढून टाका</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">माझ्या स्टोरीची गोपनीयता</string>
@@ -5275,7 +5277,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">स्टोरीज बंद करायच्या?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">आपण यापुढे स्टोरीज शेअर किंवा पाहू शकणार नाही. आपण अलिकडेच शेअर केलेले स्टोरीज अद्यतने देखील हटवली जातील.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">आपण यापुढे स्टोरीज शेअर करू किंवा पाहू शकणार नाही. आपण अलिकडेच शेअर केलेली स्टोरीज अद्यतने देखील हटवली जातील.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">स्टोरी गोपनीयता</string>
     <!-- Header for section that lists out stories -->
@@ -5295,7 +5297,7 @@
     <!-- Explanation of who can view a group story -->
     <string name="GroupStorySettingsFragment__members_of_the_group_s">"%1$s गटाचे सदस्य ही स्टोरी पाहू आणि उत्तर देऊ शकतात. या चॅटसाठी आपण गटामध्ये सदस्यत्व अद्ययावत करु शकता."</string>
     <!-- Preference label for removing this group story -->
-    <string name="GroupStorySettingsFragment__remove_group_story">ग्रुप स्टोरी हटवा</string>
+    <string name="GroupStorySettingsFragment__remove_group_story">ग्रुप स्टोरी काढून टाका</string>
 
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">ओव्हरफ्लो मेनू</string>
@@ -5312,7 +5314,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">आपले SMS संदेश एक्सपोर्ट करा</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">आपण आपल्या फोनच्या SMS डेटाबेस मध्ये आपले SMS संदेश एक्सपोर्ट करू शकता आणि आपल्याकडे त्यांना Signal मध्ये ठेवण्याचा किंवा हटवण्याचा पर्याय असेल. हे इतर SMS अ‍ॅपना त्यांना आपल्या फोनवर एक्सपोर्ट करण्याची अनुमती देते. हे आपल्या SMS इतिहासाची शेअर करता येण्याजोगी फाईल तयार करत नाही.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">आपण आपल्या फोनच्या SMS डेटाबेस मध्ये आपले SMS संदेश एक्सपोर्ट करू शकता आणि आपल्याकडे त्यांना Signal मध्ये ठेवण्याचा किंवा काढून टाकण्याचा पर्याय असेल. हे इतर SMS अ‍ॅप्सना त्यांना आपल्या फोनवर एक्सपोर्ट करण्याची अनुमती देते. हे आपल्या SMS इतिहासाची शेअर करता येण्याजोगी फाईल तयार करत नाही.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">सुरू ठेवा</string>
 
@@ -5367,11 +5369,11 @@
     <!-- Action button to keep messages -->
     <string name="RemoveSmsMessagesDialogFragment__keep_messages">संदेश ठेवा</string>
     <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">संदेश हटवा</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_messages">संदेश काढून टाका</string>
     <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal मधून SMS संदेश हटवायचे?</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal मधून SMS संदेश काढून टाकायचे?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">आपण आता संग्रहण जागा साफ करण्यासाठी Signal मधून SMS संदेश काढू शकता. आपण त्यांना काढून टाकले तरी ते अद्याप आपल्या फोनवरील इतर SMS ॲप्सवर उपलब्ध असतील.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">आपण आता संग्रहण जागा साफ करण्यासाठी Signal मधून SMS संदेश काढून टाकू शकता. आपण त्यांना काढून टाकले तरी ते अद्याप आपल्या फोनवरील इतर SMS ॲप्सवर उपलब्ध असतील.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5556,26 +5558,26 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS सपोर्ट आता बंद होत आहे</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Signal अ‍ॅप मध्ये SMS संदेशनला यापुढे लवकरच समर्थित केले जाणार नाही.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS संदेश हे Signal संदेशांपेक्षा वेगळे असतात. <b>यामुळे काम करणे पुढे सुरु राहणार्‍या कूटबध्द केलेल्या Signal संदेशनावर परिणाम होणार नाही.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_3">आपण आपल्या SMS संदेशांना एक्सपोर्ट करु शकता आणि नवीन SMS अ‍ॅप निवडू शकता.</string>
     <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">SMS संदेश पाठवण्यासाठीचा सपोर्ट Signal ने काढून टाकला आहे.</string>
+    <string name="SmsRemoval_info_bullet_1_phase_3">SMS संदेश पाठवण्यासाठीचे समर्थन Signal ने काढून टाकले आहे.</string>
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">SMS एक्सपोर्ट करा</string>
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">आपले Signal वापरकर्तानाव सेटअप करा</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">वापरकर्तानाव आपणाला आपल्या फोन नंबरशिवाय इतरांना संदेश करू देते</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">आता नाही</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">सुरू ठेवा</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5589,15 +5591,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">सुरू ठेवा</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">आपले Signal वापरकर्तानाव सेटअप करा</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">वापरकर्तानाव संपादित करा</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">वापरकर्ता नाव हटवा</string>
 
     <!-- EOF -->
 </resources>

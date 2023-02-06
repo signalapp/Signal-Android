@@ -17,7 +17,7 @@
 
     <string name="yes">ಹೌದು</string>
     <string name="no">ಇಲ್ಲ</string>
-    <string name="delete">ಅಳಿಸು</string>
+    <string name="delete">ಅಳಿಸಿ</string>
     <string name="please_wait">ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ…</string>
     <string name="save">ಉಳಿಸಿ</string>
     <string name="note_to_self">ಸ್ವಯಂ ಟಿಪ್ಪಣಿ</string>
@@ -197,8 +197,8 @@
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">ತೆಗೆದುಹಾಕಿ</string>
-    <string name="ClearProfileActivity_remove_profile_photo">ಪ್ರೊಫೈಲ್ ಚಿತ್ರ ಅಳಿಸುವುದೇ?</string>
-    <string name="ClearProfileActivity_remove_group_photo">ಗುಂಪಿನ ಫೋಟೊ ತೆಗೆಯಬಹುದೆ?</string>
+    <string name="ClearProfileActivity_remove_profile_photo">ಪ್ರೊಫೈಲ್ ಚಿತ್ರ ತೆಗೆದುಹಾಕುವುದೇ?</string>
+    <string name="ClearProfileActivity_remove_group_photo">ಗ್ರೂಪ್‌ನ ಫೋಟೊ ತೆಗೆದುಹಾಕುವುದೇ?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Signal ಅನ್ನು ನವೀಕರಿಸಿ</string>
@@ -281,8 +281,8 @@
     <string name="ConversationItem_read_more"> ಮತ್ತಷ್ಟು ಓದಿ</string>
     <string name="ConversationItem_download_more"> ಇನ್ನಷ್ಟು ಇಳಿಕೆ ಮಾಡಿ</string>
     <string name="ConversationItem_pending"> ಬಾಕಿ ಉಳಿದಿದೆ</string>
-    <string name="ConversationItem_this_message_was_deleted">ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
-    <string name="ConversationItem_you_deleted_this_message">ನೀವು ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಿದಿರಿ</string>
+    <string name="ConversationItem_this_message_was_deleted">ಈ ಮೆಸೇಜನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
+    <string name="ConversationItem_you_deleted_this_message">ನೀವು ಈ ಮೆಸೇಜನ್ನು ಅಳಿಸಿದ್ದೀರಿ.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">ಮೆಸೇಜ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ. %1$s ಅವರು ಇದನ್ನು ಮತ್ತೆ ಕಳುಹಿಸಬೇಕಾಗಿದೆ.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -353,10 +353,10 @@
 
     <string name="ConversationActivity_cancel">ರದ್ದುಮಾಡಿ</string>
     <string name="ConversationActivity_delete_conversation">ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸುವುದೇ?</string>
-    <string name="ConversationActivity_delete_and_leave_group">ಅಳಿಸುವುದೇ ಮತ್ತು ಗುಂಪನ್ನು ಬಿಡುವುದೇ?</string>
+    <string name="ConversationActivity_delete_and_leave_group">ಗ್ರೂಪ್ ಅನ್ನು ಅಳಿಸುವುದೇ ಮತ್ತು ತೊರೆಯುವುದೇ?</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ನಿಮ್ಮ ಎಲ್ಲ ಸಾಧನಗಳಿಂದಲೂ ಈ ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸಲಾಗುವುದು.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">ನೀವು ಈ ಗುಂಪನ್ನು ತೊರೆಯುತ್ತೀರಿ ಮತ್ತು ಇದನ್ನು ನಿಮ್ಮ ಎಲ್ಲ ಸಾಧನಗಳಿಂದಲೂ ಅಳಿಸಲಾಗುವುದು.</string>
-    <string name="ConversationActivity_delete">ಅಳಿಸು</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">ನೀವು ಈ ಗ್ರೂಪ್ ಅನ್ನು ತೊರೆಯುತ್ತೀರಿ ಮತ್ತು ಇದನ್ನು ನಿಮ್ಮ ಎಲ್ಲ ಸಾಧನಗಳಿಂದಲೂ ಅಳಿಸಲಾಗುವುದು.</string>
+    <string name="ConversationActivity_delete">ಅಳಿಸಿ</string>
     <string name="ConversationActivity_delete_and_leave">ಅಳಿಸಿ ಮತ್ತು ತೊರೆಯಿರಿ</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s ಗೆ ಕರೆ ಮಾಡಲು, Signal ಗೆ ನಿಮ್ಮ ಮೈಕ್ರೊಫೋನ್ ಪ್ರವೇಶ ಅಗತ್ಯವಿದೆ.</string>
 
@@ -393,8 +393,8 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">ಸಂಪರ್ಕಗಳ‌ ಆ್ಯಪ್ ಕಂಡುಬಂದಿಲ್ಲ</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="one">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
-        <item quantity="other">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
+        <item quantity="one">ಆಯ್ಕೆ ಮಾಡಲಾದ ಮೆಸೇಜನ್ನು ಅಳಿಸುವುದೇ?</item>
+        <item quantity="other">ಆಯ್ಕೆ ಮಾಡಲಾದ ಮೆಜೇಸ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">ಸ್ಟೊರೇಜ್ ಗೆ ಉಳಿಸುವುದೇ?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -420,19 +420,19 @@
     <string name="ConversationFragment_sms">ಎಸ್‌ಎಂಎಸ್‌</string>
     <string name="ConversationFragment_deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ</string>
     <string name="ConversationFragment_deleting_messages">ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ…</string>
-    <string name="ConversationFragment_delete_for_me">ನನಗೆ ಮಾತ್ರ ಅಳಿಸು</string>
-    <string name="ConversationFragment_delete_for_everyone">ಎಲ್ಲರಿಗೂ ಅಳಿಸು</string>
+    <string name="ConversationFragment_delete_for_me">ನನಗೆ ಮಾತ್ರ ಅಳಿಸಿ</string>
+    <string name="ConversationFragment_delete_for_everyone">ಎಲ್ಲರಿಗೂ ಅಳಿಸಿ</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">ಈ ಡಿವೈಸ್‌ನಲ್ಲಿ ಅಳಿಸಿ</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">ಎಲ್ಲಾ ಕಡೆ ಅಳಿಸಿ</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Signal ನ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯಲ್ಲಿದ್ದರೆ ಸಂಭಾಷಣೆಯಲ್ಲಿರುವ ಪ್ರತಿಯೊಬ್ಬರಿಗೂ ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ. ನೀವು ಸಂದೇಶವನ್ನು ಅಳಿಸಿದ್ದೀರಿ ಎಂದು ಅವರು ನೋಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Signal ನ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯಲ್ಲಿದ್ದರೆ ಸಂಭಾಷಣೆಯಲ್ಲಿರುವ ಪ್ರತಿಯೊಬ್ಬರಿಗೂ ಈ ಮೆಸೇಜನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ. ನೀವು ಮೆಸೇಜನ್ನು ಅಳಿಸಿದ್ದೀರಿ ಎಂದು ಅವರು ನೋಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
     <string name="ConversationFragment_quoted_message_not_found">ಮೂಲ ಸಂದೇಶ ಕಂಡುಬಂದಿಲ್ಲ</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">ಮೂಲ ಸಂದೇಶ ಇನ್ನು ಮುಂದೆ ಲಭ್ಯವಿಲ್ಲ</string>
     <string name="ConversationFragment_failed_to_open_message">ಸಂದೇಶವನ್ನು ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">ತ್ವರಿತವಾಗಿ ಪ್ರತ್ಯುತ್ತರಿಸುವುದಕ್ಕೆ ನೀವು ಯಾವುದೇ ಸಂದೇಶದ ಮೇಲೆ ಬಲಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಬಹುದು</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">ತ್ವರಿತವಾಗಿ ಪ್ರತ್ಯುತ್ತರಿಸುವುದಕ್ಕೆ ನೀವು ಯಾವುದೇ ಸಂದೇಶದ ಮೇಲೆ ಎಡಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಬಹುದು</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ಹೊರಹೋಗುವ ವ್ಯೂ ಒನ್ಸ್ ಮೀಡಿಯಾ ಫೈಲ್‌ಗಳನ್ನು ಕಳುಹಿಸಿದ ನಂತರ ಅವುಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ಹೊರಹೋಗುವ ವ್ಯೂ-ಒನ್ಸ್ ಮೀಡಿಯಾ ಫೈಲ್‌ಗಳನ್ನು ಕಳುಹಿಸಿದ ನಂತರ ಅವುಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ</string>
     <string name="ConversationFragment_you_already_viewed_this_message">ನೀವು ಈಗಾಗಲೇ ಈ ಸಂದೇಶವನ್ನು ವೀಕ್ಷಿಸಿದ್ದೀರಿ</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ಈ ಸಂವಾದದಲ್ಲಿ ನೀವು ನಿಮಗಾಗಿ ಟಿಪ್ಪಣಿಗಳನ್ನು ಸೇರಿಸಬಹುದು. ನಿಮ್ಮ ಖಾತೆಯು ಯಾವುದೇ ಲಿಂಕ್ ಮಾಡಿದ ಸಾಧನಗಳನ್ನು ಹೊಂದಿದ್ದರೆ, ಹೊಸ ಟಿಪ್ಪಣಿಗಳನ್ನು ಸಿಂಕ್ ಮಾಡಲಾಗುತ್ತದೆ.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ಗುಂಪು ಸದಸ್ಯರು ಒಂದೇ ಹೆಸರನ್ನು ಹೊಂದಿದ್ದಾರೆ.</string>
@@ -461,11 +461,11 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">ಓದದಿರುವ ಯಾವುದೇ ಚಾಟ್‌ಗಳಿಲ್ಲ</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಭಾಷಣೆಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
-        <item quantity="other">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಭಾಷಣೆಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
+        <item quantity="one">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸುವುದೇ?</item>
+        <item quantity="other">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಭಾಷಣೆಗಳನ್ನು ಅಳಿಸುವುದೇ?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">ಇದು ಆಯ್ಕೆ ಮಾಡಲಾದ ಎಲ್ಲಾ %1$d ಸಂಭಾಷಣೆಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</item>
+        <item quantity="one">ಇದು ಆಯ್ಕೆ ಮಾಡಲಾದ ಎಲ್ಲಾ ಸಂಭಾಷಣೆಯನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</item>
         <item quantity="other">ಇದು ಆಯ್ಕೆ ಮಾಡಲಾದ ಎಲ್ಲಾ %1$d ಸಂಭಾಷಣೆಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ</string>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">ಫಿಲ್ಟರ್ ಮಾಡಲು ಕೆಳಕ್ಕೆ ಎಳೆಯಿರಿ</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">ಫಿಲ್ಟರ್ ಮಾಡಲು ರಿಲೀಸ್ ಮಾಡಿ</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">ಪ್ರೊಫೈಲ್</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">(%1$s) %2$s ನಲ್ಲಿನ ಎಲ್ಲಾ ವೇಳೆ</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">ಆಯ್ಕೆ ಮಾಡಿದ ಸಮಯ ಹಿಂದಿನದಾಗಿದೆ. ಇದು ತಕ್ಷಣವೇ ಮೆಸೇಜ್ ಕಳುಹಿಸುತ್ತದೆ.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">ತಕ್ಷಣವೇ ಕಳುಹಿಸಿ</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">ಈಗಲೇ ಕಳುಹಿಸಿ</string>
@@ -674,7 +674,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">ಅಳಿಸಿ</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">ಆಯ್ಕೆಮಾಡಿದ ನಿಗದಿಗೊಳಿಸಿದ ಮೆಸೇಜ್ ಅನ್ನು ಅಳಿಸಬೇಕೇ?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">ಆಯ್ಕೆಮಾಡಿದ ನಿಗದಿಗೊಳಿಸಿದ ಮೆಸೇಜನ್ನು ಅಳಿಸಬೇಕೇ?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">ನಿಗದಿಗೊಳಿಸಿದ ಮೆಸೇಜ್ ಅಳಿಸಲಾಗುತ್ತಿದೆ…</string>
 
@@ -792,8 +792,8 @@
         <item quantity="other">ಈ ಸದಸ್ಯರು ಮತ್ತೆ ಈ ಗುಂಪಿಗೆ ಸೇರಲು ಆಹ್ವಾನವನ್ನು ಸ್ವೀಕರಿಸುವ ಅಗತ್ಯವಿದೆ ಮತ್ತು ಅವರು ಸ್ವೀಕರಿಸುವವರೆಗೆ ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">ಈ ಸದಸ್ಯರು ಹೊಸ ಗುಂಪುಗಳನ್ನು ಸೇರಲು ಅರ್ಹರಿಲ್ಲ . ಆದ್ದರಿಂದ ಈ ಗುಂಪಿನಿಂದ ಅವರನ್ನು ತೆಗೆಯಲಾಗುವುದು</item>
-        <item quantity="other">ಈ ಸದಸ್ಯರು ಹೊಸ ಗುಂಪುಗಳಿಗೆ ಸೇರಲು ಅರ್ಹರಾಗಿಲ್ಲ, ಆದ್ದರಿಂದ ಗುಂಪಿನಿಂದ ಅವರನ್ನು ತೆಗೆದುಹಾಕಲಾಗುವುದು:</item>
+        <item quantity="one">ಈ ಸದಸ್ಯರು ಹೊಸ ಗ್ರೂಪ್‌ಗಳನ್ನು ಸೇರಲು ಅರ್ಹರಿಲ್ಲ, ಆದ್ದರಿಂದ ಈ ಗ್ರೂಪ್‌‍ನಿಂದ ಅವರನ್ನು ತೆಗೆದುಹಾಕಲಾಗುವುದು:</item>
+        <item quantity="other">ಈ ಸದಸ್ಯರು ಹೊಸ ಗ್ರೂಪ್‌ಗಳನ್ನು ಸೇರಲು ಅರ್ಹರಿಲ್ಲ, ಆದ್ದರಿಂದ ಗ್ರೂಪ್‌‍ನಿಂದ ಅವರನ್ನು ತೆಗೆದುಹಾಕಲಾಗುವುದು:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -899,11 +899,11 @@
     <string name="AddGroupDetailsFragment__try_again_later">ಪುನಃ ಪ್ರಯತ್ನಿಸಿ</string>
     <string name="AddGroupDetailsFragment__remove">ತೆಗೆದುಹಾಕಿ</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS ಸಂಪರ್ಕ</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s ರನ್ನು ಗುಂಪಿನಿಂದ ತೆಗೆಯುವುದೇ?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s ರನ್ನು ಗುಂಪಿನಿಂದ ತೆಗೆದುಹಾಕುವುದೇ?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal ಗ್ರೂಪ್ಸ್ ಅನ್ನು ಬೆಂಬಲಿಸದ ಒಂದು ಸಂಪರ್ಕವನ್ನು ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ್ದೀರಿ, ಹಾಗಾಗಿ ಈ ಗ್ರೂಪ್ MMS ಆಗಿರಲಿದೆ. MMS ಗ್ರೂಪ್ ಹೆಸರುಗಳು ಮತ್ತು ಫೊಟೋಗಳು ಮಾತ್ರ ನಿಮಗೆ ಕಾಣಿಸುವಂತೆ ಕಸ್ಟಮ್ ಮಾಡಿ.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">ನೀವು Signal ಗ್ರೂಪ್‌ಗಳನ್ನು ಬೆಂಬಲಿಸದ ಸಂಪರ್ಕವನ್ನು ಆರಿಸಿದ್ದೀರಿ, ಈ ಗ್ರೂಪ್ MMS ಆಗಿರುತ್ತದೆ. ಕಸ್ಟಮ್ MMS ಗ್ರೂಪ್ ಹೆಸರುಗಳು ಮತ್ತು ಫೊಟೋಗಳು ನಿಮಗೆ ಮಾತ್ರ ಕಾಣಿಸುತ್ತವೆ. ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾದ ಮೆಸೇಜಿಂಗ್ ಮೇಲೆ ಕೇಂದ್ರೀಕರಿಸಲು ಶೀಘ್ರದಲ್ಲೇ MMS ಗ್ರೂಪ್ ಗಳಿಗೆ ಬೆಂಬಲವನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">ನೀವು Signal ಗ್ರೂಪ್‌ಗಳನ್ನು ಬೆಂಬಲಿಸದ ಸಂಪರ್ಕವನ್ನು ಆರಿಸಿದ್ದೀರಿ, ಈ ಗ್ರೂಪ್ MMS ಆಗಿರುತ್ತದೆ. ಕಸ್ಟಮ್ MMS ಗ್ರೂಪ್ ಹೆಸರುಗಳು ಮತ್ತು ಫೊಟೋಗಳು ನಿಮಗೆ ಮಾತ್ರ ಕಾಣಿಸುತ್ತವೆ. ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾದ ಮೆಸೇಜಿಂಗ್ ಮೇಲೆ ಕೇಂದ್ರೀಕರಿಸಲು ಶೀಘ್ರದಲ್ಲೇ MMS ಗ್ರೂಪ್‌ಗಳಿಗೆ ಬೆಂಬಲವನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">ಯಾರು ಹೊಸ ಸದಸ್ಯರನ್ನು ಸೇರಿಸಬಹುದು?</string>
@@ -1011,7 +1011,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">ಗ್ರೂಪ್‌ಗೆ ಸೇರಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">ಅಡ್ಮಿನ್ ನಿಮ್ಮನ್ನು ತೆಗೆದುಹಾಕಿರುವ ಕಾರಣದಿಂದ ಗ್ರೂಪ್ ಲಿಂಕ್ ಮೂಲಕ ನೀವು ಈ ಗ್ರೂ್ ಸೇರಲು ಸಾಧ್ಯವಿಲ್ಲ.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">ಅಡ್ಮಿನ್ ನಿಮ್ಮನ್ನು ತೆಗೆದುಹಾಕಿರುವ ಕಾರಣದಿಂದ ಗ್ರೂಪ್ ಲಿಂಕ್ ಮೂಲಕ ನೀವು ಈ ಗ್ರೂಪ್ ಸೇರಲು ಸಾಧ್ಯವಿಲ್ಲ.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">ಈ ಗುಂಪಿನ ಲಿಂಕ್ ಇನ್ನು ಮುಂದೆ ಮಾನ್ಯವಾಗಿರುವುದಿಲ್ಲ.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1103,12 +1103,12 @@
     <string name="MediaOverviewActivity_Audio">ಆಡಿಯೊ</string>
     <string name="MediaOverviewActivity_All">ಎಲ್ಲಾ</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">ಆಯ್ಕೆಮಾಡಿದ ಅಳಿಸಿ ಐಟಂ?</item>
-        <item quantity="other">ಆಯ್ದ ವಸ್ತುಗಳನ್ನು ಅಳಿಸುವುದೇ?</item>
+        <item quantity="one">ಆಯ್ಕೆಮಾಡಿದ ಐಟಂ ಅನ್ನು ಅಳಿಸುವುದೇ?</item>
+        <item quantity="other">ಆಯ್ಕೆಮಾಡಿದ ಐಟಂಗಳನ್ನು ಅಳಿಸುವುದೇ?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">ಇದು ಆಯ್ದ ಫೈಲ್ ಅನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ. ಈ ಐಟಂಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಸಂದೇಶ ಪಠ್ಯವನ್ನು ಸಹ ಅಳಿಸಲಾಗುತ್ತದೆ.</item>
-        <item quantity="other">ಇದು ಆಯ್ದ ಎಲ್ಲಾ %1$d ಫೈಲ್ ಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ. ಈ ಐಟಂಗಳಿಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಸಂದೇಶ ಪಠ್ಯವನ್ನು ಸಹ ಅಳಿಸಲಾಗುತ್ತದೆ.</item>
+        <item quantity="one">ಇದು ಆಯ್ದ ಫೈಲ್ ಅನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ. ಈ ಐಟಂಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಮೆಸೇಜ್ ಪಠ್ಯವನ್ನು ಸಹ ಅಳಿಸಲಾಗುತ್ತದೆ.</item>
+        <item quantity="other">ಇದು ಆಯ್ದ ಎಲ್ಲಾ %1$d ಫೈಲ್‌ಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ. ಈ ಐಟಂಗಳಿಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಮೆಸೇಜ್ ಪಠ್ಯವನ್ನು ಸಹ ಅಳಿಸಲಾಗುತ್ತದೆ.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">ಅಳಿಸಲಾಗುತ್ತಿದೆ</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ…</string>
@@ -1245,8 +1245,8 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">ಹೊಸ ಗ್ರೂಪ್ ಗೆ ಒಬ್ಬ ಸದಸ್ಯರನ್ನು ಸೇರಿಸಲಾಗಲಿಲ್ಲ ಮತ್ತು ತೆಗೆದುಹಾಕಲಾಗಿದೆ.</item>
-        <item quantity="other">ಹೊಸ ಗ್ರೂಪ್ ಗೆ %1$s ಸದಸ್ಯರನ್ನು ಸೇರಿಸಲಾಗಲಿಲ್ಲ ಮತ್ತು ತೆಗೆದುಹಾಕಲಾಗಿದೆ.</item>
+        <item quantity="one">ಹೊಸ ಗ್ರೂಪ್‌ಗೆ ಒಬ್ಬ ಸದಸ್ಯರನ್ನು ಸೇರಿಸಲಾಗಲಿಲ್ಲ ಮತ್ತು ತೆಗೆದುಹಾಕಲಾಗಿದೆ.</item>
+        <item quantity="other">ಹೊಸ ಗ್ರೂಪ್‌ಗೆ %1$s ಸದಸ್ಯರನ್ನು ಸೇರಿಸಲಾಗಲಿಲ್ಲ ಮತ್ತು ತೆಗೆದುಹಾಕಲಾಗಿದೆ.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1268,7 +1268,7 @@
 
     <!-- GV2 member removals -->
     <string name="MessageRecord_you_removed_s">ನೀವು %1$s ಅವರನ್ನು ತೆಗೆದುಹಾಕಿದ್ದೀರಿ.</string>
-    <string name="MessageRecord_s_removed_s">%1$s ಅವರು %2$s ಅವರನ್ನು ತೆಗೆದುಹಾಕಿದ್ದಾರೆ.</string>
+    <string name="MessageRecord_s_removed_s">%1$s, %2$s ನ್ನು ತೆಗೆದುಹಾಕಿದ್ದಾರೆ.</string>
     <string name="MessageRecord_s_removed_you_from_the_group">%1$s ಅವರು ಗ್ರೂಪ್‌ನಿಂದ ನಿಮ್ಮನ್ನು ತೆಗೆದುಹಾಕಿದ್ದಾರೆ.</string>
     <string name="MessageRecord_you_left_the_group">ನೀವು ಗ್ರೂಪ್ ತೊರೆದಿದ್ದೀರಿ</string>
     <string name="MessageRecord_s_left_the_group">%1$s ಅವರು ಗ್ರೂಪ್ ತೊರೆದಿದ್ದಾರೆ.</string>
@@ -1467,7 +1467,7 @@
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">ಒಪ್ಪಿಕೊಳ್ಳಿ</string>
     <string name="MessageRequestBottomView_continue">ಮುಂದುವರಿಸಿ</string>
-    <string name="MessageRequestBottomView_delete">ಅಳಿಸು</string>
+    <string name="MessageRequestBottomView_delete">ಅಳಿಸಿ</string>
     <string name="MessageRequestBottomView_block">ನಿರ್ಬಂಧಿಸಿ</string>
     <string name="MessageRequestBottomView_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s ಅವರು ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡಲು ಮತ್ತು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲು ಅನುಮತಿಸುತ್ತೀರಾ? ನೀವು ಸಮ್ಮತಿಸುವವರೆಗೆ ಸಂದೇಶವನ್ನು ಓದಿದ್ದೀರಿ ಎಂದು ಅವರು ತಿಳಿಯುವುದಿಲ್ಲ.</string>
@@ -1918,8 +1918,8 @@
     <string name="ThreadRecord_view_once_photo">ಏಕ ವೀಕ್ಷಣೆ ಫೋಟೋ</string>
     <string name="ThreadRecord_view_once_video">ಏಕ ವೀಕ್ಷಣೆ ವೀಡಿಯೊ</string>
     <string name="ThreadRecord_view_once_media">ಏಕ ವೀಕ್ಷಣೆ ಮೀಡಿಯಾ</string>
-    <string name="ThreadRecord_this_message_was_deleted">ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
-    <string name="ThreadRecord_you_deleted_this_message">ನೀವು ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಿದಿರಿ</string>
+    <string name="ThreadRecord_this_message_was_deleted">ಈ ಮೆಸೇಜನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
+    <string name="ThreadRecord_you_deleted_this_message">ನೀವು ಈ ಮೆಸೇಜನ್ನು ಅಳಿಸಿದ್ದೀರಿ.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">ಪಾವತಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ನೀವು ವಿನಂತಿ ಕಳುಹಿಸಿದ್ದೀರಿ</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -1956,6 +1956,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">ಅವರ ಸ್ಟೋರಿಗೆ %1$s ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">ಪಾವತಿ</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal ನವೀಕರಿಸಿ</string>
@@ -2047,8 +2049,8 @@
     <string name="MediaPreviewActivity_draft">ಡ್ರಾಫ್ಟ್</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">ಬಾಹ್ಯ ಸ್ಟೋರೇಜ್ ಗೆ ಉಳಿಸುವುದಕ್ಕೆ Signal ಗೆ ಸ್ಟೊರೇಜ್ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ , ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್‌ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು \"ಸ್ಟೊರೇಜ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ಅನುಮತಿಗಳಿಲ್ಲದೆ ಬಾಹ್ಯ ಸ್ಟೊರೇಜ್‌ಗೆ ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">ಸಂದೇಶವನ್ನು ಅಳಿಸುವುದೇ?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">ಇದು ಶಾಶ್ವತವಾಗಿ ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸುವುದು.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">ಮೆಸೇಜನ್ನು ಅಳಿಸುವುದೇ?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">ಇದು ಶಾಶ್ವತವಾಗಿ ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸುತ್ತದೆ.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s ಗೆ %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">ನಿಮ್ಮಿಂದ %1$s ಅವರಿಗೆ</string>
@@ -2093,7 +2095,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ನಿಮ್ಮ ಆಡಿಯೊಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">ನಿಮ್ಮ ವ್ಯೂ-ಒನ್ಸ್ ಮೀಡಿಯಾಕ್ಕೆ %1$s ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s ನಿಮ್ಮ ಸ್ಟಿಕ್ಕರ್‌ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
-    <string name="MessageNotifier_this_message_was_deleted">ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
+    <string name="MessageNotifier_this_message_was_deleted">ಈ ಮೆಸೇಜನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ಸಂಪರ್ಕ Signal ಗೆ ಸೇರಿದ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಆಫ್ ಮಾಡುವುದೇ? Signal &gt; ಸೆಟ್ಟಿಂಗ್‌ಗಳು &gt; ನೊಟಿಫಿಕೇಶನ್‌ಗಳಲ್ಲಿ ಇದನ್ನು ನೀವು ಪುನಃ ಸಕ್ರಿಯಗೊಳಿಸಬಹುದು.</string>
 
@@ -2575,7 +2577,7 @@
     <string name="AndroidManifest__linked_devices">ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳು</string>
     <string name="AndroidManifest__invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
     <string name="AndroidManifest_archived_conversations">ಆರ್ಕೈವ್ ಮಾಡಿರುವ ಸಂಭಾಷಣೆಗಳು</string>
-    <string name="AndroidManifest_remove_photo">ಫೋಟೋ ತೆಗೆದುಹಾಕಿ</string>
+    <string name="AndroidManifest_remove_photo">ಫೋಟೋವನ್ನು ತೆಗೆದುಹಾಕಿ</string>
 
     <!-- Message Requests Megaphone -->
     <string name="MessageRequestsMegaphone__message_requests">ಸಂದೇಶ ವಿನಂತಿಗಳು</string>
@@ -2777,14 +2779,14 @@
     <string name="preferences_storage__files">ಫೈಲುಗಳು</string>
     <string name="preferences_storage__audio">ಆಡಿಯೊ</string>
     <string name="preferences_storage__review_storage">ಸ್ಟೊರೇಜ್ ಪರಿಶೀಲಿಸಿ</string>
-    <string name="preferences_storage__delete_older_messages">ಹಳೆಯ ಸಂದೇಶವನ್ನು ಅಳಿಸುವುದೇ?</string>
+    <string name="preferences_storage__delete_older_messages">ಹಳೆಯ ಮೆಸೇಜ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</string>
     <string name="preferences_storage__clear_message_history">ಸಂದೇಶ ಇತಿಹಾಸವನ್ನು ತೆರವುಗೊಳಿಸುವುದೇ?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$s ಗಿಂತ ಹಳೆಯದಾಗಿರುವ ಎಲ್ಲಾ ಸಂದೇಶಗಳ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತದೆ.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$s ಗಿಂತ ಹಳೆಯದಾಗಿರುವ ಎಲ್ಲಾ ಮೆಸೇಜ್‌ನ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">ಇದು ಎಲ್ಲಾ ಸಂಭಾಷಣೆಗಳನ್ನು %1$s ಇತ್ತೀಚಿನ ಸಂದೇಶಗಳಿಗೆ ಶಾಶ್ವತವಾಗಿ ಟ್ರಿಮ್ ಮಾಡುತ್ತದೆ.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ಎಲ್ಲಾ ಸಂದೇಶಗಳ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತದೆ.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">ಎಲ್ಲಾ ಸಂದೇಶ ಇತಿಹಾಸವನ್ನು ನೀವು ಖಚಿತವಾಗಿ ಅಳಿಸಿಹಾಕಲು ಬಯಸುವಿರಾ?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ಎಲ್ಲಾ ಸಂದೇಶ ಇತಿಹಾಸವನ್ನು ಶಾಶ್ವತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ. ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.</string>
-    <string name="preferences_storage__delete_all_now">ಎಲ್ಲವನ್ನು ಈಗಲೇ ಅಳಿಸಿ</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ಎಲ್ಲಾ ಮೆಸೇಜ್‌ಗಳ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತದೆ.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ನೀವು ಖಚಿತವಾಗಿ ಅಳಿಸಲು ಬಯಸುವಿರಾ?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಶಾಶ್ವತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ. ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.</string>
+    <string name="preferences_storage__delete_all_now">ಎಲ್ಲವನ್ನೂ ಈಗಲೇ ಅಳಿಸಿ</string>
     <string name="preferences_storage__forever">ಎಂದೆಂದಿಗೂ</string>
     <string name="preferences_storage__one_year">1 ವರ್ಷ</string>
     <string name="preferences_storage__six_months">6 ತಿಂಗಳು</string>
@@ -3084,7 +3086,7 @@
     <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">ನಕಲಿಸು</string>
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_delete">ಅಳಿಸು</string>
+    <string name="conversation_selection__menu_delete">ಅಳಿಸಿ</string>
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">ಫಾರ್ವರ್ಡ್</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -3170,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">ಓದದಿರುವ ಚಾಟ್‌ಗಳನ್ನು ಫಿಲ್ಟರ್ ಮಾಡಿ</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">ಓದದಿರುವ ಫಿಲ್ಟರ್ ಅನ್ನು ತೆರವುಗೊಳಿಸಿ</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲಿಸು</string>
@@ -3211,7 +3213,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">ಕಳೆದ %2$d ದಿನಗಳಲ್ಲಿ Signal ಪ್ರೊಟೊಕಾಲ್ ನಿಮ್ಮ ಹೊರಹೋಗುವ ಸಂದೇಶಗಳಲ್ಲಿ %1$d%% ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ರಕ್ಷಿಸಿದೆ. Signal ಬಳಕೆದಾರರ ನಡುವಿನ ಸಂಭಾಷಣೆಗಳು ಯಾವಾಗಲೂ ಎಂಡ್-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಆಗುತ್ತವೆ.</string>
     <string name="InsightsDashboardFragment__spread_the_word">ಪ್ರಚಾರಗೊಳಿಸಿ</string>
     <string name="InsightsDashboardFragment__not_enough_data">ಸಾಕಷ್ಟು ಡೇಟಾ ಇಲ್ಲ</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ನಿಮ್ಮ ಒಳನೋಟಗಳ ಪ್ರತಿಶತ ಪ್ರಮಾಣವನ್ನು ಕಳೆದ %1$d ದಿನಗಳಲ್ಲಿ ಕಾಣದಂತಾಗಿಲ್ಲದ ಅಥವಾ ಅಳಿಸದ ಸಂದೇಶಗಳ ಆಧಾರದ ಮೇಲೆ ಲೆಕ್ಕಹಾಕಲಾಗುತ್ತದೆ.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ನಿಮ್ಮ ಒಳನೋಟಗಳ ಪ್ರತಿಶತ ಪ್ರಮಾಣವನ್ನು ಕಳೆದ %1$d ದಿನಗಳಲ್ಲಿ ಅದೃಶ್ಯವಾಗಿಲ್ಲದ ಅಥವಾ ಅಳಿಸದ ಮೆಸೇಜ್‌ಗಳ ಆಧಾರದ ಮೇಲೆ ಲೆಕ್ಕಹಾಕಲಾಗುತ್ತದೆ.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">ಸಂಭಾಷಣೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿ</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">ಹೆಚ್ಚಿನ ಸಂಪರ್ಕಗಳನ್ನು Signal ಸೇರಿಕೊಳ್ಳಲು ಆಹ್ವಾನಿಸುವ ಮೂಲಕ ಸುರಕ್ಷಿತವಾಗಿ ಸಂವಹನವನ್ನು ಮಾಡಲು ಆರಂಭಿಸಿ ಮತ್ತು ಎಸ್‌ಎಂಎಸ್ ಸಂದೇಶಗಳಲ್ಲಿ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿಲ್ಲದಿರುವ ಮಿತಿಗಳನ್ನು ಮೀರುವ ಹೊಸ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ಈ ಅಂಕಿಅಂಶಗಳನ್ನು ಸ್ಥಳೀಯವಾಗಿ ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ರಚಿಸಲಾಗಿದೆ ಮತ್ತು ನೀವು ಮಾತ್ರ ನೋಡಬಹುದು. ಅವುಗಳನ್ನು ಎಲ್ಲಿಯೂ ರವಾನಿಸಲಾಗುವುದಿಲ್ಲ.</string>
@@ -3285,7 +3287,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">ಖಾತೆಯನ್ನು ಲಾಕ್ ಮಾಡಲಾಗಿದೆ</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">ನಿಮ್ಮ ಖಾಸಗಿತನ ಮತ್ತು ಸುರಕ್ಷತೆಯನ್ನು ರಕ್ಷಿಸಲು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಲಾಕ್ ಮಾಡಲಾಗಿದೆ. ನಿಮ್ಮ ಖಾತೆಯಲ್ಲಿ %1$d ದಿನಗಳ ನಿಷ್ಕ್ರಿಯತೆಯ ನಂತರ ನಿಮ್ಮ ಪಿನ್ ಅಗತ್ಯವಿಲ್ಲದೇ ಈ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಮರು ನೋಂದಾಯಿಸಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುತ್ತದೆ. ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">ನಿಮ್ಮ ಗೌಪ್ಯತೆ ಮತ್ತು ಸುರಕ್ಷತೆಯನ್ನು ರಕ್ಷಿಸಲು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಲಾಕ್ ಮಾಡಲಾಗಿದೆ. ನಿಮ್ಮ ಖಾತೆಯ %1$d ದಿನಗಳ ನಿಷ್ಕ್ರಿಯತೆಯ ನಂತರ ನಿಮ್ಮ PIN ಅಗತ್ಯವಿಲ್ಲದೇ ಈ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಮರು ನೋಂದಾಯಿಸಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುತ್ತದೆ. ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
     <string name="AccountLockedFragment__next">ಮುಂದೆ</string>
     <string name="AccountLockedFragment__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3303,8 +3305,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal ನೋಂದಣಿ - ಆಂಡ್ರಾಯ್ಡ್‌ಗೆ ಪಿನ್‌ ಬಗ್ಗೆ ಸಹಾಯ ಬೇಕಿದೆ (v2 ಪಿನ್)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">ನಿಮ್ಮ ಖಾಸಗಿತನ ಮತ್ತು ಸುರಕ್ಷತೆಗಾಗಿ, ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ಹಿಂಪಡೆಯಲು ಯಾವುದೇ ಮಾರ್ಗವಿಲ್ಲ. ನಿಮ್ಮ ಪಿನ್ ನಿಮಗೆ ನೆನಪಿಲ್ಲದಿದ್ದರೆ, %1$dದಿನಗಳ ನಿಷ್ಕ್ರಿಯತೆಯ ನಂತರ ನೀವು ಎಸ್‌ಎಂಎಸ್ ನೊಂದಿಗೆ ಪುನಃ ದೃಢೀಕರಿಸಬಹುದು. ಈ ಸಂದರ್ಭದಲ್ಲಿ, ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಿಹಾಕಲಾಗುತ್ತದೆ ಮತ್ತು ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ.</item>
-        <item quantity="other">ನಿಮ್ಮ ಖಾಸಗಿತನ ಮತ್ತು ಸುರಕ್ಷತೆಗಾಗಿ, ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ಹಿಂಪಡೆಯಲು ಯಾವುದೇ ಮಾರ್ಗವಿಲ್ಲ. ನಿಮ್ಮ ಪಿನ್ ನಿಮಗೆ ನೆನಪಿಲ್ಲದಿದ್ದರೆ, %1$dದಿನಗಳ ನಿಷ್ಕ್ರಿಯತೆಯ ನಂತರ ನೀವು ಎಸ್‌ಎಂಎಸ್ ನೊಂದಿಗೆ ಪುನಃ ದೃಢೀಕರಿಸಬಹುದು. ಈ ಸಂದರ್ಭದಲ್ಲಿ, ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಿಹಾಕಲಾಗುತ್ತದೆ ಮತ್ತು ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ.</item>
+        <item quantity="one">ನಿಮ್ಮ ಗೌಪ್ಯತೆ ಮತ್ತು ಸುರಕ್ಷತೆಗಾಗಿ, ನಿಮ್ಮ PIN ಅನ್ನು ಹಿಂಪಡೆಯಲು ಯಾವುದೇ ಮಾರ್ಗವಿಲ್ಲ. ನಿಮ್ಮ PIN ನಿಮಗೆ ನೆನಪಿಲ್ಲದಿದ್ದರೆ, %1$dದಿನದ ನಿಷ್ಕ್ರಿಯತೆಯ ನಂತರ ನೀವು ಎಸ್‌ಎಂಎಸ್ ನೊಂದಿಗೆ ಪುನಃ ದೃಢೀಕರಿಸಬಹುದು. ಈ ಸಂದರ್ಭದಲ್ಲಿ, ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಿಹಾಕಲಾಗುತ್ತದೆ ಮತ್ತು ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ.</item>
+        <item quantity="other">ನಿಮ್ಮ ಗೌಪ್ಯತೆ ಮತ್ತು ಸುರಕ್ಷತೆಗಾಗಿ, ನಿಮ್ಮ PIN ಅನ್ನು ಹಿಂಪಡೆಯಲು ಯಾವುದೇ ಮಾರ್ಗವಿಲ್ಲ. ನಿಮ್ಮ PIN ನಿಮಗೆ ನೆನಪಿಲ್ಲದಿದ್ದರೆ, %1$dದಿನಗಳ ನಿಷ್ಕ್ರಿಯತೆಯ ನಂತರ ನೀವು ಎಸ್‌ಎಂಎಸ್ ನೊಂದಿಗೆ ಪುನಃ ದೃಢೀಕರಿಸಬಹುದು. ಈ ಸಂದರ್ಭದಲ್ಲಿ, ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಿಹಾಕಲಾಗುತ್ತದೆ ಮತ್ತು ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3313,8 +3315,8 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">ನೀವು ಪ್ರಯತ್ನಗಳು ಖಾಲಿಯಾದರೆ ನಿಮ್ಮ ಖಾತೆಯನ್ನು %1$d ದಿನಗಳವರೆಗೆ ಲಾಕ್ ಮಾಡಲಾಗುತ್ತದೆ. %1$d ದಿನಗಳ ನಿಷ್ಕ್ರಿಯತೆಯ ನಂತರ, ನಿಮ್ಮ ಪಿನ್ ಇಲ್ಲದೆ ನೀವು ಪುನಃ ನೋಂದಾಯಿಸಬಹುದು. ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಿಹಾಕಲಾಗುತ್ತದೆ ಮತ್ತು ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ.</item>
-        <item quantity="other">ನೀವು ಪ್ರಯತ್ನಗಳು ಖಾಲಿಯಾದರೆ ನಿಮ್ಮ ಖಾತೆಯನ್ನು %1$dದಿನಗಳವರೆಗೆ ಲಾಕ್ ಮಾಡಲಾಗುತ್ತದೆ. \'%1$d\' ದಿನಗಳ ನಿಷ್ಕ್ರಿಯತೆಯ ನಂತರ, ನಿಮ್ಮ ಪಿನ್ ಇಲ್ಲದೆ ನೀವು ಪುನಃ ನೋಂದಾಯಿಸಬಹುದು. ನಿಮ್ಮ ಖಾತೆಯ ಮಾಹಿತಿಯನ್ನು ತೆರವುಗೊಳಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ.</item>
+        <item quantity="one">ನೀವು ಪ್ರಯತ್ನಗಳು ಖಾಲಿಯಾದರೆ ನಿಮ್ಮ ಖಾತೆಯನ್ನು %1$d ದಿನಗಳವರೆಗೆ ಲಾಕ್ ಮಾಡಲಾಗುತ್ತದೆ. %1$d ದಿನದ ನಿಷ್ಕ್ರಿಯತೆಯ ನಂತರ, ನಿಮ್ಮ PIN ಇಲ್ಲದೆ ನೀವು ಪುನಃ ನೋಂದಾಯಿಸಬಹುದು. ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಿಹಾಕಲಾಗುತ್ತದೆ ಮತ್ತು ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ.</item>
+        <item quantity="other">ನೀವು ಪ್ರಯತ್ನಗಳು ಖಾಲಿಯಾದರೆ ನಿಮ್ಮ ಖಾತೆಯನ್ನು %1$dದಿನಗಳವರೆಗೆ ಲಾಕ್ ಮಾಡಲಾಗುತ್ತದೆ. %1$d ದಿನಗಳ ನಿಷ್ಕ್ರಿಯತೆಯ ನಂತರ, ನಿಮ್ಮ PIN ಇಲ್ಲದೆ ನೀವು ಪುನಃ ನೋಂದಾಯಿಸಬಹುದು. ನಿಮ್ಮ ಖಾತೆಯ ಮಾಹಿತಿಯನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3393,10 +3395,10 @@
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">ನಿಮ್ಮ ಇತ್ತೀಚಿನ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಚಿಸಲು ಹಾಗು ದೃಢೀಕರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವವಿಟ್ಟು ಹೊಸತನ್ನು ರಚಿಸಿ.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ನಿಮ್ಮ ಬ್ಯಾಕಪ್, ಬ್ಯಾಕ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲದ‌ ತೀರಾ ದೊಡ್ಡ ಫೈಲ್ ಅನ್ನು ಹೊಂದಿದೆ. ದಯವಿಟ್ಟು ಅದನ್ನು ಅಳಿಸಿ ಮತ್ತು ಹೊಸ ಬ್ಯಾಕಪ್ ರಚಿಸಿ.</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ನಿಮ್ಮ ಬ್ಯಾಕಪ್, ಬ್ಯಾಕಪ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲದ‌ ತೀರಾ ದೊಡ್ಡ ಫೈಲ್ ಅನ್ನು ಹೊಂದಿದೆ. ದಯವಿಟ್ಟು ಅದನ್ನು ಅಳಿಸಿ ಮತ್ತು ಹೊಸತೊಂದು ಬ್ಯಾಕಪ್ ರಚಿಸಿ.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ನಿರ್ವಯಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
     <string name="RegistrationActivity_wrong_number">ಸಂಖ್ಯೆ ತಪ್ಪಾಗಿದೆಯೇ?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">ನನಗೆ ಕರೆ ಮಾಡಿ (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">ಸಂಪರ್ಕಿಸಿ Signal ಬೆಂಬಲ</string>
     <string name="RegistrationActivity_code_support_subject">Signal ನೋಂದಣಿ - ಆಂಡ್ರಾಯ್ಡ್‌ಗೆ ದೃಢೀಕರಣ ಕೋಡ್</string>
     <string name="RegistrationActivity_incorrect_code">ತಪ್ಪಾದ ಕೋಡ್</string>
@@ -3569,13 +3571,13 @@
     <string name="RecipientBottomSheet_add_to_another_group">ಮತ್ತೊಂದು ಗುಂಪಿಗೆ ಸೇರಿಸಿ</string>
     <string name="RecipientBottomSheet_view_safety_number">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ನೋಡಿ</string>
     <string name="RecipientBottomSheet_make_admin">ಅಡ್ಮಿನ್ ಮಾಡಿ</string>
-    <string name="RecipientBottomSheet_remove_as_admin">ಅಡ್ಮಿನ್ ಆಗಿ ತೆಗೆಯಿರಿ</string>
-    <string name="RecipientBottomSheet_remove_from_group">ಗುಂಪಿನಿಂದ ತೆಗೆಯಿರಿ</string>
+    <string name="RecipientBottomSheet_remove_as_admin">ಅಡ್ಮಿನ್ ಆಗಿ ತೆಗೆದುಹಾಕಿ</string>
+    <string name="RecipientBottomSheet_remove_from_group">ಗ್ರೂಪ್‌ನಿಂದ ತೆಗೆದುಹಾಕಿ</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s ರನ್ನು ಗುಂಪಿನಿಂದ ಆಡ್ಮಿನ್‌ ರಂತೆ ತೆಗೆಯುವುದೇ?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s ರನ್ನು ಗ್ರೂಪ್‌ನಿಂದ ಅಡ್ಮಿನ್ ಆಗಿ ತೆಗೆದುಹಾಕುವುದೇ?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" ಈ ಗುಂಪು ಮಾತೇ ಅದರ ಸದಸ್ಯರನ್ನು ಬದಲಾಯಿಸಬಹುದು "</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s ರನ್ನು ಗುಂಪಿನಿಂದ ತೆಗೆಯುವುದೇ?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s ರನ್ನು ಗ್ರೂಪ್‌ನಿಂದ ತೆಗೆದುಹಾಕುವುದೇ?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
     <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">ಗ್ರೂಪ್‌ನಿಂದ %1$s ಅವರನ್ನು ತೆಗೆದುಹಾಕುವುದೇ? ಗ್ರೂಪ್ ಲಿಂಕ್ ಮೂಲಕ ಅವರಿಗೆ ಮತ್ತೆ ಸೇರಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
     <string name="RecipientBottomSheet_remove">ತೆಗೆದುಹಾಕಿ</string>
@@ -3632,15 +3634,15 @@
         <item quantity="one">ಸಾಮಾನ್ಯ ಗುಂಪು %1$d</item>
         <item quantity="other">%1$d ಗುಂಪುಗಳಲ್ಲಿ ನೀವಿಬ್ಬರೂ ಇರುವಿರಿ</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s ರನ್ನು ಗುಂಪಿನಿಂದ ತೆಗೆಯುವುದೇ?</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s ರನ್ನು ಗ್ರೂಪ್‌ನಿಂದ ತೆಗೆದುಹಾಕುವುದೇ?</string>
     <string name="ReviewCardDialogFragment__remove">ತೆಗೆದುಹಾಕಿ</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">ಗುಂಪಿನ ಸದಸ್ಯರನ್ನು ತೆಗೆಯಲಾಗಲಿಲ್ಲ</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">ಗ್ರೂಪಿನ ಸದಸ್ಯರನ್ನು ತೆಗೆದುಹಾಕಲು ವಿಫಲವಾಗಿದೆ.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">ಸದಸ್ಯ</string>
     <string name="ReviewCard__request">ಕೋರಿಕೆ</string>
     <string name="ReviewCard__your_contact">ನಿಮ್ಮ ಸಂಪರ್ಕ</string>
-    <string name="ReviewCard__remove_from_group">ಗುಂಪಿನಿಂದ ತೆಗೆಯಿರಿ</string>
+    <string name="ReviewCard__remove_from_group">ಗ್ರೂಪ್‌ನಿಂದ ತೆಗೆದುಹಾಕಿ</string>
     <string name="ReviewCard__update_contact">ಸಂಪರ್ಕ ನವೀಕರಿಸಿ</string>
     <string name="ReviewCard__block">ನಿರ್ಬಂಧಿಸಿ</string>
     <string name="ReviewCard__delete">ಅಳಿಸಿ</string>
@@ -3668,15 +3670,15 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಿದರೆ:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</string>
     <string name="DeleteAccountFragment__delete_account">ಖಾತೆಯನ್ನು ಅಳಿಸಿ</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">ನಿಮ್ಮ ಖಾತೆ ಮಾಹಿತಿ ಮತ್ತು ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಅಳಿಸುತ್ತದೆ</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">ನಿಮ್ಮ ಎಲ್ಲ ಮೆಸೇಜ್‌ಗಳು ಅಳಿಸುತ್ತವೆ</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ಖಾತೆಯಲ್ಲಿ %1$s ಅಳಿಸುತ್ತದೆ</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">ನಿಮ್ಮ ಖಾತೆ ಮಾಹಿತಿ ಮತ್ತು ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಅಳಿಸಿ</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">ನಿಮ್ಮ ಎಲ್ಲ ಮೆಸೇಜ್‌ಗಳನ್ನು ಅಳಿಸಿ</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ಖಾತೆಯಲ್ಲಿ %1$s ಅಳಿಸಿ</string>
     <string name="DeleteAccountFragment__no_country_code">ಯಾವುದೇ ದೇಶದ ಕೋಡ್ ನಿರ್ದಿಷ್ಟಪಡಿಸಿಲ್ಲ</string>
     <string name="DeleteAccountFragment__no_number">ಯಾವುದೇ ಸಂಖ್ಯೆ ನಿರ್ದಿಷ್ಟಪಡಿಸಿಲ್ಲ</string>
     <string name="DeleteAccountFragment__the_phone_number">ನೀವು ನಮೂದಿಸಿದ ಫೋನ್ ನಿಮ್ಮ ಖಾತೆಗೆ ಹೋಲಿಕೆಯಾಗುತ್ತಿಲ್ಲ.</string>
     <string name="DeleteAccountFragment__are_you_sure">ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ಇದು ನಿಮ್ಮ Signal ಖಾತೆಯನ್ನು ಅಳಿಸುತ್ತದೆ ಮತ್ತು ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ರಿಸೆಟ್ ಮಾಡುತ್ತದೆ. ಪ್ರಕ್ರಿಯೆ ಮುಗಿದ ನಂತರ ಆಪ್ ಮುಚ್ಚುತ್ತದೆ.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">ಸ್ಥಳೀಯ ಡೇಟಾ ಅಳಿಸಲು ವಿಫಲವಾಗಿದೆ. ಸಿಸ್ಟಮ್ ಅಪ್ಲಿಕೇಶನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ನೀವು ಮ್ಯಾನ್ಯುಅಲ್ ಆಗಿ ತೆರವುಗೊಳಿಸಬಹುದು.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">ಸ್ಥಳೀಯ ಡೇಟಾ ಅಳಿಸಲು ವಿಫಲವಾಗಿದೆ. ಸಿಸ್ಟಮ್ ಅಪ್ಲಿಕೇಶನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ನೀವು ಮ್ಯಾನ್ಯುವಲ್ ಆಗಿ ತೆರವುಗೊಳಿಸಬಹುದು.</string>
     <string name="DeleteAccountFragment__launch_app_settings">ಆಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">ಗ್ರೂಪ್‌ಗಳನ್ನು ತೊರೆಯಲಾಗುತ್ತಿದೆ…</string>
@@ -3689,7 +3691,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">ಬಳಕೆದಾರ ಡೇಟಾ ಅಳಿಸಲಾಗುತ್ತಿದೆ ಮತ್ತು ಆ್ಯಪ್ ಮರುಸೆಟ್ಟಿಂಗ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">ಖಾತೆ ಅಳಿಸಲಾಗಿಲ್ಲ</string>
+    <string name="DeleteAccountFragment__account_not_deleted">ಖಾತೆಯನ್ನು ಅಳಿಸಲಾಗಿಲ್ಲ</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">ಅಳಿಸುವಿಕೆ ಪ್ರಕ್ರಿಯೆ ಪೂರ್ಣಗೊಳಿಸಲು ಸಮಸ್ಯೆಯಿತ್ತು. ನಿಮ್ಮ ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
 
@@ -3968,17 +3970,17 @@
     <!-- Preference title to re-export sms -->
     <string name="SmsSettingsFragment__export_sms_messages_again">SMS ಮೆಸೇಜ್‌ಗಳನ್ನು ಮತ್ತೊಮ್ಮೆ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
     <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">ಎಸ್ಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ತೆಗೆದುಹಾಕಿ</string>
+    <string name="SmsSettingsFragment__remove_sms_messages">ಎಸ್ಎಂಎಸ್ ಮೆಜೇಜ್‌ಗಳನ್ನು ತೆಗೆದುಹಾಕಿ</string>
     <!-- Snackbar text to confirm deletion -->
     <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal ನಿಂದ ಎಸ್ಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತಿದೆ…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">ನೀವು ಯಾವುದೇ ವೇಳೆಯಲ್ಲೂ ಸೆಟ್ಟಿಂಗ್‍ಗಳಿಂದ SMS ಮೆಸೇಜ್ ಗಳನ್ನು Signal ನಿಂದ ತೆಗೆದುಹಾಕಬಬಹುದು.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">ನೀವು ಯಾವುದೇ ವೇಳೆಯಲ್ಲೂ ಸೆಟ್ಟಿಂಗ್‍ಗಳಿಂದ SMS ಮೆಸೇಜ್‌ಗಳನ್ನು Signal ನಿಂದ ತೆಗೆದುಹಾಕಬಬಹುದು.</string>
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">ನಿಮ್ಮ ಫೋನ್ ನ SMS ಡೇಟಾಬೇಸ್ ಗೆ ನಿಮ್ಮ SMS ಮೆಸೇಜ್ ಗಳನ್ನು ನೀವು ರಫ್ತು ಮಾಡಬಹುದು.</string>
     <!-- Description for re-export sms preference -->
     <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">ಮತ್ತೊಮ್ಮೆ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡುವುದರಿಂದ ಡುಪ್ಲಿಕೇಟ್ ಮೆಸೇಜ್‌ಗಳುಂಟಾಗಬಹುದು.</string>
     <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">ಸ್ಟೋರೇಜ್ ಸ್ಥಳವನ್ನು ತೆರವುಗೊಳಿಸಲು Signal ನಿಂದ SMS ಮೆಸೇಜ್ ಗಳನ್ನು ತೆಗೆದುಹಾಕಿ.</string>
+    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">ಸ್ಟೋರೇಜ್ ಸ್ಥಳವನ್ನು ತೆರವುಗೊಳಿಸಲು Signal ನಿಂದ SMS ಮೆಸೇಜ್‌ಗಳನ್ನು ತೆಗೆದುಹಾಕಿ.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
     <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾದ ಮೆಸೇಜಿಂಗ್ ಮೇಲೆ ಕೇಂದ್ರೀಕರಿಸಲು ಶೀಘ್ರದಲ್ಲೇ SMS ಬೆಂಬಲವನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ.</string>
 
@@ -4070,13 +4072,13 @@
     <string name="ChatColorSelectionFragment__chat_color">ಚಾಟ್ ಬಣ್ಣ</string>
     <string name="ChatColorSelectionFragment__edit">ತಿದ್ದಿ</string>
     <string name="ChatColorSelectionFragment__duplicate">ನಕಲಿ</string>
-    <string name="ChatColorSelectionFragment__delete">ಅಳಿಸು</string>
+    <string name="ChatColorSelectionFragment__delete">ಅಳಿಸಿ</string>
     <string name="ChatColorSelectionFragment__delete_color">ಬಣ್ಣ ಅಳಿಸಿ</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">ಈ ಕಸ್ಟಮ್ ಬಣ್ಣವನ್ನು %1$d ಚಾಟ್‌ನಲ್ಲಿ ಬಳಸಲಾಗಿದೆ. ಎಲ್ಲ ಚಾಟ್‌ಗಳಿಗೆ ಇದನ್ನು ಬಳಸಲು ಬಯಸಿದ್ದೀರಾ?</item>
-        <item quantity="other">ಈ ಕಸ್ಟಮ್ ಬಣ್ಣವನ್ನು %1$d ಚಾಟ್‌ಗಳಲ್ಲಿ ಬಳಸಲಾಗಿದೆ. ಎಲ್ಲ ಚಾಟ್‌ಗಳಿಗೆ ಇದನ್ನು ಬಳಸಲು ಬಯಸುತ್ತೀರಾ?</item>
+        <item quantity="one">ಈ ಕಸ್ಟಮ್ ಬಣ್ಣವನ್ನು %1$d ಚಾಟ್‌ನಲ್ಲಿ ಬಳಸಲಾಗಿದೆ. ಎಲ್ಲ ಚಾಟ್‌ಗಳಿಗೆ ಇದನ್ನು ಅಳಿಸಲು ಬಯಸುತ್ತೀರಾ?</item>
+        <item quantity="other">ಈ ಕಸ್ಟಮ್ ಬಣ್ಣವನ್ನು %1$d ಚಾಟ್‌ಗಳಲ್ಲಿ ಬಳಸಲಾಗಿದೆ. ಎಲ್ಲ ಚಾಟ್‌ಗಳಿಗೆ ಇದನ್ನು ಅಳಿಸಲು ಬಯಸುತ್ತೀರಾ?</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">ಚಾಟ್ ಬಣ್ಣ ಅಳಿಸುವುದೇ?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">ಚಾಟ್‌ನ ಬಣ್ಣ ಅಳಿಸುವುದೇ?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">ಘನ</string>
@@ -4234,11 +4236,11 @@
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">ನಿರ್ಬಂಧಿಸಿ</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">%1$s ತೆಗೆದುಹಾಕಲೇ?</string>
+    <string name="NewConversationActivity__remove_s">%1$s ತೆಗೆದುಹಾಕುವುದೇ?</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">ಸರ್ಚ್ ಮಾಡುವಾಗ ಈ ವ್ಯಕ್ತಿಯನ್ನು ನೀವು ಕಾಣುವುದಿಲ್ಲ. ಭವಿಷ್ಯದಲ್ಲಿ ಅವರು ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡಿದರೆ ನೀವೊಂದು ಮೆಸೇಜ್ ವಿನಂತಿಯನ್ನು ಪಡೆಯುತ್ತೀರಿ.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s ಅವರನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ.</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s ಅವರನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s ಅವರನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ.</string>
     <!-- Dialog title when remove target contact is in system contacts -->
@@ -4623,7 +4625,7 @@
     <!-- Dialog message shown to confirm deleting a profile -->
     <string name="NotificationProfileDetails__permanently_delete_profile">ಶಾಶ್ವತವಾಗಿ ಪ್ರೊಫೈಲ್ ಅಳಿಸಲೇ?</string>
     <!-- Dialog button to delete profile -->
-    <string name="NotificationProfileDetails__delete">ಅಳಿಸು</string>
+    <string name="NotificationProfileDetails__delete">ಅಳಿಸಿ</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
     <string name="NotificationProfileDetails__edit_notification_profile">ಅಧಿಸೂಚನೆ ಪ್ರೊಫೈಲ್ ಎಡಿಟ್ ಮಾಡಿ</string>
     <!-- Schedule description if all days are selected -->
@@ -4799,7 +4801,7 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">%1$s ಅವರ ಸ್ಟೋರಿ</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">ಸ್ಟೋರಿ ಅಳಿಸಿಹಾಕಬೇಕೇ?</string>
+    <string name="MyStories__delete_story">ಸ್ಟೋರಿಯನ್ನು ಅಳಿಸಬೇಕೇ?</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">ಈ ಸ್ಟೋರಿಯನ್ನು ನಿಮಗೂ ಹಾಗು ಇದನ್ನು ಸ್ವೀಕರಿಸಿದ ಎಲ್ಲರಿಗೂ ಅಳಿಸಿಹಾಕಲಾಗುತ್ತದೆ.</string>
     <!-- Toast shown when story media cannot be saved -->
@@ -4861,12 +4863,12 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s ಅವರಿಗೆ ಖಾಸಗಿಯಾಗಿ ಉತ್ತರಿಸಲಾಗುತ್ತಿದೆ</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">%1$s ಅವರಿಗೆ ಉತ್ತರ ನೀಡಿ</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">ನಕಲಿಸು</string>
     <!-- Context menu item to delete a story response -->
-    <string name="StoryGroupReplyItem__delete">ಅಳಿಸು</string>
+    <string name="StoryGroupReplyItem__delete">ಅಳಿಸಿ</string>
     <!-- Page title for My Story options -->
     <string name="MyStorySettingsFragment__my_story">ನನ್ನ ಸ್ಟೋರಿ</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
@@ -4923,9 +4925,9 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">ವೀಕ್ಷಕರನ್ನು ಸೇರಿಸಿ</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">ಕಸ್ಟಮ್ ಸ್ಟೋರಿ ಅಳಿಸಿಹಾಕಿರಿ</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">ಕಸ್ಟಮ್ ಸ್ಟೋರಿಯನ್ನು ಅಳಿಸಿ</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove_s">%1$s ತೆಗೆದುಹಾಕಲೇ?</string>
+    <string name="PrivateStorySettingsFragment__remove_s">%1$s ತೆಗೆದುಹಾಕುವುದೇ?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">ಈ ವ್ಯಕ್ತಿ ಇನ್ನು ಮುಂದೆ ನಿಮ್ಮ ಸ್ಟೋರಿ ನೋಡುವುದಿಲ್ಲ.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
@@ -4964,17 +4966,17 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">ಮುಗಿದಿದೆ</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">ಗ್ರೂಪ್ ಸ್ಟೋರಿ ತೆಗೆದುಹಾಕೋಣವೇ?</string>
+    <string name="StoryDialogs__remove_group_story">ಗ್ರೂಪ್ ಸ್ಟೋರಿಯನ್ನು ತೆಗೆದುಹಾಕುವುದೇ?</string>
     <!-- Dialog message for removing a group story -->
     <string name="StoryDialogs__s_will_be_removed">\"%1$s\" ಅವರನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">ತೆಗೆದುಹಾಕಿ</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">ಕಸ್ಟಮ್ ಸ್ಟೋರಿ ಅಳಿಸಿಹಾಕಬೇಕೇ?</string>
+    <string name="StoryDialogs__delete_custom_story">ಕಸ್ಟಮ್ ಸ್ಟೋರಿಯನ್ನು ಅಳಿಸುವುದೇ?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" ಮತ್ತು ಈ ಸ್ಟೋರಿಗೆ ಹಂಚಿಕೊಂಡ ಅಪ್ಡೇಟ್ ಗಳನ್ನು ಅಳಿಸಿಹಾಕಲಾಗುತ್ತದೆ.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" ಮತ್ತು ಈ ಸ್ಟೋರಿಗೆ ಹಂಚಿಕೊಂಡ ಅಪ್ಡೇಟ್ ಗಳನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
     <!-- Dialog positive action for deleting a custom story -->
-    <string name="StoryDialogs__delete">ಅಳಿಸು</string>
+    <string name="StoryDialogs__delete">ಅಳಿಸಿ</string>
     <!-- Dialog title for first time sending something to a beta story -->
     <!-- Dialog message for first time sending something to a beta story -->
     <!-- Dialog title for first time adding something to a story -->
@@ -4986,7 +4988,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">ಕಳುಹಿಸು</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">ಆಫ್ ಮಾಡಿ ಮತ್ತು ಅಳಿಸಿಹಾಕಿರಿ</string>
+    <string name="StoryDialogs__turn_off_and_delete">ಆಫ್ ಮಾಡಿ ಮತ್ತು ಅಳಿಸಿ</string>
     <!-- Privacy Settings toggle title for stories -->
     <!-- Privacy Settings toggle summary for stories -->
     <!-- New story viewer selection screen title -->
@@ -5107,7 +5109,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">ಈಗಲ್ಲ</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ರಿಡೀಮ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ರಿಡೀಮ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">ನಿಮ್ಮ ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ನಂತರ ನೀವು ರೀಡೀಮ್ ಮಾಡಿಕೊಳ್ಳಬಹುದು.</string>
     <!-- Description text in gift thanks sheet -->
@@ -5154,21 +5156,21 @@
     <!-- Label for context menu item to open story settings -->
     <string name="ContactSearchItems__story_settings">ಸ್ಟೋರಿ ಸೆಟ್ಟಿಂಗ್‌ ಗಳು</string>
     <!-- Label for context menu item to remove a group story from contact results -->
-    <string name="ContactSearchItems__remove_story">ಸ್ಟೋರಿ ತೆಗೆದುಹಾಕಿ</string>
+    <string name="ContactSearchItems__remove_story">ಸ್ಟೋರಿಯನ್ನು ತೆಗೆದುಹಾಕಿ</string>
     <!-- Label for context menu item to delete a custom story -->
-    <string name="ContactSearchItems__delete_story">ಸ್ಟೋರಿ ಅಳಿಸಿಹಾಕಿರಿ</string>
+    <string name="ContactSearchItems__delete_story">ಸ್ಟೋರಿಯನ್ನು ಅಳಿಸಿ</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">ಗ್ರೂಪ್ ಸ್ಟೋರಿ ತೆಗೆದುಹಾಕೋಣವೇ?</string>
+    <string name="ContactSearchMediator__remove_group_story">ಗ್ರೂಪ್ ಸ್ಟೋರಿಯನ್ನು ತೆಗೆದುಹಾಕುವುದೇ?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">ಇದು ಈ ಪಟ್ಟಿಯಿಂದ ಸ್ಟೋರಿಯನ್ನು ತೆಗೆದುಹಾಕಲಿದೆ. ಈಗಲೂ ನೀವು ಈ ಗ್ರೂಪ್‍ನಿಂದ ಸ್ಟೋರೀಸ್ ಅನ್ನು ನೋಡಬಹುದು.</string>
+    <string name="ContactSearchMediator__this_will_remove">ಇದು ಈ ಪಟ್ಟಿಯಿಂದ ಸ್ಟೋರಿಯನ್ನು ತೆಗೆದುಹಾಕಲಿದೆ. ಈಗಲೂ ನೀವು ಈ ಗ್ರೂಪ್‍ನಿಂದ ಸ್ಟೋರೀಸ್ ಅನ್ನು ವೀಕ್ಷಿಸಬಹುದು.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">ತೆಗೆದುಹಾಕಿ</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_story">ಸ್ಟೋರಿ ಅಳಿಸಿಹಾಕಬೇಕೇ?</string>
+    <string name="ContactSearchMediator__delete_story">ಸ್ಟೋರಿಯನ್ನು ಅಳಿಸಬೇಕೇ?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">ಕಸ್ಟಮ್ ಸ್ಟೋರಿ \"%1$s\" ಅನ್ನು ಅಳಿಸಿಹಾಕಬೇಕೇ?</string>
+    <string name="ContactSearchMediator__delete_the_custom">ಕಸ್ಟಮ್ ಸ್ಟೋರಿ \"%1$s\" ಅನ್ನು ಅಳಿಸಬೇಕೇ?</string>
     <!-- Dialog action item for deleting a custom story -->
-    <string name="ContactSearchMediator__delete">ಅಳಿಸು</string>
+    <string name="ContactSearchMediator__delete">ಅಳಿಸಿ</string>
     <!-- Donation for a friend expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
         <item quantity="one">%1$d days remaining</item>
@@ -5275,7 +5277,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">ಸ್ಟೋರೀಸ್ ಆಫ್ ಮಾಡಬಹುದೇ?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">ಸ್ಟೋರೀಸ್ ಹಂಚಿಕೊಳ್ಳಲು ಅಥವಾ ವೀಕ್ಷಿಸಲು ನಿಮಗೆ ಇನ್ನು ಸಾಧ್ಯವಿಲ್ಲ. ನೀವು ಇತ್ತೀಚೆಗೆ ಹಂಚಿಕೊಂಡ ಸ್ಟೋರಿ ಅಪ್ಡೇಟ್ ಗಳನ್ನು ಕೂಡಾ ಅಳಿಸಿಹಾಕಲಾಗುತ್ತದೆ.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">ಸ್ಟೋರೀಸ್ ಹಂಚಿಕೊಳ್ಳಲು ಅಥವಾ ವೀಕ್ಷಿಸಲು ನಿಮಗೆ ಇನ್ನು ಸಾಧ್ಯವಿಲ್ಲ. ನೀವು ಇತ್ತೀಚೆಗೆ ಹಂಚಿಕೊಂಡ ಸ್ಟೋರಿ ಅಪ್ಡೇಟ್ ಗಳನ್ನು ಕೂಡಾ ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">ಸ್ಟೋರಿ ಗೌಪ್ಯತೆ</string>
     <!-- Header for section that lists out stories -->
@@ -5295,7 +5297,7 @@
     <!-- Explanation of who can view a group story -->
     <string name="GroupStorySettingsFragment__members_of_the_group_s">"ಗ್ರೂಪ್ %1$s ನ ಸದಸ್ಯರು ಈ ಸ್ಟೋರಿಯನ್ನು ವೀಕ್ಷಿಸಬಹುದು ಮತ್ತು ಉತ್ತರಿಸಬಹುದು. ಈ ಗ್ರೂಪ್ ನಲ್ಲಿನ ಈ ಚಾಟ್ ಗೆ ನೀವು ಸದಸ್ಯತ್ವವನ್ನು ಅಪ್ಡೇಟ್ ಮಾಡಬಹುದು."</string>
     <!-- Preference label for removing this group story -->
-    <string name="GroupStorySettingsFragment__remove_group_story">ಗ್ರೂಪ್ ಸ್ಟೋರಿ ತೆಗೆದುಹಾಕಿ</string>
+    <string name="GroupStorySettingsFragment__remove_group_story">ಗ್ರೂಪ್ ಸ್ಟೋರಿಯನ್ನು ತೆಗೆದುಹಾಕಿ</string>
 
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">ಓವರ್‌ಫ್ಲೋ ಮೆನು</string>
@@ -5312,7 +5314,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">ನಿಮ್ಮ ಎಸ್ಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">ನಿಮ್ಮ SMS ಮೆಸೇಜ್ ಗಳನ್ನು ನಿಮ್ಮ ಫೋನಿನ SMS ಡೇಟಾಬೇಸ್ ಗೆ ನೀವು ರಫ್ತು ಮಾಡಬಹುದು ಮತ್ತು Signal ನಲ್ಲಿ ಅವುಗಳನ್ನು ಉಳಿಸಿಕೊಳ್ಳುವ ಅಥವಾ ತೆಗೆದುಹಾಕುವ ಆಯ್ಕೆಯನ್ನು ನೀವು ಹೊಂದಿದ್ದೀರಿ. ನಿಮ್ಮ ಫೋನ್ ನಲ್ಲಿರುವ ಇತರೆ SMS ಆ್ಯಪ್‍ಗಳು ಅವುಗಳನ್ನು ಆಮದು ಮಾಡಲು ಇದು ಅನುಮತಿಸುತ್ತದೆ. ನಿಮ್ಮ SMS ಇತಿಹಾಸದ ಹಂಚಿಕೊಳ್ಳಬಹುದಾದ ಫೈಲ್ ಅನ್ನು ಇದು ರಚಿಸುವುದಿಲ್ಲ.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">ನಿಮ್ಮ SMS ಮೆಸೇಜ್ ಗಳನ್ನು ನಿಮ್ಮ ಫೋನಿನ SMS ಡೇಟಾಬೇಸ್ ಗೆ ನೀವು ರಫ್ತು ಮಾಡಬಹುದು ಮತ್ತು Signal ನಿಂದ ಅವುಗಳನ್ನು ಉಳಿಸಿಕೊಳ್ಳುವ ಅಥವಾ ತೆಗೆದುಹಾಕುವ ಆಯ್ಕೆಯನ್ನು ನೀವು ಹೊಂದಿದ್ದೀರಿ. ನಿಮ್ಮ ಫೋನ್ ನಲ್ಲಿರುವ ಇತರೆ SMS ಆ್ಯಪ್‍ಗಳು ಅವುಗಳನ್ನು ಆಮದು ಮಾಡಲು ಇದು ಅನುಮತಿಸುತ್ತದೆ. ನಿಮ್ಮ SMS ಇತಿಹಾಸದ ಹಂಚಿಕೊಳ್ಳಬಹುದಾದ ಫೈಲ್ ಅನ್ನು ಇದು ರಚಿಸುವುದಿಲ್ಲ.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">ಮುಂದುವರಿಸಿ</string>
 
@@ -5367,11 +5369,11 @@
     <!-- Action button to keep messages -->
     <string name="RemoveSmsMessagesDialogFragment__keep_messages">ಸಂದೇಶಗಳನ್ನು ಉಳಿಸಿ</string>
     <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">ಸಂದೇಶಗಳನ್ನು ತೆಗೆದುಹಾಕಿ</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_messages">ಮೆಸೇಜ್‌ಗಳನ್ನು ತೆಗೆದುಹಾಕಿ</string>
     <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal ನಿಂದ ಎಸ್ಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ತೆಗೆದುಹಾಕಬೇಕೇ?</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal ನಿಂದ ಎಸ್ಎಂಎಸ್ ಮೆಸೇಜ್‌ಗಳನ್ನು ತೆಗೆದುಹಾಕಬೇಕೇ?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">ಸ್ಟೋರೇಜ್ ಸ್ಪೇಸ್ ತೆರವುಗೊಳಿಸಲು Signal ನಿಂದ ಈಗ ನೀವು SMS ಮೆಸೇಜ್ ಗಳನ್ನು ತೆಗೆದುಹಾಕಬಹುದು. ಅವುಗಳನ್ನು ನೀವು ತೆಗೆದುಹಾಕಿದರೂ ನಿಮ್ಮ ಫೋನ್ ನಲ್ಲಿ ಇತರೆ SMS ಆ್ಯಪ್ ಗಳಿಗೆ ಅವು ಲಭ್ಯ ಇರಲಿವೆ.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">ಸ್ಟೋರೇಜ್ ಸ್ಪೇಸ್ ತೆರವುಗೊಳಿಸಲು Signal ನಿಂದ ಈಗ ನೀವು SMS ಮೆಸೇಜ್‌ಗಳನ್ನು ತೆಗೆದುಹಾಕಬಹುದು. ಅವುಗಳನ್ನು ನೀವು ತೆಗೆದುಹಾಕಿದರೂ ನಿಮ್ಮ ಫೋನ್ ನಲ್ಲಿ ಇತರೆ SMS ಆ್ಯಪ್ ಗಳಿಗೆ ಅವು ಲಭ್ಯ ಇರಲಿವೆ.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5556,8 +5558,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS ಬೆಂಬಲ ಇಲ್ಲವಾಗುತ್ತಿದೆ</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Signal ಆ್ಯಪ್‌ನಲ್ಲಿ SMS ಮೆಸೇಜಿಂಗ್ ಅನ್ನು ಇನ್ನು ಮುಂದೆ ಬೆಂಬಲಿಸುವುದಿಲ್ಲ.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS ಮೆಸೇಜ್‌ಗಳು Signal ಮೆಸೇಜ್‌ಗಳಿಗಿಂತ ಭಿನ್ನವಾಗಿವೆ. <b>ಇದು ಎನ್‌ಕ್ರಿಪ್ಟ್ ಆಗಿರುವ Signal ಮೆಸೇಜಿಂಗ್‌ಗೆ ಪರಿಣಾಮ ಬೀರುವುದಿಲ್ಲ, ಇದು ಕೆಲಸ ಮಾಡುವುದನ್ನು ಮುಂದುವರಿಸುತ್ತದೆ.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5569,13 +5571,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">ನಿಮ್ಮ Signal ಯೂಸರ್ ನೇಮ್ ಅನ್ನು ಸೆಟಪ್ ಮಾಡಿ</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">ನಿಮ್ಮ ಫೋನ್‌ ನಂಬರ್‌ನ ಅಗತ್ಯವಿಲ್ಲದೆ ಇತರರು ಮೆಸೇಜ್ ಮಾಡಲು ಯೂಸರ್‌ನೇಮ್‌ಗಳು ಅವಕಾಶ ನೀಡುತ್ತವೆ</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">ಈಗಲ್ಲ</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">ಮುಂದುವರಿಸಿ</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5589,15 +5591,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">ಮುಂದುವರಿಸಿ</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">ನಿಮ್ಮ Signal ಯೂಸರ್ ನೇಮ್ ಅನ್ನು ಸೆಟಪ್ ಮಾಡಿ</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">ಯೂಸರ್‌ನೇಮ್ ಎಡಿಟ್ ಮಾಡಿ</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">ಯೂಸರ್‌ನೇಮ್ ಅಳಿಸಿ</string>
 
     <!-- EOF -->
 </resources>

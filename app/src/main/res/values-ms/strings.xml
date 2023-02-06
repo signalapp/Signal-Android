@@ -198,7 +198,7 @@
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Alih keluar</string>
     <string name="ClearProfileActivity_remove_profile_photo">Alih keluar foto profil?</string>
-    <string name="ClearProfileActivity_remove_group_photo">Buang foto profil group?</string>
+    <string name="ClearProfileActivity_remove_group_photo">Buang foto profil kumpulan?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Kemas Kini Signal</string>
@@ -352,8 +352,8 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Baru! Katakan dengan pelekat</string>
 
     <string name="ConversationActivity_cancel">Batal</string>
-    <string name="ConversationActivity_delete_conversation">Padamkan perbualan?</string>
-    <string name="ConversationActivity_delete_and_leave_group">Padam dan tinggalkan group?</string>
+    <string name="ConversationActivity_delete_conversation">Padam perbualan?</string>
+    <string name="ConversationActivity_delete_and_leave_group">Padam dan tinggalkan kumpulan?</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Perbualan ini akan dipadam daripada semua peranti anda.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Anda akan meninggalkan kumpulan ini, dan ia akan dipadam daripada semua peranti anda.</string>
     <string name="ConversationActivity_delete">Padam</string>
@@ -392,7 +392,7 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">Kenalan aplikasi tidak ditemui.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="other">Padamkan mesej yang dipilih?</item>
+        <item quantity="other">Padam mesej yang dipilih?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Simpan ke storan?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -420,13 +420,13 @@
     <string name="ConversationFragment_delete_on_this_device">Padam pada peranti ini</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Padam di mana-mana</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Mesej ini akan dipadam untuk semua orang didalam perbualan jika mereka mempunyai versi terkini aplikasi Signal. Mereka akan dapat melihat bahawa anda telah memadamkan suatu mesej.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Mesej ini akan dipadam untuk semua orang dalam perbualan jika mereka menggunakan versi terkini aplikasi Signal. Mereka akan dapat melihat jika anda memadam suatu mesej.</string>
     <string name="ConversationFragment_quoted_message_not_found">Mesej asal tidak dijumpai</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Mesej asal tidak lagi tersedia</string>
     <string name="ConversationFragment_failed_to_open_message">Gagal untuk membuka mesej</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Anda boleh meleret ke kanan pada mana-mana mesej untuk balas pantas</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Anda boleh meleret ke kiri pada mana-mana mesej untuk balas pantas</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Fail view-once media yang dihantar akan automatik terhapus setelah ia dihantar</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Fail media sekali tontonan akan terhapus secara automatik setelah ia dihantar</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Anda telahpun melihat mesej ini</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Anda boleh menambah nota untuk diri sendiri dalam perbualan ini. \nJika akaun anda mempunyai linked devices, nota-nota baru akan disync.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Ahli kumpulan %1$d mempunyai nama yang sama.</string>
@@ -455,10 +455,10 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Tiada sembang belum dibaca</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="other">Padamkan perbualan tersebut?</item>
+        <item quantity="other">Padam perbualan tersebut?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="other">Ini akan memadamkan semua %1$dperbualan yang dipilih secara kekal.</item>
+        <item quantity="other">Ini akan memadam semua %1$d perbualan yang dipilih secara kekal.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Memadam</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Memadam perbualan yang dipilih…</string>
@@ -527,9 +527,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Tarik ke bawah untuk menapis</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Lepaskan untuk menapis</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
@@ -643,9 +643,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Semua masa dalam (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Masa yang dipilih telah berlalu. Ini akan menghantar mesej dengan serta-merta.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Hantar segera</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Hantar sekarang</string>
@@ -654,7 +654,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Padam</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Padamkan mesej berjadual yang dipilih?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Padam mesej berjadual yang dipilih?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Memadamkan mesej yang dijadualkan…</string>
 
@@ -753,7 +753,7 @@
         <item quantity="other">Ahli-ahli ini perlu menerima jemputan untuk menyertai kumpulan ini sekali lagi dan tidak akan mendapat mesej kumpulan sehingga mereka menerimanya:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="other">Ahli-ahli ini telah dialih keluar daripada kumpulan ini dan tidak akan dapat menyertai semula sehingga mereka naik taraf:</item>
+        <item quantity="other">Ahli-ahli ini telah dialih keluar daripada kumpulan ini dan tidak akan dapat menyertai semula sehingga mereka menaik taraf:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -866,7 +866,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Anda telah memilih kenalan yang tidak menyokong kumpulan Signal, jadi kumpulan ini akan menjadi MMS. MMS nama kumpulan dan foto tersuai hanya akan kelihatan kepada anda.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Anda telah memilih kenalan yang tidak menyokong kumpulan Signal, kumpulan ini akan menjadi MMS. Nama dan foto kumpulan MMS tersuai hanya boleh dilihat oleh anda. Sokongan untuk kumpulan MMS akan dialih keluar tidak lama lagi untuk menumpukan pada pemesejan yang disulitkan.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Anda telah memilih kenalan yang tidak menyokong kumpulan Signal, kumpulan ini akan menjadi MMS. Nama dan foto kumpulan MMS tersuai hanya boleh dilihat oleh anda. Sokongan untuk kumpulan MMS akan dialih keluar tidak lama lagi untuk memberi tumpuan kepada pemesejan yang disulitkan.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Siapa boleh menambah ahli baru?</string>
@@ -1060,10 +1060,10 @@
     <string name="MediaOverviewActivity_Audio">Audio</string>
     <string name="MediaOverviewActivity_All">Semua</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="other">Padamkan item yang dipilih?</item>
+        <item quantity="other">Padam item yang dipilih?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="other">Tindakan ini akan memadamkan kesemua %1$d fail yang dipilih secara kekal. Mana-mana teks mesej yang berkaitan dengan item ini juga akan dipadamkan.</item>
+        <item quantity="other">Tindakan ini akan memadam kesemua %1$d fail yang dipilih secara kekal. Mana-mana teks mesej yang berkaitan dengan item ini juga akan dipadamkan.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Memadam</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Memadam mesej…</string>
@@ -1885,6 +1885,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Menghantar reaksi %1$s kepada cerita mereka</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Pembayaran</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Kemas kini Signal</string>
@@ -2671,7 +2673,7 @@
     <string name="preferences__advanced_pin_settings">Tetapan PIN lanjutan</string>
     <string name="preferences__free_private_messages_and_calls">Mesej dan panggilan sulit percuma kepada pengguna Signal</string>
     <string name="preferences__submit_debug_log">Menghantar log debug</string>
-    <string name="preferences__delete_account">Padamkan akaun</string>
+    <string name="preferences__delete_account">Padam akaun</string>
     <string name="preferences__support_wifi_calling">Mod keserasian \'Panggilan WiFI\'</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Dayakan jika peranti anda menggunakan penghantaran SMS/MMS melalui WiFi (hanya dayakan apabila \'Panggilan WiFi\' diaktifkan pada peranti anda)</string>
     <string name="preferences__incognito_keyboard">Papan kekunci incognito</string>
@@ -2693,14 +2695,14 @@
     <string name="preferences_storage__files">Fail-fail</string>
     <string name="preferences_storage__audio">Audio</string>
     <string name="preferences_storage__review_storage">Semak simpanan</string>
-    <string name="preferences_storage__delete_older_messages">Padamkan mesej lama?</string>
+    <string name="preferences_storage__delete_older_messages">Padam mesej lama?</string>
     <string name="preferences_storage__clear_message_history">Kosongkan sejarah mesej?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ini akan memadam semua sejarah mesej dan media daripada peranti anda yang lebih daripada %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Tindakan ini akan memotong semua perbualan sehingga %1$s mesej terkini secara kekal.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ini akan memadam semua sejarah mesej dan media daripada peranti anda secara kekal.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Adakah anda pasti mahu memadam semua sejarah mesej?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Semua sejarah mesej akan dialih keluar secara kekal. Tindakan ini tidak boleh diulang.</string>
-    <string name="preferences_storage__delete_all_now">Padamkan semua sekarang</string>
+    <string name="preferences_storage__delete_all_now">Padam semua sekarang</string>
     <string name="preferences_storage__forever">Selama-lamanya</string>
     <string name="preferences_storage__one_year">1 tahun</string>
     <string name="preferences_storage__six_months">6 bulan</string>
@@ -3084,7 +3086,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Tapis sembang belum dibaca</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Kosongkan penapis yang belum dibaca</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Salin ke papan klip</string>
@@ -3125,7 +3127,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol telah melindungi %1$d%% daripada mesej keluar anda secara automatik selama %2$d hari yang lepas. Perbualan antara pengguna Signal selalu disulitkan dari hujung ke hujung.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Sebarkan berita</string>
     <string name="InsightsDashboardFragment__not_enough_data">Data tidak mencukupi</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Peratusan Insights anda dikira berdasarkan mesej keluar selama %1$d hari yang lalu yang belum hilang atau dipadamkan.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Peratusan Penemuan anda dikira berdasarkan mesej keluar selama %1$d hari yang lalu yang belum hilang atau dipadamkan.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">Mulakan perbualan</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Mula berkomunikasi dengan selamat dan dayakan ciri-ciri baharu yang melangkaui batasan mesej SMS yang tidak disulitkan dengan menjemput lebih banyak kenalan untuk menyertai Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Statistik ini dihasilkan secara tempatan pada peranti anda dan hanya dapat dilihat oleh anda. Mereka tidak pernah dihantar ke mana-mana.</string>
@@ -3197,7 +3199,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Akaun telah dikunci</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Akaun anda telah dikunci untuk melindungi privasi dan keselamatan anda. Selepas %1$d hari tidak aktif dalam akaun anda, anda akan dapat mendaftar semula nombor telefon ini tanpa memerlukan PIN anda. Semua kandungan akan dipadamkan.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Akaun anda telah dikunci untuk melindungi privasi dan keselamatan anda. Selepas %1$d hari tidak aktif dalam akaun, anda boleh mendaftar semula nombor telefon ini tanpa memerlukan PIN anda. Semua kandungan akan dipadamkan.</string>
     <string name="AccountLockedFragment__next">Seterusnya</string>
     <string name="AccountLockedFragment__learn_more">Ketahui Lebih Lanjut</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3215,7 +3217,7 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Pendaftaran Signal - Perlu Bantuan dengan PIN untuk Android (PIN v2)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="other">Untuk perivasi dan keselamatan anda, tiada cara untuk memulihkan PIN anda. Jika anda tidak ingat PIN anda, anda boleh mengesahkan semula dengan SMS dengan %1$d hari tidak aktif. Dalam kes ini, akaun anda akan dihapuskan dan semua kandungan dipadamkan.</item>
+        <item quantity="other">Untuk privasi dan keselamatan anda, tiada cara untuk memulihkan PIN anda. Jika anda tidak ingat PIN anda, anda boleh mengesahkan semula dengan SMS selepas %1$d hari tidak aktif. Dalam kes ini, akaun anda akan dihapuskan dan semua kandungan dipadamkan.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3223,7 +3225,7 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="other">Jika anda kehabisan percubaan, akaun anda akan dikunci selama %1$d hari. Selepas %1$d hari tidak aktif, anda boleh mendaftar semula tanpa PIN anda. Akauan anda akan dihapuskan dan semua kandungan dipadamkan.</item>
+        <item quantity="other">Jika anda kehabisan percubaan, akaun anda akan dikunci selama %1$d hari. Selepas %1$d hari tidak aktif, anda boleh mendaftar semula tanpa PIN anda. Akaun anda akan dihapuskan dan semua kandungan dipadamkan.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3280,7 +3282,7 @@
     <string name="BackupDialog_enable_backups">Mendayakan sandaran</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Sila perakui bahawa anda faham dengan menandakan kotak semak pengesahan.</string>
     <string name="BackupDialog_delete_backups">Padam sandaran?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">Nyahdayakan dan memadam semua sandaran lokal?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Nyahdayakan dan memadam semua sandaran tempatan?</string>
     <string name="BackupDialog_delete_backups_statement">Padam sandaran</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Untuk mendayakan sandaran, pilih folder. Sandaran akan disimpan ke lokasi ini.</string>
     <string name="BackupDialog_choose_folder">Memilih folder</string>
@@ -3294,7 +3296,7 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Mengesahkan sandaran Signal…</string>
     <string name="LocalBackupJobApi29_backup_failed">Sandaran gagal</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktori sandaran anda telah dipadamkan atau telah dipindah.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktori sandaran anda telah dipadamkan atau dipindahkan.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Fail sandaran anda terlalu besar untuk disimpan pada volum ini.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Tidak ada cukup ruang untuk menyimpan sandaran anda.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
@@ -3303,7 +3305,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Sandaran anda mengandungi fail yang saiznya terlalu besar dan tidak boleh disandar. Sila padamkannya dan cipta sandaran baru.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Ketik untuk menguruskan sandaran.</string>
     <string name="RegistrationActivity_wrong_number">Nombor salah?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Hubungi saya (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Hubungi Sokongan Signal</string>
     <string name="RegistrationActivity_code_support_subject">Pendaftaran Signal - Kod Pengesahan untuk Android</string>
     <string name="RegistrationActivity_incorrect_code">Kod salah</string>
@@ -3572,14 +3574,14 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Memadamkan akaun anda akan:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Masukkan nombor telefon anda</string>
-    <string name="DeleteAccountFragment__delete_account">Padamkan akaun</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Padamkan maklumat akaun dan foto profil anda</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Padamkan semua mesej anda</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Padamkan %1$s dalam akaun pembayaran anda</string>
+    <string name="DeleteAccountFragment__delete_account">Padam akaun</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Padam maklumat akaun dan foto profil anda</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Padam semua mesej anda</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Padam %1$s dalam akaun pembayaran anda</string>
     <string name="DeleteAccountFragment__no_country_code">Kod negara tidak ditentukan</string>
     <string name="DeleteAccountFragment__no_number">Nombor tidak ditentukan</string>
     <string name="DeleteAccountFragment__the_phone_number">Nombor telefon yang anda masukkan tidak sepadan dengan akaun anda.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Adakah anda pasti mahu padamkan akaun anda?</string>
+    <string name="DeleteAccountFragment__are_you_sure">Adakah anda pasti mahu memadam akaun anda?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Tindakan ini akan memadamkan akaun Signal anda dan menetapkan semula aplikasi. Aplikasi akan ditutup setelah proses selesai.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Gagal memadamkan data tempatan. Anda boleh mengosongkannya secara manual dalam tetapan aplikasi sistem.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Lancarkan Tetapan Aplikasi</string>
@@ -3594,7 +3596,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Memadamkan data pengguna dan mengeset semula aplikasi</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">Akaun Tidak Dipadamkan</string>
+    <string name="DeleteAccountFragment__account_not_deleted">Akaun Tidak Dipadam</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">Terdapat masalah menyelesaikan proses pemadaman. Semak sambungan rangkaian anda dan cuba lagi.</string>
 
@@ -3883,7 +3885,7 @@
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Alih keluar mesej SMS daripada Signal untuk mengosongkan ruang storan.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Sokongan SMS akan dialih keluar tidak lama lagi untuk menumpukan pada pemesejan yang disulitkan.</string>
+    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Sokongan SMS akan dialih keluar tidak lama lagi untuk memberi tumpuan kepada pemesejan yang disulitkan.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Mesej</string>
@@ -3974,11 +3976,11 @@
     <string name="ChatColorSelectionFragment__edit">Edit</string>
     <string name="ChatColorSelectionFragment__duplicate">Duplikasi</string>
     <string name="ChatColorSelectionFragment__delete">Padam</string>
-    <string name="ChatColorSelectionFragment__delete_color">Padamkan warna</string>
+    <string name="ChatColorSelectionFragment__delete_color">Padam warna</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
         <item quantity="other">Warna tersuai ini digunakan dalam %1$d sembang. Adakah anda mahu memadamkannya untuk semua sembang?</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">Padamkan warna sembang?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">Padam warna sembang?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">Padu</string>
@@ -4139,7 +4141,7 @@
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">Anda tidak akan melihat orang ini semasa membuat pencarian. Anda akan menerima permintaan mesej jika mereka menghantar mesej kepada anda pada masa depan.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s telah dialih keluar.</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s telah dialih keluar</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s telah disekat.</string>
     <!-- Dialog title when remove target contact is in system contacts -->
@@ -4755,7 +4757,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Balas secara peribadi kepada %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Balas kepada %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Salin</string>
@@ -4857,13 +4859,13 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Alih keluar cerita kumpulan?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\" %1$s \" akan dialih keluar.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" akan dialih keluar.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Alih keluar</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">Padam cerita tersuai?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">\" %1$s \" dan kemas kini yang dikongsi kepada cerita ini akan dipadamkan.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" dan kemas kini yang dikongsi kepada cerita ini akan dipadam.</string>
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Padam</string>
     <!-- Dialog title for first time sending something to a beta story -->
@@ -5247,7 +5249,7 @@
     <!-- Action button to remove messages -->
     <string name="RemoveSmsMessagesDialogFragment__remove_messages">Alih keluar mesej</string>
     <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Alih keluar mesej daripada Signal?</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Alih keluar mesej SMS daripada Signal?</string>
     <!-- Message of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Anda kini boleh mengalih keluar mesej SMS daripada Signal untuk mengosongkan ruang storan. Ia masih akan tersedia untuk aplikasi SMS lain pada telefon anda walaupun dialih keluar.</string>
 
@@ -5431,8 +5433,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Sokongan SMS akan dialih keluar</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Pemesejan SMS dalam aplikasi Signal tidak lagi akan disokong tidak lama lagi.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Mesej SMS adalah berbeza daripada mesej Signal. <b>Ini tidak menjejaskan pemesejan Signal yang disulitkan yang akan terus berfungsi.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5444,13 +5446,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Buat nama pengguna Signal anda</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Nama pengguna membenarkan orang lain menghantar mesej kepada anda tanpa memerlukan nombor telefon anda</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Bukan sekarang</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Teruskan</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5464,15 +5466,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Teruskan</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Buat nama pengguna Signal anda</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Edit nama pengguna</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Padam nama pengguna</string>
 
     <!-- EOF -->
 </resources>

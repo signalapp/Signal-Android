@@ -17,7 +17,7 @@
 
     <string name="yes">بله</string>
     <string name="no">خیر</string>
-    <string name="delete">حذف</string>
+    <string name="delete">پاک کردن</string>
     <string name="please_wait">لطفاً صبر کنید…</string>
     <string name="save">ذخیره</string>
     <string name="note_to_self">یادداشت برای خود</string>
@@ -281,8 +281,8 @@
     <string name="ConversationItem_read_more">  بیشتر بخوانید</string>
     <string name="ConversationItem_download_more"> بارگیری بیشتر</string>
     <string name="ConversationItem_pending">  در حال انتظار</string>
-    <string name="ConversationItem_this_message_was_deleted">این پیام حذف شد</string>
-    <string name="ConversationItem_you_deleted_this_message">شما این پیام را حذف کردید.</string>
+    <string name="ConversationItem_this_message_was_deleted">این پیام پاک شده بود.</string>
+    <string name="ConversationItem_you_deleted_this_message">شما این پیام را پاک کردید.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">پیام بارگیری نمی‌شود. %1$s باید دوباره آن را ارسال کند.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -352,12 +352,12 @@
     <string name="ConversationActivity_new_say_it_with_stickers">قابلیت جدید! با استیکرها صحبت کنید</string>
 
     <string name="ConversationActivity_cancel">لغو</string>
-    <string name="ConversationActivity_delete_conversation">مکالمه حذف شود؟</string>
-    <string name="ConversationActivity_delete_and_leave_group">حذف و ترک گروه؟</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">این مکالمه از روی همهٔ دستگاه‌های شما حذف خواهد شد.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">شما این گروه را ترک خواهید کرد، و گروه از روی تمام دستگاه‌های شما حذف خواهد شد.</string>
-    <string name="ConversationActivity_delete">حذف</string>
-    <string name="ConversationActivity_delete_and_leave">حذف و ترک گروه</string>
+    <string name="ConversationActivity_delete_conversation">مکالمه پاک شود؟</string>
+    <string name="ConversationActivity_delete_and_leave_group">پاک کردن و ترک گروه؟</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">این مکالمه از روی همهٔ دستگاه‌های شما پاک خواهد شد.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">شما این گروه را ترک خواهید کرد، و گروه از روی تمام دستگاه‌های شما پاک خواهد شد.</string>
+    <string name="ConversationActivity_delete">پاک کردن</string>
+    <string name="ConversationActivity_delete_and_leave">پاک کردن و ترک گروه</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">برای تماس با %1$s، سیگنال به دسترسی میکروفون شما نیاز دارد.</string>
 
 
@@ -393,8 +393,8 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">برنامه «مخاطبان» یافت نشد.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="one">حذف پیام انتخاب شده؟</item>
-        <item quantity="other">حذف پیام‌های انتخاب شده؟</item>
+        <item quantity="one">پاک کردن پیام انتخاب شده؟</item>
+        <item quantity="other">پاک کردن پیام‌های انتخاب شده؟</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">در حافظه ذخیره شود؟</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -420,13 +420,13 @@
     <string name="ConversationFragment_sms">پیامک</string>
     <string name="ConversationFragment_deleting">در حال حذف کردن</string>
     <string name="ConversationFragment_deleting_messages">حذف پیام‌‌ها…</string>
-    <string name="ConversationFragment_delete_for_me">حذف برای من</string>
-    <string name="ConversationFragment_delete_for_everyone">حذف برای همه</string>
+    <string name="ConversationFragment_delete_for_me">پاک کردن برای من</string>
+    <string name="ConversationFragment_delete_for_everyone">پاک کردن برای همه</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">حذف در این دستگاه</string>
+    <string name="ConversationFragment_delete_on_this_device">پاک کردن در این دستگاه</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">حذف در همه‌جا</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">این پیام برای همه در این مکالمه در صورتی که آن‌ها از نسخهٔ اخیر سیگنال استفاده می‌کنند، حذف خواهد شد. آن‌ها قادر خواهند بود ببینند که شما پیامی را پاک کردید.</string>
+    <string name="ConversationFragment_delete_everywhere">پاک کردن در همه‌جا</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">این پیام برای همه در این مکالمه در صورتی که آن‌ها از نسخهٔ اخیر سیگنال استفاده می‌کنند، پاک خواهد شد. آن‌ها قادر خواهند بود ببینند که شما پیامی را پاک کردید.</string>
     <string name="ConversationFragment_quoted_message_not_found">پیام اصلی یافت نشد</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر در دسترس نیست</string>
     <string name="ConversationFragment_failed_to_open_message">باز کردن پیام ناموفق بود</string>
@@ -461,12 +461,12 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">چت خوانده‌نشده وجود ندارد</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">حذف مکالمهٔ انتخاب شده؟</item>
-        <item quantity="other">حذف مکالمه‌ها‌ی انتخاب شده؟</item>
+        <item quantity="one">پاک کردن مکالمهٔ انتخاب شده؟</item>
+        <item quantity="other">پاک کردن مکالمه‌ها‌ی انتخاب شده؟</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">این گزینه باعث حذف دائمی مکالمه انتخاب‌شده می‌شود.</item>
-        <item quantity="other">این گزینه باعث حذف دائمی هر %1$d مکالمه انتخاب شده می‌شود.</item>
+        <item quantity="one">این گزینه باعث پاک شدن دائمی مکالمه انتخاب‌شده می‌شود.</item>
+        <item quantity="other">این گزینه باعث پاک شدن دائمی هر %1$d مکالمه انتخاب شده می‌شود.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">در حال حذف</string>
     <string name="ConversationListFragment_deleting_selected_conversations">حذف مکالمه‌ها‌ی انتخاب شده…</string>
@@ -513,8 +513,8 @@
         <item quantity="other">خروج از بایگانی</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">حذف</item>
-        <item quantity="other">حذف</item>
+        <item quantity="one">پاک کردن</item>
+        <item quantity="other">پاک کردن</item>
     </plurals>
     <string name="ConversationListFragment_select_all">انتخاب همه</string>
     <plurals name="ConversationListFragment_s_selected">
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">برای فیلتر کردن، به پایین بکشید</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">برای فیلتر کردن، رها کنید</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">پروفایل</string>
@@ -663,18 +663,18 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">همه ساعت‌ها در منطقه زمانی (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">زمان انتخاب‌شده در گذشته است. این موجب ارسال فوری پیام می‌شود.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">ارسال فوری</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">اکنون ارسال شود</string>
     <!-- Context menu option to reschedule a selected message -->
     <string name="ScheduledMessagesBottomSheet_menu_reschedule">زمان‌بندی دوباره</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">حذف</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">پاک کردن</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">پیام زمان‌بندی‌شده انتخاب شده حذف شود؟</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">پیام زمان‌بندی‌شده انتخاب شده پاک شود؟</string>
     <!-- Progress message shown while deleting selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">در حال حذف پیام زمان‌بندی‌شده…</string>
 
@@ -776,8 +776,8 @@
         <item quantity="other">این اعضا نیاز به پذیرفتن دعوت برای پیوستن به گروه خواهند داشت و پیام‌های گروه را تا زمانی که بپذیرند دریافت نخواهند کرد:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">این عضو از گروه حذف شد و تا زمانی که گروه خود را ارتقا ندهد، دوباره نخواهد توانست به گروه بپیوندد:</item>
-        <item quantity="other">این اعضا از گروه حذف شدند و تا زمانی که گروه خود را ارتقا ندهند، دوباره نخواهند توانست به گروه بپیوندند:</item>
+        <item quantity="one">این عضو از گروه حذف شد و تا زمانی که ارتقا ندهد، دوباره نخواهد توانست به گروه بپیوندد:</item>
+        <item quantity="other">این اعضا از گروه حذف شدند و تا زمانی که ارتقا ندهند، دوباره نخواهند توانست به گروه بپیوندند:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -903,7 +903,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">شما مخاطبی را انتخاب کرده‌اید که از گروه‌های سیگنال پشتیبانی نمی‌کند، بنابراین این گروه فراپیام خواهد بود. نام‌ها و عکس‌های گروه فراپیامی سفارشی فقط برای شما قابل مشاهده خواهد بود.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">شما مخاطبی را انتخاب کردید که از گروه‌های سیگنال پشتیبانی نمی‌کند، این یک گروه فراپیامی (MMS) خواهد بود. اسم‌ها و عکس‌های سفارشی گروه فراپیامی فقط برای شما قابل مشاهده خواهد بود. پشتیبانی از گروه‌های فراپیامی به‌زودی حذف خواهد شد تا روی پیام‌های رمزگذاری‌شده تمرکز شود.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">شما مخاطبی را انتخاب کردید که از گروه‌های سیگنال پشتیبانی نمی‌کند، این یک گروه پیام چندرسانه‌ای (MMS) خواهد بود. اسم‌ها و عکس‌های سفارشی گروه پیام چندرسانه‌ای فقط برای شما قابل مشاهده خواهد بود. پشتیبانی از گروه‌های پیام چندرسانه‌ای به‌زودی متوقف خواهد شد تا روی پیام‌های رمزگذاری‌شده تمرکز شود.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">چه کسی می‌تواند اعضای جدید اضافه کند؟</string>
@@ -1103,12 +1103,12 @@
     <string name="MediaOverviewActivity_Audio">صوت</string>
     <string name="MediaOverviewActivity_All">همه</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">حذف مورد انتخاب شده؟</item>
-        <item quantity="other">حذف موارد انتخاب شده؟</item>
+        <item quantity="one">پاک کردن مورد انتخاب شده؟</item>
+        <item quantity="other">پاک کردن موارد انتخاب شده؟</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">این گزینه باعث حذف دائم فایل انتخاب‌شده می‌شود. هر پیام متنی مرتبط با این مورد هم حذف خواهد شد.</item>
-        <item quantity="other">این گزینه باعث حذف دائم تمام %1$d فایل انتخاب شده می‌شود. هر پیام متنی مرتبط با این موارد هم حذف خواهد شد.</item>
+        <item quantity="one">این گزینه باعث پاک شدن دائمی فایل انتخاب‌شده می‌شود. هر پیام متنی مرتبط با این مورد هم پاک خواهد شد.</item>
+        <item quantity="other">این گزینه باعث پاک شدن دائمی تمام %1$d فایل انتخاب شده می‌شود. هر پیام متنی مرتبط با این موارد هم پاک خواهد شد.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">در حال حذف</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">حذف پیام‌ها…</string>
@@ -1127,8 +1127,8 @@
         <item quantity="other">ذخیره</item>
     </plurals>
     <plurals name="MediaOverviewActivity_delete_plural">
-        <item quantity="one">حذف</item>
-        <item quantity="other">حذف</item>
+        <item quantity="one">پاک کردن</item>
+        <item quantity="other">پاک کردن</item>
     </plurals>
 
     <plurals name="MediaOverviewActivity_d_selected_s">
@@ -1245,8 +1245,8 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">یک نفر از اعضا نمی‌توانست به گروه جدید اضافه شود و حذف شده است.</item>
-        <item quantity="other">%1$s نفر از اعضا نمی‌توانستند به گروه جدید اضافه شوند و حذف شده‌اند.</item>
+        <item quantity="one">اضافه کردن یک عضو به گروه جدید میسر نبود و حذف شده است.</item>
+        <item quantity="other">اضافه کردن %1$s عضو به گروه جدید میسر نبود و حذف شده‌اند.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1467,7 +1467,7 @@
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">پذیرفتن</string>
     <string name="MessageRequestBottomView_continue">ادامه</string>
-    <string name="MessageRequestBottomView_delete">حذف</string>
+    <string name="MessageRequestBottomView_delete">پاک کردن</string>
     <string name="MessageRequestBottomView_block">مسدود کردن</string>
     <string name="MessageRequestBottomView_unblock">رفع مسدودیت</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که نپذیرید او متوجه نمی‌شود که پیامش را خوانده‌اید.</string>
@@ -1890,7 +1890,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">ذخیره ناموفق بود</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">ذخیره کامل شد</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">برای حذف هر خط روی آن ضربه بزنید</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">برای پاک کردن هر خط روی آن ضربه بزنید</string>
     <string name="SubmitDebugLogActivity_submit">ارسال</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">ارسال گزارش ناموفق بود</string>
     <string name="SubmitDebugLogActivity_success">موفقیت!</string>
@@ -1918,8 +1918,8 @@
     <string name="ThreadRecord_view_once_photo">عکس یکبار مصرف</string>
     <string name="ThreadRecord_view_once_video">ویدئوی یکبار مصرف</string>
     <string name="ThreadRecord_view_once_media">رسانهٔ یکبار مصرف</string>
-    <string name="ThreadRecord_this_message_was_deleted">این پیام حذف شد</string>
-    <string name="ThreadRecord_you_deleted_this_message">شما این پیام را حذف کردید.</string>
+    <string name="ThreadRecord_this_message_was_deleted">این پیام پاک شده بود.</string>
+    <string name="ThreadRecord_you_deleted_this_message">شما این پیام را پاک کردید.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">شما درخواستی برای فعال کردن پرداخت‌ها ارسال کردید</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -1956,6 +1956,8 @@
     <string name="ThreadRecord__reacted_s_to_their_story">با %1$s به استوری او واکنش نشان داد</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">پرداخت</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">به‌روزرسانی سیگنال</string>
@@ -1975,7 +1977,7 @@
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">نام کاربری خود را انتخاب کنید</string>
     <string name="UsernameEditFragment_username">نام کاربری</string>
-    <string name="UsernameEditFragment_delete">حذف</string>
+    <string name="UsernameEditFragment_delete">پاک کردن</string>
     <string name="UsernameEditFragment_successfully_removed_username">نام کاربری با موفقیت حذف شد.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
     <string name="UsernameEditFragment_this_username_is_taken">این نام کاربری گرفته شده است.</string>
@@ -2047,8 +2049,8 @@
     <string name="MediaPreviewActivity_draft">پیش‌نویس</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">سیگنال به منظور ذخیره سازی روی حافظهٔ خارجی نیاز به مجوز حافظه دارد اما اجازه اینکار به طور دائمی رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «حافظه» را فعال کنید.</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ذخیره کردن بر روی حافظهٔ خارجی بدون مجوزها ممکن نیست</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">حذف پیام؟</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">این گزینه این پیام را به طور دائم حذف خواهد کرد.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">پاک کردن پیام؟</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">این گزینه این پیام را به طور دائم پاک خواهد کرد.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s به %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">شما به %1$s</string>
@@ -2093,7 +2095,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">%1$s به فایل صوتی شما واکنش نشان داد.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$s به رسانه‌ٔ یکبار مصرف شما واکنش نشان داد.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s به استیکر شما واکنش نشان داد.</string>
-    <string name="MessageNotifier_this_message_was_deleted">این پیام حذف شد</string>
+    <string name="MessageNotifier_this_message_was_deleted">این پیام پاک شده بود.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">می‌خواهید اعلان‌های پیوستن مخاطبان به سیگنال را خاموش کنید؟ می‌توانید آن‌ها را دوباره در سیگنال &gt; تنظیمات &gt; اعلان‌ها فعال کنید.</string>
 
@@ -2755,7 +2757,7 @@
     <string name="preferences__advanced_pin_settings">تنظیمات پیشرفتهٔ پین</string>
     <string name="preferences__free_private_messages_and_calls">تماس‌ها و پیام‌های خصوصی رایگان برای کاربران سیگنال</string>
     <string name="preferences__submit_debug_log">ارسال گزارش عیب‌یابی</string>
-    <string name="preferences__delete_account">حذف حساب کاربری</string>
+    <string name="preferences__delete_account">پاک کردن حساب کاربری</string>
     <string name="preferences__support_wifi_calling">حالت سازگاری «تماس WiFi»</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر دستگاه شما از تحویل پیامک/فراپیام بر روی شبکهٔ WiFi استفاده می‌کند، این گزینه را فعال کنید (فقط زمانی فعال کنید، که «تماس WiFi» بر روی دستگاه شما فعال است)</string>
     <string name="preferences__incognito_keyboard">صفحه‌کلید ناشناس</string>
@@ -2777,14 +2779,14 @@
     <string name="preferences_storage__files">فایل‌ها</string>
     <string name="preferences_storage__audio">صوت</string>
     <string name="preferences_storage__review_storage">بازنگری حافظه</string>
-    <string name="preferences_storage__delete_older_messages">حذف پیام‌های قدیمی‌تر؟</string>
+    <string name="preferences_storage__delete_older_messages">پاک کردن پیام‌های قدیمی‌تر؟</string>
     <string name="preferences_storage__clear_message_history">تاریخچهٔ پیام پاک شود؟</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">این گزینه تمامی تاریخچهٔ پیام و رسانه را که از %1$s قدیمی‌ترند از روی دستگاه شما پاک می‌کند.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">این گزینه تمامی تاریخچهٔ پیام و رسانه‌ها را که از %1$s قدیمی‌ترند از روی دستگاه شما پاک می‌کند.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">این گزینه تمامی مکالمه‌ها به جز %1$s پیام آخر را به طور دائم حذف خواهد.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">این گزینه تمامی تاریخچهٔ پیام و رسانه را از روی دستگاه شما پاک می‌کند.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">آیا از حذف کل تاریخچهٔ پیام‌ مطمئن هستید؟</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">آیا از پاک کردن کل تاریخچهٔ پیام‌ مطمئن هستید؟</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">کل تاریخچهٔ پیام‌ به طور دائم پاک خواهد شد. این کار بازگشت‌پذیر نیست.</string>
-    <string name="preferences_storage__delete_all_now">حذف همه حالا</string>
+    <string name="preferences_storage__delete_all_now">پاک کردن همه، اکنون</string>
     <string name="preferences_storage__forever">برای همیشه</string>
     <string name="preferences_storage__one_year">۱ سال</string>
     <string name="preferences_storage__six_months">۶ ماه</string>
@@ -3084,7 +3086,7 @@
     <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">کپی</string>
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_delete">حذف</string>
+    <string name="conversation_selection__menu_delete">پاک کردن</string>
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">بازارسال</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -3170,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">فیلتر کردن چت‌های خوانده‌نشده</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">پاک کردن فیلتر خوانده‌نشده</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">کپی به کلیپ‌بورد</string>
@@ -3211,7 +3213,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">پروتکل سیگنال به صورت خودکار، از %1$d%% از پیام‌های خروجی شما در %2$d روز گذشته محافظت کرده است. مکالمه‌های بین کاربران سیگنال همیشه سرتاسر رمزگذاری می‌شوند.</string>
     <string name="InsightsDashboardFragment__spread_the_word">خبر را انتشار دهید</string>
     <string name="InsightsDashboardFragment__not_enough_data">داده‌ٔ کافی وجود ندارد</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">درصد بینش‌ها بر اساس تعداد پیام‌های خروجی در %1$d روز گذشته که حذف نشده‌اند یا ناپدید نشده‌اند محاسبه می‌شود.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">درصد بینش‌ها بر اساس تعداد پیام‌های خروجی در %1$d روز گذشته که پاک نشده‌اند یا ناپدید نشده‌اند محاسبه می‌شود.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">شروع یک مکالمه</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">ارتباط امن برقرار کنید و قابلیت‌های جدید را که از محدودیت‌های پیامک رمزگذاری نشده فراتر می‌روند با دعوت مخاطبین بیشتر به سیگنال فعال کنید.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">این آمارها به صورت محلی بر روی دستگاه شما تولید شده‌اند و فقط شما توانایی دیدن آن‌ها را دارید. آن‌ها هیچ‌گاه به جایی ارسال نمی‌شوند.</string>
@@ -3285,7 +3287,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">حساب کاربری قفل شد</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">حساب کاربری شما به منظور حفاظت از حریم خصوصی و امنیت شما قفل شده است. پس از %1$d روز عدم فعالیت در حساب کاربری‌تان، می‌توانید دوباره با این شماره‌تلفن و بدون نیاز به پین ثبت‌نام کنید. تمامی محتویات حذف خواهند شد.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">حساب کاربری شما به منظور حفاظت از حریم خصوصی و امنیت شما قفل شده است. پس از %1$d روز عدم فعالیت در حساب کاربری‌تان، می‌توانید دوباره با این شماره‌تلفن و بدون نیاز به پین ثبت‌نام کنید. تمام محتوا پاک خواهد شد.</string>
     <string name="AccountLockedFragment__next">بعدی</string>
     <string name="AccountLockedFragment__learn_more">اطلاعات بیشتر</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3303,8 +3305,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">ثبت‌نام سیگنال - نیاز به راهنمایی در مورد پین برای اندروید (پین نسخهٔ ۲)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">به منظور حفظ حریم خصوصی و امنیت شما، هیچ راهی برای بازیابی پین وجود ندارد. اگر نمی‌توانید پین خود را بخاطر بیاورید، می‌توانید پس از %1$d روز عدم فعالیت، از طریق پیامک دوباره وارسی کنید. در این صورت، حساب کاربری شما پاک و محتویات آن حذف خواهند شد.</item>
-        <item quantity="other">به منظور حفظ حریم خصوصی و امنیت شما، هیچ راهی برای بازیابی پین وجود ندارد. اگر نمی‌توانید پین خود را بخاطر بیاورید، می‌توانید پس از %1$d روز عدم فعالیت، از طریق پیامک دوباره وارسی کنید. در این صورت، حساب کاربری شما پاک و محتویات آن حذف خواهند شد.</item>
+        <item quantity="one">به منظور حفظ حریم خصوصی و امنیت شما، هیچ راهی برای بازیابی پین وجود ندارد. اگر نمی‌توانید پین خود را بخاطر بیاورید، می‌توانید پس از %1$d روز عدم فعالیت، از طریق پیامک دوباره وارسی کنید. در این صورت، حساب کاربری شما پاک و محتویات آن حذف خواهد شد.</item>
+        <item quantity="other">به منظور حفظ حریم خصوصی و امنیت شما، هیچ راهی برای بازیابی پین وجود ندارد. اگر نمی‌توانید پین خود را بخاطر بیاورید، می‌توانید پس از %1$d روز عدم فعالیت، از طریق پیامک دوباره درخواست تأیید کنید. در این صورت، حساب کاربری شما به حالت خالی اول برمی‌گردد و تمام محتوای آن پاک خواهد شد.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3313,8 +3315,8 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">اگر فرصت امتحان دیگر باقی نمانده باشد، حساب کاربری شما برای %1$d روز قفل خواهد شد. پس از %1$d روز عدم فعالیت، می‌توانید بدون پین دوباره ثبت نام کنید. حساب کاربری شما و محتویات آن حذف خواهند شد.</item>
-        <item quantity="other">اگر فرصت امتحان دیگر باقی نمانده باشد، حساب کاربری شما برای %1$d روز قفل خواهد شد. پس از %1$d روز عدم فعالیت، می‌توانید دوباره و بدون پین ثبت نام کنید. حساب کاربری شما و محتویات آن حذف خواهند شد.</item>
+        <item quantity="one">اگر فرصت امتحان دیگر باقی نمانده باشد، حساب کاربری شما به مدت %1$d روز قفل خواهد شد. پس از %1$d روز عدم فعالیت، می‌توانید بدون پین دوباره ثبت نام کنید. حساب کاربری شما به حالت خالی اول برمی‌گردد و تمام محتوای آن پاک خواهد شد.</item>
+        <item quantity="other">اگر فرصت امتحان دیگر باقی نمانده باشد، حساب کاربری شما به مدت %1$d روز قفل خواهد شد. پس از %1$d روز عدم فعالیت، می‌توانید دوباره و بدون پین ثبت نام کنید. حساب کاربری شما و تمام محتوای آن پاک خواهد شد.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3372,9 +3374,9 @@
     <string name="BackupDialog_enable_local_backups">فعال‌سازی پشتیبان‌های محلی؟</string>
     <string name="BackupDialog_enable_backups">فعال‌سازی پشتیبان‌ها</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">لطفاً تأیید خود را با علامت زدن جعبه نشان دهید.</string>
-    <string name="BackupDialog_delete_backups">حذف پشتیبان‌ها؟</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">غیرفعال کردن و حذف تمامی پشتیبان‌های محلی؟</string>
-    <string name="BackupDialog_delete_backups_statement">حذف پشتیبان‌ها</string>
+    <string name="BackupDialog_delete_backups">پاک کردن پشتیبان‌ها؟</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">غیرفعال و پاک کردن تمام پشتیبان‌های محلی؟</string>
+    <string name="BackupDialog_delete_backups_statement">پاک کردن پشتیبان‌ها</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">برای فعال کردن پشتیبان‌ها، یک پوشه انتخاب کنید. پشتیبان‌ها در این محل ذخیره خواهند شد.</string>
     <string name="BackupDialog_choose_folder">انتخاب پوشه</string>
     <string name="BackupDialog_copied_to_clipboard">روی کلیپ‌بورد کپی شد</string>
@@ -3387,16 +3389,16 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">در حال تایید پشتیبان Signal…</string>
     <string name="LocalBackupJobApi29_backup_failed">پشتیبان‌گیری ناموفق بود</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">آدرس ذخیره‌سازی پشتیبان شما حذف شده یا به جای دیگری انتقال یافته است.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">آدرس ذخیره‌سازی پشتیبان شما پاک شده یا به جای دیگری انتقال یافته است.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">حجم فایل پشتیبان شما برای نگهداری در این محل زیاد است.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">فضای کافی برای نگهداری پشتیبان شما وجود ندارد.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">نسخه پشتیبان اخیر شما ایجاد و تأیید نشد. لطفا یک نسخه جدید ایجاد کنید.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">نسخه پشتیبان شما دارای یک فایل بسیار حجیم است که نمی‌توان از آن نسخه پشتیبان تهیه کرد. لطفا آن را حذف کنید و یک نسخه پشتیبان جدید ایجاد کنید.</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">نسخه پشتیبان شما دارای یک فایل بسیار حجیم است که نمی‌توان از آن نسخه پشتیبان تهیه کرد. لطفا آن را پاک کنید و یک نسخه پشتیبان جدید ایجاد کنید.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">برای مدیریت پشتیبان‌ها ضربه بزنید.</string>
     <string name="RegistrationActivity_wrong_number">شماره اشتباه است؟</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">با من تماس بگیر (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">تماس با پشتیبانی سیگنال</string>
     <string name="RegistrationActivity_code_support_subject">ثبت‌نام سیگنال - کد وارسی برای اندروید</string>
     <string name="RegistrationActivity_incorrect_code">کد نادرست</string>
@@ -3495,7 +3497,7 @@
     <string name="DeviceTransferSetup__location_permission">مجوز مکان</string>
     <string name="DeviceTransferSetup__location_services">سرویس‌های مکان</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">در صفحهٔ WiFi Direct، همهٔ گروه‌های ذخیره شده را پاک و هر دستگاه دعوت شده یا متصلی را جدا کنید.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">در صفحهٔ WiFi Direct، همهٔ گروه‌های ذخیره شده را حذف و ارتباط همه دستگاه‌های دعوت شده یا متصل را قطع کنید.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">صفحهٔ WiFi Direct</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">خاموش و روشن کردن Wi-Fi را، روی هر دو دستگاه امتحان کنید.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">مطمئن شوید هر دو دستگاه در حالت انتقال قرار دارند.</string>
@@ -3572,12 +3574,12 @@
     <string name="RecipientBottomSheet_remove_as_admin">حذف بعنوان مدیر</string>
     <string name="RecipientBottomSheet_remove_from_group">حذف از گروه</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">آیا می‌خواهید %1$s را بعنوان مدیر حذف کنید؟</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">آیا می‌خواهید %1$s را از سمت مدیر حذف کنید؟</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"«%1$s» قادر خواهد بود تا این گروه و اعضای آن را ویرایش کند."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">حذف کردن %1$s از گروه؟</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s از گروه حذف شود؟ وی نمی‌تواند از طریق پیوند گروه دوباره بپیوندد.</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s از گروه حذف شود؟ دیگر نخواهد توانست دوباره از طریق پیوند گروه بپیوندد.</string>
     <string name="RecipientBottomSheet_remove">حذف</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">روی کلیپ‌بورد کپی شد</string>
 
@@ -3643,7 +3645,7 @@
     <string name="ReviewCard__remove_from_group">حذف از گروه</string>
     <string name="ReviewCard__update_contact">به‌روزرسانی مخاطب</string>
     <string name="ReviewCard__block">مسدود کردن</string>
-    <string name="ReviewCard__delete">حذف</string>
+    <string name="ReviewCard__delete">پاک کردن</string>
     <string name="ReviewCard__recently_changed">به‌تازگی نام پروفایل خود را از %1$s به %2$s تغییر داد</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
@@ -3667,16 +3669,16 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">حذف حساب کاربری شما:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">شماره‌تلفن خود را وارد کنید</string>
-    <string name="DeleteAccountFragment__delete_account">حذف حساب کاربری</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">اطلاعات حساب کاربری و عکس پروفایل خود را حذف کنید</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">تمام پیام‌های خود را حذف کنید</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s را از حساب پرداخت‌های خود حذف کنید</string>
+    <string name="DeleteAccountFragment__delete_account">پاک کردن حساب کاربری</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">اطلاعات حساب کاربری و عکس پروفایل خود را پاک کنید</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">تمام پیام‌های خود را پاک کنید</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s را در حساب پرداخت‌های خود پاک کنید</string>
     <string name="DeleteAccountFragment__no_country_code">هیچ کد کشوری وارد نشده است</string>
     <string name="DeleteAccountFragment__no_number">هیچ شماره‌ای وارد نشده است</string>
     <string name="DeleteAccountFragment__the_phone_number">شماره‌تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
-    <string name="DeleteAccountFragment__are_you_sure">آیا از حذف حساب کاربری خود اطمینان دارید؟</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">این گزینه حساب کاربری سیگنال شما را حذف کرده و برنامه را بازنشانی می‌کند. برنامه پس از تکمیل فرایند بسته می‌شود.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">حذف داده‌های محلی موفق نبود. شما می‌توانید آن را به صورت دستی در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
+    <string name="DeleteAccountFragment__are_you_sure">آیا از پاک کردن حساب کاربری خود اطمینان دارید؟</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">این گزینه، حساب کاربری سیگنال شما را پاک کرده و برنامه را بازنشانی می‌کند. برنامه پس از تکمیل فرایند بسته می‌شود.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">پاک کردن داده‌های محلی موفق نبود. شما می‌توانید آن را به صورت دستی در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
     <string name="DeleteAccountFragment__launch_app_settings">باز کردن تنظیمات برنامه</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">ترک کردن گروه‌ها…</string>
@@ -3689,7 +3691,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">در حال حذف داده‌های کاربر و بازنشانی برنامه</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">حساب کاربری حذف نشد</string>
+    <string name="DeleteAccountFragment__account_not_deleted">حساب کاربری پاک نشد</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">مشکلی در تکمیل فرآیند حذف وجود داشت. اتصال شبکهٔ خود را بررسی و دوباره امتحان کنید.</string>
 
@@ -3980,7 +3982,7 @@
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">پیامک‌ها را از سیگنال حذف کنید تا فضای ذخیره‌سازی خالی شود.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">پشتیبانی پیامک به‌زودی حذف خواهد شد تا روی پیام‌های رمزگذاری‌شده تمرکز شود.</string>
+    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">پشتیبانی پیامک به‌زودی متوقف خواهد شد تا روی پیام‌های رمزگذاری‌شده تمرکز شود.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">پیام‌ها</string>
@@ -4070,13 +4072,13 @@
     <string name="ChatColorSelectionFragment__chat_color">رنگ گفتگو</string>
     <string name="ChatColorSelectionFragment__edit">ویرایش</string>
     <string name="ChatColorSelectionFragment__duplicate">تکثیر</string>
-    <string name="ChatColorSelectionFragment__delete">حذف</string>
-    <string name="ChatColorSelectionFragment__delete_color">حذف رنگ</string>
+    <string name="ChatColorSelectionFragment__delete">پاک کردن</string>
+    <string name="ChatColorSelectionFragment__delete_color">پاک کردن رنگ</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">این رنگ سفارشی در %1$d گفتگو استفاده شده است. آیا می‌خواهید آن را از همهٔ گفتگوها حذف کنید؟</item>
-        <item quantity="other">این رنگ سفارشی در %1$d گفتگو استفاده شده است. آیا می‌خواهید آن را از همهٔ گفتگوها حذف کنید؟</item>
+        <item quantity="one">این رنگ سفارشی در %1$d گفتگو استفاده شده است. آیا می‌خواهید آن را از همهٔ گفتگوها پاک کنید؟</item>
+        <item quantity="other">این رنگ سفارشی در %1$d گفتگو استفاده شده است. آیا می‌خواهید آن را از همهٔ گفتگوها پاک کنید؟</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">حذف رنگ گفتگو؟</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">پاک کردن رنگ گفتگو؟</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">یک‌دست</string>
@@ -4238,13 +4240,13 @@
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">هنگام جستجو این شخص را نخواهید دید. اگر در آینده برای شما پیام ارسال کند، یک درخواست پیام دریافت خواهید کرد.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s حذف شد</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s حذف شده است</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s مسدود شد</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">حذف %1$s ممکن نیست</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">این شخص در مخاطبان دستگاه شما ذخیره شده است. او را از مخاطبان خود حذف و دوباره امتحان کنید.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">این شخص در مخاطبان دستگاه شما ذخیره شده است. او را از مخاطبان خود پاک کرده و دوباره امتحان کنید.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">مشاهده مخاطب</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -4615,15 +4617,15 @@
     <string name="NotificationProfilesFragment__on">روشن</string>
 
     <!-- Button use to permanently delete a notification profile -->
-    <string name="NotificationProfileDetails__delete_profile">حذف پروفایل</string>
+    <string name="NotificationProfileDetails__delete_profile">پاک کردن پروفایل</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
     <string name="NotificationProfileDetails__s_removed">«%1$s» حذف شد.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">لغو</string>
     <!-- Dialog message shown to confirm deleting a profile -->
-    <string name="NotificationProfileDetails__permanently_delete_profile">حذف پروفایل به صورت دائم؟</string>
+    <string name="NotificationProfileDetails__permanently_delete_profile">پاک کردن پروفایل به صورت دائم؟</string>
     <!-- Dialog button to delete profile -->
-    <string name="NotificationProfileDetails__delete">حذف</string>
+    <string name="NotificationProfileDetails__delete">پاک کردن</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
     <string name="NotificationProfileDetails__edit_notification_profile">ویرایش پروفایل اعلان</string>
     <!-- Schedule description if all days are selected -->
@@ -4799,9 +4801,9 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">استوری %1$s</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">حذف استوری؟</string>
+    <string name="MyStories__delete_story">پاک کردن استوری؟</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">این استوری برای شما و همۀ کسانی که آن را دریافت کرده‌اند حذف می‌شود.</string>
+    <string name="MyStories__this_story_will_be_deleted">این استوری برای شما و همۀ کسانی که آن را دریافت کرده‌اند پاک می‌شود.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">ذخیره نمی‌شود</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4861,12 +4863,12 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">پاسخ خصوصی به %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">پاسخ به %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">کپی</string>
     <!-- Context menu item to delete a story response -->
-    <string name="StoryGroupReplyItem__delete">حذف</string>
+    <string name="StoryGroupReplyItem__delete">پاک کردن</string>
     <!-- Page title for My Story options -->
     <string name="MyStorySettingsFragment__my_story">استوری من</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
@@ -4923,7 +4925,7 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">افزودن بازدیدکننده</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">حذف استوری سفارشی</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">پاک کردن استوری سفارشی</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">%1$s حذف شود؟</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
@@ -4970,11 +4972,11 @@
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">حذف</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">استوری سفارشی حذف شود؟</string>
+    <string name="StoryDialogs__delete_custom_story">استوری سفارشی پاک شود؟</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">\" %1$s \" و به‌روزرسانی‌های همرسانی شده در این استوری حذف خواهند شد.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" و به‌روزرسانی‌های همرسانی شده در این استوری پاک خواهند شد.</string>
     <!-- Dialog positive action for deleting a custom story -->
-    <string name="StoryDialogs__delete">حذف</string>
+    <string name="StoryDialogs__delete">پاک کردن</string>
     <!-- Dialog title for first time sending something to a beta story -->
     <!-- Dialog message for first time sending something to a beta story -->
     <!-- Dialog title for first time adding something to a story -->
@@ -4986,7 +4988,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">ارسال</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">خاموش و حذف کردن</string>
+    <string name="StoryDialogs__turn_off_and_delete">خاموش و پاک کردن</string>
     <!-- Privacy Settings toggle title for stories -->
     <!-- Privacy Settings toggle summary for stories -->
     <!-- New story viewer selection screen title -->
@@ -5156,7 +5158,7 @@
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">حذف استوری</string>
     <!-- Label for context menu item to delete a custom story -->
-    <string name="ContactSearchItems__delete_story">حذف استوری</string>
+    <string name="ContactSearchItems__delete_story">پاک کردن استوری</string>
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">استوری گروهی حذف شود؟</string>
     <!-- Dialog message for removing a group story -->
@@ -5164,11 +5166,11 @@
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">حذف</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_story">حذف استوری؟</string>
+    <string name="ContactSearchMediator__delete_story">پاک کردن استوری؟</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">استوری سفارشی «%1$s» حذف شود؟</string>
+    <string name="ContactSearchMediator__delete_the_custom">استوری سفارشی «%1$s» پاک شود؟</string>
     <!-- Dialog action item for deleting a custom story -->
-    <string name="ContactSearchMediator__delete">حذف</string>
+    <string name="ContactSearchMediator__delete">پاک کردن</string>
     <!-- Donation for a friend expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
         <item quantity="one">%1$d روز باقی مانده</item>
@@ -5275,7 +5277,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">استوری‌ها خاموش شود؟</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">دیگر نمی‌توانید استوری‌ها را هم‌رسانی یا مشاهده کنید. به‌روزرسانی‌های استوری‌هایی که اخیراً همرسانی کرده‌اید نیز حذف خواهند شد.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">دیگر نخواهید توانست استوری‌ها را هم‌رسانی یا مشاهده کنید. به‌روزرسانی‌های استوری‌هایی که اخیراً همرسانی کرده‌اید نیز پاک خواهند شد.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">حریم شخصی استوری</string>
     <!-- Header for section that lists out stories -->
@@ -5415,9 +5417,9 @@
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">سیگنال دیگر از پیامک پشتیبانی نمی‌کند</string>
     <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">سیگنال به‌زودی پشتیبانی از ارسال پیامک را حذف می‌کند زیرا پیام‌های سیگنال رمزگذاری سرتاسری و حریم خصوصی قوی ارائه می‌کنند که پیامک‌ها این قابلیت را ندارند. این امر همچنین به ما امکان می‌دهد تا تجربه پیام‌رسانی سیگنال را بهبود بخشیم.</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">سیگنال به‌زودی پشتیبانی از ارسال پیامک را متوقف می‌کند زیرا پیام‌های سیگنال رمزگذاری سرتاسری و حریم خصوصی قوی ارائه می‌کنند که پیامک‌ها این قابلیت را ندارند. این کار همچنین به ما امکان می‌دهد تا تجربه پیام‌رسانی سیگنال را بهبود بخشیم.</string>
     <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">سیگنال پشتیبانی از ارسال پیامک را حذف کرده است زیرا پیام‌های سیگنال رمزگذاری سرتاسری و حریم خصوصی قوی ارائه می‌کنند که پیامک‌ها این قابلیت را ندارند. این امر همچنین به ما امکان می‌دهد تا تجربه پیام‌رسانی سیگنال را بهبود بخشیم.</string>
+    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">سیگنال پشتیبانی از ارسال پیامک را متوقف کرده است زیرا پیام‌های سیگنال رمزگذاری سرتاسری و حریم خصوصی قوی ارائه می‌کنند که پیامک‌ها این قابلیت را ندارند. این کار همچنین به ما امکان می‌دهد تا تجربه پیام‌رسانی سیگنال را بهبود بخشیم.</string>
     <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
     <string name="SmsExportMegaphoneActivity__export_sms">صدور پیامک</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
@@ -5556,26 +5558,26 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">پشتیبانی پیامکی به‌زودی برداشته می‌شود</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">به‌زودی دیگر از ارسال پیامک در برنامه سیگنال پشتیبانی نمی‌شود.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">پیامک‌ها با پیام‌های سیگنال تفاوت دارند. <b>این تغییر بر پیام‌های رمزگذاری‌شده سیگنال تأثیری نخواهد داشت و آن‌ها همچنان کار خواهند کرد.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_3">می‌توانید پیامک‌هایتان را صادر کنید و برنامه پیامک جدیدی را انتخاب کنید.</string>
     <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">سیگنال پشتیبانی برای ارسال پیامک را حذف کرده است.</string>
+    <string name="SmsRemoval_info_bullet_1_phase_3">سیگنال پشتیبانی برای ارسال پیامک را متوقف کرده است.</string>
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">صادر کردن پیامک</string>
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">تنظیم نام کاربری سیگنال</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">نام کاربری به دیگران امکان می‌دهد که بدون نیاز به شماره تلفنتان به شما پیام بدهند</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">حالا نه</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">ادامه</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5589,15 +5591,15 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">ادامه</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">تنظیم نام کاربری سیگنال</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">ویرایش نام کاربری</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">پاک کردن نام کاربری</string>
 
     <!-- EOF -->
 </resources>
