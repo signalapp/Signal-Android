@@ -19,6 +19,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
+import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.MessageTable;
@@ -333,7 +334,14 @@ public class GroupsV2StateProcessor {
                                                       .filter(Objects::nonNull)
                                                       .anyMatch(serviceIds::matches);
 
-      return !currentlyInGroup && !addedAsMember && !addedAsPendingMember;
+      boolean addedAsRequestingMember = signedGroupChange.getNewRequestingMembersList()
+                                                         .stream()
+                                                         .map(DecryptedRequestingMember::getUuid)
+                                                         .map(UuidUtil::fromByteStringOrNull)
+                                                         .filter(Objects::nonNull)
+                                                         .anyMatch(serviceIds::matches);
+
+      return !currentlyInGroup && !addedAsMember && !addedAsPendingMember && !addedAsRequestingMember;
     }
 
     private boolean notHavingInviteRevoked(@NonNull DecryptedGroupChange signedGroupChange) {
