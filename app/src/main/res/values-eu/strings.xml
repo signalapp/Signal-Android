@@ -196,9 +196,9 @@
     <string name="CensorshipCircumventionMegaphone_no_thanks">Ez eskerrik asko</string>
 
     <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">Ezabatu</string>
-    <string name="ClearProfileActivity_remove_profile_photo">Profileko argazkia ezabatu?</string>
-    <string name="ClearProfileActivity_remove_group_photo">Taldeko argazkia ezabatu?</string>
+    <string name="ClearProfileActivity_remove">Kendu</string>
+    <string name="ClearProfileActivity_remove_profile_photo">Profileko argazkia kendu nahi duzu?</string>
+    <string name="ClearProfileActivity_remove_group_photo">Taldeko argazkia kendu nahi duzu?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Eguneratu Signal</string>
@@ -281,7 +281,7 @@
     <string name="ConversationItem_read_more">Irakurri gehiago</string>
     <string name="ConversationItem_download_more">Deskargatu gehiago</string>
     <string name="ConversationItem_pending">  Egiteke</string>
-    <string name="ConversationItem_this_message_was_deleted">Mezu hau ezabatu da.</string>
+    <string name="ConversationItem_this_message_was_deleted">Mezu hau ezabatu egin da.</string>
     <string name="ConversationItem_you_deleted_this_message">Mezu hau ezabatu duzu.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Ezin da deskargatu mezua. %1$s(e)k berriro bidali beharko du.</string>
@@ -352,12 +352,12 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Berria! Esan eranskailuen bidez</string>
 
     <string name="ConversationActivity_cancel">Utzi</string>
-    <string name="ConversationActivity_delete_conversation">Solasaldia ezabatu?</string>
-    <string name="ConversationActivity_delete_and_leave_group">Ezabatu eta taldea utzi?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Solasaldi hau zure gailu guztietatik ezabatuko da.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Talde hau utziko duzu eta zure gailu guztietatik ezabatuko da.</string>
+    <string name="ConversationActivity_delete_conversation">Elkarrizketa ezabatu nahi duzu?</string>
+    <string name="ConversationActivity_delete_and_leave_group">Taldea ezabatu, eta bertatik irten nahi duzu?</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Elkarrizketa hau gailu guztietatik ezabatuko da.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Talde honetatik irtengo zara, eta gailu guztietatik ezabatuko da.</string>
     <string name="ConversationActivity_delete">Ezabatu</string>
-    <string name="ConversationActivity_delete_and_leave">Ezabatu eta utzi</string>
+    <string name="ConversationActivity_delete_and_leave">Ezabatu eta irten</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s erabiltzaileari deitzeko, Signalek zure mikrofonoa erabiltzeko baimena behar du</string>
 
 
@@ -393,8 +393,8 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">Ez da aurkitu kontaktu-aplikaziorik.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="one">Ezabatu aukeratutako mezua?</item>
-        <item quantity="other">Ezabatu aukeratutako mezuak?</item>
+        <item quantity="one">Hautatutako mezua ezabatu nahi duzu?</item>
+        <item quantity="other">Hautatutako mezuak ezabatu nahi dituzu?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Biltegian gorde?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -426,13 +426,13 @@
     <string name="ConversationFragment_delete_on_this_device">Ezabatu gailu honetan</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Ezabatu gailu guztietan</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Mezu hau ezabatuko da solasaldian dagoen edonorentzat Signalen azkenengo bertsioetako bat erabiltzen badu. Mezua ezabatu duzula ikusteko gai izango dira.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Elkarrizketan dauden eta Signal-en bertsio berri bat darabilten erabiltzaile guztientzat ezabatuko da mezu hau. Mezua ezabatu duzula ikusi ahalko dute.</string>
     <string name="ConversationFragment_quoted_message_not_found">Jatorrizko mezua ez da aurkitu</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Jatorrizko mezua ez dago eskuragarri jada</string>
     <string name="ConversationFragment_failed_to_open_message">Akatsa mezua irekitzean</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Azkar erantzuteko, irristatu hatza eskuinetara edozein mezuren gainean</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Azkar erantzuteko, irristatu hatza ezkerretara edozein mezuren gainean</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Bakarri behin ikustekoak diren multimedia fitxategiak automatikoki ezabatuko dira behin bidalita</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Behin bakarrik ikustekoak diren multimedia-fitxategiak bidali ondoren, automatikoki kenduko dira</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Mezu hau ikusia duzu</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Zuretzako oharrak gehitu ditzakezu solasaldi honetan.\nZure kontuak lotutako gailurik badauka, ohar berriak sinkronizatuko dira.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d taldeko kide izen bera dute.</string>
@@ -461,8 +461,8 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Ez dago irakurri gabeko txatik</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Aukeratutako solasaldia ezabatu?</item>
-        <item quantity="other">Ezabatu aukeratutako solasaldiak?</item>
+        <item quantity="one">Hautatutako elkarrizketa ezabatu nahi duzu?</item>
+        <item quantity="other">Hautatutako elkarrizketak ezabatu nahi dituzu?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
         <item quantity="one">Hautatutako elkarrizketa betiko ezabatuko da.</item>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Tiratu behera iragazteko</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Askatu iragazteko</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profila</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Ordu guztiak (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Aukeratutako denbora iraganekoa da. Ondorioz, mezua berehala bidaliko da.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Bidali berehala</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Bidali orain</string>
@@ -776,8 +776,8 @@
         <item quantity="other">Talde honetan berriro sartzeko, kide hauek gonbidapena onartu beharko dute; ez dute talde mezurik jasoko onartu arte:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Kide hau taldetik ezabatu zen eta ezingo da berriz sartu eguneratu arte:</item>
-        <item quantity="other">Kide hauek taldetik ezabatu ziren eta ezingo dira berriz sartu eguneratu arte:</item>
+        <item quantity="one">Kide hau taldetik kendu da, eta ezingo da berriz sartu aplikazioa bertsio-berritzen duen arte:</item>
+        <item quantity="other">Kide hauek taldetik kendu dira, eta ezingo dira berriz sartu aplikazioa bertsio-berritzen duten arte:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -792,8 +792,8 @@
         <item quantity="other">Talde honetan berriro sartzeko, kide hauek gonbidapena onartu beharko dute; ez dute talde mezurik jasoko onartu arte:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Kide hau ezin da Talde Berrietara gehitu eta taldetik ezabatuko da:</item>
-        <item quantity="other">Kide hauek ezin dira Talde Berrietara gehitu eta taldetik ezabatuko dira:</item>
+        <item quantity="one">Kide hau ezin da talde berrietan sartu, eta talde honetatik kenduko da:</item>
+        <item quantity="other">Kide hauek ezin dira talde berrietan sartu, eta talde honetatik kenduko dira:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -897,13 +897,13 @@
     <string name="AddGroupDetailsFragment__this_field_is_required">Eremu hau beharrezkoa da.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">Taldea sortzeak huts egin du.</string>
     <string name="AddGroupDetailsFragment__try_again_later">Saiatu berriro beranduago.</string>
-    <string name="AddGroupDetailsFragment__remove">Ezabatu</string>
+    <string name="AddGroupDetailsFragment__remove">Kendu</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS kontaktua</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Ezabatu %1$s erabiltzailea talde honetatk?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s talde honetatik kendu nahi duzu?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal-eko taldeak onartzen ez dituen kontaktu bat hautatu duzu; beraz, talde hau MMS bidezkoa izango da. MMS taldeen izen pertsonalizatu eta argazkiak zuk bakarrik ikusi ahalko dituzu.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal-eko taldeak onartzen ez dituen kontaktu bat hautatu duzu; hortaz talde hau MMS bidezkoa izango da. MMS bidezko taldeen izen pertsonalizatuak eta irudiak zuk bakarrik ikusi ahalko dituzu. Laster, MMS bidezko taldeak erabiltzeko aukera emateari utzi, eta mezu enkriptatuetan jarriko dugu arreta osoa.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal-eko taldeak erabiltzeko aukera ez duen kontaktu bat hautatu duzu; hortaz talde hau MMS bidezkoa izango da. MMS bidezko taldeen izen pertsonalizatuak eta irudiak zuk bakarrik ikusi ahalko dituzu. Laster, MMS bidezko taldeak erabiltzeko aukera emateari utzi, eta mezu enkriptatuetan jarriko dugu arreta osoa.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Nork gehitu ditzake kide berriak?</string>
@@ -1103,8 +1103,8 @@
     <string name="MediaOverviewActivity_Audio">Audioa</string>
     <string name="MediaOverviewActivity_All">Denak</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">Ezabatu hautatutako elementua?</item>
-        <item quantity="other">Ezabatu hautatutako elementuak?</item>
+        <item quantity="one">Hautatutako elementua ezabatu nahi duzu?</item>
+        <item quantity="other">Hautatutako elementuak ezabatu nahi dituzu?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
         <item quantity="one">Ekintza honen bidez, betiko ezabatuko da hautatutako fitxategia. Fitxategiarekin lotutako mezuak ere ezabatuko dira.</item>
@@ -1245,8 +1245,8 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">Kide bat ezin izan da gehitu Talde Berrian, eta kendu egin da.</item>
-        <item quantity="other">%1$s kide ezin izan dira gehitu Talde Berrian, eta kendu egin dira.</item>
+        <item quantity="one">Kide bat ezin izan da gehitu talde berrian, eta kendu egin da.</item>
+        <item quantity="other">%1$s kide ezin izan dira gehitu talde berrian, eta kendu egin dira.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1267,9 +1267,9 @@
     <string name="MessageRecord_s_joined_the_group">%1$s taldera sartu da.</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">%1$s ezabatu duzu.</string>
-    <string name="MessageRecord_s_removed_s">%1$s erabiltzaileak %2$s ezabatu du.</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s erabiltzaileak taldetik ezabatu zaitu.</string>
+    <string name="MessageRecord_you_removed_s">%1$s kendu duzu.</string>
+    <string name="MessageRecord_s_removed_s">%1$s erabiltzaileak %2$s kendu du.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s erabiltzaileak taldetik kendu zaitu.</string>
     <string name="MessageRecord_you_left_the_group">Taldea utzi duzu.</string>
     <string name="MessageRecord_s_left_the_group">%1$s erabiltzaileak taldea utzi du.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">Ez zaude taldean jada.</string>
@@ -1877,7 +1877,7 @@
     <string name="StickerPackPreviewActivity_untitled">Izenbururi gabe</string>
     <string name="StickerPackPreviewActivity_unknown">Ezezaguna</string>
     <string name="StickerPackPreviewActivity_install">Instalatu</string>
-    <string name="StickerPackPreviewActivity_remove">Ezabatu</string>
+    <string name="StickerPackPreviewActivity_remove">Kendu</string>
     <string name="StickerPackPreviewActivity_stickers">Eranskailuak</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Huts egin du eranskailuen multzoa kargatzean</string>
 
@@ -1918,7 +1918,7 @@
     <string name="ThreadRecord_view_once_photo">Behin ikusteko argazkia</string>
     <string name="ThreadRecord_view_once_video">Behin ikusteko bideoa</string>
     <string name="ThreadRecord_view_once_media">Behi ikusteko multimedia</string>
-    <string name="ThreadRecord_this_message_was_deleted">Mezu hau ezabatu da.</string>
+    <string name="ThreadRecord_this_message_was_deleted">Mezu hau ezabatu egin da.</string>
     <string name="ThreadRecord_you_deleted_this_message">Mezu hau ezabatu duzu.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Ordainketak aktibatzeko eskaera bat bidali duzu</string>
@@ -1978,7 +1978,7 @@
     <string name="UsernameEditFragment__choose_your_username">Aukeratu erabiltzaile-izena</string>
     <string name="UsernameEditFragment_username">Erabiltzailearen izena</string>
     <string name="UsernameEditFragment_delete">Ezabatu</string>
-    <string name="UsernameEditFragment_successfully_removed_username">Erabiltzaile izena ondo ezabatu da.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">Kendu da erabiltzaile-izena.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Sare errore bat izan da.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Erabiltzaile izen hau hartuta dago.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Erabiltzaile izenetan bakarrik ondokoak daude onartuta: a-Z, 0-9 eta azpimarrak.</string>
@@ -2049,8 +2049,8 @@
     <string name="MediaPreviewActivity_draft">Zirriborroa</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signalek Gordailu baimena behar du kanpoko gordailuan datuak idazteko baina baimena ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Gordailua\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ezin izan da kanpoko gordailuan idatzi baimen faltagatik</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Ezabatu mezua?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Honek behin betiko ezabatuko du mezua.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Mezua ezabatu nahi duzu?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Behin betiko ezabatuko du mezua.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s tik %2$s ra</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Zuk %1$s(r)i</string>
@@ -2095,7 +2095,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">%1$s izan da zure audioarekiko erreakzioa.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$s izan da zure behin ikusteko mediarekiko erreakzioa.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s izan da zure eranskailuarekiko erreakzioa.</string>
-    <string name="MessageNotifier_this_message_was_deleted">Mezu hau ezabatu da.</string>
+    <string name="MessageNotifier_this_message_was_deleted">Mezu hau ezabatu egin da.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desaktibatu nahi duzu kontaktu bat batzen denean bidaltzen diren jakinarazpenak? Berriro aktiba ditzakezu Signal &gt; Ezarpenak &gt; Jakinarazpenak atalean.</string>
 
@@ -2577,7 +2577,7 @@
     <string name="AndroidManifest__linked_devices">Lotutako gailuak</string>
     <string name="AndroidManifest__invite_friends">Gonbidatu lagunak</string>
     <string name="AndroidManifest_archived_conversations">Artxibatutako solasaldiak</string>
-    <string name="AndroidManifest_remove_photo">Argazkia ezabatu</string>
+    <string name="AndroidManifest_remove_photo">Kendu argazkia</string>
 
     <!-- Message Requests Megaphone -->
     <string name="MessageRequestsMegaphone__message_requests">Mezuen eskaerak</string>
@@ -2779,13 +2779,13 @@
     <string name="preferences_storage__files">Fitxategiak</string>
     <string name="preferences_storage__audio">Audioa</string>
     <string name="preferences_storage__review_storage">Berrikusi biltegia</string>
-    <string name="preferences_storage__delete_older_messages">Ezabatu mezu zaharragoak?</string>
+    <string name="preferences_storage__delete_older_messages">Mezu zaharragoak ezabatu nahi dituzu?</string>
     <string name="preferences_storage__clear_message_history">Mezuen historia garbitu nahi duzu?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Betiko ezabatuko dira gailutik %1$s baino zaharragoak diren mezuen historia eta multimedia-edukiak.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Honek betiko garbituko ditu solasaldi guztiak, beraietako bakoizean azkenengo %1$s mezuak utziz bakarrik.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Betiko ezabatuko dira gailutik mezuen historia eta multimedia-edukiak.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ziur zaude mezuen historia osoa ezabatu nahi duzula?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Betiko ezabatuko da mezuen historia osoa. Ekintza hau ezin da desegin.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Betiko kenduko da mezuen historia osoa. Ekintza hau ezin da desegin.</string>
     <string name="preferences_storage__delete_all_now">Ezabatu dena orain</string>
     <string name="preferences_storage__forever">Betirako</string>
     <string name="preferences_storage__one_year">Urte 1</string>
@@ -3172,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Iragazi irakurri gabeko txatak</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Kendu irakurri gabekoen iragazkia</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiatu arbelera</string>
@@ -3287,7 +3287,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Kontua blokeatuta</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Zure kontua blokeatu egin da zure pribatutasuna eta segurtasuna babesteko. %1$d egun aktibitaterik gabe egon ondore, telefono zenbaki hau berriro errejistratu ahal izango duzu PIN bat erabili gabe. Eduki guztia ezabatuko da.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Zure kontua blokeatu egin da zure pribatutasuna eta segurtasuna babesteko. %1$d egun jarduerarik gabe egon ondoren, berriro erregistratu ahal izango duzutelefono-zenbaki hau, PIN bat erabili gabe. Eduki guztia ezabatuko da.</string>
     <string name="AccountLockedFragment__next">Hurrengoa</string>
     <string name="AccountLockedFragment__learn_more">Gehiago jakin</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3305,8 +3305,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal Erregistroa - Laguntza behar dut Androideko PINarekina (PIN v2)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Zure pribatutasuna eta segurtasuna babesteko, ez dago zure PINa berreskuratzeko beste modurik. Zure PINaz gogoratzen ez bazara, berregiaztatu dezakezu SMS bidez egun %1$d aktibitaterik gabe egon ondoren. Kasu honetan, zure kontua eta edukia ezabatuko dira.</item>
-        <item quantity="other">Zure pribatutasuna eta segurtasuna babesteko, ez dago zure PINa berreskuratzeko beste modurik. Zure PINaz gogoratzen ez bazara, berregiaztatu dezakezu SMS bidez %1$d egun aktibitaterik gabe egon ondoren. Kasu honetan, zure kontua eta edukia ezabatuko dira.</item>
+        <item quantity="one">Zure pribatutasuna eta segurtasuna babesteko, ez dago PINa berreskuratzeko beste modurik. PINa gogoratzen ez baduzu, berriro egin dezakezu egiaztapena SMS bidez %1$d egun jarduerarik gabe egon ondoren. Kasu horretan, zure kontua eta edukia ezabatu egingo dira.</item>
+        <item quantity="other">Zure pribatutasuna eta segurtasuna babesteko, ez dago PINa berreskuratzeko beste modurik. PINa gogoratzen ez baduzu, berriro egin dezakezu egiaztapena SMS bidez %1$d egun jarduerarik gabe egon ondoren. Kasu horretan, zure kontua eta edukia ezabatu egingo dira.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3315,8 +3315,8 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">Saiakerarik gabe gelditzen bazara, zure kontua egun %1$d-ez blokeatuta egongo da. egun %1$daktibitaterik gabe egon ondoren, berriro errejistratu dezakezu gailua PIN-ik gabe. Zure kontua eta eduki guztia ezabatuko dira.</item>
-        <item quantity="other">Saiakerarik gabe gelditzen bazara, zure kontua %1$d egunez blokeatuta egongo da. %1$d egun aktibitaterik gabe egon ondoren, berriro errejistratu dezakezu gailua PIN-ik gabe. Zure kontua eta eduki guztia ezabatuko dira.</item>
+        <item quantity="one">Saiakerarik gabe gelditzen bazara, zure kontua %1$d egunez blokeatuko da. %1$d egunez jarduerarik gabe egon ondoren, berriro erregistra zaitezke PINik erabili gabe. Zure kontua eta eduki guztia ezabatu egingo dira.</item>
+        <item quantity="other">Saiakerarik gabe gelditzen bazara, zure kontua %1$d egunez blokeatuko da. %1$d egunez jarduerarik gabe egon ondoren, berriro erregistra zaitezke PINik erabili gabe. Zure kontua eta eduki guztia ezabatu egingo dira.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3374,8 +3374,8 @@
     <string name="BackupDialog_enable_local_backups">Babeskopia lokalak gaitu?</string>
     <string name="BackupDialog_enable_backups">Gaitu babeskopiak</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Baieztatu ulertu duzula berrespenaren kontrol-laukia markatuz.</string>
-    <string name="BackupDialog_delete_backups">Babeskopiak ezabatu?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">Babeskopia lokal guztiak desgaitu eta ezabatu?</string>
+    <string name="BackupDialog_delete_backups">Babeskopiak ezabatu nahi dituzu?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Babeskopia lokal guztiak desgaitu eta ezabatu nahi dituzu?</string>
     <string name="BackupDialog_delete_backups_statement">Ezabatu babeskopiak</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Babeskopian gaitzeko, karpeta bat hautatu. Babeskopian kokapen honetan gordeko dira.</string>
     <string name="BackupDialog_choose_folder">Aukeratu karpeta</string>
@@ -3389,7 +3389,7 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Signal-en babeskopia egiaztatzen…</string>
     <string name="LocalBackupJobApi29_backup_failed">Babeskopiak huts egin du</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Babeskopiak gordetzeko karpeta ezabatu edo mugitu da.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Babeskopiak gordetzeko karpeta ezabatu edo mugitu egin da.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Zure babeskopia duen fitxategia handiegia da bolumen honetan gordetzeko.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Ez dago leku nahikorik zure babeskopia gordetzeko.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
@@ -3398,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Babeskopiak oso handia den fitxategi bat dauka, eta ezin da egin haren babeskopia. Ezaba ezazu eta sortu beste babeskopia bat.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Sakatu babeskopiak kudeatzeko.</string>
     <string name="RegistrationActivity_wrong_number">Zenbaki okerra?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Dei iezadazu (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Harremanetan jarri Signal Laguntza Taldearekin</string>
     <string name="RegistrationActivity_code_support_subject">Signal Errejistratzea - Androiderako Egiaztatze Kodea</string>
     <string name="RegistrationActivity_incorrect_code">Kodea ez da zuzena</string>
@@ -3571,16 +3571,16 @@
     <string name="RecipientBottomSheet_add_to_another_group">Gehitu beste talde batera</string>
     <string name="RecipientBottomSheet_view_safety_number">Erakutsi segurtasun zenbakia</string>
     <string name="RecipientBottomSheet_make_admin">Bihurtu administratzaile</string>
-    <string name="RecipientBottomSheet_remove_as_admin">Administratzaile gisa ezabatu</string>
-    <string name="RecipientBottomSheet_remove_from_group">Ezabatu taldetik</string>
+    <string name="RecipientBottomSheet_remove_as_admin">Kendu administratzaile-maila</string>
+    <string name="RecipientBottomSheet_remove_from_group">Kendu taldetik</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s erabiltzailea talde administratzaile gisa ezabatu nahi duzu?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s erabiltzaileari taldeko administratzaile-maila kendu nahi diozu?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" erabiltzailea talde hau eta bere kideak editatzeko gai izango da."</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">Ezabatu nahi duzu %1$s kidea taldetik?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s taldetik kendu nahi duzu?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$staldetik kendu? Ezin izango dira berriro sartu taldearen estekaren bidez.</string>
-    <string name="RecipientBottomSheet_remove">Ezabatu</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s taldetik kendu nahi duzu? Ezin izango da berriro sartu taldearen estekaren bidez.</string>
+    <string name="RecipientBottomSheet_remove">Kendu</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">Arbelera kopiatuta</string>
 
     <string name="GroupRecipientListItem_admin">Administratzailea</string>
@@ -3634,15 +3634,15 @@
         <item quantity="one">Talde %1$d komuna</item>
         <item quantity="other">%1$d talde komun</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s ezabatu nahi duzu taldetik?</string>
-    <string name="ReviewCardDialogFragment__remove">Ezabatu</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Ezin izan da taldeko kidea ezabatu.</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s taldetik kendu nahi duzu?</string>
+    <string name="ReviewCardDialogFragment__remove">Kendu</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Ezin izan da kendu taldeko kidea.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">Kidea</string>
     <string name="ReviewCard__request">Eskaera</string>
     <string name="ReviewCard__your_contact">Zure kontaktua</string>
-    <string name="ReviewCard__remove_from_group">Ezabatu taldetik</string>
+    <string name="ReviewCard__remove_from_group">Kendu taldetik</string>
     <string name="ReviewCard__update_contact">Eguneratu kontaktua</string>
     <string name="ReviewCard__block">Blokeatu</string>
     <string name="ReviewCard__delete">Ezabatu</string>
@@ -3670,15 +3670,15 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Zure kontua ezabatzean zera gertatuko da:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Idatzi zure telefono zenbakia</string>
     <string name="DeleteAccountFragment__delete_account">Ezabatu kontua</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Ezabatu zure kontuaren informazioa eta profileko argazkia</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Ezabatu zure mezuak</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Ezabatu %1$szure ordainketa-kontuan</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Ezabatu kontuaren informazioa eta profileko argazkia</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Ezabatu mezu guztiak</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Ezabatu %1$s ordainketa-kontuan</string>
     <string name="DeleteAccountFragment__no_country_code">Ez duzu herrialde-kodea idatzi</string>
     <string name="DeleteAccountFragment__no_number">Ez duzu zenbakia idatzi</string>
     <string name="DeleteAccountFragment__the_phone_number">Idatzi duzun telefono zenbakia eta zure kontuarena ez datoz bat.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Ziur zaude zure kontua ezabatu nahi duzula?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Honek zure Signal kontua ezabatu eta aplikazioa hasieratu egingo du. Prozesua amaitzean aplikazioa itxi egingo da.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Ezin izan dira aplikazioaren datuak ezabatu. Zure telefonoaren ezarpenetan, aplikazioaren ezarpenetan egin beharko duzu.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Ziur zaude kontua ezabatu nahi duzula?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Signal-eko kontua ezabatu, eta aplikazioa berrezarri egingo da. Prozesua amaitzean, aplikazioa itxi egingo da.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Ezin izan dira ezabatu datu lokalak. Sistemaren aplikazioen ezarpenetan ezabatu beharko dituzu.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Aplikazioaren Ezarpenak Ireki</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Taldeak uzten…</string>
@@ -3691,7 +3691,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Erabiltzailearen datuak ezabatzen eta aplikazioa berrezartzen</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">Kontu ez ezabatua</string>
+    <string name="DeleteAccountFragment__account_not_deleted">Ez da ezabatu kontua</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">Arazo bat izan da ezabatze-prozesua osatzean. Egiaztatu sareko konexioa eta saiatu berriro.</string>
 
@@ -3970,7 +3970,7 @@
     <!-- Preference title to re-export sms -->
     <string name="SmsSettingsFragment__export_sms_messages_again">Esportatu berriro SMS mezuak</string>
     <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">Ezabatu SMS mezuak</string>
+    <string name="SmsSettingsFragment__remove_sms_messages">Kendu SMS mezuak</string>
     <!-- Snackbar text to confirm deletion -->
     <string name="SmsSettingsFragment__removing_sms_messages_from_signal">SMS mezuak Signal-etik kentzen…</string>
     <!-- Snackbar text to indicate can delete later -->
@@ -4075,10 +4075,10 @@
     <string name="ChatColorSelectionFragment__delete">Ezabatu</string>
     <string name="ChatColorSelectionFragment__delete_color">Ezabatu kolorea</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">Kolore pertsonalizatu hau txateta%1$dean erabiltzen da. Txat guztietarako ezabatu nahi duzu?</item>
-        <item quantity="other">Kolore pertsonalizatu hau %1$dtxatetan erabiltzen da. Txat guztietarako ezabatu nahi duzu?</item>
+        <item quantity="one">Kolore pertsonalizatu hau %1$d txatetan erabiltzen da. Txat guztietarako ezabatu nahi duzu?</item>
+        <item quantity="other">Kolore pertsonalizatu hau %1$d txatetan erabiltzen da. Txat guztietarako ezabatu nahi duzu?</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">Ezabatu txataren kolorea?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">Txataren kolorea ezabatu nahi duzu?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">Solidoa</string>
@@ -4232,11 +4232,11 @@
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Bideodeia</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">Ezabatu</string>
+    <string name="NewConversationActivity__remove">Kendu</string>
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">Blokeatu</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">%1$sezabatu?</string>
+    <string name="NewConversationActivity__remove_s">%1$s kendu nahi duzu?</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">Bilaketak egitean, ez duzu pertsona hau ikusiko. Etorkizunean mezu bat bidaltzen badizu, mezu-eskaera bat jasoko duzu.</string>
     <!-- Snackbar message after removing a contact -->
@@ -4349,7 +4349,7 @@
 
     <string name="MediaCountIndicatorButton__send">Bidali</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Sakatu ezabatzeko</string>
+    <string name="MediaReviewSelectedItem__tap_to_remove">Sakatu kentzeko</string>
     <string name="MediaReviewSelectedItem__tap_to_select">Sakatu hautatzeko</string>
 
     <string name="MediaReviewImagePageFragment__discard">Baztertu</string>
@@ -4381,7 +4381,7 @@
 
     <string name="SubscribeFragment__cancel_subscription">Ezereztu harpidetza</string>
     <string name="SubscribeFragment__confirm_cancellation">Bertan behera uzteko ekintza berretsi nahi duzu?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Ez zaizu berriro kobratuko. Bereizgarria profiletik kenduko da fakturazio epea amaitzean.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Ez zaizu berriro kobratuko. Bereizgarria profiletik kenduko da fakturazio-aldia amaitzean.</string>
     <string name="SubscribeFragment__not_now">Orain ez</string>
     <string name="SubscribeFragment__confirm">Onartu</string>
     <string name="SubscribeFragment__update_subscription">Eguneratu harpidetza</string>
@@ -4619,11 +4619,11 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Ezabatu profila</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">\"%1$s\" ezabatua</string>
+    <string name="NotificationProfileDetails__s_removed">Kendu da \"%1$s\".</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Desegin</string>
     <!-- Dialog message shown to confirm deleting a profile -->
-    <string name="NotificationProfileDetails__permanently_delete_profile">Betiko ezabatu profila?</string>
+    <string name="NotificationProfileDetails__permanently_delete_profile">Betiko ezabatu nahi duzu profila?</string>
     <!-- Dialog button to delete profile -->
     <string name="NotificationProfileDetails__delete">Ezabatu</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
@@ -4841,7 +4841,7 @@
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Joan ezarpenetara</string>
     <!-- Dialog action to remove viewer from a story -->
-    <string name="StoryViewsFragment__remove">Ezabatu</string>
+    <string name="StoryViewsFragment__remove">Kendu</string>
     <!-- Dialog title when removing a viewer from a story -->
     <string name="StoryViewsFragment__remove_viewer">Ikuslea kendu nahi duzu?</string>
     <!-- Dialog message when removing a viewer from a story -->
@@ -4863,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$sri modu pribatuan erantzuten</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Erantzun %1$s erabiltzaileari</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Kopiatu</string>
@@ -4927,11 +4927,11 @@
     <!-- Clickable option to delete a custom story -->
     <string name="PrivateStorySettingsFragment__delete_custom_story">Ezabatu istorio pertsonalizatua</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove_s">%1$sezabatu?</string>
+    <string name="PrivateStorySettingsFragment__remove_s">%1$s kendu nahi duzu?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Aurrerantzean, pertsona honek ez du ikusiko zure istorioa.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove">Ezabatu</string>
+    <string name="PrivateStorySettingsFragment__remove">Kendu</string>
     <!-- Dialog title when deleting a custom story -->
     <!-- Dialog message when deleting a custom story -->
     <!-- Page title for editing a custom story name -->
@@ -4970,7 +4970,7 @@
     <!-- Dialog message for removing a group story -->
     <string name="StoryDialogs__s_will_be_removed">\" %1$s \" kendu egingo da.</string>
     <!-- Dialog positive action for removing a group story -->
-    <string name="StoryDialogs__remove">Ezabatu</string>
+    <string name="StoryDialogs__remove">Kendu</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">Istorio pertsonalizatua ezabatu nahi duzu?</string>
     <!-- Dialog message for deleting a custom story -->
@@ -5164,7 +5164,7 @@
     <!-- Dialog message for removing a group story -->
     <string name="ContactSearchMediator__this_will_remove">Istorioa zerrenda honetatik kenduko da. Talde honetako istorioak ikusten jarraitu ahalko duzu.</string>
     <!-- Dialog action item for removing a group story -->
-    <string name="ContactSearchMediator__remove">Ezabatu</string>
+    <string name="ContactSearchMediator__remove">Kendu</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Istorioa ezabatu nahi duzu?</string>
     <!-- Dialog message for deleting a custom story -->
@@ -5239,7 +5239,7 @@
     <!-- Context menu label for distribution list headers in review fragment -->
     <string name="SafetyNumberReviewConnectionsFragment__remove_all">Kendu guztiak</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove">Ezabatu</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove">Kendu</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Nire istorioen pribatutasuna</string>
@@ -5314,7 +5314,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Esportatu zure SMS mezuak</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">SMS mezuak telefonoko SMSen datu-basera esportatu ditzakezu, eta haiek Signal-en gorde edo bertatik kentzeko aukera izango duzu. Horrela, telefonoko beste SMS aplikazio batzuek inportatu ahalko dituzte. Ez da sortuko SMSen historiaren fitxategi partekagarririk.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">SMS mezuak telefonoko SMSen datu-basera esportatu ditzakezu, eta haiek Signal-en gorde edo bertatik kentzeko aukera izango duzu. Horrela, telefonoko SMSetarako beste aplikazio batzuek inportatu ahalko dituzte. Ez da sortuko SMSen historiaren fitxategi partekagarririk.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Jarraitu</string>
 
@@ -5371,9 +5371,9 @@
     <!-- Action button to remove messages -->
     <string name="RemoveSmsMessagesDialogFragment__remove_messages">Ezabatu mezuak</string>
     <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Ezabatu SMS mezuak Signaletik?</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">SMS mezuak Signal-etik kendu nahi dituzu?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Orain, SMS mezuak Signal-etik ken ditzakezu, memorian tokia egiteko. Kendu arren, telefonoko beste SMS aplikazioetarako erabilgarri egongo dira.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Orain, SMS mezuak Signal-etik ken ditzakezu, memorian tokia egiteko. Signal-etik kendu arren, telefonoan SMSetarako dauzkazun beste aplikazioetan egoten jarraituko dute.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5571,9 +5571,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Konfiguratu Signal-eko erabiltzaile-izena</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Erabiltzaile-izenei esker, telefono-zenbakia erabili beharrik gabe bidal diezazkizukete mezuak beste erabiltzaileek</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">Orain ez</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5593,11 +5593,11 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Jarraitu</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Konfiguratu Signal-eko erabiltzaile-izena</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Editatu erabiltzaile-izena</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__delete_username">Ezabatu erabiltzaile-izena</string>
 

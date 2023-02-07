@@ -196,7 +196,7 @@
     <string name="CensorshipCircumventionMegaphone_no_thanks">Жоқ, рақмет</string>
 
     <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">Жою</string>
+    <string name="ClearProfileActivity_remove">Өшіру</string>
     <string name="ClearProfileActivity_remove_profile_photo">Профильдегі фотосуретті жою керек пе?</string>
     <string name="ClearProfileActivity_remove_group_photo">Топтың фотосуретін жою керек пе?</string>
 
@@ -281,8 +281,8 @@
     <string name="ConversationItem_read_more">  Толығырақ</string>
     <string name="ConversationItem_download_more">  Басқаларын жүктеп алу</string>
     <string name="ConversationItem_pending">  Күтілуде</string>
-    <string name="ConversationItem_this_message_was_deleted">Бұл хабарлама жойылды.</string>
-    <string name="ConversationItem_you_deleted_this_message">Сіз бұл хабарламаны жойғансыз.</string>
+    <string name="ConversationItem_this_message_was_deleted">Бұл хат жойылды.</string>
+    <string name="ConversationItem_you_deleted_this_message">Сіз бұл хатты жойдыңыз.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Хатты жүктеп алу мүмкін емес. %1$s оны қайта жіберуі керек.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -353,7 +353,7 @@
 
     <string name="ConversationActivity_cancel">Болдырмау</string>
     <string name="ConversationActivity_delete_conversation">Әңгімені жою керек пе?</string>
-    <string name="ConversationActivity_delete_and_leave_group">Топты жойып, шығып кету керек пе?</string>
+    <string name="ConversationActivity_delete_and_leave_group">Топтан шығып, жою керек пе?</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Бұл әңгіме сіздің барлық құрылғыларыңыздан жойылады.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Сіз бұл топтан шығып кетесіз және ол сіздің барлық құрылғыларыңыздан жойылады.</string>
     <string name="ConversationActivity_delete">Жою</string>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Фильтр қолдану үшін төмен сырғытыңыз</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Фильтр қолдану үшін босатыңыз</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Профиль</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">(%1$s) %2$s уақытымен кез келген уақытта</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Таңдалған уақыт өтіп кеткен. Бұл функция хатты бірден жібереді.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Бірден жіберу</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Қазір жіберу</string>
@@ -776,8 +776,8 @@
         <item quantity="other">Бұл топ мүшелері топқа қосылуға жіберілген шақыруды қайта қабылдауы керек. Оны қабылдамайынша, топтағы хаттарды ала алмайды:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Бұл топ мүшесі топтан өшірілді. Олар деңгейін ауыстырмайынша, топқа қайта қосыла алмайды:</item>
-        <item quantity="other">Бұл топ мүшелері топтан жойылды. Олар жаңартпайынша, топқа қайта қосыла алмайды:</item>
+        <item quantity="one">Бұл топ мүшесі топтан өшірілді және жаңартпайынша, топқа қайта қосыла алмайды:</item>
+        <item quantity="other">Бұл топ мүшелері топтан өшірілді және жаңартпайынша, топқа қайта қосыла алмайды:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -897,7 +897,7 @@
     <string name="AddGroupDetailsFragment__this_field_is_required">Бұл өрісті міндетті түрде толтыру керек.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">Топ жасалмады.</string>
     <string name="AddGroupDetailsFragment__try_again_later">Кейінірек қайталап көріңіз.</string>
-    <string name="AddGroupDetailsFragment__remove">Жою</string>
+    <string name="AddGroupDetailsFragment__remove">Өшіру</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS контактісі</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Бұл топтан %1$s контактісін шығарғыңыз келе ме?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
@@ -1877,7 +1877,7 @@
     <string name="StickerPackPreviewActivity_untitled">Атауы жоқ</string>
     <string name="StickerPackPreviewActivity_unknown">Белгісіз</string>
     <string name="StickerPackPreviewActivity_install">Орнату</string>
-    <string name="StickerPackPreviewActivity_remove">Жою</string>
+    <string name="StickerPackPreviewActivity_remove">Өшіру</string>
     <string name="StickerPackPreviewActivity_stickers">Жапсырмалар</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Стикерлер жинағы жүктелмеді</string>
 
@@ -1918,8 +1918,8 @@
     <string name="ThreadRecord_view_once_photo">Бір-ақ рет көрінетін фотосурет</string>
     <string name="ThreadRecord_view_once_video">Бір-ақ рет көрінетін бейнефайл</string>
     <string name="ThreadRecord_view_once_media">Бір-ақ рет көрінетін ақпарат файлы</string>
-    <string name="ThreadRecord_this_message_was_deleted">Бұл хабарлама жойылды.</string>
-    <string name="ThreadRecord_you_deleted_this_message">Сіз бұл хабарламаны жойғансыз.</string>
+    <string name="ThreadRecord_this_message_was_deleted">Бұл хат жойылды.</string>
+    <string name="ThreadRecord_you_deleted_this_message">Сіз бұл хатты жойдыңыз.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Төлемдерді белсендіру керектігі туралы сұрау жібердіңіз</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -2095,7 +2095,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Аудиоңызға %1$s деп реакция білдірді.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Бір рет көрсетілетін мультимедиа файлыңызға %1$s деп реакция білдірді.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Стикеріңізге %1$s деп реакция білдірді.</string>
-    <string name="MessageNotifier_this_message_was_deleted">Бұл хабарлама жойылды.</string>
+    <string name="MessageNotifier_this_message_was_deleted">Бұл хат жойылды.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Signal-ға контакт қосылғандығы туралы хабарландыруларды өшіру керек пе? Оларды \"Signal &gt; Параметрлер &gt; Хабарландырулар\" бөлімінен қайта қосып қоюыңызға болады. </string>
 
@@ -2781,7 +2781,7 @@
     <string name="preferences_storage__review_storage">Жадты тексеру</string>
     <string name="preferences_storage__delete_older_messages">Ескі хаттарды жою керек пе?</string>
     <string name="preferences_storage__clear_message_history">Хаттар тарихын тазалау керек пе?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Бұл функция хаттар тарихын түгелдей және %1$s күнінен ескі құрылғыңыздағы мультимедиалық файлдарды біржола жойып тастайды.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Бұл функция құрылғыңыздағы хаттар тарихын түгелдей және %1$s күнінен ескі мультимедиалық файлдарды біржола жойып тастайды.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Бұл функция әңгімелердің барлығын ең соңғы %1$s хабарға дейін қысқартып тастайды.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Бұл функция құрылғыңыздағы хаттар тарихын және мультимедианы біржола жойып тастайды.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Хаттар тарихын шынымен де түгелдей жойып тастағыңыз келе ме?</string>
@@ -3172,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Оқылмаған чаттар бойынша сүзгі қолдану</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Оқылмаған хаттар фильтрін тазалау</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Буферге көшіру</string>
@@ -3287,7 +3287,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Аккаунт құлыпталды</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Құпия ақпаратыңызды және қауіпсіздігіңізді сақтау үшін аккаунтыңыз құлыпталды. Аккаунтыңызды %1$d күн пайдаланбағаннан кейін, PIN-кодты енгізбей-ақ, телефон нөміріңізді қайта тіркей аласыз. Барлық мазмұн жойылады.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Құпия ақпаратыңызды және қауіпсіздігіңізді сақтау үшін аккаунтыңыз құлыпталды. Аккаунтыңызды %1$d күн пайдаланбағаннан кейін, PIN-кодты енгізбей-ақ, телефон нөміріңізді қайта тіркей аласыз. Барлық контент жойылады.</string>
     <string name="AccountLockedFragment__next">Келесі</string>
     <string name="AccountLockedFragment__learn_more">Толығырақ мәлімет</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3305,8 +3305,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-ды тіркеу - Android жүйесіне арналған PIN-кодқа (v2 PIN) қатысты көмек керек</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Құпиялығыңыз бен қауіпсіздігіңізді сақтау үшін PIN кодты қалпына келтіру мүмкін емес. Егер PIN кодыңызды есіңізге түсіре алмасаңыз, %1$d күн белсенді болмағаннан кейін SMS арқылы қайта тексеруге болады. Мұндай жағдайда тіркелгіңіз және оның барлық мазмұны жойылады..</item>
-        <item quantity="other">Құпиялығыңыз бен қауіпсіздігіңізді сақтау үшін PIN кодты қалпына келтіру мүмкін емес. Егер PIN кодыңызды есіңізге түсіре алмасаңыз, %1$d күн әрекетсіз болғаннан кейін SMS арқылы қайта тексеруге болады. Мұндай жағдайда тіркелгіңіз өшіріледі де, оның барлық мазмұны жойылады.</item>
+        <item quantity="one">Құпиялығыңыз бен қауіпсіздігіңізді сақтау үшін PIN кодты қалпына келтіру мүмкін емес. Егер PIN кодыңызды есіңізге түсіре алмасаңыз, %1$d күн белсенді болмағаннан кейін SMS арқылы қайта тексеруге болады. Мұндай жағдайда аккаунтыңыз және ондағы бүкіл деректер жойылады.</item>
+        <item quantity="other">Құпиялығыңыз бен қауіпсіздігіңізді сақтау үшін PIN кодты қалпына келтіру мүмкін емес. Егер PIN кодыңызды есіңізге түсіре алмасаңыз, %1$d күн әрекетсіз болғаннан кейін SMS арқылы қайта тексеруге болады. Мұндай жағдайда аккаунтыңыз және ондағы бүкіл деректер жойылады.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3315,8 +3315,8 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">If you run out of attempts your account will be locked for %1$d day. After %1$d day of inactivity, you can re-register without your PIN. Your account will be wiped and all content deleted.</item>
-        <item quantity="other">Егер әрекеттер саны таусылса, тіркелгіңіз %1$d күнге құлыпталады. %1$d күн әрекетсіз болғаннан кейін PIN кодынсыз қайтадан тіркелуіңізге болады. Тіркелгіңіз өшіріледі және барлық мазмұн жойылады.</item>
+        <item quantity="one">Егер әрекеттер саны таусылса, аккаунтыңыз %1$d күнге құлыпталады. %1$d күн әрекетсіз болғаннан кейін PIN кодынсыз қайтадан тіркелуіңізге болады. Аккаунтыңыз және ондағы бүкіл деректер жойылады.</item>
+        <item quantity="other">Егер әрекеттер саны таусылса, аккаунтыңыз %1$d күнге құлыпталады. %1$d күн әрекетсіз болғаннан кейін PIN кодынсыз қайтадан тіркелуіңізге болады. Аккаунтыңыз және ондағы бүкіл деректер жойылады.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3375,7 +3375,7 @@
     <string name="BackupDialog_enable_backups">Резервтік көшірмелерді қосу</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Растауға арналған ұяшықты белгілеу арқылы түсінгеніңізді білдіріңіз.</string>
     <string name="BackupDialog_delete_backups">Резервтік көшірмелерді жою керек пе?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">Жергілікті резервтік көшірмелердің барлығын өшіру және жою керек пе?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Жергілікті резервтік көшірмелердің барлығын өшіріп, жою керек пе?</string>
     <string name="BackupDialog_delete_backups_statement">Резервтік көшірмелерді жою</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Резервтік көшірмелерді қосу үшін қалтаны таңдаңыз. Резервтік көшірмелер осы орынға сақталады.</string>
     <string name="BackupDialog_choose_folder">Choose folder</string>
@@ -3398,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Резервтік көшірмеде өте үлкен файл бар және оның резервтік көшірмесін жасау мүмкін емес. Үлкен файлды жойып тастап, жаңасын жасаңыз.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Резервтік көшірмелерді басқару үшін түртіңіз.</string>
     <string name="RegistrationActivity_wrong_number">Нөмір қате ме?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Маған қоңырау шалу (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal қолдау қызметіне хабарласу</string>
     <string name="RegistrationActivity_code_support_subject">Signal қолданбасында тіркелу - Android жүйесіне арналған тексеру коды</string>
     <string name="RegistrationActivity_incorrect_code">Код дұрыс емес</string>
@@ -3497,7 +3497,7 @@
     <string name="DeviceTransferSetup__location_permission">Локация рұқсаты</string>
     <string name="DeviceTransferSetup__location_services">Локация қызметтері</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi Direct экранында есте сақталған топтардың барлығын өшіріңіз және шақырылған немесе жалғанған құрылғыдардың барлығын ажыратыңыз.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi Direct экранында есте сақталған топтардың барлығын өшіріңіз және шақырылған немесе қосылған құрылғыдардың барлығын ажыратыңыз.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct экраны</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Екі құрылғыда да Wi-Fi-ды өшіріп, қайта қосып көріңіз.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Екі құрылғы да тасымалдау режимінде екеніне көз жеткізіңіз.</string>
@@ -3580,7 +3580,7 @@
     <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s деген кісіні топтан өшіру керек пе?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
     <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s деген кісіні топтан өшіру керек пе? Ол топ сілтемесі арқылы қайта қосыла алмайтын болады.</string>
-    <string name="RecipientBottomSheet_remove">Жою</string>
+    <string name="RecipientBottomSheet_remove">Өшіру</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">Буферге көшірілді</string>
 
     <string name="GroupRecipientListItem_admin">Әкімші</string>
@@ -3635,7 +3635,7 @@
         <item quantity="other">%1$d ортақ топ бар</item>
     </plurals>
     <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s деген кісіні топтан өшіру керек пе?</string>
-    <string name="ReviewCardDialogFragment__remove">Жою</string>
+    <string name="ReviewCardDialogFragment__remove">Өшіру</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Топ мүшесін өшіру мүмкін болмады.</string>
 
     <!-- ReviewCard -->
@@ -3676,9 +3676,9 @@
     <string name="DeleteAccountFragment__no_country_code">Ел коды көрсетілмеген</string>
     <string name="DeleteAccountFragment__no_number">Нөмір көрсетілмеген</string>
     <string name="DeleteAccountFragment__the_phone_number">Сіз енгізген телефон нөмірі аккаунтыңыздағы нөмірмен бірдей емес.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Тіркелгіңізді шынымен жойғыңыз келе ме?</string>
+    <string name="DeleteAccountFragment__are_you_sure">Аккаунтыңызды шынымен жойғыңыз келе ме?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Бұл функция Signal аккаунтыңызды жойып, қолданбаны қалпына келтіреді. Процесс аяқталған соң, қолданба жабылады.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Жергілікті дерек жойылмады. Оны жүйенің қолданба параметрлерінен қолмен тазалай аласыз.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Жергілікті дерек жойылмады. Оны жүйенің қолданба параметрлерінен қолмен жоя аласыз.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Қолданба параметрлерін іске қосу</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Топтардан шығып жатырсыз…</string>
@@ -3982,7 +3982,7 @@
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Жадты тазалау үшін Signal-дан келген SMS хаттарды өшіріп тастаңыз.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Шифрланған хат алмасу функциясына көңіл бөлу үшін жақында SMS хат алмасу функциясы істемейтін болады.</string>
+    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Шифрланған хат алмасу функциясына көңіл бөлу үшін жақында SMS қолдау көрсету функциясын өшіріп тастайды.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Хабарламалар</string>
@@ -4232,7 +4232,7 @@
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Видеоқоңырау</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">Жою</string>
+    <string name="NewConversationActivity__remove">Өшіру</string>
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">Бұғаттау</string>
     <!-- Dialog title when removing a contact -->
@@ -4841,7 +4841,7 @@
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Параметрлерге өту</string>
     <!-- Dialog action to remove viewer from a story -->
-    <string name="StoryViewsFragment__remove">Жою</string>
+    <string name="StoryViewsFragment__remove">Өшіру</string>
     <!-- Dialog title when removing a viewer from a story -->
     <string name="StoryViewsFragment__remove_viewer">Көрерменді өшіру керек пе?</string>
     <!-- Dialog message when removing a viewer from a story -->
@@ -4863,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s деген кісіге жеке жауап беруде</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">%1$s деген кісіге жауап беру</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Көшірме жасау</string>
@@ -4931,7 +4931,7 @@
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Бұл адам енді сіздің сторисіңізді көрмейтін болады.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove">Жою</string>
+    <string name="PrivateStorySettingsFragment__remove">Өшіру</string>
     <!-- Dialog title when deleting a custom story -->
     <!-- Dialog message when deleting a custom story -->
     <!-- Page title for editing a custom story name -->
@@ -4970,7 +4970,7 @@
     <!-- Dialog message for removing a group story -->
     <string name="StoryDialogs__s_will_be_removed">\"%1$s\" өшіп қалады.</string>
     <!-- Dialog positive action for removing a group story -->
-    <string name="StoryDialogs__remove">Жою</string>
+    <string name="StoryDialogs__remove">Өшіру</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">Реттелмелі стористі өшіру керек пе?</string>
     <!-- Dialog message for deleting a custom story -->
@@ -5162,13 +5162,13 @@
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">Топтағы стористі өшіру керек пе?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">Бұл стористі тізімнен өшіреді. Стористерді осы топтан көре беруіңізге болады.</string>
+    <string name="ContactSearchMediator__this_will_remove">Бұл стористі тізімнен өшіреді, бірақ сонда да стористерді топтан көре аласыз.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">Өшіру</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Стористі жою керек пе?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">\"%1$s\" деп аталатын реттелмелі стористі өшіру керек пе?</string>
+    <string name="ContactSearchMediator__delete_the_custom">\"%1$s\" деп аталатын реттелмелі стористі жою керек пе?</string>
     <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">Жою</string>
     <!-- Donation for a friend expiry days remaining -->
@@ -5239,7 +5239,7 @@
     <!-- Context menu label for distribution list headers in review fragment -->
     <string name="SafetyNumberReviewConnectionsFragment__remove_all">Барлығын өшіру</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove">Жою</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove">Өшіру</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Сторис құпиялылығы</string>
@@ -5277,7 +5277,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Стористерді өшіру керек пе?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Ендігәрі стористерді бөлісе немесе көре алмайсыз. Жақында бөліскен сторис жаңалықтары да жойылады.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Ендігәрі стористерді бөлісе немесе көре алмайсыз. Жақында бөліскен жаңа стористер де жойылады.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Сторис құпиялылығы</string>
     <!-- Header for section that lists out stories -->
@@ -5297,7 +5297,7 @@
     <!-- Explanation of who can view a group story -->
     <string name="GroupStorySettingsFragment__members_of_the_group_s">"%1$s тобының мүшелері бұл стористі көре алады және оған жауап бере алады. Топтағы осы чат үшін мүшелік параметрлерін өзгерте аласыз."</string>
     <!-- Preference label for removing this group story -->
-    <string name="GroupStorySettingsFragment__remove_group_story">Топтық стористі өшіріп тастау</string>
+    <string name="GroupStorySettingsFragment__remove_group_story">Топтық стористі өшіру</string>
 
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">Асып толу мәзірі</string>
@@ -5565,15 +5565,15 @@
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_3">SMS хаттарыңызды экспорттап алып, жаңа SMS қолданбасын таңдауыңызға болады.</string>
     <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal қолданбасынан SMS хаттарды жіберу функциясы алып тасталды.</string>
+    <string name="SmsRemoval_info_bullet_1_phase_3">Signal қолданбасынан SMS хаттарды жіберу үшін қолдау көрсетуді алып тасталды.</string>
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">SMS хаттарды экспорттау</string>
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Signal-дағы пайдаланушы атыңызды орнатыңыз</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Басқа адамдар сіздің нөміріңізді термей-ақ, пайдаланушы атыңыз арқылы хат жаза береді</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">Кейін</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5593,13 +5593,13 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Жалғастыру</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Signal-дағы пайдаланушы атыңызды орнатыңыз</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Пайдаланушы атын өзгерту</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Пайдаланушы атын өшіру</string>
+    <string name="UsernameEditDialog__delete_username">Пайдаланушы атын жою</string>
 
     <!-- EOF -->
 </resources>

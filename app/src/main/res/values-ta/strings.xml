@@ -197,8 +197,8 @@
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">நீக்கு</string>
-    <string name="ClearProfileActivity_remove_profile_photo">சுயவிவர படத்தை நீக்கவா?</string>
-    <string name="ClearProfileActivity_remove_group_photo">குழு புகைப்படத்தை அகற்றவா?</string>
+    <string name="ClearProfileActivity_remove_profile_photo">சுயவிவர படத்தை அகற்ற வேண்டுமா?</string>
+    <string name="ClearProfileActivity_remove_group_photo">குழு புகைப்படத்தை அகற்ற வேண்டுமா?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Signal லைப் புதுப்பிக்கவும்</string>
@@ -281,8 +281,8 @@
     <string name="ConversationItem_read_more">மேலும் படிக்க</string>
     <string name="ConversationItem_download_more">மேலும் பதிவிறக்க</string>
     <string name="ConversationItem_pending">நிலுவையில்</string>
-    <string name="ConversationItem_this_message_was_deleted">இந்த செய்தி நீக்கப்பட்டது.</string>
-    <string name="ConversationItem_you_deleted_this_message">இந்த செய்தியை நீக்கிவிட்டீர்கள்.</string>
+    <string name="ConversationItem_this_message_was_deleted">இந்த மெசேஜ் நீக்கப்பட்டது.</string>
+    <string name="ConversationItem_you_deleted_this_message">இந்த மெசேஜை நீக்கிவிட்டீர்கள்.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">செய்தியைப் பதிவிறக்க முடியவில்லை. %1$s மீண்டும் அதை அனுப்ப வேண்டும்.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -352,9 +352,9 @@
     <string name="ConversationActivity_new_say_it_with_stickers">புதிய! ஒட்டிகளால் சொல்லுங்கள்</string>
 
     <string name="ConversationActivity_cancel">ரத்து</string>
-    <string name="ConversationActivity_delete_conversation">உரையாடலை நீக்கவா?</string>
-    <string name="ConversationActivity_delete_and_leave_group">குழுவை நீக்கி விட்டு வெளியேறலாமா?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">இந்த உரையாடல் எல்லாவற்றிலிருந்தும் நீக்கப்படும் உங்கள் சாதனங்கள்.</string>
+    <string name="ConversationActivity_delete_conversation">உரையாடலை நீக்க வேண்டுமா?</string>
+    <string name="ConversationActivity_delete_and_leave_group">குழுவை நீக்கி விட்டு வெளியேற வேண்டுமா?</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">இந்த உரையாடல் உங்கள் சாதனங்கள் எல்லாவற்றிலிருந்தும் நீக்கப்படும்.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">நீங்கள் இந்த குழுவை விட்டு வெளியேறும், மற்றும் இது எல்லாவற்றிலிருந்தும் நீக்கப்படும் உங்கள் சாதனங்கள்.</string>
     <string name="ConversationActivity_delete">அழி</string>
     <string name="ConversationActivity_delete_and_leave">நீக்கி வெளியேறவும்</string>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">வடிகட்ட கீழே இழுக்கவும்</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">வடிகட்ட விடுவிக்கவும்</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">விவரம்</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">(%1$s) %2$s இன் எல்லா நேரங்களும்</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">தேர்ந்தெடுக்கப்பட்ட நேரம் கடந்த காலத்தில் உள்ளது. இது உடனடியாக செய்தியை அனுப்பும்.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">உடனே அனுப்புக</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">இப்போது அனுப்பு</string>
@@ -3172,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">படிக்காத சாட்ஸை ஃபில்டர் செய்</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">படிக்காத வடிகட்டியை ஃபில்டர் செய்க</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கவும்</string>
@@ -3398,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">உங்கள் காப்புப்பிரதியில் நகலெடுக்க முடியாத மிகப் பெரிய கோப்பு ஒன்று உள்ளது. தயவுசெய்து அதை நீக்கிவிட்டு ஒரு புதிய காப்புப்பிரதியை உருவாக்கவும்.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">மறுபிரதிகளை நிர்வகிக்க தட்டவும்</string>
     <string name="RegistrationActivity_wrong_number">தவறான எண்?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">என்னை அழைக்கவும் (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal ஆதரவைத் தொடர்பு கொள்ளுங்கள்</string>
     <string name="RegistrationActivity_code_support_subject">Signal பதிவு - அண்ட்ராய்டு க்கான சரிபார்ப்புக் குறியீடு</string>
     <string name="RegistrationActivity_incorrect_code">தவறான குறியீடு</string>
@@ -4863,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s-க்கு தனிப்பட்ட முறையில் பதிலளிக்கிறது</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">%1$s க்கு பதிலளிக்கவும்</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">நகல்</string>
@@ -5571,9 +5571,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">உங்கள் சிக்னல் பயனர் பெயரை அமைக்கவும்</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">மற்றவர்கள் உங்கள் தொலைபேசி எண் தேவையில்லாமல் உங்களுக்கு செய்தி அனுப்ப பயனர்பெயர்கள் அனுமதிக்கும்</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">இப்போது இல்லை</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5593,13 +5593,13 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">தொடர்க</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">உங்கள் சிக்னல் பயனர் பெயரை அமைக்கவும்</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">பயனர் பெயரை திருத்தவும்</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">பயனர் பெயரை நீக்கவும்</string>
+    <string name="UsernameEditDialog__delete_username">பயனர் பெயரை அழிக்கவும்</string>
 
     <!-- EOF -->
 </resources>

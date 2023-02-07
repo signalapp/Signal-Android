@@ -17,7 +17,7 @@
 
     <string name="yes">Sì</string>
     <string name="no">No</string>
-    <string name="delete">Cancella</string>
+    <string name="delete">Elimina</string>
     <string name="please_wait">Attendere prego…</string>
     <string name="save">Salva</string>
     <string name="note_to_self">Note personali</string>
@@ -196,7 +196,7 @@
     <string name="CensorshipCircumventionMegaphone_no_thanks">No grazie</string>
 
     <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">Elimina</string>
+    <string name="ClearProfileActivity_remove">Rimuovi</string>
     <string name="ClearProfileActivity_remove_profile_photo">Rimuovere foto profilo?</string>
     <string name="ClearProfileActivity_remove_group_photo">Rimuovere foto gruppo?</string>
 
@@ -355,7 +355,7 @@
     <string name="ConversationActivity_delete_conversation">Eliminare la conversazione?</string>
     <string name="ConversationActivity_delete_and_leave_group">Eliminare e abbandonare il gruppo?</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Questa conversazione verrà eliminata da tutti i tuoi dispositivi.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abbandonerai questo gruppo e verrà eliminato da tutti i tuoi dispositivi.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Quando abbandonerai il gruppo, verrà eliminato da tutti i tuoi dispositivi.</string>
     <string name="ConversationActivity_delete">Elimina</string>
     <string name="ConversationActivity_delete_and_leave">Elimina e abbandona</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Per chiamare %1$s, Signal necessita dell\'accesso al tuo microfono</string>
@@ -432,7 +432,7 @@
     <string name="ConversationFragment_failed_to_open_message">Apertura messaggio fallita</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Puoi scorrere verso destra su qualsiasi messaggio per rispondere rapidamente</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Puoi scorrere verso sinistra su qualsiasi messaggio per rispondere rapidamente</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">I file multimediali visualizzabili una volta in uscita sono automaticamente rimossi dopo l\'invio</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">I file multimediali in uscita visualizzabili una volta sono automaticamente rimossi dopo l\'invio</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Hai già visualizzato questo messaggio</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Puoi aggiungere note per te stesso in questa conversazione.\nSe il tuo account ha dei dispositivi collegati, le nuove note verranno sincronizzate.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membri del gruppo hanno lo stesso nome.</string>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Tieni premuto e scorri in basso per filtrare</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Rilascia per filtrare</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profilo</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Tutti gli orari in (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">L\'orario scelto è già passato. Se procedi, il messaggio verrà inviato subito.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Invia subito</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Invia ora</string>
@@ -1108,7 +1108,7 @@
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
         <item quantity="one">La tua azione eliminerà definitivamente il file selezionato. Sarà rimosso anche ogni messaggio di testo associato a questo elemento.</item>
-        <item quantity="other">La tua azione eliminerà definitivamente tutti e %1$d i file selezionati. Sarà rimosso anche ogni messaggio di testo associato a questi elementi.</item>
+        <item quantity="other">La tua azione eliminerà definitivamente tutti e %1$d i file selezionati. Sarà eliminato anche ogni messaggio di testo associato a questi elementi.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Cancellazione</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Eliminazione dei messaggi…</string>
@@ -1877,7 +1877,7 @@
     <string name="StickerPackPreviewActivity_untitled">Senza titolo</string>
     <string name="StickerPackPreviewActivity_unknown">Sconosciuto</string>
     <string name="StickerPackPreviewActivity_install">Installa</string>
-    <string name="StickerPackPreviewActivity_remove">Elimina</string>
+    <string name="StickerPackPreviewActivity_remove">Rimuovi</string>
     <string name="StickerPackPreviewActivity_stickers">Adesivi</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Caricamento pacchetto adesivi fallito</string>
 
@@ -3172,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Trova chat non lette</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Rimuovi filtro non letti</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copia negli appunti</string>
@@ -3287,7 +3287,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Account bloccato</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Il tuo account è stato bloccato per proteggere la tua privacy e la tua sicurezza. Dopo %1$d giorni di inattività sarai in grado di registrare nuovamente questo numero di telefono senza bisogno del tuo PIN. Tutti i contenuti saranno cancellati.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Il tuo account è stato bloccato per proteggere la tua privacy e la tua sicurezza. Dopo %1$d giorni di inattività sarai in grado di registrare nuovamente questo numero di telefono senza bisogno del tuo PIN. Tutti i contenuti saranno eliminati.</string>
     <string name="AccountLockedFragment__next">Avanti</string>
     <string name="AccountLockedFragment__learn_more">Scopri di più</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3374,9 +3374,9 @@
     <string name="BackupDialog_enable_local_backups">Abilitare backup locali?</string>
     <string name="BackupDialog_enable_backups">Abilitare i backup</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Conferma di aver capito spuntando la casella di conferma.</string>
-    <string name="BackupDialog_delete_backups">Cancellare i backup?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">Disabilitare e cancellare tutti i backup locali?</string>
-    <string name="BackupDialog_delete_backups_statement">Cancellare i backup</string>
+    <string name="BackupDialog_delete_backups">Eliminare i backup?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Disabilitare ed eliminare tutti i backup locali?</string>
+    <string name="BackupDialog_delete_backups_statement">Eliminare i backup</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Per attivare i backup, scegli una cartella. I nuovi backup verranno salvati in questa posizione.</string>
     <string name="BackupDialog_choose_folder">Scegli la cartella</string>
     <string name="BackupDialog_copied_to_clipboard">Aggiunto agli appunti</string>
@@ -3398,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Il tuo backup contiene un file di dimensioni troppo grandi e non può essere salvato. Ti consigliamo di eliminarlo e di creare un nuovo backup.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Clicca per gestire i backup.</string>
     <string name="RegistrationActivity_wrong_number">Numero errato?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Chiamami (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contatta l\'assistenza Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registrazione Signal - Codice di verifica per Android</string>
     <string name="RegistrationActivity_incorrect_code">Codice errato</string>
@@ -3670,14 +3670,14 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Eliminando il tuo account verranno:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Inserisci il tuo numero di telefono</string>
     <string name="DeleteAccountFragment__delete_account">Elimina account</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Eliminate le informazioni del tuo account e la foto profilo</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Eliminati tutti i tuoi messaggi</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Elimina le informazioni del tuo account e la foto profilo</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Elimina tutti i tuoi messaggi</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Elimina %1$s nel tuo account pagamenti</string>
     <string name="DeleteAccountFragment__no_country_code">Nessun prefisso telefonico internazionale specificato</string>
     <string name="DeleteAccountFragment__no_number">Nessun numero specificato</string>
     <string name="DeleteAccountFragment__the_phone_number">Il numero di telefono che hai inserito non corrisponde a quello del tuo account.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Sei sicuro di voler eliminare il tuo account?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Questo cancellerà il tuo account Signal e ripristinerà l\'applicazione. L\'app si chiuderà al termine del processo.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Vuoi davvero eliminare il tuo account?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Questo eliminerà il tuo account Signal e ripristinerà l\'applicazione. L\'app si chiuderà al termine del processo.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Impossibile eliminare i dati locali. Puoi cancellarli manualmente nelle impostazioni di sistema dell\'applicazione.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Avvia impostazioni app</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -4863,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Rispondi privatamente a %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Rispondi a %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Copia</string>
@@ -4974,7 +4974,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">Confermi di voler eliminare la Storia personalizzata?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">La Storia \"%1$s\" e tutti i relativi aggiornamenti verranno rimossi.</string>
+    <string name="StoryDialogs__s_and_updates_shared">La Storia \"%1$s\" e tutti i relativi aggiornamenti verranno eliminati.</string>
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Elimina</string>
     <!-- Dialog title for first time sending something to a beta story -->
@@ -5237,7 +5237,7 @@
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">Contatti</string>
     <!-- Context menu label for distribution list headers in review fragment -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Rimuovi tutte</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Rimuovi tutto</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
     <string name="SafetyNumberReviewConnectionsFragment__remove">Rimuovi</string>
 
@@ -5571,9 +5571,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Imposta il tuo nome utente per Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Grazie ai nomi utente, le altre persone possono inviarti dei messaggi senza sapere il tuo numero di telefono</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">Non ora</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5593,11 +5593,11 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Continua</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Imposta il tuo nome utente per Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Modifica nome utente</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__delete_username">Elimina nome utente</string>
 

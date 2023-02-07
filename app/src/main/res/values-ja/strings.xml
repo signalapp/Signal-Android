@@ -17,7 +17,7 @@
 
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
-    <string name="delete">削除する</string>
+    <string name="delete">消去する</string>
     <string name="please_wait">お待ち下さい…</string>
     <string name="save">保存</string>
     <string name="note_to_self">自分用メモ</string>
@@ -281,8 +281,8 @@
     <string name="ConversationItem_read_more">  続きを読む</string>
     <string name="ConversationItem_download_more">  さらにダウンロード</string>
     <string name="ConversationItem_pending">  保留中</string>
-    <string name="ConversationItem_this_message_was_deleted">このメッセージは削除されました。</string>
-    <string name="ConversationItem_you_deleted_this_message">メッセージを削除しました。</string>
+    <string name="ConversationItem_this_message_was_deleted">このメッセージは消去されました。</string>
+    <string name="ConversationItem_you_deleted_this_message">メッセージを消去しました。</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">メッセージをダウンロードできません。%1$s さんがもう一度送信する必要があります。</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -352,12 +352,12 @@
     <string name="ConversationActivity_new_say_it_with_stickers">新機能！ステッカーを使いましょう</string>
 
     <string name="ConversationActivity_cancel">キャンセル</string>
-    <string name="ConversationActivity_delete_conversation">チャットを削除しますか？</string>
-    <string name="ConversationActivity_delete_and_leave_group">グループを削除して抜けますか？</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">このチャットはすべての端末から削除されます。</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">このグループから抜けて、すべての端末から削除します。</string>
-    <string name="ConversationActivity_delete">削除する</string>
-    <string name="ConversationActivity_delete_and_leave">削除して抜ける</string>
+    <string name="ConversationActivity_delete_conversation">チャットを消去しますか？</string>
+    <string name="ConversationActivity_delete_and_leave_group">グループを消去して抜けますか？</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">このチャットはすべての端末から消去されます。</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">このグループから抜けて、すべての端末から消去します。</string>
+    <string name="ConversationActivity_delete">消去する</string>
+    <string name="ConversationActivity_delete_and_leave">消去して抜ける</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$sと通話するには、Signalにマイクへのアクセスを許可してください。</string>
 
 
@@ -392,7 +392,7 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">連絡先アプリが見つかりません。</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="other">選択したメッセージを削除しますか？</item>
+        <item quantity="other">選択したメッセージを消去しますか？</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">ストレージに保存しますか？</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -414,13 +414,13 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">削除しています</string>
     <string name="ConversationFragment_deleting_messages">メッセージを削除しています…</string>
-    <string name="ConversationFragment_delete_for_me">自分の分だけ削除</string>
-    <string name="ConversationFragment_delete_for_everyone">全員分を削除</string>
+    <string name="ConversationFragment_delete_for_me">自分の分だけ消去</string>
+    <string name="ConversationFragment_delete_for_everyone">全員分を消去</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">この端末から削除する</string>
+    <string name="ConversationFragment_delete_on_this_device">この端末から消去する</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">すべての端末から削除する</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">このメッセージは、チャットの参加者全員が最新バージョンのSignalを使用している場合、全員で削除されます。参加者には、あなたがメッセージを削除したことがわかります。</string>
+    <string name="ConversationFragment_delete_everywhere">すべての端末から消去する</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">このメッセージは、チャットの参加者が最新バージョンの Signal を使っている場合、その全員に対して消去されます。参加者は、あなたがメッセージを消去したことが確認できます。</string>
     <string name="ConversationFragment_quoted_message_not_found">元のメッセージが見つかりません</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">元のメッセージはすでに削除されています</string>
     <string name="ConversationFragment_failed_to_open_message">メッセージを開けませんでした</string>
@@ -455,10 +455,10 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">未読のチャットはありません</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="other">選択したチャットを削除しますか？</item>
+        <item quantity="other">選択したチャットを消去しますか？</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="other">選択した%1$d個のチャットが完全に削除されます。</item>
+        <item quantity="other">選択した%1$d個のチャットが完全に消去されます。</item>
     </plurals>
     <string name="ConversationListFragment_deleting">削除しています</string>
     <string name="ConversationListFragment_deleting_selected_conversations">選択したチャットを削除しています…</string>
@@ -495,7 +495,7 @@
         <item quantity="other">アーカイブ解除</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="other">削除</item>
+        <item quantity="other">消去</item>
     </plurals>
     <string name="ConversationListFragment_select_all">すべて選択</string>
     <plurals name="ConversationListFragment_s_selected">
@@ -527,9 +527,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">下に引っ張ってフィルタリング</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">検索をやめる</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">プロフィール</string>
@@ -643,18 +643,18 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">すべての日時 (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">選択した時刻が過ぎています。メッセージは今すぐ送信されます。</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">今すぐ送信</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">送信</string>
     <!-- Context menu option to reschedule a selected message -->
     <string name="ScheduledMessagesBottomSheet_menu_reschedule">スケジュールを変更する</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">削除</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">消去</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">選択した予約メッセージを削除しますか？</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">選択した予約メッセージを消去しますか？</string>
     <!-- Progress message shown while deleting selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">予約メッセージを削除しています…</string>
 
@@ -1060,10 +1060,10 @@
     <string name="MediaOverviewActivity_Audio">音声</string>
     <string name="MediaOverviewActivity_All">すべて</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="other">選択したアイテムを削除しますか？</item>
+        <item quantity="other">選択したアイテムを消去しますか？</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="other">選択した%1$d個のファイルを完全に削除します。これらのアイテムに関連付けられているメッセージテキストもすべて削除されます。</item>
+        <item quantity="other">選択した%1$d個のファイルを完全に消去します。これらのアイテムに関連付けられているメッセージテキストもすべて消去されます。</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">削除しています</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">メッセージを削除しています…</string>
@@ -1081,7 +1081,7 @@
         <item quantity="other">保存</item>
     </plurals>
     <plurals name="MediaOverviewActivity_delete_plural">
-        <item quantity="other">削除</item>
+        <item quantity="other">消去</item>
     </plurals>
 
     <plurals name="MediaOverviewActivity_d_selected_s">
@@ -1409,7 +1409,7 @@
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">承認する</string>
     <string name="MessageRequestBottomView_continue">続ける</string>
-    <string name="MessageRequestBottomView_delete">削除する</string>
+    <string name="MessageRequestBottomView_delete">消去する</string>
     <string name="MessageRequestBottomView_block">ブロック</string>
     <string name="MessageRequestBottomView_unblock">ブロック解除</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s からメッセージを受信し、あなたの名前と画像を共有しますか？承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
@@ -1819,7 +1819,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">保存に失敗しました</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">保存が完了しました</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">タップした行を削除します</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">タップした行を消去します</string>
     <string name="SubmitDebugLogActivity_submit">提出する</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">ログの送信に失敗しました</string>
     <string name="SubmitDebugLogActivity_success">成功しました！</string>
@@ -1847,8 +1847,8 @@
     <string name="ThreadRecord_view_once_photo">使い捨て写真</string>
     <string name="ThreadRecord_view_once_video">使い捨て動画</string>
     <string name="ThreadRecord_view_once_media">使い捨てメディア</string>
-    <string name="ThreadRecord_this_message_was_deleted">このメッセージは削除されました。</string>
-    <string name="ThreadRecord_you_deleted_this_message">メッセージを削除しました。</string>
+    <string name="ThreadRecord_this_message_was_deleted">このメッセージは消去されました。</string>
+    <string name="ThreadRecord_you_deleted_this_message">メッセージを消去しました。</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">決済機能を有効にするリクエストを送信しました</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -1906,7 +1906,7 @@
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">ユーザー名を選択してください</string>
     <string name="UsernameEditFragment_username">ユーザー名</string>
-    <string name="UsernameEditFragment_delete">削除する</string>
+    <string name="UsernameEditFragment_delete">消去する</string>
     <string name="UsernameEditFragment_successfully_removed_username">ユーザー名を削除しました。</string>
     <string name="UsernameEditFragment_encountered_a_network_error">ネットワークエラーが発生しました。</string>
     <string name="UsernameEditFragment_this_username_is_taken">このユーザー名は既に使用されています。</string>
@@ -1977,8 +1977,8 @@
     <string name="MediaPreviewActivity_draft">下書き</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">外部ストレージにデータを保存するには、Signalにストレージへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「ストレージ」を有効にしてください。</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ストレージへのアクセス許可がないと外部ストレージに保存できません</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">メッセージを削除しますか？</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">このメッセージを完全に削除します。</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">メッセージを消去しますか？</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">このメッセージを完全に消去します。</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s から %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">あなたから %1$s</string>
@@ -2023,7 +2023,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">あなたの音声に %1$s</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">あなたの使い捨てメディアに %1$s</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">あなたのステッカーに %1$s</string>
-    <string name="MessageNotifier_this_message_was_deleted">このメッセージは削除されました。</string>
+    <string name="MessageNotifier_this_message_was_deleted">このメッセージは消去されました。</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">連絡先のSignal参加時の通知を受け取らないようにしますか？この設定はあとでSignal &gt; 設定 &gt; 通知から元に戻せます。</string>
 
@@ -2673,7 +2673,7 @@
     <string name="preferences__advanced_pin_settings">PINの詳細設定</string>
     <string name="preferences__free_private_messages_and_calls">Signalユーザーにプライベートメッセージと通話の自由を</string>
     <string name="preferences__submit_debug_log">デバッグログの提出</string>
-    <string name="preferences__delete_account">アカウントの削除</string>
+    <string name="preferences__delete_account">アカウントの消去</string>
     <string name="preferences__support_wifi_calling">Wi-Fi通話互換モード</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">この端末がWi-Fi経由のSMS/MMS送信を使用している場合は、有効にしてください (Wi-Fi通話の有効時のみ有効になります)。</string>
     <string name="preferences__incognito_keyboard">シークレットキーボード</string>
@@ -2697,12 +2697,12 @@
     <string name="preferences_storage__review_storage">ストレージを確認</string>
     <string name="preferences_storage__delete_older_messages">より古いメッセージを消去しますか？</string>
     <string name="preferences_storage__clear_message_history">メッセージ履歴を削除しますか？</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$sより古いすべてのメッセージ履歴とメディアを、この端末から完全に削除します。</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$sより古いすべてのメッセージ履歴とメディアを、この端末から完全に消去します。</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">すべてのチャットで最新%1$s件のメッセージを残して完全に削除します。</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">すべてのメッセージ履歴とメディアを、この端末から完全に削除します。</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">本当にすべてのメッセージ履歴を削除しますか？</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">すべてのメッセージ履歴とメディアを、この端末から完全に消去します。</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">本当にすべてのメッセージ履歴を消去しますか？</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">すべてのメッセージ履歴を完全に削除します。取り消しはできません。</string>
-    <string name="preferences_storage__delete_all_now">すべて削除する</string>
+    <string name="preferences_storage__delete_all_now">すべて消去する</string>
     <string name="preferences_storage__forever">無期限</string>
     <string name="preferences_storage__one_year">1年</string>
     <string name="preferences_storage__six_months">6ヶ月</string>
@@ -3001,7 +3001,7 @@
     <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">コピー</string>
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_delete">削除</string>
+    <string name="conversation_selection__menu_delete">消去</string>
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">転送</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -3086,7 +3086,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">未読のチャットを検索する</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">未読のフィルタリングを解除する</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">クリップボードにコピー</string>
@@ -3127,7 +3127,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signalプロトコルは過去%2$d日間の送信メッセージの%1$d%%を自動的に保護しました。Signalユーザー間のチャットは常にエンドツーエンドで暗号化されます。</string>
     <string name="InsightsDashboardFragment__spread_the_word">普及活動</string>
     <string name="InsightsDashboardFragment__not_enough_data">データ不足</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">統計のパーセンテージは、過去%1$d日間に消えたり削除されていない送信メッセージに基づいて算出されます。</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">統計のパーセンテージは、過去%1$d日間に消えたり消去されたりしていない送信メッセージに基づいて算出されます。</string>
     <string name="InsightsDashboardFragment__start_a_conversation">チャットを始める</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">より多くの連絡先をSignalに招待することで、暗号化されていないSMSメッセージの制限を超える、安全な通信と新機能を手に入れます。</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">これらの統計は、あなたの端末上でローカルに生成されたもので、見ることができるのはあなただけです。どこにも送信されません。</string>
@@ -3217,7 +3217,7 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal登録 - AndroidのPINに関するサポートが必要 (V2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="other">プライバシーとセキュリティ保護のため、PINを回復する方法はありません。PINを思い出せない場合、%1$d日間無操作にするとSMSで再認証できます。その場合アカウントはリセットされ、メッセージ等もすべて削除されます。</item>
+        <item quantity="other">プライバシーとセキュリティ保護のため、PINを回復する方法はありません。PINを思い出せない場合、%1$d日間無操作にするとSMSで再認証できます。その場合アカウントはリセットされ、メッセージ等もすべて消去されます。</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3225,7 +3225,7 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="other">試行回数の上限を超えると、アカウントが%1$d日間ロックされます。%1$d日間の休止後にPINなしで再登録できますが、アカウントはリセットされ、メッセージ等もすべて削除されます。</item>
+        <item quantity="other">試行回数の上限を超えると、アカウントが%1$d日間ロックされます。%1$d日間の休止後にPINなしで再登録できますが、アカウントはリセットされ、メッセージ等もすべて消去されます。</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3281,9 +3281,9 @@
     <string name="BackupDialog_enable_local_backups">ローカルバックアップを有効にしますか？</string>
     <string name="BackupDialog_enable_backups">バックアップを有効にする</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">内容をご確認いただき、チェックボックスにチェックを入れて下さい。</string>
-    <string name="BackupDialog_delete_backups">バックアップを削除しますか？</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">すべてのローカルバックアップを削除して無効にしますか？</string>
-    <string name="BackupDialog_delete_backups_statement">バックアップを削除する</string>
+    <string name="BackupDialog_delete_backups">バックアップを消去しますか？</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">すべてのローカルバックアップを消去して無効にしますか？</string>
+    <string name="BackupDialog_delete_backups_statement">バックアップを消去する</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">バックアップを有効にするには、フォルダを選択してください。バックアップはこの場所に保存されます。</string>
     <string name="BackupDialog_choose_folder">フォルダを選択する</string>
     <string name="BackupDialog_copied_to_clipboard">クリップボードにコピーしました</string>
@@ -3296,16 +3296,16 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Signalのバックアップを検証しています…</string>
     <string name="LocalBackupJobApi29_backup_failed">バックアップに失敗しました</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">バックアップディレクトリは削除または移動されています。</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">バックアップディレクトリは消去または移動されています。</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">あなたのバックアップファイルは、このボリュームに保存するには大きすぎます。</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">バックアップを保存できる十分なスペースがありません。</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">最新のバックアップの作成および検証ができませんでした。 新しいものを作成してください。</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">非常に大きなファイルが含まれているためバックアップできません。そのファイルを削除して、新しいバックアップを作成してください。</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">非常に大きなファイルが含まれているためバックアップできません。そのファイルを消去して、新しいバックアップを作成してください。</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">タップしてバックアップを管理</string>
     <string name="RegistrationActivity_wrong_number">電話番号を訂正</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">電話で確認 (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signalサポートに問い合わせ</string>
     <string name="RegistrationActivity_code_support_subject">Signal登録 - Android用認証コード</string>
     <string name="RegistrationActivity_incorrect_code">コードが違います</string>
@@ -3550,7 +3550,7 @@
     <string name="ReviewCard__remove_from_group">グループから削除する</string>
     <string name="ReviewCard__update_contact">連絡先をアップデートする</string>
     <string name="ReviewCard__block">ブロックする</string>
-    <string name="ReviewCard__delete">削除する</string>
+    <string name="ReviewCard__delete">消去する</string>
     <string name="ReviewCard__recently_changed">最近、プロフィール名を %1$s から %2$s に変更しました。</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
@@ -3574,16 +3574,16 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">アカウントを削除すると:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">あなたの電話番号を入力してください</string>
-    <string name="DeleteAccountFragment__delete_account">アカウントを削除する</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">あなたのアカウント情報とプロフィール画像を削除します</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">あなたのメッセージをすべて削除します</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">決済口座の %1$s を削除</string>
+    <string name="DeleteAccountFragment__delete_account">アカウントを消去する</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">あなたのアカウント情報とプロフィール画像を消去します</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">あなたのメッセージをすべて消去します</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">決済口座の %1$s を消去</string>
     <string name="DeleteAccountFragment__no_country_code">国番号が指定されていません</string>
     <string name="DeleteAccountFragment__no_number">電話番号が指定されていません</string>
     <string name="DeleteAccountFragment__the_phone_number">入力された電話番号は、あなたのアカウントのものと一致しません。</string>
-    <string name="DeleteAccountFragment__are_you_sure">本当にアカウントを削除しますか？</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">あなたのSignalアカウントを削除して、アプリを初期化します。処理が完了するとアプリを閉じます。</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">ローカルデータの削除に失敗しました。これはシステムのアプリ設定にて、手動で削除できます。</string>
+    <string name="DeleteAccountFragment__are_you_sure">本当にアカウントを消去しますか？</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">あなたのSignalアカウントを消去して、アプリを初期化します。処理が完了するとアプリが閉じます。</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">ローカルデータの消去に失敗しました。これはシステムのアプリ設定にて、手動で消去できます。</string>
     <string name="DeleteAccountFragment__launch_app_settings">アプリ設定を開く</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">グループから抜けています…</string>
@@ -3596,7 +3596,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">ユーザーデータの削除とアプリのリセットを行っています</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">アカウントを削除できません</string>
+    <string name="DeleteAccountFragment__account_not_deleted">アカウントを消去できません</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">削除の処理中にエラーが発生しました。インターネット接続を確認して、再度試してください。</string>
 
@@ -3975,12 +3975,12 @@
     <string name="ChatColorSelectionFragment__chat_color">チャットの色</string>
     <string name="ChatColorSelectionFragment__edit">編集</string>
     <string name="ChatColorSelectionFragment__duplicate">複製</string>
-    <string name="ChatColorSelectionFragment__delete">削除</string>
-    <string name="ChatColorSelectionFragment__delete_color">色を削除</string>
+    <string name="ChatColorSelectionFragment__delete">消去</string>
+    <string name="ChatColorSelectionFragment__delete_color">色を消去</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="other">この色は%1$d件のチャットで使用されています。すべてのチャットで削除しますか？</item>
+        <item quantity="other">この色は%1$d件のチャットで使用されています。すべてのチャットで消去しますか？</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">チャットの色を削除しますか？</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">チャットの色を消去しますか？</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">単色</string>
@@ -4137,7 +4137,7 @@
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">ブロック</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">%1$s を削除しますか？</string>
+    <string name="NewConversationActivity__remove_s">%1$s さんを削除しますか？</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">検索してもこのユーザーは見つかりません。以後、メッセージがあった場合は、メッセージリクエストが届きます。</string>
     <!-- Snackbar message after removing a contact -->
@@ -4147,7 +4147,7 @@
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">%1$s さんを削除できません</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">このユーザーはデバイスの連絡先に保存されています。連絡先から削除して再度試してください。</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">このユーザーはデバイスの連絡先に保存されています。連絡先から消去して再度試してください。</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">連絡先を表示する</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -4514,15 +4514,15 @@
     <string name="NotificationProfilesFragment__on">有効</string>
 
     <!-- Button use to permanently delete a notification profile -->
-    <string name="NotificationProfileDetails__delete_profile">プロファイルを削除</string>
+    <string name="NotificationProfileDetails__delete_profile">プロファイルを消去</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">\"%1$s\" を削除しました</string>
+    <string name="NotificationProfileDetails__s_removed">「%1$s」を削除しました</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">元に戻す</string>
     <!-- Dialog message shown to confirm deleting a profile -->
-    <string name="NotificationProfileDetails__permanently_delete_profile">プロファイルを削除しますか？</string>
+    <string name="NotificationProfileDetails__permanently_delete_profile">プロファイルを消去しますか？</string>
     <!-- Dialog button to delete profile -->
-    <string name="NotificationProfileDetails__delete">削除する</string>
+    <string name="NotificationProfileDetails__delete">消去する</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
     <string name="NotificationProfileDetails__edit_notification_profile">通知プロファイルの編集</string>
     <!-- Schedule description if all days are selected -->
@@ -4697,9 +4697,9 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">%1$s ストーリー</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">ストーリーを削除しますか？</string>
+    <string name="MyStories__delete_story">ストーリーを消去しますか？</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">このストーリーは、あなたと受け取ったすべての人から削除されます。</string>
+    <string name="MyStories__this_story_will_be_deleted">このストーリーは、あなたと受け取ったすべての人から消去されます。</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">保存できません</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4757,12 +4757,12 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s に個人的に返信しています</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">%1$sへ返信</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">コピー</string>
     <!-- Context menu item to delete a story response -->
-    <string name="StoryGroupReplyItem__delete">削除</string>
+    <string name="StoryGroupReplyItem__delete">消去</string>
     <!-- Page title for My Story options -->
     <string name="MyStorySettingsFragment__my_story">マイストーリー</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
@@ -4816,9 +4816,9 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">閲覧できる人を追加</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">カスタムストーリーを削除する</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">カスタムストーリーを消去する</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove_s">%1$s を削除しますか？</string>
+    <string name="PrivateStorySettingsFragment__remove_s">%1$s さんを削除しますか？</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">このユーザーは、あなたのストーリを見ることができなくなります。</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
@@ -4863,11 +4863,11 @@
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">削除</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">カスタムストーリーを削除しますか？</string>
+    <string name="StoryDialogs__delete_custom_story">カスタムストーリーを消去しますか？</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">ストーリーで共有された「 %1$s」と更新情報は削除されます。</string>
+    <string name="StoryDialogs__s_and_updates_shared">ストーリーで共有された「 %1$s」と更新情報は消去されます。</string>
     <!-- Dialog positive action for deleting a custom story -->
-    <string name="StoryDialogs__delete">削除</string>
+    <string name="StoryDialogs__delete">消去</string>
     <!-- Dialog title for first time sending something to a beta story -->
     <!-- Dialog message for first time sending something to a beta story -->
     <!-- Dialog title for first time adding something to a story -->
@@ -4879,7 +4879,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">送信する</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">非表示にして削除する</string>
+    <string name="StoryDialogs__turn_off_and_delete">非表示にして消去する</string>
     <!-- Privacy Settings toggle title for stories -->
     <!-- Privacy Settings toggle summary for stories -->
     <!-- New story viewer selection screen title -->
@@ -5041,7 +5041,7 @@
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">ストーリーを削除する</string>
     <!-- Label for context menu item to delete a custom story -->
-    <string name="ContactSearchItems__delete_story">ストーリーを削除する</string>
+    <string name="ContactSearchItems__delete_story">ストーリーを消去する</string>
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">グループストーリーを削除しますか？</string>
     <!-- Dialog message for removing a group story -->
@@ -5049,11 +5049,11 @@
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">削除</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_story">ストーリーを削除しますか？</string>
+    <string name="ContactSearchMediator__delete_story">ストーリーを消去しますか？</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">カスタムストーリー「%1$s」を削除しますか？</string>
+    <string name="ContactSearchMediator__delete_the_custom">カスタムストーリー「%1$s」を消去しますか？</string>
     <!-- Dialog action item for deleting a custom story -->
-    <string name="ContactSearchMediator__delete">削除</string>
+    <string name="ContactSearchMediator__delete">消去</string>
     <!-- Donation for a friend expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
         <item quantity="other">残り%1$d日</item>
@@ -5156,7 +5156,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">ストーリーを非表示にしますか？</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">ストーリーを共有したり閲覧したりできなくなります。最近共有したストーリーの更新情報も削除されます。</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">ストーリーを共有したり閲覧したりできなくなります。最近共有したストーリーの更新情報も消去されます。</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">ストーリープライバシー</string>
     <!-- Header for section that lists out stories -->
@@ -5446,9 +5446,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Signalユーザーネームを設定する</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">ユーザーネームを入力することで、相手は電話番号なしでメッセージを送ることができます</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">今はしない</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5468,13 +5468,13 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">続行</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Signalユーザーネームを設定する</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">ユーザーネームの編集</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">ユーザー名を削除</string>
+    <string name="UsernameEditDialog__delete_username">ユーザーネームの消去</string>
 
     <!-- EOF -->
 </resources>

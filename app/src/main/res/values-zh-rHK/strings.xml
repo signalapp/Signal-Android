@@ -3305,7 +3305,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">你的備份包含一個非常大的檔案，無法進行備份。請刪除該檔案，並建立新的備份。</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">輕觸以管理備份。</string>
     <string name="RegistrationActivity_wrong_number">號碼錯誤？</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">致電給我 (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">打電話給我 (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">聯絡 Signal 支援</string>
     <string name="RegistrationActivity_code_support_subject">Signal 註冊 — Android 用的驗證碼</string>
     <string name="RegistrationActivity_incorrect_code">錯誤編號</string>

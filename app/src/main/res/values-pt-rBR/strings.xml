@@ -281,7 +281,7 @@
     <string name="ConversationItem_read_more">  Leia mais</string>
     <string name="ConversationItem_download_more">  Baixe mais</string>
     <string name="ConversationItem_pending">  Pendente</string>
-    <string name="ConversationItem_this_message_was_deleted">Essa mensagem foi suprimida.</string>
+    <string name="ConversationItem_this_message_was_deleted">Essa mensagem foi apagada.</string>
     <string name="ConversationItem_you_deleted_this_message">Você apagou esta mensagem.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Não foi possível baixar a mensagem. %1$s terá que enviar a mensagem novamente.</string>
@@ -352,11 +352,11 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Novidade! Se expresse com figurinhas</string>
 
     <string name="ConversationActivity_cancel">Cancelar</string>
-    <string name="ConversationActivity_delete_conversation">Excluir a conversa?</string>
-    <string name="ConversationActivity_delete_and_leave_group">Excluir e sair do grupo?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Esta conversa será excluída de todos os seus dispositivos.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Você deixará este grupo, que será excluído de todos os seus dispositivos.</string>
-    <string name="ConversationActivity_delete">Excluir</string>
+    <string name="ConversationActivity_delete_conversation">Apagar a conversa?</string>
+    <string name="ConversationActivity_delete_and_leave_group">Apagar e sair do grupo?</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Esta conversa será apagada de todos os seus dispositivos.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Você deixará este grupo, que será apagada de todos os seus dispositivos.</string>
+    <string name="ConversationActivity_delete">Apagar</string>
     <string name="ConversationActivity_delete_and_leave">Apagar e sair</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Para chamar %1$s, Signal precisa acessar seu microfone</string>
 
@@ -393,8 +393,8 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">App de contatos não encontrado.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="one">Excluir mensagem selecionada?</item>
-        <item quantity="other">Excluir mensagens selecionadas?</item>
+        <item quantity="one">Apagar mensagem selecionada?</item>
+        <item quantity="other">Apagar mensagens selecionadas?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Salvar no armazenamento?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -423,16 +423,16 @@
     <string name="ConversationFragment_delete_for_me">Apagar para mim</string>
     <string name="ConversationFragment_delete_for_everyone">Apagar para todos</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Excluir neste dispositivo</string>
+    <string name="ConversationFragment_delete_on_this_device">Apagar neste dispositivo</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Excluir em todos os lugares</string>
+    <string name="ConversationFragment_delete_everywhere">Apagar em todos os lugares</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Esta mensagem será apagada para todos os participantes desta conversa, se estiverem usando a versão mais recente do Signal. Eles poderão ver que você apagou uma mensagem.</string>
     <string name="ConversationFragment_quoted_message_not_found">Mensagem original não encontrada</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Mensagem original indisponível</string>
     <string name="ConversationFragment_failed_to_open_message">Falha ao abrir mensagem</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Você pode deslizar para a direita em qualquer mensagem para responder rapidamente</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Você pode deslizar para a esquerda em qualquer mensagem para responder rapidamente</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Os arquivos de mídia efêmeros são removidos automaticamente após serem enviados</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Os arquivos de mídia efêmeros são excluídos automaticamente após serem enviados</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Você já visualizou esta mensagem</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Você pode adicionar anotações para si mesma/o nessa conversa. Se sua conta estiver vinculada à algum dispositivo, as novas anotações serão sincronizadas.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membros do grupo têm o mesmo nome.</string>
@@ -461,12 +461,12 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Sem chats não lidos</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Excluir conversa selecionada?</item>
-        <item quantity="other">Excluir conversas selecionadas?</item>
+        <item quantity="one">Apagar conversa selecionada?</item>
+        <item quantity="other">Apagar conversas selecionadas?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">Isto excluirá permanentemente a conversa selecionada.</item>
-        <item quantity="other">Isto excluirá permanentemente todas as %1$d conversas selecionadas.</item>
+        <item quantity="one">Isto apagará permanentemente a conversa selecionada.</item>
+        <item quantity="other">Isto apagará permanentemente todas as %1$d conversas selecionadas.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Excluindo</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Excluindo conversas selecionadas…</string>
@@ -513,8 +513,8 @@
         <item quantity="other">Desarquivadas</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Excluída</item>
-        <item quantity="other">Excluídas</item>
+        <item quantity="one">Apagada</item>
+        <item quantity="other">Apagadas</item>
     </plurals>
     <string name="ConversationListFragment_select_all">Selecionar todas</string>
     <plurals name="ConversationListFragment_s_selected">
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Puxe pra baixo para filtrar</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Solte para filtrar</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Perfil</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Todos os horários estão sendo exibidos em (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">O período selecionado já passou. Se você escolher essa opção, a mensagem será enviada imediatamente.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Enviar imediatamente</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Enviar agora</string>
@@ -674,7 +674,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Excluir</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Excluir mensagem programada selecionada?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Apagar mensagem programada selecionada?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Excluindo mensagem programada…</string>
 
@@ -776,8 +776,8 @@
         <item quantity="other">Estes membros precisarão aceitar um convite para entrar novamente neste grupo e não receberão as mensagens do grupo até que aceitem:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Este membro foi removido do grupo e não poderá participar novamente até atualizar o Signal:</item>
-        <item quantity="other">Estes membros foram removidos do grupo e não poderão participar novamente até que atualizem o Signal:</item>
+        <item quantity="one">Este membro foi excluído do grupo e não poderá participar novamente até atualizar o Signal:</item>
+        <item quantity="other">Estes membros foram excluídos do grupo e não poderão participar novamente até que atualizem o Signal:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -792,8 +792,8 @@
         <item quantity="other">Estes membros precisarão aceitar um convite para entrar novamente neste grupo e não receberão as mensagens do grupo até que aceitem:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Este membro não é capaz de participar de novos grupos e será removido do grupo:</item>
-        <item quantity="other">Estes membros não são capazes de participar de novos grupos e serão removidos do grupo:</item>
+        <item quantity="one">Este membro não é capaz de participar de novos grupos e será excluído do grupo:</item>
+        <item quantity="other">Estes membros não são capazes de participar de novos grupos e serão excluídos do grupo:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -897,9 +897,9 @@
     <string name="AddGroupDetailsFragment__this_field_is_required">Este campo é obrigatório.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">A criação do grupo falhou.</string>
     <string name="AddGroupDetailsFragment__try_again_later">Tente novamente mais tarde.</string>
-    <string name="AddGroupDetailsFragment__remove">Remover</string>
+    <string name="AddGroupDetailsFragment__remove">Excluir</string>
     <string name="AddGroupDetailsFragment__sms_contact">Contato de SMS</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Remover %1$s desse grupo?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Excluir %1$s desse grupo?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Você selecionou um contato que não aceita grupos do Signal, então esse grupo será de MMS. Nomes e fotos de grupos personalizados de MMS só ficarão visíveis para você.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -1011,7 +1011,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Não foi possível entrar no grupo</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Você não pode entrar nesse grupo por meio do link porque um admin removeu você.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Você não pode entrar nesse grupo por meio do link porque um admin excluiu você.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Este link de grupo não é mais válido.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1103,12 +1103,12 @@
     <string name="MediaOverviewActivity_Audio">Áudio</string>
     <string name="MediaOverviewActivity_All">Todos</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">Excluir o item selecionado?</item>
-        <item quantity="other">Excluir os itens selecionados?</item>
+        <item quantity="one">Apagar o item selecionado?</item>
+        <item quantity="other">Apagar os itens selecionados?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">Isto excluirá permanentemente o arquivo selecionado. Qualquer mensagem de texto associada a este item também será excluída.</item>
-        <item quantity="other">Isto excluirá permanentemente todos os %1$d arquivos selecionados. Qualquer mensagem de texto associada a estes itens também será excluída.</item>
+        <item quantity="one">Isto apagará permanentemente o arquivo selecionado. Qualquer mensagem de texto associada a este item também será apagada.</item>
+        <item quantity="other">Isto apagará permanentemente todos os %1$d arquivos selecionados. Qualquer mensagem de texto associada a estes itens também será apagada.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Excluindo</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Excluindo mensagens…</string>
@@ -1127,8 +1127,8 @@
         <item quantity="other">Salvas</item>
     </plurals>
     <plurals name="MediaOverviewActivity_delete_plural">
-        <item quantity="one">Excluída</item>
-        <item quantity="other">Excluídas</item>
+        <item quantity="one">Apagada</item>
+        <item quantity="other">Apagadas</item>
     </plurals>
 
     <plurals name="MediaOverviewActivity_d_selected_s">
@@ -1245,8 +1245,8 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">Não foi possível adicionar o membro ao novo grupo. O membro foi removido.</item>
-        <item quantity="other">Não foi possível adicionar %1$s membros ao novo grupo. Os membros foram removidos.</item>
+        <item quantity="one">Não foi possível adicionar o membro ao novo grupo. O membro foi excluído.</item>
+        <item quantity="other">Não foi possível adicionar %1$s membros ao novo grupo. Os membros foram excluídos.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1267,9 +1267,9 @@
     <string name="MessageRecord_s_joined_the_group">%1$s entraram no grupo.</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">Você removeu %1$s.</string>
-    <string name="MessageRecord_s_removed_s">%1$s removeu %2$s.</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s removeu você desse grupo.</string>
+    <string name="MessageRecord_you_removed_s">Você excluiu %1$s.</string>
+    <string name="MessageRecord_s_removed_s">%1$s excluiu %2$s.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s excluiu você desse grupo.</string>
     <string name="MessageRecord_you_left_the_group">Você saiu do grupo.</string>
     <string name="MessageRecord_s_left_the_group">%1$s saiu do grupo.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">Você não está mais no grupo.</string>
@@ -1467,7 +1467,7 @@
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Aceitar</string>
     <string name="MessageRequestBottomView_continue">Continuar</string>
-    <string name="MessageRequestBottomView_delete">Excluir</string>
+    <string name="MessageRequestBottomView_delete">Apagar</string>
     <string name="MessageRequestBottomView_block">Bloquear</string>
     <string name="MessageRequestBottomView_unblock">Desbloquear</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Você aceita que %1$s lhe envie uma mensagem, saiba seu nome e veja sua foto? Essa pessoa não saberá que você viu a mensagem dela ao menos que você aceite.</string>
@@ -1877,7 +1877,7 @@
     <string name="StickerPackPreviewActivity_untitled">Sem título</string>
     <string name="StickerPackPreviewActivity_unknown">Desconhecida</string>
     <string name="StickerPackPreviewActivity_install">Instalar</string>
-    <string name="StickerPackPreviewActivity_remove">Remover</string>
+    <string name="StickerPackPreviewActivity_remove">Excluiu</string>
     <string name="StickerPackPreviewActivity_stickers">Figurinhas</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Falha ao carregar o pacote de figurinhas</string>
 
@@ -1890,7 +1890,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">Falha ao salvar</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">Salvo com sucesso</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Toque em uma linha para excluí-la</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Toque em uma linha para removê-la</string>
     <string name="SubmitDebugLogActivity_submit">Enviar</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Falha ao enviar os relatórios</string>
     <string name="SubmitDebugLogActivity_success">Sucesso!</string>
@@ -1977,8 +1977,8 @@
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Escolha seu nome de usuário</string>
     <string name="UsernameEditFragment_username">Nome de usuário</string>
-    <string name="UsernameEditFragment_delete">Excluir</string>
-    <string name="UsernameEditFragment_successfully_removed_username">Usuário removido com sucesso</string>
+    <string name="UsernameEditFragment_delete">Apagar</string>
+    <string name="UsernameEditFragment_successfully_removed_username">Usuário excluído com sucesso</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Foi encontrado um erro de rede.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Este nome de usuário já está sendo utilizado.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Os nomes de usuário só podem incluir a–Z, 0–9, e sublinhado.</string>
@@ -2049,8 +2049,8 @@
     <string name="MediaPreviewActivity_draft">Rascunho</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">O Signal precisa da permissão Armazenamento para gravar dados no armazenamento externo, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Armazenamento\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Não é possível gravar dados no armazenamento externo sem as permissões</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Excluir mensagem?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Esta mensagem será excluída permanentemente.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Apagar mensagem?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Esta mensagem será apagada permanentemente.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s para %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Enviado para %1$s</string>
@@ -2577,7 +2577,7 @@
     <string name="AndroidManifest__linked_devices">Dispositivos vinculados</string>
     <string name="AndroidManifest__invite_friends">Convidar amigos</string>
     <string name="AndroidManifest_archived_conversations">Conversas arquivadas</string>
-    <string name="AndroidManifest_remove_photo">Remover foto</string>
+    <string name="AndroidManifest_remove_photo">Excluir foto</string>
 
     <!-- Message Requests Megaphone -->
     <string name="MessageRequestsMegaphone__message_requests">Solicitações de conversas</string>
@@ -2781,9 +2781,9 @@
     <string name="preferences_storage__review_storage">Checar armazenamento</string>
     <string name="preferences_storage__delete_older_messages">Apagar as mensagens mais antigas?</string>
     <string name="preferences_storage__clear_message_history">Excluir o histórico de mensagens?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Todo o histórico de mensagens e mídias do seu dispositivo que sejam mais antigos que %1$s serão excluídos permanentemente.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Todo o histórico de mensagens e mídias do seu dispositivo que sejam mais antigos que %1$s serão apagados permanentemente.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Todas as conversas serão excluídas permanentemente, exceto %1$s mensagens mais recentes.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Todo o histórico de mensagens e mídias do seu dispositivo serão excluídos permanentemente.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Todo o histórico de mensagens e mídias do seu dispositivo serão apagados permanentemente.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Tem certeza que quer apagar todo o histórico de mensagens?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Todo o histórico de mensagens será excluído permanentemente. Esta ação não pode ser desfeita.</string>
     <string name="preferences_storage__delete_all_now">Apagar tudo agora</string>
@@ -3086,7 +3086,7 @@
     <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">Copiar</string>
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_delete">Excluir</string>
+    <string name="conversation_selection__menu_delete">Apagar</string>
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Encaminhar</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -3172,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtrar chats não lidos</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Limpar filtro de chats não lidos</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar para a área de transferência</string>
@@ -3213,7 +3213,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">O Signal Protocol protegeu automaticamente %1$d %% de suas mensagens enviadas nos últimos %2$d dias. As conversas entre usuários do Signal são sempre criptografadas de ponta a ponta.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Espalhe a notícia</string>
     <string name="InsightsDashboardFragment__not_enough_data">Não há dados suficientes</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">O seu percentual do Insights é calculado com base nas mensagens enviadas nos últimos %1$d dias que não desapareceram ou foram excluídas.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">O seu percentual do Insights é calculado com base nas mensagens enviadas nos últimos %1$d dias que não desapareceram ou foram apagadas.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">Iniciar uma conversa</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Comece a se comunicar com segurança e habilite novos recursos que vão além das mensagens SMS não criptografadas convidando mais contatos para participar do Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Essas estatísticas foram geradas localmente no seu aparelho e só podem ser vistas por você. Elas nunca são transmitidas a terceiros.</string>
@@ -3287,7 +3287,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Conta bloqueada</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Sua conta foi bloqueada para proteger sua privacidade e segurança. Após %1$d dias de bloqueio, você poderá registrar novamente esse número de telefone com um novo PIN. Nesse caso, todo o conteúdo será excluído.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Sua conta foi bloqueada para proteger sua privacidade e segurança. Após %1$d dias de bloqueio, você poderá registrar novamente esse número de telefone com um novo PIN. Nesse caso, todo o conteúdo será apagado.</string>
     <string name="AccountLockedFragment__next">Avançar</string>
     <string name="AccountLockedFragment__learn_more">Saiba Mais</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3374,9 +3374,9 @@
     <string name="BackupDialog_enable_local_backups">Habilitar backups locais?</string>
     <string name="BackupDialog_enable_backups">Habilitar backups</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Favor confirmar seu entendimento marcando a caixa de verificação.</string>
-    <string name="BackupDialog_delete_backups">Excluir backups?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">Desabilitar e excluir todos os backups locais?</string>
-    <string name="BackupDialog_delete_backups_statement">Excluir backups</string>
+    <string name="BackupDialog_delete_backups">Apagar backups?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Desabilitar e apagar todos os backups locais?</string>
+    <string name="BackupDialog_delete_backups_statement">Apagar backups</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Para ativar os backups, escolha uma pasta. Os backups serão salvos neste local.</string>
     <string name="BackupDialog_choose_folder">Escolher pasta</string>
     <string name="BackupDialog_copied_to_clipboard">Copiado para a área de transferência</string>
@@ -3389,16 +3389,16 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Verificando backup do Signal…</string>
     <string name="LocalBackupJobApi29_backup_failed">Backup falhou</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Sua pasta de backup foi excluída ou movida.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Sua pasta de backup foi apagada ou movida.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Seu arquivo de backup é muito grande para ser armazenado neste local.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Não há espaço suficiente para armazenar seu backup.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Não foi possível criar e verificar seu backup recente. Crie um novo.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Seu backup contém um arquivo muito grande não compatível com backup. Exclua e crie um backup novo.</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Seu backup contém um arquivo muito grande não compatível com backup. Apague e crie um backup novo.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Toque para gerenciar os backups.</string>
     <string name="RegistrationActivity_wrong_number">Número errado?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Ligue pra mim (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Entre em contato com o Suporte do Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registro Signal - Código de verificação para Android</string>
     <string name="RegistrationActivity_incorrect_code">Código incorreto</string>
@@ -3497,7 +3497,7 @@
     <string name="DeviceTransferSetup__location_permission">Permissão de localização</string>
     <string name="DeviceTransferSetup__location_services">Serviços de localização</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Na tela do Wi-Fi Direct, remova todos os grupos salvos e desvincule todos os aparelhos convidados ou conectados.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Na tela do Wi-Fi Direct, exclua todos os grupos salvos e desvincule todos os aparelhos convidados ou conectados.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Tela do Wi-Fi Direct</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Tente desativar o Wi-Fi e ativá-lo novamente em ambos os aparelhos.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Certifique-se de que ambos os aparelhos estejam no modo de transferência.</string>
@@ -3672,7 +3672,7 @@
     <string name="DeleteAccountFragment__delete_account">Excluir conta</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Excluir suas informações da conta e foto de perfil</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Apagar todas as suas mensagens</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Remover %1$s da sua conta de pagamentos</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Apagar %1$s da sua conta de pagamentos</string>
     <string name="DeleteAccountFragment__no_country_code">Nenhum código do país informado</string>
     <string name="DeleteAccountFragment__no_number">Nenhum número informado</string>
     <string name="DeleteAccountFragment__the_phone_number">O número de telefone que você inseriu não corresponde ao da sua conta.</string>
@@ -3970,19 +3970,19 @@
     <!-- Preference title to re-export sms -->
     <string name="SmsSettingsFragment__export_sms_messages_again">Exportar mensagens SMS novamente</string>
     <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">Remover mensagens SMS</string>
+    <string name="SmsSettingsFragment__remove_sms_messages">Apagar mensagens SMS</string>
     <!-- Snackbar text to confirm deletion -->
     <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Ao remover mensagens de SMS do Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Você pode remover mensagens de SMS nas configurações do Signal a qualquer hora.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Você pode apagar mensagens de SMS nas configurações do Signal a qualquer hora.</string>
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Você pode exportar suas mensagens de SMS para a base de dados de SMS do seu telefone</string>
     <!-- Description for re-export sms preference -->
     <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exportar novamente pode resultar em mensagens duplicadas.</string>
     <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Remova as mensagens de SMS do Signal para liberar espaço de armazenamento.</string>
+    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Apague as mensagens de SMS do Signal para liberar espaço de armazenamento.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">O suporte de SMS será removido em breve. Nosso foco serão as mensagens com criptografia.</string>
+    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">O suporte de SMS será excluído em breve. Nosso foco serão as mensagens com criptografia.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Mensagens</string>
@@ -4072,7 +4072,7 @@
     <string name="ChatColorSelectionFragment__chat_color">Cor da conversa</string>
     <string name="ChatColorSelectionFragment__edit">Editar</string>
     <string name="ChatColorSelectionFragment__duplicate">Duplicar</string>
-    <string name="ChatColorSelectionFragment__delete">Excluir</string>
+    <string name="ChatColorSelectionFragment__delete">Apagar</string>
     <string name="ChatColorSelectionFragment__delete_color">Remover cor</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
         <item quantity="one">Essa cor personalizada é usada em %1$d chat. Deseja removê-la de todos os chats?</item>
@@ -4246,7 +4246,7 @@
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Não foi possível remover %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Esta pessoa está salva nos contatos do seu dispositivo. Exclua-a dos seus contatos e tente novamente.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Esta pessoa está salva nos contatos do seu dispositivo. Excluir dos seus contatos e tentar novamente.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Ver contato</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -4349,7 +4349,7 @@
 
     <string name="MediaCountIndicatorButton__send">Enviar</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Toque para remover</string>
+    <string name="MediaReviewSelectedItem__tap_to_remove">Toque para excluir</string>
     <string name="MediaReviewSelectedItem__tap_to_select">Toque para selecionar</string>
 
     <string name="MediaReviewImagePageFragment__discard">Descartar</string>
@@ -4381,7 +4381,7 @@
 
     <string name="SubscribeFragment__cancel_subscription">Cancelar doação</string>
     <string name="SubscribeFragment__confirm_cancellation">Cancelar a doação mensal?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">A cobrança não será feita novamente. O selo será removido do seu perfil ao final do período do seu faturamento.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">A cobrança não será feita novamente. O selo será excluído do seu perfil ao final do período do seu faturamento.</string>
     <string name="SubscribeFragment__not_now">Agora não</string>
     <string name="SubscribeFragment__confirm">Confirmar</string>
     <string name="SubscribeFragment__update_subscription">Atualizar doação</string>
@@ -4801,9 +4801,9 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">Story de %1$s</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">Excluir story?</string>
+    <string name="MyStories__delete_story">Apagar story?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">Esse story será excluído para você e para todos que o receberam.</string>
+    <string name="MyStories__this_story_will_be_deleted">Esse story será apagado para você e para todos que o receberam.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Não foi possível salvar</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4841,13 +4841,13 @@
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Acessar configurações</string>
     <!-- Dialog action to remove viewer from a story -->
-    <string name="StoryViewsFragment__remove">Remover</string>
+    <string name="StoryViewsFragment__remove">Apagar</string>
     <!-- Dialog title when removing a viewer from a story -->
-    <string name="StoryViewsFragment__remove_viewer">Remover visualizador?</string>
+    <string name="StoryViewsFragment__remove_viewer">Apagar visualizador?</string>
     <!-- Dialog message when removing a viewer from a story -->
     <string name="StoryViewsFragment__s_will_still_be_able">%1$s ainda poderá ver esta publicação, mas não poderá ver as futuras publicações que você compartilhar no %2$s.</string>
     <!-- Story View context menu action to remove them from a story -->
-    <string name="StoryViewItem__remove_viewer">Remover visualizador</string>
+    <string name="StoryViewItem__remove_viewer">Apagar visualizador</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Ainda não há respostas</string>
     <!-- Displayed when no longer a group member -->
@@ -4863,12 +4863,12 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Resposta privada para %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Responder para %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Copiar</string>
     <!-- Context menu item to delete a story response -->
-    <string name="StoryGroupReplyItem__delete">Excluir</string>
+    <string name="StoryGroupReplyItem__delete">Apagar</string>
     <!-- Page title for My Story options -->
     <string name="MyStorySettingsFragment__my_story">Meu Story</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
@@ -4925,13 +4925,13 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Adicionar visualizador</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">Excluir story personalizado</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">Apagar story personalizado</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove_s">Remover %1$s?</string>
+    <string name="PrivateStorySettingsFragment__remove_s">Excluir %1$s?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Essa pessoa não verá mais o seu story.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove">Remover</string>
+    <string name="PrivateStorySettingsFragment__remove">Apagar</string>
     <!-- Dialog title when deleting a custom story -->
     <!-- Dialog message when deleting a custom story -->
     <!-- Page title for editing a custom story name -->
@@ -4966,17 +4966,17 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">Pronto</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">Remover story do grupo?</string>
+    <string name="StoryDialogs__remove_group_story">Apagar story do grupo?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" será removido.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" será apagadp.</string>
     <!-- Dialog positive action for removing a group story -->
-    <string name="StoryDialogs__remove">Remover</string>
+    <string name="StoryDialogs__remove">Apagar</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">Excluir story personalizado?</string>
+    <string name="StoryDialogs__delete_custom_story">Apagar story personalizado?</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" e atualizações compartilhadas nesse story serão excluídos.</string>
     <!-- Dialog positive action for deleting a custom story -->
-    <string name="StoryDialogs__delete">Excluir</string>
+    <string name="StoryDialogs__delete">Apagar</string>
     <!-- Dialog title for first time sending something to a beta story -->
     <!-- Dialog message for first time sending something to a beta story -->
     <!-- Dialog title for first time adding something to a story -->
@@ -4988,7 +4988,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Enviar</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Desativar e excluir</string>
+    <string name="StoryDialogs__turn_off_and_delete">Desativar e apagar</string>
     <!-- Privacy Settings toggle title for stories -->
     <!-- Privacy Settings toggle summary for stories -->
     <!-- New story viewer selection screen title -->
@@ -5156,21 +5156,21 @@
     <!-- Label for context menu item to open story settings -->
     <string name="ContactSearchItems__story_settings">Configurações do story</string>
     <!-- Label for context menu item to remove a group story from contact results -->
-    <string name="ContactSearchItems__remove_story">Remover story</string>
+    <string name="ContactSearchItems__remove_story">Apagar story</string>
     <!-- Label for context menu item to delete a custom story -->
-    <string name="ContactSearchItems__delete_story">Excluir story</string>
+    <string name="ContactSearchItems__delete_story">Apagar story</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">Remover story do grupo?</string>
+    <string name="ContactSearchMediator__remove_group_story">Apagar story do grupo?</string>
     <!-- Dialog message for removing a group story -->
     <string name="ContactSearchMediator__this_will_remove">Esta ação removerá o story desta lista. Você ainda poderá ver stories desse grupo.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">Remover</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_story">Excluir story?</string>
+    <string name="ContactSearchMediator__delete_story">Apagar story?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">Excluir story personalizado \"%1$s\"?</string>
+    <string name="ContactSearchMediator__delete_the_custom">Apagar story personalizado \"%1$s\"?</string>
     <!-- Dialog action item for deleting a custom story -->
-    <string name="ContactSearchMediator__delete">Excluir</string>
+    <string name="ContactSearchMediator__delete">Apagar</string>
     <!-- Donation for a friend expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
         <item quantity="one">%1$d dia restante</item>
@@ -5218,7 +5218,7 @@
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verificar número de segurança</string>
     <!-- Menu action to remove user from story -->
-    <string name="SafetyNumberBottomSheetFragment__remove_from_story">Remover do story</string>
+    <string name="SafetyNumberBottomSheetFragment__remove_from_story">Apagar do story</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
     <string name="SafetyNumberBottomSheetFragment__send_anyway">Enviar mesmo assim</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
@@ -5237,9 +5237,9 @@
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">Contatos</string>
     <!-- Context menu label for distribution list headers in review fragment -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Remover todos</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Apagar todos</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove">Remover</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove">Apagar</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Privacidade do meu story</string>
@@ -5297,7 +5297,7 @@
     <!-- Explanation of who can view a group story -->
     <string name="GroupStorySettingsFragment__members_of_the_group_s">"Os membros do grupo \"%1$s\" podem visualizar e responder a esta story. Você pode atualizar os membros para este chat no grupo."</string>
     <!-- Preference label for removing this group story -->
-    <string name="GroupStorySettingsFragment__remove_group_story">Remover story de grupo</string>
+    <string name="GroupStorySettingsFragment__remove_group_story">Apagar story de grupo</string>
 
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">Menu flutuante</string>
@@ -5369,11 +5369,11 @@
     <!-- Action button to keep messages -->
     <string name="RemoveSmsMessagesDialogFragment__keep_messages">Manter mensagens</string>
     <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Remover mensagens</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Apagar mensagens</string>
     <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Remover mensagens SMS do Signal?</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Apagar mensagens SMS do Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Agora você pode remover mensagens de SMS do Signal para liberar espaço de armazenamento. Elas ainda ficarão disponíveis para outros apps de SMS no seu telefone, mesmo após a remoção.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Agora você pode apagar mensagens de SMS do Signal para liberar espaço de armazenamento. Elas ainda ficarão disponíveis para outros apps de SMS no seu telefone, mesmo após a remoção.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5571,9 +5571,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Configure seu nome de usuário do Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Os nomes de usuário permitem que outras pessoas enviem mensagens para você sem precisar do seu número de telefone.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">Agora não</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5593,13 +5593,13 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Continuar</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Configure seu nome de usuário do Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Editar nome de usuário</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Remover nome de usuário</string>
+    <string name="UsernameEditDialog__delete_username">Excluir nome de usuário</string>
 
     <!-- EOF -->
 </resources>

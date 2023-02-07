@@ -196,9 +196,9 @@
     <string name="CensorshipCircumventionMegaphone_no_thanks">Ní raibh maith agaibh</string>
 
     <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">Bain é</string>
+    <string name="ClearProfileActivity_remove">Bain</string>
     <string name="ClearProfileActivity_remove_profile_photo">Bain do ghrianghraf próifíle?</string>
-    <string name="ClearProfileActivity_remove_group_photo">Bain grianghraf na baicle?</string>
+    <string name="ClearProfileActivity_remove_group_photo">Bain grianghraf an ghrúpa?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Nuashonraigh Signal</string>
@@ -352,12 +352,12 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Nua! Abair le greamáin é</string>
 
     <string name="ConversationActivity_cancel">Cealaigh</string>
-    <string name="ConversationActivity_delete_conversation">Comhrá a Scriosadh?</string>
-    <string name="ConversationActivity_delete_and_leave_group">An bhfuil fonn ort an grúpa a fhágáil agus a scriosadh?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Scriosfar an comhrá seo ó gach gléas atá agat.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Fágfaidh tú an grúpa seo, agus scriosfar é ó gach gléas atá agat.</string>
+    <string name="ConversationActivity_delete_conversation">Scrios comhrá?</string>
+    <string name="ConversationActivity_delete_and_leave_group">Scrios agus imigh as an ngrúpa?</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Scriosfar an comhrá seo ó gach gléas leat.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Imeoidh tú as an ngrúpa seo, ags scriosfar ó gach gléas leat é.</string>
     <string name="ConversationActivity_delete">Scrios</string>
-    <string name="ConversationActivity_delete_and_leave">Scrios ⁊ Fág</string>
+    <string name="ConversationActivity_delete_and_leave">Scrios agus imigh as</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Chun glaoch ar %1$s, ní mór do Signal rochtain a fháil ar do mhicreafón</string>
 
 
@@ -438,7 +438,7 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Ag scriosadh</string>
     <string name="ConversationFragment_deleting_messages">Ag scriosadh teachtaireachtaí…</string>
-    <string name="ConversationFragment_delete_for_me">Scrios Domsa Amháin</string>
+    <string name="ConversationFragment_delete_for_me">Scrios domsa amháin</string>
     <string name="ConversationFragment_delete_for_everyone">Scrios do chách</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Scrios ar an ngléas seo</string>
@@ -607,9 +607,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Tarraing anuas le scagadh a dhéanamh</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Scaoil le scagadh a dhéanamh</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Próifíl</string>
@@ -723,9 +723,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Gach am in (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Tá an t-am a roghnaíodh caite. Seolfar an teachtaireacht láithreach leis sin.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Seol láithreach</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Seol anois</string>
@@ -734,7 +734,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Scrios</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Scrios an teachtaireachtaí sceidealaithe atá roghnaithe?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Scrios an teachtaireacht sceidealaithe atá roghnaithe?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Teachtaireacht sceidealaithe á scriosadh…</string>
 
@@ -1008,7 +1008,7 @@
     <string name="AddGroupDetailsFragment__this_field_is_required">Ní mór an réimse sin a líonadh.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">Theip ar bhunú na baicle.</string>
     <string name="AddGroupDetailsFragment__try_again_later">Déan arís é ar ball.</string>
-    <string name="AddGroupDetailsFragment__remove">Bain é</string>
+    <string name="AddGroupDetailsFragment__remove">Bain</string>
     <string name="AddGroupDetailsFragment__sms_contact">Teagmhálaí SMS</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Bain %1$s ón ngrúpa seo?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
@@ -1134,7 +1134,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Ní féidir dul isteach sa ghrúpa</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">You can\'t join this group via the group link because an admin removed you.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Ní féidir leat dul isteach sa ghrúpa seo trí nasc an ghrúpa toisc gur bhain riarthóir thú..</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">This group link is no longer valid.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1417,8 +1417,8 @@
     <string name="MessageRecord_s_joined_the_group">Tá %1$s ina bhall den ghrúpa anois.</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">Bhain tú %1$s den ghrúpa.</string>
-    <string name="MessageRecord_s_removed_s">Bhain %1$s %2$s den ghrúpa.</string>
+    <string name="MessageRecord_you_removed_s">Bhain tú %1$s ón ngrúpa.</string>
+    <string name="MessageRecord_s_removed_s">Bhain %1$s %2$s ón ngrúpa.</string>
     <string name="MessageRecord_s_removed_you_from_the_group">Bhain %1$s ón ngrúpa thú.</string>
     <string name="MessageRecord_you_left_the_group">D\'fhág tú an grúpa.</string>
     <string name="MessageRecord_s_left_the_group">D\'fhág %1$s an grúpa.</string>
@@ -2090,7 +2090,7 @@
     <string name="StickerPackPreviewActivity_untitled">Gan teideal</string>
     <string name="StickerPackPreviewActivity_unknown">Anaithnid</string>
     <string name="StickerPackPreviewActivity_install">Suiteáil</string>
-    <string name="StickerPackPreviewActivity_remove">Bain é</string>
+    <string name="StickerPackPreviewActivity_remove">Bain</string>
     <string name="StickerPackPreviewActivity_stickers">Greamáin</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Theip ar lódáil an bhirt ghreamán</string>
 
@@ -2103,7 +2103,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">Theip ar Shábháil</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">Sábháil críochnaithe</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Cnag ar líne chun í a scriosadh</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Tapáil ar líne lena scriosadh</string>
     <string name="SubmitDebugLogActivity_submit">Seol isteach é</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Theip ar chur isteach logaí</string>
     <string name="SubmitDebugLogActivity_success">D\'éirigh leis!</string>
@@ -2191,7 +2191,7 @@
     <string name="UsernameEditFragment__choose_your_username">Roghnaigh d\'ainm úsáideora</string>
     <string name="UsernameEditFragment_username">Ainm úsáideora</string>
     <string name="UsernameEditFragment_delete">Scrios</string>
-    <string name="UsernameEditFragment_successfully_removed_username">D\'éirigh leat ainm úsáideora a bhaint.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">D\'éirigh le hainm úsáideora a bhaint.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Tharla earráid líonra</string>
     <string name="UsernameEditFragment_this_username_is_taken">Tá an t-ainm úsáideora sin gafa cheana.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Ní cheadaítear ach a-Z, 0-9, agus fostríoca in ainmneacha úsáideora.</string>
@@ -2266,7 +2266,7 @@
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Tá Cead stórála ag teastáil ó Signal chun sábháil chuig stóras seachtrach, ach diúltaíodh go buan dó. Lean ar aghaidh chuig socruithe na haipe, roghnaigh \"Ceadanna\" agus cumasaigh \"Stóras\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ní féidir sábháil chuig stóras seachtrach gan ceadanna</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Scrios an teachtaireacht?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Scriosfaidh sé sin an teachtaireacht sin go buan.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Scriosfar an teachtaireacht sin go buan leis sin.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s chuig %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Uait chuig %1$s</string>
@@ -3009,7 +3009,7 @@
     <string name="preferences__advanced_pin_settings">Ardroghanna UAP</string>
     <string name="preferences__free_private_messages_and_calls">Teachtaireachtaí agus glaonna príobháideacha don lucht Signal</string>
     <string name="preferences__submit_debug_log">Seol an Logchomhad Dífhabhtaithe</string>
-    <string name="preferences__delete_account">Scrios mo Chuntas</string>
+    <string name="preferences__delete_account">Scrios cuntas</string>
     <string name="preferences__support_wifi_calling">Mód comhoiriúnachta \'Glao WiFi\'</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Cumasaigh má úsáideann do ghléas seachadadh SMS/MMS thar WiFi (ná chumasaigh ach amháin nuair atá \'Glao WiFi\' cumasaithe ar do ghléas)</string>
     <string name="preferences__incognito_keyboard">Méarchlár faoi cheilt</string>
@@ -3033,11 +3033,11 @@
     <string name="preferences_storage__review_storage">Athbhreithnigh stóras</string>
     <string name="preferences_storage__delete_older_messages">Scrios teachtaireachtaí níos sine?</string>
     <string name="preferences_storage__clear_message_history">Glan stair teachtaireachtaí?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Scriosfaidh sé seo go buan stair teachtaireachtaí agus na meáin go léir atá níos sine ná %1$s ó do ghléas.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Scriosfar go buan gach stair teachtaireachtaí agus meáin níos sine ná %1$s ó do ghléas leis sin.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Bearrfaidh sé seo gach comhrá go buan go dtí an líon seo teachtaireachtaí is déanaí: %1$s.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Scriosfaidh sé seo go buan stair teachtaireachtaí agus na meáin go léir ó do ghléas.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Cinnte chun stair teachtaireachtaí go léir a scriosadh?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Bainfear go buan stair teachtaireachtaí go léir. Ní féidir an gníomh seo a chealú.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Scriosfar go buan gach stair teachtaireachtaí agus meáin ó do ghléas leis sin.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Cinnte chun gach stair teachtaireachtaí a scriosadh?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Bainfear go buan gach stair teachtaireachtaí. Ní féidir an gníomh seo a chealú.</string>
     <string name="preferences_storage__delete_all_now">Scrios iad uile anois</string>
     <string name="preferences_storage__forever">Choíche</string>
     <string name="preferences_storage__one_year">1 bhliain amháin</string>
@@ -3430,7 +3430,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Scag comhráite neamhléite</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Glan scagaire Neamhléite</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Macasamhlaigh chuig an ghearrthaisce</string>
@@ -3677,7 +3677,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Tá comhad an-mhór i do chúltaca nach féidir a chúltacú. Scrios é agus cruthaigh cúltaca nua.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tapáil chun cúltacaí a bhainistiú.</string>
     <string name="RegistrationActivity_wrong_number">Uimhir mhícheart?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Glaoigh orm (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Déan teagmháil le foireann tacaíochta Signal</string>
     <string name="RegistrationActivity_code_support_subject">Clárúchán Signal — Cód Deimhniúcháin ar Android</string>
     <string name="RegistrationActivity_incorrect_code">Cód mícheart</string>
@@ -3776,7 +3776,7 @@
     <string name="DeviceTransferSetup__location_permission">Cead suímh</string>
     <string name="DeviceTransferSetup__location_services">Seirbhísí suímh</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Ar an scáileán WiFi Direct, bain gach grúpa a gcuimhnítear air agus dínasc aon ghléas ar tugadh cuireadh dóibh nó atá nasctha.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Ar an scáileán WiFi Direct, bain gach grúpa a gcuimhnítear orthu agus dínasc aon ghléas a fuair cuireadh nó atá nasctha.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Scáileán WiFi Direct</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Triail Wi-Fi a chasadh as agus air ar an dá ghléas.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Cinntigh go bhfuil mód traschurtha air ar an dá ghléas.</string>
@@ -3850,16 +3850,16 @@
     <string name="RecipientBottomSheet_add_to_another_group">Cuir le Grúpa Eile</string>
     <string name="RecipientBottomSheet_view_safety_number">Taispeáin an Uimhir Shábháilteachta</string>
     <string name="RecipientBottomSheet_make_admin">Déan Riarthóir De/Di</string>
-    <string name="RecipientBottomSheet_remove_as_admin">Bain mar Riarthóir</string>
-    <string name="RecipientBottomSheet_remove_from_group">Bain den Ghrúpa</string>
+    <string name="RecipientBottomSheet_remove_as_admin">Bain mar riarthóir</string>
+    <string name="RecipientBottomSheet_remove_from_group">Bain ón ngrúpa</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">An bhfuil fonn ort %1$s a bhaint mar riarthóir?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Bain %1$s mar riarthóir?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"Beidh %1$s in ann an grúpa agus ballraíocht an ghrúpa a chur in eagar."</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">An bhfuil fonn ort %1$s a bhaint den ghrúpa?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">Bain %1$s ón ngrúpa?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
     <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Bain %1$s ón ngrúpa? Ní bheidh an duine sin in ann dul isteach arís tríd an nasc grúpa.</string>
-    <string name="RecipientBottomSheet_remove">Bain é</string>
+    <string name="RecipientBottomSheet_remove">Bain</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">Macasamhlaithe chuig an ngearrthaisce</string>
 
     <string name="GroupRecipientListItem_admin">Riarthóir</string>
@@ -3920,14 +3920,14 @@
         <item quantity="other">%1$d grúpa i bpáirt</item>
     </plurals>
     <string name="ReviewCardDialogFragment__remove_s_from_group">Bain %1$s ón ngrúpa?</string>
-    <string name="ReviewCardDialogFragment__remove">Bain é</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Theip ar bhaint an bhaill grúpa.</string>
+    <string name="ReviewCardDialogFragment__remove">Bain</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Theip ar bhaint baill den ghrúpa.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">Ball</string>
     <string name="ReviewCard__request">Iarratas</string>
     <string name="ReviewCard__your_contact">Do theagmhálaí</string>
-    <string name="ReviewCard__remove_from_group">Bain den Ghrúpa</string>
+    <string name="ReviewCard__remove_from_group">Bain ón ngrúpa</string>
     <string name="ReviewCard__update_contact">Nuashonraigh an teagmhálaí</string>
     <string name="ReviewCard__block">Bac Nua</string>
     <string name="ReviewCard__delete">Scrios</string>
@@ -3954,8 +3954,8 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Má dhéanann tú do chuntas a scriosadh, is é an toradh a bheidh air ná:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Cuir isteach d\'uimhir ghuthàn</string>
-    <string name="DeleteAccountFragment__delete_account">Scrios mo Chuntas</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Scrios faisnéis do chuntas agus do ghrianghraf</string>
+    <string name="DeleteAccountFragment__delete_account">Scrios cuntas</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Scrios faisnéis do chuntais agus grianghraf próifíle</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Scrios do theachtaireachtaí go léir</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Scrios %1$s i do chuntas íocaíochtaí</string>
     <string name="DeleteAccountFragment__no_country_code">Níl aon chód tíre sonraithe</string>
@@ -3963,7 +3963,7 @@
     <string name="DeleteAccountFragment__the_phone_number">Ní mheaitseálann an uimhir ghutháin a chuir tú isteach le huimhir do chuntais.</string>
     <string name="DeleteAccountFragment__are_you_sure">An bhfuil tú cinnte gur mhaith leat do chuntas a scriosadh?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Scriosfar do chuntas Signal agus athshocrófar an aip leis sin. Dúnfar an aip nuair a bheidh an próiseas críochnaithe.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Theip ar scriosadh sonraí logánta. Is féidir leat iad a ghlanadh de láimh i socruithe feidhmchlár an chórais.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Theip ar scriosadh sonraí logánta. Is féidir leat iad a ghlanadh de láimh i socruithe fheidhmchlár an chórais.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Lainseáil Socruithe Aipe</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Imeacht as grúpaí…</string>
@@ -3976,7 +3976,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Sonraí úsáideora á scriosadh agus an aip á hathshocrú</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">Níor scriosadh an cuntas</string>
+    <string name="DeleteAccountFragment__account_not_deleted">Níor Scriosadh an Cuntas</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">Bhí fadhb ann leis an bpróiseas scriosta a chríochnú. Seiceáil do nasc líonra agus triail arís.</string>
 
@@ -4271,7 +4271,7 @@
     <!-- Description for re-export sms preference -->
     <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Is féidir teachtaireachtaí dúblacha a bheith ann mar thoradh ar easpórtáil arís.</string>
     <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Bain teachtaireachtaí SMS ó Signal chun spás stórála a ghlanadh.</string>
+    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Bain teachtaireachtaí SMS ó Signal chun spás stórais a ghlanadh.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
     <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Bainfear tacaíocht SMS go luath chun díriú ar chur teachtaireachtaí criptithe.</string>
 
@@ -4364,7 +4364,7 @@
     <string name="ChatColorSelectionFragment__edit">Eagar</string>
     <string name="ChatColorSelectionFragment__duplicate">Duplicate</string>
     <string name="ChatColorSelectionFragment__delete">Scrios</string>
-    <string name="ChatColorSelectionFragment__delete_color">Scrios an dath</string>
+    <string name="ChatColorSelectionFragment__delete_color">Scrios dath</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
         <item quantity="one">Tá an dath saincheaptha seo á úsáid in %1$d chomhrá. An mian leat é a scriosadh do gach comhrá?</item>
         <item quantity="two">Tá an dath saincheaptha seo á úsáid in %1$d chomhrá. An mian leat é a scriosadh do gach comhrá?</item>
@@ -4658,7 +4658,7 @@
 
     <string name="MediaCountIndicatorButton__send">Seol</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Cnag air chun é a bhaint</string>
+    <string name="MediaReviewSelectedItem__tap_to_remove">Tapáil le baint</string>
     <string name="MediaReviewSelectedItem__tap_to_select">Cnag chun é a roghnú</string>
 
     <string name="MediaReviewImagePageFragment__discard">Cuileáil</string>
@@ -5159,13 +5159,13 @@
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Socruithe</string>
     <!-- Dialog action to remove viewer from a story -->
-    <string name="StoryViewsFragment__remove">Bain é</string>
+    <string name="StoryViewsFragment__remove">Bain</string>
     <!-- Dialog title when removing a viewer from a story -->
-    <string name="StoryViewsFragment__remove_viewer">An bhfuil fonn ort an t-amharcóir a bhaint?</string>
+    <string name="StoryViewsFragment__remove_viewer">Bain amharcóir?</string>
     <!-- Dialog message when removing a viewer from a story -->
     <string name="StoryViewsFragment__s_will_still_be_able">Beidh %1$s in ann féachaint ar an bpostáil seo fós, ach ní bheidh in ann féachaint ar aon phostáil a chomhroinnfidh tú ar %2$s amach anseo.</string>
     <!-- Story View context menu action to remove them from a story -->
-    <string name="StoryViewItem__remove_viewer">Bain an t-amharcóir</string>
+    <string name="StoryViewItem__remove_viewer">Bain amharcóir</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">No replies yet</string>
     <!-- Displayed when no longer a group member -->
@@ -5181,7 +5181,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Freagra príobháideach á sheoladh chuig %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Freagair %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Cóipeáil</string>
@@ -5258,7 +5258,7 @@
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Ní fheicfidh an duine seo do scéal a thuilleadh.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove">Bain é</string>
+    <string name="PrivateStorySettingsFragment__remove">Bain</string>
     <!-- Dialog title when deleting a custom story -->
     <!-- Dialog message when deleting a custom story -->
     <!-- Page title for editing a custom story name -->
@@ -5513,9 +5513,9 @@
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">Bain an scéal grúpa?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">Bainfidh sé seo an scéal ón liosta seo. Beidh tú fós in ann féachaint ar scéalta ón ngrúpa seo.</string>
+    <string name="ContactSearchMediator__this_will_remove">Bainfear an scéal ón liosta seo leis sin. Beidh tú fós in ann féachaint ar scéalta ón ngrúpa seo.</string>
     <!-- Dialog action item for removing a group story -->
-    <string name="ContactSearchMediator__remove">Bain é</string>
+    <string name="ContactSearchMediator__remove">Bain</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Scrios an scéal?</string>
     <!-- Dialog message for deleting a custom story -->
@@ -5600,9 +5600,9 @@
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">Teagmhálaithe</string>
     <!-- Context menu label for distribution list headers in review fragment -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Bain gach duine</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Bain gach</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove">Bain é</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove">Bain</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Príobháideachas maidir le Mo Scéal</string>
@@ -5677,7 +5677,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Easpórtáil do theachtaireachtaí SMS</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Is féidir leat do theachtaireachtaí SMS a easpórtáil chuig bunachar sonraí SMS do ghutháin, áit a mbeidh an rogha agat iad a choimeád nó a bhaint de Signal. Ligeann sé seo d\'aipeanna eile SMS ar do ghuthán iad a iompórtáil. Ní chruthaíonn sé seo comhad in-chomhroinnte de stair do theachtaireachtaí SMS.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Is féidir leat do theachtaireachtaí SMS a easpórtáil chuig bunachar sonraí SMS do ghutháin, áit a mbeidh an rogha agat iad a choimeád nó a bhaint ó Signal. Beidh aipeanna SMS eile ar do ghuthán in ann iad a iompórtáil leis sin. Ní chruthaíonn sé seo comhad in-chomhroinnte de stair do theachtaireachtaí SMS.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Ar Aghaidh</string>
 
@@ -5739,7 +5739,7 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Bain teachtaireachtaí SMS ó Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Is féidir leat teachtaireachtaí SMS a bhaint ó Signal anois chun spás stórála a ghlanadh. Beidh siad fós ar fáil ag aipeanna eile SMS ar do ghuthán fiú má bhaineann tú iad.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Is féidir leat teachtaireachtaí SMS a bhaint ó Signal anois chun spás stórais a ghlanadh. Beidh siad fós ar fáil ag aipeanna SMS eile ar do ghuthán fiú má bhaineann tú iad.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5783,9 +5783,9 @@
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Ní thacaíonn Signal le SMS a thuilleadh</string>
     <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Bainfidh Signal tacaíocht do chur teachtaireachtaí SMS toisc go dtugann teachtaireachtaí Signal criptiú ó cheann ceann agus príobháideachas láidir, rud nach dtugtar le teachtaireachtaí SMS. Beimid in ann taithí um chur teachtaireachtaí Signal a fheabhsú dá réir.</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Bainfidh Signal tacaíocht le teachtaireachtaí SMS a sheoladh toisc go dtugann teachtaireachtaí Signal criptiú ó cheann ceann agus príobháideachas láidir, rud nach dtugtar le teachtaireachtaí SMS. Beimid in ann taithí um chur teachtaireachtaí Signal a fheabhsú dá réir.</string>
     <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Bhain Signal tacaíocht do chur teachtaireachtaí SMS toisc go dtugann teachtaireachtaí Signal criptiú ó cheann ceann agus príobháideachas láidir, rud nach dtugtar le teachtaireachtaí SMS. Beimid in ann taithí um chur teachtaireachtaí Signal a fheabhsú dá réir.</string>
+    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Bhain Signal tacaíocht le teachtaireachtaí SMS a sheoladh toisc go dtugann teachtaireachtaí Signal criptiú ó cheann ceann agus príobháideachas láidir, rud nach dtugtar le teachtaireachtaí SMS. Beimid in ann taithí um chur teachtaireachtaí Signal a fheabhsú dá réir.</string>
     <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
     <string name="SmsExportMegaphoneActivity__export_sms">Easpórtáil SMS</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
@@ -5946,9 +5946,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Socraigh d\'ainm úsáideora Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Beidh daoine eile in ann teachtaireachtaí a sheoladh chugat gan d\'uimhir ghutháin a bheith de dhíth orthu</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">Ní anois</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5968,11 +5968,11 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Ar aghaidh</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Socraigh d\'ainm úsáideora Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Cuir ainm úsáideora in eagar</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__delete_username">Scrios ainm úsáideora</string>
 

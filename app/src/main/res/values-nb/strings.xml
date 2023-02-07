@@ -198,7 +198,7 @@
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Fjern</string>
     <string name="ClearProfileActivity_remove_profile_photo">Vil du fjerne profilbildet?</string>
-    <string name="ClearProfileActivity_remove_group_photo">Fjern gruppebilde?</string>
+    <string name="ClearProfileActivity_remove_group_photo">Vil du fjerne gruppebildet?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Oppdater Signal</string>
@@ -353,9 +353,9 @@
 
     <string name="ConversationActivity_cancel">Avbryt</string>
     <string name="ConversationActivity_delete_conversation">Vil du slette samtalen?</string>
-    <string name="ConversationActivity_delete_and_leave_group">Slette og forlate gruppen?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Denne samtalen vil slettes fra alle enhetene dine.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Du vil forlate denne gruppen, og den blir slettet fra alle enhetene dine.</string>
+    <string name="ConversationActivity_delete_and_leave_group">Vil du slette og forlate gruppen?</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Denne samtalen slettes fra alle enhetene dine.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Du forlater denne gruppen, og den blir slettet fra alle enhetene dine.</string>
     <string name="ConversationActivity_delete">Slett</string>
     <string name="ConversationActivity_delete_and_leave">Slett og forlat</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal trenger tilgang til mikrofonen din for å ringe %1$s</string>
@@ -426,7 +426,7 @@
     <string name="ConversationFragment_delete_on_this_device">Slett på denne enheten</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Slett overalt</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Denne meldingen vil bli slettet for alle i samtalen dersom de er på en nylig versjon av Signal. De vil kunne se at du har slettet en samtale.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Denne meldingen slettes for alle i samtalen dersom de er på en nylig versjon av Signal. De vil kunne se at du har slettet en melding.</string>
     <string name="ConversationFragment_quoted_message_not_found">Opprinnelig melding ikke funnet</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Opprinnelig melding er ikke lenger tilgjengelig</string>
     <string name="ConversationFragment_failed_to_open_message">Kunne ikke åpne meldingen</string>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Trykk og dra ned for å filtrere</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Slipp for å filtrere</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Alle tider i (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Det valgte tidspunktet er i fortiden. Meldingen sendes med én gang.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send nå</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Send nå</string>
@@ -776,8 +776,8 @@
         <item quantity="other">Disse medlemmene må akseptere en invitasjon for å bli med i gruppen igjen, og vil ikke få gruppemeldinger før de har akseptert:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Denne brukeren ble fjernet fra gruppen og kan ikke bli med igjen før de oppgraderer sin Signal-versjon:</item>
-        <item quantity="other">Disse brukerne ble fjernet fra gruppen og kan ikke bli med igjen før de oppgraderer sin Signal-versjon:</item>
+        <item quantity="one">Dette medlemmet ble fjernet fra gruppen og kan ikke bli med igjen før vedkommende oppgraderer Signal-versjonen:</item>
+        <item quantity="other">Disse medlemmene ble fjernet fra gruppen og kan ikke bli med igjen før de oppgraderer Signal-versjonen:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -792,8 +792,8 @@
         <item quantity="other">Disse medlemmene må akseptere en invitasjon for å bli med i gruppen igjen, og vil ikke få gruppemeldinger før de har akseptert:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Dette medlemmet kan ikke bli med i nye grupper, og vil bli fjernet fra gruppen:</item>
-        <item quantity="other">Disse medlemmene kan ikke bli med i nye grupper, og vil bli fjernet fra gruppen:</item>
+        <item quantity="one">Dette medlemmet kan ikke bli med i nye grupper og vil bli fjernet fra gruppen:</item>
+        <item quantity="other">Disse medlemmene kan ikke bli med i nye grupper og vil bli fjernet fra gruppen:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -899,7 +899,7 @@
     <string name="AddGroupDetailsFragment__try_again_later">Prøv igjen senere.</string>
     <string name="AddGroupDetailsFragment__remove">Fjern</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Fjern %1$s fra denne gruppen?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Vil du fjerne %1$s fra denne gruppen?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Du har valgt en kontakt som ikke støtter Signal-grupper, så denne gruppen er MMS. Egendefinerte navn og bilder i MMS-gruppen vises kun for deg.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -1107,8 +1107,8 @@
         <item quantity="other">Vil du slette valgte elementer?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">Dette vil permanent slette den valgte filen. All tekst tilknyttet dette elementet vil også bli slettet.</item>
-        <item quantity="other">Dette vil permanent slette de %1$d valgte filene. All tekst tilknyttet disse elementene vil også bli slettet.</item>
+        <item quantity="one">Dette vil permanent slette den valgte filen. All tekst tilknyttet dette elementet, vil også bli slettet.</item>
+        <item quantity="other">Dette vil permanent slette de %1$d valgte filene. All tekst tilknyttet disse elementene, vil også bli slettet.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter meldinger…</string>
@@ -1245,7 +1245,7 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">Et medlem kunne ikke legges til i den nye gruppen og er fjernet.</item>
+        <item quantity="one">%1$s medlem kunne ikke legges til i den nye gruppen og er fjernet.</item>
         <item quantity="other">%1$s medlemmer kunne ikke legges til i den nye gruppen og er fjernet.</item>
     </plurals>
 
@@ -2049,8 +2049,8 @@
     <string name="MediaPreviewActivity_draft">Utkast</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne skrive til ekstern lagringsenhet, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Du kan ikke lagre på ekstern lagringsenhet uten å slå på tillatelse i systemet først</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Vil du slette denne meldinga?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Meldinga blir slettet for godt.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Vil du slette denne meldingen?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Meldingen blir slettet for godt.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Fra deg til %1$s</string>
@@ -2757,7 +2757,7 @@
     <string name="preferences__advanced_pin_settings">Avanserte PIN-kode instillinger</string>
     <string name="preferences__free_private_messages_and_calls">Gratis private meldinger og samtaler til Signal-brukere</string>
     <string name="preferences__submit_debug_log">Send inn feilsøkingslogg</string>
-    <string name="preferences__delete_account">Slett konto</string>
+    <string name="preferences__delete_account">Slett kontoen</string>
     <string name="preferences__support_wifi_calling">«Wi-Fi-anrop»-tilbakefallsmodus</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Bruk dette hvis enheten leverer SMS / MMS via Wi-Fi (og «Wi-Fi-anrop» er slått på)</string>
     <string name="preferences__incognito_keyboard">Inkognito-tastatur</string>
@@ -2779,7 +2779,7 @@
     <string name="preferences_storage__files">Filer</string>
     <string name="preferences_storage__audio">Lyd</string>
     <string name="preferences_storage__review_storage">Se gjennom lagring</string>
-    <string name="preferences_storage__delete_older_messages">Slett eldre meldinger?</string>
+    <string name="preferences_storage__delete_older_messages">Vil du slette eldre meldinger?</string>
     <string name="preferences_storage__clear_message_history">Vil du slette meldingsloggen?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette vil permanent slette alle meldingslogger og mediefiler som er eldre enn %1$s fra denne enheten.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dette vil umiddelbart forkorte alle samtaler til de %1$s siste meldingene.</string>
@@ -3172,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtrer uleste samtaler</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Tøm filteret for uleste meldinger</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiere til utklippstavle</string>
@@ -3287,7 +3287,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Kontoen er låst</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Kontoen din er låst for å beskytte ditt privatliv og sikkerhet. Etter %1$d dager med inaktivitet i kontoen din, vil du kunne registrere dette telefonnummeret uten å ha PIN-koden. Alt innhold blir slettet.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Kontoen din er låst for å beskytte personvernet og sikkerheten din. Etter %1$d dager med inaktivitet i kontoen kan du registrere dette telefonnummeret på nytt uten behov for PIN-koden. Alt innhold blir slettet.</string>
     <string name="AccountLockedFragment__next">Neste</string>
     <string name="AccountLockedFragment__learn_more">Lær mer</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3305,8 +3305,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal Registrering - Trenger Hjelp med PIN for Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">For ditt personvern og sikkerhet er det ingen måte å gjenopprette PIN-koden. Hvis du ikke kan huske PIN-koden din, kan du bekrefte på nytt med SMS etter %1$d dag for inaktivitet. I dette tilfellet vil kontoen din slettes og alt innhold slettes.</item>
-        <item quantity="other">For ditt personvern og sikkerhet er det ingen måte å gjenopprette PIN-koden. Hvis du ikke kan huske PIN-koden din, kan du bekrefte på nytt med SMS etter %1$d dager med inaktivitet. I dette tilfellet vil kontoen din slettes og alt innhold slettes.</item>
+        <item quantity="one">For ditt personvern og din sikkerhet finnes det ingen måte å gjenopprette PIN-koden på. Hvis du ikke husker PIN-koden din, kan du bekrefte på nytt med SMS etter %1$d dag med inaktivitet. I dette tilfellet slettes kontoen din og alt innholdet der.</item>
+        <item quantity="other">For ditt personvern og din sikkerhet finnes det ingen måte å gjenopprette PIN-koden på. Hvis du ikke husker PIN-koden din, kan du bekrefte på nytt med SMS etter %1$d dager med inaktivitet. I dette tilfellet slettes alle innstillinger og alt innhold automatisk fra kontoen din.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3315,8 +3315,8 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">Dersom du går tom for forsøk vil kontoen din bli låst i %1$d dag. Etter %1$d dag med inaktivitet, kan du registrere deg på nytt uten PIN-kode. Kontoen din og alt innhold vil bli slettet.</item>
-        <item quantity="other">Dersom du går tom for forsøk vil kontoen din bli låst i %1$d dager. Etter %1$d dager med inaktivitet, kan du registrere deg på nytt uten PIN-kode. Kontoen din og alt innhold vil bli slettet.</item>
+        <item quantity="one">Dersom du går tom for forsøk, blir kontoen din låst i %1$d dag. Etter %1$d dag med inaktivitet kan du registrere deg på nytt uten PIN-kode. Alle innstillinger og alt innhold slettes automatisk fra kontoen din.</item>
+        <item quantity="other">Dersom du går tom for forsøk, blir kontoen din låst i %1$d dager. Etter %1$d dager med inaktivitet kan du registrere deg på nytt uten PIN-kode. Alle innstillinger og alt innhold slettes automatisk fra kontoen din.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3389,7 +3389,7 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Verifiserer sikkerhetskopi av Signal …</string>
     <string name="LocalBackupJobApi29_backup_failed">Sikkerhetskopi feilet</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din sikkerhetskopikatalog har blitt slettet eller flyttet.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Sikkerhetskopikatalogen er slettet eller flyttet.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Sikkerhetskopien din er for stor til å lagres på dette volumet.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Det er ikke nok plass til å lagre sikkerhetskopien din.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
@@ -3398,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Sikkerhetskopien inneholder en veldig stor fil som ikke kunne kopieres. Slett filen og opprett en ny sikkerhetskopi.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Trykk for å håndtere sikkerhetskopier.</string>
     <string name="RegistrationActivity_wrong_number">Feil nummer?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Ring meg (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontakt Signal brukerstøtte</string>
     <string name="RegistrationActivity_code_support_subject">Signal Registrering - Verifikasjonskode for Android</string>
     <string name="RegistrationActivity_incorrect_code">Feil kode</string>
@@ -3574,12 +3574,12 @@
     <string name="RecipientBottomSheet_remove_as_admin">Fjern som administrator</string>
     <string name="RecipientBottomSheet_remove_from_group">Fjern fra gruppen</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">Fjerne %1$s som gruppeadministrator?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Vil du fjerne %1$s som gruppeadministrator?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" vil kunne redigere denne gruppen og dens medlemmer."</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">Fjern %1$s fra gruppen?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">Vil du fjerne %1$s fra gruppen?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Vil du fjerne %1$s fra gruppen? Hvis du gjør dette, vil vedkommende ikke kunne spørre om å bli med i gruppen via gruppelenken igjen.</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Vil du fjerne %1$s fra gruppen? Vedkommende vil ikke kunne spørre om å bli med i gruppen via gruppelenken igjen.</string>
     <string name="RecipientBottomSheet_remove">Fjern</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">Kopiert til utklippstavle</string>
 
@@ -3634,7 +3634,7 @@
         <item quantity="one">%1$d gruppe til felles</item>
         <item quantity="other">%1$d grupper til felles</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">Fjern %1$s fra gruppen?</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">Vil du fjerne %1$s fra gruppen?</string>
     <string name="ReviewCardDialogFragment__remove">Fjern</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Klarte ikke fjerne gruppemedlem.</string>
 
@@ -3669,16 +3669,16 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Sletting av kontoen din vil:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Skriv inn ditt telefonnummer</string>
-    <string name="DeleteAccountFragment__delete_account">Slett konto</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Slett din kontoinformasjon og profilbilde</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Slett alle dine meldinger</string>
+    <string name="DeleteAccountFragment__delete_account">Slett kontoen</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Slett kontoinformasjonen din og profilbildet ditt</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Slett alle meldingene dine</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Slett %1$s fra betalingskontoen</string>
     <string name="DeleteAccountFragment__no_country_code">Ingen landskode angitt</string>
     <string name="DeleteAccountFragment__no_number">Ikke noe nummer angitt</string>
     <string name="DeleteAccountFragment__the_phone_number">Telefonnummeret du tastet inn stemmer ikke med kontoen din sitt.</string>
     <string name="DeleteAccountFragment__are_you_sure">Er du sikker på at du vil slette kontoen din?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dette vil slette din Signal-konto og tilbakestille applikasjonen. Appen vil lukkes etter prosessen er fullført.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Klarte ikke slette lokale data. Du kan manuelt slette dem i systemets applikasjonsinnstillinger.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dette vil slette Signal-kontoen din og tilbakestille applikasjonen. Appen lukkes etter at prosessen er fullført.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Klarte ikke slette lokale data. Du kan manuelt slette dem i innstillingene for systemprogrammet.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Åpne App Innstillinger</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Forlater gruppene …</string>
@@ -3980,7 +3980,7 @@
     <!-- Description for re-export sms preference -->
     <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Eksportering på nytt kan føre til dupliserte meldinger.</string>
     <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Slett SMS-meldinger i Signal for å få mer lagringsplass.</string>
+    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Fjern SMS-meldinger i Signal for å få mer lagringsplass.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
     <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Vi fjerner snart SMS-støtte for å sette fokus på krypterte meldinger i stedet.</string>
 
@@ -4073,12 +4073,12 @@
     <string name="ChatColorSelectionFragment__edit">Rediger</string>
     <string name="ChatColorSelectionFragment__duplicate">Duplikat</string>
     <string name="ChatColorSelectionFragment__delete">Slett</string>
-    <string name="ChatColorSelectionFragment__delete_color">Fjern farge</string>
+    <string name="ChatColorSelectionFragment__delete_color">Slett fargen</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">Denne selvvalgte fargen brukes i %1$d samtale. Ønsker du å fjerne den?</item>
-        <item quantity="other">Denne selvvalgte fargen brukes i %1$d samtaler. Ønsker du å fjerne den for alle samtaler?</item>
+        <item quantity="one">Denne egendefinerte fargen brukes i %1$d samtale. Ønsker du å slette den for alle samtaler?</item>
+        <item quantity="other">Denne egendefinerte fargen brukes i %1$d samtaler. Ønsker du å slette den for alle samtalene?</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">Fjerne samtalefargen?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">Vil du slette samtalefargen?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">Hel farge</string>
@@ -4381,7 +4381,7 @@
 
     <string name="SubscribeFragment__cancel_subscription">Avslutt abonnementet</string>
     <string name="SubscribeFragment__confirm_cancellation">Vil du bekrefte avslutningen?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Betalingen trekkes ikke igjen. Merket fjernes fra profilen din ved utløpet faktureringsperiode.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Betalingen trekkes ikke igjen. Merket fjernes fra profilen din ved utløpt faktureringsperiode.</string>
     <string name="SubscribeFragment__not_now">Ikke nå</string>
     <string name="SubscribeFragment__confirm">Bekreft</string>
     <string name="SubscribeFragment__update_subscription">Oppdater abonnementet</string>
@@ -4623,7 +4623,7 @@
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Angre</string>
     <!-- Dialog message shown to confirm deleting a profile -->
-    <string name="NotificationProfileDetails__permanently_delete_profile">Slette profilen permanent?</string>
+    <string name="NotificationProfileDetails__permanently_delete_profile">Vil du slette profilen permanent?</string>
     <!-- Dialog button to delete profile -->
     <string name="NotificationProfileDetails__delete">Slett</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
@@ -4803,7 +4803,7 @@
     <!-- Title of dialog to confirm deletion of story -->
     <string name="MyStories__delete_story">Vil du slette storyen?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">Dette vil slette storyen for deg og alle du har delt den med.</string>
+    <string name="MyStories__this_story_will_be_deleted">Dette sletter storyen for deg og alle du har delt den med.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Kunne ikke lagre</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4843,7 +4843,7 @@
     <!-- Dialog action to remove viewer from a story -->
     <string name="StoryViewsFragment__remove">Fjern</string>
     <!-- Dialog title when removing a viewer from a story -->
-    <string name="StoryViewsFragment__remove_viewer">Fjerne seer?</string>
+    <string name="StoryViewsFragment__remove_viewer">Vil du fjerne seer?</string>
     <!-- Dialog message when removing a viewer from a story -->
     <string name="StoryViewsFragment__s_will_still_be_able">%1$s vil fremdeles se dette innlegget, men ikke fremtidige innlegg du deler med %2$s.</string>
     <!-- Story View context menu action to remove them from a story -->
@@ -4863,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Svarer i privat melding til %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Svar til %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Kopier</string>
@@ -5162,7 +5162,7 @@
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">Vil du fjerne gruppestoryen?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">Dette vil fjerne storyen fra listen. Du kan fremdeles se de andre storyene fra denne gruppen.</string>
+    <string name="ContactSearchMediator__this_will_remove">Dette fjerner storyen fra listen. Du kan fremdeles se de andre storyene fra denne gruppen.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">Fjern</string>
     <!-- Dialog title for deleting a custom story -->
@@ -5314,7 +5314,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Overfør SMS-meldingene dine</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Du kan eksportere SMS-meldingene dine til minnet på telefonen din og samtidig velge om du vil beholde eller slette dem fra Signal. Dette gir andre SMS-apper på telefonen din muligheten til å importere dem. Det oppretter ikke en delbar fil av SMS-loggen din.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Du kan eksportere SMS-meldingene dine til minnet på telefonen din og samtidig velge om du vil beholde eller fjerne dem fra Signal. Dette gir andre SMS-apper på telefonen din muligheten til å importere dem. Det oppretter ikke en delbar fil av SMS-loggen din.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Fortsett</string>
 
@@ -5417,7 +5417,7 @@
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal støtter ikke lenger SMS</string>
     <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Det kommer snart ikke til å være mulig å sende SMS-meldinger i Signal, fordi Signal-meldinger har ende-til-ende-kryptering som gir mer sikkerhet og personvern enn SMS-meldinger. Dette vil også gi oss muligheten til å gjøre Signals meldingsopplevelse enda bedre.</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Det vil snart ikke være mulig å sende SMS-meldinger i Signal, fordi Signal-meldinger har ende-til-ende-kryptering som gir mer sikkerhet og personvern enn SMS-meldinger. Dette vil også gi oss muligheten til å gjøre Signals meldingsopplevelse enda bedre.</string>
     <!-- Phase 3 message describing that sms has gone away -->
     <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Det er ikke lenger mulig å sende SMS-meldinger i Signal, fordi Signal-meldinger har ende-til-ende-kryptering som gir mer sikkerhet og personvern enn SMS-meldinger. Dette vil også gi oss muligheten til å gjøre Signals meldingsopplevelse enda bedre.</string>
     <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
@@ -5571,9 +5571,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Velg et brukernavn på Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Brukernavnet gjør det mulig for andre å sende deg meldinger uten telefonnummeret ditt</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">Ikke nå</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5593,11 +5593,11 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Fortsett</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Velg et brukernavn på Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Endre brukernavnet</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__delete_username">Slett brukernavnet</string>
 

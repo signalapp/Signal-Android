@@ -353,11 +353,11 @@
 
     <string name="ConversationActivity_cancel">Annuleren</string>
     <string name="ConversationActivity_delete_conversation">Gesprek wissen?</string>
-    <string name="ConversationActivity_delete_and_leave_group">Groep wissen en verlaten?</string>
+    <string name="ConversationActivity_delete_and_leave_group">Groep verwijderen en verlaten?</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Dit gesprek zal op al je eigen apparaten worden gewist.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Je zult deze groep verlaten en het gesprek zal op al je eigen apparaten worden gewist.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Je zult deze groep verlaten en het gesprek zal op al je eigen apparaten worden verwijderd.</string>
     <string name="ConversationActivity_delete">Wissen</string>
-    <string name="ConversationActivity_delete_and_leave">Wissen en verlaten</string>
+    <string name="ConversationActivity_delete_and_leave">Verwijderen en verlaten</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal heeft toegang nodig tot je microfoon om %1$s te bellen.</string>
 
 
@@ -461,12 +461,12 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Geen ongelezen chats</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Geselecteerd gesprek wissen?</item>
-        <item quantity="other">Geselecteerde gesprekken wissen?</item>
+        <item quantity="one">Geselecteerd gesprek verwijderen?</item>
+        <item quantity="other">Geselecteerde gesprekken verwijderen?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">Dit zal %1$d geselecteerd gesprek permanent van je apparaat wissen.</item>
-        <item quantity="other">Dit zal alle %1$d geselecteerde gesprekken permanent van je apparaat wissen.</item>
+        <item quantity="one">Dit zal %1$d geselecteerd gesprek permanent van je apparaat verwijderd.</item>
+        <item quantity="other">Dit zal alle %1$d geselecteerde gesprekken permanent van je apparaat verwijderen.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Aan het wissen</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Geselecteerde gesprekken aan het wissen …</string>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Trek omlaag om te filteren</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Laat los om te filteren</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profiel</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Alle tijden in (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">De geselecteerde tijd ligt in het verleden. Hiermee wordt het bericht direct verstuurd.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Direct versturen</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Nu versturen</string>
@@ -1103,12 +1103,12 @@
     <string name="MediaOverviewActivity_Audio">Audio</string>
     <string name="MediaOverviewActivity_All">Alles</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">Geselecteerd item wissen?</item>
-        <item quantity="other">Geselecteerde items wissen?</item>
+        <item quantity="one">Geselecteerd item verwijderen?</item>
+        <item quantity="other">Geselecteerde items verwijderen?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">Dit zal het geselecteerde bestand permanent wissen. Als er tekst was bijgevoegd, zal ook die worden gewist.</item>
-        <item quantity="other">Dit zal alle %1$d geselecteerde bestanden permanent wissen. Als er tekst was bijgevoegd, zal ook die worden gewist.</item>
+        <item quantity="one">Dit zal het geselecteerde bestand permanent verwijderen. Als er tekst was bijgevoegd, zal ook die worden gewist.</item>
+        <item quantity="other">Dit zal alle %1$d geselecteerde bestanden permanent verwijderen. Als er tekst was bijgevoegd, zal ook die worden verwijderd.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Aan het wissen</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Berichten aan het wissen …</string>
@@ -1877,7 +1877,7 @@
     <string name="StickerPackPreviewActivity_untitled">Zonder titel</string>
     <string name="StickerPackPreviewActivity_unknown">Onbekend</string>
     <string name="StickerPackPreviewActivity_install">Stickerpakket installeren</string>
-    <string name="StickerPackPreviewActivity_remove">Stickerpakket verwijderen</string>
+    <string name="StickerPackPreviewActivity_remove">Verwijderen</string>
     <string name="StickerPackPreviewActivity_stickers">Stickerpakket</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Laden van stickerpakket mislukt</string>
 
@@ -2779,13 +2779,13 @@
     <string name="preferences_storage__files">Docu­ment­en</string>
     <string name="preferences_storage__audio">Audio</string>
     <string name="preferences_storage__review_storage">Alle bestanden weergeven</string>
-    <string name="preferences_storage__delete_older_messages">Oude berichten wissen?</string>
+    <string name="preferences_storage__delete_older_messages">Oude berichten verwijderen?</string>
     <string name="preferences_storage__clear_message_history">Berichtengeschiedenis wissen?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit zal alle gespreksgeschiedenis en media ouder dan %1$s permanent van dit apparaat wissen.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit zal alle gespreksgeschiedenis en media ouder dan %1$s permanent van dit apparaat verwijderen.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dit zal direct alle gesprekken inkorten tot de %1$s meest recente berichten.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dit zal al je gespreksgeschiedenis en media van dit apparaat permanent wissen.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Weet je zeker dat je alle gespreksgeschiedenis wilt wissen?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle gespreksgeschiedenis zal permanent worden gewist. Dit kan niet ongedaan worden gemaakt.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dit zal al je gespreksgeschiedenis en media van dit apparaat permanent verwijderen.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Weet je zeker dat je alle gespreksgeschiedenis wilt verwijderen?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle gespreksgeschiedenis zal permanent worden verwijderd. Dit kan niet ongedaan worden gemaakt.</string>
     <string name="preferences_storage__delete_all_now">Nu alles wissen</string>
     <string name="preferences_storage__forever">Voor altijd</string>
     <string name="preferences_storage__one_year">1 jaar</string>
@@ -3172,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filter ongelezen chats</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Ongelezen filter wissen</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiëren naar klembord</string>
@@ -3389,16 +3389,16 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Back-up van Signal verifiëren…</string>
     <string name="LocalBackupJobApi29_backup_failed">Het maken van een back-upbestand is mislukt</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Je back-up directory is verwijderd of verplaatst.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Je back-up directory is gewist of verplaatst.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-upbestand is te groot om op dit volume op te slaan.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Er is niet genoeg opslagruimte om je back-upbestand op te slaan.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Je recente backup kon niet gecreëerd en geverifieerd worden. Probeer het opnieuw.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Je back-up bevat een erg groot bestand dat niet opgeslagen kan worden. Wis het en probeer het opnieuw.</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Je back-up bevat een erg groot bestand dat niet opgeslagen kan worden. Verwijder het en probeer het opnieuw.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tik hier om het maken van back-upbestanden in te stellen.</string>
     <string name="RegistrationActivity_wrong_number">Verkeerd nummer?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Bel me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contact opnemen met Signal-ondersteuning</string>
     <string name="RegistrationActivity_code_support_subject">Signal-registratie - Verificatiecode voor Android</string>
     <string name="RegistrationActivity_incorrect_code">Onjuiste code</string>
@@ -3497,7 +3497,7 @@
     <string name="DeviceTransferSetup__location_permission">Machtiging voor Signal om je locatie te lezen</string>
     <string name="DeviceTransferSetup__location_services">Locatie-bepaling</string>
     <string name="DeviceTransferSetup__wifi">Wifi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Verwijder in het wifi-direct-scherm alle onthouden groepen en verbreek de verbinding met alle verbonden of uitgenodigde apparaten.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Verwijder in het wifi-directscherm alle onthouden groepen en verbreek de verbinding met alle verbonden of uitgenodigde apparaten.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Wifi-direct-scherm</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Probeer eens of het helpt om wifi uit te schakelen en weer in te schakelen op beide apparaten.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Ga na dat beide apparaten in overzet-modus staan.</string>
@@ -3572,14 +3572,14 @@
     <string name="RecipientBottomSheet_view_safety_number">Veiligheidsnummer weergeven</string>
     <string name="RecipientBottomSheet_make_admin">Beheerder maken</string>
     <string name="RecipientBottomSheet_remove_as_admin">Beheerdersbevoegdheden intrekken</string>
-    <string name="RecipientBottomSheet_remove_from_group">Van de groep verwijderen</string>
+    <string name="RecipientBottomSheet_remove_from_group">Uit de groep verwijderen</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">De beheerdersbevoegdheden van %1$s intrekken?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"“%1$s” zal de groepsinformatie en groepslidmaatschap kunnen aanpassen."</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s van deze groep verwijderen?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s uit deze groep verwijderen?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Wil je “%1$s” van de groep verwijderen? Als je dit doet dan zal hij of zij niet via de groepslink verzoeken om opnieuw lid te worden van de groep.</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Wil je “%1$s” uit de groep verwijderen? Als je dit doet dan kan hij of zij niet via de groepslink opnieuw lid worden van de groep.</string>
     <string name="RecipientBottomSheet_remove">Verwijderen</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
 
@@ -3645,7 +3645,7 @@
     <string name="ReviewCard__remove_from_group">Van de groep verwijderen</string>
     <string name="ReviewCard__update_contact">Contactpersoon aanpassen</string>
     <string name="ReviewCard__block">Blokkeren</string>
-    <string name="ReviewCard__delete">Contactpersoon wissen</string>
+    <string name="ReviewCard__delete">Wissen</string>
     <string name="ReviewCard__recently_changed">Heette kort geleden nog “%1$s” maar heeft zijn of haar profielnaam naar “%2$s” gewijzigd</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
@@ -3670,13 +3670,13 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Als je al je gegevens wist:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Voer je telefoonnummer in</string>
     <string name="DeleteAccountFragment__delete_account">Registratie opzeggen &amp; gegevens wissen</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">zullen al je instellingen, lijst van (geblokkeerde) contactpersonen, profielnaam, -foto en -omschrijving worden gewist</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">zullen alle berichten op je eigen apparaat worden gewist</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Verwijder je accountinformatie en profielfoto</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Verwijder al je berichten</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s wissen van je overschrijvingsaccount</string>
     <string name="DeleteAccountFragment__no_country_code">Er is geen landcode gespecificeerd</string>
     <string name="DeleteAccountFragment__no_number">Er is geen telefoonnummer ingevuld</string>
     <string name="DeleteAccountFragment__the_phone_number">Het telefoonnummer dat je hebt ingevuld komt niet overeen met het telefoonnummer waarmee je staat geregistreerd bij Signal.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Weet je zeker dat je je registratie wilt opzeggen en al je gegevens en gesprekken wilt wissen?</string>
+    <string name="DeleteAccountFragment__are_you_sure">Weet je zeker dat je je registratie wilt opzeggen en al je gegevens en gesprekken wilt verwijderen?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Hiermee wis je al je Signal-gegevens zowel van de servers als van je telefoon. De app zal zichzelf sluiten nadat je dit doet.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Het wissen van lokale gegevens is mislukt. Je kunt de lokale gegevens zelf wissen via het \'apps\'-menu in de instellingenapp van je besturingssysteem.</string>
     <string name="DeleteAccountFragment__launch_app_settings">App-instellingen openen</string>
@@ -4246,7 +4246,7 @@
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Kan %1$s niet verwijderen</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Deze persoon is opgeslagen in de contactenlijst van je apparaat. Wis ze van je Contacten en probeer het opnieuw.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Deze persoon is opgeslagen in de contactenlijst van je apparaat. Verwijder ze uit je Contacten en probeer het opnieuw.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Contact bekijken</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -4863,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Één-op-één-reactie aan het schrijven naar %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Reageren op %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Tekst kopiëren</string>
@@ -5164,7 +5164,7 @@
     <!-- Dialog message for removing a group story -->
     <string name="ContactSearchMediator__this_will_remove">Dit verwijdert het verhaal uit deze lijst. Je kunt nog steeds verhalen uit deze groep bekijken.</string>
     <!-- Dialog action item for removing a group story -->
-    <string name="ContactSearchMediator__remove">Stickerpakket verwijderen</string>
+    <string name="ContactSearchMediator__remove">Verwijderen</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Verhaal wissen?</string>
     <!-- Dialog message for deleting a custom story -->
@@ -5571,9 +5571,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Je Signal-gebruikersnaam instellen</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Met gebruikersnamen kunnen anderen jou berichten sturen zonder je telefoonnummer nodig te hebben</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">Niet nu</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5593,13 +5593,13 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Doorgaan</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Je Signal-gebruikersnaam instellen</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Gebruikersnaam bewerken</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Gebruikersnaam wissen</string>
+    <string name="UsernameEditDialog__delete_username">Gebruikersnaam verwijderen</string>
 
     <!-- EOF -->
 </resources>

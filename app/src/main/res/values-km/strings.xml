@@ -3577,7 +3577,7 @@
     <string name="DeleteAccountFragment__delete_account">លុបគណនី</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">លុបព័ត៌មានគណនី និងរូបថតប្រូហ្វាល់របស់អ្នក</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">លុបសាររបស់អ្នកទាំងអស់</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">លុប%1$sនៅក្នុងគណនីទូទាត់ប្រាក់អ្នក</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">លុប %1$s នៅក្នុងគណនីបង់ប្រាក់របស់អ្នក</string>
     <string name="DeleteAccountFragment__no_country_code">មិនបានបញ្ជាក់លេខកូដប្រទេស</string>
     <string name="DeleteAccountFragment__no_number">មិនបានបញ្ជាក់លេខទូរស័ព្ទ</string>
     <string name="DeleteAccountFragment__the_phone_number">លេខទូរស័ព្ទដែលអ្នកបានបញ្ជូលមិនត្រូវគ្នាជាមួយគណនីអ្នក។</string>

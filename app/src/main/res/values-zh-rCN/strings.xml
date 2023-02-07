@@ -197,7 +197,7 @@
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">删除</string>
-    <string name="ClearProfileActivity_remove_profile_photo">删除头像</string>
+    <string name="ClearProfileActivity_remove_profile_photo">删除头像？</string>
     <string name="ClearProfileActivity_remove_group_photo">删除群组头像？</string>
 
     <!-- ClientDeprecatedActivity -->
@@ -527,9 +527,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">下拉以筛选</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">拉开以筛选</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">个人资料</string>
@@ -643,9 +643,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">所有时间为%2$s（%1$s）</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">所选时间已过。如果选择此时间，消息将会立刻发送。</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">立刻发送</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">现在发送</string>
@@ -654,7 +654,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">删除</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">是否删除定时消息？</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">是否删除已选定时消息？</string>
     <!-- Progress message shown while deleting selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">正在删除定时消息……</string>
 
@@ -862,7 +862,7 @@
     <string name="AddGroupDetailsFragment__try_again_later">稍候再试。</string>
     <string name="AddGroupDetailsFragment__remove">删除</string>
     <string name="AddGroupDetailsFragment__sms_contact">短信联系人</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">将 %1$s 从群组移除？</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">将%1$s从群组移除？</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">您选择了一个无法使用 Signal 群组的联系人，因此该群组将是一个多媒体信息群组。只有您能看到自定义多媒体信息群组的名称和照片。</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -1217,9 +1217,9 @@
     <string name="MessageRecord_s_joined_the_group">%1$s 加入群组。</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">您移除了 %1$s。</string>
-    <string name="MessageRecord_s_removed_s">%1$s 移除了 %2$s。</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s 已将您移出群组。</string>
+    <string name="MessageRecord_you_removed_s">您移除了%1$s。</string>
+    <string name="MessageRecord_s_removed_s">%1$s移除了%2$s。</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s已将您移出群组。</string>
     <string name="MessageRecord_you_left_the_group">您已离开该群组。</string>
     <string name="MessageRecord_s_left_the_group">%1$s 已离开该群组。</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">您已不在群组中。</string>
@@ -3086,7 +3086,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">筛选未读的聊天记录</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">清除未读筛选</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">复制到剪切板</string>
@@ -3199,7 +3199,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">帐户已锁定</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">你的账户已经锁定以保护你的安全及隐私。你的账户在%1$d天的不活跃之后，你可以在不需要PIN码的情况下用重新用手机号注册。不过所有的数据都会被删除。</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">你的账户已经锁定以保护你的安全及隐私。你的账户在 %1$d 天的不活跃之后，你可以在不需要 PIN 码的情况下用重新用手机号注册。不过所有的数据都会被删除。</string>
     <string name="AccountLockedFragment__next">下一步</string>
     <string name="AccountLockedFragment__learn_more">了解更多</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3217,7 +3217,7 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal 注册 - 关于 Android 版本 PIN 需要帮助（v2 PIN）</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="other">为了保护你的隐私和安全，你无法找回你的PIN码。如果您记不住您的PIN码，你可以在%1$d天的帐户不活跃后用短信重新验证。在这种情况下，你的帐户会被抹除并且所有的信息都会被删除。</item>
+        <item quantity="other">为了保护你的隐私和安全，你无法找回你的 PIN 码。如果您记不住您的PIN码，你可以在 %1$d 天的帐户不活跃后用短信重新验证。在这种情况下，你的帐户会被抹除并且所有的信息都会被删除。</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3225,7 +3225,7 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="other">如果尝试次数用尽，你的帐户将会被锁定%1$d天。账户在%1$d天不活跃后，你可以在没有你的PIN码的情况下重新注册。你的帐户会被抹除并且所有数据都会被删除。</item>
+        <item quantity="other">如果尝试次数用尽，你的帐户将会被锁定 %1$d 天。账户在 %1$d 天不活跃后，你可以在没有你的 PIN 码的情况下重新注册。你的帐户会被抹除并且所有数据都会被删除。</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3305,7 +3305,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">您的备份中包含一个无法备份的超大文件。请将其删除并创建一个新的备份。</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">点击以管理备份。</string>
     <string name="RegistrationActivity_wrong_number">错误的号码？</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">给我打电话：（%1$02d:%2$02d）</string>
     <string name="RegistrationActivity_contact_signal_support">联系 Signal 支持</string>
     <string name="RegistrationActivity_code_support_subject">Signal 注册 - 安卓验证码</string>
     <string name="RegistrationActivity_incorrect_code">验证码不正确</string>
@@ -3481,10 +3481,10 @@
     <string name="RecipientBottomSheet_remove_as_admin">取消其管理员身份</string>
     <string name="RecipientBottomSheet_remove_from_group">从群组移除</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">取消 %1$s 的管理员身份？</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">取消%1$s的管理员身份？</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"“%1$s” 将能编辑此群组及其成员。"</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">将 %1$s 从群组移除？</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">将%1$s从群组移除？</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
     <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">要将%1$s移除出群组吗？对方将无法通过群组链接重新加入群组。</string>
     <string name="RecipientBottomSheet_remove">移除</string>
@@ -3539,7 +3539,7 @@
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="other">%1$d 个共同群组</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">将 %1$s 从群组移除？</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">将%1$s从群组移除？</string>
     <string name="ReviewCardDialogFragment__remove">移除</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">移除群组成员失败。</string>
 
@@ -3577,7 +3577,7 @@
     <string name="DeleteAccountFragment__delete_account">删除账户</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">删除您的帐户信息和个人资料照片</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">删除您的全部消息</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">在您的付款帐户中删除 %1$s</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">在您的付款账户中删除 %1$s</string>
     <string name="DeleteAccountFragment__no_country_code">未指定国家代码</string>
     <string name="DeleteAccountFragment__no_number">未指定号码</string>
     <string name="DeleteAccountFragment__the_phone_number">您输入的手机号码和您的帐户不符。</string>
@@ -4141,11 +4141,11 @@
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">您在搜索时将不会看到此用户。如果对方在日后给您发送消息，您将会收到消息请求。</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">已移除 %1$s</string>
+    <string name="NewConversationActivity__s_has_been_removed">已移除%1$s</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">已屏蔽 %1$s</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">无法移除 %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">无法移除%1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">此用户已保存到您设备的通讯录中。请在通讯录中删除对方并重试。</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
@@ -4757,7 +4757,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">私密回复%1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">回复 %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">复制</string>
@@ -5446,9 +5446,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">设置您的 Signal 用户名</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">用户名可以让其他会员无需您的电话号码也能给您发送消息</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">稍后再说</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5468,11 +5468,11 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">继续</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">设置您的 Signal 用户名</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">编辑用户名</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__delete_username">删除用户名</string>
 

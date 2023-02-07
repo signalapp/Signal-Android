@@ -196,7 +196,7 @@
     <string name="CensorshipCircumventionMegaphone_no_thanks">Không, cảm ơn</string>
 
     <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">Xoá</string>
+    <string name="ClearProfileActivity_remove">Xóa</string>
     <string name="ClearProfileActivity_remove_profile_photo">Gỡ ảnh đại diện?</string>
     <string name="ClearProfileActivity_remove_group_photo">Gỡ ảnh nhóm?</string>
 
@@ -352,7 +352,7 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Mới! Thể hiện cảm xúc bằng nhãn dán</string>
 
     <string name="ConversationActivity_cancel">Hủy</string>
-    <string name="ConversationActivity_delete_conversation">Xoá cuộc hội thoại?</string>
+    <string name="ConversationActivity_delete_conversation">Xóa cuộc hội thoại?</string>
     <string name="ConversationActivity_delete_and_leave_group">Xóa và rời nhóm?</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Cuộc trò chuyện này sẽ bị xóa trên tất cả các thiết bị của bạn.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Bạn sẽ rời nhóm, và lịch sử trò chuyện sẽ bị xóa trên tất cả các thiết bị của bạn.</string>
@@ -455,7 +455,7 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Không có cuộc trò chuyện chưa đọc</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="other">Xoá các cuộc trò chuyện đã chọn?</item>
+        <item quantity="other">Xóa các cuộc trò chuyện đã chọn?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
         <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d cuộc trò chuyện đã chọn.</item>
@@ -527,9 +527,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Kéo xuống để lọc</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Thả để lọc</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Hồ sơ</string>
@@ -643,9 +643,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Thời gian hiển thị là (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Thời điểm bạn chọn đã qua. Nếu chọn, tin nhắn sẽ được gửi đi ngay lập tức.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Gửi ngay</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Gửi ngay</string>
@@ -1977,7 +1977,7 @@
     <string name="MediaPreviewActivity_draft">Nháp</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal cần quyền truy cập Bộ nhớ để lưu tệp vào bộ nhớ, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Bộ nhớ\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Không thể lưu tệp vào bộ nhớ khi không có quyền</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Xoá tin nhắn?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Xóa tin nhắn?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Thao tác này sẽ xóa vĩnh viễn tin nhắn này.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s đến %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
@@ -2673,7 +2673,7 @@
     <string name="preferences__advanced_pin_settings">Cài đặt PIN nâng cao</string>
     <string name="preferences__free_private_messages_and_calls">Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Signal</string>
     <string name="preferences__submit_debug_log">Gửi nhật kí dò lỗi</string>
-    <string name="preferences__delete_account">Xoá tài khoản</string>
+    <string name="preferences__delete_account">Xóa tài khoản</string>
     <string name="preferences__support_wifi_calling">Chế độ tương thích với \"Gọi qua WiFi\"</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Bật nếu thiết bị bạn gửi SMS/MMS qua WiFi (chỉ bật khi \'Gọi qua WiFi\' được bật trong thiết bị)</string>
     <string name="preferences__incognito_keyboard">Bàn phím ẩn danh</string>
@@ -3086,7 +3086,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Lọc cuộc trò chuyện chưa đọc</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Bỏ lọc tin chưa đọc</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Sao chép vào clipboard</string>
@@ -3199,7 +3199,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Tài khoản bị khoá.</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tài khoản của bạn đã bị khóa để đảm bảo sự riêng tư và bảo mật. Sau %1$d ngày không sử dụng bạn có thể đăng kí lại số điện thoại mà không cần mã PIN nhưng toàn bộ dữ liệu sẽ bị xóa.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tài khoản của bạn đã bị khóa để đảm bảo sự riêng tư và bảo mật. Sau %1$d ngày không sử dụng bạn có thể đăng ký lại số điện thoại mà không cần mã PIN nhưng toàn bộ dữ liệu sẽ bị xóa.</string>
     <string name="AccountLockedFragment__next">Tiếp</string>
     <string name="AccountLockedFragment__learn_more">Tìm hiểu thêm</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3217,7 +3217,7 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal Registration - Need Help with PIN for Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="other">Để đảm bảo quyền riêng tư và bảo mật của bạn, không có cách nào khôi phục mã PIN. Nếu bạn không nhớ mã PIN, bạn có thể đăng kí lại số điện thoại này sau %1$d ngày không sử dụng. Trong trường hợp này, dữ liệu tài khoản của bạn sẽ bị xóa.</item>
+        <item quantity="other">Để đảm bảo quyền riêng tư và bảo mật của bạn, không có cách nào khôi phục mã PIN. Nếu bạn không nhớ mã PIN, bạn có thể đăng ký lại số điện thoại này sau %1$d ngày không sử dụng. Trong trường hợp này, dữ liệu tài khoản của bạn sẽ bị xóa.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3225,7 +3225,7 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="other">Nếu bạn dùng hết số lần thử, tài khoản của bạn sẽ bị khóa %1$d ngày. Sau %1$d ngày không sử dụng, bạn có thể đăng kí lại mà không cần mã PIN nhưng toàn bộ dữ liệu tài khoản của bạn sẽ bị xóa.</item>
+        <item quantity="other">Nếu bạn dùng hết số lần thử, tài khoản của bạn sẽ bị khóa %1$d ngày. Sau %1$d ngày không sử dụng, bạn có thể đăng ký lại mà không cần mã PIN nhưng toàn bộ dữ liệu tài khoản của bạn sẽ bị xóa.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3281,9 +3281,9 @@
     <string name="BackupDialog_enable_local_backups">Bật sao lưu vào bộ nhớ?</string>
     <string name="BackupDialog_enable_backups">Bật sao lưu</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Hãy khẳng định rằng bạn đã hiểu bằng cách đánh dấu vào ô vuông.</string>
-    <string name="BackupDialog_delete_backups">Xoá bản sao lưu?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">Tắt và xoá tất cả sao lưu trên thiết bị?</string>
-    <string name="BackupDialog_delete_backups_statement">Xoá bản sao lưu</string>
+    <string name="BackupDialog_delete_backups">Xóa bản sao lưu?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Tắt và Xóa tất cả sao lưu trên thiết bị?</string>
+    <string name="BackupDialog_delete_backups_statement">Xóa bản sao lưu</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Để bật sao lưu, chọn một thư mục. Các bản sao lưu sẽ được lưu vào địa điểm này.</string>
     <string name="BackupDialog_choose_folder">Chọn thư mục</string>
     <string name="BackupDialog_copied_to_clipboard">Đã chép vào bảng ghi tạm</string>
@@ -3296,7 +3296,7 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Đang xác minh bản lưu dự phòng của Signal…</string>
     <string name="LocalBackupJobApi29_backup_failed">Sao lưu thất bại.</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Thư mục sao lưu của bạn đã bị xoá hoặc dời đi.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Thư mục sao lưu của bạn đã bị Xóa hoặc dời đi.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Tập tin sao lưu của bạn quá lớn để có thể được lưu trữ trên ổ này.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Không có đủ dung lượng để lưu trữ sao lưu của bạn.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
@@ -3305,7 +3305,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Bản lưu dự phòng của bạn chứa một tập tin rất lớn và không thể được sao lưu. Vui lòng xóa tập tin đó và tạo một bản lưu dự phòng mới.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Nhấn để quản lý các bản sao lưu.</string>
     <string name="RegistrationActivity_wrong_number">Sai số điện thoại?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Gọi tôi (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Liên lạc Bộ phận hỗ trợ Signal</string>
     <string name="RegistrationActivity_code_support_subject">Đăng ký Signal - Mã Xác minh cho Android</string>
     <string name="RegistrationActivity_incorrect_code">Mã không đúng</string>
@@ -3478,10 +3478,10 @@
     <string name="RecipientBottomSheet_add_to_another_group">Thêm vào một nhóm khác</string>
     <string name="RecipientBottomSheet_view_safety_number">Xem số an toàn</string>
     <string name="RecipientBottomSheet_make_admin">Đặt admin</string>
-    <string name="RecipientBottomSheet_remove_as_admin">Bỏ quyền quản trị</string>
+    <string name="RecipientBottomSheet_remove_as_admin">Gỡ bỏ quyền quản trị</string>
     <string name="RecipientBottomSheet_remove_from_group">Xóa khỏi nhóm</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">Loại bỏ quyền quản trị của %1$s?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Gỡ bỏ quyền quản trị của %1$s?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" sẽ có thể chỉnh sửa được nhóm này và các thành viên nhóm."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Xóa %1$s khỏi nhóm?</string>
@@ -3574,16 +3574,16 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Xoá tài khoản của bạn sẽ:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Nhập số điện thoại của bạn</string>
-    <string name="DeleteAccountFragment__delete_account">Xoá tài khoản</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Xoá thông tin tài khoản của bạn và ảnh đại diện</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Xoá tất cả tin nhắn của bạn</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Xoá %1$s trong tài khoản thanh toán của bạn</string>
+    <string name="DeleteAccountFragment__delete_account">Xóa tài khoản</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Xóa thông tin tài khoản của bạn và ảnh đại diện</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Xóa tất cả tin nhắn của bạn</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Xóa %1$s trong tài khoản thanh toán của bạn</string>
     <string name="DeleteAccountFragment__no_country_code">Mã quốc gia không xác định</string>
     <string name="DeleteAccountFragment__no_number">Số không xác định</string>
     <string name="DeleteAccountFragment__the_phone_number">Số điện thoại bạn nhập vào không khớp với số của tài khoản của bạn.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Bạn có chắc muốn xoá tài khoản?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Việc này sẽ xoá tài khoản Signal của bạn và cài đặt lại ứng dụng. Ứng dụng sẽ đóng sau khi quá trình hoàn tất.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Không thể xoá dữ liệu cục bộ. Bạn có thể tự xoá trong cài đặt hệ thống ứng dụng.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Bạn có chắc muốn Xóa tài khoản?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Việc này sẽ Xóa tài khoản Signal của bạn và cài đặt lại ứng dụng. Ứng dụng sẽ đóng sau khi quá trình hoàn tất.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Không thể Xóa dữ liệu cục bộ. Bạn có thể tự Xóa trong cài đặt hệ thống ứng dụng.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Mở Cài đặt Ứng dụng</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Đang rời nhóm…</string>
@@ -3976,11 +3976,11 @@
     <string name="ChatColorSelectionFragment__edit">Sửa</string>
     <string name="ChatColorSelectionFragment__duplicate">Sao chép</string>
     <string name="ChatColorSelectionFragment__delete">Xóa</string>
-    <string name="ChatColorSelectionFragment__delete_color">Xoá màu</string>
+    <string name="ChatColorSelectionFragment__delete_color">Xóa màu</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="other">Màu tuỳ chỉnh này được dùng trong %1$d cuộc trò chuyện. Bạn có muốn xoá nó cho tất cả các cuộc trò chuyện?</item>
+        <item quantity="other">Màu tuỳ chỉnh này được dùng trong %1$d cuộc trò chuyện. Bạn có muốn Xóa nó cho tất cả các cuộc trò chuyện?</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">Xoá màu cuộc trò chuyện?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">Xóa màu cuộc trò chuyện?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">Đặc</string>
@@ -4757,7 +4757,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Đang trả lời riêng cho %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Trả lời %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Sao chép</string>
@@ -5446,9 +5446,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Đặt tên người dùng Signal của bạn</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Tên người dùng giúp các thành viên khác nhắn tin cho bạn mà không cần có số điện thoại của bạn</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">Để sau</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5468,11 +5468,11 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Tiếp tục</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Đặt tên người dùng Signal của bạn</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Sửa tên người dùng</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__delete_username">Xóa tên người dùng</string>
 

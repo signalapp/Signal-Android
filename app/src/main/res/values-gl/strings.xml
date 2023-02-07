@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Arrastrar para filtrar</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Soltar para filtrar</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Perfil</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Todas as horas en (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">A hora seleccionada xa pasou. Enviarase unha mensaxe inmediatamente.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Enviar inmediatamente</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Enviar agora</string>
@@ -792,7 +792,7 @@
         <item quantity="other">Estes membros teñen que aceptar a invitación para unirse novamente ao grupo e non recibirán mensaxes do grupo ata que acepten:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Este membro non pode unirse aos Grupos Novos, e vai ser eliminado do grupo:</item>
+        <item quantity="one">Este membro non pode unirse aos Novos Grupos e eliminarase do grupo:</item>
         <item quantity="other">Estes membros non poden unirse aos Novos Grupos e eliminaranse do grupo:</item>
     </plurals>
 
@@ -899,7 +899,7 @@
     <string name="AddGroupDetailsFragment__try_again_later">Volver tentar máis tarde.</string>
     <string name="AddGroupDetailsFragment__remove">Eliminar</string>
     <string name="AddGroupDetailsFragment__sms_contact">Contacto SMS</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Retirar %1$s deste grupo?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Eliminar %1$s deste grupo?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Seleccionaches un contacto que non admite grupos de Signal, polo que este grupo será de MMS. Só ti poderás ver os nomes personalizados e as fotos dos grupos de MMS.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -3172,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtrar conversas sen ler</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Limpar filtro de mensaxes sen ler</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar ao portapapeis</string>
@@ -3213,7 +3213,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">O Protocolo Signal protexeu de xeito automático o %1$d%% das túas mensaxes enviadas nos últimos %2$d días. As conversas entre usuarios Signal están sempre cifradas de extremo-a-extremo.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Compárteo con alguén</string>
     <string name="InsightsDashboardFragment__not_enough_data">Non hai suficientes datos</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">O teu porcentaxe Insights calcúlase en función das mensaxes enviadas nos últimos %1$d días e que non desapareceron ou foron eliminados.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">A túa porcentaxe Insights calcúlase en función das mensaxes enviadas nos últimos %1$d días e que non desapareceron ou foron eliminadas.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">Iniciar unha conversa</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Comunícate de xeito seguro e activa novas características que van máis alá das limitacións das mensaxes SMS sen cifrar. Convida ós teus contactos a que utilicen Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Estas estatísticas créanse localmente no teu dispositivo e só as ves ti. Non son transmitidas a ningún lugar.</string>
@@ -3287,7 +3287,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Conta bloqueada</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">A túa conta foi bloqueada para protexer a túa privacidade e seguridade. Após %1$d días de inactividade na conta poderás volver a rexistrar este número sen precisar dun PIN. Todo o contido será eliminado.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">A túa conta foi bloqueada para protexer a túa privacidade e seguridade. Após %1$d días de inactividade na conta poderás volver a rexistrar este número sen precisar dun PIN. Eliminarase todo o contido.</string>
     <string name="AccountLockedFragment__next">Seguinte</string>
     <string name="AccountLockedFragment__learn_more">Saber máis</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3305,8 +3305,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Rexstro Signal - Preciso axudo co PIN para Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Non hai xeito de recuperar o PIN, por seguridade e privacidade. Se non lembras o PIN, podes volver a verificar a conta cun SMS tras %1$d día de inactividade. Neste caso, a conta será eliminada e o contido borrado.</item>
-        <item quantity="other">Non hai xeito de recuperar o teu PIN, por privacidade e seguridade. Se non podes lembrar o PIN, podes volver a verificar a conta cun SMS tras %1$d días de inactividade. Neste caso, a conta será eliminada e todo o contido borrado.</item>
+        <item quantity="one">Non hai xeito de recuperar o PIN, por seguridade e privacidade. Se non lembras o PIN, podes volver a verificar a conta cun SMS tras %1$d día de inactividade. Neste caso, eliminarase a conta e borrarase o contido.</item>
+        <item quantity="other">Non hai xeito de recuperar o teu PIN, por privacidade e seguridade. Se non podes lembrar o PIN, podes volver a verificar a conta cun SMS tras %1$d días de inactividade. Neste caso, eliminarase a conta e borrarase o contido.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3315,8 +3315,8 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">Se esgotas os intentos a conta quedará bloqueada durante %1$d día. Após %1$d día de inactividade, poderás volver a rexistrala sen precisar PIN. A conta será eliminada e o contido borrado.</item>
-        <item quantity="other">Se esgotas os intentos a conta será bloqueada durante %1$d días. Tras %1$d días de inactividade, podes volver a rexistrala sen precisar PIN. A conta será eliminada e todo o contido borrado.</item>
+        <item quantity="one">Se esgotas os intentos a conta quedará bloqueada durante %1$d día. Após %1$d día de inactividade, poderás volver a rexistrala sen precisar PIN. Eliminarase a conta e borrarase o contido.</item>
+        <item quantity="other">Se esgotas os intentos a conta será bloqueada durante %1$d días. Tras %1$d días de inactividade, podes volver a rexistrala sen precisar PIN. Eliminarase a conta e borrarase o contido</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3389,7 +3389,7 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Verificando copia de seguranza de Signal…</string>
     <string name="LocalBackupJobApi29_backup_failed">Erro na copia de seguranza</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">O directorio da túa copia de seguranza foi eliminado ou movido.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">O directorio da túa copia de seguranza eliminouse ou moveuse.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">O ficheiro da túa copia de seguranza é demasiado grande para almacenalo neste volume.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Non hai suficiente espazo para almacenar a túa copia de seguranza.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
@@ -3398,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">A túa copia de seguranza contén un arquivo moi grande que non se pode gardar. Elimínao e crea unha nova copia.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Toca para administrar as copias de seguranza.</string>
     <string name="RegistrationActivity_wrong_number">Número incorrecto?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Chámame (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contacta co Centro de Axuda de Signal</string>
     <string name="RegistrationActivity_code_support_subject">Rexistrarse en Signal - Código de verificación para Android</string>
     <string name="RegistrationActivity_incorrect_code">Código incorrecto</string>
@@ -3670,7 +3670,7 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Ao eliminar a conta:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Escribe o teu número de teléfono</string>
     <string name="DeleteAccountFragment__delete_account">Eliminar conta</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Eliminar a info da conta e foto de perfil</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Eliminar a información da conta e a foto de perfil</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Eliminar todas as túas mensaxes</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Eliminar %1$s na túa conta de pagamentos</string>
     <string name="DeleteAccountFragment__no_country_code">Non está indicado o código do país</string>
@@ -4863,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Responder por privado a %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Responder a %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Copiar</string>
@@ -5571,9 +5571,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Configura o teu nome de usuario de Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Os nomes de usuario permiten que outras persoas che envíen mensaxes sen necesidade do teu número de teléfono</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">Agora non</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5593,11 +5593,11 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Continuar</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Configura o teu nome de usuario de Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Editar nome de usuario</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__delete_username">Borrar nome de usuario</string>
 

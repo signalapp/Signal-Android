@@ -196,9 +196,9 @@
     <string name="CensorshipCircumventionMegaphone_no_thanks">괜찮습니다</string>
 
     <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">삭제</string>
-    <string name="ClearProfileActivity_remove_profile_photo">프로필 사진을 삭제하시겠습니까?</string>
-    <string name="ClearProfileActivity_remove_group_photo">그룹 사진을 지우시겠습니까?</string>
+    <string name="ClearProfileActivity_remove">제거</string>
+    <string name="ClearProfileActivity_remove_profile_photo">프로필 사진을 제거하시겠습니까?</string>
+    <string name="ClearProfileActivity_remove_group_photo">그룹 사진을 제거하시겠습니까?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">시그널 최신 버전으로 업데이트</string>
@@ -426,7 +426,7 @@
     <string name="ConversationFragment_failed_to_open_message">메시지 열기 실패</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">메시지를 오른쪽으로 쓸어서 빨리 답장할 수 있습니다.</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">메시지를 왼쪽으로 쓸어서 빨리 답장할 수 있습니다.</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">한 번 볼 수 있는 미디어 파일은 전송 후 자동으로 삭제됩니다.</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">한 번 볼 수 있는 미디어 파일은 전송 후 자동으로 됩니다.</string>
     <string name="ConversationFragment_you_already_viewed_this_message">메시지를 이미 읽었습니다.</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">이 대화에서는 나만의 메모를 추가할 수 있습니다.\n계정에 연결된 기기가 있는 경우 새 메모가 동기화됩니다.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d명의 그룹 멤버가 이름이 같습니다.</string>
@@ -458,7 +458,7 @@
         <item quantity="other">선택한 대화를 삭제하시겠습니까?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="other">선택한 대화 %1$d개가 영구 삭제됩니다.</item>
+        <item quantity="other">선택한 대화 %1$d개가 모두 영구 삭제됩니다.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">삭제 중</string>
     <string name="ConversationListFragment_deleting_selected_conversations">선택한 대화 삭제 중…</string>
@@ -527,9 +527,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">아래로 당겨서 필터링</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">놓아서 필터링하세요.</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">프로필</string>
@@ -643,9 +643,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">모든 시간대 %2$s(%1$s)(으)로 설정</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">과거 시간을 선택했습니다. 메시지를 지금 바로 보냅니다.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">지금 바로 보내기</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">지금 보내기</string>
@@ -860,9 +860,9 @@
     <string name="AddGroupDetailsFragment__this_field_is_required">이 입력창은 필수입니다.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">그룹 생성 실패</string>
     <string name="AddGroupDetailsFragment__try_again_later">나중에 다시 시도하세요.</string>
-    <string name="AddGroupDetailsFragment__remove">삭제</string>
+    <string name="AddGroupDetailsFragment__remove">제거</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS 연락</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">이 그룹에서 %1$s를 제외하시겠습니까?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">이 그룹에서 %1$s를 제거하시겠습니까?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal 그룹을 지원하지 않는 연락처를 선택했으므로 이 그룹은 MMS가 됩니다. 사용자 지정 MMS 그룹 이름과 사진은 나만 볼 수 있습니다.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -970,7 +970,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">그룹에 참가할 수 없습니다.</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">관리자가 당신을 그룹링크를 통한 참가를 차단했기 때문에 그룹 링크를 통해 그룹에 참가할 수 없습니다.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">관리자가 당신을 그룹 링크를 통한 참가를 차단했기 때문에 그룹 링크를 통해 그룹에 참가할 수 없습니다.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">그룹 링크가 더 이상 유효하지 않습니다.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1063,7 +1063,7 @@
         <item quantity="other">선택한 항목을 삭제하시겠습니까?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="other">&lt;mrk id=\'314\' mtype=\'seg\'&gt;선택한 파일 %1$d개가 영구 삭제됩니다.&lt;/mrk&gt; &lt;mrk id=\'315\' mtype=\'seg\'&gt;이 항목들과 관련된 모든 메시지의 텍스트도 삭제됩니다.&lt;/mrk&gt;</item>
+        <item quantity="other">&lt;mrk id=\'314\' mtype=\'seg\'&gt;선택한 파일 %1$d개가 모두 영구 삭제됩니다.&lt;/mrk&gt; &lt;mrk id=\'315\' mtype=\'seg\'&gt;이 항목들과 관련된 모든 메시지의 텍스트도 삭제됩니다.&lt;/mrk&gt;</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">삭제 중</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">메시지 삭제 중…</string>
@@ -1806,7 +1806,7 @@
     <string name="StickerPackPreviewActivity_untitled">제목 없음</string>
     <string name="StickerPackPreviewActivity_unknown">알 수 없음</string>
     <string name="StickerPackPreviewActivity_install">설치</string>
-    <string name="StickerPackPreviewActivity_remove">삭제</string>
+    <string name="StickerPackPreviewActivity_remove">제거</string>
     <string name="StickerPackPreviewActivity_stickers">스티커</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">스티커 팩을 불러올 수 없음</string>
 
@@ -2494,7 +2494,7 @@
     <string name="AndroidManifest__linked_devices">연결된 기기</string>
     <string name="AndroidManifest__invite_friends">친구 초대</string>
     <string name="AndroidManifest_archived_conversations">보관된 대화</string>
-    <string name="AndroidManifest_remove_photo">사진 삭제</string>
+    <string name="AndroidManifest_remove_photo">사진 제거</string>
 
     <!-- Message Requests Megaphone -->
     <string name="MessageRequestsMegaphone__message_requests">메시지 요청</string>
@@ -2701,8 +2701,8 @@
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">이를 통해 모든 대화가 %1$s개의 가장 최근 메시지만 제외하고 영구적으로 삭제됩니다.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">이 기기의 모든 메시지 기록과 미디어를 영구 삭제합니다.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">모든 메시지 기록을 삭제할까요?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">모든 메시지 기록을 영구 삭제합니다. 이 작업은 다시 되돌릴 수 없습니다.</string>
-    <string name="preferences_storage__delete_all_now">모두 지우기</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">모든 메시지 기록을 영구적으로 제거합니다. 이 작업은 다시 되돌릴 수 없습니다.</string>
+    <string name="preferences_storage__delete_all_now">지금 모두 삭제</string>
     <string name="preferences_storage__forever">영원히</string>
     <string name="preferences_storage__one_year">1년</string>
     <string name="preferences_storage__six_months">6개월</string>
@@ -3086,7 +3086,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">안 읽은 채팅 필터</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">안 읽은 채팅 필터 지우기</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">클립보드에 복사</string>
@@ -3127,7 +3127,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal 프로토콜이 지난 %2$d일 동안 발신된 메시지 중 %1$d%%를 발견했습니다. Signal 사용자 간의 대화는 항상 단대단 암호화됩니다.</string>
     <string name="InsightsDashboardFragment__spread_the_word">널리 알려주세요.</string>
     <string name="InsightsDashboardFragment__not_enough_data">데이터가 충분하지 않음</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">인사이트 백분율은 최근 %1$d일 동안 사라졌거나 삭제되지 않은 발신 메시지에 대해 산정됩니다.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">인사이트 백분율은 최근 %1$d일 동안 사라지지 않았거나 삭제되지 않은 발신 메시지에 대해 산정됩니다.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">대화 시작</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">안전하게 대화하고 더 많은 연락처를 Signal에 초대하여 등록하게 함으로써, 비보안 SMS 메시지의 한계를 뛰어넘는 새 기능을 활성화할 수 있습니다.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">통계는 해당 기기에서 직접 생성되었으며 나만 볼 수 있습니다. 절대 다른 곳으로 유출되지 않습니다.</string>
@@ -3199,7 +3199,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">계정 잠김</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">계정이 개인 정보 보호와 보안을 위해 잠겼습니다. 계정을 사용하지 않은 지 %1$d일이 지나면 번호 없이도 전화번호로 다시 등록할 수 있습니다. 모든 내용은 삭제됩니다.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">계정이 개인 정보 보호와 보안을 위해 잠겼습니다. 계정을 사용하지 않은 지 %1$d일이 지나면 PIN 번호 없이도 전화번호로 다시 등록할 수 있습니다. 모든 내용은 삭제됩니다.</string>
     <string name="AccountLockedFragment__next">다음</string>
     <string name="AccountLockedFragment__learn_more">더 알아보기</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3225,7 +3225,7 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="other">시도 횟수를 모두 사용한 경우 계정은 %1$d일 동안 잠깁니다. 계정을 사용하지 않은 지 %1$d일이 지나면 번호 없이도 다시 등록할 수 있습니다. 계정은 정리되어 모든 내용이 삭제됩니다.</item>
+        <item quantity="other">시도 횟수를 모두 사용한 경우 계정은 %1$d일 동안 잠깁니다. 계정을 사용하지 않은 지 %1$d일이 지나면 PIN 번호 없이도 다시 등록할 수 있습니다. 계정은 정리되어 모든 내용이 삭제됩니다.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3305,7 +3305,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">백업에 대용량 파일이 포함되어 있습니다. 이 파일을 삭제하고 새로운 백업을 만드세요.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">탭하여 백업을 관리하세요.</string>
     <string name="RegistrationActivity_wrong_number">번호가 잘못되었나요?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">나한테 전화(%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal 지원 팀에 문의</string>
     <string name="RegistrationActivity_code_support_subject">Signal 등록 - 안드로이드용 인증 코드</string>
     <string name="RegistrationActivity_incorrect_code">올바르지 않은 코드</string>
@@ -3478,16 +3478,16 @@
     <string name="RecipientBottomSheet_add_to_another_group">다른 그룹에 추가</string>
     <string name="RecipientBottomSheet_view_safety_number">안전 번호 보기</string>
     <string name="RecipientBottomSheet_make_admin">관리자로 설정</string>
-    <string name="RecipientBottomSheet_remove_as_admin">권리자 권한으로 제외</string>
-    <string name="RecipientBottomSheet_remove_from_group">그룹에서 제외</string>
+    <string name="RecipientBottomSheet_remove_as_admin">권리자 권한으로 제거</string>
+    <string name="RecipientBottomSheet_remove_from_group">그룹에서 제거</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s 님을 그룹 관리자로서 삭제하시겠습니까?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s 님을 그룹 관리자로서 제거하시겠습니까?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s 님은 그룹과 멤버를 수정할 수 있습니다."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">그룹에서 %1$s 님을 제거하시겠습니까?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
     <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">그룹에서 %1$s 님을 제거할까요? 그룹 링크를 통해 다시 참가할 수 없게 됩니다.</string>
-    <string name="RecipientBottomSheet_remove">삭제</string>
+    <string name="RecipientBottomSheet_remove">제거</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">클립보드로 복사됨</string>
 
     <string name="GroupRecipientListItem_admin">관리자</string>
@@ -3540,14 +3540,14 @@
         <item quantity="other">공통 그룹 %1$d개</item>
     </plurals>
     <string name="ReviewCardDialogFragment__remove_s_from_group">그룹에서 %1$s 님을 제거하시겠습니까?</string>
-    <string name="ReviewCardDialogFragment__remove">삭제</string>
+    <string name="ReviewCardDialogFragment__remove">제거</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">그룹 멤버를 제거하지 못했습니다.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">멤버</string>
     <string name="ReviewCard__request">요청</string>
     <string name="ReviewCard__your_contact">연락처</string>
-    <string name="ReviewCard__remove_from_group">그룹에서 제외</string>
+    <string name="ReviewCard__remove_from_group">그룹에서 제거</string>
     <string name="ReviewCard__update_contact">연락처 업데이트</string>
     <string name="ReviewCard__block">차단</string>
     <string name="ReviewCard__delete">삭제</string>
@@ -3883,7 +3883,7 @@
     <!-- Description for re-export sms preference -->
     <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">다시 내보내면 중복 메시지가 생길 수 있습니다.</string>
     <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Signal에서 SMS 메시지를 삭제하여 저장 공간을 확보하세요.</string>
+    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Signal에서 SMS 메시지를 제거하여 저장 공간을 확보하세요.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
     <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">암호화 메시지에 집중하기 위해 SMS 지원을 곧 중단합니다.</string>
 
@@ -4133,7 +4133,7 @@
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">화상 통화</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">삭제</string>
+    <string name="NewConversationActivity__remove">제거</string>
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">차단</string>
     <!-- Dialog title when removing a contact -->
@@ -4520,7 +4520,7 @@
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">실행 취소</string>
     <!-- Dialog message shown to confirm deleting a profile -->
-    <string name="NotificationProfileDetails__permanently_delete_profile">프로필을 영구적으로 삭제 하시겠어요?</string>
+    <string name="NotificationProfileDetails__permanently_delete_profile">프로필을 영구적으로 삭제하시겠어요?</string>
     <!-- Dialog button to delete profile -->
     <string name="NotificationProfileDetails__delete">삭제</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
@@ -4735,7 +4735,7 @@
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">설정으로 이동</string>
     <!-- Dialog action to remove viewer from a story -->
-    <string name="StoryViewsFragment__remove">삭제</string>
+    <string name="StoryViewsFragment__remove">제거</string>
     <!-- Dialog title when removing a viewer from a story -->
     <string name="StoryViewsFragment__remove_viewer">볼 수 있는 사람을 제거할까요?</string>
     <!-- Dialog message when removing a viewer from a story -->
@@ -4757,7 +4757,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s 님에게 비공개로 답장하는 중</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">%1$s 님에게 답장</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">복사</string>
@@ -4822,7 +4822,7 @@
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">이 사용자는 더 이상 내 스토리를 볼 수 없습니다.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove">삭제</string>
+    <string name="PrivateStorySettingsFragment__remove">제거</string>
     <!-- Dialog title when deleting a custom story -->
     <!-- Dialog message when deleting a custom story -->
     <!-- Page title for editing a custom story name -->
@@ -4861,7 +4861,7 @@
     <!-- Dialog message for removing a group story -->
     <string name="StoryDialogs__s_will_be_removed">\'%1$s\'을(를) 제거합니다.</string>
     <!-- Dialog positive action for removing a group story -->
-    <string name="StoryDialogs__remove">삭제</string>
+    <string name="StoryDialogs__remove">제거</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">사용자 지정 스토리를 삭제할까요?</string>
     <!-- Dialog message for deleting a custom story -->
@@ -5047,7 +5047,7 @@
     <!-- Dialog message for removing a group story -->
     <string name="ContactSearchMediator__this_will_remove">이 목록에서 스토리를 제거합니다. 이 그룹의 스토리는 계속 볼 수 있습니다.</string>
     <!-- Dialog action item for removing a group story -->
-    <string name="ContactSearchMediator__remove">삭제</string>
+    <string name="ContactSearchMediator__remove">제거</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">스토리를 삭제할까요?</string>
     <!-- Dialog message for deleting a custom story -->
@@ -5118,7 +5118,7 @@
     <!-- Context menu label for distribution list headers in review fragment -->
     <string name="SafetyNumberReviewConnectionsFragment__remove_all">모두 제거</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove">삭제</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove">제거</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">내 스토리 개인정보보호</string>
@@ -5193,7 +5193,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">SMS 메시지 내보내기</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">SMS 메시지를 휴대폰의 SMS 데이터베이스로 내보낼 수 있으며, 해당 SMS 메시지를 Signal에 그대로 보관할지 삭제할지를 선택할 수 있습니다. 이렇게 하면 휴대폰의 다른 SMS 앱에서 해당 메시지를 가져올 수 있습니다. 하지만 공유 가능한 SMS 기록 파일을 만들지는 않습니다.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">SMS 메시지를 휴대폰의 SMS 데이터베이스로 내보낼 수 있으며, 해당 SMS 메시지를 Signal에 그대로 보관할지 제거할지를 선택할 수 있습니다. 이렇게 하면 휴대폰의 다른 SMS 앱에서 해당 메시지를 가져올 수 있습니다. 하지만 공유 가능한 SMS 기록 파일을 만들지는 않습니다.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">계속</string>
 
@@ -5295,7 +5295,7 @@
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal SMS 서비스가 곧 중단됩니다</string>
     <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal 메시지는 종단 간 암호화와 강력한 개인정보보호를 제공하지만 SMS 메시지는 그렇지 못합니다. 따라서 Signal은 당사 메시지 환경을 개선하기 위해 SMS 메시지 발송에 대한 지원을 곧 중단합니다.</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal 메시지는 종단 간 암호화와 강력한 개인정보 보호를 제공하지만 SMS 메시지는 그렇지 못합니다. 따라서 Signal은 당사 메시지 환경을 개선하기 위해 SMS 메시지 발송에 대한 지원을 곧 중단합니다.</string>
     <!-- Phase 3 message describing that sms has gone away -->
     <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal 메시지는 종단 간 암호화와 강력한 개인정보보호를 제공하지만 SMS 메시지는 그렇지 못합니다. 따라서 Signal은 당사 메시지 환경을 개선하기 위해 SMS 메시지 발송에 대한 지원을 곧 중단합니다.</string>
     <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
@@ -5446,9 +5446,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Signal 사용자 이름 설정</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">사용자 이름을 이용하면 다른 사람들이 내 전화번호가 없어도 나에게 메시지를 보낼 수 있습니다.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">나중에</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5468,13 +5468,13 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">계속</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Signal 사용자 이름 설정</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">사용자 이름 편집</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">사용자명 삭제</string>
+    <string name="UsernameEditDialog__delete_username">사용자 이름 삭제</string>
 
     <!-- EOF -->
 </resources>

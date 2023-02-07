@@ -3398,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ನಿಮ್ಮ ಬ್ಯಾಕಪ್, ಬ್ಯಾಕಪ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲದ‌ ತೀರಾ ದೊಡ್ಡ ಫೈಲ್ ಅನ್ನು ಹೊಂದಿದೆ. ದಯವಿಟ್ಟು ಅದನ್ನು ಅಳಿಸಿ ಮತ್ತು ಹೊಸತೊಂದು ಬ್ಯಾಕಪ್ ರಚಿಸಿ.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ನಿರ್ವಯಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
     <string name="RegistrationActivity_wrong_number">ಸಂಖ್ಯೆ ತಪ್ಪಾಗಿದೆಯೇ?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">ನನಗೆ ಕರೆ ಮಾಡಿ (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">(%1$02d:%2$02d) ರ ಬಳಿಕ ನನಗೆ ಕರೆ ಮಾಡಿ</string>
     <string name="RegistrationActivity_contact_signal_support">ಸಂಪರ್ಕಿಸಿ Signal ಬೆಂಬಲ</string>
     <string name="RegistrationActivity_code_support_subject">Signal ನೋಂದಣಿ - ಆಂಡ್ರಾಯ್ಡ್‌ಗೆ ದೃಢೀಕರಣ ಕೋಡ್</string>
     <string name="RegistrationActivity_incorrect_code">ತಪ್ಪಾದ ಕೋಡ್</string>

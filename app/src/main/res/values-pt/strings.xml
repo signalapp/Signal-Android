@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Deslize para baixo para filtrar</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Large para filtrar</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Perfil</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Todas as datas em (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">A hora selecionado é no passado. Isto enviará a mensagem imediatamente.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Enviar imediatamente</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Enviar agora</string>
@@ -776,7 +776,7 @@
         <item quantity="other">Estes membros necessitarão de aceitar um convite para se juntarem novamente a este grupo e não receberão mensagens do grupo aceitarem:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Este membro foi removidos do grupo e não poderá voltar a juntar-se até que façam o upgrade:</item>
+        <item quantity="one">Este membro foi removido do grupo e não poderá voltar a juntar-se até que faça o upgrade:</item>
         <item quantity="other">Estes membros foram removidos do grupo e não poderão voltar a juntar-se até que façam o upgrade:</item>
     </plurals>
 
@@ -792,8 +792,8 @@
         <item quantity="other">Estes membros necessitarão de aceitar um convite para se juntarem novamente a este grupo e não receberão mensagens do grupo até aceitarem:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Este membro não se pode se juntar a \'Novos grupos\' e será removido do grupo:</item>
-        <item quantity="other">Estes membros não se podem juntar a \'Novos grupos\' e serão removidos do grupo:</item>
+        <item quantity="one">Este membro não se pode se juntar a Novos grupos e será removido do grupo:</item>
+        <item quantity="other">Estes membros não se podem juntar a Novos grupos e serão removidos do grupo:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -3172,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtrar conversas não lidas</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Limpar filtro não lido</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar para a área de transferência</string>
@@ -3398,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">A sua cópia de segurança contém um ficheiro muito grande que não pode ser copiado. Elimine esse ficheiro e crie uma nova cópia de segurança.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Toque para gerir as cópias de segurança.</string>
     <string name="RegistrationActivity_wrong_number">Número errado?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Liguem-me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contactar o Suporte do Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registo Signal - Código de verificação para Android</string>
     <string name="RegistrationActivity_incorrect_code">Código Incorrecto</string>
@@ -3634,7 +3634,7 @@
         <item quantity="one">%1$d grupo em comum</item>
         <item quantity="other">%1$d grupos em comum</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">Remover %1$s deste grupo?</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">Remover %1$s do grupo?</string>
     <string name="ReviewCardDialogFragment__remove">Remover</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Falha ao remover o membro do grupo.</string>
 
@@ -3974,13 +3974,13 @@
     <!-- Snackbar text to confirm deletion -->
     <string name="SmsSettingsFragment__removing_sms_messages_from_signal">A eliminar mensagens SMS do Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Pode eliminar as mensagens SMS do Signal nas Definições a qualquer altura.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Pode remover as mensagens SMS do Signal nas Definições a qualquer altura.</string>
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Pode exportar as suas mensagens SMS para a base de dados SMS do seu telemóvel</string>
     <!-- Description for re-export sms preference -->
     <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exportar outra vez pode resultar em mensagens duplicadas</string>
     <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Elimine mensagens SMS do Signal para libertar espaço de armazenamento.</string>
+    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Remova mensagens SMS do Signal para libertar espaço de armazenamento.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
     <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">O suporte para SMS será removido em breve para nos focarmos em mensagens encriptadas.</string>
 
@@ -4246,7 +4246,7 @@
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Não foi possível remover %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Esta pessoa está guardada nos Contactos do seu dispositivo. Apague-a dos seus contactos e tente outra vez.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Esta pessoa está guardada nos Contactos do seu dispositivo. Elimine-a dos seus contactos e tente outra vez.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Ver contacto</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -4863,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">A responder de forma privada a %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Responder a %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Copiar</string>
@@ -4968,13 +4968,13 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Remover história de grupo?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" será removida</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" será removida.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Remover</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">Eliminar história personalizada?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" e atualizações partilhadas com esta história serão removidos.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" e atualizações partilhadas com esta história serão eliminados.</string>
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Eliminar</string>
     <!-- Dialog title for first time sending something to a beta story -->
@@ -5277,7 +5277,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Desativar histórias?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Já não poderá partilhar ou ver histórias. As atualizações de histórias que tenha partilhado recentemente também serão apagadas.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Já não poderá partilhar ou ver histórias. As atualizações de histórias que tenha partilhado recentemente também serão eliminadas.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Privacidade da história</string>
     <!-- Header for section that lists out stories -->
@@ -5369,11 +5369,11 @@
     <!-- Action button to keep messages -->
     <string name="RemoveSmsMessagesDialogFragment__keep_messages">Manter mensagens</string>
     <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Eliminar mensagens</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Remover mensagens</string>
     <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Eliminar mensagens SMS do Signal?</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Remover mensagens SMS do Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Agora pode eliminar mensagens SMS do Signal para libertar espaço de armazenamento. Continuarão a estar disponíveis para outras aplicações SMS no seu telemóvel, mesmo que as elimine.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Agora pode remover mensagens SMS do Signal para libertar espaço de armazenamento. Continuarão a estar disponíveis para outras aplicações SMS no seu telemóvel, mesmo que as remova.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5571,9 +5571,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Configure o seu nome de utilizador do Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Os nomes de utilizador permitem às outras pessoas enviar-lhe mensagens sem precisarem do seu número de telemóvel</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">Agora não</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5593,11 +5593,11 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Continuar</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Configure o seu nome de utilizador do Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Editar nome de utilizador</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__delete_username">Eliminar nome de utilizador</string>
 

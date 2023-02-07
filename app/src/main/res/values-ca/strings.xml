@@ -17,7 +17,7 @@
 
     <string name="yes">Sí</string>
     <string name="no">No</string>
-    <string name="delete">Suprimeix</string>
+    <string name="delete">Esborra</string>
     <string name="please_wait">Espereu, si us plau…</string>
     <string name="save">Desa</string>
     <string name="note_to_self">Notifica-m\'ho</string>
@@ -197,8 +197,8 @@
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Suprimeix</string>
-    <string name="ClearProfileActivity_remove_profile_photo">Voleu suprimir la foto de perfil?</string>
-    <string name="ClearProfileActivity_remove_group_photo">Voleu suprimir la foto del grup?</string>
+    <string name="ClearProfileActivity_remove_profile_photo">Vols suprimir la foto de perfil?</string>
+    <string name="ClearProfileActivity_remove_group_photo">Vols suprimir la foto del grup?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Actualitza el Signal</string>
@@ -281,8 +281,8 @@
     <string name="ConversationItem_read_more">  Més informació</string>
     <string name="ConversationItem_download_more">  Baixa\'n més</string>
     <string name="ConversationItem_pending">  Pendent</string>
-    <string name="ConversationItem_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
-    <string name="ConversationItem_you_deleted_this_message">Heu suprimit aquest missatge.</string>
+    <string name="ConversationItem_this_message_was_deleted">Aquest missatge s\'ha esborrat.</string>
+    <string name="ConversationItem_you_deleted_this_message">Has esborrat aquest missatge.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">No es pot descarregar el missatge. %1$s haurà de tornar-lo a enviar.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -352,12 +352,12 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Nou! Digueu-ho amb adhesius.</string>
 
     <string name="ConversationActivity_cancel">Cancel·la</string>
-    <string name="ConversationActivity_delete_conversation">Voleu eliminar la conversa?</string>
-    <string name="ConversationActivity_delete_and_leave_group">Voleu suprimir i abandonar el grup?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Aquesta conversa se suprimirà de tots els dispositius.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abandonareu aquest grup i se suprimirà de tots els dispositius.</string>
-    <string name="ConversationActivity_delete">Suprimeix</string>
-    <string name="ConversationActivity_delete_and_leave">Suprimeix-lo i abandona\'l</string>
+    <string name="ConversationActivity_delete_conversation">Vols esborrar la conversa?</string>
+    <string name="ConversationActivity_delete_and_leave_group">Vols esborrar i sortir del grup?</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Aquesta conversa s\'esborrarà de tots els dispositius.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abandonaràs aquest grup i s\'esborrarà de tots els dispositius.</string>
+    <string name="ConversationActivity_delete">Esborra</string>
+    <string name="ConversationActivity_delete_and_leave">Esborra i surt</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Per trucar a %1$s, el Signal necessita accés al micròfon.</string>
 
 
@@ -393,8 +393,8 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">No s\'han trobat els contactes de l\'app.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="one">Voleu suprimir el missatge seleccionat?</item>
-        <item quantity="other">Voleu suprimir els missatges seleccionats?</item>
+        <item quantity="one">Vols suprimir el missatge seleccionat?</item>
+        <item quantity="other">Vols suprimir els missatges seleccionats?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Voleu desar-ho a l\'emmagatzematge?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -420,13 +420,13 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Se suprimeix</string>
     <string name="ConversationFragment_deleting_messages">Se suprimeixen missatges…</string>
-    <string name="ConversationFragment_delete_for_me">Suprimeix per a mi</string>
-    <string name="ConversationFragment_delete_for_everyone">Suprimeix per a tothom</string>
+    <string name="ConversationFragment_delete_for_me">Esborrar per a mi</string>
+    <string name="ConversationFragment_delete_for_everyone">Esborrar per a tothom</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Suprimir en aquest dispositiu</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Suprimir a tot arreu</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Aquest missatge se suprimirà per a tothom que sigui a la conversa si tenen una versió recent del Signal. Podran veure que heu suprimit un missatge.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Aquest missatge s\'esborrarà per a tothom que sigui a la conversa si tenen una versió recent de Signal. Podran veure que heu suprimit un missatge.</string>
     <string name="ConversationFragment_quoted_message_not_found">No s\'ha trobat el missatge original.</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">El missatge original ja no està disponible.</string>
     <string name="ConversationFragment_failed_to_open_message">Ha fallat obrir el missatge.</string>
@@ -461,12 +461,12 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">No hi ha xats sense llegir</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Voleu suprimir la conversa seleccionada?</item>
-        <item quantity="other">Voleu suprimir les converses seleccionades?</item>
+        <item quantity="one">Vols suprimir la conversa seleccionada?</item>
+        <item quantity="other">Vols suprimir les converses seleccionades?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">Aquesta acció eliminarà la conversa seleccionada permanentment.</item>
-        <item quantity="other">Aquesta acció eliminarà les %1$d converses seleccionades permanentment.</item>
+        <item quantity="one">Aquesta acció suprimirà la conversa seleccionada permanentment.</item>
+        <item quantity="other">Aquesta acció esborrarà les %1$d converses seleccionades permanentment.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Se suprimeix</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Se suprimeixen les converses seleccionades…</string>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Desplaçar-se cap avall per filtrar</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Deixar anar per filtrar</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Perfil</string>
@@ -663,18 +663,18 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Cada hora es mostra en (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">L\'hora seleccionada ja ha passat. Això enviarà el missatge immediatament.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Enviar immediatament</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Envia ara</string>
     <!-- Context menu option to reschedule a selected message -->
     <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reprogramar</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Suprimeix</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Esborra</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Vols eliminar el missatge programat seleccionat?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Vols suprimir el missatge programat seleccionat?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Eliminant missatge programat…</string>
 
@@ -776,8 +776,8 @@
         <item quantity="other">Aquests membres hauran d\'acceptar una invitació per tornar a afegir-se a aquest grup i no en rebran missatges fins que no l\'acceptin:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Aquest membre s\'ha suprimit del grup i no podrà tornar a afegir-s\'hi fins que no l\'actualitzi:</item>
-        <item quantity="other">Aquests membres s\'han suprimit del grup i no podran tornar a afegir-s\'hi fins que no l\'actualitzin:</item>
+        <item quantity="one">Aquest membre ha estat esborrat del grup i no podrà tornar a afegir-s\'hi fins que no l\'actualitzi:</item>
+        <item quantity="other">Aquests membres s\'han esborrat del grup i no podran tornar a afegir-s\'hi fins que no l\'actualitzin:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -792,8 +792,8 @@
         <item quantity="other">Aquests membres hauran d\'acceptar una invitació per tornar a afegir-se a aquest grup i no en rebran missatges fins que no l\'acceptin:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Aquest membre no és capaç d\'afegir-se als grups nous i se suprimirà del grup:</item>
-        <item quantity="other">Aquests membres no són capaços d\'afegir-se als grups nous i se suprimiran del grup:</item>
+        <item quantity="one">Aquest membre no és capaç d\'afegir-se als grups nous i serà esborrat del grup:</item>
+        <item quantity="other">Aquests membres no són capaços d\'afegir-se als grups nous i seran esborrats del grup:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -899,11 +899,11 @@
     <string name="AddGroupDetailsFragment__try_again_later">Torneu-ho a provar més tard.</string>
     <string name="AddGroupDetailsFragment__remove">Suprimeix</string>
     <string name="AddGroupDetailsFragment__sms_contact">Contacte d\'SMS</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Voleu suprimir %1$s d\'aquest grup?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Vols esborrar a %1$s d\'aquest grup?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Has seleccionat un contacte que no té habilitats els grups a Signal, així que aquest grup serà MMS. Només tu podràs veure els noms personalitzats i les fotos dels grups MMS.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Has seleccionat un contacte que no admet grups de Signal, per tant, aquest grup serà per MMS. Els noms i les fotos del grup MMS personalitzat només seran visibles per a tu. Els grups MMS aviat no seran compatibles, ja que volem centrar-nos en la missatgeria encriptada.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Has seleccionat un contacte que no admet grups de Signal, per tant, aquest grup serà per MMS. Els noms i les fotos del grup MMS personalitzat només seran visibles per a tu. Els grups MMS aviat no seran compatibles, és hora de centrar-nos en la missatgeria encriptada.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Qui pot afegir membres nous?</string>
@@ -1011,7 +1011,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">No es pot afegir al grup.</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">No podeu afegir-vos-hi mitjançant l\'enllaç de grup perquè un administrador us n\'ha suprimit.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">No podeu afegir-vos-hi mitjançant l\'enllaç de grup perquè un administrador us ha esborrat.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Aquest enllaç de grup ja no és vàlid.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1103,12 +1103,12 @@
     <string name="MediaOverviewActivity_Audio">Àudio</string>
     <string name="MediaOverviewActivity_All">Tot</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">Voleu suprimir l\'element seleccionat?</item>
-        <item quantity="other">Voleu suprimir els elements seleccionats?</item>
+        <item quantity="one">Vols esborrar l\'element seleccionat?</item>
+        <item quantity="other">Vols esborrar els elements seleccionats?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">Aquesta acció eliminarà permanentment el fitxer seleccionat. Qualsevol missatge de text que hi estigui associat també s\'eliminarà.</item>
-        <item quantity="other">Aquesta acció eliminarà permanentment els %1$d fitxers seleccionats. Qualsevol missatge de text que hi estigui associat també s\'eliminarà.</item>
+        <item quantity="one">Aquesta acció esborrarà permanentment el fitxer seleccionat. Qualsevol missatge de text que hi estigui associat també s\'esborrarà.</item>
+        <item quantity="other">Aquesta acció esborrarà permanentment els %1$d fitxers seleccionats. Qualsevol missatge de text que hi estigui associat també s\'esborrarà.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Se suprimeix</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Se suprimeixen missatges…</string>
@@ -1245,8 +1245,8 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">Un membre no s\'ha pogut afegir al grup nou i se l\'ha eliminat.</item>
-        <item quantity="other">%1$s membres no s\'han pogut afegir al grup nou i se\'ls ha eliminat.</item>
+        <item quantity="one">Un membre no s\'ha pogut afegir al grup nou i ha estat esborrat.</item>
+        <item quantity="other">%1$s membres no s\'han pogut afegir al grup nou i han estat esborrats.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1267,9 +1267,9 @@
     <string name="MessageRecord_s_joined_the_group">%1$s s\'ha afegit al grup.</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">Heu suprimit %1$s.</string>
-    <string name="MessageRecord_s_removed_s">%1$s ha suprimit %2$s.</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s us ha suprimit del grup.</string>
+    <string name="MessageRecord_you_removed_s">Has esborrat a %1$s.</string>
+    <string name="MessageRecord_s_removed_s">%1$s ha esborrat a %2$s.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s us ha esborrat del grup.</string>
     <string name="MessageRecord_you_left_the_group">Heu abandonat el grup.</string>
     <string name="MessageRecord_s_left_the_group">%1$s ha abandonat el grup.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">Ja no sou al grup.</string>
@@ -1467,7 +1467,7 @@
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Ho accepto</string>
     <string name="MessageRequestBottomView_continue">Continua</string>
-    <string name="MessageRequestBottomView_delete">Suprimeix</string>
+    <string name="MessageRequestBottomView_delete">Esborra</string>
     <string name="MessageRequestBottomView_block">Bloca</string>
     <string name="MessageRequestBottomView_unblock">Desbloca</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu permetre que %1$s us envii missatges i compartir-hi el nom i la fotografia? No sabran que heu vist el missatge fins que no ho accepteu.</string>
@@ -1918,8 +1918,8 @@
     <string name="ThreadRecord_view_once_photo">Fotografia d\'una sola visualització</string>
     <string name="ThreadRecord_view_once_video">Vídeo d\'una sola visualització</string>
     <string name="ThreadRecord_view_once_media">Contingut d\'una sola visualització</string>
-    <string name="ThreadRecord_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
-    <string name="ThreadRecord_you_deleted_this_message">Heu suprimit aquest missatge.</string>
+    <string name="ThreadRecord_this_message_was_deleted">Aquest missatge s\'ha esborrat.</string>
+    <string name="ThreadRecord_you_deleted_this_message">Has esborrat aquest missatge.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Has enviat una sol·licitud perquè activi Pagaments</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -2049,8 +2049,8 @@
     <string name="MediaPreviewActivity_draft">Esborrany</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">El Signal necessita el permís de l\'emmagatzematge per tal de desar en un emmagatzematge extern, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi l\'emmagatzematge.</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No es pot desar en un emmagatzematge extern sense permís.</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Voleu suprimir el missatge?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Aquest missatge se suprimirà permanentment.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Vols esborrar el missatge?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Aquest missatge s\'esborrarà permanentment.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s a %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Vós a %1$s</string>
@@ -2095,7 +2095,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ha reaccionat al vostre àudio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$s ha reaccionat al vostre contingut d\'una visualització.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s ha reaccionat al vostre adhesiu.</string>
-    <string name="MessageNotifier_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
+    <string name="MessageNotifier_this_message_was_deleted">Aquest missatge s\'ha esborrat.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Voleu desactivar les notificacions de contactes afegits al Signal? Les podeu tornar a activar a Signal &gt; Configuració &gt; Notificacions.</string>
 
@@ -2779,14 +2779,14 @@
     <string name="preferences_storage__files">Fitxers</string>
     <string name="preferences_storage__audio">Àudio</string>
     <string name="preferences_storage__review_storage">Revisa l\'emmagatzematge</string>
-    <string name="preferences_storage__delete_older_messages">Voleu suprimir els missatges més antics?</string>
+    <string name="preferences_storage__delete_older_messages">Vols esborrar els missatges més antics?</string>
     <string name="preferences_storage__clear_message_history">Vols netejar l\'historial dels missatges?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Això suprimirà permanentment l\'historial dels missatges i el contingut del dispositiu més antic de %1$s.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Això esborrarà permanentment l\'historial dels missatges i el contingut del dispositiu més antic de %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Això reduirà permanentment totes les converses als %1$s missatges més recents.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Això suprimirà permanentment tot l\'historial dels missatges i tot el contingut del dispositiu.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Segur que vols suprimir tot l\'historial dels missatges?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Se suprimirà permanentment tot l\'historial dels missatges. Aquesta acció no es pot desfer.</string>
-    <string name="preferences_storage__delete_all_now">Suprimeix-ho tot ara</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Això esborrarà permanentment tot l\'historial dels missatges i tot el contingut del dispositiu.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Segur que vols esborrar tot l\'historial dels missatges?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">S\'esborrarà permanentment tot l\'historial dels missatges. Aquesta acció no es pot desfer.</string>
+    <string name="preferences_storage__delete_all_now">Esborrar-ho tot ara</string>
     <string name="preferences_storage__forever">Per sempre</string>
     <string name="preferences_storage__one_year">1 any</string>
     <string name="preferences_storage__six_months">6 mesos</string>
@@ -3086,7 +3086,7 @@
     <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">Copia</string>
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_delete">Suprimits</string>
+    <string name="conversation_selection__menu_delete">Esborrar</string>
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Reenvia</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -3172,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtrar xats sense llegir</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Deixar de filtrar els xats sense llegir</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copia al porta-retalls</string>
@@ -3213,7 +3213,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El Protocol de Signal ha protegit automàticament %1$d%% dels missatges de sortida durant els darrers %2$d dies. Les converses entre usuaris del Signal sempre estan encriptades de cap a cap.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Escampeu-ho</string>
     <string name="InsightsDashboardFragment__not_enough_data">Dades insuficients</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">El percentatge d’Interior es calcula a partir dels missatges de sortida dels darrers %1$d dies que no han desaparegut ni s’han suprimit.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">El percentatge d’Interior es calcula a partir dels missatges de sortida dels darrers %1$d dies que no han desaparegut ni s’han esborrat.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">Comenceu una conversa</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Comenceu a comunicar-vos de manera segura i activeu funcions noves que vagin més enllà de les limitacions dels missatges d\'SMS no encriptats convidant més contactes a unir-se al Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Aquestes estadístiques es van generar localment al dispositiu i només vosaltres les podreu veure. Mai es transmeten enlloc.</string>
@@ -3375,7 +3375,7 @@
     <string name="BackupDialog_enable_backups">Activa les còpies de seguretat</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Si us plau, reconeixeu que ho heu entès marcant la casella de confirmació.</string>
     <string name="BackupDialog_delete_backups">Voleu suprimir les còpies de seguretat?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">Voleu desactivarr i suprimir totes les còpies de seguretat locals?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Voleu desactivar i suprimir totes les còpies de seguretat locals?</string>
     <string name="BackupDialog_delete_backups_statement">Suprimeix les còpies de seguretat</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Per activar les còpies de seguretat, trieu una carpeta. Les còpies de seguretat s\'hi desaran.</string>
     <string name="BackupDialog_choose_folder">Trieu una carpeta</string>
@@ -3395,10 +3395,10 @@
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">La teva darrera còpia de seguretat no s\'ha pogut crear i verificar. Si us plau, crea\'n una de nova.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">La teva còpia de seguretat conté un arxiu molt gran que no pot desar-se. Si us plau, elimina\'l i crea una nova còpia de seguretat.</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">La teva còpia de seguretat conté un arxiu molt gran que no pot desar-se. Si us plau, suprimeix-lo i crea una nova còpia de seguretat.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Toqueu per gestionar les còpies de seguretat.</string>
     <string name="RegistrationActivity_wrong_number">El número no és correcte?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Truca\'m (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contacteu amb el suport de Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registre del Signal - Codi de verificació per a Android</string>
     <string name="RegistrationActivity_incorrect_code">Codi incorrecte</string>
@@ -3497,7 +3497,7 @@
     <string name="DeviceTransferSetup__location_permission">Permís d\'ubicació</string>
     <string name="DeviceTransferSetup__location_services">Serveis d\'ubicació</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">A la pantalla de WiFi Direct, elimineu tots els grups recordats i desenllaceu els dispositius convidats o connectats.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">A la pantalla de WiFi Direct, suprimeix tots els grups guardats a la memòria i desenllaceu els dispositius convidats o connectats.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Pantalla de WiFi Direct</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Proveu de desactivar i activar la Wi-Fi en tots dos dispositius.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Assegureu-vos que tots dos dispositius estiguin en mode de transferència.</string>
@@ -3574,13 +3574,13 @@
     <string name="RecipientBottomSheet_remove_as_admin">Suprimeix com a administrador</string>
     <string name="RecipientBottomSheet_remove_from_group">Suprimeix del grup</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">Voleu suprimir %1$s com a administrador del grup?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Vols esborrar a %1$s com a administrador del grup?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s podrà editar aquest grup i els seus membres."</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">Voleu suprimir %1$s d\'aquest grup?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">Vols esborrar a %1$s d\'aquest grup?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Voleu suprimir %1$s del grup? No s\'hi podran tornar a afegir mitjançant l\'enllaç del grup.</string>
-    <string name="RecipientBottomSheet_remove">Suprimeix</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Vols esborrar a %1$s del grup? No s\'hi podran tornar a afegir mitjançant l\'enllaç del grup.</string>
+    <string name="RecipientBottomSheet_remove">Esborrar</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">Copiat al porta-retalls</string>
 
     <string name="GroupRecipientListItem_admin">Administrador</string>
@@ -3634,18 +3634,18 @@
         <item quantity="one">%1$d grup en comú</item>
         <item quantity="other">%1$d grups en comú</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">Voleu suprimir %1$s del grup?</string>
-    <string name="ReviewCardDialogFragment__remove">Suprimeix</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Ha fallat suprimir el membre del grup.</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">Vols esborrar a %1$s del grup?</string>
+    <string name="ReviewCardDialogFragment__remove">Esborrar</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">No s\'ha pogut esborrar el membre del grup.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">Membre</string>
     <string name="ReviewCard__request">Sol·licitud</string>
     <string name="ReviewCard__your_contact">Contacte</string>
-    <string name="ReviewCard__remove_from_group">Suprimeix del grup</string>
+    <string name="ReviewCard__remove_from_group">Esborrar del grup</string>
     <string name="ReviewCard__update_contact">Actualitza el contacte</string>
     <string name="ReviewCard__block">Bloca</string>
-    <string name="ReviewCard__delete">Suprimeix</string>
+    <string name="ReviewCard__delete">Esborrar</string>
     <string name="ReviewCard__recently_changed">Recentment han canviat el nom del perfil de %1$s a %2$s.</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
@@ -3676,9 +3676,9 @@
     <string name="DeleteAccountFragment__no_country_code">No s\'ha especificat el codi del país.</string>
     <string name="DeleteAccountFragment__no_number">No s\'ha especificat el número.</string>
     <string name="DeleteAccountFragment__the_phone_number">El número de telèfon marcat no coincideix amb el del compte.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Segur que voleu suprimir el compte?</string>
+    <string name="DeleteAccountFragment__are_you_sure">Segur que vols suprimir el compte?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Això suprimirà el compte del Signal i restablirà l\'aplicació. L\'aplicació es tancarà quan acabi el procés.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Ha fallat suprimir les dades locals. Les podeu suprimir manualment des de la configuració del sistema.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">No s\'han pogut suprimir les dades locals. Les podeu suprimir manualment des de la configuració del sistema.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Obre la configuració de l\'aplicació</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Es deixen els grups…</string>
@@ -3691,7 +3691,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Se suprimeixen les dades de l\'usuari i es restableix l\'aplicació</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">Compte no suprimit</string>
+    <string name="DeleteAccountFragment__account_not_deleted">No s\'ha suprimit el compte</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">S\'ha produït un problema en completar el procés de supressió. Comproveu la connexió de xarxa i torneu-ho a provar.</string>
 
@@ -3970,19 +3970,19 @@
     <!-- Preference title to re-export sms -->
     <string name="SmsSettingsFragment__export_sms_messages_again">Tornar a exportar missatges SMS</string>
     <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">Eliminar missatges SMS</string>
+    <string name="SmsSettingsFragment__remove_sms_messages">Esborrar missatges SMS</string>
     <!-- Snackbar text to confirm deletion -->
     <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Eliminant els missatges SMS de Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Pots eliminar els missatges SMS de Signal en qualsevol moment des d\'Ajustos.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Pots esborrar els missatges SMS de Signal en qualsevol moment des d\'Ajustos.</string>
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Pots exportar els teus missatges SMS a la base de dades d\'SMS del teu telèfon</string>
     <!-- Description for re-export sms preference -->
     <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Si tornes a exportar, es poden produir missatges duplicats.</string>
     <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Elimina els missatges SMS de Signal per a alliberar espai d\'emmagatzematge.</string>
+    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Esborrar els missatges SMS de Signal per a alliberar espai d\'emmagatzematge.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Els SMS aviat no seran compatibles, ja que volem centrar-nos en la missatgeria encriptada.</string>
+    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Els SMS aviat no seran compatibles, ja que ha arribat l\'hora de centrar-nos en la missatgeria encriptada.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Missatges</string>
@@ -4075,10 +4075,10 @@
     <string name="ChatColorSelectionFragment__delete">Suprimeix</string>
     <string name="ChatColorSelectionFragment__delete_color">Suprimeix el color</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">Aquest color personalitzat s\'usa en %1$d conversa. Voleu suprimir-lo per a totes?</item>
-        <item quantity="other">Aquest color personalitzat s\'usa en %1$d converses. Voleu suprimir-lo per a totes?</item>
+        <item quantity="one">Aquest color personalitzat s\'utilitza en %1$d conversa. Voleu suprimir-lo per a totes?</item>
+        <item quantity="other">Aquest color personalitzat s\'utilitza en %1$d converses. Voleu suprimir-lo per a totes?</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">Voleu suprimir el color de la conversa?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">Vols suprimir el color de la conversa?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">Sòlid</string>
@@ -4236,17 +4236,17 @@
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">Bloca</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">Voleu suprimir %1$s?</string>
+    <string name="NewConversationActivity__remove_s">Vols suprimir %1$s?</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">No veuràs aquesta persona durant les teves cerques. Rebràs una sol·licitud de missatge si t\'envia un missatge en el futur.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">S\'ha eliminat a %1$s.</string>
+    <string name="NewConversationActivity__s_has_been_removed">S\'ha esborrat a %1$s.</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">S\'ha bloquejat a %1$s.</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">No s\'ha pogut eliminar a %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">No s\'ha pogut esborrar a %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Aquesta persona és als contactes del teu telèfon. Elimina-la dels teus contactes i torna-ho a provar.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Aquesta persona és als contactes del teu telèfon. Suprimeix-la dels teus contactes i torna-ho a provar.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Veure contacte</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -4843,11 +4843,11 @@
     <!-- Dialog action to remove viewer from a story -->
     <string name="StoryViewsFragment__remove">Suprimeix</string>
     <!-- Dialog title when removing a viewer from a story -->
-    <string name="StoryViewsFragment__remove_viewer">Eliminar espectador?</string>
+    <string name="StoryViewsFragment__remove_viewer">Suprimir espectador?</string>
     <!-- Dialog message when removing a viewer from a story -->
     <string name="StoryViewsFragment__s_will_still_be_able">%1$s Encara podràs veure aquesta publicació, però no podràs veure cap futura publicació que comparteixis amb %2$s</string>
     <!-- Story View context menu action to remove them from a story -->
-    <string name="StoryViewItem__remove_viewer">Eliminar espectador</string>
+    <string name="StoryViewItem__remove_viewer">Suprimir espectador</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Encara no té respostes</string>
     <!-- Displayed when no longer a group member -->
@@ -4863,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Es respon privadament a %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Respondre a %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Copia</string>
@@ -4925,7 +4925,7 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Afegiu-hi un espectador</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">Eliminar història personalitzada</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">Suprimir història personalitzada</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">Voleu suprimir %1$s?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
@@ -4968,13 +4968,13 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Vols esborrar aquesta història de grup?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">S\'eliminarà \"%1$s\".</string>
+    <string name="StoryDialogs__s_will_be_removed">S\'esborrarà \"%1$s\".</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Suprimeix</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">Eliminar la història personalitzada?</string>
+    <string name="StoryDialogs__delete_custom_story">Suprimir la història personalitzada?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">S\'eliminarà \"%1$s\" i totes les actualitzacions compartides en aquesta història.</string>
+    <string name="StoryDialogs__s_and_updates_shared">S\'esborrarà \"%1$s\" i totes les actualitzacions compartides en aquesta història.</string>
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Suprimeix</string>
     <!-- Dialog title for first time sending something to a beta story -->
@@ -4988,7 +4988,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Envia</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Desactivar i eliminar</string>
+    <string name="StoryDialogs__turn_off_and_delete">Desactivar i suprimir</string>
     <!-- Privacy Settings toggle title for stories -->
     <!-- Privacy Settings toggle summary for stories -->
     <!-- New story viewer selection screen title -->
@@ -5158,7 +5158,7 @@
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">Esborrar història</string>
     <!-- Label for context menu item to delete a custom story -->
-    <string name="ContactSearchItems__delete_story">Eliminar història</string>
+    <string name="ContactSearchItems__delete_story">Suprimir història</string>
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">Vols esborrar aquesta història de grup?</string>
     <!-- Dialog message for removing a group story -->
@@ -5168,7 +5168,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Vols suprimir la història?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">Eliminar la història privada \"%1$s\"?</string>
+    <string name="ContactSearchMediator__delete_the_custom">Suprimir la història privada \"%1$s\"?</string>
     <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">Suprimits</string>
     <!-- Donation for a friend expiry days remaining -->
@@ -5218,7 +5218,7 @@
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verifica el número de seguretat</string>
     <!-- Menu action to remove user from story -->
-    <string name="SafetyNumberBottomSheetFragment__remove_from_story">Eliminar de la història</string>
+    <string name="SafetyNumberBottomSheetFragment__remove_from_story">Suprimir de la història</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
     <string name="SafetyNumberBottomSheetFragment__send_anyway">Envia\'l tanmateix</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
@@ -5237,7 +5237,7 @@
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">Contactes</string>
     <!-- Context menu label for distribution list headers in review fragment -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Eliminar tot</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Suprimir-ho tot</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
     <string name="SafetyNumberReviewConnectionsFragment__remove">Suprimeix</string>
 
@@ -5277,7 +5277,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Desactivar històries?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Ja no podràs compartir o veure històries. Les històries que hagis compartit recentment també seran eliminades.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Ja no podràs compartir o veure històries. Les històries que hagis compartit recentment també seran esborrades.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Privacitat de la història</string>
     <!-- Header for section that lists out stories -->
@@ -5297,7 +5297,7 @@
     <!-- Explanation of who can view a group story -->
     <string name="GroupStorySettingsFragment__members_of_the_group_s">"Els membres del grup \"%1$s\" poden veure i respondre a aquesta història. Pots actualitzar l\'afiliació a aquest xat a través del grup."</string>
     <!-- Preference label for removing this group story -->
-    <string name="GroupStorySettingsFragment__remove_group_story">Eliminar història de grup</string>
+    <string name="GroupStorySettingsFragment__remove_group_story">Suprimir història de grup</string>
 
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">Menú desplegable</string>
@@ -5314,7 +5314,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Exportar els teus missatges SMS</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Pots exportar els teus missatges SMS a la base de dades d\'SMS del teu telèfon i tindràs l\'opció de conservar-los o eliminar-los de Signal. Això permetrà que altres apps d\'SMS del teu telèfon puguin importar-los. Aquesta acció no crearà un arxiu compartible del teu historial d\'SMS.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Pots exportar els teus missatges SMS a la base de dades d\'SMS del teu telèfon i tindràs l\'opció de conservar-los o esborrar-los de Signal. Això permetrà que altres apps d\'SMS del teu telèfon puguin importar-los. Aquesta acció no crearà un arxiu compartible del teu historial d\'SMS.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Continuar</string>
 
@@ -5369,11 +5369,11 @@
     <!-- Action button to keep messages -->
     <string name="RemoveSmsMessagesDialogFragment__keep_messages">Mantenir els missatges</string>
     <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Eliminar els missatges</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Suprimir els missatges</string>
     <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Eliminar els missatges SMS de Signal?</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Suprimir els missatges SMS de Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Pots eliminar els missatges SMS de Signal per a alliberar espai d\'emmagatzematge. Continuaran estant disponibles per a altres aplicacions d\'SMS del teu telèfon encara que els eliminis.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Pots esborrar els missatges SMS de Signal per a alliberar espai d\'emmagatzematge. Continuaran estant disponibles per a altres aplicacions d\'SMS del teu telèfon encara que els esborris.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5565,15 +5565,15 @@
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_3">Pots exportar els teus missatges SMS i triar una nova app d\'SMS.</string>
     <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal ha eliminat la compatibilitat amb l\'enviament de missatges SMS.</string>
+    <string name="SmsRemoval_info_bullet_1_phase_3">Signal ha suprimit la compatibilitat amb l\'enviament de missatges SMS.</string>
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">Exportar SMS</string>
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Configura el teu àlies de Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Els àlies permeten a altres persones enviar-te un missatge sense necessitat del teu número de telèfon.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">Ara no</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5593,13 +5593,13 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Continuar</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Configura el teu àlies de Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Editar àlies</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Suprimeix el nom d\'usuari</string>
+    <string name="UsernameEditDialog__delete_username">Suprimir àlies</string>
 
     <!-- EOF -->
 </resources>

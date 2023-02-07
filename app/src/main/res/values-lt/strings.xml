@@ -3584,7 +3584,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Tavo atsarginė kopija turi itin didelį failą, kurio negalima nukopijuoti. Ištrink jį ir sukurk naują atsarginę kopiją.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Bakstelėkite norėdami tvarkyti atsargines kopijas.</string>
     <string name="RegistrationActivity_wrong_number">Neteisingas numeris?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Paskambink man (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Skambinti man (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Susisiekti su Signal palaikymu</string>
     <string name="RegistrationActivity_code_support_subject">Signal registracija - Patvirtinimo kodas, skirtas „Android“</string>
     <string name="RegistrationActivity_incorrect_code">Neteisingas kodas</string>

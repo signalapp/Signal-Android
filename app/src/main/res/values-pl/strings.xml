@@ -282,7 +282,7 @@
     <string name="ConversationItem_download_more">  Pobierz więcej</string>
     <string name="ConversationItem_pending">  Oczekiwanie</string>
     <string name="ConversationItem_this_message_was_deleted">Ta wiadomość została usunięta.</string>
-    <string name="ConversationItem_you_deleted_this_message">Skasowałeś(aś) tę wiadomość.</string>
+    <string name="ConversationItem_you_deleted_this_message">Usunąłeś(-aś) tę wiadomość.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Nie udało się pobrać wiadomości. Niech %1$s wyśle ją ponownie.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -438,7 +438,7 @@
     <string name="ConversationFragment_delete_on_this_device">Usuń z tego urządzenia</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Usuń wszędzie</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ta wiadomość zostanie usunięta u wszystkich uczestników tej konwersacji, jeśli używają najnowszej wersji Signal. Będą oni mogli zobaczyć, że skasowałeś(aś) wiadomość.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ta wiadomość zostanie usunięta u wszystkich uczestników tej konwersacji, jeśli używają najnowszej wersji Signal. Będą oni mogli zobaczyć, że skasowałeś(-aś) wiadomość.</string>
     <string name="ConversationFragment_quoted_message_not_found">Nie znaleziono oryginalnej wiadomości</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Oryginalna wiadomość nie jest już dostępna</string>
     <string name="ConversationFragment_failed_to_open_message">Nie udało się otworzyć wiadomości</string>
@@ -587,9 +587,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Przesuń w dół, aby zastosować filtr</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Puść, aby zastosować filtr</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
@@ -703,9 +703,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Wszystkie terminy w (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Wybrano miniony termin. To spowoduje natychmiastowe wysłanie wiadomości.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Wyślij natychmiast</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Wyślij teraz</string>
@@ -842,10 +842,10 @@
         <item quantity="other">Ci członkowie będą musieli zaakceptować zaproszenie, aby ponownie dołączyć do grupy i nie otrzymają żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Ten członek nie może dołączyć do Nowej grupy i zostanie z niej usunięty:</item>
-        <item quantity="few">Ci członkowie nie mogą dołączyć do Nowej grupy i zostaną z niej usunięci:</item>
-        <item quantity="many">Ci członkowie nie mogą dołączyć do Nowej grupy i zostaną z niej usunięci:</item>
-        <item quantity="other">Ci członkowie nie mogą dołączyć do Nowej grupy i zostaną z niej usunięci:</item>
+        <item quantity="one">Ten członek nie może dołączyć do Nowych grup i zostanie usunięty z grupy:</item>
+        <item quantity="few">Ci członkowie nie mogą dołączyć do Nowych grup i zostaną usunięci z grupy:</item>
+        <item quantity="many">Ci członkowie nie mogą dołączyć do Nowych grup i zostaną usunięci z grupy:</item>
+        <item quantity="other">Ci członkowie nie mogą dołączyć do Nowych grup i zostaną usunięci z grupy:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -1367,9 +1367,9 @@
     <string name="MessageRecord_s_joined_the_group">%1$s dołączył(a) do grupy.</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">Usunąłeś(ęłaś) %1$s.</string>
-    <string name="MessageRecord_s_removed_s">%1$s usunął(ęła) %2$s.</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s usunął(ęła) Cię z grupy.</string>
+    <string name="MessageRecord_you_removed_s">Usunąłeś(-ęłaś) %1$s.</string>
+    <string name="MessageRecord_s_removed_s">%1$s usunął(-ęła) %2$s.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s usunął(-ęła) Cię z grupy.</string>
     <string name="MessageRecord_you_left_the_group">Opuściłeś(aś) tę grupę.</string>
     <string name="MessageRecord_s_left_the_group">%1$s opuścił(a) grupę.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">Nie należysz już do tej grupy.</string>
@@ -2032,7 +2032,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">Nie udało się zapisać</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">Zapisano</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Stuknij linię, aby ją usunąć</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Naciśnij linię, aby ją usunąć</string>
     <string name="SubmitDebugLogActivity_submit">Wyślij</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Nie udało się wysłać logów</string>
     <string name="SubmitDebugLogActivity_success">Sukces!</string>
@@ -2061,7 +2061,7 @@
     <string name="ThreadRecord_view_once_video">Wideo jednorazowe</string>
     <string name="ThreadRecord_view_once_media">Multimedia jednorazowe</string>
     <string name="ThreadRecord_this_message_was_deleted">Ta wiadomość została usunięta.</string>
-    <string name="ThreadRecord_you_deleted_this_message">Skasowałeś(aś) tę wiadomość.</string>
+    <string name="ThreadRecord_you_deleted_this_message">Usunąłeś(-aś) tę wiadomość.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Wysłano prośbę o aktywację płatności</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -3344,7 +3344,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtruj nieprzeczytane czaty</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Usuń filtr „nieprzeczytane”</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Skopiuj do schowka</string>
@@ -3385,7 +3385,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokół Signal automatycznie ochronił %1$d%% Twoich wysłanych wiadomości, w ciągu ostatnich %2$d dni. Konwersacje pomiędzy użytkownikami aplikacji Signal są zawsze szyfrowane metodą end-to-end.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Buduj świadomość</string>
     <string name="InsightsDashboardFragment__not_enough_data">Za mało danych</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Twoja statystyka procentowa jest obliczana na podstawie ilości wiadomości, które nie zniknęły, ani nie zostały usunięte, wysłanych w ciągu ostatnich %1$ddni.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Twoja statystyka procentowa jest obliczana na podstawie liczby wiadomości, które nie zniknęły, ani nie zostały usunięte, wysłanych w ciągu ostatnich %1$d dni.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">Rozpocznij rozmowę</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Rozpocznij bezpieczną komunikację i włącz nowe funkcje, które wykraczają poza ograniczenia niezaszyfrowanych wiadomości SMS, zapraszając więcej kontaktów do używania Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ta statystyka została wygenerowana lokalnie na Twoim urządzeniu i jest dostępna tylko dla Ciebie. Nigdy nie jest ona nigdzie przesyłana.</string>
@@ -3463,7 +3463,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Konto zablokowane.</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Twoje konto zostało zablokowane, aby chronić Twoją prywatność i bezpieczeństwo. Po %1$d dniach nieaktywności będziesz móc ponownie zarejestrować ten numer telefonu bez użycia PIN-u. Cała zawartość Twojego konta zostanie usunięta.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Twoje konto zostało zablokowane, aby chronić Twoją prywatność i bezpieczeństwo. Po %1$d dniach nieaktywności możesz ponownie zarejestrować ten numer telefonu bez użycia PIN-u. Cała zawartość Twojego konta zostanie usunięta.</string>
     <string name="AccountLockedFragment__next">Dalej</string>
     <string name="AccountLockedFragment__learn_more">Dowiedz się więcej</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3481,10 +3481,10 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Rejestracja Signal - Potrzebna pomoc z kodem PIN Signal dla systemu Android (PIN v2)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PIN-u, możesz ponownie zweryfikować numer przez SMS, po %1$d dniu nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
-        <item quantity="few">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PIN-u, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
-        <item quantity="many">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PIN-u, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
-        <item quantity="other">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PIN-u, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
+        <item quantity="one">Ze względu na Twoją prywatność i bezpieczeństwo nie ma możliwości odzyskania kodu PIN. Jeśli nie możesz przypomnieć sobie PIN-u, po %1$d dniu nieaktywności możesz ponownie zweryfikować swój numer przez SMS. W tym przypadku Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
+        <item quantity="few">Ze względu na Twoją prywatność i bezpieczeństwo nie ma możliwości odzyskania kodu PIN. Jeśli nie możesz przypomnieć sobie PIN-u, po %1$d dniach nieaktywności możesz ponownie zweryfikować swój numer przez SMS. W tym przypadku Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
+        <item quantity="many">Ze względu na Twoją prywatność i bezpieczeństwo nie ma możliwości odzyskania kodu PIN. Jeśli nie możesz przypomnieć sobie PIN-u, po %1$d dniach nieaktywności możesz ponownie zweryfikować swój numer przez SMS. W tym przypadku Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
+        <item quantity="other">Ze względu na Twoją prywatność i bezpieczeństwo nie ma możliwości odzyskania kodu PIN. Jeśli nie możesz przypomnieć sobie PIN-u, po %1$d dniach nieaktywności możesz ponownie zweryfikować swój numer przez SMS. W tym przypadku Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3495,10 +3495,10 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$ddzień. Po %1$d dniu nieaktywności możesz zarejestrować się ponownie, bez użycia kodu PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
-        <item quantity="few">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia kodu PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
-        <item quantity="many">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia kodu PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
-        <item quantity="other">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia kodu PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
+        <item quantity="one">Jeśli wyczerpiesz dostępną liczbę prób, Twoje konto zostanie zablokowane na %1$d dzień. Po %1$d dniu nieaktywności możesz zarejestrować się ponownie, bez użycia kodu PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
+        <item quantity="few">Jeśli wyczerpiesz dostępną liczbę prób, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia kodu PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
+        <item quantity="many">Jeśli wyczerpiesz dostępną liczbę prób, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia kodu PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
+        <item quantity="other">Jeśli wyczerpiesz dostępną liczbę prób, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia kodu PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3584,7 +3584,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Twoja kopia zapasowa zawiera bardzo duży plik, który nie może zostać zarchiwizowany. Usuń go i utwórz nową kopię zapasową.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Stuknij, aby zarządzać kopiami zapasowymi.</string>
     <string name="RegistrationActivity_wrong_number">Błędny numer?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Zadzwoń do mnie (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Skontaktuj się ze wsparciem technicznym Signal</string>
     <string name="RegistrationActivity_code_support_subject">Rejestracja Signal - Kod weryfikacyjny dla systemu Android</string>
     <string name="RegistrationActivity_incorrect_code">Niepoprawny kod</string>
@@ -3683,7 +3683,7 @@
     <string name="DeviceTransferSetup__location_permission">Dostęp do lokalizacji</string>
     <string name="DeviceTransferSetup__location_services">Usługi lokalizacji</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Na ekranie Wi-Fi Direct usuń wszystkie, zapamiętane grupy i rozłącz wszystkie zaproszone lub połączone urządzenia.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Na ekranie Wi-Fi Direct usuń wszystkie zapamiętane grupy i rozłącz wszystkie zaproszone lub połączone urządzenia.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Ekran Wi-Fi Direct</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Spróbuj wyłączyć i włączyć Wi-Fi na obu urządzeniach.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Upewnij się, że oba urządzenia są w trybie transferu.</string>
@@ -3760,7 +3760,7 @@
     <string name="RecipientBottomSheet_remove_as_admin">Usuń administratora</string>
     <string name="RecipientBottomSheet_remove_from_group">Usuń z grupy</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">Usunąć %1$s, jako administratora grupy?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Usunąć %1$s jako administratora grupy?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" będzie w stanie edytować tę grupę i jej członków."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Usunąć %1$s z grupy?</string>
@@ -3860,14 +3860,14 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Usunięcie Twojego konta spowoduje:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Podaj swój numer telefonu</string>
     <string name="DeleteAccountFragment__delete_account">Usuń konto</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Usunięcie informacji o Twoim koncie i zdjęcia profilowego</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Usunięcie wszystkich, Twoich wiadomości</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Usuń %1$sna Twoim koncie płatności</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Usuń informacje o swoim koncie i zdjęcie profilowe</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Usuń wszystkie swoje wiadomości</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Usuń %1$s na Twoim koncie płatności</string>
     <string name="DeleteAccountFragment__no_country_code">Nie podano kodu kraju</string>
     <string name="DeleteAccountFragment__no_number">Nie podano numeru</string>
     <string name="DeleteAccountFragment__the_phone_number">Podany numer telefonu nie należy do Twojego konta.</string>
     <string name="DeleteAccountFragment__are_you_sure">Czy na pewno chcesz usunąć swoje konto?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">To działanie usunie Twoje konto Signal i zresetuje aplikację. Po zakończeniu tego procesu, aplikacja zostanie zamknięta.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">To działanie usunie Twoje konto Signal i zresetuje aplikację. Po zakończeniu tego procesu aplikacja zostanie zamknięta.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Nie udało się usunąć lokalnych danych. Możesz usunąć je ręcznie w systemowych ustawieniach aplikacji.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Otwórz Ustawienia aplikacji</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -4555,7 +4555,7 @@
 
     <string name="MediaCountIndicatorButton__send">Wyślij</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Stuknij, aby usunąć</string>
+    <string name="MediaReviewSelectedItem__tap_to_remove">Dotknij, aby usunąć</string>
     <string name="MediaReviewSelectedItem__tap_to_select">Stuknij, aby zaznaczyć</string>
 
     <string name="MediaReviewImagePageFragment__discard">Odrzuć</string>
@@ -4825,7 +4825,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Usuń profil</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">\"%1$s\" usunięty(a).</string>
+    <string name="NotificationProfileDetails__s_removed">Profil \"%1$s\" usunięty.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Cofnij</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -5011,7 +5011,7 @@
     <!-- Title of dialog to confirm deletion of story -->
     <string name="MyStories__delete_story">Usunąć relację?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">Ta relacja zostanie usunięta u Ciebie i wszystkich, którzy ją otrzymali</string>
+    <string name="MyStories__this_story_will_be_deleted">Ta relacja zostanie usunięta u Ciebie i wszystkich, którzy ją otrzymali.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Nie udało się zapisać</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -5055,11 +5055,11 @@
     <!-- Dialog action to remove viewer from a story -->
     <string name="StoryViewsFragment__remove">Usuń</string>
     <!-- Dialog title when removing a viewer from a story -->
-    <string name="StoryViewsFragment__remove_viewer">Usunąć widza?</string>
+    <string name="StoryViewsFragment__remove_viewer">Usunąć odbiorcę?</string>
     <!-- Dialog message when removing a viewer from a story -->
     <string name="StoryViewsFragment__s_will_still_be_able">%1$s zachowa możliwość wyświetlania tego posta, ale nie zobaczy postów, które udostępnisz w %2$s w przyszłości.</string>
     <!-- Story View context menu action to remove them from a story -->
-    <string name="StoryViewItem__remove_viewer">Usuń widza</string>
+    <string name="StoryViewItem__remove_viewer">Usuń odbiorcę</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Brak odpowiedzi</string>
     <!-- Displayed when no longer a group member -->
@@ -5075,7 +5075,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Prywatna odpowiedź na %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Odpowiedz %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Kopiuj</string>
@@ -5519,7 +5519,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Wyłączyć relacje?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Stracisz możliwość udostępniania i wyświetlania relacji. Relacje udostępnione przez Ciebie w ostatnich godzinach również zostaną usunięte.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Stracisz możliwość udostępniania i wyświetlania relacji. Relacje niedawno udostępnione przez Ciebie również zostaną usunięte.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Prywatność relacji</string>
     <!-- Header for section that lists out stories -->
@@ -5821,9 +5821,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Ustaw swoją nazwę użytkownika w Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Nazwy użytkowników pozwalają innym na wysyłanie do Ciebie wiadomości bez konieczności podawania numeru telefonu</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">Nie teraz</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5843,11 +5843,11 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Kontynuuj</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Ustaw swoją nazwę użytkownika w Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Edytuj nazwę użytkownika</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__delete_username">Usuń nazwę użytkownika</string>
 

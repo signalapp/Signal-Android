@@ -197,8 +197,8 @@
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Eltávolítás</string>
-    <string name="ClearProfileActivity_remove_profile_photo">Eltávolítod a profilképed?</string>
-    <string name="ClearProfileActivity_remove_group_photo">Eltávolítod a csoport képét?</string>
+    <string name="ClearProfileActivity_remove_profile_photo">Eltávolítod a profilképet?</string>
+    <string name="ClearProfileActivity_remove_group_photo">Eltávolítod a csoport képet?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Signal frissítése</string>
@@ -432,7 +432,7 @@
     <string name="ConversationFragment_failed_to_open_message">Nem sikerült megnyitni az üzenetet</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Az üzenetet jobbra húzva gyorsan válaszolhatsz rá</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Az üzenetet balra húzva gyorsan válaszolhatsz rá</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">A kimenő egyszer megjelenő médiafájlokat automatikusan töröljük feladásukat követően</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">A kimenő egyszer megjelenő médiafájlokat automatikusan eltávolítjuk feladásukat követően</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Ezt az üzenetet egyszer már megtekintetted</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Ehhez a beszélgetéshez privát jegyzeteket fűzhetsz.\nHa társítottál más eszközöket is fiókodhoz, akkor az új jegyzetek a szinkronizálás révén ott is elérhetőek lesznek.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">A csoport %1$d tagjának megegyezik a neve.</string>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Húzd le a szűréshez</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Engedd el a szűréshez</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Minden időpont: (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">A kiválasztott idő a múltban van. Ezzel azonnal elküldöd az üzenetet.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Küldés azonnal</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Küldés most</string>
@@ -776,8 +776,8 @@
         <item quantity="other">Ezeket a tagokat újra meg meg kell hívni, és kell fogadniuk a meghívót, mielőtt újra üzenetet tudnak fogadni a csoporttól:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Az alábbi tag eltávolításra került a csoportból, és amíg nem frissíti az alkalmazását, nem is lesz képes újra csatlakozni:</item>
-        <item quantity="other">Az alábbi tagok eltávolításra kerültek a csoportból, és amíg nem frissítik az alkalmazásukat, nem is lesznek képesek újra csatlakozni:</item>
+        <item quantity="one">Az alábbi tag eltávolításra került a csoportból, és amíg nem frissíti az alkalmazását, nem fog tudni újra csatlakozni:</item>
+        <item quantity="other">Az alábbi tagok eltávolításra kerültek a csoportból, és amíg nem frissítik az alkalmazásukat, nem ifog tudni újra csatlakozni:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -792,8 +792,8 @@
         <item quantity="other">Az alábbi tagok csak egy meghívó elfogadása után lesznek képesek újracsatlakozni a csoporthoz. Amíg ez nem történik meg, nem fogják megkapni a csoport-üzeneteket:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Az alábbi tag nem tud belépni az új típusú csoportba, ezért eltávolításra kerül:</item>
-        <item quantity="other">Az alábbi tagok nem tudnak belépni az új típusú csoportba, ezért eltávolításra kerülnek:</item>
+        <item quantity="one">Az alábbi tag nem tud belépni az Új csoportba, ezért eltávolításra kerül:</item>
+        <item quantity="other">Az alábbi tagok nem tudnak belépni az Új csoportba, ezért eltávolításra kerülnek:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -899,7 +899,7 @@
     <string name="AddGroupDetailsFragment__try_again_later">Próbáld újra később!</string>
     <string name="AddGroupDetailsFragment__remove">Eltávolítás</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS kontakt</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Eltávolítod %1$s-t ebből a csoportból?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Eltávolítod %1$s felhasználót ebből a csoportból?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Olyan névjegyet választottál, amely nem támogatja a Signal-csoportokat, ezért ez a csoport MMS lesz. Az egyéni MMS-csoportok neveit és fotóit csak te láthatod.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -1108,7 +1108,7 @@
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
         <item quantity="one">Ez véglegesen törölni fogja a kiválasztott fájlt. A fájlhoz tartozó szöveges üzenetek is törlődnek.</item>
-        <item quantity="other">Ez véglegesen törölni fogja mind a(z) %1$d db kiválasztott fájlt. A fájlokhoz tartozó szöveges üzenetek is törlődnek.</item>
+        <item quantity="other">Ez véglegesen törölni fogja az összes (%1$d db) kiválasztott fájlt. A fájlokhoz tartozó szöveges üzenetek is törlődnek.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Törlés</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Üzenetek törlése…</string>
@@ -1245,8 +1245,8 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A tagot nem lehetett közvetlenül hozzáadni az új csoporthoz, ezért eltávolításra került.</item>
-        <item quantity="other">%1$s tagot nem lehetett közvetlenül hozzáadni az új csoporthoz, ezért eltávolításra kerültek.</item>
+        <item quantity="one">%1$s tagot nem lehetett közvetlenül hozzáadni az Új csoporthoz, ezért eltávolításra került.</item>
+        <item quantity="other">%1$s tagot nem lehetett közvetlenül hozzáadni az Új csoporthoz, ezért eltávolításra kerültek.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1267,8 +1267,8 @@
     <string name="MessageRecord_s_joined_the_group">%1$s csatlakozott a csoporthoz.</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">Eltávolítottad %1$s-t.</string>
-    <string name="MessageRecord_s_removed_s">%1$s eltávolította %2$s-t.</string>
+    <string name="MessageRecord_you_removed_s">Eltávolítottad %1$s felhasználót.</string>
+    <string name="MessageRecord_s_removed_s">%1$s eltávolította %2$s felhasználót.</string>
     <string name="MessageRecord_s_removed_you_from_the_group">%1$s eltávolított téged a csoportból.</string>
     <string name="MessageRecord_you_left_the_group">Kiléptél a csoportból.</string>
     <string name="MessageRecord_s_left_the_group">%1$s kilépett a csoportból.</string>
@@ -3172,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Olvasatlan csevegések szűrése</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Olvasatlan szűrő törlése</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Másolás vágólapra</string>
@@ -3398,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">A biztonsági mentés egy olyan nagyon nagy fájlt tartalmaz, amelyről nem lehet biztonsági másolatot készíteni. Kérjük, töröld, és hozz létre egy új biztonsági mentést!</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Koppints a biztonsági mentések kezeléséhez!</string>
     <string name="RegistrationActivity_wrong_number">Helytelen telefonszám?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Hívjon (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kapcsolatfelvétel a Signal támogatással</string>
     <string name="RegistrationActivity_code_support_subject">Signal regisztráció - megerősítő kód Androidhoz</string>
     <string name="RegistrationActivity_incorrect_code">Helytelen kód</string>
@@ -3497,7 +3497,7 @@
     <string name="DeviceTransferSetup__location_permission">Helymeghatározás jogosultságok</string>
     <string name="DeviceTransferSetup__location_services">Helymeghatározás szolgáltatások</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">A Wi-Fi Direct képernyőn távolítsd el az összes megjegyzett csoportot, és csatlakoztass le minden meghívott vagy csatlakozott eszközt.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">A Wi-Fi Direct képernyőn távolítsd el az összes megjegyzett csoportot, és válassz le minden meghívott vagy csatlakozott eszközt.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct képernyő</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Próbáld ki-, majd bekapcsolni a Wi-Fit mindkét készüléken!</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Ellenőrizd, hogy mindkét eszköz átviteli módban van.</string>
@@ -3574,10 +3574,10 @@
     <string name="RecipientBottomSheet_remove_as_admin">Admin jogosultság elvétele</string>
     <string name="RecipientBottomSheet_remove_from_group">Eltávolítás a csoportból</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">Eltávolítod %1$s-t a csoport adminjai közül?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Eltávolítod %1$s felhasználót a csoport adminjai közül?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" szerkesztheti a csoportot és annak tagjait"</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">Eltávolítod %1$s-t a csoportból?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">Eltávolítod %1$s felhasználót a csoportból?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
     <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Eltávolítod %1$s felhasználót a csoportból? A jövőben nem lesz képes csatlakozni a csoporthivatkozás segítségével sem.</string>
     <string name="RecipientBottomSheet_remove">Eltávolítás</string>
@@ -3634,7 +3634,7 @@
         <item quantity="one">%1$d db közös csoport</item>
         <item quantity="other">%1$d db közös csoport</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">Eltávolítod %1$s-t a csoportból?</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">Eltávolítod %1$s felhasználót a csoportból?</string>
     <string name="ReviewCardDialogFragment__remove">Eltávolítás</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Nem sikerült eltávolítani a csoporttagot.</string>
 
@@ -3678,7 +3678,7 @@
     <string name="DeleteAccountFragment__the_phone_number">A megadott telefonszám nem egyezik a fiókodhoz tartozóval.</string>
     <string name="DeleteAccountFragment__are_you_sure">Biztosan törölni akarod a fiókod?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ez törölni fogja a Signal fiókod és alaphelyzetbe állítja az alkalmazást. Az app bezáródik a folyamat végeztével.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Sikertelen a helyi adat törlése. Kézzel törölheted a rendszer alkalmazás-beállításai alatt.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Sikertelen a helyi adat törlése. Manuálisan törölheted a rendszer alkalmazás-beállításai alatt.</string>
     <string name="DeleteAccountFragment__launch_app_settings">App beállítások indítása</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Csoportok elhagyása…</string>
@@ -4349,7 +4349,7 @@
 
     <string name="MediaCountIndicatorButton__send">Küldés</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Érints az eltávolításhoz</string>
+    <string name="MediaReviewSelectedItem__tap_to_remove">Koppints az eltávolításhoz</string>
     <string name="MediaReviewSelectedItem__tap_to_select">Koppints a kiválasztáshoz</string>
 
     <string name="MediaReviewImagePageFragment__discard">Elvetés</string>
@@ -4619,7 +4619,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Profil törlése</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">\"%1$s\" eltávolítva.</string>
+    <string name="NotificationProfileDetails__s_removed">„%1$s\" eltávolítva.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Visszavonás</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -4863,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Privát válasz küldése %1$s részére</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Válasz %1$s számára</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Másolás</string>
@@ -5571,9 +5571,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Állítsd be a Signal-felhasználóneved</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">A felhasználónevek segítségével mások üzenetet küldhetnek neked anélkül, hogy szükségük lenne a telefonszámodra</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">Később</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5593,11 +5593,11 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Tovább</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Állítsd be a Signal-felhasználóneved</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Felhasználónév szerkesztése</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__delete_username">Felhasználónév törlése</string>
 

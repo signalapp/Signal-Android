@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">ഫിൽറ്റർ ചെയ്യാൻ താഴേക്ക് വലിക്കുക</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">റിലീസ് ടു ഫിൽറ്റർ</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">പ്രൊഫൈൽ</string>
@@ -663,9 +663,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">എല്ലാ സമയങ്ങളും (%1$s) %2$s എന്നതിലാണ്</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">തിരഞ്ഞെടുത്ത സമയം ചരിത്രത്തിലാണ്. ഇത് സന്ദേശം ഉടനടി അയയ്ക്കും.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">ഉടനടി അയയ്ക്കുക</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">ഇപ്പോൾ അയയ്ക്കുക</string>
@@ -3172,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">വായിക്കാത്ത ചാറ്റുകൾ ഫിൽട്ടർ ചെയ്യുക</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">വായിക്കാത്തത് എന്ന ഫിൽറ്റർ മായ്ക്കുക</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തൂ</string>
@@ -3398,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ബാക്കപ്പ് ചെയ്യാൻ കഴിയാത്ത വളരെ വലിയ ഒരു ഫയൽ നിങ്ങളുടെ ബാക്കപ്പിൽ ഉൾപ്പെട്ടിട്ടുണ്ട്. അത് ഇല്ലാതാക്കിയ ശേഷം പുതിയ ഒരു ബാക്കപ്പ് സൃഷ്‌ടിക്കുക.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">ബാക്കപ്പുകൾ നിയന്ത്രിക്കാൻ തൊടുക.</string>
     <string name="RegistrationActivity_wrong_number">നമ്പർ തെറ്റാണോ?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">എന്നെ വിളിക്കൂ (%1$02d%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal പിന്തുണ ബന്ധപ്പെടുക</string>
     <string name="RegistrationActivity_code_support_subject">Signal രജിസ്ട്രേഷൻ - Android-നായുള്ള സ്ഥിരീകരണ കോഡ്</string>
     <string name="RegistrationActivity_incorrect_code">കോഡ് തെറ്റാണ്</string>
@@ -4863,7 +4863,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s എന്നയാൾക്ക് സ്വകാര്യമായി മറുപടി നൽകുന്നു</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">%1$s എന്നയാൾക്ക് മറുപടി നൽകുക</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">പകർത്തൂ</string>
@@ -5571,9 +5571,9 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">നിങ്ങളുടെ Signal ഉപയോക്തൃനാമം സജ്ജീകരിക്കുക</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">നിങ്ങളുടെ ഫോൺ നമ്പർ ഇല്ലാതെ തന്നെ മറ്റുള്ളവർക്ക് നിങ്ങൾക്ക് സന്ദേശം അയയ്ക്കാൻ ഉപയോക്തൃനാമങ്ങൾ സഹായിക്കുന്നു</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__not_now">ഇപ്പോൾ വേണ്ട</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -5593,11 +5593,11 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">തുടരുക</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">നിങ്ങളുടെ Signal ഉപയോക്തൃനാമം സജ്ജീകരിക്കുക</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">ഉപയോക്തൃനാമം എഡിറ്റ് ചെയ്യൂ</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__delete_username">ഉപയോക്തൃനാമം ഇല്ലാതാക്കുക</string>
 

@@ -17,7 +17,7 @@
 
     <string name="yes">ဟုတ်ကဲ့</string>
     <string name="no">မလုပ်ပါ</string>
-    <string name="delete">ဖျက်ပါ</string>
+    <string name="delete">ဖျက်ရန်</string>
     <string name="please_wait">ခဏစောင့်ပါ…</string>
     <string name="save">သိမ်းထားမည်</string>
     <string name="note_to_self">မိမိမှတ်စု</string>
@@ -196,7 +196,7 @@
     <string name="CensorshipCircumventionMegaphone_no_thanks">မလုပ်လိုပါ</string>
 
     <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">ဖယ်ရှားသည်</string>
+    <string name="ClearProfileActivity_remove">ဖယ်ရှားရန်</string>
     <string name="ClearProfileActivity_remove_profile_photo">ပရိုဖိုင်ဓါတ်ပုံကို ဖယ်ရှားမည်လား။</string>
     <string name="ClearProfileActivity_remove_group_photo">အဖွဲ့ဓာတ်ပုံကို ဖယ်ရှားမည်လား။</string>
 
@@ -281,8 +281,8 @@
     <string name="ConversationItem_read_more">ဆက်ဖတ်ရန်</string>
     <string name="ConversationItem_download_more">ဒေါင်းလုတ် ဆွဲရန်</string>
     <string name="ConversationItem_pending">လုပ်ဆောင်နေဆဲ</string>
-    <string name="ConversationItem_this_message_was_deleted">ဒီစာကိုဖျက်လိုက်သည်။</string>
-    <string name="ConversationItem_you_deleted_this_message">သင်ဒီစာကိုဖျက်လိုက်သည်။</string>
+    <string name="ConversationItem_this_message_was_deleted">ဤမက်ဆေ့အား ဖျက်ပြီးပါပြီ။</string>
+    <string name="ConversationItem_you_deleted_this_message">သင်ဤမက်ဆေ့ကို ဖျက်လိုက်သည်။</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">မက်ဆေ့ချ်ကို ဒေါင်းလုဒ်လုပ်၍ မရပါ။ %1$s သည် ၎င်းကို ထပ်ပို့ရန် လိုအပ်ပါသည်။</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -352,12 +352,12 @@
     <string name="ConversationActivity_new_say_it_with_stickers">သူငယ်ချင်းအသစ်ကို စတစ်ကာများဖြင့် နှုတ်ဆက်ပါ</string>
 
     <string name="ConversationActivity_cancel">ပယ်ဖျက်သည်။</string>
-    <string name="ConversationActivity_delete_conversation">စကားပြောဆိုထားမှုများကို ဖျက်မလား?</string>
+    <string name="ConversationActivity_delete_conversation">စကားဝိုင်းကို ဖျက်မည်လား။</string>
     <string name="ConversationActivity_delete_and_leave_group">အဖွဲ့အား ဖျက်သိမ်းပြီး ထွက်မည်လား။</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ဤစကားပြောဆိုမှုထားမှုကို သင်၏ကိရိယာအားလုံးမှ ဖျက်ပစ်လိမ့်မည်။</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">သင်ဤအုပ်စုမှထွက်သွားပြီး၎င်းကိုသင်၏စက်ပစ္စည်းအားလုံးမှဖျက်ပစ်လိမ့်မည်။</string>
-    <string name="ConversationActivity_delete">ဖျက်မည်</string>
-    <string name="ConversationActivity_delete_and_leave">ဖျက်၍ ထွက်ခွာပါ</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ဤစကားဝိုင်းကို သင်၏စက်အားလုံးမှ ဖျက်သွားပါမည်။</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">သင်သည် ဤအဖွဲ့မှ ထွက်မည်ဖြစ်ပြီး ယင်းအဖွဲ့ကို သင်၏ အခြားစက်များအားလုံးမှလည်း ဖျက်သွားပါမည်။</string>
+    <string name="ConversationActivity_delete">ဖျက်ရန်</string>
+    <string name="ConversationActivity_delete_and_leave">ဖျက်ပြီး ထွက်ရန်</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">ခေါ်ရန်%1$s Signal သည်သင်၏မိုက်ခရိုဖုန်းကိုအသုံးပြုရန်လိုအပ်သည်</string>
 
 
@@ -392,7 +392,7 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">အဆက်အသွယ် အက်ပ် ရှာမတွေ့ပါ။</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="other">ရွေးထားသည့်စာတိုများဖျက်မည်လား?</item>
+        <item quantity="other">ရွေးထားသည့် မက်ဆေ့များအား ဖျက်မည်လား။</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">သိမ်းမည်လား?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -414,19 +414,19 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">ဖျက်နေသည်</string>
     <string name="ConversationFragment_deleting_messages">စာများဖျက်နေသည်</string>
-    <string name="ConversationFragment_delete_for_me">ကျွန်ုပ်အတွက် ဖျက်မယ်</string>
-    <string name="ConversationFragment_delete_for_everyone">လူတိုင်းအတွက်ဖျက်ပါ</string>
+    <string name="ConversationFragment_delete_for_me">ကျွန်ုပ်အတွက် ဖျက်ပါ</string>
+    <string name="ConversationFragment_delete_for_everyone">လူတိုင်းအတွက် ဖျက်ပါ</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">ဤစက်တွင် ဖျက်ရန်</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">နေရာတိုင်းတွင် ဖျက်ရန်</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">အကယ်၍ သူတို့ကလတ်တလော Signal ပုံစံတွင်ရှိနေလျှင်ဤမက်ဆေ့ခ်ျသည်စကားပြောဆိုမှုတွင်ပါဝင်သူများအတွက်ဖျက်ပစ်လိမ့်မည်။ သူတို့ကသင်မက်ဆေ့ခ်ျတစ်ခုဖျက်လိုက်သည်ကိုတွေ့နိုင်လိမ့်မည်။</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">စကားဝိုင်းတွင် ရှိသူများသည် လတ်တလောထွက်ထားသော Signal ဗားရှင်းကို အသုံးပြုနေပါက ဤမက်ဆေ့ခ်ျကို လူတိုင်းအတွက် ဖျက်သွားပါမည်။ သင်က မက်ဆေ့ခ်ျတစ်ခုဖျက်လိုက်သည်ကို ၎င်းတို့ကမြင်နိုင်လိမ့်မည်။</string>
     <string name="ConversationFragment_quoted_message_not_found">မူရင်းစာကိုမတွေ့ပါ</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">မူရင်းသတင်းကိုမရရှိနိုင်ပါ</string>
     <string name="ConversationFragment_failed_to_open_message">စာတိုကိုဖွင့်လို့မရပါ</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">သင်သည်လျှင်မြန်စွာပြန်လည်ဖြေဆိုရန်မည်သည့်မက်ဆေ့ခ်ျကိုအပေါ်ညာဘက်ပွတ်ဆွဲနိုင်ပါတယ်</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">သင်သည်လျင်မြန်စွာပြန်လည်ဖြေဆိုရန်မည်သည့်မက်ဆေ့ခ်ျကိုအပေါ်ဘယ်ဘက်အပေါ်ကိုပွတ်ဆွဲနိုင်ပါတယ်</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">အထွက်ကြည့်ရှုခြင်းနှင့်တစ်ပြိုင်နက်မီဒီယာဖိုင်များကိုသူတို့ပေးပို့ပြီးနောက်အလိုအလျောက်ဖယ်ရှားသည်</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">အထွက်ကြည့်ရှုခြင်း - မီဒီယာဖိုင်များကို ပေးပို့ပြီးသည်နှင့်တစ်ပြိုင်နက် အလိုအလျောက် ဖယ်ရှားသွားမည်</string>
     <string name="ConversationFragment_you_already_viewed_this_message">သင်ဤမက်ဆေ့ခ်ျကိုကြည့်ပြီးပါပြီ</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ဤစကားပြောဆိုမှုတွင် သင်ကိုယ်တိုင် မှတ်စုများကို ထည့်နိုင်သည်။ \\ n သင့်အကောင့်တွင် ချိတ်ဆက်ထားသော ကိရိယာများရှိပါက မှတ်စုအသစ်များ တစ်ပြိုင်တည်း ချိန်ကိုက်လိမ့်မည်။</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dအဖွဲ့ဝင်များသည်တူညီသောနာမည်ရှိသည်။</string>
@@ -455,10 +455,10 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">မဖတ်ရသေးသည့် ချက်(တ်)များ မရှိပါ</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="other">ရွေးထားသည့် စာတိုကိုဖျက်မလား?</item>
+        <item quantity="other">ရွေးထားသည့် စကားဝိုင်းအား ဖျက်မည်လား။</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="other">၎င်းက ရွေးထားသည့် ပြောစကား %1$d ကိုအပြီးတိုင်ဖျက်လိမ့်မည်။</item>
+        <item quantity="other">ရွေးထားသည့် စကားဝိုင်း %1$d ခုစလုံးကို အပြီးတိုင်ဖျက်သွားမည်။</item>
     </plurals>
     <string name="ConversationListFragment_deleting">ဖျက်နေသည်</string>
     <string name="ConversationListFragment_deleting_selected_conversations">ရွေးထားသည့် စကားပြောများကို ဖျက်နေသည်</string>
@@ -527,9 +527,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">စစ်ထုတ်ရန် အောက်သို့ဆွဲပါ</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">စစ်ထုတ်ရန် လွှတ်လိုက်ပါ</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">ပရိုဖိုင်</string>
@@ -643,9 +643,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">(%1$s) %2$s ဖြင့် အချိန်တိုင်း</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">ရွေးချယ်ထားသောအချိန်သည် ပြီးခဲ့ပြီး ဖြစ်ပါသည်။ မက်ဆေ့ချ်ကို ချက်ချင်းပေးပို့ပါလိမ့်မည်။</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">ချက်ချင်း ပေးပို့ရန်</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">ယခု ပို့ရန်</string>
@@ -753,7 +753,7 @@
         <item quantity="other">အဖွဲ့ဝင်များသည် ဤအုပ်စုထဲသို့ ပြန်ဝင်ရန် ဖိတ်ကြားချက်ကိုလက်ခံရန်လိုလိမ့်မည်။ ထိုသူတို့ လက်ခံပြီးမှ အဖွဲ့လိုက် မက်ဆေ့ခ်ျများကို ရရှိမည် ဖြစ်သည်။</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="other">ဤအဖွဲ့ဝင်များကို အုပ်စုမှ ဖယ်ရှားထားသည်။ ၎င်းတို့သည် အဆင့်မြှင့်ပြီးမှ ပြန်လည် ဝင်ရောက်နိုင်မည် ဖြစ်သည်။</item>
+        <item quantity="other">၎င်းမန်ဘာများကို အဖွဲ့မှ ဖယ်ရှားထားပြီး ၎င်းတို့သည် အဆင့်မြှင့်ပြီးမှ ပြန်လည် ဝင်ရောက်နိုင်မည် ဖြစ်သည် -</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -767,7 +767,7 @@
         <item quantity="other">အဖွဲ့ဝင်များသည် ဤအုပ်စုထဲသို့ ပြန်ဝင်ရန် ဖိတ်ကြားချက်ကိုလက်ခံရန်လိုလိမ့်မည်။ ထိုသူတို့ လက်ခံပြီးမှ အဖွဲ့လိုက် မက်ဆေ့ခ်ျများကို ရရှိမည် ဖြစ်သည်။</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="other">အဖွဲ့ဝင်များသည် အဖွဲ့အသစ်များသို့ ဝင်ရောက်နိုင်ခြင်း မရှိသောကြောင့် အဖွဲ့မှဖယ်ရှားခံရလိမ့်မည်။</item>
+        <item quantity="other">၎င်းမန်ဘာများသည် အဖွဲ့အသစ်များတွင် ပါဝင်၍မရနိုင်သောကြောင့် အဖွဲ့မှ ဖယ်ရှားသွားပါမည် -</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -860,9 +860,9 @@
     <string name="AddGroupDetailsFragment__this_field_is_required">ကွက်လပ်မှာဖြည့်ရန်လိုအပ်ပါသည်။</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">အုပ်စုဖွဲ့ခြင်း မအောင်မြင်ပါ။</string>
     <string name="AddGroupDetailsFragment__try_again_later">နောက်တကြိမ် ပြန်ကြိုးစားပါ</string>
-    <string name="AddGroupDetailsFragment__remove">ဖယ်ပစ်ပါ။</string>
+    <string name="AddGroupDetailsFragment__remove">ဖယ်ရှားရန်</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS နှင့်ဆက်သွယ်ပါ</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">၎င်းအဖွဲ့မှ %1$s ကို ဖယ်ရှားမည်လား?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s ကို အဖွဲ့မှ ဖယ်ရှားမည်လား။</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">သင်သည် Signal အဖွဲ့များအား သုံးနိုင်ခြင်း မရှိသည့် အဆက်အသွယ်ကို ရွေးချယ်ထားသောကြောင့် ဤအဖွဲ့သည့် MMS ဖြစ်သွားပါမည်။ စိတ်ကြိုက် MMS အဖွဲ့အမည်များနှင့် ဓာတ်ပုံများကို သင်သာလျှင် မြင်ရပါမည်။</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -1060,10 +1060,10 @@
     <string name="MediaOverviewActivity_Audio">အသံ</string>
     <string name="MediaOverviewActivity_All">အားလုံး</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="other">ရွေးထားသော အရာများကို ဖျက်မည်လား?</item>
+        <item quantity="other">ရွေးထားသည်များကို ဖျက်မည်လား။</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="other">ရွေးချယ်ထားသည့် ဖိုင်များ %1$d ခုကို အပြီးတိုင်ဖျက်လိမ့်မည်။ ၎င်းအရာများနှင့် ပတ်သက်သော မည်သည့် မက်ဆေ့ချ်များလည်း အဖျက်ခံရပါလိမ့်မည်။</item>
+        <item quantity="other">ရွေးထားသည့် ဖိုင် %1$d ခုကို အပြီးတိုင်ဖျက်သွားမည်။ ၎င်းအရာများနှင့် ဆက်စပ်နေသည့် စာသားမက်ဆေ့ချ်များကိုလည်း ဖျက်သွားပါမည်။</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">ဖျက်နေဆဲ</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">မက်ဆေ့ချ်များကို ဖျက်နေပါသည်…</string>
@@ -1217,9 +1217,9 @@
     <string name="MessageRecord_s_joined_the_group">%1$s သည် အဖွဲ့သို့ ၀င်ရောက်ခဲ့ပါသည်။</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">သင် %1$s ကို ဖယ်ရှားလိုက်ပြီ ။</string>
-    <string name="MessageRecord_s_removed_s">%1$s သည် %2$s ကို ဖယ်ရှားခဲ့သည် ။</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$sသည် သင့်ကို အဖွဲ့မှ ဖယ်ရှားခဲ့သည်။</string>
+    <string name="MessageRecord_you_removed_s">သင်သည် %1$s ကို ဖယ်ရှားခဲ့သည်။</string>
+    <string name="MessageRecord_s_removed_s">%1$s သည် %2$s ကို ဖယ်ရှားခဲ့သည်။</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s သည် သင့်ကို အဖွဲ့မှ ဖယ်ရှားခဲ့သည်။</string>
     <string name="MessageRecord_you_left_the_group">သင် အဖွဲ့မှထွက်သွားသည်။</string>
     <string name="MessageRecord_s_left_the_group">%1$s သည် အဖွဲ့မှ ထွက်သွားသည်။</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">သင် အဖွဲ့ထဲမှာ မရှိတော့ပါ။</string>
@@ -1409,7 +1409,7 @@
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">လက်ခံသည်</string>
     <string name="MessageRequestBottomView_continue">ဆက်လက်၍</string>
-    <string name="MessageRequestBottomView_delete">ဖျက်မည်</string>
+    <string name="MessageRequestBottomView_delete">ဖျက်ရန်</string>
     <string name="MessageRequestBottomView_block">တားမြစ်မည်</string>
     <string name="MessageRequestBottomView_unblock">ပြန်ဖွင့်သည်</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s မှ သင့်ကို မက်ဆေ့ချ်ပို့ရန် ခွင့်ပြုပြီး သင်၏ အမည်နှင့် ရုပ်ပုံတို့ကို ၎င်းနှင့် မျှဝေမည်လား? ၎င်းသည် သင်မှ ၎င်းတို့၏ မက်ဆေ့ချ်များကို ဖတ်ရှုခဲ့သည်ကို သင်လက်ခံသည်အထိ မတွေ့ရပါ။</string>
@@ -1806,7 +1806,7 @@
     <string name="StickerPackPreviewActivity_untitled">ခေါင်းစဉ်မဲ့</string>
     <string name="StickerPackPreviewActivity_unknown">မသိ</string>
     <string name="StickerPackPreviewActivity_install">ထည့်သွင်းမယ်+</string>
-    <string name="StickerPackPreviewActivity_remove">ဖယ်ရှားမယ်</string>
+    <string name="StickerPackPreviewActivity_remove">ဖယ်ရှားရန်</string>
     <string name="StickerPackPreviewActivity_stickers">စတစ်ကာများ</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">စတစ်ကာတွဲကို တင်ခြင်းမအောင်မြင်ပါ</string>
 
@@ -1819,7 +1819,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">သိမ်းရန် မအောင်မြင်ခဲ့ပါ</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">သိမ်းပြီးပါပြီ</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">၎င်းကိုဖျက်ရန် မျဉ်းတစ်ကြောင်းနှိပ်ပါ</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">၎င်းကိုဖျက်ရန် မျဉ်းတစ်ကြောင်းအား နှိပ်ပါ</string>
     <string name="SubmitDebugLogActivity_submit">တင်မယ်</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">မှတ်တမ်းများတင်သွင်းရန်မအောင်မြင်ပါ</string>
     <string name="SubmitDebugLogActivity_success">အောင်မြင်!</string>
@@ -1847,8 +1847,8 @@
     <string name="ThreadRecord_view_once_photo">တစ်ခါကြည့် ဓါတ်ပုံ</string>
     <string name="ThreadRecord_view_once_video">တစ်ခါကြည့် ဗီဒီယို</string>
     <string name="ThreadRecord_view_once_media">တစ်ခါကြည့် မီဒီယာ</string>
-    <string name="ThreadRecord_this_message_was_deleted">၎င်းမက်ဆေ့ချ်ကို ဖျက်ခဲ့ပါသည်။</string>
-    <string name="ThreadRecord_you_deleted_this_message">သင်သည် ဤမက်ဆေ့ချ်ကို ဖျက်လိုက်ပါပြီ။</string>
+    <string name="ThreadRecord_this_message_was_deleted">ဤမက်ဆေ့အား ဖျက်ပြီးပါပြီ။</string>
+    <string name="ThreadRecord_you_deleted_this_message">သင်ဤမက်ဆေ့ကို ဖျက်လိုက်သည်။</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">ငွေပေးချေမှုများကို သက်ဝင်လုပ်ဆောင်ရန် တောင်းဆိုချက် ပို့ထားပါသည်</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -1906,7 +1906,7 @@
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">သင်၏ သုံးစွဲသူအမည်ကို ရွေးရန်</string>
     <string name="UsernameEditFragment_username">အသုံးပြုသူအမည်</string>
-    <string name="UsernameEditFragment_delete">ဖျက်မည်</string>
+    <string name="UsernameEditFragment_delete">ဖျက်ရန်</string>
     <string name="UsernameEditFragment_successfully_removed_username">အသုံးပြုသူအမည်ကို အောင်မြင်စွာ ဖယ်ရှားခဲ့ပြီး။</string>
     <string name="UsernameEditFragment_encountered_a_network_error">ကွန်ယက်အမှားတစ်ခုနှင့် ကြုံတွေ့ခဲ့ရသည်။</string>
     <string name="UsernameEditFragment_this_username_is_taken">ဤအသုံးပြုသူအမည်ကို ယူထားပြီးပါပြီ။</string>
@@ -1977,8 +1977,8 @@
     <string name="MediaPreviewActivity_draft">မူကြမ်း</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">သင်၏ ပြင်ပသိုလှောင်ရာနေရာတွင် သိမ်းရန် သိုလှောင်မှုခွင့်ပြုချက်အား Signal ကို ပေးရန်လိုအပ်ပါသည်။ သို့သော် လုံးဝခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ သိုလှောင်မှုခွင့်ပြုချက်ကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ခွင့်ပြုချက်မပေးထားပါက အပြင်ဘက်တွင် သိမ်းဆည်း၍မရပါ</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">စာကို ဖျက်မှှှှှှှာလား?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">ဤစာများကို အပြီးတိုင်ဖျက်မည်။</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">စာကို ဖျက်မည်လား။</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">ဤမက်ဆေ့ကို အပြီးတိုင်ဖျက်သွားမည်။</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s မှ %2$s သို့</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">%1$s ထံသို့</string>
@@ -2023,7 +2023,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">သင့် အသံဖိုင် သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">သင့် တစ်ခါကြည့် မီဒီယာ သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">သင့် စတစ်ကာ သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
-    <string name="MessageNotifier_this_message_was_deleted">၎င်းမက်ဆေ့ချ်ကို ဖျက်ပြီးပါပြီ။</string>
+    <string name="MessageNotifier_this_message_was_deleted">ဤမက်ဆေ့အား ဖျက်ပြီးပါပြီ။</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">အဆက်အသွယ်မှ​ Signal သို့ ဝင်ရောက်သည်ဆိုသည့် အသိပေးချက်များကို ပိတ်မည်လား? Signal &gt; အပြင်အဆင်များ &gt; အသိပေးချက်များ ထဲဝင်၍ ၎င်းအသိပေးချက်များကို ဖွင့်လို့ရပါသည်။</string>
 
@@ -2494,7 +2494,7 @@
     <string name="AndroidManifest__linked_devices">ချိတ်ဆက်ထားသော စက်ပစ္စည်းများ</string>
     <string name="AndroidManifest__invite_friends">သူငယ်ချင်းများကို ဖိတ်ပါ</string>
     <string name="AndroidManifest_archived_conversations">စကားဝိုင်းများကို မှတ်တမ်းထဲ ထည့်ပါ</string>
-    <string name="AndroidManifest_remove_photo">ပုံကို ဖယ်ပါ</string>
+    <string name="AndroidManifest_remove_photo">ပုံကို ဖယ်ရှားရန်</string>
 
     <!-- Message Requests Megaphone -->
     <string name="MessageRequestsMegaphone__message_requests">မက်ဆေ့ခ်ျတောင်းဆိုမှုများ</string>
@@ -2673,7 +2673,7 @@
     <string name="preferences__advanced_pin_settings">အဆင့်မြင့် ပင်နံပါတ် အပြင်အဆင်များ</string>
     <string name="preferences__free_private_messages_and_calls">Signal အသုံးပြုသူများအတွက် အခမဲ့စာများနှင့် ဖုန်းခေါ်ဆိုမှုများ</string>
     <string name="preferences__submit_debug_log">Debug log ကို တင်ပြပါ</string>
-    <string name="preferences__delete_account">အကောင့်ကို ဖျက်သိမ်းမယ်</string>
+    <string name="preferences__delete_account">အကောင့်ကို ဖျက်ရန်</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' လိုက်လျောညီထွေမှု ရှိသည့် ပုံစံ</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">သင့်ဖုန်းမှ ဝိုင်ဖိုင် အသုံးပြု၍ SMS/MMS ပေးပို့ခြင်းကို အသုံးပြုပါက လုပ်ဆောင်ချက်ကို ဖွင့်ပါ (\'WiFi Calling\'လုပ်ဆောင်ချက်ကို သင့်ဖုန်းက ဖွင့်ထားမှသာ လုပ်ဆောင်ပါ)</string>
     <string name="preferences__incognito_keyboard">နောက်ယောင်ခံမှု မရှိသည့် ကီးဘုတ်</string>
@@ -2695,14 +2695,14 @@
     <string name="preferences_storage__files">ဖိုင်များ</string>
     <string name="preferences_storage__audio">အသံ</string>
     <string name="preferences_storage__review_storage">သိုလှောင်မှုကို ပြန်သုံးသပ်မယ်</string>
-    <string name="preferences_storage__delete_older_messages">မက်ဆေ့ခ်ျအဟောင်းများကို ဖျက်မည်လား?</string>
+    <string name="preferences_storage__delete_older_messages">မက်ဆေ့ခ်ျအဟောင်းများကို ဖျက်မည်လား။</string>
     <string name="preferences_storage__clear_message_history">မက်ဆေ့ချ်မှတ်တမ်းကို ရှင်းလင်းမည်လား။</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">၎င်းသည် သင့်စက်ရှိ %1$s ထက်ကြာသော မက်ဆေ့ချ်မှတ်တမ်းနှင့် မီဒီယာများကို အပြီးဖျက်ပစ်လိုက်ပါမည်။</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">သင့်စက်ရှိ %1$s ထက်ကြာသော မက်ဆေ့ချ်မှတ်တမ်းနှင့် မီဒီယာများအားလုံးကို အပြီးဖျက်သွားပါမည်။</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">၎င်းလုပ်ဆောင်ချက်သည် သင်၏ စကားပြောဆိုမှုများအားလုံးကို နောက်ဆုံးမက်ဆေ့ချ် %1$s ခုထိ ဖြတ်လိုက်ပါမည်။</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">၎င်းသည် သင့်စက်ရှိ မက်ဆေ့ချ်မှတ်တမ်းနှင့် မီဒီယာများ အားလုံးကို အပြီးဖျက်ပစ်လိုက်ပါမည်။</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">သင့်စက်ရှိ မက်ဆေ့ချ်မှတ်တမ်းနှင့် မီဒီယာများအားလုံးကို အပြီးဖျက်သွားပါမည်။</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">မက်ဆေ့ချ်မှတ်တမ်းများ အားလုံးကို ဖျက်လိုသည်မှာ သေချာပါသလား။</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">မက်ဆေ့ချ်မှတ်တမ်းများ အားလုံးကို အပြီးဖယ်ရှားလိုက်ပါမည်။ ဤလုပ်ဆောင်ချက်ကို ပြန်ရုပ်သိမ်း၍ မရပါ။</string>
-    <string name="preferences_storage__delete_all_now">အားလုံးကို ယခု ဖျက်သိမ်းမယ်</string>
+    <string name="preferences_storage__delete_all_now">အားလုံးကို ယခု ဖျက်ရန်</string>
     <string name="preferences_storage__forever">အမြဲတမ်း</string>
     <string name="preferences_storage__one_year">1 နှစ်</string>
     <string name="preferences_storage__six_months">6 လ</string>
@@ -3001,7 +3001,7 @@
     <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">ကူးမည်</string>
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_delete">ဖျက်မယ်</string>
+    <string name="conversation_selection__menu_delete">ဖျက်ရန်</string>
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">ထပ်ဆင့် ပေးပို့မယ်</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -3086,7 +3086,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">မဖတ်ရသေးသည့် ချက်(တ်)များကို စစ်ထုတ်ရန်</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">မဖတ်ရသေးသည်များ စစ်ထုတ်ထားမှုကို ရှင်းရန်</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">ကလစ်ဘုတ်သို့ ကူးယူမယ်</string>
@@ -3127,7 +3127,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol သည် အလိုအလျောက် လွန်ခဲ့သော %2$d ရက်တွင်းရှိ သင်၏ %1$d%% အထွက်စာများကို ကာကွယ်ထားပေးပါသည်။ Signal အသုံးပြုသူများအကြား စကားပြောဆိုမှုများကို အစမှအဆုံးထိ အမြဲ ကုဒ်ဖြင့်စာဝှက်ထားပါသည်။</string>
     <string name="InsightsDashboardFragment__spread_the_word">ဤစကားကို ဖြန့်ရန်</string>
     <string name="InsightsDashboardFragment__not_enough_data">ဒေတာ မလုံလောက်ပါ</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">သင်၏ ထင်မြင်ချက် ရာခိုင်နှုန်းသည် လွန်ခဲ့သည့် %1$d ရက်အတွင်း မဖျောက်ကွယ်ထားသော သို့မဟုတ် မဖျက်သိမ်းထားသော မက်ဆေ့ချ်များပေါ်မူ၍ တွက်ထားပါသည်။</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">သင်၏ ထင်မြင်ချက် ရာခိုင်နှုန်းသည် လွန်ခဲ့သည့် %1$d ရက်အတွင်း မပျောက်သွားသေးသော သို့မဟုတ် မဖျက်ထားသော မက်ဆေ့ချ်များပေါ်မူ၍ တွက်ထားပါသည်။</string>
     <string name="InsightsDashboardFragment__start_a_conversation">စကားစပြောပါ</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">လုံခြုံစွာ ဆက်သွယ်မှုကို စတင်ပါ။ Signal နှင့်ဆက်သွယ်ရန် အဆက်အသွယ်များထပ်မံဖိတ်ခေါ်ခြင်းဖြင့် ကုဒ်ဖြင့်စာမဝှက်ထားသည့် SMS မက်ဆေ့ချ်များ ပေးပို့မှုများ၏ ကန့်သတ်ချက်များထက်ကျော်လွန်သော အင်္ဂါရပ်အသစ်များကို ဖွင့်သုံးစွဲပါ။</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">၎င်းကိန်းဂဏန်းများသည် သင်၏စက်ကိရိယာပေါ်တွင် ထုတ်လုပ်ပြီး သင်သာမြင်နိုင်သည်။ ဘယ်တော့မှ အခြားနေရာကို မကူးစက်ပါဘူး။</string>
@@ -3199,7 +3199,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">အကောင့်သော့ခတ်ထားပါတယ်</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">သင့်အကောင့်၏ ပုဂ္ဂိုလ်လုံခြုံရေးအတွက် ကျွန်ုပ်တို့မှ အကောင့်ကို လော့ခတ်လိုက်ပါပြီ။လှုပ်ရှားမှုမရှိဘဲ %1$d ရက်အကြာတွင် သင့် ပင်နံပါတ်မလိုဘဲ သင့်ဖုန်းနံပါတ်ဖြင့် ပြန်မှတ်ပုံစာရင်းသွင်းနိုင်ပါမည်။ သို့သော်လည်း အကောင့်ထဲရှိ အရာများအားလုံး ဖျက်သိမ်းသွားပါမည်။</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">သင့်ကိုယ်ပိုင်အချက်အလက် လုံခြုံရေးအတွက် သင့်အကောင့်ကို ပိတ်လိုက်ပါပြီ။ အသုံးပြုမှုမရှိဘဲ %1$d ရက်အကြာတွင် ပင်နံပါတ်မလိုဘဲ သင့်ဖုန်းနံပါတ်ဖြင့် ပြန်လည် စာရင်းသွင်းနိုင်ပါမည်။ သို့သော် အကောင့်ထဲရှိ အကြောင်းအရာများအားလုံး ဖျက်သိမ်းသွားပါမည်။</string>
     <string name="AccountLockedFragment__next">နောက်ထက်</string>
     <string name="AccountLockedFragment__learn_more">ထပ်မံလေ့လာရန်</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3217,7 +3217,7 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal မှတ်ပုံတင်ခြင်း - Android ပေါ်တွင် ပင်နံပါတ် (v2 PIN) နှင့်ပါတ်သက်သော အကူအညီရယူလိုပါသည်</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="other">ကိုယ်ရေးကိုယ်တာ လုံခြုံရေးအတွက် သင်၏ ပင်နံပါတ်ကို ပြန်လည်ရယူရန် မဖြစ်နိုင်ပါ။ ပင်နံပါတ် ကိုမမှတ်မိနိုင်ပါက SMS စာတိုဖြင့် အတည်ပြုကုဒ်ဖြင့် ရက်ပေါင်း %1$d ရက်အတွင်းအသုံးမပြုဘဲ ရယူနိုင်ပါသည်။ ဤအခြေအနေတွင် သင့်အကောင့် အသုံးပြုမှုမှတ်တမ်းများအားလုံးကို ဖျက်ပစ်ပြီးဖြစ်သည်။</item>
+        <item quantity="other">သင့် ကိုယ်ပိုင်အချက်အလက် လုံခြုံရေးအတွက် သင်၏ ပင်နံပါတ်ကို ပြန်လည်ရယူရန် မဖြစ်နိုင်ပါ။ ပင်နံပါတ်ကို မမှတ်မိပါက အသုံးပြုမှုမရှိသော ရက်ပေါင်း %1$d ရက်အကြာတွင် SMS စာတိုဖြင့် ပြန်လည် အတည်ပြုနိုင်ပါသည်။ ဤအခြေအနေတွင် သင့်အကောင့်ကို ရှင်းလင်းထားပြီး အကြောင်းအရာများအားလုံးကို ဖျက်သိမ်းသွားပါမည်။</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3225,7 +3225,7 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="other">သင့်တွင် ကြိုးစားရန် အကြိမ်ရေ မကျန်ရှိတော့လျှင် သင့်အကောင့်ကို %1$d ရက် ပိတ်လိုက်ပါမည်။ လှုပ်ရှားမှုမရှိဘဲ %1$d ရက်အကြာတွင် သင်သည် ပင်နံပါတ်မပါဘဲ ပြန်မှတ်ပုံစာရင်းသွင်းနိုင်ပါမည်။ သင့်အကောင့်နှင့် သက်ဆိုင်သော အရာများအားလုံးကို ဖျက်သိမ်းလိုက်ပါမည်။</item>
+        <item quantity="other">သင့်တွင် ကြိုးစားရန် အကြိမ်ရေ မကျန်တော့လျှင် သင့်အကောင့်ကို %1$d ရက် ပိတ်လိုက်ပါမည်။ အသုံးပြုမှုမရှိဘဲ %1$d ရက်အကြာတွင် ပင်နံပါတ်မလိုဘဲ ပြန်လည် စာရင်းသွင်းနိုင်ပါမည်။ သင့်အကောင့်ကို ရှင်းလင်းထားပြီး အကြောင်းအရာများအားလုံးကို ဖျက်သိမ်းသွားပါမည်။</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3281,9 +3281,9 @@
     <string name="BackupDialog_enable_local_backups">ဖုန်းထဲတွင် အရန်သိမ်းထားသည်များကို ဖွင့်မည်လား?</string>
     <string name="BackupDialog_enable_backups">အရန်သိမ်းဆည်းခြင်းကို လုပ်ဆောင်မည်</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">သင်နားလည်ပါက လေးထောင့်ကွက်အတွင်း အမှန်ခြစ်ခြစ်ပေးပါ။</string>
-    <string name="BackupDialog_delete_backups">အရန်သိမ်းဆည်းထားမှုများကို ဖျက်ပစ်မည်လား?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">ဖုန်းထဲတွင် အရန်သိမ်းထားသောဖိုင်များကို ပိတ်ပြီး ဖျက်မည်လား?</string>
-    <string name="BackupDialog_delete_backups_statement">အရန်သိမ်းထားသည်များကို ဖျက်မည်</string>
+    <string name="BackupDialog_delete_backups">ဘက်ခ်အပ်များကို ဖျက်မည်လား။</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">ဖုန်းထဲရှိ ဘက်ခ်အပ်များကို ပိတ်ပြီး ဖျက်မည်လား။</string>
+    <string name="BackupDialog_delete_backups_statement">ဘက်ခ်အပ်များကို ဖျက်မည်</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">အရန်ကူးခြင်းကိုဖွင့်ရန် ဖိုင်တွဲတစ်ခုကို ရွေးချယ်ပါ။ အရန်ကူးများကို ဤတည်နေရာသို့ သိမ်းဆည်းလိမ့်မည်။</string>
     <string name="BackupDialog_choose_folder">ဖိုင်တွဲတစ်ခုရွေးချယ်ပါ</string>
     <string name="BackupDialog_copied_to_clipboard">ကလစ်ဘုတ် သို့ ကူးယူပြီး</string>
@@ -3296,16 +3296,16 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Signal ဘက်ခ်အပ် အတည်ပြုနေဆဲ…</string>
     <string name="LocalBackupJobApi29_backup_failed">အရန်သိမ်းဆည်းမှုများ မအောင်မြင်ပါ</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">သင်၏ အရန်သိမ်းဆည်းမှုများ၏ လမ်းညွှန်အား ဖျက်ထားသည် သို့မဟုတ် ပြောင်းရွှေ့သွားသည်</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">သင်၏ ဘက်ခ်အပ်လမ်းကြောင်းအား ဖျက်ထားသည် သို့မဟုတ် ရွှေ့ထားသည်။</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">သင်၏ အရန်သိမ်းဆည်းထားသောဖိုင်ကို သိမ်းဆည်းရန် အလွန်ကြီးမားသည်</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">သင်၏ အရန်သိမ်းဆည်းမှုများကို သိမ်းဆည်းရန် နေရာမလုံလောက်ပါ</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">သင်၏ မကြာသေးမီက ဘက်ခ်အပ်ကို ဖန်တီး၍ မရနိုင်ခဲ့သည်အပြင် အတည်ပြု၍ မရခဲ့ပါ။ အသစ်တစ်ခု ဖန်တီးပေးပါ။</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">သင့်ဘက်ခ်အပ်တွင် ဘက်ခ်အပ်လုပ်၍ မရနိုင်သည့် အလွန်ကြီးသော ဖိုင်တစ်ဖိုင် ပါဝင်နေပါသည်။ ၎င်းကို ဖျက်ပြီး ဘက်ခ်အပ်အသစ် ဖန်တီးပါ။</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">သင့်ဘက်ခ်အပ်တွင် သိမ်း၍ မရနိုင်သည့် အလွန်ကြီးသော ဖိုင်တစ်ဖိုင် ပါဝင်နေပါသည်။ ၎င်းကို ဖျက်ပြီး ဘက်ခ်အပ်အသစ် ဖန်တီးပါ။</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">အရန်ကူးခြင်းများကိုစီမံရန် နှိပ်ပါ</string>
     <string name="RegistrationActivity_wrong_number">နံပါတ် မှားနေပါသလား။</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">(%1$02d:%2$02d) အကြာတွင် ဖုန်းခေါ်ရန်</string>
     <string name="RegistrationActivity_contact_signal_support">Signal အကူအညီ ရယူမည်</string>
     <string name="RegistrationActivity_code_support_subject">Signal မှတ်ပုံတင်ခြင်း Android အတွက် အတည်ပြုကုဒ်</string>
     <string name="RegistrationActivity_incorrect_code">ကုဒ် မှားနေပါသည်</string>
@@ -3404,7 +3404,7 @@
     <string name="DeviceTransferSetup__location_permission">တည်နေရာအသုံးပြုရန် ခွင့်ပြုချက်</string>
     <string name="DeviceTransferSetup__location_services">တည်နေရာဝန်ဆောင်မှုများ</string>
     <string name="DeviceTransferSetup__wifi">ဝိုင်ဖိုင်</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">ဝိုင်ဖိုင်တိုက်ရိုက် စကရင်ပေါ်တွင် မှတ်ထားသော အဖွဲ့များအား ဖယ်ရှားပြီး ဖိတ်ခေါ်ထားသော သို့မဟုတ် ချိတ်ဆက်ထားသော စက်များဖြင့် ချိတ်ဆက်မှုဖြတ်ပေးပါ။</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi တိုက်ရိုက် မျက်နှာပြင်ပေါ်တွင် မှတ်ထားသော အဖွဲ့များအား ဖယ်ရှားပြီး ဖိတ်ခေါ်ထားသော သို့မဟုတ် ချိတ်ဆက်ထားသော စက်များဖြင့် ချိတ်ဆက်မှုကို ဖြတ်ပေးပါ။</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">ဝိုင်ဖိုင်တိုက်ရိုက် စကရင်</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">စက် ၂ ခုလုံးပေါ်၌ ဝိုင်ဖိုင်အား အပိတ်အဖွင့် ပြုလုပ်ပေးပါ။</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">စက် ၂ ခုလုံးပေါ်တွင် လွှဲပြောင်းခြင်းအတွက် ပြင်ဆင်ထားရန် စစ်ပါ</string>
@@ -3478,16 +3478,16 @@
     <string name="RecipientBottomSheet_add_to_another_group">အခြား အဖွဲ့သို့ထည့်မယ်</string>
     <string name="RecipientBottomSheet_view_safety_number">လုံခြုံရေးနံပါတ်ကိုကြည့်မယ်</string>
     <string name="RecipientBottomSheet_make_admin">အက်ဒ်မင် လုပ်ရန်</string>
-    <string name="RecipientBottomSheet_remove_as_admin">စီမံသူအဖြစ်မှ ဖယ်ရှားမယ်</string>
-    <string name="RecipientBottomSheet_remove_from_group">အဖွဲ့မှ ဖယ်ရှားမယ်</string>
+    <string name="RecipientBottomSheet_remove_as_admin">အက်မင်အဖြစ်မှ ဖယ်ရှားရန်</string>
+    <string name="RecipientBottomSheet_remove_from_group">အဖွဲ့မှ ဖယ်ရှားရန်</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s ကို အဖွဲ့စီမံသူအဖြစ်မှ ဖယ်ရှားမလား?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s ကို အဖွဲ့အက်မင်အဖြစ်မှ ဖယ်ရှားမည်လား။</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" သည် အဖွဲ့နှင့်အဖွဲ့ ၀င်များကို တည်းဖြတ်ပြုပြင်နိုင်ပါလိမ့်မည်။"</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s ကို အဖွဲ့မှ ဖယ်ရှားမလား?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s ကို အဖွဲ့မှ ဖယ်ရှားမည်လား။</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
     <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s ကို အဖွဲ့မှ ဖယ်ရှားမည်လား။ ထိုသူတို့သည် အဖွဲ့လင့်ခ်မှတစ်ဆင့် ပြန်လည်ပါဝင်၍ ရနိုင်တော့မည် မဟုတ်ပါ။</string>
-    <string name="RecipientBottomSheet_remove">ဖယ်ရှားမယ်</string>
+    <string name="RecipientBottomSheet_remove">ဖယ်ရှားရန်</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">ကလစ်ဘုတ်သို့ကူးယူပြီး</string>
 
     <string name="GroupRecipientListItem_admin">စီမံသူ</string>
@@ -3539,18 +3539,18 @@
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="other">တူညီသော အဖွဲ့ %1$d ဖွဲ့</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s ကို အဖွဲ့မှ ဖယ်ထုတ်မည်လား?</string>
-    <string name="ReviewCardDialogFragment__remove">ဖယ်ရှားမည်</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">အဖွဲ့ ၀င်ကိုဖယ်ရှားရန်မအောင်မြင်ပါ</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s ကို အဖွဲ့မှ ဖယ်ရှားမည်လား။</string>
+    <string name="ReviewCardDialogFragment__remove">ဖယ်ရှားရန်</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">အဖွဲ့၀င်ကို ဖယ်ရှားရန် မအောင်မြင်ပါ။</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">အဖွဲ့ဝင်</string>
     <string name="ReviewCard__request">တောင်းခံ</string>
     <string name="ReviewCard__your_contact">သင်၏အဆက်အသွယ်</string>
-    <string name="ReviewCard__remove_from_group">အဖွဲ့မှ ဖယ်ရှားမယ်</string>
+    <string name="ReviewCard__remove_from_group">အဖွဲ့မှ ဖယ်ရှားရန်</string>
     <string name="ReviewCard__update_contact">အဆက်အသွယ် အပ်ဒိတ်မယ်</string>
     <string name="ReviewCard__block">ပိတ်ပယ်မယ်</string>
-    <string name="ReviewCard__delete">ဖျက်မယ်</string>
+    <string name="ReviewCard__delete">ဖျက်ရန်</string>
     <string name="ReviewCard__recently_changed">မကြာသေးမီက ပရိုဖိုင်းအမည်ကို %1$s မှ %2$s သို့ ပြောင်းထားခဲ့ပါသည်။</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
@@ -3574,16 +3574,16 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">သင်၏အကောင့်ကိုဖျက်ခြင်းသည် -</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">သင့်ဖုန်းနံပါတ်ကိုထည့်ပါ</string>
-    <string name="DeleteAccountFragment__delete_account">အကောင့်ကို ဖျက်သိမ်းမယ်</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">သင်၏ အကောင့်အချက်အလက် နှင့် ပရိုဖိုင်းဓာတ်ပုံများကို ဖျက်သိမ်းမယ်</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">သင်၏ မက်ဆေ့ချ်များအားလုံးကို ဖျက်မယ်</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s ကို သင့်ငွေပေးချေသည့် အကောင့်မှ ဖျက်သိမ်းပါ</string>
+    <string name="DeleteAccountFragment__delete_account">အကောင့်ကို ဖျက်ရန်</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">သင်၏ အကောင့်အချက်အလက် နှင့် ပရိုဖိုင်းဓာတ်ပုံများကို ဖျက်ရန်</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">သင်၏ မက်ဆေ့ချ်များအားလုံးကို ဖျက်ရန်</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s ကို သင့်ငွေပေးချေသည့် အကောင့်မှ ဖျက်ရန်</string>
     <string name="DeleteAccountFragment__no_country_code">နိုင်ငံကုဒ်နံပါတ် သတ်မှတ်ထားခြင်း မရှိပါ</string>
     <string name="DeleteAccountFragment__no_number">နံပါတ်သတ်မှတ်ထားခြင်း မရှိပါ</string>
     <string name="DeleteAccountFragment__the_phone_number">သင်ရိုက်ထည့်ထားသော ဖုန်းနံပါတ်သည် သင့်အကောင့်အတွင်းရှိ နံပါတ်နှင့် မကိုက်ညီပါ။</string>
-    <string name="DeleteAccountFragment__are_you_sure">သင့်အကောင့်ကို ဖျက်သိမ်းချင်သည်မှာသေချာပါသလား?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ဤလုပ်ဆောင်ချက်သည် သင့် Signal အကောင့်ကို ဖျက်သိမ်းပြီး အပ္ပလီကေးရှင်းကို ရီစက် ​(reset) ချပါမည်။​ ၎င်း အပ္ပလီကေးရှင်းသည် ဤလုပ်ဆောင်မှုပြီးလျှင် ပိတ်သွားပါမည်။</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">စက်တွင်းရှိဒေတာဖျက်ခြင်း မအောင်မြင်ပါ။ စနစ် အပ္ပလီကေးရှင်း အပြင်အဆင်များထဲတွင် သင်ကိုယ်တိုင်သွား ရှင်းနိုင်ပါသည်။</string>
+    <string name="DeleteAccountFragment__are_you_sure">သင့်အကောင့်ကို ဖျက်သိမ်းလိုသည်မှ သေချာပါသလား။</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ဤလုပ်ဆောင်ချက်သည် သင့် Signal အကောင့်ကို ဖျက်သိမ်းပြီး အက်ပလီကေးရှင်းကို ရီစက် ချပါမည်။ အက်ပ်သည် ဤလုပ်ဆောင်မှုပြီးလျှင် ပိတ်သွားပါမည်။</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">စက်တွင်းရှိဒေတာဖျက်ခြင်း မအောင်မြင်ပါ။ စနစ်ထဲရှိ အက်ပလီကေးရှင်း အပြင်အဆင်များထဲ၌ သင်ကိုယ်တိုင်သွား ရှင်းနိုင်ပါသည်။</string>
     <string name="DeleteAccountFragment__launch_app_settings">ဖုန်းဆက်တင်ကိုဖွင့်မည်</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">အဖွဲ့မှ ထွက်နေဆဲ…</string>
@@ -3975,7 +3975,7 @@
     <string name="ChatColorSelectionFragment__chat_color">စကားပြောဆိုမှု၏ အရောင်</string>
     <string name="ChatColorSelectionFragment__edit">ပြင်မယ်</string>
     <string name="ChatColorSelectionFragment__duplicate">မူပွား</string>
-    <string name="ChatColorSelectionFragment__delete">ဖျက်မယ်</string>
+    <string name="ChatColorSelectionFragment__delete">ဖျက်ရန်</string>
     <string name="ChatColorSelectionFragment__delete_color">အရောင် ဖျက်ရန်</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
         <item quantity="other">ဤစိတ်ကြိုက်အရောင်ကို ချက်(တ်) %1$d ခုတွင် သုံးထားပါသည်။ ချက်(တ်)များ အားလုံးအတွက် ၎င်းကို ဖျက်လိုပါသလား။</item>
@@ -4133,7 +4133,7 @@
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">ရုပ်သံခေါ်ဆိုမှု</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">ဖယ်ရှားမယ်</string>
+    <string name="NewConversationActivity__remove">ဖယ်ရှားရန်</string>
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">ဘလော့ လုပ်မည်</string>
     <!-- Dialog title when removing a contact -->
@@ -4522,7 +4522,7 @@
     <!-- Dialog message shown to confirm deleting a profile -->
     <string name="NotificationProfileDetails__permanently_delete_profile">ပရိုဖိုင်ကို အပြီးတိုင် ဖျက်မည်လား။</string>
     <!-- Dialog button to delete profile -->
-    <string name="NotificationProfileDetails__delete">ဖျက်မယ်</string>
+    <string name="NotificationProfileDetails__delete">ဖျက်ရန်</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
     <string name="NotificationProfileDetails__edit_notification_profile">အသိပေးချက် ပရိုဖိုင်ကို ပြင်ဆင်ရန်</string>
     <!-- Schedule description if all days are selected -->
@@ -4735,7 +4735,7 @@
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">ဆက်တင်သို့ သွားရန်</string>
     <!-- Dialog action to remove viewer from a story -->
-    <string name="StoryViewsFragment__remove">ဖယ်ရှားမယ်</string>
+    <string name="StoryViewsFragment__remove">ဖယ်ရှားရန်</string>
     <!-- Dialog title when removing a viewer from a story -->
     <string name="StoryViewsFragment__remove_viewer">ကြည့်ရှုသူအား ဖယ်ရှားမည်လား။</string>
     <!-- Dialog message when removing a viewer from a story -->
@@ -4757,12 +4757,12 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s ထံ သီးသန့် အကြောင်းပြန်နေပါသည်</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">%1$s ထံ အကြောင်းပြန်ရန်</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">ကူးမည်</string>
     <!-- Context menu item to delete a story response -->
-    <string name="StoryGroupReplyItem__delete">ဖျက်မယ်</string>
+    <string name="StoryGroupReplyItem__delete">ဖျက်ရန်</string>
     <!-- Page title for My Story options -->
     <string name="MyStorySettingsFragment__my_story">ကျွန်ုပ်၏ စတိုရီ</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
@@ -4822,7 +4822,7 @@
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">ဤပုဂ္ဂိုလ်က သင့်စတိုရီကို မမြင်နိုင်တော့ပါ။</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove">ဖယ်ရှားမယ်</string>
+    <string name="PrivateStorySettingsFragment__remove">ဖယ်ရှားရန်</string>
     <!-- Dialog title when deleting a custom story -->
     <!-- Dialog message when deleting a custom story -->
     <!-- Page title for editing a custom story name -->
@@ -4861,13 +4861,13 @@
     <!-- Dialog message for removing a group story -->
     <string name="StoryDialogs__s_will_be_removed">\"%1$s\" ကို ဖယ်ရှားသွားပါမည်။</string>
     <!-- Dialog positive action for removing a group story -->
-    <string name="StoryDialogs__remove">ဖယ်ရှားမယ်</string>
+    <string name="StoryDialogs__remove">ဖယ်ရှားရန်</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">စိတ်ကြိုက်စတိုရီကို ဖျက်မည်လား။</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" နှင့် ဤစတိုရီအတွက် ဝေမျှထားသည့် အပ်ဒိတ်များကို ဖျက်သွားပါမည်။</string>
     <!-- Dialog positive action for deleting a custom story -->
-    <string name="StoryDialogs__delete">ဖျက်ပါ</string>
+    <string name="StoryDialogs__delete">ဖျက်ရန်</string>
     <!-- Dialog title for first time sending something to a beta story -->
     <!-- Dialog message for first time sending something to a beta story -->
     <!-- Dialog title for first time adding something to a story -->
@@ -5045,15 +5045,15 @@
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">အဖွဲ့ စတိုရီကို ဖယ်ရှားမည်လား။</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">၎င်းသည် ဤစာရင်းမှ စတိုရီကို ဖယ်ရှားပစ်ပါမည်။ ဤအဖွဲ့မှ စတိုရီများကို သင် ဆက်လက်ကြည့်ရှုနိုင်ပါမည်။</string>
+    <string name="ContactSearchMediator__this_will_remove">ဤစာရင်းမှ စတိုရီကို ဖယ်ရှားပစ်ပါမည်။ ဤအဖွဲ့မှ စတိုရီများကို သင် ဆက်လက်ကြည့်ရှုနိုင်ပါမည်။</string>
     <!-- Dialog action item for removing a group story -->
-    <string name="ContactSearchMediator__remove">ဖယ်ရှားမယ်</string>
+    <string name="ContactSearchMediator__remove">ဖယ်ရှားရန်</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">စတိုရီကို ဖျက်မည်လား။</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="ContactSearchMediator__delete_the_custom">စိတ်ကြိုက်စတိုရီ \"%1$s\" ကို ဖျက်မည်လား။</string>
     <!-- Dialog action item for deleting a custom story -->
-    <string name="ContactSearchMediator__delete">ဖျက်မယ်</string>
+    <string name="ContactSearchMediator__delete">ဖျက်ရန်</string>
     <!-- Donation for a friend expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
         <item quantity="other">%1$d ရက် ကျန်ပါသည်</item>
@@ -5118,7 +5118,7 @@
     <!-- Context menu label for distribution list headers in review fragment -->
     <string name="SafetyNumberReviewConnectionsFragment__remove_all">အားလုံး ဖယ်ရှားရန်</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove">ဖယ်ရှားမယ်</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove">ဖယ်ရှားရန်</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">ကျွန်ုပ်၏ စတိုရီ ကိုယ်ပိုင်အချက်အလက်</string>
@@ -5446,11 +5446,11 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">သင်၏ Signal သုံးစွဲသူအမည်ကို သတ်မှတ်ပါ</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">သုံးစွဲသူအမည်များသည် အခြားသူများက သင့်ဖုန်းနံပါတ် မလိုဘဲ သင့်ထံ မက်ဆေ့ချ်ပို့နိုင်စေပါသည်</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
+    <string name="SetUpYourUsername__not_now">ယခု မလုပ်သေးပါ</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__continue">ဆက်လုပ်ရန်</string>
 
@@ -5468,11 +5468,11 @@
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">ဆက်လုပ်ရန်</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">သင်၏ Signal သုံးစွဲသူအမည်ကို သတ်မှတ်ပါ</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">သုံးစွဲသူအမည်ကို တည်းဖြတ်ရန်</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__delete_username">သုံးစွဲသူအမည်ကို ဖျက်ရန်</string>
 
