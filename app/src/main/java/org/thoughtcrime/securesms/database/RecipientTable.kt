@@ -2406,6 +2406,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   @VisibleForTesting
   fun writePnpChangeSetToDisk(changeSet: PnpChangeSet, inputPni: PNI?): RecipientId {
+    var hadThreadMerge = false
     for (operation in changeSet.operations) {
       @Exhaustive
       when (operation) {
@@ -2465,16 +2466,21 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             .run()
         }
         is PnpOperation.Merge -> {
-          merge(operation.primaryId, operation.secondaryId, inputPni)
+          val mergeResult: MergeResult = merge(operation.primaryId, operation.secondaryId, inputPni)
+          hadThreadMerge = hadThreadMerge || mergeResult.neededThreadMerge
         }
         is PnpOperation.SessionSwitchoverInsert -> {
-          val threadId: Long? = threads.getThreadIdFor(operation.recipientId)
-          if (threadId != null) {
-            val event = SessionSwitchoverEvent
-              .newBuilder()
-              .setE164(operation.e164 ?: "")
-              .build()
-            SignalDatabase.messages.insertSessionSwitchoverEvent(operation.recipientId, threadId, event)
+          if (hadThreadMerge) {
+            Log.d(TAG, "Skipping SSE insert because we already had a thread merge event.")
+          } else {
+            val threadId: Long? = threads.getThreadIdFor(operation.recipientId)
+            if (threadId != null) {
+              val event = SessionSwitchoverEvent
+                .newBuilder()
+                .setE164(operation.e164 ?: "")
+                .build()
+              SignalDatabase.messages.insertSessionSwitchoverEvent(operation.recipientId, threadId, event)
+            }
           }
         }
         is PnpOperation.ChangeNumberInsert -> {
@@ -2619,6 +2625,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       operations += PnpOperation.SetPni(
         recipientId = primaryId,
         pni = pni
+      )
+    }
+
+    if (!pniVerified && fullData.pniSidRecord != null && finalData.aciSidRecord != null && sessions.hasAnySessionFor(fullData.pniSidRecord.serviceId.toString())) {
+      breadCrumbs += "FinalUpdateSSE"
+      operations += PnpOperation.SessionSwitchoverInsert(
+        recipientId = primaryId,
+        e164 = finalData.e164
       )
     }
 
@@ -3644,7 +3658,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Merges one ACI recipient with an E164 recipient. It is assumed that the E164 recipient does
    * *not* have an ACI.
    */
-  private fun merge(primaryId: RecipientId, secondaryId: RecipientId, newPni: PNI? = null): RecipientId {
+  private fun merge(primaryId: RecipientId, secondaryId: RecipientId, newPni: PNI? = null): MergeResult {
     ensureInTransaction()
     val db = writableDatabase
     val primaryRecord = getRecord(primaryId)
@@ -3656,7 +3670,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     // Threads
-    val threadMerge = threads.merge(primaryId, secondaryId)
+    val threadMerge: ThreadTable.MergeResult = threads.merge(primaryId, secondaryId)
     threads.setLastScrolled(threadMerge.threadId, 0)
     threads.update(threadMerge.threadId, false, false)
 
@@ -3721,7 +3735,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     db.update(TABLE_NAME, uuidValues, ID_WHERE, SqlUtil.buildArgs(primaryId))
-    return primaryId
+
+    return MergeResult(
+      finalId = primaryId,
+      neededThreadMerge = threadMerge.neededMerge
+    )
   }
 
   private fun ensureInTransaction() {
@@ -3845,6 +3863,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * get them back through CDS).
    */
   fun debugClearServiceIds(recipientId: RecipientId? = null) {
+    check(FeatureFlags.internalUser())
+
     writableDatabase
       .update(TABLE_NAME)
       .values(
@@ -3868,6 +3888,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Should only be used for debugging! A very destructive action that clears all known profile keys and credentials.
    */
   fun debugClearProfileData(recipientId: RecipientId? = null) {
+    check(FeatureFlags.internalUser())
+
     writableDatabase
       .update(TABLE_NAME)
       .values(
@@ -3896,6 +3918,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Should only be used for debugging! Clears the E164 and PNI from a recipient.
    */
   fun debugClearE164AndPni(recipientId: RecipientId) {
+    check(FeatureFlags.internalUser())
+
     writableDatabase
       .update(TABLE_NAME)
       .values(
@@ -3905,7 +3929,28 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .where(ID_WHERE, recipientId)
       .run()
 
-    Recipient.live(recipientId).refresh()
+    ApplicationDependencies.getRecipientCache().clear()
+    RecipientId.clearCache()
+  }
+
+  /**
+   * Should only be used for debugging! Clears the ACI from a contact.
+   * Only works if the recipient has a PNI.
+   */
+  fun debugRemoveAci(recipientId: RecipientId) {
+    check(FeatureFlags.internalUser())
+
+    writableDatabase.execSQL(
+      """
+        UPDATE $TABLE_NAME
+        SET $SERVICE_ID = $PNI_COLUMN
+        WHERE $ID = ? AND $PNI_COLUMN NOT NULL
+      """.toSingleLine(),
+      SqlUtil.buildArgs(recipientId)
+    )
+
+    ApplicationDependencies.getRecipientCache().clear()
+    RecipientId.clearCache()
   }
 
   fun getRecord(context: Context, cursor: Cursor): RecipientRecord {
@@ -4130,6 +4175,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       e164 = this.e164
     )
   }
+
+  private data class MergeResult(
+    val finalId: RecipientId,
+    val neededThreadMerge: Boolean
+  )
 
   inner class BulkOperationsHandle internal constructor(private val database: SQLiteDatabase) {
     private val pendingRecipients: MutableSet<RecipientId> = mutableSetOf()

@@ -346,6 +346,32 @@ class RecipientTableTest_getAndPossiblyMerge {
       expectThreadMergeEvent(E164_A)
     }
 
+    test("merge, e164 & pni & aci, all provided, no threads") {
+      given(E164_A, null, null, createThread = false)
+      given(null, PNI_A, null, createThread = false)
+      given(null, null, ACI_A, createThread = false)
+
+      process(E164_A, PNI_A, ACI_A)
+
+      expectDeleted()
+      expectDeleted()
+      expect(E164_A, PNI_A, ACI_A)
+    }
+
+    test("merge, e164 & pni & aci, all provided, pni session no threads") {
+      given(E164_A, null, null, createThread = false)
+      given(null, PNI_A, null, createThread = true, pniSession = true)
+      given(null, null, ACI_A, createThread = false)
+
+      process(E164_A, PNI_A, ACI_A)
+
+      expectDeleted()
+      expectDeleted()
+      expect(E164_A, PNI_A, ACI_A)
+
+      expectSessionSwitchoverEvent(E164_A)
+    }
+
     test("merge, e164 & pni, no aci provided") {
       given(E164_A, null, null)
       given(null, PNI_A, null)
@@ -382,7 +408,7 @@ class RecipientTableTest_getAndPossiblyMerge {
       expectThreadMergeEvent("")
     }
 
-    test("merge, e164 & pni, aci provided, existing pni session") {
+    test("merge, e164 & pni, aci provided, existing pni session, thread merge shadows") {
       given(E164_A, null, null)
       given(null, PNI_A, null, pniSession = true)
 
@@ -392,6 +418,17 @@ class RecipientTableTest_getAndPossiblyMerge {
       expectDeleted()
 
       expectThreadMergeEvent("")
+    }
+
+    test("merge, e164 & pni, aci provided, existing pni session, no thread merge") {
+      given(E164_A, null, null, createThread = true)
+      given(null, PNI_A, null, createThread = false, pniSession = true)
+
+      process(E164_A, PNI_A, ACI_A)
+
+      expect(E164_A, PNI_A, ACI_A)
+      expectDeleted()
+
       expectSessionSwitchoverEvent(E164_A)
     }
 
@@ -407,11 +444,57 @@ class RecipientTableTest_getAndPossiblyMerge {
       expectThreadMergeEvent("")
     }
 
-    test("merge, e164+pni & aci") {
+    test("merge, e164+pni & aci, no pni session") {
       given(E164_A, PNI_A, null)
       given(null, null, ACI_A)
 
       process(E164_A, PNI_A, ACI_A)
+
+      expectDeleted()
+      expect(E164_A, PNI_A, ACI_A)
+
+      expectThreadMergeEvent(E164_A)
+    }
+
+    test("merge, e164+pni & aci, pni session, thread merge shadows") {
+      given(E164_A, PNI_A, null, pniSession = true)
+      given(null, null, ACI_A)
+
+      process(E164_A, PNI_A, ACI_A)
+
+      expectDeleted()
+      expect(E164_A, PNI_A, ACI_A)
+
+      expectThreadMergeEvent(E164_A)
+    }
+
+    test("merge, e164+pni & aci, pni session, no thread merge") {
+      given(E164_A, PNI_A, null, createThread = true, pniSession = true)
+      given(null, null, ACI_A, createThread = false)
+
+      process(E164_A, PNI_A, ACI_A)
+
+      expectDeleted()
+      expect(E164_A, PNI_A, ACI_A)
+
+      expectSessionSwitchoverEvent(E164_A)
+    }
+
+    test("merge, e164+pni & aci, pni session, no thread merge, pni verified") {
+      given(E164_A, PNI_A, null, createThread = true, pniSession = true)
+      given(null, null, ACI_A, createThread = false)
+
+      process(E164_A, PNI_A, ACI_A, pniVerified = true)
+
+      expectDeleted()
+      expect(E164_A, PNI_A, ACI_A)
+    }
+
+    test("merge, e164+pni & aci, pni session, pni verified") {
+      given(E164_A, PNI_A, null, pniSession = true)
+      given(null, null, ACI_A)
+
+      process(E164_A, PNI_A, ACI_A, pniVerified = true)
 
       expectDeleted()
       expect(E164_A, PNI_A, ACI_A)
@@ -758,8 +841,8 @@ class RecipientTableTest_getAndPossiblyMerge {
       return id
     }
 
-    fun process(e164: String?, pni: PNI?, aci: ACI?, changeSelf: Boolean = false) {
-      outputRecipientId = SignalDatabase.recipients.getAndPossiblyMerge(serviceId = aci ?: pni, pni = pni, e164 = e164, pniVerified = false, changeSelf = changeSelf)
+    fun process(e164: String?, pni: PNI?, aci: ACI?, changeSelf: Boolean = false, pniVerified: Boolean = false) {
+      outputRecipientId = SignalDatabase.recipients.getAndPossiblyMerge(serviceId = aci ?: pni, pni = pni, e164 = e164, pniVerified = pniVerified, changeSelf = changeSelf)
       generatedIds += outputRecipientId
     }
 

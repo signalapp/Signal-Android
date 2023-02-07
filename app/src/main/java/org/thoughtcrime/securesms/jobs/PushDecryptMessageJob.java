@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.messages.MessageDecryptionUtil;
 import org.thoughtcrime.securesms.messages.MessageDecryptionUtil.DecryptionResult;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -33,7 +32,6 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServicePniSignatureMessage;
 import org.whispersystems.signalservice.api.push.PNI;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.LinkedList;
@@ -114,15 +112,15 @@ public final class PushDecryptMessageJob extends BaseJob {
       if (result.getContent().getSenderKeyDistributionMessage().isPresent()) {
         handleSenderKeyDistributionMessage(result.getContent().getSender(), result.getContent().getSenderDevice(), result.getContent().getSenderKeyDistributionMessage().get());
       }
-      result.getContent();
-      if (envelope.hasReportingToken()) {
-        SignalDatabase.recipients().setReportingToken(RecipientId.from(result.getContent().getSender()), envelope.getReportingToken());
-      }
 
       if (FeatureFlags.phoneNumberPrivacy() && result.getContent().getPniSignatureMessage().isPresent()) {
         handlePniSignatureMessage(result.getContent().getSender(), result.getContent().getSenderDevice(), result.getContent().getPniSignatureMessage().get());
       } else if (result.getContent().getPniSignatureMessage().isPresent()) {
         Log.w(TAG, "Ignoring PNI signature because the feature flag is disabled!");
+      }
+
+      if (envelope.hasReportingToken()) {
+        SignalDatabase.recipients().setReportingToken(RecipientId.from(result.getContent().getSender()), envelope.getReportingToken());
       }
 
       jobs.add(new PushProcessMessageJob(result.getContent(), smsMessageId, envelope.getTimestamp()));
