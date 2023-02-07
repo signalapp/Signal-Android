@@ -1,15 +1,21 @@
 package org.thoughtcrime.securesms.service
 
 import android.app.Application
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.WorkerThread
+import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.IndividualSendJob
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.ServiceUtil
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -32,12 +38,12 @@ class ScheduledMessageManager(
   @Suppress("UsePropertyAccessSyntax")
   @WorkerThread
   override fun getNextClosestEvent(): Event? {
-    val oldestTimestamp = messagesTable.getOldestScheduledSendTimestamp() ?: return null
+    val oldestMessage = messagesTable.getOldestScheduledSendTimestamp() as? MediaMmsMessageRecord ?: return null
 
-    val delay = (oldestTimestamp - System.currentTimeMillis()).coerceAtLeast(0)
+    val delay = (oldestMessage.scheduledDate - System.currentTimeMillis()).coerceAtLeast(0)
     Log.i(TAG, "The next scheduled message needs to be sent in $delay ms.")
 
-    return Event(delay)
+    return Event(delay, oldestMessage.recipient.id, oldestMessage.threadId)
   }
 
   @WorkerThread
@@ -60,11 +66,20 @@ class ScheduledMessageManager(
   override fun getDelayForEvent(event: Event): Long = event.delay
 
   @WorkerThread
-  override fun scheduleAlarm(application: Application, delay: Long) {
-    trySetExactAlarm(application, System.currentTimeMillis() + delay, ScheduledMessagesAlarm::class.java)
+  override fun scheduleAlarm(application: Application, event: Event, delay: Long) {
+    val conversationIntent = ConversationIntents.createBuilder(application, event.recipientId, event.threadId).build()
+
+    ServiceUtil.getAlarmManager(application)
+
+    trySetExactAlarm(
+      application,
+      System.currentTimeMillis() + delay,
+      ScheduledMessagesAlarm::class.java,
+      PendingIntent.getActivity(application, 0, conversationIntent, PendingIntentFlags.mutable())
+    )
   }
 
-  data class Event(val delay: Long)
+  data class Event(val delay: Long, val recipientId: RecipientId, val threadId: Long)
 
   class ScheduledMessagesAlarm : BroadcastReceiver() {
 
