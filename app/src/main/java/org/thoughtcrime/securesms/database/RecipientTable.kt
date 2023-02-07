@@ -2207,13 +2207,53 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun markUnregistered(id: RecipientId) {
+    if (FeatureFlags.phoneNumberPrivacy()) {
+      val record = getRecord(id)
+
+      if (record.pni != null && record.serviceId != record.pni) {
+        markUnregisteredAndSplit(id, record)
+      } else {
+        markUnregisteredWithoutSplit(id)
+      }
+    } else {
+      markUnregisteredWithoutSplit(id)
+    }
+  }
+
+  /**
+   * Marks the user unregistered and also splits it into an ACI-only and PNI-only contact.
+   * This is to allow a new user to register the number with a new ACI.
+   */
+  private fun markUnregisteredAndSplit(id: RecipientId, record: RecipientRecord) {
+    check(record.pni != null && record.pni != record.serviceId)
+
+    val contentValues = contentValuesOf(
+      REGISTERED to RegisteredState.NOT_REGISTERED.id,
+      UNREGISTERED_TIMESTAMP to System.currentTimeMillis(),
+      PHONE to null,
+      PNI_COLUMN to null
+    )
+
+    if (update(id, contentValues)) {
+      Log.i(TAG, "[WithSplit] Newly marked $id as unregistered.")
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
+    }
+
+    val splitId = getAndPossiblyMerge(record.pni, record.pni, record.e164)
+    Log.i(TAG, "Split off new recipient as $splitId (ACI-only recipient is $id)")
+  }
+
+  /**
+   * Marks the user unregistered without splitting the contact into an ACI-only and PNI-only contact.
+   */
+  private fun markUnregisteredWithoutSplit(id: RecipientId) {
     val contentValues = contentValuesOf(
       REGISTERED to RegisteredState.NOT_REGISTERED.id,
       UNREGISTERED_TIMESTAMP to System.currentTimeMillis()
     )
 
     if (update(id, contentValues)) {
-      Log.i(TAG, "Newly marked $id as unregistered.")
+      Log.i(TAG, "[WithoutSplit] Newly marked $id as unregistered.")
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
@@ -2246,13 +2286,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
 
       for (id in unregistered) {
-        val values = contentValuesOf(
-          REGISTERED to RegisteredState.NOT_REGISTERED.id,
-          UNREGISTERED_TIMESTAMP to System.currentTimeMillis()
-        )
-        if (update(id, values)) {
-          ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
-        }
+        markUnregistered(id)
       }
     }
   }
