@@ -59,6 +59,33 @@ class RecipientTableTest_getAndPossiblyMerge {
   }
 
   @Test
+  fun allNonMergeTests() {
+    test("e164-only insert") {
+      val id = process(E164_A, null, null)
+      expect(E164_A, null, null)
+
+      val record = SignalDatabase.recipients.getRecord(id)
+      assertEquals(RecipientTable.RegisteredState.UNKNOWN, record.registered)
+    }
+
+    test("pni-only insert") {
+      val id = process(null, PNI_A, null)
+      expect(null, PNI_A, null)
+
+      val record = SignalDatabase.recipients.getRecord(id)
+      assertEquals(RecipientTable.RegisteredState.REGISTERED, record.registered)
+    }
+
+    test("aci-only insert") {
+      val id = process(null, null, ACI_A)
+      expect(null, null, ACI_A)
+
+      val record = SignalDatabase.recipients.getRecord(id)
+      assertEquals(RecipientTable.RegisteredState.REGISTERED, record.registered)
+    }
+  }
+
+  @Test
   fun allSimpleTests() {
     test("no match, e164-only") {
       process(E164_A, null, null)
@@ -841,9 +868,10 @@ class RecipientTableTest_getAndPossiblyMerge {
       return id
     }
 
-    fun process(e164: String?, pni: PNI?, aci: ACI?, changeSelf: Boolean = false, pniVerified: Boolean = false) {
+    fun process(e164: String?, pni: PNI?, aci: ACI?, changeSelf: Boolean = false, pniVerified: Boolean = false): RecipientId {
       outputRecipientId = SignalDatabase.recipients.getAndPossiblyMerge(serviceId = aci ?: pni, pni = pni, e164 = e164, pniVerified = pniVerified, changeSelf = changeSelf)
       generatedIds += outputRecipientId
+      return outputRecipientId
     }
 
     fun expect(e164: String?, pni: PNI?, aci: ACI?) {

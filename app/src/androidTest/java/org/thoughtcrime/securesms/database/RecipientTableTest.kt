@@ -183,6 +183,25 @@ class RecipientTableTest {
     assertNotEquals(byAci, byE164)
   }
 
+  @Test
+  fun givenARecipientWithPniAndAci_whenISplitItForStorageSync_thenIExpectItToBeSplit() {
+    FeatureFlagsAccessor.forceValue(FeatureFlags.PHONE_NUMBER_PRIVACY, true)
+
+    val mainId = SignalDatabase.recipients.getAndPossiblyMerge(ACI_A, PNI_A, E164_A)
+    val mainRecord = SignalDatabase.recipients.getRecord(mainId)
+
+    SignalDatabase.recipients.splitForStorageSync(mainRecord.storageId!!)
+
+    val byAci: RecipientId = SignalDatabase.recipients.getByServiceId(ACI_A).get()
+
+    val byE164: RecipientId = SignalDatabase.recipients.getByE164(E164_A).get()
+    val byPni: RecipientId = SignalDatabase.recipients.getByServiceId(PNI_A).get()
+
+    assertEquals(mainId, byAci)
+    assertEquals(byE164, byPni)
+    assertNotEquals(byAci, byE164)
+  }
+
   companion object {
     val ACI_A = ACI.from(UUID.fromString("aaaa0000-5a76-47fa-a98a-7e72c948a82e"))
     val PNI_A = PNI.from(UUID.fromString("aaaa1111-c960-4f6c-8385-671ad2ffb999"))

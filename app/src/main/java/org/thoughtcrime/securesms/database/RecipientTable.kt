@@ -2236,6 +2236,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     if (update(id, contentValues)) {
       Log.i(TAG, "[WithSplit] Newly marked $id as unregistered.")
+      markNeedsSync(id)
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
 
@@ -2254,8 +2255,31 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     if (update(id, contentValues)) {
       Log.i(TAG, "[WithoutSplit] Newly marked $id as unregistered.")
+      markNeedsSync(id)
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
+  }
+
+  /**
+   * Removes the target recipient's E164+PNI, then creates a new recipient with that E164+PNI.
+   * Done so we can match a split contact during storage sync.
+   */
+  fun splitForStorageSync(storageId: ByteArray) {
+    check(FeatureFlags.phoneNumberPrivacy())
+
+    val record = getByStorageId(storageId)!!
+    check(record.serviceId != null && record.pni != null && record.serviceId != record.pni)
+
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        PNI_COLUMN to null,
+        PHONE to null
+      )
+      .where("$ID = ?", record.id)
+      .run()
+
+    getAndPossiblyMerge(record.pni, record.pni, record.e164)
   }
 
   fun bulkUpdatedRegisteredStatus(registered: Map<RecipientId, ServiceId?>, unregistered: Collection<RecipientId>) {
