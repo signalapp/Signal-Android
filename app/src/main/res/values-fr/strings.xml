@@ -3398,7 +3398,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Votre sauvegarde contient un fichier trop volumineux. Veuillez le supprimer et créer une nouvelle sauvegarde.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Toucher pour gérer les sauvegardes</string>
     <string name="RegistrationActivity_wrong_number">Mauvais numéro ?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Appelez-moi (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Appelez-moi dans (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contacter l’assistance de Signal</string>
     <string name="RegistrationActivity_code_support_subject">Inscription à Signal – Code de confirmation pour Android</string>
     <string name="RegistrationActivity_incorrect_code">Code incorrect</string>
