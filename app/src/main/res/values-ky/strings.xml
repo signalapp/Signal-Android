@@ -656,7 +656,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Пландалган билдирүүнү өчүрөсүзбү?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Өчүрүлүүдө...</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Өчүрүлүүдө…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Маектин сессиясы жаңырды</string>

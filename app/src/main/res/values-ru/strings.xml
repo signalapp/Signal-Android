@@ -716,7 +716,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Удалить выбранное запланированное сообщение?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Удаление запланированного сообщения...</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Удаление запланированного сообщения…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Сессия чата обновлена</string>

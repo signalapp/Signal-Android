@@ -196,9 +196,9 @@
     <string name="CensorshipCircumventionMegaphone_no_thanks">Non merci</string>
 
     <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">Éliminer</string>
-    <string name="ClearProfileActivity_remove_profile_photo">Effacer la photo de profil ?</string>
-    <string name="ClearProfileActivity_remove_group_photo">Effacer la photo du groupe ?</string>
+    <string name="ClearProfileActivity_remove">Effacer</string>
+    <string name="ClearProfileActivity_remove_profile_photo">Supprimer la photo de profil ?</string>
+    <string name="ClearProfileActivity_remove_group_photo">Supprimer la photo du groupe ?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Mettre Signal à jour</string>
@@ -547,7 +547,7 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Tirez vers le bas pour filtrer</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Faites glisser vers le bas pour filtrer</string>
     <!-- Note in revealable view after fully revealed -->
     <string name="ConversationListFilterPullView__release_to_filter">Relâchez pour filtrer</string>
 
@@ -776,8 +776,8 @@
         <item quantity="other">Ces membres devront accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevront aucun message du groupe avant d’en avoir accepté une :</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Ce membre a été éliminéé du groupe et ne pourra pas s’y joindre de nouveau avant d’avoir effectué une mise à niveau :</item>
-        <item quantity="other">Ces membres ont été supprimés du groupe et ne pourront pas s’y joindre de nouveau avant d’avoir effectué une mise à niveau :</item>
+        <item quantity="one">Ce membre a été retiré du groupe et ne pourra pas s’y joindre de nouveau avant d’avoir effectué une mise à niveau :</item>
+        <item quantity="other">Ces membres ont été retirés du groupe et ne pourront pas s’y joindre de nouveau avant d’avoir effectué une mise à niveau :</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -792,8 +792,8 @@
         <item quantity="other">Ces membres devront accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevront aucun message du groupe avant d’en avoir accepté une :</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Ce membre ne peut pas se joindre aux Nouveaux groupes et sera éliminé du groupe :</item>
-        <item quantity="other">Ces membres ne peuvent pas se joindre aux Nouveaux groupes et seront éliminés du groupe :</item>
+        <item quantity="one">Ce membre ne peut pas se joindre aux nouveaux groupes et sera éliminé du groupe :</item>
+        <item quantity="other">Ces membres ne peuvent pas se joindre aux nouveaux groupes et seront retirés du groupe :</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -897,9 +897,9 @@
     <string name="AddGroupDetailsFragment__this_field_is_required">Ce champ est requis.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">Échec de création du groupe.</string>
     <string name="AddGroupDetailsFragment__try_again_later">Réessayez plus tard.</string>
-    <string name="AddGroupDetailsFragment__remove">Éliminer</string>
+    <string name="AddGroupDetailsFragment__remove">Retirer</string>
     <string name="AddGroupDetailsFragment__sms_contact">Contact texto</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Éliminer %1$s de ce groupe ?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Retirer %1$s de ce groupe ?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal. Les échanges de ce groupe se feront donc par MMS. Le nom personnalisé du groupe, ainsi que les photos, ne seront visibles que par vous.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -1011,7 +1011,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Impossible de se joindre au groupe</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Vous ne pouvez pas vous joindre au groupe avec le lien du groupe car un administrateur vous a éliminé(e).</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Vous ne pouvez pas vous joindre au groupe avec le lien du groupe car un administrateur vous a retiré(e).</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Ce lien de groupe n’est plus valide.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1245,8 +1245,8 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">Un membre n’a pas pu être ajouté au nouveau groupe et a été éliminé du groupe.</item>
-        <item quantity="other">%1$s membres n’ont pas pu être ajoutés au nouveau groupe et ont été éliminés du groupe.</item>
+        <item quantity="one">Un membre n’a pas pu être ajouté au nouveau groupe et a été retiré du groupe.</item>
+        <item quantity="other">%1$s membres n’ont pas pu être ajoutés au nouveau groupe et ont été retirés du groupe.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1267,9 +1267,9 @@
     <string name="MessageRecord_s_joined_the_group">%1$s s’est joint au groupe.</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">Vous avez éliminé %1$s.</string>
-    <string name="MessageRecord_s_removed_s">%1$s a éliminé %2$s.</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s vous a éliminé du groupe.</string>
+    <string name="MessageRecord_you_removed_s">Vous avez retiré %1$s.</string>
+    <string name="MessageRecord_s_removed_s">%1$s a retiré %2$s.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s vous a retiré du groupe.</string>
     <string name="MessageRecord_you_left_the_group">Vous avez quitté le groupe.</string>
     <string name="MessageRecord_s_left_the_group">%1$s a quitté le groupe.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">Vous n’êtes plus dans le groupe.</string>
@@ -1877,7 +1877,7 @@
     <string name="StickerPackPreviewActivity_untitled">Sans titre</string>
     <string name="StickerPackPreviewActivity_unknown">Inconnu</string>
     <string name="StickerPackPreviewActivity_install">Installer</string>
-    <string name="StickerPackPreviewActivity_remove">Éliminer</string>
+    <string name="StickerPackPreviewActivity_remove">Retirer</string>
     <string name="StickerPackPreviewActivity_stickers">Autocollants</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Échec de chargement du paquet d’autocollants</string>
 
@@ -2577,7 +2577,7 @@
     <string name="AndroidManifest__linked_devices">Appareils reliés</string>
     <string name="AndroidManifest__invite_friends">Inviter des amis</string>
     <string name="AndroidManifest_archived_conversations">Conversations archivées</string>
-    <string name="AndroidManifest_remove_photo">Effacer la photo</string>
+    <string name="AndroidManifest_remove_photo">Supprimer la photo</string>
 
     <!-- Message Requests Megaphone -->
     <string name="MessageRequestsMegaphone__message_requests">Demande de message</string>
@@ -3172,7 +3172,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtrer les conversations non lues</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Effacer le filtre Non lu</string>
+    <string name="text_secure_normal__clear_unread_filter">Supprimer le filtre Non lu</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copier dans le presse-papiers</string>
@@ -3287,7 +3287,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Le compte est verrouillé</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Votre compte a été verrouillé afin de protéger vos données personnelles et votre sécurité. Après %1$d jours d’inactivité dans votre compte, vous pourrez réinscrire ce numéro de téléphone sans avoir besoin de votre NIP. Tout le contenu sera supprimé.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Votre compte a été verrouillé afin de protéger vos données personnelles et votre sécurité. Après %1$d jours d’inactivité dans votre compte, vous pourrez réinscrire ce numéro de téléphone sans avoir besoin de votre PIN. Tout le contenu sera supprimé.</string>
     <string name="AccountLockedFragment__next">Suivant</string>
     <string name="AccountLockedFragment__learn_more">En apprendre davantage</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3497,7 +3497,7 @@
     <string name="DeviceTransferSetup__location_permission">Autorisation de localisation</string>
     <string name="DeviceTransferSetup__location_services">Services de localisation</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Sur l’écran du Wi-Fi Direct, effacez tous les groupes mémorisés et annulé le lien de tout appareil invité ou connecté.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Sur l’écran du Wi-Fi Direct, effacez tous les groupes mémorisés et annulez le lien de tout appareil invité ou connecté.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Écran Wi-Fi Direct</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Essayez d’activer et de désactiver le Wi-Fi sur les deux appareils.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Assurez-vous que les deux appareils soient en mode transfert.</string>
@@ -3571,16 +3571,16 @@
     <string name="RecipientBottomSheet_add_to_another_group">Ajouter à un autre groupe</string>
     <string name="RecipientBottomSheet_view_safety_number">Afficher le numéro de sécurité</string>
     <string name="RecipientBottomSheet_make_admin">Nommer administrateur</string>
-    <string name="RecipientBottomSheet_remove_as_admin">Éliminer en tant qu’administrateur</string>
-    <string name="RecipientBottomSheet_remove_from_group">Éliminer du groupe</string>
+    <string name="RecipientBottomSheet_remove_as_admin">Retirer en tant qu’administrateur</string>
+    <string name="RecipientBottomSheet_remove_from_group">Retirer du groupe</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">Éliminer %1$s en tant qu’administrateur du groupe ?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Retirer %1$s en tant qu’administrateur du groupe ?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s pourra modifier ce groupe et ses membres."</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">Éliminer %1$s du groupe ?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">Retirer %1$s du groupe ?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Supprimer « %1$s » du groupe ? Cette personne ne pourra plus se joindre au groupe grâce au lien de groupe.</string>
-    <string name="RecipientBottomSheet_remove">Éliminer</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Retirer « %1$s » du groupe ? Cette personne ne pourra plus se joindre au groupe grâce au lien de groupe.</string>
+    <string name="RecipientBottomSheet_remove">Retirer</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">A été copié dans le presse-papiers</string>
 
     <string name="GroupRecipientListItem_admin">Administrateur</string>
@@ -3634,15 +3634,15 @@
         <item quantity="one">%1$d groupe en commun</item>
         <item quantity="other">%1$d groupes en commun</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">Supprimer %1$s du groupe ?</string>
-    <string name="ReviewCardDialogFragment__remove">Éliminer</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Échec de l\'élimination du membre du groupe.</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">Retirer %1$s du groupe ?</string>
+    <string name="ReviewCardDialogFragment__remove">Retirer</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Échec du retrait du membre du groupe.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">Membre</string>
     <string name="ReviewCard__request">Demande</string>
     <string name="ReviewCard__your_contact">Votre contact</string>
-    <string name="ReviewCard__remove_from_group">Éliminer du groupe</string>
+    <string name="ReviewCard__remove_from_group">Retirer du groupe</string>
     <string name="ReviewCard__update_contact">Mettre le contact à jour</string>
     <string name="ReviewCard__block">Bloquer</string>
     <string name="ReviewCard__delete">Supprimer</string>
@@ -4868,7 +4868,7 @@
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Copier</string>
     <!-- Context menu item to delete a story response -->
-    <string name="StoryGroupReplyItem__delete">Supprimer</string>
+    <string name="StoryGroupReplyItem__delete">Effacer</string>
     <!-- Page title for My Story options -->
     <string name="MyStorySettingsFragment__my_story">Ma Story</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
@@ -4925,7 +4925,7 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Ajouter un spectateur</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">Effacer la Story personnalisée</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">Supprimer la Story personnalisée</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">Retirer %1$s ?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
@@ -4966,13 +4966,13 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">Terminé</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">Retirer la Story de groupe ?</string>
+    <string name="StoryDialogs__remove_group_story">Supprimer la Story de groupe ?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">« %1$s » sera retiré de la story.</string>
+    <string name="StoryDialogs__s_will_be_removed">« %1$s » sera supprimée.</string>
     <!-- Dialog positive action for removing a group story -->
-    <string name="StoryDialogs__remove">Effacer</string>
+    <string name="StoryDialogs__remove">Supprimer</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">Effacer la Story personnalisée ?</string>
+    <string name="StoryDialogs__delete_custom_story">Supprimer la Story personnalisée ?</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">« %1$s » et les nouveaux contenus partagés dans cette Story seront supprimés.</string>
     <!-- Dialog positive action for deleting a custom story -->
@@ -5156,15 +5156,15 @@
     <!-- Label for context menu item to open story settings -->
     <string name="ContactSearchItems__story_settings">Paramètres des stories</string>
     <!-- Label for context menu item to remove a group story from contact results -->
-    <string name="ContactSearchItems__remove_story">Effacer la Story</string>
+    <string name="ContactSearchItems__remove_story">Supprimer la Story</string>
     <!-- Label for context menu item to delete a custom story -->
     <string name="ContactSearchItems__delete_story">Supprimer la Story</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">Effacer la Story de groupe ?</string>
+    <string name="ContactSearchMediator__remove_group_story">Supprimer la Story de groupe ?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">Cette action retirera la Story de cette liste. Vous pourrez toujours consulter les Stories de ce groupe.</string>
+    <string name="ContactSearchMediator__this_will_remove">Cette action supprimera la Story de cette liste. Vous pourrez toujours consulter les Stories de ce groupe.</string>
     <!-- Dialog action item for removing a group story -->
-    <string name="ContactSearchMediator__remove">Retirer</string>
+    <string name="ContactSearchMediator__remove">Supprimer</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Supprimer la story ?</string>
     <!-- Dialog message for deleting a custom story -->
@@ -5218,7 +5218,7 @@
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Confirmer le numéro de sécurité</string>
     <!-- Menu action to remove user from story -->
-    <string name="SafetyNumberBottomSheetFragment__remove_from_story">Éliminer de la Story</string>
+    <string name="SafetyNumberBottomSheetFragment__remove_from_story">Retirer de la Story</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
     <string name="SafetyNumberBottomSheetFragment__send_anyway">Envoyer quand même</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->

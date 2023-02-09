@@ -5109,7 +5109,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">ಈಗಲ್ಲ</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ರಿಡೀಮ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ರಿಡೀಮ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">ನಿಮ್ಮ ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ನಂತರ ನೀವು ರೀಡೀಮ್ ಮಾಡಿಕೊಳ್ಳಬಹುದು.</string>
     <!-- Description text in gift thanks sheet -->

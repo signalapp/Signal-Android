@@ -676,7 +676,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">चयनित शेड्यूल्ड मैसेज डिलीट करें?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">शेड्यूल्ड मैसेज डिलीट किया जा रहा है...</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">शेड्यूल्ड मैसेज डिलीट किया जा रहा है…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">चैट सेशन रीफ्रेश हुआ</string>

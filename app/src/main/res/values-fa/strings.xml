@@ -272,7 +272,7 @@
     <string name="ConversationItem_send_paused">ارسال متوقف شد</string>
     <string name="ConversationItem_click_to_approve_unencrypted">ارسال ناموفق بود، برای بازگشت به ارتباط ناامن ضربه بزنید</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">بازگشت به حالت پیامک رمزگذاری نشده؟</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">بازگشت به حالت فراپیام رمزگذاری نشده؟</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">بازگشت به حالت پیام چندرسانه‌ای رمزگذاری نشده؟</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">این پیام رمزگذاری شده <b>نخواهد</b> بود چون گیرنده دیگر یک کاربر سیگنال نیست.\n\n پیام به صورت ناامن ارسال شود؟</string>
     <string name="ConversationItem_unable_to_open_media">برنامه‌ای برای بازکردن این رسانه پیدا نشد.</string>
     <string name="ConversationItem_copied_text">%1$s کپی شد</string>
@@ -313,7 +313,7 @@
     <string name="ConversationActivity_transport_insecure_sms">پیامک ناامن</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
     <string name="ConversationActivity_transport_insecure_sms_with_sim">پیامک ناامن (%1$s)</string>
-    <string name="ConversationActivity_transport_insecure_mms">فراپیام ناامن</string>
+    <string name="ConversationActivity_transport_insecure_mms">پیام چندرسانه‌ای ناامن</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
     <string name="ConversationActivity_transport_signal">پیام سیگنال</string>
     <string name="ConversationActivity_lets_switch_to_signal">بیایید از سیگنال استفاده کنیم: %1$s</string>
@@ -342,7 +342,7 @@
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">برای ضبط ویدئو سیگنال به مجوزها‌ی میکروفون نیاز دارد.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-    <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">سیگنال قادر به ارسال پیامک‌/فراپیام‌ نیست چون به عنوان برنامهٔ یپش‌فرض پیامک شما انتخاب نشده است. آیا مایل به تغییر آن در تنظیمات اندروید خود هستید؟</string>
+    <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">سیگنال قادر به ارسال پیامک‌/پیام چندرسانه‌ای‌ نیست چون به عنوان برنامهٔ یپش‌فرض پیامک شما انتخاب نشده است. آیا مایل به تغییر آن در تنظیمات اندروید خود هستید؟</string>
     <string name="ConversationActivity_yes">بله</string>
     <string name="ConversationActivity_no">خیر</string>
     <string name="ConversationActivity_search_position">%1$d از %2$d</string>
@@ -416,7 +416,7 @@
     </plurals>
     <string name="ConversationFragment_pending">در انتظار…</string>
     <string name="ConversationFragment_push">اینترنت (سیگنال)</string>
-    <string name="ConversationFragment_mms">فراپیام</string>
+    <string name="ConversationFragment_mms">پیام چندرسانه‌ای</string>
     <string name="ConversationFragment_sms">پیامک</string>
     <string name="ConversationFragment_deleting">در حال حذف کردن</string>
     <string name="ConversationFragment_deleting_messages">حذف پیام‌‌ها…</string>
@@ -459,7 +459,7 @@
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">برداشتن فیلتر</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
-    <string name="ConversationListFragment__no_unread_chats">چت خوانده‌نشده وجود ندارد</string>
+    <string name="ConversationListFragment__no_unread_chats">گفتگوی خوانده‌نشده وجود ندارد</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">پاک کردن مکالمهٔ انتخاب شده؟</item>
         <item quantity="other">پاک کردن مکالمه‌ها‌ی انتخاب شده؟</item>
@@ -901,7 +901,7 @@
     <string name="AddGroupDetailsFragment__sms_contact">مخاطب پیامکی</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">حذف %1$s از این گروه؟</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">شما مخاطبی را انتخاب کرده‌اید که از گروه‌های سیگنال پشتیبانی نمی‌کند، بنابراین این گروه فراپیام خواهد بود. نام‌ها و عکس‌های گروه فراپیامی سفارشی فقط برای شما قابل مشاهده خواهد بود.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">شما مخاطبی را انتخاب کرده‌اید که از گروه‌های سیگنال پشتیبانی نمی‌کند، بنابراین این گروه پیام چندرسانه‌ای خواهد بود. نام‌ها و عکس‌های گروه پیام چندرسانه‌ایی سفارشی فقط برای شما قابل مشاهده خواهد بود.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">شما مخاطبی را انتخاب کردید که از گروه‌های سیگنال پشتیبانی نمی‌کند، این یک گروه پیام چندرسانه‌ای (MMS) خواهد بود. اسم‌ها و عکس‌های سفارشی گروه پیام چندرسانه‌ای فقط برای شما قابل مشاهده خواهد بود. پشتیبانی از گروه‌های پیام چندرسانه‌ای به‌زودی متوقف خواهد شد تا روی پیام‌های رمزگذاری‌شده تمرکز شود.</string>
 
@@ -928,7 +928,7 @@
     <string name="ManageGroupActivity_legacy_group_upgrade">این گروه یک گروه قدیمی است. برای دسترسی به قابلیت‌های جدید همانند اشاره‌ها@ و مدیران،</string>
     <string name="ManageGroupActivity_legacy_group_too_large">این گروه قدیمی نمی‌تواند به یک گروه جدید ارتقا پیدا کند چون بسیار بزرگ است. حداکثر اندازهٔ گروه %1$d است.</string>
     <string name="ManageGroupActivity_upgrade_this_group">این گروه را ارتقا دهید.</string>
-    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">این یک گروه فراپیامی ناامن است. برای گفتگوی خصوصی، مخاطبین خود را به سیگنال دعوت کنید.</string>
+    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">این یک گروه پیام چندرسانه‌ای ناامن است. برای گفتگوی خصوصی، مخاطبین خود را به سیگنال دعوت کنید.</string>
     <string name="ManageGroupActivity_invite_now">همین حالا دعوت کنید</string>
     <string name="ManageGroupActivity_more">بیشتر</string>
     <string name="ManageGroupActivity_add_group_description">افزودن توضیحات گروه…</string>
@@ -1095,7 +1095,7 @@
     <string name="MessageRetrievalService_background_connection_enabled">اتصال پس‌زمینه فعال شد</string>
 
     <!-- MmsDownloader -->
-    <string name="MmsDownloader_error_reading_mms_settings">خطا در خوانش تنظیمات فراپیام ارائه‌دهندهٔ بی‌سیم</string>
+    <string name="MmsDownloader_error_reading_mms_settings">خطا در خوانش تنظیمات پیام چندرسانه‌ای ارائه‌دهندهٔ بی‌سیم</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">رسانه</string>
@@ -1184,7 +1184,7 @@
 
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">پیام چندرسانه‌ای</string>
-    <string name="NotificationMmsMessageRecord_downloading_mms_message">در حال بارگیری فراپیام</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">در حال بارگیری پیام چندرسانه‌ای</string>
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطا در بارگیری پیام چندرسانه‌ای، برای تلاش مجدد ضربه بزنید</string>
 
     <!-- MediaPickerActivity -->
@@ -1989,7 +1989,7 @@
     <string name="UsernameEditFragment__usernames_let_others_message">نام کاربری به دیگران اجازه می‌دهد بدون نیاز به شماره تلفن‌تان به شما پیام بدهند. نام کاربری با مجموعه‌ای از ارقام ادغام می‌شود تا کمک کند نشانی شما خصوصی بماند.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">این عدد چیست؟</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">این ارقام به خصوصی ماندن نام کاربری شما کمک می‌کند تا بتوانید از پیام‌های ناخواسته جلوگیری کنید. نام کاربری خود را فقط با افراد و گروه‌هایی که می‌خواهید با آنها چت کنید به اشتراک بگذارید. اگر نام کاربری را تغییر دهید، مجموعه ارقام جدیدی دریافت خواهید کرد.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">این ارقام به خصوصی ماندن نام کاربری شما کمک می‌کند تا بتوانید از پیام‌های ناخواسته جلوگیری کنید. نام کاربری خود را فقط با افراد و گروه‌هایی که می‌خواهید با آنها گفتگو کنید به اشتراک بگذارید. اگر نام کاربری را تغییر دهید، مجموعه ارقام جدیدی دریافت خواهید کرد.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">رد کردن</string>
     <!-- Content description for done button -->
@@ -2026,8 +2026,8 @@
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">پیام برای نشست ناموجود رمزگذاری شده است</string>
 
     <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_bad_encrypted_mms_message">فراپیام بد رمزگذاری شده است</string>
-    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">فراپیام برای نشست ناموجود رمزگذاری شده است</string>
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">پیام چندرسانه‌ای بد رمزگذاری شده است</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">پیام چندرسانه‌ای برای نشست ناموجود رمزگذاری شده است</string>
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">بستن اعلان‌‌ها</string>
@@ -2132,7 +2132,7 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">جستجو</string>
     <!-- Hint when searching filtered chat content -->
-    <string name="SearchToolbar_search_unread_chats">جستجوی چت‌های خوانده‌نشده</string>
+    <string name="SearchToolbar_search_unread_chats">جستجوی گفتگوهای خوانده‌نشده</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">جستجو برای مکالمه‌ها، مخاطبان و پیام‌ها</string>
 
     <!-- Material3 Search Toolbar -->
@@ -2256,7 +2256,7 @@
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">پیام سیگنال</string>
     <string name="conversation_activity__type_message_sms_insecure">پیامک ناامن</string>
-    <string name="conversation_activity__type_message_mms_insecure">فراپیام ناامن</string>
+    <string name="conversation_activity__type_message_mms_insecure">پیام چندرسانه‌ای ناامن</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
     <string name="conversation_activity__option_schedule_message">زمان‌بندی پیام</string>
     <string name="conversation_activity__from_sim_name">از %1$s</string>
@@ -2482,8 +2482,8 @@
     <string name="prompt_passphrase_activity__unlock">باز کردن قفل</string>
 
     <!-- prompt_mms_activity -->
-    <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">سیگنال برای تحویل رسانه‌ها و پیام‌های گروهی از طریق اپراتور همراه شما به تنظیمات فراپیام نیاز دارد. دستگاه شما این اطلاعات را در دسترس قرار نمی‌دهد، این مشکل معمولاً برای دستگاه‌های قفل شده و پیکربندی‌های محدود شده رخ می‌دهد.</string>
-    <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">برای ارسال رسانه و پیام‌های گروهی، روی \'قبول\' ضربه بزنید و تنظیمات خواسته شده را کامل کنید. تنظیمات فراپیام برای اپراتور شما معمولاً با جستجو برای \'APN اپراتور شما\' یافت می‌شود. شما فقط یکبار نیاز به انجام این کار دارید.</string>
+    <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">سیگنال برای تحویل رسانه‌ها و پیام‌های گروهی از طریق اپراتور همراه شما به تنظیمات پیام چندرسانه‌ای نیاز دارد. دستگاه شما این اطلاعات را در دسترس قرار نمی‌دهد، این مشکل معمولاً برای دستگاه‌های قفل شده و پیکربندی‌های محدود شده رخ می‌دهد.</string>
+    <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">برای ارسال رسانه و پیام‌های گروهی، روی \'قبول\' ضربه بزنید و تنظیمات خواسته شده را کامل کنید. تنظیمات پیام چندرسانه‌ای برای اپراتور شما معمولاً با جستجو برای \'APN اپراتور شما\' یافت می‌شود. شما فقط یکبار نیاز به انجام این کار دارید.</string>
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">اشکال تحویل</string>
@@ -2494,7 +2494,7 @@
     <string name="CreateProfileActivity_first_name_required">نام کوچک (الزامی)</string>
     <string name="CreateProfileActivity_last_name_optional">نام خانوادگی (اختیاری)</string>
     <string name="CreateProfileActivity_next">بعدی</string>
-    <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">اسم‌ها و عکس‌های سفارشی گروه فراپیامی فقط برای شما قابل دیدن هستند.</string>
+    <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">اسم‌ها و عکس‌های سفارشی گروه پیام چندرسانه‌ای فقط برای شما قابل دیدن هستند.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">توضیحات گروه برای اعضای این گروه و کسانی که دعوت شده‌اند قابل رؤیت خواهد بود.</string>
 
     <!-- EditAboutFragment -->
@@ -2671,13 +2671,13 @@
 
     <!-- preferences.xml -->
     <string name="preferences_beta">بتا</string>
-    <string name="preferences__sms_mms">پیامک (SMS) و فراپیام (MMS)</string>
+    <string name="preferences__sms_mms">پیامک (SMS) و پیام چندرسانه‌ای (MMS)</string>
     <string name="preferences__pref_use_address_book_photos">استفاده از عکس‌های دفترچهٔ تلفن</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">نمایش عکس‌های مخاطبین از دفترچهٔ تلفن در صورت وجود</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">چت‌های بی‌صدا را در بایگانی نگه دارید</string>
+    <string name="preferences__pref_keep_muted_chats_archived">گفتگوهای بی‌صدا را در بایگانی نگه دارید</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">چت‌های بی‌صدا که بایگانی می‌شوند، پس از دریافت پیام جدید نیز در بایگانی می‌مانند.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">گفتگوهای بی‌صدا که بایگانی می‌شوند، پس از دریافت پیام جدید نیز در بایگانی می‌مانند.</string>
     <string name="preferences__generate_link_previews">تولید پیش‌نمایش‌‌های پیوند</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">پیش‌نمایش‌های پیوند را به صورت مستقیم از وب‌سایت‌ها برای پیام‌هایی که ارسال می‌کنید، دریافت کنید.</string>
     <string name="preferences__change_passphrase">تغییر گذرواژه</string>
@@ -2723,11 +2723,11 @@
     <string name="preferences__privacy">حریم خصوصی</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">استوری‌ها</string>
-    <string name="preferences__mms_user_agent">عامل کاربر فراپیام</string>
-    <string name="preferences__advanced_mms_access_point_names">تنظیمات دستی فراپیام</string>
+    <string name="preferences__mms_user_agent">عامل کاربر پیام چندرسانه‌ای</string>
+    <string name="preferences__advanced_mms_access_point_names">تنظیمات دستی پیام چندرسانه‌ای</string>
     <string name="preferences__mmsc_url">نشانی اینترنتی MMSC</string>
-    <string name="preferences__mms_proxy_host">میزبان پروکسی فراپیام</string>
-    <string name="preferences__mms_proxy_port">درگاه پروکسی فراپیام</string>
+    <string name="preferences__mms_proxy_host">میزبان پروکسی پیام چندرسانه‌ای</string>
+    <string name="preferences__mms_proxy_port">درگاه پروکسی پیام چندرسانه‌ای</string>
     <string name="preferences__mmsc_username">نام کاربری MMSC</string>
     <string name="preferences__mmsc_password">رمز عبور MMSC</string>
     <string name="preferences__sms_delivery_reports">گزارش‌های تحویل پیامک</string>
@@ -2759,7 +2759,7 @@
     <string name="preferences__submit_debug_log">ارسال گزارش عیب‌یابی</string>
     <string name="preferences__delete_account">پاک کردن حساب کاربری</string>
     <string name="preferences__support_wifi_calling">حالت سازگاری «تماس WiFi»</string>
-    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر دستگاه شما از تحویل پیامک/فراپیام بر روی شبکهٔ WiFi استفاده می‌کند، این گزینه را فعال کنید (فقط زمانی فعال کنید، که «تماس WiFi» بر روی دستگاه شما فعال است)</string>
+    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر دستگاه شما از تحویل پیامک/پیام چندرسانه‌ای بر روی شبکهٔ WiFi استفاده می‌کند، این گزینه را فعال کنید (فقط زمانی فعال کنید، که «تماس WiFi» بر روی دستگاه شما فعال است)</string>
     <string name="preferences__incognito_keyboard">صفحه‌کلید ناشناس</string>
     <string name="preferences__read_receipts">رسیدهای خوانده شدن</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر رسیدهای خوانده شدن غیرفعال باشند، شما قادر به دیدن رسیدهای خوانده شدن دیگران نخواهید بود.</string>
@@ -3170,7 +3170,7 @@
     <string name="text_secure_normal__mark_all_as_read">علامت‌گذاری همه به صورت خوانده شده</string>
     <string name="text_secure_normal__invite_friends">دعوت دوستان</string>
     <!-- Overflow menu entry to filter unread chats -->
-    <string name="text_secure_normal__filter_unread_chats">فیلتر کردن چت‌های خوانده‌نشده</string>
+    <string name="text_secure_normal__filter_unread_chats">فیلتر کردن گفتگوهای خوانده‌نشده</string>
     <!-- Overflow menu entry to disable unread chats filter -->
     <string name="text_secure_normal__clear_unread_filter">پاک کردن فیلتر خوانده‌نشده</string>
 
@@ -4768,7 +4768,7 @@
     <!-- Context menu option to share a story -->
     <string name="StoriesLandingItem__share">اشتراک‌گذاری…</string>
     <!-- Context menu option to go to story chat -->
-    <string name="StoriesLandingItem__go_to_chat">به چت بروید</string>
+    <string name="StoriesLandingItem__go_to_chat">به گفتگو بروید</string>
     <!-- Context menu option to go to story info -->
     <string name="StoriesLandingItem__info">اطلاعات</string>
     <!-- Label when a story is pending sending -->
@@ -5295,7 +5295,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">کسانی که می‌توانند این استوری را مشاهده کنند</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"اعضای گروه \"%1$s\" می‌توانند این استوری را مشاهده کنند و به آن پاسخ دهند. می‌توانید عضویت این چت را در گروه به‌روزرسانی کنید."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"اعضای گروه \"%1$s\" می‌توانند این استوری را مشاهده کنند و به آن پاسخ دهند. می‌توانید عضویت این گفتگو را در گروه به‌روزرسانی کنید."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">حذف استوری گروهی</string>
 
@@ -5395,11 +5395,11 @@
 
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
-    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">نمی‌توان از چت‌ها نسخه پشتیبان تهیه کرد</string>
+    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">نمی‌توان از گفتگوها نسخه پشتیبان تهیه کرد</string>
     <!-- The body text of an alert window that tells the user that we are unable to backup their messages -->
-    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">دیگر از چت‌های شما به‌طور خودکار پشتیبان‌گیری نمی‌شود.</string>
+    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">دیگر از گفتگوهای شما به‌طور خودکار پشتیبان‌گیری نمی‌شود.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
-    <string name="BackupSchedulePermissionMegaphone__back_up_chats">پشتیبان‌گیری از چت‌ها</string>
+    <string name="BackupSchedulePermissionMegaphone__back_up_chats">پشتیبان‌گیری از گفتگوها</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__not_now">حالا نه</string>
     <!-- Re-enable backup permission bottom sheet title -->
@@ -5535,11 +5535,11 @@
     <!-- Displayed as the title of the education bottom sheet -->
     <string name="GroupStoryEducationSheet__introducing_group_stories">معرفی: استوری‌های گروهی</string>
     <!-- Line item on the sheet explaining group stories -->
-    <string name="GroupStoryEducationSheet__share_story_updates_to">به‌روزرسانی استوری‌ها را در چت گروهی‌ای که در آن هستید به اشتراک بگذارید.</string>
+    <string name="GroupStoryEducationSheet__share_story_updates_to">به‌روزرسانی استوری‌ها را در گفتگوی گروهی‌ای که در آن هستید به اشتراک بگذارید.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
-    <string name="GroupStoryEducationSheet__anyone_in_the_group">هر کسی در چت گروهی می‌تواند به استوری‌ها اضافه کند.</string>
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">هر کسی در گفتگوی گروهی می‌تواند به استوری‌ها اضافه کند.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">همه اعضای چت گروهی می‌توانند پاسخ‌های استوری‌ها را مشاهده کنند.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">همه اعضای گفتگوی گروهی می‌توانند پاسخ‌های استوری‌ها را مشاهده کنند.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">بعدی</string>
     <string name="Registration_country_code_entry_hint">+0</string>
@@ -5554,7 +5554,7 @@
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
     <string name="ChatFilter__pull_to_filter">بکشید تا فیلتر شود</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
-    <string name="ChatFilter__tip_pull_down">نکته: لیست چت را پایین بکشید تا فیلتر شود</string>
+    <string name="ChatFilter__tip_pull_down">نکته: لیست گفتگو را پایین بکشید تا فیلتر شود</string>
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">پشتیبانی پیامکی به‌زودی برداشته می‌شود</string>

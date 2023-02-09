@@ -676,7 +676,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Seçilmiş planlaşdırılan mesaj silinsin?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Planlaşdırılan mesaj silinir...</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Planlaşdırılan mesaj silinir…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Söhbət seansı təzələndi</string>
@@ -5109,7 +5109,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">İndi yox</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Nişan alınır...</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Nişan alınır…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Hədiyyənizi daha sonra ala bilərsiniz.</string>
     <!-- Description text in gift thanks sheet -->
