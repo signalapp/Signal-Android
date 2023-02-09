@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.view.Window
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -34,6 +35,8 @@ open class ConversationActivity : PassphraseRequiredActivity(), ConversationPare
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+
     if (savedInstanceState != null) {
       shareDataTimestamp = savedInstanceState.getLong(STATE_WATERMARK, -1L)
     } else if (intent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY != 0) {

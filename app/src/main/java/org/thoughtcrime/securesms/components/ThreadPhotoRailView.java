@@ -97,7 +97,7 @@ public class ThreadPhotoRailView extends FrameLayout {
       }
 
       imageView.setOnClickListener(v -> {
-        if (clickedListener != null) clickedListener.onItemClicked(mediaRecord);
+        if (clickedListener != null) clickedListener.onItemClicked(imageView, mediaRecord);
       });
     }
 
@@ -118,6 +118,6 @@ public class ThreadPhotoRailView extends FrameLayout {
   }
 
   public interface OnItemClickedListener {
-    void onItemClicked(MediaTable.MediaRecord mediaRecord);
+    void onItemClicked(View itemView, MediaTable.MediaRecord mediaRecord);
   }
 }

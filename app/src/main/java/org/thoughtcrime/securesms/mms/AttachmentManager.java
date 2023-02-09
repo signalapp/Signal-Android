@@ -527,7 +527,8 @@ public class AttachmentManager {
           false,
           false,
           MediaTable.Sorting.Newest,
-          slide.isVideoGif());
+          slide.isVideoGif(),
+          new MediaIntentFactory.SharedElementArgs());
       context.startActivity(MediaIntentFactory.create(context, args));
     }
   }

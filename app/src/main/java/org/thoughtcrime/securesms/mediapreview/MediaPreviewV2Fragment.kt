@@ -79,7 +79,9 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
 
   private val lifecycleDisposable = LifecycleDisposable()
   private val binding by ViewBinderDelegate(FragmentMediaPreviewV2Binding::bind)
-  private val viewModel: MediaPreviewV2ViewModel by viewModels()
+  private val viewModel: MediaPreviewV2ViewModel by viewModels(ownerProducer = {
+    requireActivity()
+  })
   private val debouncer = Debouncer(2, TimeUnit.SECONDS)
 
   private lateinit var pagerAdapter: MediaPreviewV2Adapter

@@ -10,10 +10,11 @@ import androidx.lifecycle.Observer;
 
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.conversation.ConversationItem;
+import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.conversation.colors.Colorizable;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
-import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselectable;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
+import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -113,5 +115,7 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
 
     void onViewGiftBadgeClicked(@NonNull MessageRecord messageRecord);
     void onGiftBadgeRevealed(@NonNull MessageRecord messageRecord);
+
+    void goToMediaPreview(ConversationItem parent, View sharedElement, MediaIntentFactory.MediaPreviewArgs args);
   }
 }

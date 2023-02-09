@@ -34,6 +34,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
@@ -91,6 +92,7 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
 
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
+    setExitSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
     setContentView(R.layout.media_overview_activity);
 
     initializeResources();

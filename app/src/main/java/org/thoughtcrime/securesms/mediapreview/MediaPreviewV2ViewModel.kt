@@ -27,6 +27,10 @@ class MediaPreviewV2ViewModel : ViewModel() {
   val currentPosition: Int
     get() = store.state.position
 
+  fun setIsInSharedAnimation(isInSharedAnimation: Boolean) {
+    store.update { it.copy(isInSharedAnimation = isInSharedAnimation) }
+  }
+
   fun fetchAttachments(context: Context, startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaTable.Sorting, forceRefresh: Boolean = false) {
     if (store.state.loadState == MediaPreviewV2State.LoadState.INIT || forceRefresh) {
       disposables += store.update(repository.getAttachments(context, startingAttachmentId, threadId, sorting)) { result: MediaPreviewRepository.Result, oldState: MediaPreviewV2State ->
