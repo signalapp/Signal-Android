@@ -19,6 +19,8 @@ import org.signal.libsignal.protocol.state.PreKeyBundle;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.protocol.util.Pair;
+import org.signal.libsignal.usernames.BaseUsernameException;
+import org.signal.libsignal.usernames.Username;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
@@ -97,8 +99,6 @@ import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.configuration.SignalUrl;
-import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryRequest;
-import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResponse;
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupRequest;
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupResponse;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
@@ -161,7 +161,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
@@ -202,10 +201,10 @@ public class PushServiceSocket {
   private static final String REGISTRATION_LOCK_PATH     = "/v1/accounts/registration_lock";
   private static final String REQUEST_PUSH_CHALLENGE     = "/v1/accounts/fcm/preauth/%s/%s";
   private static final String WHO_AM_I                   = "/v1/accounts/whoami";
-  private static final String GET_USERNAME_PATH          = "/v1/accounts/username/%s";
-  private static final String MODIFY_USERNAME_PATH       = "/v1/accounts/username";
-  private static final String RESERVE_USERNAME_PATH      = "/v1/accounts/username/reserved";
-  private static final String CONFIRM_USERNAME_PATH      = "/v1/accounts/username/confirm";
+  private static final String GET_USERNAME_PATH          = "/v1/accounts/username_hash/%s";
+  private static final String MODIFY_USERNAME_PATH       = "/v1/accounts/username_hash";
+  private static final String RESERVE_USERNAME_PATH      = "/v1/accounts/username_hash/reserve";
+  private static final String CONFIRM_USERNAME_PATH      = "/v1/accounts/username_hash/confirm";
   private static final String DELETE_ACCOUNT_PATH        = "/v1/accounts/me";
   private static final String CHANGE_NUMBER_PATH         = "/v1/accounts/number";
   private static final String IDENTIFIER_REGISTERED_PATH = "/v1/accounts/account/%s";
@@ -896,7 +895,9 @@ public class PushServiceSocket {
   }
 
   /**
-   * Gets the ACI for the given username, if it exists. This is an unauthenticated request.
+   * GET /v1/accounts/username_hash/{usernameHash}
+   *
+   * Gets the ACI for the given username hash, if it exists. This is an unauthenticated request.
    *
    * This network request can have the following error responses:
    * <ul>
@@ -905,13 +906,13 @@ public class PushServiceSocket {
    *   <li>400 - Bad Request. The request included authentication.</li>
    * </ul>
    *
-   * @param username The username to look up.
+   * @param usernameHash The usernameHash to look up.
    * @return The ACI for the given username if it exists.
    * @throws IOException if a network exception occurs.
    */
-  public @NonNull ACI getAciByUsername(String username) throws IOException {
+  public @NonNull ACI getAciByUsernameHash(String usernameHash) throws IOException {
     String response = makeServiceRequestWithoutAuthentication(
-        String.format(GET_USERNAME_PATH, URLEncoder.encode(username, StandardCharsets.UTF_8.toString())),
+        String.format(GET_USERNAME_PATH, URLEncoder.encode(usernameHash, StandardCharsets.UTF_8.toString())),
         "GET",
         null,
         NO_HEADERS,
@@ -927,38 +928,16 @@ public class PushServiceSocket {
   }
 
   /**
-   * Set the username for the account without seeing the discriminator first.
-   *
-   * @param nickname          The user-supplied nickname, which must meet the requirements for usernames.
-   * @param existingUsername  (Optional) If the account has a current username, indicates what the client thinks the current username is. Allows the server to
-   *                          deduplicate repeated requests.
-   * @return                  The username as set by the server, which includes both the nickname and discriminator.
-   * @throws IOException      Thrown when the username is invalid or taken, or when another network error occurs.
-   */
-  public @NonNull String setUsername(@NonNull String nickname, @Nullable String existingUsername) throws IOException {
-    SetUsernameRequest setUsernameRequest = new SetUsernameRequest(nickname, existingUsername);
-
-    String responseString = makeServiceRequest(MODIFY_USERNAME_PATH, "PUT", JsonUtil.toJson(setUsernameRequest), NO_HEADERS, (responseCode, body) -> {
-      switch (responseCode) {
-        case 422: throw new UsernameMalformedException();
-        case 409: throw new UsernameTakenException();
-      }
-    }, Optional.empty());
-
-    SetUsernameResponse response = JsonUtil.fromJsonResponse(responseString, SetUsernameResponse.class);
-    return response.getUsername();
-  }
-
-  /**
+   * PUT /v1/accounts/username_hash/reserve
    * Reserve a username for the account. This replaces an existing reservation if one exists. The username is guaranteed to be available for 5 minutes and can
    * be confirmed with confirmUsername.
    *
-   * @param nickname          The user-supplied nickname, which must meet the requirements for usernames.
+   * @param usernameHashes    A list of hashed usernames encoded as web-safe base64 strings without padding. The list will have a max length of 20, and each hash will be 32 bytes.
    * @return                  The reserved username. It is available for confirmation for 5 minutes.
    * @throws IOException      Thrown when the username is invalid or taken, or when another network error occurs.
    */
-  public @NonNull ReserveUsernameResponse reserveUsername(@NonNull String nickname) throws IOException {
-    ReserveUsernameRequest reserveUsernameRequest = new ReserveUsernameRequest(nickname);
+  public @NonNull ReserveUsernameResponse reserveUsername(@NonNull List<String> usernameHashes) throws IOException {
+    ReserveUsernameRequest reserveUsernameRequest = new ReserveUsernameRequest(usernameHashes);
 
     String responseString = makeServiceRequest(RESERVE_USERNAME_PATH, "PUT", JsonUtil.toJson(reserveUsernameRequest), NO_HEADERS, (responseCode, body) -> {
       switch (responseCode) {
@@ -971,20 +950,33 @@ public class PushServiceSocket {
   }
 
   /**
+   * PUT /v1/accounts/username_hash/confirm
    * Set a previously reserved username for the account.
    *
+   * @param username                The username the user wishes to confirm. For example, myusername.27
    * @param reserveUsernameResponse The response object from the reservation
-   * @throws IOException                Thrown when the username is invalid or taken, or when another network error occurs.
+   * @throws IOException            Thrown when the username is invalid or taken, or when another network error occurs.
    */
-  public void confirmUsername(ReserveUsernameResponse reserveUsernameResponse) throws IOException {
-    ConfirmUsernameRequest confirmUsernameRequest = new ConfirmUsernameRequest(reserveUsernameResponse.getUsername(), reserveUsernameResponse.getReservationToken());
+  public void confirmUsername(String username, ReserveUsernameResponse reserveUsernameResponse) throws IOException {
+    try {
+      byte[] randomness = new byte[32];
+      random.nextBytes(randomness);
 
-    makeServiceRequest(CONFIRM_USERNAME_PATH, "PUT", JsonUtil.toJson(confirmUsernameRequest), NO_HEADERS, (responseCode, body) -> {
-      switch (responseCode) {
-        case 409: throw new UsernameIsNotReservedException();
-        case 410: throw new UsernameTakenException();
-      }
-    }, Optional.empty());
+      byte[]                 proof                  = Username.generateProof(username, randomness);
+      ConfirmUsernameRequest confirmUsernameRequest = new ConfirmUsernameRequest(reserveUsernameResponse.getUsernameHash(),
+                                                                                 Base64UrlSafe.encodeBytesWithoutPadding(proof));
+
+      makeServiceRequest(CONFIRM_USERNAME_PATH, "PUT", JsonUtil.toJson(confirmUsernameRequest), NO_HEADERS, (responseCode, body) -> {
+        switch (responseCode) {
+          case 409:
+            throw new UsernameIsNotReservedException();
+          case 410:
+            throw new UsernameTakenException();
+        }
+      }, Optional.empty());
+    } catch (BaseUsernameException e) {
+      throw new IOException(e);
+    }
   }
 
   /**

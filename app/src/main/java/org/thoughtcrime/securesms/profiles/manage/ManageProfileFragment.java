@@ -24,6 +24,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.usernames.BaseUsernameException;
+import org.signal.libsignal.usernames.Username;
 import org.thoughtcrime.securesms.AvatarPreviewActivity;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -44,6 +46,7 @@ import org.thoughtcrime.securesms.util.NameUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
+import org.whispersystems.util.Base64UrlSafe;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -242,13 +245,14 @@ public class ManageProfileFragment extends LoggingFragment {
   private void presentUsername(@Nullable String username) {
     if (username == null || username.isEmpty()) {
       binding.manageProfileUsername.setText(R.string.ManageProfileFragment_username);
+      binding.manageProfileUsernameSubtitle.setText(R.string.ManageProfileFragment_your_username);
       binding.manageProfileUsernameShare.setVisibility(View.GONE);
     } else {
       binding.manageProfileUsername.setText(username);
 
       try {
-        binding.manageProfileUsernameSubtitle.setText(getString(R.string.signal_me_username_url_no_scheme, URLEncoder.encode(username, StandardCharsets.UTF_8.toString())));
-      } catch (UnsupportedEncodingException e) {
+        binding.manageProfileUsernameSubtitle.setText(getString(R.string.signal_me_username_url_no_scheme, Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(username))));
+      } catch (BaseUsernameException e) {
         Log.w(TAG, "Could not format username link", e);
         binding.manageProfileUsernameSubtitle.setText(R.string.ManageProfileFragment_your_username);
       }

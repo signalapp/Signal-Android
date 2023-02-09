@@ -7,6 +7,8 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/dsl_settings_gutter"
     android:layout_marginEnd="@dimen/dsl_settings_gutter"
+    android:ellipsize="end"
+    android:lines="1"
     android:minHeight="56dp"
     android:paddingHorizontal="16dp"
     android:textAlignment="viewStart"

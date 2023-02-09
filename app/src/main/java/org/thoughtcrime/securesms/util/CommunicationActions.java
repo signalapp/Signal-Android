@@ -291,7 +291,7 @@ public class CommunicationActions {
             }
           }
         } else {
-          Optional<ServiceId> serviceId = UsernameUtil.fetchAciForUsername(username);
+          Optional<ServiceId> serviceId = UsernameUtil.fetchAciForUsernameHash(username);
           if (serviceId.isPresent()) {
             recipient = Recipient.externalUsername(serviceId.get(), username);
           }

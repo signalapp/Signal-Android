@@ -186,6 +186,8 @@
                     style="@style/Signal.Text.Preview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
                     android:text="@string/ManageProfileFragment_your_username"
                     android:textColor="@color/signal_text_secondary"
                     app:layout_constraintBottom_toBottomOf="parent"

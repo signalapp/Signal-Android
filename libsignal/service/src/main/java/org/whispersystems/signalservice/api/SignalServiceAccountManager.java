@@ -20,7 +20,6 @@ import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
-import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
@@ -55,19 +54,11 @@ import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
-import org.whispersystems.signalservice.internal.contacts.crypto.ContactDiscoveryCipher;
-import org.whispersystems.signalservice.internal.contacts.crypto.Quote;
-import org.whispersystems.signalservice.internal.contacts.crypto.RemoteAttestation;
-import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedQuoteException;
-import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
-import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryRequest;
-import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResponse;
 import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 import org.whispersystems.signalservice.internal.push.CdsiAuthResponse;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
-import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
 import org.whispersystems.signalservice.internal.push.RemoteConfigResponse;
 import org.whispersystems.signalservice.internal.push.RequestVerificationCodeResponse;
 import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse;
@@ -85,13 +76,10 @@ import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.util.Base64;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SignatureException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -102,7 +90,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -823,20 +810,16 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public ACI getAciByUsername(String username) throws IOException {
-    return this.pushServiceSocket.getAciByUsername(username);
+  public ACI getAciByUsernameHash(String usernameHash) throws IOException {
+    return this.pushServiceSocket.getAciByUsernameHash(usernameHash);
   }
 
-  public void setUsername(String nickname, String existingUsername) throws IOException {
-    this.pushServiceSocket.setUsername(nickname, existingUsername);
+  public ReserveUsernameResponse reserveUsername(List<String> usernameHashes) throws IOException {
+    return this.pushServiceSocket.reserveUsername(usernameHashes);
   }
 
-  public ReserveUsernameResponse reserveUsername(String nickname) throws IOException {
-    return this.pushServiceSocket.reserveUsername(nickname);
-  }
-
-  public void confirmUsername(ReserveUsernameResponse reserveUsernameResponse) throws IOException {
-    this.pushServiceSocket.confirmUsername(reserveUsernameResponse);
+  public void confirmUsername(String username, ReserveUsernameResponse reserveUsernameResponse) throws IOException {
+    this.pushServiceSocket.confirmUsername(username, reserveUsernameResponse);
   }
 
   public void deleteUsername() throws IOException {

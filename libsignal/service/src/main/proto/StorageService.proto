@@ -185,6 +185,7 @@ message AccountRecord {
            OptionalBool           storyViewReceiptsEnabled        = 30;
            bool                   hasReadOnboardingStory          = 31;
            bool                   hasSeenGroupStoryEducationSheet = 32;
+           string                 username                        = 33;
 }
 
 message StoryDistributionListRecord {

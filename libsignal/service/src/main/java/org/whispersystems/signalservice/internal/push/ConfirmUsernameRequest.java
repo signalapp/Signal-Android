@@ -4,13 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 class ConfirmUsernameRequest {
   @JsonProperty
-  private String usernameToConfirm;
+  private String usernameHash;
 
   @JsonProperty
-  private String reservationToken;
+  private String zkProof;
 
-  ConfirmUsernameRequest(String usernameToConfirm, String reservationToken) {
-    this.usernameToConfirm = usernameToConfirm;
-    this.reservationToken  = reservationToken;
+  ConfirmUsernameRequest(String usernameHash, String zkProof) {
+    this.usernameHash = usernameHash;
+    this.zkProof      = zkProof;
   }
 }
