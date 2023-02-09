@@ -11,6 +11,7 @@ import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
+import net.zetetic.database.sqlcipher.SQLiteConstraintException;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
@@ -91,7 +92,7 @@ public class FullBackupImporter extends FullBackupBase {
         count++;
 
         if      (frame.hasVersion())    processVersion(db, frame.getVersion());
-        else if (frame.hasStatement())  processStatement(db, frame.getStatement());
+        else if (frame.hasStatement())  tryProcessStatement(db, frame.getStatement());
         else if (frame.hasPreference()) processPreference(context, frame.getPreference());
         else if (frame.hasAttachment()) processAttachment(context, attachmentSecret, db, frame.getAttachment(), inputStream);
         else if (frame.hasSticker())    processSticker(context, attachmentSecret, db, frame.getSticker(), inputStream);
@@ -124,6 +125,31 @@ public class FullBackupImporter extends FullBackupBase {
     }
 
     db.setVersion(version.getVersion());
+  }
+
+  private static void tryProcessStatement(@NonNull SQLiteDatabase db, SqlStatement statement) {
+    try {
+      processStatement(db, statement);
+    } catch (SQLiteConstraintException e) {
+      String tableName       = "?";
+      String statementString = statement.getStatement();
+
+      if (statementString.startsWith("INSERT INTO ")) {
+        int nameStart = "INSERT INTO ".length();
+        int nameEnd   = statementString.indexOf(" ", "INSERT INTO ".length());
+
+        if (nameStart < statementString.length() && nameEnd > nameStart) {
+          tableName = statementString.substring(nameStart, nameEnd);
+        }
+      }
+
+      if (tableName.startsWith("msl_")) {
+        Log.w(TAG, "Constraint failed when inserting into " + tableName + ". Ignoring.");
+      } else {
+        Log.w(TAG, "Constraint failed when inserting into " + tableName + ". Throwing!");
+        throw e;
+      }
+    }
   }
 
   private static void processStatement(@NonNull SQLiteDatabase db, SqlStatement statement) {
