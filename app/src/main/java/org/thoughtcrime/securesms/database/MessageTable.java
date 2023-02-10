@@ -1533,12 +1533,11 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     return releaseChannelThreadId;
   }
 
-  public void deleteGroupStoryReplies(long parentStoryId) {
+  private void deleteGroupStoryReplies(long parentStoryId) {
     SQLiteDatabase db   = databaseHelper.getSignalWritableDatabase();
     String[]       args = SqlUtil.buildArgs(parentStoryId);
 
     db.delete(TABLE_NAME, PARENT_STORY_ID + " = ?", args);
-    OptimizeMessageSearchIndexJob.enqueue();
   }
 
   public int deleteStoriesOlderThan(long timestamp, boolean hasSeenReleaseChannelStories) {
@@ -1939,6 +1938,8 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     } finally {
       db.endTransaction();
     }
+
+    OptimizeMessageSearchIndexJob.enqueue();
 
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
