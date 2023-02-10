@@ -105,6 +105,7 @@ public final class FeatureFlags {
   private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations.2";
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
   private static final String TEXT_FORMATTING                   = "android.textFormatting";
+  private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -160,7 +161,8 @@ public final class FeatureFlags {
       CHAT_FILTERS,
       PAYPAL_ONE_TIME_DONATIONS,
       PAYPAL_RECURRING_DONATIONS,
-      TEXT_FORMATTING
+      TEXT_FORMATTING,
+      ANY_ADDRESS_PORTS_KILL_SWITCH
   );
 
   @VisibleForTesting
@@ -572,6 +574,13 @@ public final class FeatureFlags {
    */
   public static boolean textFormatting() {
     return getBoolean(TEXT_FORMATTING, false);
+  }
+
+  /**
+   * Enable/disable RingRTC field trial for "AnyAddressPortsKillSwitch"
+   */
+  public static boolean callingFieldTrialAnyAddressPortsKillSwitch() {
+    return getBoolean(ANY_ADDRESS_PORTS_KILL_SWITCH, false);
   }
 
   /** Only for rendering debug info. */
