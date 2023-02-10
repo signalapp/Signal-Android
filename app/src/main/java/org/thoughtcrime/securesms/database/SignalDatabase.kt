@@ -34,7 +34,8 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     SignalDatabaseMigrations.DATABASE_VERSION,
     0,
     SqlCipherErrorHandler(DATABASE_NAME),
-    SqlCipherDatabaseHook()
+    SqlCipherDatabaseHook(),
+    true
   ),
   SignalDatabaseOpenHelper {
 
@@ -227,7 +228,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
         synchronized(SignalDatabase::class.java) {
           if (instance == null) {
             instance = SignalDatabase(application, databaseSecret, attachmentSecret)
-            instance!!.setWriteAheadLoggingEnabled(true)
           }
         }
       }

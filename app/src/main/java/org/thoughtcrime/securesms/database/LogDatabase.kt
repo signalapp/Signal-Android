@@ -40,7 +40,8 @@ class LogDatabase private constructor(
     DATABASE_VERSION,
     0,
     SqlCipherDeletingErrorHandler(DATABASE_NAME),
-    SqlCipherDatabaseHook()
+    SqlCipherDatabaseHook(),
+    true
   ),
   SignalDatabaseOpenHelper {
 
@@ -87,7 +88,6 @@ class LogDatabase private constructor(
           if (instance == null) {
             SqlCipherLibraryLoader.load()
             instance = LogDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context))
-            instance!!.setWriteAheadLoggingEnabled(true)
           }
         }
       }

@@ -55,7 +55,6 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
         if (instance == null) {
           SqlCipherLibraryLoader.load();
           instance = new KeyValueDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context));
-          instance.setWriteAheadLoggingEnabled(true);
         }
       }
     }
@@ -68,7 +67,7 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
 
 
   private KeyValueDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
-    super(application, DATABASE_NAME, databaseSecret.asString(), null, DATABASE_VERSION, 0,new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook());
+    super(application, DATABASE_NAME, databaseSecret.asString(), null, DATABASE_VERSION, 0,new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook(), true);
 
     this.application = application;
   }
