@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.serialize
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.OptimizeMessageSearchIndexJob
@@ -1040,6 +1041,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     notifyConversationListListeners()
     notifyConversationListeners(threadId)
+    ApplicationDependencies.getDatabaseObserver().notifyConversationDeleteListeners(threadId)
     ConversationUtil.clearShortcuts(context, setOf(recipientIdForThreadId))
   }
 
@@ -1056,6 +1058,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     notifyConversationListListeners()
     notifyConversationListeners(selectedConversations)
+    ApplicationDependencies.getDatabaseObserver().notifyConversationDeleteListeners(selectedConversations)
     ConversationUtil.clearShortcuts(context, recipientIdsForThreadIds)
   }
 
