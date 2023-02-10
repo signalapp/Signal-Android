@@ -128,6 +128,7 @@ class UsernameEditViewModel extends ViewModel {
                                                        onNicknameUpdated(nickname);
                                                      }
                                                      break;
+                                                   case CANDIDATE_GENERATION_ERROR:
                                                    case USERNAME_UNAVAILABLE:
                                                      uiState.update(state -> new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.TAKEN, state.usernameState));
                                                      events.onNext(Event.SUBMIT_FAIL_TAKEN);
