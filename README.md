@@ -86,9 +86,9 @@ Although you can use a variety of IDEs for this project, Android Studio is the b
 - Enables Pairing of different devices for the application 
 - Has easy access to the SDK Manager for tracking of tools 
 
-Additional Documentation can be found in the Signal Android Wiki:
-
-https://github.com/signalapp/Signal-Android/wiki
+Additional Documentation & Build information can be found in the Signal Android Wiki:
+- https://github.com/signalapp/Signal-Android/wiki/How-to-build-Signal-from-the-sources#prerequisites 
+- https://github.com/signalapp/Signal-Android/wiki
 
 # Legal things
 ## Cryptography Notice
