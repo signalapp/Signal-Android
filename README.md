@@ -1,8 +1,20 @@
 # Signal Android 
-
-Signal is a simple, powerful, and secure messenger.
+- [Signal Android](#signal-android)
+  - [Contributing Bug reports](#contributing-bug-reports)
+  - [Joining the Beta](#joining-the-beta)
+  - [Contributing Code](#contributing-code)
+  - [Contributing Ideas](#contributing-ideas)
+- [Help](#help)
+  - [Support](#support)
+  - [Installation \& Documentation](#installation--documentation)
+- [Legal things](#legal-things)
+  - [Cryptography Notice](#cryptography-notice)
+  - [License](#license)
 
 Signal uses your phone's data connection (WiFi/3G/4G/5G) to communicate securely. Millions of people use Signal every day for free and instantaneous communication anywhere in the world. Send and receive high-fidelity messages, participate in HD voice/video calls, and explore a growing set of new features that help you stay connected. Signal’s advanced privacy-preserving technology is always enabled, so you can focus on sharing the moments that matter with the people who matter to you.
+
+Signal is an application that is compatible with the Desktop, Android, and IOS devicesThis specific repository is concerned with Signal Android. 
+Signal Android is specifically compatible with the Android Operating System, found in Samsung phones, Google phones, and more. 
 
 Currently available on the Play Store and [signal.org](https://signal.org/android/apk/).
 
@@ -23,11 +35,27 @@ If you're interested in a life of peace and tranquility, stick with the standard
 
 ## Contributing Code
 
+To contribute to the Signal Android repository:
+- fork the repo: https://github.com/signalapp/Signal-Android
+- Clone your forked repo
+- Make changes in your fork on a specific branch
+- Push to your fork
+- Create a pull request with the original Signal Android repo
+- Helpful Link on contributing to open source projects: https://www.dataschool.io/how-to-contribute-on-github/ 
+
 If you're new to the Signal codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar. Also please have a look at the [CONTRIBUTING.md](https://github.com/signalapp/Signal-Android/blob/main/CONTRIBUTING.md), that might answer some of your questions.
+
+- When contributing code, it is important to remember to test your code thoroughly before creating a pull reuqest.
+- Different types of testing that can be done are functionality testing, unit tests, performance testing and more. 
+- Testing methods can be found in this link: https://techbeacon.com/app-dev-testing/5-key-software-testing-steps-every-engineer-should-perform 
 
 For larger changes and feature ideas, we ask that you propose it on the [unofficial Community Forum](https://community.signalusers.org) for a high-level discussion with the wider community before implementation.
 
 ## Contributing Ideas
+
+We want to continuously improve on Signal's functionality and features.
+We would greatly appreciate your ideas to enable us to thrive and grow! 
+
 Have something you want to say about Signal projects or want to be part of the conversation? Get involved in the [community forum](https://community.signalusers.org).
 
 Help
@@ -37,8 +65,27 @@ For troubleshooting and questions, please visit our support center!
 
 https://support.signal.org/
 
-## Documentation
-Looking for documentation? Check out the wiki!
+## Installation & Documentation
+
+To build the signal application, here are a set of steps to follow that are the best for anyone who wants to contribute, including beginners. 
+
+- Step 1: In your CLI, cd into the directory you would like to have your project in. 
+  - Example: cd /Desktop 
+- Step 2: In CLI, perform "git clone [url of forked repo]"
+- Step 3: Download a JDK that is Java 8 for proper installation
+- Step 4: Open your project in Android Studio to enable easy access to the SDK manaeger
+  - Download Android Studio if necessary
+- Step 5: In Android Studio, go to Tools -> SDK Manager -> SDK Tools and check every box in the Tool kit and click apply to download all the SDK Tools
+- Step 6: In CLI, perform ./gradlew build 
+- Step 7: Ensure to locate the apks, which should be in the output folder after it says 
+  "Build Successful"
+
+Although you can use a variety of IDEs for this project, Android Studio is the best for these reasons (especially for beginners):
+- Handles Functionality of Android Based Applications 
+- Enables Pairing of different devices for the application 
+- Has easy access to the SDK Manager for tracking of tools 
+
+Additional Documentation can be found in the Signal Android Wiki:
 
 https://github.com/signalapp/Signal-Android/wiki
 
