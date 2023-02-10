@@ -1656,7 +1656,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     footer.setVisibility(GONE);
     ViewUtil.setVisibilityIfNonNull(stickerFooter, GONE);
     if (sharedContactStub.resolved()) sharedContactStub.get().getFooter().setVisibility(GONE);
-    if (mediaThumbnailStub.resolved()) mediaThumbnailStub.require().getFooter().setVisibility(GONE);
+    if (mediaThumbnailStub.resolved() && mediaThumbnailStub.require().getFooter().resolved()) {
+      mediaThumbnailStub.require().getFooter().setVisibility(GONE);
+    }
 
     if (isFooterVisible(current, next, isGroupThread)) {
       ConversationItemFooter activeFooter = getActiveFooter(current);
@@ -1741,7 +1743,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     } else if (hasSharedContact(messageRecord) && messageRecord.isDisplayBodyEmpty(getContext())) {
       return sharedContactStub.get().getFooter();
     } else if (hasOnlyThumbnail(messageRecord) && messageRecord.isDisplayBodyEmpty(getContext())) {
-      return mediaThumbnailStub.require().getFooter();
+      return mediaThumbnailStub.require().getFooter().get();
     } else {
       return footer;
     }
