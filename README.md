@@ -11,6 +11,7 @@
   - [Cryptography Notice](#cryptography-notice)
   - [License](#license)
 
+(Utilized VSCode Markdown ALl in One Extension for TOC)
 Signal uses your phone's data connection (WiFi/3G/4G/5G) to communicate securely. Millions of people use Signal every day for free and instantaneous communication anywhere in the world. Send and receive high-fidelity messages, participate in HD voice/video calls, and explore a growing set of new features that help you stay connected. Signal’s advanced privacy-preserving technology is always enabled, so you can focus on sharing the moments that matter with the people who matter to you.
 
 Signal is an application that is compatible with the Desktop, Android, and IOS devicesThis specific repository is concerned with Signal Android. 
@@ -47,7 +48,7 @@ If you're new to the Signal codebase, we recommend going through our issues and 
 
 - When contributing code, it is important to remember to test your code thoroughly before creating a pull reuqest.
 - Different types of testing that can be done are functionality testing, unit tests, performance testing and more. 
-- Testing methods can be found in this link: https://techbeacon.com/app-dev-testing/5-key-software-testing-steps-every-engineer-should-perform 
+- Helpful testing methods can be found in this link: https://techbeacon.com/app-dev-testing/5-key-software-testing-steps-every-engineer-should-perform 
 
 For larger changes and feature ideas, we ask that you propose it on the [unofficial Community Forum](https://community.signalusers.org) for a high-level discussion with the wider community before implementation.
 
