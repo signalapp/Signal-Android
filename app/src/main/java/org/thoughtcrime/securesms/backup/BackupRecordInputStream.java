@@ -6,6 +6,8 @@ import org.signal.core.util.Conversions;
 import org.signal.core.util.StreamUtil;
 import org.signal.libsignal.protocol.kdf.HKDF;
 import org.signal.libsignal.protocol.util.ByteUtil;
+import org.thoughtcrime.securesms.backup.proto.BackupFrame;
+import org.thoughtcrime.securesms.backup.proto.Header;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,21 +47,21 @@ class BackupRecordInputStream extends FullBackupBase.BackupStream {
       byte[] headerFrame  = new byte[headerLength];
       StreamUtil.readFully(in, headerFrame);
 
-      BackupProtos.BackupFrame frame = BackupProtos.BackupFrame.parseFrom(headerFrame);
+      BackupFrame frame = BackupFrame.ADAPTER.decode(headerFrame);
 
-      if (!frame.hasHeader()) {
+      if (frame.header_ == null) {
         throw new IOException("Backup stream does not start with header!");
       }
 
-      BackupProtos.Header header = frame.getHeader();
+      Header header = frame.header_;
 
-      this.iv = header.getIv().toByteArray();
+      this.iv = header.iv.toByteArray();
 
       if (iv.length != 16) {
         throw new IOException("Invalid IV length!");
       }
 
-      byte[]   key     = getBackupKey(passphrase, header.hasSalt() ? header.getSalt().toByteArray() : null);
+      byte[]   key     = getBackupKey(passphrase, header.salt != null ? header.salt.toByteArray() : null);
       byte[]   derived = HKDF.deriveSecrets(key, "Backup Export".getBytes(), 64);
       byte[][] split   = ByteUtil.split(derived, 32, 32);
 
@@ -76,7 +78,7 @@ class BackupRecordInputStream extends FullBackupBase.BackupStream {
     }
   }
 
-  BackupProtos.BackupFrame readFrame() throws IOException {
+  BackupFrame readFrame() throws IOException {
     return readFrame(in);
   }
 
@@ -128,7 +130,7 @@ class BackupRecordInputStream extends FullBackupBase.BackupStream {
     }
   }
 
-  private BackupProtos.BackupFrame readFrame(InputStream in) throws IOException {
+  private BackupFrame readFrame(InputStream in) throws IOException {
     try {
       byte[] length = new byte[4];
       StreamUtil.readFully(in, length);
@@ -151,7 +153,7 @@ class BackupRecordInputStream extends FullBackupBase.BackupStream {
 
       byte[] plaintext = cipher.doFinal(frame, 0, frame.length - 10);
 
-      return BackupProtos.BackupFrame.parseFrom(plaintext);
+      return BackupFrame.ADAPTER.decode(plaintext);
     } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
       throw new AssertionError(e);
     }
