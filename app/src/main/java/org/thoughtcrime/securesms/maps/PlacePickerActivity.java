@@ -67,13 +67,14 @@ public final class PlacePickerActivity extends AppCompatActivity {
     return data.getParcelableExtra(ADDRESS_INTENT);
   }
 
+  @SuppressLint("MissingInflatedId")
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_place_picker);
 
     bottomSheet      = findViewById(R.id.bottom_sheet);
-    View markerImage = findViewById(R.id.marker_image_view);
+    View                                    markerImage = findViewById(R.id.marker_image_view);
     View fab         = findViewById(R.id.place_chosen_button);
 
     ViewCompat.setBackgroundTintList(fab, ColorStateList.valueOf(getIntent().getIntExtra(KEY_CHAT_COLOR, Color.RED)));

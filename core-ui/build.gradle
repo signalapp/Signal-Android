@@ -1,6 +1,8 @@
 apply from: "$rootProject.projectDir/signalModule.gradle"
 
 android {
+    namespace 'org.signal.core.ui'
+
     buildFeatures {
         compose true
     }

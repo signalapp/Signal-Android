@@ -6,6 +6,8 @@ plugins {
 }
 
 android {
+    namespace 'com.codewaves.stickyheadergrid'
+
     buildToolsVersion BUILD_TOOL_VERSION
     compileSdkVersion COMPILE_SDK
 

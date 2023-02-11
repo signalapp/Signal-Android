@@ -1,6 +1,8 @@
 apply from: "$rootProject.projectDir/signalModuleApp.gradle"
 
 android {
+    namespace 'org.signal.qrtest'
+
     defaultConfig {
         applicationId "org.signal.qrtest"
     }

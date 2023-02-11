@@ -5,6 +5,8 @@ plugins {
 }
 
 android {
+    namespace 'org.signal.imageeditor.app'
+
     compileSdk COMPILE_SDK
 
     defaultConfig {

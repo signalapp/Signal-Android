@@ -1,6 +1,8 @@
 apply from: "$rootProject.projectDir/signalModuleApp.gradle"
 
 android {
+    namespace 'org.signal.smsexporter.app'
+
     defaultConfig {
         applicationId "org.signal.smsexporter.app"
     }

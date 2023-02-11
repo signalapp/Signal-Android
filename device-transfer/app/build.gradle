@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'org.signal.devicetransfer.app'
+
     buildToolsVersion BUILD_TOOL_VERSION
     compileSdkVersion COMPILE_SDK
 

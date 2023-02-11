@@ -19,6 +19,8 @@ ktlint {
 }
 
 android {
+    namespace 'org.signal.spinnertest'
+
     buildToolsVersion BUILD_TOOL_VERSION
     compileSdkVersion COMPILE_SDK
 

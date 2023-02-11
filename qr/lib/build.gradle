@@ -1,5 +1,9 @@
 apply from: "$rootProject.projectDir/signalModule.gradle"
 
+android {
+    namespace 'org.signal.qr'
+}
+
 dependencies {
     implementation libs.androidx.camera.core
     implementation libs.androidx.camera.camera2

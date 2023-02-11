@@ -100,6 +100,8 @@ def selectableVariants = [
 ]
 
 android {
+    namespace 'org.thoughtcrime.securesms'
+
     buildToolsVersion BUILD_TOOL_VERSION
     compileSdkVersion COMPILE_SDK
 
@@ -142,12 +144,6 @@ android {
         }
     }
 
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError true
-        baseline file("lint-baseline.xml")
-        disable "LintError"
-    }
 
     sourceSets {
         test {
@@ -164,18 +160,12 @@ android {
         sourceCompatibility JAVA_VERSION
         targetCompatibility JAVA_VERSION
     }
-
     packagingOptions {
-        exclude 'LICENSE.txt'
-        exclude 'LICENSE'
-        exclude 'NOTICE'
-        exclude 'asm-license.txt'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/proguard/androidx-annotations.pro'
-        exclude 'libsignal_jni.dylib'
-        exclude 'signal_jni.dll'
+        resources {
+            excludes += ['LICENSE.txt', 'LICENSE', 'NOTICE', 'asm-license.txt', 'META-INF/LICENSE', 'META-INF/NOTICE', 'META-INF/proguard/androidx-annotations.pro', 'libsignal_jni.dylib', 'signal_jni.dll']
+        }
     }
+
 
     buildFeatures {
         viewBinding true
@@ -408,6 +398,13 @@ android {
 
             buildConfigField "String", "BUILD_ENVIRONMENT_TYPE", "\"Pnp\""
         }
+    }
+
+    lint {
+        abortOnError true
+        baseline file('lint-baseline.xml')
+        checkReleaseBuilds false
+        disable 'LintError'
     }
 
     android.applicationVariants.all { variant ->

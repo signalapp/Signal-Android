@@ -22,7 +22,7 @@ android {
         jvmTarget = '1.8'
     }
 
-    lintOptions {
+    lint {
         disable 'InvalidVectorPath'
     }
 }

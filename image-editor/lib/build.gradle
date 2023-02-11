@@ -4,6 +4,8 @@ plugins {
 }
 
 android {
+    namespace 'org.signal.imageeditor'
+
     buildToolsVersion BUILD_TOOL_VERSION
     compileSdkVersion COMPILE_SDK
 

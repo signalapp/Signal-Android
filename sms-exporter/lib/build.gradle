@@ -1,5 +1,9 @@
 apply from: "$rootProject.projectDir/signalModule.gradle"
 
+android {
+    namespace 'org.signal.smsexporter'
+}
+
 dependencies {
     lintChecks project(':lintchecks')
 

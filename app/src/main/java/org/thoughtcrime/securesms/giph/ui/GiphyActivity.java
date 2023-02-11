@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.giph.ui;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -55,6 +56,7 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
     dynamicTheme.onCreate(this);
   }
 
+  @SuppressLint("MissingInflatedId")
   @Override
   public void onCreate(Bundle bundle, boolean ready) {
     setContentView(R.layout.giphy_activity);

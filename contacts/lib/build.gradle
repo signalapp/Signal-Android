@@ -5,6 +5,8 @@ plugins {
 }
 
 android {
+    namespace 'org.signal.contacts'
+
     buildToolsVersion BUILD_TOOL_VERSION
     compileSdkVersion COMPILE_SDK
 
