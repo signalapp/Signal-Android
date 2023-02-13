@@ -456,6 +456,12 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     });
   }
 
+  @Override
+  public void onDestroy() {
+    ApplicationDependencies.getDatabaseObserver().unregisterObserver(threadDeletedObserver);
+    super.onDestroy();
+  }
+
   private @NonNull GiphyMp4ProjectionRecycler initializeGiphyMp4() {
     int                                            maxPlayback = GiphyMp4PlaybackPolicy.maxSimultaneousPlaybackInConversation();
     List<GiphyMp4ProjectionPlayerHolder>           holders     = GiphyMp4ProjectionPlayerHolder.injectVideoViews(requireContext(),
