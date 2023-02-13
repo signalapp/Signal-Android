@@ -7,7 +7,6 @@ import android.graphics.Paint
 import android.graphics.PorterDuff
 import kotlin.math.abs
 
-
 object FontUtil {
   private const val SAMPLE_EMOJI = "\uD83C\uDF0D" // 🌍
 

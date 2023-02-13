@@ -32,7 +32,7 @@ class StringExtensions_asListContains(
 
         arrayOf("a", "b", false),
         arrayOf("a", "abc", false),
-        arrayOf("b", "a*", false),
+        arrayOf("b", "a*", false)
       ).toList()
     }
   }

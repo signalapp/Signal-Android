@@ -1,38 +1,20 @@
 import com.android.build.api.dsl.ManagedVirtualDevice
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'com.google.protobuf'
-apply plugin: 'androidx.navigation.safeargs'
-apply plugin: 'org.jlleitschuh.gradle.ktlint'
-apply from: 'translations.gradle'
-apply plugin: 'org.jetbrains.kotlin.android'
-apply plugin: 'app.cash.exhaustive'
-apply plugin: 'kotlin-parcelize'
-apply plugin: 'com.squareup.wire'
-apply from: 'static-ips.gradle'
-
-
-repositories {
-    maven {
-        url "https://raw.githubusercontent.com/signalapp/maven/master/sqlcipher/release/"
-        content {
-            includeGroupByRegex "org\\.signal.*"
-        }
-    }
-
-    google()
-    mavenCentral()
-    mavenLocal()
-    maven {
-        url "https://dl.cloudsmith.io/qxAgwaeEE1vN8aLU/mobilecoin/mobilecoin/maven/"
-    }
-    jcenter {
-        content {
-            includeVersion "mobi.upod", "time-duration-picker", "1.1.3"
-        }
-    }
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.google.protobuf'
+    id 'androidx.navigation.safeargs'
+    id 'org.jlleitschuh.gradle.ktlint'
+    id 'org.jetbrains.kotlin.android'
+    id 'app.cash.exhaustive'
+    id 'kotlin-parcelize'
+    id 'com.squareup.wire'
+    id 'android-constants'
 }
+
+apply from: 'translations.gradle'
+apply from: 'static-ips.gradle'
 
 protobuf {
     protoc {
@@ -102,8 +84,8 @@ def selectableVariants = [
 android {
     namespace 'org.thoughtcrime.securesms'
 
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
+    buildToolsVersion BUILD_TOOLS_VERSION
+    compileSdkVersion COMPILE_SDK_VERSION
 
     flavorDimensions 'distribution', 'environment'
     useLibrary 'org.apache.http.legacy'
@@ -180,8 +162,8 @@ android {
         versionCode canonicalVersionCode * postFixSize
         versionName canonicalVersionName
 
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
+        minSdkVersion MIN_SDK_VERSION
+        targetSdkVersion TARGET_SDK_VERSION
 
         multiDexEnabled true
 

@@ -27,7 +27,7 @@ data class StripeIntentAccessor(
      * noActionRequired is a safe default for when there was no 3DS required,
      * in order to continue a reactive payment chain.
      */
-    val NO_ACTION_REQUIRED = StripeIntentAccessor(ObjectType.NONE,"", "")
+    val NO_ACTION_REQUIRED = StripeIntentAccessor(ObjectType.NONE, "", "")
 
     private const val KEY_PAYMENT_INTENT = "payment_intent"
     private const val KEY_PAYMENT_INTENT_CLIENT_SECRET = "payment_intent_client_secret"

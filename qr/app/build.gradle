@@ -1,4 +1,6 @@
-apply from: "$rootProject.projectDir/signalModuleApp.gradle"
+plugins {
+    id 'signal-sample-app'
+}
 
 android {
     namespace 'org.signal.qrtest'
@@ -10,9 +12,6 @@ android {
 
 dependencies {
     implementation project(':qr')
-    implementation libs.rxjava3.rxjava
-    implementation libs.rxjava3.rxandroid
-    implementation libs.rxjava3.rxkotlin
 
     implementation libs.google.zxing.android.integration
     implementation libs.google.zxing.core

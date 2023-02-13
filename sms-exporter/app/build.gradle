@@ -1,4 +1,6 @@
-apply from: "$rootProject.projectDir/signalModuleApp.gradle"
+plugins {
+    id 'signal-sample-app'
+}
 
 android {
     namespace 'org.signal.smsexporter.app'
@@ -9,13 +11,5 @@ android {
 }
 
 dependencies {
-    implementation libs.androidx.core.ktx
-    implementation libs.androidx.appcompat
-    implementation libs.androidx.core.role
-    implementation libs.material.material
-    implementation libs.rxjava3.rxjava
-    implementation libs.rxjava3.rxandroid
-    implementation libs.rxjava3.rxkotlin
-    implementation project(':core-util')
     implementation project(':sms-exporter')
 }

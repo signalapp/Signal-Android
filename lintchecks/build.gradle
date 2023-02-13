@@ -1,10 +1,5 @@
 apply plugin: 'java-library'
 
-repositories {
-    google()
-    mavenCentral()
-}
-
 dependencies {
     compileOnly lintLibs.lint.api
     compileOnly lintLibs.lint.checks

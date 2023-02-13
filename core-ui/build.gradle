@@ -1,4 +1,6 @@
-apply from: "$rootProject.projectDir/signalModule.gradle"
+plugins {
+    id 'signal-library'
+}
 
 android {
     namespace 'org.signal.core.ui'
