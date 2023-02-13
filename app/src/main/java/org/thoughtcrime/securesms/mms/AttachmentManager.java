@@ -413,12 +413,16 @@ public class AttachmentManager {
   }
 
   public static void selectLocation(Fragment fragment, int requestCode, @ColorInt int chatColor) {
-    Permissions.with(fragment)
-               .request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-               .ifNecessary()
-               .withPermanentDenialDialog(fragment.getString(R.string.AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location))
-               .onAllGranted(() -> PlacePickerActivity.startActivityForResultAtCurrentLocation(fragment, requestCode, chatColor))
-               .execute();
+    if (Permissions.hasAny(fragment.requireContext(), Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+      PlacePickerActivity.startActivityForResultAtCurrentLocation(fragment, requestCode, chatColor);
+    } else {
+      Permissions.with(fragment)
+                 .request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+                 .ifNecessary()
+                 .withPermanentDenialDialog(fragment.getString(R.string.AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location))
+                 .onSomeGranted((permissions) -> PlacePickerActivity.startActivityForResultAtCurrentLocation(fragment, requestCode, chatColor))
+                 .execute();
+    }
   }
 
   public static void selectGif(Fragment fragment, int requestCode, RecipientId id, MessageSendType sendType, boolean isForMms, CharSequence textTrimmed) {
