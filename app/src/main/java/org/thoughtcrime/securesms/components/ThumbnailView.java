@@ -3,8 +3,10 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -23,12 +25,10 @@ import androidx.appcompat.widget.AppCompatImageView;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.FitCenter;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.transition.Transition;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -67,25 +67,26 @@ public class ThumbnailView extends FrameLayout {
   private static final int    MIN_HEIGHT = 2;
   private static final int    MAX_HEIGHT = 3;
 
+  private       Bitmap             imageBitmap;
   private final ImageView          image;
   private final ImageView          blurhash;
   private final View               playOverlay;
   private final View               captionIcon;
   private final AppCompatImageView errorImage;
 
-  private OnClickListener   parentClickListener;
+  private OnClickListener parentClickListener;
 
   private final int[] dimens        = new int[2];
   private final int[] bounds        = new int[4];
   private final int[] measureDimens = new int[2];
 
+  private final CornerMask cornerMask;
+
   private Optional<TransferControlView> transferControls       = Optional.empty();
   private SlideClickListener            thumbnailClickListener = null;
   private SlidesClickedListener         downloadClickListener  = null;
   private Slide                         slide                  = null;
-  private BitmapTransformation          fit                    = new CenterCrop();
 
-  private int radius;
 
   public ThumbnailView(Context context) {
     this(context, null);
@@ -105,6 +106,7 @@ public class ThumbnailView extends FrameLayout {
     this.playOverlay = findViewById(R.id.play_overlay);
     this.captionIcon = findViewById(R.id.thumbnail_caption_icon);
     this.errorImage  = findViewById(R.id.thumbnail_error);
+    this.cornerMask  = new CornerMask(this);
 
     super.setOnClickListener(new ThumbnailClickDispatcher());
 
@@ -114,8 +116,9 @@ public class ThumbnailView extends FrameLayout {
       bounds[MAX_WIDTH]  = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxWidth, 0);
       bounds[MIN_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_minHeight, 0);
       bounds[MAX_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxHeight, 0);
-      radius             = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_thumbnail_radius, getResources().getDimensionPixelSize(R.dimen.thumbnail_default_radius));
-      fit                = typedArray.getInt(R.styleable.ThumbnailView_thumbnail_fit, 0) == 1 ? new FitCenter() : new CenterCrop();
+
+      float radius = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_thumbnail_radius, getResources().getDimensionPixelSize(R.dimen.thumbnail_default_radius));
+      cornerMask.setRadius((int) radius);
 
       int transparentOverlayColor = typedArray.getColor(R.styleable.ThumbnailView_transparent_overlay_color, -1);
       if (transparentOverlayColor > 0) {
@@ -126,7 +129,8 @@ public class ThumbnailView extends FrameLayout {
 
       typedArray.recycle();
     } else {
-      radius = getResources().getDimensionPixelSize(R.dimen.message_corner_collapse_radius);
+      float radius = getResources().getDimensionPixelSize(R.dimen.message_corner_collapse_radius);
+      cornerMask.setRadius((int) radius);
       image.setColorFilter(null);
     }
   }
@@ -156,7 +160,7 @@ public class ThumbnailView extends FrameLayout {
 
     if (playOverlayWidth * 2 > getWidth()) {
       playOverlayScale /= 2;
-      captionIconScale  = 0;
+      captionIconScale = 0;
     }
 
     playOverlay.setScaleX(playOverlayScale);
@@ -164,6 +168,13 @@ public class ThumbnailView extends FrameLayout {
 
     captionIcon.setScaleX(captionIconScale);
     captionIcon.setScaleY(captionIconScale);
+  }
+
+  @Override
+  protected void dispatchDraw(Canvas canvas) {
+    super.dispatchDraw(canvas);
+
+    cornerMask.mask(canvas);
   }
 
   public void setMinimumThumbnailWidth(@Px int width) {
@@ -187,7 +198,7 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (dimensAreInvalid || dimensFilledCount == 0 || boundsFilledCount == 0) {
-      targetDimens[WIDTH] = 0;
+      targetDimens[WIDTH]  = 0;
       targetDimens[HEIGHT] = 0;
       return;
     }
@@ -219,10 +230,10 @@ public class ThumbnailView extends FrameLayout {
 
       if (maxWidthRatio > 1 || maxHeightRatio > 1) {
         if (maxWidthRatio >= maxHeightRatio) {
-          measuredWidth  /= maxWidthRatio;
+          measuredWidth /= maxWidthRatio;
           measuredHeight /= maxWidthRatio;
         } else {
-          measuredWidth  /= maxHeightRatio;
+          measuredWidth /= maxHeightRatio;
           measuredHeight /= maxHeightRatio;
         }
 
@@ -231,10 +242,10 @@ public class ThumbnailView extends FrameLayout {
 
       } else if (minWidthRatio < 1 || minHeightRatio < 1) {
         if (minWidthRatio <= minHeightRatio) {
-          measuredWidth  /= minWidthRatio;
+          measuredWidth /= minWidthRatio;
           measuredHeight /= minWidthRatio;
         } else {
-          measuredWidth  /= minHeightRatio;
+          measuredWidth /= minHeightRatio;
           measuredHeight /= minHeightRatio;
         }
 
@@ -272,6 +283,10 @@ public class ThumbnailView extends FrameLayout {
   public void setClickable(boolean clickable) {
     super.setClickable(clickable);
     if (transferControls.isPresent()) transferControls.get().setClickable(clickable);
+  }
+
+  public @Nullable Bitmap getBitmap() {
+    return imageBitmap;
   }
 
   private TransferControlView getTransferControls() {
@@ -358,7 +373,7 @@ public class ThumbnailView extends FrameLayout {
       return new SettableFuture<>(false);
     }
 
-    if (this.slide != null && this.slide.getFastPreflightId() != null      &&
+    if (this.slide != null && this.slide.getFastPreflightId() != null &&
         (!slide.hasVideo() || Util.equals(this.slide.getUri(), slide.getUri())) &&
         Util.equals(this.slide.getFastPreflightId(), slide.getFastPreflightId()))
     {
@@ -400,7 +415,7 @@ public class ThumbnailView extends FrameLayout {
         thumbnailFuture.addListener(new BlurhashClearListener(glideRequests, blurhash));
       }
 
-      buildThumbnailGlideRequest(glideRequests, slide).into(new GlideDrawableListeningTarget(image, result));
+      buildThumbnailGlideRequest(glideRequests, slide).into(new BitmapCaptor(image, result));
 
       resultHandled = true;
     } else {
@@ -440,15 +455,9 @@ public class ThumbnailView extends FrameLayout {
       request = request.override(width, height);
     }
 
-    if (radius > 0) {
-      request = request.transforms(new CenterCrop(), new RoundedCorners(radius));
-    } else {
-      request = request.transforms(new CenterCrop());
-    }
-
-    GlideDrawableListeningTarget target = new GlideDrawableListeningTarget(image, future);
-    Request previousRequest = target.getRequest();
-    boolean previousRequestRunning = previousRequest != null && previousRequest.isRunning();
+    GlideDrawableListeningTarget target                 = new BitmapCaptor(image, future);
+    Request                      previousRequest        = target.getRequest();
+    boolean                      previousRequestRunning = previousRequest != null && previousRequest.isRunning();
     request.into(target);
     if (listener != null) {
       listener.onLoadScheduled();
@@ -476,13 +485,7 @@ public class ThumbnailView extends FrameLayout {
       request = request.override(width, height);
     }
 
-    if (radius > 0) {
-      request = request.transforms(new CenterCrop(), new RoundedCorners(radius));
-    } else {
-      request = request.transforms(new CenterCrop());
-    }
-
-    request.into(new GlideDrawableListeningTarget(image, future));
+    request.into(new BitmapCaptor(image, future));
     blurhash.setImageDrawable(null);
 
     return future;
@@ -518,23 +521,27 @@ public class ThumbnailView extends FrameLayout {
     getTransferControls().showProgressSpinner();
   }
 
-  public void setFit(@NonNull BitmapTransformation fit) {
-    this.fit = fit;
+  public void setScaleType(@NonNull ImageView.ScaleType scaleType) {
+    image.setScaleType(scaleType);
   }
 
   protected void setRadius(int radius) {
-    this.radius = radius;
+    cornerMask.setRadius(radius);
+    invalidate();
   }
 
   private GlideRequest buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
     GlideRequest request = applySizing(glideRequests.load(new DecryptableUri(slide.getUri()))
-                                          .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                                          .transition(withCrossFade()), fit);
+                                                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                                                    .transition(withCrossFade()));
 
     boolean doNotShowMissingThumbnailImage = Build.VERSION.SDK_INT < 23;
 
-    if (slide.isInProgress() || doNotShowMissingThumbnailImage) return request;
-    else                                                        return request.apply(RequestOptions.errorOf(R.drawable.ic_missing_thumbnail_picture));
+    if (slide.isInProgress() || doNotShowMissingThumbnailImage) {
+      return request;
+    } else {
+      return request.apply(RequestOptions.errorOf(R.drawable.ic_missing_thumbnail_picture));
+    }
   }
 
   private RequestBuilder buildPlaceholderGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
@@ -547,10 +554,10 @@ public class ThumbnailView extends FrameLayout {
       bitmap = bitmap.load(slide.getPlaceholderRes(getContext().getTheme()));
     }
 
-    return applySizing(bitmap.diskCacheStrategy(DiskCacheStrategy.NONE), new CenterCrop());
+    return applySizing(bitmap.diskCacheStrategy(DiskCacheStrategy.NONE));
   }
 
-  private GlideRequest applySizing(@NonNull GlideRequest request, @NonNull BitmapTransformation fitting) {
+  private GlideRequest applySizing(@NonNull GlideRequest request) {
     int[] size = new int[2];
     fillTargetDimensions(size, dimens, bounds);
     if (size[WIDTH] == 0 && size[HEIGHT] == 0) {
@@ -558,13 +565,7 @@ public class ThumbnailView extends FrameLayout {
       size[HEIGHT] = getDefaultHeight();
     }
 
-    request = request.override(size[WIDTH], size[HEIGHT]);
-
-    if (radius > 0) {
-      return request.transforms(fitting, new RoundedCorners(radius));
-    } else {
-      return request.transforms(fitting);
-    }
+    return request.override(size[WIDTH], size[HEIGHT]);
   }
 
   private int getDefaultWidth() {
@@ -585,6 +586,7 @@ public class ThumbnailView extends FrameLayout {
 
   public interface ThumbnailRequestListener extends RequestListener<Drawable> {
     void onLoadCanceled();
+
     void onLoadScheduled();
   }
 
@@ -637,6 +639,24 @@ public class ThumbnailView extends FrameLayout {
     public void onFailure(ExecutionException e) {
       glideRequests.clear(blurhash);
       blurhash.setImageDrawable(null);
+    }
+  }
+
+  public class BitmapCaptor extends GlideDrawableListeningTarget {
+
+    public BitmapCaptor(@NonNull ImageView view, @NonNull SettableFuture<Boolean> loaded) {
+      super(view, loaded);
+    }
+
+    @Override
+    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+      imageBitmap = ((BitmapDrawable) resource).getBitmap();
+      super.onResourceReady(resource, transition);
+    }
+
+    @Override public void onLoadCleared(@Nullable Drawable placeholder) {
+      imageBitmap = null;
+      super.onLoadCleared(placeholder);
     }
   }
 }

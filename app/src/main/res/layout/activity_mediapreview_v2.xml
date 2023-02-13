@@ -3,6 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/signal_dark_colorNeutral" />
+
     <ImageView
         android:id="@+id/transition_image_view"
         android:layout_width="match_parent"
@@ -11,11 +17,5 @@
         android:adjustViewBounds="true"
         android:importantForAccessibility="no"
         android:transitionName="thumb" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/signal_dark_colorNeutral" />
 
 </FrameLayout>

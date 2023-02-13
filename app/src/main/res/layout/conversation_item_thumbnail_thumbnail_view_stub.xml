@@ -8,7 +8,7 @@
     android:adjustViewBounds="true"
     android:clickable="false"
     android:longClickable="false"
-    android:scaleType="fitCenter"
+    android:scaleType="centerCrop"
     android:contentDescription="@string/conversation_item__mms_image_description"
     android:visibility="gone"
     tools:visibility="visible"

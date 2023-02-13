@@ -352,6 +352,10 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   }
 
   private fun scrollAlbumRailToCurrentAdapterPosition(smooth: Boolean = true) {
+    if (!isResumed) {
+      return
+    }
+
     val currentItemPosition = albumRailAdapter.findSelectedItemPosition()
     val albumRail: RecyclerView = binding.mediaPreviewPlaybackControls.recyclerView
     val offsetFromStart = (albumRail.width - individualItemWidth) / 2

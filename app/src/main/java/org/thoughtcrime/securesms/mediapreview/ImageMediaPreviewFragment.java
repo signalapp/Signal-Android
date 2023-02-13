@@ -54,7 +54,7 @@ public final class ImageMediaPreviewFragment extends MediaPreviewFragment {
     zoomingImageView.setOnClickListener(v -> events.singleTapOnMedia());
 
     lifecycleDisposable.add(viewModel.getState().distinctUntilChanged().subscribe(state -> {
-      zoomingImageView.setVisibility(state.isInSharedAnimation() ? View.INVISIBLE : View.VISIBLE);
+      zoomingImageView.setAlpha(state.isInSharedAnimation() ? 0f : 1f);
     }));
 
     return view;

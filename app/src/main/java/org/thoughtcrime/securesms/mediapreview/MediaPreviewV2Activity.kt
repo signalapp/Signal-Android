@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.mediapreview
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -11,18 +10,14 @@ import androidx.core.content.ContextCompat
 import androidx.core.transition.addListener
 import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.fragment.app.commit
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.transition.platform.MaterialContainerTransform
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
-import org.thoughtcrime.securesms.mms.GlideApp
-import org.thoughtcrime.securesms.util.ActionRequestListener
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 
 class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner {
@@ -41,51 +36,49 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     val args = MediaIntentFactory.requireArguments(intent.extras!!)
-    val originalCorners = ShapeAppearanceModel.Builder()
-      .setTopLeftCornerSize(args.sharedElementArgs.topLeft)
-      .setTopRightCornerSize(args.sharedElementArgs.topRight)
-      .setBottomRightCornerSize(args.sharedElementArgs.bottomRight)
-      .setBottomLeftCornerSize(args.sharedElementArgs.bottomLeft)
-      .build()
 
-    postponeEnterTransition()
-    setEnterSharedElementCallback(MaterialContainerTransformSharedElementCallback())
-    window.sharedElementEnterTransition = MaterialContainerTransform().apply {
-      addTarget(SHARED_ELEMENT_TRANSITION_NAME)
-      startShapeAppearanceModel = originalCorners
-      endShapeAppearanceModel = ShapeAppearanceModel.builder().setAllCornerSizes(0f).build()
-      duration = 250L
-      interpolator = PathInterpolatorCompat.create(0.17f, 0.17f, 0f, 1f)
-      addListener(
-        onStart = {
-          transitionImageView.visibility = View.VISIBLE
-          viewModel.setIsInSharedAnimation(true)
-        },
-        onEnd = {
-          transitionImageView.clearAnimation()
-          transitionImageView.visibility = View.INVISIBLE
-          viewModel.setIsInSharedAnimation(false)
-        }
-      )
-    }
+    if (MediaPreviewCache.bitmap != null) {
+      val originalCorners = ShapeAppearanceModel.Builder()
+        .setTopLeftCornerSize(args.sharedElementArgs.topLeft)
+        .setTopRightCornerSize(args.sharedElementArgs.topRight)
+        .setBottomRightCornerSize(args.sharedElementArgs.bottomRight)
+        .setBottomLeftCornerSize(args.sharedElementArgs.bottomLeft)
+        .build()
 
-    window.sharedElementExitTransition = MaterialContainerTransform().apply {
-      addTarget(SHARED_ELEMENT_TRANSITION_NAME)
-      startShapeAppearanceModel = ShapeAppearanceModel.builder().setAllCornerSizes(0f).build()
-      endShapeAppearanceModel = originalCorners
-      duration = 250L
-      interpolator = PathInterpolatorCompat.create(0.17f, 0.17f, 0f, 1f)
-      addListener(
-        onStart = {
-          transitionImageView.visibility = View.VISIBLE
-          viewModel.setIsInSharedAnimation(true)
-        },
-        onEnd = {
-          transitionImageView.clearAnimation()
-          transitionImageView.visibility = View.INVISIBLE
-          viewModel.setIsInSharedAnimation(false)
-        }
-      )
+      setEnterSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+      window.sharedElementEnterTransition = MaterialContainerTransform().apply {
+        addTarget(SHARED_ELEMENT_TRANSITION_NAME)
+        startShapeAppearanceModel = originalCorners
+        endShapeAppearanceModel = ShapeAppearanceModel.builder().setAllCornerSizes(0f).build()
+        duration = 250L
+        interpolator = PathInterpolatorCompat.create(0.17f, 0.17f, 0f, 1f)
+        addListener(
+          onStart = {
+            transitionImageView.alpha = 1f
+            viewModel.setIsInSharedAnimation(true)
+          },
+          onEnd = {
+            viewModel.setIsInSharedAnimation(false)
+          }
+        )
+      }
+
+      window.sharedElementExitTransition = MaterialContainerTransform().apply {
+        addTarget(SHARED_ELEMENT_TRANSITION_NAME)
+        startShapeAppearanceModel = ShapeAppearanceModel.builder().setAllCornerSizes(0f).build()
+        endShapeAppearanceModel = originalCorners
+        duration = 250L
+        interpolator = PathInterpolatorCompat.create(0.17f, 0.17f, 0f, 1f)
+        addListener(
+          onStart = {
+            transitionImageView.alpha = 1f
+            viewModel.setIsInSharedAnimation(true)
+          },
+          onEnd = {
+            viewModel.setIsInSharedAnimation(false)
+          }
+        )
+      }
     }
 
     super.onCreate(savedInstanceState, ready)
@@ -93,9 +86,19 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
     setContentView(R.layout.activity_mediapreview_v2)
 
     transitionImageView = findViewById(R.id.transition_image_view)
-    lifecycleDisposable += viewModel.state.subscribe { state ->
-      if (state.position in state.mediaRecords.indices) {
-        setTransitionImage(state.mediaRecords[state.position].attachment?.uri)
+    if (MediaPreviewCache.bitmap != null) {
+      transitionImageView.setImageBitmap(MediaPreviewCache.bitmap)
+    } else {
+      transitionImageView.visibility = View.INVISIBLE
+      viewModel.setIsInSharedAnimation(false)
+    }
+
+    lifecycleDisposable += viewModel.state.map {
+      it.isInSharedAnimation to it.loadState
+    }.distinctUntilChanged().subscribe { (isInSharedAnimation, loadState) ->
+      if (!isInSharedAnimation && loadState == MediaPreviewV2State.LoadState.MEDIA_READY) {
+        transitionImageView.clearAnimation()
+        transitionImageView.alpha = 0f
       }
     }
 
@@ -115,19 +118,9 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
     }
   }
 
-  private fun setTransitionImage(mediaUri: Uri?) {
-    if (mediaUri == null) {
-      GlideApp.with(this).clear(transitionImageView)
-      return
-    }
-
-    GlideApp.with(this)
-      .load(DecryptableStreamUriLoader.DecryptableUri(mediaUri))
-      .diskCacheStrategy(DiskCacheStrategy.NONE)
-      .dontTransform()
-      .downsample(DownsampleStrategy.FIT_CENTER)
-      .addListener(ActionRequestListener.onEither { startPostponedEnterTransition() })
-      .into(transitionImageView)
+  override fun onPause() {
+    super.onPause()
+    MediaPreviewCache.bitmap = null
   }
 
   companion object {

@@ -113,6 +113,7 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Fragment;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
@@ -2367,6 +2368,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       } else if (!canPlayContent && mediaItem != null && eventListener != null) {
         eventListener.onPlayInlineContent(conversationMessage);
       } else if (MediaPreviewV2Fragment.isContentTypeSupported(slide.getContentType()) && slide.getUri() != null) {
+        if (eventListener == null) {
+          return;
+        }
+
         MediaIntentFactory.MediaPreviewArgs args = new MediaIntentFactory.MediaPreviewArgs(
             messageRecord.getThreadId(),
             messageRecord.getTimestamp(),
@@ -2388,6 +2393,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                 mediaThumbnailStub.require().getCorners().getBottomRight(),
                 mediaThumbnailStub.require().getCorners().getBottomLeft()
             ));
+        MediaPreviewCache.INSTANCE.setBitmap(mediaThumbnailStub.require().getBitmap());
         eventListener.goToMediaPreview(ConversationItem.this, mediaThumbnailStub.require(), args);
       } else if (slide.getUri() != null) {
         Log.i(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());

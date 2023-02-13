@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.maps.PlacePickerActivity;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Fragment;
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
 import org.thoughtcrime.securesms.payments.CanNotSendPaymentDialog;
@@ -536,7 +537,10 @@ public class AttachmentManager {
   private class ThumbnailClickListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
-      if (slide.isPresent()) previewImageDraft(slide.get());
+      if (slide.isPresent()) {
+        MediaPreviewCache.INSTANCE.setBitmap(((ThumbnailView) v).getBitmap());
+        previewImageDraft(slide.get());
+      }
     }
   }
 

@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.MediaTable.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader.GroupedThreadMedia;
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -345,7 +346,10 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
       }
 
       thumbnailView.setImageResource(glideRequests, slide, false, false);
-      thumbnailView.setOnClickListener(view -> itemClickListener.onMediaClicked(thumbnailView, mediaRecord));
+      thumbnailView.setOnClickListener(view -> {
+        MediaPreviewCache.INSTANCE.setBitmap(thumbnailView.getBitmap());
+        itemClickListener.onMediaClicked(thumbnailView, mediaRecord);
+      });
       thumbnailView.setOnLongClickListener(view -> onLongClick());
     }
 
@@ -594,6 +598,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
     @Override
     protected @NonNull View getTransitionAnchor() {
+      MediaPreviewCache.INSTANCE.setBitmap(null);
       return thumbnailView;
     }
 

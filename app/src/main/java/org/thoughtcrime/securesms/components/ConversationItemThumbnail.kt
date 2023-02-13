@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Bundle
 import android.os.Parcelable
@@ -128,6 +129,14 @@ class ConversationItemThumbnail @JvmOverloads constructor(
     )
 
     state.applyState(thumbnail, album)
+  }
+
+  fun getBitmap(): Bitmap? {
+    return if (thumbnail.resolved()) {
+      thumbnail.get().bitmap
+    } else {
+      album.get().bitmap
+    }
   }
 
   fun hideThumbnailView() {
