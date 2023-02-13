@@ -812,10 +812,14 @@ public class AttachmentTable extends DatabaseTable {
       Log.i(TAG, "Inserted attachment at ID: " + attachmentId);
     }
 
-    for (Attachment attachment : quoteAttachment) {
-      AttachmentId attachmentId = insertAttachment(mmsId, attachment, true);
-      insertedAttachments.put(attachment, attachmentId);
-      Log.i(TAG, "Inserted quoted attachment at ID: " + attachmentId);
+    try {
+      for (Attachment attachment : quoteAttachment) {
+        AttachmentId attachmentId = insertAttachment(mmsId, attachment, true);
+        insertedAttachments.put(attachment, attachmentId);
+        Log.i(TAG, "Inserted quoted attachment at ID: " + attachmentId);
+      }
+    } catch (MmsException e) {
+      Log.w(TAG, "Failed to insert quote attachment! messageId: " + mmsId);
     }
 
     return insertedAttachments;
