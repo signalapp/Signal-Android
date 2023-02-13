@@ -4997,7 +4997,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">稍後</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">兌換徽章...</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">兌換徽章…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">你可以稍後加值你的徽章。</string>
     <!-- Description text in gift thanks sheet -->

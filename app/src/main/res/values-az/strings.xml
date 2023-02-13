@@ -676,7 +676,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Seçilmiş planlaşdırılan mesaj silinsin?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Planlaşdırılan mesaj silinir...</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Planlaşdırılan mesaj silinir…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Söhbət seansı təzələndi</string>
@@ -1957,7 +1957,7 @@
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Ödəniş</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
-    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
+    <string name="ThreadRecord_scheduled_message">Planlaşdırılmış mesaj</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal yeniləməsi</string>
@@ -5109,7 +5109,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">İndi yox</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Nişan alınır...</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Nişan alınır…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Hədiyyənizi daha sonra ala bilərsiniz.</string>
     <!-- Description text in gift thanks sheet -->
@@ -5559,7 +5559,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS dəstəyi davam edir</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1_s">Tezliklə Signal tətbiqində SMS mesajlaşması artıq %1$s tarixindən sonra dəstəklənməyəcək.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS mesajları Signal mesajlarından fərqlidir. <b> Bu davam edən şifrəli Signal mesajlarına təsir etməyəcək.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->

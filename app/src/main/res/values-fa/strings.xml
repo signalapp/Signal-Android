@@ -261,7 +261,7 @@
     <!-- Content descrption for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">ویرایش نام</string>
     <!-- Content description for user avatar in edit activity -->
-    <string name="ContactShareEditActivity__avatar">عکس</string>
+    <string name="ContactShareEditActivity__avatar">آواتار</string>
 
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_sent_tap_for_details">ارسال نشد، برای جزئیات ضربه بزنید</string>
@@ -557,7 +557,7 @@
     <string name="CreateProfileActivity_problem_setting_profile">مشکل در ثبت پروفایل</string>
     <string name="CreateProfileActivity_set_up_your_profile">پروفایل خود را برپا کنید</string>
     <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">نمایه شما و تغییرات آن برای افراد، مخاطبان و گروه‌هایی که به آن‌ها پیام می‌فرستید قابل مشاهده خواهد بود.</string>
-    <string name="CreateProfileActivity_set_avatar_description">تنظیم عکس پروفایل</string>
+    <string name="CreateProfileActivity_set_avatar_description">تنظیم آواتار</string>
 
     <!-- ProfileCreateFragment -->
     <!-- Displayed at the top of the screen and explains how profiles can be viewed. -->
@@ -946,7 +946,7 @@
     <string name="ManageProfileFragment_write_a_few_words_about_yourself">چند کلمه دربارهٔ خودتان بنویسید</string>
     <string name="ManageProfileFragment_your_name">نام شما</string>
     <string name="ManageProfileFragment_your_username">نام کاربری شما</string>
-    <string name="ManageProfileFragment_failed_to_set_avatar">تنظیم عکس پروفایل ناموفق بود</string>
+    <string name="ManageProfileFragment_failed_to_set_avatar">تنظیم آواتار ناموفق بود</string>
     <string name="ManageProfileFragment_badges">نشان‌ها</string>
     <string name="ManageProfileFragment__edit_photo">ویرایش عکس</string>
     <!-- Snackbar message after creating username -->
@@ -1335,8 +1335,8 @@
     <string name="MessageRecord_the_group_description_has_changed">توضیحات گروه تغییر کرد.</string>
 
     <!-- GV2 avatar change -->
-    <string name="MessageRecord_you_changed_the_group_avatar">شما عکس گروه را عوض کردید.</string>
-    <string name="MessageRecord_s_changed_the_group_avatar">%1$s عکس گروه را تغییر داد.</string>
+    <string name="MessageRecord_you_changed_the_group_avatar">شما آواتار گروه را عوض کردید.</string>
+    <string name="MessageRecord_s_changed_the_group_avatar">%1$s آواتار گروه را تغییر داد.</string>
     <string name="MessageRecord_the_group_group_avatar_has_been_changed">عکس گروه تغییر یافت.</string>
 
     <!-- GV2 attribute access level change -->
@@ -1957,7 +1957,7 @@
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">پرداخت</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
-    <string name="ThreadRecord_scheduled_message">Scheduled message</string>
+    <string name="ThreadRecord_scheduled_message">پیام زمان‌بندی‌شده</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">به‌روزرسانی سیگنال</string>
@@ -5559,7 +5559,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">پشتیبانی پیامکی به‌زودی برداشته می‌شود</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1_s">ارسال پیامک از %1$s به بعد دیگر در برنامه سیگنال پشتیبانی نمی‌شود.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">پیامک‌ها با پیام‌های سیگنال تفاوت دارند. <b>این تغییر بر پیام‌های رمزگذاری‌شده سیگنال تأثیری نخواهد داشت و آن‌ها همچنان کار خواهند کرد.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
