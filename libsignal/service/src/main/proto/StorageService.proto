@@ -95,8 +95,8 @@ message ContactRecord {
   uint64        unregisteredAtTimestamp = 16;
   string        systemGivenName         = 17;
   string        systemFamilyName        = 18;
-  bool          hidden                  = 19;
-  // NEXT ID: 20
+  bool          hidden                  = 20;
+  // NEXT ID: 21
 }
 
 message GroupV1Record {
