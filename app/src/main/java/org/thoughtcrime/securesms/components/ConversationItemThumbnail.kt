@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
@@ -131,14 +130,6 @@ class ConversationItemThumbnail @JvmOverloads constructor(
     state.applyState(thumbnail, album)
   }
 
-  fun getDrawable(): Drawable? {
-    return if (thumbnail.resolved()) {
-      thumbnail.get().imageDrawable
-    } else {
-      album.get().drawable
-    }
-  }
-
   fun hideThumbnailView() {
     state = state.copy(thumbnailViewState = state.thumbnailViewState.copy(alpha = 0f))
     state.thumbnailViewState.applyState(thumbnail)
@@ -159,6 +150,22 @@ class ConversationItemThumbnail @JvmOverloads constructor(
 
   fun setCorners(topLeft: Int, topRight: Int, bottomRight: Int, bottomLeft: Int) {
     cornerMask.setRadii(topLeft, topRight, bottomRight, bottomLeft)
+    state = state.copy(
+      thumbnailViewState = state.thumbnailViewState.copy(
+        cornerTopLeft = topLeft,
+        cornerTopRight = topRight,
+        cornerBottomRight = bottomRight,
+        cornerBottomLeft = bottomLeft
+      ),
+      albumViewState = state.albumViewState.copy(
+        cornerTopLeft = topLeft,
+        cornerTopRight = topRight,
+        cornerBottomRight = bottomRight,
+        cornerBottomLeft = bottomLeft
+      )
+    )
+
+    state.applyState(thumbnail, album)
   }
 
   fun setMinimumThumbnailWidth(@Px width: Int) {

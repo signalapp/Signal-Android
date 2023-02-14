@@ -529,6 +529,11 @@ public class ThumbnailView extends FrameLayout {
     invalidate();
   }
 
+  public void setRadii(int topLeft, int topRight, int bottomRight, int bottomLeft) {
+    cornerMask.setRadii(topLeft, topRight, bottomRight, bottomLeft);
+    invalidate();
+  }
+
   private GlideRequest<Drawable> buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
     GlideRequest<Drawable> request = applySizing(glideRequests.load(new DecryptableUri(Objects.requireNonNull(slide.getUri())))
                                                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)

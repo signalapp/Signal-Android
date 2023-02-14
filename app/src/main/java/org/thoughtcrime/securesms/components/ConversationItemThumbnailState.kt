@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.mms.SlidesClickedListener
 import org.thoughtcrime.securesms.util.views.Stub
 
 /**
- * Parcelizable state object for [ConversationItemThumbnail]
+ * Parcelable state object for [ConversationItemThumbnail]
  * This allows us to manage inputs for [ThumbnailView] and [AlbumThumbnailView] without
  * actually having them inflated. When the views are finally inflated, we 'apply'
  */
@@ -38,7 +38,11 @@ data class ConversationItemThumbnailState(
     private val minWidth: Int = -1,
     private val maxWidth: Int = -1,
     private val minHeight: Int = -1,
-    private val maxHeight: Int = -1
+    private val maxHeight: Int = -1,
+    private val cornerTopLeft: Int = 0,
+    private val cornerTopRight: Int = 0,
+    private val cornerBottomRight: Int = 0,
+    private val cornerBottomLeft: Int = 0
   ) : Parcelable {
 
     fun applyState(thumbnailView: Stub<ThumbnailView>) {
@@ -50,6 +54,7 @@ data class ConversationItemThumbnailState(
       thumbnailView.get().alpha = alpha
       thumbnailView.get().isFocusable = focusable
       thumbnailView.get().isClickable = clickable
+      thumbnailView.get().setRadii(cornerTopLeft, cornerTopRight, cornerBottomRight, cornerBottomLeft)
       thumbnailView.get().setThumbnailClickListener(clickListener)
       thumbnailView.get().setDownloadClickListener(downloadClickListener)
       thumbnailView.get().setOnLongClickListener(longClickListener)
@@ -70,7 +75,11 @@ data class ConversationItemThumbnailState(
     @IgnoredOnParcel
     private val longClickListener: OnLongClickListener? = null,
     private val visibility: Int = View.GONE,
-    private val cellBackgroundColor: Int = Color.TRANSPARENT
+    private val cellBackgroundColor: Int = Color.TRANSPARENT,
+    private val cornerTopLeft: Int = 0,
+    private val cornerTopRight: Int = 0,
+    private val cornerBottomRight: Int = 0,
+    private val cornerBottomLeft: Int = 0
   ) : Parcelable {
 
     fun applyState(albumView: Stub<AlbumThumbnailView>) {
@@ -81,6 +90,7 @@ data class ConversationItemThumbnailState(
 
       albumView.get().isFocusable = focusable
       albumView.get().isClickable = clickable
+      albumView.get().setRadii(cornerTopLeft, cornerTopRight, cornerBottomRight, cornerBottomLeft)
       albumView.get().setThumbnailClickListener(clickListener)
       albumView.get().setDownloadClickListener(downloadClickListener)
       albumView.get().setOnLongClickListener(longClickListener)

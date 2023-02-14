@@ -87,6 +87,7 @@ import org.thoughtcrime.securesms.components.Outliner;
 import org.thoughtcrime.securesms.components.PlaybackSpeedToggleTextView;
 import org.thoughtcrime.securesms.components.QuoteView;
 import org.thoughtcrime.securesms.components.SharedContactView;
+import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.contactshare.Contact;
@@ -2393,8 +2394,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                 mediaThumbnailStub.require().getCorners().getBottomRight(),
                 mediaThumbnailStub.require().getCorners().getBottomLeft()
             ));
-        MediaPreviewCache.INSTANCE.setDrawable(mediaThumbnailStub.require().getDrawable());
-        eventListener.goToMediaPreview(ConversationItem.this, mediaThumbnailStub.require(), args);
+        MediaPreviewCache.INSTANCE.setDrawable(((ThumbnailView) v).getImageDrawable());
+        eventListener.goToMediaPreview(ConversationItem.this, v, args);
       } else if (slide.getUri() != null) {
         Log.i(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
         Uri publicUri = PartAuthority.getAttachmentPublicUri(slide.getUri());
