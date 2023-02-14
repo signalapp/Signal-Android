@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.mediapreview
 
-import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 
 /**
  * Stores the bitmap for a thumbnail we are animating from via a shared
@@ -8,5 +8,5 @@ import android.graphics.Bitmap
  * receiving end.
  */
 object MediaPreviewCache {
-  var bitmap: Bitmap? = null
+  var drawable: Drawable? = null
 }

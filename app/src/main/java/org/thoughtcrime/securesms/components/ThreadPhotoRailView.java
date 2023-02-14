@@ -98,7 +98,7 @@ public class ThreadPhotoRailView extends FrameLayout {
       }
 
       imageView.setOnClickListener(v -> {
-        MediaPreviewCache.INSTANCE.setBitmap(imageView.getBitmap());
+        MediaPreviewCache.INSTANCE.setDrawable(imageView.getImageDrawable());
         if (clickedListener != null) clickedListener.onItemClicked(imageView, mediaRecord);
       });
     }

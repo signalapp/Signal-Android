@@ -347,7 +347,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
       thumbnailView.setImageResource(glideRequests, slide, false, false);
       thumbnailView.setOnClickListener(view -> {
-        MediaPreviewCache.INSTANCE.setBitmap(thumbnailView.getBitmap());
+        MediaPreviewCache.INSTANCE.setDrawable(thumbnailView.getImageDrawable());
         itemClickListener.onMediaClicked(thumbnailView, mediaRecord);
       });
       thumbnailView.setOnLongClickListener(view -> onLongClick());
@@ -598,7 +598,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
     @Override
     protected @NonNull View getTransitionAnchor() {
-      MediaPreviewCache.INSTANCE.setBitmap(null);
+      MediaPreviewCache.INSTANCE.setDrawable(null);
       return thumbnailView;
     }
 

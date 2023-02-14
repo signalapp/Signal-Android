@@ -36,7 +36,7 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     val args = MediaIntentFactory.requireArguments(intent.extras!!)
 
-    if (MediaPreviewCache.bitmap != null) {
+    if (MediaPreviewCache.drawable != null) {
       val originalCorners = ShapeAppearanceModel.Builder()
         .setTopLeftCornerSize(args.sharedElementArgs.topLeft)
         .setTopRightCornerSize(args.sharedElementArgs.topRight)
@@ -85,8 +85,8 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
     setContentView(R.layout.activity_mediapreview_v2)
 
     transitionImageView = findViewById(R.id.transition_image_view)
-    if (MediaPreviewCache.bitmap != null) {
-      transitionImageView.setImageBitmap(MediaPreviewCache.bitmap)
+    if (MediaPreviewCache.drawable != null) {
+      transitionImageView.setImageDrawable(MediaPreviewCache.drawable)
     } else {
       transitionImageView.visibility = View.INVISIBLE
       viewModel.setIsInSharedAnimation(false)
@@ -119,7 +119,7 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
 
   override fun onPause() {
     super.onPause()
-    MediaPreviewCache.bitmap = null
+    MediaPreviewCache.drawable = null
   }
 
   companion object {

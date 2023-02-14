@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -66,7 +65,6 @@ public class ThumbnailView extends FrameLayout {
   private static final int    MIN_HEIGHT = 2;
   private static final int    MAX_HEIGHT = 3;
 
-  private       Bitmap             imageBitmap;
   private final ImageView          image;
   private final ImageView          blurHash;
   private final View               playOverlay;
@@ -286,8 +284,8 @@ public class ThumbnailView extends FrameLayout {
     transferControls.ifPresent(transferControlView -> transferControlView.setClickable(clickable));
   }
 
-  public @Nullable Bitmap getBitmap() {
-    return imageBitmap;
+  public @Nullable Drawable getImageDrawable() {
+    return image.getDrawable();
   }
 
   private TransferControlView getTransferControls() {
@@ -416,7 +414,7 @@ public class ThumbnailView extends FrameLayout {
         thumbnailFuture.addListener(new BlurHashClearListener(glideRequests, blurHash));
       }
 
-      buildThumbnailGlideRequest(glideRequests, slide).into(new BitmapCaptor(image, result));
+      buildThumbnailGlideRequest(glideRequests, slide).into(new GlideDrawableListeningTarget(image, result));
 
       resultHandled = true;
     } else {
@@ -456,7 +454,7 @@ public class ThumbnailView extends FrameLayout {
       request = request.override(width, height);
     }
 
-    GlideDrawableListeningTarget target                 = new BitmapCaptor(image, future);
+    GlideDrawableListeningTarget target                 = new GlideDrawableListeningTarget(image, future);
     Request                      previousRequest        = target.getRequest();
     boolean                      previousRequestRunning = previousRequest != null && previousRequest.isRunning();
     request.into(target);
@@ -486,7 +484,7 @@ public class ThumbnailView extends FrameLayout {
       request = request.override(width, height);
     }
 
-    request.into(new BitmapCaptor(image, future));
+    request.into(new GlideDrawableListeningTarget(image, future));
     blurHash.setImageDrawable(null);
 
     return future;
@@ -640,24 +638,6 @@ public class ThumbnailView extends FrameLayout {
     public void onFailure(ExecutionException e) {
       glideRequests.clear(blurHash);
       blurHash.setImageDrawable(null);
-    }
-  }
-
-  public class BitmapCaptor extends GlideDrawableListeningTarget {
-
-    public BitmapCaptor(@NonNull ImageView view, @NonNull SettableFuture<Boolean> loaded) {
-      super(view, loaded);
-    }
-
-    @Override
-    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-      imageBitmap = ((BitmapDrawable) resource).getBitmap();
-      super.onResourceReady(resource, transition);
-    }
-
-    @Override public void onLoadCleared(@Nullable Drawable placeholder) {
-      imageBitmap = null;
-      super.onLoadCleared(placeholder);
     }
   }
 }

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -30,11 +31,11 @@ public class AlbumThumbnailView extends FrameLayout {
 
   private ViewGroup                 albumCellContainer;
   private Stub<TransferControlView> transferControls;
-  private Bitmap                    bitmap;
+  private Drawable                  imageDrawable;
 
   private final SlideClickListener defaultThumbnailClickListener = (v, slide) -> {
       if (thumbnailClickListener != null) {
-        bitmap = ((ThumbnailView) v).getBitmap();
+        imageDrawable = ((ThumbnailView) v).getImageDrawable();
         thumbnailClickListener.onClick(v, slide);
       }
   };
@@ -87,8 +88,8 @@ public class AlbumThumbnailView extends FrameLayout {
     showSlides(glideRequests, slides);
   }
 
-  public @Nullable Bitmap getBitmap() {
-    return bitmap;
+  public @Nullable Drawable getDrawable() {
+    return imageDrawable;
   }
 
   public void setCellBackgroundColor(@ColorInt int color) {

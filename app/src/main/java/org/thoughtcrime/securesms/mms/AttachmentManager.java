@@ -542,7 +542,7 @@ public class AttachmentManager {
     @Override
     public void onClick(View v) {
       if (slide.isPresent()) {
-        MediaPreviewCache.INSTANCE.setBitmap(((ThumbnailView) v).getBitmap());
+        MediaPreviewCache.INSTANCE.setDrawable(((ThumbnailView) v).getImageDrawable());
         previewImageDraft(slide.get());
       }
     }

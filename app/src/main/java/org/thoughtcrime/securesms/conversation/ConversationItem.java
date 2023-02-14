@@ -2393,7 +2393,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                 mediaThumbnailStub.require().getCorners().getBottomRight(),
                 mediaThumbnailStub.require().getCorners().getBottomLeft()
             ));
-        MediaPreviewCache.INSTANCE.setBitmap(mediaThumbnailStub.require().getBitmap());
+        MediaPreviewCache.INSTANCE.setDrawable(mediaThumbnailStub.require().getDrawable());
         eventListener.goToMediaPreview(ConversationItem.this, mediaThumbnailStub.require(), args);
       } else if (slide.getUri() != null) {
         Log.i(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
