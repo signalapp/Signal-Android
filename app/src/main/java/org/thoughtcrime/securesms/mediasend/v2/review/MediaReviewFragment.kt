@@ -47,7 +47,6 @@ import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
@@ -219,7 +218,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
         performSend()
       }
     }
-    if (FeatureFlags.scheduledMessageSends() && !sharedViewModel.isStory()) {
+    if (!sharedViewModel.isStory()) {
       sendButton.setOnLongClickListener {
         ScheduleMessageContextMenu.show(it, (requireView() as ViewGroup)) { time: Long ->
           if (time == -1L) {
