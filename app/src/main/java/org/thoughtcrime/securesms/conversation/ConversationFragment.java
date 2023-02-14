@@ -746,6 +746,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
             startupStopwatch.split("first-render");
             startupStopwatch.stop(TAG);
             SignalLocalMetrics.ConversationOpen.onRenderFinished();
+            listener.onFirstRender();
           });
         }
       });
@@ -1480,6 +1481,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                            @NonNull ConversationReactionOverlay.OnHideListener onHideListener);
     void    onCursorChanged();
     void    onMessageWithErrorClicked(@NonNull MessageRecord messageRecord);
+    void    onFirstRender();
     void    onVoiceNotePause(@NonNull Uri uri);
     void    onVoiceNotePlay(@NonNull Uri uri, long messageId, double progress);
     void    onVoiceNoteResume(@NonNull Uri uri, long messageId);
