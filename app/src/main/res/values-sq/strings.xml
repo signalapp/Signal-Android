@@ -659,7 +659,7 @@
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
     <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Planifiko mesazhin</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Planifiko dërgimin</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Planifikojeni</string>
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Gjithë orët në (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
@@ -5559,7 +5559,7 @@
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Mbështetja për SMS po hiqet</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
-    <string name="SmsRemoval_info_bullet_1_s">SMS messaging in the Signal app will soon no longer be supported on %1$s.</string>
+    <string name="SmsRemoval_info_bullet_1_s">Mesazhet SMS në aplikacionin Signal së shpejti nuk do të mbështeten më në %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Mesazhet SMS janë të ndryshme nga mesazhet e Signal. <b>Kjo nuk ndikon në mesazhet e koduara të Signal të cilat do të vazhdojnë të funksionojnë.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
