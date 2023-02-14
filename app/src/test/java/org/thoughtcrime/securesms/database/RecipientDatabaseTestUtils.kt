@@ -78,7 +78,8 @@ object RecipientDatabaseTestUtils {
       IdentityTable.VerifiedStatus.DEFAULT,
       false,
       false,
-      0
+      0,
+      null
     ),
     extras: Recipient.Extras? = null,
     hasGroupsInCommon: Boolean = false,

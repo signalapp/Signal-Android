@@ -266,8 +266,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     boolean              hidden                = remote.isHidden();
     String               systemGivenName       = SignalStore.account().isPrimaryDevice() ? local.getSystemGivenName().orElse("") : remote.getSystemGivenName().orElse("");
     String               systemFamilyName      = SignalStore.account().isPrimaryDevice() ? local.getSystemFamilyName().orElse("") : remote.getSystemFamilyName().orElse("");
-    boolean              matchesRemote         = doParamsMatch(remote, unknownFields, serviceId, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
-    boolean              matchesLocal          = doParamsMatch(local, unknownFields, serviceId, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
+    String               systemNickname        = remote.getSystemNickname().orElse("");
+    boolean              matchesRemote         = doParamsMatch(remote, unknownFields, serviceId, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
+    boolean              matchesLocal          = doParamsMatch(local, unknownFields, serviceId, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, systemNickname, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
 
     if (matchesRemote) {
       return remote;
@@ -281,6 +282,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                     .setProfileFamilyName(profileFamilyName)
                                     .setSystemGivenName(systemGivenName)
                                     .setSystemFamilyName(systemFamilyName)
+                                    .setSystemNickname(systemNickname)
                                     .setProfileKey(profileKey)
                                     .setUsername(username)
                                     .setIdentityState(identityState)
@@ -328,6 +330,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        @NonNull String profileFamilyName,
                                        @NonNull String systemGivenName,
                                        @NonNull String systemFamilyName,
+                                       @NonNull String systemNickname,
                                        @Nullable byte[] profileKey,
                                        @NonNull String username,
                                        @Nullable IdentityState identityState,
@@ -349,6 +352,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
            Objects.equals(contact.getProfileFamilyName().orElse(""), profileFamilyName) &&
            Objects.equals(contact.getSystemGivenName().orElse(""), systemGivenName) &&
            Objects.equals(contact.getSystemFamilyName().orElse(""), systemFamilyName) &&
+           Objects.equals(contact.getSystemNickname().orElse(""), systemNickname) &&
            Arrays.equals(contact.getProfileKey().orElse(null), profileKey) &&
            Objects.equals(contact.getUsername().orElse(""), username) &&
            Objects.equals(contact.getIdentityState(), identityState) &&

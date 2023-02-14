@@ -116,6 +116,7 @@ public final class StorageSyncModels {
                                   .setProfileFamilyName(recipient.getProfileName().getFamilyName())
                                   .setSystemGivenName(recipient.getSystemProfileName().getGivenName())
                                   .setSystemFamilyName(recipient.getSystemProfileName().getFamilyName())
+                                  .setSystemNickname(recipient.getSyncExtras().getSystemNickname())
                                   .setBlocked(recipient.isBlocked())
                                   .setProfileSharingEnabled(recipient.isProfileSharing() || recipient.getSystemContactUri() != null)
                                   .setIdentityKey(recipient.getSyncExtras().getIdentityKey())

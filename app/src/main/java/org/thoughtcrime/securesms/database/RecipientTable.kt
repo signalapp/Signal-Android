@@ -150,6 +150,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val SYSTEM_JOINED_NAME = "system_display_name"
     const val SYSTEM_FAMILY_NAME = "system_family_name"
     const val SYSTEM_GIVEN_NAME = "system_given_name"
+    const val SYSTEM_NICKNAME = "system_nickname"
     private const val SYSTEM_PHOTO_URI = "system_photo_uri"
     const val SYSTEM_PHONE_TYPE = "system_phone_type"
     const val SYSTEM_PHONE_LABEL = "system_phone_label"
@@ -248,7 +249,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $NEEDS_PNI_SIGNATURE INTEGER DEFAULT 0,
         $UNREGISTERED_TIMESTAMP INTEGER DEFAULT 0,
         $HIDDEN INTEGER DEFAULT 0,
-        $REPORTING_TOKEN BLOB DEFAULT NULL
+        $REPORTING_TOKEN BLOB DEFAULT NULL,
+        $SYSTEM_NICKNAME TEXT DEFAULT NULL
       )
       """.trimIndent()
 
@@ -1136,6 +1138,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       """.trimIndent()
     val out: MutableList<RecipientRecord> = ArrayList()
     val columns: Array<String> = TYPED_RECIPIENT_PROJECTION + arrayOf(
+      SYSTEM_NICKNAME,
       "$TABLE_NAME.$STORAGE_PROTO",
       "$TABLE_NAME.$UNREGISTERED_TIMESTAMP",
       "${GroupTable.TABLE_NAME}.${GroupTable.V2_MASTER_KEY}",
@@ -3844,6 +3847,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(SYSTEM_GIVEN_NAME, systemName.givenName)
       put(SYSTEM_FAMILY_NAME, systemName.familyName)
       put(SYSTEM_JOINED_NAME, systemName.toString())
+      put(SYSTEM_NICKNAME, contact.systemNickname.orElse(null))
       put(PROFILE_KEY, contact.profileKey.map { source -> Base64.encodeBytes(source) }.orElse(null))
       put(USERNAME, if (TextUtils.isEmpty(username)) null else username)
       put(PROFILE_SHARING, if (contact.isProfileSharingEnabled) "1" else "0")
@@ -4174,6 +4178,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val identityKey = cursor.optionalString(IDENTITY_KEY).map { Base64.decodeOrThrow(it) }.orElse(null)
     val identityStatus = cursor.optionalInt(IDENTITY_STATUS).map { VerifiedStatus.forState(it) }.orElse(VerifiedStatus.DEFAULT)
     val unregisteredTimestamp = cursor.optionalLong(UNREGISTERED_TIMESTAMP).orElse(0)
+    val systemNickname = cursor.optionalString(SYSTEM_NICKNAME).orElse(null)
 
     return RecipientRecord.SyncExtras(
       storageProto = storageProto,
@@ -4182,7 +4187,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       identityStatus = identityStatus,
       isArchived = archived,
       isForcedUnread = forcedUnread,
-      unregisteredTimestamp = unregisteredTimestamp
+      unregisteredTimestamp = unregisteredTimestamp,
+      systemNickname = systemNickname
     )
   }
 
