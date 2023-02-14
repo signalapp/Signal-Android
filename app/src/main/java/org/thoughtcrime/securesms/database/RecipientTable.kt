@@ -4298,6 +4298,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           rotateStorageId(id)
         }
       }
+
+      pendingRecipients.forEach { id -> rotateStorageId(id) }
     }
 
     private fun clearSystemDataForPendingInfo() {
