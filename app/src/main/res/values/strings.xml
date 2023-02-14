@@ -1587,7 +1587,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Warning</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You can not turn on Registration Lock while the PIN is disabled.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You cannot turn on Registration Lock while the PIN is disabled.</string>
     <string name="PinOptOutDialog_disable_pin">Disable PIN</string>
 
     <!-- RatingManager -->
