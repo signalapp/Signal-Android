@@ -565,7 +565,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         ) as $MEMBER_GROUP_CONCAT
       FROM ${MembershipTable.TABLE_NAME}
       INNER JOIN $TABLE_NAME ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
-      INNER JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
+      LEFT JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
     """.toSingleLine()
 
     var query = "${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} = ?"

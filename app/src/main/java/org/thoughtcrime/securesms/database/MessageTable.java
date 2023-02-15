@@ -1533,7 +1533,8 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     return releaseChannelThreadId;
   }
 
-  private void deleteGroupStoryReplies(long parentStoryId) {
+  @VisibleForTesting
+  public void deleteGroupStoryReplies(long parentStoryId) {
     SQLiteDatabase db   = databaseHelper.getSignalWritableDatabase();
     String[]       args = SqlUtil.buildArgs(parentStoryId);
 
