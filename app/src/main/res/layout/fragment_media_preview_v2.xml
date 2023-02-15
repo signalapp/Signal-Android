@@ -54,6 +54,7 @@
         android:id="@+id/toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:alpha="0"
         android:background="@color/signal_dark_colorSurface_87"
         app:elevation="0dp">
 
@@ -66,8 +67,9 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="@dimen/signal_m3_toolbar_height"
             android:background="@android:color/transparent"
+            android:minHeight="@dimen/signal_m3_toolbar_height"
             android:theme="?actionBarStyle"
             app:navigationIcon="@drawable/ic_arrow_left_white_24" />
 
