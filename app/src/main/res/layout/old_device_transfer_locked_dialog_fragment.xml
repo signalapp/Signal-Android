@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="?attr/dialogPreferredPadding">
+    android:fillViewport="true"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    tools:viewBindingIgnore="true">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/ic_complete_reg" />
-
-    <TextView
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/OldDeviceTransferLockedDialog__complete_registration_on_your_new_device"
-        android:textAppearance="@style/TextAppearance.Signal.Title2" />
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="?attr/dialogPreferredPadding">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device"
-        android:textAppearance="@style/TextAppearance.Signal.Body1" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_complete_reg" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/OldDeviceTransferLockedDialog__complete_registration_on_your_new_device"
+            android:textAppearance="@style/TextAppearance.Signal.Title2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device"
+            android:textAppearance="@style/TextAppearance.Signal.Body1" />
+
+    </LinearLayout>
+</ScrollView>
