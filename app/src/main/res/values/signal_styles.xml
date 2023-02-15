@@ -304,6 +304,8 @@
     </style>
 
     <style name="ThemeOverlay.Signal.CircularProgressIndicator.Tonal" parent="ThemeOverlay.Material3">
+        <item name="colorPrimary">@color/signal_colorPrimary</item>
+        <item name="colorSurfaceVariant">@color/signal_colorSurfaceVariant</item>
         <item name="circularProgressMaterialButtonStyle">@style/Signal.Widget.Button.Large.Tonal</item>
         <item name="circularProgressIndicatorStyle">@style/Widget.Signal.CircularProgressIndicator.Medium.Indeterminate</item>
     </style>
@@ -314,5 +316,14 @@
 
     <style name="Widget.Signal.CircularProgressIndicator.Medium.Indeterminate.Tonal">
         <item name="indicatorColor">@color/signal_colorPrimaryContainer</item>
+    </style>
+
+    <style name="Signal.ThemeOverlay.TextInputLayout" parent="ThemeOverlay.Material3">
+        <item name="colorSurfaceVariant">@color/signal_colorSurfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/signal_colorOnSurfaceVariant</item>
+        <item name="colorPrimary">@color/signal_colorPrimary</item>
+        <item name="colorOnPrimary">@color/signal_colorOnPrimary</item>
+        <item name="colorOnSurface">@color/signal_colorOnSurface</item>
+        <item name="colorError">@color/signal_colorError</item>
     </style>
 </resources>

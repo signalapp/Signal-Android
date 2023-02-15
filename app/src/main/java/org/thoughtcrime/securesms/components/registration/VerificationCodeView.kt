@@ -43,12 +43,14 @@ class VerificationCodeView @JvmOverloads constructor(context: Context, attrs: At
   fun delete() {
     if (index <= 0) return
     containers[--index].editText?.setText("")
+    containers[index].editText?.requestFocus()
   }
 
   fun clear() {
     if (index != 0) {
       containers.forEach { it.editText?.setText("") }
       index = 0
+      containers[index].editText?.requestFocus()
     }
   }
 

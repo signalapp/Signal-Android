@@ -37,6 +37,7 @@
                 style="@style/Widget.Signal.TextInputLayout.Registration.Dropdown"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:theme="@style/Signal.ThemeOverlay.TextInputLayout"
                 app:errorEnabled="false"
                 app:hintEnabled="false">
 
@@ -51,8 +52,6 @@
                     android:maxLines="1"
                     android:padding="0dp"
                     android:singleLine="true"
-                    android:textColor="@color/signal_colorOnSurfaceVariant"
-                    android:textColorHint="@color/signal_colorOnSurfaceVariant"
                     tools:text="+1" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -63,14 +62,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="@string/RegistrationActivity_phone_number_description">
+                android:hint="@string/RegistrationActivity_phone_number_description"
+                app:materialThemeOverlay="@style/Signal.ThemeOverlay.TextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
-                    android:inputType="phone"
-                    style="@style/Widget.Signal.TextInputEditText.Registration">
+                    android:inputType="phone">
 
                     <requestFocus />
                 </com.google.android.material.textfield.TextInputEditText>
@@ -101,7 +101,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:text="@string/RegistrationActivity_you_will_receive_a_verification_code"
-            android:textColor="@color/core_grey_60"
+            android:textColor="@color/signal_colorOnSurfaceVariant"
             app:layout_constraintTop_toBottomOf="@+id/verify_header"
             tools:layout_editor_absoluteX="0dp" />
 
@@ -113,13 +113,11 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:text="@android:string/cancel"
-            android:textColor="@color/core_grey_60"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registerButton"
-            app:layout_constraintVertical_bias="0" />
+            tools:visibility="visible" />
 
         <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
             android:id="@+id/registerButton"
@@ -130,10 +128,8 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
             app:circularProgressMaterialButton__label="@string/RegistrationActivity_continue"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/cancel_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintVertical_bias="0"
             app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Tonal" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -60,7 +60,7 @@
                     android:layout_marginEnd="@dimen/dsl_settings_gutter"
                     android:layout_marginBottom="16dp"
                     android:text="@string/ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message"
-                    android:textColor="@color/core_grey_60"
+                    android:textColor="@color/signal_colorOnSurfaceVariant"
                     app:layout_constraintTop_toBottomOf="@id/title" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -135,15 +135,17 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/given_name_wrapper"
-                        style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
+                        style="@style/Widget.Signal.TextInputLayout.Registration"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
                         android:layout_marginTop="13dp"
-                        android:hint="@string/CreateProfileActivity_first_name_required">
+                        android:hint="@string/CreateProfileActivity_first_name_required"
+                        android:theme="@style/Signal.ThemeOverlay.TextInputLayout">
 
                         <org.thoughtcrime.securesms.components.emoji.EmojiEditText
                             android:id="@+id/given_name"
-                            style="@style/Widget.Signal.TextInputEditText.Registration"
+                            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -168,15 +170,17 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/family_name_wrapper"
-                        style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
+                        style="@style/Widget.Signal.TextInputLayout.Registration"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
                         android:layout_marginTop="13dp"
-                        android:hint="@string/CreateProfileActivity_last_name_optional">
+                        android:hint="@string/CreateProfileActivity_last_name_optional"
+                        android:theme="@style/Signal.ThemeOverlay.TextInputLayout">
 
                         <org.thoughtcrime.securesms.components.emoji.EmojiEditText
                             android:id="@+id/family_name"
-                            style="@style/Widget.Signal.TextInputEditText.Registration"
+                            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"

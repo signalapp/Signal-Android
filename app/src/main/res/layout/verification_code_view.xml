@@ -19,11 +19,12 @@
         app:layout_constraintEnd_toStartOf="@+id/container_one"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:materialThemeOverlay="@style/Signal.ThemeOverlay.TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/code_zero"
-            style="@style/Widget.Signal.TextInputEditText.Registration"
+            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -48,11 +49,12 @@
         app:layout_constraintEnd_toStartOf="@+id/container_two"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_zero"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:materialThemeOverlay="@style/Signal.ThemeOverlay.TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/code_one"
-            style="@style/Widget.Signal.TextInputEditText.Registration"
+            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -77,11 +79,12 @@
         app:layout_constraintEnd_toStartOf="@+id/separator"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_one"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:materialThemeOverlay="@style/Signal.ThemeOverlay.TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/code_two"
-            style="@style/Widget.Signal.TextInputEditText.Registration"
+            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -98,8 +101,8 @@
         android:id="@+id/separator"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:layout_marginStart="4dp"
+        android:gravity="center"
         android:importantForAccessibility="no"
         android:text="-"
         android:textSize="28sp"
@@ -108,6 +111,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_two"
         app:layout_constraintTop_toTopOf="parent"
+        app:materialThemeOverlay="@style/Signal.ThemeOverlay.TextInputLayout"
         tools:ignore="HardcodedText" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -122,11 +126,12 @@
         app:layout_constraintEnd_toStartOf="@+id/container_four"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/separator"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:materialThemeOverlay="@style/Signal.ThemeOverlay.TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/code_three"
-            style="@style/Widget.Signal.TextInputEditText.Registration"
+            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -151,11 +156,12 @@
         app:layout_constraintEnd_toStartOf="@+id/container_five"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_three"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:materialThemeOverlay="@style/Signal.ThemeOverlay.TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/code_four"
-            style="@style/Widget.Signal.TextInputEditText.Registration"
+            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -180,11 +186,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_four"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:materialThemeOverlay="@style/Signal.ThemeOverlay.TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/code_five"
-            style="@style/Widget.Signal.TextInputEditText.Registration"
+            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
