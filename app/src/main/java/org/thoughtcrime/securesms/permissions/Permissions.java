@@ -157,7 +157,11 @@ public class Permissions {
       if (ifNecesary && (permissionObject.hasAll(requestedPermissions) || !condition)) {
         executePreGrantedPermissionsRequest(request);
       } else if (rationaleDialogMessage != null && rationalDialogHeader != null) {
-        executePermissionsRequestWithRationale(request);
+        if (BuildConfig.IS_SIGNAL) {
+          executePermissionsRequestWithRationale(request);
+        } else {
+          executePigeonPermissionsRequestWithRationale(request);
+        }
       } else {
         executePermissionsRequest(request);
       }
@@ -172,25 +176,25 @@ public class Permissions {
 
     @SuppressWarnings("ConstantConditions")
     private void executePermissionsRequestWithRationale(PermissionsRequest request) {
-      if (BuildConfig.IS_SIGNAL) {
-        RationaleDialog.createFor(permissionObject.getContext(), rationaleDialogMessage, rationalDialogHeader)
-                       .setPositiveButton(R.string.Permissions_continue, (dialog, which) -> executePermissionsRequest(request))
-                       .setNegativeButton(R.string.Permissions_not_now, (dialog, which) -> executeNoPermissionsRequest(request))
-                       .setCancelable(rationaleDialogCancelable)
-                       .show()
-                       .getWindow()
-                       .setLayout((int) (permissionObject.getWindowWidth() * .75), ViewGroup.LayoutParams.WRAP_CONTENT);
-      } else {
-        AlertDialog dialog = PigeonRationaleDialog.createNonMsgDialog(permissionObject.getContext(),
-                                                                      rationaleDialogMessage,
-                                                                      R.string.Permissions_continue,
-                                                                      R.string.Permissions_not_now,
-                                                                      () -> executePermissionsRequest(request),
-                                                                      () -> executeNoPermissionsRequest(request),
-                                                                      null);
-        dialog.setCancelable(rationaleDialogCancelable);
-        dialog.show();
-      }
+      RationaleDialog.createFor(permissionObject.getContext(), rationaleDialogMessage, rationalDialogHeader)
+                     .setPositiveButton(R.string.Permissions_continue, (dialog, which) -> executePermissionsRequest(request))
+                     .setNegativeButton(R.string.Permissions_not_now, (dialog, which) -> executeNoPermissionsRequest(request))
+                     .setCancelable(rationaleDialogCancelable)
+                     .show()
+                     .getWindow()
+                     .setLayout((int)(permissionObject.getWindowWidth() * .75), ViewGroup.LayoutParams.WRAP_CONTENT);
+    }
+
+    private void executePigeonPermissionsRequestWithRationale(PermissionsRequest request) {
+      AlertDialog dialog = PigeonRationaleDialog.createNonMsgDialog(permissionObject.getContext(),
+                                                                    rationaleDialogMessage,
+                                                                    R.string.Permissions_continue,
+                                                                    R.string.Permissions_not_now,
+                                                                    () -> executePermissionsRequest(request),
+                                                                    () -> executeNoPermissionsRequest(request),
+                                                                    null);
+      dialog.setCancelable(rationaleDialogCancelable);
+      dialog.show();
     }
 
     private void executePermissionsRequest(PermissionsRequest request) {
