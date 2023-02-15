@@ -3,12 +3,14 @@ package org.thoughtcrime.securesms.mediapreview
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup.LayoutParams
 import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.core.transition.addListener
 import androidx.core.view.animation.PathInterpolatorCompat
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.commit
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.transition.platform.MaterialContainerTransform
@@ -86,20 +88,34 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
     setContentView(R.layout.activity_mediapreview_v2)
 
     transitionImageView = findViewById(R.id.transition_image_view)
-    if (MediaPreviewCache.drawable != null) {
+    val cacheDrawable = MediaPreviewCache.drawable
+    if (cacheDrawable != null) {
+      val bounds = cacheDrawable.bounds
+      val aspectRatio = bounds.width().toFloat() / bounds.height()
+      val screenRatio = resources.displayMetrics.widthPixels.toFloat() / resources.displayMetrics.heightPixels
+      if (aspectRatio > screenRatio) {
+        transitionImageView.updateLayoutParams<LayoutParams> {
+          width = LayoutParams.MATCH_PARENT
+        }
+      } else {
+        transitionImageView.updateLayoutParams<LayoutParams> {
+          height = LayoutParams.MATCH_PARENT
+        }
+      }
+
       transitionImageView.setImageDrawable(MediaPreviewCache.drawable)
+
+      lifecycleDisposable += viewModel.state.map {
+        it.isInSharedAnimation to it.loadState
+      }.distinctUntilChanged().subscribe { (isInSharedAnimation, loadState) ->
+        if (!isInSharedAnimation && loadState == MediaPreviewV2State.LoadState.MEDIA_READY) {
+          transitionImageView.clearAnimation()
+          transitionImageView.animate().alpha(0f)
+        }
+      }
     } else {
       transitionImageView.visibility = View.INVISIBLE
       viewModel.setIsInSharedAnimation(false)
-    }
-
-    lifecycleDisposable += viewModel.state.map {
-      it.isInSharedAnimation to it.loadState
-    }.distinctUntilChanged().subscribe { (isInSharedAnimation, loadState) ->
-      if (!isInSharedAnimation && loadState == MediaPreviewV2State.LoadState.MEDIA_READY) {
-        transitionImageView.clearAnimation()
-        transitionImageView.animate().alpha(0f)
-      }
     }
 
     voiceNoteMediaController = VoiceNoteMediaController(this)
