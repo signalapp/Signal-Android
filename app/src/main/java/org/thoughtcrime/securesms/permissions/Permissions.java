@@ -176,7 +176,7 @@ public class Permissions {
                      .setCancelable(rationaleDialogCancelable)
                      .show()
                      .getWindow()
-                     .setLayout((int)(permissionObject.getWindowWidth() * .75), ViewGroup.LayoutParams.WRAP_CONTENT);
+                     .setLayout((int)(permissionObject.getWindowWidth() * .75), ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
     private void executePermissionsRequest(PermissionsRequest request) {
