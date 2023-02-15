@@ -10,10 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.ScrollView;
-import android.widget.Spinner;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -116,7 +114,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
       cancel.setVisibility(View.GONE);
     }
 
-    viewModel.getLiveNumber().observe(getViewLifecycleOwner(), controller::updateNumber);
+    viewModel.getLiveNumber().observe(getViewLifecycleOwner(), controller::updateNumberFormatter);
 
     if (viewModel.hasCaptchaToken()) {
       ThreadUtil.runOnMainDelayed(() -> handleRegister(requireContext()), 250);
@@ -129,6 +127,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
       supportActionBar.setTitle(null);
     }
     controller.prepopulateCountryCode();
+    controller.setNumberAndCountryCode(viewModel.getNumber());
     showKeyboard(number.getEditText());
   }
 
@@ -159,7 +158,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
       return;
     }
 
-    if (TextUtils.isEmpty(this.number.getEditText().getText())) {
+    if (TextUtils.isEmpty(viewModel.getNumber().getNationalNumber())) {
       showErrorDialog(context, getString(R.string.RegistrationActivity_please_enter_a_valid_phone_number_to_register));
       return;
     }
