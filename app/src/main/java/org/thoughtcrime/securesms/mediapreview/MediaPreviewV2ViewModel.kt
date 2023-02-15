@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mediapreview
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
@@ -29,6 +30,10 @@ class MediaPreviewV2ViewModel : ViewModel() {
 
   fun setIsInSharedAnimation(isInSharedAnimation: Boolean) {
     store.update { it.copy(isInSharedAnimation = isInSharedAnimation) }
+  }
+
+  fun shouldFinishAfterTransition(initialMediaUri: Uri): Boolean {
+    return currentPosition in store.state.mediaRecords.indices && store.state.mediaRecords[currentPosition].toMedia()?.uri == initialMediaUri
   }
 
   fun fetchAttachments(context: Context, startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaTable.Sorting, forceRefresh: Boolean = false) {

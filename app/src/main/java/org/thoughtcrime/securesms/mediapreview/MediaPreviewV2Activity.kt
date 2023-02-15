@@ -25,6 +25,9 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
 
   private val viewModel: MediaPreviewV2ViewModel by viewModels()
   private val lifecycleDisposable = LifecycleDisposable()
+  private val args by lazy {
+    MediaIntentFactory.requireArguments(intent.extras!!)
+  }
 
   private lateinit var transitionImageView: ImageView
 
@@ -34,8 +37,6 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    val args = MediaIntentFactory.requireArguments(intent.extras!!)
-
     if (MediaPreviewCache.drawable != null) {
       val originalCorners = ShapeAppearanceModel.Builder()
         .setTopLeftCornerSize(args.sharedElementArgs.topLeft)
@@ -120,6 +121,14 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
   override fun onPause() {
     super.onPause()
     MediaPreviewCache.drawable = null
+  }
+
+  override fun finishAfterTransition() {
+    if (viewModel.shouldFinishAfterTransition(args.initialMediaUri)) {
+      super.finishAfterTransition()
+    } else {
+      super.finish()
+    }
   }
 
   companion object {
