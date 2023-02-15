@@ -196,10 +196,6 @@ public class RecipientUtil {
     SignalDatabase.recipients().setProfileSharing(recipient.getId(), true);
     ApplicationDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
     StorageSyncHelper.scheduleSyncForDataChange();
-
-    if (recipient.hasServiceId()) {
-      ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(recipient.getId()));
-    }
   }
 
   /**
