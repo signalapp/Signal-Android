@@ -4186,7 +4186,7 @@
     <string name="NotificationsSettingsFragment__messages">Повідомлення</string>
     <string name="NotificationsSettingsFragment__calls">Виклики</string>
     <string name="NotificationsSettingsFragment__notify_when">Сповіщати коли…</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Контакт приєднвся до Signal</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Контакт приєданвся до Signal</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Профілі сповіщень</string>
     <!-- Notification preference option header -->
