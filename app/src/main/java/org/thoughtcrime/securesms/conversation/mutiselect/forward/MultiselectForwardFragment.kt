@@ -124,7 +124,7 @@ class MultiselectForwardFragment :
       FeatureFlags.shareSelectionLimit(),
       !args.selectSingleRecipient,
       ContactSearchAdapter.DisplaySmsTag.DEFAULT,
-      ContactSearchAdapter.DisplayPhoneNumber.NEVER,
+      ContactSearchAdapter.DisplaySecondaryInformation.NEVER,
       this::getConfiguration,
       object : ContactSearchMediator.SimpleCallbacks() {
         override fun onBeforeContactsSelected(view: View?, contactSearchKeys: Set<ContactSearchKey>): Set<ContactSearchKey> {
