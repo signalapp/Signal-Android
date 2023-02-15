@@ -180,6 +180,7 @@ class SignalSmsExportService : SmsExportService() {
     val messageId: Any = when (this) {
       is ExportableMessage.Mms<*> -> id
       is ExportableMessage.Sms<*> -> id
+      is ExportableMessage.Skip<*> -> id
     }
 
     if (messageId is MessageId) {

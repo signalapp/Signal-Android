@@ -5300,6 +5300,10 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
       }
     }
 
+    public MessageId getCurrentId() {
+      return new MessageId(CursorUtil.requireLong(cursor, ID));
+    }
+
     @Override
     public @NonNull MessageExportState getMessageExportStateForCurrentRecord() {
       byte[] messageExportState = CursorUtil.requireBlob(cursor, MessageTable.EXPORT_STATE);
