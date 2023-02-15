@@ -209,7 +209,6 @@ fun decryptedGroup(
   inviteLinkPassword: ByteArray = ByteArray(0),
   disappearingMessageTimer: DecryptedTimer = DecryptedTimer.getDefaultInstance()
 ): DecryptedGroup {
-
   val builder = DecryptedGroup.newBuilder()
     .setAccessControl(accessControl)
     .setAvatar(avatar)

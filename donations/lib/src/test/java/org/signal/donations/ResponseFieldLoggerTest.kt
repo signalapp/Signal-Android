@@ -32,7 +32,9 @@ class ResponseFieldLoggerTest {
 
   @Test
   fun `Given non-empty, when I logFields, then I expect no crash`() {
-    ResponseFieldLogger.logFields(ObjectMapper(), """
+    ResponseFieldLogger.logFields(
+      ObjectMapper(),
+      """
       {
         "id": "asdf",
         "client_secret": 12345,
@@ -40,6 +42,7 @@ class ResponseFieldLoggerTest {
           "a": "a"
         }
       }
-    """.trimIndent())
+      """.trimIndent()
+    )
   }
 }

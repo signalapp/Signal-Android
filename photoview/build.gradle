@@ -1,62 +1,11 @@
 plugins {
-    id 'com.android.library'
-    id 'com.google.protobuf'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
+    id 'signal-library'
 }
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
-
-    defaultConfig {
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
-        multiDexEnabled true
-    }
-
-    compileOptions {
-        coreLibraryDesugaringEnabled true
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-}
-
-protobuf {
-    protoc {
-        artifact = 'com.google.protobuf:protoc:3.18.0'
-    }
-    generateProtoTasks {
-        all().each { task ->
-            task.builtins {
-                java {
-                    option "lite"
-                }
-            }
-        }
-    }
+    namespace 'com.github.chrisbanes.photoview'
 }
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
-    lintChecks project(':lintchecks')
-
-    coreLibraryDesugaring libs.android.tools.desugar
-
-    api libs.androidx.annotation
-
-    implementation libs.androidx.core.ktx
-    implementation libs.androidx.lifecycle.common.java8
-    implementation libs.google.protobuf.javalite
-    implementation libs.androidx.sqlite
-    implementation libs.rxjava3.rxjava
-
-    testImplementation testLibs.junit.junit
-    testImplementation testLibs.mockito.core
-    testImplementation (testLibs.robolectric.robolectric) {
-        exclude group: 'com.google.protobuf', module: 'protobuf-java'
-    }
 }

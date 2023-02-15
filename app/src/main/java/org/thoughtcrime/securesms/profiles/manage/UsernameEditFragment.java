@@ -201,6 +201,10 @@ public class UsernameEditFragment extends LoggingFragment {
 
         break;
     }
+
+    CharSequence error = usernameInputWrapper.getError();
+    binding.usernameError.setVisibility(error != null ? View.VISIBLE : View.GONE);
+    binding.usernameError.setText(usernameInputWrapper.getError());
   }
 
   private void presentButtonState(@NonNull UsernameEditViewModel.ButtonState buttonState) {

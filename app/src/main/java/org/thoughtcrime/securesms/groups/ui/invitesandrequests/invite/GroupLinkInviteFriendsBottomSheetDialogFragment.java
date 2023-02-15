@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.ui.sharablegrouplink.GroupLinkBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.util.Objects;
@@ -127,6 +128,12 @@ public final class GroupLinkInviteFriendsBottomSheetDialogFragment extends Botto
                         shareGroupLinkAndDismiss(groupId);
                       }
              );
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    WindowUtil.initializeScreenshotSecurity(requireContext(), requireDialog().getWindow());
   }
 
   protected void shareGroupLinkAndDismiss(@NonNull GroupId.V2 groupId) {

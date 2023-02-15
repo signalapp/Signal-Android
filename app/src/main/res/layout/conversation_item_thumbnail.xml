@@ -2,30 +2,19 @@
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:viewBindingIgnore="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <org.thoughtcrime.securesms.components.ThumbnailView
-        android:id="@+id/conversation_thumbnail_image"
+    <ViewStub
+        android:id="@+id/thumbnail_view_stub"
         android:layout_width="@dimen/media_bubble_default_dimens"
         android:layout_height="@dimen/media_bubble_default_dimens"
-        android:adjustViewBounds="true"
-        android:clickable="false"
-        android:longClickable="false"
-        android:scaleType="fitCenter"
-        android:contentDescription="@string/conversation_item__mms_image_description"
-        android:visibility="gone"
-        tools:visibility="visible"
-        app:thumbnail_radius="1dp"/>
+        android:layout="@layout/conversation_item_thumbnail_thumbnail_view_stub" />
 
-    <org.thoughtcrime.securesms.components.AlbumThumbnailView
-        android:id="@+id/conversation_thumbnail_album"
+    <ViewStub
+        android:id="@+id/album_view_stub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="false"
-        android:longClickable="false"
-        android:contentDescription="@string/conversation_item__mms_image_description"
-        android:visibility="gone"/>
+        android:layout="@layout/conversation_item_thumbnail_album_thumbnail_view_stub" />
 
     <ImageView
         android:id="@+id/conversation_thumbnail_shade"
@@ -35,17 +24,14 @@
         android:visibility="gone"
         android:src="@drawable/image_shade" />
 
-    <org.thoughtcrime.securesms.components.ConversationItemFooter
-        android:id="@+id/conversation_thumbnail_footer"
+    <ViewStub
+        android:id="@+id/footer_view_stub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
         android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
         android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
-        app:footer_mode="outgoing"
-        app:footer_text_color="@color/signal_text_toolbar_subtitle"
-        app:footer_reveal_dot_color="@color/signal_text_toolbar_subtitle"
-        app:footer_icon_color="@color/signal_text_toolbar_subtitle"/>
+        android:layout="@layout/conversation_item_thumbnail_footer_view_stub" />
 
 </merge>

@@ -179,7 +179,7 @@ public class CreatePaymentFragment extends LoggingFragment {
 
   private void initializeInfoIcon() {
     spacer   = Objects.requireNonNull(AppCompatResources.getDrawable(requireContext(), R.drawable.payment_info_pad));
-    infoIcon = Objects.requireNonNull(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_update_info_16));
+    infoIcon = Objects.requireNonNull(AppCompatResources.getDrawable(requireContext(), R.drawable.symbol_info_compact_16));
 
     DrawableCompat.setTint(infoIcon, exchange.getCurrentTextColor());
 

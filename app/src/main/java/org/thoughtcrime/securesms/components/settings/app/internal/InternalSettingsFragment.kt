@@ -578,6 +578,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      clickPref(
+        title = DSLSettingsText.from("Clear Username education ui hint"),
+        onClick = {
+          SignalStore.uiHints().clearHasSeenUsernameEducation()
+        }
+      )
+
       if (FeatureFlags.chatFilters()) {
         dividerPref()
         sectionHeaderPref(DSLSettingsText.from("Chat Filters"))

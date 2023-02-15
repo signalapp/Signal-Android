@@ -23,7 +23,8 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 abstract class BaseRecipientTest {
 
   @Rule
-  @JvmField val mockitoRule: MockitoRule = MockitoJUnit.rule()
+  @JvmField
+  val mockitoRule: MockitoRule = MockitoJUnit.rule()
 
   @Mock
   private lateinit var applicationDependenciesStaticMock: MockedStatic<ApplicationDependencies>

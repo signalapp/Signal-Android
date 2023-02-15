@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 class ExpandingCaptionView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
-  defStyleAttr: Int = 0,
+  defStyleAttr: Int = 0
 ) : EmojiTextView(context, attrs, defStyleAttr) {
 
   var expandedHeight = 0

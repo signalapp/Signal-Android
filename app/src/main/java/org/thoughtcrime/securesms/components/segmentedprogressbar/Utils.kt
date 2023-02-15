@@ -38,7 +38,6 @@ fun SegmentedProgressBar.getDrawingComponents(
   segment: Segment,
   segmentIndex: Int
 ): Pair<MutableList<RectF>, MutableList<Paint>> {
-
   val rectangles = mutableListOf<RectF>()
   val paints = mutableListOf<Paint>()
   val segmentWidth = segmentWidth

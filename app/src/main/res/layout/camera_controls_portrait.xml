@@ -27,6 +27,7 @@
         android:padding="6dp"
         android:scaleType="fitCenter"
         android:src="@drawable/camerax_flash_toggle"
+        android:tint="@color/core_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,9 +41,10 @@
         android:contentDescription="@string/CameraXFragment_change_camera_description"
         android:scaleType="centerInside"
         android:visibility="gone"
+        android:tint="@color/core_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_switch_camera_28"
+        app:srcCompat="@drawable/symbol_switch_24"
         tools:visibility="visible" />
 
     <FrameLayout

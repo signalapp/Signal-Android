@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import androidx.annotation.MainThread
 import androidx.appcompat.content.res.AppCompatResources
 import com.airbnb.lottie.SimpleColorFilter
 import org.signal.core.util.concurrent.SignalExecutors
@@ -28,8 +29,13 @@ object AvatarRenderer {
 
   val DIMENSIONS = AvatarHelper.AVATAR_DIMENSIONS
 
+  private var typeface: Typeface? = null
+
+  @MainThread
   fun getTypeface(context: Context): Typeface {
-    return Typeface.createFromAsset(context.assets, "fonts/Inter-Medium.otf")
+    val interMedium = typeface ?: Typeface.createFromAsset(context.assets, "fonts/Inter-Medium.otf")
+    typeface = interMedium
+    return interMedium
   }
 
   fun renderAvatar(context: Context, avatar: Avatar, onAvatarRendered: (Media) -> Unit, onRenderFailed: (Throwable?) -> Unit) {

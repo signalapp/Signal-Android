@@ -196,9 +196,9 @@
     <string name="CensorshipCircumventionMegaphone_no_thanks">தேவையில்லை,நன்றி</string>
 
     <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">நீக்கு</string>
-    <string name="ClearProfileActivity_remove_profile_photo">சுயவிவர படத்தை நீக்கவா?</string>
-    <string name="ClearProfileActivity_remove_group_photo">குழு புகைப்படத்தை அகற்றவா?</string>
+    <string name="ClearProfileActivity_remove">அகற்று</string>
+    <string name="ClearProfileActivity_remove_profile_photo">சுயவிவர படத்தை அகற்ற வேண்டுமா?</string>
+    <string name="ClearProfileActivity_remove_group_photo">குழு புகைப்படத்தை அகற்ற வேண்டுமா?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Signal லைப் புதுப்பிக்கவும்</string>
@@ -234,9 +234,9 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">புதியது</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">உரையாடல்கள்  </string>
+    <string name="ContactsCursorLoader__chats">சாட்ஸ்</string>
     <!-- Header for conversation search section labeled "Messages" -->
-    <string name="ContactsCursorLoader__messages">செய்திகள்</string>
+    <string name="ContactsCursorLoader__messages">மெசேஜ்கள்</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">செய்தி %1$s</string>
@@ -281,8 +281,8 @@
     <string name="ConversationItem_read_more">மேலும் படிக்க</string>
     <string name="ConversationItem_download_more">மேலும் பதிவிறக்க</string>
     <string name="ConversationItem_pending">நிலுவையில்</string>
-    <string name="ConversationItem_this_message_was_deleted">இந்த செய்தி நீக்கப்பட்டது.</string>
-    <string name="ConversationItem_you_deleted_this_message">இந்த செய்தியை நீக்கிவிட்டீர்கள்.</string>
+    <string name="ConversationItem_this_message_was_deleted">இந்த மெசேஜ் நீக்கப்பட்டது.</string>
+    <string name="ConversationItem_you_deleted_this_message">இந்த மெசேஜை நீக்கிவிட்டீர்கள்.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">செய்தியைப் பதிவிறக்க முடியவில்லை. %1$s மீண்டும் அதை அனுப்ப வேண்டும்.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -352,12 +352,12 @@
     <string name="ConversationActivity_new_say_it_with_stickers">புதிய! ஒட்டிகளால் சொல்லுங்கள்</string>
 
     <string name="ConversationActivity_cancel">ரத்து</string>
-    <string name="ConversationActivity_delete_conversation">உரையாடலை நீக்கவா?</string>
-    <string name="ConversationActivity_delete_and_leave_group">குழுவை நீக்கி விட்டு வெளியேறலாமா?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">இந்த உரையாடல் எல்லாவற்றிலிருந்தும் நீக்கப்படும் உங்கள் சாதனங்கள்.</string>
+    <string name="ConversationActivity_delete_conversation">உரையாடலை நீக்க வேண்டுமா?</string>
+    <string name="ConversationActivity_delete_and_leave_group">குழுவை நீக்கி விட்டு வெளியேற வேண்டுமா?</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">இந்த உரையாடல் உங்கள் சாதனங்கள் எல்லாவற்றிலிருந்தும் நீக்கப்படும்.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">நீங்கள் இந்த குழுவை விட்டு வெளியேறும், மற்றும் இது எல்லாவற்றிலிருந்தும் நீக்கப்படும் உங்கள் சாதனங்கள்.</string>
-    <string name="ConversationActivity_delete">அழி</string>
-    <string name="ConversationActivity_delete_and_leave">நீக்கி வெளியேறவும்</string>
+    <string name="ConversationActivity_delete">நீக்கு</string>
+    <string name="ConversationActivity_delete_and_leave">நீக்கி வெளியேறுக</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$sஐ அழைக்க, சிக்னலுக்கு உங்கள் மைக்ரோஃபோனுக்கு அனுமதி தேவை microphone access and permission for Signal</string>
 
 
@@ -393,7 +393,7 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">தொடர்புகள் பயன்பாடு கிடைக்கவில்லை.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="one">தேர்ந்தெடுக்கப்பட்ட செய்தியை நீக்க ?</item>
+        <item quantity="one">தேர்ந்தெடுக்கப்பட்ட செய்தியை நீக்க வேண்டுமா?</item>
         <item quantity="other">தேர்ந்தெடுக்கப்பட்ட செய்திகளை நீக்கவா?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">சேமிப்பில் சேர்க்கவேண்டுமா?</string>
@@ -426,7 +426,7 @@
     <string name="ConversationFragment_delete_on_this_device">இந்த டிவைஸில் நீக்கு</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">எல்லா இடங்களிலும் நீக்கு</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">சிக்னலின் சமீபத்திய பதிப்பில் இருந்தால், உரையாடலில் உள்ள அனைவருக்கும் இந்த செய்தி நீக்கப்படும். நீங்கள் ஒரு செய்தியை நீக்கியுள்ளதை அவர்களால் பார்க்க முடியும்.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Signal இன் சமீபத்திய பதிப்பில் இருந்தால், உரையாடலில் உள்ள அனைவருக்கும் இந்த மெசேஜ் நீக்கப்படும். நீங்கள் ஒரு மெசேஜை நீக்கியுள்ளதை அவர்களால் பார்க்க முடியும்.</string>
     <string name="ConversationFragment_quoted_message_not_found">அசல் செய்தி கிடைக்கவில்லை</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">அசல் செய்தி இனி கிடப்பில் இல்லை  </string>
     <string name="ConversationFragment_failed_to_open_message">செய்தியைத் திறப்பதில் தோல்வி</string>
@@ -461,7 +461,7 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">படிக்காத சாட்ஸ் எதுவுமில்லை</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">தேர்ந்தெடுக்கப்பட்ட உரையாடலை அழி ?</item>
+        <item quantity="one">தேர்ந்தெடுக்கப்பட்ட உரையாடலை நீக்க வேண்டுமா?</item>
         <item quantity="other">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகளை நீக்கவா?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">வடிகட்ட கீழே இழுக்கவும்</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">வடிகட்ட விடுவிக்கவும்</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">விவரம்</string>
@@ -600,7 +600,7 @@
     <string name="BackupsPreferenceFragment__last_backup">கடைசியாக மறுபிரதி எடுக்கப்பட்டது:%1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">மறுபிரதி கோப்புறை</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">காப்பு நேரம்</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">காப்புப்பிரதி கடவுச்சொற்றொடரை சரிபார்க்கவும்</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">உங்கள் காப்புப்பிரதி கடவுச்சொற்றொடரைச் சோதித்து, அது பொருந்துமா என்பதைச் சரிபார்க்கவும்</string>
     <string name="BackupsPreferenceFragment__turn_on">இயக்கவும்</string>
@@ -631,49 +631,52 @@
     <string name="DateUtils_today">இன்று</string>
     <string name="DateUtils_yesterday">நேற்று</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s இல் %2$s</string>
+    <string name="DateUtils_schedule_at">%1$s %2$s மணிக்கு</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">நாளை</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">இன்றிரவு</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">திட்டமிடப்பட்ட மெசேஜ்கள்</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">தேதி &amp; நேரத்தைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">திட்டமிடப்பட்ட மெசேஜ்கள்</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">திட்டமிடப்பட்ட மெசேஜை நீங்கள் அனுப்பும்போது, அனுப்பும் நேரத்தில் உங்கள் டிவைஸ் ஆன் செய்யப்பட்டு இணையத்துடன் இணைக்கப்பட்டுள்ளதா என்பதை உறுதிப்படுத்திக்கொள்ளவும். இல்லையெனில், உங்கள் டிவைஸ் மீண்டும் இணைக்கப்படும்போது உங்கள் செய்தி அனுப்பப்படும்.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">சரி</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">மெசேஜ் திட்டமிடலை இயக்க:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">மெசேஜ் திட்டமிடலை மீண்டும் இயக்க:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">தேதியைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">நேரத்தைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">மெசேஜைத் திட்டமிடுக</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
-
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">அட்டவணை அனுப்பவும்</string>
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">(%1$s) %2$s இன் எல்லா நேரங்களும்</string>
+    <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">தேர்ந்தெடுக்கப்பட்ட நேரம் கடந்த காலத்தில் உள்ளது. இது உடனடியாக செய்தியை அனுப்பும்.</string>
+    <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">உடனே அனுப்புக</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">இப்போது அனுப்பு</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">மீண்டும் திட்டமிடு</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">அழி</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">நீக்கு</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">தேர்ந்தெடுக்கப்பட்ட திட்டமிடப்பட்ட மெசேஜை நீக்க வேண்டுமா?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">திட்டமிடப்பட்ட மெசேஜை அழிக்கிறது…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">உரையாடல் அமர்வு புதுப்பிக்கப்பட்டது</string>
@@ -773,7 +776,7 @@
         <item quantity="other">இந்த உறுப்பினர்கள் மீண்டும் இந்த குழுவில் சேர அழைப்பை ஏற்க வேண்டும், மேலும் அவர்கள் ஏற்றுக்கொள்ளும் வரை குழு செய்திகளைப் பெற மாட்டார்கள்:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">இந்த உறுப்பினர் குழுவிலிருந்து நீக்கப்பட்டார், மேலும் அவர்கள் பயன்பாட்டை மேம்படுத்தும் வரை அவர்களால் மீண்டும் சேர முடியாது.</item>
+        <item quantity="one">இந்த உறுப்பினர் குழுவிலிருந்து நீக்கப்பட்டார், மேலும் அவர்கள் செயலியை மேம்படுத்தும் வரை அவர்களால் மீண்டும் சேர முடியாது:</item>
         <item quantity="other">இந்த உறுப்பினர்கள் குழுவிலிருந்து நீக்கப்பட்டனர், மேலும் அவர்கள் பயன்பாட்டை மேம்படுத்தும் வரை அவர்களால் மீண்டும் சேர முடியாது.</item>
     </plurals>
 
@@ -894,13 +897,13 @@
     <string name="AddGroupDetailsFragment__this_field_is_required">இந்த தகவல் தேவை.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">குழு உருவாக்கம் தோல்வியடைந்தது.</string>
     <string name="AddGroupDetailsFragment__try_again_later">பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
-    <string name="AddGroupDetailsFragment__remove">நீக்கு</string>
+    <string name="AddGroupDetailsFragment__remove">அகற்று</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS தொடர்பு</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">இந்த குழுவிலிருந்து %1$s ஐ அகற்றவா?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">இந்த குழுவிலிருந்து %1$s ஐ அகற்ற வேண்டுமா?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">சிக்னல் குழுக்களை ஆதரிக்காத ஒரு தொடர்பை நீங்கள் தேர்ந்தெடுத்துள்ளீர்கள், எனவே இந்தக் குழு எம்.எம்.எஸ் ஆக இருக்கும். தனிப்பயன் எம்.எம்.எஸ் குழுப் பெயர்கள் மற்றும் புகைப்படங்கள் உங்களுக்கு மட்டுமே தெரியப்படும்.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal குழுக்களை ஆதரிக்காத ஒரு தொடர்பை தேர்ந்தெடுத்துள்ளீர்கள், இது MMS குழுவாகும். தனிப்பயன் எம்.எம்.எஸ் குழு பெயர்கள் மற்றும் புகைப்படங்கள் உங்களுக்கு மட்டுமே தெரியப்படும். மறைகுறியாக்கப்பட்ட செய்தியிடலில் கவனம் செலுத்த எம்.எம்.எஸ் குழுக்களுக்கான ஆதரவு விரைவில் அகற்றப்படும்.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal குழுக்களை ஆதரிக்காத ஒரு தொடர்பை தேர்ந்தெடுத்துள்ளீர்கள், இது MMS குழுவாகும். தனிப்பயன் MMS குழுப் பெயர்கள் மற்றும் புகைப்படங்கள் உங்களுக்கு மட்டுமே காட்டப்படும். மறைகுறியாக்கப்பட்ட மெசேஜ் அனுப்புவதில் கவனம் செலுத்த MMS குழுக்களுக்கான ஆதரவு விரைவில் அகற்றப்படும்.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">புதிய உறுப்பினர்களை யார் சேர்க்க முடியும்?</string>
@@ -1008,7 +1011,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">குழுவில் சேர முடியவில்லை</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">ஒரு நிர்வாகி உங்களை நீக்கியதால், குழு இணைப்பு வாயிலாக இந்தக் குழுவில் உங்களால் சேர முடியாது.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">ஒரு நிர்வாகி உங்களை அகற்றியதால், குழு இணைப்பு வாயிலாக இந்தக் குழுவில் உங்களால் சேர முடியாது.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">இது குழு இணைப்பு இருக்கிறது இல்லை நீண்டது செல்லுபடியாகும்.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1100,12 +1103,12 @@
     <string name="MediaOverviewActivity_Audio">ஒலி</string>
     <string name="MediaOverviewActivity_All">அனைத்து</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">தேர்ந்தெடுத்ததை அழி உருப்படியை?</item>
-        <item quantity="other">தேர்ந்தெடுக்கப்பட்ட உருப்படிகளை நீக்கவா?</item>
+        <item quantity="one">தேர்ந்தெடுத்த ஐட்டமினை நீக்க வேண்டுமா?</item>
+        <item quantity="other">தேர்ந்தெடுக்கப்பட்ட ஐட்டம்களை நீக்க வேண்டுமா?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">இது தேர்ந்தெடுக்கப்பட்ட கோப்பையை நிரந்தரமாக நீக்கும். இந்த உருப்படியுடன் தொடர்புடைய எந்தவொரு செய்தி உரையும் நீக்கப்படும்.</item>
-        <item quantity="other">இது தேர்ந்தெடுக்கப்பட்ட %1$d கோப்புகள் அனைத்தையும் நிரந்தரமாக நீக்கும். இந்த உருப்படிகளுடன் தொடர்புடைய எந்தவொரு செய்தி உரையும் நீக்கப்படும்.</item>
+        <item quantity="one">இது தேர்ந்தெடுக்கப்பட்ட கோப்பையை நிரந்தரமாக நீக்கும். இந்த உருப்படியுடன் தொடர்புடைய எந்தவொரு மெசேஜ் உரையும் நீக்கப்படும்.</item>
+        <item quantity="other">இது தேர்ந்தெடுக்கப்பட்ட %1$d கோப்புகள் அனைத்தையும் நிரந்தரமாக நீக்கும். இந்த உருப்படிகளுடன் தொடர்புடைய எந்தவொரு மெசேஜ் உரையும் நீக்கப்படும்.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">நீக்கப்படுகிறது</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">செய்திகள் நீக்கப்படுகிறது…</string>
@@ -1242,8 +1245,8 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">புதிய குழுவில் ஒரு உறுப்பினரைச் சேர்க்க முடியவில்லை மேலும் அவர் அகற்றப்பட்டார்.</item>
-        <item quantity="other">புதிய குழுவில் %1$s உறுப்பினர்களைச் சேர்க்க முடியவில்லை மேலும் அவர்கள் அகற்றப்பட்டனர்.</item>
+        <item quantity="one">புதிய குழுவில் ஒரு உறுப்பினரைச் சேர்க்க முடியவில்லை, அவர் அகற்றப்பட்டார்.</item>
+        <item quantity="other">புதிய குழுவில் %1$s உறுப்பினர்களைச் சேர்க்க முடியவில்லை, அவர்கள் அகற்றப்பட்டனர்.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1264,9 +1267,9 @@
     <string name="MessageRecord_s_joined_the_group">%1$s குழுவில் சேர்ந்தார்.</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">நீங்கள் %1$sஐ நீக்கிவிட்டீர்கள்.</string>
-    <string name="MessageRecord_s_removed_s">%1$s அவர்கள் %2$s அகற்றினார்கள் .</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$sஅவர்கள் உங்களை குழுவிலிருந்து நீக்கிவிட்டார்கள்.</string>
+    <string name="MessageRecord_you_removed_s">நீங்கள் %1$sஐ அகற்றிவிட்டீர்கள்.</string>
+    <string name="MessageRecord_s_removed_s">%1$s, %2$s ஐ அகற்றினர்.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s உங்களை குழுவிலிருந்து அகற்றினர்.</string>
     <string name="MessageRecord_you_left_the_group">நீங்கள் குழுவிலிருந்து வெளியேறிவிட்டீர்கள்.</string>
     <string name="MessageRecord_s_left_the_group">%1$s குழுவிலிருந்து வெளியேறினார்.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">நீங்கள் இப்போது குழுவில் இல்லை.</string>
@@ -1464,7 +1467,7 @@
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">ஒப்புக்கொள்</string>
     <string name="MessageRequestBottomView_continue">தொடர்ந்து செல் </string>
-    <string name="MessageRequestBottomView_delete">அழி</string>
+    <string name="MessageRequestBottomView_delete">நீக்கு</string>
     <string name="MessageRequestBottomView_block">தடு</string>
     <string name="MessageRequestBottomView_unblock">தடைநீக்கு</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s உங்களுக்கு செய்தி அனுப்ப அனுமதித்து, உங்கள் பெயரையும் புகைப்படத்தையும் அவர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா? நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்தியை நீங்கள் பார்த்திருப்பதை அவர்கள் அறிய மாட்டார்கள்.</string>
@@ -1583,7 +1586,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">எச்சரிக்கை</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">நீங்கள் PIN-ஐ முடக்கினால், நீங்கள் கைமுறையாக காப்புப்பிரதி எடுத்து மீட்டெடுக்காவிட்டால் Signal-ஐ மீண்டும் பதிவுசெய்யும்போது எல்லா தரவையும் இழப்பீர்கள். PIN முடக்கப்பட்டிருக்கும் போது நீங்கள் பதிவு பூட்டை இயக்க முடியாது.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You cannot turn on Registration Lock while the PIN is disabled.</string>
     <string name="PinOptOutDialog_disable_pin">PIN-ஐ முடக்கு</string>
 
     <!-- RatingManager -->
@@ -1748,7 +1751,7 @@
     <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">நீங்கள் கண்டிப்பாக குறிப்பிடவேண்டியது உங்கள்: நாட்டின் குறியீடு
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">பதிவு செய்ய சரியான தொலைபேசி எண்ணை உள்ளிடவும்.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">பதிவு செய்ய சரியான ஃபோன் எண்ணை உள்ளிடவும்.</string>
     <string name="RegistrationActivity_invalid_number">செல்லா எண்</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">நீங்கள் குறிப்பிட்ட எண் (%1$s) செல்லாது.
     </string>
@@ -1779,7 +1782,7 @@
     <string name="RegistrationActivity_continue">தொடர்</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">உங்களுடன் தனியுரிமையைப் பெறுங்கள். ஒவ்வொரு செய்தியிலும் நீங்கள் நீங்கலாய் இருங்கள் .</string>
     <string name="RegistrationActivity_enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள். கேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள்.\nகேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">நாங்கள் அனுப்பிய குறியீட்டை %1$s க்கு உள்ளிடவும்</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">உங்கள் எஸ்எம்எஸ் அல்லது அழைப்பைப் பெற உங்கள் தொலைபேசியில் செல்லுலார் சிக்னல் இருப்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்</string>
 
@@ -1874,7 +1877,7 @@
     <string name="StickerPackPreviewActivity_untitled">பெயரிடாத</string>
     <string name="StickerPackPreviewActivity_unknown">முன் தெரிந்திராத</string>
     <string name="StickerPackPreviewActivity_install">நிறுவு</string>
-    <string name="StickerPackPreviewActivity_remove">நீக்கு</string>
+    <string name="StickerPackPreviewActivity_remove">அகற்று</string>
     <string name="StickerPackPreviewActivity_stickers">ஒட்டிப்படங்கள்</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ஸ்டிக்கர் பேக்கை ஏற்றுவதில் தோல்வி</string>
 
@@ -1915,8 +1918,8 @@
     <string name="ThreadRecord_view_once_photo">காண்க-ஒருமுறை புகைப்படம்</string>
     <string name="ThreadRecord_view_once_video">காண்க-ஒருமுறை காணொளி</string>
     <string name="ThreadRecord_view_once_media">காண்க-ஒருமுறை ஊடகம் </string>
-    <string name="ThreadRecord_this_message_was_deleted">இந்த செய்தி இருந்தது நீக்கப்பட்டது</string>
-    <string name="ThreadRecord_you_deleted_this_message">இந்த செய்தியை நீக்கிவிட்டீர்கள்.</string>
+    <string name="ThreadRecord_this_message_was_deleted">இந்த மெசேஜ் நீக்கப்பட்டது.</string>
+    <string name="ThreadRecord_you_deleted_this_message">இந்த மெசேஜை நீக்கிவிட்டீர்கள்.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">கட்டணங்களைச் செயல்படுத்த கோரிக்கை அனுப்பியுள்ளீர்கள்</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -1953,6 +1956,12 @@
     <string name="ThreadRecord__reacted_s_to_their_story">அவர்கள் ஸ்டோரிக்கு %1$s என்று எதிர்வினையாற்றி உள்ளீர்கள்</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">பேமெண்ட்</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">திட்டமிடப்பட்ட செய்தி</string>
+    <!--  Displayed in the conversation list when your message history has been merged -->
+    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
+    <string name="ThreadRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal புதுப்பிப்பு</string>
@@ -1972,8 +1981,8 @@
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">உங்கள் பயனர்பெயரைத் தேர்வு செய்யவும்</string>
     <string name="UsernameEditFragment_username">பயனர்பெயர்</string>
-    <string name="UsernameEditFragment_delete">அழி</string>
-    <string name="UsernameEditFragment_successfully_removed_username">பயனர்பெயரை வெற்றிகரமாக நீக்கியது.</string>
+    <string name="UsernameEditFragment_delete">நீக்கு</string>
+    <string name="UsernameEditFragment_successfully_removed_username">பயனர்பெயர் வெற்றிகரமாக அகற்றப்பட்டது.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
     <string name="UsernameEditFragment_this_username_is_taken">இந்த பயனர்பெயர் எடுக்கப்பட்டது.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">பயனர்பெயர்களில் அ - ஃ, a-Z, 0–9 மற்றும் அடிக்கோடிட்டுக் காட்டலாம்.</string>
@@ -2044,7 +2053,7 @@
     <string name="MediaPreviewActivity_draft">வரைவு</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">வெளிப்புற சேமிப்பகத்தில் சேமிக்க Signal சேமிப்பக அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"சேமிப்பகத்தை\" இயக்கவும்.</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">அனுமதியின்றி வெளிப்புற சேமிப்பகத்தில் சேமிக்க முடியவில்லை</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">செய்தியை நீக்கவா?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">செய்தியை நீக்க வேண்டுமா?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">இது இந்த செய்தியை நிரந்தரமாக நீக்கும்.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
@@ -2061,7 +2070,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">செய்தியை நீக்குவதில் பிழை, செய்தி இன்னும் இருக்கலாம்</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>மேலும் படிக்க</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d உரையாடல்களில் %1$d புதிய செய்திகள்</string>
@@ -2090,7 +2099,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">உங்கள் கேட்பொலிக்கு %1$s என வினைபுரிந்தார்.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$sஉங்கள் பார்வைக்கு ஒரு முறை ஊடகங்களுக்கு அவர் பதில்செயல் காட்டியுள்ளீர்கள்</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">உங்கள் ஒட்டிக்கு %1$s என வினைபுரிந்தார்.</string>
-    <string name="MessageNotifier_this_message_was_deleted">இந்த செய்தி இருந்தது நீக்கப்பட்டது</string>
+    <string name="MessageNotifier_this_message_was_deleted">இந்த மெசேஜ் நீக்கப்பட்டது.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">இணைந்த சிக்னல் Signal அறிவிப்புகளை முடக்குவதா? அமைப்புகள் மற்றும் அறிவிப்புகளுக்குச் சென்று அவற்றை Signal settings சிக்னலில் மீண்டும் இயக்கலாம்.</string>
 
@@ -2253,7 +2262,7 @@
     <string name="conversation_activity__type_message_sms_insecure">பாதுகாப்பற்ற SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">பாதுகாப்பற்ற எம்.எம்.எஸ்</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">மெசேஜைத் திட்டமிடுக</string>
     <string name="conversation_activity__from_sim_name">%1$s இலிருந்து</string>
     <string name="conversation_activity__sim_n">சிம் 1%1$d</string>
     <string name="conversation_activity__send">அனுப்பு</string>
@@ -2752,7 +2761,7 @@
     <string name="preferences__advanced_pin_settings">மேம்பட்ட பின் அமைப்புகள்</string>
     <string name="preferences__free_private_messages_and_calls">Signal பயனர்களுக்கு இலவச தனிப்பட்ட செய்திகள் மற்றும் அழைப்புகள்</string>
     <string name="preferences__submit_debug_log">பிழைத்திருத்த பதிவுகளை சமர்ப்பி</string>
-    <string name="preferences__delete_account">கணக்கை நீக்குக</string>
+    <string name="preferences__delete_account">கணக்கை நீக்கு</string>
     <string name="preferences__support_wifi_calling">\'WiFi அழைப்புகள்\' பொருந்தக்கூடிய முறை</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">உங்கள் சாதனம் WiFi வழியாக SMS/MMS விநியோகத்தைப் பயன்படுத்தினால் இயக்கவும் (உங்கள் சாதனத்தில் \'WiFI அழைப்பு\' இயக்கப்பட்டால் மட்டுமே இயக்கவும்)</string>
     <string name="preferences__incognito_keyboard">மறைநிலை விசைப்பலகை</string>
@@ -2774,13 +2783,13 @@
     <string name="preferences_storage__files">கோப்பு</string>
     <string name="preferences_storage__audio">ஒலி</string>
     <string name="preferences_storage__review_storage">விமர்சனம் சேமிப்பு</string>
-    <string name="preferences_storage__delete_older_messages">பழைய செய்திகளை நீக்கவா?</string>
+    <string name="preferences_storage__delete_older_messages">பழைய மெசேஜ்களை நீக்க வேண்டுமா?</string>
     <string name="preferences_storage__clear_message_history">செய்தி வரலாற்றை அழிப்பதா?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">இது உங்கள் டிவைஸில் இருந்து %1$s ஐ விட பழையதாக உள்ள அனைத்து செய்தி வரலாறு மற்றும் மீடியாவை நிரந்தரமாக நீக்கும்.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">இது உங்கள் டிவைஸில் இருந்து %1$s ஐ விட பழையதாக உள்ள அனைத்து மெசேஜ் வரலாறு மற்றும் மீடியாவை நிரந்தரமாக நீக்கும்.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">இது எல்லா உரையாடல்களையும் மிக சமீபத்திய %1$s செய்திகளுக்கு நிரந்தரமாக நேர்த்தி செய்யும்.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">இது உங்கள் டிவைஸில் இருந்து அனைத்து செய்தி வரலாறு மற்றும் மீடியாவை நிரந்தரமாக நீக்கும்.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">அனைத்து செய்தி வரலாற்றையும் நீக்க விரும்புகிறீர்களா?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">அனைத்து செய்தி வரலாறும் நிரந்தரமாக அகற்றப்படும். இந்த செயலைச் செயல்தவிர்க்க முடியாது.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">இது உங்கள் டிவைஸில் இருந்து அனைத்து மெசேஜ் வரலாறு மற்றும் மீடியாவை நிரந்தரமாக நீக்கும்.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">அனைத்து மெசேஜ் வரலாற்றையும் நீக்க விரும்புகிறீர்களா?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">அனைத்து மெசேஜ் வரலாறும் நிரந்தரமாக அகற்றப்படும். இந்த செயலைச் செயல்தவிர்க்க முடியாது.</string>
     <string name="preferences_storage__delete_all_now">அனைத்தையும் இப்போது நீக்கு</string>
     <string name="preferences_storage__forever">என்றென்றும்</string>
     <string name="preferences_storage__one_year">1 வருடம்</string>
@@ -3145,11 +3154,11 @@
     <!-- conversation scheduled messages bar -->
 
     <!-- Label for button in a banner to show all messages currently scheduled -->
-    <string name="conversation_scheduled_messages_bar__see_all">அனைத்தையும் பார்</string>
+    <string name="conversation_scheduled_messages_bar__see_all">அனைத்தையும் காட்டு</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d மெசேஜ் திட்டமிடப்பட்டது</item>
+        <item quantity="other">%1$d மெசேஜ்கள் திட்டமிடப்பட்டன</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3166,6 +3175,8 @@
     <string name="text_secure_normal__invite_friends">நண்பர்களை அழை</string>
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">படிக்காத சாட்ஸை ஃபில்டர் செய்</string>
+    <!-- Overflow menu entry to disable unread chats filter -->
+    <string name="text_secure_normal__clear_unread_filter">படிக்காத வடிகட்டியை ஃபில்டர் செய்க</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கவும்</string>
@@ -3244,13 +3255,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">புதிய பின்னை உருவாக்கவும்</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">நீங்கள் முடியும் மாற்றம் உங்கள் பின் இந்த வரை சாதனம் பதிவு செய்யப்பட்டுள்ளது.</string>
     <string name="CreateKbsPinFragment__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">உங்கள் கணக்கை மீட்டெடுக்கவும், உங்கள் தகவலை சிக்னல் மூலம் குறியாக்கம் செய்து வைத்திருக்கவும் பின்கள் உதவும். </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">வலுவானதைத் தேர்வுசெய்க பின்</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">பின்-கள் பொருந்தவில்லை. மீண்டும் முயற்சி செய்க.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">நீங்கள் தற்பொழுது உருவாக்கிய பின்னை மீண்டும் உள்ளிடவும்.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">உங்கள் பின்னை உறுதிப்படுத்தவும்.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">பின் உருவாக்கம் தோல்வியடைந்தது</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">உங்கள் பின் சேமிக்கப்படவில்லை. பின்னை உருவாக்க நாங்கள் உங்களைத் தூண்டுவோம்.</string>
@@ -3280,7 +3291,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">கணக்கில் பூட்டப்பட்டுள்ளது</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பைப் பாதுகாக்க உங்கள் கணக்கு பூட்டப்பட்டுள்ளது. உங்கள் கணக்கில் %1$dநாட்கள் செயலற்ற நிலையில் இருந்தபின், உங்கள் பின் தேவைப்படாமல் இந்த தொலைபேசி எண்ணை மீண்டும் பதிவு செய்ய முடியும். எல்லா உள்ளடக்கமும் நீக்கப்படும்.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பைப் பாதுகாக்க உங்கள் கணக்கு பூட்டப்பட்டுள்ளது. உங்கள் கணக்கில் %1$d நாட்கள் செயலற்ற நிலையில் இருந்தபின், உங்கள் பின் தேவைப்படாமல் இந்த மொபைல் எண்ணை மீண்டும் பதிவு செய்ய முடியும். எல்லா உள்ளடக்கமும் நீக்கப்படும்.</string>
     <string name="AccountLockedFragment__next">அடுத்தது</string>
     <string name="AccountLockedFragment__learn_more">மேலும் அறிக</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3298,7 +3309,7 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal பதிவு - ஆண்ட்ராய்டுக்கான ரகசிய எண் சம்பந்தமாய் உதவி வேண்டுமா (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பிற்காக, உங்கள் பின்னை மீட்டெடுக்க வழி இல்லை. உங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு நீங்கள் எஸ்எம்எஸ் மூலம் மீண்டும் சரிபார்க்கலாம். இந்த வழக்கில், உங்கள் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்கமும் நீக்கப்படும்.</item>
+        <item quantity="one">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பிற்காக, உங்கள் பின்னை மீட்டெடுக்க வழி இல்லை. உங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு நீங்கள் SMS மூலம் மீண்டும் சரிபார்க்கலாம். இந்த வழக்கில், உங்கள் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்கமும் நீக்கப்படும்.</item>
         <item quantity="other">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பிற்காக, உங்கள் பின்னை மீட்டெடுக்க வழி இல்லை. உங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு நீங்கள் SMS மூலம் மீண்டும் சரிபார்க்கலாம். இந்த நிலையில், உங்கள் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்களும் நீக்கப்படும்.</item>
     </plurals>
 
@@ -3367,9 +3378,9 @@
     <string name="BackupDialog_enable_local_backups">உள்ளூர் காப்புப்பிரதிகளை இயக்கவா?</string>
     <string name="BackupDialog_enable_backups">காப்புப்பிரதிகளை இயக்கு</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Please acknowledge your understanding by marking the confirmation check box.</string>
-    <string name="BackupDialog_delete_backups">காப்புப்பிரதிகளை நீக்கவா?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">எல்லா உள்ளூர் காப்புப்பிரதிகளையும் முடக்கி நீக்கவா?</string>
-    <string name="BackupDialog_delete_backups_statement">காப்புப்பிரதிகளை நீக்கு</string>
+    <string name="BackupDialog_delete_backups">பேக்அப்களை நீக்க வேண்டுமா?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">உள்ளே சேமிக்கப்பட்ட அனைத்து பேக்அப்களையும் முடக்கி நீக்க வேண்டுமா?</string>
+    <string name="BackupDialog_delete_backups_statement">பேக்அப்களை நீக்கு</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">மறுபிரதிகளை இயக்க, ஒரு கோப்புறையைத் தேர்வுசெய்க. மறுபிரதிகள் இந்த இருப்பிடத்தில் சேமிக்கப்படும்.</string>
     <string name="BackupDialog_choose_folder">கோப்புறையைத் தேர்வுசெய்க</string>
     <string name="BackupDialog_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
@@ -3382,16 +3393,16 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">சிக்னல் காப்புப்பிரதியைச் சரிபார்க்கிறது…</string>
     <string name="LocalBackupJobApi29_backup_failed">மறுபிரதி தோல்வியுற்றது</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">உங்கள் மறுபிரதி கோப்புறை நீக்கப்பட்டது அல்லது வேறு இடத்திற்கு நகர்த்தப்பட்டது.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">உங்கள் பேக்அப் கோப்புறை நீக்கப்பட்டது அல்லது வேறு இடத்திற்கு நகர்த்தப்பட்டது.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">உங்கள் மறுபிரதி கோப்பின் அளவு இந்த தொகுதியில் சேமிக்க முடியாத அளவுக்கு பெரியது.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">உங்கள் காப்புப்பிரதியை சேமிக்க போதுமான இடம் இல்லை.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">உங்கள் சமீபத்திய காப்புப்பிரதியை உருவாக்கி சரிபார்க்க முடியவில்லை. தயவுசெய்து புதிய ஒன்றை உருவாக்கவும்.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">உங்கள் காப்புப்பிரதியில் நகலெடுக்க முடியாத மிகப் பெரிய கோப்பு ஒன்று உள்ளது. தயவுசெய்து அதை நீக்கிவிட்டு ஒரு புதிய காப்புப்பிரதியை உருவாக்கவும்.</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">உங்கள் பேக்அப்பில் நகலெடுக்க முடியாத மிகப் பெரிய கோப்பு ஒன்று உள்ளது. அதை நீக்கிவிட்டு ஒரு புதிய பேக்அப்பை உருவாக்கவும்.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">மறுபிரதிகளை நிர்வகிக்க தட்டவும்</string>
     <string name="RegistrationActivity_wrong_number">தவறான எண்?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">அதற்கு பதிலாக என்னை அழைக்கவும் \\ n ( %1$02d :%2$02d இல் கிடைக்கும்)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">என்னை அழைக்கவும் (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal ஆதரவைத் தொடர்பு கொள்ளுங்கள்</string>
     <string name="RegistrationActivity_code_support_subject">Signal பதிவு - அண்ட்ராய்டு க்கான சரிபார்ப்புக் குறியீடு</string>
     <string name="RegistrationActivity_incorrect_code">தவறான குறியீடு</string>
@@ -3490,7 +3501,7 @@
     <string name="DeviceTransferSetup__location_permission">இடம் அனுமதி</string>
     <string name="DeviceTransferSetup__location_services">இருப்பிட சேவை</string>
     <string name="DeviceTransferSetup__wifi">அருகலை</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">வைஃபை இல் நேரடி திரை, நினைவில் உள்ள அனைத்தையும் அகற்று குழுக்கள் மற்றும் இணைப்பை நீக்கு அழைக்கப்பட்ட அல்லது இணைக்கப்பட்ட சாதனங்கள்.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">வைஃபை நேரடி திரையில், நினைவில் உள்ள அனைத்துக் குழுக்களையும் அகற்றி அழைக்கப்பட்ட அல்லது இணைக்கப்பட்ட சாதனங்களின் இணைப்பை நீக்கவும்.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">வைஃபை நேரடி திரை</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">இரண்டு சாதனங்களிலும் வைஃபை அணைக்க மற்றும் இயக்க முயற்சிக்கவும்.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">இரண்டு சாதனங்களும் உள்ளதா என்பதை உறுதிப்படுத்தவும் பரிமாற்றம் பயன்முறை.</string>
@@ -3567,13 +3578,13 @@
     <string name="RecipientBottomSheet_remove_as_admin">நிர்வாகி நிலையிலிருந்து அகற்று</string>
     <string name="RecipientBottomSheet_remove_from_group">குழுவிலிருந்து அகற்று</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">குழு நிர்வாக நிலையாக %1$sஐ அகற்றவா?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$sஐ குழு நிர்வாகியில் இருந்து அகற்ற வேண்டுமா?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" இந்த குழுவையும் அதன் உறுப்பினர்களையும் திருத்த முடியும்"</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s குழுவிலிருந்து நீக்கவா?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">%1$sஐ குழுவிலிருந்து அகற்ற வேண்டுமா?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">குழுவிலிருந்து %1$s-ஐ அகற்றுவதா? குழு இணைப்பு மூலம் அவர்களால் மீண்டும் சேர முடியாது.</string>
-    <string name="RecipientBottomSheet_remove">நீக்கு</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">குழுவிலிருந்து %1$sஐ அகற்ற வேண்டுமா? குழு இணைப்பு மூலம் அவர்களால் மீண்டும் சேர முடியாது.</string>
+    <string name="RecipientBottomSheet_remove">அகற்று</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
 
     <string name="GroupRecipientListItem_admin">நிர்வாகி</string>
@@ -3627,9 +3638,9 @@
         <item quantity="one">%1$d பொதுவான குழு</item>
         <item quantity="other">%1$dபொதுவான குழுக்கள்</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">குழுவிலிருந்து %1$s அகற்றவா?</string>
-    <string name="ReviewCardDialogFragment__remove">நீக்கு</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">குழு உறுப்பினரை அகற்றுவதில் தோல்வி.</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">குழுவிலிருந்து %1$sஐ அகற்ற வேண்டுமா?</string>
+    <string name="ReviewCardDialogFragment__remove">அகற்று</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">குழு உறுப்பினரை அகற்ற முடியவில்லை.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">உறுப்பினர்</string>
@@ -3638,7 +3649,7 @@
     <string name="ReviewCard__remove_from_group">குழுவிலிருந்து அகற்று</string>
     <string name="ReviewCard__update_contact">தொடர்பைப் புதுப்பிக்கவும்</string>
     <string name="ReviewCard__block">தடு</string>
-    <string name="ReviewCard__delete">அழி</string>
+    <string name="ReviewCard__delete">நீக்கு</string>
     <string name="ReviewCard__recently_changed">சமீபத்தில் அவர்கள் தங்கள் சுயவிவரப் பெயரை %1$s இலிருந்து %2$s ஆக மாற்றினர்</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
@@ -3662,16 +3673,16 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">உங்கள் நீக்குகிறது கணக்கு விருப்பம்:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
-    <string name="DeleteAccountFragment__delete_account">கணக்கை நீக்குக</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">உங்கள் நீக்கு கணக்கு தகவல் மற்றும் சுயவிவரம் புகைப்படம்</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">உங்கள் எல்லா செய்திகளையும் நீக்கு</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">அழி %1$s உங்கள் கொடுப்பனவுகள் கணக்கு</string>
+    <string name="DeleteAccountFragment__delete_account">கணக்கை நீக்கு</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">உங்கள் கணக்குத் தகவல் மற்றும் புரொஃபைல் ஃபோட்டோவை நீக்கவும்</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">உங்கள் அனைத்து மெசேஜ்களையும் நீக்குக</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">உங்கள் பேமெண்ட் கணக்கில் %1$sஐ நீக்கு</string>
     <string name="DeleteAccountFragment__no_country_code">இல்லை நாட்டின் குறியீடு குறிப்பிடப்பட்டுள்ளது</string>
     <string name="DeleteAccountFragment__no_number">இல்லை எண் குறிப்பிடப்பட்டுள்ளது</string>
     <string name="DeleteAccountFragment__the_phone_number">தி தொலைபேசி நீங்கள் உள்ளிட்ட எண் உங்களுடன் பொருந்தவில்லை கணக்கு.</string>
-    <string name="DeleteAccountFragment__are_you_sure">உங்கள் கணக்கு நீக்க விரும்புகிறீர்களா?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">இது உங்கள் நீக்கும் Signal கணக்கு மற்றும் மீட்டமைக்கவும் விண்ணப்பம். செயல்முறை முடிந்ததும் பயன்பாடு மூடப்படும்.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">உள்ளூர் தரவை நீக்குவதில் தோல்வி. நீங்கள் அதை கணினியில் கைமுறையாக அழிக்கலாம்விண்ணப்பம் அமைப்புகள்.</string>
+    <string name="DeleteAccountFragment__are_you_sure">உங்கள் கணக்கை நிச்சயமாக நீக்க வேண்டுமா?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">இது உங்கள் Signal கணக்கை நீக்கி செயலியை மீட்டமைக்கும். செயல்பாடு நிறைவடைந்ததும் செயலி மூடப்படும்.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">உள்ளே சேமிக்கப்பட்டிருக்கும் தரவை நீக்க முடியவில்லை. சிஸ்டம் அப்ளிகேஷன் செட்டிங்ஸில் அதை நீங்கள் நேரடியாக அழிக்கலாம்.</string>
     <string name="DeleteAccountFragment__launch_app_settings">பயன்பாட்டு அமைப்புகளை தொடங்கு</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">குழுக்களை விட்டு வெளியேறுகிறது…</string>
@@ -3963,19 +3974,19 @@
     <!-- Preference title to re-export sms -->
     <string name="SmsSettingsFragment__export_sms_messages_again">SMS மெசேஜ்களை மீண்டும் ஏற்றுமதி செய்க</string>
     <!-- Preference title to delete sms -->
-    <string name="SmsSettingsFragment__remove_sms_messages">எஸ்.எம்.எஸ் செய்திகளை அகற்று</string>
+    <string name="SmsSettingsFragment__remove_sms_messages">SMS மெசேஜ்களை அகற்று</string>
     <!-- Snackbar text to confirm deletion -->
     <string name="SmsSettingsFragment__removing_sms_messages_from_signal">சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றுகிறது…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">நீங்கள் எந்த நேரத்திலும் அமைப்புகளில் சென்று சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றலாம்.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">நீங்கள் எந்த நேரத்திலும் அமைப்புகளில் சென்று Signal இல் இருந்து SMS செய்திகளை அகற்றலாம்.</string>
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">உங்கள் எஸ்.எம்.எஸ் செய்திகளை உங்கள் தொலைபேசியின் எஸ்.எம்.எஸ் தரவுத்தளத்திற்கு ஏற்றுமதி செய்யலாம்</string>
     <!-- Description for re-export sms preference -->
     <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">மீண்டும் ஏற்றுமதி செய்வதால் நகல் செய்திகள் உருவாகலாம்.</string>
     <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">சேமிப்பிடத்தை அழிக்க சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றவும்.</string>
+    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">சேமிப்பிடத்தை அழிக்க Signal இல் இருந்து SMS மெசேஜ்களை அகற்றவும்.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">மறைகுறியாக்கப்பட்ட செய்தியிடலில் கவனம் செலுத்த எஸ்.எம்.எஸ் ஆதரவு விரைவில் அகற்றப்படும்.</string>
+    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">மறைகுறியாக்கப்பட்ட மெசேஜிங்கில் கவனம் செலுத்த SMS ஆதரவு விரைவில் அகற்றப்படும்.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">செய்திகள்</string>
@@ -4068,10 +4079,10 @@
     <string name="ChatColorSelectionFragment__delete">நீக்கு</string>
     <string name="ChatColorSelectionFragment__delete_color">நிறத்தை நீக்கு</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">இந்த தனிப்பயன் வண்ணம் பயன்படுத்தப்படுகிறது %1$d அரட்டை. எல்லா அரட்டைகளுக்கும் இதை நீக்க விரும்புகிறீர்களா?</item>
+        <item quantity="one">%1$d அரட்டையில் இந்த கஸ்டம் நிறம் பயன்படுத்தப்படுகிறது. அனைத்து அரட்டைகளிலும் இதை நீக்க வேண்டுமா?</item>
         <item quantity="other">இந்த தனிப்பயன் நிறம் %1$d அரட்டைகளில் பயன்படுத்தப்படுகிறது. எல்லா அரட்டைகளுக்கும் இதை நீக்க விரும்புகிறீர்களா?</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">அரட்டை நிறத்தை நீக்கு?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">அரட்டை நிறத்தை நீக்க வேண்டுமா?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">திட</string>
@@ -4225,15 +4236,15 @@
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">காணொளி அழைப்பு</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">நீக்கு</string>
+    <string name="NewConversationActivity__remove">அகற்று</string>
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">தடு</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">%1$s-ஐ அகற்றுவதா?</string>
+    <string name="NewConversationActivity__remove_s">%1$sஐ அகற்ற வேண்டுமா?</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">தேடும் போது இவரைப் பார்க்க முடியாது. எதிர்காலத்தில் அவர்கள் உங்களுக்கு செய்தி அனுப்பினால், நீங்கள் ஒரு செய்தி கோரிக்கையைப் பெறுவீர்கள்.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s அகற்றப்பட்டார்</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s என்ற தொடர்பு அகற்றப்பட்டது</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s தடுக்கப்பட்டார்</string>
     <!-- Dialog title when remove target contact is in system contacts -->
@@ -4610,13 +4621,13 @@
     <string name="NotificationProfilesFragment__on">இயக்கு</string>
 
     <!-- Button use to permanently delete a notification profile -->
-    <string name="NotificationProfileDetails__delete_profile">சுயவிவரத்தை நீக்கவும்</string>
+    <string name="NotificationProfileDetails__delete_profile">சுயவிவரத்தை நீக்கு</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
     <string name="NotificationProfileDetails__s_removed">\"%1$s\" அகற்றப்பட்டது.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">செயல்தவிர்</string>
     <!-- Dialog message shown to confirm deleting a profile -->
-    <string name="NotificationProfileDetails__permanently_delete_profile">நிரந்தரமாக சுயவிவரத்தை நீக்குவதா?</string>
+    <string name="NotificationProfileDetails__permanently_delete_profile">நிரந்தரமாக சுயவிவரத்தை நீக்க வேண்டுமா?</string>
     <!-- Dialog button to delete profile -->
     <string name="NotificationProfileDetails__delete">நீக்கு</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
@@ -4794,7 +4805,7 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">%1$s-இன் ஸ்டோரி</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">ஸ்டோரியை நீக்குவதா?</string>
+    <string name="MyStories__delete_story">ஸ்டோரியை நீக்க வேண்டுமா?</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">இந்த ஸ்டோரி உங்களுக்கும் அதைப் பெற்ற அனைவருக்கும் நீக்கப்படும்.</string>
     <!-- Toast shown when story media cannot be saved -->
@@ -4834,9 +4845,9 @@
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">அமைப்புகளுக்குச் செல்</string>
     <!-- Dialog action to remove viewer from a story -->
-    <string name="StoryViewsFragment__remove">நீக்கு</string>
+    <string name="StoryViewsFragment__remove">அகற்று</string>
     <!-- Dialog title when removing a viewer from a story -->
-    <string name="StoryViewsFragment__remove_viewer">பார்வையாளரை அகற்றுவதா?</string>
+    <string name="StoryViewsFragment__remove_viewer">பார்வையாளரை அகற்ற வேண்டுமா?</string>
     <!-- Dialog message when removing a viewer from a story -->
     <string name="StoryViewsFragment__s_will_still_be_able">%1$s -ஆல் இன்னும் இந்த போஸ்ட்டைப் பார்க்க முடியும், ஆனால் %2$s -க்கு நீங்கள் எதிர்காலத்தில் பகிரும் எந்தவொரு போஸ்ட்டுகளையும் பார்க்க முடியாது.</string>
     <!-- Story View context menu action to remove them from a story -->
@@ -4855,6 +4866,8 @@
     <string name="StoryReplyComposer__react_to_this_story">இந்த ஸ்டோரிக்கு எதிர்வினையாற்றவும்</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s-க்கு தனிப்பட்ட முறையில் பதிலளிக்கிறது</string>
+    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
+    <string name="StoryReplyComposer__reply_to_s">%1$s க்கு பதிலளிக்கவும்</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">நகல்</string>
@@ -4918,11 +4931,11 @@
     <!-- Clickable option to delete a custom story -->
     <string name="PrivateStorySettingsFragment__delete_custom_story">தனிப்பயன் ஸ்டோரியை நீக்கு</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove_s">%1$s-ஐ அகற்றுவதா?</string>
+    <string name="PrivateStorySettingsFragment__remove_s">%1$sஐ அகற்ற வேண்டுமா?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">இந்த நபர் இனி உங்கள் ஸ்டோரியைப் பார்க்க மாட்டார்.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove">நீக்கு</string>
+    <string name="PrivateStorySettingsFragment__remove">அகற்று</string>
     <!-- Dialog title when deleting a custom story -->
     <!-- Dialog message when deleting a custom story -->
     <!-- Page title for editing a custom story name -->
@@ -4957,17 +4970,17 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">முடிந்தது</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">குழு ஸ்டோரியை அகற்றுவதா?</string>
+    <string name="StoryDialogs__remove_group_story">குழு ஸ்டோரியை அகற்ற வேண்டுமா?</string>
     <!-- Dialog message for removing a group story -->
     <string name="StoryDialogs__s_will_be_removed">\"%1$s\" அகற்றப்படும்.</string>
     <!-- Dialog positive action for removing a group story -->
-    <string name="StoryDialogs__remove">நீக்கு</string>
+    <string name="StoryDialogs__remove">அகற்று</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">தனிப்பயன் ஸ்டோரியை நீக்க வேண்டுமா?</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" மற்றும் இந்த ஸ்டோரிக்கு பகிரப்பட்ட புதுப்பிப்புகள் நீக்கப்படும்.</string>
     <!-- Dialog positive action for deleting a custom story -->
-    <string name="StoryDialogs__delete">அழி</string>
+    <string name="StoryDialogs__delete">நீக்கு</string>
     <!-- Dialog title for first time sending something to a beta story -->
     <!-- Dialog message for first time sending something to a beta story -->
     <!-- Dialog title for first time adding something to a story -->
@@ -5151,13 +5164,13 @@
     <!-- Label for context menu item to delete a custom story -->
     <string name="ContactSearchItems__delete_story">ஸ்டோரியை நீக்கு</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">குழு ஸ்டோரியை அகற்றுவதா?</string>
+    <string name="ContactSearchMediator__remove_group_story">குழு ஸ்டோரியை அகற்ற வேண்டுமா?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">இது இந்த பட்டியலிலிருந்து ஸ்டோரியை அகற்றும். இந்தக் குழுவின் ஸ்டோரீஸ்-ஐ நீங்கள் இன்னும் பார்வையிடவும் முடியும்.</string>
+    <string name="ContactSearchMediator__this_will_remove">இது இந்த பட்டியலிலிருந்து ஸ்டோரியை அகற்றும். இந்தக் குழுவின் ஸ்டோரீஸை நீங்கள் இன்னும் பார்வையிடவும் முடியும்.</string>
     <!-- Dialog action item for removing a group story -->
-    <string name="ContactSearchMediator__remove">நீக்கு</string>
+    <string name="ContactSearchMediator__remove">அகற்று</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_story">ஸ்டோரியை நீக்குவதா?</string>
+    <string name="ContactSearchMediator__delete_story">ஸ்டோரியை நீக்க வேண்டுமா?</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="ContactSearchMediator__delete_the_custom">\"%1$s\" தனிப்பயன் ஸ்டோரியை நீக்க வேண்டுமா?</string>
     <!-- Dialog action item for deleting a custom story -->
@@ -5209,7 +5222,7 @@
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">பாதுகாப்பு எண்ணைச் சரிபார்க்கவும்</string>
     <!-- Menu action to remove user from story -->
-    <string name="SafetyNumberBottomSheetFragment__remove_from_story">ஸ்டோரியிலிருந்து அகற்றவும்</string>
+    <string name="SafetyNumberBottomSheetFragment__remove_from_story">ஸ்டோரியிலிருந்து அகற்று</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
     <string name="SafetyNumberBottomSheetFragment__send_anyway">இருந்தாலும் அனுப்பு</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
@@ -5230,7 +5243,7 @@
     <!-- Context menu label for distribution list headers in review fragment -->
     <string name="SafetyNumberReviewConnectionsFragment__remove_all">அனைத்தையும் நீக்கு</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove">நீக்கு</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove">அகற்று</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">எனது ஸ்டோரி தனியுரிமை</string>
@@ -5288,7 +5301,7 @@
     <!-- Explanation of who can view a group story -->
     <string name="GroupStorySettingsFragment__members_of_the_group_s">"%1$s குழுவின் உறுப்பினர்கள் இந்த ஸ்டோரியைப் பார்த்து பதிலளிக்கலாம். இந்த சாட்டிற்க்கான உறுப்பினர் உரிமையை குழுவில் நீங்கள் புதுப்பிக்கலாம்."</string>
     <!-- Preference label for removing this group story -->
-    <string name="GroupStorySettingsFragment__remove_group_story">குழு ஸ்டோரியை அகற்றவும்</string>
+    <string name="GroupStorySettingsFragment__remove_group_story">குழு ஸ்டோரியை அகற்று</string>
 
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">ஓவர்ஃப்ளோ மெனு</string>
@@ -5360,11 +5373,11 @@
     <!-- Action button to keep messages -->
     <string name="RemoveSmsMessagesDialogFragment__keep_messages">செய்திகளை வைத்திருங்கள்</string>
     <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">செய்திகளை அகற்று</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_messages">மெசேஜ்களை அகற்று</string>
     <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றுவதா?</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal இல் இருந்து SMS மெசேஜ்களை அகற்ற வேண்டுமா?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">சேமிப்பக இடத்தைக் காலியாக்க நீங்கள் இப்போது சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றலாம். நீங்கள் அவற்றை அகற்றினாலும் உங்கள் மொபைலில் உள்ள பிற எஸ்.எம்.எஸ் பயன்பாடுகளுக்கு அவை தொடர்ந்து கிடைக்கப்பெறும்.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">சேமிப்பக இடத்தைக் காலியாக்க நீங்கள் இப்போது Signal இல் இருந்து SMS மெசேஜ்களை அகற்றலாம். நீங்கள் அவற்றை அகற்றினாலும் உங்கள் மொபைலில் உள்ள பிற எஸ்.எம்.எஸ் பயன்பாடுகளுக்கு அவை தொடர்ந்து கிடைக்கப்பெறும்.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5408,9 +5421,9 @@
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">சிக்னல் இனி எஸ்.எம்.எஸ்-ஐ ஆதரிக்காது</string>
     <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">எஸ்.எம்.எஸ் செய்திகளை அனுப்புவதற்கான ஆதரவை சிக்னல் விரைவில் அகற்றும், ஏனெனில் எஸ்.எம்.எஸ் செய்திகள் அளிக்காத என்ட்-டு-எண்ட் என்க்ரிப்ஷன் மற்றும் வலுவான தனியுரிமையை சிக்னல் செய்திகள் வழங்குகின்றன. இது சிக்னல் செய்தி அனுபவத்தை மேம்படுத்தவும் அனுமதிக்கும்.</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">SMS மெசேஜ்களை அனுப்புவதற்கான ஆதரவை Signal விரைவில் அகற்றும், ஏனெனில் SMS மெசேஜ்கள் அளிக்காத என்ட்-டு-எண்ட் என்க்ரிப்ஷன் மற்றும் வலுவான தனியுரிமையை Signal மெசேஜ்கள் வழங்குகின்றன. இது Signal மெசேஜ் அனுபவத்தை மேம்படுத்தவும் அனுமதிக்கும்.</string>
     <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">எஸ்.எம்.எஸ் செய்திகளை அனுப்புவதற்கான ஆதரவை சிக்னல் அகற்றியுள்ளது, ஏனெனில் எஸ்.எம்.எஸ் செய்திகள் அளிக்காத என்ட்-டு-எண்ட் என்க்ரிப்ஷன் மற்றும் வலுவான தனியுரிமையை சிக்னல் செய்திகள் வழங்குகின்றன. இது சிக்னல் செய்தி அனுபவத்தை மேம்படுத்தவும் அனுமதிக்கும்.</string>
+    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">SMS மெசேஜ்களை அனுப்புவதற்கான ஆதரவை Signal அகற்றியுள்ளது, ஏனெனில் SMS மெசேஜ்கள் அளிக்காத என்ட்-டு-எண்ட் என்க்ரிப்ஷன் மற்றும் வலுவான தனியுரிமையை Signal மெசேஜ்கள் வழங்குகின்றன. இது Signal மெசேஜ் அனுபவத்தை மேம்படுத்தவும் அனுமதிக்கும்.</string>
     <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
     <string name="SmsExportMegaphoneActivity__export_sms">எஸ்எம்எஸ்-ஐ ஏற்றுமதி செய்</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
@@ -5535,8 +5548,6 @@
     <string name="GroupStoryEducationSheet__next">அடுத்தது</string>
     <string name="Registration_country_code_entry_hint">+0</string>
 
-    <!-- EOF -->
-
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">நன்கொடையளிக்கவும்</string>
     <string name="PaypalCompleteOrderBottomSheet__payment">கட்டணம்</string>
@@ -5551,8 +5562,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS ஆதரவு நிறுத்தப்படுகிறது</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Signal செயலியில் SMS மெசேஜ் அனுப்புதலுக்கான ஆதரவு விரைவில் நிறுத்தப்படும்.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">Signal செயலியில் SMS மெசேஜ் அனுப்புதல் விரைவில் %1$s இல் ஆதரிக்கப்படாது.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS மெசேஜ்களும் Signal மெசேஜ்களும் வேறுபட்டவை. <b>இது குறியாக்கம் செய்யப்பட்ட Signal மெசேஜைப் பாதிக்காது, அது தொடர்ந்து செயல்படும்.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5562,13 +5573,47 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">SMSஐ ஏற்றுமதி செய்</string>
 
+    <!-- Set up your username megaphone -->
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__set_up_your_signal_username">உங்கள் Signal பயனர் பெயரை அமைக்கவும்</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__usernames_let_others">மற்றவர்கள் உங்கள் மொபைல் எண் தேவைப்படாமல் உங்களுக்கு மெசேஜ் அனுப்ப பயனர்பெயர்கள் அனுமதிக்கும்</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__not_now">இப்போது வேண்டாம்</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__continue">தொடர்க</string>
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
-    <string name="TextFormatting_bold">போல்ட்</string>
+    <string name="TextFormatting_bold">போல்டு</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">இத்தாலிக்</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">ஸ்ட்ரைக் த்ரூ</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">மோனோஸ்பேஸ்</string>
+
+    <!-- UsernameEducationFragment -->
+    <!-- Continue button which takes the user to the add a username screen -->
+    <string name="UsernameEducationFragment__continue">தொடர்க</string>
+    <!-- Displayed as a title on the username education screen -->
+    <string name="UsernameEducationFragment__set_up_your_signal_username">உங்கள் Signal பயனர் பெயரை அமைக்கவும்</string>
+
+    <!-- Username edit dialog -->
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">பயனர் பெயரை திருத்தவும்</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">பயனர் பெயரை அழிக்கவும்</string>
+
+    <!-- Time duration picker -->
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
+    <string name="TimeDurationPickerDialog_positive_button">Set</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+
+    <!-- EOF -->
 </resources>

@@ -15,7 +15,9 @@ data class GroupsInCommon(
       1 -> context.getString(R.string.MessageRequestProfileView_member_of_one_group, names[0])
       2 -> context.getString(R.string.MessageRequestProfileView_member_of_two_groups, names[0], names[1])
       else -> context.getString(
-        R.string.MessageRequestProfileView_member_of_many_groups, names[0], names[1],
+        R.string.MessageRequestProfileView_member_of_many_groups,
+        names[0],
+        names[1],
         context.resources.getQuantityString(R.plurals.MessageRequestProfileView_member_of_d_additional_groups, total - 2, total - 2)
       )
     }

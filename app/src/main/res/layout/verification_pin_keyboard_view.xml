@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:tools="http://schemas.android.com/tools">
-    tools:viewBindingIgnore="true"
+       xmlns:tools="http://schemas.android.com/tools"
+       tools:viewBindingIgnore="true">
 
     <org.thoughtcrime.securesms.components.NumericKeyboardView
             android:id="@+id/keyboard_view"
-            android:keyBackground="@color/grey_300"
-            android:background="@color/grey_300"
-            android:keyTextColor="@color/black"
+            android:keyBackground="@color/signal_colorSurface1"
+            android:background="@color/signal_colorSurface1"
+            android:keyTextColor="@color/signal_colorOnSurface"
             android:shadowColor="@color/transparent"
             android:keyTextSize="30sp"
             android:elevation="3dp"

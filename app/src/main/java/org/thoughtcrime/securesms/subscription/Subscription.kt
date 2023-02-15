@@ -30,7 +30,7 @@ data class Subscription(
   val name: String,
   val badge: Badge,
   val prices: Set<FiatMoney>,
-  val level: Int,
+  val level: Int
 ) {
 
   companion object {

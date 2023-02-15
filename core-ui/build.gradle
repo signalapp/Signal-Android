@@ -1,0 +1,26 @@
+plugins {
+    id 'signal-library'
+}
+
+android {
+    namespace 'org.signal.core.ui'
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = '1.3.2'
+    }
+}
+
+dependencies {
+    lintChecks project(':lintchecks')
+    
+    def composeBom = platform(libs.androidx.compose.bom)
+    api composeBom
+    androidTestApi composeBom
+    api libs.androidx.compose.material3
+    api libs.androidx.compose.ui.tooling.preview
+    debugApi libs.androidx.compose.ui.tooling.core
+}

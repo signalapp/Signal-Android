@@ -106,6 +106,12 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
   }
 
   @Override
+  public void onResume() {
+    super.onResume();
+    WindowUtil.initializeScreenshotSecurity(requireContext(), requireDialog().getWindow());
+  }
+
+  @Override
   public void onDismiss(@NonNull DialogInterface dialog) {
     super.onDismiss(dialog);
 

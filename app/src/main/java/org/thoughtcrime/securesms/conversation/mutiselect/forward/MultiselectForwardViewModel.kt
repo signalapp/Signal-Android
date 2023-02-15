@@ -100,7 +100,7 @@ class MultiselectForwardViewModel(
     private val storySendRequirements: Stories.MediaTransform.SendRequirements,
     private val records: List<MultiShareArgs>,
     private val isSelectionOnly: Boolean,
-    private val repository: MultiselectForwardRepository,
+    private val repository: MultiselectForwardRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(MultiselectForwardViewModel(storySendRequirements, records, isSelectionOnly, repository)))

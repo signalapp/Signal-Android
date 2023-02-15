@@ -17,7 +17,7 @@ import java.io.IOException
  */
 class SignalBackupAgent : BackupAgent() {
   private val items: List<AndroidBackupItem> = listOf(
-    KbsAuthTokens,
+    KbsAuthTokens
   )
 
   override fun onBackup(oldState: ParcelFileDescriptor?, data: BackupDataOutput, newState: ParcelFileDescriptor) {

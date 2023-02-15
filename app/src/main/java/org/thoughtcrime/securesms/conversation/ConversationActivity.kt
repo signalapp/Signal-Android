@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.view.Window
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -15,9 +16,11 @@ import org.thoughtcrime.securesms.components.reminder.ReminderView
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.views.Stub
+import java.util.concurrent.TimeUnit
 
 open class ConversationActivity : PassphraseRequiredActivity(), ConversationParentFragment.Callback, DonationPaymentComponent {
 
@@ -25,6 +28,7 @@ open class ConversationActivity : PassphraseRequiredActivity(), ConversationPare
     private const val STATE_WATERMARK = "share_data_watermark"
   }
 
+  private val transitionDebouncer: Debouncer = Debouncer(150, TimeUnit.MILLISECONDS)
   private lateinit var fragment: ConversationParentFragment
   private var shareDataTimestamp: Long = -1L
 
@@ -34,6 +38,10 @@ open class ConversationActivity : PassphraseRequiredActivity(), ConversationPare
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    supportPostponeEnterTransition()
+    transitionDebouncer.publish { supportStartPostponedEnterTransition() }
+    window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+
     if (savedInstanceState != null) {
       shareDataTimestamp = savedInstanceState.getLong(STATE_WATERMARK, -1L)
     } else if (intent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY != 0) {
@@ -46,6 +54,11 @@ open class ConversationActivity : PassphraseRequiredActivity(), ConversationPare
     } else {
       fragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as ConversationParentFragment
     }
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    transitionDebouncer.clear()
   }
 
   override fun onSaveInstanceState(outState: Bundle) {

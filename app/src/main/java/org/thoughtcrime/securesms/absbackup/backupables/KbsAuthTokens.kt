@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.absbackup.backupables
 import com.google.protobuf.InvalidProtocolBufferException
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.absbackup.AndroidBackupItem
-import org.thoughtcrime.securesms.absbackup.ExternalBackupProtos
+import org.thoughtcrime.securesms.absbackup.protos.KbsAuthToken
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
@@ -18,10 +18,8 @@ object KbsAuthTokens : AndroidBackupItem {
 
   override fun getDataForBackup(): ByteArray {
     val registrationRecoveryTokenList = SignalStore.kbsValues().kbsAuthTokenList
-    val proto = ExternalBackupProtos.KbsAuthToken.newBuilder()
-      .addAllToken(registrationRecoveryTokenList)
-      .build()
-    return proto.toByteArray()
+    val proto = KbsAuthToken(tokens = registrationRecoveryTokenList)
+    return proto.encode()
   }
 
   override fun restoreData(data: ByteArray) {
@@ -30,9 +28,9 @@ object KbsAuthTokens : AndroidBackupItem {
     }
 
     try {
-      val proto = ExternalBackupProtos.KbsAuthToken.parseFrom(data)
+      val proto = KbsAuthToken.ADAPTER.decode(data)
 
-      SignalStore.kbsValues().putAuthTokenList(proto.tokenList)
+      SignalStore.kbsValues().putAuthTokenList(proto.tokens)
     } catch (e: InvalidProtocolBufferException) {
       Log.w(TAG, "Cannot restore KbsAuthToken from backup service.")
     }

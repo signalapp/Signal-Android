@@ -1,6 +1,9 @@
+@file:Suppress("ktlint:filename")
+
 package org.thoughtcrime.securesms.components.settings
 
 import androidx.annotation.CallSuper
+import androidx.annotation.Discouraged
 import androidx.annotation.Px
 import androidx.annotation.StringRes
 import org.thoughtcrime.securesms.components.settings.models.AsyncSwitch
@@ -10,12 +13,14 @@ import org.thoughtcrime.securesms.components.settings.models.Text
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList
 
+@Discouraged("The DSL API can be completely replaced by compose. See ComposeFragment or ComposeBottomSheetFragment for an alternative to this API")
 fun configure(init: DSLConfiguration.() -> Unit): DSLConfiguration {
   val configuration = DSLConfiguration()
   configuration.init()
   return configuration
 }
 
+@Discouraged("The DSL API can be completely replaced by compose. See ComposeFragment or ComposeBottomSheetFragment for an alternative to this API")
 class DSLConfiguration {
   private val children = arrayListOf<MappingModel<*>>()
 
@@ -212,7 +217,7 @@ abstract class PreferenceModel<T : PreferenceModel<T>>(
   open val summary: DSLSettingsText? = null,
   open val icon: DSLSettingsIcon? = null,
   open val iconEnd: DSLSettingsIcon? = null,
-  open val isEnabled: Boolean = true,
+  open val isEnabled: Boolean = true
 ) : MappingModel<T> {
   override fun areItemsTheSame(newItem: T): Boolean {
     return when {

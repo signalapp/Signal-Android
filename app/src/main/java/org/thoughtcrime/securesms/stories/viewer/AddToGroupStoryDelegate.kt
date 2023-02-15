@@ -118,7 +118,7 @@ class AddToGroupStoryDelegate(
       MessageSender.sendStories(
         ApplicationDependencies.getApplication(),
         secureMessages,
-        null,
+        null
       ) {
         Log.d(TAG, "Sent.")
       }

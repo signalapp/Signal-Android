@@ -1,32 +1,16 @@
-apply plugin: 'com.android.library'
-
-repositories {
-    mavenCentral()
+plugins {
+    id 'signal-library'
 }
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
-
-    defaultConfig {
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
-    }
-
-    compileOptions {
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
-    }
+    namespace 'org.signal.devicetransfer'
 }
 
 dependencies {
-    implementation libs.androidx.appcompat
     implementation project(':core-util')
     implementation libs.libsignal.android
     api libs.greenrobot.eventbus
 
-    testImplementation testLibs.junit.junit
-    testImplementation testLibs.androidx.test.core
     testImplementation (testLibs.robolectric.robolectric) {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
     }

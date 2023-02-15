@@ -31,25 +31,28 @@ internal class TracingExecutorService(val wrapped: ExecutorService) : ExecutorSe
 
   val queue: Queue<Runnable>
     get() {
-      return if (wrapped is ThreadPoolExecutor)
+      return if (wrapped is ThreadPoolExecutor) {
         wrapped.queue
-      else
+      } else {
         LinkedBlockingQueue()
+      }
     }
 
   val activeCount: Int
     get() {
-      return if (wrapped is ThreadPoolExecutor)
+      return if (wrapped is ThreadPoolExecutor) {
         wrapped.activeCount
-      else
+      } else {
         0
+      }
     }
 
   val maximumPoolSize: Int
     get() {
-      return if (wrapped is ThreadPoolExecutor)
+      return if (wrapped is ThreadPoolExecutor) {
         wrapped.maximumPoolSize
-      else
+      } else {
         0
+      }
     }
 }

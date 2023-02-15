@@ -11,12 +11,12 @@ public class UsernameUtilTest {
   public void checkUsername_tooShort() {
     assertEquals(UsernameUtil.InvalidReason.TOO_SHORT, UsernameUtil.checkUsername(null).get());
     assertEquals(UsernameUtil.InvalidReason.TOO_SHORT, UsernameUtil.checkUsername("").get());
-    assertEquals(UsernameUtil.InvalidReason.TOO_SHORT, UsernameUtil.checkUsername("abc").get());
+    assertEquals(UsernameUtil.InvalidReason.TOO_SHORT, UsernameUtil.checkUsername("ab").get());
   }
 
   @Test
   public void checkUsername_tooLong() {
-    assertEquals(UsernameUtil.InvalidReason.TOO_LONG, UsernameUtil.checkUsername("abcdefghijklmnopqrstuvwxyz1").get());
+    assertEquals(UsernameUtil.InvalidReason.TOO_LONG, UsernameUtil.checkUsername("abcdefghijklmnopqrstuvwxyz1234567").get());
   }
 
   @Test

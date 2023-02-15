@@ -10,6 +10,10 @@ class ContactSearchConfiguration private constructor(
   val hasEmptyState: Boolean,
   val sections: List<Section>
 ) {
+
+  /**
+   * Describes the configuration for a given section of content in search results.
+   */
   sealed class Section(val sectionKey: SectionKey) {
 
     abstract val includeHeader: Boolean
@@ -18,6 +22,10 @@ class ContactSearchConfiguration private constructor(
 
     /**
      * Distribution lists and group stories.
+     *
+     * Key: [ContactSearchKey.RecipientSearchKey]
+     * Data: [ContactSearchData.Story]
+     * Model: [ContactSearchAdapter.StoryModel]
      */
     data class Stories(
       val groupStories: Set<ContactSearchData.Story> = emptySet(),
@@ -28,6 +36,10 @@ class ContactSearchConfiguration private constructor(
 
     /**
      * Recent contacts
+     *
+     * Key: [ContactSearchKey.RecipientSearchKey]
+     * Data: [ContactSearchData.KnownRecipient]
+     * Model: [ContactSearchAdapter.RecipientModel]
      */
     data class Recents(
       val limit: Int = 25,
@@ -47,7 +59,11 @@ class ContactSearchConfiguration private constructor(
     }
 
     /**
-     * 1:1 Recipients
+     * 1:1 Recipients with whom the user has started a conversation.
+     *
+     * Key: [ContactSearchKey.RecipientSearchKey]
+     * Data: [ContactSearchData.KnownRecipient]
+     * Model: [ContactSearchAdapter.RecipientModel]
      */
     data class Individuals(
       val includeSelf: Boolean,
@@ -59,6 +75,10 @@ class ContactSearchConfiguration private constructor(
 
     /**
      * Group Recipients
+     *
+     * Key: [ContactSearchKey.RecipientSearchKey]
+     * Data: [ContactSearchData.KnownRecipient]
+     * Model: [ContactSearchAdapter.RecipientModel]
      */
     data class Groups(
       val includeMms: Boolean = false,
@@ -71,6 +91,14 @@ class ContactSearchConfiguration private constructor(
       override val expandConfig: ExpandConfig? = null
     ) : Section(SectionKey.GROUPS)
 
+    /**
+     * A set of arbitrary rows, in the order given in the builder. Usage requires
+     * an implementation of [ArbitraryRepository] to be passed into [ContactSearchMediator]
+     *
+     * Key: [ContactSearchKey.Arbitrary]
+     * Data: [ContactSearchData.Arbitrary]
+     * Model: To be provided by an instance of [ArbitraryRepository]
+     */
     data class Arbitrary(
       val types: Set<String>
     ) : Section(SectionKey.ARBITRARY) {
@@ -78,21 +106,82 @@ class ContactSearchConfiguration private constructor(
       override val expandConfig: ExpandConfig? = null
     }
 
+    /**
+     * Individuals who you have not started a conversation with, but are members of shared
+     * groups.
+     *
+     * Key: [ContactSearchKey.RecipientSearchKey]
+     * Data: [ContactSearchData.KnownRecipient]
+     * Model: [ContactSearchAdapter.RecipientModel]
+     */
     data class GroupMembers(
       override val includeHeader: Boolean = true,
       override val expandConfig: ExpandConfig? = null
     ) : Section(SectionKey.GROUP_MEMBERS)
 
+    /**
+     * Includes a list of groups with members whose search name match the search query.
+     * This section will only be rendered if there is a non-null, non-empty query present.
+     *
+     * Key: [ContactSearchKey.GroupWithMembers]
+     * Data: [ContactSearchData.GroupWithMembers]
+     * Model: [ContactSearchAdapter.GroupWithMembersModel]
+     */
+    data class GroupsWithMembers(
+      override val includeHeader: Boolean = true,
+      override val expandConfig: ExpandConfig? = null
+    ) : Section(SectionKey.GROUPS_WITH_MEMBERS)
+
+    /**
+     * 1:1 and Group chat search results, whose data contains
+     * a ThreadRecord. Only displayed when there is a search query.
+     *
+     * Key: [ContactSearchKey.Thread]
+     * Data: [ContactSearchData.Thread]
+     * Model: [ContactSearchAdapter.ThreadModel]
+     */
     data class Chats(
       val isUnreadOnly: Boolean = false,
       override val includeHeader: Boolean = true,
       override val expandConfig: ExpandConfig? = null
     ) : Section(SectionKey.CHATS)
 
+    /**
+     * Message search results, only displayed when there
+     * is a search query.
+     *
+     * Key: [ContactSearchKey.Message]
+     * Data: [ContactSearchData.Message]
+     * Model: [ContactSearchAdapter.MessageModel]
+     */
     data class Messages(
       override val includeHeader: Boolean = true,
       override val expandConfig: ExpandConfig? = null
     ) : Section(SectionKey.MESSAGES)
+
+    /**
+     * Contacts that the user has shared profile key data with or
+     * that exist in system contacts, but that do not have an associated
+     * thread.
+     *
+     * Key: [ContactSearchKey.RecipientSearchKey]
+     * Data: [ContactSearchData.KnownRecipient]
+     * Model: [ContactSearchAdapter.RecipientModel]
+     */
+    data class ContactsWithoutThreads(
+      override val includeHeader: Boolean = true,
+      override val expandConfig: ExpandConfig? = null
+    ) : Section(SectionKey.CONTACTS_WITHOUT_THREADS)
+
+    data class Username(val newRowMode: NewRowMode) : Section(SectionKey.USERNAME) {
+      override val includeHeader: Boolean = false
+      override val expandConfig: ExpandConfig? = null
+    }
+
+    data class PhoneNumber(val newRowMode: NewRowMode) : Section(SectionKey.PHONE_NUMBER) {
+      override val includeHeader: Boolean = false
+      override val expandConfig: ExpandConfig? = null
+    }
   }
 
   /**
@@ -120,6 +209,16 @@ class ContactSearchConfiguration private constructor(
     GROUPS,
 
     /**
+     * Section Key for [Section.GroupsWithMembers]
+     */
+    GROUPS_WITH_MEMBERS,
+
+    /**
+     * Section Key for [Section.ContactsWithoutThreads]
+     */
+    CONTACTS_WITHOUT_THREADS,
+
+    /**
      * Arbitrary row (think new group button, username row, etc)
      */
     ARBITRARY,
@@ -138,7 +237,17 @@ class ContactSearchConfiguration private constructor(
     /**
      * Messages from 1:1 and Group chats
      */
-    MESSAGES
+    MESSAGES,
+
+    /**
+     * A row representing the search query as a phone number
+     */
+    PHONE_NUMBER,
+
+    /**
+     * A row representing the search query as a username
+     */
+    USERNAME
   }
 
   /**
@@ -156,6 +265,15 @@ class ContactSearchConfiguration private constructor(
     PUSH,
     SMS,
     ALL
+  }
+
+  /**
+   * Describes the mode for 'Username' or 'PhoneNumber'
+   */
+  enum class NewRowMode {
+    NEW_CONVERSATION,
+    BLOCK,
+    ADD_TO_GROUP
   }
 
   companion object {
@@ -205,6 +323,14 @@ class ContactSearchConfiguration private constructor(
 
     fun arbitrary(first: String, vararg rest: String) {
       addSection(Section.Arbitrary(setOf(first) + rest.toSet()))
+    }
+
+    fun username(newRowMode: NewRowMode) {
+      addSection(Section.Username(newRowMode))
+    }
+
+    fun phone(newRowMode: NewRowMode) {
+      addSection(Section.PhoneNumber(newRowMode))
     }
 
     fun addSection(section: Section)

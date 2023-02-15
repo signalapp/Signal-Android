@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.megaphone;
 import android.app.Application;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.Discouraged;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -34,6 +35,7 @@ public class MegaphoneRepository {
 
   private boolean enabled;
 
+  @Discouraged(message = "Instances of MegaphoneRepository should be accessed via ApplicationDependencies.")
   public MegaphoneRepository(@NonNull Application context) {
     this.context       = context;
     this.executor      = SignalExecutors.SERIAL;

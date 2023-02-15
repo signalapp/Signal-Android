@@ -5,6 +5,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 
 import java.util.Map;
+import java.util.function.Function;
 
 public final class MapUtil {
 
@@ -19,5 +20,11 @@ public final class MapUtil {
       V v = map.get(key);
       return v == null ? defaultValue : v;
     }
+  }
+
+  @NonNull
+  public static <K, V, M> M mapOrDefault(@NonNull Map<K, V> map, @NonNull K key, @NonNull Function<V, M> mapper, @NonNull M defaultValue) {
+    V v = map.get(key);
+    return v == null ? defaultValue : mapper.apply(v);
   }
 }

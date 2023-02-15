@@ -88,8 +88,8 @@ public class StorageForcePushJob extends BaseJob {
 
     StorageKey                  storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
     SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
-    RecipientTable        recipientTable    = SignalDatabase.recipients();
-    UnknownStorageIdTable storageIdDatabase = SignalDatabase.unknownStorageIds();
+    RecipientTable              recipientTable    = SignalDatabase.recipients();
+    UnknownStorageIdTable       storageIdTable    = SignalDatabase.unknownStorageIds();
 
     long                        currentVersion       = accountManager.getStorageManifestVersion();
     Map<RecipientId, StorageId> oldContactStorageIds = recipientTable.getContactStorageSyncIdsMap();
@@ -134,7 +134,7 @@ public class StorageForcePushJob extends BaseJob {
     SignalStore.storageService().setManifest(manifest);
     recipientTable.applyStorageIdUpdates(newContactStorageIds);
     recipientTable.applyStorageIdUpdates(Collections.singletonMap(Recipient.self().getId(), accountRecord.getId()));
-    storageIdDatabase.deleteAll();
+    storageIdTable.deleteAll();
   }
 
   @Override

@@ -56,7 +56,7 @@ class EmojiImageRequest(
 class EmojiFileRequest(
   version: Int,
   density: String,
-  name: String,
+  name: String
 ) : EmojiRequest {
   override val uri: String = "$BASE_STATIC_BUCKET_URI/$version/$density/$name"
 }

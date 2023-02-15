@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.components.ZoomingImageView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="false"
-    android:contentDescription="@string/media_preview_activity__media_content_description" />
+    tools:viewBindingIgnore="true">
+
+    <org.thoughtcrime.securesms.components.ZoomingImageView
+        android:id="@+id/zooming_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:clickable="false"
+        android:contentDescription="@string/media_preview_activity__media_content_description" />
+
+</FrameLayout>

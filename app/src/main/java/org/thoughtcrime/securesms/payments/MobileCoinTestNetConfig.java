@@ -59,12 +59,12 @@ final class MobileCoinTestNetConfig extends MobileCoinConfig {
     try {
       Set<X509Certificate> trustRoots = getTrustRoots(R.raw.signal_mobilecoin_authority);
       ClientConfig         config     = new ClientConfig();
-      VerifierFactory verifierFactory = new VerifierFactory(// ~November 16, 2022
+      VerifierFactory verifierFactory = new VerifierFactory(// ~January 27, 2023
                                                             new ServiceConfig(
-                                                                "5fe2b72fe5f01c269de0a3678728e7e97d823a953b053e43fbf934f439d290e6",
-                                                                "d901b5c4960f49871a848fd157c7c0b03351253d65bb839698ddd5df138ad7b6",
-                                                                "d5159ba907066384fae65842b5311f853b028c5ee4594f3b38dfc02acddf6fe3",
-                                                                "be1d711887530929fbc06ef8b77b618db15e9cd1dd0265559ea45f60a532ee52",
+                                                                "4f3879bfffb7b9f86a33086202b6120a32da0ca159615fbbd6fbac6aa37bbf02",
+                                                                "16d73984c2d2712156135ab69987ca78aca67a2cf4f0f2287ea584556f9d223a",
+                                                                "23ececb2482e3b1d9e284502e2beb65ae76492f2791f3bfef50852ee64b883c3",
+                                                                "f52b3dc018195eae42f543e64e976c818c06672b5489746e2bf74438d488181b",
                                                                 new String[] { "INTEL-SA-00334", "INTEL-SA-00615", "INTEL-SA-00657" }
                                                             ));
 

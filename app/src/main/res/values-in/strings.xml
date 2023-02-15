@@ -353,11 +353,11 @@
 
     <string name="ConversationActivity_cancel">Batal</string>
     <string name="ConversationActivity_delete_conversation">Hapus percakapan?</string>
-    <string name="ConversationActivity_delete_and_leave_group">Hapus dan tinggalkan grup?</string>
+    <string name="ConversationActivity_delete_and_leave_group">Hapus dan keluar dari grup?</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Percakapan ini akan dihapus dari semua perangkat Anda.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Anda akan meninggalkan grup ini dan akan dihapus dari semua perangkat Anda.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Anda akan keluar dari grup ini, dan grup akan dihapus dari semua perangkat Anda.</string>
     <string name="ConversationActivity_delete">Hapus</string>
-    <string name="ConversationActivity_delete_and_leave">Hapus dan tinggalkan</string>
+    <string name="ConversationActivity_delete_and_leave">Hapus dan keluar</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Untuk menelepon %1$s, Signal memerlukan akses mikrofon Anda</string>
 
 
@@ -420,13 +420,13 @@
     <string name="ConversationFragment_delete_on_this_device">Hapus di perangkat ini</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Hapus di semua perangkat</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Pesan ini akan dihapus untuk setiap orang dalam percakapan ini jika mereka menggunakan versi terbaru Signal. Mereka dapat melihat ketika Anda menghapus sebuah pesan.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Pesan ini akan dihapus untuk semua orang yang ada dalam percakapan jika mereka menggunakan versi terbaru Signal. Mereka akan bisa melihat bahwa Anda telah menghapus sebuah pesan.</string>
     <string name="ConversationFragment_quoted_message_not_found">Pesan asli tidak ditemukan</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Pesan asli tidak lagi tersedia</string>
     <string name="ConversationFragment_failed_to_open_message">Gagal membuka pesan</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Anda dapat geser ke kanan pada pesan manapun untuk membalasnya dengan cepat</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Anda dapat geser ke kiri pada pesan manapun untuk membalasnya dengan cepat</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Berkas media satu-tayangan yang keluar secara otomatis dihapus setelah terkirim</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">File media sekali lihat akan langsung terhapus setelah terkirim</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Anda telah melihat pesan ini</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Anda dapat menambahkan catatan pribadi di dalam percakapan ini. Jika akun Anda memiliki perangkat terhubung, catatan baru akan disinkronisasikan.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d anggota grup memiliki nama yang sama.</string>
@@ -458,7 +458,7 @@
         <item quantity="other">Hapus percakapan terpilih?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="other">Ini akan secara permanen menghapus semua %1$d percakapan terpilih.</item>
+        <item quantity="other">Ini akan secara permanen menghapus %1$d percakapan terpilih.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Menghapus</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Menghapus percakapan yang dipilih …</string>
@@ -527,9 +527,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Tarik untuk memfilter</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Lepas untuk memfilter</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
@@ -580,7 +580,7 @@
     <string name="BackupsPreferenceFragment__last_backup">Pencadangan terakhir: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Folder cadangan</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">Waktu pencadangan</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verifikasi frasa sandi cadangan</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Uji frasa sandi cadangan Anda dan verifikasi kecocokannya</string>
     <string name="BackupsPreferenceFragment__turn_on">Nyalakan</string>
@@ -613,47 +613,50 @@
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
     <string name="DateUtils_schedule_at">%1$s pada %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">Besok</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">Malam ini</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Pesan terjadwal</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">Pilih Tanggal &amp; Waktu</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">Pesan terjadwal</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Saat Anda mengirim pesan terjadwal, pastikan perangkat Anda aktif dan terhubung ke internet pada saat pengiriman. Jika tidak, pesan Anda akan dikirim saat perangkat terhubung kembali.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Oke</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Untuk aktifkan penjadwalan pesan:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Untuk aktifkan lagi penjadwalan pesan:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Pilih tanggal</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Pilih waktu</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Jadwalkan pesan</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
-
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Jadwalkan pesan</string>
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Semua waktu dalam (%1$s) %2$s</string>
+    <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Waktu yang dipilih sudah lewat. Pesan akan langsung dikirim.</string>
+    <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Kirim langsung</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Kirim sekarang</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Jadwal ulang</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Hapus</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Hapus pesan terjadwal yang dipilih?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Menghapus pesan terjadwal…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Sesi percakapan diperbarui</string>
@@ -750,7 +753,7 @@
         <item quantity="other">Anggota ini harus menerima undangan bergabung ke grup ini lagi dan tidak akan menerima pesan grup sampai mereka menerimanya:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="other">Anggota ini telah dikeluarkan dari grup dan tidak dapat bergabung kembali sampai mereka melakukan pembaruan:</item>
+        <item quantity="other">Anggota-anggota ini telah dikeluarkan dari grup dan tidak bisa bergabung kembali sampai mereka melakukan pembaruan:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -764,7 +767,7 @@
         <item quantity="other">Anggota ini harus menerima undangan bergabung ke grup ini lagi dan tidak akan menerima pesan grup sampai mereka menerimanya:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="other">Anggota ini tidak dapat bergabung ke Grup Baru, dan akan dikeluarkan dari grup:</item>
+        <item quantity="other">Anggota-anggota ini tidak dapat bergabung ke Grup Baru, dan akan dikeluarkan dari grup:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -1060,7 +1063,7 @@
         <item quantity="other">Hapus item terpilih?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="other">Semua %1$d bekas terpilih akan dihapus secara permanen. Semua pesan berkaitan dengan berkas tersebut juga akan dihapus.</item>
+        <item quantity="other">Ini akan menghapus secara permanen %1$d file terpilih. Semua pesan yang berkaitan dengan item ini juga akan dihapus.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Menghapus</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Menghapus pesan-pesan …</string>
@@ -1193,7 +1196,7 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="other">%1$s anggota tidak dapat ditambahkan ke Grup Baru dan telh dikeluarkan.</item>
+        <item quantity="other">%1$s anggota tidak dapat ditambahkan ke Grup Baru dan telah dikeluarkan.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1363,7 +1366,7 @@
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Riwayat pesan Anda dengan %1$s dan satu obrolan lain dengan mereka telah digabungkan.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
-    <string name="MessageRecord_s_belongs_to_s">%1$s milik dari %2$s</string>
+    <string name="MessageRecord_s_belongs_to_s">%1$s milik %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Anda mengirimi %1$s permintaan untuk mengaktifkan Pembayaran</string>
     <!-- Request message from recipient to activate payments -->
@@ -1519,7 +1522,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Peringatan</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Jika Anda menonaktifkan PIN, Anda akan kehilangan data saat Anda mendaftar ulang Signal kecuali Anda melakukan pencadangan manual dan memulihkannya. Anda tidak dapat menyalakan Kunci Pendaftaran saat PIN dinonaktifkan.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You cannot turn on Registration Lock while the PIN is disabled.</string>
     <string name="PinOptOutDialog_disable_pin">Nonaktifkan PIN</string>
 
     <!-- RatingManager -->
@@ -1678,7 +1681,7 @@
     <string name="RegistrationActivity_select_your_country">Pilih negara Anda</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Anda harus mengisi kode negara Anda
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Tolong masukkan nomor telepon yang sah untuk mendaftar</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Masukkan nomor telepon yang valid untuk mendaftar.</string>
     <string name="RegistrationActivity_invalid_number">Nomor telepon tidak valid</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Nomor yang anda isikan (%1$s) tidak valid.
     </string>
@@ -1708,7 +1711,7 @@
     <string name="RegistrationActivity_continue">Lanjutkan</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Jaga privasimu.\nJadilah dirimu sendiri pada setiap pesan.</string>
     <string name="RegistrationActivity_enter_your_phone_number">Masukkan nomor telepon Anda</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Anda akan mendapakan kode verifikasi. Tarif operator mungkin berlaku.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Anda akan menerima kode verifikasi.\nTarif operator mungkin berlaku.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Masukkan kode yang kami kirimkan ke %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Pastikan ponsel Anda dapat menerima SMS atau panggilan</string>
 
@@ -1717,7 +1720,7 @@
     <string name="RegistrationActivity_country_code_hint">Negara</string>
     <string name="RegistrationActivity_call">Panggil</string>
     <string name="RegistrationActivity_verification_code">Kode Verifikasi</string>
-    <string name="RegistrationActivity_resend_code">Kirim Ulang Kode Verifikasi</string>
+    <string name="RegistrationActivity_resend_code">Kirim Ulang Kode</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Nyalakan Kunci Pendaftaran?</string>
@@ -1816,7 +1819,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">Gagal menyimpan</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">Penyimpanan selesai</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Ketuk pecakapan untuk menghapus</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Ketuk percakapan untuk menghapus</string>
     <string name="SubmitDebugLogActivity_submit">Kirimkan</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Gagal mengirimkan catatan</string>
     <string name="SubmitDebugLogActivity_success">Berhasil!</string>
@@ -1882,6 +1885,12 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Memberi tanggapan %1$s ke cerita mereka</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Pembayaran</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Pesan terjadwal</string>
+    <!--  Displayed in the conversation list when your message history has been merged -->
+    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
+    <string name="ThreadRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Pembaharuan Signal</string>
@@ -1973,7 +1982,7 @@
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal memerlukan izin Penyimpanan untuk menyimpan di penyimpanan eksternal, tetapi saat ini izin ditolak secara permanen. Harap lanjutkan ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Penyimpanan\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Tidak bisa menyimpan ke penyimpanan eksternal tanpa izin</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Hapus pesan?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Aksi ini akan menghapus pesan secara permanen.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Ini akan menghapus pesan secara permanen.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s hingga %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Anda ke %1$s</string>
@@ -1989,7 +1998,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Eror Saat Menghapus Pesan, Pesan Mungkin Masih Ada</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Baca Selengkapnya</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d pesan baru dalam %2$d percakapan</string>
@@ -2177,7 +2186,7 @@
     <string name="conversation_activity__type_message_sms_insecure">SMS tanpa enkripsi</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS tanpa enkripsi</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">Jadwalkan pesan</string>
     <string name="conversation_activity__from_sim_name">Dari %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Kirim</string>
@@ -2489,7 +2498,7 @@
     <string name="AndroidManifest__linked_devices">Perangkat terhubung</string>
     <string name="AndroidManifest__invite_friends">Undang teman</string>
     <string name="AndroidManifest_archived_conversations">Arsip percakapan</string>
-    <string name="AndroidManifest_remove_photo">Buang foto</string>
+    <string name="AndroidManifest_remove_photo">Hapus foto</string>
 
     <!-- Message Requests Megaphone -->
     <string name="MessageRequestsMegaphone__message_requests">Undangan percakapan</string>
@@ -2692,11 +2701,11 @@
     <string name="preferences_storage__review_storage">Tinjau penyimpanan</string>
     <string name="preferences_storage__delete_older_messages">Hapus pesan-pesan lama?</string>
     <string name="preferences_storage__clear_message_history">Hapus riwayat pesan?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ini akan menghapus secara permanen semua riwayat pesan dan media dari perangkat Anda yang lebih lama dari %1$s.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ini akan menghapus secara permanen dari perangkat Anda semua riwayat pesan dan media yang lebih lama dari %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Ini akan secara permanen memotong semua percakapan ke %1$s pesan-pesan terbaru.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ini akan menghapus semua riwayat pesan dan media secara permanen dari perangkat Anda.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Apakah Anda yakin ingin menghapus semua riwayat pesan?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Semua riwayat pesan akan dihapus selamanya. Tindakan ini tidak dapat dibatalkan.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Yakin ingin menghapus semua riwayat pesan?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Semua riwayat pesan akan dihapus secara permanen. Tindakan ini tidak dapat diurungkan.</string>
     <string name="preferences_storage__delete_all_now">Hapus semua sekarang</string>
     <string name="preferences_storage__forever">Selamanya</string>
     <string name="preferences_storage__one_year">1 tahun</string>
@@ -3063,7 +3072,7 @@
     <string name="conversation_scheduled_messages_bar__see_all">Lihat semua</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="other">%1$d pesan terjadwal</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3080,6 +3089,8 @@
     <string name="text_secure_normal__invite_friends">Undang teman</string>
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filter obrolan belum terbaca</string>
+    <!-- Overflow menu entry to disable unread chats filter -->
+    <string name="text_secure_normal__clear_unread_filter">Hapus filter belum dibaca</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Salin ke papan klip</string>
@@ -3120,7 +3131,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokol Signal melindungi %1$d%% pesan keluar Anda secara otomatis selama %2$dhari terakhir. Percakapan antara pengguna Signal selalu dienkripsi ujung-ke-ujung.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Kabarkan</string>
     <string name="InsightsDashboardFragment__not_enough_data">Data tidak cukup</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Insight Anda dihitung dari pesan terkirim dalam %1$d hari terakhir yang masih dapat dilihat dan belum terhapus.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Persentase Insight Anda dihitung berdasarkan pesan terkirim dalam %1$d hari terakhir yang masih dapat dilihat dan belum terhapus.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">Mulai percakapan</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Mari berkomunikasi secara aman dan aktifkan fitur terbaru yang melampaui batasan dari pesan SMS yang tidak terenkripsi dengan mendungan kontak Anda untuk menggunakan Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Statistik ini hanya dapat diakses dari perangkat ini dan dibaca oleh Anda sendiri. Informasi ini tidak dikirimkan ke manapun.</string>
@@ -3156,13 +3167,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Buat PIN baru</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Anda dapat mengganti PIN Anda selama perangkat ini terdaftar.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Buat PIN Anda</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN dapat membantu Anda memulihkan akun dan memastikan info Anda terenkripsi di Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Buat PIN yang lebih kuah</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PIN tidak cocok. Coba lagi.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Masukkan lagi PIN yang baru saja dibuat.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Konfirmasi PIN Anda.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Pembuatan PIN gagal</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN Anda tidak disimpan. Signal akan meminta Anda membuat PIN lagi nanti.</string>
@@ -3192,7 +3203,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Akun terkunci</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Akun Anda terkunci untuk melindungi privasi dan keamanan Anda. Setelah %1$d hari tidak aktif Anda akan dapat mendaftarkan ulang nomor telpon ini tanpa memerlukan PIN. Semua konten akan dihapus.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Akun Anda terkunci untuk melindungi privasi dan keamanan Anda. Setelah %1$d hari tidak aktif, Anda akan dapat mendaftarkan ulang nomor telepon ini tanpa memerlukan PIN. Semua konten akan dihapus.</string>
     <string name="AccountLockedFragment__next">Berikutnya</string>
     <string name="AccountLockedFragment__learn_more">Pelajari Lebih Lanjut</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3210,7 +3221,7 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Pendaftaran Signal - Perlu Bantuan mengenai PIN untuk Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="other">Untuk privasi dan keamanan Anda, tidak ada cara untuk memulihkan PIN Anda. Jika Anda tidak dapat mengingat PIN Anda, Anda bisa melakukan verifikasi ulang dengan SMS setelah %1$d hari tidak aktif. Dalam kasus ini, akun Anda dan semua konten di dalamnya akan dihapus.</item>
+        <item quantity="other">Demi privasi dan keamanan Anda, PIN tidak akan bisa dipulihkan. Jika Anda tidak dapat mengingat PIN Anda, Anda bisa melakukan verifikasi ulang dengan SMS setelah %1$d hari tidak aktif. Dalam kasus ini, akun Anda dan semua konten di dalamnya akan dihapus.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3218,7 +3229,7 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="other">Jika Anda kehabisan percobaan, akun Anda akan dikunci selama %1$d hari. Setelah %1$d hari tidak aktif, Anda dapat melakukan pendaftaran ulang tanpa PIN. Akun Anda dan semua konten di dalamnya akan dihapus.</item>
+        <item quantity="other">Jika kesempatan percobaan habis, akun Anda akan dikunci selama %1$d hari. Setelah %1$d hari tidak aktif, Anda dapat melakukan pendaftaran ulang tanpa PIN. Akun Anda dan semua konten di dalamnya akan dihapus.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3289,7 +3300,7 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Memverifikasi pencadangan Signal…</string>
     <string name="LocalBackupJobApi29_backup_failed">Cadangan gagal</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktori berkas cadangan telah terhapus atau dipindahkan.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktori cadangan telah dihapus atau dipindahkan.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Berkas cadangan kamu terlalu besar untuk disimpan pada lokasi ini.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Penyimpanan tidak cukup untuk menyimpan cadangan Anda.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
@@ -3298,7 +3309,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Pencadangan Anda berisi file sangat besar yang tidak dapat dicadangkan. Hapus file dan buat pencadangan baru.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tekan untuk mengatur cadangan.</string>
     <string name="RegistrationActivity_wrong_number">Salah nomor?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Panggil saya \n (Tersedia di %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Panggil saya (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontak Pusat Bantuan Signal</string>
     <string name="RegistrationActivity_code_support_subject">Pendaftaran Signal - Kode Verifikasi untuk Android</string>
     <string name="RegistrationActivity_incorrect_code">Kode Salah</string>
@@ -3397,7 +3408,7 @@
     <string name="DeviceTransferSetup__location_permission">Izin lokasi</string>
     <string name="DeviceTransferSetup__location_services">Layanan lokasi</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Pada layar WiFi Direct, hapus semua grup yang diingat dan lepaskan tautan undangan atau perangkat yang tersambung.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Pada layar WiFi Direct, hapus semua grup yang diingat dan lepaskan tautan undangan atau perangkat yang terhubung.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Layar WiFi Direct</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Coba matikan Wi-Fi dan nyalakan kembali, pada kedua perangkat.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Pastikan kedua perangkat dalam mode transfer.</string>
@@ -3471,15 +3482,15 @@
     <string name="RecipientBottomSheet_add_to_another_group">Tambahkan ke grup lain</string>
     <string name="RecipientBottomSheet_view_safety_number">Lihat nomor keamanan</string>
     <string name="RecipientBottomSheet_make_admin">Jadikan admin</string>
-    <string name="RecipientBottomSheet_remove_as_admin">Cabut dari admin</string>
+    <string name="RecipientBottomSheet_remove_as_admin">Hapus dari peran admin</string>
     <string name="RecipientBottomSheet_remove_from_group">Keluarkan dari grup</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">Hapus %1$s sebagai admin grup?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Hapus %1$s dari admin grup?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" akan dapat mengubah grup ini beserta anggotanya."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Hapus %1$s dari grup?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Hapus %1$s dari grup? Mereka tidak akan bisa bergabung ulang melalui tautan grup.</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Hapus %1$s dari grup? Mereka tidak akan bisa bergabung kembali melalui tautan grup.</string>
     <string name="RecipientBottomSheet_remove">Hapus</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">Disalin ke papan klip</string>
 
@@ -3532,9 +3543,9 @@
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="other">%1$d grup yang sama</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">Hapus %1$s dari grup ini?</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">Hapus %1$s dari grup?</string>
     <string name="ReviewCardDialogFragment__remove">Hapus</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Gagal untuk menghapus anggota.</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Gagal menghapus anggota.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">Anggota</string>
@@ -3568,15 +3579,15 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Menghapus akun Anda akan:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Masukkan nomor telepon Anda</string>
     <string name="DeleteAccountFragment__delete_account">Hapus akun</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Menghapus info akun dan foto profil Anda</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Hapus semua pesan anda</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Hapus %1$s pada akun pembayaran Anda</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Hapus info akun dan foto profil Anda</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Hapus semua pesan Anda</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Menghapus %1$s di akun pembayaran Anda</string>
     <string name="DeleteAccountFragment__no_country_code">Tidak ada kode negara yang ditentukan</string>
     <string name="DeleteAccountFragment__no_number">Tidak ada nomor ditentukan</string>
     <string name="DeleteAccountFragment__the_phone_number">Nomor telepon yang kamu masukan tidak cocok dengan akun manapun.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Apakah kamu yakin ingin menghapus akun Anda?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ini akan menghapus akun Signal Anda dan mereset aplikasi. Aplikasi akan tertutup setelah proses selesai.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Gagal menghapus data lokal, kamu bisa menghapusnya secara manual melalui pengaturan applikasi.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Yakin ingin menghapus akun Anda?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Tindakan ini akan menghapus akun Signal Anda dan mereset aplikasi. Aplikasi akan tertutup setelah proses selesai.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Gagal menghapus data lokal. Anda dapat menghapusnya secara manual di pengaturan aplikasi sistem.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Buka pengaturan applikasi</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Meninggalkan grup…</string>
@@ -3589,7 +3600,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Menghapus data pengguna dan mengatur ulang aplikasi</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">Akun Tidak Dihapus</string>
+    <string name="DeleteAccountFragment__account_not_deleted">Akun Tidak Terhapus</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">Terjadi masalah menyelesaikan proses penghapusan. Periksa koneksi jaringan Anda dan coba lagi.</string>
 
@@ -3971,9 +3982,9 @@
     <string name="ChatColorSelectionFragment__delete">Hapus</string>
     <string name="ChatColorSelectionFragment__delete_color">Hapus warna</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="other">Warna kustom ini digunakan di %1$d percakapan. Apakah Anda ingin menghapusnya untuk semua percakapan?</item>
+        <item quantity="other">Warna kustom ini digunakan di %1$d obrolan. Apakah Anda ingin menghapusnya untuk semua obrolan?</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">Hapus warna percakapan?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">Hapus warna obrolan?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">Solid</string>
@@ -4140,7 +4151,7 @@
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Tidak dapat menghapus %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Orang ini disimpan di Kontak perangkat Anda. Hapus dari Kontak dan coba lagi.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Orang ini disimpan di Kontak perangkat Anda. Hapus dari Kontak Anda dan coba lagi.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Lihat kontak</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -4239,7 +4250,7 @@
 
     <string name="MediaCountIndicatorButton__send">Kirim</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Ketuk untuk menghilangkan</string>
+    <string name="MediaReviewSelectedItem__tap_to_remove">Ketuk untuk menghapus</string>
     <string name="MediaReviewSelectedItem__tap_to_select">Ketuk untuk memilih</string>
 
     <string name="MediaReviewImagePageFragment__discard">Batalkan</string>
@@ -4271,7 +4282,7 @@
 
     <string name="SubscribeFragment__cancel_subscription">Batalkan Langganan</string>
     <string name="SubscribeFragment__confirm_cancellation">Konfirmasi Pembatalan?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Anda tidak akan dikenakan biaya lagi. Lencana Anda akan dihapus dari profil pada akhir periode tagihan Anda.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Anda tidak akan dikenakan biaya lagi. Lencana Anda akan dihapus dari profil Anda pada akhir periode penagihan.</string>
     <string name="SubscribeFragment__not_now">Nanti saja</string>
     <string name="SubscribeFragment__confirm">Konfirmasi</string>
     <string name="SubscribeFragment__update_subscription">Perbarui Langganan</string>
@@ -4509,7 +4520,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Hapus profil</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">\"%1$s\" dikeluarkan.</string>
+    <string name="NotificationProfileDetails__s_removed">\"%1$s\" dihapus.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Urungkan</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -4730,11 +4741,11 @@
     <!-- Dialog action to remove viewer from a story -->
     <string name="StoryViewsFragment__remove">Hapus</string>
     <!-- Dialog title when removing a viewer from a story -->
-    <string name="StoryViewsFragment__remove_viewer">Hapus pemirsa?</string>
+    <string name="StoryViewsFragment__remove_viewer">Hapus penonton?</string>
     <!-- Dialog message when removing a viewer from a story -->
     <string name="StoryViewsFragment__s_will_still_be_able">%1$s masih bisa melihat postingan ini, tetapi tidak bisa melihat postingan mendatang yang kamu bagikan ke %2$s.</string>
     <!-- Story View context menu action to remove them from a story -->
-    <string name="StoryViewItem__remove_viewer">Hapus pemirsa</string>
+    <string name="StoryViewItem__remove_viewer">Hapus penonton</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Belum ada balasan</string>
     <!-- Displayed when no longer a group member -->
@@ -4749,6 +4760,8 @@
     <string name="StoryReplyComposer__react_to_this_story">Menanggapi cerita ini</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Membalas secara privat ke %1$s</string>
+    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
+    <string name="StoryReplyComposer__reply_to_s">Balas ke %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Salin</string>
@@ -4856,7 +4869,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">Hapus cerita kustom?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" dan pembaruan yang dibagikan ke cerita ini juga akan dihapus.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" dan pembaruan yang dibagikan ke cerita ini akan dihapus.</string>
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Hapus</string>
     <!-- Dialog title for first time sending something to a beta story -->
@@ -5147,7 +5160,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Nonaktifkan cerita?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Anda tidak bisa lagi membagikan atau melihat cerita. Pembaruan cerita yang baru-baru ini Anda bagikan juga akan dihapus.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Anda tidak akan bisa lagi membagikan atau melihat cerita. Pembaruan cerita yang baru-baru ini Anda bagikan juga akan dihapus.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Privasi cerita</string>
     <!-- Header for section that lists out stories -->
@@ -5184,7 +5197,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Ekspor pesan SMS Anda</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Anda dapat mengekspor pesan SMS ke database SMS di ponsel Anda, dan bisa memilih apakah ingin menyimpan atau menghapusnya dari Signal. Ini memungkinkan aplikasi SMS lain di ponsel Anda mengimpornya. Tindakan ini tidak menghasilkan file yang bisa dibagikan dari riwayat SMS Anda.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Anda dapat mengekspor pesan SMS ke database SMS di ponsel Anda, dan bisa memilih apakah ingin menyimpan atau menghapusnya dari Signal. Ini memungkinkan aplikasi SMS lain di ponsel Anda mengimpornya. Tindakan ini tidak menghasilkan file yang dapat dibagikan dari riwayat SMS Anda.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Lanjutkan</string>
 
@@ -5242,7 +5255,7 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Hapus pesan SMS dari Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Kini Anda dapat menghapus pesan SMS dari Signal untuk mengosongkan ruang penyimpanan. Pesan masih bisa dilihat di aplikasi SMS lain di ponsel meskipun Anda menghapusnya.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Kini Anda dapat menghapus pesan SMS dari Signal untuk mengosongkan ruang penyimpanan. Pesan masih bisa dilihat di aplikasi SMS lain yang ada di ponsel meskipun Anda telah menghapusnya.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5410,8 +5423,6 @@
     <string name="GroupStoryEducationSheet__next">Berikutnya</string>
     <string name="Registration_country_code_entry_hint">+0</string>
 
-    <!-- EOF -->
-
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">Donasi</string>
     <string name="PaypalCompleteOrderBottomSheet__payment">Pembayaran</string>
@@ -5426,24 +5437,58 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Dukungan SMS akan dihentikan</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Dukungan SMS di aplikasi Signal akan segera dihentikan.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">Dukungan untuk SMS di aplikasi Signal akan segera dihentikan pada %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Pesan SMS berbeda dengan pesan Signal. <b>Ini tidak memengaruhi perpesanan terenkripsi Signal yang akan tetap berfungsi.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_3">Anda dapat mengekspor pesan SMS dan memilih aplikasi SMS baru.</string>
     <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal telah meniadakan dukungan untuk pengiriman pesan SMS.</string>
+    <string name="SmsRemoval_info_bullet_1_phase_3">Signal telah menghentikan dukungan untuk pengiriman pesan SMS.</string>
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">Ekspor SMS</string>
+
+    <!-- Set up your username megaphone -->
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__set_up_your_signal_username">Buat nama pengguna Signal Anda</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__usernames_let_others">Dengan nama pengguna, orang lain dapat mengirimi Anda pesan tanpa memerlukan nomor telepon Anda</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__not_now">Nanti saja</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__continue">Lanjutkan</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Tebal</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">Miring</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">Dicoret</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Monospace</string>
+
+    <!-- UsernameEducationFragment -->
+    <!-- Continue button which takes the user to the add a username screen -->
+    <string name="UsernameEducationFragment__continue">Lanjutkan</string>
+    <!-- Displayed as a title on the username education screen -->
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Buat nama pengguna Signal Anda</string>
+
+    <!-- Username edit dialog -->
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">Edit nama pengguna</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">Hapus nama pengguna</string>
+
+    <!-- Time duration picker -->
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
+    <string name="TimeDurationPickerDialog_positive_button">Set</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+
+    <!-- EOF -->
 </resources>

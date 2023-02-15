@@ -366,7 +366,8 @@ public class ConversationParentFragment extends Fragment
                Material3OnScrollHelperBinder,
                MessageDetailsFragment.Callback,
                ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
-               ConversationBottomSheetCallback
+               ConversationBottomSheetCallback,
+               ScheduleMessageDialogCallback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
@@ -511,7 +512,7 @@ public class ConversationParentFragment extends Fragment
       return;
     }
 
-    voiceNoteMediaController = new VoiceNoteMediaController(requireActivity());
+    voiceNoteMediaController = new VoiceNoteMediaController(requireActivity(), true);
     voiceRecorderWakeLock    = new VoiceRecorderWakeLock(requireActivity());
 
     // TODO [alex] LargeScreenSupport -- Should be removed once we move to multi-pane layout.
@@ -2070,7 +2071,7 @@ public class ConversationParentFragment extends Fragment
     inputPanel.setMediaListener(this);
 
     attachmentManager = new AttachmentManager(requireContext(), view, this);
-    audioRecorder     = new AudioRecorder(requireContext());
+    audioRecorder     = new AudioRecorder(requireContext(), inputPanel);
     typingTextWatcher = new ComposeTextWatcher();
 
     SendButtonListener        sendButtonListener        = new SendButtonListener();
@@ -2081,26 +2082,24 @@ public class ConversationParentFragment extends Fragment
     attachButton.setOnClickListener(new AttachButtonListener());
     attachButton.setOnLongClickListener(new AttachButtonLongClickListener());
     sendButton.setOnClickListener(sendButtonListener);
-    if (FeatureFlags.scheduledMessageSends()) {
-      sendButton.setScheduledSendListener(new SendButton.ScheduledSendListener() {
-        @Override
-        public void onSendScheduled() {
-          ScheduleMessageContextMenu.show(sendButton, (ViewGroup) requireView(), time -> {
-            if (time == -1) {
-              ScheduleMessageTimePickerBottomSheet.showSchedule(getChildFragmentManager());
-            } else {
-              sendMessage(null, time);
-            }
-            return Unit.INSTANCE;
-          });
-        }
+    sendButton.setScheduledSendListener(new SendButton.ScheduledSendListener() {
+      @Override
+      public void onSendScheduled() {
+        ScheduleMessageContextMenu.show(sendButton, (ViewGroup) requireView(), time -> {
+          if (time == -1) {
+            ScheduleMessageTimePickerBottomSheet.showSchedule(getChildFragmentManager());
+          } else {
+            sendMessage(null, time);
+          }
+          return Unit.INSTANCE;
+        });
+      }
 
-        @Override
-        public boolean canSchedule() {
-          return !(inputPanel.isRecordingInLockedMode() || draftViewModel.getVoiceNoteDraft() != null);
-        }
-      });
-    }
+      @Override
+      public boolean canSchedule() {
+                                   return !(inputPanel.isRecordingInLockedMode() || draftViewModel.getVoiceNoteDraft() != null);
+                                                                                                                                }
+    });
     sendButton.setEnabled(true);
     sendButton.addOnSelectionChangedListener((newMessageSendType, manuallySelected) -> {
       if (getContext() == null) {
@@ -2948,9 +2947,10 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendMessage(@Nullable String metricId, long scheduledDate) {
-    if (scheduledDate != -1) {
-      ReenableScheduledMessagesDialogFragment.showIfNeeded(requireContext(), getChildFragmentManager());
+    if (scheduledDate != -1 && ReenableScheduledMessagesDialogFragment.showIfNeeded(requireContext(), getChildFragmentManager(), metricId, scheduledDate)) {
+      return;
     }
+
     if (inputPanel.isRecordingInLockedMode()) {
       inputPanel.releaseRecordingLock();
       return;
@@ -3375,7 +3375,13 @@ public class ConversationParentFragment extends Fragment
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
     voiceNoteMediaController.pausePlayback();
-    recordingSession = new RecordingSession(audioRecorder.startRecording());
+    try {
+      recordingSession = new RecordingSession(audioRecorder.startRecording());
+      disposables.add(recordingSession);
+    } catch (AssertionError err) {
+      Log.e(TAG, "Could not start audio recording.", err);
+      Toast.makeText(requireContext(), R.string.ConversationActivity_unable_to_record_audio, Toast.LENGTH_SHORT).show();
+    }
   }
 
   @Override
@@ -3394,8 +3400,9 @@ public class ConversationParentFragment extends Fragment
 
     requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-
-    recordingSession.completeRecording();
+    if (recordingSession != null) {
+      recordingSession.completeRecording();
+    }
   }
 
   @Override
@@ -3669,6 +3676,7 @@ public class ConversationParentFragment extends Fragment
     });
   }
 
+  @Override
   public void onScheduleSend(long scheduledTime) {
     sendMessage(null, scheduledTime);
   }
@@ -3683,12 +3691,18 @@ public class ConversationParentFragment extends Fragment
     fragment.jumpToMessage(messageRecord);
   }
 
+  @Override
+  public void onSchedulePermissionsGranted(@Nullable String metricId, long scheduledDate) {
+    sendMessage(metricId, scheduledDate);
+  }
+
   // Listeners
 
-  private class RecordingSession implements SingleObserver<VoiceNoteDraft> {
+  private class RecordingSession implements SingleObserver<VoiceNoteDraft>, Disposable {
 
     private boolean saveDraft  = true;
     private boolean shouldSend = false;
+    private Disposable disposable = Disposable.empty();
 
     RecordingSession(Single<VoiceNoteDraft> observable) {
       observable.observeOn(AndroidSchedulers.mainThread()).subscribe(this);
@@ -3696,6 +3710,7 @@ public class ConversationParentFragment extends Fragment
 
     @Override
     public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+      this.disposable = d;
     }
 
     @Override
@@ -3709,12 +3724,16 @@ public class ConversationParentFragment extends Fragment
           draftViewModel.saveEphemeralVoiceNoteDraft(draft.asDraft());
         }
       }
+
+      recordingSession.dispose();
       recordingSession = null;
     }
 
     @Override
     public void onError(Throwable t) {
       Toast.makeText(requireContext(), R.string.ConversationActivity_unable_to_record_audio, Toast.LENGTH_LONG).show();
+      Log.e(TAG, "Error in RecordingSession.", t);
+      recordingSession.dispose();
       recordingSession = null;
     }
 
@@ -3733,6 +3752,16 @@ public class ConversationParentFragment extends Fragment
     public void completeRecording() {
       this.shouldSend = true;
       audioRecorder.stopRecording();
+    }
+
+    @Override
+    public void dispose() {
+      disposable.dispose();
+    }
+
+    @Override
+    public boolean isDisposed() {
+      return disposable.isDisposed();
     }
   }
 
@@ -3920,7 +3949,7 @@ public class ConversationParentFragment extends Fragment
 
         reviewBanner.get().setBannerMessage(message);
 
-        Drawable drawable = ContextUtil.requireDrawable(requireContext(), R.drawable.ic_info_white_24).mutate();
+        Drawable drawable = ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_info_24).mutate();
         DrawableCompat.setTint(drawable, ContextCompat.getColor(requireContext(), R.color.signal_icon_tint_primary));
 
         reviewBanner.get().setBannerIcon(drawable);
@@ -4009,6 +4038,12 @@ public class ConversationParentFragment extends Fragment
     } else {
       MessageDetailsFragment.create(messageRecord, recipient.getId()).show(getChildFragmentManager(), null);
     }
+  }
+
+  @Override
+  public void onFirstRender() {
+    requireActivity().supportStartPostponedEnterTransition();
+    voiceNoteMediaController.finishPostpone();
   }
 
   @Override

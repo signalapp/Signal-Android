@@ -10,10 +10,12 @@ enum class StoryDisplay {
    * View/Reply is underneath story content, corners are rounded, content is not cropped
    */
   LARGE,
+
   /**
    * View/Reply overlays story content, corners are rounded, content is not cropped
    */
   MEDIUM,
+
   /**
    * View/Reply is overlays story content, corners are not rounded, content is cropped
    */

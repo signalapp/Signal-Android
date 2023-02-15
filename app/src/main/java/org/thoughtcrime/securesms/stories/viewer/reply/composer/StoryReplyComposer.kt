@@ -1,27 +1,40 @@
 package org.thoughtcrime.securesms.stories.viewer.reply.composer
 
 import android.content.Context
+import android.graphics.Rect
+import android.net.Uri
 import android.util.AttributeSet
+import android.view.KeyEvent
 import android.view.View
+import android.view.ViewGroup
+import android.view.animation.OvershootInterpolator
 import android.view.inputmethod.EditorInfo
 import android.widget.FrameLayout
-import android.widget.TextView
-import android.widget.ViewSwitcher
+import androidx.core.view.marginEnd
 import androidx.core.widget.doAfterTextChanged
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.AutoTransition
+import androidx.transition.TransitionManager
+import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ComposeText
 import org.thoughtcrime.securesms.components.InputAwareLayout
-import org.thoughtcrime.securesms.components.QuoteView
+import org.thoughtcrime.securesms.components.emoji.Emoji
+import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
+import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.mms.GlideApp
-import org.thoughtcrime.securesms.mms.QuoteModel
+import org.thoughtcrime.securesms.emoji.EmojiSource
+import org.thoughtcrime.securesms.keyboard.emoji.toMappingModels
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.visible
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 
 class StoryReplyComposer @JvmOverloads constructor(
   context: Context,
@@ -30,13 +43,15 @@ class StoryReplyComposer @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
   private val inputAwareLayout: InputAwareLayout
-  private val quoteView: QuoteView
-  private val privacyChrome: TextView
   private val emojiDrawerToggle: EmojiToggle
   private val emojiDrawer: MediaKeyboard
+  private val reactionEmojiView: EmojiPageView
+  private val anyReactionView: View
+  private val emojiBar: View
+  private val bubbleView: ViewGroup
 
-  val reactionButton: View
   val input: ComposeText
+  val decoration: SpacingDecoration
 
   var isRequestingEmojiDrawer: Boolean = false
     private set
@@ -51,19 +66,18 @@ class StoryReplyComposer @JvmOverloads constructor(
 
     inputAwareLayout = findViewById(R.id.input_aware_layout)
     emojiDrawerToggle = findViewById(R.id.emoji_toggle)
-    quoteView = findViewById(R.id.quote_view)
     input = findViewById(R.id.compose_text)
-    reactionButton = findViewById(R.id.reaction)
-    privacyChrome = findViewById(R.id.private_reply_recipient)
     emojiDrawer = findViewById(R.id.emoji_drawer)
+    anyReactionView = findViewById(R.id.any_reaction)
+    reactionEmojiView = findViewById(R.id.reaction_emoji_view)
+    emojiBar = findViewById(R.id.emoji_bar)
+    bubbleView = findViewById(R.id.bubble)
 
-    val viewSwitcher: ViewSwitcher = findViewById(R.id.reply_reaction_switch)
     val reply: View = findViewById(R.id.reply)
 
     reply.setOnClickListener {
       callback?.onSendActionClicked()
     }
-
     input.setOnEditorActionListener { _, actionId, _ ->
       when (actionId) {
         EditorInfo.IME_ACTION_SEND -> {
@@ -74,16 +88,21 @@ class StoryReplyComposer @JvmOverloads constructor(
       }
     }
 
-    input.doAfterTextChanged {
-      if (it.isNullOrEmpty()) {
-        viewSwitcher.displayedChild = 0
-      } else {
-        viewSwitcher.displayedChild = 1
-      }
+    anyReactionView.setOnClickListener {
+      callback?.onPickAnyReactionClicked()
     }
 
-    reactionButton.setOnClickListener {
-      callback?.onPickReactionClicked()
+    input.doAfterTextChanged {
+      val notEmpty = !it.isNullOrEmpty()
+      reply.isEnabled = notEmpty
+      if (notEmpty && reply.visibility != View.VISIBLE) {
+        val transition = AutoTransition().setDuration(200L).setInterpolator(OvershootInterpolator(1f))
+        TransitionManager.beginDelayedTransition(bubbleView, transition)
+        reply.visibility = View.VISIBLE
+        reply.scaleX = 0f
+        reply.scaleY = 0f
+        reply.animate().setDuration(150).scaleX(1f).scaleY(1f).setInterpolator(OvershootInterpolator(1f)).start()
+      }
     }
 
     emojiDrawerToggle.setOnClickListener {
@@ -95,6 +114,29 @@ class StoryReplyComposer @JvmOverloads constructor(
         onEmojiToggleClicked()
       }
     }
+
+    val emojiEventListener: EmojiEventListener = object : EmojiEventListener {
+      override fun onEmojiSelected(emoji: String?) {
+        if (emoji != null) {
+          callback?.onReactionClicked(emoji)
+        }
+      }
+      override fun onKeyEvent(keyEvent: KeyEvent?) = Unit
+    }
+
+    reactionEmojiView.initialize(
+      emojiEventListener,
+      { },
+      false,
+      LinearLayoutManager(context, RecyclerView.HORIZONTAL, false),
+      R.layout.emoji_display_item_list,
+      R.layout.emoji_text_display_item_list
+    )
+    decoration = SpacingDecoration()
+    reactionEmojiView.addItemDecoration(decoration)
+    reactionEmojiView.setList(getReactionEmojis()) {
+      updateEmojiSpacing()
+    }
   }
 
   var hint: CharSequence
@@ -105,24 +147,8 @@ class StoryReplyComposer @JvmOverloads constructor(
       input.hint = value
     }
 
-  fun setQuote(messageRecord: MediaMmsMessageRecord) {
-    quoteView.setQuote(
-      GlideApp.with(this),
-      messageRecord.dateSent,
-      messageRecord.recipient,
-      messageRecord.body,
-      false,
-      messageRecord.slideDeck,
-      null,
-      QuoteModel.Type.NORMAL
-    )
-
-    quoteView.visible = true
-  }
-
-  fun displayPrivacyChrome(recipient: Recipient) {
-    privacyChrome.text = context.getString(R.string.StoryReplyComposer__replying_privately_to_s, recipient.getDisplayName(context))
-    privacyChrome.visible = true
+  fun displayReplyHint(recipient: Recipient) {
+    input.hint = (context.getString(R.string.StoryReplyComposer__reply_to_s, recipient.getDisplayName(context)))
   }
 
   fun consumeInput(): Input {
@@ -151,6 +177,17 @@ class StoryReplyComposer @JvmOverloads constructor(
     inputAwareLayout.hideCurrentInput(input)
   }
 
+  private fun getReactionEmojis(): List<MappingModel<*>> {
+    val reactionEmoji = SignalStore.emojiValues().reactions
+    val recentEmoji = RecentEmojiPageModel(context, ReactWithAnyEmojiBottomSheetDialogFragment.REACTION_STORAGE_KEY).emoji
+    val emoji = (reactionEmoji + recentEmoji).distinct()
+    val displayEmoji: List<Emoji> = emoji
+      .mapNotNull { canonical -> EmojiSource.latest.canonicalToVariations[canonical] }
+      .map { Emoji(it) }
+
+    return EmojiReactionsPageModel(emoji, displayEmoji).toMappingModels()
+  }
+
   private fun onEmojiToggleClicked() {
     if (!emojiDrawer.isInitialised) {
       callback?.onInitializeEmojiDrawer(emojiDrawer)
@@ -168,12 +205,59 @@ class StoryReplyComposer @JvmOverloads constructor(
     }
   }
 
+  private fun updateEmojiSpacing() {
+    val emojiItemWidth = 44.dp
+    val availableWidth = reactionEmojiView.width - anyReactionView.marginEnd
+    val maxNumItems = availableWidth / emojiItemWidth
+    val numItems = reactionEmojiView.adapter?.itemCount ?: 0
+
+    decoration.firstItemOffset = anyReactionView.marginEnd
+
+    if (numItems > maxNumItems) {
+      decoration.horizontalSpacing = 0
+      reactionEmojiView.invalidateItemDecorations()
+    } else {
+      decoration.horizontalSpacing = (availableWidth - (numItems * emojiItemWidth)) / numItems
+      reactionEmojiView.invalidateItemDecorations()
+    }
+  }
+
+  override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+    super.onLayout(changed, left, top, right, bottom)
+    updateEmojiSpacing()
+  }
+
   interface Callback {
     fun onSendActionClicked()
-    fun onPickReactionClicked()
+    fun onPickAnyReactionClicked()
+    fun onReactionClicked(emoji: String)
     fun onInitializeEmojiDrawer(mediaKeyboard: MediaKeyboard)
     fun onShowEmojiKeyboard() = Unit
     fun onHideEmojiKeyboard() = Unit
+  }
+
+  class SpacingDecoration : RecyclerView.ItemDecoration() {
+    var horizontalSpacing: Int = 0
+    var firstItemOffset: Int = 0
+
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+      super.getItemOffsets(outRect, view, parent, state)
+      outRect.right = horizontalSpacing
+      if (parent.getChildAdapterPosition(view) == 0) {
+        outRect.left = firstItemOffset
+      } else {
+        outRect.left = 0
+      }
+    }
+  }
+
+  private class EmojiReactionsPageModel(private val emoji: List<String>, private val displayEmoji: List<Emoji>) : EmojiPageModel {
+    override fun getKey(): String = ""
+    override fun getIconAttr(): Int = -1
+    override fun getEmoji(): List<String> = emoji
+    override fun getDisplayEmoji(): List<Emoji> = displayEmoji
+    override fun getSpriteUri(): Uri? = null
+    override fun isDynamic(): Boolean = false
   }
 
   data class Input(val body: String, val mentions: List<Mention>, val bodyRanges: BodyRangeList?)

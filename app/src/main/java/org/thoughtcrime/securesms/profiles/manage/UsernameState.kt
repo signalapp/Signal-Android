@@ -17,10 +17,9 @@ sealed class UsernameState {
   object NoUsername : UsernameState()
 
   data class Reserved(
+    override val username: String,
     val reserveUsernameResponse: ReserveUsernameResponse
-  ) : UsernameState() {
-    override val username: String? = reserveUsernameResponse.username
-  }
+  ) : UsernameState()
 
   data class Set(
     override val username: String

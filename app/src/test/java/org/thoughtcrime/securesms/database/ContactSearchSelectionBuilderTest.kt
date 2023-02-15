@@ -52,7 +52,8 @@ class ContactSearchSelectionBuilderTest {
     Assert.assertTrue(result.where.contains(RecipientTable.ContactSearchSelection.FILTER_HIDDEN))
     Assert.assertArrayEquals(
       SqlUtil.buildArgs(
-        RecipientTable.RegisteredState.REGISTERED.id, 1,
+        RecipientTable.RegisteredState.REGISTERED.id,
+        1,
         RecipientTable.RegisteredState.REGISTERED.id,
         0,
         0

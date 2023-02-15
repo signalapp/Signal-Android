@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import javax.annotation.Nullable;
+
 public final class SignalAccountRecord implements SignalRecord {
 
   private static final String TAG = SignalAccountRecord.class.getSimpleName();
@@ -195,6 +197,10 @@ public final class SignalAccountRecord implements SignalRecord {
         diff.add("HasSeenGroupStoryEducationSheet");
       }
 
+      if (!Objects.equals(getUsername(), that.getUsername())) {
+        diff.add("Username");
+      }
+
       return diff.toString();
     } else {
       return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
@@ -323,6 +329,10 @@ public final class SignalAccountRecord implements SignalRecord {
 
   public boolean hasSeenGroupStoryEducationSheet() {
     return proto.getHasSeenGroupStoryEducationSheet();
+  }
+
+  public @Nullable String getUsername() {
+    return proto.getUsername();
   }
 
   public AccountRecord toProto() {
@@ -694,6 +704,16 @@ public final class SignalAccountRecord implements SignalRecord {
 
     public Builder setHasSeenGroupStoryEducationSheet(boolean hasSeenGroupStoryEducationSheet) {
       builder.setHasSeenGroupStoryEducationSheet(hasSeenGroupStoryEducationSheet);
+      return this;
+    }
+
+    public Builder setUsername(@Nullable String username) {
+      if (username == null || username.isEmpty()) {
+        builder.clearUsername();
+      } else {
+        builder.setUsername(username);
+      }
+
       return this;
     }
 

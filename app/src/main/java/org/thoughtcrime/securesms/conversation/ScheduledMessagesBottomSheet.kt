@@ -159,12 +159,12 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
     val message = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(requireContext(), messageRecord)
     val canCopy = message.multiselectCollection.toSet().any { it !is Attachments && messageRecord.body.isNotEmpty() }
     val items: MutableList<ActionItem> = ArrayList()
-    items.add(ActionItem(R.drawable.ic_delete_tinted_24, resources.getString(R.string.conversation_selection__menu_delete), action = { handleDeleteMessage(messageRecord) }))
+    items.add(ActionItem(R.drawable.symbol_trash_24, resources.getString(R.string.conversation_selection__menu_delete), action = { handleDeleteMessage(messageRecord) }))
     if (canCopy) {
-      items.add(ActionItem(R.drawable.ic_copy_24_tinted, resources.getString(R.string.conversation_selection__menu_copy), action = { handleCopyMessage(message) }))
+      items.add(ActionItem(R.drawable.symbol_copy_android_24, resources.getString(R.string.conversation_selection__menu_copy), action = { handleCopyMessage(message) }))
     }
-    items.add(ActionItem(R.drawable.ic_send_outline_24, resources.getString(R.string.ScheduledMessagesBottomSheet_menu_send_now), action = { handleSendMessageNow(messageRecord) }))
-    items.add(ActionItem(R.drawable.ic_calendar_24, resources.getString(R.string.ScheduledMessagesBottomSheet_menu_reschedule), action = { handleRescheduleMessage(messageRecord) }))
+    items.add(ActionItem(R.drawable.symbol_send_24, resources.getString(R.string.ScheduledMessagesBottomSheet_menu_send_now), action = { handleSendMessageNow(messageRecord) }))
+    items.add(ActionItem(R.drawable.symbol_calendar_24, resources.getString(R.string.ScheduledMessagesBottomSheet_menu_reschedule), action = { handleRescheduleMessage(messageRecord) }))
     return items
   }
 

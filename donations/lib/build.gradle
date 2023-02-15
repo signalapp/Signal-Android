@@ -1,57 +1,23 @@
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
+    id 'signal-library'
     id 'kotlin-parcelize'
 }
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
-
-    defaultConfig {
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
-        multiDexEnabled true
-    }
-
-    compileOptions {
-        coreLibraryDesugaringEnabled true
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    lintOptions {
-        disable 'InvalidVectorPath'
-    }
+    namespace 'org.signal.donations'
 }
 
 dependencies {
-    lintChecks project(':lintchecks')
-
     implementation project(':core-util')
 
-    coreLibraryDesugaring libs.android.tools.desugar
-
-    implementation libs.androidx.core.ktx
-    implementation libs.androidx.annotation
-    implementation libs.androidx.appcompat
-
-    implementation libs.kotlin.stdlib.jdk8
     implementation libs.kotlin.reflect
     implementation libs.jackson.module.kotlin
     implementation libs.jackson.core
 
-    testImplementation testLibs.junit.junit
-    testImplementation testLibs.assertj.core
     testImplementation (testLibs.robolectric.robolectric) {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
     }
 
     api libs.google.play.services.wallet
     api libs.square.okhttp3
-    api libs.rxjava3.rxjava
 }

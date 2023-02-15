@@ -14,34 +14,34 @@
         <action
             android:id="@+id/action_manageUsername"
             app:destination="@id/usernameManageFragment"
-            app:enterAnim="@anim/slide_from_end"
-            app:exitAnim="@anim/slide_to_start"
-            app:popEnterAnim="@anim/slide_from_start"
-            app:popExitAnim="@anim/slide_to_end" />
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
 
         <action
             android:id="@+id/action_manageProfileName"
             app:destination="@id/profileNameManageFragment"
-            app:enterAnim="@anim/slide_from_end"
-            app:exitAnim="@anim/slide_to_start"
-            app:popEnterAnim="@anim/slide_from_start"
-            app:popExitAnim="@anim/slide_to_end" />
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
 
         <action
             android:id="@+id/action_manageAbout"
             app:destination="@id/aboutManageFragment"
-            app:enterAnim="@anim/slide_from_end"
-            app:exitAnim="@anim/slide_to_start"
-            app:popEnterAnim="@anim/slide_from_start"
-            app:popExitAnim="@anim/slide_to_end" />
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
 
         <action
             android:id="@+id/action_manageProfileFragment_to_avatar_picker"
             app:destination="@id/avatar_picker"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
 
             <argument
                 android:name="group_id"
@@ -58,13 +58,16 @@
         <action
             android:id="@+id/action_manageProfileFragment_to_badgeManageFragment"
             app:destination="@id/manage_badges"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
         <action
             android:id="@+id/action_manageProfileFragment_to_shareUsernameDialog"
             app:destination="@id/shareUsernameDialog" />
+        <action
+            android:id="@+id/action_manageProfileFragment_to_usernameEducationFragment"
+            app:destination="@id/usernameEducationFragment" />
 
     </fragment>
 
@@ -73,6 +76,17 @@
         android:name="org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment"
         android:label="fragment_manage_username"
         tools:layout="@layout/username_edit_fragment" />
+
+    <fragment
+        android:id="@+id/usernameEducationFragment"
+        android:name="org.thoughtcrime.securesms.profiles.manage.UsernameEducationFragment"
+        android:label="fragment_username_education"
+        tools:layout="@layout/username_education_fragment">
+        <action
+            android:id="@+id/action_usernameEducationFragment_to_usernameManageFragment"
+            app:destination="@id/usernameManageFragment"
+            app:popUpTo="@id/manageProfileFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileNameManageFragment"

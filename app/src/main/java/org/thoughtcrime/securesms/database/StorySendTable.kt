@@ -46,7 +46,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
 
     val CREATE_INDEXS = arrayOf(
       "CREATE INDEX story_sends_recipient_id_sent_timestamp_allows_replies_index ON $TABLE_NAME ($RECIPIENT_ID, $SENT_TIMESTAMP, $ALLOWS_REPLIES)",
-      "CREATE INDEX story_sends_message_id_distribution_id_index ON $TABLE_NAME ($MESSAGE_ID, $DISTRIBUTION_ID)",
+      "CREATE INDEX story_sends_message_id_distribution_id_index ON $TABLE_NAME ($MESSAGE_ID, $DISTRIBUTION_ID)"
     )
   }
 

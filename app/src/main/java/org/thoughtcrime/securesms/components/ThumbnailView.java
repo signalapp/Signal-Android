@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -22,13 +23,10 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.FitCenter;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.transition.Transition;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -68,24 +66,25 @@ public class ThumbnailView extends FrameLayout {
   private static final int    MAX_HEIGHT = 3;
 
   private final ImageView          image;
-  private final ImageView          blurhash;
+  private final ImageView          blurHash;
   private final View               playOverlay;
   private final View               captionIcon;
   private final AppCompatImageView errorImage;
 
-  private OnClickListener   parentClickListener;
+  private OnClickListener parentClickListener;
 
   private final int[] dimens        = new int[2];
   private final int[] bounds        = new int[4];
   private final int[] measureDimens = new int[2];
 
+  private final CornerMask cornerMask;
+
+  @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
   private Optional<TransferControlView> transferControls       = Optional.empty();
   private SlideClickListener            thumbnailClickListener = null;
   private SlidesClickedListener         downloadClickListener  = null;
   private Slide                         slide                  = null;
-  private BitmapTransformation          fit                    = new CenterCrop();
 
-  private int radius;
 
   public ThumbnailView(Context context) {
     this(context, null);
@@ -101,10 +100,11 @@ public class ThumbnailView extends FrameLayout {
     inflate(context, R.layout.thumbnail_view, this);
 
     this.image       = findViewById(R.id.thumbnail_image);
-    this.blurhash    = findViewById(R.id.thumbnail_blurhash);
+    this.blurHash    = findViewById(R.id.thumbnail_blurhash);
     this.playOverlay = findViewById(R.id.play_overlay);
     this.captionIcon = findViewById(R.id.thumbnail_caption_icon);
     this.errorImage  = findViewById(R.id.thumbnail_error);
+    this.cornerMask  = new CornerMask(this);
 
     super.setOnClickListener(new ThumbnailClickDispatcher());
 
@@ -114,8 +114,9 @@ public class ThumbnailView extends FrameLayout {
       bounds[MAX_WIDTH]  = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxWidth, 0);
       bounds[MIN_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_minHeight, 0);
       bounds[MAX_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxHeight, 0);
-      radius             = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_thumbnail_radius, getResources().getDimensionPixelSize(R.dimen.thumbnail_default_radius));
-      fit                = typedArray.getInt(R.styleable.ThumbnailView_thumbnail_fit, 0) == 1 ? new FitCenter() : new CenterCrop();
+
+      float radius = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_thumbnail_radius, getResources().getDimensionPixelSize(R.dimen.thumbnail_default_radius));
+      cornerMask.setRadius((int) radius);
 
       int transparentOverlayColor = typedArray.getColor(R.styleable.ThumbnailView_transparent_overlay_color, -1);
       if (transparentOverlayColor > 0) {
@@ -126,7 +127,8 @@ public class ThumbnailView extends FrameLayout {
 
       typedArray.recycle();
     } else {
-      radius = getResources().getDimensionPixelSize(R.dimen.message_corner_collapse_radius);
+      float radius = getResources().getDimensionPixelSize(R.dimen.message_corner_collapse_radius);
+      cornerMask.setRadius((int) radius);
       image.setColorFilter(null);
     }
   }
@@ -146,6 +148,7 @@ public class ThumbnailView extends FrameLayout {
                     MeasureSpec.makeMeasureSpec(finalHeight, MeasureSpec.EXACTLY));
   }
 
+  @SuppressWarnings("SpellCheckingInspection")
   @Override
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
@@ -156,7 +159,7 @@ public class ThumbnailView extends FrameLayout {
 
     if (playOverlayWidth * 2 > getWidth()) {
       playOverlayScale /= 2;
-      captionIconScale  = 0;
+      captionIconScale = 0;
     }
 
     playOverlay.setScaleX(playOverlayScale);
@@ -164,6 +167,13 @@ public class ThumbnailView extends FrameLayout {
 
     captionIcon.setScaleX(captionIconScale);
     captionIcon.setScaleY(captionIconScale);
+  }
+
+  @Override
+  protected void dispatchDraw(Canvas canvas) {
+    super.dispatchDraw(canvas);
+
+    cornerMask.mask(canvas);
   }
 
   public void setMinimumThumbnailWidth(@Px int width) {
@@ -187,7 +197,7 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (dimensAreInvalid || dimensFilledCount == 0 || boundsFilledCount == 0) {
-      targetDimens[WIDTH] = 0;
+      targetDimens[WIDTH]  = 0;
       targetDimens[HEIGHT] = 0;
       return;
     }
@@ -219,10 +229,10 @@ public class ThumbnailView extends FrameLayout {
 
       if (maxWidthRatio > 1 || maxHeightRatio > 1) {
         if (maxWidthRatio >= maxHeightRatio) {
-          measuredWidth  /= maxWidthRatio;
+          measuredWidth /= maxWidthRatio;
           measuredHeight /= maxWidthRatio;
         } else {
-          measuredWidth  /= maxHeightRatio;
+          measuredWidth /= maxHeightRatio;
           measuredHeight /= maxHeightRatio;
         }
 
@@ -231,10 +241,10 @@ public class ThumbnailView extends FrameLayout {
 
       } else if (minWidthRatio < 1 || minHeightRatio < 1) {
         if (minWidthRatio <= minHeightRatio) {
-          measuredWidth  /= minWidthRatio;
+          measuredWidth /= minWidthRatio;
           measuredHeight /= minWidthRatio;
         } else {
-          measuredWidth  /= minHeightRatio;
+          measuredWidth /= minHeightRatio;
           measuredHeight /= minHeightRatio;
         }
 
@@ -247,9 +257,9 @@ public class ThumbnailView extends FrameLayout {
     targetDimens[HEIGHT] = (int) measuredHeight;
   }
 
-  private int getNonZeroCount(int[] vals) {
+  private int getNonZeroCount(int[] values) {
     int count = 0;
-    for (int val : vals) {
+    for (int val : values) {
       if (val > 0) {
         count++;
       }
@@ -265,13 +275,17 @@ public class ThumbnailView extends FrameLayout {
   @Override
   public void setFocusable(boolean focusable) {
     super.setFocusable(focusable);
-    if (transferControls.isPresent()) transferControls.get().setFocusable(focusable);
+    transferControls.ifPresent(transferControlView -> transferControlView.setFocusable(focusable));
   }
 
   @Override
   public void setClickable(boolean clickable) {
     super.setClickable(clickable);
-    if (transferControls.isPresent()) transferControls.get().setClickable(clickable);
+    transferControls.ifPresent(transferControlView -> transferControlView.setClickable(clickable));
+  }
+
+  public @Nullable Drawable getImageDrawable() {
+    return image.getDrawable();
   }
 
   private TransferControlView getTransferControls() {
@@ -292,10 +306,10 @@ public class ThumbnailView extends FrameLayout {
 
   public void setImageDrawable(@NonNull GlideRequests glideRequests, @Nullable Drawable drawable) {
     glideRequests.clear(image);
-    glideRequests.clear(blurhash);
+    glideRequests.clear(blurHash);
 
     image.setImageDrawable(drawable);
-    blurhash.setImageDrawable(null);
+    blurHash.setImageDrawable(null);
   }
 
   @UiThread
@@ -316,8 +330,8 @@ public class ThumbnailView extends FrameLayout {
       transferControls.ifPresent(c -> c.setVisibility(View.GONE));
       playOverlay.setVisibility(View.GONE);
 
-      glideRequests.clear(blurhash);
-      blurhash.setImageDrawable(null);
+      glideRequests.clear(blurHash);
+      blurHash.setImageDrawable(null);
 
       glideRequests.clear(image);
       image.setImageDrawable(null);
@@ -358,7 +372,7 @@ public class ThumbnailView extends FrameLayout {
       return new SettableFuture<>(false);
     }
 
-    if (this.slide != null && this.slide.getFastPreflightId() != null      &&
+    if (this.slide != null && this.slide.getFastPreflightId() != null &&
         (!slide.hasVideo() || Util.equals(this.slide.getUri(), slide.getUri())) &&
         Util.equals(this.slide.getFastPreflightId(), slide.getFastPreflightId()))
     {
@@ -371,7 +385,7 @@ public class ThumbnailView extends FrameLayout {
                + ", progress " + slide.getTransferState() + ", fast preflight id: " +
                slide.asAttachment().getFastPreflightId());
 
-    BlurHash previousBlurhash = this.slide != null ? this.slide.getPlaceholderBlur() : null;
+    BlurHash previousBlurHash = this.slide != null ? this.slide.getPlaceholderBlur() : null;
 
     this.slide = slide;
 
@@ -385,19 +399,19 @@ public class ThumbnailView extends FrameLayout {
     SettableFuture<Boolean> result        = new SettableFuture<>();
     boolean                 resultHandled = false;
 
-    if (slide.hasPlaceholder() && (previousBlurhash == null || !Objects.equals(slide.getPlaceholderBlur(), previousBlurhash))) {
-      buildPlaceholderGlideRequest(glideRequests, slide).into(new GlideBitmapListeningTarget(blurhash, result));
+    if (slide.hasPlaceholder() && (previousBlurHash == null || !Objects.equals(slide.getPlaceholderBlur(), previousBlurHash))) {
+      buildPlaceholderGlideRequest(glideRequests, slide).into(new GlideBitmapListeningTarget(blurHash, result));
       resultHandled = true;
     } else if (!slide.hasPlaceholder()) {
-      glideRequests.clear(blurhash);
-      blurhash.setImageDrawable(null);
+      glideRequests.clear(blurHash);
+      blurHash.setImageDrawable(null);
     }
 
     if (slide.getUri() != null) {
       if (!MediaUtil.isJpegType(slide.getContentType()) && !MediaUtil.isVideoType(slide.getContentType())) {
         SettableFuture<Boolean> thumbnailFuture = new SettableFuture<>();
         thumbnailFuture.deferTo(result);
-        thumbnailFuture.addListener(new BlurhashClearListener(glideRequests, blurhash));
+        thumbnailFuture.addListener(new BlurHashClearListener(glideRequests, blurHash));
       }
 
       buildThumbnailGlideRequest(glideRequests, slide).into(new GlideDrawableListeningTarget(image, result));
@@ -440,15 +454,9 @@ public class ThumbnailView extends FrameLayout {
       request = request.override(width, height);
     }
 
-    if (radius > 0) {
-      request = request.transforms(new CenterCrop(), new RoundedCorners(radius));
-    } else {
-      request = request.transforms(new CenterCrop());
-    }
-
-    GlideDrawableListeningTarget target = new GlideDrawableListeningTarget(image, future);
-    Request previousRequest = target.getRequest();
-    boolean previousRequestRunning = previousRequest != null && previousRequest.isRunning();
+    GlideDrawableListeningTarget target                 = new GlideDrawableListeningTarget(image, future);
+    Request                      previousRequest        = target.getRequest();
+    boolean                      previousRequestRunning = previousRequest != null && previousRequest.isRunning();
     request.into(target);
     if (listener != null) {
       listener.onLoadScheduled();
@@ -457,7 +465,7 @@ public class ThumbnailView extends FrameLayout {
       }
     }
 
-    blurhash.setImageDrawable(null);
+    blurHash.setImageDrawable(null);
 
     return future;
   }
@@ -467,23 +475,17 @@ public class ThumbnailView extends FrameLayout {
 
     if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
 
-    GlideRequest request = glideRequests.load(model)
-                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                        .placeholder(model.getPlaceholder())
-                                        .transition(withCrossFade());
+    GlideRequest<Drawable> request = glideRequests.load(model)
+                                                  .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                                  .placeholder(model.getPlaceholder())
+                                                  .transition(withCrossFade());
 
     if (width > 0 && height > 0) {
       request = request.override(width, height);
     }
 
-    if (radius > 0) {
-      request = request.transforms(new CenterCrop(), new RoundedCorners(radius));
-    } else {
-      request = request.transforms(new CenterCrop());
-    }
-
     request.into(new GlideDrawableListeningTarget(image, future));
-    blurhash.setImageDrawable(null);
+    blurHash.setImageDrawable(null);
 
     return future;
   }
@@ -504,8 +506,8 @@ public class ThumbnailView extends FrameLayout {
       getTransferControls().clear();
     }
 
-    glideRequests.clear(blurhash);
-    blurhash.setImageDrawable(null);
+    glideRequests.clear(blurHash);
+    blurHash.setImageDrawable(null);
 
     slide = null;
   }
@@ -518,26 +520,35 @@ public class ThumbnailView extends FrameLayout {
     getTransferControls().showProgressSpinner();
   }
 
-  public void setFit(@NonNull BitmapTransformation fit) {
-    this.fit = fit;
+  public void setScaleType(@NonNull ImageView.ScaleType scaleType) {
+    image.setScaleType(scaleType);
   }
 
   protected void setRadius(int radius) {
-    this.radius = radius;
+    cornerMask.setRadius(radius);
+    invalidate();
   }
 
-  private GlideRequest buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
-    GlideRequest request = applySizing(glideRequests.load(new DecryptableUri(slide.getUri()))
-                                          .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                                          .transition(withCrossFade()), fit);
+  public void setRadii(int topLeft, int topRight, int bottomRight, int bottomLeft) {
+    cornerMask.setRadii(topLeft, topRight, bottomRight, bottomLeft);
+    invalidate();
+  }
+
+  private GlideRequest<Drawable> buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
+    GlideRequest<Drawable> request = applySizing(glideRequests.load(new DecryptableUri(Objects.requireNonNull(slide.getUri())))
+                                                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                                                    .transition(withCrossFade()));
 
     boolean doNotShowMissingThumbnailImage = Build.VERSION.SDK_INT < 23;
 
-    if (slide.isInProgress() || doNotShowMissingThumbnailImage) return request;
-    else                                                        return request.apply(RequestOptions.errorOf(R.drawable.ic_missing_thumbnail_picture));
+    if (slide.isInProgress() || doNotShowMissingThumbnailImage) {
+      return request;
+    } else {
+      return request.apply(RequestOptions.errorOf(R.drawable.ic_missing_thumbnail_picture));
+    }
   }
 
-  private RequestBuilder buildPlaceholderGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
+  private RequestBuilder<Bitmap> buildPlaceholderGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
     GlideRequest<Bitmap> bitmap          = glideRequests.asBitmap();
     BlurHash             placeholderBlur = slide.getPlaceholderBlur();
 
@@ -547,10 +558,10 @@ public class ThumbnailView extends FrameLayout {
       bitmap = bitmap.load(slide.getPlaceholderRes(getContext().getTheme()));
     }
 
-    return applySizing(bitmap.diskCacheStrategy(DiskCacheStrategy.NONE), new CenterCrop());
+    return applySizing(bitmap.diskCacheStrategy(DiskCacheStrategy.NONE));
   }
 
-  private GlideRequest applySizing(@NonNull GlideRequest request, @NonNull BitmapTransformation fitting) {
+  private <TranscodeType> GlideRequest<TranscodeType> applySizing(@NonNull GlideRequest<TranscodeType> request) {
     int[] size = new int[2];
     fillTargetDimensions(size, dimens, bounds);
     if (size[WIDTH] == 0 && size[HEIGHT] == 0) {
@@ -558,13 +569,7 @@ public class ThumbnailView extends FrameLayout {
       size[HEIGHT] = getDefaultHeight();
     }
 
-    request = request.override(size[WIDTH], size[HEIGHT]);
-
-    if (radius > 0) {
-      return request.transforms(fitting, new RoundedCorners(radius));
-    } else {
-      return request.transforms(fitting);
-    }
+    return request.override(size[WIDTH], size[HEIGHT]);
   }
 
   private int getDefaultWidth() {
@@ -585,6 +590,7 @@ public class ThumbnailView extends FrameLayout {
 
   public interface ThumbnailRequestListener extends RequestListener<Drawable> {
     void onLoadCanceled();
+
     void onLoadScheduled();
   }
 
@@ -612,31 +618,31 @@ public class ThumbnailView extends FrameLayout {
       if (downloadClickListener != null && slide != null) {
         downloadClickListener.onClick(view, Collections.singletonList(slide));
       } else {
-        Log.w(TAG, "Received a download button click, but unable to execute it. slide: " + String.valueOf(slide) + "  downloadClickListener: " + String.valueOf(downloadClickListener));
+        Log.w(TAG, "Received a download button click, but unable to execute it. slide: " + slide + "  downloadClickListener: " + downloadClickListener);
       }
     }
   }
 
-  private static class BlurhashClearListener implements ListenableFuture.Listener<Boolean> {
+  private static class BlurHashClearListener implements ListenableFuture.Listener<Boolean> {
 
     private final GlideRequests glideRequests;
-    private final ImageView     blurhash;
+    private final ImageView     blurHash;
 
-    private BlurhashClearListener(@NonNull GlideRequests glideRequests, @NonNull ImageView blurhash) {
+    private BlurHashClearListener(@NonNull GlideRequests glideRequests, @NonNull ImageView blurHash) {
       this.glideRequests = glideRequests;
-      this.blurhash      = blurhash;
+      this.blurHash      = blurHash;
     }
 
     @Override
     public void onSuccess(Boolean result) {
-      glideRequests.clear(blurhash);
-      blurhash.setImageDrawable(null);
+      glideRequests.clear(blurHash);
+      blurHash.setImageDrawable(null);
     }
 
     @Override
     public void onFailure(ExecutionException e) {
-      glideRequests.clear(blurhash);
-      blurhash.setImageDrawable(null);
+      glideRequests.clear(blurHash);
+      blurHash.setImageDrawable(null);
     }
   }
 }

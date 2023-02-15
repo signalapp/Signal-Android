@@ -417,16 +417,16 @@
     <string name="ConversationFragment_delete_for_me">為我刪除</string>
     <string name="ConversationFragment_delete_for_everyone">為所有人刪除</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">刪除此裝置</string>
+    <string name="ConversationFragment_delete_on_this_device">由此裝置中刪除</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">從所有裝置中刪除</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">此訊息將從對話中所有使用最近版本 Signal 的人刪除。他們將會看見您刪除了一則訊息。</string>
+    <string name="ConversationFragment_delete_everywhere">由所有裝置中刪除</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">如果對話中的人使用了最新版本的 Signal，此訊息將會被刪除。他們將會看見您刪除了一則訊息。</string>
     <string name="ConversationFragment_quoted_message_not_found">找不到原始訊息</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">原始訊息已不可用</string>
     <string name="ConversationFragment_failed_to_open_message">無法開啟訊息</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">您可以向右滑動任何訊息以快速回覆</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">您可以向左滑動任何訊息以快速回覆</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">外寄的閱後即焚媒體檔案均會在傳送後自動移除。</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">外寄的閱後即焚媒體檔案均會在傳送後自動移除</string>
     <string name="ConversationFragment_you_already_viewed_this_message">您已看過此訊息</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">您可在此對話中為自己新增筆記。\n若您的帳戶有任何已連結的裝置，新的筆記將會進行同步處理。</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d 個群組成員名稱相同。</string>
@@ -458,7 +458,7 @@
         <item quantity="other">要刪除選取的對話嗎？</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="other">這將永久刪除共 %1$d 個選取的對話。</item>
+        <item quantity="other">此動作將永久刪除共 %1$d 個選取的對話。</item>
     </plurals>
     <string name="ConversationListFragment_deleting">正在刪除</string>
     <string name="ConversationListFragment_deleting_selected_conversations">正在刪除選取的對話…</string>
@@ -527,9 +527,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">下拉進行篩選</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">放開進行篩選</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">個人資料</string>
@@ -580,7 +580,7 @@
     <string name="BackupsPreferenceFragment__last_backup">上次備份：%1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">備份資料夾</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">備份時間</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">驗證備份密碼</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">測試您的備份密碼並驗證是否相符</string>
     <string name="BackupsPreferenceFragment__turn_on">開啟</string>
@@ -611,49 +611,52 @@
     <string name="DateUtils_today">今天</string>
     <string name="DateUtils_yesterday">昨天</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s，於 %2$s 換算</string>
+    <string name="DateUtils_schedule_at">%1$s %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">明天</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">今晚</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">已排程訊息</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">選擇日期及時間</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">已排程訊息</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">當你傳送已排程訊息時，請確保裝置在傳送時開啟並連線至互聯網。否則，你的訊息將在裝置重新連線時才會傳送。</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
-    <string name="ScheduleMessageFTUXBottomSheet__okay">好</string>
+    <string name="ScheduleMessageFTUXBottomSheet__okay">確定</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">重新啟動訊息排程：</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">重新啟動訊息排程：</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">選擇日期</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">選擇時間</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">設定傳送時間</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
-
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">排定傳送時間</string>
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">所有時間均為%2$s (%1$s)</string>
+    <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">所選的時間已經過去。系統將立即傳送訊息。</string>
+    <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">立即傳送</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">立即傳送</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">重新排程</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">刪除</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">要刪除所選的預定訊息嗎？</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">正在刪除已排程訊息…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">聊天工作階段已重新整理</string>
@@ -750,7 +753,7 @@
         <item quantity="other">這些成員將需要接受邀請才可再次加入此群組，而且各人在接受之前，將不會接收群組訊息：</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="other">這些成員已從群組中移除，而且各人在升級之前，將無法重新加入：</item>
+        <item quantity="other">這些成員已從該群組中移除，而且在升級之前，將無法重新加入：</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -764,7 +767,7 @@
         <item quantity="other">這些成員將需要接受邀請才可再次加入此群組，而且各人在接受之前，將不會接收群組訊息：</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="other">這些成員不支援加入「新版群組」，將會從群組中移除：</item>
+        <item quantity="other">這些成員無法加入「新群組」，將會從該群組中移除：</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -1193,7 +1196,7 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="other">無法將 %1$s 個成員加入「新版群組」，因此已被移除。</item>
+        <item quantity="other">無法將 %1$s 個成員加入「新群組」，因此已被移除。</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1363,7 +1366,7 @@
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">你與 %1$s 的訊息紀錄和屬於他們的另一個聊天已經合併。</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
-    <string name="MessageRecord_s_belongs_to_s">%1$s 是屬於 %2$s</string>
+    <string name="MessageRecord_s_belongs_to_s">%1$s 是 %2$s 的手機號碼</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">你向 %1$s 傳送了啟動付款的請求</string>
     <!-- Request message from recipient to activate payments -->
@@ -1519,7 +1522,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">警告</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">若您停用 PIN 碼，當您重新註冊 Signal 時，除非您已手動備份並進行還原，否則您將遺失所有資料。PIN 碼停用時不可開啟註冊鎖定。</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You cannot turn on Registration Lock while the PIN is disabled.</string>
     <string name="PinOptOutDialog_disable_pin">停用 PIN 碼</string>
 
     <!-- RatingManager -->
@@ -1678,7 +1681,7 @@
     <string name="RegistrationActivity_select_your_country">選擇你的國家</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">你必須標明 國家編號
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">請輸入有效的電話號碼來註冊。</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">請輸入有效的手機號碼以註冊。</string>
     <string name="RegistrationActivity_invalid_number">電話號碼無效</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">你所標明的號碼 (%1$s) 無效
     </string>
@@ -1708,13 +1711,13 @@
     <string name="RegistrationActivity_continue">繼續</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">保護你的私隱。\n讓你在所有訊息中都能安然做自己。</string>
     <string name="RegistrationActivity_enter_your_phone_number">輸入您的電話號碼</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">你將會收到一個驗證碼。網絡供應商或會收取相關費用。</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">你將會收到驗證碼。\n網路供應商或會收取相關費用。</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">請輸入發送到 %1$s 的代碼</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">請確保你的電話已接駁流動通訊訊號，以接收短訊或來電用</string>
 
     <string name="RegistrationActivity_phone_number_description">電話號碼</string>
     <string name="RegistrationActivity_country_code_description">國碼</string>
-    <string name="RegistrationActivity_country_code_hint">國家</string>
+    <string name="RegistrationActivity_country_code_hint">國家/地區</string>
     <string name="RegistrationActivity_call">通話</string>
     <string name="RegistrationActivity_verification_code">驗證碼</string>
     <string name="RegistrationActivity_resend_code">重新傳送驗證碼</string>
@@ -1882,6 +1885,12 @@
     <string name="ThreadRecord__reacted_s_to_their_story">對他們的限時動態表達了 %1$s 心情</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">付款</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">已排程訊息</string>
+    <!--  Displayed in the conversation list when your message history has been merged -->
+    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
+    <string name="ThreadRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
@@ -1989,7 +1998,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">刪除訊息時發生錯誤，訊息可能仍然存在</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>閱讀更多</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">來自 %2$d 個對話的 %1$d 則新訊息</string>
@@ -2177,7 +2186,7 @@
     <string name="conversation_activity__type_message_sms_insecure">不安全的短訊</string>
     <string name="conversation_activity__type_message_mms_insecure">不安全的多媒體短訊</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">設定傳送時間</string>
     <string name="conversation_activity__from_sim_name">自 %1$s</string>
     <string name="conversation_activity__sim_n">SIM 卡 %1$d</string>
     <string name="conversation_activity__send">傳送</string>
@@ -2692,9 +2701,9 @@
     <string name="preferences_storage__review_storage">檢閱儲存空間</string>
     <string name="preferences_storage__delete_older_messages">要刪除較舊的訊息嗎？</string>
     <string name="preferences_storage__clear_message_history">要清除訊息紀錄嗎？</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">這操作將會從你的裝置永久刪除 %1$s 之前的所有訊息紀錄和媒體。</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">這操作將會從你的裝置永久刪除 %1$s 之前的所有訊息紀錄和多媒體。</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">這將會永久刪減所有對話至最近 %1$s 則訊息。</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">這操作將會從你的裝置永久刪除所有訊息紀錄和媒體。</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">這操作將會從你的裝置永久刪除所有訊息紀錄和多媒體。</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">你確定要刪除所有訊息紀錄嗎？</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">所有訊息紀錄將會被永久移除。此動作將無法復原。</string>
     <string name="preferences_storage__delete_all_now">立即全部刪除</string>
@@ -3063,7 +3072,7 @@
     <string name="conversation_scheduled_messages_bar__see_all">查看全部</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="other">已排程 %1$d 個訊息</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3080,6 +3089,8 @@
     <string name="text_secure_normal__invite_friends">邀請好友</string>
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">篩選未讀聊天訊息</string>
+    <!-- Overflow menu entry to disable unread chats filter -->
+    <string name="text_secure_normal__clear_unread_filter">清除未讀篩選條件</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">複製至剪貼簿</string>
@@ -3120,7 +3131,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol 在過去 %2$d 天內，已自動保護您外寄訊息數目中的 %1$d%%。Signal 使用者之間的對話一律經端對端加密。</string>
     <string name="InsightsDashboardFragment__spread_the_word">這空間裡 從不只我一個</string>
     <string name="InsightsDashboardFragment__not_enough_data">資料不足</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">您的「省覧」百分比，乃是基於過去 %1$d 天內未有消失或刪除的外寄訊息而計算。</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">您的「洞察」百分比，乃是基於過去 %1$d 天內未曾消失或刪除的外寄訊息而計算。</string>
     <string name="InsightsDashboardFragment__start_a_conversation">開展一個對話</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">邀請更多聯絡人加入 Signal，以開始安全的溝通，並啟用嶄新的功能，超越未經加密短訊訊息的侷限。</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">統計數字是在您的裝置上本機產生，並僅供您查看，從不外透。</string>
@@ -3156,13 +3167,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">建立一個新的 PIN 碼</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">只要此裝置維持註冊，您可隨時變更您的 PIN 碼。</string>
     <string name="CreateKbsPinFragment__create_your_pin">建立您的 PIN 碼</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN 碼可協助你還原帳戶，並確保 Signal 內的資料安全加密。 </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">選擇一個更強的 PIN 碼</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PIN 碼不匹配。請再試一次。</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">請重新輸入你剛建立的 PIN 碼。</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">確認您的 PIN 碼。</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN 碼建立失敗</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">您的 PIN 碼未有儲存。我們稍後將提示您建立一個 PIN 碼。</string>
@@ -3192,7 +3203,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">帳戶已鎖定</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">您的帳戶已被鎖定，以保護您的私隱和安全性。在您的帳戶閒置 %1$d 天後，您將可毋須使用您的 PIN 碼而重新註冊此電話號碼。惟所有內容將會被刪除。</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">您的帳戶已被鎖定，以保護您的隱私和安全性。在您的帳戶閒置 %1$d 天後，您將可重新註冊此電話號碼而無須使用您的 PIN 碼。但所有內容將會被刪除。</string>
     <string name="AccountLockedFragment__next">下一步</string>
     <string name="AccountLockedFragment__learn_more">了解更多</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3210,7 +3221,7 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal 用戶註冊 — Android 用戶需要 (v2. PIN) PIN 碼的協助</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="other">為保護你的私隱和安全，你的 PIN 碼是無法復原的。若你忘記了你的 PIN 碼，你可以在帳戶閒置 %1$d 天後，透過SMS 重新驗證。而你的帳戶將會抹掉，當中所有內容亦會刪除。</item>
+        <item quantity="other">為保護你的隱私和安全，你的 PIN 碼是無法復原的。若你忘記了你的 PIN 碼，你可以在帳戶閒置 %1$d 天後，透過 SMS 重新驗證。而你的帳戶將會被抹除，當中所有內容亦會刪除。</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3218,7 +3229,7 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="other">若你已用盡所有的嘗試機會，你的帳戶將要封鎖%1$d 天。帳戶閒置 %1$d 天後，你可以重新註冊，而不需用 PIN 碼。你的帳戶將會抹掉，當中所有內容亦會刪除。</item>
+        <item quantity="other">若你已用盡所有的嘗試機會，你的帳戶將要封鎖 %1$d 天。帳戶閒置 %1$d 天後，你可以重新註冊，而不需用 PIN 碼。你的帳戶將會被抹除，當中所有內容亦會刪除。</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3295,10 +3306,10 @@
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">系統無法建立和驗證你最近的備份。請建立新的備份。</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">你的備份包含一個非常大型的檔案，而且無法進行備份。請刪除該檔案，並建立新的備份。</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">你的備份包含一個非常大的檔案，無法進行備份。請刪除該檔案，並建立新的備份。</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">輕觸以管理備份。</string>
     <string name="RegistrationActivity_wrong_number">號碼錯誤？</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">請致電給我 \n （將於%1$02d：%2$02d 內可行）</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">打電話給我 (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">聯絡 Signal 支援</string>
     <string name="RegistrationActivity_code_support_subject">Signal 註冊 — Android 用的驗證碼</string>
     <string name="RegistrationActivity_incorrect_code">錯誤編號</string>
@@ -3471,7 +3482,7 @@
     <string name="RecipientBottomSheet_add_to_another_group">新增至另一個群組</string>
     <string name="RecipientBottomSheet_view_safety_number">檢視安全碼</string>
     <string name="RecipientBottomSheet_make_admin">設為管理員</string>
-    <string name="RecipientBottomSheet_remove_as_admin">撤銷管理員</string>
+    <string name="RecipientBottomSheet_remove_as_admin">以管理員身份移除</string>
     <string name="RecipientBottomSheet_remove_from_group">從群組中移除</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">要撤銷 %1$s 的群組管理員身份嗎？</string>
@@ -3479,7 +3490,7 @@
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">要從群組中移除 %1$s 嗎？</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">要從群組中移除「%1$s」嗎？對方將無法透過群組連結重新加入。</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">要從群組中移除 %1$s 嗎？對方將無法透過群組連結重新加入。</string>
     <string name="RecipientBottomSheet_remove">移除</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">已複製至剪貼簿</string>
 
@@ -4271,7 +4282,7 @@
 
     <string name="SubscribeFragment__cancel_subscription">取消定期贊助</string>
     <string name="SubscribeFragment__confirm_cancellation">確定要取消嗎？</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">我們不會再向你收取費用。你的徽章會在付款週期屆滿時從你的個人檔案中移除。</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">我們不會再向你收取費用。你的徽章會在付款週期屆滿時從你的個人資料中移除。</string>
     <string name="SubscribeFragment__not_now">現在不要</string>
     <string name="SubscribeFragment__confirm">確認</string>
     <string name="SubscribeFragment__update_subscription">更新定期贊助</string>
@@ -4507,13 +4518,13 @@
     <string name="NotificationProfilesFragment__on">開啟</string>
 
     <!-- Button use to permanently delete a notification profile -->
-    <string name="NotificationProfileDetails__delete_profile">刪除情景</string>
+    <string name="NotificationProfileDetails__delete_profile">刪除個人資料</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
     <string name="NotificationProfileDetails__s_removed">「%1$s」已移除。</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">復原</string>
     <!-- Dialog message shown to confirm deleting a profile -->
-    <string name="NotificationProfileDetails__permanently_delete_profile">要永久刪除情景嗎？</string>
+    <string name="NotificationProfileDetails__permanently_delete_profile">要永久刪除個人資料嗎？</string>
     <!-- Dialog button to delete profile -->
     <string name="NotificationProfileDetails__delete">刪除</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
@@ -4749,6 +4760,8 @@
     <string name="StoryReplyComposer__react_to_this_story">對此限時動態表達心情</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">正在私下回覆 %1$s</string>
+    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
+    <string name="StoryReplyComposer__reply_to_s">回覆 %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">複製</string>
@@ -5410,8 +5423,6 @@
     <string name="GroupStoryEducationSheet__next">下一步</string>
     <string name="Registration_country_code_entry_hint">+0</string>
 
-    <!-- EOF -->
-
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">捐款</string>
     <string name="PaypalCompleteOrderBottomSheet__payment">付款</string>
@@ -5426,8 +5437,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">系統即將停止支援短訊服務</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Signal 應用程式即將停止支援短訊服務。</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">Signal 應用程式即將在 %1$s 停止支援短訊服務。</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">短訊與 Signal 訊息不同。<b>這不會影響 Signal 加密通訊，有關服務將可繼續使用。</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5437,13 +5448,47 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">匯出短訊</string>
 
+    <!-- Set up your username megaphone -->
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__set_up_your_signal_username">設定你的 Signal 用戶名稱</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__usernames_let_others">用戶名稱讓其他人無需透過電話號碼也可以向你傳送訊息</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__not_now">現在不要</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__continue">繼續</string>
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">粗體</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">斜體</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">刪除線</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">等寬</string>
+
+    <!-- UsernameEducationFragment -->
+    <!-- Continue button which takes the user to the add a username screen -->
+    <string name="UsernameEducationFragment__continue">繼續</string>
+    <!-- Displayed as a title on the username education screen -->
+    <string name="UsernameEducationFragment__set_up_your_signal_username">設定你的 Signal 用戶名稱</string>
+
+    <!-- Username edit dialog -->
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">編輯用戶名稱</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">刪除用戶名稱</string>
+
+    <!-- Time duration picker -->
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
+    <string name="TimeDurationPickerDialog_positive_button">Set</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+
+    <!-- EOF -->
 </resources>

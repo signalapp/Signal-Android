@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.contacts.ContactRepository
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
 import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.GroupTable
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
@@ -22,10 +23,11 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  * having to deal with database access.
  */
 open class ContactSearchPagedDataSourceRepository(
-  private val context: Context
+  context: Context
 ) {
 
   private val contactRepository = ContactRepository(context, context.getString(R.string.note_to_self))
+  private val context = context.applicationContext
 
   open fun getLatestStorySends(activeStoryCutoffDuration: Long): List<StorySend> {
     return SignalStore.storyValues()
@@ -36,8 +38,8 @@ open class ContactSearchPagedDataSourceRepository(
     return contactRepository.querySignalContacts(query ?: "", includeSelf)
   }
 
-  open fun querySignalContactLetterHeaders(query: String?, includeSelf: Boolean): Map<RecipientId, String> {
-    return SignalDatabase.recipients.querySignalContactLetterHeaders(query ?: "", includeSelf)
+  open fun querySignalContactLetterHeaders(query: String?, includeSelf: Boolean, includePush: Boolean, includeSms: Boolean): Map<RecipientId, String> {
+    return SignalDatabase.recipients.querySignalContactLetterHeaders(query ?: "", includeSelf, includePush, includeSms)
   }
 
   open fun queryNonSignalContacts(query: String?): Cursor? {
@@ -83,6 +85,14 @@ open class ContactSearchPagedDataSourceRepository(
     return SignalDatabase.distributionLists.getAllListsForContactSelectionUiCursor(query, myStoryContainsQuery(query ?: ""))
   }
 
+  open fun getGroupsWithMembers(query: String): Cursor {
+    return SignalDatabase.groups.queryGroupsByMemberName(query)
+  }
+
+  open fun getContactsWithoutThreads(query: String): Cursor {
+    return SignalDatabase.recipients.getAllContactsWithoutThreads(query)
+  }
+
   open fun getRecipientFromDistributionListCursor(cursor: Cursor): Recipient {
     return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, DistributionListTables.RECIPIENT_ID)))
   }
@@ -95,8 +105,12 @@ open class ContactSearchPagedDataSourceRepository(
     return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, ThreadTable.RECIPIENT_ID)))
   }
 
-  open fun getRecipientFromRecipientCursor(cursor: Cursor): Recipient {
+  open fun getRecipientFromSearchCursor(cursor: Cursor): Recipient {
     return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, ContactRepository.ID_COLUMN)))
+  }
+
+  open fun getRecipientFromRecipientCursor(cursor: Cursor): Recipient {
+    return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, RecipientTable.ID)))
   }
 
   open fun getGroupsInCommon(recipient: Recipient): GroupsInCommon {
@@ -107,10 +121,6 @@ open class ContactSearchPagedDataSourceRepository(
       .sorted()
 
     return GroupsInCommon(groupsInCommon.size, names)
-  }
-
-  open fun hasGroupsInCommon(recipient: Recipient): Boolean {
-    return SignalDatabase.groups.getPushGroupsContainingMember(recipient.id).isNotEmpty()
   }
 
   open fun getRecipientFromGroupRecord(groupRecord: GroupRecord): Recipient {

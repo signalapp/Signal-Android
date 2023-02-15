@@ -1,27 +1,11 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'signal-library'
+}
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
-
-    defaultConfig {
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
-        multiDexEnabled true
-    }
-
-    compileOptions {
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
-    }
+    namespace 'org.signal.paging'
 }
 
 dependencies {
-    implementation libs.androidx.appcompat
-    implementation libs.androidx.multidex
-    implementation libs.material.material
-    implementation libs.rxjava3.rxandroid
-    implementation libs.rxjava3.rxjava
     implementation project(':core-util')
-    testImplementation testLibs.junit.junit
 }

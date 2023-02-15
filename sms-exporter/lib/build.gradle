@@ -1,26 +1,14 @@
-apply from: "$rootProject.projectDir/signalModule.gradle"
+plugins {
+    id 'signal-library'
+}
+
+android {
+    namespace 'org.signal.smsexporter'
+}
 
 dependencies {
-    lintChecks project(':lintchecks')
-
     implementation project(':core-util')
 
-    coreLibraryDesugaring libs.android.tools.desugar
-
-    implementation libs.androidx.core.ktx
-    implementation libs.androidx.annotation
-    implementation libs.androidx.appcompat
     implementation libs.androidx.core.role
     implementation libs.android.smsmms
-    implementation libs.rxjava3.rxjava
-    implementation libs.rxjava3.rxandroid
-    implementation libs.rxjava3.rxkotlin
-
-    testImplementation testLibs.junit.junit
-    testImplementation testLibs.mockito.core
-    testImplementation testLibs.mockito.android
-    testImplementation testLibs.mockito.kotlin
-    testImplementation testLibs.robolectric.robolectric
-    testImplementation testLibs.androidx.test.core
-    testImplementation testLibs.androidx.test.core.ktx
 }

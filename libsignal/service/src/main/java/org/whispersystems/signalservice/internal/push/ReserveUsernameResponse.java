@@ -4,26 +4,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ReserveUsernameResponse {
   @JsonProperty
-  private String username;
-
-  @JsonProperty
-  private String reservationToken;
+  private String usernameHash;
 
   ReserveUsernameResponse() {}
 
   /**
    * Visible for testing.
    */
-  public ReserveUsernameResponse(String username, String reservationToken) {
-    this.username         = username;
-    this.reservationToken = reservationToken;
+  public ReserveUsernameResponse(String usernameHash) {
+    this.usernameHash = usernameHash;
   }
 
-  public String getUsername() {
-    return username;
-  }
-
-  String getReservationToken() {
-    return reservationToken;
+  public String getUsernameHash() {
+    return usernameHash;
   }
 }

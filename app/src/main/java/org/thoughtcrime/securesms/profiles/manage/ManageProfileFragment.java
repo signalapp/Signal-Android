@@ -20,9 +20,12 @@ import androidx.navigation.Navigation;
 
 import com.airbnb.lottie.SimpleColorFilter;
 import com.bumptech.glide.Glide;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.usernames.BaseUsernameException;
+import org.signal.libsignal.usernames.Username;
 import org.thoughtcrime.securesms.AvatarPreviewActivity;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -33,21 +36,25 @@ import org.thoughtcrime.securesms.badges.self.none.BecomeASustainerFragment;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.databinding.ManageProfileFragmentBinding;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.manage.ManageProfileViewModel.AvatarState;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.NameUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
+import org.whispersystems.util.Base64UrlSafe;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Optional;
+
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class ManageProfileFragment extends LoggingFragment {
 
@@ -56,6 +63,7 @@ public class ManageProfileFragment extends LoggingFragment {
   private AlertDialog                  avatarProgress;
   private ManageProfileViewModel       viewModel;
   private ManageProfileFragmentBinding binding;
+  private LifecycleDisposable          disposables;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,6 +74,9 @@ public class ManageProfileFragment extends LoggingFragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    disposables = new LifecycleDisposable();
+    disposables.bindTo(getViewLifecycleOwner());
+
     new UsernameEditFragment.ResultContract().registerForResult(getParentFragmentManager(), getViewLifecycleOwner(), isUsernameCreated -> {
       Snackbar.make(view, R.string.ManageProfileFragment__username_created, Snackbar.LENGTH_SHORT).show();
     });
@@ -85,7 +96,28 @@ public class ManageProfileFragment extends LoggingFragment {
     });
 
     binding.manageProfileUsernameContainer.setOnClickListener(v -> {
-      SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageUsername());
+      if (SignalStore.uiHints().hasSeenUsernameEducation()) {
+        if (Recipient.self().getUsername().isPresent()) {
+          new MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Signal_MaterialAlertDialog_List)
+              .setItems(R.array.username_edit_entries, (d, w) -> {
+                switch (w) {
+                  case 0:
+                    SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageUsername());
+                    break;
+                  case 1:
+                    displayConfirmUsernameDeletionDialog();
+                    break;
+                  default:
+                    throw new IllegalStateException();
+                }
+              })
+              .show();
+        } else {
+          SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageUsername());
+        }
+      } else {
+        SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageProfileFragmentToUsernameEducationFragment());
+      }
     });
 
     binding.manageProfileAboutContainer.setOnClickListener(v -> {
@@ -213,13 +245,14 @@ public class ManageProfileFragment extends LoggingFragment {
   private void presentUsername(@Nullable String username) {
     if (username == null || username.isEmpty()) {
       binding.manageProfileUsername.setText(R.string.ManageProfileFragment_username);
+      binding.manageProfileUsernameSubtitle.setText(R.string.ManageProfileFragment_your_username);
       binding.manageProfileUsernameShare.setVisibility(View.GONE);
     } else {
       binding.manageProfileUsername.setText(username);
 
       try {
-        binding.manageProfileUsernameSubtitle.setText(getString(R.string.signal_me_username_url_no_scheme, URLEncoder.encode(username, StandardCharsets.UTF_8.toString())));
-      } catch (UnsupportedEncodingException e) {
+        binding.manageProfileUsernameSubtitle.setText(getString(R.string.signal_me_username_url_no_scheme, Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(username))));
+      } catch (BaseUsernameException e) {
         Log.w(TAG, "Could not format username link", e);
         binding.manageProfileUsernameSubtitle.setText(R.string.ManageProfileFragment_your_username);
       }
@@ -271,5 +304,39 @@ public class ManageProfileFragment extends LoggingFragment {
 
   private void onEditAvatarClicked() {
     SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), ManageProfileFragmentDirections.actionManageProfileFragmentToAvatarPicker(null, null));
+  }
+
+  private void displayConfirmUsernameDeletionDialog() {
+    new MaterialAlertDialogBuilder(requireContext())
+        .setTitle("Delete Username?") // TODO [alex] -- Final copy
+        .setMessage("This will remove your username, allowing other users to claim it. Are you sure?") // TODO [alex] -- Final copy
+        .setPositiveButton(R.string.delete, (d, w) -> {
+          onUserConfirmedUsernameDeletion();
+        })
+        .setNegativeButton(android.R.string.cancel, (d, w) -> {})
+        .show();
+  }
+
+  private void onUserConfirmedUsernameDeletion() {
+    binding.progressCard.setVisibility(View.VISIBLE);
+    Disposable disposable = viewModel.deleteUsername()
+                                     .subscribe(result -> {
+                                       binding.progressCard.setVisibility(View.GONE);
+                                       handleUsernameDeletionResult(result);
+                                     });
+    disposables.add(disposable);
+  }
+
+  private void handleUsernameDeletionResult(@NonNull UsernameEditRepository.UsernameDeleteResult usernameDeleteResult) {
+    switch (usernameDeleteResult) {
+      case SUCCESS:
+        // TODO [alex] - Final copy
+        Snackbar.make(requireView(), R.string.preferences_success, Snackbar.LENGTH_SHORT).show();
+        break;
+      case NETWORK_ERROR:
+        // TODO [alex] - Final copy
+        Snackbar.make(requireView(), R.string.error, Snackbar.LENGTH_SHORT).show();
+        break;
+    }
   }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.ThumbnailView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/conversation_thumbnail_image"
+    android:layout_width="@dimen/media_bubble_default_dimens"
+    android:layout_height="@dimen/media_bubble_default_dimens"
+    android:adjustViewBounds="true"
+    android:clickable="false"
+    android:longClickable="false"
+    android:scaleType="centerCrop"
+    android:contentDescription="@string/conversation_item__mms_image_description"
+    android:visibility="gone"
+    tools:visibility="visible"
+    app:thumbnail_radius="1dp"
+    tools:showIn="@layout/conversation_item_thumbnail" />

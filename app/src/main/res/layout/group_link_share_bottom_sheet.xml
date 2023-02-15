@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light">
+    tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light"
+    tools:viewBindingIgnore="true">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -42,7 +42,8 @@
             android:paddingEnd="@dimen/dsl_settings_gutter"
             android:text="@string/GroupLinkBottomSheet_share_via_signal"
             android:textAppearance="@style/Signal.Text.BodyLarge"
-            app:drawableStartCompat="@drawable/ic_message_tinted_bitmap_24" />
+            app:drawableStartCompat="@drawable/symbol_chat_24"
+            app:drawableTint="@color/signal_colorOnSurface" />
 
         <TextView
             android:id="@+id/group_link_bottom_sheet_copy_button"
@@ -55,7 +56,8 @@
             android:paddingEnd="@dimen/dsl_settings_gutter"
             android:text="@string/GroupLinkBottomSheet_copy"
             android:textAppearance="@style/Signal.Text.BodyLarge"
-            app:drawableStartCompat="@drawable/ic_copy_24_tinted" />
+            app:drawableStartCompat="@drawable/symbol_copy_android_24"
+            app:drawableTint="@color/signal_colorOnSurface" />
 
         <TextView
             android:id="@+id/group_link_bottom_sheet_qr_code_button"
@@ -68,7 +70,8 @@
             android:paddingEnd="@dimen/dsl_settings_gutter"
             android:text="@string/GroupLinkBottomSheet_qr_code"
             android:textAppearance="@style/Signal.Text.BodyLarge"
-            app:drawableStartCompat="@drawable/ic_qrcode_24_tinted" />
+            app:drawableStartCompat="@drawable/symbol_qrcode_24"
+            app:drawableTint="@color/signal_colorOnSurface" />
 
         <TextView
             android:id="@+id/group_link_bottom_sheet_share_via_system_button"
@@ -81,7 +84,8 @@
             android:paddingEnd="@dimen/dsl_settings_gutter"
             android:text="@string/GroupLinkBottomSheet_share"
             android:textAppearance="@style/Signal.Text.BodyLarge"
-            app:drawableStartCompat="@drawable/ic_share_24_tinted" />
+            app:drawableStartCompat="@drawable/symbol_share_android_24"
+            app:drawableTint="@color/signal_colorOnSurface" />
 
     </LinearLayout>
 

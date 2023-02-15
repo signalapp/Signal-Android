@@ -14,8 +14,8 @@
 
     {{> partials/prefix isOverview=true}}
 
-    <h1 class="collapse-header active" data-for="table-creates">Tables</h1>
-    <div id="table-creates">
+    <h1 class="collapse-header" data-for="table-creates">Tables</h1>
+    <div id="table-creates" class="hidden">
       {{#if tables}}
         {{#each tables}}
           <h2 class="collapse-header" data-for="table-create-{{@index}}">{{name}}</h2>
@@ -26,8 +26,8 @@
       {{/if}}
     </div>
 
-    <h1 class="collapse-header active" data-for="index-creates">Indices</h1>
-    <div id="index-creates">
+    <h1 class="collapse-header" data-for="index-creates">Indices</h1>
+    <div id="index-creates" class="hidden">
       {{#if indices}}
         {{#each indices}}
           <h2 class="collapse-header active" data-for="index-create-{{@index}}">{{name}}</h2>
@@ -38,8 +38,8 @@
       {{/if}}
     </div>
 
-    <h1 class="collapse-header active" data-for="trigger-creates">Triggers</h1>
-    <div id="trigger-creates">
+    <h1 class="collapse-header" data-for="trigger-creates">Triggers</h1>
+    <div id="trigger-creates" class="hidden">
       {{#if triggers}}
         {{#each triggers}}
           <h2 class="collapse-header active" data-for="trigger-create-{{@index}}">{{name}}</h2>
@@ -49,6 +49,58 @@
         None.
       {{/if}}
     </div>
+
+
+    <h1 class="collapse-header" data-for="foreign-key-creates">Foreign Keys</h1>
+    <div id="foreign-key-creates" class="hidden">
+      {{#if foreignKeys}}
+        <table>
+          <tr>
+            <th>Column</th>
+            <th>Depends On</th>
+            <th>On Delete</th>
+          </tr>
+          {{#each foreignKeys}}
+          <tr>
+            <td>{{table}}.{{column}}</td>
+            <td>{{dependsOnTable}}.{{dependsOnColumn}}</td>
+            <td>{{onDelete}}</td>
+          </tr>
+          {{/each}}
+        </table>
+
+        <h2>Without Labels</h2>
+        <pre class="mermaid">
+          flowchart LR
+          {{#each foreignKeys}}
+            id_{{table}}[{{table}}] --> id_{{dependsOnTable}}[{{dependsOnTable}}]
+          {{/each}}
+        </pre>
+
+        <h2>With Labels</h2>
+        <pre class="mermaid">
+          flowchart LR
+            {{#each foreignKeys}}
+              id_{{table}}[{{table}}] -- "{{column}} 🠖 {{dependsOnColumn}}" --> id_{{dependsOnTable}}[{{dependsOnTable}}]
+            {{/each}}
+        </pre>
+
+      {{else}}
+        None.
+      {{/if}}
+    </div>
+
+
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false });
+
+      document.addEventListener('header-toggle', (e) => {
+        if (e.detail.id === 'foreign-key-creates') {
+          mermaid.init('.mermaid')
+        }
+      })
+    </script>
 
   {{> partials/suffix }}
   </body>

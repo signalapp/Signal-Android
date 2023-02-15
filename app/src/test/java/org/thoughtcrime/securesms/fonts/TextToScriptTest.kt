@@ -74,7 +74,7 @@ class TextToScriptTest(
       arrayOf(
         listOf("ППППaaaa", ""),
         SupportedScript.LATIN
-      ),
+      )
     )
   }
 }

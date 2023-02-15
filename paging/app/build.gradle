@@ -1,34 +1,15 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'signal-sample-app'
+}
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
+    namespace 'org.signal.pagingtest'
 
     defaultConfig {
         applicationId "org.signal.pagingtest"
-        versionCode 1
-        versionName "1.0"
-
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
-        multiDexEnabled true
-    }
-
-    compileOptions {
-        coreLibraryDesugaringEnabled true
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
     }
 }
 
 dependencies {
-    coreLibraryDesugaring libs.android.tools.desugar
-
-    implementation libs.androidx.appcompat
-    implementation libs.material.material
-    implementation libs.androidx.constraintlayout
-
-    testImplementation testLibs.junit.junit
-
     implementation project(':paging')
 }

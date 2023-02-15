@@ -127,7 +127,7 @@ public class ConversationViewModel extends ViewModel {
     this.recipientId                    = BehaviorSubject.create();
     this.threadId                       = BehaviorSubject.create();
     this.groupAuthorNameColorHelper     = new GroupAuthorNameColorHelper();
-    this.conversationStateStore         = new RxStore<>(ConversationState.create(), Schedulers.io());
+    this.conversationStateStore         = new RxStore<>(ConversationState.create(), Schedulers.computation());
     this.disposables                    = new CompositeDisposable();
     this.conversationStateTick          = BehaviorSubject.createDefault(Unit.INSTANCE);
     this.markReadRequestPublisher       = PublishProcessor.create();
@@ -205,7 +205,7 @@ public class ConversationViewModel extends ViewModel {
 
     scheduledMessageCount = threadId
         .observeOn(Schedulers.io())
-        .flatMap(scheduledMessagesRepository::getScheduledMessageCount);
+        .switchMap(scheduledMessagesRepository::getScheduledMessageCount);
 
     Observable<Recipient> liveRecipient = recipientId.distinctUntilChanged().switchMap(id -> Recipient.live(id).asObservable());
 

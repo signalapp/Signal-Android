@@ -25,7 +25,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_gravity="center_vertical"
-        app:srcCompat="@drawable/ic_info_white_24"
+        app:srcCompat="@drawable/symbol_info_24"
         app:tint="@color/signal_alert_primary" />
 
     <TextView
@@ -47,7 +47,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_gravity="center_vertical"
-        app:srcCompat="@drawable/ic_info_white_24"
+        app:srcCompat="@drawable/symbol_info_24"
         app:tint="@color/signal_alert_primary" />
 
     <TextView
@@ -69,7 +69,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_gravity="center_vertical"
-        app:srcCompat="@drawable/ic_info_white_24"
+        app:srcCompat="@drawable/symbol_info_24"
         app:tint="@color/signal_alert_primary" />
 
     <TextView

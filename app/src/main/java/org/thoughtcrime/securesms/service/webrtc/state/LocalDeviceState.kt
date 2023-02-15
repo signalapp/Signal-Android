@@ -17,7 +17,7 @@ data class LocalDeviceState constructor(
   var activeDevice: SignalAudioManager.AudioDevice = SignalAudioManager.AudioDevice.NONE,
   var availableDevices: Set<SignalAudioManager.AudioDevice> = emptySet(),
   var bluetoothPermissionDenied: Boolean = false,
-  var networkConnectionType: PeerConnection.AdapterType = PeerConnection.AdapterType.UNKNOWN,
+  var networkConnectionType: PeerConnection.AdapterType = PeerConnection.AdapterType.UNKNOWN
 ) {
 
   fun duplicate(): LocalDeviceState {

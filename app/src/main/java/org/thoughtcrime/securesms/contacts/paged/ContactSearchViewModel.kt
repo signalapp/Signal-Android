@@ -28,10 +28,12 @@ class ContactSearchViewModel(
   private val selectionLimits: SelectionLimits,
   private val contactSearchRepository: ContactSearchRepository,
   private val performSafetyNumberChecks: Boolean,
-  private val safetyNumberRepository: SafetyNumberRepository = SafetyNumberRepository(),
   private val arbitraryRepository: ArbitraryRepository?,
-  private val searchRepository: SearchRepository
+  private val searchRepository: SearchRepository,
+  private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository
 ) : ViewModel() {
+
+  private val safetyNumberRepository: SafetyNumberRepository by lazy { SafetyNumberRepository() }
 
   private val disposables = CompositeDisposable()
 
@@ -57,7 +59,12 @@ class ContactSearchViewModel(
   }
 
   fun setConfiguration(contactSearchConfiguration: ContactSearchConfiguration) {
-    val pagedDataSource = ContactSearchPagedDataSource(contactSearchConfiguration, arbitraryRepository = arbitraryRepository, searchRepository = searchRepository)
+    val pagedDataSource = ContactSearchPagedDataSource(
+      contactSearchConfiguration,
+      arbitraryRepository = arbitraryRepository,
+      searchRepository = searchRepository,
+      contactSearchPagedDataSourceRepository = contactSearchPagedDataSourceRepository
+    )
     pagedData.value = PagedData.createForLiveData(pagedDataSource, pagingConfig)
   }
 
@@ -106,6 +113,10 @@ class ContactSearchViewModel(
     return selectionStore.state
   }
 
+  fun clearSelection() {
+    selectionStore.update { emptySet() }
+  }
+
   fun addToVisibleGroupStories(groupStories: Set<ContactSearchKey.RecipientSearchKey>) {
     disposables += contactSearchRepository.markDisplayAsStory(groupStories.map { it.recipientId }).subscribe {
       configurationStore.update { state ->
@@ -149,7 +160,8 @@ class ContactSearchViewModel(
     private val repository: ContactSearchRepository,
     private val performSafetyNumberChecks: Boolean,
     private val arbitraryRepository: ArbitraryRepository?,
-    private val searchRepository: SearchRepository
+    private val searchRepository: SearchRepository,
+    private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(
@@ -158,7 +170,8 @@ class ContactSearchViewModel(
           contactSearchRepository = repository,
           performSafetyNumberChecks = performSafetyNumberChecks,
           arbitraryRepository = arbitraryRepository,
-          searchRepository = searchRepository
+          searchRepository = searchRepository,
+          contactSearchPagedDataSourceRepository = contactSearchPagedDataSourceRepository
         )
       ) as T
     }

@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionState;
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.views.CheckedLinearLayout;
 
 /**
@@ -65,6 +66,12 @@ public final class QualitySelectorBottomSheetDialog extends BottomSheetDialogFra
 
     viewModel = new ViewModelProvider(requireActivity()).get(MediaSelectionViewModel.class);
     viewModel.getState().observe(getViewLifecycleOwner(), this::updateQuality);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    WindowUtil.initializeScreenshotSecurity(requireContext(), requireDialog().getWindow());
   }
 
   private void updateQuality(@NonNull MediaSelectionState selectionState) {

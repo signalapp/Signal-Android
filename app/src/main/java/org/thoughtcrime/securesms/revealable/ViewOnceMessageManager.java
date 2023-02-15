@@ -68,7 +68,7 @@ public class ViewOnceMessageManager extends TimedEventManager<ViewOnceExpiration
 
   @AnyThread
   @Override
-  protected void scheduleAlarm(@NonNull Application application, long delay) {
+  protected void scheduleAlarm(@NonNull Application application, ViewOnceExpirationInfo event, long delay) {
     setAlarm(application, delay, ViewOnceAlarm.class);
   }
 

@@ -352,8 +352,8 @@
     <string name="ConversationActivity_new_say_it_with_stickers">ახლა უკვე შეგიძლია სათქმელი სტიკერებით გამოხატო!</string>
 
     <string name="ConversationActivity_cancel">გაუქმება</string>
-    <string name="ConversationActivity_delete_conversation">წავშალოთ საუბარი?</string>
-    <string name="ConversationActivity_delete_and_leave_group">გსურს ჯგუფი დატოვო და წაშალო?</string>
+    <string name="ConversationActivity_delete_conversation">წავშალოთ მიმოწერა?</string>
+    <string name="ConversationActivity_delete_and_leave_group">გსურს ჯგუფის დატოვება და წაშლა?</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ეს მიმოწერა შენი ყველა მოწყობილობიდან წაიშლება.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">ამ ჯგუფს დატოვებ და ის შენი ყველა მოწყობილობიდან წაიშლება.</string>
     <string name="ConversationActivity_delete">წაშლა</string>
@@ -393,7 +393,7 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">კონტაქტების აპი ვერ მოიძებნა.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="one">წავშალო არსებული შეტყობინებები?</item>
+        <item quantity="one">წაშალოთ არჩეული შეტყობინება?</item>
         <item quantity="other">წავშალოთ მონიშნული შეტყობინებები?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">შევინახოთ მეხსიერებაში?</string>
@@ -426,7 +426,7 @@
     <string name="ConversationFragment_delete_on_this_device">ამ მოწყობილობაზე წაშლა</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">ყველგან წაშლა</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ეს შეტყობინება ყველასთან წაიშლება, თუ მონაწილეები Signal-ის უახლესს ვერსიას იყენებს. მათ ექნებათ შესაძლებლობა ნახონ, რომ შენ წაშალე შეტყობინება.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ეს შეტყობინება ყველასთან წაიშლება, თუ მონაწილეები Signal-ის უახლესს ვერსიას იყენებენ. მათ ექნებათ შესაძლებლობა ნახონ, რომ შენ წაშალე შეტყობინება.</string>
     <string name="ConversationFragment_quoted_message_not_found">თავდაპირველი შეტყობინების მოძებნა ვერ მოხერხდა</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">თავდაპირველი შეტყობინება აღარაა ხელმისაწვდომი</string>
     <string name="ConversationFragment_failed_to_open_message">შეტყობინების გახსნა ვერ მოხერხდა</string>
@@ -461,11 +461,11 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">წაუკითხავი ჩატები არ მოიძებნა</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">წავშალო არჩეული დიალოგები?</item>
-        <item quantity="other">წავშალოთ არჩეული მიმოწერა?</item>
+        <item quantity="one">წავშალოთ არჩეული მიმოწერა?</item>
+        <item quantity="other">წავშალოთ არჩეული დიალოგები?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">ეს სამუდამოდ წაშლის ყველა %1$d არჩეულ დიალოგს.</item>
+        <item quantity="one">ეს სამუდამოდ წაშლის არჩეულ დიალოგს.</item>
         <item quantity="other">ეს სამუდამოდ წაშლის ყველა %1$d არჩეულ დიალოგს.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">იშლება</string>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">გასაფილტრად ქვემოთ ჩამოქაჩე</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">გაუშვი, რომ გაიფილტროს</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">პროფილი</string>
@@ -600,7 +600,7 @@
     <string name="BackupsPreferenceFragment__last_backup">ბოლო სარეზერვო კოპია: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">სარეზერვო კოპიების შენახვის ადგილი</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">სარეზერვო კოპიების შექმნის დრო</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">სათადარიგო ასლების პაროლ-ფრაზის ვერიფიცირება</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">გატესტე შენი სათადარიგო ასლების პაროლ-ფრაზა და დარწმუნდი, რომ ის შეესაბამება</string>
     <string name="BackupsPreferenceFragment__turn_on">ჩართვა</string>
@@ -631,49 +631,52 @@
     <string name="DateUtils_today">დღეს</string>
     <string name="DateUtils_yesterday">გუშინ</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s არის %2$s</string>
+    <string name="DateUtils_schedule_at">%1$s %2$s-ზე</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">ხვალ</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">ამაღამ</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">დაგეგმილი შეტყობინებები</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">აირჩიე თარიღი &amp; დრო</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">დაგეგმილი შეტყობინებები</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">როცა შეტყობინების გაგზავნის დროს დაგეგმავ, დარწმუნდი, რომ აღნიშნული დროისთვის შენი მოწყობილობა ჩართული და ინტერნეტთან დაკავშირებული იქნება. წინააღმდეგ შემთხვევაში, შენი შეტყობინება მოწყობილობის ინტერნეტთან დაკავშირების შემდეგ გაიგზავნება.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">კარგი</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">შეტყობინების გაგზავნის გადავადების ჩასართავად:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">შეტყობინების გაგზავნის გადავადების ხელახლა ჩასართავად:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">აირჩიე თარიღი</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">აირჩიე დრო</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">შეტყობინების გაგზავნის გადავადება</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
-
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">გაგზავნე დაგეგმილად</string>
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">დროის სარტყელი (%1$s) %2$s</string>
+    <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">არჩეული დრო წარსულშია. ეს წერილს დაუყოვნებლივ გაგზავნის.</string>
+    <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">დაუყოვნებლივ გაგზავნა</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">ახლავე გაგზავნა</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">თავიდან დაგეგმვა</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">წაშლა</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">გსურს, არჩეული გადავადებული წერილის წაშლა?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">მიმდინარეობს გადავადებული წერილის წაშლა…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">ჩატის სესია განახლდა</string>
@@ -773,8 +776,8 @@
         <item quantity="other">იმისათვის, რომ ეს წევრები კვლავ შეუერთდნენ ამ ჯგუფს, მოწვევას უნდა დაეთანხმონ. ჯგუფურ შეტყობინებებსაც ვერ მიიღებენ, სანამ მოწვევას არ დაეთანხმებიან:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">ეს წევრი ამოშლილია ჯგუფიდან და ვეღარ შეძლებს ხელახლა გაწევრიანებას, სანამ არ გაანახლებს.</item>
-        <item quantity="other">ეს წევრები ამოშლილები არიან ჯგუფიდან და ვეღარ შეძლებენ ხელახლა გაწევრიანებას, სანამ არ განაახლებენ:</item>
+        <item quantity="one">ეს წევრი წაშლილია ჯგუფიდან და ვეღარ შეძლებს ხელახლა გაწევრიანებას, სანამ არ გაანახლებს.</item>
+        <item quantity="other">ეს წევრები წაშლილები არიან ჯგუფიდან და ვეღარ შეძლებენ ხელახლა გაწევრიანებას, სანამ არ განაახლებენ:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -900,7 +903,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">შენ აირჩიე კონტაქტი, რომელსაც არ აქვს Signal-ის ჯგუფების მხარდაჭერა, ამიტომ ეს ჯგუფი იქნება MMS-ი. პერსონალიზირებული MMS ჯგუფის სახელები და ფოტოები მხოლოდ შენთვის იქნება ხილული.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">შენ აირჩიე კონტაქტი, რომელსაც არ აქვს Signal-ის ჯგუფების მხარდაჭერა, ამიტომ ეს ჯგუფი MMS იქნება. პერსონალიზირებული MMS ჯგუფის სახელები და ფოტოები მხოლოდ შენთვის იქნება ხილული. MMS ჯგუფების მხარდაჭერა მალე გაუქმდება დაშიფრულ შეტყობინებებზე ფოკუსირებისთვის.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">შენ აირჩიე კონტაქტი, რომელსაც არ აქვს Signal-ის ჯგუფების მხარდაჭერა, ამიტომ ეს ჯგუფი MMS იქნება. პერსონალიზირებული MMS ჯგუფის სახელები და ფოტოები მხოლოდ შენთვის იქნება ხილვადი. MMS ჯგუფების მხარდაჭერა მალე გაუქმდება დაშიფრულ შეტყობინებებზე ფოკუსირებისთვის.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">ვის შეუძლია ახალი წევრების დამატება?</string>
@@ -1242,8 +1245,8 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">წევრი ახალ ჯგუფში ვერ დაემატა და ამოიშალა.</item>
-        <item quantity="other">%1$s წევრი ახალ ჯგუფში ვერ დაემატა და ამოიშალა.</item>
+        <item quantity="one">წევრი ახალ ჯგუფში ვერ დაემატა და წაიშალა.</item>
+        <item quantity="other">%1$s წევრი ახალ ჯგუფში ვერ დაემატა და წაიშალა.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1583,7 +1586,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">გაფრთხილება</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">თუ პინ-კოდს გამორთავ, Signal-ზე ხელახლა დარეგისტრირებისას ყველა მონაცემს დაკარგავ, თუ ხელით არ შექმნი სარეზერვო კოპიას და აღადგენ. რეგისტრაციის დაბლოკვას ვერ ჩართავ, სანამ პინ-კოდი გამორთულია.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You cannot turn on Registration Lock while the PIN is disabled.</string>
     <string name="PinOptOutDialog_disable_pin">პინ-კოდის გამორთვა</string>
 
     <!-- RatingManager -->
@@ -1748,7 +1751,7 @@
     <string name="RegistrationActivity_select_your_country">აირჩიეთ თქვენი ქვეყანა</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">უნდა მიუთითოთ თქვენი ქვეყნის კოდი
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">რეგისტრაციისთვის, გთხოვთ, ტელეფონის მოქმედი ნომერი შეიყვანო.</string>
     <string name="RegistrationActivity_invalid_number">არასწორი ნომერი</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">ნომერი, რომელიც მიუთითეთ (%1$s) არასწორია.
     </string>
@@ -1779,16 +1782,16 @@
     <string name="RegistrationActivity_continue">გაგრძელება</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">გაითვალისწინეთ კონფიდენციალურობა.\nიყავით საკუთარი თავი ყველა შეტყობინებაში.</string>
     <string name="RegistrationActivity_enter_your_phone_number">შეიყვანე შენი ტელეფონის ნომერი</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">თქვენ მიიღებთ დადასტურების კოდს. შეიძლება მოქმედებდეს გადამზიდავის ტარიფები.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">შენ მიიღებ ვერიფიკაციის კოდს.\nშეიძლება გაგზავნის ტარიფი დაგეკისროს.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">შეიყვანეთ კოდი, რომელიც გამოვგზავნეთ %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">დარწმუნდით, რომ თქვენს ტელეფონს აქვს მობილური სიგნალი SMS-ის ან ზარის მისაღებად</string>
 
     <string name="RegistrationActivity_phone_number_description">ტელეფონის ნომერი</string>
     <string name="RegistrationActivity_country_code_description">ქვეყნის კოდი</string>
-    <string name="RegistrationActivity_country_code_hint">Country</string>
+    <string name="RegistrationActivity_country_code_hint">ქვეყანა</string>
     <string name="RegistrationActivity_call">დარეკვა</string>
-    <string name="RegistrationActivity_verification_code">Verification Code</string>
-    <string name="RegistrationActivity_resend_code">Resend Code</string>
+    <string name="RegistrationActivity_verification_code">ვერიფიკაციის კოდი</string>
+    <string name="RegistrationActivity_resend_code">კოდის თავიდან გაგზავნა</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">ჩავრთოთ რეგისტრაციის დაბლოკვა?</string>
@@ -1916,7 +1919,7 @@
     <string name="ThreadRecord_view_once_video">ერთჯერადი ვიდეო</string>
     <string name="ThreadRecord_view_once_media">ერთჯერადი მედია-ფაილი</string>
     <string name="ThreadRecord_this_message_was_deleted">ეს შეტყობინება იქნა წაშლილი.</string>
-    <string name="ThreadRecord_you_deleted_this_message">თქვენ წაშალეთ ეს შეტყობინება.</string>
+    <string name="ThreadRecord_you_deleted_this_message">შენ წაშალე ეს შეტყობინება.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">შენ გაუგზავნე ტრანზაქციების გაააქტიურების მოთხოვნა</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -1953,6 +1956,12 @@
     <string name="ThreadRecord__reacted_s_to_their_story">%1$s მის Story-ის გამოეხმაურა</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">ტრანზაქცია</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">გადავადებული შეტყობინება</string>
+    <!--  Displayed in the conversation list when your message history has been merged -->
+    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
+    <string name="ThreadRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal-ის განახლება</string>
@@ -2061,7 +2070,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">წერილის წაშლა ვერ მოხერხდა, ის შესაძლოა ისევ არსებობდეს</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>მეტის წაკითხვა</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d ახალი შეტყობინება %2$d მიმოწერაში</string>
@@ -2253,7 +2262,7 @@
     <string name="conversation_activity__type_message_sms_insecure">დაუცველი SMS-ი</string>
     <string name="conversation_activity__type_message_mms_insecure">დაუცველი MMS-ი</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">გაგზავნის გადავადება</string>
     <string name="conversation_activity__from_sim_name">%1$s-დან</string>
     <string name="conversation_activity__sim_n">SIM-ბარათი %1$d</string>
     <string name="conversation_activity__send">გაგზავნა</string>
@@ -2776,7 +2785,7 @@
     <string name="preferences_storage__review_storage">მეხსიერების გადახედვა</string>
     <string name="preferences_storage__delete_older_messages">წავშალოთ ძველი შეტყობინებები?</string>
     <string name="preferences_storage__clear_message_history">გავასუფთავოთ შეტყობინებების ისტორია?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ეს შენი მოწყობილობიდან სამუდამოდ წაშლის შეტყობინებების მთელ ისტორიას, რომელიც %1$s-მდე გქონდათ.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ეს შენი მოწყობილობიდან სამუდამოდ წაშლის შეტყობინებების მთელ ისტორიას, რომელიც %1$s-ზე ძველია.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">ეს სამუდამოდ წაშლის ყველა მიმოწერას %1$s უახლეს შეტყობინებებამდე.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ეს სამუდამოდ წაშლის შეტყობინებების მთელ ისტორიას და მედია-ფაილებს შენი მოწყობილობიდან.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">დარწმუნებული ხარ, რომ შეტყობინებების მთელი ისტორიის წაშლა გსურს?</string>
@@ -3148,8 +3157,8 @@
     <string name="conversation_scheduled_messages_bar__see_all">ყველას ნახვა</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d გადავადებული შეტყობინება</item>
+        <item quantity="other">%1$d გადავადებული შეტყობინება</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3166,6 +3175,8 @@
     <string name="text_secure_normal__invite_friends">მოიწვიე მეგობრები</string>
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">წაუკითხავი ჩატების გაფილტვრა</string>
+    <!-- Overflow menu entry to disable unread chats filter -->
+    <string name="text_secure_normal__clear_unread_filter">წაუკითხავების ფილტრის გასუფთავება</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">ბუფერში ჩაკოპირება</string>
@@ -3244,13 +3255,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">ახალი პინ-კოდის შექმნა</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">შენი პინ-კოდის შეცვლა შეგიძლია, სანამ ეს მოწყობილობა იქნება რეგისტრირებული.</string>
     <string name="CreateKbsPinFragment__create_your_pin">შექმენი შენი პინ-კოდი</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">პინ-კოდები დაგეხმარება აღადგინო შენი ანგარიში და Signal-მა შენი ინფორმაცია დაშიფრულად შეინახოს. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">უფრო საიმედო პინ-კოდი აირჩიე</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">პინ-კოდები არ ემთხვევა. თავიდან სცადე.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">თავიდან ჩაწერე პინ-კოდი, რომელიც ახლახანს შექმენი.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">დაადასტურე შენი პინ-კოდი.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">პინ-კოდის შექმნა ვერ მოხერხდა</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">შენი პინ-კოდი არ შეინახა. პინ-კოდის შექმნას მოგვიანებით მოგთხოვთ.</string>
@@ -3280,7 +3291,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">მონაცემები დაბლოკილია</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">შენი მონაცემები დაიბლოკა მათი კონფიდენციალურობისა და უსაფრთხოების დასაცავად. შენს პროფილზე %1$d დღის უმოქმედობის შემდეგ, პინ-კოდის გარეშე შეძლებ ხელახლა დაარეგისტრირო ეს ტელეფონის ნომერი. კონტენტი მთლიანად წაიშლება.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">შენი მონაცემები დაიბლოკა მათი კონფიდენციალურობისა და უსაფრთხოების დასაცავად. შენს პროფილზე %1$d დღის უმოქმედობის შემდეგ, პინ-კოდის გარეშე შეძლებ ხელახლა დარეგისტრირებას ამ ტელეფონის ნომრით. კონტენტი მთლიანად წაიშლება.</string>
     <string name="AccountLockedFragment__next">შემდეგი</string>
     <string name="AccountLockedFragment__learn_more">გაიგე მეტი</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3298,7 +3309,7 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-ის რეგისტრაცია - მჭირდება დახმარება პინ-კოდთან დაკავშირებით, Android-ისთვის (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">შენი კონფიდენციალურობისა და უსაფრთხოების უზრუნველსაყოფად, პინ-კოდის აღდგენის გზა არ არსებობს. თუ შენი პინ-კოდი არ გახსოვს, SMS-ით ხელახლა შეგიძლია დაადასტურო უმოქმედობის %1$d დღის შემდეგ. ამ შემთხვევაში, შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
+        <item quantity="one">შენი კონფიდენციალურობისა და უსაფრთხოების უზრუნველსაყოფად, პინ-კოდის აღდგენის გზა არ არსებობს. თუ შენი პინ-კოდი არ გახსოვს, ხელახლი ვერიფიკაცია შეგიძლია SMS-ით გაიარო უმოქმედობის %1$d დღის შემდეგ. ამ შემთხვევაში, შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
         <item quantity="other">შენი კონფიდენციალურობისა და უსაფრთხოების უზრუნველსაყოფად, პინ-კოდის აღდგენის გზა არ არსებობს. თუ შენი პინ-კოდი არ გახსოვს, ხელახლი ვერიფიკაცია შეგიძლია SMS-ით გაიარო უმოქმედობის %1$d დღის შემდეგ. ამ შემთხვევაში, შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
     </plurals>
 
@@ -3308,7 +3319,7 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">თუ ყველა მცდელობა გამოიყენე, შენი ანგარიში დაბლოკილი იქნება %1$d დღის განმავლობაში. %1$d დღის უმოქმედობის შემდეგ, შეგიძლია ხელახლა დარეგისტრირდე შენი პინ-კოდის გარეშე. შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
+        <item quantity="one">თუ ყველა მცდელობა გამოიყენე, შენი მონაცემები დაიბლოკება %1$d დღით. %1$d დღის უმოქმედობის შემდეგ, შეგიძლია ხელახლა დარეგისტრირდე შენი პინ-კოდის გარეშე. შენი მონაცემები გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
         <item quantity="other">თუ ყველა მცდელობა გამოიყენე, შენი მონაცემები დაიბლოკება %1$d დღით. %1$d დღის უმოქმედობის შემდეგ, შეგიძლია ხელახლა დარეგისტრირდე შენი პინ-კოდის გარეშე. შენი მონაცემები გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
     </plurals>
 
@@ -3390,8 +3401,8 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">შენი სარეზერვო კოპია შეიცავს ძალიან დიდ ფაილს, რომლის კოპირებაც ვერ ხერხდება. გთხოვთ წაშალო ის და ახალი სარეზერვო კოპია შექმნა.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">დააჭირე სარეზერვო კოპიების სამართავად.</string>
-    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">ამის ნაცვლად, დამირეკეთ \n (ხელმისაწვდომია %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_wrong_number">ნომერი არასწორია?</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">დამირეკეთ (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">დაუკავშირდით Signal-ის მხარდაჭერას</string>
     <string name="RegistrationActivity_code_support_subject">Signal-ის რეგისტრაცია - დადასტურების კოდი Android-ითვის</string>
     <string name="RegistrationActivity_incorrect_code">არასწორი კოდი</string>
@@ -3665,7 +3676,7 @@
     <string name="DeleteAccountFragment__delete_account">მონაცემების წაშლა</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">წაშლის შენს მონაცემებს და პროფილის ფოტოს</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">ყველა შენი შეტყობინების წაშალა</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">წაშლის %1$s-ს შენი ტრანზაქციების მონაცემებს</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">წაშლის %1$s შენი ტრანზაქციების მონაცემებიდან</string>
     <string name="DeleteAccountFragment__no_country_code">ქვეყნის კოდი არ არის მითითებული</string>
     <string name="DeleteAccountFragment__no_number">ნომერი არ არის მითითებული</string>
     <string name="DeleteAccountFragment__the_phone_number">შეყვანილი მობილურის ნომერი არ ემთხვევა შენს მონაცემებში აღნიშნულს.</string>
@@ -4068,7 +4079,7 @@
     <string name="ChatColorSelectionFragment__delete">წაშლა</string>
     <string name="ChatColorSelectionFragment__delete_color">ფერის წაშლა</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">ეს მორგებული ფერი %1$d ჩატშია გამოყენებული. გსურს მისი წაშლა ყველა ჩატისთვის?</item>
+        <item quantity="one">ეს არასტანდარტული ფერი %1$d ჩატშია გამოყენებული. გსურს მისი წაშლა ყველა ჩატისთვის?</item>
         <item quantity="other">ეს არასტანდარტული ფერი %1$d ჩატებშია გამოყენებული. გსურს მისი წაშლა ყველა ჩატისთვის?</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">წავშალოთ ჩატის ფერი?</string>
@@ -4233,11 +4244,11 @@
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">ძებნისას ამ ადამიანს ვერ ნახავ. თუ მომავალში მოგწერს, შეტყობინების მოთხოვნას მიიღებ.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s ამოიშალა</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s წაიშალა</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s დაიბლოკა</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">%1$s-ის ამოშლა ვერ მოხერხდა</string>
+    <string name="NewConversationActivity__unable_to_remove_s">%1$s-ის წაშლა ვერ მოხერხდა</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">ეს ადამიანი შენი მოწყობილობის კონტაქტებშია შენახული. წაშალე ის შენი კონტაქტებიდან და თავიდან სცადე.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
@@ -4836,11 +4847,11 @@
     <!-- Dialog action to remove viewer from a story -->
     <string name="StoryViewsFragment__remove">წაშლა</string>
     <!-- Dialog title when removing a viewer from a story -->
-    <string name="StoryViewsFragment__remove_viewer">ამოვშალოთ მნახველი?</string>
+    <string name="StoryViewsFragment__remove_viewer">წავშალოთ მნახველი?</string>
     <!-- Dialog message when removing a viewer from a story -->
     <string name="StoryViewsFragment__s_will_still_be_able">%1$s ამ პოსტის ნახვას ისევ შეძლებს, მაგრამ ვეღარ ნახავს მომავალ პოსტებს, რომელთაც %2$s-ში გააზიარებ.</string>
     <!-- Story View context menu action to remove them from a story -->
-    <string name="StoryViewItem__remove_viewer">მნახველის ამოშლა</string>
+    <string name="StoryViewItem__remove_viewer">მნახველის წაშლა</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">პასუხები ჯერ არაა</string>
     <!-- Displayed when no longer a group member -->
@@ -4855,6 +4866,8 @@
     <string name="StoryReplyComposer__react_to_this_story">გამოეხმაურე ამ Story-ის</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s-სთვის პირადი პასუხის გაცემა</string>
+    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
+    <string name="StoryReplyComposer__reply_to_s">უპასუხე %1$s-ს</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">დაკოპირება</string>
@@ -5228,7 +5241,7 @@
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">კონტაქტები</string>
     <!-- Context menu label for distribution list headers in review fragment -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove_all">ყველას ამოშლა</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove_all">ყველას წაშლა</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
     <string name="SafetyNumberReviewConnectionsFragment__remove">წაშლა</string>
 
@@ -5535,8 +5548,6 @@
     <string name="GroupStoryEducationSheet__next">შემდეგი</string>
     <string name="Registration_country_code_entry_hint">+0</string>
 
-    <!-- EOF -->
-
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">გააკეთე დონაცია</string>
     <string name="PaypalCompleteOrderBottomSheet__payment">ტრანზაქცია</string>
@@ -5551,24 +5562,58 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">SMS-ის მხარდაჭერა აღარ გვექნება</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">მალე Signal-ის აპს SMS მიმოწერის მხარდაჭერა აღარ ექნება.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">Signal-ის აპს SMS მიმოწერის მხარდაჭერა %1$s-დან აღარ ექნება.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS წერილები Signal-ის წერილებისგან განსხვავდება. <b>ამას გავლენა არ ექნება Signal-ის დაშიფრულ მიმოწერაზე, რომელიც ისევ იმუშავებს.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_3">შეგიძლია შენი SMS წერილები დააექსპორტო და ახალი SMS აპი აირჩიო.</string>
     <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal-მა SMS წერილების გაგზავნის მხარდაჭერა გააუქმა.</string>
+    <string name="SmsRemoval_info_bullet_1_phase_3">Signal-მა SMS შეტყობინებების გაგზავნის მხარდაჭერა გააუქმა.</string>
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">SMS-ის ექსპორტირება</string>
 
+    <!-- Set up your username megaphone -->
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__set_up_your_signal_username">შექმენი შენი Signal-ის მომხმარებლის სახელი</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__usernames_let_others">მომხმარებლის სახელები საშუალებას აძლევს სხვებს გამოგიგზავნონ წერილი შენი ტელეფონის ნომრის გარეშე</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__not_now">ახლა არა</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__continue">გაგრძელება</string>
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
-    <string name="TextFormatting_bold">მუქი</string>
+    <string name="TextFormatting_bold">გასქელებული</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">დახრილი</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">ხაზგადასმული</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">მონოგამოსივრცული</string>
+
+    <!-- UsernameEducationFragment -->
+    <!-- Continue button which takes the user to the add a username screen -->
+    <string name="UsernameEducationFragment__continue">გაგრძელება</string>
+    <!-- Displayed as a title on the username education screen -->
+    <string name="UsernameEducationFragment__set_up_your_signal_username">შექმენი შენი Signal-ის მომხმარებლის სახელი</string>
+
+    <!-- Username edit dialog -->
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">მომხმარებლის სახელის რედაქტირება</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">მომხმარებლის სახელის წაშლა</string>
+
+    <!-- Time duration picker -->
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
+    <string name="TimeDurationPickerDialog_positive_button">Set</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+
+    <!-- EOF -->
 </resources>

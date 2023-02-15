@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 
 public final class GroupsLearnMoreBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
@@ -38,6 +39,12 @@ public final class GroupsLearnMoreBottomSheetDialogFragment extends BottomSheetD
     view.findViewById(R.id.lbs_ok_button).setOnClickListener(v -> dismiss());
 
     return view;
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    WindowUtil.initializeScreenshotSecurity(requireContext(), requireDialog().getWindow());
   }
 
   @Override

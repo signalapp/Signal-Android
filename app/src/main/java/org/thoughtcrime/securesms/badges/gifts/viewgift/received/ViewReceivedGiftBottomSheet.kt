@@ -123,7 +123,8 @@ class ViewReceivedGiftBottomSheet : DSLSettingsBottomSheetFragment() {
     }
 
     errorDialog = DonationErrorDialogs.show(
-      requireContext(), throwable,
+      requireContext(),
+      throwable,
       object : DonationErrorDialogs.DialogCallback() {
         override fun onDialogDismissed() {
           findNavController().popBackStack()
@@ -158,7 +159,8 @@ class ViewReceivedGiftBottomSheet : DSLSettingsBottomSheetFragment() {
           noPadTextPref(
             title = DSLSettingsText.from(
               charSequence = requireContext().getString(R.string.ViewReceivedGiftBottomSheet__s_made_a_donation_for_you, state.recipient.getShortDisplayName(requireContext())),
-              DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
+              DSLSettingsText.CenterModifier,
+              DSLSettingsText.TitleLargeModifier
             )
           )
 

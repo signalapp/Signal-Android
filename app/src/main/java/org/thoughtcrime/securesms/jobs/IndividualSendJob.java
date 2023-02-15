@@ -70,9 +70,9 @@ public class IndividualSendJob extends PushSendJob {
 
   private final long messageId;
 
-  public IndividualSendJob(long messageId, @NonNull Recipient recipient, boolean hasMedia) {
+  public IndividualSendJob(long messageId, @NonNull Recipient recipient, boolean hasMedia, boolean isScheduledSend) {
     this(new Parameters.Builder()
-                       .setQueue(recipient.getId().toQueueKey(hasMedia))
+                       .setQueue(isScheduledSend ? recipient.getId().toScheduledSendQueueKey() : recipient.getId().toQueueKey(hasMedia))
                        .addConstraint(NetworkConstraint.KEY)
                        .setLifespan(TimeUnit.DAYS.toMillis(1))
                        .setMaxAttempts(Parameters.UNLIMITED)
@@ -85,7 +85,7 @@ public class IndividualSendJob extends PushSendJob {
     this.messageId = messageId;
   }
 
-  public static Job create(long messageId, @NonNull Recipient recipient, boolean hasMedia) {
+  public static Job create(long messageId, @NonNull Recipient recipient, boolean hasMedia, boolean isScheduledSend) {
     if (!recipient.hasServiceId()) {
       throw new AssertionError("No ServiceId!");
     }
@@ -94,11 +94,11 @@ public class IndividualSendJob extends PushSendJob {
       throw new AssertionError("This job does not send group messages!");
     }
 
-    return new IndividualSendJob(messageId, recipient, hasMedia);
+    return new IndividualSendJob(messageId, recipient, hasMedia, isScheduledSend);
   }
 
   @WorkerThread
-  public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId, @NonNull Recipient recipient) {
+  public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId, @NonNull Recipient recipient, boolean isScheduledSend) {
     try {
       OutgoingMessage message = SignalDatabase.messages().getOutgoingMessage(messageId);
       if (message.getScheduledDate() != -1) {
@@ -107,7 +107,7 @@ public class IndividualSendJob extends PushSendJob {
       }
       Set<String> attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
-      jobManager.add(IndividualSendJob.create(messageId, recipient, attachmentUploadIds.size() > 0), attachmentUploadIds, recipient.getId().toQueueKey());
+      jobManager.add(IndividualSendJob.create(messageId, recipient, attachmentUploadIds.size() > 0, isScheduledSend), attachmentUploadIds, isScheduledSend ? null : recipient.getId().toQueueKey());
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
       SignalDatabase.messages().markAsSentFailed(messageId);

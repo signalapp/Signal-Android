@@ -93,7 +93,8 @@ public class PushTable extends DatabaseTable {
                                          cursor.getString(cursor.getColumnIndexOrThrow(SERVER_GUID)),
                                          "",
                                          true,
-                                         false);
+                                         false,
+                                         null);
       }
     } catch (IOException e) {
       Log.w(TAG, e);
@@ -175,7 +176,8 @@ public class PushTable extends DatabaseTable {
                                          serverGuid,
                                          "",
                                          true,
-                                         false);
+                                         false,
+                                         null);
       } catch (IOException e) {
         throw new AssertionError(e);
       }

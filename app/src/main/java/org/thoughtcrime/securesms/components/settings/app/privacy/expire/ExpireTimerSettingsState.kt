@@ -7,7 +7,7 @@ data class ExpireTimerSettingsState(
   val userSetTimer: Int? = null,
   val saveState: ProcessState<Int> = ProcessState.Idle(),
   val isGroupCreate: Boolean = false,
-  val isForRecipient: Boolean = isGroupCreate,
+  val isForRecipient: Boolean = isGroupCreate
 ) {
   val currentTimer: Int
     get() = userSetTimer ?: initialTimer

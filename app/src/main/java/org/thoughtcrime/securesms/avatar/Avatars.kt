@@ -74,7 +74,7 @@ object Avatars {
     "avatar_sunset" to DefaultAvatar(R.drawable.ic_avatar_sunset, "A120"),
     "avatar_surfboard" to DefaultAvatar(R.drawable.ic_avatar_surfboard, "A110"),
     "avatar_soccerball" to DefaultAvatar(R.drawable.ic_avatar_soccerball, "A130"),
-    "avatar_football" to DefaultAvatar(R.drawable.ic_avatar_football, "A220"),
+    "avatar_football" to DefaultAvatar(R.drawable.ic_avatar_football, "A220")
   )
 
   @DrawableRes

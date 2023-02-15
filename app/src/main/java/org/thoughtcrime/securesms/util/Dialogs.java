@@ -35,7 +35,7 @@ public class Dialogs {
     new MaterialAlertDialogBuilder(context)
         .setTitle(title)
         .setMessage(message)
-        .setIcon(R.drawable.ic_info_outline)
+        .setIcon(R.drawable.symbol_info_24)
         .setPositiveButton(android.R.string.ok, null)
         .show();
   }

@@ -32,6 +32,7 @@ public final class SignalContactRecord implements SignalRecord {
   private final Optional<String> profileFamilyName;
   private final Optional<String> systemGivenName;
   private final Optional<String> systemFamilyName;
+  private final Optional<String> systemNickname;
   private final Optional<byte[]> profileKey;
   private final Optional<String> username;
   private final Optional<byte[]> identityKey;
@@ -48,6 +49,7 @@ public final class SignalContactRecord implements SignalRecord {
     this.profileFamilyName = OptionalUtil.absentIfEmpty(proto.getFamilyName());
     this.systemGivenName   = OptionalUtil.absentIfEmpty(proto.getSystemGivenName());
     this.systemFamilyName  = OptionalUtil.absentIfEmpty(proto.getSystemFamilyName());
+    this.systemNickname    = OptionalUtil.absentIfEmpty(proto.getSystemNickname());
     this.profileKey        = OptionalUtil.absentIfEmpty(proto.getProfileKey());
     this.username          = OptionalUtil.absentIfEmpty(proto.getUsername());
     this.identityKey       = OptionalUtil.absentIfEmpty(proto.getIdentityKey());
@@ -99,6 +101,10 @@ public final class SignalContactRecord implements SignalRecord {
 
       if (!Objects.equals(this.systemFamilyName, that.systemFamilyName)) {
         diff.add("SystemFamilyName");
+      }
+
+      if (!Objects.equals(this.systemNickname, that.systemNickname)) {
+        diff.add("SystemNickname");
       }
 
       if (!OptionalUtil.byteArrayEquals(this.profileKey, that.profileKey)) {
@@ -193,6 +199,10 @@ public final class SignalContactRecord implements SignalRecord {
 
   public Optional<String> getSystemFamilyName() {
     return systemFamilyName;
+  }
+
+  public Optional<String> getSystemNickname() {
+    return systemNickname;
   }
 
   public Optional<byte[]> getProfileKey() {
@@ -311,6 +321,11 @@ public final class SignalContactRecord implements SignalRecord {
 
     public Builder setSystemFamilyName(String familyName) {
       builder.setSystemFamilyName(familyName == null ? "" : familyName);
+      return this;
+    }
+
+    public Builder setSystemNickname(String nickname) {
+      builder.setSystemNickname(nickname == null ? "" : nickname);
       return this;
     }
 

@@ -83,9 +83,9 @@ public final class PushGroupSendJob extends PushSendJob {
   private final long             messageId;
   private final Set<RecipientId> filterRecipients;
 
-  public PushGroupSendJob(long messageId, @NonNull RecipientId destination, @NonNull Set<RecipientId> filterRecipients, boolean hasMedia) {
+  public PushGroupSendJob(long messageId, @NonNull RecipientId destination, @NonNull Set<RecipientId> filterRecipients, boolean hasMedia, boolean isScheduledSend) {
     this(new Job.Parameters.Builder()
-             .setQueue(destination.toQueueKey(hasMedia))
+             .setQueue(isScheduledSend ? destination.toScheduledSendQueueKey() : destination.toQueueKey(hasMedia))
              .addConstraint(NetworkConstraint.KEY)
              .setLifespan(TimeUnit.DAYS.toMillis(1))
              .setMaxAttempts(Parameters.UNLIMITED)
@@ -106,7 +106,8 @@ public final class PushGroupSendJob extends PushSendJob {
                              @NonNull JobManager jobManager,
                              long messageId,
                              @NonNull RecipientId destination,
-                             @NonNull Set<RecipientId> filterAddresses)
+                             @NonNull Set<RecipientId> filterAddresses,
+                             boolean isScheduledSend)
   {
     try {
       Recipient group = Recipient.resolved(destination);
@@ -135,7 +136,7 @@ public final class PushGroupSendJob extends PushSendJob {
         throw new MmsException("Inactive group!");
       }
 
-      jobManager.add(new PushGroupSendJob(messageId, destination, filterAddresses, !attachmentUploadIds.isEmpty()), attachmentUploadIds, attachmentUploadIds.isEmpty() ? null : destination.toQueueKey());
+      jobManager.add(new PushGroupSendJob(messageId, destination, filterAddresses, !attachmentUploadIds.isEmpty(), isScheduledSend), attachmentUploadIds, attachmentUploadIds.isEmpty() || isScheduledSend ? null : destination.toQueueKey());
 
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);

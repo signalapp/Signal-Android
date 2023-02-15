@@ -186,7 +186,6 @@ data class CallParticipantsState(
       webRtcViewModel: WebRtcViewModel,
       enableVideo: Boolean
     ): CallParticipantsState {
-
       var newShowVideoForOutgoing: Boolean = oldState.showVideoForOutgoing
       if (enableVideo) {
         newShowVideoForOutgoing = webRtcViewModel.state == WebRtcViewModel.State.CALL_OUTGOING
@@ -281,7 +280,6 @@ data class CallParticipantsState(
       isViewingFocusedParticipant: Boolean = oldState.isViewingFocusedParticipant,
       isExpanded: Boolean = oldState.localRenderState == WebRtcLocalRenderState.EXPANDED
     ): WebRtcLocalRenderState {
-
       val displayLocal: Boolean = (numberOfRemoteParticipants == 0 || !isInPip) && (isNonIdleGroupCall || localParticipant.isVideoEnabled)
       var localRenderState: WebRtcLocalRenderState = WebRtcLocalRenderState.GONE
 

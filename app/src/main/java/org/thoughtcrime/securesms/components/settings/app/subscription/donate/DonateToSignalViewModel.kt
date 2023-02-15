@@ -247,7 +247,8 @@ class DonateToSignalViewModel(
               selectableCurrencyCodes = availableCurrencies.map(Currency::getCurrencyCode),
               isCustomAmountFocused = false,
               customAmount = FiatMoney(
-                BigDecimal.ZERO, currency
+                BigDecimal.ZERO,
+                currency
               )
             )
           )

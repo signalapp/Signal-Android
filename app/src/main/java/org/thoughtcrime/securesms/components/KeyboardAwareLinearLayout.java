@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * LinearLayout that, when a view container, will report back when it thinks a soft keyboard
@@ -44,6 +45,8 @@ import java.util.Set;
  */
 public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   private static final String TAG = Log.tag(KeyboardAwareLinearLayout.class);
+
+  private static final long KEYBOARD_DEBOUNCE = 150;
 
   private final Rect                          rect            = new Rect();
   private final Set<OnKeyboardHiddenListener> hiddenListeners = new HashSet<>();
@@ -63,6 +66,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   private boolean keyboardOpen = false;
   private int     rotation     = 0;
   private boolean isBubble     = false;
+  private long    openedAt     = 0;
 
   public KeyboardAwareLinearLayout(Context context) {
     this(context, null);
@@ -183,13 +187,21 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   protected void onKeyboardOpen(int keyboardHeight) {
     Log.i(TAG, "onKeyboardOpen(" + keyboardHeight + ")");
     keyboardOpen = true;
+    openedAt = System.currentTimeMillis();
 
     notifyShownListeners();
   }
 
   protected void onKeyboardClose() {
+    if (System.currentTimeMillis() - openedAt < KEYBOARD_DEBOUNCE) {
+      Log.i(TAG, "Delaying onKeyboardClose()");
+      postDelayed(this::updateKeyboardState, KEYBOARD_DEBOUNCE);
+      return;
+    }
+
     Log.i(TAG, "onKeyboardClose()");
     keyboardOpen = false;
+    openedAt = 0;
     notifyHiddenListeners();
   }
 

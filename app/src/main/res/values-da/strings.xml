@@ -432,7 +432,7 @@
     <string name="ConversationFragment_failed_to_open_message">Fejl ved åbning af besked</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Du kan swipe til højre på enhver besked, for at svare hurtigt</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan swipe til venstre på enhver besked, for at svare hurtigt</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Udgående mediebeskeder der kun vises én gang, bliver automatisk fjernet efter de er sendt</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Udgående mediebeskeder, der kun vises én gang, bliver automatisk fjernet, når de er sendt</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Du har allerede set denne besked</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan tilføje egne notater i denne samtale.\nHvis din konto har forbundne enheder, vil notaterne blive synkroniseret.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d gruppemedlemmer har samme navn.</string>
@@ -465,8 +465,8 @@
         <item quantity="other">Slet valgte samtaler?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">Dette sletter den valgte samtale permanent</item>
-        <item quantity="other">Dette sletter %1$d valgte samtaler permanent</item>
+        <item quantity="one">Dette sletter den valgte samtale permanent.</item>
+        <item quantity="other">Dette sletter %1$d valgte samtaler permanent.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Sletter</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Sletter valgte samtaler …</string>
@@ -547,9 +547,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Træk ned for at filtrere</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Slip for at filtrere</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
@@ -600,7 +600,7 @@
     <string name="BackupsPreferenceFragment__last_backup">Seneste sikkerhedskopi: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Mappe til sikkerhedskopi</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">Tid til en backup</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificer adgangssætning for sikkerhedskopi</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test din adgangssætning for sikkerhedskopi og bekræft, at den matcher</string>
     <string name="BackupsPreferenceFragment__turn_on">Aktiver</string>
@@ -633,47 +633,50 @@
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
     <string name="DateUtils_schedule_at">%1$s ved %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">I morgen</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">I aften</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Planlagte beskeder</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">Vælg dato og tidspunkt</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">Planlagte beskeder</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Når du sender en planlagt besked, skal du sørge for at din enhed er tændt og har forbindelse til internettet på afsendelsestidspunktet. Hvis ikke, vil din besked blive sendt, når enheden genopretter forbindelsen.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Okay</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">For at slå planlagt besked til:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">For at slå planlagt besked til igen:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Vælg dato</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Vælg tidspunkt</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Planlæg besked</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
-
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Planlæg afsendelse</string>
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Alle tidspunkter i (%1$s) %2$s</string>
+    <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Det valgte tidspunkt ligger i fortiden. Meddelelsen sendes med det samme.</string>
+    <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send med det samme</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send nu</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Nyt tidspunkt</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Slet</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Slet den valgte planlagte besked?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Sletter planlagte beskeder…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Samtalesession genopfrisket</string>
@@ -773,8 +776,8 @@
         <item quantity="other">Disse medlemmer skal acceptere en invitation for at deltage i gruppen igen, og vil ikke modtage gruppebeskeder før de accepterer:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Denne bruger blev fjernet fra gruppen og vil ikke kunne deltage igen, før de opgraderer:</item>
-        <item quantity="other">Disse brugere blev fjernet fra gruppen og vil ikke kunne deltage igen, før de opgraderer:</item>
+        <item quantity="one">Denne bruger blev fjernet fra gruppen og vil ikke kunne deltage igen, før vedkommende opgraderer:</item>
+        <item quantity="other">Disse brugere blev fjernet fra gruppen og vil ikke kunne deltage igen, før vedkommende opgraderer:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -1583,7 +1586,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Advarsel</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer pinkode mister du alle data, når du omregistrerer Signal. Medmindre du sikkerhedskopierer og gendanner manuelt. Du kan ikke aktivere registreringslås, mens pinkoden er deaktiveret.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You cannot turn on Registration Lock while the PIN is disabled.</string>
     <string name="PinOptOutDialog_disable_pin">Deaktiver pinkode</string>
 
     <!-- RatingManager -->
@@ -1748,7 +1751,7 @@
     <string name="RegistrationActivity_select_your_country">Vælg land</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Du skal vælge din landekode
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Indtast venligst et gyldigt telefonnummer for at registrere</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Angiv et gyldigt telefonnummer for at registrere.</string>
     <string name="RegistrationActivity_invalid_number">Ugyldigt nummer</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Det indtastede nummer (%1$s) er ugyldigt
     </string>
@@ -1779,7 +1782,7 @@
     <string name="RegistrationActivity_continue">Fortsæt</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Tag privatlivet med dig. \nSkriv hvad du ønsker i enhver besked</string>
     <string name="RegistrationActivity_enter_your_phone_number">Indtast dit telefonnummer</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Du modtager en verifikationskode. Takster fra dit teleselskab kan blive pålagt.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Du modtager en verifikationskode.\nGebyrer fra dit teleselskab kan blive pålagt.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Indtast verifikationskoden sendt til %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Sørg for, at din telefon har et mobilsignal til at modtage SMS eller opkald</string>
 
@@ -1953,6 +1956,12 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Reagerede %1$s på deres historie</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Betaling</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Planlagt meddelelse</string>
+    <!--  Displayed in the conversation list when your message history has been merged -->
+    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
+    <string name="ThreadRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Opdater Signal</string>
@@ -2061,7 +2070,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Kunne ikke slette besked. Besked findes måske stadig</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Læs mere</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye beskeder i %2$d samtaler</string>
@@ -2253,7 +2262,7 @@
     <string name="conversation_activity__type_message_sms_insecure">Usikret SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">Usikret MMS</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">Planlæg besked</string>
     <string name="conversation_activity__from_sim_name">Fra %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Send</string>
@@ -2776,11 +2785,11 @@
     <string name="preferences_storage__review_storage">Gennemgå lager</string>
     <string name="preferences_storage__delete_older_messages">Slet ældre beskeder?</string>
     <string name="preferences_storage__clear_message_history">Ryd meddelelseshistorik?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette sletter permanent al meddelelseshistorik og alle medier, der er ældre end %1$s</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette sletter permanent al meddelelseshistorik og alle medier, der er ældre end %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dette reducerer alle samtaler permanent til de %1$s seneste beskeder</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dette sletter permanent al beskedhistorik og alle medier fra din enhed</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dette sletter permanent al beskedhistorik og alle medier fra din enhed.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Er du sikker på, du vil slette al meddelelseshistorik?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Al meddelelseshistorik fjernes permanent. Handlingen kan ikke fortrydes</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Al beskedhistorik fjernes permanent. Handlingen kan ikke fortrydes</string>
     <string name="preferences_storage__delete_all_now">Slet alt nu</string>
     <string name="preferences_storage__forever">For evigt</string>
     <string name="preferences_storage__one_year">1 år</string>
@@ -3145,11 +3154,11 @@
     <!-- conversation scheduled messages bar -->
 
     <!-- Label for button in a banner to show all messages currently scheduled -->
-    <string name="conversation_scheduled_messages_bar__see_all">Se alle</string>
+    <string name="conversation_scheduled_messages_bar__see_all">Vis alle</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d besked planlagt</item>
+        <item quantity="other">%1$d beskeder planlagt</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3166,6 +3175,8 @@
     <string name="text_secure_normal__invite_friends">Inviter venner</string>
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtrér ulæste chats</string>
+    <!-- Overflow menu entry to disable unread chats filter -->
+    <string name="text_secure_normal__clear_unread_filter">Ryd filter for ulæste beskeder</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiér til udklipsholder</string>
@@ -3244,13 +3255,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Opret en ny pinkode</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan ændre din pinkode, så længe denne enheden er registreret.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Opret din pinkode</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN-koder kan hjælpe dig med at genoprette din konto og beskytte dine oplysninger med Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Vælg en stærkere pinkode</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">Pinkoder matcher ikke. Prøv igen.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Angiv den PIN-kode, du lige har oprettet.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekræft din pinkode.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Fejl ved oprettelse af pinkode</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Din pinkode blev ikke gemt. Vi vil minde dig om at oprette en pinkode senere.</string>
@@ -3280,7 +3291,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Konto låst</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Din konto er blevet låst for at beskytte din konto og privatliv. Efter %1$d dages inaktivitet på din konto, vil det igen blive muligt at genregistrere dette mobilnummer uden at pinkode er nødvendigt. Alt indhold vil blive slettet.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Din konto er blevet låst for at beskytte din konto og privatliv. Efter %1$d dages inaktivitet på din konto, vil det igen blive muligt at tilmelde dette mobilnummer uden pinkode. Alt indhold vil blive slettet.</string>
     <string name="AccountLockedFragment__next">Næste</string>
     <string name="AccountLockedFragment__learn_more">Lær mere</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3298,8 +3309,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registrering - Brug for hjælp med pinkode til Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">For dit privatliv og din sikkerheds skyld, er det ikke muligt at gendanne din PIN. Hvis du ikke kan huske din PIN, kan du verificere med SMS på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive fjernet og alt indhold slettet</item>
-        <item quantity="other">For dit privatliv og din sikkerheds skyld, er det ikke muligt at gendanne din pinkode. Hvis du ikke kan huske din pinkode, kan du verificere med SMS på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive ryddet og alt indhold slettet.</item>
+        <item quantity="one">For dit privatliv og din sikkerheds skyld, er det ikke muligt at gendanne din PIN. Hvis du ikke kan huske din PIN, kan du verificere med sms på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive fjernet og alt indhold slettet</item>
+        <item quantity="other">For dit privatliv og din sikkerheds skyld, er det ikke muligt at gendanne din pinkode. Hvis du ikke kan huske din pinkode, kan du verificere med sms på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive ryddet og alt indhold slettet.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3391,7 +3402,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Din seneste sikkerhedskopi indeholder en meget stor fil, som vi ikke kunne lave en sikkerhedskopi af. Slet filen, og opret en ny sikkerhedskopi.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tryk for at administrere sikkerhedskopier.</string>
     <string name="RegistrationActivity_wrong_number">Forkert nummer?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Ring til mig i stedet \n (Tilgængelig om %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Ring til mig (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontakt Signal Support</string>
     <string name="RegistrationActivity_code_support_subject">Signal-registrering - Verifikationskode for Android</string>
     <string name="RegistrationActivity_incorrect_code">Forkert kode</string>
@@ -4229,7 +4240,7 @@
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">Blokér</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">Fjern %1$s?</string>
+    <string name="NewConversationActivity__remove_s">Fjern %1$s?&lt;br /&gt;</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">Du ser ikke denne person, når du søger. Du modtager en anmodning, hvis vedkommende skriver til dig i fremtiden.</string>
     <!-- Snackbar message after removing a contact -->
@@ -4237,7 +4248,7 @@
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s er blevet blokeret</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Kan ikke fjerne %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Kunne ikke fjerne %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">Denne person er gemt i enhedens kontakter. Slet vedkommende fra dine kontakter, og prøv igen.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
@@ -4612,7 +4623,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Slet profil</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">\"%1$s\" fjernet.</string>
+    <string name="NotificationProfileDetails__s_removed">\"%1$s\" blev fjernet.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Fortryd</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -4855,6 +4866,8 @@
     <string name="StoryReplyComposer__react_to_this_story">Reagér på denne historie</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Svarer privat til %1$s</string>
+    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
+    <string name="StoryReplyComposer__reply_to_s">Besvar %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Kopiér</string>
@@ -5364,7 +5377,7 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Fjern sms fra Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Nu kan du fjerne SMS\'er fra Signal for at rydde lagerplads. De vil stadig være tilgængelige for andre SMS-apps på din telefon, selvom du fjerner dem.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Nu kan du fjerne sms\'er fra Signal for at rydde lagerplads. De vil stadig være tilgængelige for andre sms-apps på din telefon, selvom du fjerner dem.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5408,9 +5421,9 @@
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal understøtter ikke længere sms</string>
     <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal fjerner snart understøttelse af sms-afsendelse, fordi Signal-beskeder giver end-to-end-kryptering og stærkt privatliv, som sms-beskeder ikke gør. Dette giver os også mulighed for at forbedre meddelelsesoplevelsen på Signal.</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal fjerner snart understøttelse af sms-afsendelse, fordi Signal-beskeder giver end-to-end-kryptering og stærkt privatliv, som sms-beskeder ikke gør. Dette giver os også mulighed for at forbedre beskedoplevelsen på Signal.</string>
     <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal har fjernet understøttelse af sms-afsendelse, fordi Signal-beskeder giver end-to-end-kryptering og stærkt privatliv, som sms-beskeder ikke gør. Dette giver os også mulighed for at forbedre meddelelsesoplevelsen på Signal.</string>
+    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal har fjernet understøttelse af sms-afsendelse, fordi Signal-beskeder giver end-to-end-kryptering og stærkt privatliv, som sms-beskeder ikke gør. Dette giver os også mulighed for at forbedre beskedoplevelsen på Signal.</string>
     <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
     <string name="SmsExportMegaphoneActivity__export_sms">Eksportér sms</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
@@ -5535,8 +5548,6 @@
     <string name="GroupStoryEducationSheet__next">Næste</string>
     <string name="Registration_country_code_entry_hint">+0</string>
 
-    <!-- EOF -->
-
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">Donér</string>
     <string name="PaypalCompleteOrderBottomSheet__payment">Betaling</string>
@@ -5551,8 +5562,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Sms-understøttelse forsvinder</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Snart understøttes sms-beskeder i Signal-appen ikke længere.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">Snart understøttes sms-beskeder i Signal-appen ikke længere på %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Sms-beskeder er anderledes end Signal-beskeder. <b>Dette påvirker ikke krypterede Signal-meddelelser, som fortsat vil fungere.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5562,13 +5573,47 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">Eksportér sms</string>
 
+    <!-- Set up your username megaphone -->
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__set_up_your_signal_username">Angiv dit Signal-brugernavn</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__usernames_let_others">Brugernavne gør det muligt for andre sende dig beskeder uden dit telefonnummer</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__not_now">Ikke nu</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__continue">Fortsæt</string>
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Fed skrift</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">Kursiv</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">Gennemstreget</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Monospace</string>
+
+    <!-- UsernameEducationFragment -->
+    <!-- Continue button which takes the user to the add a username screen -->
+    <string name="UsernameEducationFragment__continue">Fortsæt</string>
+    <!-- Displayed as a title on the username education screen -->
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Angiv dit Signal-brugernavn</string>
+
+    <!-- Username edit dialog -->
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">Rediger brugernavn</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">Slet brugernavn</string>
+
+    <!-- Time duration picker -->
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
+    <string name="TimeDurationPickerDialog_positive_button">Set</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+
+    <!-- EOF -->
 </resources>

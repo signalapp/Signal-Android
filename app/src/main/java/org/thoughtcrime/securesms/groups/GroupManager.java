@@ -134,6 +134,8 @@ public final class GroupManager {
         throw new GroupChangeFailedException();
       }
     }
+
+    SignalDatabase.recipients().getByGroupId(groupId).ifPresent(id -> SignalDatabase.messages().deleteScheduledMessages(id));
   }
 
   @WorkerThread

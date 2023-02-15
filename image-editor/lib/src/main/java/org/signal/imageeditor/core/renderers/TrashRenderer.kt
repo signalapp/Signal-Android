@@ -67,7 +67,7 @@ internal class TrashRenderer : InvalidateableRenderer, Renderer, Parcelable {
     rendererContext.canvas.drawCircle(buttonCenter[0], buttonCenter[1], diameter / 2f, shadePaint)
     rendererContext.canvas.drawCircle(buttonCenter[0], buttonCenter[1], diameter / 2f, outlinePaint)
     rendererContext.canvas.translate(bounds.centerX(), bounds.bottom - diameterLarge / 2f - padBottom)
-    rendererContext.canvas.translate(- (trashSize / 2f), - (trashSize / 2f))
+    rendererContext.canvas.translate(-(trashSize / 2f), -(trashSize / 2f))
     trash.draw(rendererContext.canvas)
     rendererContext.canvas.restore()
 

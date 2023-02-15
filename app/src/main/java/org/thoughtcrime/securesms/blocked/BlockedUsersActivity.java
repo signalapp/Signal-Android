@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ContactFilterView;
-import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
+import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -143,11 +143,11 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
     intent.putExtra(ContactSelectionListFragment.SELECTION_LIMITS, 1);
     intent.putExtra(ContactSelectionListFragment.HIDE_COUNT, true);
     intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE,
-                    ContactsCursorLoader.DisplayMode.FLAG_PUSH            |
-                    ContactsCursorLoader.DisplayMode.FLAG_SMS             |
-                    ContactsCursorLoader.DisplayMode.FLAG_ACTIVE_GROUPS   |
-                    ContactsCursorLoader.DisplayMode.FLAG_INACTIVE_GROUPS |
-                    ContactsCursorLoader.DisplayMode.FLAG_BLOCK);
+                    ContactSelectionDisplayMode.FLAG_PUSH |
+                    ContactSelectionDisplayMode.FLAG_SMS |
+                    ContactSelectionDisplayMode.FLAG_ACTIVE_GROUPS |
+                    ContactSelectionDisplayMode.FLAG_INACTIVE_GROUPS |
+                    ContactSelectionDisplayMode.FLAG_BLOCK);
 
     getSupportFragmentManager().beginTransaction()
                                .replace(R.id.fragment_container, fragment, CONTACT_SELECTION_FRAGMENT)

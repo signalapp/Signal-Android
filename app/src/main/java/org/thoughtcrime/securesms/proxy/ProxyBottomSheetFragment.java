@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.preferences.EditProxyViewModel;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 /**
@@ -79,6 +80,12 @@ public final class ProxyBottomSheetFragment extends BottomSheetDialogFragment {
 
     useProxyButton.setOnClickListener(v -> viewModel.onSaveClicked(host));
     cancelButton.setOnClickListener(v -> dismiss());
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    WindowUtil.initializeScreenshotSecurity(requireContext(), requireDialog().getWindow());
   }
 
   private void initViewModel() {

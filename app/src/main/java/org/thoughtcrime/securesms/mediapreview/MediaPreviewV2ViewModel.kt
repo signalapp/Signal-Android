@@ -27,6 +27,10 @@ class MediaPreviewV2ViewModel : ViewModel() {
   val currentPosition: Int
     get() = store.state.position
 
+  fun setIsInSharedAnimation(isInSharedAnimation: Boolean) {
+    store.update { it.copy(isInSharedAnimation = isInSharedAnimation) }
+  }
+
   fun fetchAttachments(context: Context, startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaTable.Sorting, forceRefresh: Boolean = false) {
     if (store.state.loadState == MediaPreviewV2State.LoadState.INIT || forceRefresh) {
       disposables += store.update(repository.getAttachments(context, startingAttachmentId, threadId, sorting)) { result: MediaPreviewRepository.Result, oldState: MediaPreviewV2State ->
@@ -44,7 +48,7 @@ class MediaPreviewV2ViewModel : ViewModel() {
             mediaRecords = result.records,
             messageBodies = result.messageBodies,
             albums = albums,
-            loadState = MediaPreviewV2State.LoadState.DATA_LOADED,
+            loadState = MediaPreviewV2State.LoadState.DATA_LOADED
           )
         } else {
           oldState.copy(
@@ -52,7 +56,7 @@ class MediaPreviewV2ViewModel : ViewModel() {
             mediaRecords = result.records.reversed(),
             messageBodies = result.messageBodies,
             albums = albums.mapValues { it.value.reversed() },
-            loadState = MediaPreviewV2State.LoadState.DATA_LOADED,
+            loadState = MediaPreviewV2State.LoadState.DATA_LOADED
           )
         }
       }

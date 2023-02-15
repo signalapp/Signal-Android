@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.conversation
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -11,14 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.FragmentManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.ScheduleMessageFtuxBottomSheetBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.ServiceUtil
+import org.thoughtcrime.securesms.util.fragments.findListener
 
 class ScheduleMessageFtuxBottomSheetDialog : FixedRoundedCornerBottomSheetDialogFragment() {
   override val peekHeightPercentage: Float = 0.66f
@@ -34,29 +32,30 @@ class ScheduleMessageFtuxBottomSheetDialog : FixedRoundedCornerBottomSheetDialog
     if (Build.VERSION.SDK_INT >= 31 && !ServiceUtil.getAlarmManager(context).canScheduleExactAlarms()) {
       binding.reenableSettings.visibility = View.VISIBLE
       binding.okay.visibility = View.GONE
+
       val launcher: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        if (it.resultCode == Activity.RESULT_OK) {
-          dismissAllowingStateLoss()
+        if (Build.VERSION.SDK_INT < 31 || ServiceUtil.getAlarmManager(context).canScheduleExactAlarms()) {
+          proceedWithScheduledSend()
         }
       }
+
       binding.enableScheduledMessagesGoToSettings.setOnClickListener {
         SignalStore.uiHints().markHasSeenScheduledMessagesInfoSheet()
         launcher.launch(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, Uri.parse("package:" + requireContext().packageName)))
-        dismiss()
       }
-    }
-    binding.okay.setOnClickListener {
-      SignalStore.uiHints().markHasSeenScheduledMessagesInfoSheet()
-      dismiss()
+    } else {
+      binding.okay.setOnClickListener {
+        proceedWithScheduledSend()
+      }
     }
   }
 
-  companion object {
-    @JvmStatic
-    fun show(fragmentManager: FragmentManager) {
-      val fragment = ScheduleMessageFtuxBottomSheetDialog()
-
-      fragment.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
-    }
+  private fun proceedWithScheduledSend() {
+    SignalStore.uiHints().markHasSeenScheduledMessagesInfoSheet()
+    findListener<ScheduleMessageDialogCallback>()?.onSchedulePermissionsGranted(
+      requireArguments().getString(ScheduleMessageDialogCallback.ARGUMENT_METRIC_ID),
+      requireArguments().getLong(ScheduleMessageDialogCallback.ARGUMENT_SCHEDULED_DATE)
+    )
+    dismissAllowingStateLoss()
   }
 }

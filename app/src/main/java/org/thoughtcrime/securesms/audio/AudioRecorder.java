@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.ParcelFileDescriptor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -27,6 +28,7 @@ public class AudioRecorder {
   private static final ExecutorService executor = SignalExecutors.newCachedSingleThreadExecutor("signal-AudioRecorder");
 
   private final Context                   context;
+  private final AudioRecordingHandler     uiHandler;
   private final AudioRecorderFocusManager audioFocusManager;
 
   private Recorder recorder;
@@ -34,12 +36,28 @@ public class AudioRecorder {
 
   private SingleSubject<VoiceNoteDraft> recordingSubject;
 
-  public AudioRecorder(@NonNull Context context) {
-    this.context = context;
-    audioFocusManager = AudioRecorderFocusManager.create(context, focusChange -> {
-      Log.i(TAG, "Audio focus change " + focusChange + " stopping recording");
-      stopRecording();
-    });
+  public AudioRecorder(@NonNull Context context, @Nullable AudioRecordingHandler uiHandler) {
+    this.context   = context;
+    this.uiHandler = uiHandler;
+
+    AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener;
+
+    if (this.uiHandler != null) {
+      onAudioFocusChangeListener = focusChange -> {
+        if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+          Log.i(TAG, "Audio focus change " + focusChange + " stopping recording");
+          this.uiHandler.onRecordCanceled(false);
+        }
+      };
+    } else {
+      onAudioFocusChangeListener = focusChange -> {
+        if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+          Log.i(TAG, "Audio focus change " + focusChange + " stopping recording");
+          stopRecording();
+        }
+      };
+    }
+    audioFocusManager = AudioRecorderFocusManager.create(context, onAudioFocusChangeListener);
   }
 
   public @NonNull Single<VoiceNoteDraft> startRecording() {
@@ -59,7 +77,7 @@ public class AudioRecorder {
                                  .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
                                  .withMimeType(MediaUtil.AUDIO_AAC)
                                  .createForDraftAttachmentAsync(context, () -> Log.i(TAG, "Write successful."), e -> Log.w(TAG, "Error during recording", e));
-        recorder = Build.VERSION.SDK_INT >= 26 ? new MediaRecorderWrapper() : new AudioCodec();
+        recorder   = Build.VERSION.SDK_INT >= 26 ? new MediaRecorderWrapper() : new AudioCodec();
         int focusResult = audioFocusManager.requestAudioFocus();
         if (focusResult != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
           Log.w(TAG, "Could not gain audio focus. Received result code " + focusResult);

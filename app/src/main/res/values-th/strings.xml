@@ -197,8 +197,8 @@
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">ลบ</string>
-    <string name="ClearProfileActivity_remove_profile_photo">ลบรูปโปรไฟล์หรือไม่?</string>
-    <string name="ClearProfileActivity_remove_group_photo">ลบภาพกลุ่มหรือไม่?</string>
+    <string name="ClearProfileActivity_remove_profile_photo">ลบรูปโปรไฟล์หรือไม่</string>
+    <string name="ClearProfileActivity_remove_group_photo">ลบภาพกลุ่มหรือไม่</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">ปรับรุ่น Signal</string>
@@ -234,7 +234,7 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">ใหม่</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">การสนทนา</string>
+    <string name="ContactsCursorLoader__chats">แชท</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">ข้อความ</string>
 
@@ -281,8 +281,8 @@
     <string name="ConversationItem_read_more">อ่านเพิ่มเติม</string>
     <string name="ConversationItem_download_more">ดาวน์โหลดเพิ่มเติม</string>
     <string name="ConversationItem_pending">  รอดำเนินการ</string>
-    <string name="ConversationItem_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
-    <string name="ConversationItem_you_deleted_this_message">คุณได้ลบข้อความนี้</string>
+    <string name="ConversationItem_this_message_was_deleted">ข้อความนี้ถูกลบแล้ว</string>
+    <string name="ConversationItem_you_deleted_this_message">คุณลบข้อความนี้</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">ไม่สามารถดาวน์โหลดข้อความได้ %1$s จะต้องส่งใหม่อีกครั้ง</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -352,10 +352,10 @@
     <string name="ConversationActivity_new_say_it_with_stickers">ใหม่! พูดด้วยสติกเกอร์</string>
 
     <string name="ConversationActivity_cancel">ยกเลิก</string>
-    <string name="ConversationActivity_delete_conversation">ลบการสนทนาหรือไม่?</string>
-    <string name="ConversationActivity_delete_and_leave_group">ลบและออกจากกลุ่มหรือไม่?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">การสนทนานี้จะถูกลบออกจากทุกอุปกรณ์ของคุณ</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">คุณจะออกจากกลุ่มนี้และมันจะถูกลบออกจากทุกอุปกรณ์ของคุณ</string>
+    <string name="ConversationActivity_delete_conversation">ลบการสนทนาหรือไม่</string>
+    <string name="ConversationActivity_delete_and_leave_group">ลบและออกจากกลุ่มหรือไม่</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">การสนทนานี้จะถูกลบออกจากอุปกรณ์ทุกเครื่องของคุณ</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">คุณจะออกจากกลุ่มนี้และระบบจะลบกลุ่มออกจากอุปกรณ์ทุกเครื่องของคุณ</string>
     <string name="ConversationActivity_delete">ลบ</string>
     <string name="ConversationActivity_delete_and_leave">ลบและออก</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">เพื่อจะโทรหา %1$s Signal จำเป็นต้องเข้าถึงไมโครโฟนของคุณ</string>
@@ -392,7 +392,7 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">ไม่พบแอปรายชื่อติดต่อ</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="other">ลบข้อความที่เลือกหรือไม่?</item>
+        <item quantity="other">ลบข้อความที่เลือกหรือไม่</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">บันทึกลงที่เก็บข้อมูลหรือไม่?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -415,18 +415,18 @@
     <string name="ConversationFragment_deleting">กำลังลบ</string>
     <string name="ConversationFragment_deleting_messages">กำลังลบข้อความ…</string>
     <string name="ConversationFragment_delete_for_me">ลบของฉัน</string>
-    <string name="ConversationFragment_delete_for_everyone">ลบของทุกคน</string>
+    <string name="ConversationFragment_delete_for_everyone">ลบสำหรับทุกคน</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">ลบออกจากอุปกรณ์นี้</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">ลบออกจากอุปกรณ์ทุกเครื่อง</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">หากพวกเขากำลังใช้ Signal รุ่นที่เพิ่งปรับปรุงไม่นานนี้ ข้อความนี้จะถูกลบจากทุกคนที่อยู่ในบทสนทนา พวกเขาจะเห็นว่าคุณลบข้อความ</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ระบบจะลบข้อความนี้สำหรับทุกคนในการสนทนาที่ใช้ Signal เวอร์ชันล่าสุด และผู้ใช้จะเห็นว่าคุณลบข้อความ</string>
     <string name="ConversationFragment_quoted_message_not_found">ไม่พบข้อความเดิม</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">เข้าถึงข้อความเดิมไม่ได้แล้ว</string>
     <string name="ConversationFragment_failed_to_open_message">การเปิดข้อความล้มเหลว</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">คุณสามารถปัดด้านขวาเพื่อตอบข้อความอย่างรวดเร็ว</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">คุณสามารถปัดด้านซ้ายเพื่อตอบข้อความอย่างรวดเร็ว</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">แฟ้มสื่อที่ดูได้ครั้งเดียวที่กำลังถูกส่งออกไปจะถูกลบอัตโนมัติหลังจากส่งไปแล้ว</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ไฟล์สื่อแบบที่ดูได้ครั้งเดียวขาออกจะถูกลบอัตโนมัติหลังจากส่งแล้ว</string>
     <string name="ConversationFragment_you_already_viewed_this_message">คุณเห็นข้อความนี้แล้ว</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">คุณสามารถเพิ่มบันทึกสำหรับตัวคุณเองในบทสนทนานี้\nหากบัญชีของคุณมีอุปกรณ์ใดเชื่อมโยงอยู่ บันทึกใหม่จะถูกปรับประสานถึงกัน</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">สมาชิกกลุ่ม %1$d คนมีชื่อเหมือนกัน</string>
@@ -455,10 +455,10 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">ไม่มีแชทที่ยังไม่ได้อ่าน</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="other">ลบการสนทนาที่เลือกหรือไม่?</item>
+        <item quantity="other">ลบการสนทนาที่เลือกหรือไม่</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="other">นี่จะลบ %1$d การสนทนาที่ถูกเลือกทั้งหมด อย่างถาวร</item>
+        <item quantity="other">การดำเนินการนี้จะลบการสนทนาที่เลือกไว้ทั้งหมด %1$d รายการอย่างถาวร</item>
     </plurals>
     <string name="ConversationListFragment_deleting">กำลังลบ</string>
     <string name="ConversationListFragment_deleting_selected_conversations">กำลังลบการสนทนาที่เลือก…</string>
@@ -527,9 +527,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">ลากลงเพื่อกรอง</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">ปล่อยเพื่อกรอง</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">โปรไฟล์</string>
@@ -580,7 +580,7 @@
     <string name="BackupsPreferenceFragment__last_backup">สำรองข้อมูลล่าสุด: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">โฟลเดอร์ข้อมูลสำรอง</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">เวลาสำรองข้อมูล</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">ตรวจยืนยันวลีรหัสผ่านสำหรับข้อมูลสำรอง</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">ทดสอบวลีรหัสผ่านสำหรับข้อมูลสำรองของคุณและตรวจยืนยันว่ามันตรงกัน</string>
     <string name="BackupsPreferenceFragment__turn_on">เปิด</string>
@@ -611,49 +611,52 @@
     <string name="DateUtils_today">วันนี้</string>
     <string name="DateUtils_yesterday">เมื่อวาน</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s ที่ %2$s</string>
+    <string name="DateUtils_schedule_at">%1$s เวลา %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">พรุ่งนี้</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">คืนนี้</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">ข้อความที่ตั้งเวลาไว้</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">เลือกวันที่และเวลา</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">ข้อความที่ตั้งเวลาไว้</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">เมื่อตั้งเวลาส่งข้อความไว้ ตรวจสอบให้แน่ใจว่าอุปกรณ์ของคุณจะเปิดเครื่องและเชื่อมต่อกับอินเทอร์เน็ต ณ เวลาส่งข้อความ ไม่เช่นนั้น ข้อความจะถูกส่งเมื่ออุปกรณ์เปิดใช้งานตามปกติ</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">ตกลง</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">วิธีเปิดใช้งานการตั้งเวลาส่งข้อความ</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">วิธีเปิดใช้งานการตั้งเวลาส่งข้อความอีกครั้ง</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">เลือกวันที่</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">เลือกเวลา</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">ตั้งเวลาส่งข้อความ</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
-
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">ตั้งเวลาส่ง</string>
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">เวลาทั้งหมดอยู่ในเขตเวลา (%1$s) %2$s</string>
+    <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">เวลาที่เลือกเป็นเวลาที่ผ่านไปแล้ว หากเลือกเวลานี้ ระบบจะส่งข้อความโดยทันที</string>
+    <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">ส่งทันที</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">ส่งตอนนี้</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">เปลี่ยนเวลา</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">ลบ</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">ลบข้อความตั้งเวลาที่เลือกไว้หรือไม่</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">กำลังลบข้อความที่ตั้งเวลาไว้…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">ข้อมูลสนทนาถูกเรียกขึ้นใหม่</string>
@@ -750,7 +753,7 @@
         <item quantity="other">สมาชิกเหล่านี้จะต้องตอบรับคำเชิญเข้ากลุ่มนี้อีกครั้ง และพวกเขาจะไม่ได้รับข้อความในกลุ่มจนกว่าพวกเขาจะตอบรับ:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="other">สมาชิกเหล่านี้ถูกลบออกจากกลุ่ม และจะไม่สามารถเข้าร่วมกลุ่มได้อีกจนกว่าพวกเขาจะปรับรุ่น:</item>
+        <item quantity="other">สมาชิกเหล่านี้ถูกลบออกจากกลุ่ม และจะไม่สามารถเข้าร่วมกลุ่มได้อีกจนกว่าจะอัปเกรด:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -764,7 +767,7 @@
         <item quantity="other">สมาชิกเหล่านี้จะต้องตอบรับคำเชิญเข้ากลุ่มนี้อีกครั้ง และพวกเขาจะไม่ได้รับข้อความในกลุ่มจนกว่าพวกเขาจะตอบรับ:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="other">สมาชิกเหล่านี้ไม่สามารถร่วมกลุ่มแบบใหม่ได้ และจะถูกนำออกจากกลุ่ม:</item>
+        <item quantity="other">สมาชิกเหล่านี้ไม่สามารถร่วมกลุ่มแบบใหม่ได้ และจะถูกลบออกจากกลุ่ม:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -859,7 +862,7 @@
     <string name="AddGroupDetailsFragment__try_again_later">ลองใหม่ภายหลัง</string>
     <string name="AddGroupDetailsFragment__remove">ลบ</string>
     <string name="AddGroupDetailsFragment__sms_contact">ผู้ติดต่อ SMS</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">ลบ %1$s ออกจากกลุ่มนี้หรือไม่?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">ลบ %1$s ออกจากกลุ่มนี้หรือไม่</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">คุณเลือกผู้ติดต่อที่ไม่รองรับการจับกลุ่มบน Signal กลุ่มนี้จึงจะเป็นกลุ่มแบบ MMS โดยชื่อกลุ่ม MMS ที่ตั้งขึ้นเองรวมทั้งรูปภาพจะปรากฏให้เห็นบนอุปกรณ์ของคุณเพียงคนเดียว</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -967,7 +970,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">เข้าร่วมกลุ่มไม่ได้</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">คุณเข้าร่วมกลุ่มนี้ด้วยลิงก์กลุ่มนี้ไม่ได้เพราะผู้ดูแลลบคุณออกไปแล้ว</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">คุณเข้าร่วมกลุ่มนี้ด้วยลิงก์กลุ่มไม่ได้เพราะผู้ดูแลลบคุณออกไปแล้ว</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">ลิงก์กลุ่มนี้ใช้ไม่ได้แล้ว</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1057,10 +1060,10 @@
     <string name="MediaOverviewActivity_Audio">เสียง</string>
     <string name="MediaOverviewActivity_All">ทั้งหมด</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="other">ลบรายการที่เลือกหรือไม่?</item>
+        <item quantity="other">ลบรายการที่เลือกหรือไม่</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="other">นี่จะลบ %1$d แฟ้มที่ถูกเลือกทั้งหมดโดยถาวร ข้อความใดที่เกี่ยวข้องกับรายการเหล่านี้จะถูกลบเช่นกัน</item>
+        <item quantity="other">การดำเนินการนี้จะลบไฟล์ที่เลือกไว้ทั้งหมด %1$d รายการอย่างถาวร ข้อความที่เกี่ยวข้องกับรายการเหล่านี้จะถูกลบด้วย</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">กำลังลบ</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">กำลังลบข้อความ…</string>
@@ -1193,7 +1196,7 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="other">สมาชิก %1$s คนไม่สามารถถูกเพิ่มไปยังกลุ่มแบบใหม่ได้ และได้ถูกลบออกจากกลุ่ม</item>
+        <item quantity="other">ไม่สามารถเพิ่มสมาชิก %1$s คน เข้ากลุ่มแบบใหม่ได้ และได้ถูกลบออกจากกลุ่มแล้ว</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1214,9 +1217,9 @@
     <string name="MessageRecord_s_joined_the_group">%1$s ได้เข้าร่วมกลุ่ม</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">คุณได้ลบ %1$s ออกจากกลุ่ม</string>
-    <string name="MessageRecord_s_removed_s">%1$s ได้ลบ %2$s ออกจากกลุ่ม</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s ได้ลบคุณออกจากกลุ่ม</string>
+    <string name="MessageRecord_you_removed_s">คุณลบ %1$s ออก</string>
+    <string name="MessageRecord_s_removed_s">%1$s ลบ %2$s ออก</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s ลบคุณออกจากกลุ่ม</string>
     <string name="MessageRecord_you_left_the_group">คุณได้ออกจากกลุ่ม</string>
     <string name="MessageRecord_s_left_the_group">%1$s ออกจากกลุ่ม</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">คุณไม่ได้อยู่ในกลุ่มอีกต่อไปแล้ว</string>
@@ -1519,7 +1522,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">คำเตือน</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">หากคุณปิดใช้งาน PIN คุณจะสูญเสียข้อมูลเมื่อคุณลงทะเบียนบัญชี Signal ใหม่ นอกจากว่าคุณได้สำรองข้อมูลและกู้มันคืนมาเอง คุณไม่สามารถเปิดการใช้งานกุญแจลงทะเบียนในขณะที่ PIN ปิดการใช้งานอยู่</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You cannot turn on Registration Lock while the PIN is disabled.</string>
     <string name="PinOptOutDialog_disable_pin">ปิดใช้งาน PIN</string>
 
     <!-- RatingManager -->
@@ -1708,7 +1711,7 @@
     <string name="RegistrationActivity_continue">ทำต่อ</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">นำความเป็นส่วนตัวไปกับคุณทุกที่\nเป็นตัวคุณในทุกข้อความ</string>
     <string name="RegistrationActivity_enter_your_phone_number">ป้อนหมายเลขโทรศัพท์ของคุณ</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">คุณจะได้รับรหัสตรวจยืนยัน ซึ่งอาจมีค่าบริการจากผู้ให้บริการโทรศัพท์</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">คุณจะได้รับรหัสยืนยัน\nซึ่งอาจมีค่าบริการจากผู้ให้บริการโทรศัพท์</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ใส่รหัสที่เราส่งไปให้ %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ตรวจสอบให้แน่ใจว่าโทรศัพท์ของคุณมีสัญญาณเซลลูลาร์เพื่อรับ SMS หรือการโทร</string>
 
@@ -1816,7 +1819,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">บันทึกไม่สำเร็จ</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">บันทึกสำเร็จ</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">แตะที่เส้นเพื่อลบมัน</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">แตะที่เส้นเพื่อลบ</string>
     <string name="SubmitDebugLogActivity_submit">ส่ง</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">การส่งปูมล้มเหลว</string>
     <string name="SubmitDebugLogActivity_success">สำเร็จ!</string>
@@ -1844,8 +1847,8 @@
     <string name="ThreadRecord_view_once_photo">รูปภาพที่ดูได้ครั้งเดียว</string>
     <string name="ThreadRecord_view_once_video">วิดีโอที่ดูได้ครั้งเดียว</string>
     <string name="ThreadRecord_view_once_media">สื่อที่ดูได้ครั้งเดียว</string>
-    <string name="ThreadRecord_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
-    <string name="ThreadRecord_you_deleted_this_message">คุณได้ลบข้อความนี้</string>
+    <string name="ThreadRecord_this_message_was_deleted">ข้อความนี้ถูกลบแล้ว</string>
+    <string name="ThreadRecord_you_deleted_this_message">คุณลบข้อความนี้</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">คุณส่งคำขอให้เปิดใช้การชำระเงินแล้ว</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -1882,6 +1885,12 @@
     <string name="ThreadRecord__reacted_s_to_their_story">คุณแสดงความรู้สึกต่อสตอรี่ด้วย %1$s</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">การชำระเงิน</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">ข้อความที่ตั้งเวลาไว้</string>
+    <!--  Displayed in the conversation list when your message history has been merged -->
+    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
+    <string name="ThreadRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">ปรับรุ่น Signal</string>
@@ -1902,7 +1911,7 @@
     <string name="UsernameEditFragment__choose_your_username">เลือกชื่อผู้ใช้ของคุณ</string>
     <string name="UsernameEditFragment_username">ชื่อผู้ใช้</string>
     <string name="UsernameEditFragment_delete">ลบ</string>
-    <string name="UsernameEditFragment_successfully_removed_username">ลบชื่อผู้ใช้สำเร็จ</string>
+    <string name="UsernameEditFragment_successfully_removed_username">ลบชื่อผู้ใช้สำเร็จแล้ว</string>
     <string name="UsernameEditFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
     <string name="UsernameEditFragment_this_username_is_taken">มีผู้ใช้ชื่อนี้แล้ว</string>
     <string name="UsernameEditFragment_usernames_can_only_include">ชื่อผู้ใช้จะมีได้เฉพาะ a-Z, 0-9 และ _</string>
@@ -1972,8 +1981,8 @@
     <string name="MediaPreviewActivity_draft">ร่าง</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">เพื่อที่จะบันทึกข้อมูลลงที่เก็บข้อมูลภายนอก Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูล แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ไม่สามารถบันทึกลงที่เก็บข้อมูลภายนอกได้ หากไม่ได้รับอนุญาต</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">ลบข้อความหรือไม่?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">นี่จะเป็นการลบข้อความนี้โดยถาวร</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">ลบข้อความหรือไม่</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">การดำเนินการนี้จะลบข้อความนี้โดยถาวร</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s ถึง %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">คุณถึง %1$s</string>
@@ -1989,7 +1998,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">เกิดข้อผิดพลาดในการลบข้อความ ข้อความอาจยังไม่ถูกลบ</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>อ่านเพิ่มเติม</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">มี %1$d ข้อความใหม่ใน %2$d การสนทนา</string>
@@ -2018,7 +2027,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">ตอบสนอง %1$s ต่อเสียงของคุณ</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">ตอบสนอง %1$s กับสื่อที่ดูได้ครั้งเดียวของคุณ</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">ตอบสนอง %1$s ต่อสติกเกอร์ของคุณ</string>
-    <string name="MessageNotifier_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
+    <string name="MessageNotifier_this_message_was_deleted">ข้อความนี้ถูกลบแล้ว</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ปิดการแจ้งเตือนเมื่อผู้ติดต่อได้เข้าร่วม Signal? คุณสามารถเปิดมันได้อีกครั้งในSignal &gt; Settings &gt; Notifications.</string>
 
@@ -2177,7 +2186,7 @@
     <string name="conversation_activity__type_message_sms_insecure">SMS ที่ไม่ปลอดภัย</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS ที่ไม่ปลอดภัย</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">ตั้งเวลาส่งข้อความ</string>
     <string name="conversation_activity__from_sim_name">จาก %1$s</string>
     <string name="conversation_activity__sim_n">ซิม %1$d</string>
     <string name="conversation_activity__send">ส่ง</string>
@@ -2690,12 +2699,12 @@
     <string name="preferences_storage__files">แฟ้ม</string>
     <string name="preferences_storage__audio">เสียง</string>
     <string name="preferences_storage__review_storage">ดูพื้นที่จัดเก็บ</string>
-    <string name="preferences_storage__delete_older_messages">ลบข้อความเก่าหรือไม่?</string>
+    <string name="preferences_storage__delete_older_messages">ลบข้อความเก่าหรือไม่</string>
     <string name="preferences_storage__clear_message_history">ล้างประวัติการส่งข้อความหรือไม่</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">การดำเนินการนี้จะทำให้ประวัติการส่งข้อความและสื่อในอุปกรณ์ของคุณซึ่งเก่ากว่า %1$s ถูกลบอย่างถาวร</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">นี่จะตัดการสนทนาทั้งหมดให้เหลือแค่ %1$s ข้อความล่าสุดโดยทันที</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">การดำเนินการนี้จะทำให้ประวัติการส่งข้อความและสื่อในอุปกรณ์ของคุณถูกลบอย่างถาวร</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">คุณแน่ใจหรือไม่ว่าคุณต้องการลบประวัติการส่งข้อความทั้งหมด</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">คุณแน่ใจหรือไม่ว่าต้องการลบประวัติการส่งข้อความทั้งหมด</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ประวัติการส่งข้อความทั้งหมดจะถูกลบอย่างถาวร การดำเนินการนี้ไม่สามารถยกเลิกได้</string>
     <string name="preferences_storage__delete_all_now">ลบทั้งหมดเดี๋ยวนี้</string>
     <string name="preferences_storage__forever">ตลอดไป</string>
@@ -3063,7 +3072,7 @@
     <string name="conversation_scheduled_messages_bar__see_all">ดูทั้งหมด</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="other">ข้อความที่ตั้งเวลาไว้ %1$d ข้อความ</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3080,6 +3089,8 @@
     <string name="text_secure_normal__invite_friends">เชิญเพื่อน</string>
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">กรองแชทที่ยังไม่ได้อ่าน</string>
+    <!-- Overflow menu entry to disable unread chats filter -->
+    <string name="text_secure_normal__clear_unread_filter">ล้างตัวกรองข้อความที่ยังไม่ได้อ่าน</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">คัดลอกไปยังคลิปบอร์ด</string>
@@ -3156,13 +3167,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">สร้างรหัส PIN ใหม่</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">คุณสามารถเปลี่ยนรหัส PIN ได้ตราบเท่าที่อุปกรณ์นี้ยังลงทะเบียนอยู่</string>
     <string name="CreateKbsPinFragment__create_your_pin">สร้างรหัส PIN ของคุณ</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN ช่วยให้คุณกู้คืนบัญชีและรักษาข้อมูลให้เข้ารหัสอยู่เสมอกับ Signal </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">เลือกรหัส PIN ที่แข็งแรงกว่านี้</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">รหัส PIN ไม่ตรงกัน ลองอีกครั้ง</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">ป้อน PIN ที่คุณเพิ่งสร้างอีกครั้ง</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">ยืนยันรหัส PIN ของคุณ</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">การสร้างรหัส PIN ล้มเหลว</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">รหัส PIN ของคุณไม่ถูกบันทึก เราจะเตือนให้คุณสร้างรหัส PIN ทีหลัง</string>
@@ -3192,7 +3203,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">บัญชีถูกล็อก</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">บัญชีของคุณถูกล็อกเพื่อปกป้องความเป็นส่วนตัวและความปลอดภัยของคุณ. หลังจากบัญชีของคุณไม่มีการเคลื่อนไหว %1$d วัน คุณจะสามารถลงทะเบียนโทรศัพท์นี้ได้อีกครั้งโดยไม่จำเป็นต้องมีรหัส PIN. เนื้อหาทั้งหมดจะถูกลบ.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">บัญชีของคุณถูกล็อกเพื่อปกป้องความเป็นส่วนตัวและความปลอดภัย หากไม่มีความเคลื่อนไหวภายใน %1$d วัน คุณจะสามารถลงทะเบียนหมายเลขโทรศัพท์นี้ได้อีกครั้งโดยไม่ต้องใช้ PIN โดยเนื้อหาทั้งหมดจะถูกลบ</string>
     <string name="AccountLockedFragment__next">ต่อไป</string>
     <string name="AccountLockedFragment__learn_more">เรียนรู้เพิ่มเติม</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3210,7 +3221,7 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">การลงทะเบียน Signal - ต้องการความช่วยเหลือเกี่ยวกับ PIN สำหรับ Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="other">เพื่อความเป็นส่วนตัวและความปลอดภัยของคุณ จะไม่มีทางใดที่สามารถกู้คืนรหัส PIN ได้ ถ้าคุณจำรหัส PIN ไม่ได้ คุณสามารถตรวจยืนยันทาง SMS ได้อีกครั้งหลังจากไม่มีการเคลื่อนไหว %1$d วัน ในกรณีนี้ บัญชีของคุณจะถูกล้างและเนื้อหาทั้งหมดจะถูกลบ</item>
+        <item quantity="other">เราไม่มีระบบในการกู้คืน PIN เพื่อความเป็นส่วนตัวและความปลอดภัยของคุณ หากจำ PIN ไม่ได้ ให้ยืนยันตัวตนทาง SMS อีกครั้งหลังจากที่หยุดใช้งานเป็นเวลา %1$d วัน ในกรณีนี้ บัญชีของคุณจะถูกล้างและเนื้อหาทั้งหมดจะถูกลบ</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3218,7 +3229,7 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="other">ถ้าคุณลองจนครบจำนวนครั้งแล้ว บัญชีของคุณจะถูกล็อกเป็นเวลา %1$d วัน หลังจากไม่มีการเคลื่อนไหว %1$d วัน คุณจะสามารถลงทะเบียนได้ใหม่โดยไม่ต้องใช้รหัส PIN บัญชีของคุณจะถูกล้างและเนื้อหาทั้งหมดจะถูกลบ</item>
+        <item quantity="other">หากลองจนครบจำนวนครั้งแล้ว บัญชีของคุณจะถูกล็อกเป็นเวลา %1$d วัน หากไม่มีความเคลื่อนไหวภายใน %1$d วัน คุณจะสามารถลงทะเบียนได้อีกครั้งโดยไม่ต้องใช้ PIN โดยบัญชีของคุณจะถูกล้างเนื้อหาทั้งหมดจะถูกลบ</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3274,8 +3285,8 @@
     <string name="BackupDialog_enable_local_backups">เปิดใช้การสำรองข้อมูลลงในอุปกรณ์นี้หรือไม่?</string>
     <string name="BackupDialog_enable_backups">เปิดใช้การสำรองข้อมูล</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">โปรดแสดงการยอมรับว่าคุณเข้าใจโดยทำเครื่องหมายที่กล่องกาเครื่องหมายยืนยัน</string>
-    <string name="BackupDialog_delete_backups">ลบข้อมูลสำรองหรือไม่?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">ปิดใช้งานและลบข้อมูลสำรองที่เก็บในอุปกรณ์นี้ทั้งหมดหรือไม่?</string>
+    <string name="BackupDialog_delete_backups">ลบข้อมูลสำรองหรือไม่</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">ปิดใช้งานและลบข้อมูลสำรองที่บันทึกในอุปกรณ์นี้ทั้งหมดหรือไม่</string>
     <string name="BackupDialog_delete_backups_statement">ลบข้อมูลสำรอง</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">หากต้องการเปิดใช้งานข้อมูลสำรอง กรุณาเลือกโฟลเดอร์ ข้อมูลสำรองจะถูกบันทึกในที่นี้</string>
     <string name="BackupDialog_choose_folder">เลือกโฟลเดอร์</string>
@@ -3289,7 +3300,7 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">กำลังตรวจยืนยันข้อมูลสำรอง Signal…</string>
     <string name="LocalBackupJobApi29_backup_failed">สำรองข้อมูลไม่สำเร็จ</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ไดเรกทอรีสำหรับข้อมูลสำรองของคุณได้ถูกย้ายหรือลบ</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ไดเรกทอรีสำหรับข้อมูลสำรองของคุณถูกลบหรือย้าย</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">แฟ้มสำรองของคุณใหญ่เกินที่จะจัดเก็บไว้ในนี้ได้</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">พื้นที่ไม่เพียงพอสำหรับจัดเก็บข้อมูลสำรองของคุณ</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
@@ -3297,8 +3308,8 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ข้อมูลสำรองของคุณมีไฟล์ขนาดใหญ่ที่ไม่สามารถเก็บสำรองได้ กรุณาลบไฟล์ดังกล่าวและสร้างข้อมูลสำรองใหม่</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">แตะเพื่อจัดการข้อมูลสำรอง</string>
-    <string name="RegistrationActivity_wrong_number">หมายเลขไม่ถูกต้องหรือ?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">โทรหาฉันแทน \n (ใช้งานได้ใน %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_wrong_number">หมายเลขไม่ถูกต้องหรือเปล่า</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">โทรหาฉัน (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">ติดต่อทีมซัพพอร์ตของ Signal</string>
     <string name="RegistrationActivity_code_support_subject">การลงทะเบียน Signal - รหัสตรวจยืนยันสำหรับ Android</string>
     <string name="RegistrationActivity_incorrect_code">รหัสไม่ถูกต้อง</string>
@@ -3397,7 +3408,7 @@
     <string name="DeviceTransferSetup__location_permission">การอนุญาตการเข้าถึงตำแหน่ง</string>
     <string name="DeviceTransferSetup__location_services">บริการการค้นหาตำแหน่ง</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">บนหน้า WiFi Direct ให้ลบกลุ่มที่ได้จดจำไว้ทั้งหมดและยกเลิกการเชื่อมต่อกับคำเชิญใดหรืออุปกรณ์ที่ได้เชื่อมต่อไว้</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">บนหน้า WiFi Direct ให้ลบกลุ่มที่ได้จดจำไว้ทั้งหมดและยกเลิกการเชื่อมต่อกับคำเชิญหรืออุปกรณ์ที่ได้เชื่อมต่อไว้</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">หน้า WiFi Direct</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">กรุณาลองปิดการใช้งาน Wi-Fi แล้วเปิดใหม่บนอุปกรณ์ทั้งสองเครื่อง</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">ตรวจสอบให้แน่ใจว่าอุปกรณ์ทั้งสองเครื่องอยู่ในโหมดถ่ายโอน</string>
@@ -3474,12 +3485,12 @@
     <string name="RecipientBottomSheet_remove_as_admin">ปลดจากการเป็นผู้ดูแล</string>
     <string name="RecipientBottomSheet_remove_from_group">ลบจากกลุ่ม</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">ปลด %1$s จากการเป็นผู้ดูแลกลุ่มหรือไม่?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">ปลด %1$s จากการเป็นผู้ดูแลกลุ่มหรือไม่</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" จะสามารถแก้ไขกลุ่มและสมาชิกของกลุ่มได้"</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">นำ %1$s ออกจากกลุ่มหรือไม่?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">ลบ %1$s ออกจากกลุ่มหรือไม่</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">ลบ %1$s ออกจากกลุ่มหรือไม่ เขาจะไม่สามารถกลับเข้ากลุ่มใหม่ได้ผ่านลิงก์กลุ่มนี้</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">ลบ %1$s ออกจากกลุ่มหรือไม่ ผู้ใช้รายนี้จะไม่สามารถกลับเข้ากลุ่มอีกครั้งผ่านลิงก์กลุ่มนี้</string>
     <string name="RecipientBottomSheet_remove">ลบ</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
 
@@ -3532,7 +3543,7 @@
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="other">มี %1$d กลุ่มร่วมกัน</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">ลบ %1$s ออกจากกลุ่มหรือไม่?</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">ลบ %1$s ออกจากกลุ่มหรือไม่</string>
     <string name="ReviewCardDialogFragment__remove">ลบ</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">ลบสมาชิกออกจากกลุ่มไม่สำเร็จ</string>
 
@@ -3574,9 +3585,9 @@
     <string name="DeleteAccountFragment__no_country_code">ไม่มีรหัสประเทศระบุไว้</string>
     <string name="DeleteAccountFragment__no_number">ไม่มีหมายเลขระบุไว้</string>
     <string name="DeleteAccountFragment__the_phone_number">หมายเลขโทรศัพท์ที่คุณป้อนไม่ตรงกับหมายเลขในบัญชีคุณ</string>
-    <string name="DeleteAccountFragment__are_you_sure">คุณแน่ใจหรือไม่ว่าต้องการลบบัญชีของคุณ</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">การกระทำนี้จะเป็นการลบบัญชี Signal ของคุณและรีเซ็ตแอปพลิเคชั่น โดยแอปจะปิดลงหลังจากที่กระบวนการนี้เสร็จสิ้น</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">ลบข้อมูลในเครื่องไม่สำเร็จ คุณสามารถล้างข้อมูลเองได้ในการตั้งค่าแอปของระบบ</string>
+    <string name="DeleteAccountFragment__are_you_sure">คุณแน่ใจหรือไม่ว่าต้องการลบบัญชี</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">การกระทำนี้จะลบบัญชี Signal ของคุณและรีเซ็ตแอปใหม่ โดยแอปจะปิดลงหลังจากที่กระบวนการนี้เสร็จสิ้น</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">ลบข้อมูลในเครื่องไม่สำเร็จ คุณสามารถล้างข้อมูลเองได้ในการตั้งค่าแอปพลิเคชันของระบบ</string>
     <string name="DeleteAccountFragment__launch_app_settings">การตั้งค่าการเริ่มแอป</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">กำลังออกจากกลุ่ม…</string>
@@ -3971,9 +3982,9 @@
     <string name="ChatColorSelectionFragment__delete">ลบ</string>
     <string name="ChatColorSelectionFragment__delete_color">ลบสี</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="other">สีกำหนดเองนี้มีการใช้งานใน %1$d แชต คุณต้องการลบสีนี้จากแชตทั้งหมดหรือไม่?</item>
+        <item quantity="other">สีที่กำหนดเองนี้มีการใช้งานในแชท %1$d รายการ คุณต้องการลบสีนี้จากแชททั้งหมดหรือไม่</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">ลบสีแชตหรือไม่?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">ลบสีแชทหรือไม่</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">ทึบ</string>
@@ -4130,7 +4141,7 @@
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">ปิดกั้น</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">ลบ %1$sหรือไม่</string>
+    <string name="NewConversationActivity__remove_s">ลบ %1$s หรือไม่</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">คุณจะไม่เห็นผู้ใช้รายนี้เมื่อทำการค้นหา คุณจะได้รับคำขอส่งข้อความหากผู้ใช้ส่งข้อความหาคุณในอนาคต</string>
     <!-- Snackbar message after removing a contact -->
@@ -4749,6 +4760,8 @@
     <string name="StoryReplyComposer__react_to_this_story">แสดงความรู้สึกต่อสตอรี่นี้</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">ตอบกลับเป็นการส่วนตัวกับ %1$s</string>
+    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
+    <string name="StoryReplyComposer__reply_to_s">ตอบกลับหา %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">คัดลอก</string>
@@ -4809,7 +4822,7 @@
     <!-- Clickable option to delete a custom story -->
     <string name="PrivateStorySettingsFragment__delete_custom_story">ลบสตอรี่ที่กำหนดเอง</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove_s">ลบ %1$sหรือไม่</string>
+    <string name="PrivateStorySettingsFragment__remove_s">ลบ %1$s หรือไม่</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">บุคคลนี้จะไม่เห็นสตอรี่ของคุณอีกต่อไป</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
@@ -5184,7 +5197,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">ส่งออกข้อความ SMS ของคุณ</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">คุณสามารถส่งออกข้อความ SMS ไปยังฐานข้อมูล SMS ของโทรศัพท์คุณได้ โดยคุณยังสามารถเลือกที่จะเก็บหรือลบข้อความออกจาก Signal ก็ได้ นี่จะทำให้แอป SMS อื่นๆ บนโทรศัพท์สามารถนำเข้าข้อความได้ อย่างไรก็ดี นี่ไม่ใช่การสร้างไฟล์ที่แชร์ได้จากประวัติการส่งข้อความ SMS ของคุณ</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">คุณสามารถส่งออกข้อความ SMS ไปยังฐานข้อมูล SMS ของโทรศัพท์คุณได้ โดยคุณยังสามารถเลือกที่จะเก็บหรือลบข้อความออกจาก Signal ก็ได้ ซึ่งจะทำให้แอป SMS อื่นๆ บนโทรศัพท์สามารถนำเข้าข้อความได้ อย่างไรก็ดี นี่ไม่ใช่การสร้างไฟล์ที่แชร์ได้จากประวัติการส่งข้อความ SMS ของคุณ</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">ดำเนินการต่อ</string>
 
@@ -5288,7 +5301,7 @@
     <!-- Phase 2 message describing that sms is going away soon -->
     <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal จะยกเลิกการรองรับการส่งข้อความ SMS ในอีกไม่ช้า เนื่องจากการส่งข้อความของ Signal นั้นมีการเข้ารหัสตั้งแต่ต้นทางถึงปลายทาง ทั้งยังมีความเป็นส่วนตัวสูง ต่างจากการส่งข้อความแบบ SMS นี่ยังเป็นการเปิดโอกาสให้เราได้พัฒนาประสบการณ์การส่งข้อความแบบ Signal ให้ดียิ่งขึ้นไปอีกด้วย</string>
     <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal ได้ทำการยกเลิกการรองรับการส่งข้อความ SMS แล้ว เนื่องจากการส่งข้อความของ Signal นั้นมีการเข้ารหัสตั้งแต่ต้นทางถึงปลายทาง ทั้งยังมีความเป็นส่วนตัวสูง ต่างจากการส่งข้อความแบบ SMS นี่ยังเป็นการเปิดโอกาสให้เราได้พัฒนาประสบการณ์การส่งข้อความแบบ Signal ให้ดียิ่งขึ้นไปอีกด้วย</string>
+    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal ยกเลิกการรองรับการส่งข้อความ SMS แล้ว เนื่องจากการส่งข้อความของ Signal นั้นมีการเข้ารหัสตั้งแต่ต้นทางถึงปลายทาง ทั้งยังมีความเป็นส่วนตัวสูง ต่างจากการส่งข้อความแบบ SMS นี่ยังเป็นการเปิดโอกาสให้เราได้พัฒนาประสบการณ์การส่งข้อความแบบ Signal ให้ดียิ่งขึ้นไปอีกด้วย</string>
     <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
     <string name="SmsExportMegaphoneActivity__export_sms">ส่งออก SMS</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
@@ -5410,8 +5423,6 @@
     <string name="GroupStoryEducationSheet__next">ถัดไป</string>
     <string name="Registration_country_code_entry_hint">+0</string>
 
-    <!-- EOF -->
-
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">บริจาค</string>
     <string name="PaypalCompleteOrderBottomSheet__payment">การชำระเงิน</string>
@@ -5426,8 +5437,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">เราจะไม่รองรับข้อความ SMS แล้ว</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">เราจะหยุดรองรับการส่งข้อความ SMS ในแอป Signal ในอีกไม่ช้า</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">เราจะหยุดรองรับการส่งข้อความ SMS ในแอป Signal ในวันที่ %1$s</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">ข้อความ SMS แตกต่างจากข้อความ Signal <b>นี่จะไม่ส่งผลกระทบต่อการส่งข้อความเข้ารหัสของ Signal ที่จะยังใช้งานได้ตามปกติ</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5437,13 +5448,47 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">ส่งออก SMS</string>
 
+    <!-- Set up your username megaphone -->
+    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__set_up_your_signal_username">ตั้งค่าชื่อผู้ใช้ Signal ของคุณ</string>
+    <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__usernames_let_others">ชื่อผู้ใช้จะช่วยให้ผู้ใช้รายอื่นส่งข้อความหาคุณได้โดยไม่จำเป็นต้องมีหมายเลขโทรศัพท์ของคุณ</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__not_now">ไว้ทีหลัง</string>
+    <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
+    <string name="SetUpYourUsername__continue">ดำเนินการต่อ</string>
+
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">ตัวหนา</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">ตัวเอียง</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">ขีดทับ</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">โมโนสเปซ</string>
+
+    <!-- UsernameEducationFragment -->
+    <!-- Continue button which takes the user to the add a username screen -->
+    <string name="UsernameEducationFragment__continue">ดำเนินการต่อ</string>
+    <!-- Displayed as a title on the username education screen -->
+    <string name="UsernameEducationFragment__set_up_your_signal_username">ตั้งค่าชื่อผู้ใช้ Signal ของคุณ</string>
+
+    <!-- Username edit dialog -->
+    <!-- Option to open username editor displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__edit_username">แก้ไขชื่อผู้ใช้</string>
+    <!-- Option to delete username displayed as a list item in a dialog -->
+    <string name="UsernameEditDialog__delete_username">ลบชื่อผู้ใช้</string>
+
+    <!-- Time duration picker -->
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
+    <string name="TimeDurationPickerDialog_positive_button">Set</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+
+    <!-- EOF -->
 </resources>

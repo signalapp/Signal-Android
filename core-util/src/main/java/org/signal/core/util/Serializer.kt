@@ -25,5 +25,4 @@ object StringStringSerializer : StringSerializer<String?> {
   override fun deserialize(data: String): String {
     return data
   }
-
 }

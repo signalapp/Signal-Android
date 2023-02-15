@@ -78,7 +78,8 @@ object RecipientDatabaseTestUtils {
       IdentityTable.VerifiedStatus.DEFAULT,
       false,
       false,
-      0
+      0,
+      null
     ),
     extras: Recipient.Extras? = null,
     hasGroupsInCommon: Boolean = false,
@@ -136,7 +137,7 @@ object RecipientDatabaseTestUtils {
           Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.STORIES, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
           Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.GIFT_BADGES, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
           Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.PNP, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
-          Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.PAYMENT_ACTIVATION, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
+          Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.PAYMENT_ACTIVATION, RecipientTable.Capabilities.BIT_LENGTH).toInt())
         ),
         insightBannerTier,
         storageId,

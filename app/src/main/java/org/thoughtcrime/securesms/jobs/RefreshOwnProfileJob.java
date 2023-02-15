@@ -141,9 +141,6 @@ public class RefreshOwnProfileJob extends BaseJob {
     profileAndCredential.getExpiringProfileKeyCredential()
                         .ifPresent(expiringProfileKeyCredential -> setExpiringProfileKeyCredential(self, ProfileKeyUtil.getSelfProfileKey(), expiringProfileKeyCredential));
 
-    String username = ApplicationDependencies.getSignalServiceAccountManager().getWhoAmI().getUsername();
-    SignalDatabase.recipients().setUsername(Recipient.self().getId(), username);
-
     StoryOnboardingDownloadJob.Companion.enqueueIfNeeded();
   }
 

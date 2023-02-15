@@ -1,49 +1,15 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'org.jlleitschuh.gradle.ktlint'
+    id 'signal-sample-app'
 }
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
+    namespace 'org.signal.contactstest'
 
     defaultConfig {
         applicationId "org.signal.contactstest"
-        versionCode 1
-        versionName "1.0"
-
-        minSdkVersion 21
-        targetSdkVersion TARGET_SDK
-        multiDexEnabled true
     }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    compileOptions {
-        coreLibraryDesugaringEnabled true
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
-    }
-}
-
-ktlint {
-    // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
-    version = "0.43.2"
 }
 
 dependencies {
-    coreLibraryDesugaring libs.android.tools.desugar
-
-    implementation libs.androidx.activity.ktx
-    implementation libs.androidx.appcompat
-    implementation libs.material.material
-    implementation libs.androidx.constraintlayout
-
-    testImplementation testLibs.junit.junit
-
     implementation project(':contacts')
-    implementation project(':core-util')
 }

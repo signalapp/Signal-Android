@@ -11,7 +11,7 @@ class DataAndStorageSettingsRepository {
 
   fun getTotalStorageUse(consumer: (Long) -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      val breakdown = SignalDatabase.media.storageBreakdown
+      val breakdown = SignalDatabase.media.getStorageBreakdown()
 
       consumer(listOf(breakdown.audioSize, breakdown.documentSize, breakdown.photoSize, breakdown.videoSize).sum())
     }

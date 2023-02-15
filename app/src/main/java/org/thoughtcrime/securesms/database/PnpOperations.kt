@@ -33,6 +33,7 @@ data class PnpDataSet(
     this.removeIf { it.id == toUpdate.id }
     this += update(toUpdate)
   }
+
   /**
    * Applies the set of operations and returns the resulting dataset.
    * Important: This only occurs _in memory_. You must still apply the operations to disk to persist them.

@@ -49,7 +49,7 @@
         android:importantForAccessibility="no"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/share_story_updates_text"
-        app:srcCompat="@drawable/ic_group_24"
+        app:srcCompat="@drawable/symbol_group_24"
         app:tint="@color/signal_colorOnSurface" />
 
     <ImageView
@@ -60,7 +60,7 @@
         android:importantForAccessibility="no"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/anyone_in_group_text"
-        app:srcCompat="@drawable/ic_plus_24"
+        app:srcCompat="@drawable/symbol_plus_24"
         app:tint="@color/signal_colorOnSurface" />
 
     <ImageView
@@ -71,7 +71,7 @@
         android:importantForAccessibility="no"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/all_group_chat_members_text"
-        app:srcCompat="@drawable/ic_reply_24"
+        app:srcCompat="@drawable/symbol_reply_24"
         app:tint="@color/signal_colorOnSurface" />
 
     <TextView

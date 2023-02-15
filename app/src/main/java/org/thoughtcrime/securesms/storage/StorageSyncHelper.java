@@ -153,6 +153,7 @@ public final class StorageSyncHelper {
                                                          .setStoryViewReceiptsState(storyViewReceiptsState)
                                                          .setHasReadOnboardingStory(hasReadOnboardingStory)
                                                          .setHasSeenGroupStoryEducationSheet(SignalStore.storyValues().getUserHasSeenGroupStoryEducationSheet())
+                                                         .setUsername(self.getUsername().orElse(null))
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.stories.settings.story
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
@@ -12,12 +13,15 @@ import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSource
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSourceRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.rx.RxStore
 
-class StoriesPrivacySettingsViewModel : ViewModel() {
+class StoriesPrivacySettingsViewModel(
+  contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository
+) : ViewModel() {
 
   private val repository = StoriesPrivacySettingsRepository()
 
@@ -44,12 +48,12 @@ class StoriesPrivacySettingsViewModel : ViewModel() {
     val configuration = ContactSearchConfiguration.build {
       addSection(
         ContactSearchConfiguration.Section.Stories(
-          includeHeader = false,
+          includeHeader = false
         )
       )
     }
 
-    val pagedDataSource = ContactSearchPagedDataSource(configuration)
+    val pagedDataSource = ContactSearchPagedDataSource(configuration, contactSearchPagedDataSourceRepository)
     val observablePagedData = PagedData.createForObservable(pagedDataSource, pagingConfig)
 
     pagingController.set(observablePagedData.controller)
@@ -94,6 +98,14 @@ class StoriesPrivacySettingsViewModel : ViewModel() {
   private fun updateUserHasStories() {
     disposables += repository.userHasOutgoingStories().subscribe { userHasActiveStories ->
       store.update { it.copy(userHasStories = userHasActiveStories) }
+    }
+  }
+
+  class Factory(
+    private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository
+  ) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+      return modelClass.cast(StoriesPrivacySettingsViewModel(contactSearchPagedDataSourceRepository)) as T
     }
   }
 }

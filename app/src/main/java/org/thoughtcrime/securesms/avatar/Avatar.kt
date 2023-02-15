@@ -21,7 +21,7 @@ sealed class Avatar(
   data class Text(
     val text: String,
     val color: Avatars.ColorPair,
-    override val databaseId: DatabaseId,
+    override val databaseId: DatabaseId
   ) : Avatar(databaseId) {
     override fun withDatabaseId(databaseId: DatabaseId): Avatar {
       return copy(databaseId = databaseId)
@@ -35,7 +35,7 @@ sealed class Avatar(
   data class Vector(
     val key: String,
     val color: Avatars.ColorPair,
-    override val databaseId: DatabaseId,
+    override val databaseId: DatabaseId
   ) : Avatar(databaseId) {
     override fun withDatabaseId(databaseId: DatabaseId): Avatar {
       return copy(databaseId = databaseId)

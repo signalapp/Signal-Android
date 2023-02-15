@@ -1,9 +1,11 @@
+@file:Suppress("ktlint:filename")
+
 package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import net.zetetic.database.sqlcipher.SQLiteConstraintException
+import android.database.sqlite.SQLiteConstraintException
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt

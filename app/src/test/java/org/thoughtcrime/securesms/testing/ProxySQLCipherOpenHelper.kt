@@ -14,7 +14,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase as SQLCipherSQLiteDatabase
 class ProxySQLCipherOpenHelper(
   context: Application,
   val readableDatabase: AndroidSQLiteDatabase,
-  val writableDatabase: AndroidSQLiteDatabase,
+  val writableDatabase: AndroidSQLiteDatabase
 ) : SignalDatabase(context, DatabaseSecret(ByteArray(32).apply { SecureRandom().nextBytes(this) }), AttachmentSecret()) {
 
   constructor(context: Application, testOpenHelper: TestSQLiteOpenHelper) : this(context, testOpenHelper.readableDatabase, testOpenHelper.writableDatabase)

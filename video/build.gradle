@@ -1,25 +1,12 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'signal-library'
+}
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
-
-    defaultConfig {
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
-    }
-
-    compileOptions {
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
-    }
+    namespace 'org.signal.video'
 }
 
 dependencies {
-    lintChecks project(':lintchecks')
-
-    api libs.androidx.annotation
-
     implementation project(':core-util')
 
     implementation(libs.bundles.mp4parser) {

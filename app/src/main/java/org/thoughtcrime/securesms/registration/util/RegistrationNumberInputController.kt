@@ -39,8 +39,13 @@ class RegistrationNumberInputController(
   init {
     setUpNumberInput()
 
+    spinnerView.threshold = 100
     spinnerView.setAdapter(spinnerAdapter)
     spinnerView.addTextChangedListener(CountryCodeEntryListener())
+  }
+
+  fun prepopulateCountryCode() {
+    spinnerView.setText(supportedCountryPrefixes[0].toString())
   }
 
   private fun advanceToPhoneNumberInput() {
@@ -103,7 +108,9 @@ class RegistrationNumberInputController(
     }
     return if (justDigits.isEmpty()) {
       null
-    } else justDigits.toString()
+    } else {
+      justDigits.toString()
+    }
   }
 
   inner class NumberChangedListener : TextWatcher {

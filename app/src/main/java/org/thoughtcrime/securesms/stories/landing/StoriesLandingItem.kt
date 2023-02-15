@@ -135,7 +135,6 @@ object StoriesLandingItem {
     private val addToStoriesView: View = itemView.findViewById(R.id.add_to_story)
 
     override fun bind(model: Model) {
-
       presentDateOrStatus(model)
       setUpClickListeners(model)
 
@@ -232,7 +231,7 @@ object StoriesLandingItem {
       icon.setImageResource(
         when {
           model.data.hasReplies -> R.drawable.ic_messages_solid_20
-          else -> R.drawable.ic_reply_24_solid_tinted
+          else -> R.drawable.symbol_reply_fill_24
         }
       )
 

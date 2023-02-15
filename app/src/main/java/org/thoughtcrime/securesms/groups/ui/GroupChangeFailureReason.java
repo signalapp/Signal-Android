@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.groups.ui;
 
+import android.annotation.SuppressLint;
+
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -18,6 +20,7 @@ public enum GroupChangeFailureReason {
   NETWORK,
   OTHER;
 
+  @SuppressLint("SuspiciousIndentation")
   public static @NonNull GroupChangeFailureReason fromException(@NonNull Throwable e) {
     if (e instanceof MembershipNotSuitableForV2Exception) return GroupChangeFailureReason.NOT_GV2_CAPABLE;
     if (e instanceof IOException)                         return GroupChangeFailureReason.NETWORK;

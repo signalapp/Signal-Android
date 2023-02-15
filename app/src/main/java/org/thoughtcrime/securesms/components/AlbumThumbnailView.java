@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -26,6 +27,8 @@ public class AlbumThumbnailView extends FrameLayout {
   private @Nullable SlidesClickedListener downloadClickListener;
 
   private int currentSizeClass;
+
+  private final int[] corners = new int[4];
 
   private ViewGroup                 albumCellContainer;
   private Stub<TransferControlView> transferControls;
@@ -82,6 +85,7 @@ public class AlbumThumbnailView extends FrameLayout {
     }
 
     showSlides(glideRequests, slides);
+    applyCorners();
   }
 
   public void setCellBackgroundColor(@ColorInt int color) {
@@ -100,6 +104,15 @@ public class AlbumThumbnailView extends FrameLayout {
 
   public void setDownloadClickListener(@Nullable SlidesClickedListener listener) {
     downloadClickListener = listener;
+  }
+
+  public void setRadii(int topLeft, int topRight, int bottomRight, int bottomLeft) {
+    corners[0] = topLeft;
+    corners[1] = topRight;
+    corners[2] = bottomRight;
+    corners[3] = bottomLeft;
+
+    applyCorners();
   }
 
   private void inflateLayout(int sizeClass) {
@@ -122,6 +135,73 @@ public class AlbumThumbnailView extends FrameLayout {
         inflate(getContext(), R.layout.album_thumbnail_many, albumCellContainer);
         break;
     }
+  }
+
+  private void applyCorners() {
+    if (currentSizeClass < 2) {
+      return;
+    }
+
+    switch (currentSizeClass) {
+      case 2:
+        applyCornersForSizeClass2();
+        break;
+      case 3:
+        applyCornersForSizeClass3();
+        break;
+      case 4:
+        applyCornersForSizeClass4();
+        break;
+      case 5:
+        applyCornersForSizeClass5();
+        break;
+      default:
+        applyCornersForManySizeClass();
+    }
+  }
+
+  private ThumbnailView[] getCells() {
+    ThumbnailView one = findViewById(R.id.album_cell_1);
+    ThumbnailView two = findViewById(R.id.album_cell_2);
+    ThumbnailView three = findViewById(R.id.album_cell_3);
+    ThumbnailView four = findViewById(R.id.album_cell_4);
+    ThumbnailView five = findViewById(R.id.album_cell_5);
+
+    return new ThumbnailView[]{one, two, three, four, five};
+  }
+
+  private void applyCornersForSizeClass2() {
+    ThumbnailView[] cells = getCells();
+    cells[0].setRadii(corners[0], 0, 0, corners[3]);
+    cells[1].setRadii(0, corners[1], corners[2], 0);
+  }
+
+  private void applyCornersForSizeClass3() {
+    ThumbnailView[] cells = getCells();
+    cells[0].setRadii(corners[0], 0, 0, corners[3]);
+    cells[1].setRadii(0, corners[1], 0, 0);
+    cells[2].setRadii(0, 0, corners[2], 0);
+  }
+
+  private void applyCornersForSizeClass4() {
+    ThumbnailView[] cells = getCells();
+    cells[0].setRadii(corners[0], 0, 0, 0);
+    cells[1].setRadii(0, corners[1], 0, 0);
+    cells[2].setRadii(0, 0, 0, corners[3]);
+    cells[3].setRadii(0, 0, corners[2], 0);
+  }
+
+  private void applyCornersForSizeClass5() {
+    ThumbnailView[] cells = getCells();
+    cells[0].setRadii(corners[0], 0, 0, 0);
+    cells[1].setRadii(0, corners[1], 0, 0);
+    cells[2].setRadii(0, 0, 0, corners[3]);
+    cells[3].setRadii(0, 0, 0, 0);
+    cells[4].setRadii(0, 0, corners[2], 0);
+  }
+
+  private void applyCornersForManySizeClass() {
+    applyCornersForSizeClass5();
   }
 
   private void showSlides(@NonNull GlideRequests glideRequests, @NonNull List<Slide> slides) {

@@ -117,7 +117,7 @@ class GiftFlowViewModel(
   private fun getLoadState(
     oldState: GiftFlowState,
     giftPrices: Map<Currency, FiatMoney>? = null,
-    giftBadge: Badge? = null,
+    giftBadge: Badge? = null
   ): GiftFlowState.Stage {
     if (oldState.stage != GiftFlowState.Stage.INIT) {
       return oldState.stage

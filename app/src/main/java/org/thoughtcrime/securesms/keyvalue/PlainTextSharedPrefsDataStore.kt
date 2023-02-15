@@ -25,6 +25,7 @@ class PlainTextSharedPrefsDataStore(private val context: Context) {
    */
   var smsMigrationIdOffset: Long
     get() = sharedPrefs.getLong(SMS_MIGRATION_ID_OFFSET, -1)
+
     @SuppressLint("ApplySharedPref")
     set(value) {
       sharedPrefs.edit().putLong(SMS_MIGRATION_ID_OFFSET, value).commit()

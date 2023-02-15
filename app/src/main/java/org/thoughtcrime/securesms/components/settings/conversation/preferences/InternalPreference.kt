@@ -16,7 +16,7 @@ object InternalPreference {
 
   class Model(
     private val recipient: Recipient,
-    val onInternalDetailsClicked: () -> Unit,
+    val onInternalDetailsClicked: () -> Unit
   ) : PreferenceModel<Model>() {
 
     override fun areItemsTheSame(newItem: Model): Boolean {
