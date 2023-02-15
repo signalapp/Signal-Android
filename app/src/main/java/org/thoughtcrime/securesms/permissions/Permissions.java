@@ -26,6 +26,7 @@ import com.annimon.stream.function.Consumer;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -171,15 +172,25 @@ public class Permissions {
 
     @SuppressWarnings("ConstantConditions")
     private void executePermissionsRequestWithRationale(PermissionsRequest request) {
-      AlertDialog dialog = RationaleDialog.createNonMsgDialog(permissionObject.getContext(),
-                                                              rationaleDialogMessage,
-                                                              R.string.Permissions_continue,
-                                                              R.string.Permissions_not_now,
-                                                              () -> executePermissionsRequest(request),
-                                                              () -> executeNoPermissionsRequest(request),
-                                                              null);
-      dialog.setCancelable(rationaleDialogCancelable);
-      dialog.show();
+      if (BuildConfig.IS_SIGNAL) {
+        RationaleDialog.createFor(permissionObject.getContext(), rationaleDialogMessage, rationalDialogHeader)
+                       .setPositiveButton(R.string.Permissions_continue, (dialog, which) -> executePermissionsRequest(request))
+                       .setNegativeButton(R.string.Permissions_not_now, (dialog, which) -> executeNoPermissionsRequest(request))
+                       .setCancelable(rationaleDialogCancelable)
+                       .show()
+                       .getWindow()
+                       .setLayout((int) (permissionObject.getWindowWidth() * .75), ViewGroup.LayoutParams.WRAP_CONTENT);
+      } else {
+        AlertDialog dialog = PigeonRationaleDialog.createNonMsgDialog(permissionObject.getContext(),
+                                                                      rationaleDialogMessage,
+                                                                      R.string.Permissions_continue,
+                                                                      R.string.Permissions_not_now,
+                                                                      () -> executePermissionsRequest(request),
+                                                                      () -> executeNoPermissionsRequest(request),
+                                                                      null);
+        dialog.setCancelable(rationaleDialogCancelable);
+        dialog.show();
+      }
     }
 
     private void executePermissionsRequest(PermissionsRequest request) {
