@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.IndividualSendJob
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.ServiceUtil
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -38,7 +37,12 @@ class ScheduledMessageManager(
   @Suppress("UsePropertyAccessSyntax")
   @WorkerThread
   override fun getNextClosestEvent(): Event? {
-    val oldestMessage = messagesTable.getOldestScheduledSendTimestamp() as? MediaMmsMessageRecord ?: return null
+    val oldestMessage: MediaMmsMessageRecord? = messagesTable.getOldestScheduledSendTimestamp() as? MediaMmsMessageRecord
+
+    if (oldestMessage == null) {
+      cancelAlarm(application, ScheduledMessagesAlarm::class.java)
+      return null
+    }
 
     val delay = (oldestMessage.scheduledDate - System.currentTimeMillis()).coerceAtLeast(0)
     Log.i(TAG, "The next scheduled message needs to be sent in $delay ms.")
@@ -68,8 +72,6 @@ class ScheduledMessageManager(
   @WorkerThread
   override fun scheduleAlarm(application: Application, event: Event, delay: Long) {
     val conversationIntent = ConversationIntents.createBuilder(application, event.recipientId, event.threadId).build()
-
-    ServiceUtil.getAlarmManager(application)
 
     trySetExactAlarm(
       application,
