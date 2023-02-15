@@ -611,6 +611,10 @@ open class ContactSearchAdapter(
     NEVER
   }
 
+  /**
+   * Whether or not we should display a recipient's 'about' or e164, if either are
+   * available.
+   */
   enum class DisplaySecondaryInformation {
     NEVER,
     ALWAYS
