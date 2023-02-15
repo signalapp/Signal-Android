@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -370,7 +371,7 @@ open class ContactSearchAdapter(
         number.text = context.resources.getQuantityString(R.plurals.ContactSearchItems__group_d_members, count, count)
         number.visible = true
       } else if (displayPhoneNumber == DisplayPhoneNumber.ALWAYS && recipient.hasE164()) {
-        number.text = recipient.requireE164()
+        number.text = PhoneNumberFormatter.prettyPrint(recipient.requireE164())
         number.visible = true
       } else {
         super.bindNumberField(model)
