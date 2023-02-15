@@ -1964,7 +1964,7 @@
     <string name="ThreadRecord_scheduled_message">Scheduled message</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
     <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
-    <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person's name -->
+    <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
 
     <!-- UpdateApkReadyListener -->
