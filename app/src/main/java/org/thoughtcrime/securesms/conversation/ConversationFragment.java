@@ -1490,6 +1490,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     void    onRegisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver);
     void    onUnregisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver);
     void    onInviteToSignal();
+    boolean isInBubble();
   }
 
   private class ConversationScrollListener extends OnScrollListener {
@@ -2109,6 +2110,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     @Override
     public void goToMediaPreview(ConversationItem parent, View sharedElement, MediaIntentFactory.MediaPreviewArgs args) {
+      if (listener.isInBubble()) {
+        requireActivity().startActivity(MediaIntentFactory.create(requireActivity(), args));
+        return;
+      }
+
       if (args.isVideoGif()) {
         int                            adapterPosition = list.getChildAdapterPosition(parent);
         GiphyMp4ProjectionPlayerHolder holder          = giphyMp4ProjectionRecycler.getCurrentHolder(adapterPosition);

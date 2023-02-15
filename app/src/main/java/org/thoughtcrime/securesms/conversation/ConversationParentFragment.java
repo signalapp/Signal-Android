@@ -2267,7 +2267,8 @@ public class ConversationParentFragment extends Fragment
     callback.onInitializeToolbar(toolbar);
   }
 
-  protected boolean isInBubble() {
+  @Override
+  public boolean isInBubble() {
     return callback.isInBubble();
   }
 
