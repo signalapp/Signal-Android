@@ -97,7 +97,7 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
     }.distinctUntilChanged().subscribe { (isInSharedAnimation, loadState) ->
       if (!isInSharedAnimation && loadState == MediaPreviewV2State.LoadState.MEDIA_READY) {
         transitionImageView.clearAnimation()
-        transitionImageView.alpha = 0f
+        transitionImageView.animate().alpha(0f)
       }
     }
 
