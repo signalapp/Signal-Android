@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.util.Collections;
 import java.util.Locale;
@@ -79,11 +80,11 @@ public class ThumbnailView extends FrameLayout {
 
   private final CornerMask cornerMask;
 
-  @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-  private Optional<TransferControlView> transferControls       = Optional.empty();
-  private SlideClickListener            thumbnailClickListener = null;
-  private SlidesClickedListener         downloadClickListener  = null;
-  private Slide                         slide                  = null;
+  private ThumbnailViewTransferControlsState transferControlsState  = new ThumbnailViewTransferControlsState();
+  private Stub<TransferControlView>          transferControlViewStub;
+  private SlideClickListener                 thumbnailClickListener = null;
+  private SlidesClickedListener              downloadClickListener  = null;
+  private Slide                              slide                  = null;
 
 
   public ThumbnailView(Context context) {
@@ -99,12 +100,13 @@ public class ThumbnailView extends FrameLayout {
 
     inflate(context, R.layout.thumbnail_view, this);
 
-    this.image       = findViewById(R.id.thumbnail_image);
-    this.blurHash    = findViewById(R.id.thumbnail_blurhash);
-    this.playOverlay = findViewById(R.id.play_overlay);
-    this.captionIcon = findViewById(R.id.thumbnail_caption_icon);
-    this.errorImage  = findViewById(R.id.thumbnail_error);
-    this.cornerMask  = new CornerMask(this);
+    this.image                   = findViewById(R.id.thumbnail_image);
+    this.blurHash                = findViewById(R.id.thumbnail_blurhash);
+    this.playOverlay             = findViewById(R.id.play_overlay);
+    this.captionIcon             = findViewById(R.id.thumbnail_caption_icon);
+    this.errorImage              = findViewById(R.id.thumbnail_error);
+    this.cornerMask              = new CornerMask(this);
+    this.transferControlViewStub = new Stub<>(findViewById(R.id.transfer_controls_stub));
 
     super.setOnClickListener(new ThumbnailClickDispatcher());
 
@@ -275,24 +277,19 @@ public class ThumbnailView extends FrameLayout {
   @Override
   public void setFocusable(boolean focusable) {
     super.setFocusable(focusable);
-    transferControls.ifPresent(transferControlView -> transferControlView.setFocusable(focusable));
+    transferControlsState = transferControlsState.withFocusable(focusable);
+    transferControlsState.applyState(transferControlViewStub);
   }
 
   @Override
   public void setClickable(boolean clickable) {
     super.setClickable(clickable);
-    transferControls.ifPresent(transferControlView -> transferControlView.setClickable(clickable));
+    transferControlsState = transferControlsState.withClickable(clickable);
+    transferControlsState.applyState(transferControlViewStub);
   }
 
   public @Nullable Drawable getImageDrawable() {
     return image.getDrawable();
-  }
-
-  private TransferControlView getTransferControls() {
-    if (!transferControls.isPresent()) {
-      transferControls = Optional.of(ViewUtil.inflateStub(this, R.id.transfer_controls_stub));
-    }
-    return transferControls.get();
   }
 
   public void setBounds(int minWidth, int maxWidth, int minHeight, int maxHeight) {
@@ -327,7 +324,7 @@ public class ThumbnailView extends FrameLayout {
     if (slide.asAttachment().isPermanentlyFailed()) {
       this.slide = slide;
 
-      transferControls.ifPresent(c -> c.setVisibility(View.GONE));
+      transferControlViewStub.setVisibility(View.GONE);
       playOverlay.setVisibility(View.GONE);
 
       glideRequests.clear(blurHash);
@@ -353,10 +350,18 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (showControls) {
-      getTransferControls().setSlide(slide);
-      getTransferControls().setDownloadClickListener(new DownloadClickDispatcher());
-    } else if (transferControls.isPresent()) {
-      getTransferControls().setVisibility(View.GONE);
+      int transferState = TransferControlView.getTransferState(Collections.singletonList(slide));
+      if (transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || transferState == AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE) {
+        transferControlViewStub.setVisibility(View.GONE);
+      } else {
+        transferControlViewStub.setVisibility(View.VISIBLE);
+      }
+
+      transferControlsState = transferControlsState.withSlide(slide)
+                                                   .withDownloadClickListener(new DownloadClickDispatcher());
+      transferControlsState.applyState(transferControlViewStub);
+    } else {
+      transferControlViewStub.setVisibility(View.GONE);
     }
 
     if (slide.getUri() != null && slide.hasPlayOverlay() &&
@@ -440,7 +445,7 @@ public class ThumbnailView extends FrameLayout {
   public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri, int width, int height, boolean animate, @Nullable ThumbnailRequestListener listener) {
     SettableFuture<Boolean> future = new SettableFuture<>();
 
-    if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
+    transferControlViewStub.setVisibility(View.GONE);
 
     GlideRequest<Drawable> request = glideRequests.load(new DecryptableUri(uri))
                                                   .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -473,7 +478,7 @@ public class ThumbnailView extends FrameLayout {
   public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull StoryTextPostModel model, int width, int height) {
     SettableFuture<Boolean> future = new SettableFuture<>();
 
-    if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
+    transferControlViewStub.setVisibility(View.GONE);
 
     GlideRequest<Drawable> request = glideRequests.load(model)
                                                   .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -502,8 +507,8 @@ public class ThumbnailView extends FrameLayout {
     glideRequests.clear(image);
     image.setImageDrawable(null);
 
-    if (transferControls.isPresent()) {
-      getTransferControls().clear();
+    if (transferControlViewStub.resolved()) {
+      transferControlViewStub.get().clear();
     }
 
     glideRequests.clear(blurHash);
@@ -513,11 +518,12 @@ public class ThumbnailView extends FrameLayout {
   }
 
   public void showDownloadText(boolean showDownloadText) {
-    getTransferControls().setShowDownloadText(showDownloadText);
+    transferControlsState = transferControlsState.withDownloadText(showDownloadText);
+    transferControlsState.applyState(transferControlViewStub);
   }
 
   public void showProgressSpinner() {
-    getTransferControls().showProgressSpinner();
+    transferControlViewStub.get().showProgressSpinner();
   }
 
   public void setScaleType(@NonNull ImageView.ScaleType scaleType) {

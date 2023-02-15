@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:viewBindingIgnore="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linkpreview_container"
@@ -11,19 +11,16 @@
         android:background="@color/signal_neutralSurface"
         android:padding="6dp">
 
-        <org.thoughtcrime.securesms.components.OutlinedThumbnailView
+        <ViewStub
             android:id="@+id/linkpreview_thumbnail"
             android:layout_width="72dp"
             android:layout_height="0dp"
+            android:layout="@layout/link_preview_thumbnail_stub"
             android:maxHeight="72dp"
-            android:scaleType="centerCrop"
-            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/linkpreview_divider"
             app:layout_constraintHeight_min="72dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linkpreview_title"
-            tools:src="@drawable/ic_contact_picture"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toTopOf="@+id/linkpreview_title" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/linkpreview_title"
