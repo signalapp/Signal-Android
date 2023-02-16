@@ -185,14 +185,6 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   private fun initializeFullScreenUi() {
     fullscreenHelper.configureToolbarLayout(binding.toolbarCutoutSpacer, binding.toolbar)
     fullscreenHelper.showAndHideWithSystemUI(requireActivity().window, binding.toolbarLayout, binding.mediaPreviewDetailsContainer)
-
-    lifecycleDisposable += viewModel.state.map {
-      it.isInSharedAnimation to it.loadState
-    }.distinctUntilChanged().subscribe { (isInSharedAnimation, loadState) ->
-      if (!isInSharedAnimation && loadState == MediaPreviewV2State.LoadState.MEDIA_READY) {
-        binding.toolbarLayout.animate().alpha(1f)
-      }
-    }
   }
 
   private fun bindCurrentState(currentState: MediaPreviewV2State) {

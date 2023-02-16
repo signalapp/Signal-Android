@@ -54,7 +54,6 @@
         android:id="@+id/toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:alpha="0"
         android:background="@color/signal_dark_colorSurface_87"
         app:elevation="0dp">
 
