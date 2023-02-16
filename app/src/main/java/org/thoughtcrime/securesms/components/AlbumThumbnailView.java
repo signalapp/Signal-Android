@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -34,9 +33,9 @@ public class AlbumThumbnailView extends FrameLayout {
   private Stub<TransferControlView> transferControls;
 
   private final SlideClickListener defaultThumbnailClickListener = (v, slide) -> {
-      if (thumbnailClickListener != null) {
-        thumbnailClickListener.onClick(v, slide);
-      }
+    if (thumbnailClickListener != null) {
+      thumbnailClickListener.onClick(v, slide);
+    }
   };
 
   private final OnLongClickListener defaultLongClickListener = v -> this.performLongClick();
@@ -161,43 +160,53 @@ public class AlbumThumbnailView extends FrameLayout {
   }
 
   private ThumbnailView[] getCells() {
-    ThumbnailView one = findViewById(R.id.album_cell_1);
-    ThumbnailView two = findViewById(R.id.album_cell_2);
+    ThumbnailView one   = findViewById(R.id.album_cell_1);
+    ThumbnailView two   = findViewById(R.id.album_cell_2);
     ThumbnailView three = findViewById(R.id.album_cell_3);
-    ThumbnailView four = findViewById(R.id.album_cell_4);
-    ThumbnailView five = findViewById(R.id.album_cell_5);
+    ThumbnailView four  = findViewById(R.id.album_cell_4);
+    ThumbnailView five  = findViewById(R.id.album_cell_5);
 
-    return new ThumbnailView[]{one, two, three, four, five};
+    return new ThumbnailView[] { one, two, three, four, five };
   }
 
   private void applyCornersForSizeClass2() {
     ThumbnailView[] cells = getCells();
-    cells[0].setRadii(corners[0], 0, 0, corners[3]);
-    cells[1].setRadii(0, corners[1], corners[2], 0);
+    setRelativeRadii(cells[0], corners[0], 0, 0, corners[3]);
+    setRelativeRadii(cells[1], 0, corners[1], corners[2], 0);
   }
 
   private void applyCornersForSizeClass3() {
     ThumbnailView[] cells = getCells();
-    cells[0].setRadii(corners[0], 0, 0, corners[3]);
-    cells[1].setRadii(0, corners[1], 0, 0);
-    cells[2].setRadii(0, 0, corners[2], 0);
+    setRelativeRadii(cells[0], corners[0], 0, 0, corners[3]);
+    setRelativeRadii(cells[1], 0, corners[1], 0, 0);
+    setRelativeRadii(cells[2], 0, 0, corners[2], 0);
   }
 
   private void applyCornersForSizeClass4() {
     ThumbnailView[] cells = getCells();
-    cells[0].setRadii(corners[0], 0, 0, 0);
-    cells[1].setRadii(0, corners[1], 0, 0);
-    cells[2].setRadii(0, 0, 0, corners[3]);
-    cells[3].setRadii(0, 0, corners[2], 0);
+    setRelativeRadii(cells[0], corners[0], 0, 0, 0);
+    setRelativeRadii(cells[1], 0, corners[1], 0, 0);
+    setRelativeRadii(cells[2], 0, 0, 0, corners[3]);
+    setRelativeRadii(cells[3], 0, 0, corners[2], 0);
   }
 
   private void applyCornersForSizeClass5() {
     ThumbnailView[] cells = getCells();
-    cells[0].setRadii(corners[0], 0, 0, 0);
-    cells[1].setRadii(0, corners[1], 0, 0);
-    cells[2].setRadii(0, 0, 0, corners[3]);
-    cells[3].setRadii(0, 0, 0, 0);
-    cells[4].setRadii(0, 0, corners[2], 0);
+    setRelativeRadii(cells[0], corners[0], 0, 0, 0);
+    setRelativeRadii(cells[1], 0, corners[1], 0, 0);
+    setRelativeRadii(cells[2], 0, 0, 0, corners[3]);
+    setRelativeRadii(cells[3], 0, 0, 0, 0);
+    setRelativeRadii(cells[4], 0, 0, corners[2], 0);
+  }
+
+  private void setRelativeRadii(@NonNull ThumbnailView cell, int topLeft, int topRight, int bottomRight, int bottomLeft) {
+    boolean isLTR = getRootView().getLayoutDirection() == LAYOUT_DIRECTION_LTR;
+    cell.setRadii(
+        isLTR ? topLeft : topRight,
+        isLTR ? topRight : topLeft,
+        isLTR ? bottomRight : bottomLeft,
+        isLTR ? bottomLeft : bottomRight
+    );
   }
 
   private void applyCornersForManySizeClass() {
