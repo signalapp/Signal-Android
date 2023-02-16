@@ -237,13 +237,13 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
             }
 
             if (updateCount > 0) {
-              getGroup(groupId)
+              Log.i(TAG, "Successfully updated $updateCount rows. GroupId: $groupId, Remaps: $remaps", true)
             } else {
-              throw IllegalStateException("Failed to update group with remapped recipients!")
+              Log.w(TAG, "Failed to update any rows. GroupId: $groupId, Remaps: $remaps", true)
             }
-          } else {
-            getGroup(cursor)
           }
+
+          getGroup(cursor)
         } else {
           Optional.empty()
         }
