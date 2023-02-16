@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.WindowUtil
 
 class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner {
 
@@ -123,6 +124,8 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
     val systemBarColor = ContextCompat.getColor(this, R.color.signal_dark_colorSurface)
     window.statusBarColor = systemBarColor
     window.navigationBarColor = systemBarColor
+    WindowUtil.clearLightStatusBar(window)
+    WindowUtil.clearLightNavigationBar(window)
 
     if (savedInstanceState == null) {
       val bundle = Bundle()
