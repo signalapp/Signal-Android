@@ -66,9 +66,6 @@ public final class AudioWaveFormGenerator {
       codec.configure(format, null, null, 0);
       codec.start();
 
-      ByteBuffer[] codecInputBuffers  = codec.getInputBuffers();
-      ByteBuffer[] codecOutputBuffers = codec.getOutputBuffers();
-
       extractor.selectTrack(0);
 
       long                  kTimeOutUs      = 5000;
@@ -82,7 +79,7 @@ public final class AudioWaveFormGenerator {
         if (!sawInputEOS) {
           int inputBufIndex = codec.dequeueInputBuffer(kTimeOutUs);
           if (inputBufIndex >= 0) {
-            ByteBuffer dstBuf             = codecInputBuffers[inputBufIndex];
+            ByteBuffer dstBuf             = codec.getInputBuffer(inputBufIndex);
             int        sampleSize         = extractor.readSampleData(dstBuf, 0);
             long       presentationTimeUs = 0;
 
@@ -122,7 +119,7 @@ public final class AudioWaveFormGenerator {
               noOutputCounter = 0;
             }
 
-            ByteBuffer buf = codecOutputBuffers[outputBufferIndex];
+            ByteBuffer buf = codec.getOutputBuffer(outputBufferIndex);
             int barIndex = (int) ((wave.length * info.presentationTimeUs) / totalDurationUs);
             long total = 0;
             for (int i = 0; i < info.size; i += 2 * 4) {
@@ -137,8 +134,6 @@ public final class AudioWaveFormGenerator {
             if ((info.flags & MediaCodec.BUFFER_FLAG_END_OF_STREAM) != 0) {
               sawOutputEOS = true;
             }
-          } else if (outputBufferIndex == MediaCodec.INFO_OUTPUT_BUFFERS_CHANGED) {
-            codecOutputBuffers = codec.getOutputBuffers();
           } else if (outputBufferIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
             Log.d(TAG, "output format has changed to " + codec.getOutputFormat());
           }
