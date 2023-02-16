@@ -954,6 +954,10 @@
     <string name="ManageProfileFragment__username_created">Username created</string>
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Username copied</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
 
 
     <!-- ManageRecipientActivity -->
