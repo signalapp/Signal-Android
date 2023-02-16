@@ -624,6 +624,8 @@ public class ConversationParentFragment extends Fragment
     if (SignalStore.rateLimit().needsRecaptcha()) {
       RecaptchaProofBottomSheetFragment.show(getChildFragmentManager());
     }
+
+    updateToggleButtonState();
   }
 
   @Override

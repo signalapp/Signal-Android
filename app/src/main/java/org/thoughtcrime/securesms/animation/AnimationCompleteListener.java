@@ -11,7 +11,7 @@ public abstract class AnimationCompleteListener implements Animator.AnimatorList
   public abstract void onAnimationEnd(Animator animation);
 
   @Override
-  public final void onAnimationCancel(Animator animation) {}
+  public void onAnimationCancel(Animator animation) {}
   @Override
   public final void onAnimationRepeat(Animator animation) {}
 }

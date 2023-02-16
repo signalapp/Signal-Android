@@ -33,6 +33,7 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
+import org.thoughtcrime.securesms.animation.AnimationStartListener;
 import org.thoughtcrime.securesms.audio.AudioRecordingHandler;
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
@@ -573,11 +574,39 @@ public class InputPanel extends LinearLayout
   }
 
   private void fadeIn(@NonNull View v) {
-    v.animate().alpha(1).setDuration(FADE_TIME).start();
+    v.animate()
+     .setListener(new AnimationStartListener() {
+       @Override
+       public void onAnimationStart(@NonNull Animator animation) {
+         v.setVisibility(View.VISIBLE);
+       }
+
+       @Override
+       public void onAnimationCancel(@NonNull Animator animation) {
+         v.setVisibility(View.INVISIBLE);
+       }
+     })
+     .alpha(1)
+     .setDuration(FADE_TIME)
+     .start();
   }
 
   private void fadeOut(@NonNull View v) {
-    v.animate().alpha(0).setDuration(FADE_TIME).start();
+    v.animate()
+     .setListener(new AnimationCompleteListener() {
+       @Override
+       public void onAnimationEnd(Animator animation) {
+         v.setVisibility(View.INVISIBLE);
+       }
+
+       @Override
+       public void onAnimationCancel(Animator animation) {
+         v.setVisibility(View.VISIBLE);
+       }
+     })
+     .alpha(0)
+     .setDuration(FADE_TIME)
+     .start();
   }
 
   private void updateVisibility() {
