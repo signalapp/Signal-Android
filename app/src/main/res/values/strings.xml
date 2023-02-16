@@ -14,6 +14,7 @@
     <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
     <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
     <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
+    <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
