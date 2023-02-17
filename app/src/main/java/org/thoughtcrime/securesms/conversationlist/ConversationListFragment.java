@@ -108,6 +108,7 @@ import org.thoughtcrime.securesms.components.reminder.Reminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
+import org.thoughtcrime.securesms.components.reminder.UsernameOutOfSyncReminder;
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
@@ -153,6 +154,7 @@ import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -784,6 +786,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       CdsTemporaryErrorBottomSheet.show(getChildFragmentManager());
     } else if (reminderActionId == R.id.reminder_action_cds_permanent_error_learn_more) {
       CdsPermanentErrorBottomSheet.show(getChildFragmentManager());
+    } else if (reminderActionId == R.id.reminder_action_fix_username) {
+      startActivity(ManageProfileActivity.getIntentForUsernameEdit(requireContext()));
     }
   }
 
@@ -1043,6 +1047,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         return Optional.of(new CdsTemporyErrorReminder(context));
       } else if (CdsPermanentErrorReminder.isEligible()) {
         return Optional.of(new CdsPermanentErrorReminder(context));
+      } else if (UsernameOutOfSyncReminder.isEligible()) {
+        return Optional.of(new UsernameOutOfSyncReminder(context));
       } else {
         return Optional.<Reminder>empty();
       }

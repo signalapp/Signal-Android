@@ -2085,6 +2085,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
+  fun getUsername(id: RecipientId): String? {
+    return writableDatabase.query(TABLE_NAME, arrayOf(USERNAME), "$ID = ?", SqlUtil.buildArgs(id), null, null, null).use {
+      if (it.moveToFirst()) {
+        it.requireString(USERNAME)
+      } else {
+        null
+      }
+    }
+  }
+
   fun setUsername(id: RecipientId, username: String?) {
     writableDatabase.withinTransaction {
       if (username != null) {

@@ -9,6 +9,7 @@ import org.signal.libsignal.usernames.BaseUsernameException;
 import org.signal.libsignal.usernames.Username;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -87,6 +88,7 @@ class UsernameEditRepository {
     try {
       accountManager.confirmUsername(reserved.getUsername(), reserved.getReserveUsernameResponse());
       SignalDatabase.recipients().setUsername(Recipient.self().getId(), reserved.getUsername());
+      SignalStore.phoneNumberPrivacy().clearUsernameOutOfSync();
       Log.i(TAG, "[confirmUsername] Successfully reserved username.");
       return UsernameSetResult.SUCCESS;
     } catch (UsernameTakenException e) {
@@ -106,6 +108,7 @@ class UsernameEditRepository {
     try {
       accountManager.deleteUsername();
       SignalDatabase.recipients().setUsername(Recipient.self().getId(), null);
+      SignalStore.phoneNumberPrivacy().clearUsernameOutOfSync();
       Log.i(TAG, "[deleteUsername] Successfully deleted the username.");
       return UsernameDeleteResult.SUCCESS;
     } catch (IOException e) {

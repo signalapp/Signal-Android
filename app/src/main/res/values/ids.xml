@@ -18,6 +18,8 @@
     <item name="reminder_action_cds_temporary_error_learn_more" type="id" />
     <item name="reminder_action_cds_permanent_error_learn_more" type="id" />
 
+    <item name="reminder_action_fix_username" type="id" />
+
     <item name="status_bar_guideline" type="id" />
     <item name="navigation_bar_guideline" type="id" />
 
