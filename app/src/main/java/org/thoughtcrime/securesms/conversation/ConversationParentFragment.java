@@ -285,7 +285,6 @@ import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.DrawableUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
@@ -2286,7 +2285,12 @@ public class ConversationParentFragment extends Fragment
 
     Log.i(TAG, "[initializeResources] Recipient: " + recipient.getId() + ", Thread: " + threadId);
 
-    recipient.observe(getViewLifecycleOwner(), this::onRecipientChanged);
+    disposables.add(
+        recipient
+            .observable()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(this::onRecipientChanged)
+    );
   }
 
   private void initializeLinkPreviewObserver() {

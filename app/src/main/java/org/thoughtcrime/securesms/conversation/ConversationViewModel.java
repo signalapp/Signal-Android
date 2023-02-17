@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaRepository;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
@@ -207,7 +206,7 @@ public class ConversationViewModel extends ViewModel {
         .observeOn(Schedulers.io())
         .switchMap(scheduledMessagesRepository::getScheduledMessageCount);
 
-    Observable<Recipient> liveRecipient = recipientId.distinctUntilChanged().switchMap(id -> Recipient.live(id).asObservable());
+    Observable<Recipient> liveRecipient = recipientId.distinctUntilChanged().switchMap(id -> Recipient.live(id).observable());
 
     canShowAsBubble = threadId.observeOn(Schedulers.io()).map(conversationRepository::canShowAsBubble);
     wallpaper       = liveRecipient.map(r -> Optional.ofNullable(r.getWallpaper())).distinctUntilChanged();
