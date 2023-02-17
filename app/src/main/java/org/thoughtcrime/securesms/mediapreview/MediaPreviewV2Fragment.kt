@@ -137,7 +137,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   @SuppressLint("RestrictedApi")
   private fun initializeToolbar(toolbar: MaterialToolbar) {
     toolbar.setNavigationOnClickListener {
-      requireActivity().onBackPressed()
+      requireActivity().onBackPressedDispatcher.onBackPressed()
     }
 
     toolbar.setTitleTextAppearance(requireContext(), R.style.Signal_Text_TitleMedium)
@@ -255,7 +255,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     val messageId: Long? = currentItem.attachment?.mmsId
     if (messageId != null) {
       binding.toolbar.setOnClickListener { v ->
-        viewModel.jumpToFragment(v.context, messageId).subscribeBy(
+        lifecycleDisposable += viewModel.jumpToFragment(v.context, messageId).subscribeBy(
           onSuccess = {
             startActivity(it)
             requireActivity().finish()
