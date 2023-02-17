@@ -4045,7 +4045,9 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void onFirstRender() {
-    requireActivity().supportStartPostponedEnterTransition();
+    if (getActivity() != null) {
+      requireActivity().supportStartPostponedEnterTransition();
+    }
     voiceNoteMediaController.finishPostpone();
   }
 
