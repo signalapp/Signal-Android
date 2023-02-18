@@ -2902,6 +2902,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Wyciszone rozmowy pozostaną w archiwum, gdy pojawi się nowa wiadomość.</string>
     <string name="preferences__generate_link_previews">Twórz podglądy linków</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Pobieraj podglądy linków we wiadomościach bezpośrednio ze stron internetowych.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Ostrość dźwięku podczas nagrywania audio</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Odtwarzanie dźwięku w innych aplikacjach jest zatrzymywane podczas nagrywania dźwięku</string>
     <string name="preferences__change_passphrase">Zmień hasło</string>
     <string name="preferences__change_your_passphrase">Zmień swoje hasło</string>
     <string name="preferences__enable_passphrase">Włącz blokowanie ekranu hasłem</string>

@@ -2734,6 +2734,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Ignorerede samtaler, der er arkiveret, forbliver arkiveret, når der kommer en ny besked.</string>
     <string name="preferences__generate_link_previews">Generér forhåndsvisninger af links</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent forhåndsvisninger direkte fra websteder for links, du sender i beskeder.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Lydfokus under lydoptagelse</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Afspilning af lyd fra andre apps stoppes under lydoptagelse</string>
     <string name="preferences__change_passphrase">Skift adgangssætning</string>
     <string name="preferences__change_your_passphrase">Skift din adgangssætning</string>
     <string name="preferences__enable_passphrase">Aktiver skærmlås med adgangssætning</string>

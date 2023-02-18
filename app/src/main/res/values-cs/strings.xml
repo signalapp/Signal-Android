@@ -2902,6 +2902,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Ztlumené konverzace, které jsou archivovány, zůstanou archivovány i po příchodu nové zprávy.</string>
     <string name="preferences__generate_link_previews">Vygenerovat náhledy odkazů</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Pro zprávy, které odesíláte, získat náhledy odkazů přímo z webů.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Zaměření zvuku během nahrávání zvuku</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Přehrávání zvuku jiných aplikací je během nahrávání zvuku zastaveno</string>
     <string name="preferences__change_passphrase">Změnit heslo</string>
     <string name="preferences__change_your_passphrase">Změna vašeho hesla</string>
     <string name="preferences__enable_passphrase">Povolit heslo zámku obrazovky</string>

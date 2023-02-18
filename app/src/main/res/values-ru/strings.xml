@@ -2902,6 +2902,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Архивированные чаты с отключённым звуком будут оставаться архивированными, даже если будет получено новое сообщение.</string>
     <string name="preferences__generate_link_previews">Создавать предпросмотры ссылок</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Получать предпросмотры ссылок напрямую от сайтов для сообщений, которые вы отправляете.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Фокусировка звука во время аудиозаписи</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Воспроизведение звука в других приложениях останавливается во время записи звука</string>
     <string name="preferences__change_passphrase">Изменить парольную фразу</string>
     <string name="preferences__change_your_passphrase">Изменить свою парольную фразу</string>
     <string name="preferences__enable_passphrase">Включить блокировку экрана парольной фразой</string>

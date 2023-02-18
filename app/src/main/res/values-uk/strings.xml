@@ -2902,6 +2902,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Стишені та заархівовані чати залишатимуться заархівованими після отримання нового повідомлення.</string>
     <string name="preferences__generate_link_previews">Генерувати посилання попереднього перегляду</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Для надісланих повідомлень отримувати дані попереднього перегляду посилань напряму з веб-сайтів.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Фокусування звуку під час аудіозапису</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Відтворення аудіо в інших програмах зупиняється під час запису аудіо</string>
     <string name="preferences__change_passphrase">Змінити фразу-пароль</string>
     <string name="preferences__change_your_passphrase">Змінить вашу фразу-пароль</string>
     <string name="preferences__enable_passphrase">Увімкнути фразу-пароль</string>

@@ -2650,6 +2650,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">アーカイブされており、さらにミュートもしているチャットは、新しいメッセージが届いてもアーカイブされたままになります。</string>
     <string name="preferences__generate_link_previews">リンクプレビューを生成する</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">送信メッセージのリンクプレビューを、ウェブサイトから直接取得します。</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">音声記録時のオーディオフォーカス</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">音声録音中に他のアプリの音声再生が停止する</string>
     <string name="preferences__change_passphrase">パスフレーズを変更</string>
     <string name="preferences__change_your_passphrase">パスフレーズを変更します</string>
     <string name="preferences__enable_passphrase">パスフレーズでの画面ロックを有効にする</string>

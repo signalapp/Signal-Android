@@ -2734,6 +2734,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Arkistoidut mykistetyt keskustelut pysyvät arkistoituina, kun uusi viesti saapuu.</string>
     <string name="preferences__generate_link_previews">Luo esikatselukuvia linkeistä</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Näytä lähettämiesi linkkien esikatselu verkkosivustoilta.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Äänen tarkennus äänitallennuksen aikana</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Muiden sovellusten äänentoisto pysähtyy äänitallennuksen aikana.</string>
     <string name="preferences__change_passphrase">Salalauseen vaihto</string>
     <string name="preferences__change_your_passphrase">Vaihda salalauseesi</string>
     <string name="preferences__enable_passphrase">Ota käyttöön näytön lukitus salalauseella</string>

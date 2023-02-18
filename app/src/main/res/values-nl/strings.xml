@@ -2734,6 +2734,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Gedempte gesprekken die zijn gearchiveerd, blijven gearchiveerd als er een nieuw bericht binnenkomt.</string>
     <string name="preferences__generate_link_previews">Voorbeeld van website meesturen</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Door dit in te schakelen wordt voor elke link naar een website die je verzendt een voorbeeldafbeelding gegenereerd en met je bericht meegestuurd. Een nadeel is wel dat als je dit inschakelt websites zouden kunnen detecteren dat je hen in je bericht vermeldt en ook welke pagina je vermeldt.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Audio focus tijdens audio opname</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Audio afspelen van andere apps wordt gestopt tijdens audio opname</string>
     <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
     <string name="preferences__change_your_passphrase">Wijzig je wachtwoord</string>
     <string name="preferences__enable_passphrase">Appvergrendeling met wachtwoord inschakelen</string>

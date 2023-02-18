@@ -2734,6 +2734,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Le chat silenziate che archivi rimangono archiviate anche quando arriva un nuovo messaggio.</string>
     <string name="preferences__generate_link_previews">Genera anteprime dei link</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupera le anteprime dei link direttamente dai siti web per i messaggi che invii.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Messa a fuoco dell\'audio durante la registrazione audio</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">La riproduzione audio di altre applicazioni viene interrotta durante la registrazione audio</string>
     <string name="preferences__change_passphrase">Cambia password</string>
     <string name="preferences__change_your_passphrase">Cambia la tua password</string>
     <string name="preferences__enable_passphrase">Abilita blocco schermo con password</string>

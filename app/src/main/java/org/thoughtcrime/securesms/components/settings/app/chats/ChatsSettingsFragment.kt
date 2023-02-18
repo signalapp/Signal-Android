@@ -103,6 +103,15 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
       )
 
       switchPref(
+        title = DSLSettingsText.from(R.string.preferences__gain_audio_focus_while_recording_audio),
+        summary = DSLSettingsText.from(R.string.preferences__gain_audio_focus_while_recording_audio_description),
+        isChecked = state.gainAudioFocusWhileRecordingAudio,
+        onClick = {
+          viewModel.setGainAudioFocusWhileRecordingAudio(!state.gainAudioFocusWhileRecordingAudio)
+        }
+      )
+
+      switchPref(
         title = DSLSettingsText.from(R.string.preferences__pref_use_address_book_photos),
         summary = DSLSettingsText.from(R.string.preferences__display_contact_photos_from_your_address_book_if_available),
         isChecked = state.useAddressBook,

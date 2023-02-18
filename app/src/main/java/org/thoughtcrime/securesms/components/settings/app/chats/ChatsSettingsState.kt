@@ -4,6 +4,7 @@ import org.thoughtcrime.securesms.components.settings.app.chats.sms.SmsExportSta
 
 data class ChatsSettingsState(
   val generateLinkPreviews: Boolean,
+  val gainAudioFocusWhileRecordingAudio: Boolean,
   val useAddressBook: Boolean,
   val keepMutedChatsArchived: Boolean,
   val useSystemEmoji: Boolean,

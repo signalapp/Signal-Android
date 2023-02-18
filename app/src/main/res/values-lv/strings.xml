@@ -2818,6 +2818,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Arhivētas apklusinātās sarunas paliks arhivētas, kad tiks saņemta jauna ziņa.</string>
     <string name="preferences__generate_link_previews">Ģenerēt saišu priekšskatījumus</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Izgūstiet saišu priekšskatījumus nosūtītajām ziņām tieši no tīmekļa vietnēm.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Audio fokuss audio ierakstīšanas laikā</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Audio ierakstīšanas laikā tiek pārtraukta citu programmu audio atskaņošana</string>
     <string name="preferences__change_passphrase">Nomainīt paroli</string>
     <string name="preferences__change_your_passphrase">Mainīt savu paroli</string>
     <string name="preferences__enable_passphrase">Iespējot ekrāna bloķēšanu ar paroli</string>

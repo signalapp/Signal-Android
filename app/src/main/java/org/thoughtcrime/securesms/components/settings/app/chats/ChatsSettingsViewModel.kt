@@ -24,6 +24,7 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
   private val store: Store<ChatsSettingsState> = Store(
     ChatsSettingsState(
       generateLinkPreviews = SignalStore.settings().isLinkPreviewsEnabled,
+      gainAudioFocusWhileRecordingAudio = SignalStore.settings().isGainAudioFocusWhileRecordingAudio,
       useAddressBook = SignalStore.settings().isPreferSystemContactPhotos,
       keepMutedChatsArchived = SignalStore.settings().shouldKeepMutedChatsArchived(),
       useSystemEmoji = SignalStore.settings().isPreferSystemEmoji,
@@ -49,6 +50,11 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
     store.update { it.copy(generateLinkPreviews = enabled) }
     SignalStore.settings().isLinkPreviewsEnabled = enabled
     repository.syncLinkPreviewsState()
+  }
+
+  fun setGainAudioFocusWhileRecordingAudio(enabled: Boolean) {
+    store.update { it.copy(gainAudioFocusWhileRecordingAudio = enabled) }
+    SignalStore.settings().isGainAudioFocusWhileRecordingAudio = enabled
   }
 
   fun setUseAddressBook(enabled: Boolean) {

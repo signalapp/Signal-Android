@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
@@ -78,9 +79,11 @@ public class AudioRecorder {
                                  .withMimeType(MediaUtil.AUDIO_AAC)
                                  .createForDraftAttachmentAsync(context, () -> Log.i(TAG, "Write successful."), e -> Log.w(TAG, "Error during recording", e));
         recorder   = Build.VERSION.SDK_INT >= 26 ? new MediaRecorderWrapper() : new AudioCodec();
-        int focusResult = audioFocusManager.requestAudioFocus();
-        if (focusResult != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-          Log.w(TAG, "Could not gain audio focus. Received result code " + focusResult);
+        if (SignalStore.settings().isGainAudioFocusWhileRecordingAudio()) {
+          int focusResult = audioFocusManager.requestAudioFocus();
+          if (focusResult != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+            Log.w(TAG, "Could not gain audio focus. Received result code " + focusResult);
+          }
         }
         recorder.start(fds[1]);
         this.recordingSubject = recordingSingle;
@@ -103,7 +106,9 @@ public class AudioRecorder {
         return;
       }
 
-      audioFocusManager.abandonAudioFocus();
+      if (SignalStore.settings().isGainAudioFocusWhileRecordingAudio()) {
+        audioFocusManager.abandonAudioFocus();
+      }
       recorder.stop();
 
       try {

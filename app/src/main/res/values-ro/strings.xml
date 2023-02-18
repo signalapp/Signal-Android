@@ -2818,6 +2818,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Conversațiile pe silențios arhivate vor rămâne arhivate atunci când sosește un mesaj nou.</string>
     <string name="preferences__generate_link_previews">Generează previzualizări ale linkurilor</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Obține previzualizările link-urilor direct de pe site-urile web pentru mesajele pe care le trimiți.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Focalizare audio în timpul înregistrării audio</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Redarea audio a altor aplicații este oprită în timpul înregistrării audio</string>
     <string name="preferences__change_passphrase">Schimbă parola</string>
     <string name="preferences__change_your_passphrase">Schimbă-ți parola</string>
     <string name="preferences__enable_passphrase">Activează parola pentru ecranul de blocare</string>

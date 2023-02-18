@@ -2734,6 +2734,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Заглушените чатове, които биват архивирани, ще останат архивирани, когато пристигне ново съобщение.</string>
     <string name="preferences__generate_link_previews">Генерирайте визуализации на връзки</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Извличайте визуализации на връзки директно от уебсайтове за съобщения, които изпращате.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Фокус на звука по време на аудиозапис</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Възпроизвеждането на звук от други приложения се спира по време на аудиозапис</string>
     <string name="preferences__change_passphrase">Смени паролата</string>
     <string name="preferences__change_your_passphrase">Сменете паролата си</string>
     <string name="preferences__enable_passphrase">Активиране на парола за защита на екрана</string>

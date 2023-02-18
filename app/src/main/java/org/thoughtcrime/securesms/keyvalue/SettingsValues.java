@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallBandwidthMode;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
@@ -32,6 +31,7 @@ public final class SettingsValues extends SignalStoreValues {
   private static final String TAG = Log.tag(SettingsValues.class);
 
   public static final String LINK_PREVIEWS          = "settings.link_previews";
+  public static final String GAIN_AUDIO_FOCUS       = "settings.gain_audio_focus";
   public static final String KEEP_MESSAGES_DURATION = "settings.keep_messages_duration";
 
   public static final String PREFER_SYSTEM_CONTACT_PHOTOS = "settings.prefer.system.contact.photos";
@@ -126,8 +126,16 @@ public final class SettingsValues extends SignalStoreValues {
     return getBoolean(LINK_PREVIEWS, false);
   }
 
+  public boolean isGainAudioFocusWhileRecordingAudio() {
+    return getBoolean(GAIN_AUDIO_FOCUS, true);
+  }
+
   public void setLinkPreviewsEnabled(boolean enabled) {
     putBoolean(LINK_PREVIEWS, enabled);
+  }
+
+  public void setGainAudioFocusWhileRecordingAudio(boolean enabled) {
+    putBoolean(GAIN_AUDIO_FOCUS, enabled);
   }
 
   public @NonNull KeepMessagesDuration getKeepMessagesDuration() {

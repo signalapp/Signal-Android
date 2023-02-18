@@ -2734,6 +2734,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">A némítva archivált beszélgetések új üzenet érkezésekor továbbra is archiválva maradnak.</string>
     <string name="preferences__generate_link_previews">Hivatkozások előnézeti képének generálása</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Előnézeti képek lekérése közvetlenül a weboldalról az elküldendő üzenetekhez.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Hangfókusz hangfelvétel közben</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Más alkalmazások hanglejátszása leáll hangfelvétel közben</string>
     <string name="preferences__change_passphrase">Jelmondat megváltoztatása</string>
     <string name="preferences__change_your_passphrase">Jelmondatod megváltoztatása</string>
     <string name="preferences__enable_passphrase">Jelmondattal védett képernyőzár engedélyezése</string>

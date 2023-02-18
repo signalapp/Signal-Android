@@ -2734,6 +2734,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Οι συνομιλίες σε σίγαση που είναι αρχειοθετημένες, θα παραμείνουν σε αρχειοθέτηση όταν λάβεις νέα μηνύματα.</string>
     <string name="preferences__generate_link_previews">Προεπισκόπηση συνδέσμων</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Λάβε προεπισκόπεις συνδέσμων απ\' ευθείας από σελίδες για τα μηνύματα που στέλνεις.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Εστίαση ήχου κατά την εγγραφή ήχου</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Η αναπαραγωγή ήχου άλλων εφαρμογών διακόπτεται κατά τη διάρκεια της εγγραφής ήχου</string>
     <string name="preferences__change_passphrase">Αλλαγή συνθηματικού</string>
     <string name="preferences__change_your_passphrase">Αλλαγή του συνθηματικού σου</string>
     <string name="preferences__enable_passphrase">Ενεργοποίηση κλειδώματος οθόνης με συνθηματικό</string>

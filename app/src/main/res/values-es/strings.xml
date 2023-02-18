@@ -2734,6 +2734,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Los chats silenciados archivados permanecerán archivados aunque recibas un nuevo mensaje.</string>
     <string name="preferences__generate_link_previews">Generar vista previa de enlaces</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Esta opción trasmite la vista previa de los enlaces en los mensajes que envíes. La imagen de la vista previa se descarga directamente desde la página web correspondiente generando una visita (adicional) a esa página web desde tu dispositivo.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Enfoque de audio durante la grabación de audio</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">La reproducción de audio de otras aplicaciones se detiene durante la grabación de audio</string>
     <string name="preferences__change_passphrase">Cambiar clave de acceso</string>
     <string name="preferences__change_your_passphrase">Cambia tu clave de acceso</string>
     <string name="preferences__enable_passphrase">Activa bloqueo de pantalla con clave de acceso</string>

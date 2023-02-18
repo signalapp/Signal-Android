@@ -2902,6 +2902,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Suarchyvuoti nutildyti pokalbiai gavus naują žinutę liks suarchyvuoti.</string>
     <string name="preferences__generate_link_previews">Generuoti nuorodų peržiūras</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Gauti savo siunčiamoms žinutėms nuorodų peržiūras tiesiogiai iš internetinių svetainių.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Garso fokusavimas įrašant garsą</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Garso įrašymo metu sustabdomas kitų programų garso atkūrimas</string>
     <string name="preferences__change_passphrase">Pakeisti slaptafrazę</string>
     <string name="preferences__change_your_passphrase">Pakeisti jūsų slaptafrazę</string>
     <string name="preferences__enable_passphrase">Įjungti ekrano užrakinimą slaptafraze</string>

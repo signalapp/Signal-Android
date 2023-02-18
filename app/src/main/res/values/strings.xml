@@ -2738,6 +2738,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
     <string name="preferences__generate_link_previews">Generate link previews</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Retrieve link previews directly from websites for messages you send.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Audio focus during audio recording</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Audio playback of other apps is stopped during audio recording</string>
     <string name="preferences__change_passphrase">Change passphrase</string>
     <string name="preferences__change_your_passphrase">Change your passphrase</string>
     <string name="preferences__enable_passphrase">Enable passphrase screen lock</string>

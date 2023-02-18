@@ -2734,6 +2734,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Vaigistatud vestlused, mis on arhiveeritud, jäävad uue sõnumi saabudes arhiveerituks.</string>
     <string name="preferences__generate_link_previews">Genereeri lingieelvaateid</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hangib lingieelvaated otse saitidelt, mida sõnumina saadad.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Audio fookus helisalvestuse ajal</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Helisalvestuse ajal peatub teiste rakenduste heli taasesitus</string>
     <string name="preferences__change_passphrase">Muuda salasõna</string>
     <string name="preferences__change_your_passphrase">Muuda oma salasõna</string>
     <string name="preferences__enable_passphrase">Luba salaväljendiga ekraanilukk</string>

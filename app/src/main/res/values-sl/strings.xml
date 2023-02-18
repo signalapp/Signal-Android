@@ -2902,6 +2902,8 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Utišani klepeti, ki so arhivirani, bodo ostali arhivirani, ko prispe novo sporočilo.</string>
     <string name="preferences__generate_link_previews">Ustvari predoglede</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Za vse spletne strani, ki jih delite, bodo v sporočilu ustvarjene predogledne sličice.</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio">Ostrenje zvoka med snemanjem zvoka</string>
+    <string name="preferences__gain_audio_focus_while_recording_audio_description">Predvajanje zvoka drugih aplikacij se med snemanjem zvoka ustavi</string>
     <string name="preferences__change_passphrase">Zamenjaj geslo</string>
     <string name="preferences__change_your_passphrase">Zamenjava gesla</string>
     <string name="preferences__enable_passphrase">Vklop zaklepanja zaslona z geslom</string>
