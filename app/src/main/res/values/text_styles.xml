@@ -63,6 +63,25 @@
         <item name="android:textSize">24sp</item>
     </style>
 
+    <style name="Mp02.Signal.Text.MaterialTextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textSize">24sp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/mp02_common_text_button</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:padding">0sp</item>
+        <item name="android:lineSpacingExtra">0sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:minWidth">0sp</item>
+        <item name="android:minHeight">0sp</item>
+        <item name="android:insetTop">0sp</item>
+        <item name="android:insetBottom">0sp</item>
+        <item name="android:defaultFocusHighlightEnabled" tools:ignore="NewApi">true</item>
+    </style>
+
     <!-- region Material3 Styles -->
     <style name="Signal.Text.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
         <item name="android:lineSpacingExtra">8sp</item>
