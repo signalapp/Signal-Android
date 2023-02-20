@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scroll_view"
+    style="@style/Mp02.Signal.Background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/pigeon_small_margin"
     android:fillViewport="true"
-    style="@style/Mp02.Signal.Background"
+    android:padding="@dimen/pigeon_small_margin"
     tools:context=".registration.fragments.EnterPhoneNumberFragment"
     tools:viewBindingIgnore="true">
 
@@ -17,9 +17,9 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
@@ -37,29 +37,33 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/country_code"
+                style="@style/Mp02.Signal.TextInputLayout.Registration.Dropdown"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
                 app:errorEnabled="false"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     style="@style/Mp02.Signal.Text.CommonTextButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:digits="+1234567890"
-                    android:drawablePadding="-24dp"
+                    android:inputType="numberSigned"
+                    android:drawablePadding="-34dp"
                     android:hint="@string/Registration_country_code_entry_hint"
                     android:imeOptions="actionNext"
                     android:maxLength="4"
                     android:maxLines="1"
                     android:padding="0dp"
                     android:singleLine="true"
-                    tools:text="+1" />
+                    tools:text="+125" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/number"
+                style="@style/Mp02.Signal.TextInputLayout.Registration"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -70,6 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
+                    android:gravity="bottom"
                     android:inputType="phone" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -86,7 +91,7 @@
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/verify_subheader"
@@ -96,9 +101,9 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:visibility="gone"
             android:text="@string/RegistrationActivity_you_will_receive_a_verification_code"
             android:textColor="@color/core_grey_60"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/verify_header"
             tools:layout_editor_absoluteX="0dp" />
 
@@ -110,8 +115,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:text="@android:string/cancel"
-            android:visibility="gone"
             android:textColor="@color/core_grey_60"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -126,7 +131,7 @@
             app:circularProgressMaterialButton__label="@string/RegistrationActivity_next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

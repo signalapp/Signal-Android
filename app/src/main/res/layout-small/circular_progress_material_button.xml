@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Material Button"
-        tools:textColor="@color/black"
+        tools:textColor="@color/focused_text_color"
         tools:visibility="visible" />
 
 </merge>
