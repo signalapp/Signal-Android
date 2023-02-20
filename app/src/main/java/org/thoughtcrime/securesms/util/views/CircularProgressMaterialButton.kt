@@ -7,13 +7,16 @@ import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.ViewAnimationUtils
 import android.widget.FrameLayout
-import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.annotation.VisibleForTesting
 import androidx.core.animation.doOnEnd
 import androidx.core.content.withStyledAttributes
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.theme.overlay.MaterialThemeOverlay
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.util.visible
+import pigeon.extensions.isSignalVersion
 import pigeon.extensions.onFocusTextChangeListener
 import kotlin.math.max
 
@@ -33,8 +36,8 @@ class CircularProgressMaterialButton @JvmOverloads constructor(
 
   private var animator: Animator? = null
 
-  private val materialButton: TextView = findViewById(R.id.button)
-//  private val progressIndicator: CircularProgressIndicator = findViewById(R.id.progress_indicator)
+  private val materialButton: MaterialButton = findViewById(R.id.button)
+  private val progressIndicator: CircularProgressIndicator = findViewById(R.id.progress_indicator)
 
   var text: CharSequence?
     get() = materialButton.text
@@ -45,10 +48,10 @@ class CircularProgressMaterialButton @JvmOverloads constructor(
   init {
     getContext().withStyledAttributes(attrs, R.styleable.CircularProgressMaterialButton) {
       val label = getString(R.styleable.CircularProgressMaterialButton_circularProgressMaterialButton__label)
+
       materialButton.text = label
       materialButton.onFocusTextChangeListener()
     }
-
   }
 
   fun setText(@StringRes resId: Int) {
@@ -58,13 +61,17 @@ class CircularProgressMaterialButton @JvmOverloads constructor(
   override fun setEnabled(enabled: Boolean) {
     super.setEnabled(enabled)
     materialButton.isEnabled = enabled
-//    progressIndicator.visible = enabled
+    if (isSignalVersion()) {
+      progressIndicator.visible = enabled
+    }
   }
 
   override fun setClickable(clickable: Boolean) {
     super.setClickable(clickable)
     materialButton.isClickable = clickable
-//    progressIndicator.visible = clickable
+    if (isSignalVersion()) {
+      progressIndicator.visible = clickable
+    }
   }
 
   override fun onSaveInstanceState(): Parcelable {
@@ -94,11 +101,15 @@ class CircularProgressMaterialButton @JvmOverloads constructor(
   }
 
   fun setSpinning() {
-//    transformTo(State.PROGRESS, true)
+    if (isSignalVersion()) {
+      transformTo(State.PROGRESS, true)
+    }
   }
 
   fun cancelSpinning() {
-//    transformTo(State.BUTTON, true)
+    if (isSignalVersion()) {
+      transformTo(State.BUTTON, true)
+    }
   }
 
   private fun transformTo(state: State, animate: Boolean) {
@@ -150,7 +161,7 @@ class CircularProgressMaterialButton @JvmOverloads constructor(
       return
     }
 
-//    transformTo(requestedState, animate)
+    transformTo(requestedState, animate)
   }
 
   enum class State(val code: Int, val materialButtonVisibility: Int) {

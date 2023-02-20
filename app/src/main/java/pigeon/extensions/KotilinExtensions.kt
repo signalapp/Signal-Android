@@ -2,6 +2,7 @@ package pigeon.extensions
 
 import android.view.View
 import android.widget.TextView
+import org.thoughtcrime.securesms.BuildConfig
 
 fun TextView.onFocusTextChangeListener() {
   val focus = View.OnFocusChangeListener { _, hasFocus ->
@@ -14,3 +15,5 @@ fun TextView.onFocusTextChangeListener() {
   }
   this.onFocusChangeListener = focus
 }
+
+fun isSignalVersion():Boolean = BuildConfig.IS_SIGNAL
