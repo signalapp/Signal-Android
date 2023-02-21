@@ -1670,8 +1670,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                                         listener.onVoiceNoteResume(selectedConversationModel.getAudioUri(), messageRecord.getId());
                                       }
 
-                                      WindowUtil.setLightStatusBarFromTheme(requireActivity());
-                                      WindowUtil.setLightNavigationBarFromTheme(requireActivity());
+                                      if (getActivity() != null) {
+                                        WindowUtil.setLightStatusBarFromTheme(requireActivity());
+                                        WindowUtil.setLightNavigationBarFromTheme(requireActivity());
+                                      }
+
                                       clearFocusedItem();
 
                                       if (finalMp4Holder != null) {
