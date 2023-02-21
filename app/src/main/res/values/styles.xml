@@ -94,7 +94,7 @@
     </style>
 
     <style name="TextSecure.LightActionBar"
-        parent="@style/Widget.AppCompat.ActionBar">
+           parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/signal_colorBackground</item>
         <item name="actionOverflowMenuStyle">@style/Signal.DayNight.Popup.OverflowMenu</item>
         <item name="titleTextStyle">@style/Signal.Text.TitleLarge</item>
@@ -114,7 +114,7 @@
     </style>
 
     <style name="TextSecure.LightActionBar.DarkText"
-        parent="TextSecure.LightActionBar">
+           parent="TextSecure.LightActionBar">
     </style>
 
     <style name="TextSecure.HighlightActionBar" parent="@style/TextSecure.DarkActionBar.Conversation">
