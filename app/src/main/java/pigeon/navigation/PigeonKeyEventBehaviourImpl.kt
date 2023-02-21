@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registration.fragments.CaptchaFragment
 
-open class PigeonKeyEventBehaviourImpl : KeyEventBehaviour {
+class PigeonKeyEventBehaviourImpl : KeyEventBehaviour {
   override fun dispatchKeyEvent(event: KeyEvent, fragmentManager: FragmentManager) {
     val navFragment: Fragment = fragmentManager.findFragmentById(R.id.nav_host_fragment) ?: return
     val fragment = navFragment.childFragmentManager.primaryNavigationFragment
