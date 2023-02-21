@@ -17,6 +17,7 @@ import com.google.i18n.phonenumbers.AsYouTypeFormatter
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState
+import pigeon.extensions.isSignalVersion
 
 /**
  * Handle the logic and formatting of phone number input specifically for registration number the flow.
@@ -40,12 +41,16 @@ class RegistrationNumberInputController(
     setUpNumberInput()
 
     spinnerView.threshold = 100
-    spinnerView.setAdapter(spinnerAdapter)
+    if (isSignalVersion()) {
+      spinnerView.setAdapter(spinnerAdapter)
+    }
     spinnerView.addTextChangedListener(CountryCodeEntryListener())
   }
 
   fun prepopulateCountryCode() {
-    spinnerView.setText(supportedCountryPrefixes[0].toString())
+    if (isSignalVersion()) {
+      spinnerView.setText(supportedCountryPrefixes[0].toString())
+    }
   }
 
   private fun advanceToPhoneNumberInput() {
@@ -78,8 +83,16 @@ class RegistrationNumberInputController(
 
     isUpdating = true
     phoneNumberInputLayout.setText(numberViewState.nationalNumber)
-    if (numberViewState.countryCode != 0) {
-      spinnerView.setText(supportedCountryPrefixes.first { it.digits == numberViewState.countryCode }.toString())
+    if (isSignalVersion()) {
+      if (numberViewState.countryCode != 0) {
+        spinnerView.setText(supportedCountryPrefixes.first { it.digits == numberViewState.countryCode }.toString())
+      }
+    } else {
+      if (numberViewState.countryCode == 0) {
+        spinnerView.setText(supportedCountryPrefixes.first().digits.toString())
+      } else {
+        spinnerView.setText(countryCode.toString())
+      }
     }
     val regionCode = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode)
     setCountryFormatter(regionCode)
