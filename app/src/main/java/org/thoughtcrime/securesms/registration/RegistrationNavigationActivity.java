@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.registration;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,11 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 
+import pigeon.navigation.KeyEventBehaviour;
+import pigeon.navigation.PigeonKeyEventBehaviourImpl;
+
+import static pigeon.extensions.BuildExtensionsKt.isSignalVersion;
+
 
 public final class RegistrationNavigationActivity extends AppCompatActivity {
 
@@ -24,6 +30,8 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
 
   private SmsRetrieverReceiver  smsRetrieverReceiver;
   private RegistrationViewModel viewModel;
+
+  private final KeyEventBehaviour keyEventBehaviour = new PigeonKeyEventBehaviourImpl();
 
   public static Intent newIntentForNewRegistration(@NonNull Context context, @Nullable Intent originalIntent) {
     Intent intent = new Intent(context, RegistrationNavigationActivity.class);
@@ -70,6 +78,15 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
   protected void onDestroy() {
     super.onDestroy();
     shutdownChallengeListener();
+  }
+
+  @Override public boolean dispatchKeyEvent(KeyEvent event) {
+    if (isSignalVersion()){
+      return super.dispatchKeyEvent(event);
+    }
+
+    keyEventBehaviour.dispatchKeyEvent(event, getSupportFragmentManager());
+    return super.dispatchKeyEvent(event);
   }
 
   private boolean isReregister(@NonNull Intent intent) {
