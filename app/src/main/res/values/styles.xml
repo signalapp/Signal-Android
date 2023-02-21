@@ -1,32 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
-    <style name="Mp02">Mp02</style>
-
-    <style name="Mp02.Signal">Mp02.Signal</style>
-
-    <style name="Mp02.Signal.CustomDialog" parent="@android:style/Theme.NoTitleBar.Fullscreen">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:scrollbars">none</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowCloseOnTouchOutside">false</item>
-    </style>
-
-    <style name="Mp02.Signal.ListTextView" >
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center_vertical</item>
-        <item name="android:defaultFocusHighlightEnabled" tools:targetApi="o">false</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:textColor">@color/white_not_focus</item>
-        <item name="android:focusable">true</item>
-        <item name="android:paddingStart">30px</item>
-        <item name="android:ellipsize">marquee</item>
-        <item name="android:singleLine">true</item>
-    </style>
-
     <style name="Widget.Signal.Snackbar" parent="Widget.Material3.Snackbar">
         <item name="backgroundTint">@color/signal_dark_colorSurface4</item>
         <item name="android:layout_margin">16dp</item>
@@ -90,7 +63,7 @@
         <item name="android:windowBackground">@drawable/dialog_background</item>
         <item name="android:textColor">@null</item>
     </style>
-    
+
     <style name="TextSecure.Animation.FullScreenDialog" parent="@android:style/Animation.Activity">
         <item name="android:windowEnterAnimation">@anim/fade_scale_in</item>
         <item name="android:windowExitAnimation">@anim/fade_scale_out</item>
@@ -121,7 +94,7 @@
     </style>
 
     <style name="TextSecure.LightActionBar"
-           parent="@style/Widget.AppCompat.ActionBar">
+        parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/signal_colorBackground</item>
         <item name="actionOverflowMenuStyle">@style/Signal.DayNight.Popup.OverflowMenu</item>
         <item name="titleTextStyle">@style/Signal.Text.TitleLarge</item>
@@ -141,7 +114,7 @@
     </style>
 
     <style name="TextSecure.LightActionBar.DarkText"
-           parent="TextSecure.LightActionBar">
+        parent="TextSecure.LightActionBar">
     </style>
 
     <style name="TextSecure.HighlightActionBar" parent="@style/TextSecure.DarkActionBar.Conversation">
@@ -340,7 +313,6 @@
     <style name="IdentityKey">
         <item name="android:fontFamily">monospace</item>
         <item name="android:typeface">monospace</item>
-        <item name="android:textColor">@drawable/mp02_list_text_color</item>
         <item name="android:textSize">16sp</item>
         <item name="android:clickable">false</item>
         <item name="android:focusable">false</item>
