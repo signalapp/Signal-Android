@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
@@ -49,9 +50,11 @@ import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.PlayServicesUtil;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.dualsim.MccMncProducer;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
+import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -153,7 +156,8 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   private void handleRegister(@NonNull Context context) {
-    if (TextUtils.isEmpty(countryCode.getEditText().getText())) {
+    final EditText countryCodeEditText = countryCode.getEditText();
+    if (countryCodeEditText == null || TextUtils.isEmpty(countryCodeEditText.getText())) {
       showErrorDialog(context, getString(R.string.RegistrationActivity_you_must_specify_your_country_code));
       return;
     }
@@ -245,23 +249,23 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   private void requestVerificationCode(@NonNull Mode mode) {
-    NavController navController = NavHostFragment.findNavController(this);
-
-    Disposable request = viewModel.requestVerificationCode(mode)
+    NavController  navController  = NavHostFragment.findNavController(this);
+    MccMncProducer mccMncProducer = new MccMncProducer(requireContext());
+    Disposable request = viewModel.requestVerificationCode(mode, mccMncProducer.getMcc(), mccMncProducer.getMnc())
                                   .doOnSubscribe(unused -> SignalStore.account().setRegistered(false))
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .subscribe(processor -> {
-                                    if (processor.hasResult()) {
-                                      SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
-                                    } else if (processor.localRateLimit()) {
-                                      Log.i(TAG, "Unable to request sms code due to local rate limit");
+                                    if (processor.verificationCodeRequestSuccess()) {
                                       SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
                                     } else if (processor.captchaRequired()) {
                                       Log.i(TAG, "Unable to request sms code due to captcha required");
                                       SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionRequestCaptcha());
+                                    } else if (processor.exhaustedVerificationCodeAttempts()) {
+                                      Log.i(TAG, "Unable to request sms code due to exhausting attempts");
+                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_rate_limited_to_service));
                                     } else if (processor.rateLimit()) {
                                       Log.i(TAG, "Unable to request sms code due to rate limit");
-                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_rate_limited_to_service));
+                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_rate_limited_to_try_again, formatMillisecondsToString(processor.getRateLimit())));
                                     } else if (processor.isImpossibleNumber()) {
                                       Log.w(TAG, "Impossible number", processor.getError());
                                       Dialogs.showAlertDialog(requireContext(),
@@ -279,6 +283,14 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                   });
 
     disposables.add(request);
+  }
+
+  private String formatMillisecondsToString(long milliseconds) {
+    long totalSeconds = milliseconds / 1000;
+    long HH = totalSeconds / 3600;
+    long MM = (totalSeconds % 3600) / 60;
+    long SS = totalSeconds % 60;
+    return String.format(Locale.getDefault(), "%02d:%02d:%02d", HH, MM, SS);
   }
 
   public void showErrorDialog(Context context, String msg) {
@@ -304,6 +316,31 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   @Override
   public void setCountry(int countryCode) {
     viewModel.onCountrySelected(null, countryCode);
+  }
+
+  @Override
+  public void onStart() {
+    super.onStart();
+    String sessionE164 = viewModel.getSessionE164();
+    if (sessionE164 != null && viewModel.getSessionId() != null) {
+      checkIfSessionIsInProgressAndAdvance(sessionE164);
+    }
+  }
+
+  private void checkIfSessionIsInProgressAndAdvance(@NonNull String sessionE164) {
+    NavController  navController  = NavHostFragment.findNavController(this);
+    MccMncProducer mccMncProducer = new MccMncProducer(requireContext());
+    Disposable request = viewModel.validateSession(sessionE164, mccMncProducer.getMcc(), mccMncProducer.getMnc())
+                                  .observeOn(AndroidSchedulers.mainThread())
+                                  .subscribe(processor -> {
+                                    if (processor.hasResult() && processor.canSubmitProofImmediately()) {
+                                      SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
+                                    } else {
+                                      viewModel.resetSession();
+                                    }
+                                  });
+
+    disposables.add(request);
   }
 
   private void handleNonNormalizedNumberError(@NonNull String originalNumber, @NonNull String normalizedNumber, @NonNull Mode mode) {
@@ -346,9 +383,9 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
         .show();
   }
 
-  protected final void confirmNumberPrompt(@NonNull Context context,
-                                           @NonNull String e164number,
-                                           @NonNull Runnable onConfirmed)
+  private void confirmNumberPrompt(@NonNull Context context,
+                                   @NonNull String e164number,
+                                   @NonNull Runnable onConfirmed)
   {
     showConfirmNumberDialogIfTranslated(context,
                                         R.string.RegistrationActivity_a_verification_code_will_be_sent_to,

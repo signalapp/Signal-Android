@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.CheckResult;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +12,8 @@ public final class RegistrationValues extends SignalStoreValues {
   private static final String REGISTRATION_COMPLETE = "registration.complete";
   private static final String PIN_REQUIRED          = "registration.pin_required";
   private static final String HAS_UPLOADED_PROFILE  = "registration.has_uploaded_profile";
+  private static final String SESSION_E164          = "registration.session_e164";
+  private static final String SESSION_ID            = "registration.session_id";
 
   RegistrationValues(@NonNull KeyValueStore store) {
     super(store);
@@ -59,5 +62,23 @@ public final class RegistrationValues extends SignalStoreValues {
 
   public void clearHasUploadedProfile() {
     putBoolean(HAS_UPLOADED_PROFILE, false);
+  }
+
+  public void setSessionId(String sessionId) {
+    putString(SESSION_ID, sessionId);
+  }
+
+  @Nullable
+  public String getSessionId() {
+    return getString(SESSION_ID, null);
+  }
+
+  public void setSessionE164(String sessionE164) {
+    putString(SESSION_E164, sessionE164);
+  }
+
+  @Nullable
+  public String getSessionE164() {
+    return getString(SESSION_E164, null);
   }
 }

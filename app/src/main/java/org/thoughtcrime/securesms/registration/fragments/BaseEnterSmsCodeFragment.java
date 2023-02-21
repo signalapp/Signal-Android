@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
-import android.animation.Animator;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ScrollView;
@@ -11,6 +10,7 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
+import org.thoughtcrime.securesms.util.dualsim.MccMncProducer;
 import org.whispersystems.signalservice.internal.push.LockedException;
 
 import java.util.ArrayList;
@@ -59,6 +60,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
   private VerificationCodeView    verificationCodeView;
   private VerificationPinKeyboard keyboard;
   private ActionCountDownButton   callMeCountDown;
+  private ActionCountDownButton   resendSmsCountDown;
   private View                    wrongNumber;
   private boolean                 autoCompleting;
 
@@ -82,6 +84,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
     verificationCodeView = view.findViewById(R.id.code);
     keyboard             = view.findViewById(R.id.keyboard);
     callMeCountDown      = view.findViewById(R.id.call_me_count_down);
+    resendSmsCountDown   = view.findViewById(R.id.resend_sms_count_down);
     wrongNumber          = view.findViewById(R.id.wrong_number);
 
     new SignalStrengthPhoneStateListener(this, this);
@@ -91,9 +94,13 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
 
     setOnCodeFullyEnteredListener(verificationCodeView);
 
-    wrongNumber.setOnClickListener(v -> onWrongNumber());
+    wrongNumber.setOnClickListener(v -> returnToPhoneEntryScreen());
+
+    callMeCountDown.setTextResources(R.string.RegistrationActivity_call, R.string.RegistrationActivity_call_me_instead_available_in);
+    resendSmsCountDown.setTextResources(R.string.RegistrationActivity_resend_code, R.string.RegistrationActivity_resend_sms_available_in);
 
     callMeCountDown.setOnClickListener(v -> handlePhoneCallRequest());
+    resendSmsCountDown.setOnClickListener(v -> handleSmsRequest());
 
     callMeCountDown.setListener((v, remaining) -> {
       if (remaining <= 30) {
@@ -102,16 +109,21 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
       }
     });
 
+    resendSmsCountDown.setListener((v, remaining) -> {
+      if (remaining <= 30) {
+        scrollView.smoothScrollTo(0, v.getBottom());
+        resendSmsCountDown.setListener(null);
+      }
+    });
+
 
     disposables.bindTo(getViewLifecycleOwner().getLifecycle());
     viewModel = getViewModel();
     viewModel.getSuccessfulCodeRequestAttempts().observe(getViewLifecycleOwner(), (attempts) -> {
       if (attempts >= 3) {
-        // TODO Add bottom sheet for help
+        new ContactSupportBottomSheetFragment(this::openTroubleshootingSteps, this::sendEmailToSupport).show(getChildFragmentManager(), "support_bottom_sheet");
       }
     });
-
-    viewModel.onStartEnterCode();
   }
 
   protected abstract ViewModel getViewModel();
@@ -124,7 +136,8 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
 
   protected abstract void navigateToKbsAccountLocked();
 
-  private void onWrongNumber() {
+  private void returnToPhoneEntryScreen() {
+    viewModel.resetSession();
     Navigation.findNavController(requireView()).navigateUp();
   }
 
@@ -132,6 +145,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
     verificationCodeView.setOnCompleteListener(code -> {
 
       callMeCountDown.setVisibility(View.INVISIBLE);
+      resendSmsCountDown.setVisibility(View.INVISIBLE);
       wrongNumber.setVisibility(View.INVISIBLE);
       keyboard.displayProgress();
 
@@ -181,6 +195,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
                .setMessage(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later)
                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                  callMeCountDown.setVisibility(View.VISIBLE);
+                 resendSmsCountDown.setVisibility(View.VISIBLE);
                  wrongNumber.setVisibility(View.VISIBLE);
                  verificationCodeView.clear();
                  keyboard.displayKeyboard();
@@ -209,6 +224,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
       @Override
       public void onSuccess(Boolean result) {
         callMeCountDown.setVisibility(View.VISIBLE);
+        resendSmsCountDown.setVisibility(View.VISIBLE);
         wrongNumber.setVisibility(View.VISIBLE);
         verificationCodeView.clear();
         keyboard.displayKeyboard();
@@ -222,6 +238,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
       @Override
       public void onSuccess(Boolean result) {
         callMeCountDown.setVisibility(View.VISIBLE);
+        resendSmsCountDown.setVisibility(View.VISIBLE);
         wrongNumber.setVisibility(View.VISIBLE);
         verificationCodeView.clear();
         keyboard.displayKeyboard();
@@ -285,19 +302,29 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
     showConfirmNumberDialogIfTranslated(requireContext(),
                                         R.string.RegistrationActivity_you_will_receive_a_call_to_verify_this_number,
                                         viewModel.getNumber().getE164Number(),
-                                        this::handlePhoneCallRequestAfterConfirm,
-                                        this::onWrongNumber);
+                                        () -> handleCodeCallRequestAfterConfirm(VerifyAccountRepository.Mode.PHONE_CALL),
+                                        this::returnToPhoneEntryScreen);
   }
 
-  private void handlePhoneCallRequestAfterConfirm() {
-    Disposable request = viewModel.requestVerificationCode(VerifyAccountRepository.Mode.PHONE_CALL)
+  private void handleSmsRequest() {
+    showConfirmNumberDialogIfTranslated(requireContext(),
+                                        R.string.RegistrationActivity_a_verification_code_will_be_sent_to,
+                                        viewModel.getNumber().getE164Number(),
+                                        () -> handleCodeCallRequestAfterConfirm(VerifyAccountRepository.Mode.SMS_WITH_LISTENER),
+                                        this::returnToPhoneEntryScreen);
+  }
+
+  private void handleCodeCallRequestAfterConfirm(VerifyAccountRepository.Mode mode) {
+    MccMncProducer mccMncProducer = new MccMncProducer(requireContext());
+    Disposable request = viewModel.requestVerificationCode(mode, mccMncProducer.getMcc(), mccMncProducer.getMnc())
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .subscribe(processor -> {
                                     if (processor.hasResult()) {
-                                      Toast.makeText(requireContext(), R.string.RegistrationActivity_call_requested, Toast.LENGTH_LONG).show();
+                                      Toast.makeText(requireContext(), getCodeRequestedToastText(mode), Toast.LENGTH_LONG).show();
                                     } else if (processor.captchaRequired()) {
                                       navigateToCaptcha();
                                     } else if (processor.rateLimit()) {
+                                      long rateLimit = processor.getRateLimit();
                                       Toast.makeText(requireContext(), R.string.RegistrationActivity_rate_limited_to_service, Toast.LENGTH_LONG).show();
                                     } else {
                                       Log.w(TAG, "Unable to request phone code", processor.getError());
@@ -306,6 +333,19 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
                                   });
 
     disposables.add(request);
+  }
+
+  @StringRes
+  private int getCodeRequestedToastText(VerifyAccountRepository.Mode mode) {
+    switch (mode) {
+      case PHONE_CALL:
+        return R.string.RegistrationActivity_call_requested;
+      case SMS_WITH_LISTENER:
+      case SMS_WITHOUT_LISTENER:
+        return R.string.RegistrationActivity_sms_requested;
+      default:
+        return R.string.RegistrationActivity_code_requested;
+    }
   }
 
   private void connectKeyboard(VerificationCodeView verificationCodeView, VerificationPinKeyboard keyboard) {
@@ -323,10 +363,52 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
   @Override
   public void onResume() {
     super.onResume();
+    String sessionE164 = viewModel.getSessionE164();
+    if (sessionE164 == null) {
+      returnToPhoneEntryScreen();
+      return;
+    }
 
     subheader.setText(requireContext().getString(R.string.RegistrationActivity_enter_the_code_we_sent_to_s, viewModel.getNumber().getFullFormattedNumber()));
 
-    viewModel.getCanCallAtTime().observe(getViewLifecycleOwner(), callAtTime -> callMeCountDown.startCountDownTo(callAtTime));
+    MccMncProducer mccMncProducer = new MccMncProducer(requireContext());
+    Disposable request = viewModel.validateSession(sessionE164, mccMncProducer.getMcc(), mccMncProducer.getMnc())
+                                  .observeOn(AndroidSchedulers.mainThread())
+                                  .subscribe(processor -> {
+                                    if (!processor.hasResult()) {
+                                      returnToPhoneEntryScreen();
+                                    } else if (processor.isInvalidSession()) {
+                                      returnToPhoneEntryScreen();
+                                    } else if (processor.cannotSubmitVerificationAttempt()) {
+                                      returnToPhoneEntryScreen();
+                                    } else if (!processor.canSubmitProofImmediately()) {
+                                      handleRateLimited();
+                                    }
+                                    // else session state is valid and server is ready to accept code
+                                  });
+
+    disposables.add(request);
+
+    viewModel.getCanCallAtTime().observe(getViewLifecycleOwner(), callAtTime -> {
+      if (callAtTime > 0) {
+        callMeCountDown.setVisibility(View.VISIBLE);
+        callMeCountDown.startCountDownTo(callAtTime);
+      } else {
+        callMeCountDown.setVisibility(View.INVISIBLE);
+      }
+    });
+    viewModel.getCanSmsAtTime().observe(getViewLifecycleOwner(), smsAtTime -> {
+      if (smsAtTime > 0) {
+        resendSmsCountDown.setVisibility(View.VISIBLE);
+        resendSmsCountDown.startCountDownTo(smsAtTime);
+      } else {
+        resendSmsCountDown.setVisibility(View.INVISIBLE);
+      }
+    });
+  }
+
+  private void openTroubleshootingSteps() {
+    CommunicationActions.openBrowserLink(requireContext(), getString(R.string.support_center_url));
   }
 
   private void sendEmailToSupport() {
@@ -347,6 +429,6 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
 
   @Override
   public void onCellSignalPresent() {
- // TODO animate away bottom sheet
+    // TODO animate away bottom sheet
   }
 }

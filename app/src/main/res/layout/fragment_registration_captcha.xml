@@ -8,6 +8,7 @@
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/signal_colorSurface"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
@@ -21,6 +22,7 @@
             android:layout_marginEnd="24dp"
             android:gravity="center"
             android:text="@string/RegistrationActivity_we_need_to_verify_that_youre_human"
+            android:textColor="@color/signal_colorOnSurface"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

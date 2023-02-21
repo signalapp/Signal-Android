@@ -59,21 +59,26 @@ import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
+import org.whispersystems.signalservice.api.push.exceptions.AlreadyVerifiedException;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.CaptchaRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ConflictException;
 import org.whispersystems.signalservice.api.push.exceptions.ContactManifestMismatchException;
 import org.whispersystems.signalservice.api.push.exceptions.DeprecatedVersionException;
 import org.whispersystems.signalservice.api.push.exceptions.ExpectationFailedException;
-import org.whispersystems.signalservice.api.push.exceptions.ImpossiblePhoneNumberException;
+import org.whispersystems.signalservice.api.push.exceptions.ExternalServiceFailureException;
+import org.whispersystems.signalservice.api.push.exceptions.HttpConflictException;
+import org.whispersystems.signalservice.api.push.exceptions.InvalidTransportModeException;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
+import org.whispersystems.signalservice.api.push.exceptions.MustRequestNewCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
-import org.whispersystems.signalservice.api.push.exceptions.NonNormalizedPhoneNumberException;
+import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResumableUploadResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
+import org.whispersystems.signalservice.api.push.exceptions.PushChallengeRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.RangeException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
@@ -161,6 +166,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
@@ -191,15 +197,12 @@ public class PushServiceSocket {
 
   private static final String TAG = PushServiceSocket.class.getSimpleName();
 
-  private static final String CREATE_ACCOUNT_SMS_PATH    = "/v1/accounts/sms/code/%s?client=%s";
-  private static final String CREATE_ACCOUNT_VOICE_PATH  = "/v1/accounts/voice/code/%s";
   private static final String VERIFY_ACCOUNT_CODE_PATH   = "/v1/accounts/code/%s";
   private static final String REGISTER_GCM_PATH          = "/v1/accounts/gcm/";
   private static final String TURN_SERVER_INFO           = "/v1/accounts/turn";
   private static final String SET_ACCOUNT_ATTRIBUTES     = "/v1/accounts/attributes/";
   private static final String PIN_PATH                   = "/v1/accounts/pin/";
   private static final String REGISTRATION_LOCK_PATH     = "/v1/accounts/registration_lock";
-  private static final String REQUEST_PUSH_CHALLENGE     = "/v1/accounts/fcm/preauth/%s/%s";
   private static final String WHO_AM_I                   = "/v1/accounts/whoami";
   private static final String GET_USERNAME_PATH          = "/v1/accounts/username_hash/%s";
   private static final String MODIFY_USERNAME_PATH       = "/v1/accounts/username_hash";
@@ -235,6 +238,7 @@ public class PushServiceSocket {
   private static final String SENDER_CERTIFICATE_NO_E164_PATH = "/v1/certificate/delivery?includeE164=false";
 
   private static final String KBS_AUTH_PATH                  = "/v1/backup/auth";
+  private static final String KBS_AUTH_CHECK_PATH            = "/v1/backup/auth/check";
 
   private static final String ATTACHMENT_KEY_DOWNLOAD_PATH   = "attachments/%s";
   private static final String ATTACHMENT_ID_DOWNLOAD_PATH    = "attachments/%d";
@@ -272,6 +276,11 @@ public class PushServiceSocket {
   private static final String CONFIRM_PAYPAL_ONE_TIME_PAYMENT_INTENT     = "/v1/subscription/boost/paypal/confirm";
   private static final String BOOST_RECEIPT_CREDENTIALS                  = "/v1/subscription/boost/receipt_credentials";
   private static final String DONATIONS_CONFIGURATION                    = "/v1/subscription/configuration";
+
+  private static final String VERIFICATION_SESSION_PATH = "/v1/verification/session";
+  private static final String VERIFICATION_CODE_PATH    = "/v1/verification/session/%s/code";
+
+  private static final String REGISTRATION_PATH    = "/v1/registration";
 
   private static final String CDSI_AUTH = "/v2/directory/auth";
 
@@ -317,30 +326,79 @@ public class PushServiceSocket {
     this.clientZkProfileOperations = clientZkProfileOperations;
   }
 
-  public void requestSmsVerificationCode(Locale locale, boolean androidSmsRetriever, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
-    Map<String, String> headers = locale != null ? Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry()) : NO_HEADERS;
-    String              path    = String.format(CREATE_ACCOUNT_SMS_PATH, credentialsProvider.getE164(), androidSmsRetriever ? "android-2021-03" : "android");
-
-    if (captchaToken.isPresent()) {
-      path += "&captcha=" + captchaToken.get();
-    } else if (challenge.isPresent()) {
-      path += "&challenge=" + challenge.get();
+  public RegistrationSessionMetadataResponse createVerificationSession(@Nullable String pushToken, @Nullable String mcc, @Nullable String mnc) throws IOException {
+    final String jsonBody = JsonUtil.toJson(new VerificationSessionMetadataRequestBody(credentialsProvider.getE164(), pushToken, mcc, mnc));
+    try (Response response = makeServiceRequest(VERIFICATION_SESSION_PATH, "POST", jsonRequestBody(jsonBody), NO_HEADERS, new RegistrationSessionResponseHandler(), Optional.empty(), false)) {
+      return parseSessionMetadataResponse(response);
     }
-
-    makeServiceRequest(path, "GET", null, headers, new VerificationCodeResponseHandler(), Optional.empty());
   }
 
-  public void requestVoiceVerificationCode(Locale locale, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
-    Map<String, String> headers = locale != null ? Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry()) : NO_HEADERS;
-    String              path    = String.format(CREATE_ACCOUNT_VOICE_PATH, credentialsProvider.getE164());
+  public RegistrationSessionMetadataResponse getSessionStatus(String sessionId) throws IOException {
+    String path = VERIFICATION_SESSION_PATH + "/" + sessionId;
 
-    if (captchaToken.isPresent()) {
-      path += "?captcha=" + captchaToken.get();
-    } else if (challenge.isPresent()) {
-      path += "?challenge=" + challenge.get();
+    try (Response response = makeServiceRequest(path, "GET", jsonRequestBody(null), NO_HEADERS, new RegistrationSessionResponseHandler(), Optional.empty(), false)) {
+      return parseSessionMetadataResponse(response);
+    }
+  }
+
+  public RegistrationSessionMetadataResponse patchVerificationSession(String sessionId, @Nullable String pushToken, @Nullable String mcc, @Nullable String mnc, @Nullable String captchaToken, @Nullable String pushChallengeToken) throws IOException {
+    String path = VERIFICATION_SESSION_PATH + "/" + sessionId;
+
+    final UpdateVerificationSessionRequestBody requestBody = new UpdateVerificationSessionRequestBody(captchaToken, pushToken, pushChallengeToken, mcc, mnc);
+    try (Response response = makeServiceRequest(path, "PATCH", jsonRequestBody(JsonUtil.toJson(requestBody)), NO_HEADERS, new RegistrationSessionResponseHandler(), Optional.empty(), false)) {
+      return parseSessionMetadataResponse(response);
+    }
+  }
+
+  public RegistrationSessionMetadataResponse requestVerificationCode(String sessionId, Locale locale, boolean androidSmsRetriever, VerificationCodeTransport transport) throws IOException {
+    String path = String.format(VERIFICATION_CODE_PATH, sessionId);
+    Map<String, String> headers = locale != null ? Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry()) : NO_HEADERS;
+    Map<String, String> body    = new HashMap<>();
+
+    switch (transport) {
+      case SMS:
+        body.put("transport", "sms");
+        break;
+      case VOICE:
+        body.put("transport", "voice");
+        break;
     }
 
-    makeServiceRequest(path, "GET", null, headers, new VerificationCodeResponseHandler(), Optional.empty());
+    body.put("client", androidSmsRetriever ? "android-2021-03" : "android");
+
+    try (Response response = makeServiceRequest(path, "POST", jsonRequestBody(JsonUtil.toJson(body)), headers, new RegistrationSessionResponseHandler(), Optional.empty(), false)) {
+      return parseSessionMetadataResponse(response);
+    }
+  }
+
+  public RegistrationSessionMetadataResponse submitVerificationCode(String sessionId, String verificationCode) throws IOException {
+    String path = String.format(VERIFICATION_CODE_PATH, sessionId);
+    Map<String, String> body =  new HashMap<>();
+    body.put("code", verificationCode);
+    try (Response response = makeServiceRequest(path, "PUT", jsonRequestBody(JsonUtil.toJson(body)), NO_HEADERS, new RegistrationCodeRequestResponseHandler(), Optional.empty(), false)) {
+      return parseSessionMetadataResponse(response);
+    }
+  }
+
+  public VerifyAccountResponse submitRegistrationRequest(@Nullable String sessionId, @Nullable String recoveryPassword, AccountAttributes attributes, boolean skipDeviceTransfer) throws IOException {
+    String path = REGISTRATION_PATH;
+    if (sessionId == null && recoveryPassword == null) {
+      throw new IllegalArgumentException("Neither Session ID nor Recovery Password provided.");
+
+    }
+
+    if (sessionId != null && recoveryPassword != null) {
+      throw new IllegalArgumentException("You must supply one and only one of either: Session ID, or Recovery Password.");
+    }
+    RegistrationSessionRequestBody body;
+    if (sessionId != null) {
+      body = new RegistrationSessionRequestBody(sessionId, null, attributes, skipDeviceTransfer);
+    } else {
+      body = new RegistrationSessionRequestBody(null, recoveryPassword, attributes, skipDeviceTransfer);
+    }
+
+    String response = makeServiceRequest(path, "POST", JsonUtil.toJson(body), NO_HEADERS, new RegistrationSessionResponseHandler(), Optional.empty());
+    return JsonUtil.fromJson(response, VerifyAccountResponse.class);
   }
 
   public WhoAmIResponse getWhoAmI() throws IOException {
@@ -359,26 +417,6 @@ public class PushServiceSocket {
   public CdsiAuthResponse getCdsiAuth() throws IOException {
     String body = makeServiceRequest(CDSI_AUTH, "GET", null);
     return JsonUtil.fromJsonResponse(body, CdsiAuthResponse.class);
-  }
-
-  public VerifyAccountResponse verifyAccountCode(String verificationCode,
-                                                 String signalingKey,
-                                                 int registrationId,
-                                                 boolean fetchesMessages,
-                                                 String pin,
-                                                 String registrationLock,
-                                                 byte[] unidentifiedAccessKey,
-                                                 boolean unrestrictedUnidentifiedAccess,
-                                                 AccountAttributes.Capabilities capabilities,
-                                                 boolean discoverableByPhoneNumber,
-                                                 int pniRegistrationId)
-      throws IOException
-  {
-    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, registrationId, fetchesMessages, pin, registrationLock, unidentifiedAccessKey, unrestrictedUnidentifiedAccess, capabilities, discoverableByPhoneNumber, null, pniRegistrationId);
-    String            requestBody        = JsonUtil.toJson(signalingKeyEntity);
-    String            responseBody       = makeServiceRequest(String.format(VERIFY_ACCOUNT_CODE_PATH, verificationCode), "PUT", requestBody);
-
-    return JsonUtil.fromJson(responseBody, VerifyAccountResponse.class);
   }
 
   public VerifyAccountResponse changeNumber(@Nonnull ChangePhoneNumberRequest changePhoneNumberRequest)
@@ -400,7 +438,8 @@ public class PushServiceSocket {
                                    AccountAttributes.Capabilities capabilities,
                                    boolean discoverableByPhoneNumber,
                                    byte[] encryptedDeviceName,
-                                   int pniRegistrationId)
+                                   int pniRegistrationId,
+                                   String recoveryPassword)
       throws IOException
   {
     if (registrationLock != null && pin != null) {
@@ -419,7 +458,8 @@ public class PushServiceSocket {
                                                                 capabilities,
                                                                 discoverableByPhoneNumber,
                                                                 name,
-                                                                pniRegistrationId);
+                                                                pniRegistrationId,
+                                                                recoveryPassword);
 
     makeServiceRequest(SET_ACCOUNT_ATTRIBUTES, "PUT", JsonUtil.toJson(accountAttributes));
   }
@@ -427,11 +467,6 @@ public class PushServiceSocket {
   public String getNewDeviceVerificationCode() throws IOException {
     String responseText = makeServiceRequest(PROVISIONING_CODE_PATH, "GET", null);
     return JsonUtil.fromJson(responseText, DeviceCode.class).getVerificationCode();
-  }
-
-  public VerifyDeviceResponse verifySecondaryDevice(String verificationCode, AccountAttributes accountAttributes) throws IOException {
-    String responseText = makeServiceRequest(String.format(DEVICE_PATH, verificationCode), "PUT", JsonUtil.toJson(accountAttributes));
-    return JsonUtil.fromJson(responseText, VerifyDeviceResponse.class);
   }
 
   public List<DeviceInfo> getDevices() throws IOException {
@@ -457,8 +492,8 @@ public class PushServiceSocket {
     makeServiceRequest(REGISTER_GCM_PATH, "DELETE", null);
   }
 
-  public void requestPushChallenge(String gcmRegistrationId, String e164number) throws IOException {
-    makeServiceRequest(String.format(Locale.US, REQUEST_PUSH_CHALLENGE, gcmRegistrationId, e164number), "GET", null);
+  public void requestPushChallenge(String sessionId, String gcmRegistrationId) throws IOException {
+    patchVerificationSession(sessionId, gcmRegistrationId, null, null, null, null);
   }
 
   /** Note: Setting a KBS Pin will clear this */
@@ -558,7 +593,7 @@ public class PushServiceSocket {
 
   public SignalServiceMessagesResult getMessages(boolean allowStories) throws IOException {
     Map<String, String> headers = Collections.singletonMap("X-Signal-Receive-Stories", allowStories ? "true" : "false");
-    
+
     try (Response response = makeServiceRequest(String.format(MESSAGE_PATH, ""), "GET", (RequestBody) null, headers, NO_HANDLER, Optional.empty(), false)) {
       validateServiceResponse(response);
 
@@ -2214,6 +2249,8 @@ public class PushServiceSocket {
     }
   }
 
+  public enum VerificationCodeTransport { SMS, VOICE }
+
   private static class RegistrationLock {
     @JsonProperty
     private String pin;
@@ -2485,26 +2522,85 @@ public class PushServiceSocket {
     makeServiceRequest(String.format(REPORT_SPAM, serviceId.toString(), serverGuid), "POST", JsonUtil.toJson(new SpamTokenMessage(reportingToken)));
   }
 
-  private static class VerificationCodeResponseHandler implements ResponseCodeHandler {
+  private static class RegistrationSessionResponseHandler implements ResponseCodeHandler {
+
     @Override
-    public void handle(int responseCode, ResponseBody responseBody) throws NonSuccessfulResponseCodeException, PushNetworkException {
+    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
       switch (responseCode) {
-        case 400:
+        case 404:
+          throw new NoSuchSessionException();
+        case 409:
+          RegistrationSessionMetadataJson response;
           try {
-            String body = responseBody != null ? readBodyString(responseBody) : "";
-            if (body.isEmpty()) {
-              throw new ImpossiblePhoneNumberException();
-            } else {
-              throw NonNormalizedPhoneNumberException.forResponse(body);
-            }
-          } catch (MalformedResponseException e) {
-            Log.w(TAG, "Unable to parse 400 response! Assuming a generic 400.");
-            throw new ImpossiblePhoneNumberException();
+            response = JsonUtil.fromJson(body.string(), RegistrationSessionMetadataJson.class);
+          } catch (IOException e) {
+            Log.e(TAG, "Unable to read response body.", e);
+            throw new NonSuccessfulResponseCodeException(409);
           }
-        case 402:
-          throw new CaptchaRequiredException();
+          if (response.pushChallengedRequired()) {
+            throw new PushChallengeRequiredException();
+          } else if (response.captchaRequired()) {
+            throw new CaptchaRequiredException();
+          } else {
+            throw new HttpConflictException();
+          }
       }
     }
+  }
+
+  private static class RegistrationCodeRequestResponseHandler implements ResponseCodeHandler {
+    @Override public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+      switch (responseCode) {
+        case 400:
+          throw new InvalidTransportModeException();
+        case 404:
+          throw new NoSuchSessionException();
+        case 409:
+          RegistrationSessionMetadataJson sessionMetadata;
+          try {
+            sessionMetadata = JsonUtil.fromJson(body.string(), RegistrationSessionMetadataJson.class);
+          } catch (IOException e) {
+            Log.e(TAG, "Unable to read response body.", e);
+            throw new NonSuccessfulResponseCodeException(409);
+          }
+          if (sessionMetadata.getVerified()) {
+            throw new AlreadyVerifiedException();
+          } else if (sessionMetadata.getNextVerificationAttempt() == null) {
+            // Note: this explicitly requires Verified to be false
+            throw new MustRequestNewCodeException();
+          } else {
+            throw new HttpConflictException();
+          }
+        case 502:
+          VerificationCodeFailureResponseBody codeFailureResponse;
+          try {
+            codeFailureResponse = JsonUtil.fromJson(body.string(), VerificationCodeFailureResponseBody.class);
+          } catch (IOException e) {
+            Log.e(TAG, "Unable to read response body.", e);
+            throw new NonSuccessfulResponseCodeException(502);
+          }
+
+          throw new ExternalServiceFailureException(codeFailureResponse.getPermanentFailure(), codeFailureResponse.getReason());
+      }
+    }
+  }
+
+
+  private static RegistrationSessionMetadataResponse parseSessionMetadataResponse(Response response) throws IOException {
+    long serverDeliveredTimestamp = 0;
+    try {
+      String stringValue = response.header(SERVER_DELIVERED_TIMESTAMP_HEADER);
+      stringValue = stringValue != null ? stringValue : "0";
+
+      serverDeliveredTimestamp = Long.parseLong(stringValue);
+    } catch (NumberFormatException e) {
+      Log.w(TAG, e);
+    }
+
+    RegistrationSessionMetadataHeaders responseHeaders = new RegistrationSessionMetadataHeaders(serverDeliveredTimestamp);
+    RegistrationSessionMetadataJson responseBody = JsonUtil.fromJson(readBodyString(response), RegistrationSessionMetadataJson.class);
+
+    return new RegistrationSessionMetadataResponse(responseHeaders, responseBody);
   }
 
   public static final class GroupHistory {

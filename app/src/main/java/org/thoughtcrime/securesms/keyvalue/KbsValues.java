@@ -149,6 +149,15 @@ public final class KbsValues extends SignalStoreValues {
     }
   }
 
+  public synchronized @Nullable String getRegistrationRecoveryPassword() {
+    MasterKey masterKey = getPinBackedMasterKey();
+    if (masterKey == null) {
+      return null;
+    } else {
+      return masterKey.deriveRegistrationRecoveryPassword();
+    }
+  }
+
   public synchronized @Nullable String getPin() {
     return getString(PIN, null);
   }

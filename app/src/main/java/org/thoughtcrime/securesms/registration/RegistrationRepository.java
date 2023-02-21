@@ -209,4 +209,9 @@ public final class RegistrationRepository {
 
     return null;
   }
+
+  @Nullable
+  public String getRecoveryPassword() {
+    return SignalStore.kbsValues().getRegistrationRecoveryPassword();
+  }
 }

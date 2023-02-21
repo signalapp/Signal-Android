@@ -83,14 +83,15 @@ public class RefreshAttributesJob extends BaseJob {
       return;
     }
 
-    int       registrationId              = SignalStore.account().getRegistrationId();
-    boolean   fetchesMessages             = !SignalStore.account().isFcmEnabled() || SignalStore.internalValues().isWebsocketModeForced();
-    byte[]    unidentifiedAccessKey       = UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getSelfProfileKey());
-    boolean   universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
-    String    registrationLockV1          = null;
-    String    registrationLockV2          = null;
-    KbsValues kbsValues                   = SignalStore.kbsValues();
-    int       pniRegistrationId           = new RegistrationRepository(ApplicationDependencies.getApplication()).getPniRegistrationId();
+    int       registrationId               = SignalStore.account().getRegistrationId();
+    boolean   fetchesMessages              = !SignalStore.account().isFcmEnabled() || SignalStore.internalValues().isWebsocketModeForced();
+    byte[]    unidentifiedAccessKey        = UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getSelfProfileKey());
+    boolean   universalUnidentifiedAccess  = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
+    String    registrationLockV1           = null;
+    String    registrationLockV2           = null;
+    KbsValues kbsValues                    = SignalStore.kbsValues();
+    int       pniRegistrationId            = new RegistrationRepository(ApplicationDependencies.getApplication()).getPniRegistrationId();
+    String    registrationRecoveryPassword = kbsValues.getRegistrationRecoveryPassword();
 
     if (kbsValues.isV2RegistrationLockEnabled()) {
       registrationLockV2 = kbsValues.getRegistrationLockToken();
@@ -121,7 +122,8 @@ public class RefreshAttributesJob extends BaseJob {
                                               capabilities,
                                               phoneNumberDiscoverable,
                                               encryptedDeviceName,
-                                              pniRegistrationId);
+                                              pniRegistrationId,
+                                              registrationRecoveryPassword);
 
     hasRefreshedThisAppCycle = true;
   }

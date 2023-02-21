@@ -17,8 +17,7 @@ object KbsAuthTokens : AndroidBackupItem {
   }
 
   override fun getDataForBackup(): ByteArray {
-    val registrationRecoveryTokenList = SignalStore.kbsValues().kbsAuthTokenList
-    val proto = KbsAuthToken(tokens = registrationRecoveryTokenList)
+    val proto = KbsAuthToken(tokens = SignalStore.kbsValues().kbsAuthTokenList)
     return proto.encode()
   }
 

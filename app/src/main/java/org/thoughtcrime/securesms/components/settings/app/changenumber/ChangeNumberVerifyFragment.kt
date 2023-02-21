@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNum
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.getViewModel
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private val TAG: String = Log.tag(ChangeNumberVerifyFragment::class.java)
@@ -48,16 +49,14 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
   }
 
   private fun requestCode() {
+    val mccMncProducer = MccMncProducer(requireContext())
     lifecycleDisposable += viewModel
       .ensureDecryptionsDrained()
       .onErrorComplete()
-      .andThen(viewModel.requestVerificationCode(VerifyAccountRepository.Mode.SMS_WITHOUT_LISTENER))
+      .andThen(viewModel.requestVerificationCode(VerifyAccountRepository.Mode.SMS_WITHOUT_LISTENER, mccMncProducer.mcc, mccMncProducer.mnc))
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { processor ->
         if (processor.hasResult()) {
-          findNavController().safeNavigate(R.id.action_changePhoneNumberVerifyFragment_to_changeNumberEnterCodeFragment)
-        } else if (processor.localRateLimit()) {
-          Log.i(TAG, "Unable to request sms code due to local rate limit")
           findNavController().safeNavigate(R.id.action_changePhoneNumberVerifyFragment_to_changeNumberEnterCodeFragment)
         } else if (processor.captchaRequired()) {
           Log.i(TAG, "Unable to request sms code due to captcha required")

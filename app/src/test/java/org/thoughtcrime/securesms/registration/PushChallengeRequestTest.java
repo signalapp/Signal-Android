@@ -34,7 +34,7 @@ public final class PushChallengeRequestTest {
   public void getPushChallengeBlocking_returns_absent_if_times_out() {
     SignalServiceAccountManager signal = mock(SignalServiceAccountManager.class);
 
-    Optional<String> challenge = PushChallengeRequest.getPushChallengeBlocking(signal, Optional.of("token"), "+123456", 50L);
+    Optional<String> challenge = PushChallengeRequest.getPushChallengeBlocking(signal, "session ID", Optional.of("token"), 50L);
 
     assertFalse(challenge.isPresent());
   }
@@ -44,7 +44,7 @@ public final class PushChallengeRequestTest {
     SignalServiceAccountManager signal = mock(SignalServiceAccountManager.class);
 
     long startTime = System.currentTimeMillis();
-    PushChallengeRequest.getPushChallengeBlocking(signal, Optional.of("token"), "+123456", 250L);
+    PushChallengeRequest.getPushChallengeBlocking(signal, "session ID", Optional.of("token"), 250L);
     long duration = System.currentTimeMillis() - startTime;
 
     assertThat(duration, greaterThanOrEqualTo(250L));
@@ -56,14 +56,14 @@ public final class PushChallengeRequestTest {
     doAnswer(invocation -> {
       AsyncTask.execute(() -> PushChallengeRequest.postChallengeResponse("CHALLENGE"));
       return null;
-    }).when(signal).requestRegistrationPushChallenge("token", "+123456");
+    }).when(signal).requestRegistrationPushChallenge("session ID", "token");
 
     long startTime = System.currentTimeMillis();
-    Optional<String> challenge = PushChallengeRequest.getPushChallengeBlocking(signal, Optional.of("token"), "+123456", 500L);
+    Optional<String> challenge = PushChallengeRequest.getPushChallengeBlocking(signal, "session ID", Optional.of("token"), 500L);
     long duration = System.currentTimeMillis() - startTime;
 
     assertThat(duration, lessThan(500L));
-    verify(signal).requestRegistrationPushChallenge("token", "+123456");
+    verify(signal).requestRegistrationPushChallenge("session ID", "token");
     verifyNoMoreInteractions(signal);
 
     assertTrue(challenge.isPresent());
@@ -75,7 +75,7 @@ public final class PushChallengeRequestTest {
     SignalServiceAccountManager signal = mock(SignalServiceAccountManager.class);
 
     long startTime = System.currentTimeMillis();
-    PushChallengeRequest.getPushChallengeBlocking(signal, Optional.empty(), "+123456", 500L);
+    PushChallengeRequest.getPushChallengeBlocking(signal, "session ID", Optional.empty(), 500L);
     long duration = System.currentTimeMillis() - startTime;
 
     assertThat(duration, lessThan(500L));
@@ -85,7 +85,7 @@ public final class PushChallengeRequestTest {
   public void getPushChallengeBlocking_returns_absent_if_no_fcm_token_supplied() {
     SignalServiceAccountManager signal = mock(SignalServiceAccountManager.class);
 
-    Optional<String> challenge = PushChallengeRequest.getPushChallengeBlocking(signal, Optional.empty(), "+123456", 500L);
+    Optional<String> challenge = PushChallengeRequest.getPushChallengeBlocking(signal, "session ID", Optional.empty(), 500L);
 
     verifyNoInteractions(signal);
     assertFalse(challenge.isPresent());
@@ -97,7 +97,7 @@ public final class PushChallengeRequestTest {
 
     doThrow(new IOException()).when(signal).requestRegistrationPushChallenge(any(), any());
 
-    Optional<String> challenge = PushChallengeRequest.getPushChallengeBlocking(signal, Optional.of("token"), "+123456", 500L);
+    Optional<String> challenge = PushChallengeRequest.getPushChallengeBlocking(signal, "session ID", Optional.of("token"), 500L);
 
     assertFalse(challenge.isPresent());
   }
