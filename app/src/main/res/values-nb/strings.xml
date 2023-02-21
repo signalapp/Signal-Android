@@ -99,9 +99,9 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blokkerte brukere</string>
     <string name="BlockedUsersActivity__add_blocked_user">Legg til blokkert bruker</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Blokkerte brukere kan ikke ringe eller sende deg meldinger.</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Blokkerte brukere kan ikke ringe til deg eller sende deg meldinger.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Ingen blokkerte brukere</string>
-    <string name="BlockedUsersActivity__block_user">Blokker bruker?</string>
+    <string name="BlockedUsersActivity__block_user">Vil du blokkere brukeren?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" vil ikke kunne ringe deg eller sende deg meldinger.</string>
     <string name="BlockedUsersActivity__block">Blokker</string>
 
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">Fortsett</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Blokker og forlat %1$s?</string>
-    <string name="BlockUnblockDialog_block_s">Blokker %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Vil du blokkere og forlate %1$s?</string>
+    <string name="BlockUnblockDialog_block_s">Vil du blokkere %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du vil ikke lenger motta meldinger eller oppdateringer fra denne gruppen, og medlemmene vil ikke kunne legge deg til denne gruppen igjen.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppens medlemmer vil ikke kunne legge deg til denne gruppen igjen.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppemedlemmer kan legge deg til denne gruppen igjen.</string>
@@ -148,13 +148,13 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Du vil være i stand til å sende meldinger og ringe hverandre og navn og bilde ditt vil bli delt med dem.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Dette fører til at dere kan sende meldinger til hverandre.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokkerte personer vil ikke kunne ringe deg eller sende deg meldinger.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokkerte personer vil ikke kunne ringe til deg eller sende deg meldinger.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Blokkerte personer vil ikke kunne sende deg meldinger.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokker nyheter og oppdateringer fra Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Få nyheter og oppdateringer fra Signal.</string>
-    <string name="BlockUnblockDialog_unblock_s">avblokker %1$s?</string>
+    <string name="BlockUnblockDialog_unblock_s">Vil du fjerne blokkeringen av %1$s?</string>
     <string name="BlockUnblockDialog_block">Blokker</string>
     <string name="BlockUnblockDialog_block_and_leave">Blokker og forlat</string>
     <string name="BlockUnblockDialog_report_spam_and_block">Rapporter søppelpost og blokkér.</string>
@@ -448,7 +448,7 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$s på</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">Blokkere forespørselen?</string>
+    <string name="ConversationFragment__block_request">Vil du blokkere forespørselen?</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s kan ikke bli med i eller be om å bli med i denne gruppen via gruppelenken. De kan fremdeles legges til i gruppen manuelt.</string>
     <!-- Dialog confirm block request button -->
@@ -497,12 +497,12 @@
         <item quantity="other">Løsne</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Lydløs</item>
-        <item quantity="other">Lydløs</item>
+        <item quantity="one">Dempet samtale</item>
+        <item quantity="other">Dempede samtaler</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Slå på lyd</item>
-        <item quantity="other">Slå på lyd</item>
+        <item quantity="one">Samtale med lyd slått på</item>
+        <item quantity="other">Samtaler med lyd slått på</item>
     </plurals>
     <string name="ConversationListFragment_select">Velg</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -936,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Varsle meg om omtaler</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Motta varsler når du blir nevnt i mutede samtaler?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vil du motta varsler når du blir nevnt i dempede samtaler?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Varsle meg alltid</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Ikke varsle meg</string>
 
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Brukernavnet er kopiert</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Kunne ikke slette brukernavnet. Prøv igjen senere.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Brukernavnet er slettet</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1474,13 +1474,13 @@
     <string name="MessageRequestBottomView_continue">Fortsett</string>
     <string name="MessageRequestBottomView_delete">Slett</string>
     <string name="MessageRequestBottomView_block">Blokker</string>
-    <string name="MessageRequestBottomView_unblock">Skru av blokkering</string>
+    <string name="MessageRequestBottomView_unblock">Fjern blokkering</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">La %1$s sende meldinger til deg, samt dele navn og bilde med dem? De vil ikke vite at du har sett meldingen deres før du godtar.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">La %1$s sende meldinger til deg, samt dele navn og bilde med dem? Du vil ikke motta noen meldinger fra dem før du fjerner blokkeringen av dem.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Vil du at %1$s skal kunne sende deg meldinger, og vil du dele navn og bilde med vedkommende? Du mottar ikke noen meldinger før du fjerner blokkeringen av personen.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Vil du at %1$s kan sende deg meldinger? Du mottar ikke noen meldinger før du fjerner blokkeringen.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Vil du at %1$s kan sende deg oppdateringer og nyheter? Du mottar ikke noen oppdateringer før du fjerner blokkeringen.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Vil du at %1$s skal kunne sende deg meldinger? Du mottar ikke noen meldinger før du fjerner blokkeringen av personen.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Ønsker du å motta oppdateringer og nyheter fra %1$s? Du mottar ikke noen oppdateringer før du fjerner blokkeringen av personen.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Fortsett denne samtalen med denne gruppen og del ditt navn og bilde med gruppens medlemmer?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Oppgrader denne gruppen for å aktivere nye funksjoner som @-omtaler og gruppeadministratorer. Medlemmer som ikke har delt navn eller bilde i gruppen vil bli invitert inn.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Denne Legacy gruppen kan ikke lenger benyttes fordi den er for stor. Maksimal gruppestørrelse er %1$d.</string>
@@ -1488,7 +1488,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bli medlem i denne gruppen samt dele navn og bilde med medlemmene? De vil ikke vite at du har sett meldingene før du godtar.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Vil du bli medlem av denne gruppen og dele navnet og bildet ditt med den? Du ser ikke gruppemeldingene før du godtar invitasjonen.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bli med i denne gruppen? De vil ikke se om du har sett meldingene deres før du godtar.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjerne blokkering av denne gruppen samt dele navn og bilde med medlemmene? Du vil ikke motta noen meldinger før du fjerner blokkeringen av den.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Vil du fjerne blokkering av denne gruppen samt dele navn og bilde med medlemmene? Du mottar ikke noen meldinger før du fjerner blokkeringen av gruppen.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Vis</string>
     <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
@@ -1591,7 +1591,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Advarsel</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN-koden vil du miste all data når du gjennomfører Signal-registrering på nytt, med mindre du manuelt tar en sikkerhetskopi og gjenoppretter innholdet. Du kan ikke skru på registreringslås mens PIN-koden er deaktivert.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN-koden mister du alle data når du gjennomfører Signal-registreringen på nytt, med mindre du manuelt tar en sikkerhetskopi og gjenoppretter innholdet. Du kan ikke slå på registreringslåsen mens PIN-koden er deaktivert.</string>
     <string name="PinOptOutDialog_disable_pin">Deaktiver PIN-kode</string>
 
     <!-- RatingManager -->
@@ -1718,7 +1718,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Slå lyd på</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Demping</string>
+    <string name="WebRtcCallView__mute">Demp</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Ring</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1736,7 +1736,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Du vil ikke motta deres lyd eller bilde og de vil ikke motta tilsvarende fra deg.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan ikke motta lyd &amp; video fra %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan ikke motta lyd og video fra %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan være fordi de ikke har verifisert ditt endrede sikkerhetsnummer, fordi det er et problem med enheten deres eller de har blokkert deg.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan være fordi vedkommende ikke har verifisert det endrede sikkerhetsnummeret ditt, det er et problem med personens enhet eller hen har blokkert deg.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Sveip for å se skjermdelingen</string>
@@ -1964,7 +1964,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Planlagt melding</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Meldingsloggene har blitt slått sammen</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s tilhører %2$s</string>
 
@@ -2684,9 +2684,9 @@
     <string name="preferences__pref_use_address_book_photos">Benytt adressebokbilder</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis adressebokbilder hvis tilgjengelig</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Hold lydløse samtaler arkivert</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Hold dempede samtaler arkivert</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Samtaler som er satt på lydløs og arkiverte vil forbli arkiverte selv når du får en ny melding.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Dempede samtaler som er arkiverte vil forbli arkiverte selv når du får en ny melding.</string>
     <string name="preferences__generate_link_previews">Forhåndsvis nettsteder</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent forhåndsvisninger av lenker direkte fra nettsteder for meldinger du sender.</string>
     <string name="preferences__change_passphrase">Endre passordfrase</string>
@@ -3065,7 +3065,7 @@
 
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">Ny melding til…</string>
-    <string name="contact_selection_list__unknown_contact_block">Blokker bruker</string>
+    <string name="contact_selection_list__unknown_contact_block">Blokker brukeren</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Legg til gruppen</string>
 
     <!-- conversation_callable_insecure -->
@@ -3137,10 +3137,10 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Slå lyd på</string>
+    <string name="conversation_muted__unmute">Vis</string>
 
     <!-- conversation_unmuted -->
-    <string name="conversation_unmuted__mute_notifications">Skru av varsler</string>
+    <string name="conversation_unmuted__mute_notifications">Ikke vis varsler</string>
 
     <!-- conversation -->
     <string name="conversation__menu_group_settings">Gruppeinstillinger</string>
@@ -3572,7 +3572,7 @@
 
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">Blokker</string>
-    <string name="RecipientBottomSheet_unblock">Skru av blokkering</string>
+    <string name="RecipientBottomSheet_unblock">Fjern blokkering</string>
     <string name="RecipientBottomSheet_add_to_contacts">Legg til i kontakter</string>
     <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
     <string name="RecipientBottomSheet_unable_to_open_contacts">Finner ingen apper som kontaktene kan åpnes i.</string>
@@ -3624,9 +3624,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" har blitt blokkert.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Klarte ikke blokkere \"%1$s\"</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" har blitt avblokkert.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">«%1$s» har blitt blokkert.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Kunne ikke blokkere «%1$s»</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">Blokkeringen av «%1$s» er fjernet.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Gå gjennom medlemmer</string>
@@ -4017,7 +4017,7 @@
     <string name="PrivacySettingsFragment__messaging">Meldinger</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Tidsavgrensede meldinger</string>
     <string name="PrivacySettingsFragment__app_security">App-sikkerhet</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokker skjermbilder i sist brukte-liste og i programmet</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokker skjermbilder i sist brukte-listen og inne i appen</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-meldinger og samtaler, omdiriger alle samtaler, og forseglet avsender</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standard nedtelling for nye samtaler</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Sett standard utløpstid for tidsavgrensede meldinger, for nye samtaler startet av deg.</string>
@@ -4174,9 +4174,9 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Ring</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Demping</string>
+    <string name="ConversationSettingsFragment__mute">Ikke vis</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">Dempet</string>
+    <string name="ConversationSettingsFragment__muted">Vis</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Søk</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Tidsavgrensede meldinger</string>
@@ -4186,7 +4186,7 @@
     <string name="ConversationSettingsFragment__view_safety_number">Vis sikkerhetsnummer</string>
     <string name="ConversationSettingsFragment__block">Blokker</string>
     <string name="ConversationSettingsFragment__block_group">Blokker gruppen</string>
-    <string name="ConversationSettingsFragment__unblock">Skru av blokkering</string>
+    <string name="ConversationSettingsFragment__unblock">Fjern blokkering</string>
     <string name="ConversationSettingsFragment__unblock_group">Fjern blokkering av gruppen</string>
     <string name="ConversationSettingsFragment__add_to_a_group">Legg til gruppen</string>
     <string name="ConversationSettingsFragment__see_all">Se alle</string>
@@ -4196,8 +4196,8 @@
     <string name="ConversationSettingsFragment__group_link">Gruppelenke</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Legg til som ny kontakt</string>
     <string name="ConversationSettingsFragment__unmute">Slå lyd på</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Samtalen er satt på lydløs frem til %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Samtalen er satt på lydløs for alltid</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Samtalen er dempet frem til %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Samtalen er dempet for alltid</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonnummeret er kopiert til utklippstavlen.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
     <string name="ConversationSettingsFragment__get_badges">Få merker på profilen din ved å støtte Signal. Trykk på et merke for å lese mer.</string>
@@ -4213,8 +4213,8 @@
     <string name="PermissionsSettingsFragment__who_can_send_messages">Hvem kan sende meldinger?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
-    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Skru av varslinger</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ikke i stillemodus</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Ikke vis varsler</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Vises</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Omtaler</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Send alltid varsel</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ikke send varsel</string>
@@ -5612,13 +5612,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">t</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">M</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">min</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
-    <string name="TimeDurationPickerDialog_positive_button">Sett</string>
+    <string name="TimeDurationPickerDialog_positive_button">Angi</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimumstiden før skjermen låses er 1 minutt.</string>
 
     <!-- EOF -->
 </resources>

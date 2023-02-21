@@ -148,7 +148,7 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Julle sal in staat wees om boodskappe en oproepe uit te ruil, en jou naam en foto sal met hulle gedeel word.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Julle sal boodskappe vir mekaar kan stuur.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Versperde mense kan nie bel of vir jou boodskappe stuur nie.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Versperde mense kan jou nie bel of vir jou boodskappe stuur nie.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Versperde mense sal nie vir jou boodskappe kan stuur nie.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Versper ontvangs van Signal-bywerkings en -nuus.</string>
@@ -497,11 +497,11 @@
         <item quantity="other">Verwyder speld</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Skakel klank af</item>
+        <item quantity="one">Demp</item>
         <item quantity="other">Demp</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Skakel klank aan</item>
+        <item quantity="one">Ontdemp</item>
         <item quantity="other">Ontdemp</item>
     </plurals>
     <string name="ConversationListFragment_select">Kies</string>
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Gebruikersnaam gekopieer</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Kon nie gebruikersnaam skrap nie. Probeer later weer.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Gebruikersnaam geskrap</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1736,7 +1736,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Julle sal nie mekaar se oudio of video ontvang nie.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan nie oudio &amp; video van %1$s ontvang nie</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan nie oudio en video van %1$s ontvang nie</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dit kan wees omdat hulle die verandering in jou veiligheidsnommer nog nie geverifieer het nie, hulle toestel gee probleme, of hulle het jou versper.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dit kan wees omdat hulle die verandering in jou veiligheidsnommer nog nie geverifieer het nie, of hulle toestel gee probleme, of hulle het jou versper.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Vee om skermdeling te bekyk</string>
@@ -1964,7 +1964,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Geskeduleerde boodskap</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Jou boodskapgeskiedenis is saamgevoeg</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s behoort aan %2$s</string>
 
@@ -2684,9 +2684,9 @@
     <string name="preferences__pref_use_address_book_photos">Gebruik adresboekfoto\'s</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vertoon foto\'s van jou adresboek indien beskikbaar</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Hou gedempte kletse geargiveer</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Gedempte kletse wat geargiveer is, sal geargiveer bly wanneer \'n nuwe boodskap aankom.</string>
     <string name="preferences__generate_link_previews">Genereer skakelvoorskoue</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Haal skakelvoorskoue direk van die webwerwe af vir boodskappe wat jy stuur.</string>
     <string name="preferences__change_passphrase">Verander wagwoordfrase</string>
@@ -3624,7 +3624,7 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">“%1$s” is versper</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">“%1$s” is versper.</string>
     <string name="BlockedUsersActivity__failed_to_block_s">Kon nie “%1$s” versper nie</string>
     <string name="BlockedUsersActivity__s_has_been_unblocked">“%1$s” is ontsper.</string>
 
@@ -4017,7 +4017,7 @@
     <string name="PrivacySettingsFragment__messaging">Boodskappe</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Verdwynboodskappe</string>
     <string name="PrivacySettingsFragment__app_security">Toepassingveiligheid</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Versper skermgrepe in die onlangs-lys en in die toepassing</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Versper skermgrepe in die onlangs-lys en binne-in die toepassing</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-boodskappe en oproepe, herlei oproepe altyd, en verseëlde afsender</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Verstek-tydhouer vir nuwe kletse</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel ’n verstek-verdwynboodskap-tydhouer in vir alle kletse wat jy begin.</string>
@@ -5614,11 +5614,11 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">M</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Stel</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum tyd voordat skermslot in werking tree, is 1 minuut.</string>
 
     <!-- EOF -->
 </resources>

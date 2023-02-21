@@ -99,9 +99,9 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">کاربران مسدود شده</string>
     <string name="BlockedUsersActivity__add_blocked_user">افزودن کاربر مسدود شده</string>
-    <string name="BlockedUsersActivity__blocked_users_will">کاربری که مسدود شده است، امکان برقراری تماس یا ارسال پیام به شما را ندارد.</string>
-    <string name="BlockedUsersActivity__no_blocked_users">هیچ کاربر مسدود شده‌ای وجود ندارد</string>
-    <string name="BlockedUsersActivity__block_user">مسدود کردن کاربر؟</string>
+    <string name="BlockedUsersActivity__blocked_users_will">کاربران مسدودشده امکان برقراری تماس یا ارسال پیام به شما را نخواهند داشت.</string>
+    <string name="BlockedUsersActivity__no_blocked_users">هیچ کاربر مسدودشده‌ای وجود ندارد</string>
+    <string name="BlockedUsersActivity__block_user">کاربر مسدود شود؟</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">«%1$s» امکان برقراری تماس یا ارسال پیام به شما را نخواهد داشت.</string>
     <string name="BlockedUsersActivity__block">مسدود کردن</string>
 
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">ادامه</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">مسدود کردن و ترک گروه %1$s؟</string>
-    <string name="BlockUnblockDialog_block_s">مسدود کردن %1$s؟</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">گروه %1$s را مسدود و آن را ترک می‌کنید؟</string>
+    <string name="BlockUnblockDialog_block_s">%1$s مسدود شود؟</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">شما دیگر از این گروه پیام و به‌روزرسانی دریافت نخواهید کرد و اعضا قادر نخواهند بود دوباره شما را به این گروه اضافه کنند.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">اعضای گروه قادر نخواهند بود دوباره شما را به این گروه اضافه کنند.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">اعضای گروه می‌توانند دوباره شما را به این گروه اضافه کنند.</string>
@@ -148,16 +148,16 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">شما می‌توانید به دیگران پیام دهید و با آن‌ها تماس بگیرید و نام و عکس شما با آن‌ها به اشتراک گذاشته خواهد شد.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">شما قادر خواهید بود به یکدیگر پیام دهید.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">افراد مسدود شده قادر به برقراری تماس با شما یا ارسال پیام به شما نخواهند بود.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">افراد مسدود شده قادر به ارسال پیام به شما نخواهند بود.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">افراد مسدودشده قادر به برقراری تماس با شما یا ارسال پیام به شما نخواهند بود.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">افراد مسدودشده قادر به ارسال پیام به شما نخواهند بود.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">دریافت به‌روزرسانی‌ها و اخبار سیگنال را مسدود کنید.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">دریافت به‌روزرسانی‌ها و اخبار سیگنال را از سر بگیرید.</string>
-    <string name="BlockUnblockDialog_unblock_s">رفع مسدودیت %1$s؟</string>
+    <string name="BlockUnblockDialog_unblock_s">%1$s رفع مسدودیت شود؟</string>
     <string name="BlockUnblockDialog_block">مسدود کردن</string>
-    <string name="BlockUnblockDialog_block_and_leave">مسدود کردن و ترک گروه</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">گزارش اسپم و مسدود کردن</string>
+    <string name="BlockUnblockDialog_block_and_leave">مسدود کردن و ترک</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">گزارش هرزنامه و مسدود کردن</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">امروز</string>
@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">خطا در ارسال رسانه</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">اسپم گزارش داده و مسدود شد.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">به‌عنوان هرزنامه گزارش و مسدود شد.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">در حال حاضر ارسال پیامک غیرفعال است. می‌توانید پیام‌های خود را به برنامه دیگری در تلفنتان صادر کنید.</string>
@@ -448,7 +448,7 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$s روشن</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">مسدود کردن درخواست؟</string>
+    <string name="ConversationFragment__block_request">درخواست پیوستن مسدود شود؟</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s قادر نخواهد بود به این گروه بپیوندد یا از طریق پیوند گروه درخواست پیوستن به این گروه را بدهد. آن‌ها هنوز می‌توانند به صورت دستی به گروه اضافه شوند.</string>
     <!-- Dialog confirm block request button -->
@@ -456,7 +456,7 @@
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">لغو</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">مسدود شده</string>
+    <string name="ConversationFragment__blocked">مسدود شد</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">برداشتن فیلتر</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -936,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">برای اشاره‌ها من را آگاه کن</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">دریافت اعلان وقتی به شما در گفتگو‌ها با اعلان‌های بسته شده اشاره می‌شود؟</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">می‌خواهید وقتی در گفتگوهای بی‌صداشده به شما اشاره می‌شود، اعلان دریافت کنید؟</string>
     <string name="GroupMentionSettingDialog_always_notify_me">همیشه من را آگاه کن</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">من را آگاه نکن</string>
 
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">نام کاربری کپی شد</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">پاک کردن نام کاربری انجام نشد. بعداً دوباره امتحان کنید.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">نام کاربری پاک شد</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1477,10 +1477,10 @@
     <string name="MessageRequestBottomView_unblock">رفع مسدودیت</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که نپذیرید او متوجه نمی‌شود که پیامش را خوانده‌اید.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که او را رفع مسدودیت نکنید هیچ پیامی دریافت نخواهید کرد.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">می‌خواهید به %1$s اجازه دهید به شما پیام دهد و نام و عکستان را با او به اشتراک بگذارید؟ تا وقتی او را رفع مسدودیت نکنید هیچ پیامی دریافت نخواهید کرد.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">اجازه می‌دهید %1$s به شما پیام دهد؟ تا زمانی که آنها را رفع مسدودیت نکنید، هیچ پیامی دریافت نخواهید کرد.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">دریافت به‌روزرسانی‌ها و اخبار از %1$s؟ تا مسدودیت آن‌ها را رفع نکنید هیچ به‌روزرسانی‌ای دریافت نخواهید کرد.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">می‌خواهید اجازه دهید %1$s به شما پیام دهد؟ تا وقتی او را رفع مسدودیت نکنید، هیچ پیامی دریافت نخواهید کرد.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">می‌خواهید به‌روزرسانی‌ها و تازه‌های %1$s را دریافت کنید؟ تا مسدودیت آن‌ها را رفع نکنید به‌روزرسانی دریافت نخواهید کرد.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">آیا به مکالمهٔ خود این گروه ادامه می‌دهید و نام و عکس خود را با اعضای آن به اشتراک می‌گذارید؟</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">این گروه را برای فعال کردن قابلیت‌ها‌ی جدید همانند اشاره‌ها@ و مدیران ارتقا دهید. اعضایی که که نام یا عکس خود را در این گروه به اشتراک نگذاشته‌اند برای پیوستن دعوت خواهند شد.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">این گروه قدیمی دیگر نمی‌تواند استفاده شود چون بسیار بزرگ است. حداکثر اندازهٔ گروه %1$d است.</string>
@@ -1488,7 +1488,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">آیا می‌خواهید به این گروه بپیوندید و نام و عکس خود را با اعضای آن به اشتراک بگذارید؟ تا زمانی که نپذیرید آن‌ها متوجه نمی‌شوند که پیام‌شان را خوانده‌اید.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">به این گروه می‌پیوندید و نام و عکس خود را با اعضای آن به اشتراک می‌گذارید؟ تا زمانی که نپذیرید پیام‌های آنها را نخواهید دید.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">به این گروه می‌پیوندید؟ تا زمانی که نپذیرید آن‌ها متوجه نخواهند شد که پیام‌شان را خوانده‌اید.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">این گروه را رفع مسدودیت می‌کنید و نام و عکس‌ خود را با اعضای آن به اشتراک می‌گذارید؟ تا زمانی که آن‌ها را رفع مسدودیت نکنید هیچ پیامی دریافت نخواهید کرد.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">می‌خواهید این گروه را رفع مسدودیت کنید و نام و عکستان را با اعضای آن به اشتراک بگذارید؟ تا وقتی آن را رفع مسدودیت نکنید هیچ پیامی دریافت نخواهید کرد.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">مشاهده</string>
     <string name="MessageRequestProfileView_member_of_one_group">عضو %1$s</string>
@@ -1591,7 +1591,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">هشدار</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">اگر پین را غیرفعال کنید، هنگامی که دوباره در سیگنال ثبت‌نام می‌کنید، تمامی داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">اگر پین را غیرفعال کنید، وقتی دوباره در سیگنال ثبت‌نام می‌کنید، همه داده‌ها را از دست خواهید داد، مگر اینکه به‌صورت دستی پشتیبان‌گیری و بازگردانی کنید. وقتی پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
     <string name="PinOptOutDialog_disable_pin">غیرفعال کردن پین</string>
 
     <!-- RatingManager -->
@@ -1718,7 +1718,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">باصدا</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">بستن</string>
+    <string name="WebRtcCallView__mute">بی‌صدا</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">زنگ زدن</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1736,7 +1736,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">شما صدا و تصویر آ‌ن‌ها را دریافت نمی‌کنید و آن‌ها هم صدا و تصویر شما را دریافت نخواهند کرد.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">دریافت صدا و تصویر از %1$s ممکن نیست</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">دریافت صدا و تصویر از %1$s ممکن نیست</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">این می‌تواند به این خاطر باشد که آن‌ها تغییر شمارهٔ ایمنی شما را وارسی نکرده‌اند، مشکلی برای دستگاه‌شان پیش آمده یا شما را مسدود کرده‌اند.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">این می‌تواند به این دلیل باشد که او تغییر شماره ایمنی شما را تأیید نکرده، مشکلی برای دستگاهش پیش آمده یا شما را مسدود کرده است.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">برای مشاهدهٔ اشتراک صفحه به انگشت‌تان را به کناره‌ها بکشید</string>
@@ -1964,7 +1964,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">پیام زمان‌بندی‌شده</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">تاریخچه پیام شما ادغام شده است</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s متعلق به %2$s است</string>
 
@@ -2039,7 +2039,7 @@
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">پیام چندرسانه‌ای برای نشست ناموجود رمزگذاری شده است</string>
 
     <!-- MuteDialog -->
-    <string name="MuteDialog_mute_notifications">بستن اعلان‌‌ها</string>
+    <string name="MuteDialog_mute_notifications">بی‌صدا کردن اعلان‌‌ها</string>
 
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">در حال وارد کردن</string>
@@ -2644,10 +2644,10 @@
     <string name="arrays__use_default">استفاده از پیش‌فرض سیستم</string>
     <string name="arrays__use_custom">استفاده از سفارشی</string>
 
-    <string name="arrays__mute_for_one_hour">بستن برای ۱ ساعت</string>
-    <string name="arrays__mute_for_eight_hours">بستن برای ۸ ساعت</string>
-    <string name="arrays__mute_for_one_day">بستن برای ۱ روز</string>
-    <string name="arrays__mute_for_seven_days">بستن برای ۷ روز</string>
+    <string name="arrays__mute_for_one_hour">بی‌صدا برای ۱ ساعت</string>
+    <string name="arrays__mute_for_eight_hours">بی‌صدا برای ۸ ساعت</string>
+    <string name="arrays__mute_for_one_day">بی‌صدا برای ۱ روز</string>
+    <string name="arrays__mute_for_seven_days">بی‌صدا برای ۷ روز</string>
     <string name="arrays__always">همیشه</string>
 
     <string name="arrays__settings_default">تنظیمات پیش‌فرض سیستم</string>
@@ -2684,9 +2684,9 @@
     <string name="preferences__pref_use_address_book_photos">استفاده از عکس‌های دفترچهٔ تلفن</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">نمایش عکس‌های مخاطبین از دفترچهٔ تلفن در صورت وجود</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">گفتگوهای بی‌صدا را در بایگانی نگه دارید</string>
+    <string name="preferences__pref_keep_muted_chats_archived">نگه داشتن گفتگوهای بی‌صدا در بایگانی</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">گفتگوهای بی‌صدا که بایگانی می‌شوند، پس از دریافت پیام جدید نیز در بایگانی می‌مانند.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">گفتگوهای بی‌صدا که بایگانی می‌شوند، پس از دریافت پیام جدید همچنان در بایگانی می‌مانند.</string>
     <string name="preferences__generate_link_previews">تولید پیش‌نمایش‌‌های پیوند</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">پیش‌نمایش‌های پیوند را به صورت مستقیم از وب‌سایت‌ها برای پیام‌هایی که ارسال می‌کنید، دریافت کنید.</string>
     <string name="preferences__change_passphrase">تغییر گذرواژه</string>
@@ -2980,7 +2980,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">پرداخت ارسال شد</string>
     <string name="PaymentsDetailsFragment__received_payment">پرداخت دریافت شد</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">پرداخت کامل شد %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">مسدود کردن شماره</string>
+    <string name="PaymentsDetailsFragment__block_number">مسدود کردن شماره تلفن</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">انتقال</string>
@@ -3137,10 +3137,10 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">باز کردن</string>
+    <string name="conversation_muted__unmute">صدادار کردن</string>
 
     <!-- conversation_unmuted -->
-    <string name="conversation_unmuted__mute_notifications">بستن اعلان‌ها</string>
+    <string name="conversation_unmuted__mute_notifications">بی‌صدا کردن اعلان‌ها</string>
 
     <!-- conversation -->
     <string name="conversation__menu_group_settings">تنظیمات گروه</string>
@@ -3624,9 +3624,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">«%1$s» مسدود شد.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">مسدود کردن «%1$s» ناموفق بود</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">«%1$s» رفع مسدودیت شد.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">«%1$s» مسدود شده است.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">«%1$s» مسدود نشد</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">«%1$s» رفع مسدودیت شده است.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">بازبینی اعضا</string>
@@ -4012,12 +4012,12 @@
     <string name="NotificationProfilesFragment__create_profile">ایجاد پروفایل</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">مسدود شده</string>
+    <string name="PrivacySettingsFragment__blocked">مسدودشده</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d مخاطبین</string>
     <string name="PrivacySettingsFragment__messaging">‌پیام‌رسانی</string>
     <string name="PrivacySettingsFragment__disappearing_messages">پیام‌های ناپدید شونده</string>
     <string name="PrivacySettingsFragment__app_security">امنیت برنامه</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">مسدود کردن عکس از صفحه در فهرست آخرین‌ها و در درون برنامه</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">مسدود کردن عکس از صفحه در فهرست موارد اخیر و در برنامه</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">پیام‌ها و تماس‌های سیگنال، عبور همیشگی تماس‌ها از سرور‌های سیگنال، و فرستندهٔ ناشناس</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">زمان‌سنج پیش‌فرض برای گفتگوهای جدید</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">یک زمان‌سنج پیام ناپدید شونده پیش‌فرض برای همهٔ گفتگوهایی که شما آغاز می‌کنید تنظیم کنید.</string>
@@ -4174,9 +4174,9 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">تماس</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">بستن</string>
+    <string name="ConversationSettingsFragment__mute">بی‌صدا</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">بسته شد</string>
+    <string name="ConversationSettingsFragment__muted">بی‌صداشده</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">جستجو</string>
     <string name="ConversationSettingsFragment__disappearing_messages">پیام‌های ناپدید شونده</string>
@@ -4195,9 +4195,9 @@
     <string name="ConversationSettingsFragment__requests_and_invites">درخواست‌ها و دعوت‌ها</string>
     <string name="ConversationSettingsFragment__group_link">پیوند گروه</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">افزودن به صورت یک مخاطب</string>
-    <string name="ConversationSettingsFragment__unmute">باز کردن</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">مکالمه تا %1$s بسته شد</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">مکالمه برای همیشه بسته شد</string>
+    <string name="ConversationSettingsFragment__unmute">صدادار کردن</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">مکالمه تا %1$s بی‌صدا شد</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">مکالمه برای همیشه بی‌صدا شد</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">شماره‌تلفن در کلیپ‌بورد کپی شد.</string>
     <string name="ConversationSettingsFragment__phone_number">شماره‌تلفن</string>
     <string name="ConversationSettingsFragment__get_badges">با حمایت از سیگنال نشان‌هایی برای نمایه‌تان دریافت کنید. برای اطلاعات بیشتر روی نشان ضربه بزنید.</string>
@@ -4213,8 +4213,8 @@
     <string name="PermissionsSettingsFragment__who_can_send_messages">چه کسی ‌می‌تواند پیام ارسال کنند؟</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
-    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">بستن اعلان‌ها</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">بسته شده نیست</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">بی‌صدا کردن اعلان‌ها</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">بی‌صدا نیست</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">اشاره‌ها</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">همیشه آگاه کن</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">آگاه نکن</string>
@@ -4251,7 +4251,7 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s حذف شده است</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s مسدود شد</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s مسدود شده است</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">حذف %1$s ممکن نیست</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -5612,13 +5612,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">ساعت</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">د</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">دقیقه</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">تنظیم</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">حداقل زمان قبل از اعمال شدن قفل صفحه‌نمایش ۱ دقیقه است.</string>
 
     <!-- EOF -->
 </resources>

@@ -97,13 +97,13 @@
     <string name="BackgroundMessageRetriever_checking_for_messages">Es comprova si hi ha missatges…</string>
 
     <!-- BlockedUsersActivity -->
-    <string name="BlockedUsersActivity__blocked_users">Usuaris blocats</string>
-    <string name="BlockedUsersActivity__add_blocked_user">Afegeix un usuari blocat</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Els usuaris blocats no podran trucar-vos ni enviar-vos missatges.</string>
-    <string name="BlockedUsersActivity__no_blocked_users">Sense usuaris blocats</string>
-    <string name="BlockedUsersActivity__block_user">Voleu blocar l\'usuari?</string>
+    <string name="BlockedUsersActivity__blocked_users">Usuaris bloquejats</string>
+    <string name="BlockedUsersActivity__add_blocked_user">Afegeix un usuari bloquejat</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Els usuaris bloquejats no podran trucar-te ni enviar-te missatges.</string>
+    <string name="BlockedUsersActivity__no_blocked_users">Sense usuaris bloquejats</string>
+    <string name="BlockedUsersActivity__block_user">Vols bloquejar l\'usuari?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">%1$s no us podrà trucar ni enviar missatges.</string>
-    <string name="BlockedUsersActivity__block">Bloca</string>
+    <string name="BlockedUsersActivity__block">Bloquejar</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">Continuar</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Voleu blocar i abandonar %1$s?</string>
-    <string name="BlockUnblockDialog_block_s">Voleu blocar %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Vols bloquejar i abandonar %1$s?</string>
+    <string name="BlockUnblockDialog_block_s">Vols bloquejar %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ja no rebreu cap més missatge ni novetat d\'aquest grup i els membres no us hi podran tornar a afegir.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Els membres del grup no us hi podran tornar a afegir.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Els membres del grup us podran afegir a aquest grup un altre cop.</string>
@@ -148,16 +148,16 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Us podreu enviar missatges i fer trucades, i compartireu el nom i la fotografia.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Podreu enviar-vos missatges mútuament.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Les persones blocades no us podran trucar ni enviar missatges.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Les persones blocades no us podran enviar missatges.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Les persones bloquejades no et podran trucar ni enviar missatges.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Les persones bloquejades no et podran enviar missatges.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Bloca rebre actualitzacions i notícies del Signal.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Bloqueja rebre actualitzacions i notícies del Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Continua rebent actualitzacions i notícies del Signal.</string>
-    <string name="BlockUnblockDialog_unblock_s">Voleu desblocar %1$s?</string>
-    <string name="BlockUnblockDialog_block">Bloca</string>
-    <string name="BlockUnblockDialog_block_and_leave">Bloca i abandona</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Informa\'n com a brossa i bloca-ho</string>
+    <string name="BlockUnblockDialog_unblock_s">Vols desbloquejar %1$s?</string>
+    <string name="BlockUnblockDialog_block">Bloquejar</string>
+    <string name="BlockUnblockDialog_block_and_leave">Bloqueja i abandona</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Informa\'n com a spam i bloqueja-ho</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Avui</string>
@@ -319,7 +319,7 @@
     <string name="ConversationActivity_transport_signal">Missatge del Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">Canviem al Signal, %1$s</string>
     <string name="ConversationActivity_specify_recipient">Trieu un contacte</string>
-    <string name="ConversationActivity_unblock">Desbloca</string>
+    <string name="ConversationActivity_unblock">Desbloquejar</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">El fitxer adjunt excedeix la mida màxima per a aquest tipus de missatges.</string>
     <string name="ConversationActivity_unable_to_record_audio">No s\'ha pogut enregistrar l\'àudio.</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">No podeu enviar missatges a aquest grup perquè ja no en sou membre.</string>
@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Error en enviar contingut</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Se n\'ha informat com a brossa i s\'ha blocat.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Se n\'ha informat com a spam i s\'ha bloquejat.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">La missatjería SMS està desactivada. Pots exportar els teus missatges a una altra app del teu telèfon.</string>
@@ -452,11 +452,11 @@
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s no es podrà afegir ni sol·licitar-ho a aquest grup mitjançant l\'enllaç de grup. Encara es poden afegir al grup manualment.</string>
     <!-- Dialog confirm block request button -->
-    <string name="ConversationFragment__block_request_button">Bloca la sol·licitud</string>
+    <string name="ConversationFragment__block_request_button">Bloqueja la sol·licitud</string>
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Cancel·la</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">Blocat</string>
+    <string name="ConversationFragment__blocked">Bloquejat</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Restablir filtres</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -936,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notifica\'m les mencions</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Voleu rebre notificacions quan us mencionin en converses silenciades?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vols rebre notificacions quan se\'t mencioni en converses silenciades?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Notifica-m\'ho sempre</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">No m\'ho notifiquis mai</string>
 
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">S\'ha copiat el nom d\'usuari</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">No s\'ha pogut eliminar l\'àlies. Torna-ho a provar més tard.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Àlies eliminat</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1473,14 +1473,14 @@
     <string name="MessageRequestBottomView_accept">Ho accepto</string>
     <string name="MessageRequestBottomView_continue">Continua</string>
     <string name="MessageRequestBottomView_delete">Esborra</string>
-    <string name="MessageRequestBottomView_block">Bloca</string>
-    <string name="MessageRequestBottomView_unblock">Desbloca</string>
+    <string name="MessageRequestBottomView_block">Bloquejar</string>
+    <string name="MessageRequestBottomView_unblock">Desbloquejar</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu permetre que %1$s us envii missatges i compartir-hi el nom i la fotografia? No sabran que heu vist el missatge fins que no ho accepteu.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Voleu permetre que %1$s us envii missatges i compartir-hi el nom i la fotografia? No rebreu cap missatge fins que no el desbloqueu.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Vols permetre que %1$s t\'enviï missatges i compartir-hi el nom i la fotografia? No rebràs cap missatge fins que no el desbloquegis.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Voleu permetre que %1$s us enviï missatges? No en rebreu cap missatge fins que no el desbloqueu.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Voleu rebre actualitzacions i notícies de %1$s? No en rebreu cap actualització fins que no les desbloqueu.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Vols permetre que %1$s t\'enviï missatges? No en rebràs cap missatge fins que no el desbloquegis.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Vols rebre actualitzacions i notícies de %1$s? No en rebràs cap actualització fins que no les desbloquegis.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Voleu continuar la conversa amb aquest grup i compartir-hi el nom i la fotografia?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Actualitzeu aquest grup i activeu-ne les funcions noves com ara les @mencions i els administradors. Els membres que no hi han compartit el nom o la fotografia es convidaran a afegir-s\'hi.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Aquest grup de llegat ja no es pot usar perquè és massa gros. La mida màxima d\'un grup és %1$d.</string>
@@ -1488,7 +1488,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos a aquest grup i compartir el nom i la fotografia amb els seus membres? No sabran que heu vist els seus missatges fins que no ho accepteu.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Voleu afegir-vos a aquest grup i compartir el nom i la fotografia amb els seus membres? No veureu els seus missatges fins que no ho accepteu.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos a aquest grup? No sabran que n\'heu vist els missatges fins que no ho accepteu.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Voleu desblocar aquest grup i compartir el nom i la fotografia amb els seus membres? No rebreu cap missatge fins que no el desbloqueu.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Vols desbloquejar aquest grup i compartir el nom i la fotografia amb els seus membres? No rebràs cap missatge fins que no el desbloquegis.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Mostra</string>
     <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
@@ -1621,8 +1621,8 @@
     <string name="Recipient_my_story">La meva història</string>
 
     <!-- RecipientPreferencesActivity -->
-    <string name="RecipientPreferenceActivity_block">Bloca</string>
-    <string name="RecipientPreferenceActivity_unblock">Desbloca</string>
+    <string name="RecipientPreferenceActivity_block">Bloquejar</string>
+    <string name="RecipientPreferenceActivity_unblock">Desbloquejar</string>
 
     <!-- RecipientProvider -->
 
@@ -1731,12 +1731,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s està blocat.</string>
+    <string name="CallParticipantView__s_is_blocked">%1$s està bloquejat.</string>
     <string name="CallParticipantView__more_info">Més informació</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">No en rebreu àudio ni vídeo ni rebran el vostre.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">No es pot rebre ni àudio ni vídeo de %1$s.</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No es pot rebre ni àudio ni vídeo de %1$s.</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Això pot ser degut al fet que no han verificat el canvi del vostre número de seguretat, hi ha un problema al seu dispositiu o us han blocat.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Això pot ser degut al fet que no han verificat el canvi del teu número de seguretat, hi ha un problema al seu dispositiu o t\'han bloquejat.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Llisqueu per veure la compartició de pantalla</string>
@@ -1964,7 +1964,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Missatge programat</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">El teu historial de missatges s\'ha combinat</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s pertany a %2$s</string>
 
@@ -2307,7 +2307,7 @@
     <string name="ConversationUpdateItem_enable_call_notifications">Activa les notificacions de trucada</string>
     <string name="ConversationUpdateItem_update_contact">Actualitza el contacte</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
-    <string name="ConversationUpdateItem_block_request">Bloca la sol·licitud</string>
+    <string name="ConversationUpdateItem_block_request">Bloqueja la sol·licitud</string>
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Cap grup en comú. Reviseu les sol·licituds amb atenció.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Cap contacte en aquest grup. Reviseu les sol·licituds amb atenció.</string>
     <string name="ConversationUpdateItem_view">Vista</string>
@@ -2980,7 +2980,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Pagament enviat</string>
     <string name="PaymentsDetailsFragment__received_payment">Pagament rebut</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Pagament fet: %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Número de bloc</string>
+    <string name="PaymentsDetailsFragment__block_number">Número de bloqueig</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Transferència</string>
@@ -3065,7 +3065,7 @@
 
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">Missatge nou per a…</string>
-    <string name="contact_selection_list__unknown_contact_block">Bloca l\'usuari</string>
+    <string name="contact_selection_list__unknown_contact_block">Bloqueja l\'usuari</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Afegeix-lo al grup</string>
 
     <!-- conversation_callable_insecure -->
@@ -3571,8 +3571,8 @@
     <!-- AdvancedPreferenceFragment -->
 
     <!-- RecipientBottomSheet -->
-    <string name="RecipientBottomSheet_block">Bloca</string>
-    <string name="RecipientBottomSheet_unblock">Desbloca</string>
+    <string name="RecipientBottomSheet_block">Bloquejar</string>
+    <string name="RecipientBottomSheet_unblock">Desbloquejar</string>
     <string name="RecipientBottomSheet_add_to_contacts">Afegeix als contactes</string>
     <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
     <string name="RecipientBottomSheet_unable_to_open_contacts">No trobo cap aplicació que pugui obrir contactes.</string>
@@ -3625,8 +3625,8 @@
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
     <string name="BlockedUsersActivity__s_has_been_blocked">S\'ha blocat %1$s.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Ha fallat blocar %1$s.</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">S\'ha desblocat %1$s.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Ha fallat bloquejar %1$s.</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">S\'ha desbloquejat a %1$s.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Reviseu els mebres</string>
@@ -3653,7 +3653,7 @@
     <string name="ReviewCard__your_contact">Contacte</string>
     <string name="ReviewCard__remove_from_group">Esborrar del grup</string>
     <string name="ReviewCard__update_contact">Actualitza el contacte</string>
-    <string name="ReviewCard__block">Bloca</string>
+    <string name="ReviewCard__block">Bloquejar</string>
     <string name="ReviewCard__delete">Esborrar</string>
     <string name="ReviewCard__recently_changed">Recentment han canviat el nom del perfil de %1$s a %2$s.</string>
 
@@ -4012,12 +4012,12 @@
     <string name="NotificationProfilesFragment__create_profile">Crea un perfil</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Blocat</string>
+    <string name="PrivacySettingsFragment__blocked">Bloquejat</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d contactes</string>
     <string name="PrivacySettingsFragment__messaging">Missatges</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Missatges efímers</string>
     <string name="PrivacySettingsFragment__app_security">Seguretat de l\'aplicació</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloca les captures de pantalla a les llistes de recents i dins de l\'aplicació</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloqueja les captures de pantalla a les llistes de recents i dins de l\'aplicació</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Missatges i trucades del Signal: sempre retransmissió de trucades i remitent segellat</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Temporitzador per defecte per a les converses noves</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Establiu un temporitzador per defecte de desaparició de missatges per a totes les converses noves que hàgiu iniciat.</string>
@@ -4184,10 +4184,10 @@
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Detalls del contacte</string>
     <string name="ConversationSettingsFragment__view_safety_number">Mostra el número de seguretat</string>
-    <string name="ConversationSettingsFragment__block">Bloca</string>
+    <string name="ConversationSettingsFragment__block">Bloquejar</string>
     <string name="ConversationSettingsFragment__block_group">Bloca el grup</string>
-    <string name="ConversationSettingsFragment__unblock">Desbloca</string>
-    <string name="ConversationSettingsFragment__unblock_group">Desbloca el grup</string>
+    <string name="ConversationSettingsFragment__unblock">Desbloquejar</string>
+    <string name="ConversationSettingsFragment__unblock_group">Desbloquejar el grup</string>
     <string name="ConversationSettingsFragment__add_to_a_group">Afegeix-lo a un grup</string>
     <string name="ConversationSettingsFragment__see_all">Mostra-ho tot</string>
     <string name="ConversationSettingsFragment__add_members">Afegeix-hi membres</string>
@@ -4243,7 +4243,7 @@
     <!-- Context menu item remove -->
     <string name="NewConversationActivity__remove">Suprimeix</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">Bloca</string>
+    <string name="NewConversationActivity__block">Bloquejar</string>
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Vols suprimir %1$s?</string>
     <!-- Dialog message when removing a contact -->
@@ -5614,11 +5614,11 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">Dl</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">min</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Estableix</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">El temps mínim abans que s\'apliqui el bloqueig de pantalla és d\'1 minut.</string>
 
     <!-- EOF -->
 </resources>

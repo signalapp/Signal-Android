@@ -97,10 +97,10 @@
     <string name="BackgroundMessageRetriever_checking_for_messages">Inatafuta ujumbe…</string>
 
     <!-- BlockedUsersActivity -->
-    <string name="BlockedUsersActivity__blocked_users">Watumiaji waliozuiwa</string>
-    <string name="BlockedUsersActivity__add_blocked_user">Ongeza mtumiaji aliyezuiwa</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Watumiaji waliozuiwa hawataweza kukupigia simu au kukutumia ujumbe.</string>
-    <string name="BlockedUsersActivity__no_blocked_users">Hakuna watumiaji waliozuiwa</string>
+    <string name="BlockedUsersActivity__blocked_users">Watumiaji waliozuiliwa</string>
+    <string name="BlockedUsersActivity__add_blocked_user">Ongeza mtumiaji aliyezuiliwa</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Watumiaji waliozuiliwa hawataweza kukupigia simu au kukutumia ujumbe.</string>
+    <string name="BlockedUsersActivity__no_blocked_users">Hakuna watumiaji waliozuiliwa</string>
     <string name="BlockedUsersActivity__block_user">Ungependa kumzuia mtumiaji?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" hawataweza kukupigia simu au kukutumia ujumbe.</string>
     <string name="BlockedUsersActivity__block">Zuia</string>
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">Endelea</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Ungependa kuzuia na uondoke kwenye %1$s?</string>
-    <string name="BlockUnblockDialog_block_s">Ungependa kumzuia %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Zuia na uondoke %1$s?</string>
+    <string name="BlockUnblockDialog_block_s">Zuia %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Hutapokea tena ujumbe au arifa kutoka kwa kikundi hiki, na washiriki hawataweza kukuongeza kwenye kikundi hiki tena.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Washiriki wa kikundi hawataweza kukuongeza kwenye kikundi hiki tena.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Washiriki wa kikundi wataweza kukuongeza kwenye kundi hili tena.</string>
@@ -148,16 +148,16 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Mtaweza kutumiana ujumbe na kupigiana simu, na jina na picha yako itashirikiwa nao.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Mtaweza kutumiana ujumbe.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Watu waliozuiwa hawataweza kukupigia simu wala kukutumia ujumbe.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Watu waliozuiwa hawataweza kukutumia jumbe.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Watu waliozuiliwa hawataweza kukupigia simu au kukutumia ujumbe.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Watu waliozuiliwa hawataweza kukutumia jumbe.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Zuia kupata arifa na habari za Signal.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Zuia kupata masasisho na habari za Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Rejea kupata arifa na habari za Signal.</string>
-    <string name="BlockUnblockDialog_unblock_s">Ungependa kuacha kumzuia %1$s?</string>
+    <string name="BlockUnblockDialog_unblock_s">Ondoa kizuizi kwa %1$s?</string>
     <string name="BlockUnblockDialog_block">Zuia</string>
     <string name="BlockUnblockDialog_block_and_leave">Zuia na Uondoke</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Ripoti barua taka na uzuie</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Ripoti spam na uzuie</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Leo</string>
@@ -319,7 +319,7 @@
     <string name="ConversationActivity_transport_signal">Ujumbe wa Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">Wacha tubadili kwa Signal 1%1$s</string>
     <string name="ConversationActivity_specify_recipient">Tafadhali chagua mawasiliano</string>
-    <string name="ConversationActivity_unblock">Fungua</string>
+    <string name="ConversationActivity_unblock">Ondoa kizuizi</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Kiambatisho kimezidi ukubwa wa aina ya ujumbe unaotuma</string>
     <string name="ConversationActivity_unable_to_record_audio">Haiwezi kurekodi sauti!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Huwezi kutuma ujumbe kwenye kikundi hiki kwa sababu wewe si mwanachama tena.</string>
@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Hitilafu imetokea wakati wa kutuma media</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Imeripotiwa kuwa taka na imezuiwa.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Imeripotiwa spam na imezuiliwa.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Hauwezi kutuma jumbe za SMS. Unaweza kuhamisha jumbe zako kwenye programu nyingine katika simu yako.</string>
@@ -456,7 +456,7 @@
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Ghairi</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">Zuiwa</string>
+    <string name="ConversationFragment__blocked">Zuiliwa</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Futa chujio</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -497,11 +497,11 @@
         <item quantity="other">Bandua</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Toa sauti</item>
+        <item quantity="one">Nyamazisha</item>
         <item quantity="other">Nyamazisha</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Weka sauti</item>
+        <item quantity="one">Washa</item>
         <item quantity="other">Washa</item>
     </plurals>
     <string name="ConversationListFragment_select">Chagua</string>
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Jina la mtumiaji limenakiliwa</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Imeshindikana kufuta jina la mtumiaji. Jaribu tena baadaye.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Jina la mtumiaji limefutwa</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1474,13 +1474,13 @@
     <string name="MessageRequestBottomView_continue">Endelea</string>
     <string name="MessageRequestBottomView_delete">Futa</string>
     <string name="MessageRequestBottomView_block">Zuia</string>
-    <string name="MessageRequestBottomView_unblock">Fungua</string>
+    <string name="MessageRequestBottomView_unblock">Ondoa kizuizi</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ungependa kumruhusu %1$s akutumie ujumbe na ushiriki naye jina na picha yako? Hatajua umeona ujumbe wake hadi utakapokubali.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ungependa kumruhusu %1$s akutumie ujumbe na ushiriki naye jina na picha yako? Hutapokea ujumbe wowote mpaka uache kumzuia.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Mruhusu %1$s akutumie ujumbe na ushiriki naye jina na picha yako? Hutapokea ujumbe wowote mpaka utakapoondoa kizuizi kwake.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Ruhusu %1$s akutumie ujumbe? Hutapata jumbe zozote mpaka utakapowaondolea zuio.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Pata sasisho na habari kutoka kwa %1$s? Hutapata sasisho zozote mpaka utakapowaondolea zuio.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Mruhusu %1$s akutumie ujumbe? Hutapata jumbe zozote mpaka utakapoondoa kizuizi kwake.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Pata masasisho na habari kutoka kwa %1$s? Hutapata sasisho zozote mpaka utakapoondoa kizuizi kwao.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Ungependa kuendelea kuzungumza na kikundi hiki na ushiriki jina na picha yako na wanachama wake?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Boresha kikundi hiki ili uwezeshe huduma mpya kama vile @kutajwa na kuwa na wasimamizi. Wanachama ambao hawajashiriki jina au picha zao katika kikundi hiki wataalikwa kujiunga.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Kikundi hiki Kizee hakiwezi tena kutumiwa kwa sababu ni kikubwa mno. Ukubwa wa juu zaidi wa kikundi ni %1$d.</string>
@@ -1488,7 +1488,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ungependa kujiunge na kikundi hiki na ushiriki jina na picha yako na washiriki wake? Hawatajua umeona ujumbe wao hadi utakapokubali.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Jiunge na kundi hili na uwashirikishe wanachama picha na jina lako? Hutoona jumbe zao mpaka utakapokubali.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ungependa kujiunga na kikundi hiki? Hawatajua umeona ujumbe wao hadi utakapokubali.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Zuia kikundi hiki na ushiriki jina na picha yako na washiriki wake? Hautapokea ujumbe wowote mpaka uwafungue.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ondoa kizuizi kwa kikundi hiki na ushiriki jina na picha yako na washiriki wake? Hautapokea ujumbe wowote mpaka utakapoondoa kizuizi.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Tazama</string>
     <string name="MessageRequestProfileView_member_of_one_group">Mwanachama wa %1$s</string>
@@ -1591,7 +1591,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Onyo</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ukizima PIN, utapoteza data yote utakaposajili upya Signal isipokuwa ukihifadhi nakala yake na kuirejesha mwenyewe. Huwezi kuwasha Kufuli ya Usajili wakati PIN imezimwa.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ukizima PIN, utapoteza data zote utakaposajili upya Signal isipokuwa kama ukihifadhi nakala yake na kuirejesha mwenyewe. Huwezi kuwasha Kufuli la Usajili wakati PIN imezimwa.</string>
     <string name="PinOptOutDialog_disable_pin">Lemaza PIN</string>
 
     <!-- RatingManager -->
@@ -1622,7 +1622,7 @@
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">Zuia</string>
-    <string name="RecipientPreferenceActivity_unblock">Fungua</string>
+    <string name="RecipientPreferenceActivity_unblock">Ondoa kizuizi</string>
 
     <!-- RecipientProvider -->
 
@@ -1718,7 +1718,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Washa</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Zima</string>
+    <string name="WebRtcCallView__mute">Nyamazisha</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Piga</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1731,12 +1731,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s amezuiwa</string>
+    <string name="CallParticipantView__s_is_blocked">%1$s amezuiliwa</string>
     <string name="CallParticipantView__more_info">Maelezo zaidi</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Hutapokea sauti au video yake na hatapokea yako.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Huwezi kupokea sauti na video kutoka kwa %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Huwezi kupokea sauti na video kutoka kwa %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Huenda ni kwa sababu hajathibitisha mabadiliko ya nambari yako ya usalama, kifaa chake kina hitilafu au amekuzuia.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Huenda hii ni kwa sababu hawajathibitisha mabadiliko ya nambari yako ya usalama, vifaa vyao vina hitilafu au amekuzuia.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Telezesha kidole ili uone skrini ya kushiriki</string>
@@ -1964,7 +1964,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Ujumbe uliopangwa kutumwa</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Historia ya jumbe zako imejumuishwa</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s inamilikiwa na %2$s</string>
 
@@ -2039,7 +2039,7 @@
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Ujumbe wa MMS umesimbwa kwa kipindi kisichopo</string>
 
     <!-- MuteDialog -->
-    <string name="MuteDialog_mute_notifications">Zima arifa</string>
+    <string name="MuteDialog_mute_notifications">Nyamazisha arifa</string>
 
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Uingizaji unaendelea</string>
@@ -2644,10 +2644,10 @@
     <string name="arrays__use_default">Tumia chaguo msingi</string>
     <string name="arrays__use_custom">Tumia kaida</string>
 
-    <string name="arrays__mute_for_one_hour">Zima kwa saa 1</string>
+    <string name="arrays__mute_for_one_hour">Nyamazisha kwa saa 1</string>
     <string name="arrays__mute_for_eight_hours">Nyamazisha kwa saa 8</string>
-    <string name="arrays__mute_for_one_day">Zima kwa siku 1</string>
-    <string name="arrays__mute_for_seven_days">Zima kwa siku 7</string>
+    <string name="arrays__mute_for_one_day">Nyamazisha kwa siku 1</string>
+    <string name="arrays__mute_for_seven_days">Nyamazisha kwa siku 7</string>
     <string name="arrays__always">Kila mara</string>
 
     <string name="arrays__settings_default">Mipangilio chaguo msingi</string>
@@ -2684,7 +2684,7 @@
     <string name="preferences__pref_use_address_book_photos">Tumia picha za orodha ya waasiliani</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Onyesha picha za waasiliani zilizo kwenye orodha yako ya waasiliani ikiwa zipo</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Magumzo yaliyonyamazishwa yaendelea kuhifadhiwa</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Weka Magumzo Yaliyonyamazishwa Kwenye Hifadhi</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Magumzo yaliyonyamazishwa yamehifadhiwa na yatabaki yamehifadhiwa pale arafa mpya itakapoingia.</string>
     <string name="preferences__generate_link_previews">Onyesha uhakiki wa viungo</string>
@@ -2980,7 +2980,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Umepokea malipo</string>
     <string name="PaymentsDetailsFragment__received_payment">Ulipokea malipo</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Malipo yalitumwa tarehe %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Nambari ya kuzuia</string>
+    <string name="PaymentsDetailsFragment__block_number">Zuia nambari</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Uhamisho</string>
@@ -3140,7 +3140,7 @@
     <string name="conversation_muted__unmute">Washa</string>
 
     <!-- conversation_unmuted -->
-    <string name="conversation_unmuted__mute_notifications">Zima arifa</string>
+    <string name="conversation_unmuted__mute_notifications">Nyamazisha arifa</string>
 
     <!-- conversation -->
     <string name="conversation__menu_group_settings">Mipangilio ya kikundi</string>
@@ -3572,7 +3572,7 @@
 
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">Zuia</string>
-    <string name="RecipientBottomSheet_unblock">Fungua</string>
+    <string name="RecipientBottomSheet_unblock">Ondoa Kizuizi</string>
     <string name="RecipientBottomSheet_add_to_contacts">Ongeza kwa wawasiliani</string>
     <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
     <string name="RecipientBottomSheet_unable_to_open_contacts">Haijapatikana programu itakayoweza kufungua wawasiliani.</string>
@@ -3624,8 +3624,8 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" amezuiwa.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Ameshindwa kuzuia \"%1$s\"</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" amezuiliwa.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Imeshindikana kuzuia \"%1$s\"</string>
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" ameondolewa kizuizi.</string>
 
     <!-- ReviewCardDialogFragment -->
@@ -4012,12 +4012,12 @@
     <string name="NotificationProfilesFragment__create_profile">Tengeneza wasifu</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Zuiwa</string>
+    <string name="PrivacySettingsFragment__blocked">Zuiliwa</string>
     <string name="PrivacySettingsFragment__d_contacts">Waasiliani %1$d</string>
     <string name="PrivacySettingsFragment__messaging">Kutuma ujumbe</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Jumbe zinazotoweka</string>
     <string name="PrivacySettingsFragment__app_security">Usalama wa programu</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Zuia viwambo vya skrini katika orodha ya rekodi na ndani ya programu</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Zuia screenshots katika orodha ya rekodi na ndani ya programu</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Ujumbe na simu za Signal, elekeza simu kila wakati, na kutumia huduma ya kuficha ujumbe</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Kipima muda chaguo-msingi cha gumzo mpya</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Weka kipima muda cha ujumbe unaotoweka kwa gumzo zote mpya zilizoanzishwa na wewe.</string>
@@ -4174,7 +4174,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Simu</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Zima</string>
+    <string name="ConversationSettingsFragment__mute">Nyamazisha</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Imenyamazishwa</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4186,8 +4186,8 @@
     <string name="ConversationSettingsFragment__view_safety_number">Tazama nambari ya usalama</string>
     <string name="ConversationSettingsFragment__block">Zuia</string>
     <string name="ConversationSettingsFragment__block_group">Zuia kikundi</string>
-    <string name="ConversationSettingsFragment__unblock">Fungua</string>
-    <string name="ConversationSettingsFragment__unblock_group">Acha kuzuia kikundi</string>
+    <string name="ConversationSettingsFragment__unblock">Ondoa kizuizi</string>
+    <string name="ConversationSettingsFragment__unblock_group">Ondoa Kizuizi kwa kikundi</string>
     <string name="ConversationSettingsFragment__add_to_a_group">Ongeza kwenye kikundi</string>
     <string name="ConversationSettingsFragment__see_all">Tazama zote</string>
     <string name="ConversationSettingsFragment__add_members">Ongeza wanachama</string>
@@ -4197,7 +4197,7 @@
     <string name="ConversationSettingsFragment__add_as_a_contact">Mwongeze awe mwasiliani</string>
     <string name="ConversationSettingsFragment__unmute">Washa</string>
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Mazungumzo yamenyamazishwa hadi %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Mazungumzo yamenyamazishwa daima</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Mazungumzo yamenyamazishwa milele</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Umenakili nambari ya simu kwenye ubao wa kunakili.</string>
     <string name="ConversationSettingsFragment__phone_number">Nambari ya simu</string>
     <string name="ConversationSettingsFragment__get_badges">Pata beji za wasifu wako kwa kuiunga mkono Signal. Bonyeza beji ili kujifunza zaidi.</string>
@@ -4213,7 +4213,7 @@
     <string name="PermissionsSettingsFragment__who_can_send_messages">Nani anaweza kutuma ujumbe?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
-    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Zima arifa</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Nyamazisha arifa</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Haijanyamazishwa</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Kutajwa</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Arifu kila wakati</string>
@@ -5614,11 +5614,11 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">M</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Weka</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Muda wa chini zaidi kabla skrini kujifunga ni dakika 1.</string>
 
     <!-- EOF -->
 </resources>

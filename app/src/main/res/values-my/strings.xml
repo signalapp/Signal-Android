@@ -97,13 +97,13 @@
     <string name="BackgroundMessageRetriever_checking_for_messages">မက်ဆေ့ချ်များ စစ်နေပါသည်…</string>
 
     <!-- BlockedUsersActivity -->
-    <string name="BlockedUsersActivity__blocked_users">ဘလော့ထားသော သုံးစွဲသူများ</string>
-    <string name="BlockedUsersActivity__add_blocked_user">ဘလော့ထားသော သုံးစွဲသူကို ထပ်ပေါင်းပါ</string>
-    <string name="BlockedUsersActivity__blocked_users_will">ဘလော့ထားသော သုံးစွဲသူများသည် သင့်ကို ဖုန်းခေါ်ခြင်း သို့မဟုတ် မက်ဆေ့ချ်ပို့ခြင်းများ မလုပ်နိုင်ပါ။</string>
-    <string name="BlockedUsersActivity__no_blocked_users">ဘလော့ထားသူ မရှိ</string>
-    <string name="BlockedUsersActivity__block_user">သုံးစွဲသူအား ဘလော့လိုက်မည်လား။</string>
+    <string name="BlockedUsersActivity__blocked_users">ဘလော့ခ်ထားသော သုံးစွဲသူများ</string>
+    <string name="BlockedUsersActivity__add_blocked_user">ဘလော့ခ်ထားသော သုံးစွဲသူ ပေါင်းထည့်ရန်</string>
+    <string name="BlockedUsersActivity__blocked_users_will">ဘလော့ခ်ထားသော သုံးစွဲသူများသည် သင့်ထံ ဖုန်းခေါ်ခြင်း သို့မဟုတ် မက်ဆေ့ချ်ပို့ခြင်းများ မလုပ်နိုင်တော့ပါ။</string>
+    <string name="BlockedUsersActivity__no_blocked_users">ဘလော့ခ်ထားသော သုံးစွဲသူ မရှိ</string>
+    <string name="BlockedUsersActivity__block_user">သုံးစွဲသူအား ဘလော့ခ်မည်လား။</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" သည် သင့်ကိုဖုန်းခေါ်ခြင်း သို့မဟုတ် စာပို့ခြင်း မလုပ်နိုင်တော့ပါ။</string>
-    <string name="BlockedUsersActivity__block">ဘလော့မည်</string>
+    <string name="BlockedUsersActivity__block">ဘလော့ခ်ရန်</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">ဆက်လုပ်ရန်</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">%1$s ကို ဘလော့ပြီး ထွက်မည်လား။</string>
-    <string name="BlockUnblockDialog_block_s">%1$sကို ဘလော့မည်လား။</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">%1$s ကို ဘလော့ခ်ပြီး ထွက်မည်လား။</string>
+    <string name="BlockUnblockDialog_block_s">%1$s ကို ဘလော့ခ်မည်လား။</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">သင်သည် ဤအဖွဲ့မှ မက်ဆေ့ခ်ျများ သို့မဟုတ် နောက်ဆုံးသတင်းများကို လက်ခံရရှိတော့မည် မဟုတ်ပါ။ အဖွဲ့ဝင်များက သင့်ကို ဤအဖွဲ့ထဲသို့ ထပ်မံထည့်သွင်း၍ မရနိုင်တော့ပါ။</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">အဖွဲ့ဝင်များက သင့်ကို ဤအဖွဲ့ထဲသို့ ထပ်မံထည့်သွင်း၍ မရနိုင်တော့ပါ။</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">အဖွဲ့ဝင်များက သင့်ကို ဤအဖွဲ့ထဲသို့ ထပ်မံထည့်သွင်း၍ မရနိုင်တော့ပါ။</string>
@@ -148,16 +148,16 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">သင်တို့တစ်ဦးနှင့်တစ်ဦး မက်ဆေ့ချ်ပို့ခြင်းနှင့် ဖုန်းခေါ်ဆိုခြင်း ပြုလုပ်နိုင်ပြီး သင်၏အမည်နှင့် ဓာတ်ပုံကို သူတို့နှင့်အတူ မျှဝေမည်။</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">သင်တို့အချင်းချင်း မက်ဆေ့ချ်ပို့နိုင်ပါမည်။</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ဘလော့ထားသော လူများသည် သင့်ကို ဖုန်းခေါ်ခြင်း သို့မဟုတ် မက်ဆေ့ချ်ပို့ခြင်းများ မလုပ်နိုင်တော့ပါ။</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">ဘလော့လုပ်ခံထားရသူများသည် သင့်ထံ မက်ဆေ့ချ်များ ပို့နိုင်တော့မည် မဟုတ်ပါ။</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ဘလော့ခ်ထားသော လူများသည် သင့်ထံ ဖုန်းခေါ်ခြင်း သို့မဟုတ် မက်ဆေ့ချ်ပို့ခြင်းများ မလုပ်နိုင်တော့ပါ။</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">ဘလော့ခ်ထားသော သူများသည် သင့်ထံ မက်ဆေ့ချ်များ ပို့နိုင်တော့မည် မဟုတ်ပါ။</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal အပ်ဒိတ်များနှင့် သတင်းများ ရယူမှုကို ပိတ်ပါမည်။</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal အပ်ဒိတ်များနှင့် သတင်းများကို ပြန်ရယူပါမည်။</string>
-    <string name="BlockUnblockDialog_unblock_s">%1$s ကို မဘလော့ တော့ဘူးလား။</string>
-    <string name="BlockUnblockDialog_block">ဘလော့မည်</string>
-    <string name="BlockUnblockDialog_block_and_leave">ဘလော့ပြီး ထွက်မည်</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">စပမ်းကို တိုင်ကြားပြီး ဘလော့မည်</string>
+    <string name="BlockUnblockDialog_unblock_s">%1$s ကို ဘလော့ခ်ဖြေမည်လား။</string>
+    <string name="BlockUnblockDialog_block">ဘလော့ခ်ရန်</string>
+    <string name="BlockUnblockDialog_block_and_leave">ဘလော့ခ်ပြီး ထွက်ရန်</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">စပမ်းအဖြစ် ရီပို့(တ်)လုပ်ပြီး ဘလော့ခ်ရန်</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">ယနေ့</string>
@@ -319,7 +319,7 @@
     <string name="ConversationActivity_transport_signal">Signal မက်ဆေ့ချ်</string>
     <string name="ConversationActivity_lets_switch_to_signal">Signal %1$s ကိုပြောင်းသုံးကြပါစို့</string>
     <string name="ConversationActivity_specify_recipient">ဆက်သွယ်လိုသည့်သူကို ရွေးချယ်ပါ</string>
-    <string name="ConversationActivity_unblock">ဘလော့ဖြည်ပါ</string>
+    <string name="ConversationActivity_unblock">ဘလော့ခ်ဖြေရန်</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">ပူးတွဲဖိုင်သည် သတ်မှတ်ဖိုင်အရွယ်အစားထက်ကြီးနေသည်။</string>
     <string name="ConversationActivity_unable_to_record_audio">အသံဖမ်း၍ မရနိုင်ပါ!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">သင်သည်အဖွဲ့ဝင်မဟုတ်တော့သောကြောင့် ဤအဖွဲ့သို့စာများပို့မရပါ။</string>
@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">မီဒီယာပို့ခြင်းအမှား</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">áá­á¯ááºáá¼á¬á¸áá®á¸ ááá±á¬á·áááº</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">စပမ်းအဖြစ် ရီပို့(တ်)လုပ်ပြီး ဘလော့ခ်ပြီးပါပြီ။</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS မက်ဆေ့ချ်လုပ်ဆောင်ချက်ကို လက်ရှိတွင် ပိတ်ထားပါသည်။ သင့်မက်ဆေ့ချ်များကို သင့်ဖုန်းရှိ အခြားအက်ပ်ထံသို့ ထုတ်သိမ်းနိုင်ပါသည်။</string>
@@ -442,15 +442,15 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$s ရှိနေပါသည်</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">တောင်းဆိုချက်ကို ဘလော့လုပ်မည်လား။</string>
+    <string name="ConversationFragment__block_request">တောင်းဆိုချက်ကို ဘလော့ခ်မည်လား။</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s သည် ဤအဖွဲ့လင့်ခ်မှတစ်ဆင့် ဤအဖွဲ့တွင် ပါဝင်နိုင်ခြင်း သို့မဟုတ် ပါဝင်ရန် တောင်းဆိုနိုင်ခြင်းများ ပြုလုပ်နိုင်တော့မည် မဟုတ်ပါ။ ၎င်းတို့ကို အဖွဲ့အတွင်းသို့ ကိုယ်တိုင် ပေါင်းထည့်နိုင်ပါသေးသည်။</string>
     <!-- Dialog confirm block request button -->
-    <string name="ConversationFragment__block_request_button">တောင်းဆိုချက်ကို ဘလော့လုပ်ရန်</string>
+    <string name="ConversationFragment__block_request_button">တောင်းဆိုချက်ကို ဘလော့ခ်ရန်</string>
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">ပယ်ဖျက်မယ်</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">ပိတ်ပယ်ထားသည်</string>
+    <string name="ConversationFragment__blocked">ဘလော့ခ်ထားပြီး</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">စစ်ထုတ်မှုကို ရှင်းရန်</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -483,10 +483,10 @@
         <item quantity="other">ပင်ဖြုတ်ရန်</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="other">အသံတိတ်ထားရန်</item>
+        <item quantity="other">အသံပိတ်ရန်</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="other">အသံပြန်ဖွင့်ရန်</item>
+        <item quantity="other">အသံပြန်ဖွင့်ရန်</item>
     </plurals>
     <string name="ConversationListFragment_select">ရွေးမယ်</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -898,7 +898,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">မန်းရှင်းများရှိလျှင် ကျွန်ုပ်ကိုအသိပေးပါ</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">အသံတိတ် စကားပြောဆိုမှုများတွင် သင့်ကိုမန်းရှင်းခေါ်လျှင် အသိပေးချက်များ လက်ခံမည်လား?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">အသံပိတ်ထားသော ချက်(တ်)များတွင် သင့်ကို မန်းရှင်းခေါ်လျှင် အသိပေးချက်များ လက်ခံလိုပါသလား။</string>
     <string name="GroupMentionSettingDialog_always_notify_me">အမြဲတမ်း ကျွန်ုပ်ကို အသိပေးပါ</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">ကျွန်ုပ်အား အသိပေးမထားပါနဲ့</string>
 
@@ -917,9 +917,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">သုံးစွဲသူအမည် ကူးပြီး</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">သုံးစွဲသူအမည်ကို ဖျက်၍ မရနိုင်ပါ။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">သုံးစွဲသူအမည် ဖျက်ပစ်ပြီး</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1415,14 +1415,14 @@
     <string name="MessageRequestBottomView_accept">လက်ခံသည်</string>
     <string name="MessageRequestBottomView_continue">ဆက်လက်၍</string>
     <string name="MessageRequestBottomView_delete">ဖျက်ရန်</string>
-    <string name="MessageRequestBottomView_block">တားမြစ်မည်</string>
-    <string name="MessageRequestBottomView_unblock">ပြန်ဖွင့်သည်</string>
+    <string name="MessageRequestBottomView_block">ဘလော့ခ်ရန်</string>
+    <string name="MessageRequestBottomView_unblock">ဘလော့ခ်ဖြေရန်</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s မှ သင့်ကို မက်ဆေ့ချ်ပို့ရန် ခွင့်ပြုပြီး သင်၏ အမည်နှင့် ရုပ်ပုံတို့ကို ၎င်းနှင့် မျှဝေမည်လား? ၎င်းသည် သင်မှ ၎င်းတို့၏ မက်ဆေ့ချ်များကို ဖတ်ရှုခဲ့သည်ကို သင်လက်ခံသည်အထိ မတွေ့ရပါ။</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s မှ သင့်ကို မက်ဆေ့ချ်ပေးပို့ရန် ခွင့်ပြုပြီး ၎င်းနှင့် သင်၏ အမည်နှင့် ရုပ်ပုံကို မျှဝေမည်လား? သင်မှ ၎င်းအား ပိတ်ပယ်ထားခြင်းကို ပြန်ဖြည်သည်အထိ မည်သည့်မက်ဆေ့ချ်များကို မရရှိနိုင်ပါ။</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s အား သင့်ထံ မက်ဆေ့ချ်ပို့ခွင့်ပြုပြီး သင်၏ အမည်နှင့် ပုံကို ၎င်းထံ မျှဝေမည်လား။ ၎င်းတို့အား ဘလော့ခ် မဖြေမချင်း မက်ဆေ့ချ်များ ရရှိမည် မဟုတ်ပါ။</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s အား သင့်ထံ မက်ဆေ့ချ် ပို့ခွင့်ပြုမည်လား။ ၎င်းတို့အား ဘလော့ မဖြေမချင်း မက်ဆေ့ချ်များ ရရှိမည် မဟုတ်ပါ။</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s ထံမှ အပ်ဒိတ်များနှင့် သတင်းများ ရယူမည်လား။ ၎င်းတို့အား ဘလော့ မဖြေမချင်း အပ်ဒိတ်များ ရရှိမည် မဟုတ်ပါ။</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s အား သင့်ထံ မက်ဆေ့ချ် ပို့ခွင့်ပြုမည်လား။ ၎င်းတို့အား ဘလော့ခ် မဖြေမချင်း မက်ဆေ့ချ်များ ရရှိမည် မဟုတ်ပါ။</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s ထံမှ အပ်ဒိတ်များနှင့် သတင်းများ ရယူမည်လား။ ၎င်းတို့အား ဘလော့ခ် မဖြေမချင်း အပ်ဒိတ်များ ရရှိမည် မဟုတ်ပါ။</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">၎င်းအဖွဲ့နှင့် စကားပြောဆိုမှု ဆက်လက်ပြီး သင်၏ အမည်နှင့် ရုပ်ပုံကို အဖွဲ့ဝင်များနှင့် မျှဝေမည်လား?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">၎င်းအဖွဲ့ကို အဆင့်မြှင့်၍ @မန်းရှင်းများ နှင့် စီမံသူ အင်္ဂါရပ်အသစ်များကို သုံးလိုက်ပါ။ ၎င်းအဖွဲ့ထဲတွင် အမည်နှင့် ရုပ်ပုံများ မမျှဝေရသေးသော အဖွဲ့ဝင်များကို ဝင်ရောက်ရန် ဖိတ်ခေါ်ပါလိမ့်မည်။</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ဤ အမွေအဖွဲ့သည် အလွန်ကြီး၍ အဖွဲ့သစ်သို့အဆင့်မြှင့်လို့မရပါ။ အများဆုံးရှိနိုင်သော အဖွဲ့ဝင်အရေတွက်သည် %1$d ဦးသာ ဖြစ်ပါသည်။</string>
@@ -1430,7 +1430,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">၎င်းအဖွဲ့သို့ ဝင်ရောက်ပြီး သင်၏ အမည် နှင့် ရုပ်ပုံတို့ကို အဖွဲ့ဝင်များနှင့် မျှဝေမည်လား? အဖွဲ့ဝင်များသည် သင်မှ ၎င်းတို့၏ မက်ဆေ့ချ်များကို ဖတ်ရှုခဲ့သည်ကို သင်လက်ခံသည်အထိ မတွေ့ရပါ။</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">ဤအဖွဲ့တွင် ပါဝင်ပြီး ၎င်းမန်ဘာများထံ သင့်အမည်နှင့် ဓာတ်ပုံကို မျှဝေမည်လား။ သင် လက်မခံမချင်း ၎င်းတို့၏ မက်ဆေ့ချ်များကို မြင်နိုင်မည် မဟုတ်ပါ။</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">၎င်းအဖွဲ့သို့ ဝင်ရောက်မည်လား? အခြားအဖွဲ့ဝင်များသည် သင်မှ ၎င်းတို့၏ မက်ဆေ့ချ်များကို ဖတ်ရှုခဲ့သည်ကို သင်လက်ခံသည်အထိ မတွေ့ရပါ။</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">၎င်းအဖွဲ့ကို ပိတ်ထားခြင်းမှ ပြန်ဖြည်ပြီး အဖွဲ့ဝင်များနှင့် သင်၏ အမည်နှင့် ရုပ်ပုံကို မျှဝေမည်လား? သင်မှ ပြန်ဖြည်သည်အထိ မည်သည့်မက်ဆေ့ချ်များကို မရရှိနိုင်ပါ။</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ဤအဖွဲ့ကို ဘလော့ခ်ဖြေပြီး ၎င်းအဖွဲ့ဝင်များထံ သင့်အမည်နှင့် ပုံကို မျှဝေမည်လား။ သင် ဘလော့ခ်မဖြေမချင်း မက်ဆေ့ချ်များ ရရှိမည် မဟုတ်ပါ။</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">ကြည့်မယ်</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s ၏ အဖွဲ့ဝင်</string>
@@ -1527,7 +1527,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">သတိပေးချက်</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">ပင်နံပါတ်ကို ပိတ်ထားလျှင် သင်မှ​ ကိုယ်တိုင် အရန်ပြုပြင်ထားခြင်းမရှိခဲ့လျှင် Signal ပေါ်ပြန်စာရင်းသွင်းသောအခါ ဒေတာအားလုံးကို ဆုံးရှူံးပါလိမ့်မည်။ ပင်နံပါတ်ကို ပိတ်ထားစဉ် မှတ်ပုံတင်ခြင်းသော့ကို သင်ဖွင့်၍ မရပါ။</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PIN ကို ပိတ်ထားပါက Signal ကို ပြန်လည်စာရင်းသွင်းသည့်အခါ ကိုယ်တိုင် ဘက်ခ်အပ်လုပ်၍ ပြန်လည်မသိုလှောင်မချင်း ဒေတာအားလုံးပျောက်သွားပါလိမ့်မည်။ PIN ကို ပိတ်ထားစဉ် စာရင်းသွင်းလော့ခ်ကို ဖွင့်၍ မရနိုင်ပါ။</string>
     <string name="PinOptOutDialog_disable_pin">ပင်နံပါတ်ပိတ်ပါ</string>
 
     <!-- RatingManager -->
@@ -1557,8 +1557,8 @@
     <string name="Recipient_my_story">ကျွန်ုပ်၏ စတိုရီ</string>
 
     <!-- RecipientPreferencesActivity -->
-    <string name="RecipientPreferenceActivity_block">ဘလော့ လုပ်မည်</string>
-    <string name="RecipientPreferenceActivity_unblock">ဘလော့ဖြည်ပါ</string>
+    <string name="RecipientPreferenceActivity_block">ဘလော့ခ်ရန်</string>
+    <string name="RecipientPreferenceActivity_unblock">ဘလော့ခ်ဖြေရန်</string>
 
     <!-- RecipientProvider -->
 
@@ -1647,9 +1647,9 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">ကင်မရာ</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">အသံပြန်ဖွင့်မယ်</string>
+    <string name="WebRtcCallView__unmute">အသံပြန်ဖွင့်ရန်</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">အသံတိတ်ထားမည်</string>
+    <string name="WebRtcCallView__mute">အသံပိတ်ရန်</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">ဖုန်းခေါ်ရန်</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1661,12 +1661,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$sကိုပိတ်ထားသည်</string>
+    <string name="CallParticipantView__s_is_blocked">%1$s ကို ဘလော့ခ်ထားသည်</string>
     <string name="CallParticipantView__more_info">ပိုမိုသိရှိစရာများ</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">သင်သည် သူတို့၏ အသံ သို့မဟုတ် ဗီဒီယိုများကို လက်ခံရရှိလိမ့်မည် မဟုတ်ပါ၊ ၎င်းတို့လည်း သင်၏ ဖိုင်များကို မလက်ခံရရှိပါ။</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s မှ အသံနှင့် ဗီဒီယို မရရှိနိုင်ပါ</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s မှ အသံနှင့် ဗီဒီယို မရရှိနိုင်ပါ</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">သင့် လုံခြုံရေးနံပါတ် ပြောင်းလဲမှုကို ၎င်းတို့မှ အတည်မပြုရသေးသောကြောင့် သို့မဟုတ် ၎င်းတို့စက်တွင် ပျက်ကွက်မှုဖြစ်ခဲ့သောကြောင့် သို့မဟုတ် ၎င်းတို့မှ သင့်ကို ပိတ်ပယ်ထားခြင်းကြောင့် တို့ဖြစ်နိုင်ပါသည်။</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">သင့်လုံခြုံရေးနံပါတ် ပြောင်းလဲမှုကို ၎င်းတို့ အတည်မပြုရသေးသောကြောင့် သော်လည်းကောင်း၊ ၎င်းတို့ စက်တွင် ပြဿနာရှိနေသောကြောင့် သော်လည်းကောင်း၊ ၎င်းတို့က သင့်ကို ဘလော့ခ်ထားသောကြောင့် သော်လည်းကောင်း ဖြစ်နိုင်ပါသည်။</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">စခရင် မျှဝေမှုကို ကြည့်ရန် ပွတ်ဆွဲပါ</string>
@@ -1893,7 +1893,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">မက်ဆေ့ချ် အစီအစဉ်</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">သင့်မက်ဆေ့ချ်မှတ်တမ်းကို ပေါင်းစည်းပြီးပါပြီ</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s ကို %2$s က ပိုင်ဆိုင်ပါသည်</string>
 
@@ -1967,7 +1967,7 @@
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ရှိမနေတော့သည့် ဆက်ရှင်အတွက် MMS စာများကို encrypt လုပ်ထားပါသည်။</string>
 
     <!-- MuteDialog -->
-    <string name="MuteDialog_mute_notifications">အသိပေးချက်ကို ပိတ်ပါ</string>
+    <string name="MuteDialog_mute_notifications">အသိပေးချက် အသံပိတ်ရန်</string>
 
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">သွင်းယူနေသည်</string>
@@ -2231,7 +2231,7 @@
     <string name="ConversationUpdateItem_enable_call_notifications">ခေါ်ဆိုမှု သတိပေးချက်များ ဖွင့်မယ်</string>
     <string name="ConversationUpdateItem_update_contact">အဆက်အသွယ် အပ်ဒိတ်မယ်</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
-    <string name="ConversationUpdateItem_block_request">တောင်းဆိုချက်ကို ဘလော့လုပ်ရန်</string>
+    <string name="ConversationUpdateItem_block_request">တောင်းဆိုချက်ကို ဘလော့ခ်ရန်</string>
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">တူညီသော အဖွဲ့များ မရှိပါ။ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">၎င်းအဖွဲ့ထဲတွင် အဆက်အသွယ်များ မရှိပါ။ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
     <string name="ConversationUpdateItem_view">ကြည့်မယ်</string>
@@ -2561,10 +2561,10 @@
     <string name="arrays__use_default">မူလကို သုံးပါ</string>
     <string name="arrays__use_custom">အထူးပြုကိုသုံးသည်</string>
 
-    <string name="arrays__mute_for_one_hour">အသံကို ၁ နာရီ ပိတ်ထားပါ။</string>
-    <string name="arrays__mute_for_eight_hours">၈ နာရီ အသံပိတ်ထားပါ</string>
-    <string name="arrays__mute_for_one_day">အသံကို ၁ ရက် ပိတ်ထားပါ</string>
-    <string name="arrays__mute_for_seven_days">အသံကို ၇ ရက် ပိတ်ထားပါ။</string>
+    <string name="arrays__mute_for_one_hour">1 နာရီစာ အသံပိတ်ရန်</string>
+    <string name="arrays__mute_for_eight_hours">8 နာရီစာ အသံပိတ်ရန်</string>
+    <string name="arrays__mute_for_one_day">1 ရက်စာ အသံပိတ်ရန်</string>
+    <string name="arrays__mute_for_seven_days">7 ရက်စာ အသံပိတ်ရန်</string>
     <string name="arrays__always">အမြဲ</string>
 
     <string name="arrays__settings_default">အပြင်အဆင်များကို မူလသို့</string>
@@ -2600,9 +2600,9 @@
     <string name="preferences__pref_use_address_book_photos">လိပ်စာစာအုပ်ဓာတ်ပုံများကို သုံးပါ</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">ဖြစ်နိုင်လျှင် စနစ်ထဲရှိ အဆက်အသွယ်များ၏ ရုပ်ပုံများကို ပြသပါ</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">စုစည်းပြီးသည့် ချက်(တ်)များကို ဆက်လက် အသံပိတ်ရန်</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">မက်ဆေ့ချ်အသစ် ရောက်လာချိန်တွင် စုစည်းထားသော အသံတိတ်ချက်(တ်)များသည် စုစည်းလျက်သား ကျန်ရှိပါမည်။</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">မက်ဆေ့ချ်အသစ် ရောက်လာချိန်တွင် စုစည်းပြီးသော ချက်(တ်)များသည် အသံပိတ်လျက်သား ဆက်ရှိနေပါမည်။</string>
     <string name="preferences__generate_link_previews">ကြိုတင်ကြည့်ရှုရန် လင့်ခ်များ ထုတ်လုပ်ပါ</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">သင်ပေးပို့သော မက်ဆေ့ချ်များ အတွက် ဝဘ်ဆိုဒ်များမှ ကြိုတင်ကြည့်ရှုနိုင်သည့် လင့်ခ်များကို တိုက်ရိုက်ရယူပါ။</string>
     <string name="preferences__change_passphrase">စကားဝှက်ကို ပြောင်းပါ</string>
@@ -2896,7 +2896,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">ငွေပေးချေပြီး</string>
     <string name="PaymentsDetailsFragment__received_payment">ငွေပေးချေမှုလက်ခံရယူပြီး</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">ငွေပေးချေမှု အောင်မြင်ပြီး %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">နံပါတ်အား ပိတ်ပယ်မယ်</string>
+    <string name="PaymentsDetailsFragment__block_number">ဖုန်းနံပါတ် ဘလော့ခ်ရန်</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">လွှဲပြောင်းမယ်</string>
@@ -2981,7 +2981,7 @@
 
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">သို့ မက်ဆေ့ချ်အသစ် …</string>
-    <string name="contact_selection_list__unknown_contact_block">အသုံးပြုသူအား ပိတ်မယ်</string>
+    <string name="contact_selection_list__unknown_contact_block">သုံးစွဲသူအား ဘလော့ခ်ရန်</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">အဖွဲ့ထဲသို့ ပေါင်းထည့်မယ်</string>
 
     <!-- conversation_callable_insecure -->
@@ -3052,10 +3052,10 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">ပြန်ဖွင့်ပါ</string>
+    <string name="conversation_muted__unmute">အသံပြန်ဖွင့်ရန်</string>
 
     <!-- conversation_unmuted -->
-    <string name="conversation_unmuted__mute_notifications">အသိပေးချက်များကို ပိတ်ပါ</string>
+    <string name="conversation_unmuted__mute_notifications">အသိပေးချက် အသံပိတ်ရန်</string>
 
     <!-- conversation -->
     <string name="conversation__menu_group_settings">အဖွဲ့ အပြင်အဆင်များ</string>
@@ -3478,8 +3478,8 @@
     <!-- AdvancedPreferenceFragment -->
 
     <!-- RecipientBottomSheet -->
-    <string name="RecipientBottomSheet_block">ပိတ်ပယ်မယ်</string>
-    <string name="RecipientBottomSheet_unblock">ပြန်ဖွင့်မယ်</string>
+    <string name="RecipientBottomSheet_block">ဘလော့ခ်ရန်</string>
+    <string name="RecipientBottomSheet_unblock">ဘလော့ခ်ဖြေရန်</string>
     <string name="RecipientBottomSheet_add_to_contacts">အဆက်အသွယ်စာရင်းထဲထည့်မယ်</string>
     <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
     <string name="RecipientBottomSheet_unable_to_open_contacts">အဆက်အသွယ်များကို ဖွင့်နိုင်သည့် အက်ပ်အား ရှာမတွေ့ပါ။</string>
@@ -3531,9 +3531,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ကို ပိတ်ပယ်ထားပါသည်</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" ကို ပိတ်ပယ်ခြင်း မအောင်မြင်ပါ</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" ကို ပိတ်ပင်ခြင်းမှ ပြန်ဖြည်လိုက်ပြီ</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ကို ဘလော့ခ်ထားပါသည်</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" ကို ဘလော့ခ်ရန် မအောင်မြင်ပါ</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" ကို ဘလော့ခ်ဖြေပြီးပါပြီ။</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">အဖွဲ့ဝင်များကို ပြန်လည်စစ်ဆေးပါ</string>
@@ -3558,7 +3558,7 @@
     <string name="ReviewCard__your_contact">သင်၏အဆက်အသွယ်</string>
     <string name="ReviewCard__remove_from_group">အဖွဲ့မှ ဖယ်ရှားရန်</string>
     <string name="ReviewCard__update_contact">အဆက်အသွယ် အပ်ဒိတ်မယ်</string>
-    <string name="ReviewCard__block">ပိတ်ပယ်မယ်</string>
+    <string name="ReviewCard__block">ဘလော့ခ်ရန်</string>
     <string name="ReviewCard__delete">ဖျက်ရန်</string>
     <string name="ReviewCard__recently_changed">မကြာသေးမီက ပရိုဖိုင်းအမည်ကို %1$s မှ %2$s သို့ ပြောင်းထားခဲ့ပါသည်။</string>
 
@@ -3915,12 +3915,12 @@
     <string name="NotificationProfilesFragment__create_profile">ပရိုဖိုင် ဖန်တီးရန်</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">ပိတ်ပယ်ထားသည်</string>
+    <string name="PrivacySettingsFragment__blocked">ဘလော့ခ်ထားပြီး</string>
     <string name="PrivacySettingsFragment__d_contacts">အဆက်အသွယ် %1$d ခု</string>
     <string name="PrivacySettingsFragment__messaging">မက်ဆေ့ချ်ပေးပို့ခြင်း</string>
     <string name="PrivacySettingsFragment__disappearing_messages">ပျောက်ကွယ်မည့် မက်ဆေ့ချ်များ</string>
     <string name="PrivacySettingsFragment__app_security">အက်ပ် လုံခြုံရေး</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">မကြာသေးမီ စာရင်းနှင့် app အတွင်း Screenshot များကို တားမြစ်ပါ</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">နောက်ဆုံး စာရင်းနှင့် အက်ပ်အတွင်း စခရင်ရှော့(တ်)များကို ပိတ်ရန်</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal မက်ဆေ့ချ်များနှင့် ကောလ်များ၊ အမြဲတမ်း ထပ်ဆင့်ပို့ ကောလ်များနှင့် ချိပ်ပိတ်ပေးပို့သူ</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">ချက်(တ်)အသစ်များအတွက် ပုံသေတိုင်မာ</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">သင် စတင်ခဲ့သည့် ချက်(တ်)အသစ်များ အားလုံးအတွက် ပျောက်သွားမည့် မက်ဆေ့ချ် ပုံသေတိုင်မာကို သတ်မှတ်ပါ။</string>
@@ -4075,9 +4075,9 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">ခေါ်ဆိုမယ်</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">အသံတိတ်ထားမည်</string>
+    <string name="ConversationSettingsFragment__mute">အသံပိတ်ရန်</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">အသံပိတ်ထား</string>
+    <string name="ConversationSettingsFragment__muted">အသံပိတ်ပြီး</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">ရှာဖွေမယ်</string>
     <string name="ConversationSettingsFragment__disappearing_messages">ပျောက်ကွယ်မည့် မက်ဆေ့ချ်များ</string>
@@ -4085,10 +4085,10 @@
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">အဆက်အသွယ် အသေးစိတ်</string>
     <string name="ConversationSettingsFragment__view_safety_number">လုံခြုံရေးနံပါတ်ကိုကြည့်မယ်</string>
-    <string name="ConversationSettingsFragment__block">ပိတ်ပယ်မယ်</string>
-    <string name="ConversationSettingsFragment__block_group">အဖွဲ့ကိုပိတ်ပယ်မယ်</string>
-    <string name="ConversationSettingsFragment__unblock">ပြန်ဖွင့်မယ်</string>
-    <string name="ConversationSettingsFragment__unblock_group">အဖွဲ့ကိုပြန်ဖွင့်မယ်</string>
+    <string name="ConversationSettingsFragment__block">ဘလော့ခ်ရန်</string>
+    <string name="ConversationSettingsFragment__block_group">အဖွဲ့ကို ဘလော့ခ်ရန်</string>
+    <string name="ConversationSettingsFragment__unblock">ဘလော့ခ်ဖြေရန်</string>
+    <string name="ConversationSettingsFragment__unblock_group">အဖွဲ့ကို ဘလော့ခ်ဖြေရန်</string>
     <string name="ConversationSettingsFragment__add_to_a_group">အဖွဲ့တစ်ဖွဲ့ထဲသို့ ထည့်မယ်</string>
     <string name="ConversationSettingsFragment__see_all">အားလုံးကို ကြည့်မယ်</string>
     <string name="ConversationSettingsFragment__add_members">အဖွဲ့ဝင်များ ထည့်ပါ</string>
@@ -4096,9 +4096,9 @@
     <string name="ConversationSettingsFragment__requests_and_invites">တောင်းဆိုချက်များနှင့် ဖိတ်ခေါ်မှုများ</string>
     <string name="ConversationSettingsFragment__group_link">Group link</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">အဆက်အသွယ်အဖြစ် ပေါင်းထည့်ရန်</string>
-    <string name="ConversationSettingsFragment__unmute">အသံပြန်ဖွင့်မယ်</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s အထိ စကားဝိုင်း အသိပေးသံကို ပိတ်ထားပါသည်</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">စကားဝိုင်း အသိပေးသံကို အမြဲပိတ်ထားပါသည်</string>
+    <string name="ConversationSettingsFragment__unmute">အသံပြန်ဖွင့်ရန်</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s အထိ စကားဝိုင်း အသံပိတ်ထားပါသည်</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">စကားဝိုင်းကို အမြဲ အသံပိတ်ထားပါသည်</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ဖုန်းနံပါတ်ကို ကလစ်ဘုတ်တွင် ကူးယူပြီး။</string>
     <string name="ConversationSettingsFragment__phone_number">ဖုန်းနံပါတ်</string>
     <string name="ConversationSettingsFragment__get_badges">Signal ကို ပံ့ပိုးခြင်းဖြင် သင့်ပရိုဖိုင်အတွက် ဘဲ့ဂျ်များကို ရယူပါ။ ပိုမိုလေ့လာရန် ဘဲ့ဂျ်တစ်ခုကို နှိပ်ပါ။</string>
@@ -4114,8 +4114,8 @@
     <string name="PermissionsSettingsFragment__who_can_send_messages">မည်သူတို့သည် မက်ဆေ့ချ်များ ပို့နိုင်မည်နည်း။</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
-    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">အသိပေးချက်များကို ပိတ်ပါ</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">အသံမပိတ်ပါ</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">အသိပေးချက် အသံပိတ်ရန်</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">အသံ မပိတ်ထားပါ</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">မန်းရှင်းများ</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">အမြဲ အသိပေးရန်</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">အသိမပေးရန်</string>
@@ -4144,7 +4144,7 @@
     <!-- Context menu item remove -->
     <string name="NewConversationActivity__remove">ဖယ်ရှားရန်</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">ဘလော့ လုပ်မည်</string>
+    <string name="NewConversationActivity__block">ဘလော့ခ်ရန်</string>
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$s ကို ဖယ်ရှားမည်လား။</string>
     <!-- Dialog message when removing a contact -->
@@ -4152,7 +4152,7 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s ကို ဖယ်ရှားထားပါသည်</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s အား ဘလော့ထားပါသည်</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s အား ဘလော့ခ်ပြီးပါပြီ</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">%1$s ကို ဖယ်ရှား၍ မရနိုင်ပါ</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -5489,11 +5489,11 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">လာ</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
-    <string name="TimeDurationPickerDialog_positive_button">တပ်ဆင်မယ်</string>
+    <string name="TimeDurationPickerDialog_positive_button">သတ်မှတ်ရန်</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">စခရင်လော့ခ် မသုံးမီ အနည်းဆုံးကြာချိန်မှာ 1 မိနစ်ဖြစ်ပါသည်။</string>
 
     <!-- EOF -->
 </resources>

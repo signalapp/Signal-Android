@@ -936,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificarme as mencións</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Recibir notificacións cando o mencionen en conversas silenciadas?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Queres recibir notificacións cando te mencionen en conversas silenciadas?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Notificarme sempre</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Non notificarme</string>
 
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Nome de usuario copiado</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Erro ao borrar o nome de usuario. Volver tentar máis tarde.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Nome de usuario borrado</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1477,9 +1477,9 @@
     <string name="MessageRequestBottomView_unblock">Desbloquear</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Queres permitir que %1$s che envíe mensaxes e comparta o teu nome e foto con eles? Non poderán saber que viches a súas mensaxes ata que aceptes.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Queres permitir que %1$s che envíe mensaxes e compartir o teu nome e foto con eles? Non recibirás ningunha mensaxe ata que os desbloquees.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Queres compartir o teu nome e foto con %1$s e que che envíe mensaxes? Non recibirás ningunha mensaxe ata que o desbloquees.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Permitir que %1$s che envíe mensaxes? Non poderás recibir ningunha mensaxe ata que desbloquees o contacto.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Deixar que %1$s che envíe mensaxes? Non recibirás ningunha mensaxe ata que desbloquees o contacto.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Queres recibir novidades de %1$s? Non recibirás ningunha noticia ata que desbloquees o contacto.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continuar a conversa con este grupo e compartir o teu nome e fotografía cos seus membros?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Actualizar este grupo para activar novas funcionalidades como son as @mencións e os administradores. Aqueles membros que non compartiran o seu nome e fotografía co grupo serán convidados a unirse.</string>
@@ -1488,7 +1488,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Unirse a este grupo e compartir cos seus membros o teu nome e fotografía? Non saberán quen viu as súas mensaxes ata que aceptes.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Queres unirte a este grupo e compartir o teu nome e a túa foto cos seus membros? Non verás as súas mensaxes ata que aceptes.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Unirse a este grupo? Non saberán quen viu as súas mensaxes ata que aceptes.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Desbloquear este grupo e compartir cos seus membros o teu nome e fotografía? Non recibirás ningunha mensaxe ata que desbloquees.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Desbloquear este grupo e compartir cos seus membros o teu nome e foto? Non recibirás ningunha mensaxe ata que o desbloquees.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Ver</string>
     <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
@@ -1591,7 +1591,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Aviso</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Se desactivas o PIN perderás todos os datos cando voltes a rexistrar Signal a menos que fagas unha copia de apoio e a restaures. Non podes activar Bloqueo do Rexistro se o PIN está desactivado.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Se desactivas o PIN, perderás todos os datos cando volvas rexistrarte en Signal a menos que fagas unha copia de seguranza e a restaures. Non podes activar o Bloqueo do rexistro se o PIN está desactivado.</string>
     <string name="PinOptOutDialog_disable_pin">Desactivar PIN</string>
 
     <!-- RatingManager -->
@@ -1716,7 +1716,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Cámara</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Activar o son</string>
+    <string name="WebRtcCallView__unmute">Desactivar silencio</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">Silenciar</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1736,7 +1736,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Non recibirás o seu audio ou vídeo nin eles o teu.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Non se pode recibir o audio e vídeo de %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Non se pode recibir o audio e vídeo de %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto podería ser debido a que non verificaron o cambio no teu número de seguridade, hai un problema co seu dispositivo ou a que te bloquearon.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Pode ser que non verificasen o cambio do teu número de seguridade, que haxa un problema co seu dispositivo ou que te bloqueasen.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Arrastra para ver a pantalla compartida</string>
@@ -1964,7 +1964,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Mensaxe programada</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">O teu historial de mensaxes xuntouse</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s pertence a %2$s</string>
 
@@ -2645,7 +2645,7 @@
     <string name="arrays__use_custom">Utilizar o personalizado</string>
 
     <string name="arrays__mute_for_one_hour">Silenciar durante 1 hora</string>
-    <string name="arrays__mute_for_eight_hours">Acalar durante 8 horas</string>
+    <string name="arrays__mute_for_eight_hours">Silenciar durante 8 horas</string>
     <string name="arrays__mute_for_one_day">Silenciar durante 1 día</string>
     <string name="arrays__mute_for_seven_days">Silenciar durante 7 días</string>
     <string name="arrays__always">Sempre</string>
@@ -2684,9 +2684,9 @@
     <string name="preferences__pref_use_address_book_photos">Utilizar fotografías da axenda de enderezos</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Mostra as fotografías dos contactos a partir da axenda, caso de estaren dispoñibles</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Manter as conversas silenciadas arquivadas</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">As conversas silenciadas que se arquivaron permanecerán así ao recibir unha nova mensaxe.</string>
     <string name="preferences__generate_link_previews">Crear vista previa de ligazóns</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Obter vistas previas das ligazóns directamente desde os sitios web para as mensaxes que envías.</string>
     <string name="preferences__change_passphrase">Cambiar frase de acceso</string>
@@ -3137,7 +3137,7 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Activar o son</string>
+    <string name="conversation_muted__unmute">Desactivar silencio</string>
 
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">Silenciar notificacións</string>
@@ -3624,9 +3624,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" foi bloqueado.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Erro ao bloquear a \"%1$s\"</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" foi desbloqueado.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">Bloqueouse a «%1$s».</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Erro ao bloquear a «%1$s»</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">Desbloqueouse a «%1$s».</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Revisar membros</string>
@@ -4017,7 +4017,7 @@
     <string name="PrivacySettingsFragment__messaging">Mensaxería</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Desaparición das mensaxes</string>
     <string name="PrivacySettingsFragment__app_security">Seguranza da app</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquea as capturas na listaxe de recentes e no interior da aplicación.</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquea as capturas na listaxe de recentes e na aplicación</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Mensaxes e chamadas Signal, redirección de chamadas e remitente selado</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Establecer duración das novas conversas</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Establece a duración das mensaxes temporais nas novas conversas que ti inicies.</string>
@@ -4176,7 +4176,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">Silenciar</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">Acalado</string>
+    <string name="ConversationSettingsFragment__muted">En silencio</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Buscar</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Desaparición das mensaxes</string>
@@ -4185,9 +4185,9 @@
     <string name="ConversationSettingsFragment__contact_details">Detalles do contacto</string>
     <string name="ConversationSettingsFragment__view_safety_number">Ver número de seguranza</string>
     <string name="ConversationSettingsFragment__block">Bloquear</string>
-    <string name="ConversationSettingsFragment__block_group">Bloquear un grupo</string>
+    <string name="ConversationSettingsFragment__block_group">Bloquear grupo</string>
     <string name="ConversationSettingsFragment__unblock">Desbloquear</string>
-    <string name="ConversationSettingsFragment__unblock_group">Desbloquear un grupo</string>
+    <string name="ConversationSettingsFragment__unblock_group">Desbloquear grupo</string>
     <string name="ConversationSettingsFragment__add_to_a_group">Engadir ao grupo</string>
     <string name="ConversationSettingsFragment__see_all">Ver todo</string>
     <string name="ConversationSettingsFragment__add_members">Engadir membros</string>
@@ -4195,8 +4195,8 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Solicitudes e convites</string>
     <string name="ConversationSettingsFragment__group_link">Ligazón do grupo</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Engadir como contacto</string>
-    <string name="ConversationSettingsFragment__unmute">Activar o son</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversa acalada ata %1$s</string>
+    <string name="ConversationSettingsFragment__unmute">Desactivar silencio</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversa silenciada ata %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Conversa silenciada para sempre</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Número de teléfono copiado no portapapeis.</string>
     <string name="ConversationSettingsFragment__phone_number">Número de teléfono</string>
@@ -5614,11 +5614,11 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">L.</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">min</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Fixar</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">O tempo mínimo antes de que a pantalla se bloquee é de 1 minuto.</string>
 
     <!-- EOF -->
 </resources>

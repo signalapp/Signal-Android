@@ -99,11 +99,11 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Блокталған пайдаланушылар</string>
     <string name="BlockedUsersActivity__add_blocked_user">Блокталған пайдаланушыны қосу</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Бұғатталған пайдаланушылар сізге қоңырау соға және хабарлама жібере алмайтын болады.</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Блокталған пайдаланушылар сізге қоңырау соғып, хат жібере алмайтын болады.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Блокталған пайдаланушылар жоқ</string>
     <string name="BlockedUsersActivity__block_user">Пайдаланушыны блоктау керек пе?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" сізге қоңырау шалып, хат жібере алмайды.</string>
-    <string name="BlockedUsersActivity__block">Бұғаттау</string>
+    <string name="BlockedUsersActivity__block">Блоктау</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -139,7 +139,7 @@
     <string name="CreditCardFragment__continue">Жалғастыру</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">%1$s блокталған күйде қалсын ба?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">%1$s тобын блоктап тастап, шығып кету керек пе?</string>
     <string name="BlockUnblockDialog_block_s">%1$s блокталсын ба?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Енді сізге бұл топтан хаттар немесе жаңалықтар келмейді және оның мүшелері сізді топқа қайта қоса алмайды.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Топ мүшелері сізді бұл топқа қайта қоса алмайды.</string>
@@ -151,11 +151,11 @@
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Блокталған адамдар сізге қоңырау шалып, хат жаза алмайды.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Блокталған адамдар сізге хат жібере алмайды.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal-дағы жаңартулар мен хабарлар алу функциясын блоктаңыз.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal-дағы жаңартулар мен хаттар алу функциясын блоктаңыз.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal-дағы жаңартулар мен хабарларды алуды қайта іске қосыңыз.</string>
     <string name="BlockUnblockDialog_unblock_s">%1$s блоктан шығарылсын ба?</string>
-    <string name="BlockUnblockDialog_block">Бұғаттау</string>
+    <string name="BlockUnblockDialog_block">Блоктау</string>
     <string name="BlockUnblockDialog_block_and_leave">Блоктап, шығып кету</string>
     <string name="BlockUnblockDialog_report_spam_and_block">Спам деп хабарлау және блоктау</string>
 
@@ -319,7 +319,7 @@
     <string name="ConversationActivity_transport_signal">Signal хаты</string>
     <string name="ConversationActivity_lets_switch_to_signal">Signal %1$s қолданбасына ауысайық</string>
     <string name="ConversationActivity_specify_recipient">Контактіні таңдаңыз</string>
-    <string name="ConversationActivity_unblock">Бұғатын ағыту</string>
+    <string name="ConversationActivity_unblock">Блоктан шығару</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Сіз жіберіп жатқан хат түрі үшін тіркеменің өлшемі бекітілген шектен асып кетті.</string>
     <string name="ConversationActivity_unable_to_record_audio">Аудио жазу мүмкін болмады!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Бұл топқа хат жібере алмайсыз, себебі сіз енді бұл топтың мүшесі емессіз.</string>
@@ -456,7 +456,7 @@
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Болдырмау</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">Бұғаттаулы</string>
+    <string name="ConversationFragment__blocked">Блокталған</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Сүзгіні тазалау</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Пайдаланушы аты көшірілді</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Пайдаланушы аты жойылмады. Кейінірек қайталап көріңіз.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Пайдаланушы аты жойылды</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1473,8 +1473,8 @@
     <string name="MessageRequestBottomView_accept">Қабылдау</string>
     <string name="MessageRequestBottomView_continue">Жалғастыру</string>
     <string name="MessageRequestBottomView_delete">Жою</string>
-    <string name="MessageRequestBottomView_block">Бұғаттау</string>
-    <string name="MessageRequestBottomView_unblock">Бұғатын ағыту</string>
+    <string name="MessageRequestBottomView_block">Блоктау</string>
+    <string name="MessageRequestBottomView_unblock">Блоктан шығару</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s сізге хат жазуына рұқсат етіп, оған аты-жөніңіз бен фотосуретіңіздің көрсетілгенін қалайсыз ба? Сіз қабылдамайынша, ол хатты оқығаныңызды білмейтін болады.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s сізге хат жазуына рұқсат етіп, оған аты-жөніңіз бен фотосуретіңіздің көрсетілгенін қалайсыз ба? Оны блоктан шығармайынша, сіз одан бірде-бір хат алмайтын боласыз.</string>
@@ -1488,7 +1488,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Осы топқа қосылып, оның мүшелеріне аты-жөніңіз бен фотосуретіңіздің көрсетілгенін қалайсыз ба? Оларды қабылдамайынша, сіз олардың хатын оқығаныңызды біле алмайды.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Осы топқа қосылып, оның мүшелеріне аты-жөніңіз бен фотосуретіңіздің көрсетілгенін қалайсыз ба? Оларды қабылдамайынша, олардың хаттарын көре алмайсыз.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Осы топқа қосылу керек пе? Сіз қабылдамайынша, олар хаттарын оқығаныңызды білмейді.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Осы топтың бұғатын шешіп, атыңыз бен фотосуретіңізді оның мүшелерімен бөлісу керек пе? Олардың бұғатын шешпейінше хабарлама алмайсыз.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Осы топты блоктан шығарып, атыңыз бен фотосуретіңіз топ мүшелеріне көрсетілгенін қалайсыз ба? Блоктан шығармайынша, хат алмайсыз.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">View</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s мүшесі</string>
@@ -1621,8 +1621,8 @@
     <string name="Recipient_my_story">Менің сторисім</string>
 
     <!-- RecipientPreferencesActivity -->
-    <string name="RecipientPreferenceActivity_block">Бұғаттау</string>
-    <string name="RecipientPreferenceActivity_unblock">Бұғатын ағыту</string>
+    <string name="RecipientPreferenceActivity_block">Блоктау</string>
+    <string name="RecipientPreferenceActivity_unblock">Блоктан шығару</string>
 
     <!-- RecipientProvider -->
 
@@ -1716,9 +1716,9 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Фотоаппарат</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Дыбысын шығару</string>
+    <string name="WebRtcCallView__unmute">Дыбысын қосу</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Дыбысын басу</string>
+    <string name="WebRtcCallView__mute">Дыбысын өшіру</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Қоңырау шалу</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1736,7 +1736,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Сіз олардың, ал олар сіздің аудио немесе видеоларыңызды ала алмайды.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s деген кісінің аудио және видеоларын ала алмайсыз</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s жіберген аудио және видеоларды ала алмайсыз</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ол сіздің қауіпсіздік нөміріңіздің өзгерісін верификацияламаған, құрылғыларында ақау болуы немесе ол сізді блоктап қойған болуы мүмкін.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Бұл сіздің қауіпсіздік нөміріңіздің өзгергені верификацияланбаған, құрылғыда ақау болуы немесе ол сізді блоктап қойған болуы мүмкін.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Экранды ортақ көру үшін свайп жасаңыз</string>
@@ -1964,7 +1964,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Жоспарланған хат</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Хаттар тарихы біріктірілді</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s нөмірі %2$s деген кісіге тиесілі</string>
 
@@ -2644,10 +2644,10 @@
     <string name="arrays__use_default">Әдепкі мәнді пайдалану</string>
     <string name="arrays__use_custom">Реттелмелі мәнді пайдалану</string>
 
-    <string name="arrays__mute_for_one_hour">Дауысын 1 сағатқа өшіру</string>
-    <string name="arrays__mute_for_eight_hours">Дауысын 8 сағатқа өшіру</string>
-    <string name="arrays__mute_for_one_day">Дауысын 1 күнге өшіру</string>
-    <string name="arrays__mute_for_seven_days">Дауысын 7 күнге өшіру</string>
+    <string name="arrays__mute_for_one_hour">Дыбысын 1 сағатқа өшіру</string>
+    <string name="arrays__mute_for_eight_hours">Дыбысын 8 сағатқа өшіру</string>
+    <string name="arrays__mute_for_one_day">Дыбысын 1 күнге өшіру</string>
+    <string name="arrays__mute_for_seven_days">Дыбысын 7 күнге өшіру</string>
     <string name="arrays__always">Әрқашан</string>
 
     <string name="arrays__settings_default">Әдепкі параметрлер</string>
@@ -2684,9 +2684,9 @@
     <string name="preferences__pref_use_address_book_photos">Мекенжайлар кітабындағы фотосуреттерді қолдану</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Бар болса, мекенжайлар кітабындағы контакт фотосуреттерін көрсету</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Дыбысы өшірілген чаттарды мұрағатта қалдыру</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Мұрағаттағы дыбысы өшірілген чаттарға жаңа хат келгенде олар мұрағатта қала береді.</string>
     <string name="preferences__generate_link_previews">Сілтеменің шағын көріністерін жасау</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Жіберетін хаттарыңыз үшін сілтеменің шағын көріністерін тікелей веб-сайттардан алыңыз.</string>
     <string name="preferences__change_passphrase">Құпия сөйлемді өзгерту</string>
@@ -3137,7 +3137,7 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Дыбысын шығару</string>
+    <string name="conversation_muted__unmute">Дыбысын қосу</string>
 
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">Хабарландырулардың дыбысын өшіру</string>
@@ -3571,8 +3571,8 @@
     <!-- AdvancedPreferenceFragment -->
 
     <!-- RecipientBottomSheet -->
-    <string name="RecipientBottomSheet_block">Бұғаттау</string>
-    <string name="RecipientBottomSheet_unblock">Бұғатын ағыту</string>
+    <string name="RecipientBottomSheet_block">Блоктау</string>
+    <string name="RecipientBottomSheet_unblock">Блоктан шығару</string>
     <string name="RecipientBottomSheet_add_to_contacts">Контактілерді қосу</string>
     <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
     <string name="RecipientBottomSheet_unable_to_open_contacts">Контактілерді аша алатын қолданба табылмады.</string>
@@ -3653,7 +3653,7 @@
     <string name="ReviewCard__your_contact">Контактіңіз</string>
     <string name="ReviewCard__remove_from_group">Топтан өшіру</string>
     <string name="ReviewCard__update_contact">Контактіні жаңарту</string>
-    <string name="ReviewCard__block">Бұғаттау</string>
+    <string name="ReviewCard__block">Блоктау</string>
     <string name="ReviewCard__delete">Жою</string>
     <string name="ReviewCard__recently_changed">Жақында профиль атауын (%1$s) %2$s деп өзгертті</string>
 
@@ -4012,7 +4012,7 @@
     <string name="NotificationProfilesFragment__create_profile">Профиль жасау</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Бұғаттаулы</string>
+    <string name="PrivacySettingsFragment__blocked">Блокталған</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d контакт</string>
     <string name="PrivacySettingsFragment__messaging">Хат алмасу</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Disappearing messages</string>
@@ -4174,7 +4174,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Қоңырау</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Дыбысын басу</string>
+    <string name="ConversationSettingsFragment__mute">Дыбысын өшіру</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Дыбысы өшірілген</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4184,9 +4184,9 @@
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Контакт мәліметтері</string>
     <string name="ConversationSettingsFragment__view_safety_number">Қауіпсіздік нөмірін көру</string>
-    <string name="ConversationSettingsFragment__block">Бұғаттау</string>
+    <string name="ConversationSettingsFragment__block">Блоктау</string>
     <string name="ConversationSettingsFragment__block_group">Топты блоктау</string>
-    <string name="ConversationSettingsFragment__unblock">Бұғатын шешу</string>
+    <string name="ConversationSettingsFragment__unblock">Блоктан шығару</string>
     <string name="ConversationSettingsFragment__unblock_group">Топты блоктан шығару</string>
     <string name="ConversationSettingsFragment__add_to_a_group">Топқа қосу</string>
     <string name="ConversationSettingsFragment__see_all">Барлығын көру</string>
@@ -4195,7 +4195,7 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Өтініштер және шақырулар</string>
     <string name="ConversationSettingsFragment__group_link">Топ сілтемесі</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Контакт ретінде қосу</string>
-    <string name="ConversationSettingsFragment__unmute">Дыбысын шығару</string>
+    <string name="ConversationSettingsFragment__unmute">Дыбысын қосу</string>
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Әңгіменің дыбысы %1$s дейін өшірілген</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Әңгіменің дыбысы біржола өшірілген</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Телефон нөмірі буферге көшірілді.</string>
@@ -4214,7 +4214,7 @@
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Хабарландырулардың дыбысын өшіру</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Дыбысы басылған жоқ</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Дыбысы өшірілмеген</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Атап өтулер</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Үнемі хабарлау</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Хабарламау</string>
@@ -4243,7 +4243,7 @@
     <!-- Context menu item remove -->
     <string name="NewConversationActivity__remove">Өшіру</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">Бұғаттау</string>
+    <string name="NewConversationActivity__block">Блоктау</string>
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$s өшірілсін бе?</string>
     <!-- Dialog message when removing a contact -->
@@ -5612,13 +5612,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">сағ</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">Д</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">мин</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Орнату</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Экран құлыпталғанға дейінгі минималды уақыт – 1 минут.</string>
 
     <!-- EOF -->
 </resources>

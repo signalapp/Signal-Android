@@ -97,13 +97,13 @@
     <string name="BackgroundMessageRetriever_checking_for_messages">Mesajlar yoxlanılır…</string>
 
     <!-- BlockedUsersActivity -->
-    <string name="BlockedUsersActivity__blocked_users">Əngəllənmiş istifadəçilər</string>
-    <string name="BlockedUsersActivity__add_blocked_user">İstifadəçi əlavə et</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Əngəllənmiş istifadəçilər, sizə mesaj göndərə və ya zəng edə bilməz.</string>
-    <string name="BlockedUsersActivity__no_blocked_users">Heç bir istifadəçi əngəllənməyib</string>
-    <string name="BlockedUsersActivity__block_user">İstifadəçi əngəllənsin?</string>
+    <string name="BlockedUsersActivity__blocked_users">Bloklanmış istifadəçilər</string>
+    <string name="BlockedUsersActivity__add_blocked_user">Bloklanmış istifadəçini əlavə et</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Bloklanmış istifadəçilər, sizə mesaj göndərə və ya zəng edə bilməz.</string>
+    <string name="BlockedUsersActivity__no_blocked_users">Bloklanmış istifadəçi yoxdur</string>
+    <string name="BlockedUsersActivity__block_user">İstifadəçi bloklansın?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" sizə zəng edə və ya mesaj göndərə bilməyəcək.</string>
-    <string name="BlockedUsersActivity__block">Əngəllə</string>
+    <string name="BlockedUsersActivity__block">Blokla</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">Davam et</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">%1$s qrupunu əngəlləyərək tərk edirsiniz?</string>
-    <string name="BlockUnblockDialog_block_s">%1$s əngəllənsin?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">%1$s qrupunu bloklayaraq tərk edirsiniz?</string>
+    <string name="BlockUnblockDialog_block_s">%1$s bloklansın?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Artıq bu qrupdan mesaj və ya yeniləmələr almayacaqsınız və üzvlər sizi bu qrupa yenidən əlavə edə bilməyəcək.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Qrup üzvləri, sizi yenidən bu qrupa əlavə edə bilməyəcək.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Qrup üzvləri, sizi bu qrupa yenidən əlavə edə biləcək.</string>
@@ -148,16 +148,16 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Bir-birinizə mesaj göndərə, zəng edə biləcəksiniz, foto və adınız onlarla paylaşılacaq.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Bir-birinizə mesaj göndərə biləcəksiniz.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Əngəllənmiş şəxslər sizə zəng edə və ya mesaj göndərə bilməyəcək.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Əngəllənən şəxslər sizə mesaj göndərə bilməyəcək.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Bloklanmış şəxslər sizə zəng edə və ya mesajlar göndərə bilməyəcək.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Bloklanmış şəxslər sizə mesajlar göndərə bilməyəcək.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal yeniliklərini və xəbərlərini almağı əngəlləyin.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal yeniliklərini və xəbərlərini bloklayın.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal yeniliklərini və xəbərlərini almağı davam etdirin.</string>
-    <string name="BlockUnblockDialog_unblock_s">%1$s əngəldən çıxarılsın?</string>
-    <string name="BlockUnblockDialog_block">Əngəllə</string>
-    <string name="BlockUnblockDialog_block_and_leave">Əngəllə və tərk et</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Spam bildir və əngəllə</string>
+    <string name="BlockUnblockDialog_unblock_s">%1$s Blokdan çıxarılsın?</string>
+    <string name="BlockUnblockDialog_block">Blokla</string>
+    <string name="BlockUnblockDialog_block_and_leave">Blokla və çıx</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Spamla olaraq bildir və blokla</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Bu gün</string>
@@ -319,7 +319,7 @@
     <string name="ConversationActivity_transport_signal">Signal mesajı</string>
     <string name="ConversationActivity_lets_switch_to_signal">Gəlin Signal-a keçək: %1$s</string>
     <string name="ConversationActivity_specify_recipient">Zəhmət olmasa bir əlaqə seçin</string>
-    <string name="ConversationActivity_unblock">Əngəldən çıxart</string>
+    <string name="ConversationActivity_unblock">Blokdan çıxart</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Qoşma, göndərdiyiniz mesaj növü üçün həcm limitləri aşır.</string>
     <string name="ConversationActivity_unable_to_record_audio">Səs yazıla bilmir!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Üzv olmadığınız üçün bu qrupa mesaj göndərə bilməzsiniz.</string>
@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Mesaj göndərmə xətası</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Spam olaraq bildirildi və əngəlləndi.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Spam olaraq bildirildi və bloklandı.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS mesajlaşması hazırda qeyri-aktivdir. Mesajlarınızı telefonunuzdakı başqa bir tətbiqə ixrac edə bilərsiniz.</string>
@@ -448,15 +448,15 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$s açıqdır</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">Tələb əngəllənsin?</string>
+    <string name="ConversationFragment__block_request">Tələb bloklansın?</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s, qrup bağlantısı vasitəsilə bu qrupa qoşula və ya qoşulma tələbi göndərə bilməz. Yenə də qrupa manual olaraq əlavə edilə bilər.</string>
     <!-- Dialog confirm block request button -->
-    <string name="ConversationFragment__block_request_button">Tələbi əngəllə</string>
+    <string name="ConversationFragment__block_request_button">Tələbi blokla</string>
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">İmtina</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">Əngəlləndi</string>
+    <string name="ConversationFragment__blocked">Bloklandı</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Filtri təmizlə</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -497,8 +497,8 @@
         <item quantity="other">Sancağı götür</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Səssizə al</item>
-        <item quantity="other">Səssizə al</item>
+        <item quantity="one">Səsi bağla</item>
+        <item quantity="other">Səsi bağla</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
         <item quantity="one">Səsi aç</item>
@@ -936,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Adım çəkiləndə bildir</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Səssizə alınmış söhbətlərdə adınız çəkiləndə bildiriş alınsın?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Səsi bağlı söhbətlərdə adınız çəkiləndə bildiriş alınsın?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Həmişə bildir</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Bildirmə</string>
 
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">İstifadəçi adı köçürüldü</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">İstifadəçi adını silmək mümkün olmadı. Daha sonra yenidən cəhd edin.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">İstifadəçi adı silindi</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1473,14 +1473,14 @@
     <string name="MessageRequestBottomView_accept">Qəbul et</string>
     <string name="MessageRequestBottomView_continue">Davam et</string>
     <string name="MessageRequestBottomView_delete">Sil</string>
-    <string name="MessageRequestBottomView_block">Əngəllə</string>
-    <string name="MessageRequestBottomView_unblock">Əngəldən çıxart</string>
+    <string name="MessageRequestBottomView_block">Blokla</string>
+    <string name="MessageRequestBottomView_unblock">Blokdan çıxart</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s əlaqəsinin sizə mesaj göndərməsinə icazə verərək adınızı və fotonuzu onunla paylaşırsınız? Qəbul edənə qədər onun mesajlarını gördüyünüzü bilməyəcək.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s əlaqəsinin sizə mesaj göndərməsinə icazə verərək adınızı və fotonuzu onunla paylaşırsınız? Əngəldən çıxardana qədər heç bir mesaj almayacaqsınız.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s adlı istifadəçinin sizə mesaj göndərməsinə icazə verərək adınızı və fotonuzu onunla paylaşırsınız? Blokdan çıxaranadək heç bir mesaj almayacaqsınız.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s sizə mesaj göndərsin? Onu əngəldən çıxarana qədər heç bir mesaj almayacaqsınız.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s üzərindən yeniliklər və xəbərlər alınsın? Əngəli götürənə qədər heç bir yenilik almayacaqsınız.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s sizə mesaj göndərsin? Onu blokdan çıxaranadək heç bir mesaj almayacaqsınız.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s üzərindən yeniliklər və xəbərlər alınsın? Blokdan çıxaranadək heç bir yenilik almayacaqsınız.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Bu qrup ilə danışığınıza davam edib adınızı və fotonuzu üzvlər ilə paylaşmaq istəyirsiniz?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@adçəkmə və admin kimi yeni özəllikləri aktivləşdirmək üçün bu qrupu yüksəldin. Bu qrupda adını və fotosunu paylaşmayan üzvlərə qoşulmaq üçün dəvət göndəriləcək.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Bu Köhnə Qrup çox böyük olduğu üçün istifadə edilə bilmir. Maksimum qrup ölçüsü %1$d.</string>
@@ -1488,7 +1488,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bu qrupa qoşularaq adınızı və fotonuzu üzvlərlə paylaşırsınız? Qəbul edənə qədər onların mesajlarını gördüyünüzü bilməyəcəklər.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Bu qrupa qoşularaq adınızı və fotonuzu üzvlərlə paylaşırsınız? Qəbul edənə qədər onların mesajlarını görməyəcəksiniz.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bu qrupa qoşulursunuz? Qəbul edənə qədər onların mesajlarını gördüyünüzü bilməyəcəklər.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Bu qrupu əngəldən çıxardaraq adınızı və fotonuzu üzvlərlə paylaşırsınız? Əngəldən çıxardana qədər heç bir mesaj almayacaqsınız.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Bu qrupu blokdan çıxararaq adınızı və fotonuzu üzvlərlə paylaşırsınız? Blokdan çıxaranadək heç bir mesaj almayacaqsınız.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Bax</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s qrupunun üzvü</string>
@@ -1591,7 +1591,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Xəbərdarlıq</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Əgər PIN-i sıradan çıxartsanız, manual olaraq nüsxələmə və geri yükləmə etmədiyiniz müddətcə Signal-da yenidən qeydiyyatdan keçəndə bütün verilənlərinizi itirəcəksiniz. PIN sıradan çıxarılanda, Qeydiyyat Kilidini aça bilməyəcəksiniz.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Əgər PIN-i qeyri-aktiv etsəniz, əllə ehtiyat nüsxəsini çıxarmadığınız və geri yükləmə etmədiyiniz müddətcə Signal-da yenidən qeydiyyatdan keçəndə bütün verilənləri itirəcəksiniz. PIN qeyri-aktiv edildikdə, Qeydiyyat Kilidini aça bilməyəcəksiniz.</string>
     <string name="PinOptOutDialog_disable_pin">PIN-i sıradan çıxart</string>
 
     <!-- RatingManager -->
@@ -1621,8 +1621,8 @@
     <string name="Recipient_my_story">Hekayəm</string>
 
     <!-- RecipientPreferencesActivity -->
-    <string name="RecipientPreferenceActivity_block">Əngəllə</string>
-    <string name="RecipientPreferenceActivity_unblock">Əngəldən çıxart</string>
+    <string name="RecipientPreferenceActivity_block">Blokla</string>
+    <string name="RecipientPreferenceActivity_unblock">Blokdan çıxart</string>
 
     <!-- RecipientProvider -->
 
@@ -1718,7 +1718,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Səsi aç</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Səssizə al</string>
+    <string name="WebRtcCallView__mute">Səsi bağla</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Zəng</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1731,12 +1731,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s əngəlləndi</string>
+    <string name="CallParticipantView__s_is_blocked">%1$s bloklandı</string>
     <string name="CallParticipantView__more_info">Daha çox məlumat</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Onların göndərdiyi səs və ya görüntünü almayacaqsınız və onlar da sizin göndərdiklərinizi almayacaq.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s əlaqəsindən səs və ya görüntü alına bilmir</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s əlaqəsindən səs və ya görüntü alına bilmir</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Bu, qarşı tərəf güvənlik nömrəsi dəyişikliyini təsdiqləmədiyi, cihazında bir problem olduğu və ya sizi əngəllədiyi üçün baş verə bilər.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Bu, qarşı tərəf güvənlik nömrəsi dəyişikliyinizi təsdiqləmədiyi, cihazında bir problem olduğu və ya sizi blokladığı üçün baş verə bilər.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Ekran paylaşımına baxmaq üçün sürüşdürün</string>
@@ -1964,7 +1964,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Planlaşdırılmış mesaj</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Mesaj tarixçəniz birləşdirilib</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s nömrəsi %2$s adlı istifadəçiyə aiddir</string>
 
@@ -2039,7 +2039,7 @@
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mövcud olmayan seans üçün MMS mesajı şifrələndi</string>
 
     <!-- MuteDialog -->
-    <string name="MuteDialog_mute_notifications">Bildirişləri səssizə al</string>
+    <string name="MuteDialog_mute_notifications">Bildirişlərin səsini bağla</string>
 
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">İdxal davam edir</string>
@@ -2307,7 +2307,7 @@
     <string name="ConversationUpdateItem_enable_call_notifications">Zəng bildirişlərini fəallaşdır</string>
     <string name="ConversationUpdateItem_update_contact">Əlaqəni yenilə</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
-    <string name="ConversationUpdateItem_block_request">Tələbi əngəllə</string>
+    <string name="ConversationUpdateItem_block_request">Tələbi blokla</string>
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Heç bir ortaq qrup yoxdur. Tələbləri diqqətlə nəzərdən keçirin.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Bu qrupda heç bir əlaqə yoxdur. Tələbləri diqqətlə nəzərdən keçirin.</string>
     <string name="ConversationUpdateItem_view">Bax</string>
@@ -2644,10 +2644,10 @@
     <string name="arrays__use_default">İlkin tənzimləmə istifadə et</string>
     <string name="arrays__use_custom">Özəl tənzimləmə istifadə et</string>
 
-    <string name="arrays__mute_for_one_hour">1 saatlıq səssizə al</string>
-    <string name="arrays__mute_for_eight_hours">8 saatlıq səssizə al</string>
-    <string name="arrays__mute_for_one_day">1 günlük səssizə al</string>
-    <string name="arrays__mute_for_seven_days">7 günlük səssizə al</string>
+    <string name="arrays__mute_for_one_hour">1 saatlıq səsi bağla</string>
+    <string name="arrays__mute_for_eight_hours">8 saatlıq səsi bağla</string>
+    <string name="arrays__mute_for_one_day">1 günlük səsi bağla</string>
+    <string name="arrays__mute_for_seven_days">7 günlük səsi bağla</string>
     <string name="arrays__always">Həmişə</string>
 
     <string name="arrays__settings_default">İlkin tənzimləmələr</string>
@@ -2684,9 +2684,9 @@
     <string name="preferences__pref_use_address_book_photos">Ünvan kitabçasındakı fotoları istifadə et</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Əgər varsa, ünvan kitabçanızdan əlaqənin fotosunu görüntüləyin</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Səssizə alınmış söhbətlər arxivlənmiş saxlanılsın</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Səsi bağlanmış söhbətlər arxivdə saxlanılsın</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Arxivlənmiş və səssizə alınmış söhbətlər, yeni mesaj gələndə arxivlənmiş olaraq qalacaq.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Arxivlənmiş və səsi bağlanmış söhbətlər, yeni mesaj gələndə arxivlənmiş olaraq qalacaq.</string>
     <string name="preferences__generate_link_previews">Bağlantı önbaxışları yarat</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Göndərdiyiniz mesajlar üçün bağlantı önbaxışlarını birbaşa veb saytlardan alın.</string>
     <string name="preferences__change_passphrase">Parolu dəyişdir</string>
@@ -2980,7 +2980,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Ödəniş göndərildi</string>
     <string name="PaymentsDetailsFragment__received_payment">Ödəniş alındı</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Ödəniş tamamlandı %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Blok nömrəsi</string>
+    <string name="PaymentsDetailsFragment__block_number">Nömrəni blokla</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Köçürmə</string>
@@ -3065,7 +3065,7 @@
 
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">Yeni mesaj</string>
-    <string name="contact_selection_list__unknown_contact_block">İstifadəçini əngəllə</string>
+    <string name="contact_selection_list__unknown_contact_block">İstifadəçini blokla</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Qrupa əlavə et</string>
 
     <!-- conversation_callable_insecure -->
@@ -3140,7 +3140,7 @@
     <string name="conversation_muted__unmute">Səsi aç</string>
 
     <!-- conversation_unmuted -->
-    <string name="conversation_unmuted__mute_notifications">Bildirişləri səssizə al</string>
+    <string name="conversation_unmuted__mute_notifications">Bildirişlərin səsini bağla</string>
 
     <!-- conversation -->
     <string name="conversation__menu_group_settings">Qrup tənzimləmələri</string>
@@ -3571,8 +3571,8 @@
     <!-- AdvancedPreferenceFragment -->
 
     <!-- RecipientBottomSheet -->
-    <string name="RecipientBottomSheet_block">Əngəllə</string>
-    <string name="RecipientBottomSheet_unblock">Əngəldən çıxart</string>
+    <string name="RecipientBottomSheet_block">Blokla</string>
+    <string name="RecipientBottomSheet_unblock">Blokdan çıxart</string>
     <string name="RecipientBottomSheet_add_to_contacts">Əlaqələrə əlavə et</string>
     <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
     <string name="RecipientBottomSheet_unable_to_open_contacts">Əlaqələri açmaq üçün tətbiq tapıla bilmir.</string>
@@ -3624,9 +3624,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" əngəlləndi.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" əngəllənmədi.</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" əngəldən çıxarıldı.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" bloklanıb.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" bloklana bilmədi</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" blokdan çıxarıldı.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Üzvləri nəzərdən keçir</string>
@@ -3653,7 +3653,7 @@
     <string name="ReviewCard__your_contact">Əlaqəniz</string>
     <string name="ReviewCard__remove_from_group">Qrupdan çıxart</string>
     <string name="ReviewCard__update_contact">Əlaqəni yenilə</string>
-    <string name="ReviewCard__block">Əngəllə</string>
+    <string name="ReviewCard__block">Blokla</string>
     <string name="ReviewCard__delete">Sil</string>
     <string name="ReviewCard__recently_changed">%1$s, təzəlikcə profil adını %2$s olaraq dəyişdirdi</string>
 
@@ -4012,12 +4012,12 @@
     <string name="NotificationProfilesFragment__create_profile">Profil yarat</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Əngəlləndi</string>
+    <string name="PrivacySettingsFragment__blocked">Bloklandı</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d əlaqə</string>
     <string name="PrivacySettingsFragment__messaging">Mesajlaşma</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Yox olan mesajlar</string>
     <string name="PrivacySettingsFragment__app_security">Tətbiq təhlükəsizliyi</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Sonuncular siyahısında və tətbiq daxilində ekran şəkillərini əngəllə</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Sonuncular siyahısında və tətbiq daxilində ekran şəkillərini blokla</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal mesajları və zəngləri, zəng köçürmə və gizli göndərən</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Yeni söhbətlər üçün ilkin vaxtölçən</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Başlatdığınız bütün yeni söhbətlər üçün ilkin bir yox olan mesaj vaxtölçəni tənzimləyin.</string>
@@ -4174,7 +4174,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Zəng et</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Səssizə al</string>
+    <string name="ConversationSettingsFragment__mute">Səsi bağla</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Səssizdə</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4184,10 +4184,10 @@
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Əlaqə təfsilatları</string>
     <string name="ConversationSettingsFragment__view_safety_number">Güvənlik nömrəsinə bax</string>
-    <string name="ConversationSettingsFragment__block">Əngəllə</string>
-    <string name="ConversationSettingsFragment__block_group">Qrupu əngəllə</string>
-    <string name="ConversationSettingsFragment__unblock">Əngəldən çıxart</string>
-    <string name="ConversationSettingsFragment__unblock_group">Qrupu əngəldən çıxart</string>
+    <string name="ConversationSettingsFragment__block">Blokla</string>
+    <string name="ConversationSettingsFragment__block_group">Qrupu blokla</string>
+    <string name="ConversationSettingsFragment__unblock">Blokdan çıxart</string>
+    <string name="ConversationSettingsFragment__unblock_group">Qrupu blokdan çıxart</string>
     <string name="ConversationSettingsFragment__add_to_a_group">Bir qrupa əlavə et</string>
     <string name="ConversationSettingsFragment__see_all">Hamısına bax</string>
     <string name="ConversationSettingsFragment__add_members">Üzv əlavə et</string>
@@ -4196,8 +4196,8 @@
     <string name="ConversationSettingsFragment__group_link">Qrup bağlantısı</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Bir əlaqə kimi əlavə et</string>
     <string name="ConversationSettingsFragment__unmute">Səsi aç</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Danışıq %1$s tarixinə qədər səssizə alındı</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Danışıq həmişəlik səssizə alındı</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s tarixinədək söhbətin səsi bağlandı</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Söhbətin səsi həmişəlik bağlandı</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefon nömrəsi lövhəyə kopyalandı.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefon nömrəsi</string>
     <string name="ConversationSettingsFragment__get_badges">Signal-ı dəstəkləyərək profiliniz üçün nişanlar qazanın. Daha ətraflı məlumat üçün bir nişana toxunun.</string>
@@ -4213,7 +4213,7 @@
     <string name="PermissionsSettingsFragment__who_can_send_messages">Kim mesaj göndərə bilər?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
-    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Bildirişləri səssizə al</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Bildirişlərin səsini bağla</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Səssizdə deyil</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Ad çəkmələr</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Həmişə bildir</string>
@@ -4243,7 +4243,7 @@
     <!-- Context menu item remove -->
     <string name="NewConversationActivity__remove">Çıxart</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">Əngəllə</string>
+    <string name="NewConversationActivity__block">Blokla</string>
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$s çıxarılsın?</string>
     <!-- Dialog message when removing a contact -->
@@ -4251,7 +4251,7 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s çıxarılıb</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s əngəlləndi</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s bloklanıb</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">%1$s çıxarılmadı</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -5612,13 +5612,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">s</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">B.e.</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">d</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
-    <string name="TimeDurationPickerDialog_positive_button">Tənzimlə</string>
+    <string name="TimeDurationPickerDialog_positive_button">Təyin et</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Ekran kilidi aktivləşmədən əvvəlki minimal vaxt 1 dəqiqədir.</string>
 
     <!-- EOF -->
 </resources>

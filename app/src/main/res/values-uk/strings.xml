@@ -139,7 +139,7 @@
     <string name="CreditCardFragment__continue">Продовжити</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Заблокувати і покинути %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Заблокувати і покинути «%1$s»?</string>
     <string name="BlockUnblockDialog_block_s">Заблокувати %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ви більше не отримуватимете повідомлень чи оновлень з цієї групи, та її учасники не зможуть додати вас до цієї групи знов.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Учасники групи більше не зможуть додавати вас до цієї групи.</string>
@@ -148,16 +148,16 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ви зможете обмінюватись повідомленнями та дзвінками, а також вони зможуть бачити ваше ім\'я та фото.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Ви зможете надсилати повідомлення один одному.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Заблоковані люди не зможуть подзвонити чи відправити Вам повідомлення.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Заблоковані особи не зможуть відправити вам повідомлення.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Заблоковані люди не зможуть вам телефонувати чи надсилати повідомлення.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Заблоковані люди не зможуть надсилати вам повідомлення.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Вимкнути отримання оновлень та новин Signal.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Вимкнути отримання оновлень і новин Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Увімкнути отримання оновлень та новин Signal.</string>
     <string name="BlockUnblockDialog_unblock_s">Розблокувати %1$s?</string>
     <string name="BlockUnblockDialog_block">Заблокувати</string>
     <string name="BlockUnblockDialog_block_and_leave">Заблокувати і покинути</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Повідомити про спам та заблокувати</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Повідомити про спам і заблокувати</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Сьогодні</string>
@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Помилка відправлення медіа</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Помічено як спам та заблоковано.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Позначено як спам і заблоковано.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS-повідомлення наразі не підтримуються. Ви можете експортувати свої повідомлення в інший застосунок на телефоні.</string>
@@ -1012,7 +1012,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Сповіщати мене про згадування</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Отримувати сповіщення, якщо вас згадали у чатах з вимкнутими сповіщеннями?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Отримувати сповіщення, якщо вас згадали в чатах із вимкнутими сповіщеннями?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Завжди сповіщати</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Не сповіщати</string>
 
@@ -1031,9 +1031,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Ім’я користувача скопійовано</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Не вдалося видалити ім\'я користувача. Спробуйте знову пізніше.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Ім\'я користувача було видалено</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1593,10 +1593,10 @@
     <string name="MessageRequestBottomView_unblock">Розблокувати</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Дозволити %1$s писати вам та ділитись з ним своїм ім\'ям та фото? Користувач не знатиме, що ви бачили його повідомлення, допоки ви не схвалите запит.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Дозволити %1$s надсилати вам повідомлення та ділитись ім\'ям та фото з цим користувачем? Ви не отримаєте повідомлень, допоки не розблокуєте цього користувача.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Дозволити користувачу %1$s надсилати вам повідомлення та ділитись ім\'ям і фото з цим користувачем? Ви не отримаєте повідомлень, поки не розблокуєте цього користувача.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Дозволити %1$s відправити вам повідомлення? Ви не отримаєте жодного повідомлення, допоки не розблокуєте його.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Отримуєте оновлення та новини від %1$s? Ви не отримуватимете жодних оновлень допоки не увімкнете їх.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Дозволити користувачу %1$s надсилати вам повідомлення? Ви не отримаєте повідомлень, поки не розблокуєте цього користувача.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Отримувати оновлення та новини від %1$s? Ви не отримуватимете оновлень, поки не розблокуєте користувача.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Продовжувати спілкуватися з цією групою та ділитися своїм ім’ям та фото з її учасниками?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Оновіть цю групу, щоб отримати доступ до нових можливостей як-до @згадування та адміністратори. Учасники, які не поділились своїми іменами чи фотографіями у цій групі, будуть запрошені приєднатись.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ця Застаріла Група більше не може використовуватись, тому що вона занадто велика. Максимальний розмір групи це - %1$d.</string>
@@ -1604,7 +1604,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Приєднатися до цієї групи та поділитися своїм ім’ям та фото з її учасниками? Вони не знатимуть, що ви бачили їхні повідомлення, поки ви не приймете.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Приєднатися до цієї групи та поділитися своїм ім’ям і фото з її учасниками? Ви не будете бачити повідомлення групи, доки не погодитесь.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Приєднатись до групи? Вони не дізнаються, що ви бачили їх повідомлення допоки ви не приймете запит.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Розблокувати цю групу та поділитися своїм ім’ям та фото з її учасниками? Ви не отримаєте жодного повідомлення, поки не розблокуєте їх.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Розблокувати цю групу та ділитися своїм ім’ям і фото з її учасниками? Ви не отримаєте повідомлень, поки не розблокуєте групу.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Детальніше</string>
     <string name="MessageRequestProfileView_member_of_one_group">Полягає в %1$s</string>
@@ -1719,7 +1719,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Попередження</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Якщо ви вимкнете PIN-код, то при перевстановленні Signal втратите всі дані, якщо ви заздалегідь  вручну  не створите резервну копію. При відключенному PIN-коді неможна буде включити блокування реєстрації.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Якщо ви вимкнете PIN-код, заздалегідь не створивши резервну копію вручну, то при перевстановленні Signal усі дані буде втрачено. При відключеному PIN-коді неможливо включити блокування реєстрації.</string>
     <string name="PinOptOutDialog_disable_pin">Вимкнути PIN</string>
 
     <!-- RatingManager -->
@@ -1854,9 +1854,9 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Камера</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Сповіщати</string>
+    <string name="WebRtcCallView__unmute">Увімкнути звук</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Без сповіщень</string>
+    <string name="WebRtcCallView__mute">Вимкнути звук</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Телефонувати</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1871,12 +1871,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s заблокований (-а)</string>
+    <string name="CallParticipantView__s_is_blocked">Користувача %1$s заблоковано</string>
     <string name="CallParticipantView__more_info">Детальніше</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Ви не отримаєте аудіо або відео від цього користувача, а користувач не отримає ваші.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Не вдається отримати аудіо та підсилювач; відео з %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Неможливо отримати аудіо та відео від %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Це могло статись через те, що користувач не підтвердив вашу зміну коду безпеки, виникла проблема з пристроєм користувача, або цей користувач вас заблокував.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Це могло статися через те, що користувач не підтвердив вашу зміну коду безпеки, зіткнувся з проблемою з пристроєм або заблокував вас.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Потягніть вгору, щоб побачити поширення екрану</string>
@@ -2106,7 +2106,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Заплановане повідомлення</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Вашу історію повідомлень було об’єднано</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%2$s володіє номером %1$s</string>
 
@@ -2183,7 +2183,7 @@
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS повідомлення зашифроване для неіснуючої сесії</string>
 
     <!-- MuteDialog -->
-    <string name="MuteDialog_mute_notifications">Вимкнути звук сповіщень</string>
+    <string name="MuteDialog_mute_notifications">Вимкнути сповіщення</string>
 
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Імпортування</string>
@@ -2810,10 +2810,10 @@
     <string name="arrays__use_default">Використовувати типово</string>
     <string name="arrays__use_custom">Використовувати власні</string>
 
-    <string name="arrays__mute_for_one_hour">Вимкнути звук на 1 годину</string>
-    <string name="arrays__mute_for_eight_hours">Вимкнути звук на 8 годин</string>
-    <string name="arrays__mute_for_one_day">Вимкнути звук на 1 день</string>
-    <string name="arrays__mute_for_seven_days">Вимкнути звук на 7 днів</string>
+    <string name="arrays__mute_for_one_hour">Не сповіщати протягом години</string>
+    <string name="arrays__mute_for_eight_hours">Не сповіщати протягом 8 годин</string>
+    <string name="arrays__mute_for_one_day">Не сповіщати протягом дня</string>
+    <string name="arrays__mute_for_seven_days">Не сповіщати протягом 7 днів</string>
     <string name="arrays__always">Завжди</string>
 
     <string name="arrays__settings_default">Типові налаштування</string>
@@ -3148,7 +3148,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Надісланий платіж</string>
     <string name="PaymentsDetailsFragment__received_payment">Отриманий платіж</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Платіж завершено %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Номер блока</string>
+    <string name="PaymentsDetailsFragment__block_number">Заблокувати номер</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Переказ</string>
@@ -3307,10 +3307,10 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Увімкнути звук</string>
+    <string name="conversation_muted__unmute">Сповіщати</string>
 
     <!-- conversation_unmuted -->
-    <string name="conversation_unmuted__mute_notifications">Вимкнути звук сповіщень</string>
+    <string name="conversation_unmuted__mute_notifications">Вимкнути сповіщення</string>
 
     <!-- conversation -->
     <string name="conversation__menu_group_settings">Налаштування групи</string>
@@ -3810,9 +3810,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">Заблоковано «%1$s».</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">«%1$s» було заблоковано.</string>
     <string name="BlockedUsersActivity__failed_to_block_s">Не вдалося заблокувати «%1$s»</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">Розблоковано «%1$s».</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">«%1$s» було розблоковано.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Перегляд учасників</string>
@@ -4211,7 +4211,7 @@
     <string name="PrivacySettingsFragment__messaging">Листування</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Зникаючі повідомлення</string>
     <string name="PrivacySettingsFragment__app_security">Безпека програми</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокувати знімки екрану в списку недавніх та в програмі</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокувати знімки екрану в списку недавніх і в застосунку</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal повідомлення та дзвінки, завжди ретранслювати дзвінки та прихований відправник</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Таймер за умовчанням для нових чатів</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Встановіть таймер зникнення повідомлень за замовчуванням для усіх нових чатів, які ви створите.</string>
@@ -4372,7 +4372,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Виклик</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Без сповіщень</string>
+    <string name="ConversationSettingsFragment__mute">Не сповіщати</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Сповіщення вимкнені</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4383,7 +4383,7 @@
     <string name="ConversationSettingsFragment__contact_details">Деталі контакту</string>
     <string name="ConversationSettingsFragment__view_safety_number">Перевірити номер безпеки</string>
     <string name="ConversationSettingsFragment__block">Заблокувати</string>
-    <string name="ConversationSettingsFragment__block_group">Блокувати групу</string>
+    <string name="ConversationSettingsFragment__block_group">Заблокувати групу</string>
     <string name="ConversationSettingsFragment__unblock">Розблокувати</string>
     <string name="ConversationSettingsFragment__unblock_group">Розблокувати групу</string>
     <string name="ConversationSettingsFragment__add_to_a_group">Додати до групи</string>
@@ -4394,8 +4394,8 @@
     <string name="ConversationSettingsFragment__group_link">Групове посилання</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Додати як контакт</string>
     <string name="ConversationSettingsFragment__unmute">Сповіщати</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Звук для розмови вимкнено до поки %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Звук для розмови вимкнено назавжди</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Сповіщення розмови вимкнено до %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Сповіщення розмови вимкнено назавжди</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Номер телефону скопійовано в буфер обміну.</string>
     <string name="ConversationSettingsFragment__phone_number">Номер телефону</string>
     <string name="ConversationSettingsFragment__get_badges">Отримайте значки для свого профілю, підтримуючи Signal. Торкніться значка, щоб дізнатися більше.</string>
@@ -4411,7 +4411,7 @@
     <string name="PermissionsSettingsFragment__who_can_send_messages">Хто може надсилати повідомлення?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
-    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Вимкнути звук сповіщень</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Вимкнути сповіщення</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Сповіщення увімкнені</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Згадати</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Завжди повідомляти</string>
@@ -5862,13 +5862,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">год</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">П</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">хв</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Задати</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Мінімальний час до застосування блокування екрана становить 1 хвилину.</string>
 
     <!-- EOF -->
 </resources>

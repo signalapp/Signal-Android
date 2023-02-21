@@ -97,11 +97,11 @@
     <string name="BackgroundMessageRetriever_checking_for_messages">Memeriksa mesej…</string>
 
     <!-- BlockedUsersActivity -->
-    <string name="BlockedUsersActivity__blocked_users">Pengguna-pengguna yang diblock</string>
-    <string name="BlockedUsersActivity__add_blocked_user">Tambah pengguna untuk diblock</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Pengguna disekat tidak akan dapat memanggil atau menghantar mesej kepada anda.</string>
-    <string name="BlockedUsersActivity__no_blocked_users">Tiada pengguna yang diblock</string>
-    <string name="BlockedUsersActivity__block_user">Block pengguna?</string>
+    <string name="BlockedUsersActivity__blocked_users">Pengguna yang disekat</string>
+    <string name="BlockedUsersActivity__add_blocked_user">Tambah pengguna yang disekat</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Pengguna yang disekat tidak akan dapat memanggil atau menghantar mesej kepada anda.</string>
+    <string name="BlockedUsersActivity__no_blocked_users">Tiada pengguna yang disekat</string>
+    <string name="BlockedUsersActivity__block_user">Sekat pengguna?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" tidak akan boleh untuk memanggil anda atau menghantar anda mesej.</string>
     <string name="BlockedUsersActivity__block">Sekat</string>
 
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">Teruskan</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Block dan tinggalkan %1$s?</string>
-    <string name="BlockUnblockDialog_block_s">Block %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Sekat dan keluar dari %1$s?</string>
+    <string name="BlockUnblockDialog_block_s">Sekat %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Anda tidak lagi akan menerima mesej atau update daripada group ini, dan ahli-ahli group tidak boleh untuk menambah anda kedalam group ini semula.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Ahli-ahli group tidak akan boleh untuk menambah anda ke dalam group ini semula.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Ahli-ahli kumpulan akan dapat menambah anda kepada kumpulan ini lagi.</string>
@@ -148,15 +148,15 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Anda akan dapat menghantar mesej dan membuat panggilan antara satu sama lain dan nama serta gambar anda akan dikongsi bersama mereka.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Anda boleh mesej satu sama lain.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Orang-orang diblock tidak akan boleh untuk memanggil anda atau menghantar anda mesej.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Orang yang disekat tidak akan dapat menghubungi anda atau menghantar mesej kepada anda.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Orang yang disekat tidak dapat menghantar mesej kepada anda.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Sekat daripada menerima kemas kini dan berita Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Teruskan menerima kemas kini dan berita Signal.</string>
-    <string name="BlockUnblockDialog_unblock_s">Unblock %1$s?</string>
+    <string name="BlockUnblockDialog_unblock_s">Nyahsekat %1$s?</string>
     <string name="BlockUnblockDialog_block">Sekat</string>
-    <string name="BlockUnblockDialog_block_and_leave">Block dan Tinggalkan</string>
+    <string name="BlockUnblockDialog_block_and_leave">Sekat dan Keluar</string>
     <string name="BlockUnblockDialog_report_spam_and_block">Laporkan spam dan sekat</string>
 
     <!-- BucketedThreadMedia -->
@@ -898,7 +898,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Maklumkan saya untuk Sebutan</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Terima pemberitahuan apabila anda menyebut dalam sembang yang dibisukan?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Terima pemberitahuan apabila anda disebut dalam sembang yang diredam?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Sentiasa memaklumkan saya</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Jangan maklumkan saya</string>
 
@@ -917,9 +917,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Nama pengguna disalin</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Tidak dapat memadamkan nama pengguna. Cuba lagi kemudian.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Nama pengguna dipadamkan</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1419,10 +1419,10 @@
     <string name="MessageRequestBottomView_unblock">Nyahsekat</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Membenarkan %1$s menghantar mesej kepada anda dan kongsikan nama dan foto anda dengan mereka? Mereka tidak akan tahu bahawa anda telah melihat mesej mereka sehingga anda menerimanya.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Membenarkan %1$s menghantar mesej kepada anda dan kongsikan nama dan foto anda dengan mereka? Anda tidak akan menerima sebarang mesej sehingga anda menyahsekatnya.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Benarkan %1$s menghantar mesej kepada anda dan kongsikan nama dan foto anda dengan mereka? Anda tidak akan menerima sebarang mesej sehingga anda menyahsekatnya.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Benarkan %1$s mesej anda? Anda tidak akan menerima sebarang mesej sehingga anda nyahsekat mereka.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Dapatkan kemas kini dan berita daripada %1$s? Anda tidak akan menerima sebarang kemas kini sehingga anda nyahsekat mereka.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Benarkan %1$s mesej anda? Anda tidak akan menerima sebarang mesej sehingga anda menyahsekat mereka.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Dapatkan kemas kini dan berita daripada %1$s? Anda tidak akan menerima sebarang kemas kini sehingga anda menyahsekat mereka.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Teruskan perbualan anda dengan kumpulan ini dan kongsikan nama dan foto anda dengan ahli-ahlinya?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Naik tarafkan kumpulan ini untuk mengaktifkan ciri-ciri baharu seperti @sebutan dan pentadbir. Ahli-ahli yang belum kongsikan nama atau foto mereka dalam kumpulan ini akan dijemput untuk menyertainya.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Kumpulan Legasi ini tidak lagi dapat digunakan kerana terlalu besar. Saiz kumpulan maksimum ialah %1$d.</string>
@@ -1527,7 +1527,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Amaran</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Sekiranya anda menyahdayakan PIN, anda akan kehilangan semua data apabila anda mendaftar semula Signal melainkan anda membuat sandaran dan pemulihan secara manual. Anda tidak dapat menghidupkan Kunci Pendaftaran semasa PIN dinyahdayakan.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Sekiranya anda menyahdayakan PIN, anda akan kehilangan semua data apabila anda mendaftar semula Signal, melainkan anda membuat sandaran dan pemulihan secara manual. Anda tidak dapat menghidupkan Kunci Pendaftaran semasa PIN dinyahdayakan.</string>
     <string name="PinOptOutDialog_disable_pin">Nyahdayakan PIN</string>
 
     <!-- RatingManager -->
@@ -1649,7 +1649,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Nyahredam</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Bisukan</string>
+    <string name="WebRtcCallView__mute">Redamkan</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Panggil</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1666,7 +1666,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Anda tidak akan menerima audio atau video mereka dan mereka tidak akan menerima audio atau video anda.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Tidak dapat menerima audio &amp; video daripada %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Tidak dapat menerima audio dan video daripada %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Hal ini mungkin disebabkan mereka belum mengesahkan perubahan nombor keselamatan anda, ada masalah dengan peranti mereka atau mereka telah menyekat anda.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ini mungkin kerana mereka belum mengesahkan perubahan nombor keselamatan anda, terdapat masalah dengan peranti mereka atau mereka telah menyekat anda.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Leret untuk melihat kongsi skrin</string>
@@ -1893,7 +1893,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Mesej yang dijadualkan</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Sejarah mesej anda telah digabungkan</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s milik %2$s</string>
 
@@ -1967,7 +1967,7 @@
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mesej MMS yang disulitkan untuk sesi yang tidak ada</string>
 
     <!-- MuteDialog -->
-    <string name="MuteDialog_mute_notifications">Bisukan pemberitahuan</string>
+    <string name="MuteDialog_mute_notifications">Redamkan pemberitahuan</string>
 
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Import sedang berjalan</string>
@@ -2561,10 +2561,10 @@
     <string name="arrays__use_default">Gunakan lalai</string>
     <string name="arrays__use_custom">Gunakan tersuai</string>
 
-    <string name="arrays__mute_for_one_hour">Bisukan untuk 1 jam</string>
-    <string name="arrays__mute_for_eight_hours">Redam selama 8 jam</string>
-    <string name="arrays__mute_for_one_day">Bisukan untuk 1 hari</string>
-    <string name="arrays__mute_for_seven_days">Bisukan untuk 7 hari</string>
+    <string name="arrays__mute_for_one_hour">Redamkan selama 1 jam</string>
+    <string name="arrays__mute_for_eight_hours">Redamkan selama 8 jam</string>
+    <string name="arrays__mute_for_one_day">Redamkan selama 1 hari</string>
+    <string name="arrays__mute_for_seven_days">Redamkan selama 7 hari</string>
     <string name="arrays__always">Sentiasa</string>
 
     <string name="arrays__settings_default">Tetapan lalai</string>
@@ -2600,9 +2600,9 @@
     <string name="preferences__pref_use_address_book_photos">Gunakan foto buku alamat</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Paparkan foto kenalan daripada buku alamat anda sekiranya tersedia</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Kekalkan Sembang yang Disenyapkan Diarkibkan</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Kekalkan Sembang yang Diredam Diarkibkan</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Sembang yang disenyapkan yang telah diarkibkan akan kekal diarkibkan apabila mesej baru masuk.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Sembang yang diredam yang telah diarkibkan akan kekal diarkibkan apabila mesej baru masuk.</string>
     <string name="preferences__generate_link_previews">Hasilkan pratonton pautan</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Dapatkan pratonton pautan terus daripada laman web untuk mesej yang anda hantar.</string>
     <string name="preferences__change_passphrase">Tukar frasa laluan</string>
@@ -3052,10 +3052,10 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Nyahbisukan</string>
+    <string name="conversation_muted__unmute">Nyahredam</string>
 
     <!-- conversation_unmuted -->
-    <string name="conversation_unmuted__mute_notifications">Bisukan pemberitahuan</string>
+    <string name="conversation_unmuted__mute_notifications">Redamkan pemberitahuan</string>
 
     <!-- conversation -->
     <string name="conversation__menu_group_settings">Group settings</string>
@@ -3532,7 +3532,7 @@
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
     <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" telah disekat.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Gagal menyekat \"%1$s\"</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Gagal untuk menyekat \"%1$s\"</string>
     <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" telah dinyahsekat.</string>
 
     <!-- ReviewCardDialogFragment -->
@@ -4075,9 +4075,9 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Panggilan</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Bisukan</string>
+    <string name="ConversationSettingsFragment__mute">Redamkan</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">Diredamkan</string>
+    <string name="ConversationSettingsFragment__muted">Diredam</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Cari</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Mesej hilang</string>
@@ -4096,7 +4096,7 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Permintaan &amp; jemputan</string>
     <string name="ConversationSettingsFragment__group_link">Pautan kumpulan</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Tambah sebagai kenalan</string>
-    <string name="ConversationSettingsFragment__unmute">Nyahbisukan</string>
+    <string name="ConversationSettingsFragment__unmute">Nyahredam</string>
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Perbualan diredam sehingga %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Perbualan diredam selama-lamanya</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Nombor telefon telah disalin ke papan keratan.</string>
@@ -4114,8 +4114,8 @@
     <string name="PermissionsSettingsFragment__who_can_send_messages">Siapa yang boleh menghantar mesej?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
-    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Bisukan pemberitahuan</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Tidak dibisukan</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Redamkan pemberitahuan</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Tidak diredam</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Sebutan</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Sentiasa maklumkan</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Jangan maklumkan</string>
@@ -4152,7 +4152,7 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s telah dialih keluar</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s telah disekat.</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s telah disekat</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Tidak dapat mengalih keluar %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -5487,13 +5487,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">j</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">I</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Tetapkan</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Masa minimum sebelum kunci skrin digunakan ialah 1 minit.</string>
 
     <!-- EOF -->
 </resources>

@@ -98,10 +98,10 @@
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blokirani korisnici</string>
-    <string name="BlockedUsersActivity__add_blocked_user">Dodaj korisnika za blokiranje</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Blokirani korisnici vas neće moći nazvati niti vam slati poruke.</string>
+    <string name="BlockedUsersActivity__add_blocked_user">Dodaj korisnika na listu blokiranih</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Blokirani korisnici neće vas moći nazvati niti vam slati poruke.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Nema blokiranih korisnika</string>
-    <string name="BlockedUsersActivity__block_user">Blokiraj korisnika?</string>
+    <string name="BlockedUsersActivity__block_user">Blokirati korisnika?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" vas neće moći nazvati niti vam slati poruke.</string>
     <string name="BlockedUsersActivity__block">Blokiraj</string>
 
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">Nastavi</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Blokiraj i napusti %1$s?</string>
-    <string name="BlockUnblockDialog_block_s">Blokiraj %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Blokirati i napustiti %1$s?</string>
+    <string name="BlockUnblockDialog_block_s">Blokirati %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Više nećete primati poruke ili ažuriranja iz ove grupe, a članovi grupe vas neće moći naknadno dodati u grupu.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Članovi grupe vas neće moći ponovno dodati u ovu grupu.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Članovi grupe će vas moći ponovno dodati u ovu grupu.</string>
@@ -148,16 +148,16 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Moći će te se razmjenjivati poruke i pozive, a vaše ime i fotografija podijelit će se s njima.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Moći ćete razmjenjivati poruke.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokirani korisnici vas neće moći nazvati niti vam slati poruke.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Blokirane osobe vam neće moći slati poruke.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokirani korisnici neće vas moći nazvati niti vam slati poruke.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Blokirani korisnici neće vam moći slati poruke.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokiraj primanje ažuriranja i vijesti o Signalu.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Ponovno primaj ažuriranja i vijesti o Signalu.</string>
-    <string name="BlockUnblockDialog_unblock_s">Odblokiraj %1$s?</string>
+    <string name="BlockUnblockDialog_unblock_s">Odblokirati %1$s?</string>
     <string name="BlockUnblockDialog_block">Blokiraj</string>
     <string name="BlockUnblockDialog_block_and_leave">Blokiraj i napusti</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Prijavi kao neželjeno i blokiraj</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Prijavi neželjenu poruku i blokiraj</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Danas</string>
@@ -468,7 +468,7 @@
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Poništi</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">Blokirani</string>
+    <string name="ConversationFragment__blocked">Korisnik je blokiran</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Ukloni filtar</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -531,10 +531,10 @@
         <item quantity="other">Utišaj</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Uključi zvuk</item>
-        <item quantity="few">Uključi zvuk</item>
-        <item quantity="many">Uključi zvuk</item>
-        <item quantity="other">Uključi zvuk</item>
+        <item quantity="one">Uključi obavijesti</item>
+        <item quantity="few">Uključi obavijesti</item>
+        <item quantity="many">Uključi obavijesti</item>
+        <item quantity="other">Uključi obavijesti</item>
     </plurals>
     <string name="ConversationListFragment_select">Odaberi</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -1012,7 +1012,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obavijesti me samo za Spominjanja</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Primi obavijesti kad vas se spominje u utišanim razgovorima?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Želite li primati obavijesti kad vas se spominje u utišanim razgovorima?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Uvijek me obavijesti</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Ne obavještavaj me</string>
 
@@ -1031,9 +1031,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Korisničko ime je kopirano</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Brisanje korisničkog imena nije uspjelo. Pokušajte ponovno kasnije.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Korisničko ime je izbrisano</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1593,10 +1593,10 @@
     <string name="MessageRequestBottomView_unblock">Odblokiraj</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Želite li dopustiti %1$s da vam pošalje poruku i da dijelite svoje ime i fotografiju s njima? Neće znati da ste vidjeli njihovu poruku dok ne prihvatite.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Želite li dopustiti %1$s da vam pošalje poruku i da dijelite svoje ime i fotografiju s njima? Nećete primati poruke dok ne odblokirate.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Želite li dopustiti da vam %1$s šalje poruke i vidi vaše ime i fotografiju? Nećete primati poruke od tog korisnika dok ga ne odblokirate.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Želite li omogućiti da vam %1$s šalje poruke? Nećete primati poruke od tog kontakta dok ga ne odblokirate.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Želite li primati ažuriranja i novosti od %1$s? Nećete primati ažuriranja dok ih ne odblokirate.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Želite li dopustiti da vam %1$s šalje poruke? Nećete primati poruke od tog korisnika dok ga ne odblokirate.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Želite li primati ažuriranja i novosti od korisnika %1$s? Nećete primati ažuriranja dok ga ne odblokirate.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Želite li nastaviti razgovor s ovom grupom i podijeliti svoje ime i fotografiju s članovima?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Nadogradite ovu grupu da biste aktivirali nove značajke poput @spominjanja i administratora. Članovi koji nisu podijelili svoje ime ili fotografiju u ovoj grupi bit će pozvani da se pridruže.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ova Naslijeđena grupa ne može se više koristiti jer je prevelika. Maksimalna veličina grupe je %1$d.</string>
@@ -1604,7 +1604,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Želite li se pridružiti ovoj grupi i podijeliti svoje ime i fotografiju sa članovima? Neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Želite li se pridružiti ovoj grupi i podijeliti svoje ime i fotografiju s njezinim članovima? Nećete vidjeti njihove poruke dok ne prihvatite.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridružiti se ovoj grupi? Neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Želite li odblokirati ovu grupu i podijeliti svoje ime i fotografiju sa članovima? Nećete primati poruke dok ih ne odblokirate.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Želite li odblokirati ovu grupu i podijeliti svoje ime i fotografiju sa članovima? Nećete primati poruke dok ju ne odblokirate.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Pregledaj</string>
     <string name="MessageRequestProfileView_member_of_one_group">Član/ica %1$s</string>
@@ -1719,7 +1719,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Upozorenje</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ako onemogućite PIN, izgubiti će te sve podatke prilikom ponovne registracije Signala osim ako ručno ne napravite sigurnosnu kopiju i vratite podatke. Ne možete uključiti Zaključavanje registracije dok je PIN onemogućen.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ako onemogućite PIN, izgubit ćete sve svoje podatke kada se ponovno registrirate na Signal, osim ako ručno ne napravite sigurnosnu kopiju i vratite ih. Ne možete uključiti Zaključavanje registracije dok je PIN onemogućen.</string>
     <string name="PinOptOutDialog_disable_pin">Onemogući PIN</string>
 
     <!-- RatingManager -->
@@ -1854,7 +1854,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Kamera</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Uključi zvuk</string>
+    <string name="WebRtcCallView__unmute">Uključi obavijesti</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">Utišaj</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1871,12 +1871,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s je blokiran/a</string>
+    <string name="CallParticipantView__s_is_blocked">%1$s je blokiran(a)</string>
     <string name="CallParticipantView__more_info">Više informacija</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Nećete primiti njihov audio ili video, a ni oni neće vaš.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Ne možete primiti audio i video od %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ne možete primiti audio i video od %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">To je možda zato što nisu potvrdili promjenu vašeg sigurnosnog broja, ili postoji problem s njihovim uređajem ili su vas blokirali.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Mogući razlog tome jest to što korisnik nije potvrdio vaš ažurirani sigurnosni broj, ima problem s uređajem ili vas je blokirao.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Prijeđite prstom za pregled dijeljenja zaslona</string>
@@ -2106,7 +2106,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Zakazana poruka</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Vaša povijest poruka sada je spojena</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">Broj %1$s pripada korisniku %2$s</string>
 
@@ -3307,7 +3307,7 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Uključi zvuk</string>
+    <string name="conversation_muted__unmute">Uključi obavijesti</string>
 
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">Utišaj obavijesti</string>
@@ -3810,9 +3810,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" je blokiran/a.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Blokiranje \"%1$s\" nije uspjelo.</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" je odblokiran/a.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">Korisnik \"%1$s\" je blokiran.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Blokiranje korisnika \"%1$s\" nije uspjelo</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">Korisnik \"%1$s\" je odblokiran.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Pregled članova</string>
@@ -4211,7 +4211,7 @@
     <string name="PrivacySettingsFragment__messaging">Razmjena poruka</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Poruke koje nestaju</string>
     <string name="PrivacySettingsFragment__app_security">Sigurnost aplikacije</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokira snimke zaslona na popisu nedavnih i unutar aplikacije</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokira mogućnost snimke zaslona u nedavnim razgovorima i unutar aplikacije</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal poruke i pozivi, uvijek preusmjeravanje poziva i zapečaćeni pošiljatelj</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Zadani vremenski period za nove poruke</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Postavite zadani vremenski period za poruke koje nestaju za sve nove razgovore koje započnete.</string>
@@ -4393,8 +4393,8 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Zahtjevi i pozivnice</string>
     <string name="ConversationSettingsFragment__group_link">Poveznica grupe</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Dodaj kao kontakt</string>
-    <string name="ConversationSettingsFragment__unmute">Uključi zvuk</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Razgovor je utišan do%1$s</string>
+    <string name="ConversationSettingsFragment__unmute">Uključi obavijesti</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Razgovor je utišan do %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Razgovor je utišan zauvijek</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonski broj je kopiran u međuspremnik.</string>
     <string name="ConversationSettingsFragment__phone_number">Broj telefona</string>
@@ -5864,11 +5864,11 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">P</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Postavi</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimalno vrijeme prije zaključavanja zaslona je 1 minuta.</string>
 
     <!-- EOF -->
 </resources>

@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Ошибка при отправке медиафайла</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Было сообщено о спаме и пользователь был заблокирован.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Было сообщено о спаме, и пользователь был заблокирован.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Обмен SMS-сообщениями в настоящее время отключён. Вы можете экспортировать сообщения в другое приложение на вашем телефоне.</string>
@@ -1031,9 +1031,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Имя пользователя скопировано</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Не удалось удалить имя пользователя. Попробуйте ещё раз позже.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Имя пользователя удалено</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1596,7 +1596,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Разрешить %1$s отправлять вам сообщения и открыть ваше имя и фото этому человеку? Вы не получите никаких сообщений, пока не разблокируете его.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Разрешить %1$s отправлять вам сообщения? Вы не получите никаких сообщений, пока не разблокируете этого человека.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Получать обновления и новости от %1$s? Вы не будете получать никаких сообщений, пока не разблокируете.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Получать обновления и новости от %1$s? Вы не будете получать никаких сообщений, пока не разблокируете этого человека.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Продолжить ваш разговор с этой группой и открыть ваше имя и фото её участникам?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Обновите эту группу, чтобы активировать такие новые функции, как @упоминания и администраторы групп. Участники, которые ещё не открыли свои имена или фото этой группе получат приглашение присоединиться.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Эта Старая группа больше не может быть использована, потому что она слишком большая. Максимальный размер группы — %1$d.</string>
@@ -1604,7 +1604,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и открыть ваше имя и фото её участникам? Они не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Присоединиться к этой группе и открыть ваше имя и фото её участникам? Вы не увидите их сообщения, пока не примете запрос.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе? Её участники не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и открыть ваше имя и фото её участникам? Вы не будете получать сообщений, пока не разблокируете эту группу.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и открыть ваше имя и фото её участникам? Вы не будете получать сообщения, пока не разблокируете эту группу.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Просмотреть</string>
     <string name="MessageRequestProfileView_member_of_one_group">Состоит в %1$s</string>
@@ -1719,7 +1719,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Предупреждение</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то при переустановке Signal потеряете все данные, если заранее вручную не создадите резервную копию. При отключённом PIN-коде нельзя будет включить блокировку регистрации.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите Пин-код, то при переустановке Signal потеряете все данные, если заранее вручную не создадите резервную копию. При отключённом Пин-коде нельзя будет включить блокировку регистрации.</string>
     <string name="PinOptOutDialog_disable_pin">Отключить PIN-код</string>
 
     <!-- RatingManager -->
@@ -1854,9 +1854,9 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Камера</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Вкл. микрофон</string>
+    <string name="WebRtcCallView__unmute">Вкл. звук</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Откл. микрофон</string>
+    <string name="WebRtcCallView__mute">Откл. звук</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Звонить</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1876,7 +1876,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Вы не будете получать аудио и видео этого участника, и он не будет получать ваши.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Невозможно получать аудио и видео от %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Невозможно получать аудио и видео от %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Возможно, это из-за того, что этот участник не подтвердил изменение вашего кода безопасности, что есть какая-то проблема с его устройством или что он вас заблокировал.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Возможно, это из-за того, что этот участник не подтвердил изменение вашего кода безопасности, или есть какая-то проблема с его устройством, или он вас заблокировал.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Проведите, чтобы просмотреть показ экрана</string>
@@ -2106,7 +2106,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Запланированное сообщение</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">История ваших сообщений была объединена</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s принадлежит %2$s</string>
 
@@ -3148,7 +3148,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Отправленный платёж</string>
     <string name="PaymentsDetailsFragment__received_payment">Полученный платёж</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Платёж завершён %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Номер блока</string>
+    <string name="PaymentsDetailsFragment__block_number">Заблокировать номер</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Перевести</string>
@@ -4393,9 +4393,9 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Запросы и приглашения</string>
     <string name="ConversationSettingsFragment__group_link">Ссылка на группу</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Добавить в контакты</string>
-    <string name="ConversationSettingsFragment__unmute">Включить звуки</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Звуки разговора отключены до %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Звуки разговора отключены навсегда</string>
+    <string name="ConversationSettingsFragment__unmute">Включить звук</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Звук разговора отключён до %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Звук разговора отключён навсегда</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Номер телефона был скопирован в буфер обмена.</string>
     <string name="ConversationSettingsFragment__phone_number">Номер телефона</string>
     <string name="ConversationSettingsFragment__get_badges">Получайте значки для своего профиля, поддерживая Signal. Нажмите на значок, чтобы узнать больше.</string>
@@ -5862,13 +5862,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">ч</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">П</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">м</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Установить</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Минимальное время перед включением блокировки экрана – 1 минута.</string>
 
     <!-- EOF -->
 </resources>

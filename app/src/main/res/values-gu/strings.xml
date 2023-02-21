@@ -97,11 +97,11 @@
     <string name="BackgroundMessageRetriever_checking_for_messages">મેસેજ માટે ચકાસી રહ્યું છે…</string>
 
     <!-- BlockedUsersActivity -->
-    <string name="BlockedUsersActivity__blocked_users">બ્લૉક કરેલ વપરાશકર્તાઓ</string>
-    <string name="BlockedUsersActivity__add_blocked_user">બ્લોક કરેલ વપરાશકર્તા ઉમેરો</string>
-    <string name="BlockedUsersActivity__blocked_users_will">અવરોધિત વપરાશકર્તાઓ તમને કૉલ કરી શકશે નહીં અથવા તમને મેસેજ મોકલશે નહીં.</string>
-    <string name="BlockedUsersActivity__no_blocked_users">બ્લોક કરેલ વપરાશકર્તા નથી</string>
-    <string name="BlockedUsersActivity__block_user">વપરાશકર્તાને બ્લોક કરવા છે?</string>
+    <string name="BlockedUsersActivity__blocked_users">બ્લૉક કરેલા ઉપયોગકર્તાઓ</string>
+    <string name="BlockedUsersActivity__add_blocked_user">બ્લૉક કરેલા ઉપયોગકર્તા ઉમેરો</string>
+    <string name="BlockedUsersActivity__blocked_users_will">બ્લૉક કરેલા ઉપયોગકર્તાઓ તમને કૉલ કે મેસેજ કરી શકશે નહીં.</string>
+    <string name="BlockedUsersActivity__no_blocked_users">કોઈ બ્લૉક કરેલા ઉપયોગકર્તા નથી</string>
+    <string name="BlockedUsersActivity__block_user">ઉપયોગકર્તાને બ્લૉક કરવા છે?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" તમને કૉલ કરી શકશે નહીં અથવા તમને મેસેજીસ મોકલશે નહીં.</string>
     <string name="BlockedUsersActivity__block">બ્લૉક કરો</string>
 
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">ચાલુ રાખો</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">અનબ્લૉક કરવુ છે અને છોડી દેવુ છે %1$s?</string>
-    <string name="BlockUnblockDialog_block_s">%1$s ને બ્લોક કરો</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">%1$sને બ્લૉક કરીને છોડી દેવા છે?</string>
+    <string name="BlockUnblockDialog_block_s">%1$sને બ્લૉક કરવા છે?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">તમે હવે આ ગ્રુપમાંથી સંદેશા અથવા અપડેટ્સ પ્રાપ્ત કરશો નહીં, અને સભ્યો તમને ફરીથી આ ગ્રુપમાં ઉમેરવા માટે સમર્થ હશે નહીં.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">ગ્રુપના સભ્યો તમને આ જૂથમાં ફરીથી ઉમેરવા માટે સમર્થ હશે નહીં.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ગ્રુપના સભ્યો તમને આ ગ્રુપમાં ફરીથી ઉમેરવામાં સમર્થ હશે.</string>
@@ -148,16 +148,16 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">તમે એકબીજાને મેસેજ અને કૉલ કરી શકશો અને તમારું નામ અને ફોટો તેમની સાથે શેર કરવામાં આવશે.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">તમે એકબીજાને મેસેજ કરી શકશો.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">અવરોધિત લોકો તમને કૉલ કરી શકશે નહીં અથવા તમને મેસેજ મોકલશે નહીં.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">બ્લોક કરેલા લોકો તમને મેસેજ મોકલી શકશે નહીં.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">બ્લૉક કરેલા લોકો તમને કૉલ કે મેસેજ કરી શકશે નહીં.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">બ્લૉક કરેલા લોકો તમને મેસેજ મોકલી શકશે નહીં.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal અપડેટ્સ અને સમાચારો મેળવવાનું બ્લોક કરો.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal અપડેટ અને સમાચારો મેળવવાનું બ્લૉક કરો.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal અપડેટ્સ અને સમાચારો મોકલવાનું ફરી શરૂ કરો.</string>
-    <string name="BlockUnblockDialog_unblock_s">અન બ્લોક કરવું છે%1$s?</string>
-    <string name="BlockUnblockDialog_block">અવરોધિત કરો</string>
-    <string name="BlockUnblockDialog_block_and_leave">બ્લોક કરો અને નીકળો</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">સ્પામ અને બ્લૉક રિપોર્ટ કરો</string>
+    <string name="BlockUnblockDialog_unblock_s">%1$sને અનબ્લૉક કરવા છે?</string>
+    <string name="BlockUnblockDialog_block">બ્લૉક કરો</string>
+    <string name="BlockUnblockDialog_block_and_leave">બ્લૉક કરો અને નીકળો</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">સ્પામ તરીકે રિપોર્ટ કરો અને બ્લૉક કરો</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">આજે</string>
@@ -319,7 +319,7 @@
     <string name="ConversationActivity_transport_signal">Signal મેસેજ</string>
     <string name="ConversationActivity_lets_switch_to_signal">ચાલો સિગ્નલ પર સ્વિચ કરીએ %1$s</string>
     <string name="ConversationActivity_specify_recipient">કૃપા કરીને સંપર્ક પસંદ કરો</string>
-    <string name="ConversationActivity_unblock">અનાવરોધિત કરો</string>
+    <string name="ConversationActivity_unblock">અનબ્લૉક કરો</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">તમે મોકલો છો તે મેસેજ ના પ્રકાર માટે જોડાણ કદની મર્યાદાથી વધુ છે.</string>
     <string name="ConversationActivity_unable_to_record_audio">ઓડિયો રેકોર્ડ કરવામાં અસમર્થ</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">તમે આ જૂથને મેસેજ મોકલી શકતા નથી કારણ કે તમે હવે સભ્ય નથી.</string>
@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">મીડિયા મોકલવામાં ભૂલ</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">સ્પામ તરીકે નોંધાયેલ છે અને બ્લૉક કરેલ છે.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">સ્પામ તરીકે રિપોર્ટ કર્યું અને બ્લૉક કર્યા.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS મેસેજિંગ હાલમાં બંધ છે. તમે તમારા મેસેજને તમારા ફોન પરની અન્ય ઍપમાં એક્સપોર્ટ કરી શકો છો.</string>
@@ -497,12 +497,12 @@
         <item quantity="other">પિન દૂર કરો</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">મ્યુટ કરો</item>
-        <item quantity="other">મ્યુટ કરો</item>
+        <item quantity="one">મ્યૂટ કરો</item>
+        <item quantity="other">મ્યૂટ કરો</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">અનમ્યુટ કરો</item>
-        <item quantity="other">અનમ્યુટ કરો</item>
+        <item quantity="one">અનમ્યૂટ કરો</item>
+        <item quantity="other">અનમ્યૂટ કરો</item>
     </plurals>
     <string name="ConversationListFragment_select">પસંદ કરો</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -936,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">મને ઉલ્લેખો માટે સૂચિત કરો</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">જ્યારે તમારો મ્યુટ ચેટમાં ઉલ્લેખ થાય છે ત્યારે સૂચનાઓ પ્રાપ્ત કરવી છે?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">જ્યારે મ્યૂટ કરેલી ચેટમાં તમારો ઉલ્લેખ કરવામાં આવે ત્યારે નોટિફિકેશન મેળવવા માગો છે?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">હંમેશા મને સૂચિત કરો</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">મને સૂચિત કરશો નહીં</string>
 
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">યુઝરનેમ કૉપી કર્યું</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">યુઝરનેમ ડિલીટ કરી શક્યા નહીં. પછી ફરી પ્રયાસ કરો.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">યુઝરનેમ ડિલીટ કર્યું</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1473,14 +1473,14 @@
     <string name="MessageRequestBottomView_accept">સ્વીકાર</string>
     <string name="MessageRequestBottomView_continue">ચાલુ રાખો</string>
     <string name="MessageRequestBottomView_delete">ડિલીટ કરો</string>
-    <string name="MessageRequestBottomView_block">અવરોધિત કરો</string>
-    <string name="MessageRequestBottomView_unblock">અનાવરોધિત કરો</string>
+    <string name="MessageRequestBottomView_block">બ્લૉક કરો</string>
+    <string name="MessageRequestBottomView_unblock">અનબ્લૉક કરો</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">શું તમે %1$s ને મેસેજ અને તેમની સાથે તમારું નામ અને ફોટો કરવા શેર માંગો છો ? જ્યાં સુધી તમે સ્વીકારશો નહીં ત્યાં સુધી તેઓ જાણશે નહીં કે તમે તેમનો મેસેજ જોયો છે.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s ને તમને મેસેજ કરવા દો અને તેમની સાથે તમારું નામ અને ફોટો શેર કરવા છે? જ્યાં સુધી તમે તેમને અનબ્લોક નહીં કરો ત્યાં સુધી તમને કોઈ મેસેજ પ્રાપ્ત થશે નહીં.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$sને તમને મેસેજ કરવા અને તેમની સાથે તમારું નામ અને ફોટો શેર કરવા દેવા છે? જ્યાં સુધી તમે તેમને અનબ્લૉક નહીં કરો ત્યાં સુધી તમને કોઈ મેસેજ પ્રાપ્ત થશે નહીં.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$sને તમને મેસેજ કરવા દેવા માંગો છો? તમે તેમને અનબ્લૉક ન કરો ત્યાં સુધી તમે કોઈ મેસેજ પ્રાપ્ત નહીં કરો.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s તરફથી અપડેટ્સ અને સમાચાર પ્રાપ્ત કરવા છે? તમે તેમને અનબ્લૉક ન કરો ત્યાં સુધી કોઈ અપડેટ્સ મેળવશો નહીં.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$sને તમને મેસેજ કરવા દેવા છે? તમે તેમને અનબ્લૉક નહીં કરો ત્યાં સુધી તમને કોઈ મેસેજ પ્રાપ્ત થશે નહીં.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s તરફથી અપડેટ અને સમાચાર મેળવવા માગો છે? તમે તેમને અનબ્લૉક નહીં કરો ત્યાં સુધી કોઈ અપડેટ મેળવશો નહીં.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">આ ગ્રુપ સાથે તમારી વાતચીત ચાલુ રાખવી છે અને તેના સભ્યો સાથે તમારું નામ અને ફોટો શેર કરવા છે?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@ઉલ્લેખો અને એડમિન જેવા નવા ફીચર્સ સક્રિય કરવા માટે આ ગ્રુપને અપગ્રેડ કરો. જે સભ્યો આ ગ્રુપમાં પોતાનું નામ અથવા ફોટો શેર કર્યો નથી તેમને જોડાવા માટે આમંત્રણ આપવામાં આવશે.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">આ લેગસી ગ્રુપને નવા ગ્રુપમાં અપગ્રેડ કરી શકાતું નથી કારણ કે તે ખૂબ મોટું છે. ગ્રુપનું મહત્તમ કદ %1$d છે.</string>
@@ -1488,7 +1488,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">શું આ ગ્રુપમાં જોડાવું છે અને તેના સભ્યો સાથે તમારું નામ અને ફોટો શેર કરવા છે? જ્યાં સુધી તમે સ્વીકારશો નહીં ત્યાં સુધી તેઓ જાણશે નહીં કે તમે તેમના મેસેજ જોયા છે.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">શું આ ગ્રુપમાં જોડાવું છે અને તેના સભ્યો સાથે તમારું નામ અને ફોટો શેર કરવા છે? તમે સ્વીકારશો નહીં ત્યાં સુધી તમે તેમના મેસેજ જોશો નહીં.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">આ ગ્રુપને રદ કરવું છે? જ્યાં સુધી તમે સ્વીકારશો નહીં ત્યાં સુધી તેઓ જાણશે નહીં કે તમે તેમના મેસેજ જોયા છે.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">આ ગ્રુપને અનબ્લોક કરવું છે અને તેના સભ્યો સાથે તમારું નામ અને ફોટો શેર કરવા? જ્યાં સુધી તમે તેમને અનબ્લોક નહીં કરો ત્યાં સુધી તમને કોઈ મેસેજ પ્રાપ્ત થશે નહીં.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">આ ગ્રૂપને અનબ્લૉક કરી અને તેના સભ્યો સાથે તમારું નામ અને ફોટો શેર કરવા છે? તમે તેમને અનબ્લૉક નહીં કરો ત્યાં સુધી તમને કોઈ મેસેજ પ્રાપ્ત થશે નહીં.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">વ્યૂ</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s ના સભ્ય</string>
@@ -1591,7 +1591,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">ચેતવણી</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">જો તમે PIN ને અક્ષમ કરો છો, તો જ્યારે તમે Signal ને ફરીથી રજીસ્ટર કરશો ત્યારે તમે તમામ ડેટા ગુમાવશો જ્યાં સુધી તમે તેને મેન્યુઅલી સ્થાનાંતરિત ન કરો. જ્યારે PIN અક્ષમ હોય ત્યારે તમે રજીસ્ટ્રેશન લૉક ચાલુ કરી શકતા નથી.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">જો તમે પિનને અક્ષમ કરો છો, તો જ્યારે તમે Signalને ફરીથી રજીસ્ટર કરશો ત્યારે તમે તમામ ડેટા ગુમાવશો જો તમે તેને મેન્યુઅલી બેકઅપ અને રિસ્ટોર ન કરો. જ્યારે પિન અક્ષમ હોય ત્યારે તમે રજીસ્ટ્રેશન લૉક ચાલુ કરી શકતા નથી.</string>
     <string name="PinOptOutDialog_disable_pin">PIN અક્ષમ કરો</string>
 
     <!-- RatingManager -->
@@ -1621,8 +1621,8 @@
     <string name="Recipient_my_story">મારી સ્ટોરી</string>
 
     <!-- RecipientPreferencesActivity -->
-    <string name="RecipientPreferenceActivity_block">અવરોધિત કરો</string>
-    <string name="RecipientPreferenceActivity_unblock">અનાવરોધિત કરો</string>
+    <string name="RecipientPreferenceActivity_block">બ્લૉક કરો</string>
+    <string name="RecipientPreferenceActivity_unblock">અનબ્લૉક કરો</string>
 
     <!-- RecipientProvider -->
 
@@ -1716,9 +1716,9 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">કૅમેરા</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">અનમ્યૂટ</string>
+    <string name="WebRtcCallView__unmute">અનમ્યૂટ કરો</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">મ્યુટ</string>
+    <string name="WebRtcCallView__mute">મ્યૂટ કરો</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">રિંગ</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1731,12 +1731,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s ને બ્લૉક કરેલ છે</string>
+    <string name="CallParticipantView__s_is_blocked">%1$sને બ્લૉક કર્યા છે</string>
     <string name="CallParticipantView__more_info">વધુ માહિતી</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">તમને તેમનો ઓડિયો કે વીડિયો પ્રાપ્ત થશે નહીં અને તેઓ તમારો પ્રાપ્ત નહીં કરે.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s તરફથી ઓડિયો &amp; વિડિયો પ્રાપ્ત કરી શકતા નથી</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s તરફથી ઓડિયો અને વિડિયો પ્રાપ્ત કરી શકતા નથી</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">આ એટલા માટે હોઈ શકે છે કારણ કે તેઓએ તમારા સલામતી નંબર પરિવર્તનની ચકાસણી કરી નથી, તેમના ડિવાઇસમાં સમસ્યા છે, અથવા તેઓએ તમને બ્લૉક કર્યા છે.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">આ એટલા માટે હોઈ શકે છે કારણ કે તેઓએ તમારા સલામતી નંબર બદલાવની ચકાસણી કરી નથી, તેમના ડિવાઇસમાં સમસ્યા છે, અથવા તેઓએ તમને બ્લૉક કર્યા છે.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">સ્ક્રીન શેર જોવા માટે સ્વાઇપ કરો</string>
@@ -1964,7 +1964,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">મેસેજ શેડ્યૂલ કરો</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">તમારી મેસેજ હિસ્ટ્રી મર્જ કરવામાં આવી છે</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$sએ %2$s નો નંબર છે</string>
 
@@ -2039,7 +2039,7 @@
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">અસ્તિત્વમાં નથી તે સત્ર માટે MMS મેસેજ એન્ક્રિપ્ટ થયેલ</string>
 
     <!-- MuteDialog -->
-    <string name="MuteDialog_mute_notifications">સૂચનાઓ મ્યૂટ કરો</string>
+    <string name="MuteDialog_mute_notifications">નોટિફિકેશન મ્યૂટ કરો</string>
 
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">ઇમ્પોર્ટ ચાલુ છે</string>
@@ -2684,9 +2684,9 @@
     <string name="preferences__pref_use_address_book_photos">એડ્રેસ બુકના ફોટા વાપરો</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">જો ઉપલબ્ધ હોય તો તમારી એડ્રેસ બુકમાંથી સંપર્ક ફોટા ડિસ્પ્લે કરો</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">મ્યૂટ કરેલ ચેટને આર્કાઇવ રાખો</string>
+    <string name="preferences__pref_keep_muted_chats_archived">મ્યૂટ કરેલી ચેટને આર્કાઇવ રાખો</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">મ્યૂટ કરેલ ચેટ જેને આર્કાઇવ કરેલ છે તે નવો મેસેજ આવે ત્યારે પણ આર્કાઇવ રહેશે.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">મ્યૂટ કરેલી ચેટ જેને આર્કાઇવ કરેલ છે તે નવો મેસેજ આવે ત્યારે પણ આર્કાઇવ જ રહેશે.</string>
     <string name="preferences__generate_link_previews">લિંક પ્રિવ્યૂ જનરેટ કરો</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">તમે મોકલેલા મેસેજ માટે વેબસાઇટમાંથી સીધા લિંક પ્રિવ્યૂ પ્રાપ્ત કરો.</string>
     <string name="preferences__change_passphrase">પાસફ્રેઝ બદલો</string>
@@ -3137,10 +3137,10 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">અનમ્યૂટ</string>
+    <string name="conversation_muted__unmute">અનમ્યૂટ કરો</string>
 
     <!-- conversation_unmuted -->
-    <string name="conversation_unmuted__mute_notifications">સૂચનાઓ મ્યૂટ કરો</string>
+    <string name="conversation_unmuted__mute_notifications">નોટિફિકેશન મ્યૂટ કરો</string>
 
     <!-- conversation -->
     <string name="conversation__menu_group_settings">ગ્રુપ સેટિંગ્સ</string>
@@ -3571,8 +3571,8 @@
     <!-- AdvancedPreferenceFragment -->
 
     <!-- RecipientBottomSheet -->
-    <string name="RecipientBottomSheet_block">અવરોધિત કરો</string>
-    <string name="RecipientBottomSheet_unblock">અનાવરોધિત કરો</string>
+    <string name="RecipientBottomSheet_block">બ્લૉક કરો</string>
+    <string name="RecipientBottomSheet_unblock">અનબ્લૉક કરો</string>
     <string name="RecipientBottomSheet_add_to_contacts">સંપર્કોમાં ઉમેરો</string>
     <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
     <string name="RecipientBottomSheet_unable_to_open_contacts">સંપર્કો ખોલવા માટે કોઈ એપ્લિકેશન મળતી નથી.</string>
@@ -3624,9 +3624,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" બ્લૉક કરવામાં આવ્યો છે</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" ને બ્લૉક કરવામાં નિષ્ફળ</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" અનબ્લૉક કરવામાં આવ્યો છે</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\"ને બ્લૉક કરવામાં આવ્યા છે.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\"ને બ્લૉક કરવાનું નિષ્ફળ રહ્યું</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\"ને અનબ્લૉક કરવામાં આવ્યા છે.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">મેમ્બરની સમીક્ષા કરો</string>
@@ -3653,7 +3653,7 @@
     <string name="ReviewCard__your_contact">તમારા સંપર્ક</string>
     <string name="ReviewCard__remove_from_group">ગ્રુપમાંથી દૂર કરો</string>
     <string name="ReviewCard__update_contact">સંપર્કને અપડેટ કરો</string>
-    <string name="ReviewCard__block">અવરોધિત કરો</string>
+    <string name="ReviewCard__block">બ્લૉક કરો</string>
     <string name="ReviewCard__delete">ડિલીટ કરો</string>
     <string name="ReviewCard__recently_changed">તાજેતરમાં જ તેમનું પ્રોફાઇલ નામ %1$s માંથી %2$s માં બદલ્યું.</string>
 
@@ -4012,12 +4012,12 @@
     <string name="NotificationProfilesFragment__create_profile">પ્રોફાઇલ બનાવો</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">બ્લૉક કરેલ</string>
+    <string name="PrivacySettingsFragment__blocked">બ્લૉક કર્યા</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d સંપર્કો</string>
     <string name="PrivacySettingsFragment__messaging">મેસેજ કરી રહ્યા છીએ</string>
     <string name="PrivacySettingsFragment__disappearing_messages">અદૃશ્ય થઈ રહેલા મેસેજ</string>
     <string name="PrivacySettingsFragment__app_security">એપ્લિકેશનની સુરક્ષા</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">તાજેતરની સૂચિમાં અને એપ્લિકેશનની અંદર સ્ક્રીનશોટ્સ ને અવરોધિત કરો</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">તાજેતરની સૂચિમાં અને ઍપમાંના સ્ક્રીનશોટને બ્લૉક કરો</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal મેસેજ અને કૉલ્સ, હંમેશા રિલે કૉલ્સ, અને સીલ કરેલ મોકલનાર</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">નવી ચેટ માટે ડિફોલ્ટ ટાઈમર</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">તમે શરૂ કરેલી બધી નવી ચેટ માટે ડિફોલ્ટ અદ્રશ્ય મેસેજ ટાઈમર સેટ કરો.</string>
@@ -4174,9 +4174,9 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">કૉલ</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">મ્યુટ</string>
+    <string name="ConversationSettingsFragment__mute">મ્યૂટ કરો</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">મ્યુટ કરેલ</string>
+    <string name="ConversationSettingsFragment__muted">મ્યૂટ કર્યા</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">શોધો</string>
     <string name="ConversationSettingsFragment__disappearing_messages">અદૃશ્ય થઈ રહેલા મેસેજ</string>
@@ -4184,10 +4184,10 @@
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">સંપર્કની વિગતો</string>
     <string name="ConversationSettingsFragment__view_safety_number">સલામતી નંબર જુઓ</string>
-    <string name="ConversationSettingsFragment__block">અવરોધિત કરો</string>
-    <string name="ConversationSettingsFragment__block_group">ગ્રુપ બ્લૉક</string>
-    <string name="ConversationSettingsFragment__unblock">અનાવરોધિત કરો</string>
-    <string name="ConversationSettingsFragment__unblock_group">ગ્રૂપને અનબલોક કરો</string>
+    <string name="ConversationSettingsFragment__block">બ્લૉક કરો</string>
+    <string name="ConversationSettingsFragment__block_group">ગ્રૂપને બ્લૉક કરો</string>
+    <string name="ConversationSettingsFragment__unblock">અનબ્લૉક કરો</string>
+    <string name="ConversationSettingsFragment__unblock_group">ગ્રૂપને અનબ્લૉક કરો</string>
     <string name="ConversationSettingsFragment__add_to_a_group">ગ્રુપમાં ઉમેરો</string>
     <string name="ConversationSettingsFragment__see_all">બધા જુઓ</string>
     <string name="ConversationSettingsFragment__add_members">સભ્યો ઉમેરો</string>
@@ -4195,9 +4195,9 @@
     <string name="ConversationSettingsFragment__requests_and_invites">વિનંતીઓ &amp; આમંત્રણ</string>
     <string name="ConversationSettingsFragment__group_link">ગ્રુપ લિંક</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">સંપર્કોમાં ઉમેરો</string>
-    <string name="ConversationSettingsFragment__unmute">અનમ્યૂટ</string>
+    <string name="ConversationSettingsFragment__unmute">અનમ્યૂટ કરો</string>
     <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s સુધી વાતચીત મ્યૂટ કરી</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">હમેશા માટે વાતચીત મ્યૂટ કરી</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">હંમેશા માટે વાતચીત મ્યૂટ કરી</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ક્લિપબોર્ડ પર ફોન નંબરની નકલ કરી.</string>
     <string name="ConversationSettingsFragment__phone_number">ફોન નંબર</string>
     <string name="ConversationSettingsFragment__get_badges">Signalને સમર્થન આપીને તમારી પ્રોફાઇલ માટે બૅજ મેળવો. વધુ જાણવા માટે બૅજ પર ટૅપ કરો.</string>
@@ -4213,8 +4213,8 @@
     <string name="PermissionsSettingsFragment__who_can_send_messages">કોણ મેસેજ મોકલી શકે છે?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
-    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">સૂચનાઓ મ્યૂટ કરો</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">મ્યૂટ નહીં</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">નોટિફિકેશન મ્યૂટ કરો</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">મ્યૂટ કર્યું નથી</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">ઉલ્લેખો</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">હંમેશાં સૂચિત કરો</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">મને સૂચિત કરશો નહીં</string>
@@ -4243,7 +4243,7 @@
     <!-- Context menu item remove -->
     <string name="NewConversationActivity__remove">દૂર કરો</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">અવરોધિત કરો</string>
+    <string name="NewConversationActivity__block">બ્લૉક કરો</string>
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$sને દૂર કરવા છે?</string>
     <!-- Dialog message when removing a contact -->
@@ -4251,7 +4251,7 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$sને દૂર કરવામાં આવ્યા છે</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s ને બ્લૉક કરવામાં આવ્યા છે</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$sને બ્લૉક કરવામાં આવ્યા છે</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">%1$sને દૂર ન કરી શક્યા</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -5612,13 +5612,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">ક</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">સોમ</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">મિ</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
-    <string name="TimeDurationPickerDialog_positive_button">સેટ</string>
+    <string name="TimeDurationPickerDialog_positive_button">સેટ કરો</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">સ્ક્રીન લૉક લાગુ થાય તે પહેલાંનો ન્યૂનતમ સમય 1 મિનિટનો છે.</string>
 
     <!-- EOF -->
 </resources>

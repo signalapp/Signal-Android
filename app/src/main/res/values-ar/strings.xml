@@ -98,10 +98,10 @@
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">المستخدمون المحظورون</string>
-    <string name="BlockedUsersActivity__add_blocked_user">أضف مستخدما محظورا</string>
+    <string name="BlockedUsersActivity__add_blocked_user">أضف مستخدمًا محظورًا</string>
     <string name="BlockedUsersActivity__blocked_users_will">لن يتمكن المستخدم المحظور من الاتصال بك ولا إرسال الرسائل إليك.</string>
     <string name="BlockedUsersActivity__no_blocked_users">لا أحد محظور</string>
-    <string name="BlockedUsersActivity__block_user">حظر المستخدم ؟</string>
+    <string name="BlockedUsersActivity__block_user">حظر المستخدم؟</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">لن يتمكن \"%1$s\" من الاتصال بك ولا إرسال الرسائل إليك.</string>
     <string name="BlockedUsersActivity__block">حظر</string>
 
@@ -154,10 +154,10 @@
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">حظر الحصول على الجديد والتحديثات من Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">استئناف الحصول على الجديد والتحديثات من Signal.</string>
-    <string name="BlockUnblockDialog_unblock_s">رفع الحظر عن %1$s ؟</string>
+    <string name="BlockUnblockDialog_unblock_s">رفع الحظر عن %1$s؟</string>
     <string name="BlockUnblockDialog_block">حظر</string>
     <string name="BlockUnblockDialog_block_and_leave">حظر ثم المغادرة</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">إبلاغ عن بريد عشوائي ثم حظره</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">إبلاغ عن بريد مزعج ثم حظره</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">اليوم</string>
@@ -472,7 +472,7 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$s مشغّل</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">حظر الطلب ؟</string>
+    <string name="ConversationFragment__block_request">حظر الطلب؟</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">لن يتمكن المستخدم %1$s من الانضمام إلى هذه المجموعة أو حتى إرسال طلب للانضمام إليها من خلال رابط المجموعة. لكن يمكن إضافته يدويًا للمجموعة.</string>
     <!-- Dialog confirm block request button -->
@@ -553,20 +553,20 @@
         <item quantity="other">إلغاء التثبيت</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="zero">كتم الصوت</item>
-        <item quantity="one">كتم الصوت</item>
-        <item quantity="two">كتم الصوت</item>
-        <item quantity="few">كتم الصوت</item>
-        <item quantity="many">كتم الصوت</item>
-        <item quantity="other">كتم الصوت</item>
+        <item quantity="zero">كتم الدردشات</item>
+        <item quantity="one">كتم الدردشات</item>
+        <item quantity="two">كتم الدردشات</item>
+        <item quantity="few">كتم الدردشات</item>
+        <item quantity="many">كتم الدردشات</item>
+        <item quantity="other">كتم الدردشات</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="zero">إعادة الصوت</item>
-        <item quantity="one">إعادة الصوت</item>
-        <item quantity="two">إعادة الصوت</item>
-        <item quantity="few">إعادة الصوت</item>
-        <item quantity="many">إعادة الصوت</item>
-        <item quantity="other">إعادة الصوت</item>
+        <item quantity="zero">إلغاء كتم الدردشات</item>
+        <item quantity="one">إلغاء كتم الدردشات</item>
+        <item quantity="two">إلغاء كتم الدردشات</item>
+        <item quantity="few">إلغاء كتم الدردشات</item>
+        <item quantity="many">إلغاء كتم الدردشات</item>
+        <item quantity="other">إلغاء كتم الدردشات</item>
     </plurals>
     <string name="ConversationListFragment_select">حَدِّد</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -1088,7 +1088,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">تلقي الإشعارات عندما يُذكَر اسمك في المحادثات الصامتة ؟</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">تلقِّي الإشعارات عندما يُذكَر اسمك في المحادثات الصامتة؟</string>
     <string name="GroupMentionSettingDialog_always_notify_me">نبّهني دوماً</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">لا تنبّهني</string>
 
@@ -1107,9 +1107,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">تم نسخ اسم المستخدم</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">تعذّر حذف اسم المستخدم. يُرجى المحاولة مرة أخرى لاحقًا.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">تم حذف اسم المستخدم</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1709,10 +1709,10 @@
     <string name="MessageRequestBottomView_unblock">رفع الحظر</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">هل تود السماح لـ%1$s بمراسلتك، بالإضافة إلى مشاركة اسمك وصورتك معه؟ لن يعرف أنك قرأت رسالته إلى أن تسمح له بذلك.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">هل تود السماح لـ %1$s بمراسلتك ،بالإضافة إلى مشاركة اسمك وصورتك معه ؟ لن تصله أي رسالة حتى تزيل الحظر عنه.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">هل تود السماح لـ %1$s بمراسلتك ومشاركة اسمك وصورتك معه؟ لن تصله أي رسالة حتى تزيل الحظر عنه.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">هل تود السماح لـ %1$s بإرسال رسالة لك؟ لن تتلقى أي رسالة منه حتى تُلغي حظرك له.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">الحصول على الجديد والتحديثات من %1$s ؟ لن تصلك أي تحديثات حتى يُرفَع حظرك عنها.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">الحصول على الجديد والتحديثات من %1$s؟ لن تصلك أي تحديثات حتى يُرفَع حظرك عنها.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">أأنت بحاجة إلى متابعة محادثتك مع هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها ؟</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">يجب ترقية هذه المجموعة لتفعيل ميزات جديدة مثل ‎@mention والمشرفين عليها. ستتم دعوة اﻷعضاء الذين لم يشاركوا أسمائهم أو صورهم في هذه المجموعة للانضمام إليها.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">لا يمكن استخدام هذه المجموعة القديمة الطراز لأنها كبيرة جدا. الحد الأقصى للمجموعة هو %1$d.</string>
@@ -1720,7 +1720,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">الانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن يعرفوا أنك قرأت رسالتهم حتى توافق.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">هل تود الانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن تظهر لك رسائلهم حتى تسمح بذلك.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">هل تود الانضمام إلى هذه المجموعة؟ لن يعرفوا أنك قرأت رسائلهم إلا إذا وافقت.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">إزالة الحظر عن هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن تتلقى أية رسائل حتى تزيل الحظر.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">إزالة الحظر عن هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن تتلقى أية رسائل حتى تُزيل الحظر.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">إظهار</string>
     <string name="MessageRequestProfileView_member_of_one_group">عضو في %1$s</string>
@@ -1847,7 +1847,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">تحذير</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">إذا قمت بتعطيل الرمز التعريفي الشخصي، ستضيع جميع بياناتك عند قبامك بإعادة التسجيل إلى Signal إلا إذا قمت باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل الرمز التعريفي الشخصي.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">إذا قمت بتعطيل الرمز التعريفي الشخصي، ستضيع جميع بياناتك عند قيامك بإعادة التسجيل إلى Signal إلا إذا قمت باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل الرمز التعريفي الشخصي.</string>
     <string name="PinOptOutDialog_disable_pin">إلغاء الرقم التعريفي الشخصي</string>
 
     <!-- RatingManager -->
@@ -1992,7 +1992,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">الكاميرا</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">إعادة الصوت</string>
+    <string name="WebRtcCallView__unmute">إلغاء كتم الدردشات</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">كتم</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -2016,7 +2016,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">كلاكما لن يتلقى صوت الآخر ولا صورته.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">لا يمكن تلقي الصوت والصورة من %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">لا يمكن تلقي الصوت والصورة من %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ربما يكون ذلك بسبب عدم تحقق الشخص من تغيير رقم أمانك، أو بسبب وجود مشكلة في جهازه، أو قيامه بحظرك.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ربما يكون ذلك بسبب عدم تحقّق الشخص من تغيير رقم أمانك أو بسبب وجود مشكلة في جهازه أو قيامه بحظرك.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">سحب لعرض الشاشة المُشارَكة</string>
@@ -2248,7 +2248,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">رسالة مُجدولة</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">تم دمج سِجل رسائلك</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">يعود الرقم %1$s إلى %2$s</string>
 
@@ -2977,7 +2977,7 @@
     <string name="arrays__use_custom">تخصيص</string>
 
     <string name="arrays__mute_for_one_hour">كتم لمدة ساعة</string>
-    <string name="arrays__mute_for_eight_hours">اصمت لـ 8 ساعات</string>
+    <string name="arrays__mute_for_eight_hours">كتم لمدة 8 ساعات</string>
     <string name="arrays__mute_for_one_day">كتم لمدة يوم</string>
     <string name="arrays__mute_for_seven_days">كتم لمدة سبعة أيام</string>
     <string name="arrays__always">دائمًا</string>
@@ -3477,7 +3477,7 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">إلغاء الكتم.</string>
+    <string name="conversation_muted__unmute">إلغاء كتم الدردشات</string>
 
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">كتم الإشعارات</string>
@@ -4405,7 +4405,7 @@
     <string name="PrivacySettingsFragment__messaging">التراسُل</string>
     <string name="PrivacySettingsFragment__disappearing_messages">الرسائل المختفية</string>
     <string name="PrivacySettingsFragment__app_security">أمان التطبيق</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">منع لقطات الشاشة داخل التطبيق وفي قائمة الأحدث</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">منع لقطات الشاشة داخل التطبيق وفي قائمة الأحدَث</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">محادثات ومكالمات Signal، مناوبة الاتصالات دوما، والمُرسِل المختوم</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">المهلة الافتراضية للمحادثات الجديدة</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">تحديد مدة افتراضية لمؤقت اختفاء الرسائل، لجميع المحادثات الجديدة التي قمت ببدئها.</string>
@@ -4572,7 +4572,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">كتم</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">صامت</string>
+    <string name="ConversationSettingsFragment__muted">تم كتم الدردشات</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">البحث</string>
     <string name="ConversationSettingsFragment__disappearing_messages">الرسائل المختفية</string>
@@ -4591,7 +4591,7 @@
     <string name="ConversationSettingsFragment__requests_and_invites">الطلبات و الدعوات</string>
     <string name="ConversationSettingsFragment__group_link">وصلة المجموعة</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">الإضافة كجهة اتصال</string>
-    <string name="ConversationSettingsFragment__unmute">شغِّل الصوت</string>
+    <string name="ConversationSettingsFragment__unmute">إلغاء كتم الدردشات</string>
     <string name="ConversationSettingsFragment__conversation_muted_until_s">كُتمَت المحادثة حتى %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">كُتمَت المحادثة للأبد</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">لقد نُسخ رقم الهاتف إلى الحافظة.</string>
@@ -6112,13 +6112,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">ساعة</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">الاثنين</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">دقيقة</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">تعيين</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">الحد الأدنى من الوقت قبل تطبيق قفل الشاشة هو 1 دقيقة.</string>
 
     <!-- EOF -->
 </resources>

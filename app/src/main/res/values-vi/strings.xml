@@ -99,7 +99,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Người dùng đã chặn</string>
     <string name="BlockedUsersActivity__add_blocked_user">Thêm người dùng vào danh sách chặn</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Người dùng bị chặn sẽ không thể nhắn tin hay gọi cho bạn.</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Người dùng bị chặn sẽ không thể gửi tin nhắn hay gọi cho bạn.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Không có người dùng đã chặn</string>
     <string name="BlockedUsersActivity__block_user">Chặn người dùng này?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" sẽ không thể gọi hay nhắn tin cho bạn.</string>
@@ -139,7 +139,7 @@
     <string name="CreditCardFragment__continue">Tiếp tục</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Chặn và rời khỏi %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Chặn và rời %1$s?</string>
     <string name="BlockUnblockDialog_block_s">Chặn %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Bạn sẽ không còn nhận tin nhắn hay cập nhật từ nhóm này, và thành viên nhóm sẽ không thể thêm lại bạn vào nhóm.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Thành viên nhóm sẽ không thể thêm lại bạn vào nhóm.</string>
@@ -148,8 +148,8 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Các bạn sẽ có thể nhắn tin và gọi cho nhau, đồng thời có thể thấy tên và ảnh đại diện của nhau.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Các bạn sẽ có thể nhắn tin cho nhau.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Người dùng bị chặn sẽ không thể gọi hoặc gửi tin nhắn cho bạn.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Những người bị chặn sẽ không thể nhắn tin cho bạn.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Người dùng bị chặn sẽ không thể gửi tin nhắn hay gọi cho bạn.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Người dùng bị chặn sẽ không thể gửi tin nhắn cho bạn.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Ngừng nhận cập nhật và tin tức của Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
@@ -898,7 +898,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Thông báo khi tôi được nhắc tên</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Nhận thông báo khi bạn được nhắc tên trong cuộc trò chuyện đã im lặng?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Nhận thông báo khi bạn được nhắc tên trong cuộc trò chuyện đã tắt tiếng?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Luôn thông báo tôi</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Không thông báo tôi</string>
 
@@ -917,9 +917,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Đã sao chép tên người dùng</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Không thể xóa tên người dùng. Thử lại sau.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Tên người dùng đã xóa</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1419,10 +1419,10 @@
     <string name="MessageRequestBottomView_unblock">Bỏ chặn</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Cho phép %1$s nhắn tin với bạn, đồng thời chia sẻ tên và ảnh đại diện của bạn với họ? Họ sẽ không biết là bạn đã đọc tin nhắn cho tới khi bạn chấp nhận.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Cho phép %1$s nhắn tin với bạn, đồng thời chia sẻ tên và ảnh đại diện của bạn với họ? Bạn sẽ không nhận thêm tin nhắn mới nếu bạn cho tới khi bạn bỏ chặn họ.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Cho phép %1$s nhắn tin cho bạn và chia sẻ tên và ảnh của bạn với họ? Bạn sẽ không nhận được tin nhắn nào cho tới khi bạn ngưng chặn họ.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Cho phép %1$s nhắn tin cho bạn? Bạn sẽ không nhận được tin nhắn nào cho đến khi bạn bỏ chặn họ.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Nhận cập nhật và tin tức từ %1$s? Bạn sẽ không nhận được cập nhật nào cho đến khi bạn bỏ chặn người đó.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Cho phép %1$s nhắn tin cho bạn? Bạn sẽ không nhận thêm tin nhắn mới cho tới khi bạn bỏ chặn họ.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Nhận cập nhật và tin tức từ %1$s? Bạn sẽ không nhận được cập nhật nào cho tới khi bạn bỏ chặn họ.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Tiếp tục cuộc trò chuyện với nhóm này và chia sẻ tên và ảnh đại diện của bạn với các thành viên?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Nâng cấp nhóm này để kích hoạt các tính năng mới như @nhắc tên và quản trị viên. Các thành viên chưa chia sẻ tên hoặc ảnh đại diện trong nhóm này sẽ được mời tham gia.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Nhóm Cũ này không thể được sử dụng vì nhóm quá lớn. Kích cỡ tối đa của nhóm là %1$d.</string>
@@ -1649,7 +1649,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Bỏ tắt tiếng</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Im lặng</string>
+    <string name="WebRtcCallView__mute">Tắt tiếng</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Rung chuông</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1893,7 +1893,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Tin nhắn đã lên lịch</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Lịch sử tin nhắn của bạn đã được hợp nhất</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s thuộc về %2$s</string>
 
@@ -1967,7 +1967,7 @@
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Tin nhắn MMS mã hoá cho phiên không tồn tại</string>
 
     <!-- MuteDialog -->
-    <string name="MuteDialog_mute_notifications">Tạm im thông báo</string>
+    <string name="MuteDialog_mute_notifications">Tắt tiếng thông báo</string>
 
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Đang nhập…</string>
@@ -2561,10 +2561,10 @@
     <string name="arrays__use_default">Dùng mặc định</string>
     <string name="arrays__use_custom">Dùng tùy chỉnh</string>
 
-    <string name="arrays__mute_for_one_hour">Tạm im 1 giờ</string>
-    <string name="arrays__mute_for_eight_hours">Tắt tiếng trong 8 tiếng</string>
-    <string name="arrays__mute_for_one_day">Tạm im 1 ngày</string>
-    <string name="arrays__mute_for_seven_days">Tạm im 7 ngày</string>
+    <string name="arrays__mute_for_one_hour">Tắt tiếng 1 giờ</string>
+    <string name="arrays__mute_for_eight_hours">Tắt tiếng 8 giờ</string>
+    <string name="arrays__mute_for_one_day">Tắt tiếng 1 ngày</string>
+    <string name="arrays__mute_for_seven_days">Tắt tiếng 7 ngày</string>
     <string name="arrays__always">Luôn luôn</string>
 
     <string name="arrays__settings_default">Mặc định theo hệ thống</string>
@@ -3052,10 +3052,10 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Tắt tạm im</string>
+    <string name="conversation_muted__unmute">Bỏ tắt tiếng</string>
 
     <!-- conversation_unmuted -->
-    <string name="conversation_unmuted__mute_notifications">Tạm im thông báo</string>
+    <string name="conversation_unmuted__mute_notifications">Tắt tiếng thông báo</string>
 
     <!-- conversation -->
     <string name="conversation__menu_group_settings">Cài đặt nhóm</string>
@@ -3920,7 +3920,7 @@
     <string name="PrivacySettingsFragment__messaging">Nhắn tin</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Tin nhắn tự hủy</string>
     <string name="PrivacySettingsFragment__app_security">Bảo mật ứng dụng</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Chặn chụp màn hình trong danh sách ứng dụng và bên trong ứng dụng</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Chặn chụp màn hình trong danh sách gần đây và bên trong ứng dụng</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Tin nhắn và cuộc gọi Signal, luôn luôn chuyển tiếp cuộc gọi, và người gửi được niêm phong</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Đồng hồ mặc định cho tất cả cuộc trò chuyện mới</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Đặt đồng hồ tin nhắn biến mất mặc định cho tất cả các cuộc trò chuyện mới bắt đầu bởi bạn.</string>
@@ -4075,7 +4075,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Gọi</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Im lặng</string>
+    <string name="ConversationSettingsFragment__mute">Tắt tiếng</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Đã tắt tiếng</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4096,9 +4096,9 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Yêu cầu &amp; lời mời</string>
     <string name="ConversationSettingsFragment__group_link">Đường dẫn nhóm</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Thêm làm liên hệ</string>
-    <string name="ConversationSettingsFragment__unmute">Tắt tạm im</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Cuộc trò chuyện được tắt tiếng cho đến %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Cuộc trò chuyện tắt tiếng vĩnh viễn</string>
+    <string name="ConversationSettingsFragment__unmute">Bỏ tắt tiếng</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Cuộc trò chuyện được tắt tiếng cho tới %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Cuộc trò chuyện tắt tiếng mãi mãi</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Đã sao chép số điện thoại vào bảng kẹp.</string>
     <string name="ConversationSettingsFragment__phone_number">Số điện thoại</string>
     <string name="ConversationSettingsFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hỗ trợ cho Signal. Bấm vào huy hiệu để biết thêm chi tiết.</string>
@@ -4114,8 +4114,8 @@
     <string name="PermissionsSettingsFragment__who_can_send_messages">Ai có thể gửi tin nhắn trong hộp chat này?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
-    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Tạm im thông báo</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Không tắt thông báo</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Tắt tiếng thông báo</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Bỏ tắt tiếng thông báo</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Nhắc tên</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Luôn luôn thông báo</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Không thông báo</string>
@@ -5487,13 +5487,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">g</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">M</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">p</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Đặt</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Thời gian tối thiểu trước khi khóa màn hình có hiệu lực là 1 phút.</string>
 
     <!-- EOF -->
 </resources>

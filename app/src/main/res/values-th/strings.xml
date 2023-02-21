@@ -97,13 +97,13 @@
     <string name="BackgroundMessageRetriever_checking_for_messages">กำลังตรวจหาข้อความ…</string>
 
     <!-- BlockedUsersActivity -->
-    <string name="BlockedUsersActivity__blocked_users">ผู้ใช้ที่ถูกปิดกั้นอยู่</string>
-    <string name="BlockedUsersActivity__add_blocked_user">เพิ่มผู้ใช้ที่ปิดกั้น</string>
-    <string name="BlockedUsersActivity__blocked_users_will">ผู้ใช้ที่ถูกปิดกั้นจะไม่สามารถโทรหรือส่งข้อความหาคุณได้</string>
-    <string name="BlockedUsersActivity__no_blocked_users">ไม่มีผู้ใช้ที่ถูกปิดกั้นอยู่</string>
-    <string name="BlockedUsersActivity__block_user">ปิดกั้นผู้ใช้หรือไม่?</string>
+    <string name="BlockedUsersActivity__blocked_users">ผู้ใช้ที่ถูกบล็อก</string>
+    <string name="BlockedUsersActivity__add_blocked_user">เพิ่มผู้ใช้ที่ถูกบล็อก</string>
+    <string name="BlockedUsersActivity__blocked_users_will">ผู้ใช้ที่ถูกบล็อกจะไม่สามารถโทรหรือส่งข้อความหาคุณได้</string>
+    <string name="BlockedUsersActivity__no_blocked_users">ไม่มีผู้ใช้ที่ถูกบล็อก</string>
+    <string name="BlockedUsersActivity__block_user">บล็อกผู้ใช้หรือไม่</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" จะไม่สามารถโทรหรือส่งข้อความหาคุณได้</string>
-    <string name="BlockedUsersActivity__block">ปิดกั้น</string>
+    <string name="BlockedUsersActivity__block">บล็อก</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">ดำเนินการต่อ</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">ปิดกั้นและออกจาก %1$s หรือไม่?</string>
-    <string name="BlockUnblockDialog_block_s">ปิดกั้น %1$s หรือไม่?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">บล็อกและออกจาก %1$s หรือไม่</string>
+    <string name="BlockUnblockDialog_block_s">บล็อก %1$s หรือไม่</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">คุณจะไม่ได้รับข้อความหรือข่าวสารจากกลุ่มนี้อีกต่อไป และสมาชิกจะไม่สามารถเพิ่มคุณกลับเข้ามาในกลุ่มนี้อีก</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">สมาชิกจะไม่สามารถเพิ่มคุณกลับเข้ามาในกลุ่มนี้อีก</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">สมาชิกจะสามารถเพิ่มคุณกลับเข้ามาในกลุ่มนี้อีก</string>
@@ -148,16 +148,16 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">คุณจะสามารถส่งข้อความและโทรหากันได้ และชื่อกับรูปถ่ายของคุณจะถูกแบ่งปันกับพวกเขา</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">คุณส่งข้อความหากันได้</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">คนที่ถูกปิดกั้นจะไม่สามารถโทรหรือส่งข้อความหาคุณได้</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">คนที่ถูกปิดกั้นจะส่งข้อความหาคุณไม่ได้</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ผู้ที่ถูกบล็อกจะไม่สามารถโทรหรือส่งข้อความหาคุณได้</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">ผู้ที่ถูกบล็อกจะไม่สามารถส่งข้อความหาคุณได้</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">ปิดกั้นการรับการปรับปรุงและข่าวสารของ Signal</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">บล็อกการรับข้อมูลอัปเดตและข่าวสารของ Signal</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">กลับมารับการปรับปรุงและข่าวสารของ Signal ต่อไป</string>
-    <string name="BlockUnblockDialog_unblock_s">เลิกปิดกั้น %1$sหรือไม่?</string>
-    <string name="BlockUnblockDialog_block">ปิดกั้น</string>
-    <string name="BlockUnblockDialog_block_and_leave">ปิดกั้นและออก</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">รายงานสแปมและปิดกั้น</string>
+    <string name="BlockUnblockDialog_unblock_s">เลิกบล็อก %1$s หรือไม่</string>
+    <string name="BlockUnblockDialog_block">บล็อก</string>
+    <string name="BlockUnblockDialog_block_and_leave">บล็อกและออก</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">รายงานว่าเป็นสแปมและบล็อก</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">วันนี้</string>
@@ -319,7 +319,7 @@
     <string name="ConversationActivity_transport_signal">ข้อความ Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กันเถอะ %1$s</string>
     <string name="ConversationActivity_specify_recipient">โปรดเลือกผู้ติดต่อ</string>
-    <string name="ConversationActivity_unblock">เลิกปิดกั้น</string>
+    <string name="ConversationActivity_unblock">เลิกบล็อก</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">แฟ้มแนบมีขนาดใหญ่เกินกำหนดสำหรับชนิดของข้อความที่คุณกำลังจะส่ง</string>
     <string name="ConversationActivity_unable_to_record_audio">ไม่สามารถอัดเสียงได้!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">คุณไม่สามารถส่งข้อความเข้ากลุ่มนี้ได้ เพราะคุณไม่ได้เป็นสมาชิกแล้ว</string>
@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">เกิดข้อผิดพลาดในการส่งสื่อ</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">ถูกรายงานว่าเป็นสแปมและถูกปิดกั้นแล้ว</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">รายงานว่าเป็นสแปมและบล็อกแล้ว</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">ระงับการให้บริการส่งข้อความ SMS แล้ว คุณสามารถส่งออกข้อความของคุณไปยังแอปอื่นบนโทรศัพท์ได้</string>
@@ -442,15 +442,15 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">เปิด %1$s</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">ปิดกั้นคำขอหรือไม่</string>
+    <string name="ConversationFragment__block_request">บล็อกคำขอหรือไม่</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s ไม่สามารถเข้าร่วมหรือส่งคำขอเพื่อเข้าร่วมกลุ่มนี้ได้ทางลิงก์กลุ่ม แต่สามารถเพิ่มเข้ากลุ่มได้ด้วยตัวเอง</string>
     <!-- Dialog confirm block request button -->
-    <string name="ConversationFragment__block_request_button">ปิดกั้นคำขอ</string>
+    <string name="ConversationFragment__block_request_button">บล็อกคำขอ</string>
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">ยกเลิก</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">ถูกปิดกั้น</string>
+    <string name="ConversationFragment__blocked">ถูกบล็อก</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ล้างตัวกรอง</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -486,7 +486,7 @@
         <item quantity="other">ปิดเสียง</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="other">ยกเลิกปิดเสียง</item>
+        <item quantity="other">เปิดเสียง</item>
     </plurals>
     <string name="ConversationListFragment_select">เลือก</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -898,7 +898,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">แจ้งให้ฉันรู้สำหรับการกล่าวถึง</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">รับการแจ้งเตือนเมื่อคุณถูกกล่าวถึงในการพูดคุยที่ปิดเสียงไว้หรือไม่?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">รับการแจ้งเตือนเมื่อคุณถูกกล่าวถึงในแชทที่ปิดเสียงไว้หรือไม่</string>
     <string name="GroupMentionSettingDialog_always_notify_me">แจ้งให้ฉันรู้ตลอด</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">ไม่ต้องแจ้งให้ฉันรู้</string>
 
@@ -917,9 +917,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">คัดลอกชื่อผู้ใช้แล้ว</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">ไม่สามารถลบชื่อผู้ใช้ได้ โปรดลองอีกครั้งในภายหลัง</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">ลบชื่อผู้ใช้แล้ว</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1415,14 +1415,14 @@
     <string name="MessageRequestBottomView_accept">ตอบรับ</string>
     <string name="MessageRequestBottomView_continue">ทำต่อ</string>
     <string name="MessageRequestBottomView_delete">ลบ</string>
-    <string name="MessageRequestBottomView_block">ปิดกั้น</string>
-    <string name="MessageRequestBottomView_unblock">เลิกปิดกั้น</string>
+    <string name="MessageRequestBottomView_block">บล็อก</string>
+    <string name="MessageRequestBottomView_unblock">เลิกบล็อก</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">อนุญาตให้ %1$s ส่งข้อความและเห็นชื่อกับรูปภาพของคุณหรือไม่? พวกเขาจะไม่รู้ว่าคุณได้เห็นข้อความของพวกเขาแล้วจนกว่าคุณจะตอบรับ</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">อนุญาตให้ %1$s ส่งข้อความและเห็นชื่อกับรูปภาพของคุณหรือไม่? คุณจะไม่ได้รับข้อความใดจนกว่าคุณจะเลิกปิดกั้นพวกเขา</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">อนุญาตให้ %1$s ส่งข้อความหารวมถึงมองเห็นชื่อและรูปของคุณหรือไม่ คุณจะไม่ได้รับข้อความจนกว่าจะเลิกบล็อกผู้ใช้รายนี้</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">ให้ %1$s ส่งข้อความหาคุณหรือไม่ คุณจะไม่ได้รับข้อความใดๆ จนกว่าคุณเลิกปิดกั้นเขา</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">รับข้อมูลใหม่ๆ และข่าวสารจาก %1$s หรือไม่ คุณจะไม่ได้รับข้อมูลใหม่ๆ จนกว่าจะยกเลิกปิดกั้นเขา</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">อนุญาตให้ %1$s ส่งข้อความหาคุณหรือไม่ คุณจะไม่ได้รับข้อความจนกว่าจะเลิกบล็อกผู้ใช้รายนี้</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">รับข้อมูลอัปเดตและข่าวสารจาก %1$s หรือไม่ คุณจะไม่ได้รับข้อมูลใดๆ จนกว่าจะเลิกบล็อกผู้ใช้คนนี้</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ต้องการสนทนาภายในกลุ่มนี้ต่อไปและเปิดเผยชื่อกับรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">ปรับรุ่นกลุ่มนี้เพื่อเปิดใช้ความสามารถใหม่ เช่น @กล่าวถึง และระบบผู้ดูแล สมาชิกที่ไม่ได้เปิดเผยชื่อหรือรูปภาพในกลุ่มนี้จะได้รับคำเชิญให้เข้าร่วม</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">กลุ่มแบบเก่านี้ไม่สามารถใช้งานได้อีกต่อไป เนื่องจากมีขนาดใหญ่เกินไป ขนาดที่ใหญ่ที่สุดของกลุ่มคือ %1$d</string>
@@ -1430,7 +1430,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">เข้าร่วมกลุ่มนี้และเปิดเผยชื่อและรูปถ่ายของคุณให้สมาชิกในกลุ่มเห็นหรือไม่? พวกเขาจะไม่รู้ว่าคุณเห็นข้อความของพวกเขาจนกว่าคุณจะตอบรับ</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">เข้าร่วมกลุ่มนี้และแชร์ชื่อกับรูปภาพให้กับสมาชิกในกลุ่มหรือไม่ คุณจะไม่เห็นข้อความของพวกเขาจนกว่าคุณจะรับ</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">เข้าร่วมกลุ่มนี้หรือไม่? พวกเขาจะไม่รู้ว่าคุณเห็นข้อความของพวกเขาจนกว่าคุณจะตอบรับ</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">คุณต้องการเลิกปิดกั้นกลุ่มนี้และเปิดเผยชื่อและรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่? คุณจะไม่ได้รับข้อความใดจนกว่าคุณจะเลิกปิดกั้นพวกเขา</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">คุณต้องการเลิกบล็อกกลุ่มนี้และเปิดเผยชื่อและรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่ คุณจะไม่ได้รับข้อความจนกว่าจะเลิกบล็อกกลุ่ม</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">ดู</string>
     <string name="MessageRequestProfileView_member_of_one_group">สมาชิกของ %1$s</string>
@@ -1527,7 +1527,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">คำเตือน</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">หากคุณปิดใช้งาน PIN คุณจะสูญเสียข้อมูลเมื่อคุณลงทะเบียนบัญชี Signal ใหม่ นอกจากว่าคุณได้สำรองข้อมูลและกู้มันคืนมาเอง คุณไม่สามารถเปิดการใช้งานกุญแจลงทะเบียนในขณะที่ PIN ปิดการใช้งานอยู่</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">หากคุณปิดใช้งาน PIN คุณจะสูญเสียข้อมูลทั้งหมดเมื่อลงทะเบียนบัญชี Signal ใหม่ (เว้นแต่ว่าคุณจะกู้คืนมาเองจากการสำรองข้อมูลเอาไว้) นอกจากนี้ คุณจะไม่สามารถเปิดใช้งานกุญแจลงทะเบียนในขณะที่ PIN ปิดใช้งานอยู่</string>
     <string name="PinOptOutDialog_disable_pin">ปิดใช้งาน PIN</string>
 
     <!-- RatingManager -->
@@ -1557,8 +1557,8 @@
     <string name="Recipient_my_story">สตอรี่ของฉัน</string>
 
     <!-- RecipientPreferencesActivity -->
-    <string name="RecipientPreferenceActivity_block">ปิดกั้น</string>
-    <string name="RecipientPreferenceActivity_unblock">เลิกปิดกั้น</string>
+    <string name="RecipientPreferenceActivity_block">บล็อก</string>
+    <string name="RecipientPreferenceActivity_unblock">เลิกบล็อก</string>
 
     <!-- RecipientProvider -->
 
@@ -1661,12 +1661,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s ได้ถูกปิดกั้นแล้ว</string>
+    <string name="CallParticipantView__s_is_blocked">%1$s ถูกบล็อกอยู่</string>
     <string name="CallParticipantView__more_info">ข้อมูลเพิ่มเติม</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">คุณจะไม่ได้รับเสียงและวิดีโอ และพวกเขาจะไม่ได้รับเสียงและวิดีโอของคุณ</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">ไม่สามารถรับการโทรเสียงและการโทรวิดีโอจาก %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">ไม่สามารถรับการโทรเสียงและการโทรวิดีโอจาก %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">เหตุนี้อาจเกิดขึ้นเนื่องจากพวกเขายังไม่ได้ตรวจยืนยันหมายเลขความปลอดภัยของคุณ อุปกรณ์ของพวกเขามีปัญหา หรือพวกเขาได้ปิดกั้นคุณไว้</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">เหตุนี้อาจเกิดขึ้นเนื่องจากผู้ใช้คนนี้ยังไม่ได้ยืนยันหมายเลขความปลอดภัยที่เปลี่ยนไปของคุณ อุปกรณ์ของผู้ใช้มีปัญหา หรือผู้ใช้บล็อกคุณไว้</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">ปัดเพื่อดูจอที่แบ่งปัน</string>
@@ -1893,7 +1893,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">ข้อความที่ตั้งเวลาไว้</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">ประวัติการส่งข้อความของคุณถูกรวมเข้าด้วยกันเรียบร้อยแล้ว</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s เป็นหมายเลขโทรศัพท์ของ %2$s</string>
 
@@ -2231,7 +2231,7 @@
     <string name="ConversationUpdateItem_enable_call_notifications">เปิดใช้การแจ้งเตือนการโทร</string>
     <string name="ConversationUpdateItem_update_contact">ปรับปรุงผู้ติดต่อ</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
-    <string name="ConversationUpdateItem_block_request">ปิดกั้นคำขอ</string>
+    <string name="ConversationUpdateItem_block_request">บล็อกคำขอ</string>
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ไม่มีกลุ่มที่เหมือนกันเลย โปรดพิจารณาคำขออย่างระวัง</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ไม่มีผู้ติดต่อในกลุ่มนี้ โปรดพิจารณาคำขออย่างระวัง</string>
     <string name="ConversationUpdateItem_view">ดู</string>
@@ -2600,9 +2600,9 @@
     <string name="preferences__pref_use_address_book_photos">ใช้รูปภาพของรายชื่อผู้ติดต่อปัจจุบัน</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">แสดงรูปภาพผู้ติดต่อจากรายชื่อผู้ติดต่อปัจจุบันหากสามารถทำได้</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">เก็บแชตที่ปิดเสียงถาวร</string>
+    <string name="preferences__pref_keep_muted_chats_archived">เก็บแชทที่ปิดเสียงถาวร</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">แชตที่ปิดเสียงไว้ในที่เก็บถาวรจะยังคงเก็บถาวรอยู่เมื่อมีข้อความใหม่มาถึง</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">แชทที่ปิดเสียงไว้ในที่เก็บถาวรจะยังคงเก็บถาวรอยู่เมื่อมีข้อความใหม่มาถึง</string>
     <string name="preferences__generate_link_previews">กำลังสร้างภาพตัวอย่างลิงก์</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">เรียกภาพตัวอย่างลิงก์โดยตรงจากเว็บไซต์สำหรับข้อความที่คุณส่ง</string>
     <string name="preferences__change_passphrase">เปลี่ยนวลีรหัสผ่าน</string>
@@ -2896,7 +2896,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">การชำระเงินที่ส่งแล้ว</string>
     <string name="PaymentsDetailsFragment__received_payment">การชำระเงินที่ได้รับ</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">การชำระเงินสมบูรณ์ %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">หมายเลขบล็อค</string>
+    <string name="PaymentsDetailsFragment__block_number">บล็อกหมายเลข</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">โอน</string>
@@ -2981,7 +2981,7 @@
 
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">ข้อความใหม่ถึง…</string>
-    <string name="contact_selection_list__unknown_contact_block">ปิดกั้นผู้ใช้</string>
+    <string name="contact_selection_list__unknown_contact_block">บล็อกผู้ใช้</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">เพิ่มเข้ากลุ่ม</string>
 
     <!-- conversation_callable_insecure -->
@@ -3052,7 +3052,7 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">เลิกปิดเสียง</string>
+    <string name="conversation_muted__unmute">เปิดเสียง</string>
 
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">ปิดเสียงการแจ้งเตือน</string>
@@ -3478,8 +3478,8 @@
     <!-- AdvancedPreferenceFragment -->
 
     <!-- RecipientBottomSheet -->
-    <string name="RecipientBottomSheet_block">ปิดกั้น</string>
-    <string name="RecipientBottomSheet_unblock">เลิกปิดกั้น</string>
+    <string name="RecipientBottomSheet_block">บล็อก</string>
+    <string name="RecipientBottomSheet_unblock">เลิกบล็อก</string>
     <string name="RecipientBottomSheet_add_to_contacts">เพิ่มลงในรายชื่อผู้ติดต่อ</string>
     <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
     <string name="RecipientBottomSheet_unable_to_open_contacts">ไม่พบแอปที่เปิดรายชื่อผู้ติดต่อได้</string>
@@ -3531,9 +3531,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ถูกปิดกั้นแล้ว</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">ล้มเหลวในการปิดกั้น \"%1$s\"</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" ถูกเลิกปิดกั้นแล้ว</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">บล็อก \"%1$s\" แล้ว</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">บล็อก \"%1$s\" ไม่สำเร็จ</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">เลิกบล็อก \"%1$s\" แล้ว</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">พิจารณาสมาชิกกลุ่ม</string>
@@ -3558,7 +3558,7 @@
     <string name="ReviewCard__your_contact">ผู้ติดต่อของคุณ</string>
     <string name="ReviewCard__remove_from_group">ลบจากกลุ่ม</string>
     <string name="ReviewCard__update_contact">ปรับปรุงผู้ติดต่อ</string>
-    <string name="ReviewCard__block">ปิดกั้น</string>
+    <string name="ReviewCard__block">บล็อก</string>
     <string name="ReviewCard__delete">ลบ</string>
     <string name="ReviewCard__recently_changed">เพิ่งพึ่งเปลี่ยนชื่อโปรไฟล์ของเธอจาก %1$s เป็น %2$s</string>
 
@@ -3915,12 +3915,12 @@
     <string name="NotificationProfilesFragment__create_profile">สร้างโปรไฟล์</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">ถูกปิดกั้น</string>
+    <string name="PrivacySettingsFragment__blocked">ถูกบล็อก</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d ผู้ติดต่อ</string>
     <string name="PrivacySettingsFragment__messaging">การส่งข้อความ</string>
     <string name="PrivacySettingsFragment__disappearing_messages">ข้อความที่ลบตัวเอง</string>
     <string name="PrivacySettingsFragment__app_security">ความปลอดภัยของแอป</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ไม่อนุญาตให้จับภาพหน้าจอในรายการล่าสุดและภายในแอป</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ไม่อนุญาตให้ถ่ายภาพหน้าจอในรายการสนทนาล่าสุดและภายในแอป</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ส่งข้อความและโทร ถ่ายทอดการโทร และผู้ส่งที่ถูกปกปิด</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">ตัวจับเวลาค่าเริ่มต้นสำหรับแชตใหม่</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ตั้งค่าเริ่มต้นของตัวจับเวลาข้อความหายไปสำหรับแชตใหม่ที่คุณเริ่มต้น</string>
@@ -4085,10 +4085,10 @@
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">รายละเอียดผู้ติดต่อ</string>
     <string name="ConversationSettingsFragment__view_safety_number">ดูหมายเลขความปลอดภัย</string>
-    <string name="ConversationSettingsFragment__block">ปิดกั้น</string>
-    <string name="ConversationSettingsFragment__block_group">ปิดกั้นกลุ่ม</string>
-    <string name="ConversationSettingsFragment__unblock">เลิกปิดกั้น</string>
-    <string name="ConversationSettingsFragment__unblock_group">เลิกปิดกั้นกลุ่ม</string>
+    <string name="ConversationSettingsFragment__block">บล็อก</string>
+    <string name="ConversationSettingsFragment__block_group">บล็อกกลุ่ม</string>
+    <string name="ConversationSettingsFragment__unblock">เลิกบล็อก</string>
+    <string name="ConversationSettingsFragment__unblock_group">เลิกบล็อกกลุ่ม</string>
     <string name="ConversationSettingsFragment__add_to_a_group">เพิ่มเข้ากลุ่ม</string>
     <string name="ConversationSettingsFragment__see_all">ดูทั้งหมด</string>
     <string name="ConversationSettingsFragment__add_members">เพิ่มสมาชิก</string>
@@ -4098,7 +4098,7 @@
     <string name="ConversationSettingsFragment__add_as_a_contact">เพิ่มเป็นผู้ติดต่อ</string>
     <string name="ConversationSettingsFragment__unmute">เปิดเสียง</string>
     <string name="ConversationSettingsFragment__conversation_muted_until_s">ปิดเสียงการสนทนาจนถึง %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">ปิดเสียงการสนทนาตลอดไป</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">ปิดเสียงการสนทนาตลอด</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">คัดลอกหมายเลขโทรศัพท์ไปยังคลิปบอร์ดแล้ว</string>
     <string name="ConversationSettingsFragment__phone_number">หมายเลขโทรศัพท์</string>
     <string name="ConversationSettingsFragment__get_badges">รับโล่ติดโปรไฟล์ด้วยการสนับสนุน Signal แตะที่โล่เพื่อเรียนรู้เพิ่มเติม</string>
@@ -4114,8 +4114,8 @@
     <string name="PermissionsSettingsFragment__who_can_send_messages">ใครที่ส่งข้อความได้บ้าง?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
-    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">ปิดการแจ้งเตือน</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">ไม่ปิดเสียง</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">ปิดเสียงการแจ้งเตือน</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">ไม่ได้ปิดเสียงอยู่</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">การกล่าวถึง</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">แจ้งเตือนตลอด</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">ไม่ต้องแจ้งเตือน</string>
@@ -4144,7 +4144,7 @@
     <!-- Context menu item remove -->
     <string name="NewConversationActivity__remove">ลบ</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">ปิดกั้น</string>
+    <string name="NewConversationActivity__block">บล็อก</string>
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">ลบ %1$s หรือไม่</string>
     <!-- Dialog message when removing a contact -->
@@ -5487,13 +5487,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">ชม.</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">จ</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">นาที</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">ตั้ง</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">เวลาขั้นต่ำก่อนที่การล็อกหน้าจอจะเริ่มทำงานคือ 1 นาที</string>
 
     <!-- EOF -->
 </resources>

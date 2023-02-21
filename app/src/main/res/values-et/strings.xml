@@ -99,8 +99,8 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blokeeritud kasutajad</string>
     <string name="BlockedUsersActivity__add_blocked_user">Lisa blokeeritud kasutaja</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Blokeeritud kasutajatel pole võimalik sulle helistada ega sõnumeid saata.</string>
-    <string name="BlockedUsersActivity__no_blocked_users">Blokeeritud kasutajad puuduvad</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Blokeeritud kasutajad ei saa sulle helistada ega sõnumeid saata.</string>
+    <string name="BlockedUsersActivity__no_blocked_users">Blokeeritud kasutajaid ei ole</string>
     <string name="BlockedUsersActivity__block_user">Blokeerid kasutaja?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">Kasutajal %1$s pole võimalik sulle helistada ega sõnumeid saata.</string>
     <string name="BlockedUsersActivity__block">Blokeeri</string>
@@ -139,7 +139,7 @@
     <string name="CreditCardFragment__continue">Jätka</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Kas blokeerida ja lahkuda %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Kas blokeerida ja lahkuda grupist %1$s?</string>
     <string name="BlockUnblockDialog_block_s">Kas blokeerida %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Sa ei saa enam sellelt grupilt sõnumeid ega värskendusi ja liikmed ei saa sind uuesti sellesse gruppi lisada.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grupi liikmetel pole võimalik sind sellesse gruppi uuesti lisada.</string>
@@ -148,16 +148,16 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Teil on võimalik üksteisele sõnumeid saata ja helistada ning sinu nimi ja foto jagatakse teistega.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Teil on võimalik teineteisele sõnumeid saata.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokeeritud isikutel pole võimalik sulle helistada ega sõnumeid saata.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokeeritud isikud ei saa sulle helistada ega sõnumeid saata.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Blokeeritud isikud ei saa sulle sõnumeid saata.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Keeldu infost Signali uuenduste ja uudiste kohta.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokeeri teavitused Signali uuenduste ja uudiste kohta.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Telli taas info Signali uuenduste ja uudiste kohta.</string>
-    <string name="BlockUnblockDialog_unblock_s">Kas eemaldada %1$sblokeering?</string>
+    <string name="BlockUnblockDialog_unblock_s">Kas deblokeerida %1$s?</string>
     <string name="BlockUnblockDialog_block">Blokeeri</string>
     <string name="BlockUnblockDialog_block_and_leave">Blokeeri ja lahku</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Raporteeri rämpspostitus ja blokeeri</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Teata rämpspostitusest ja blokeeri</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Täna</string>
@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Meedia saatmisel tekkis tõrge</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Raporteeritud rämpspostitusena ja blokeeritud</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Rämpspostitusest teatatud ja blokeeritud.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS-sõnumite toetamine on praegu välja lülitatud. Saad eksportida oma sõnumid mõnda teise rakendusse oma telefonis.</string>
@@ -936,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Teavita mind mainimise korral</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Kas saada teavitusi, kui sind mainitakse vaigistatud vestlustes?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Kas soovid saada teavitusi, kui sind mainitakse vaigistatud vestlustes?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Teavita mind alati</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Ära teavita mind</string>
 
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Kasutajanimi kopeeritud</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Kasutajanime ei saanud kustutada. Proovi hiljem uuesti.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Kasutajanimi kustutatud</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1477,10 +1477,10 @@
     <string name="MessageRequestBottomView_unblock">Eemalda blokeering</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Kas lubad kasutajal %1$s sulle sõnumeid saata ja jagad temaga enda nime ja fotot? Ta ei tea, et oled seda sõnumit näinud enne kui oled sellega nõustunud.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Kas lubad kasutajal %1$s sulle sõnumeid saata ja jagad temaga enda nime ja fotot? Ta ei tea, et oled seda sõnumit näinud enne kui oled sellega nõustunud.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Kas lubad kasutajal %1$s sulle sõnumeid saata ja jagad temaga oma nime ja fotot? Sa ei saa sõnumeid enne kui oled blokeeringu eemaldanud.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Kas lubad kasutajal %1$s sulle sõnumeid saata? Sa ei saa sõnumeid enne kui oled blokeeringu eemaldanud.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Kas soovid näha kasutaja %1$s uuendusi ja uudiseid? Sa ei saa sõnumeid enne kui oled blokeeringu eemaldanud.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Kas soovid näha kasutaja %1$s uuendusi ja uudiseid? Sa ei saa uuendusi enne kui oled blokeeringu eemaldanud.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Kas jätkata vestlust selle grupiga ja jagada sinu nime ning fotot grupi liikmetele?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uuenda seda gruppi, et aktiveerida uus funktsionaalsus nagu @mainimised ja administraatorid. Liikmed, kes pole selles grupis jaganud enda nime ja fotot kutsutakse liituma.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Seda vana gruppi ei saa rohkem kasutada, sest see on liiga suur. Maksimaalne grupi suurus on %1$d.</string>
@@ -1488,7 +1488,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Kas soovid selle grupiga liituda ja jagada enda nime ning pilti selle liikmetega? Nad ei tea, et oled seda sõnumit näinud enne kui oled sellega nõustunud.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Kas soovid selle grupiga liituda ning jagada enda nime ja pilti selle liikmetega? Sa ei näe nende sõnumeid enne kui oled sellega nõustunud.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Kas liitud grupiga? Nad ei tea, et oled nende sõnumeid näinud, kuni nõustud.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Kas eemaldada sellelt grupilt blokeering ja jagada enda nime ning fotot selle liikmetele? Sa ei saa enne ühtegi sõnumit kuni eemaldad blokeeringu.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Kas soovid eemaldada sellelt grupilt blokeering ja jagada selle liikmetega oma nime ja fotot? Sa ei saa sõnumeid enne kui oled blokeeringu eemaldanud.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Näita</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s liige</string>
@@ -1591,7 +1591,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Hoiatus</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Kui keelad PIN-koodi, siis kaotad kõik andmed, kui eemaldad Signal rakenduse ja pole seda käsitsi varundanud ja taastanud. Registreerimislukku pole võimalik sisse lülitada, kui PIN-kood on keelatud.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Kui keelad PIN-koodi, siis kaotad Signalisse uuesti registreerudes kõik andmed, mida sa pole käsitsi varundanud ja taastanud. Registreerimislukku pole võimalik sisse lülitada, kui PIN-kood on keelatud.</string>
     <string name="PinOptOutDialog_disable_pin">Keela PIN</string>
 
     <!-- RatingManager -->
@@ -1731,12 +1731,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s on blokitud</string>
+    <string name="CallParticipantView__s_is_blocked">%1$s on blokeeritud</string>
     <string name="CallParticipantView__more_info">Rohkem infot</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Sina ei saa nende heli või videot ja nemad ei saa sinu oma.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Kasutajalt %1$s heli &amp; video saamine ei õnnestu</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kasutajalt %1$s heli ja video saamine ei õnnestu</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">See võib juhtuda, sest nad ei ole kinnitanud sinu turvanumbri muutmist, nende seadmetega on probleeme või nad on sinu blokeerinud.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">See võib olla tingitud sellest, et ta ei ole sinu turvanumbri muutmist kinnitanud, tema seadmes on probleem või ta on su blokeerinud.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Lohista, et näha ekraani jagamise võimalusi</string>
@@ -1964,7 +1964,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Ajastatud sõnum</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Sinu sõnumiajalugu on liidetud</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s omanik on %2$s</string>
 
@@ -2684,9 +2684,9 @@
     <string name="preferences__pref_use_address_book_photos">Kasuta telefoniraamatu fotosid</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Kuva kontaktide fotosid telefoniraamatust, kui olemas</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Hoia vaigistatud vestlused arhiveerituna</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Vaigistatud vestlused, mis on arhiveeritud, jäävad uue sõnumi saabudes arhiveerituks.</string>
     <string name="preferences__generate_link_previews">Genereeri lingieelvaateid</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hangib lingieelvaated otse saitidelt, mida sõnumina saadad.</string>
     <string name="preferences__change_passphrase">Muuda salasõna</string>
@@ -2980,7 +2980,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Makse saadetud</string>
     <string name="PaymentsDetailsFragment__received_payment">Makse saadud</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Makse teostatud %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Bloki number</string>
+    <string name="PaymentsDetailsFragment__block_number">Blokeeri number</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Kanna üle</string>
@@ -3137,7 +3137,7 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Keela vaigistus</string>
+    <string name="conversation_muted__unmute">Eemalda vaigistus</string>
 
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">Vaigista teavitused</string>
@@ -3624,9 +3624,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" on blokitud</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" blokkimine ei õnnestunud</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" blokkimine on eemaldatud.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">%1$s on blokeeritud.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Kasutaja %1$s blokeerimine ei õnnestunud</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">Kasutaja %1$s blokeering on eemaldatud.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Vaata liikmed üle</string>
@@ -4017,7 +4017,7 @@
     <string name="PrivacySettingsFragment__messaging">Sõnumside</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Kaduvad sõnumid</string>
     <string name="PrivacySettingsFragment__app_security">Rakenduse turvalisus</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokeeri kuvatõmmised viimatiste nimekirjas ja rakenduse sees</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokeeri kuvatõmmised hiljutiste fotode nimekirjas ja rakenduse sees</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signali sõnumid ja kõned, alati kõnede suunamine ja turvatud saatja</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Uute gruppide sõnumite vaikimisi kestus</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Määra kaduvate sõnumite vaikimisi kestus kõigile sinu poolt loodud uutele gruppidele.</string>
@@ -5618,7 +5618,7 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Määra</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimaalne ekraaniluku käivitumise aeg on 1 minut.</string>
 
     <!-- EOF -->
 </resources>

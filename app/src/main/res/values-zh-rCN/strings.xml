@@ -98,10 +98,10 @@
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">已屏蔽的用户</string>
-    <string name="BlockedUsersActivity__add_blocked_user">屏蔽更多用户</string>
-    <string name="BlockedUsersActivity__blocked_users_will">被屏蔽的用户将无法向您发起通话，或发送消息。</string>
-    <string name="BlockedUsersActivity__no_blocked_users">没有屏蔽的用户</string>
-    <string name="BlockedUsersActivity__block_user">屏蔽该用户？</string>
+    <string name="BlockedUsersActivity__add_blocked_user">添加屏蔽用户</string>
+    <string name="BlockedUsersActivity__blocked_users_will">被屏蔽的用户将无法向您发起通话或发送消息。</string>
+    <string name="BlockedUsersActivity__no_blocked_users">无屏蔽用户</string>
+    <string name="BlockedUsersActivity__block_user">要屏蔽用户吗？</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">“%1$s”将无法呼叫您或向您发送消息。</string>
     <string name="BlockedUsersActivity__block">屏蔽</string>
 
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">继续</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">屏蔽并离开%1$s?</string>
-    <string name="BlockUnblockDialog_block_s">屏蔽%1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">要屏蔽并离开%1$s吗?</string>
+    <string name="BlockUnblockDialog_block_s">要屏蔽%1$s吗?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">您将不再收到来自此群组的信息或更新，同时成员将无法再将您加入此群组。</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">群组成员将无法再次将您添加到此群组。</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">组成员将能够再次将您添加到此组。</string>
@@ -148,16 +148,16 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">您将能与之通话和发消息，同时分享您的昵称和头像。</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">您将可以互相发送消息。</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">被屏蔽的用户无法向你发起通话或给你发送消息。</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">被屏蔽的人将无法向您发送消息。</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">被屏蔽的用户无法向您发起通话或给您发送消息。</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">被屏蔽的用户无法给您发送消息。</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">阻止获取 Signal 更新和新闻。</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">阻止获取 Signal 的更新和新闻。</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">恢复接收 Signal 更新和新闻。</string>
-    <string name="BlockUnblockDialog_unblock_s">解除屏蔽%1$s?</string>
+    <string name="BlockUnblockDialog_unblock_s">要取消屏蔽%1$s吗?</string>
     <string name="BlockUnblockDialog_block">屏蔽</string>
     <string name="BlockUnblockDialog_block_and_leave">屏蔽并离开</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">举报垃圾消息与屏蔽</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">举报垃圾消息并屏蔽</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">今天</string>
@@ -898,7 +898,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">提到我时通知我</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">静音群聊中被别人@时，是否接收提醒？</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">在静音聊天中被他人提及时是否接收提醒？</string>
     <string name="GroupMentionSettingDialog_always_notify_me">总是通知我</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">不通知我</string>
 
@@ -917,9 +917,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">用户名已复制</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">无法删除用户名，请稍后再试。</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">用户名已删除</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1419,10 +1419,10 @@
     <string name="MessageRequestBottomView_unblock">取消屏蔽</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">是否允许 %1$s 给您发消息并查看您的昵称头像？您同意前对方无法知晓您是否查看了其消息。</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">是否允许 %1$s 给您发消息并查看您的昵称头像？取消屏蔽前您将不会收到其发来的消息。</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">是否允许%1$s给您发送消息并向其显示您的名称和照片？在取消屏蔽之前，您不会收到对方的任何消息。</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">允许%1$s给你发送消息吗？在您取消屏蔽之前，您将不会收到对方的任何消息。</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">要接收%1$s的更新和新闻吗？在您取消屏蔽之前，您将不会收到对方的任何更新消息。</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">是否允许%1$s给您发送消息？在取消屏蔽之前，您不会收到对方的任何消息。</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">是否要接收%1$s的更新和新闻？在取消屏蔽之前，您不会收到对方的任何更新消息。</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">是否继续该群组对话并与其成员分享你的名称和图片？</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">升级此群组来激活@提及和管理员新功能，将邀请未在此群分享名称和头像的成员入群。</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">由于人数太多，此旧版群组已无法使用。人数上限为%1$d。</string>
@@ -1430,7 +1430,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">是否加入此群组并与之分享您的名字和头像？接受邀请前群成员无法知道您是否阅读了他们发来的消息。</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">要加入此群组并与群组成员分享您的名称和照片吗？在您接受之前，您将不会看到群组成员的消息。</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">是否加入此群组？接受邀请前群成员无法知道您是否阅读了他们发来的消息。</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">是否解除对该群组的屏蔽并与之分享您的名字和头像？解除屏蔽前您将不会收到其发来的消息。</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">是否取消屏蔽该群组并向其显示您的名称和照片？在取消屏蔽之前，您不会收到该群组的任何消息。</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">查看</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s 的成员</string>
@@ -1527,7 +1527,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">警告</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时全部数据将丢失，除非使用手动备份并还原。PIN 禁用时，无法启用注册锁定。</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时您将会丢失全部数据，除非您手动备份并还原这些数据。注册锁定功能在禁用 PIN 期间无法启用。</string>
     <string name="PinOptOutDialog_disable_pin">禁用 PIN</string>
 
     <!-- RatingManager -->
@@ -1661,12 +1661,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s已被封禁</string>
+    <string name="CallParticipantView__s_is_blocked">%1$s已被屏蔽</string>
     <string name="CallParticipantView__more_info">更多信息</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">你将不会收到他们的音频或视频，他们也不会收到你的。</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">无法从%1$s接收音频 &amp; 视频</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">无法从%1$s接收音频与视频</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">这可能是因为他们还没验证过你的安全码发生的变更，或是因为他们的设备有问题，又或者是因为他们已经屏蔽了你。</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">这可能是因为对方还未对您的安全码更新进行验证，或对方的设备有问题，或对方已将您屏蔽。</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">轻扫查看屏幕共享</string>
@@ -1893,7 +1893,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">定时消息</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">您的消息历史记录已合并</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s 属于%2$s</string>
 
@@ -2600,9 +2600,9 @@
     <string name="preferences__pref_use_address_book_photos">使用通讯录图片</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">显示通讯录中联系人图片（若可用）</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">继续存档静音聊天记录</string>
+    <string name="preferences__pref_keep_muted_chats_archived">继续存档静音聊天</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">当收到新消息时，已存档的静音聊天记录将会保持存档状态。</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">当收到新消息时，已存档的静音聊天将会保持存档状态。</string>
     <string name="preferences__generate_link_previews">生成链接预览</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">直接从您发送的链接网站中生成预览。</string>
     <string name="preferences__change_passphrase">修改密码</string>
@@ -2896,7 +2896,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">已发送付款</string>
     <string name="PaymentsDetailsFragment__received_payment">已接收付款</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">付款已完成 %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">块码</string>
+    <string name="PaymentsDetailsFragment__block_number">屏蔽电话号码</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">转帐</string>
@@ -3532,8 +3532,8 @@
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
     <string name="BlockedUsersActivity__s_has_been_blocked">已屏蔽“%1$s”。</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">屏蔽“%1$s”失败</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">已解除屏蔽“%1$s”。</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">无法屏蔽“%1$s”</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">已取消屏蔽“%1$s”。</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">审查成员</string>
@@ -3920,7 +3920,7 @@
     <string name="PrivacySettingsFragment__messaging">消息传输</string>
     <string name="PrivacySettingsFragment__disappearing_messages">限时消息</string>
     <string name="PrivacySettingsFragment__app_security">应用安全</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">屏蔽最近使用应用和 Signal 截屏</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">阻止在最近聊天和应用内进行截图</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal 消息和通话，总是转发通话以及密封发送人</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">新聊天的默认计时器</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">对于您开启的全部新聊天，设置默认的限时消息计时器。</string>
@@ -4097,7 +4097,7 @@
     <string name="ConversationSettingsFragment__group_link">群组链接</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">添加为联系人</string>
     <string name="ConversationSettingsFragment__unmute">取消静音</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">静音对话直到 %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">静音对话至 %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">已永久静音对话</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">已复制手机号码至剪贴板。</string>
     <string name="ConversationSettingsFragment__phone_number">手机号码</string>
@@ -4115,7 +4115,7 @@
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">静音通知</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">未被静音</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">未静音</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">提及我</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">总是通知</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">不通知</string>
@@ -4152,7 +4152,7 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">已移除%1$s</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">已屏蔽 %1$s</string>
+    <string name="NewConversationActivity__s_has_been_blocked">已屏蔽%1$s</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">无法移除%1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -5487,13 +5487,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">小时</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">周一</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">分钟</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">设置</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">距离屏幕锁定生效的最短时间为 1 分钟。</string>
 
     <!-- EOF -->
 </resources>

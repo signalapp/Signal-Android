@@ -99,7 +99,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blokovaní používatelia</string>
     <string name="BlockedUsersActivity__add_blocked_user">Pridať blokovaného používateľa</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Blokovaní používatelia Vám nebudú môcť zavolať alebo posielať správy.</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Blokovaní používatelia vám nebudú môcť volať ani posielať správy.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Žiadni blokovaní používatelia</string>
     <string name="BlockedUsersActivity__block_user">Zablokovať používateľa?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" vám nebude môcť zavolať alebo posielať správy.</string>
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">Pokračovať</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Zablokovať a opustiť %1$s?</string>
-    <string name="BlockUnblockDialog_block_s">Zablokovať %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Blokovať a opustiť %1$s?</string>
+    <string name="BlockUnblockDialog_block_s">Blokovať %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Od tejto skupiny už nebudete dostávať správy ani aktualizácie a členovia vás nebudú môcť znovu pridať.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Členovia skupiny vás nebudú môcť znovu do tejto skupiny pridať.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Členovia skupiny vás budú môcť do tejto skupiny znovu pridať.</string>
@@ -148,15 +148,15 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Budete si môcť navzájom písať a volať a budú vidieť vaše meno a fotku.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Budete si môcť navzájom posielať správy.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Zablokované osoby vám nebudú môcť volať ani posielať správy.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Zablokovaní ľudia vám nebudú môcť posielať správy.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokované osoby vám nebudú môcť volať ani posielať správy.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Blokovaní ľudia vám nebudú môcť posielať správy.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokovať prijímanie aktualizácií a noviniek Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Pokračovať v získavaní aktualizácií a noviniek Signal.</string>
     <string name="BlockUnblockDialog_unblock_s">Odblokovať %1$s?</string>
     <string name="BlockUnblockDialog_block">Blokovať</string>
-    <string name="BlockUnblockDialog_block_and_leave">Zablokovať a odísť</string>
+    <string name="BlockUnblockDialog_block_and_leave">Blokovať a opustiť</string>
     <string name="BlockUnblockDialog_report_spam_and_block">Nahlásiť spam a blokovať</string>
 
     <!-- BucketedThreadMedia -->
@@ -468,7 +468,7 @@
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Zrušiť</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">Blokovaní</string>
+    <string name="ConversationFragment__blocked">Blokované</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Zrušiť filter</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -531,10 +531,10 @@
         <item quantity="other">Stlmiť</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Zapnúť zvuk</item>
-        <item quantity="few">Zapnúť zvuky</item>
-        <item quantity="many">Zapnúť zvuky</item>
-        <item quantity="other">Zapnúť zvuky</item>
+        <item quantity="one">Zrušiť stlmenie</item>
+        <item quantity="few">Zrušiť stlmenie</item>
+        <item quantity="many">Zrušiť stlmenie</item>
+        <item quantity="other">Zrušiť stlmenie</item>
     </plurals>
     <string name="ConversationListFragment_select">Vybrať</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -1012,7 +1012,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozorni ma na Spomenutia</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Prijímať oznámenia, keď vás spomenú v stlmených konverzáciách?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Chcete dostávať upozornenia, keď vás spomenú v stlmených rozhovoroch?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Vždy ma upozorniť</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Neupozorniť ma</string>
 
@@ -1031,9 +1031,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Používateľské meno bolo skopírované</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Používateľské meno sa nepodarilo odstrániť. Skúste to znova neskôr.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Používateľské meno bolo odstránené</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1595,8 +1595,8 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Povoliť používateľovi %1$s, aby vám posielal správy a zdieľať s ním vaše meno a fotku? Kým ho neodblokujete, nepríjmete od neho žiadne správy.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Chcete povoliť používateľovi %1$s, aby vám poslal správu? Kým ich neodblokujete, nebudete dostávať žiadne správy.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Chcete dostávať aktualizácie a novinky od %1$s? Nebudete dostávať žiadne aktualizácie, kým ich neodblokujete.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Chcete povoliť používateľovi %1$s, aby vám poslal správu? Kým ho neodblokujete, nepríjmete od neho žiadne správy.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Chcete dostávať aktualizácie a novinky od používateľa %1$s? Kým ich neodblokujete, nebudete dostávať žiadne aktualizácie.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Pokračovať v chate v tejto skupine a zdieľať vaše meno a fotku s jej členmi?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Modernizovaním tejto skupiny aktivujete nové funkcie ako @spomenutia a administrátori. Členovia, ktorí nezdieľali svoje meno alebo fotku, budú do tejto skupiny pozvaní.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Táto Zastaraná skupina sa nemôže ďalej používať, pretože je príliš veľká. Maximálna veľkosť skupiny je %1$d.</string>
@@ -1604,7 +1604,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridať sa do tejto skupiny a zdieľať vaše meno a fotku s jej členmi? Kým s tým nebudete súhlasiť, členovia skupiny nebudú vedieť, že ste ich správy videli.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Pripojiť sa k tejto skupine a zdieľať svoje meno a fotografiu s jej členmi? Ich správy neuvidíte, kým ju neprijmete.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridať sa do tejto skupiny? Kým pozvanie neprijmete, jej členovia sa nedozvú, že ste ich správy videli.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Odblokovať túto skupinu a zdieľať vaše meno a foto s jej členmi? Kým ju neodblokujete, nepríjmete z nej žiadne správy.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Odblokovať túto skupinu a zdieľať vaše meno a fotku s jej členmi? Kým ju neodblokujete, nepríjmete od nej žiadne správy.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Zobraziť</string>
     <string name="MessageRequestProfileView_member_of_one_group">Člen %1$s</string>
@@ -1719,7 +1719,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Varovanie</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ak vypnete PIN, opätovnou registráciou Signalu prídete o všetky vaše dáta, ak ich manuálne nezálohujete a neobnovíte. Kým bude PIN vypnutý, nebudete môcť zapnúť registračný zámok.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ak vypnete PIN, opätovnou registráciou Signalu prídete o všetky svoje údaje, pokiaľ ich manuálne nezálohujete a neobnovíte. Kým bude PIN vypnutý, nebudete môcť zapnúť registračný zámok.</string>
     <string name="PinOptOutDialog_disable_pin">Vypnúť PIN</string>
 
     <!-- RatingManager -->
@@ -1854,7 +1854,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Fotoaparát</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Zapnúť zvuky</string>
+    <string name="WebRtcCallView__unmute">Zrušiť stlmenie</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">Stlmiť</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1876,7 +1876,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Od tohto používateľa nebudete prijímať zvuk a video a ani on neprijme od vás.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Nie je možné prijať audio a video od používateľa %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nie je možné prijať audio a video od používateľa %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Môže to byť pre to, že dotyčný používateľ nepotvrdil zmenu vášho bezpečnostného čísla, že sa vyskytol problém s jeho zariadením, alebo že vás zablokoval.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Môže to byť preto, že daný používateľ nepotvrdil zmenu vášho bezpečnostného čísla, vyskytol sa problém s jeho zariadením, alebo vás zablokoval.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Potiahnite prstom pre zobrazenie zdieľania obrazovky</string>
@@ -2106,7 +2106,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Naplánovaná správa</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">História správ bola zlúčená</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s patrí používateľovi %2$s</string>
 
@@ -2852,9 +2852,9 @@
     <string name="preferences__pref_use_address_book_photos">Použiť fotky zo zoznamu kontaktov</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Zobraziť fotky zo zoznamu kontaktov, ak sú dostupné</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Ponechať stlmené chaty archivované</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Ponechať stlmené čety archivované</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Stlmené chaty, ktoré sú archivované, zostanú archivované, keď príde nová správa.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Stlmené čety, ktoré sú archivované, zostanú archivované, keď príde nová správa.</string>
     <string name="preferences__generate_link_previews">Generovať náhľady stránok</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Získať ukážky stránok priamo z webových prepojení pre správy, ktoré odošlete.</string>
     <string name="preferences__change_passphrase">Zmeniť heslo</string>
@@ -3148,7 +3148,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Odoslaná platba</string>
     <string name="PaymentsDetailsFragment__received_payment">Prijatá platba</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Platba dokončená %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Číslo bloku</string>
+    <string name="PaymentsDetailsFragment__block_number">Blokovať číslo</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Prenos</string>
@@ -3233,7 +3233,7 @@
 
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">Nová správa pre…</string>
-    <string name="contact_selection_list__unknown_contact_block">Zablokovať používateľa</string>
+    <string name="contact_selection_list__unknown_contact_block">Blokovať používateľa</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Pridať do skupiny</string>
 
     <!-- conversation_callable_insecure -->
@@ -3307,7 +3307,7 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Nahlas</string>
+    <string name="conversation_muted__unmute">Zrušiť stlmenie</string>
 
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">Stlmiť upozornenia</string>
@@ -3810,9 +3810,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" bol/a zablokovaný/á.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Zlyhalo zablokovanie \"%1$s\"</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" bol/a odblokovaný/á.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">Používateľ „%1$s“ bol zablokovaný.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Blokovanie používateľa „%1$s%1$s“ zlyhalo</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">Používateľ „%1$s“ bol odblokovaný.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Overiť členov</string>
@@ -4206,12 +4206,12 @@
     <string name="NotificationProfilesFragment__create_profile">Vytvoriť profil</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Blokovaní</string>
+    <string name="PrivacySettingsFragment__blocked">Blokované</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d kontaktov</string>
     <string name="PrivacySettingsFragment__messaging">Odosielanie správ</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Miznúce správy</string>
     <string name="PrivacySettingsFragment__app_security">Zabezpečenie aplikácie</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Zakázať vytváranie snímkov obrazovky v tejto aplikácii a v zozname bežiacich aplikácií</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Zakázať vytváranie snímkov obrazovky v aplikácii a zozname nedávnych konverzácií</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Správy a hovory Signal, vždy opakované hovory a zapečatený odosielateľ</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Predvolený časovač pre nové konverzácie</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Nastavte predvolený časovač miznutia správ pre všetky nové správy ktoré ste poslali.</string>
@@ -4374,7 +4374,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">Stlmiť</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">Stlmený/á</string>
+    <string name="ConversationSettingsFragment__muted">Stlmené</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Hľadať</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Miznúce správy</string>
@@ -4395,7 +4395,7 @@
     <string name="ConversationSettingsFragment__add_as_a_contact">Pridať ako kontakt</string>
     <string name="ConversationSettingsFragment__unmute">Zrušiť stlmenie</string>
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Konverzácia bola stlmená do %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Konverzácia bola navždy stlmená</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Konverzácia bola permanentne stlmená</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefónne číslo skopírované do schránky.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefónne číslo</string>
     <string name="ConversationSettingsFragment__get_badges">Podporou Signalu získate odznaky pre svoj profil. Ťuknutím na odznak sa dozviete viac.</string>
@@ -5864,11 +5864,11 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">Po</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">min</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Nastaviť</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimálny čas do aktivácie zámku obrazovky je 1 minúta.</string>
 
     <!-- EOF -->
 </resources>

@@ -97,11 +97,11 @@
     <string name="BackgroundMessageRetriever_checking_for_messages">正在檢查訊息…</string>
 
     <!-- BlockedUsersActivity -->
-    <string name="BlockedUsersActivity__blocked_users">已封鎖的使用者</string>
-    <string name="BlockedUsersActivity__add_blocked_user">新增已封鎖的使用者</string>
-    <string name="BlockedUsersActivity__blocked_users_will">已封鎖的使用者將無法與您通話或傳送訊息給您。</string>
-    <string name="BlockedUsersActivity__no_blocked_users">無已封鎖的使用者</string>
-    <string name="BlockedUsersActivity__block_user">要封鎖使用者嗎？</string>
+    <string name="BlockedUsersActivity__blocked_users">被封鎖的用戶</string>
+    <string name="BlockedUsersActivity__add_blocked_user">新增被封鎖的用戶</string>
+    <string name="BlockedUsersActivity__blocked_users_will">被封鎖的用戶將無法與你通話或傳送訊息。</string>
+    <string name="BlockedUsersActivity__no_blocked_users">沒有用戶被封鎖</string>
+    <string name="BlockedUsersActivity__block_user">要封鎖用戶嗎？</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">「%1$s」將無法與您通話或傳送訊息給您。</string>
     <string name="BlockedUsersActivity__block">封鎖</string>
 
@@ -140,7 +140,7 @@
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">要封鎖並退出 %1$s 嗎？</string>
-    <string name="BlockUnblockDialog_block_s">要解除封鎖 %1$s 嗎？</string>
+    <string name="BlockUnblockDialog_block_s">要封鎖 %1$s 嗎？</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">您將無法再接收來自此群組的訊息或更新，而且成員也無法再把您加入此群組。</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">群組成員將無法再把您加入此群組。</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">群組成員將能夠再把您加入此群組。</string>
@@ -148,10 +148,10 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">您將能夠再互相傳送訊息和通話，您的名稱和照片也會與對方分享。</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">您將可以互相傳送訊息。</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">已封鎖的人將無法撥打或傳送訊息給您。</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">已封鎖的人將無法傳送訊息給您。</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">被封鎖的人將無法與你通話或傳送訊息。</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">被封鎖的人將無法向你傳送訊息。</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">封鎖收取 Signal 更新資訊及最新消息。</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">封鎖 Signal 的更新資訊及最新消息。</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">恢復收取 Signal 更新資訊及最新消息。</string>
     <string name="BlockUnblockDialog_unblock_s">要解除封鎖 %1$s 嗎？</string>
@@ -898,7 +898,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">通知我有關提及</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">當已設為靜音的聊天中提及您時，要接收通知嗎？</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">當已設為靜音的聊天中有人提及你時，你要接收通知嗎？</string>
     <string name="GroupMentionSettingDialog_always_notify_me">始終通知我</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">請勿通知我</string>
 
@@ -917,9 +917,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">已複製用戶名稱</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">無法刪除用戶名稱。請稍後再試。</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">已刪除用戶名稱</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1419,10 +1419,10 @@
     <string name="MessageRequestBottomView_unblock">解除封鎖</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">要讓 %1$s 傳訊給您，並向對方分享您的名稱和照片嗎？在您接受之前，對方不會知道您看過其訊息。</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">要讓 %1$s 傳訊給您，並向對方分享您的名稱和照片嗎？在您解除封鎖之前，您不會收到對方任何訊息。</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">你是否要允許 %1$s 與你通訊，並向對方分享你的名字和相片？在解除封鎖之前，你都不會收到對方的任何訊息。</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">要讓 %1$s 傳訊給您嗎？在您解除封鎖之前，您不會收到對方任何訊息。</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">要收取 %1$s 的更新資訊及最新消息嗎？在您解除封鎖之前，您不會收到任何近況。</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">你是否要允許 %1$s 與你通訊？在解除封鎖之前，你都不會收到對方的任何訊息。</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">你是否要獲取 %1$s 的更新資訊及最新消息？在解除封鎖之前，你都不會收到任何更新資訊。</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">要繼續與此群組的對話，並與其成員分享您的名稱和照片嗎？</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">升級此群組以啟用新功能，諸如 @提及 和管理員。此群組中未有分享名稱或照片的成員將會獲邀加入。</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">此「舊版群組」現已不再可用，因為人數太多。群組人數上限為 %1$d 人。</string>
@@ -1430,7 +1430,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">要加入此群組，並向其成員分享您的名稱和照片嗎？在您接受之前，他們不會知道您看過其訊息。</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">要加入此群組，並向其成員分享您的名稱和照片嗎？在您接受之前，您不會看到他們的訊息。</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">要加入此群組嗎？在您接受之前，別人不會知道您已看過其訊息。</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">要解除封鎖此群組，並向其成員分享您的名稱和照片嗎？在您解除封鎖之前，您不會收到他們任何訊息。</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">你是否要解除封鎖此群組，並向其成員分享你的名字和相片？在解除封鎖之前，你都不會收到對方的任何訊息。</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">檢視</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s 的成員</string>
@@ -1527,7 +1527,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">警告</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">若您停用 PIN 碼，當您重新註冊 Signal 時，除非您已手動備份並進行還原，否則您將遺失所有資料。PIN 碼停用時不可開啟註冊鎖定。</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果停用 PIN 碼，當你重新註冊 Signal 而沒有進行手動備份及還原的話，你將會遺失所有資料。PIN 碼停用時不可開啟註冊鎖定。</string>
     <string name="PinOptOutDialog_disable_pin">停用 PIN 碼</string>
 
     <!-- RatingManager -->
@@ -1661,12 +1661,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s 已封鎖</string>
+    <string name="CallParticipantView__s_is_blocked">%1$s 已被封鎖</string>
     <string name="CallParticipantView__more_info">更多資訊</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">您不會收到別人的音訊或視訊，他們亦不會收到您的視像或音訊。</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">無法接收來自 %1$s 的音訊和視訊</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">無法接收來自 %1$s 的音訊和視訊</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">這可能是別人未有驗證您的安全碼變更、對方的裝置有問題，又或已將您封鎖。</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">這可能是由於對方未驗證你的安全號碼變更、對方的裝置有問題，或者對方已經將你封鎖。</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">滑動以檢視畫面分享</string>
@@ -1893,7 +1893,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">已排程訊息</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">你的訊息紀錄已經合併</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s 是 %2$s 的手機號碼</string>
 
@@ -2896,7 +2896,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">已發送付款</string>
     <string name="PaymentsDetailsFragment__received_payment">已接收付款</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">付款已完成 %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">區塊編號</string>
+    <string name="PaymentsDetailsFragment__block_number">封鎖號碼</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">轉移</string>
@@ -2981,7 +2981,7 @@
 
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">撰寫新訊息給…</string>
-    <string name="contact_selection_list__unknown_contact_block">封鎖使用者</string>
+    <string name="contact_selection_list__unknown_contact_block">封鎖用戶</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">新增至群組</string>
 
     <!-- conversation_callable_insecure -->
@@ -3531,9 +3531,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">「%1$s」已封鎖。</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">封鎖「%1$s」失敗</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">「%1$s」已解除封鎖。</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">「%1$s」已被封鎖。</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">「%1$s」封鎖失敗</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">「%1$s」已被解除封鎖。</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">檢閱成員</string>
@@ -3920,7 +3920,7 @@
     <string name="PrivacySettingsFragment__messaging">傳訊</string>
     <string name="PrivacySettingsFragment__disappearing_messages">限時訊息</string>
     <string name="PrivacySettingsFragment__app_security">應用程式安全性</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">封鎖「最近使用應用程式」清單以及此應用程式中的畫面擷取</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">封鎖最近的清單以及此應用程式中的畫面截圖</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal 訊息與通話、一律轉送通話和密封寄件人</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">新聊天的預設計時器</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">為您開展的所有新對話，預設一個限時訊息計時器。</string>
@@ -4098,7 +4098,7 @@
     <string name="ConversationSettingsFragment__add_as_a_contact">新增為聯絡人</string>
     <string name="ConversationSettingsFragment__unmute">取消靜音</string>
     <string name="ConversationSettingsFragment__conversation_muted_until_s">對話已設為靜音，直到 %1$s 為止</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">對話已設為靜音，直到永遠</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">對話已永久設為靜音</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">電話號碼已複製至剪貼簿。</string>
     <string name="ConversationSettingsFragment__phone_number">電話號碼</string>
     <string name="ConversationSettingsFragment__get_badges">支持 Signal 即可在你的個人檔案中展示徽章。點按徽章以了解更多資訊。</string>
@@ -5487,13 +5487,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">小時</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">一</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">分鐘</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">設定</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">啟用螢幕鎖定前設定的最短時間為 1 分鐘。</string>
 
     <!-- EOF -->
 </resources>

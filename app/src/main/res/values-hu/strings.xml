@@ -98,7 +98,7 @@
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Letiltott felhasználók</string>
-    <string name="BlockedUsersActivity__add_blocked_user">Felhasználó letiltása</string>
+    <string name="BlockedUsersActivity__add_blocked_user">Letiltott felhasználó hozzáadása</string>
     <string name="BlockedUsersActivity__blocked_users_will">A letiltott felhasználók nem fognak tudni sem üzenetet küldeni neked, sem pedig felhívni.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Nincs letiltott felhasználó</string>
     <string name="BlockedUsersActivity__block_user">Felhasználó letiltása?</string>
@@ -140,7 +140,7 @@
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$s letiltása és kilépés?</string>
-    <string name="BlockUnblockDialog_block_s">Letiltod %1$s-t?</string>
+    <string name="BlockUnblockDialog_block_s">%1$s letiltása?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Többé nem kapsz üzeneteket és frissítéseket ebből a csoportból, valamint a tagok nem fognak tudni újra hozzáadni a csoporthoz.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">A csoport tagjai nem fognak tudni újra hozzáadni ehhez a csoporthoz.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">A tagok ezután újra hozzáadhatnak majd a csoporthoz.</string>
@@ -149,9 +149,9 @@
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Újra üzenetet küldhettek egymásnak.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">A letiltott személyek nem fognak tudni sem felhívni, sem pedig üzenetet küldeni neked.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">A blokkolt személyek nem küldhetnek üzeneteket számodra.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">A letiltott személyek nem küldhetnek üzeneteket számodra.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal újdonságok és hírek blokkolása.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal-újdonságok és -hírek letiltása.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal újdonságok és hírek visszakapcsolása.</string>
     <string name="BlockUnblockDialog_unblock_s">Feloldod %1$s tiltását?</string>
@@ -319,7 +319,7 @@
     <string name="ConversationActivity_transport_signal">Signal üzenet</string>
     <string name="ConversationActivity_lets_switch_to_signal">Váltsunk Signalra: %1$s</string>
     <string name="ConversationActivity_specify_recipient">Kérlek válassz egy kontaktot</string>
-    <string name="ConversationActivity_unblock">Blokkolás feloldása</string>
+    <string name="ConversationActivity_unblock">Letiltás feloldása</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">A melléklet mérete meghaladja az adott típushoz tartozó mérethatárt.</string>
     <string name="ConversationActivity_unable_to_record_audio">Nem lehet hangot rögzíteni!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nem küldhetsz ebbe a csoportba üzenetet, mivel nem vagy a tagja.</string>
@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Hiba történt a médiafájl küldése során</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Kéretlen üzenetnek jelölve és tiltva.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Megjelölve kéretlen üzenetként és letiltva.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Az SMS-szolgáltatás jelenleg ki van kapcsolva. Üzeneteidet a telefonodon megtalálható másik alkalmazásba exportálhatod.</string>
@@ -448,11 +448,11 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$s bekapcsolva</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">Elutasítod a kérést?</string>
+    <string name="ConversationFragment__block_request">Letiltod a felkérést?</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s nem használhatja a csoportlinket a csatlakozáshoz, vagy a csatlakozás kérvényezéséhez. Kézzel továbbra is felvehető a csoport tagjai közé.</string>
     <!-- Dialog confirm block request button -->
-    <string name="ConversationFragment__block_request_button">Csatlakozási igény</string>
+    <string name="ConversationFragment__block_request_button">Felkérés letiltása</string>
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Mégsem</string>
     <!-- Message shown after successfully blocking join requests for a user -->
@@ -936,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Értesítsen említés esetén</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Szeretnél értesítéseket kapni, ha egy lenémított beszélgetésben megemlítenek?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Szeretnél értesítéseket kapni, ha egy némított csevegésben megemlítenek?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Mindig értesítsen</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Sose értesítsen</string>
 
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Felhasználónév másolva</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Nem sikerült törölni a felhasználónevet. Próbáld újra később!</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Felhasználónév törölve</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1477,10 +1477,10 @@
     <string name="MessageRequestBottomView_unblock">Tiltás feloldása</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Engedélyezed, hogy %1$s üzenetet küldjön számodra, és lássa nevedet, valamint profilképedet? Amíg ebbe bele nem egyezel, addig nem értesül arról sem, hogy elolvastad-e az üzeneteit.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Engedélyezed, hogy %1$s üzenetet küldjön számodra, és lássa nevedet, valamint profilképedet? Nem fogsz üzenetet kapni tőle, amíg fel nem oldod a tiltást.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Engedélyezed, hogy %1$s üzenetet küldjön számodra, és lássa a nevedet, valamint a profilképedet? Nem fogsz üzenetet kapni tőle, amíg fel nem oldod a tiltást.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Engedélyezed, hogy %1$s üzenetet küldjön számodra? Amíg nem oldod fel a tiltást, nem kapsz tőle üzeneteket.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Szeretnél híreket és újdonságokat kapni %1$s felhasználótól? Addig nem kapsz értesítéseket tőle, míg fel nem oldod a blokkolását.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Engedélyezed, hogy %1$s üzenetet küldjön számodra? Amíg nem oldod fel a tiltást, nem kapsz tőle üzenetet.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Szeretnél híreket és újdonságokat kapni %1$s felhasználótól? Addig nem kapsz értesítéseket tőle, míg fel nem oldod a letiltását.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Folytatod a csoporton belüli csevegést, és megosztod nevedet, valamint profilképed a tagokkal?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Frissítsd a csoportot, hogy elérd az új funkciókat, mint az @említés és az admin szerepkör. Azok a tagok, akik nem osztották meg a nevüket vagy képüket, meghívásra kerülnek.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ezt a régi csoportot tovább nem használható, mert túl nagy létszáma. A maximum csoportméret %1$d.</string>
@@ -1488,7 +1488,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Belépsz a csoportba, és megosztod velük neved és profilképedet? Amíg ebbe bele nem egyezel, addig nem értesülnek arról sem, hogy elolvastad-e üzeneteiket.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Belépsz a csoportba, és megosztod velük neved és profilképedet? Amíg ebbe bele nem egyezel, addig nem tekintheted meg a csoport üzeneteit.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Belépsz ebbe a csoportba? Amíg ezt meg nem erősíted, senki nem értesül róla, hogy láttad az eddigi üzeneteket.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Feloldod a csoport tiltását és megosztod profilodat a tagokkal? Amíg nem oldod fel a tiltást, nem kapsz üzeneteket a csoportból.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Feloldod a csoport tiltását és megosztod a neved és a profilképedet a tagokkal? Amíg nem oldod fel a tiltást, nem kapsz üzeneteket a csoportból.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Megtekintés</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s tagja</string>
@@ -1591,7 +1591,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Figyelmeztetés</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PIN kódod letiltásával egy esetleges újraregisztráció során az összes Signal adatod el fog veszni, kivéve ha azokat előtte külön lemented majd visszatöltöd. Letiltott PIN kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PIN-kódod letiltásával egy esetleges újraregisztráció során az összes Signal-adatod el fog veszni, kivéve ha azokat előtte külön lemented, majd helyreállítod. Letiltott PIN-kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string>
     <string name="PinOptOutDialog_disable_pin">PIN letiltása</string>
 
     <!-- RatingManager -->
@@ -1621,8 +1621,8 @@
     <string name="Recipient_my_story">Történetem</string>
 
     <!-- RecipientPreferencesActivity -->
-    <string name="RecipientPreferenceActivity_block">Blokkolás</string>
-    <string name="RecipientPreferenceActivity_unblock">Feloldás</string>
+    <string name="RecipientPreferenceActivity_block">Letiltás</string>
+    <string name="RecipientPreferenceActivity_unblock">Letiltás feloldása</string>
 
     <!-- RecipientProvider -->
 
@@ -1964,7 +1964,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Ütemezett üzenet</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Az üzenetelőzményeid egyesítésre kerültek</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">A(z) %1$s telefonszám %2$s felhasználóhoz tartozik</string>
 
@@ -2307,7 +2307,7 @@
     <string name="ConversationUpdateItem_enable_call_notifications">Hívás-értesítések engedélyezése</string>
     <string name="ConversationUpdateItem_update_contact">Profil frissítése</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
-    <string name="ConversationUpdateItem_block_request">Csatlakozási igény</string>
+    <string name="ConversationUpdateItem_block_request">Felkérés letiltása</string>
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nincs közös csoportotok. A kérelmek áttekintése során légy óvatos.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nincs ismerősöd ebben a csoportban. A kérelmek áttekintése során légy óvatos.</string>
     <string name="ConversationUpdateItem_view">Megtekintés</string>
@@ -2644,9 +2644,9 @@
     <string name="arrays__use_default">Alapértelmezett használata</string>
     <string name="arrays__use_custom">Egyéni használata</string>
 
-    <string name="arrays__mute_for_one_hour">Némítás 1 órára</string>
+    <string name="arrays__mute_for_one_hour">Némítás egy órára</string>
     <string name="arrays__mute_for_eight_hours">Némítás 8 órára</string>
-    <string name="arrays__mute_for_one_day">Némítás 1 napra</string>
+    <string name="arrays__mute_for_one_day">Némítás egy napra</string>
     <string name="arrays__mute_for_seven_days">Némítás 7 napra</string>
     <string name="arrays__always">Végleg</string>
 
@@ -2980,7 +2980,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Fizetés küldése</string>
     <string name="PaymentsDetailsFragment__received_payment">Beérkezett fizetés</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Fizetés teljesült %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Blokk szám</string>
+    <string name="PaymentsDetailsFragment__block_number">Telefonszám letiltása</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Átutalás</string>
@@ -3624,9 +3624,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" letiltva.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Sikertelen \"%1$s\" tiltása</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" letiltása feloldva.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">„%1$s” letiltva.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">„%1$s” letiltása sikertelen</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">„%1$s” letiltása feloldva.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Tagok áttekintése</string>
@@ -4017,7 +4017,7 @@
     <string name="PrivacySettingsFragment__messaging">Üzenetküldés</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Eltűnő üzenetek</string>
     <string name="PrivacySettingsFragment__app_security">App biztonság</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Képernyőképek készítésének blokkolása a futó alkalmazások listájában és az alkalmazáson belül</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Képernyőképek készítésének letiltása a futó alkalmazások listájában és az alkalmazáson belül</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal üzenetek és hívások, átjátszási beállítások, rejtett feladó</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Alapértelmezett időzítő új beszélgetésekhez</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Állítsd be az alapértelmezett időzítőt újonnan indított csevegéseid eltűnő üzeneteihez.</string>
@@ -4187,7 +4187,7 @@
     <string name="ConversationSettingsFragment__block">Letiltás</string>
     <string name="ConversationSettingsFragment__block_group">Csoport letiltása</string>
     <string name="ConversationSettingsFragment__unblock">Tiltás feloldása</string>
-    <string name="ConversationSettingsFragment__unblock_group">Csoport blokkolásának feloldása</string>
+    <string name="ConversationSettingsFragment__unblock_group">Csoport letiltásának feloldása</string>
     <string name="ConversationSettingsFragment__add_to_a_group">Hozzáadás egy csoporthoz</string>
     <string name="ConversationSettingsFragment__see_all">Összes megtekintése</string>
     <string name="ConversationSettingsFragment__add_members">Tagok hozzáadása</string>
@@ -4251,7 +4251,7 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s eltávolításra került</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s letiltásra került</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s letiltva</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">%1$s eltávolítása sikertelen</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -5612,13 +5612,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">ó</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">H</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">p</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
-    <string name="TimeDurationPickerDialog_positive_button">Beállítás</string>
+    <string name="TimeDurationPickerDialog_positive_button">Beállít</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">A képernyőzár alkalmazásának minimális ideje 1 perc.</string>
 
     <!-- EOF -->
 </resources>

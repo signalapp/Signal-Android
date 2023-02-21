@@ -101,7 +101,7 @@
     <string name="BlockedUsersActivity__add_blocked_user">Aggiungi utente bloccato</string>
     <string name="BlockedUsersActivity__blocked_users_will">Gli utenti bloccati non potranno chiamarti o inviarti messaggi.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Nessun utente bloccato</string>
-    <string name="BlockedUsersActivity__block_user">Bloccare utente?</string>
+    <string name="BlockedUsersActivity__block_user">Vuoi bloccare l\'utente?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" non potrà chiamarti o inviarti messaggi.</string>
     <string name="BlockedUsersActivity__block">Blocca</string>
 
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">Continua</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Bloccare e abbandonare %1$s?</string>
-    <string name="BlockUnblockDialog_block_s">Bloccare %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Vuoi bloccare e abbandonare %1$s?</string>
+    <string name="BlockUnblockDialog_block_s">Vuoi bloccare %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Non riceverai più messaggi o aggiornamenti da questo gruppo e i membri non potranno aggiungerti di nuovo a questo gruppo.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">I membri del gruppo non potranno aggiungerti di nuovo a questo gruppo.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">I membri del gruppo potranno aggiungerti di nuovo a questo gruppo.</string>
@@ -154,10 +154,10 @@
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blocca gli aggiornamenti e le notizie di Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Riprendi gli aggiornamenti e le notizie di Signal.</string>
-    <string name="BlockUnblockDialog_unblock_s">Sbloccare %1$s?</string>
+    <string name="BlockUnblockDialog_unblock_s">Vuoi sbloccare %1$s?</string>
     <string name="BlockUnblockDialog_block">Blocca</string>
     <string name="BlockUnblockDialog_block_and_leave">Blocca e abbandona</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Segnala spam e blocca</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Segnala come spam e blocca</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Oggi</string>
@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Errore durante l\'invio del media</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Segnalato come spam e bloccato.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Utente segnalato come spam e bloccato.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Al momento la messaggistica SMS è disattivata. Puoi esportare i tuoi messaggi su un\'altra app sul tuo telefono.</string>
@@ -448,7 +448,7 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$s attivo</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">Bloccare richiesta?</string>
+    <string name="ConversationFragment__block_request">Vuoi bloccare la richiesta?</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s non sarà in grado di unirsi o richiedere di unirsi a questo gruppo tramite il link del gruppo. Può comunque essere aggiunto al gruppo manualmente.</string>
     <!-- Dialog confirm block request button -->
@@ -456,7 +456,7 @@
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Annulla</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">Bloccati</string>
+    <string name="ConversationFragment__blocked">Richiesta bloccata</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Rimuovi filtro</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -936,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificami per le menzioni</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Ricevere le notifiche quando vieni menzionato nelle chat mutate?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vuoi ricevere le notifiche quando ti menzionano nelle chat silenziate?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Notificami sempre</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Non notificarmi</string>
 
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Nome utente copiato</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Impossibile eliminare il nome utente. Riprova più tardi.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Nome utente eliminato</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1477,10 +1477,10 @@
     <string name="MessageRequestBottomView_unblock">Sblocca</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permettere a %1$s di inviarti messaggi e condividere il tuo nome e la tua foto con loro? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permettere a %1$s di inviarti messaggi e condividere il tuo nome e la tua foto con loro? Non riceverai alcun messaggio finché non li sbloccherai.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Vuoi condividere il tuo nome e la tua foto con %1$s e permettere a questo utente di inviarti messaggi? Non riceverai messaggi da parte sua finché non sbloccherai il contatto.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Permettere a %1$s di inviarti messaggi? Non riceverai alcun messaggio finché non li sbloccherai.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Ricevere aggiornamenti e notizie da %1$s? Non riceverai aggiornamenti finché non li sbloccherai.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Vuoi consentire a %1$s di inviarti messaggi? Non riceverai messaggi da parte sua finché non sbloccherai il contatto.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Vuoi ricevere aggiornamenti e notizie da %1$s? Non riceverai aggiornamenti finché non sbloccherai il contatto.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continuare la tua conversazione con questo gruppo e condividere il tuo nome e la tua foto con i suoi membri?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Aggiorna questo gruppo per attivare nuove funzionalità come @menzioni e amministratori. I membri che non hanno condiviso il loro nome o la loro foto in questo gruppo saranno invitati a unirsi.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Questo Gruppo Legacy non può più essere usato perché è troppo grande. La dimensione massima del gruppo è %1$d.</string>
@@ -1488,7 +1488,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Unirsi a questo gruppo e condividere il tuo nome e la tua foto con i suoi membri? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Unirsi a questo gruppo e condividere il tuo nome e la tua foto con i suoi membri? Non vedrai i loro messaggi finché non avrai accettato.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vuoi unirti a questo gruppo? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Sbloccare questo gruppo e condividere il tuo nome e la tua foto con i suoi membri? Non riceverai alcun messaggio finché non li sbloccherai.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Vuoi sbloccare questo gruppo e condividere il tuo nome e la tua foto con chi ne fa parte? Non riceverai messaggi finché non sbloccherai il gruppo.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Mostra</string>
     <string name="MessageRequestProfileView_member_of_one_group">Membro di %1$s</string>
@@ -1718,7 +1718,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Non silenziare</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Muto</string>
+    <string name="WebRtcCallView__mute">Silenzia</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Squilla</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1731,12 +1731,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s è bloccato</string>
+    <string name="CallParticipantView__s_is_blocked">L\'utente %1$s è bloccato</string>
     <string name="CallParticipantView__more_info">Ulteriori informazioni</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Non riceverai il loro audio o video e loro non riceveranno il tuo.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Non è possibile ricevere audio &amp; video da %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Non è possibile ricevere audio e video da %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ciò potrebbe essere dovuto al fatto che non hanno verificato la modifica del codice di sicurezza, c\'è un problema con il loro dispositivo o ti hanno bloccato.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ciò potrebbe essere dovuto al fatto che non è stata verificata la modifica del codice di sicurezza, c\'è un problema con il dispositivo o ti hanno bloccato.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Scorri per vedere la condivisione dello schermo</string>
@@ -1964,7 +1964,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Messaggi programmati</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">La tua cronologia messaggi è stata unita</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s appartiene a %2$s</string>
 
@@ -2644,7 +2644,7 @@
     <string name="arrays__use_default">Usa predefinito</string>
     <string name="arrays__use_custom">Usa personalizzato</string>
 
-    <string name="arrays__mute_for_one_hour">Silenzia per 1 ora</string>
+    <string name="arrays__mute_for_one_hour">Silenzia per un\'ora</string>
     <string name="arrays__mute_for_eight_hours">Silenzia per 8 ore</string>
     <string name="arrays__mute_for_one_day">Silenzia per 1 giorno</string>
     <string name="arrays__mute_for_seven_days">Silenzia per 7 giorni</string>
@@ -2686,7 +2686,7 @@
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Mantieni le chat silenziate nell\'archivio</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Le chat silenziate che archivi rimangono archiviate anche quando arriva un nuovo messaggio al loro interno.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Le chat silenziate che archivi rimangono archiviate anche quando arriva un nuovo messaggio.</string>
     <string name="preferences__generate_link_previews">Genera anteprime dei link</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupera le anteprime dei link direttamente dai siti web per i messaggi che invii.</string>
     <string name="preferences__change_passphrase">Cambia password</string>
@@ -3137,7 +3137,7 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Annulla silenzioso</string>
+    <string name="conversation_muted__unmute">Non silenziare</string>
 
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">Silenzia notifiche</string>
@@ -3624,9 +3624,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" è stato bloccato.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">L\'utente \"%1$s\" è stato bloccato.</string>
     <string name="BlockedUsersActivity__failed_to_block_s">Impossibile bloccare \"%1$s\"</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" è stato sbloccato.</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">L\'utente \"%1$s\" è stato sbloccato.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Controlla membri</string>
@@ -4017,7 +4017,7 @@
     <string name="PrivacySettingsFragment__messaging">Messaggistica</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Messaggi a scomparsa</string>
     <string name="PrivacySettingsFragment__app_security">Sicurezza app</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blocca gli screenshot nell\'elenco delle app recenti e all\'interno dell\'app</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blocca gli screenshot nell\'elenco delle chat recenti e all\'interno dell\'app</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Messaggi e chiamate Signal, ritrasmetti sempre le chiamate e mittente sigillato</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Timer predefinito per nuove chat</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Imposta un timer predefinito per la scomparsa dei messaggi per tutte le nuove chat avviate da te.</string>
@@ -4196,7 +4196,7 @@
     <string name="ConversationSettingsFragment__group_link">Link del gruppo</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Aggiungi come un contatto</string>
     <string name="ConversationSettingsFragment__unmute">Non silenziare</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversazione silenziata fino a %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversazione silenziata fino al %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Conversazione silenziata per sempre</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numero di telefono copiato negli appunti.</string>
     <string name="ConversationSettingsFragment__phone_number">Numero di telefono</string>
@@ -4251,7 +4251,7 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">Hai rimosso %1$s</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s è stato bloccato</string>
+    <string name="NewConversationActivity__s_has_been_blocked">L\'utente %1$s è stato bloccato</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Impossibile rimuovere %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -5614,11 +5614,11 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">L</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">min</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Imposta</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Il tempo minimo prima che si attivi il blocco schermo è 1 minuto.</string>
 
     <!-- EOF -->
 </resources>

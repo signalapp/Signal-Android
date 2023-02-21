@@ -97,10 +97,10 @@
     <string name="BackgroundMessageRetriever_checking_for_messages">Aan het nagaan of er nieuwe berichten zijn …</string>
 
     <!-- BlockedUsersActivity -->
-    <string name="BlockedUsersActivity__blocked_users">Geblokkeerde personen &amp; groepen</string>
-    <string name="BlockedUsersActivity__add_blocked_user">Contactpersoon aan blokkeerlijst toevoegen</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Tik hier om handmatig een persoon toe te voegen aan de lijst van geblokkeerde personen. — Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat, en alsof berichten worden afgeleverd. Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden niet bijgewerkt als je een nieuwe foto of naam instelt. Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt niet zien.</string>
-    <string name="BlockedUsersActivity__no_blocked_users">Je hebt geen personen of groepen geblokkeerd</string>
+    <string name="BlockedUsersActivity__blocked_users">Geblokkeerde personen</string>
+    <string name="BlockedUsersActivity__add_blocked_user">Geblokkeerde persoon toevoegen</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen je niet bellen en geen berichten sturen.</string>
+    <string name="BlockedUsersActivity__no_blocked_users">Je hebt geen personen geblokkeerd</string>
     <string name="BlockedUsersActivity__block_user">Persoon blokkeren?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">“%1$s” kan jou nog steeds bellen of berichten sturen en weet dus niet dat hij of zijn geblokkeerd is, maar je zult die oproepen en berichten niet zien.</string>
     <string name="BlockedUsersActivity__block">Blokkeren</string>
@@ -148,10 +148,10 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jullie zullen weer berichten naar elkaar kunnen verzenden, kunnen bellen, en je profielnaam, -foto en -omschrijving zullen voor hem of haar weer worden bijgewerkt.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Jullie zullen weer sms-berichten aan elkaar kunnen verzenden via Signal.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat en alsof berichten worden afgeleverd. Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden ze niet bijgewerkt als je een nieuwe foto of naam instelt. Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt niet zien.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof sms-berichten worden afgeleverd.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde mensen kunnen je niet bellen of je berichten sturen.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Geblokkeerde personen kunnen je niet bellen en geen berichten sturen.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Nieuwsberichten over Signal blokkeren.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Updates en nieuws over Signal blokkeren.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Voortaan weer nieuws over Signal ontvangen.</string>
     <string name="BlockUnblockDialog_unblock_s">%1$s deblokkeren?</string>
@@ -448,11 +448,11 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$s ingeschakeld</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">Verzoeken blokkeren?</string>
+    <string name="ConversationFragment__block_request">Verzoek blokkeren?</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s zal niet langer via de groepslink lid kunnen worden van deze groep en ook niet kunnen verzoeken om lid te worden van de groep. Hij of zij kan dan nog wel lid worden via een uitnodiging.</string>
     <!-- Dialog confirm block request button -->
-    <string name="ConversationFragment__block_request_button">Verzoeken blokkeren</string>
+    <string name="ConversationFragment__block_request_button">Verzoek blokkeren</string>
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Annuleren</string>
     <!-- Message shown after successfully blocking join requests for a user -->
@@ -497,12 +497,12 @@
         <item quantity="other">Losmaken</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Meldingen dempen</item>
-        <item quantity="other">Meldingen dempen</item>
+        <item quantity="one">Dempen</item>
+        <item quantity="other">Dempen</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Meldingen niet langer dempen</item>
-        <item quantity="other">Meldingen niet langer dempen</item>
+        <item quantity="one">Niet langer dempen</item>
+        <item quantity="other">Niet langer dempen</item>
     </plurals>
     <string name="ConversationListFragment_select">Selecteren</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -936,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meldingen bij naamsvermeldingen</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Wil je toch meldingen ontvangen wanneer iemand je naam in een gedempt gesprek vermeld?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Wil je toch meldingen ontvangen als iemand je naam in een gedempt gesprek vermeldt?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Geef me altijd een melding</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Geen meldingen als gedempt</string>
 
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Gebruikersnaam gekopieerd.</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Kan gebruikersnaam niet verwijderen. Probeer het later opnieuw.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Gebruikersnaam verwijderd</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1477,10 +1477,10 @@
     <string name="MessageRequestBottomView_unblock">Deblokkeren</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam, -foto en -omschrijving kan zien? Als je leesbevestigingen hebt ingeschakeld kan hij of zij die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam, -foto en -omschrijving kan zien? Totdat je hem of haar hebt gedeblokkeerd zul je geen berichten of oproepen ontvangen en kan hij of zij veranderingen van je profiel niet zien.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wil je berichten van %1$s ontvangen en sta je toe dat diegene je profielnaam en -foto kan zien? Totdat je dit contact hebt gedeblokkeerd, zul je geen berichten ontvangen.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Wil je berichten van %1$s ontvangen? Totdat je hem of haar hebt gedeblokkeerd zul je geen sms-berichten ontvangen.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Wil je nieuwsberichten van %1$s ontvangen? Je zult geen berichten ontvangen totdat je hen hebt gedeblokkeerd.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Wil je berichten van %1$s ontvangen? Totdat je diegene hebt gedeblokkeerd, zul je geen berichten ontvangen.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Wil je updates en nieuws van %1$s ontvangen? Je zult geen berichten ontvangen totdat je diegene hebt gedeblokkeerd.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wil je je profielnaam, -foto en -omschrijving voor deze groep zichtbaar maken om je gesprek met de groep voort te kunnen zetten?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Zet deze groep om om nieuwe functionaliteiten te kunnen gebruiken zoals @vermeldingen en beheerders. Groepsleden die hun profielnaam, -foto en -omschrijving niet voor deze groep zichtbaar hebben gemaakt, zullen worden uitgenodigd om tot deze groep toe te treden.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Deze verouderde groep kan niet langer gebruikt worden omdat hij teveel leden heeft. Het maximum ledenaantal voor een groep is %1$d.</string>
@@ -1488,7 +1488,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Als je leesbevestigingen hebt ingeschakeld kunnen de leden van deze groep die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Je kunt hun berichten nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Je bent door iemand met wie je eerder een gesprek hebt gehad of met wie je in dezelfde groep zat toegevoegd aan deze groep. Wil je lid blijven van deze groep? Als je leesbevestigingen hebt ingeschakeld kunnen de leden van deze groep die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Totdat je de groep hebt gedeblokkeerd zul je geen berichten of oproepen ontvangen en kunnen leden van deze groep veranderingen van je profiel niet zien.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen en sta je toe dat alle leden je profielnaam en -foto kunnen zien? Totdat je de groep hebt gedeblokkeerd, zul je geen berichten ontvangen.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Weergeven</string>
     <string name="MessageRequestProfileView_member_of_one_group">Lid van %1$s</string>
@@ -1591,7 +1591,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Waarschuwing</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-upbestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitzet, verlies je alle gegevens als je Signal opnieuw registreert, tenzij je handmatig een back-up maakt en herstelt. Je kunt Registratievergrendeling niet aanzetten terwijl de pincode uitstaat.</string>
     <string name="PinOptOutDialog_disable_pin">Pincode uitschakelen</string>
 
     <!-- RatingManager -->
@@ -1716,7 +1716,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Camera</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Microfoon niet langer dempen</string>
+    <string name="WebRtcCallView__unmute">Niet langer dempen</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">Dempen</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1736,7 +1736,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Je zult hen niet kunnen zien of horen en zij zullen jou niet kunnen zien of horen.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan geen beeld &amp; geluid van %1$s ontvangen</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan geen beeld en geluid van %1$s ontvangen</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dit kan gebeuren als je jullie veiligheidsnummer niet opnieuw hebt geverifieerd nadat die is veranderd, als er een probleem is met je apparaat of als hij of zij jou heeft geblokkeerd.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dit kan zijn omdat diegene de wijziging van het veiligheidsnummer niet heeft geverifieerd, er een probleem is met hun apparaat, of als ze jou hebben geblokkeerd.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Veeg om gedeeld scherm weer te geven</string>
@@ -1964,7 +1964,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Gepland bericht</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Je berichtengeschiedenis is samengevoegd</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s is van %2$s</string>
 
@@ -2307,7 +2307,7 @@
     <string name="ConversationUpdateItem_enable_call_notifications">Oproepmeldingen inschakelen</string>
     <string name="ConversationUpdateItem_update_contact">Contactpersoon aanpassen</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
-    <string name="ConversationUpdateItem_block_request">Verzoeken van deze persoon blokkeren</string>
+    <string name="ConversationUpdateItem_block_request">Verzoek blokkeren</string>
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Deze persoon is een onbekende, je zit zelfs niet in een groepsgesprek met deze persoon. Overweeg daarom zorgvuldig of je dit gespreksverzoek wilt aanvaarden.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">In deze groep zit niemand met wie je eerder een gesprek hebt gevoerd, overweeg daarom zorgvuldig of je wel lid wilt worden.</string>
     <string name="ConversationUpdateItem_view">Weergeven</string>
@@ -2686,7 +2686,7 @@
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Gedempte gesprekken gearchiveerd houden</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Gedempte gesprekken die zijn gearchiveerd blijven gearchiveerd als er een nieuw bericht binnenkomt.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Gedempte gesprekken die zijn gearchiveerd, blijven gearchiveerd als er een nieuw bericht binnenkomt.</string>
     <string name="preferences__generate_link_previews">Voorbeeld van website meesturen</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Door dit in te schakelen wordt voor elke link naar een website die je verzendt een voorbeeldafbeelding gegenereerd en met je bericht meegestuurd. Een nadeel is wel dat als je dit inschakelt websites zouden kunnen detecteren dat je hen in je bericht vermeldt en ook welke pagina je vermeldt.</string>
     <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
@@ -2980,7 +2980,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Overschrijving verzenden</string>
     <string name="PaymentsDetailsFragment__received_payment">Ontvangen overschrijving</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Overschrijving voltooid %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Bloknummer</string>
+    <string name="PaymentsDetailsFragment__block_number">Nummer blokkeren</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Overschrijven</string>
@@ -3137,7 +3137,7 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Meldingen niet langer dempen</string>
+    <string name="conversation_muted__unmute">Niet langer dempen</string>
 
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">Meldingen dempen</string>
@@ -3624,9 +3624,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">“%1$s” is geblokkeerd.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">“%1$s” blokkeren is mislukt.</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">“%1$s” is gedeblokkeerd.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">%1$s is geblokkeerd.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Kon %1$s niet blokkeren</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">%1$s is gedeblokkeerd.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Groepsleden vergelijken</string>
@@ -4017,7 +4017,7 @@
     <string name="PrivacySettingsFragment__messaging">Berichten</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Verlopende berichten</string>
     <string name="PrivacySettingsFragment__app_security">App-beveiliging</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Verberg Signal in de lijst van recent geopende apps en blokkeer schermafdrukken op je eigen apparaat, om je gesprekken te beschermen tegen stiekeme schermopnames vanuit spionerende apps.</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Screenshots in de lijst van recent geopende apps en in de app blokkeren</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle omroepen omleiden en verzegelde afzender</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor toekomstige gesprekken</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat berichten in alle toekomstige gesprekken die jij zelf begint een bepaalde tijd nadat ze gezien zijn voor zowel jou als je gesprekspartner vanzelf worden gewist.</string>
@@ -4174,9 +4174,9 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Bellen</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Meldingen dempen</string>
+    <string name="ConversationSettingsFragment__mute">Dempen</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">Meldingen niet langer dempen</string>
+    <string name="ConversationSettingsFragment__muted">Niet langer dempen</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Zoeken</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Verlopende berichten</string>
@@ -4185,7 +4185,7 @@
     <string name="ConversationSettingsFragment__contact_details">In systeemcontactenlijst weergeven</string>
     <string name="ConversationSettingsFragment__view_safety_number">Veiligheidsnummer weergeven</string>
     <string name="ConversationSettingsFragment__block">Blokkeren</string>
-    <string name="ConversationSettingsFragment__block_group">Groep blokkeren en verlaten</string>
+    <string name="ConversationSettingsFragment__block_group">Groep blokkeren</string>
     <string name="ConversationSettingsFragment__unblock">Deblokkeren</string>
     <string name="ConversationSettingsFragment__unblock_group">Groep deblokkeren</string>
     <string name="ConversationSettingsFragment__add_to_a_group">Aan een groep toevoegen</string>
@@ -4195,9 +4195,9 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Verzoeken &amp; uitnodiging</string>
     <string name="ConversationSettingsFragment__group_link">Groepslink</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Als contactpersoon toevoegen</string>
-    <string name="ConversationSettingsFragment__unmute">Meldingen niet langer dempen</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Je heb dit gesprek in het verleden tot %1$s gedempt</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Je hebt dit gesprek in het verleden voor onbepaalde tijd gedempt</string>
+    <string name="ConversationSettingsFragment__unmute">Niet langer dempen</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Gesprek gedempt tot %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Gesprek gedempt voor onbepaalde tijd</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefoonnummer naar klembord gekopieerd.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefoonnummer</string>
     <string name="ConversationSettingsFragment__get_badges">Door Signal te ondersteunen verdien je badges om op je profiel weer te geven. Tik op een badge om er meer over te leren.</string>
@@ -5612,13 +5612,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">u</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
     <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Instellen</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Je scherm wordt na 1 minuut vergrendeld.</string>
 
     <!-- EOF -->
 </resources>
