@@ -178,6 +178,11 @@
         <item name="cornerSize">8dp</item>
     </style>
 
+    <style name="Signal.ShapeOverlay.Rounded.Fab" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">18dp</item>
+    </style>
+
     <style name="ShapeAppearance.Signal.MaterialAlertDialog" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerRadius">28dp</item>
