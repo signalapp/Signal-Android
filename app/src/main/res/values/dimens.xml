@@ -220,6 +220,7 @@
     <dimen name="media_rail_item_size">46dp</dimen>
     <dimen name="media_rail_thumbnail_size">44dp</dimen>
     <dimen name="registrationactivity_text_view_padding">32dp</dimen>
+    <dimen name="pigeon_big_margin">40dp</dimen>
     <dimen name="pigeon_normal_margin">25dp</dimen>
     <dimen name="pigeon_small_margin">5dp</dimen>
 </resources>

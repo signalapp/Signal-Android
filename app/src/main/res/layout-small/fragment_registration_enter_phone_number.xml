@@ -26,10 +26,9 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="12dp"
             android:layoutDirection="ltr"
+            android:layout_marginBottom="@dimen/pigeon_big_margin"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/registerButton"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,30 +36,26 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/country_code"
-                style="@style/Mp02.Signal.TextInputLayout.Registration.Dropdown"
+                style="@style/Mp02.Signal.TextInputLayout.Registration"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:focusable="true"
                 app:errorEnabled="false"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                    style="@style/Mp02.Signal.Text.CommonTextButton"
+                    style="@style/Mp02.Signal.Text.BigCommonTextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:digits="+1234567890"
                     android:inputType="none"
-                    android:hint="@string/Registration_country_code_entry_hint"
-                    android:drawablePadding="-50dp"
-                    android:gravity="bottom"
-                    android:cursorVisible="false"
-                    android:focusableInTouchMode="false"
-                    android:focusable="false"
-                    android:clickable="false"
+                    android:textColor="@color/mp02_listview_color_selector"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
                     android:imeOptions="actionNext"
                     android:maxLength="4"
-                    android:maxLines="1"
                     android:singleLine="true"
-                    tools:text="+125" />
+                    tools:text="+121" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,12 +68,14 @@
                 android:hint="@string/RegistrationActivity_phone_number_description">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/Mp02.Signal.Text.CommonTextButton"
+                    style="@style/Mp02.Signal.Text.BigCommonTextButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/pigeon_small_margin"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
                     android:imeOptions="actionDone"
-                    tools:text="@tools:sample/lorem"
-                    android:gravity="bottom"
+                    tools:text="@tools:sample/us_phones"
                     android:inputType="phone" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -90,7 +87,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="@dimen/pigeon_normal_margin"
             android:text="@string/RegistrationActivity_enter_your_phone_number"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
