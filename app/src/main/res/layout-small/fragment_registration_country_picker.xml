@@ -26,8 +26,7 @@
         android:choiceMode="singleChoice"
         android:divider="@color/white_not_focus"
         android:dividerHeight="1sp"
-        android:descendantFocusability="afterDescendants"
-        android:focusable="true"
+        android:listSelector="@drawable/listview_background_selector"
         tools:listitem="@layout/country_list_item" />
 
     <TextView

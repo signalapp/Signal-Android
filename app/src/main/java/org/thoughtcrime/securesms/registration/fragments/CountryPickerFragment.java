@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.ListFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.loader.app.LoaderManager;
@@ -25,7 +27,6 @@ import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 
 import java.util.ArrayList;
 import java.util.Map;
-import static pigeon.extensions.BuildExtensionsKt.isSignalVersion;
 
 public final class CountryPickerFragment extends ListFragment implements LoaderManager.LoaderCallbacks<ArrayList<Map<String, String>>> {
 
@@ -50,10 +51,6 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
       resultKey = arguments.getResultKey();
     }
 
-    if (!isSignalVersion()){
-      getListView().setItemsCanFocus(true);
-    }
-
     if (resultKey == null) {
       model = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
     }
@@ -63,6 +60,7 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
     countryFilter.addTextChangedListener(new FilterWatcher());
     LoaderManager.getInstance(this).initLoader(0, null, this).forceLoad();
   }
+
 
   @Override
   public void onListItemClick(@NonNull ListView listView, @NonNull View view, int position, long id) {
