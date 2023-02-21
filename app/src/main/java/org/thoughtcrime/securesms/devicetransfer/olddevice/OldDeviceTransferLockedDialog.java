@@ -41,7 +41,7 @@ public final class OldDeviceTransferLockedDialog extends DialogFragment {
 
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
-    MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Signal_MaterialAlertDialog);
+    MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(requireContext());
     dialogBuilder.setView(R.layout.old_device_transfer_locked_dialog_fragment)
                  .setPositiveButton(R.string.OldDeviceTransferLockedDialog__done, (d, w) -> OldDeviceExitActivity.exit(requireActivity()))
                  .setNegativeButton(R.string.OldDeviceTransferLockedDialog__cancel_and_activate_this_device, (d, w) -> onUnlockRequest());

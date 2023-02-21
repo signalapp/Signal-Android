@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,23 +37,27 @@ import okhttp3.HttpUrl;
  */
 public class LinkPreviewView extends FrameLayout {
 
+  private static final String STATE_ROOT = "linkPreviewView.state.root";
+  private static final String STATE_STATE = "linkPreviewView.state.state";
+
   private static final int TYPE_CONVERSATION = 0;
   private static final int TYPE_COMPOSE      = 1;
 
-  private ViewGroup             container;
-  private OutlinedThumbnailView thumbnail;
-  private TextView              title;
-  private TextView              description;
-  private TextView              site;
-  private View                  divider;
-  private View                  closeButton;
-  private View                  spinner;
-  private TextView              noPreview;
+  private ViewGroup                   container;
+  private Stub<OutlinedThumbnailView> thumbnail;
+  private TextView                    title;
+  private TextView                    description;
+  private TextView                    site;
+  private View                        divider;
+  private View                        closeButton;
+  private View                        spinner;
+  private TextView                    noPreview;
 
-  private int                  type;
-  private int                  defaultRadius;
-  private CornerMask           cornerMask;
-  private CloseClickedListener closeClickedListener;
+  private int                           type;
+  private int                           defaultRadius;
+  private CornerMask                    cornerMask;
+  private CloseClickedListener          closeClickedListener;
+  private LinkPreviewViewThumbnailState thumbnailState = new LinkPreviewViewThumbnailState();
 
   public LinkPreviewView(Context context) {
     super(context);
@@ -66,7 +73,7 @@ public class LinkPreviewView extends FrameLayout {
     inflate(getContext(), R.layout.link_preview, this);
 
     container     = findViewById(R.id.linkpreview_container);
-    thumbnail     = findViewById(R.id.linkpreview_thumbnail);
+    thumbnail     = new Stub<>(findViewById(R.id.linkpreview_thumbnail));
     title         = findViewById(R.id.linkpreview_title);
     description   = findViewById(R.id.linkpreview_description);
     site          = findViewById(R.id.linkpreview_site);
@@ -99,6 +106,30 @@ public class LinkPreviewView extends FrameLayout {
     }
 
     setWillNotDraw(false);
+  }
+
+  @Override
+  protected @NonNull Parcelable onSaveInstanceState() {
+    Parcelable root   = super.onSaveInstanceState();
+    Bundle     bundle = new Bundle();
+
+    bundle.putParcelable(STATE_ROOT, root);
+    bundle.putParcelable(STATE_STATE, thumbnailState);
+
+    return bundle;
+  }
+
+  @Override
+  protected void onRestoreInstanceState(Parcelable state) {
+    if (state instanceof Bundle) {
+      Parcelable root = ((Bundle) state).getParcelable(STATE_ROOT);
+      thumbnailState = ((Bundle) state).getParcelable(STATE_STATE);
+
+      thumbnailState.applyState(thumbnail);
+      super.onRestoreInstanceState(root);
+    } else {
+      super.onRestoreInstanceState(state);
+    }
   }
 
   @Override
@@ -173,8 +204,9 @@ public class LinkPreviewView extends FrameLayout {
 
     if (showThumbnail && linkPreview.getThumbnail().isPresent()) {
       thumbnail.setVisibility(VISIBLE);
-      thumbnail.setImageResource(glideRequests, new ImageSlide(getContext(), linkPreview.getThumbnail().get()), type == TYPE_CONVERSATION, false);
-      thumbnail.showDownloadText(false);
+      thumbnailState.applyState(thumbnail);
+      thumbnail.get().setImageResource(glideRequests, new ImageSlide(getContext(), linkPreview.getThumbnail().get()), type == TYPE_CONVERSATION, false);
+      thumbnail.get().showDownloadText(false);
     } else {
       thumbnail.setVisibility(GONE);
     }
@@ -183,10 +215,24 @@ public class LinkPreviewView extends FrameLayout {
   public void setCorners(int topStart, int topEnd) {
     if (ViewUtil.isRtl(this)) {
       cornerMask.setRadii(topEnd, topStart, 0, 0);
-      thumbnail.setCorners(defaultRadius, topEnd, defaultRadius, defaultRadius);
+      thumbnailState = thumbnailState.copy(
+          defaultRadius,
+          topEnd,
+          defaultRadius,
+          defaultRadius,
+          thumbnailState.getDownloadListener()
+      );
+      thumbnailState.applyState(thumbnail);
     } else {
       cornerMask.setRadii(topStart, topEnd, 0, 0);
-      thumbnail.setCorners(topStart, defaultRadius, defaultRadius, defaultRadius);
+      thumbnailState.copy(
+          topStart,
+          defaultRadius,
+          defaultRadius,
+          defaultRadius,
+          thumbnailState.getDownloadListener()
+      );
+      thumbnailState.applyState(thumbnail);
     }
     postInvalidate();
   }
@@ -196,7 +242,8 @@ public class LinkPreviewView extends FrameLayout {
   }
 
   public void setDownloadClickedListener(SlidesClickedListener listener) {
-    thumbnail.setDownloadClickListener(listener);
+    thumbnailState = thumbnailState.withDownloadListener(listener);
+    thumbnailState.applyState(thumbnail);
   }
 
   private  @StringRes static int getLinkPreviewErrorString(@Nullable LinkPreviewRepository.Error customError) {

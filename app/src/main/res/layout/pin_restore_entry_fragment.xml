@@ -36,7 +36,7 @@
             android:minHeight="66dp"
             android:text="@string/RegistrationLockFragment__enter_the_pin_you_created"
             android:textAppearance="@style/Signal.Text.BodyLarge"
-            android:textColor="@color/core_grey_60"
+            android:textColor="@color/signal_colorOnSurfaceVariant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pin_restore_pin_title" />
@@ -53,14 +53,18 @@
             android:minWidth="210dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pin_restore_pin_description">
+            app:layout_constraintTop_toBottomOf="@+id/pin_restore_pin_description"
+            app:materialThemeOverlay="@style/Signal.ThemeOverlay.TextInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/pin_restore_pin_input"
+                style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:imeOptions="actionDone"
-                android:inputType="numberPassword" />
+                android:inputType="numberPassword"
+                tools:text="1234567890" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView

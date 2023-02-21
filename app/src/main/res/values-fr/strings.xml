@@ -14,6 +14,7 @@
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
 
     <string name="yes">Oui</string>
     <string name="no">Non</string>
@@ -398,21 +399,21 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Enregistrer dans la mémoire ?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">L’enregistrement de ce contenu dans la mémoire permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
-        <item quantity="other">L’enregistrement des %1$d médias dans la mémoire permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
+        <item quantity="one">L’enregistrement de ce contenu dans l\'espace de stockage permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
+        <item quantity="other">L’enregistrement des %1$d médias dans l\'espace de stockage permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-        <item quantity="one">Erreur d’enregistrement du fichier joint dans la mémoire !</item>
-        <item quantity="other">Erreur d’enregistrement des fichiers joints dans la mémoire !</item>
+        <item quantity="one">Erreur d’enregistrement du fichier joint dans l\'espace de stockage !</item>
+        <item quantity="other">Erreur d’enregistrement des fichiers joints dans l\'espace de stockage !</item>
     </plurals>
-    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire dans la mémoire.</string>
+    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire dans l\'espace de stockage</string>
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="one">Enregistrement du fichier joint</item>
         <item quantity="other">Enregistrement de %1$d fichiers joints</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Enregistrement du fichier joint dans la mémoire…</item>
-        <item quantity="other">Enregistrement de %1$d fichiers joints dans la mémoire…</item>
+        <item quantity="one">Enregistrement du fichier joint dans l\'espace de stockage…</item>
+        <item quantity="other">Enregistrement de %1$d fichiers joints dans l\'espace de stockage…</item>
     </plurals>
     <string name="ConversationFragment_pending">En attente…</string>
     <string name="ConversationFragment_push">Données (Signal)</string>
@@ -613,7 +614,7 @@
     <string name="BackupsPreferenceFragment__d_so_far">%1$d jusqu’à présent…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% jusqu’à présent…</string>
-    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal exige l’autorisation d’accès à la mémoire externe afin de créer des sauvegardes, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal exige l’autorisation d’accès à l\'espace de stockage externe afin de créer des sauvegardes, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -953,6 +954,10 @@
     <string name="ManageProfileFragment__username_created">Pseudo créé</string>
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Pseudo copié</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1116,8 +1121,8 @@
     <string name="MediaOverviewActivity_Sort_by">Trier par</string>
     <string name="MediaOverviewActivity_Newest">Le plus récent</string>
     <string name="MediaOverviewActivity_Oldest">Le plus ancien</string>
-    <string name="MediaOverviewActivity_Storage_used">Mémoire utilisée</string>
-    <string name="MediaOverviewActivity_All_storage_use">Utilisation totale de la mémoire</string>
+    <string name="MediaOverviewActivity_Storage_used">Espace de stockage utilisé</string>
+    <string name="MediaOverviewActivity_All_storage_use">Utilisation totale de l\'espace de stockage</string>
     <string name="MediaOverviewActivity_Grid_view_description">Vue en grille</string>
     <string name="MediaOverviewActivity_List_view_description">Vue en liste</string>
     <string name="MediaOverviewActivity_Selected_description">Sélectionné</string>
@@ -1586,7 +1591,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Avertissement</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You cannot turn on Registration Lock while the PIN is disabled.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Si vous désactivez le NIP, vous perdrez toutes vos données lors de votre réinscription sur Signal, à moins que vous ne les sauvegardiez et les restauriez manuellement. Vous ne pouvez pas activer le blocage de l’inscription si le NIP est désactivé.</string>
     <string name="PinOptOutDialog_disable_pin">Désactiver le NIP</string>
 
     <!-- RatingManager -->
@@ -1961,7 +1966,7 @@
     <!--  Displayed in the conversation list when your message history has been merged -->
     <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
-    <string name="ThreadRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
+    <string name="ThreadRecord_s_belongs_to_s">%1$s appartient à %2$s</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
@@ -2051,8 +2056,8 @@
     <string name="MediaPreviewActivity_you">Vous</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Type de média non pris en charge</string>
     <string name="MediaPreviewActivity_draft">Brouillon</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal a besoin de l’autorisation Stockage afin d’enregistrer sur la mémoire externe, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Stockage.</string>
-    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossible d’enregistrer sur la mémoire externe sans autorisation</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal a besoin de l’autorisation Stockage afin d’enregistrer sur l\'espace de stockage externe, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Stockage.</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossible d’enregistrer sur l\'espace de stockage sans autorisation</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Supprimer le message ?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Ce message sera irrémédiablement supprimé.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s à %2$s</string>
@@ -2736,7 +2741,7 @@
     <string name="preferences__mmsc_password">Mot de passe MMSC</string>
     <string name="preferences__sms_delivery_reports">Relevés de remise des textos</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un relevé de remise pour chaque texto envoyé</string>
-    <string name="preferences__data_and_storage">Données et mémoire</string>
+    <string name="preferences__data_and_storage">Données et espace de stockage</string>
     <string name="preferences__storage">Mémoire</string>
     <string name="preferences__payments">Paiements</string>
     <!-- Privacy settings payments section description -->
@@ -2777,12 +2782,12 @@
     <string name="preferences_chats__when_roaming">En itinérance</string>
     <string name="preferences_chats__media_auto_download">Téléchargement automatique des médias</string>
     <string name="preferences_chats__message_history">Historique des messages</string>
-    <string name="preferences_storage__storage_usage">Utilisation de la mémoire</string>
+    <string name="preferences_storage__storage_usage">Utilisation de l\'espace de stockage</string>
     <string name="preferences_storage__photos">Photos</string>
     <string name="preferences_storage__videos">Vidéos</string>
     <string name="preferences_storage__files">Fichiers</string>
     <string name="preferences_storage__audio">Son</string>
-    <string name="preferences_storage__review_storage">État de la mémoire</string>
+    <string name="preferences_storage__review_storage">État de l\'espace de stockage</string>
     <string name="preferences_storage__delete_older_messages">Supprimer les anciens messages ?</string>
     <string name="preferences_storage__clear_message_history">Effacer l’historique des messages ?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">L’historique et les contenus multimédias des messages de plus de %1$s seront irrémédiablement supprimés de votre appareil.</string>
@@ -2805,7 +2810,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Paiements</string>
     <string name="preferences_chats__chats">Conversations</string>
-    <string name="preferences_data_and_storage__manage_storage">Gérer la mémoire</string>
+    <string name="preferences_data_and_storage__manage_storage">Gérer l\'espace de stockage</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Utiliser moins de données pour les appels</string>
     <string name="preferences_data_and_storage__never">Jamais</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi et données mobiles</string>
@@ -3354,7 +3359,7 @@
     <string name="PushDecryptJob_new_locked_message">Nouveau message verrouillé</string>
     <string name="PushDecryptJob_unlock_to_view_pending_messages">Déverrouiller pour visualiser les messages en attente</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Phrase de passe de la sauvegarde</string>
-    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Les sauvegardes sont enregistrées dans la mémoire externe et chiffrées avec la phrase de passe ci-dessous. Vous devez avoir cette phrase de passe afin de restaurer la sauvegarde.</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Les sauvegardes sont enregistrées dans l\'espace de stockage externe et chiffrées avec la phrase de passe ci-dessous. Vous devez avoir cette phrase de passe afin de restaurer la sauvegarde.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Cette phrase de passe est requise afin de restaurer une sauvegarde.</string>
     <string name="backup_enable_dialog__folder">Dossier</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">J’ai noté cette phrase de passe. Sans elle, je ne pourrai pas restaurer une sauvegarde.</string>
@@ -5609,9 +5614,9 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">L</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
-    <string name="TimeDurationPickerDialog_positive_button">Set</string>
+    <string name="TimeDurationPickerDialog_positive_button">Définir</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
     <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
 

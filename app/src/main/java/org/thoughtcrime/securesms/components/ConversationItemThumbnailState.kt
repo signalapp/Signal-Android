@@ -32,8 +32,6 @@ data class ConversationItemThumbnailState(
     private val downloadClickListener: SlidesClickedListener? = null,
     @IgnoredOnParcel
     private val longClickListener: OnLongClickListener? = null,
-    private val minimumThumbnailWidth: Int = -1,
-    private val maximumThumbnailHeight: Int = -1,
     private val visibility: Int = View.GONE,
     private val minWidth: Int = -1,
     private val maxWidth: Int = -1,
@@ -59,8 +57,6 @@ data class ConversationItemThumbnailState(
       thumbnailView.get().setDownloadClickListener(downloadClickListener)
       thumbnailView.get().setOnLongClickListener(longClickListener)
       thumbnailView.get().setBounds(minWidth, maxWidth, minHeight, maxHeight)
-      thumbnailView.get().setMinimumThumbnailWidth(minimumThumbnailWidth)
-      thumbnailView.get().setMaximumThumbnailHeight(maximumThumbnailHeight)
     }
   }
 

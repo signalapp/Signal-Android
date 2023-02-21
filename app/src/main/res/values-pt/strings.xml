@@ -14,6 +14,7 @@
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
 
     <string name="yes">Sim</string>
     <string name="no">Não</string>
@@ -953,6 +954,10 @@
     <string name="ManageProfileFragment__username_created">Nome de utilizador criado</string>
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Nome de utilizador copiado</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1586,7 +1591,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Aviso</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You cannot turn on Registration Lock while the PIN is disabled.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Se você desativar o PIN, todos os dados serão perdidos ao registar-se novamente no Sinal, a menos que faça uma cópia de segurança e o restaure manualmente. Você não pode ativar o \'Bloqueio de registo\' enquanto o PIN estiver desativado.</string>
     <string name="PinOptOutDialog_disable_pin">Desativar PIN</string>
 
     <!-- RatingManager -->
@@ -1961,7 +1966,7 @@
     <!--  Displayed in the conversation list when your message history has been merged -->
     <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
-    <string name="ThreadRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
+    <string name="ThreadRecord_s_belongs_to_s">%1$s pertence a %2$s</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Atualização do Signal</string>
@@ -5609,9 +5614,9 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">S</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
-    <string name="TimeDurationPickerDialog_positive_button">Set</string>
+    <string name="TimeDurationPickerDialog_positive_button">Definir</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
     <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
 

@@ -330,12 +330,10 @@ public class ManageProfileFragment extends LoggingFragment {
   private void handleUsernameDeletionResult(@NonNull UsernameEditRepository.UsernameDeleteResult usernameDeleteResult) {
     switch (usernameDeleteResult) {
       case SUCCESS:
-        // TODO [alex] - Final copy
-        Snackbar.make(requireView(), R.string.preferences_success, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(requireView(), R.string.ManageProfileFragment__username_deleted, Snackbar.LENGTH_SHORT).show();
         break;
       case NETWORK_ERROR:
-        // TODO [alex] - Final copy
-        Snackbar.make(requireView(), R.string.error, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(requireView(), R.string.ManageProfileFragment__couldnt_delete_username, Snackbar.LENGTH_SHORT).show();
         break;
     }
   }

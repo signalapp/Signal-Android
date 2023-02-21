@@ -80,6 +80,10 @@ abstract class SmsExportService : Service() {
           val successful = when (message) {
             is ExportableMessage.Sms<*> -> exportSms(exportState, message)
             is ExportableMessage.Mms<*> -> exportMms(exportState, message)
+            is ExportableMessage.Skip<*> -> {
+              onMessageExportSucceeded(message)
+              true
+            }
           }
 
           if (!successful) {

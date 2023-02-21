@@ -406,6 +406,8 @@ public class FullBackupExporter extends FullBackupBase {
           StringBuilder        statement        = new StringBuilder(template);
           SqlStatement.Builder statementBuilder = new SqlStatement.Builder();
 
+          statementBuilder.parameters = new ArrayList<>();
+
           statement.append('(');
 
           for (int i = 0; i < cursor.getColumnCount(); i++) {

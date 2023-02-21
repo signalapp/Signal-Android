@@ -106,7 +106,7 @@
         <item name="colorOnContainer">@color/signal_colorOnSurfaceVariant</item>
         <item name="colorContainer">@color/signal_colorSurface1</item>
     </style>
-
+    
     <style name="ThemeOverlay.Signal.Button.Surface2" parent="ThemeOverlay.Material3.Button">
         <item name="colorOnContainer">@color/signal_colorOnSurface</item>
         <item name="colorContainer">@color/signal_colorSurface2</item>
@@ -212,7 +212,7 @@
 
     <style name="Signal.DayNight.Dialog.FullScreen.Donate">
     </style>
-
+    
     <style name="Signal.Media.Dialog.AddMessageDialog" parent="TextSecure.MediaPreview">
         <item name="android:windowAnimationStyle">@style/TextSecure.Animation.AddMessageDialog</item>
     </style>
@@ -229,7 +229,7 @@
         <item name="textColorAlertDialogListItem">@color/signal_colorOnSurfaceVariant</item>
         <item name="android:checkedTextViewStyle">@style/Widget.Signal.CheckedTextView</item>
     </style>
-
+    
     <style name="ThemeOverlay.Signal.MaterialAlertDialog.Wide">
         <item name="alertDialogStyle">@style/Signal.MaterialAlertDialog.Wide</item>
     </style>

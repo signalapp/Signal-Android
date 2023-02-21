@@ -15,5 +15,3 @@ fun TextView.onFocusTextChangeListener() {
   }
   this.onFocusChangeListener = focus
 }
-
-fun isSignalVersion():Boolean = BuildConfig.IS_SIGNAL

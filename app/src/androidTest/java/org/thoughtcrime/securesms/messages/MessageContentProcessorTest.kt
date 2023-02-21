@@ -30,7 +30,7 @@ abstract class MessageContentProcessorTest {
   protected fun createNormalContentTestSubject(): MessageContentProcessor {
     val context = ApplicationProvider.getApplicationContext<Application>()
 
-    return MessageContentProcessor.forNormalContent(context)
+    return MessageContentProcessor.create(context)
   }
 
   /**

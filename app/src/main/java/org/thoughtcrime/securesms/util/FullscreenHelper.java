@@ -1,12 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Build;
-import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -17,6 +12,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.DisplayCutoutCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
+
+import org.signal.core.util.logging.Log;
 
 /**
  * Encapsulates logic to properly show/hide system UI/chrome in a full screen setting. Also
@@ -27,13 +25,24 @@ public final class FullscreenHelper {
   @NonNull private final Activity activity;
 
   public FullscreenHelper(@NonNull Activity activity) {
+   this(activity, false);
+  }
+
+  /**
+   * @param activity              The activity we are controlling
+   * @param suppressShowSystemUI  Suppresses the initial 'show system ui' call, which can cause the status and navbar to flash
+   *                              during some animations.
+   */
+  public FullscreenHelper(@NonNull Activity activity, boolean suppressShowSystemUI) {
     this.activity = activity;
 
     if (Build.VERSION.SDK_INT >= 28) {
       activity.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
     }
 
-    showSystemUI();
+    if (!suppressShowSystemUI) {
+      showSystemUI();
+    }
   }
 
   public void configureToolbarLayout(@NonNull View spacer, @NonNull View toolbar) {
@@ -69,29 +78,6 @@ public final class FullscreenHelper {
 
     spacer.setLayoutParams(params);
     spacer.setVisibility(View.VISIBLE);
-  }
-
-  @SuppressLint("SwitchIntDef")
-  private static int[] makePaddingValuesForAPI19(@NonNull Activity activity) {
-    int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
-    if (rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180) {
-      return new int[]{0, 0};
-    }
-
-    Resources resources   = activity.getResources();
-    int statusBarHeightId = resources.getIdentifier("status_bar_height", "dimen", "android");
-    int navBarHeightId    = resources.getIdentifier("navigation_bar_height", "dimen", "android");
-    int statusBarHeight   = resources.getDimensionPixelSize(statusBarHeightId);
-    int navBarHeight      = resources.getDimensionPixelSize(navBarHeightId);
-
-    switch (rotation) {
-      case Surface.ROTATION_90:
-        return new int[]{statusBarHeight, navBarHeight};
-      case Surface.ROTATION_270:
-        return new int[]{navBarHeight, statusBarHeight};
-      default:
-        return new int[]{0, 0};
-    }
   }
 
   private static int[] makePaddingValues(WindowInsetsCompat insets) {

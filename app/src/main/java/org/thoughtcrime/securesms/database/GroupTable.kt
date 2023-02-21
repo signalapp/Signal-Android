@@ -237,13 +237,13 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
             }
 
             if (updateCount > 0) {
-              getGroup(groupId)
+              Log.i(TAG, "Successfully updated $updateCount rows. GroupId: $groupId, Remaps: $remaps", true)
             } else {
-              throw IllegalStateException("Failed to update group with remapped recipients!")
+              Log.w(TAG, "Failed to update any rows. GroupId: $groupId, Remaps: $remaps", true)
             }
-          } else {
-            getGroup(cursor)
           }
+
+          getGroup(cursor)
         } else {
           Optional.empty()
         }
@@ -565,7 +565,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         ) as $MEMBER_GROUP_CONCAT
       FROM ${MembershipTable.TABLE_NAME}
       INNER JOIN $TABLE_NAME ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
-      INNER JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
+      LEFT JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
     """.toSingleLine()
 
     var query = "${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} = ?"

@@ -182,7 +182,7 @@ public final class TransferControlView extends FrameLayout {
     return true;
   }
 
-  private int getTransferState(@NonNull List<Slide> slides) {
+  static int getTransferState(@NonNull List<Slide> slides) {
     int     transferState = AttachmentTable.TRANSFER_PROGRESS_DONE;
     boolean allFailed     = true;
 

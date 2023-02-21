@@ -127,6 +127,7 @@ public final class StorageSyncModels {
                                   .setHideStory(hideStory)
                                   .setUnregisteredTimestamp(recipient.getSyncExtras().getUnregisteredTimestamp())
                                   .setHidden(recipient.isHidden())
+                                  .setUsername(recipient.getUsername())
                                   .build();
   }
 
