@@ -21,14 +21,18 @@ import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 
 import java.io.Serializable;
 
+import pigeon.navigation.captcha.CaptchaCursorHandler;
+
 /**
  * Fragment that displays a Captcha in a WebView.
  */
 public final class CaptchaFragment extends LoggingFragment {
 
   public static final String EXTRA_VIEW_MODEL_PROVIDER = "view_model_provider";
-  
+
   private BaseRegistrationViewModel viewModel;
+
+  private CaptchaCursorHandler cursorHandler;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,12 +73,19 @@ public final class CaptchaFragment extends LoggingFragment {
     } else {
       viewModel = provider.get(this);
     }
+
+    View cursor = view.findViewById(R.id.mouse_cursor);
+    cursorHandler = new CaptchaCursorHandler(webView, cursor);
   }
 
   private void handleToken(@NonNull String token) {
     viewModel.setCaptchaResponse(token);
 
     NavHostFragment.findNavController(this).navigateUp();
+  }
+
+  public void onKeyDown(int keyCode, int action) {
+    cursorHandler.onKeyDown(keyCode, action);
   }
 
   public interface CaptchaViewModelProvider extends Serializable {
