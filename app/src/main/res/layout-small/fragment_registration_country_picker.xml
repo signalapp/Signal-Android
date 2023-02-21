@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Mp02.Signal.Background"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/sim_background"
     android:orientation="vertical">
 
     <EditText
         android:id="@+id/country_search"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:drawableStart="@drawable/ic_menu_search_holo_light"
         android:hint="@string/country_selection_fragment__search"
-        android:textColor="@color/white"
-        android:textCursorDrawable="@null" />
+        android:textColor="@color/mp02_common_text_button"
+        android:textCursorDrawable="@null"
+        android:visibility="visible"
+        app:drawableTint="@color/mp02_common_text_button" />
 
     <ListView
         android:id="@android:id/list"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:choiceMode="singleChoice"
-        android:divider="#ffdddddd"
-        android:dividerHeight="1.0px" />
+        android:divider="@color/white_not_focus"
+        android:dividerHeight="1sp"
+        android:descendantFocusability="afterDescendants"
+        android:focusable="true"
+        tools:listitem="@layout/country_list_item" />
 
     <TextView
         android:id="@android:id/empty"
@@ -30,5 +36,5 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
-        android:text="@string/country_selection_fragment__loading_countries"  />
+        android:text="@string/country_selection_fragment__loading_countries" />
 </LinearLayout>

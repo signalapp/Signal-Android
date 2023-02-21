@@ -39,23 +39,26 @@
                 android:id="@+id/country_code"
                 style="@style/Mp02.Signal.TextInputLayout.Registration.Dropdown"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="0dp"
+                android:layout_height="match_parent"
                 app:errorEnabled="false"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     style="@style/Mp02.Signal.Text.CommonTextButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:digits="+1234567890"
-                    android:inputType="numberSigned"
-                    android:drawablePadding="-34dp"
+                    android:inputType="none"
                     android:hint="@string/Registration_country_code_entry_hint"
+                    android:drawablePadding="-50dp"
+                    android:gravity="bottom"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:focusable="false"
+                    android:clickable="false"
                     android:imeOptions="actionNext"
                     android:maxLength="4"
                     android:maxLines="1"
-                    android:padding="0dp"
                     android:singleLine="true"
                     tools:text="+125" />
 
@@ -74,6 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
+                    tools:text="@tools:sample/lorem"
                     android:gravity="bottom"
                     android:inputType="phone" />
 

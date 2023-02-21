@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 
 import java.util.ArrayList;
 import java.util.Map;
+import static pigeon.extensions.BuildExtensionsKt.isSignalVersion;
 
 public final class CountryPickerFragment extends ListFragment implements LoaderManager.LoaderCallbacks<ArrayList<Map<String, String>>> {
 
@@ -47,6 +48,10 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
     if (getArguments() != null) {
       CountryPickerFragmentArgs arguments = CountryPickerFragmentArgs.fromBundle(requireArguments());
       resultKey = arguments.getResultKey();
+    }
+
+    if (!isSignalVersion()){
+      getListView().setItemsCanFocus(true);
     }
 
     if (resultKey == null) {
