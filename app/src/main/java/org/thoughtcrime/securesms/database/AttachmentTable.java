@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData;
+import org.thoughtcrime.securesms.jobs.GenerateAudioWaveFormJob;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -655,6 +656,10 @@ public class AttachmentTable extends DatabaseTable {
     if (transferFile != null) {
       //noinspection ResultOfMethodCallIgnored
       transferFile.delete();
+    }
+
+    if (placeholder != null && MediaUtil.isAudio(placeholder)) {
+      GenerateAudioWaveFormJob.enqueue(placeholder.getAttachmentId());
     }
   }
 

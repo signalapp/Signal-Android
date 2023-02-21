@@ -13,11 +13,11 @@ class ContactSelectionListAdapter(
   context: Context,
   displayCheckBox: Boolean,
   displaySmsTag: DisplaySmsTag,
-  displayPhoneNumber: DisplayPhoneNumber,
+  displaySecondaryInformation: DisplaySecondaryInformation,
   onClickCallbacks: OnContactSelectionClick,
   longClickCallbacks: LongClickCallbacks,
   storyContextMenuCallbacks: StoryContextMenuCallbacks
-) : ContactSearchAdapter(context, emptySet(), displayCheckBox, displaySmsTag, displayPhoneNumber, onClickCallbacks, longClickCallbacks, storyContextMenuCallbacks) {
+) : ContactSearchAdapter(context, emptySet(), displayCheckBox, displaySmsTag, displaySecondaryInformation, onClickCallbacks, longClickCallbacks, storyContextMenuCallbacks) {
 
   init {
     registerFactory(NewGroupModel::class.java, LayoutFactory({ NewGroupViewHolder(it, onClickCallbacks::onNewGroupClicked) }, R.layout.contact_selection_new_group_item))

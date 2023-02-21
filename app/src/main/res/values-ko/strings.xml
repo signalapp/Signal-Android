@@ -14,6 +14,7 @@
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
 
     <string name="yes">네</string>
     <string name="no">아니요</string>
@@ -915,6 +916,10 @@
     <string name="ManageProfileFragment__username_created">사용자 이름을 만들었습니다.</string>
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">사용자 이름을 복사했습니다.</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1522,7 +1527,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">경고</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You cannot turn on Registration Lock while the PIN is disabled.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PIN을 비활성화하면 수동으로 백업 및 복원하지 않는 한 Signal을 다시 등록할 때 모든 데이터가 손실됩니다. PIN이 비활성화되어 있는 동안에는 등록 잠금을 켤 수 없습니다.</string>
     <string name="PinOptOutDialog_disable_pin">PIN 비활성화</string>
 
     <!-- RatingManager -->
@@ -1890,7 +1895,7 @@
     <!--  Displayed in the conversation list when your message history has been merged -->
     <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
-    <string name="ThreadRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
+    <string name="ThreadRecord_s_belongs_to_s">%1$s번은 %2$s 님의 전화번호입니다.</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal 업데이트</string>
@@ -5484,9 +5489,9 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">월</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
-    <string name="TimeDurationPickerDialog_positive_button">Set</string>
+    <string name="TimeDurationPickerDialog_positive_button">설정</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
     <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
 

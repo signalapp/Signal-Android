@@ -117,4 +117,12 @@ public abstract class TimedEventManager<E> {
     Log.w(TAG, "Unable to schedule exact alarm, falling back to inexact alarm, scheduling alarm for: " + timestamp);
     alarmManager.set(AlarmManager.RTC_WAKEUP, timestamp, pendingIntent);
   }
+
+  protected static void cancelAlarm(@NonNull Context context, @NonNull Class<? extends BroadcastReceiver> alarmClass) {
+    Intent        intent        = new Intent(context, alarmClass);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable());
+
+    pendingIntent.cancel();
+    ServiceUtil.getAlarmManager(context).cancel(pendingIntent);
+  }
 }

@@ -92,7 +92,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
-    fullscreenHelper = FullscreenHelper(requireActivity())
+    fullscreenHelper = FullscreenHelper(requireActivity(), true)
     individualItemWidth = context.resources.getDimension(R.dimen.media_rail_item_size).roundToInt()
   }
 

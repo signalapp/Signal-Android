@@ -73,7 +73,21 @@ class RegistrationNumberInputController(
     }
   }
 
-  fun updateNumber(numberViewState: NumberViewState) {
+  fun setNumberAndCountryCode(numberViewState: NumberViewState) {
+    val countryCode = numberViewState.countryCode
+
+    isUpdating = true
+    phoneNumberInputLayout.setText(numberViewState.nationalNumber)
+    if (numberViewState.countryCode != 0) {
+      spinnerView.setText(supportedCountryPrefixes.first { it.digits == numberViewState.countryCode }.toString())
+    }
+    val regionCode = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode)
+    setCountryFormatter(regionCode)
+
+    isUpdating = false
+  }
+
+  fun updateNumberFormatter(numberViewState: NumberViewState) {
     val countryCode = numberViewState.countryCode
 
     isUpdating = true

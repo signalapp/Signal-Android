@@ -170,13 +170,13 @@ class ConversationItemThumbnail @JvmOverloads constructor(
 
   fun setMinimumThumbnailWidth(@Px width: Int) {
     minimumThumbnailWidth = width
-    state = state.copy(thumbnailViewState = state.thumbnailViewState.copy(minimumThumbnailWidth = width))
+    state = state.copy(thumbnailViewState = state.thumbnailViewState.copy(minWidth = width))
     state.thumbnailViewState.applyState(thumbnail)
   }
 
   fun setMaximumThumbnailHeight(@Px height: Int) {
     maximumThumbnailHeight = height
-    state = state.copy(thumbnailViewState = state.thumbnailViewState.copy(maximumThumbnailHeight = height))
+    state = state.copy(thumbnailViewState = state.thumbnailViewState.copy(maxHeight = height))
     state.thumbnailViewState.applyState(thumbnail)
   }
 
@@ -200,11 +200,11 @@ class ConversationItemThumbnail @JvmOverloads constructor(
         setThumbnailBounds(normalBounds)
 
         if (minimumThumbnailWidth != -1) {
-          state = state.copy(thumbnailViewState = state.thumbnailViewState.copy(minimumThumbnailWidth = minimumThumbnailWidth))
+          state = state.copy(thumbnailViewState = state.thumbnailViewState.copy(minWidth = minimumThumbnailWidth))
         }
 
         if (maximumThumbnailHeight != -1) {
-          state = state.copy(thumbnailViewState = state.thumbnailViewState.copy(maximumThumbnailHeight = maximumThumbnailHeight))
+          state = state.copy(thumbnailViewState = state.thumbnailViewState.copy(maxHeight = maximumThumbnailHeight))
         }
       }
 

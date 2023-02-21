@@ -28,13 +28,13 @@ class ConversationListSearchAdapter(
   fixedContacts: Set<ContactSearchKey>,
   displayCheckBox: Boolean,
   displaySmsTag: DisplaySmsTag,
-  displayPhoneNumber: DisplayPhoneNumber,
+  displaySecondaryInformation: DisplaySecondaryInformation,
   onClickedCallbacks: ConversationListSearchClickCallbacks,
   longClickCallbacks: LongClickCallbacks,
   storyContextMenuCallbacks: StoryContextMenuCallbacks,
   lifecycleOwner: LifecycleOwner,
   glideRequests: GlideRequests
-) : ContactSearchAdapter(context, fixedContacts, displayCheckBox, displaySmsTag, displayPhoneNumber, onClickedCallbacks, longClickCallbacks, storyContextMenuCallbacks) {
+) : ContactSearchAdapter(context, fixedContacts, displayCheckBox, displaySmsTag, displaySecondaryInformation, onClickedCallbacks, longClickCallbacks, storyContextMenuCallbacks) {
 
   init {
     registerFactory(

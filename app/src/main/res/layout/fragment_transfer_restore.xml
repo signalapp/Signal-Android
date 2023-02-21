@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:viewBindingIgnore="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:layout_marginBottom="16dp"
             android:gravity="center"
             android:text="@string/TransferOrRestoreFragment__transfer_or_restore_account"
-            android:textAppearance="@style/Signal.Text.Headline.Registration" />
+            android:textAppearance="@style/Signal.Text.HeadlineMedium" />
 
         <TextView
             android:layout_width="match_parent"
@@ -30,7 +30,8 @@
             android:layout_marginBottom="@dimen/transfer_item_spacing"
             android:gravity="center"
             android:text="@string/TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account"
-            android:textAppearance="@style/TextAppearance.Signal.Body1" />
+            android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:textColor="@color/signal_colorOnSurfaceVariant" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/transfer_or_restore_fragment_transfer"
@@ -48,7 +49,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_transfer_phone_48"
-                app:tint="@color/signal_colorPrimary"/>
+                app:tint="@color/signal_colorPrimary" />
 
             <TextView
                 android:id="@+id/transfer_or_restore_fragment_transfer_header"
@@ -56,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/TransferOrRestoreFragment__transfer_from_android_device"
-                android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+                android:textAppearance="@style/Signal.Text.Body"
                 app:layout_constraintBottom_toTopOf="@+id/transfer_or_restore_fragment_transfer_description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
@@ -68,7 +69,7 @@
                 android:id="@+id/transfer_or_restore_fragment_transfer_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/signal_text_secondary"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
@@ -102,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/TransferOrRestoreFragment__restore_from_backup"
-                android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+                android:textAppearance="@style/Signal.Text.Body"
                 app:layout_constraintBottom_toTopOf="@+id/transfer_or_restore_fragment_restore_description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
@@ -115,7 +116,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/TransferOrRestoreFragment__restore_your_messages_from_a_local_backup"
-                android:textColor="@color/signal_text_secondary"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"

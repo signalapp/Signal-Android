@@ -29,7 +29,7 @@ class ViewAllSignalConnectionsFragment : Fragment(R.layout.view_all_signal_conne
       selectionLimits = SelectionLimits(0, 0),
       displayCheckBox = false,
       displaySmsTag = ContactSearchAdapter.DisplaySmsTag.IF_NOT_REGISTERED,
-      displayPhoneNumber = ContactSearchAdapter.DisplayPhoneNumber.NEVER,
+      displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER,
       mapStateToConfiguration = { getConfiguration() },
       performSafetyNumberChecks = false
     )

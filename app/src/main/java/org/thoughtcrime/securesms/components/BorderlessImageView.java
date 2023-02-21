@@ -59,7 +59,7 @@ public class BorderlessImageView extends FrameLayout {
     boolean showControls = slide.asAttachment().getUri() == null;
 
     if (slide.hasSticker()) {
-      image.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+      image.setScaleType(ImageView.ScaleType.FIT_CENTER);
       image.setImageResource(glideRequests, slide, showControls, false);
     } else {
       image.setScaleType(ImageView.ScaleType.CENTER_CROP);

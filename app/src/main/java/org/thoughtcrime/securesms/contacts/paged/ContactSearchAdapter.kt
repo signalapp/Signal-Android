@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -38,7 +39,7 @@ open class ContactSearchAdapter(
   fixedContacts: Set<ContactSearchKey>,
   displayCheckBox: Boolean,
   displaySmsTag: DisplaySmsTag,
-  displayPhoneNumber: DisplayPhoneNumber,
+  displaySecondaryInformation: DisplaySecondaryInformation,
   onClickCallbacks: ClickCallbacks,
   longClickCallbacks: LongClickCallbacks,
   storyContextMenuCallbacks: StoryContextMenuCallbacks
@@ -46,7 +47,7 @@ open class ContactSearchAdapter(
 
   init {
     registerStoryItems(this, displayCheckBox, onClickCallbacks::onStoryClicked, storyContextMenuCallbacks)
-    registerKnownRecipientItems(this, fixedContacts, displayCheckBox, displaySmsTag, displayPhoneNumber, onClickCallbacks::onKnownRecipientClicked, longClickCallbacks::onKnownRecipientLongClick)
+    registerKnownRecipientItems(this, fixedContacts, displayCheckBox, displaySmsTag, displaySecondaryInformation, onClickCallbacks::onKnownRecipientClicked, longClickCallbacks::onKnownRecipientLongClick)
     registerHeaders(this)
     registerExpands(this, onClickCallbacks::onExpandClicked)
     registerFactory(UnknownRecipientModel::class.java, LayoutFactory({ UnknownRecipientViewHolder(it, onClickCallbacks::onUnknownRecipientClicked, displayCheckBox) }, R.layout.contact_search_unknown_item))
@@ -83,13 +84,13 @@ open class ContactSearchAdapter(
       fixedContacts: Set<ContactSearchKey>,
       displayCheckBox: Boolean,
       displaySmsTag: DisplaySmsTag,
-      displayPhoneNumber: DisplayPhoneNumber,
+      displaySecondaryInformation: DisplaySecondaryInformation,
       recipientListener: OnClickedCallback<ContactSearchData.KnownRecipient>,
       recipientLongClickCallback: OnLongClickedCallback<ContactSearchData.KnownRecipient>
     ) {
       mappingAdapter.registerFactory(
         RecipientModel::class.java,
-        LayoutFactory({ KnownRecipientViewHolder(it, fixedContacts, displayCheckBox, displaySmsTag, displayPhoneNumber, recipientListener, recipientLongClickCallback) }, R.layout.contact_search_item)
+        LayoutFactory({ KnownRecipientViewHolder(it, fixedContacts, displayCheckBox, displaySmsTag, displaySecondaryInformation, recipientListener, recipientLongClickCallback) }, R.layout.contact_search_item)
       )
     }
 
@@ -350,7 +351,7 @@ open class ContactSearchAdapter(
     private val fixedContacts: Set<ContactSearchKey>,
     displayCheckBox: Boolean,
     displaySmsTag: DisplaySmsTag,
-    private val displayPhoneNumber: DisplayPhoneNumber,
+    private val displaySecondaryInformation: DisplaySecondaryInformation,
     onClick: OnClickedCallback<ContactSearchData.KnownRecipient>,
     private val onLongClick: OnLongClickedCallback<ContactSearchData.KnownRecipient>
   ) : BaseRecipientViewHolder<RecipientModel, ContactSearchData.KnownRecipient>(itemView, displayCheckBox, displaySmsTag, onClick), LetterHeaderDecoration.LetterHeaderItem {
@@ -369,8 +370,11 @@ open class ContactSearchAdapter(
         val count = recipient.participantIds.size
         number.text = context.resources.getQuantityString(R.plurals.ContactSearchItems__group_d_members, count, count)
         number.visible = true
-      } else if (displayPhoneNumber == DisplayPhoneNumber.ALWAYS && recipient.hasE164()) {
-        number.text = recipient.requireE164()
+      } else if (displaySecondaryInformation == DisplaySecondaryInformation.ALWAYS && recipient.combinedAboutAndEmoji != null) {
+        number.text = recipient.combinedAboutAndEmoji
+        number.visible = true
+      } else if (displaySecondaryInformation == DisplaySecondaryInformation.ALWAYS && recipient.hasE164()) {
+        number.text = PhoneNumberFormatter.prettyPrint(recipient.requireE164())
         number.visible = true
       } else {
         super.bindNumberField(model)
@@ -607,7 +611,11 @@ open class ContactSearchAdapter(
     NEVER
   }
 
-  enum class DisplayPhoneNumber {
+  /**
+   * Whether or not we should display a recipient's 'about' or e164, if either are
+   * available.
+   */
+  enum class DisplaySecondaryInformation {
     NEVER,
     ALWAYS
   }

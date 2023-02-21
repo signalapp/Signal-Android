@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.OutlinedThumbnailView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linkpreview_thumbnail"
+    android:layout_width="72dp"
+    android:layout_height="0dp"
+    android:maxHeight="72dp"
+    android:scaleType="centerCrop"
+    android:visibility="gone"
+    app:layout_constraintBottom_toTopOf="@+id/linkpreview_divider"
+    app:layout_constraintHeight_min="72dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/linkpreview_title"
+    tools:src="@drawable/ic_contact_picture"
+    tools:visibility="visible" />

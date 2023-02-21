@@ -15,6 +15,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 
 import pigeon.navigation.KeyEventBehaviour;
 import pigeon.navigation.PigeonKeyEventBehaviourImpl;
@@ -27,6 +29,8 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
   private static final String TAG = Log.tag(RegistrationNavigationActivity.class);
 
   public static final String RE_REGISTRATION_EXTRA = "re_registration";
+
+  private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   private SmsRetrieverReceiver  smsRetrieverReceiver;
   private RegistrationViewModel viewModel;
@@ -52,6 +56,8 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    dynamicTheme.onCreate(this);
+
     super.onCreate(savedInstanceState);
     viewModel = new ViewModelProvider(this, new RegistrationViewModel.Factory(this, isReregister(getIntent()))).get(RegistrationViewModel.class);
 
@@ -61,6 +67,12 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
     if (getIntent() != null && getIntent().getData() != null) {
       CommunicationActions.handlePotentialProxyLinkUrl(this, getIntent().getDataString());
     }
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    dynamicTheme.onResume(this);
   }
 
   @Override

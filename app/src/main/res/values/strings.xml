@@ -14,6 +14,7 @@
     <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
     <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
     <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
+    <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -953,6 +954,10 @@
     <string name="ManageProfileFragment__username_created">Username created</string>
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Username copied</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
 
 
     <!-- ManageRecipientActivity -->
