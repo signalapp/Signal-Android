@@ -15,14 +15,13 @@
     </style>
 
     <style name="Mp02.Signal.ListTextView" >
-        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:defaultFocusHighlightEnabled" tools:targetApi="o">false</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:textColor">@color/white_not_focus</item>
         <item name="android:focusable">true</item>
-        <item name="android:paddingStart">30px</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/mp02_common_text_button</item>
         <item name="android:ellipsize">marquee</item>
         <item name="android:singleLine">true</item>
     </style>
@@ -35,10 +34,10 @@
         <item name="boxCollapsedPaddingTop">0dp</item>
     </style>
 
-    <style name="Mp02.Signal.TextInputLayout.Registration" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+    <style name="Mp02.Signal.TextInputLayout.Registration" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:padding">0dp</item>
-        <item name="boxBackgroundColor">@color/black</item>
-        <item name="boxStrokeColor">@color/focused_text_color</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
         <item name="boxCollapsedPaddingTop">0dp</item>
         <item name="expandedHintEnabled">false</item>
         <item name="helperTextEnabled">false</item>
@@ -91,9 +90,10 @@
     <style name="Mp02.Signal.Text.BigCommonTextButton">
         <item name="android:textSize">36sp</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:textColor">@color/mp02_common_text_button</item>
         <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">@color/mp02_common_text_button</item>
         <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
         <item name="android:defaultFocusHighlightEnabled" tools:ignore="NewApi">false</item>
     </style>
 

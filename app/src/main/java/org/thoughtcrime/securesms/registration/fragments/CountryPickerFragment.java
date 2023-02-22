@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.ListFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.loader.app.LoaderManager;
@@ -58,6 +60,7 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
     countryFilter.addTextChangedListener(new FilterWatcher());
     LoaderManager.getInstance(this).initLoader(0, null, this).forceLoad();
   }
+
 
   @Override
   public void onListItemClick(@NonNull ListView listView, @NonNull View view, int position, long id) {
