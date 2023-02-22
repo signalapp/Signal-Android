@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/signup"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/enterCodeFragment">
 
     <fragment
         android:id="@+id/welcomeFragment"
