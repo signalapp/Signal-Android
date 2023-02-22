@@ -44,7 +44,7 @@ import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 import java.util.Optional;
 
 import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
-import static pigeon.extensions.KotilinExtensionsKt.onFocusTextChangeListener;
+import static pigeon.extensions.KotilinExtensionsKt.focusOnLeft;
 
 public final class WelcomeFragment extends LoggingFragment {
 
@@ -111,7 +111,7 @@ public final class WelcomeFragment extends LoggingFragment {
 
       continueButton = view.findViewById(R.id.welcome_continue_button);
       continueButton.setOnClickListener(this::continueClicked);
-      continueButton.setupAnimation();
+      continueButton.setupAnimation(true);
 
       Button restoreFromBackup = view.findViewById(R.id.welcome_transfer_or_restore);
       restoreFromBackup.setOnClickListener(this::restoreFromBackupClicked);
@@ -119,7 +119,7 @@ public final class WelcomeFragment extends LoggingFragment {
       TextView welcomeTermsButton = view.findViewById(R.id.welcome_terms_button);
       welcomeTermsButton.setOnClickListener(v -> onTermsClicked());
 
-      onFocusTextChangeListener(welcomeTermsButton);
+      focusOnLeft(welcomeTermsButton);
 
       if (!canUserSelectBackup()) {
         restoreFromBackup.setText(R.string.registration_activity__transfer_account);

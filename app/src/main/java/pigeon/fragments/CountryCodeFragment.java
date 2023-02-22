@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.registration.fragments;
+package pigeon.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,10 +16,11 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.registration.fragments.CountryPickerFragment;
+import org.thoughtcrime.securesms.registration.fragments.CountryPickerFragmentArgs;
 import org.thoughtcrime.securesms.registration.util.RegistrationNumberInputController;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
@@ -30,7 +31,7 @@ import java.util.Objects;
 
 import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
 import static pigeon.extensions.BuildExtensionsKt.isSignalVersion;
-import static pigeon.extensions.KotilinExtensionsKt.onFocusTextChangeListener;
+import static pigeon.extensions.KotilinExtensionsKt.focusOnRight;
 
 public final class CountryCodeFragment extends LoggingFragment implements RegistrationNumberInputController.Callbacks {
 
@@ -63,9 +64,6 @@ public final class CountryCodeFragment extends LoggingFragment implements Regist
 
     setDebugLogSubmitMultiTapView(verifyHeader);
 
-    onFocusTextChangeListener(verifyHeader);
-    onFocusTextChangeListener(countryCode);
-
     RegistrationNumberInputController controller = new RegistrationNumberInputController(requireContext(),
                                                                                          this,
                                                                                          new EditText(getContext()),
@@ -73,7 +71,11 @@ public final class CountryCodeFragment extends LoggingFragment implements Regist
     next.setOnClickListener(v -> handleRegister(requireContext(), v));
 
     if (!isSignalVersion()) {
-      CountryPickerFragmentArgs arguments = new CountryPickerFragmentArgs.Builder().setResultKey(NUMBER_COUNTRY_SELECT).build();
+      focusOnRight(verifyHeader);
+      focusOnRight(Objects.requireNonNull(countryCode));
+      verifyHeader.requestFocus();
+
+      org.thoughtcrime.securesms.registration.fragments.CountryPickerFragmentArgs arguments = new CountryPickerFragmentArgs.Builder().setResultKey(NUMBER_COUNTRY_SELECT).build();
 
       countryCode.setOnClickListener(v -> SafeNavigation.safeNavigate(
           Navigation.findNavController(v), R.id.action_pickCountry, arguments.toBundle()
@@ -89,7 +91,7 @@ public final class CountryCodeFragment extends LoggingFragment implements Regist
             String resultCountryName = result.getString(CountryPickerFragment.KEY_COUNTRY);
 
             viewModel.onCountrySelected(resultCountryName, resultCode);
-            controller.setNumberAndCountryCode(viewModel.getNumber());
+            controller.setPigeonNumberAndCountryCode(viewModel.getNumber());
           }
       );
     }
@@ -98,7 +100,7 @@ public final class CountryCodeFragment extends LoggingFragment implements Regist
     viewModel = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
 
     controller.prepopulateCountryCode();
-    controller.setNumberAndCountryCode(viewModel.getNumber());
+    controller.setPigeonNumberAndCountryCode(viewModel.getNumber());
   }
   private void handleRegister(@NonNull Context context, @NonNull View view) {
     if (TextUtils.isEmpty(countryCode.getEditText().getText())) {
