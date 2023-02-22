@@ -40,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:focusable="true"
+                android:visibility="gone"
                 app:errorEnabled="false"
                 app:hintEnabled="false">
 
@@ -71,7 +72,6 @@
                     style="@style/Mp02.Signal.Text.BigCommonTextButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/pigeon_small_margin"
                     android:paddingStart="0dp"
                     android:paddingEnd="0dp"
                     android:imeOptions="actionDone"
@@ -129,6 +129,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:circularProgressMaterialButton__label="@string/RegistrationActivity_next"
+            android:layout_marginBottom="@dimen/conversation_bottom_padding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

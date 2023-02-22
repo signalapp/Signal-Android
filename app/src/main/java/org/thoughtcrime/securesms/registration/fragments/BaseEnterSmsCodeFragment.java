@@ -43,6 +43,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
 import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.showConfirmNumberDialogIfTranslated;
+import static pigeon.extensions.BuildExtensionsKt.isSignalVersion;
 
 /**
  * Base fragment used by registration and change number flow to input an SMS verification code or request a
@@ -163,12 +164,16 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
   }
 
   protected void displaySuccess(@NonNull Runnable runAfterAnimation) {
-    keyboard.displaySuccess().addListener(new AssertedSuccessListener<Boolean>() {
-      @Override
-      public void onSuccess(Boolean result) {
-        runAfterAnimation.run();
-      }
-    });
+    if (isSignalVersion()) {
+      keyboard.displaySuccess().addListener(new AssertedSuccessListener<Boolean>() {
+        @Override
+        public void onSuccess(Boolean result) {
+          runAfterAnimation.run();
+        }
+      });
+    } else  {
+      runAfterAnimation.run();
+    }
   }
 
   protected void handleRateLimited() {
