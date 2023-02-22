@@ -119,7 +119,7 @@ public final class PushDecryptMessageJob extends BaseJob {
         Log.w(TAG, "Ignoring PNI signature because the feature flag is disabled!");
       }
 
-      if (envelope.hasReportingToken()) {
+      if (envelope.hasReportingToken() && envelope.getReportingToken() != null && envelope.getReportingToken().length > 0) {
         SignalDatabase.recipients().setReportingToken(RecipientId.from(result.getContent().getSender()), envelope.getReportingToken());
       }
 
