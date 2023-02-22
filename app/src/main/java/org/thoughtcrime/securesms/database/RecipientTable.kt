@@ -1170,36 +1170,47 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * @return All storage IDs for synced records, excluding the ones that need to be deleted.
    */
   fun getContactStorageSyncIdsMap(): Map<RecipientId, StorageId> {
-    val inPart = "(?, ?)"
-    val args = SqlUtil.buildArgs(GroupType.NONE.id, Recipient.self().id, GroupType.SIGNAL_V1.id, GroupType.DISTRIBUTION_LIST.id)
-
-    val query = """
-      $STORAGE_SERVICE_ID NOT NULL AND (
-        ($GROUP_TYPE = ? AND $SERVICE_ID NOT NULL AND $ID != ?)
-        OR
-        $GROUP_TYPE IN $inPart
-      )
-    """.trimIndent()
     val out: MutableMap<RecipientId, StorageId> = HashMap()
 
-    readableDatabase.query(TABLE_NAME, arrayOf(ID, STORAGE_SERVICE_ID, GROUP_TYPE), query, args, null, null, null).use { cursor ->
-      while (cursor != null && cursor.moveToNext()) {
-        val id = RecipientId.from(cursor.requireLong(ID))
-        val encodedKey = cursor.requireNonNullString(STORAGE_SERVICE_ID)
-        val groupType = GroupType.fromId(cursor.requireInt(GROUP_TYPE))
-        val key = Base64.decodeOrThrow(encodedKey)
+    readableDatabase
+      .select(ID, STORAGE_SERVICE_ID, GROUP_TYPE)
+      .from(TABLE_NAME)
+      .where(
+        """
+        $STORAGE_SERVICE_ID NOT NULL AND (
+            ($GROUP_TYPE = ? AND $SERVICE_ID NOT NULL AND $ID != ?)
+            OR
+            $GROUP_TYPE = ?
+            OR
+            $DISTRIBUTION_LIST_ID NOT NULL AND $DISTRIBUTION_LIST_ID IN (
+              SELECT ${DistributionListTables.ListTable.ID}
+              FROM ${DistributionListTables.ListTable.TABLE_NAME}
+            )
+        )
+        """.toSingleLine(),
+        GroupType.NONE.id,
+        Recipient.self().id,
+        GroupType.SIGNAL_V1.id
+      )
+      .run()
+      .use { cursor ->
+        while (cursor.moveToNext()) {
+          val id = RecipientId.from(cursor.requireLong(ID))
+          val encodedKey = cursor.requireNonNullString(STORAGE_SERVICE_ID)
+          val groupType = GroupType.fromId(cursor.requireInt(GROUP_TYPE))
+          val key = Base64.decodeOrThrow(encodedKey)
 
-        when (groupType) {
-          GroupType.NONE -> out[id] = StorageId.forContact(key)
-          GroupType.SIGNAL_V1 -> out[id] = StorageId.forGroupV1(key)
-          GroupType.DISTRIBUTION_LIST -> out[id] = StorageId.forStoryDistributionList(key)
-          else -> throw AssertionError()
+          when (groupType) {
+            GroupType.NONE -> out[id] = StorageId.forContact(key)
+            GroupType.SIGNAL_V1 -> out[id] = StorageId.forGroupV1(key)
+            GroupType.DISTRIBUTION_LIST -> out[id] = StorageId.forStoryDistributionList(key)
+            else -> throw AssertionError()
+          }
         }
       }
-    }
 
     for (id in groups.getAllGroupV2Ids()) {
-      val recipient = Recipient.externalGroupExact(id!!)
+      val recipient = Recipient.externalGroupExact(id)
       val recipientId = recipient.id
       val existing: RecipientRecord = getRecordForSync(recipientId) ?: throw AssertionError()
       val key = existing.storageId ?: throw AssertionError()

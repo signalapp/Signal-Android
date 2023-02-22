@@ -73,7 +73,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     }
   }
 
-  private object ListTable {
+  object ListTable {
     const val TABLE_NAME = "distribution_list"
 
     const val ID = "_id"
