@@ -329,9 +329,13 @@ public class EmojiTextView extends AppCompatTextView {
                   .append(Optional.ofNullable(overflowText).orElse(""));
 
         EmojiParser.CandidateList newCandidates = isInEditMode() ? null : EmojiProvider.getCandidates(newContent);
-        CharSequence              emojified     = EmojiProvider.emojify(newCandidates, newContent, this, isJumbomoji || forceJumboEmoji);
 
-        super.setText(emojified, BufferType.SPANNABLE);
+        if (useSystemEmoji || newCandidates == null || newCandidates.size() == 0) {
+          super.setText(newContent, BufferType.SPANNABLE);
+        } else {
+          CharSequence emojified = EmojiProvider.emojify(newCandidates, newContent, this, isJumbomoji || forceJumboEmoji);
+          super.setText(emojified, BufferType.SPANNABLE);
+        }
       } else if (maxLength > 0) {
         ellipsizeAnyTextForMaxLength();
       }
