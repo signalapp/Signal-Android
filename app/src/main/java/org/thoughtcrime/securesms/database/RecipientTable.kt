@@ -1036,6 +1036,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         Log.w(TAG, "Avoided attempt to apply null profile key in account record update!")
       }
 
+      put(USERNAME, update.new.username)
       put(STORAGE_SERVICE_ID, Base64.encodeBytes(update.new.id.raw))
 
       if (update.new.hasUnknownFields()) {
