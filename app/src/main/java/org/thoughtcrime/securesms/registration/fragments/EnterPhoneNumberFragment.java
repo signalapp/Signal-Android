@@ -61,11 +61,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
 import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.showConfirmNumberDialogIfTranslated;
-import static pigeon.extensions.BuildExtensionsKt.isSignalVersion;
 
 public final class EnterPhoneNumberFragment extends LoggingFragment implements RegistrationNumberInputController.Callbacks {
-
-  private static final String NUMBER_COUNTRY_SELECT = "number_country";
 
   private static final String TAG = Log.tag(EnterPhoneNumberFragment.class);
 
@@ -106,22 +103,6 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                                                                          Objects.requireNonNull(number.getEditText()),
                                                                                          countryCode);
     register.setOnClickListener(v -> handleRegister(requireContext()));
-
-    if (!isSignalVersion()) {
-      CountryPickerFragmentArgs arguments = new CountryPickerFragmentArgs.Builder().setResultKey(NUMBER_COUNTRY_SELECT).build();
-
-      countryCode.setOnClickListener(v -> SafeNavigation.safeNavigate(
-          Navigation.findNavController(v), R.id.action_pickCountry, arguments.toBundle()
-      ));
-
-      getParentFragmentManager().setFragmentResultListener(
-          NUMBER_COUNTRY_SELECT, this, (requestKey, result) -> {
-            int resultCountry = result.getInt(CountryPickerFragment.KEY_COUNTRY_CODE);
-            setCountry(resultCountry);
-            countryCode.getEditText().setText(String.valueOf(resultCountry));
-          }
-      );
-    }
 
     disposables.bindTo(getViewLifecycleOwner().getLifecycle());
     viewModel = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);

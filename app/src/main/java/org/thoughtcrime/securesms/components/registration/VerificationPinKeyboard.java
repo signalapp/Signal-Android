@@ -24,6 +24,8 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 
+import static pigeon.extensions.BuildExtensionsKt.isSignalVersion;
+
 public class VerificationPinKeyboard extends FrameLayout {
 
   private NumericKeyboardView keyboardView;
@@ -76,23 +78,27 @@ public class VerificationPinKeyboard extends FrameLayout {
   }
 
   public void displayKeyboard() {
-    this.keyboardView.setVisibility(View.VISIBLE);
-    this.progressBar.setVisibility(View.GONE);
-    this.successView.setVisibility(View.GONE);
-    this.failureView.setVisibility(View.GONE);
-    this.lockedView.setVisibility(View.GONE);
+    if (isSignalVersion()) {
+      this.keyboardView.setVisibility(View.VISIBLE);
+      this.progressBar.setVisibility(View.GONE);
+      this.successView.setVisibility(View.GONE);
+      this.failureView.setVisibility(View.GONE);
+      this.lockedView.setVisibility(View.GONE);
+    }
   }
 
   public void displayProgress() {
-    this.keyboardView.setVisibility(View.INVISIBLE);
-    this.progressBar.setVisibility(View.VISIBLE);
-    this.successView.setVisibility(View.GONE);
-    this.failureView.setVisibility(View.GONE);
-    this.lockedView.setVisibility(View.GONE);
+    if (isSignalVersion()) {
+      this.keyboardView.setVisibility(View.INVISIBLE);
+      this.progressBar.setVisibility(View.VISIBLE);
+      this.successView.setVisibility(View.GONE);
+      this.failureView.setVisibility(View.GONE);
+      this.lockedView.setVisibility(View.GONE);
+    }
   }
 
   public ListenableFuture<Boolean> displaySuccess() {
-    SettableFuture<Boolean> result = new SettableFuture<>();
+      SettableFuture<Boolean> result = new SettableFuture<>();
 
     this.keyboardView.setVisibility(View.INVISIBLE);
     this.progressBar.setVisibility(View.GONE);
@@ -121,6 +127,7 @@ public class VerificationPinKeyboard extends FrameLayout {
 
     ViewUtil.animateIn(this.successView, scaleAnimation);
     return result;
+
   }
 
   public ListenableFuture<Boolean> displayFailure() {
