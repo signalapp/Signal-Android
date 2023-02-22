@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Report 1 to {@link #MAX_MESSAGE_COUNT} message guids received prior to {@link #timestamp} in {@link #threadId} to the server as spam.
@@ -41,7 +42,7 @@ public class ReportSpamJob extends BaseJob {
 
   public ReportSpamJob(long threadId, long timestamp) {
     this(new Parameters.Builder().addConstraint(NetworkConstraint.KEY)
-                                 .setMaxAttempts(5)
+                                 .setLifespan(TimeUnit.DAYS.toMillis(1))
                                  .setQueue("ReportSpamJob")
                                  .build(),
          threadId,
