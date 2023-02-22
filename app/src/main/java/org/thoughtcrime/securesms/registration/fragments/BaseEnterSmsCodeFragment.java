@@ -6,6 +6,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -122,6 +123,15 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
     viewModel.getSuccessfulCodeRequestAttempts().observe(getViewLifecycleOwner(), (attempts) -> {
       if (attempts >= 3) {
         new ContactSupportBottomSheetFragment(this::openTroubleshootingSteps, this::sendEmailToSupport).show(getChildFragmentManager(), "support_bottom_sheet");
+      }
+    });
+
+    requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+      @Override
+      public void handleOnBackPressed() {
+        viewModel.resetSession();
+        this.remove();
+        requireActivity().getOnBackPressedDispatcher().onBackPressed();
       }
     });
   }
@@ -324,8 +334,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
                                     } else if (processor.captchaRequired()) {
                                       navigateToCaptcha();
                                     } else if (processor.rateLimit()) {
-                                      long rateLimit = processor.getRateLimit();
-                                      Toast.makeText(requireContext(), R.string.RegistrationActivity_rate_limited_to_service, Toast.LENGTH_LONG).show();
+                                      handleRateLimited();
                                     } else {
                                       Log.w(TAG, "Unable to request phone code", processor.getError());
                                       Toast.makeText(requireContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();

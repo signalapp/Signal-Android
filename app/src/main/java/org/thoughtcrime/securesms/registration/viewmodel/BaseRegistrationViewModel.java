@@ -6,6 +6,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.pin.KbsRepository;
 import org.thoughtcrime.securesms.pin.TokenData;
@@ -102,10 +106,17 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     return savedState.getLiveData(STATE_NUMBER);
   }
 
+  public void restorePhoneNumberStateFromE164(String e164) throws NumberParseException {
+    Phonenumber.PhoneNumber phoneNumber = PhoneNumberUtil.getInstance().parse(e164, null);
+    onCountrySelected(null, phoneNumber.getCountryCode());
+    setNationalNumber(String.valueOf(phoneNumber.getNationalNumber()));
+  }
+
   public void onCountrySelected(@Nullable String selectedCountryName, int countryCode) {
     setViewState(getNumber().toBuilder()
                             .selectedCountryDisplayName(selectedCountryName)
-                            .countryCode(countryCode).build());
+                            .countryCode(countryCode)
+                            .build());
   }
 
   public void setNationalNumber(String number) {

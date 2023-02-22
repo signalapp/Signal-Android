@@ -182,6 +182,12 @@ class VerifyAccountRepository(private val context: Application) {
     }.subscribeOn(Schedulers.io())
   }
 
+  fun getFcmToken(): Single<String> {
+    return Single.fromCallable {
+      return@fromCallable FcmUtil.getToken(context).orElse("")
+    }.subscribeOn(Schedulers.io())
+  }
+
   interface KbsPinDataProducer {
     @Throws(IOException::class, KeyBackupSystemWrongPinException::class, KeyBackupSystemNoDataException::class)
     fun produceKbsPinData(): KbsPinData

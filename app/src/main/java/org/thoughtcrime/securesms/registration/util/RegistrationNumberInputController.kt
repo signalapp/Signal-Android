@@ -32,6 +32,7 @@ class RegistrationNumberInputController(
     .map { CountryPrefix(it, PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(it)) }
     .sortedBy { it.digits }
   private val spinnerAdapter: ArrayAdapter<CountryPrefix> = ArrayAdapter<CountryPrefix>(context, R.layout.registration_country_code_dropdown_item, supportedCountryPrefixes)
+  private val countryCodeEntryListener = CountryCodeEntryListener()
 
   private var countryFormatter: AsYouTypeFormatter? = null
   private var isUpdating = true
@@ -41,11 +42,13 @@ class RegistrationNumberInputController(
 
     spinnerView.threshold = 100
     spinnerView.setAdapter(spinnerAdapter)
-    spinnerView.addTextChangedListener(CountryCodeEntryListener())
+    spinnerView.addTextChangedListener(countryCodeEntryListener)
   }
 
   fun prepopulateCountryCode() {
-    spinnerView.setText(supportedCountryPrefixes[0].toString())
+    if (spinnerView.editableText.isBlank()) {
+      spinnerView.setText(supportedCountryPrefixes[0].toString())
+    }
   }
 
   private fun advanceToPhoneNumberInput() {

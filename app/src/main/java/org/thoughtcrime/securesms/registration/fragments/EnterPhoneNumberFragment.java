@@ -156,8 +156,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   private void handleRegister(@NonNull Context context) {
-    final EditText countryCodeEditText = countryCode.getEditText();
-    if (countryCodeEditText == null || TextUtils.isEmpty(countryCodeEditText.getText())) {
+    if (viewModel.getNumber().getCountryCode() == 0) {
       showErrorDialog(context, getString(R.string.RegistrationActivity_you_must_specify_your_country_code));
       return;
     }
@@ -272,6 +271,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .subscribe(processor -> {
                                     if (processor.verificationCodeRequestSuccess()) {
+                                      disposables.add(updateFcmTokenValue());
                                       SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
                                     } else if (processor.captchaRequired()) {
                                       Log.i(TAG, "Unable to request sms code due to captcha required");
@@ -299,6 +299,10 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                   });
 
     disposables.add(request);
+  }
+
+  private Disposable updateFcmTokenValue() {
+    return viewModel.updateFcmTokenValue().subscribe();
   }
 
   private String formatMillisecondsToString(long milliseconds) {
@@ -350,7 +354,12 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .subscribe(processor -> {
                                     if (processor.hasResult() && processor.canSubmitProofImmediately()) {
-                                      SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
+                                      try {
+                                        viewModel.restorePhoneNumberStateFromE164(sessionE164);
+                                        SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
+                                      } catch (NumberParseException numberParseException) {
+                                        viewModel.resetSession();
+                                      }
                                     } else {
                                       viewModel.resetSession();
                                     }

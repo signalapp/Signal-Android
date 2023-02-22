@@ -26,12 +26,12 @@ import org.thoughtcrime.securesms.registration.VerifyAccountRepository;
 import org.thoughtcrime.securesms.registration.VerifyResponse;
 import org.thoughtcrime.securesms.registration.VerifyResponseProcessor;
 import org.thoughtcrime.securesms.registration.VerifyResponseWithRegistrationLockProcessor;
-import org.thoughtcrime.securesms.registration.VerifyResponseWithSuccessfulKbs;
 import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
+import org.whispersystems.signalservice.api.push.exceptions.IncorrectCodeException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse;
 
@@ -123,13 +123,17 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                   .map(RegistrationSessionProcessor.RegistrationSessionProcessorForVerification::new)
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .doOnSuccess(processor -> {
-                                    setCanSmsAtTime(processor.getNextCodeViaSmsAttempt());
-                                    setCanCallAtTime(processor.getNextCodeViaCallAttempt());
+                                    if (processor.hasResult()) {
+                                      setCanSmsAtTime(processor.getNextCodeViaSmsAttempt());
+                                      setCanCallAtTime(processor.getNextCodeViaCallAttempt());
+                                    }
                                   })
                                   .observeOn(Schedulers.io())
                                   .flatMap(processor -> {
                                     if (processor.isAlreadyVerified() || (processor.hasResult() && processor.isVerified())) {
                                       return verifyAccountRepository.registerAccount(sessionId, getRegistrationData(), null, null);
+                                    } else if (processor.getError() == null) {
+                                      return Single.just(ServiceResponse.<VerifyResponse>forApplicationError(new IncorrectCodeException(), 403, null));
                                     } else {
                                       return Single.just(ServiceResponse.<VerifyResponse, RegistrationSessionMetadataResponse>coerceError(processor.getResponse()));
                                     }
@@ -318,6 +322,10 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                  })
                                  .onErrorReturnItem(false)
                                  .observeOn(AndroidSchedulers.mainThread());
+  }
+
+  public Single<String> updateFcmTokenValue() {
+    return verifyAccountRepository.getFcmToken().observeOn(AndroidSchedulers.mainThread()).doOnSuccess(this::setFcmToken);
   }
 
   private void restoreFromStorageService() {
