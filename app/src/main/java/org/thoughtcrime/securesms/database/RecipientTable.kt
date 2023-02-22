@@ -23,6 +23,7 @@ import org.signal.core.util.optionalLong
 import org.signal.core.util.optionalString
 import org.signal.core.util.or
 import org.signal.core.util.readToSet
+import org.signal.core.util.readToSingleBoolean
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
@@ -3062,6 +3063,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     return results
+  }
+
+  /** True if the recipient exists and is muted, otherwise false. */
+  fun isMuted(id: RecipientId): Boolean {
+    return readableDatabase
+      .select(MUTE_UNTIL)
+      .from(TABLE_NAME)
+      .where("$ID = ?", id)
+      .run()
+      .readToSingleBoolean()
   }
 
   fun getRegisteredE164s(): Set<String> {

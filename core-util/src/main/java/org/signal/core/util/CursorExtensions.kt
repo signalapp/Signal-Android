@@ -113,6 +113,16 @@ fun Cursor.readToSingleInt(defaultValue: Int = 0): Int {
   }
 }
 
+fun Cursor.readToSingleBoolean(defaultValue: Boolean = false): Boolean {
+  return use {
+    if (it.moveToFirst()) {
+      it.getInt(0) != 0
+    } else {
+      defaultValue
+    }
+  }
+}
+
 @JvmOverloads
 inline fun <T> Cursor.readToList(predicate: (T) -> Boolean = { true }, mapper: (Cursor) -> T): List<T> {
   val list = mutableListOf<T>()

@@ -126,8 +126,7 @@ public final class IdentityUtil {
       } catch (MmsException e) {
         throw new AssertionError();
       }
-      boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && recipient.isMuted();
-      SignalDatabase.threads().update(threadId, !keepThreadArchived);
+      SignalDatabase.threads().update(threadId, true);
     }
   }
 
