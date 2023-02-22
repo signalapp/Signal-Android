@@ -29,6 +29,7 @@
         android:layout_marginStart="@dimen/pigeon_normal_margin"
         android:layout_marginTop="@dimen/pigeon_normal_margin"
         android:gravity="center"
+        android:visibility="gone"
         android:text="@string/RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message"
         android:textColor="@color/white_not_focus"
         app:layout_constraintStart_toStartOf="@+id/welcome_continue_button"
@@ -39,21 +40,22 @@
         style="@style/Mp02.Signal.Text.CommonTextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/pigeon_normal_margin"
         android:ellipsize="end"
-        android:gravity="center"
+        android:gravity="start"
+        android:layout_marginStart="@dimen/pigeon_start_margin"
+        android:layout_marginTop="@dimen/pigeon_top_margin"
         android:text="@string/RegistrationActivity_terms_and_privacy"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
         android:id="@+id/welcome_continue_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/pigeon_small_margin"
         app:circularProgressMaterialButton__label="@string/RegistrationActivity_continue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_terms_button"
-        app:layout_goneMarginBottom="@dimen/registration_button_bottom_margin" />
+        app:layout_constraintTop_toBottomOf="@+id/welcome_terms_button" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/welcome_transfer_or_restore"

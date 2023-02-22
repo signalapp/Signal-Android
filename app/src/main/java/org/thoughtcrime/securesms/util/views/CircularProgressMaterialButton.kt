@@ -50,8 +50,11 @@ class CircularProgressMaterialButton @JvmOverloads constructor(
       val label = getString(R.styleable.CircularProgressMaterialButton_circularProgressMaterialButton__label)
 
       materialButton.text = label
-      materialButton.onFocusTextChangeListener()
     }
+  }
+
+  fun setupAnimation(){
+    materialButton.onFocusTextChangeListener()
   }
 
   fun setText(@StringRes resId: Int) {
