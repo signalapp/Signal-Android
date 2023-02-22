@@ -24,6 +24,8 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 
+import static pigeon.extensions.BuildExtensionsKt.isSignalVersion;
+
 public class VerificationPinKeyboard extends FrameLayout {
 
   private NumericKeyboardView keyboardView;
@@ -75,24 +77,84 @@ public class VerificationPinKeyboard extends FrameLayout {
     this.listener = listener;
   }
 
+//  /private void updateUiStatus(int type) {
+//    switch (type) {
+//      case BaseEnterCodeFragment.EnterCodeStatus.STATUS_INIT:
+//      case BaseEnterCodeFragment.EnterCodeStatus.STATUS_SWITCH_NEXT:
+//        mLoadingLayout.setVisibility(View.GONE);
+//        mVerificationEntry.setVisibility(View.VISIBLE);
+//        mVerificationInput.setVisibility(View.VISIBLE);
+//        mVerificationInput.setEnabled(true);
+//        mVerificationNav.setEnabled(true);
+//        mVerificationNav.setVisibility(View.VISIBLE);
+//        recyclerView.setVisibility(View.GONE);
+//        break;
+//      case BaseEnterCodeFragment.EnterCodeStatus.STATUS_VERIFY_SUCCESS:
+//      case BaseEnterCodeFragment.EnterCodeStatus.STATUS_START_VERIFY:
+//        mLoadingLayout.setVisibility(View.VISIBLE);
+//        mVerificationEntry.setVisibility(View.VISIBLE);
+//        mVerificationInput.setVisibility(View.VISIBLE);
+//        mVerificationInput.setEnabled(false);
+//        mVerificationNav.setEnabled(false);
+//        mVerificationNav.setVisibility(View.VISIBLE);
+//        recyclerView.setVisibility(View.GONE);
+//        break;
+//      case BaseEnterCodeFragment.EnterCodeStatus.STATUS_SWITCH_OPTIONS:
+//        mLoadingLayout.setVisibility(View.GONE);
+//        mVerificationEntry.setVisibility(View.GONE);
+//        mVerificationInput.setVisibility(View.GONE);
+//        mVerificationInput.setEnabled(false);
+//        mVerificationNav.setEnabled(false);
+//        mVerificationNav.setVisibility(View.GONE);
+//        recyclerView.setVisibility(View.VISIBLE);
+//        recyclerView.requestFocus();
+//        break;
+//      case BaseEnterCodeFragment.EnterCodeStatus.STATUS_VERIFY_FAIL:
+//        mLoadingLayout.setVisibility(View.GONE);
+//        mVerificationEntry.setVisibility(View.VISIBLE);
+//        mVerificationInput.setVisibility(View.VISIBLE);
+//        mVerificationInput.setEnabled(true);
+//        mVerificationNav.setEnabled(true);
+//        mVerificationInput.setText("");
+//        mVerificationNav.setVisibility(View.VISIBLE);
+//        recyclerView.setVisibility(View.GONE);
+//        break;
+//    }
+//    if (isAdded()) {
+//      Editable s = mVerificationInput.getText();
+//      if (!TextUtils.isEmpty(s) && s.toString().length() == 6) {
+//        mVerificationNav.setTag(true);
+//        mVerificationNav.setText(getString(R.string.RegistrationActivity_next));
+//      } else {
+//        mVerificationNav.setText("Options");
+//        mVerificationNav.setTag(false);
+//      }
+//    }
+//  }
+
+
   public void displayKeyboard() {
-    this.keyboardView.setVisibility(View.VISIBLE);
-    this.progressBar.setVisibility(View.GONE);
-    this.successView.setVisibility(View.GONE);
-    this.failureView.setVisibility(View.GONE);
-    this.lockedView.setVisibility(View.GONE);
+    if (isSignalVersion()) {
+      this.keyboardView.setVisibility(View.VISIBLE);
+      this.progressBar.setVisibility(View.GONE);
+      this.successView.setVisibility(View.GONE);
+      this.failureView.setVisibility(View.GONE);
+      this.lockedView.setVisibility(View.GONE);
+    }
   }
 
   public void displayProgress() {
-    this.keyboardView.setVisibility(View.INVISIBLE);
-    this.progressBar.setVisibility(View.VISIBLE);
-    this.successView.setVisibility(View.GONE);
-    this.failureView.setVisibility(View.GONE);
-    this.lockedView.setVisibility(View.GONE);
+    if (isSignalVersion()) {
+      this.keyboardView.setVisibility(View.INVISIBLE);
+      this.progressBar.setVisibility(View.VISIBLE);
+      this.successView.setVisibility(View.GONE);
+      this.failureView.setVisibility(View.GONE);
+      this.lockedView.setVisibility(View.GONE);
+    }
   }
 
   public ListenableFuture<Boolean> displaySuccess() {
-    SettableFuture<Boolean> result = new SettableFuture<>();
+      SettableFuture<Boolean> result = new SettableFuture<>();
 
     this.keyboardView.setVisibility(View.INVISIBLE);
     this.progressBar.setVisibility(View.GONE);
@@ -121,6 +183,7 @@ public class VerificationPinKeyboard extends FrameLayout {
 
     ViewUtil.animateIn(this.successView, scaleAnimation);
     return result;
+
   }
 
   public ListenableFuture<Boolean> displayFailure() {

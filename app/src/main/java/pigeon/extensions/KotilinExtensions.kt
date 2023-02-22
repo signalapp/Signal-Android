@@ -1,11 +1,10 @@
 package pigeon.extensions
 
 import android.view.View
-import android.widget.TextView
 import androidx.core.view.ViewCompat
 
 
-fun TextView.onFocusTextChangeListener() {
+fun View.onFocusTextChangeListener() {
 
   if (!isSignalVersion()) {
     val BUTTON_SCALE_FOCUS = 1.3f
