@@ -16,6 +16,7 @@
         android:id="@+id/button"
         style="@style/Mp02.Signal.Text.MaterialTextButton"
         android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/pigeon_start_margin"
         android:layout_height="wrap_content"
         tools:text="Material Button"
         tools:textColor="@color/focused_text_color"
