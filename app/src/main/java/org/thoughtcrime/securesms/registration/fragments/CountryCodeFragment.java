@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -78,13 +79,17 @@ public final class CountryCodeFragment extends LoggingFragment implements Regist
           Navigation.findNavController(v), R.id.action_pickCountry, arguments.toBundle()
       ));
 
+      verifyHeader.setOnClickListener(v -> SafeNavigation.safeNavigate(
+          Navigation.findNavController(v), R.id.action_pickCountry, arguments.toBundle()
+      ));
+
       getParentFragmentManager().setFragmentResultListener(
           NUMBER_COUNTRY_SELECT, this, (requestKey, result) -> {
             int resultCode = result.getInt(CountryPickerFragment.KEY_COUNTRY_CODE);
-            String resultCountry = result.getString(CountryPickerFragment.KEY_COUNTRY);
-            viewModel.onCountrySelected(resultCountry, resultCode);
-            String fullCountry = (resultCountry + " +" + resultCode);
-            Objects.requireNonNull(countryCode.getEditText()).setText(fullCountry);
+            String resultCountryName = result.getString(CountryPickerFragment.KEY_COUNTRY);
+
+            viewModel.onCountrySelected(resultCountryName, resultCode);
+            controller.setNumberAndCountryCode(viewModel.getNumber());
           }
       );
     }
