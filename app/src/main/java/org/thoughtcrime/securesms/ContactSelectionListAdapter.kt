@@ -5,19 +5,21 @@ import android.view.View
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchData
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 
 class ContactSelectionListAdapter(
   context: Context,
+  fixedContacts: Set<ContactSearchKey>,
   displayCheckBox: Boolean,
   displaySmsTag: DisplaySmsTag,
   displaySecondaryInformation: DisplaySecondaryInformation,
   onClickCallbacks: OnContactSelectionClick,
   longClickCallbacks: LongClickCallbacks,
   storyContextMenuCallbacks: StoryContextMenuCallbacks
-) : ContactSearchAdapter(context, emptySet(), displayCheckBox, displaySmsTag, displaySecondaryInformation, onClickCallbacks, longClickCallbacks, storyContextMenuCallbacks) {
+) : ContactSearchAdapter(context, fixedContacts, displayCheckBox, displaySmsTag, displaySecondaryInformation, onClickCallbacks, longClickCallbacks, storyContextMenuCallbacks) {
 
   init {
     registerFactory(NewGroupModel::class.java, LayoutFactory({ NewGroupViewHolder(it, onClickCallbacks::onNewGroupClicked) }, R.layout.contact_selection_new_group_item))

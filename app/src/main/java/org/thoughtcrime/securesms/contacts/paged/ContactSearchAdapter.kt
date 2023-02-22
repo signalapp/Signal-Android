@@ -384,7 +384,16 @@ open class ContactSearchAdapter(
     }
 
     override fun bindCheckbox(model: RecipientModel) {
+      super.bindCheckbox(model)
+
+      if (fixedContacts.contains(model.knownRecipient.contactSearchKey)) {
+        checkbox.isChecked = true
+      }
       checkbox.isEnabled = !fixedContacts.contains(model.knownRecipient.contactSearchKey)
+    }
+
+    override fun isEnabled(model: RecipientModel): Boolean {
+      return !fixedContacts.contains(model.knownRecipient.contactSearchKey)
     }
 
     override fun getHeaderLetter(): String? {
@@ -415,11 +424,12 @@ open class ContactSearchAdapter(
     protected val smsTag: View = itemView.findViewById(R.id.sms_tag)
 
     override fun bind(model: T) {
-      checkbox.visible = displayCheckBox
-      checkbox.isChecked = isSelected(model)
+      if (isEnabled(model)) {
+        itemView.setOnClickListener { onClick.onClicked(avatar, getData(model), isSelected(model)) }
+        bindLongPress(model)
+      }
 
-      itemView.setOnClickListener { onClick.onClicked(avatar, getData(model), isSelected(model)) }
-      bindLongPress(model)
+      bindCheckbox(model)
 
       if (payload.isNotEmpty()) {
         return
@@ -434,7 +444,12 @@ open class ContactSearchAdapter(
       bindSmsTagField(model)
     }
 
-    protected open fun bindCheckbox(model: T) = Unit
+    protected open fun bindCheckbox(model: T) {
+      checkbox.visible = displayCheckBox
+      checkbox.isChecked = isSelected(model)
+    }
+
+    protected open fun isEnabled(model: T): Boolean = true
 
     protected open fun bindAvatar(model: T) {
       avatar.setAvatar(getRecipient(model))
