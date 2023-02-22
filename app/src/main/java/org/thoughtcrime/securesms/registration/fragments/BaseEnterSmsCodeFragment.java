@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
-import android.animation.Animator;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,6 +65,8 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
   private View                    wrongNumber;
   private boolean                 autoCompleting;
 
+  private EditText                pigeonCodeView;
+
   private ViewModel viewModel;
 
   protected final LifecycleDisposable disposables = new LifecycleDisposable();
@@ -84,13 +88,18 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
     keyboard             = view.findViewById(R.id.keyboard);
     callMeCountDown      = view.findViewById(R.id.call_me_count_down);
     wrongNumber          = view.findViewById(R.id.wrong_number);
+    pigeonCodeView       = view.findViewById(R.id.verification_code);
 
     new SignalStrengthPhoneStateListener(this, this);
 
     connectKeyboard(verificationCodeView, keyboard);
     ViewUtil.hideKeyboard(requireContext(), view);
 
-    setOnCodeFullyEnteredListener(verificationCodeView);
+    if (isSignalVersion()) {
+      setOnCodeFullyEnteredListener(verificationCodeView);
+    } else  {
+      setPigeonOnCodeFullyEnteredListener();
+    }
 
     wrongNumber.setOnClickListener(v -> onWrongNumber());
 
@@ -129,6 +138,53 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
     Navigation.findNavController(requireView()).navigateUp();
   }
 
+  private void setPigeonOnCodeFullyEnteredListener() {
+    pigeonCodeView.addTextChangedListener(new TextWatcher() {
+      @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+      }
+
+      @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if (s.length() == 6){
+
+          callMeCountDown.setVisibility(View.GONE);
+          wrongNumber.setVisibility(View.GONE);
+          keyboard.displayProgress();
+
+          Disposable verify = viewModel.verifyCodeWithoutRegistrationLock(s.toString())
+                                       .observeOn(AndroidSchedulers.mainThread())
+                                       .subscribe(processor -> {
+                                         if (!processor.hasResult()) {
+                                           Log.w(TAG, "post verify: ", processor.getError());
+                                         }
+                                         if (processor.hasResult()) {
+                                           handleSuccessfulVerify();
+                                         } else if (processor.rateLimit()) {
+                                           handleRateLimited();
+                                         } else if (processor.registrationLock() && !processor.isKbsLocked()) {
+                                           LockedException lockedException = processor.getLockedException();
+                                           handleRegistrationLock(lockedException.getTimeRemaining());
+                                         } else if (processor.isKbsLocked()) {
+                                           handleKbsAccountLocked();
+                                         } else if (processor.authorizationFailed()) {
+                                           handleIncorrectCodeError();
+                                         } else {
+                                           Log.w(TAG, "Unable to verify code", processor.getError());
+                                           handleGeneralError();
+                                         }
+                                       });
+
+          disposables.add(verify);
+        }
+      }
+
+      @Override public void afterTextChanged(Editable s) {
+
+      }
+    });
+
+  }
+
   private void setOnCodeFullyEnteredListener(VerificationCodeView verificationCodeView) {
     verificationCodeView.setOnCompleteListener(code -> {
 
@@ -164,16 +220,12 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
   }
 
   protected void displaySuccess(@NonNull Runnable runAfterAnimation) {
-    if (isSignalVersion()) {
-      keyboard.displaySuccess().addListener(new AssertedSuccessListener<Boolean>() {
-        @Override
-        public void onSuccess(Boolean result) {
-          runAfterAnimation.run();
-        }
-      });
-    } else  {
-      runAfterAnimation.run();
-    }
+    keyboard.displaySuccess().addListener(new AssertedSuccessListener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) {
+        runAfterAnimation.run();
+      }
+    });
   }
 
   protected void handleRateLimited() {
@@ -352,6 +404,6 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
 
   @Override
   public void onCellSignalPresent() {
- // TODO animate away bottom sheet
+    // TODO animate away bottom sheet
   }
 }

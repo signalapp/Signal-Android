@@ -64,7 +64,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/number"
                 style="@style/Mp02.Signal.TextInputLayout.Registration"
-                android:layout_marginStart="@dimen/pigeon_bottom_margin"
+                android:layout_marginStart="@dimen/pigeon_small_margin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
