@@ -147,7 +147,7 @@ class VerifyAccountRepository(private val context: Application) {
     }.subscribeOn(Schedulers.io())
   }
 
-  fun registerAccount(sessionId: String, registrationData: RegistrationData, pin: String? = null, kbsPinDataProducer: KbsPinDataProducer? = null): Single<ServiceResponse<VerifyResponse>> {
+  fun registerAccount(sessionId: String?, registrationData: RegistrationData, pin: String? = null, kbsPinDataProducer: KbsPinDataProducer? = null): Single<ServiceResponse<VerifyResponse>> {
     val universalUnidentifiedAccess: Boolean = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
     val unidentifiedAccessKey: ByteArray = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
 

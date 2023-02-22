@@ -56,6 +56,8 @@ import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
+import org.whispersystems.signalservice.internal.push.BackupAuthCheckRequest;
+import org.whispersystems.signalservice.internal.push.BackupAuthCheckResponse;
 import org.whispersystems.signalservice.internal.push.CdsiAuthResponse;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
@@ -73,9 +75,11 @@ import org.whispersystems.signalservice.internal.storage.protos.StorageManifest;
 import org.whispersystems.signalservice.internal.storage.protos.WriteOperation;
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 import org.whispersystems.signalservice.internal.util.Util;
+import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper;
 import org.whispersystems.util.Base64;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -93,6 +97,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -204,6 +209,22 @@ public class SignalServiceAccountManager {
     } else {
       this.pushServiceSocket.unregisterGcmId();
     }
+  }
+
+  public Single<ServiceResponse<BackupAuthCheckResponse>> checkBackupAuthCredentials(@Nonnull String e164, @Nonnull List<String> basicAuthTokens) {
+    List<String> usernamePasswords = basicAuthTokens
+        .stream()
+        .limit(10)
+        .map(t -> {
+          try {
+            return new String(Base64.decode(t.replace("Basic ", "").trim()), StandardCharsets.ISO_8859_1);
+          } catch (IOException e) {
+            return null;
+          }
+        })
+        .collect(Collectors.toList());
+
+    return pushServiceSocket.checkBackupAuthCredentials(new BackupAuthCheckRequest(e164, usernamePasswords), DefaultResponseMapper.getDefault(BackupAuthCheckResponse.class));
   }
 
   /**
@@ -326,44 +347,12 @@ public class SignalServiceAccountManager {
   /**
    * Refresh account attributes with server.
    *
-   * @param signalingKey 52 random bytes.  A 32 byte AES key and a 20 byte Hmac256 key, concatenated.
-   * @param signalProtocolRegistrationId A random 14-bit number that identifies this Signal install.
-   *                                     This value should remain consistent across registrations for the same
-   *                                     install, but probabilistically differ across registrations for
-   *                                     separate installs.
-   * @param pin Only supply if pin has not yet been migrated to KBS.
-   * @param registrationLock Only supply if found on KBS.
-   *
    * @throws IOException
    */
-  public void setAccountAttributes(String signalingKey,
-                                   int signalProtocolRegistrationId,
-                                   boolean fetchesMessages,
-                                   String pin,
-                                   String registrationLock,
-                                   byte[] unidentifiedAccessKey,
-                                   boolean unrestrictedUnidentifiedAccess,
-                                   AccountAttributes.Capabilities capabilities,
-                                   boolean discoverableByPhoneNumber,
-                                   byte[] encryptedDeviceName,
-                                   int pniRegistrationId,
-                                   String recoveryPassword)
+  public void setAccountAttributes(@Nonnull AccountAttributes accountAttributes)
       throws IOException
   {
-    this.pushServiceSocket.setAccountAttributes(
-        signalingKey,
-        signalProtocolRegistrationId,
-        fetchesMessages,
-        pin,
-        registrationLock,
-        unidentifiedAccessKey,
-        unrestrictedUnidentifiedAccess,
-        capabilities,
-        discoverableByPhoneNumber,
-        encryptedDeviceName,
-        pniRegistrationId,
-        recoveryPassword
-    );
+    this.pushServiceSocket.setAccountAttributes(accountAttributes);
   }
 
   /**

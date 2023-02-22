@@ -44,7 +44,7 @@ public abstract class BaseRegistrationLockFragment extends LoggingFragment {
   /**
    * Applies to both V1 and V2 pins, because some V2 pins may have been migrated from V1.
    */
-  private static final int MINIMUM_PIN_LENGTH = 4;
+  public static final int MINIMUM_PIN_LENGTH = 4;
 
   private   EditText                       pinEntry;
   private   View                           forgotPin;

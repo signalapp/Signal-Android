@@ -286,6 +286,8 @@ public class PushServiceSocket {
 
   private static final String REPORT_SPAM = "/v1/messages/report/%s/%s";
 
+  private static final String BACKUP_AUTH_CHECK = "/v1/backup/auth/check";
+
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
 
   private static final Map<String, String> NO_HEADERS = Collections.emptyMap();
@@ -428,38 +430,12 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(responseBody, VerifyAccountResponse.class);
   }
 
-  public void setAccountAttributes(String signalingKey,
-                                   int registrationId,
-                                   boolean fetchesMessages,
-                                   String pin,
-                                   String registrationLock,
-                                   byte[] unidentifiedAccessKey,
-                                   boolean unrestrictedUnidentifiedAccess,
-                                   AccountAttributes.Capabilities capabilities,
-                                   boolean discoverableByPhoneNumber,
-                                   byte[] encryptedDeviceName,
-                                   int pniRegistrationId,
-                                   String recoveryPassword)
+  public void setAccountAttributes(@Nonnull AccountAttributes accountAttributes)
       throws IOException
   {
-    if (registrationLock != null && pin != null) {
+    if (accountAttributes.getRegistrationLock() != null && accountAttributes.getPin() != null) {
       throw new AssertionError("Pin should be null if registrationLock is set.");
     }
-
-    String name = (encryptedDeviceName == null) ? null :  Base64.encodeBytes(encryptedDeviceName);
-
-    AccountAttributes accountAttributes = new AccountAttributes(signalingKey,
-                                                                registrationId,
-                                                                fetchesMessages,
-                                                                pin,
-                                                                registrationLock,
-                                                                unidentifiedAccessKey,
-                                                                unrestrictedUnidentifiedAccess,
-                                                                capabilities,
-                                                                discoverableByPhoneNumber,
-                                                                name,
-                                                                pniRegistrationId,
-                                                                recoveryPassword);
 
     makeServiceRequest(SET_ACCOUNT_ATTRIBUTES, "PUT", JsonUtil.toJson(accountAttributes));
   }
@@ -920,6 +896,22 @@ public class PushServiceSocket {
       try (Response response = getServiceConnection(PROFILE_BATCH_CHECK_PATH, "POST", jsonRequestBody(JsonUtil.toJson(request)), Collections.emptyMap(), unidentifiedAccess, false)) {
         String body = response.body() != null ? readBodyString(response.body()): "";
         return responseMapper.map(response.code(), body, response::header, unidentifiedAccess.isPresent());
+      }
+    });
+
+    return requestSingle
+        .subscribeOn(Schedulers.io())
+        .observeOn(Schedulers.io())
+        .onErrorReturn(ServiceResponse::forUnknownError);
+  }
+
+  public Single<ServiceResponse<BackupAuthCheckResponse>> checkBackupAuthCredentials(@Nonnull BackupAuthCheckRequest request,
+                                                                                     @Nonnull ResponseMapper<BackupAuthCheckResponse> responseMapper)
+  {
+    Single<ServiceResponse<BackupAuthCheckResponse>> requestSingle = Single.fromCallable(() -> {
+      try (Response response = getServiceConnection(BACKUP_AUTH_CHECK, "POST", jsonRequestBody(JsonUtil.toJson(request)), Collections.emptyMap(), Optional.empty(), false)) {
+        String body = response.body() != null ? readBodyString(response.body()): "";
+        return responseMapper.map(response.code(), body, response::header, false);
       }
     });
 

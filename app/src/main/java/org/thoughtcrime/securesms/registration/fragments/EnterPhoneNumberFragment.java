@@ -180,7 +180,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
     PlayServicesUtil.PlayServicesStatus fcmStatus = PlayServicesUtil.getPlayServicesStatus(context);
 
     if (fcmStatus == PlayServicesUtil.PlayServicesStatus.SUCCESS) {
-      confirmNumberPrompt(context, e164number, () -> handleRequestVerification(context, true));
+      confirmNumberPrompt(context, e164number, () -> onE164EnteredSuccessfully(context, true));
     } else if (fcmStatus == PlayServicesUtil.PlayServicesStatus.MISSING) {
       confirmNumberPrompt(context, e164number, () -> handlePromptForNoPlayServices(context));
     } else if (fcmStatus == PlayServicesUtil.PlayServicesStatus.NEEDS_UPDATE) {
@@ -192,10 +192,26 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
     }
   }
 
-  private void handleRequestVerification(@NonNull Context context, boolean fcmSupported) {
+  private void onE164EnteredSuccessfully(@NonNull Context context, boolean fcmSupported) {
     register.setSpinning();
     disableAllEntries();
 
+    Disposable disposable = viewModel.canEnterSkipSmsFlow()
+                                     .observeOn(AndroidSchedulers.mainThread())
+                                     .onErrorReturnItem(false)
+                                     .subscribe(canEnter -> {
+                                       if (canEnter) {
+                                         Log.i(TAG, "Enter skip flow");
+                                         SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), EnterPhoneNumberFragmentDirections.actionReRegisterWithPinFragment());
+                                       } else {
+                                         Log.i(TAG, "Unable to collect necessary data to enter skip flow, returning to normal");
+                                         handleRequestVerification(context, fcmSupported);
+                                       }
+                                     });
+    disposables.add(disposable);
+  }
+
+  private void handleRequestVerification(@NonNull Context context, boolean fcmSupported) {
     if (fcmSupported) {
       SmsRetrieverClient client  = SmsRetriever.getClient(context);
       Task<Void>         task    = client.startSmsRetriever();
@@ -378,7 +394,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
     new MaterialAlertDialogBuilder(context)
         .setTitle(R.string.RegistrationActivity_missing_google_play_services)
         .setMessage(R.string.RegistrationActivity_this_device_is_missing_google_play_services)
-        .setPositiveButton(R.string.RegistrationActivity_i_understand, (dialog1, which) -> handleRequestVerification(context, false))
+        .setPositiveButton(R.string.RegistrationActivity_i_understand, (dialog1, which) -> onE164EnteredSuccessfully(context, false))
         .setNegativeButton(android.R.string.cancel, null)
         .show();
   }

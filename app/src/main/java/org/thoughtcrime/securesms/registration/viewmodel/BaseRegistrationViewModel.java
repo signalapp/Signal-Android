@@ -42,6 +42,7 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
   private static final String STATE_TIME_REMAINING                   = "TIME_REMAINING";
   private static final String STATE_CAN_CALL_AT_TIME                 = "CAN_CALL_AT_TIME";
   private static final String STATE_CAN_SMS_AT_TIME                  = "CAN_SMS_AT_TIME";
+  private static final String STATE_RECOVERY_PASSWORD                = "RECOVERY_PASSWORD";
 
   protected final SavedStateHandle        savedState;
   protected final VerifyAccountRepository verifyAccountRepository;
@@ -62,9 +63,10 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     setInitialDefaultValue(STATE_VERIFICATION_CODE, "");
     setInitialDefaultValue(STATE_SUCCESSFUL_CODE_REQUEST_ATTEMPTS, 0);
     setInitialDefaultValue(STATE_REQUEST_RATE_LIMITER, new LocalCodeRequestRateLimiter(60_000));
+    setInitialDefaultValue(STATE_RECOVERY_PASSWORD, SignalStore.kbsValues().getRecoveryPassword());
   }
 
-  protected <T> void setInitialDefaultValue(@NonNull String key, @NonNull T initialValue) {
+  protected <T> void setInitialDefaultValue(@NonNull String key, @Nullable T initialValue) {
     if (!savedState.contains(key) || savedState.get(key) == null) {
       savedState.set(key, initialValue);
     }
@@ -162,6 +164,14 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
 
   public void setKeyBackupTokenData(@Nullable TokenData tokenData) {
     savedState.set(STATE_KBS_TOKEN, tokenData);
+  }
+
+  public void setRecoveryPassword(@Nullable String recoveryPassword) {
+    savedState.set(STATE_RECOVERY_PASSWORD, recoveryPassword);
+  }
+
+  public @Nullable String getRecoveryPassword() {
+    return savedState.get(STATE_RECOVERY_PASSWORD);
   }
 
   public LiveData<Long> getLockedTimeRemaining() {
