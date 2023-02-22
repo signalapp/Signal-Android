@@ -3798,9 +3798,10 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     List<ReportSpamData> data = new ArrayList<>();
     try (Cursor cursor = db.query(TABLE_NAME, new String[] { RECIPIENT_ID, SERVER_GUID, DATE_RECEIVED }, query, args, null, null, DATE_RECEIVED + " DESC", "3")) {
       while (cursor.moveToNext()) {
-        RecipientId id         = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
-        String      serverGuid = CursorUtil.requireString(cursor, SERVER_GUID);
+        RecipientId id           = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
+        String      serverGuid   = CursorUtil.requireString(cursor, SERVER_GUID);
         long        dateReceived = CursorUtil.requireLong(cursor, DATE_RECEIVED);
+
         if (!Util.isEmpty(serverGuid)) {
           data.add(new ReportSpamData(id, serverGuid, dateReceived));
         }
@@ -4164,9 +4165,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
   }
 
   public @NonNull List<MessageTable.ReportSpamData> getReportSpamMessageServerData(long threadId, long timestamp, int limit) {
-    return SignalDatabase
-        .messages()
-        .getReportSpamMessageServerGuids(threadId, timestamp)
+    return getReportSpamMessageServerGuids(threadId, timestamp)
         .stream()
         .sorted((l, r) -> -Long.compare(l.getDateReceived(), r.getDateReceived()))
         .limit(limit)
