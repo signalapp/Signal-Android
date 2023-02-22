@@ -78,19 +78,19 @@ class RegistrationNumberInputController(
   }
 
   fun setNumberAndCountryCode(numberViewState: NumberViewState) {
-    val countryCode = numberViewState.countryCode
-
     isUpdating = true
     phoneNumberInputLayout.setText(numberViewState.nationalNumber)
+
     if (isSignalVersion()) {
       if (numberViewState.countryCode != 0) {
         spinnerView.setText(supportedCountryPrefixes.first { it.digits == numberViewState.countryCode }.toString())
       }
     } else {
-      if (numberViewState.countryCode == 0) {
-        spinnerView.setText(supportedCountryPrefixes.first().digits.toString())
-      } else {
-        spinnerView.setText(countryCode.toString())
+      if (numberViewState.countryCode != 0) {
+        val regionCode = numberViewState.countryDisplayName
+        val countryCode = numberViewState.countryCode
+        val fullCountry = "$regionCode +$countryCode"
+        spinnerView.setText(fullCountry)
       }
     }
     val regionCode = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode)
