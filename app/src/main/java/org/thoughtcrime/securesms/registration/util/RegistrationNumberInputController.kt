@@ -102,10 +102,10 @@ class RegistrationNumberInputController(
         val countryCode = numberViewState.countryCode
         val fullCountry = "+$countryCode"
         spinnerView.setText(fullCountry)
+        val regionCode = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode)
+        setCountryFormatter(regionCode)
       }
     }
-    val regionCode = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode)
-    setCountryFormatter(regionCode)
 
     isUpdating = false
   }
