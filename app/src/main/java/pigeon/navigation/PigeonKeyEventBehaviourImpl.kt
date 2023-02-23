@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registration.fragments.CaptchaFragment
-import pigeon.fragments.TermsFragment
 
 class PigeonKeyEventBehaviourImpl : KeyEventBehaviour {
   override fun dispatchKeyEvent(event: KeyEvent, fragmentManager: FragmentManager) {
@@ -17,11 +16,6 @@ class PigeonKeyEventBehaviourImpl : KeyEventBehaviour {
 
         if (fragment is CaptchaFragment) {
           fragment.onKeyDown(event.keyCode, event.action)
-          return
-        }
-
-        if (fragment is TermsFragment && event.action == KeyEvent.ACTION_DOWN) {
-          fragment.onKeyDown(event.keyCode)
           return
         }
       }
