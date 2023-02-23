@@ -501,8 +501,8 @@
         <item quantity="other">Σίγαση</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Αποσίγαση</item>
-        <item quantity="other">Διακοπή σίγασης</item>
+        <item quantity="one">Αναίρεση σίγασης</item>
+        <item quantity="other">Αναίρεση σίγασης</item>
     </plurals>
     <string name="ConversationListFragment_select">Επιλογή</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -1483,10 +1483,10 @@
     <string name="MessageRequestBottomView_unblock">Κατάργηση αποκλεισμού</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα γνωρίζει ότι έχεις δει τα μηνύματα που έστειλε μέχρι να δεχτείς.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα λάβεις κανένα μήνυμα μέχρι να αποκλείσεις τη φραγή του/της.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστείς το όνομα και τη φωτογραφία σου μαζί του/της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τον αποκλεισμό του/της.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα; Δεν θα λάβεις μηνύματα μέχρι να καταργήσεις τον αποκλεισμό του/της.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Λήψη ενημερώσεων και νέων από τον/την %1$s; Δεν θα λαμβάνεις καμία ενημέρωση μέχρι να καταργήσεις τον αποκλεισμό του/της.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τον αποκλεισμό του/της.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Λήψη ενημερώσεων και νέων από τον/την %1$s; Δεν θα λάβεις καμία ενημέρωση μέχρι να καταργήσεις τον αποκλεισμό του/της.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Να συνεχίσεις τη συνομιλία με αυτή την ομάδα, και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της;</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Αναβάθμισε την ομάδα για να αποκτήσεις νέες δυνατότητες όπως οι @αναφορές και οι διαχειριστές. Τα μέλη που δεν έχουν μοιραστεί τη φωτογραφία ή το όνομά τους με την ομάδα θα προσκληθούν να μπουν.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Αυτή η ομάδα παλαιού τύπου δεν μπορεί πλέον να χρησιμοποιηθεί επειδή είναι πολύ μεγάλη. Το μέγιστο μέγεθος της ομάδας είναι %1$d.</string>
@@ -1494,7 +1494,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπεις στην ομάδα και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της; Δεν θα ξέρουν ότι έχεις δει τα μηνύματά τους μέχρι να δεχτείς.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Θέλεις να μπεις στην ομάδα και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της; Δεν θα μπορείς να δεις τα μηνύματά τους μέχρι να δεχτείς.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπεις σε αυτή την ομάδα; Δεν θα γνωρίζουν οτι έχεις δει τα μηνυματά τους μέχρι να δεχτείς.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Θέλεις να καταργηθεί ο αποκλεισμός αυτής της ομάδας και να μοιραστεί το όνομα και η φωτογραφία σου με τα μέλη της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τον αποκλεισμό της.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Θέλεις να καταργηθεί ο αποκλεισμός αυτής της ομάδας και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τον αποκλεισμό της.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Εμφάνιση</string>
     <string name="MessageRequestProfileView_member_of_one_group">Μέλος του %1$s</string>
@@ -1608,7 +1608,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Προσοχή</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Αν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφτείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Αν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
     <string name="PinOptOutDialog_disable_pin">Απενεργοποίηση PIN</string>
 
     <!-- RatingManager -->
@@ -1733,7 +1733,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Κάμερα</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Αποσίγαση</string>
+    <string name="WebRtcCallView__unmute">Αναίρεση σίγασης</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">Σίγαση</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1821,11 +1821,16 @@
     <string name="RegistrationActivity_call">Κλήση</string>
     <string name="RegistrationActivity_verification_code">Κωδικός Επαλήθευσης</string>
     <string name="RegistrationActivity_resend_code">Αποστολή κωδικού</string>
+    <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
-    <string name="RegistrationActivity_support_bottom_sheet_body_part_1">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.\nFor more information, please follow </string>
-    <string name="RegistrationActivity_support_bottom_sheet_body_part_2">these troubleshooting steps</string>
-    <string name="RegistrationActivity_support_bottom_sheet_body_part_3"> or </string>
-    <string name="RegistrationActivity_support_bottom_sheet_body_part_4">Contact Support</string>
+    <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Contact Support</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Ενεργοποίηση του Κλειδώματος εγγραφής;</string>
@@ -3166,7 +3171,7 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Αποσίγαση</string>
+    <string name="conversation_muted__unmute">Αναίρεση σίγασης</string>
 
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">Σίγαση ειδοποιήσεων</string>
@@ -3658,8 +3663,8 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">Ο/Η \"%1$s\" έχει αποκλειστεί</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Αποτυχία αποκλειστεί του/της \"%1$s\"</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">Ο/Η \"%1$s\" έχει αποκλειστεί.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Αποτυχία αποκλεισμού του/της \"%1$s\"</string>
     <string name="BlockedUsersActivity__s_has_been_unblocked">Ο αποκλεισμός του/της \"%1$s\" καταργήθηκε.</string>
 
     <!-- ReviewCardDialogFragment -->
@@ -4051,7 +4056,7 @@
     <string name="PrivacySettingsFragment__messaging">Συνομιλίες</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Μηνύματα που εξαφανίζονται</string>
     <string name="PrivacySettingsFragment__app_security">Ασφάλεια εφαρμογής</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Να μην επιτρέπεται η καταγραφή της οθόνης (screenshots) στη λίστα με τα πρόσφατα και μέσα στην εφαρμογή</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Να μην επιτρέπονται τα στιγμιότυπα οθόνης (screenshots) στη λίστα με τα πρόσφατα και μέσα στην εφαρμογή</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Κλήσεις και μηνύματα Signal, κλήσεις που πάντα αναμεταδίδονται, και προστατευμένος αποστολέας</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Προκαθορισμένο χρονόμετρο για νέες συνομιλίες</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ορισμός ενός προκαθορισμένου χρόνου εξαφάνισης μηνυμάτων για όλες τις συνομιλίες που ξεκινάς εσύ.</string>
@@ -4231,7 +4236,7 @@
     <string name="ConversationSettingsFragment__add_as_a_contact">Προσθήκη ως επαφή</string>
     <string name="ConversationSettingsFragment__unmute">Αναίρεση σίγασης</string>
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Η συνομιλία είναι σε σίγαση έως %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Η συνομιλία είνα σε σίγαση για πάντα</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Η συνομιλία θα είναι σε σίγαση για πάντα</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Ο αριθμός τηλεφώνου αντιγράφτηκε στο πρόχειρο.</string>
     <string name="ConversationSettingsFragment__phone_number">Αριθμός τηλεφώνου</string>
     <string name="ConversationSettingsFragment__get_badges">Πάρε σήματα για το προφίλ σου στηρίζοντας το Signal. Πάτα σε ένα σήμα για να μάθεις περισσότερα.</string>

@@ -1483,9 +1483,9 @@
     <string name="MessageRequestBottomView_unblock">Ondoa kizuizi</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ungependa kumruhusu %1$s akutumie ujumbe na ushiriki naye jina na picha yako? Hatajua umeona ujumbe wake hadi utakapokubali.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Mruhusu %1$s akutumie ujumbe na ushiriki naye jina na picha yako? Hutapokea ujumbe wowote mpaka utakapoondoa kizuizi kwake.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Je ungependa kumruhusu %1$s akutumie ujumbe na ushiriki naye jina na picha yako? Hutapokea ujumbe wowote mpaka utakapoondoa kizuizi kwake.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Mruhusu %1$s akutumie ujumbe? Hutapata jumbe zozote mpaka utakapoondoa kizuizi kwake.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Je ungependa kumruhusu %1$s akutumie ujumbe? Hutapata jumbe zozote mpaka utakapoondoa kizuizi kwake.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Pata masasisho na habari kutoka kwa %1$s? Hutapata sasisho zozote mpaka utakapoondoa kizuizi kwao.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Ungependa kuendelea kuzungumza na kikundi hiki na ushiriki jina na picha yako na wanachama wake?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Boresha kikundi hiki ili uwezeshe huduma mpya kama vile @kutajwa na kuwa na wasimamizi. Wanachama ambao hawajashiriki jina au picha zao katika kikundi hiki wataalikwa kujiunga.</string>
@@ -1494,7 +1494,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ungependa kujiunge na kikundi hiki na ushiriki jina na picha yako na washiriki wake? Hawatajua umeona ujumbe wao hadi utakapokubali.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Jiunge na kundi hili na uwashirikishe wanachama picha na jina lako? Hutoona jumbe zao mpaka utakapokubali.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ungependa kujiunga na kikundi hiki? Hawatajua umeona ujumbe wao hadi utakapokubali.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ondoa kizuizi kwa kikundi hiki na ushiriki jina na picha yako na washiriki wake? Hautapokea ujumbe wowote mpaka utakapoondoa kizuizi.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ondoa kizuizi kwa kikundi hiki na ushiriki jina na picha yako na washiriki wake? Hautapokea ujumbe wowote mpaka utakapoondoa kizuizi kwao.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Tazama</string>
     <string name="MessageRequestProfileView_member_of_one_group">Mwanachama wa %1$s</string>
@@ -1821,11 +1821,16 @@
     <string name="RegistrationActivity_call">Piga</string>
     <string name="RegistrationActivity_verification_code">Kodi ya uthibitisho</string>
     <string name="RegistrationActivity_resend_code">Tuma upya Kodi</string>
+    <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
-    <string name="RegistrationActivity_support_bottom_sheet_body_part_1">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.\nFor more information, please follow </string>
-    <string name="RegistrationActivity_support_bottom_sheet_body_part_2">these troubleshooting steps</string>
-    <string name="RegistrationActivity_support_bottom_sheet_body_part_3"> or </string>
-    <string name="RegistrationActivity_support_bottom_sheet_body_part_4">Contact Support</string>
+    <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Contact Support</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Je, washa Kufuli ya Usajili?</string>
