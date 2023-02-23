@@ -97,13 +97,13 @@
     <string name="BackgroundMessageRetriever_checking_for_messages">Seiceáil le haghaidh teachtaireachtaí…</string>
 
     <!-- BlockedUsersActivity -->
-    <string name="BlockedUsersActivity__blocked_users">Úsáideoirí Bactha</string>
-    <string name="BlockedUsersActivity__add_blocked_user">Cuir Úsáideoir Bactha Leis</string>
+    <string name="BlockedUsersActivity__blocked_users">Úsáideoirí bactha</string>
+    <string name="BlockedUsersActivity__add_blocked_user">Cuir úsáideoir bactha leis</string>
     <string name="BlockedUsersActivity__blocked_users_will">Ní bheidh úsáideoirí bactha in ann glaonna a chur ort ná teachtaireachtaí a sheoladh chugat.</string>
-    <string name="BlockedUsersActivity__no_blocked_users">Níl aon úsáideoirí bactha</string>
-    <string name="BlockedUsersActivity__block_user">Cuir Bac ar an Úsáideoir Seo?</string>
+    <string name="BlockedUsersActivity__no_blocked_users">Níl aon úsáideoirí bactha ann</string>
+    <string name="BlockedUsersActivity__block_user">Cuir bac ar an úsáideoir?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">Ní bheidh \"%1$s\" in ann glaoch ort ná teachtaireachtaí a sheoladh chugat.</string>
-    <string name="BlockedUsersActivity__block">Bac Nua</string>
+    <string name="BlockedUsersActivity__block">Cuir bac</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">Ar Aghaidh</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Cuir bac ar ⁊ fág %1$s?</string>
-    <string name="BlockUnblockDialog_block_s">An bhfuil fonn ort bac a chur ar %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Cuir bac ar %1$s agus imigh as?</string>
+    <string name="BlockUnblockDialog_block_s">Cuir bac ar %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ní bhfaighidh tú teachtaireachtaí ón ngrúpa seo a thuilleadh, agus ní bheidh baill den ghrúpa in ann tusa a chur leis arís.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Ní bheidh baill den ghrúpa in ann tusa a chur leis arís.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Beidh baill den ghrúpa in ann tusa a chur leis an ngrúpa seo arís.</string>
@@ -149,15 +149,15 @@
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Beidh sibh in ann teachtaireachtaí a sheoladh idir a chéile.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Ní bheidh daoine bactha in ann glaonna a chur ort ná teachtaireachtaí a sheoladh chugat.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Ní bheidh daoine ar cuireadh bac orthu in ann teachtaireachtaí a sheoladh chugat.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Ní bheidh daoine bactha in ann teachtaireachtaí a sheoladh chugat.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Cuir bac ar nuashonruithe agus nuacht Signal a fháil.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Cuir bac ar nuashonruithe agus nuacht Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Tosaigh ar nuashonruithe agus nuacht Signal a fháil arís.</string>
-    <string name="BlockUnblockDialog_unblock_s">An bhfuil fonn ort an bac a bhaint de %1$s?</string>
-    <string name="BlockUnblockDialog_block">Bac Nua</string>
-    <string name="BlockUnblockDialog_block_and_leave">Cuir bac air ⁊ Fág</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Report Spam and Block</string>
+    <string name="BlockUnblockDialog_unblock_s">Bain bac de %1$s?</string>
+    <string name="BlockUnblockDialog_block">Cuir bac</string>
+    <string name="BlockUnblockDialog_block_and_leave">Cuir bac agus imigh as</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Tuairiscigh turscar agus cuir bac air</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Inniu</string>
@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Tharla botún fad agus a bhí an meán á sheoladh</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Reported as spam and blocked.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Tuairiscithe mar thurscar agus bac curtha air.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Tá teachtaireachtaí SMS díchumasaithe faoi láthair. Is féidir leat do theachtaireachtaí a easpórtáil chuig aip eile ar do ghuthán.</string>
@@ -470,11 +470,11 @@
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">Ní bheidh %1$s in ann dul isteach nó iarraidh ar dhul isteach sa ghrúpa seo tríd an nasc grúpa. Is féidir an duine sin a chur leis an ngrúpa de láimh fós.</string>
     <!-- Dialog confirm block request button -->
-    <string name="ConversationFragment__block_request_button">Cuir Bac ar an Iarratas</string>
+    <string name="ConversationFragment__block_request_button">Cuir bac ar an iarratas</string>
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Cealaigh</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">Bactha</string>
+    <string name="ConversationFragment__blocked">Bac curtha</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Glan an scagaire</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -1050,7 +1050,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Cuir Tráchtanna in iúl dom</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">An bhfuil fonn ort fógraí a fháil nuair a luaitear i gcomhrá balbhaithe thú?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Faigh fógraí nuair a luaitear i gcomhráite balbhaithe thú?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Cuir scéal chugam i gcónaí</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Ná fógraigh dom é</string>
 
@@ -1069,9 +1069,15 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Cóipeáladh ainm úsáideora</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Níorbh fhéidir an t-ainm úsáideora a scriosadh. Triail arís níos déanaí.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Ainm úsáideora scriosta</string>
+
+    <!-- UsernameOutOfSyncReminder -->
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <!-- Action text to navigate user to manually fix the issue with their username -->
+    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1647,14 +1653,14 @@
     <string name="MessageRequestBottomView_accept">Glac leis</string>
     <string name="MessageRequestBottomView_continue">Ar Aghaidh</string>
     <string name="MessageRequestBottomView_delete">Scrios</string>
-    <string name="MessageRequestBottomView_block">Bac Nua</string>
+    <string name="MessageRequestBottomView_block">Cuir bac</string>
     <string name="MessageRequestBottomView_unblock">Bain an bac</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Lig do %1$s teachtaireachtaí a sheoladh chugat agus comhroinn d\'ainm agus grianghraf leis/léi? Ní bheidh a fhios ag an duine sin go bhfaca tú an teachtaireacht go dtí go nglacfaidh tú.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">An bhfuil fonn ort d\'ainm agus do phictiúr a roinnt le %1$s, agus cead a thabhairt dó/di teachtaireachtaí a sheoladh chugat? Ní bhfaighidh tú aon teachtaireacht go dtí go mbainfidh tú an bac de/di.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Lig do %1$s teachtaireachtaí a sheoladh chugat agus comhroinn d\'ainm agus grianghraf leis an duine sin? Ní bhfaighidh tú aon teachtaireacht go dtí go mbainfidh tú an bac de/di.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Lig do %1$s teachtaireachtaí a sheoladh chugat? Ní bhfaighidh tú aon teachtaireachtaí go dtí go mbainfidh tú an bac.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Faigh nuashonruithe agus nuacht ó %1$s? Ní bhfaighidh tú aon nuashonruithe go dtí go mbainfidh tú an bac.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Lig do %1$s teachtaireachtaí a sheoladh chugat? Ní bhfaighidh tú aon teachtaireachtaí go dtí go mbainfidh tú an bac de/di.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Faigh nuashonruithe agus nuacht ó %1$s? Ní bhfaighidh tú aon nuashonruithe go dtí go mbainfidh tú an bac de/di.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Lean le do chomhrá leis an ngrúpa seo agus comhroinn d\'ainm agus grianghraf lena bhaill?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uasghrádaigh an grúpa seo chun gnéithe nua amhail @tráchtanna agus riarthóirí a ghníomhachtú. Baill nár chomhroinn a n-ainm nó a ngrianghraf sa ghrúpa seo, tabharfar cuireadh dóibh dul isteach ann.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ní féidir an seanleagan seo den Ghrúpa a úsáid a thuilleadh toisc go bhfuil sé rómhór. Is í %1$d uasmhéid an ghrúpa.</string>
@@ -1662,7 +1668,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Téigh isteach sa ghrúpa seo agus comhroinn d\'ainm agus grianghraf lena bhaill? Ní bheidh a fhios acu go bhfaca tú na teachtaireachtaí go dtí go nglacfaidh tú.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Téigh isteach sa ghrúpa seo agus comhroinn d\'ainm agus grianghraf lena bhaill? Ní fheicfidh tú na teachtaireachtaí go dtí go nglacfaidh tú.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">An bhfuil fonn ort páirt a ghlacadh sa ghrúpa seo? Ní bheidh a fhios acu go bhfaca tú a gcuid teachtaireachtaí go dtí go nglacfaidh tú leis.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">An bhfuil fonn ort d\'ainm agus do phictiúr a roinnt leis an ngrúpa seo agus an bac a bhaint de? Ní bhfaighidh tú aon teachtaireacht go dtí go mbainfidh tú an bac de.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Bain an bac den ghrúpa seo agus comhroinn d\'ainm agus grianghraf lena bhaill? Ní bhfaighidh tú aon teachtaireachtaí go dtí go mbainfidh tú an bac de.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Amharc</string>
     <string name="MessageRequestProfileView_member_of_one_group">Ball de %1$s</string>
@@ -1781,6 +1787,17 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Cruthaigh UAP Nua</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
+    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
+    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
+    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
+    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Rabhadh</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Má dhíchumasaíonn tú an UAP, caillfidh tú na sonraí go léir nuair a athchláraíonn tú Signal mura ndéanann tú cúltacú agus aischur de láimh. Ní féidir leat Glasáil Clárúcháin a chasadh air leis an UAP díchumasaithe.</string>
@@ -1813,7 +1830,7 @@
     <string name="Recipient_my_story">Mo Scéal</string>
 
     <!-- RecipientPreferencesActivity -->
-    <string name="RecipientPreferenceActivity_block">Cuir bac air</string>
+    <string name="RecipientPreferenceActivity_block">Cuir bac</string>
     <string name="RecipientPreferenceActivity_unblock">Bain an bac</string>
 
     <!-- RecipientProvider -->
@@ -1925,7 +1942,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Díbhalbhaigh</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Balbhú</string>
+    <string name="WebRtcCallView__mute">Balbhaigh</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Glaoigh</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1941,12 +1958,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s is blocked</string>
+    <string name="CallParticipantView__s_is_blocked">Tá bac curtha ar %1$s</string>
     <string name="CallParticipantView__more_info">Tuilleadh Eolais</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Ní gheobhaidh tú an fhuaim nó físeán uaidh/uaithi agus ní gheobhaidh sé/sí iad uait</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Can\'t receive audio &amp; video from %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Can\'t receive audio and video from %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">This may be because they have not verified your safety number change, there\'s a problem with their device, or they have blocked you.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Seans nár fhíoraigh an duine sin athrú ar d\'uimhir sábháilteachta, go bhfuil fadhb leis an ngléas aige/aici, nó gur chuir sé/sí bac ort.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Svaidhpeáil le féachaint ar chomhroinnt scáileáin</string>
@@ -1983,11 +2000,18 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Tá gá ag Signal riochtain ar do theagmhálaithe agus do mheáin chun nasc a dhéanamh le cairde, teachtaireachtaí a mhalairt agus glaonna slán a dhéanamh.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Teastaíonn cead teagmhálaithe ó Signal chun cabhrú leat nascadh le cairde. Uaslódáiltear do theagmhálaithe trí aimsiú príobháideach teagmhálaithe de chuid Signal, rud a chiallaíonn go bhfuil siad criptithe ó cheann ceann agus dofheicthe sa tseirbhís Signal i gcónaí.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Rinne tú an iomarca iarrachtaí ar an uimhir seo a chlárú. Bain triail eile as ar ball.</string>
+    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
+    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Ní féidir ceangal a bhunú leis an tseirbhís. Deimhnigh go bhfuil tú ceangailte leis an líonra agus bain triail eile as.</string>
     <string name="RegistrationActivity_non_standard_number_format">Formáid uimhreacha neamhchaighdeánach</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Is cosúil go bhfuil formáid neamhchaighdeánach ar an uimhir a chuir tú isteach (%1$s).\n\nAn raibh %2$s i gceist agat?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android — Formáid don Uimhir Ghutháin</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Glao iarrtha</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
+    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
+    <string name="RegistrationActivity_code_requested">Verification code requested</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Tá %1$d chéim fágtha anois roimh loga dífhabhtaithe a chur isteach.</item>
         <item quantity="two">Tá %1$d chéim fágtha anois roimh loga dífhabhtaithe a chur isteach.</item>
@@ -2010,6 +2034,11 @@
     <string name="RegistrationActivity_call">Glao</string>
     <string name="RegistrationActivity_verification_code">Cód Fíoraithe</string>
     <string name="RegistrationActivity_resend_code">Athsheol Cód</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_1">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.\nFor more information, please follow </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_2">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_3"> or </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_4">Contact Support</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">An bhfuil fonn ort Glas Clárúcháin a chur ar siúl?</string>
@@ -2177,7 +2206,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Teachtaireacht sceidealaithe</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Cumascadh do stair teachtaireachtaí</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">Is le %2$s %1$s</string>
 
@@ -2535,7 +2564,7 @@
     <string name="ConversationUpdateItem_enable_call_notifications">Cumasaigh fógraí do ghlaonna</string>
     <string name="ConversationUpdateItem_update_contact">Nuashonraigh an teagmhálaí</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
-    <string name="ConversationUpdateItem_block_request">Cuir Bac ar an Iarratas</string>
+    <string name="ConversationUpdateItem_block_request">Cuir bac ar an iarratas</string>
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common. Review requests carefully.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">No contacts in this group. Review requests carefully.</string>
     <string name="ConversationUpdateItem_view">Amharc</string>
@@ -2893,9 +2922,9 @@
     <string name="arrays__use_default">Bain feidhm as an réamhshocrú</string>
     <string name="arrays__use_custom">Bain feidhm as saincheapú</string>
 
-    <string name="arrays__mute_for_one_hour">Balbhaigh ar feadh 1 uair</string>
-    <string name="arrays__mute_for_eight_hours">Balbhaigh ar feadh 8 n-uair a chloig</string>
-    <string name="arrays__mute_for_one_day">Balbhaigh ar feadh 1 lá</string>
+    <string name="arrays__mute_for_one_hour">Balbhaigh ar feadh 1 uair an chloig</string>
+    <string name="arrays__mute_for_eight_hours">Balbhaigh ar feadh 8 n-uair an chloig</string>
+    <string name="arrays__mute_for_one_day">Balbhaigh ar feadh 1 lae</string>
     <string name="arrays__mute_for_seven_days">Balbhaigh ar feadh 7 lá</string>
     <string name="arrays__always">I gcónaí</string>
 
@@ -2936,9 +2965,9 @@
     <string name="preferences__pref_use_address_book_photos">Úsáid grianghraif sa leabhar seoltaí</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Taispeáin grianghraif na dteagmhálacha ó do leabhar seoltaí má tá siad ar fáil</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Coinnigh Comhráite Balbhaithe sa Chartlann</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Coinnigh comhráite balbhaithe sa chartlann</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Fanfaidh comhráite balbhaithe atá curtha i gcartlann sa chartlann fós nuair a thagann teachtaireacht nua isteach.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Fanfaidh comhráite balbhaithe sa chartlann fós nuair a thagann teachtaireacht nua isteach.</string>
     <string name="preferences__generate_link_previews">Generate Link Previews</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Retrieve link previews directly from websites for messages you send.</string>
     <string name="preferences__change_passphrase">Athraigh an nath faire</string>
@@ -3232,7 +3261,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Sent Payment</string>
     <string name="PaymentsDetailsFragment__received_payment">Received Payment</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Íocaíocht críochnaithe %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Block Number</string>
+    <string name="PaymentsDetailsFragment__block_number">Cuir bac ar an uimhir</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Aistrigh</string>
@@ -3317,7 +3346,7 @@
 
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">Teachtaireacht nua chuig…</string>
-    <string name="contact_selection_list__unknown_contact_block">Cuir Bac ar an Úsáideoir Seo</string>
+    <string name="contact_selection_list__unknown_contact_block">Cuir bac ar an úsáideoir</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Cuir leis an nGrúpa é/í</string>
 
     <!-- conversation_callable_insecure -->
@@ -3568,6 +3597,8 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Cuir isteach d\'UAP</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Cuir isteach an UAP a chruthaigh tú don chuntas seo. Ní ionann é seo agus an cód deimhniúcháin SMS.</string>
+    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Cuir isteach UAP alfa-uimhriúil</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Cuir isteach UAP uimhriúil</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">UAP mhícheart. Bain triail eile as.</string>
@@ -3686,7 +3717,10 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Tá comhad an-mhór i do chúltaca nach féidir a chúltacú. Scrios é agus cruthaigh cúltaca nua.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tapáil chun cúltacaí a bhainistiú.</string>
     <string name="RegistrationActivity_wrong_number">Uimhir mhícheart?</string>
+    <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Glaoigh orm (%1$02d:%2$02d)</string>
+    <!--    Countdown to when the user can request a new SMS code during registration.-->
+    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Déan teagmháil le foireann tacaíochta Signal</string>
     <string name="RegistrationActivity_code_support_subject">Clárúchán Signal — Cód Deimhniúcháin ar Android</string>
     <string name="RegistrationActivity_incorrect_code">Cód mícheart</string>
@@ -3850,7 +3884,7 @@
     <!-- AdvancedPreferenceFragment -->
 
     <!-- RecipientBottomSheet -->
-    <string name="RecipientBottomSheet_block">Bac Nua</string>
+    <string name="RecipientBottomSheet_block">Cuir bac</string>
     <string name="RecipientBottomSheet_unblock">Bain an bac</string>
     <string name="RecipientBottomSheet_add_to_contacts">Cuir lena teagmhálaithe</string>
     <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
@@ -3903,9 +3937,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s / %2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">Cuireadh bac ar \"%1$s\".</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Theip ar bhac a chur ar \"%1$s\"</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">Baineadh an bac de \"%1$s\".</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">Bac curtha ar \"%1$s\".</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Theip ar chur baic ar \"%1$s\"</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">Bac bainte de \"%1$s\".</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Review Members</string>
@@ -3938,7 +3972,7 @@
     <string name="ReviewCard__your_contact">Do theagmhálaí</string>
     <string name="ReviewCard__remove_from_group">Bain den ghrúpa</string>
     <string name="ReviewCard__update_contact">Nuashonraigh an teagmhálaí</string>
-    <string name="ReviewCard__block">Bac Nua</string>
+    <string name="ReviewCard__block">Cuir bac</string>
     <string name="ReviewCard__delete">Scrios</string>
     <string name="ReviewCard__recently_changed">D\'athraigh sé/sí a ainm/hainm próifíle ó %1$s go %2$s.</string>
 
@@ -4303,7 +4337,7 @@
     <string name="NotificationProfilesFragment__create_profile">Cruthaigh próifíl</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Bactha</string>
+    <string name="PrivacySettingsFragment__blocked">Bac curtha</string>
     <string name="PrivacySettingsFragment__d_contacts">Líon teagmhálaithe: %1$d</string>
     <string name="PrivacySettingsFragment__messaging">Ag seoladh teachtaireachtaí</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Teachtaireachtaí a imíonn as amharc</string>
@@ -4471,7 +4505,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Glaoigh</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Balbhú</string>
+    <string name="ConversationSettingsFragment__mute">Balbhaigh</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Balbhaithe</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4481,10 +4515,10 @@
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Contact Details</string>
     <string name="ConversationSettingsFragment__view_safety_number">Taispeáin an Uimhir Shábháilteachta</string>
-    <string name="ConversationSettingsFragment__block">Bac Nua</string>
-    <string name="ConversationSettingsFragment__block_group">Cuir bac ar an ngrúpa seo</string>
+    <string name="ConversationSettingsFragment__block">Cuir bac</string>
+    <string name="ConversationSettingsFragment__block_group">Cuir bac ar an ngrúpa</string>
     <string name="ConversationSettingsFragment__unblock">Bain an bac</string>
-    <string name="ConversationSettingsFragment__unblock_group">Bain an bac den Ghrúpa</string>
+    <string name="ConversationSettingsFragment__unblock_group">Bain an bac den ghrúpa</string>
     <string name="ConversationSettingsFragment__add_to_a_group">Add to a Group</string>
     <string name="ConversationSettingsFragment__see_all">See All</string>
     <string name="ConversationSettingsFragment__add_members">Cuir baill leis</string>
@@ -4511,7 +4545,7 @@
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Balbhaigh fógraí</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Gan balbhú</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Gan bhalbhú</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Nuair a luaitear mé</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Cuir scéal chugam i gcónaí</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ná cuir ar an eolas</string>
@@ -4540,7 +4574,7 @@
     <!-- Context menu item remove -->
     <string name="NewConversationActivity__remove">Bain</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">Cuir bac air/uirthi</string>
+    <string name="NewConversationActivity__block">Cuir bac</string>
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Bain %1$s?</string>
     <!-- Dialog message when removing a contact -->
@@ -5987,13 +6021,13 @@
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
-    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">u</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">L</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">n</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Socraigh</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Is é 1 nóiméad an t-íoslíon ama roimh an glas scáileáin a chur i bhfeidhm.</string>
 
     <!-- EOF -->
 </resources>

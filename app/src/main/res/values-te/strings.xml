@@ -959,6 +959,12 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">యూజర్‌నేమ్ తొలగించబడింది</string>
 
+    <!-- UsernameOutOfSyncReminder -->
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <!-- Action text to navigate user to manually fix the issue with their username -->
+    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+
 
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_no_groups_in_common">సాధారణమైన సమూహాలు లేవు</string>
@@ -1589,6 +1595,17 @@
     <string name="PinRestoreLockedFragment_create_new_pin">క్రొత్త పిన్ సృష్టించండి</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
+    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
+    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
+    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
+    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">హెచ్చరిక</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">ఒకవేళ మీరు PIN ను నిలిపివేస్తే, మీరు మాన్యువల్‌గా బ్యాకప్ చేసి పునరుద్ధరించకపోతే మీరు Signal ను తిరిగి నమోదు చేసినప్పుడు మీరు మొత్తం డేటాను కోల్పోతారు. PIN నిలిపివేయబడిప్పుడు మీరు నమోదు లాక్‌ను ఆన్ చేయలేరు.</string>
@@ -1773,11 +1790,18 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">మీరు స్నేహితులతో అనుసంధానం కావడానికి మరియు సందేశాలను పంపడానికి సాయపడేందుకు Signal కు కాంటాక్ట్‌లు మరియు మీడియా పర్మిషన్‌లు అవసరం. Signal ప్రైవేట్ కాంటాక్ట్ డిస్కవరీ ఉపయోగించి మీ కాంటాక్ట్‌లు అప్‌లోడ్ చేయబడతాయి, అంటే అవి ఎండ్- టూ-ఎండ్ ఎన్‌క్రిప్ట్ చేయబడ్డవి మరియు Signal సర్వీస్‌కు ఎన్నడూ కనిపించవు.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">స్నేహితులతో అనుసంధానం కావడానికి సాయపడేందుకు Signal కు కాంటాక్ట్‌ల పర్మిషన్ కావాలి. Signal ప్రైవేట్ కాంటాక్ట్ డిస్కవరీ ఉపయోగించి మీ కాంటాక్ట్‌లు అప్‌లోడ్ చేయబడతాయి, అంటే అవి ఎండ్- టూ-ఎండ్ ఎన్‌క్రిప్ట్ చేయబడ్డవి మరియు Signal సర్వీస్‌కు ఎన్నడూ కనిపించవు.</string>
     <string name="RegistrationActivity_rate_limited_to_service">మీరు ఈ నంబరును నమోదు చేయడానికి చాలా ప్రయత్నాలు చేసారు. దయచేసి తర్వాత మళ్లీ ప్రయత్నించండి.</string>
+    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
+    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">కనెక్ట్ చేయడం సాధ్యం కాలేదు. దయచేసి నెట్వర్క్ కనెక్షన్ను తనిఖీ చేసి మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationActivity_non_standard_number_format">నాన్-స్టాండర్డ్ నెంబర్ ఫార్మెట్</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">మీరు నమోదు చేసిన నెంబరు (%1$s) నాన్-స్టాండర్డ్ ఫార్మెట్‌లో కనిపిస్తోంది.\n\n%2$s అని మీ అర్ధమా?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - ఫోన్ నెంబర్ ఫార్మెట్</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">కాల్ అభ్యర్ధించబడింది</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
+    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
+    <string name="RegistrationActivity_code_requested">Verification code requested</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">డీబగ్ లాగ్ను సమర్పించకుండా మీరు ఇప్పుడు %1$d దూరంగా ఉన్నారు.</item>
         <item quantity="other">డీబగ్ లాగ్ను సమర్పించకుండా మీరు ఇప్పుడు %1$d మళ్లే ఉన్నారు.</item>
@@ -1797,6 +1821,11 @@
     <string name="RegistrationActivity_call">కాల్</string>
     <string name="RegistrationActivity_verification_code">ధృవీకరణ కోడ్</string>
     <string name="RegistrationActivity_resend_code">కోడ్ మళ్ళీ పంపండి</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_1">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.\nFor more information, please follow </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_2">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_3"> or </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_4">Contact Support</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">రిజిస్ట్రేషన్ లాక్ ఆన్ చేయాలా?</string>
@@ -3304,6 +3333,8 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">మీ పిన్ను నమోదు చేయండి</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">మీ ఖాతా కోసం మీరు సృష్టించిన పిన్‌ను నమోదు చేయండి. ఇది మీ SMS ధృవీకరణ కోడ్‌కు భిన్నంగా ఉంటుంది.</string>
+    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">ఆల్ఫాన్యూమరిక్ పిన్ను నమోదు చేయండి</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">సంఖ్యా పిన్ను నమోదు చేయండి</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">తప్పు పిన్. మళ్ళీ ప్రయత్నించండి.</string>
@@ -3407,7 +3438,10 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">మీ బ్యాకప్‌లో బ్యాకప్ చేయలేని చాలా పెద్ద ఫైలు ఉంది. దయచేసి దానిని తొలగించండి మరియు కొత్త బ్యాకప్‌ను సృష్టించండి.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">ప్రత్యామ్నాయములు ను నిర్వహించడానికి నొక్కండి.</string>
     <string name="RegistrationActivity_wrong_number">తప్పు సంఖ్యా?</string>
+    <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">నాకు కాల్ చేయండి (%1$02d:%2$02d)</string>
+    <!--    Countdown to when the user can request a new SMS code during registration.-->
+    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal మద్దతును సంప్రదించండి</string>
     <string name="RegistrationActivity_code_support_subject">Signal రిజిస్ట్రేషన్ - Android కోసం ధృవీకరణ కోడ్</string>
     <string name="RegistrationActivity_incorrect_code">తప్పు కోడ్</string>

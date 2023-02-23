@@ -921,6 +921,12 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">已刪除用戶名稱</string>
 
+    <!-- UsernameOutOfSyncReminder -->
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <!-- Action text to navigate user to manually fix the issue with their username -->
+    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+
 
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_no_groups_in_common">無共同群組</string>
@@ -1525,6 +1531,17 @@
     <string name="PinRestoreLockedFragment_create_new_pin">建立新的 PIN 碼</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
+    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
+    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
+    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
+    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">警告</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果停用 PIN 碼，當你重新註冊 Signal 而沒有進行手動備份及還原的話，你將會遺失所有資料。PIN 碼停用時不可開啟註冊鎖定。</string>
@@ -1703,11 +1720,18 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal 需要聯絡人和媒體權限，以助您與好友連繫和傳送訊息。您的聯絡人將經 Signal 私密聯絡人探索上載，即是經端對端加密，Signal 服務從不可見到。</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal 需要聯絡人權限，以助您與好友連繫。您的聯絡人將經 Signal 私密聯絡人探索上載，即是經端對端加密，Signal 服務從不可見到。</string>
     <string name="RegistrationActivity_rate_limited_to_service">你已多次嘗試登記此電話號碼。請稍後再試。</string>
+    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
+    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">無法連上服務。請檢查網絡連線，並稍後再試。</string>
     <string name="RegistrationActivity_non_standard_number_format">非標準號碼格式</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">您所輸入的號碼 (%1$s) 似乎並非標準格式。\n\n您是指 %2$s 嗎？</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - 電話號碼格式</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">已請求撥號</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
+    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
+    <string name="RegistrationActivity_code_requested">Verification code requested</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">距離提交調試日誌，尚餘%1$d 個步驟。</item>
     </plurals>
@@ -1726,6 +1750,11 @@
     <string name="RegistrationActivity_call">通話</string>
     <string name="RegistrationActivity_verification_code">驗證碼</string>
     <string name="RegistrationActivity_resend_code">重新傳送驗證碼</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_1">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.\nFor more information, please follow </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_2">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_3"> or </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_4">Contact Support</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">開啟註冊鎖定?</string>
@@ -3216,6 +3245,8 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">輸入你的 PIN 碼</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">輸入你為帳戶建立的 PIN 碼。這與你的SMS 驗證碼不同。</string>
+    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">輸入以字母及數字組成的 PIN 碼</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">輸入以數字組成的 PIN 碼</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN 碼不正確。請再試一次。</string>
@@ -3314,7 +3345,10 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">你的備份包含一個非常大的檔案，無法進行備份。請刪除該檔案，並建立新的備份。</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">輕觸以管理備份。</string>
     <string name="RegistrationActivity_wrong_number">號碼錯誤？</string>
+    <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">打電話給我 (%1$02d:%2$02d)</string>
+    <!--    Countdown to when the user can request a new SMS code during registration.-->
+    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">聯絡 Signal 支援</string>
     <string name="RegistrationActivity_code_support_subject">Signal 註冊 — Android 用的驗證碼</string>
     <string name="RegistrationActivity_incorrect_code">錯誤編號</string>

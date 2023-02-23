@@ -148,15 +148,15 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jūs varēsiet sūtīt ziņas un zvanīt viens otram kā arī jūsu vārds un fotogrāfija tiks kopīgota</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Jūs varēsiet sūtīt ziņas viens otram.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Bloķēti lietotāji nevarēs Jums piezvanīt vai nosūtīt ziņojumu.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Bloķētie cilvēki nevarēs jums piezvanīt vai nosūtīt ziņas.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Bloķētie cilvēki nevarēs sūtīt jums ziņas.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Bloķēt Signal jaunumu un ziņu saņemšanu</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Bloķēt Signal jaunumu un ziņu saņemšanu.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Atjaunot Signal jaunumu un ziņu saņemšanu</string>
-    <string name="BlockUnblockDialog_unblock_s">Atbloķēt %1$s?</string>
+    <string name="BlockUnblockDialog_unblock_s">Vai atbloķēt %1$s?</string>
     <string name="BlockUnblockDialog_block">Bloķēt</string>
-    <string name="BlockUnblockDialog_block_and_leave">Bloķēt un iziet</string>
+    <string name="BlockUnblockDialog_block_and_leave">Bloķēt un pamest</string>
     <string name="BlockUnblockDialog_report_spam_and_block">Ziņot par surogātpastu un bloķēt</string>
 
     <!-- BucketedThreadMedia -->
@@ -454,7 +454,7 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$s ieslēgts</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">Bloķēt pieprasījumu?</string>
+    <string name="ConversationFragment__block_request">Vai bloķēt pieprasījumu?</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s vairs nevarēs pievienoties vai lūgt pievienoties šai grupai caur grupas saiti. Manuāla pievienošana grupai vēl arvien būs iespējama.</string>
     <!-- Dialog confirm block request button -->
@@ -974,7 +974,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Paziņot man par Pieminējumiem</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vai saņemt paziņojumus, kad esat pieminēts sarunās, kurām izslēgti paziņojumi?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vai saņemt paziņojumus, kad jūs piemin sarunās, kurām izslēgti paziņojumi?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Vienmēr man paziņot</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Nevajag paziņot</string>
 
@@ -993,9 +993,15 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Lietotājvārds nokopēts</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Nevarēja izdzēst lietotājvārdu. Lūdzu, mēģiniet vēlāk.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Lietotājvārds izdzēsts</string>
+
+    <!-- UsernameOutOfSyncReminder -->
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <!-- Action text to navigate user to manually fix the issue with their username -->
+    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1535,10 +1541,10 @@
     <string name="MessageRequestBottomView_unblock">Atbloķēt</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vai atļaut %1$s ar jums sazināties un kopīgot jūsu vārdu un fotoattēlu? Viņi nezinās, vai jūs izlasījāt ziņas, kamēr neapstiprināsiet.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Vai atļaut %1$s ar jums sazināties un kopīgot jūsu vārdu un fotoattēlu? Jūs nesaņemsiet nevienu ziņu, kamēr šo grupu neatbloķēsiet.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Vai atļaut lietotājam %1$s ar jums sazināties un kopīgot jūsu vārdu un fotoattēlu? Jūs nesaņemsiet ziņas līdz viņu neatbloķēsiet.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Ļaut %1$s sūtīt jums ziņas? Jūs nesaņemsiet ziņas līdz neatbloķēsiet viņu.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Saņemt junumus un ziņas no %1$s? Jūs nesaņemsiet nevienu ziņu, kamēr šo lietotāju neatbloķēsiet.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Vai atļaut lietotājam %1$s ar jums sazināties? Jūs nesaņemsiet ziņas līdz viņu neatbloķēsiet.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Vai saņemt jaunumus un ziņas no lietotāja %1$s? Jūs nesaņemsiet ziņas līdz viņu neatbloķēsiet.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Vai vēlaties turpināt sarunu ar šo grupu un rādīt savu vārdu un fotoattēlu šīs grupas dalībniekiem?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Jauniniet šo grupu, lai aktivizētu jaunas funkcijas, piemēram, @pieminējumi un administratori. Dalībnieki, kuri šajā grupā nav kopīgojuši savu vārdu vai fotoattēlu, tiks uzaicināti pievienoties.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Šo vecā tipa grupu vairs nevar izmantot, jo tā ir pārāk liela. Maksimālais grupas lielums ir %1$d.</string>
@@ -1546,7 +1552,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vai pievienoties šai grupai un kopīgot jūsu vārdu un fotoattēlu? Grupas dalībnieki nezinās, vai jūs izlasījāt ziņas, kamēr neapstiprināsiet uzaicinājumu.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Pievienoties šai grupai un kopīgot jūsu vārdu un profila attēlu ar tās dalībniekiem? Jūs neredzēsiet ziņas no viņiem, līdz to neapstiprināsiet.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vai pievienoties šai grupai? Dalībnieki nezinās, vai jūs izlasījāt ziņas, kamēr jūs neapstiprināsiet uzaicinājumu.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Atbloķēt šo grupu un dalīties ar savu vārdu un attēlu ar šiem dalībniekiem? Jūs nesaņemsiet nevienu ziņu, kamēr šo grupu neatbloķēsiet.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Vai atbloķēt šo grupu un dalīties ar savu vārdu un attēlu ar šiem dalībniekiem? Jūs nesaņemsiet ziņas, kamēr šo grupu neatbloķēsiet.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Skatīt</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s dalībnieks</string>
@@ -1652,6 +1658,17 @@
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Jūsu PIN minējumu skaits ir beidzies, bet jums ir iespēja piekļūt jūsu Signal kontam, izveidojot jaunu PIN. Jūsu konta privātumam un drošībai, jūsu konts tiks atjaunots bez profila informācijas un uzstādījumiem.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Izveidojiet jaunu PIN</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+
+    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
+    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
+    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
+    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Brīdinājums</string>
@@ -1843,11 +1860,18 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal nepieciešama pieeja kontaktiem un failiem, lai palīdzētu Jums atrast draugus un sūtīt ziņas. Jūsu kontaktu saraksts tiks augšupielādēts lietojot Signal privāto kontaktu atklāšanu, kas nozīmē, ka tie būs šifrēti, un nekad nebūs redzami Signal servisam.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal nepieciešama pieeja kontaktiem, lai palīdzētu Jums atrast draugus. Jūsu kontaktu saraksts tiks augšupielādēts lietojot Signal privāto kontaktu atklāšanu, kas nozīmē, ka tie būs šifrēti, un nekad nebūs redzami Signal servisam.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Pārāk daudz šī numura reģistrēšanas mēģinājumu. Vēlāk mēģiniet vēlreiz.</string>
+    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
+    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nevar izveidot savienojumu ar pakalpojumu. Lūdzu, pārbaudiet tīkla savienojumu un mēģiniet vēlreiz.</string>
     <string name="RegistrationActivity_non_standard_number_format">Nestandarta numura formāts</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Izskatās, ka numurs, kuru ievadījāt (%1$s), ir nestandarta formātā.\n\nVai domājāt %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefona Numura Formāts</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Pieprasīts zvans</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
+    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
+    <string name="RegistrationActivity_code_requested">Verification code requested</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="zero">Jūs tagad esiet %1$d soļus no atkļūdošanas žurnāla iesniegšanas</item>
         <item quantity="one">Jūs tagad esiet %1$d soli no atkļūdošanas žurnāla iesniegšanas</item>
@@ -1868,6 +1892,11 @@
     <string name="RegistrationActivity_call">Zvanīt</string>
     <string name="RegistrationActivity_verification_code">Verifikācijas kods</string>
     <string name="RegistrationActivity_resend_code">Saņemt kodu vēlreiz</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_1">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.\nFor more information, please follow </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_2">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_3"> or </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_4">Contact Support</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Ieslēgt reģistrācijas bloķēšanu?</string>
@@ -2035,7 +2064,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Ieplānotā ziņa</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Jūsu ziņu vēsture ir apvienota</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s ir kontakta %2$s tālruņa numurs</string>
 
@@ -2768,9 +2797,9 @@
     <string name="preferences__pref_use_address_book_photos">Izmantot adrešu grāmatas foto</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Parādiet kontaktpersonu fotoattēlus no adrešu grāmatas, ja pieejama</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Saglabāt apklusinātās sarunas arhivētas</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Arhivētas apklusinātās sarunas paliks arhivētas, kad tiks saņemta jauna ziņa.</string>
     <string name="preferences__generate_link_previews">Ģenerēt saišu priekšskatījumus</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Izgūstiet saišu priekšskatījumus nosūtītajām ziņām tieši no tīmekļa vietnēm.</string>
     <string name="preferences__change_passphrase">Nomainīt paroli</string>
@@ -3064,7 +3093,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Nosūtīts maksājums</string>
     <string name="PaymentsDetailsFragment__received_payment">Saņemts maksājums</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Maksājums pabeigts %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Bloka numurs</string>
+    <string name="PaymentsDetailsFragment__block_number">Bloķēt numuru</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Pārsūtīt</string>
@@ -3392,6 +3421,8 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Ievadiet jūsu PIN</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Ievadiet sava konta PIN kodu. Tas atšķiras no jūsu SMS verifikācijas koda.</string>
+    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Ievadiet no burtiem un cipariem sastāvošu PIN</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Izveido ciparisku PIN</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Nepareizs PIN. Mēģiniet vēlreiz.</string>
@@ -3500,7 +3531,10 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Jūsu rezerves kopija satur ļoti lielu failu, ko nav iespējams dublēt. Lūdzu, izdzēsiet to un izveidojiet jaunu rezerves kopiju.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Pieskarties, lai pārvaldību rezerves kopijas</string>
     <string name="RegistrationActivity_wrong_number">Vai nepareizs numurs?</string>
+    <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Piezvaniet man (%1$02d.%2$02d)</string>
+    <!--    Countdown to when the user can request a new SMS code during registration.-->
+    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Sazināties ar Signal tehnisko atbalstu</string>
     <string name="RegistrationActivity_code_support_subject">Signal reģistrācija - Android ierīces verifikācijas kods</string>
     <string name="RegistrationActivity_incorrect_code">Nepareizs kods</string>
@@ -4114,7 +4148,7 @@
     <string name="PrivacySettingsFragment__messaging">Ziņapmaiņa</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Gaistošās ziņas</string>
     <string name="PrivacySettingsFragment__app_security">Lietotnes aizsardzība</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloķēt ekrānuzņēmumus pēdējo aplikāciju sarakstā un pašā aplikācijā</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloķēt ekrānuzņēmumus pēdējo sarunu sarakstā un pašā lietotnē</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ziņas un zvani, pastāvīga zvanu pārsūtīšana un šifrēts sūtītājs</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Noklusējuma taimeris jaunām sarunām</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Iestatiet noklusējuma ziņu dzēšanas taimeri visām jaunajām jūsu sāktajām sarunām.</string>
@@ -4275,7 +4309,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">Izslēgt</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">Izslēgta</string>
+    <string name="ConversationSettingsFragment__muted">Izslēgti</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Meklēt</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Gaistošās ziņas</string>
@@ -4295,8 +4329,8 @@
     <string name="ConversationSettingsFragment__group_link">Grupas saite</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Pievienot kā kontaktpersonu</string>
     <string name="ConversationSettingsFragment__unmute">Ieslēgt</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Saruna izslēgta līdz %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Saruna izslēgta uz visiem laikiem.</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Sarunas paziņojumi izslēgti līdz %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Sarunas paziņojumi izslēgti uz visiem laikiem</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Tālruņa numurs ir nokopēts starpliktuvē.</string>
     <string name="ConversationSettingsFragment__phone_number">Tālruņa numurs</string>
     <string name="ConversationSettingsFragment__get_badges">Iegūstiet nozīmītes savam profilam, atbalstot Signal. Pieskarieties nozīmītei, lai uzzinātu vairāk.</string>
@@ -4313,7 +4347,7 @@
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Izslēgt paziņojumus</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nav izslēgtas</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nav izslēgti</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Pieminējumi</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Vienmēr paziņot</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Neziņot</string>
@@ -4350,7 +4384,7 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s ir noņemts</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s ir bloķēta</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s ir bloķēts</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Nevar noņemt %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -5739,11 +5773,11 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">P</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">min</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Iestatīt</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimālais laiks pirms ekrāna bloķēšanas ir 1 minūte.</string>
 
     <!-- EOF -->
 </resources>

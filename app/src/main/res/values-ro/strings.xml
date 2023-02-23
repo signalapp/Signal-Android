@@ -997,6 +997,12 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">Numele de utilizator a fost șters</string>
 
+    <!-- UsernameOutOfSyncReminder -->
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <!-- Action text to navigate user to manually fix the issue with their username -->
+    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+
 
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_no_groups_in_common">Nu există grupuri în comun</string>
@@ -1653,6 +1659,17 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Creează un PIN nou</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
+    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
+    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
+    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
+    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Avertizare</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Dacă dezactivezi codul PIN, vei pierde toate datele când te înregistrezi din nou la Signal, cu excepția cazului când faci backup și restaurezi manual. Nu poți activa Blocarea înregistrării în timp ce codul PIN este dezactivat.</string>
@@ -1843,11 +1860,18 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal are nevoie de permisiunea pentru contacte și media să te ajute să iei legătura cu prietenii și să trimiți mesaje. Contactele tale sunt încărcate utilizând descoperirea privată a contactelor de la Signal, ceea ce înseamnă că sunt criptate integral și nu sunt niciodată vizibile pentru serviciul Signal.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal are nevoie de permisiunea pentru contacte să te ajute să iei legătura cu prietenii. Contactele tale sunt încărcate utilizând descoperirea privată a contactelor de la Signal, ceea ce înseamnă că sunt criptate integral și nu sunt niciodată vizibile pentru serviciul Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Ai făcut prea multe încercări de înregistrare a acestui număr. Te rugăm să încerci din nou mai târziu.</string>
+    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
+    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nu s-a putut realiza conexiunea la serviciu. Te rugăm verifică conexiunea la rețea și încearcă din nou.</string>
     <string name="RegistrationActivity_non_standard_number_format">Număr cu format non-standard</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Numărul pe care l-ai introdus (%1$s) pare a fi în format non-standard.\n\nAi vrut să scrii %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Formatul Numărului de Telefon</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Apel solicitat</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
+    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
+    <string name="RegistrationActivity_code_requested">Verification code requested</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Ești acum la %1$d pas de a trimite un jurnal de depanare.</item>
         <item quantity="few">Ești acum la %1$d pași de a trimite un jurnal de depanare.</item>
@@ -1868,6 +1892,11 @@
     <string name="RegistrationActivity_call">Apelează</string>
     <string name="RegistrationActivity_verification_code">Cod de Verificare</string>
     <string name="RegistrationActivity_resend_code">Trimite din nou codul</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_1">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.\nFor more information, please follow </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_2">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_3"> or </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_4">Contact Support</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Activează Blocarea Înregistrării?</string>
@@ -3392,6 +3421,8 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Introdu PIN-ul tău</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Introdu codul PIN pe care l-ai creat pentru contul tău. Acesta este diferit față de codul de verificare prin SMS.</string>
+    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Introdu un PIN alfanumeric</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Introdu un PIN numeric</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN incorect. Încearcă din nou.</string>
@@ -3500,7 +3531,10 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Backup-ul tău conține un fișier foarte mare care nu poate fi adăugat la backup. Șterge-l și creează un backup nou.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Atinge pentru a gestiona backup-uri.</string>
     <string name="RegistrationActivity_wrong_number">Număr greșit?</string>
+    <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Sună-mă (%1$02d:%2$02d)</string>
+    <!--    Countdown to when the user can request a new SMS code during registration.-->
+    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contactează Asistența Signal</string>
     <string name="RegistrationActivity_code_support_subject">Înregistrare Signal - Cod de Verificare pentru Android</string>
     <string name="RegistrationActivity_incorrect_code">Cod incorect</string>

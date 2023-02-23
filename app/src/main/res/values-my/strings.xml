@@ -921,6 +921,12 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">သုံးစွဲသူအမည် ဖျက်ပစ်ပြီး</string>
 
+    <!-- UsernameOutOfSyncReminder -->
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <!-- Action text to navigate user to manually fix the issue with their username -->
+    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+
 
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_no_groups_in_common">တူညီသော အဖွဲ့များ မရှိပါ</string>
@@ -1525,6 +1531,17 @@
     <string name="PinRestoreLockedFragment_create_new_pin">ပင်နံပါတ်အသစ်ဖန်တီးပါ</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
+    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
+    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
+    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
+    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">သတိပေးချက်</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PIN ကို ပိတ်ထားပါက Signal ကို ပြန်လည်စာရင်းသွင်းသည့်အခါ ကိုယ်တိုင် ဘက်ခ်အပ်လုပ်၍ ပြန်လည်မသိုလှောင်မချင်း ဒေတာအားလုံးပျောက်သွားပါလိမ့်မည်။ PIN ကို ပိတ်ထားစဉ် စာရင်းသွင်းလော့ခ်ကို ဖွင့်၍ မရနိုင်ပါ။</string>
@@ -1703,11 +1720,18 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal သည် သင့်အား မိတ်ဆွေများနှင့် ဆက်သွယ်ပေးနိုင်ရန်နှင့် မက်ဆေ့ချ်များ ပေးပို့နိုင်စေရန်အတွက် ကူညီပေးရန် အဆက်အသွယ်နှင့် မီဒီယာ ခွင့်ပြုချက်များ လိုအပ်ပါသည်။ သင့်အဆက်အသွယ်များကို End-to-end ကုဒ်ပြောင်းဝှက်ထားသော Signal ၏ သီးသန့် အဆက်အသွယ် ရှာဖွေရေးကို သုံး၍ အပ်လုဒ်လုပ်ထားသောကြောင့် Signal ဝန်ဆောင်မှုတွင် မည်သည့်အခါမျှ မြင်ရမည် မဟုတ်ပါ။</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal သည် သင့်အား မိတ်ဆွေများနှင့် ဆက်သွယ်ပေးရန်အတွက် အဆက်အသွယ် ခွင့်ပြုချက် လိုအပ်ပါသည်။ သင့်အဆက်အသွယ်များကို End-to-end ကုဒ်ပြောင်းဝှက်ထားသော Signal ၏ သီးသန့် အဆက်အသွယ် ရှာဖွေရေးကို သုံး၍ အပ်လုဒ်လုပ်ထားသောကြောင့် Signal ဝန်ဆောင်မှုတွင် မည်သည့်အခါမျှ မြင်ရမည် မဟုတ်ပါ။</string>
     <string name="RegistrationActivity_rate_limited_to_service">ဤနံပတ်ဖြင့် မှတ်ပုံတင်ခြင်းကို အကြိမ်ပေါင်းများစွာ ကြိုးစားပြီးပါပြီ။ ကျေးဇူးပြူ၍ နောင်အခါမှ ပြန်လည်ကြိုးစားပါ။</string>
+    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
+    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ဝန်ဆောင်မှုနှင့် ဆက်သွယ်၍ မရနိုင်ပါ။ အင်တာနက်ချိတ်ဆက်မှုအား နောက်တစ်ကြိမ် စစ်ဆေး၍ ပြန်လည်ကြိုးစားကြည့်ပါ။</string>
     <string name="RegistrationActivity_non_standard_number_format">စံပုံစံနှင့် မကိုက်ညီသည့် နံပါတ်</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">သင်ထည့်သွင်းထားသည့် နံပါတ် (%1$s) သည် စံပုံစံနှင့် မကိုက်ညီပုံပေါ်ပါသည်။\n\nသင်ဆိုလိုသည်မှာ %2$s ဟုတ်ပါသလား။</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - ဖုန်းနံပါတ် ပုံစံ</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">ကောလ် တောင်းဆိုပြီး</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
+    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
+    <string name="RegistrationActivity_code_requested">Verification code requested</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">ယခု သင်သည် ပျက်ကွက်မှုပြင်ခြင်း မှတ်တမ်း တင်ရန်အတွက် အဆင့် %1$d ဆင့်သာလိုတော့သည်</item>
     </plurals>
@@ -1726,6 +1750,11 @@
     <string name="RegistrationActivity_call">ဖုန်းခေါ်ဆိုမှု</string>
     <string name="RegistrationActivity_verification_code">အတည်ပြုကုဒ်</string>
     <string name="RegistrationActivity_resend_code">ကုဒ် ပြန်ပို့ရန်</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_1">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.\nFor more information, please follow </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_2">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_3"> or </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_4">Contact Support</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">မှတ်ပုံတင်မှု ပိတ်ထားခြင်းကို အသုံးပြုမည်လား?</string>
@@ -3216,6 +3245,8 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">သင်၏ ပင်နံပါတ် ကိုထည့်ပါ</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">သင့်အကောင့်အတွက် ဖန်တီးထားသော ပင်နံပါတ် ထည့်ပါ၊ SMS စာတိုအနေဖြင့်ပေးပို့သည့် အတည်ပြုကုဒ်နှင့် မတူပါ။</string>
+    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">အက္ခရာနံပါတ်ပါ ပင်နံပါတ်ကို ရိုက်ထည့်ပါ</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">နံပါတ်ပါ ပင်နံပါတ်ကို ရိုက်ထည့်ပါ</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">ပင်နံပါတ်မှားနေသည်။ နောက်တစ်ကြိမ် ကြိုးစားပါ။</string>
@@ -3314,7 +3345,10 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">သင့်ဘက်ခ်အပ်တွင် သိမ်း၍ မရနိုင်သည့် အလွန်ကြီးသော ဖိုင်တစ်ဖိုင် ပါဝင်နေပါသည်။ ၎င်းကို ဖျက်ပြီး ဘက်ခ်အပ်အသစ် ဖန်တီးပါ။</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">အရန်ကူးခြင်းများကိုစီမံရန် နှိပ်ပါ</string>
     <string name="RegistrationActivity_wrong_number">နံပါတ် မှားနေပါသလား။</string>
+    <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">(%1$02d:%2$02d) အကြာတွင် ဖုန်းခေါ်ရန်</string>
+    <!--    Countdown to when the user can request a new SMS code during registration.-->
+    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal အကူအညီ ရယူမည်</string>
     <string name="RegistrationActivity_code_support_subject">Signal မှတ်ပုံတင်ခြင်း Android အတွက် အတည်ပြုကုဒ်</string>
     <string name="RegistrationActivity_incorrect_code">ကုဒ် မှားနေပါသည်</string>

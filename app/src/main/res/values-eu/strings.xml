@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Errorea multimedia bidaltzean</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Spam gisa salatu, eta blokeatu egin da.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Spam gisa salatua eta blokeatua.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Une honetan SMS mezuak desgaituta daude. Mezuak telefonoko beste aplikazio batera esporta ditzakezu.</string>
@@ -448,7 +448,7 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$son</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">Eskaera blokeatu nahi duzu?</string>
+    <string name="ConversationFragment__block_request">Blokeatu eskaera?</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s ezingo da talde honetan sartu talderako estekaren bidez, eta ezingo du bertan sartzeko eskatu. Hala ere, eskuz gehi daiteke taldean.</string>
     <!-- Dialog confirm block request button -->
@@ -936,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Nahi dut aipamenak jakinaraztea</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Nahi duzu jakinarazpenak jaso isildutako txatetan aipatzen zaituztenean?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Jakinarazpenik jaso nahi duzu isildutako txatetan aipatzen zaituztenean?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Beti jakinarazi</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Ez jakinarazi</string>
 
@@ -955,9 +955,15 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Kopiatu da erabiltzaile-izena</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Ezin izan da erabiltzaile-izena ezabatu. Saiatu berriro beranduago.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Erabiltzaile izena ezabatu da</string>
+
+    <!-- UsernameOutOfSyncReminder -->
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <!-- Action text to navigate user to manually fix the issue with their username -->
+    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1589,9 +1595,20 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Sortu PIN berria</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
+    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
+    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
+    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
+    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Markatutako zenbakia ez dago Signal-era erregistratuta. SMS bidez gonbidatu nahiko zenuke?</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ez baduzu modu manualean segurtasun kopiak egiten, PINa desaktibatuz gero datu guztiak galduko dituzu signal berriro erregistratzen duzunean. Ezin duzu erregistratzeko blokeoa aktibatu PINa desaktibatuta dagoen bitartean.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PINa desgaitzen baduzu, datu guztiak galduko dituzu Signal berriro erregistratzen duzunean, eskuz babeskopiak egin eta leheneratu ezean. Ezin duzu erregistratzeko blokeoa aktibatu PINa desgaituta dagoen bitartean.</string>
     <string name="PinOptOutDialog_disable_pin">Desaktibatu PINa</string>
 
     <!-- RatingManager -->
@@ -1773,11 +1790,18 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Lagunekin konektatzeko eta mezuak bidali ahal izan ditzazun, Signal-ek kontaktuak eta multimedia-edukia atzitzeko baimena behar du. Signal-en kontaktuak aurkitzeko aukera pribatuaren bidez kargatzen dira kontaktuak; hau da, muturretik muturrera enkriptatuta daude, eta Signal zerbitzuak ezin ditu ikusi.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Lagunekin konektatzeko, Signal-ek kontaktuak eta multimedia-edukia atzitzeko baimena behar du. Signal-en kontaktuak aurkitzeko aukera pribatuaren bidez kargatzen dira kontaktuak; hau da, muturretik muturrera enkriptatuta daude, eta Signal zerbitzuak ezin ditu ikusi.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Zenbakia erregistratzeko saiakera gehiegi egin dituzu. Mesedez, saia zaitez beranduago.</string>
+    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
+    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Ezin da zerbitzura konektatu. Egiaztatu sarearen ezarpenak eta saiatu berriz.</string>
     <string name="RegistrationActivity_non_standard_number_format">Zenbaki-formatu ez-estandarra</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Idatzi duzun zenbakiak (%1$s) formatu ez-estandar bat du.\n\n%2$s esan nahi al zenuen?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefono-zenbakien formatua</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Deia eskatu da</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
+    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
+    <string name="RegistrationActivity_code_requested">Verification code requested</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Hurrats %1$d falta zaizu arazterko txosten bat bidaltzeko.</item>
         <item quantity="other">%1$d hurrats falta zaizkizu arazterko txosten bat bidaltzeko.</item>
@@ -1797,6 +1821,11 @@
     <string name="RegistrationActivity_call">Deitu</string>
     <string name="RegistrationActivity_verification_code">Egiaztapen-kodea</string>
     <string name="RegistrationActivity_resend_code">Bidali kodea berriro</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_1">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.\nFor more information, please follow </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_2">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_3"> or </string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_part_4">Contact Support</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktibatu Erregistratzeko Blokeoa?</string>
@@ -1964,7 +1993,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Programatutako mezua</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Your message history has been merged</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Zure mezuen historia batu da</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s zenbakia %2$s erabiltzailearena da</string>
 
@@ -3304,6 +3333,8 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Idatzi zure PINa</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Idatzi konturako sortu duzun PIN-a. PIN hau ez da zure SMS berifikazio gakoa.</string>
+    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Idatzi PIN alfanumerikoa</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Idatzi zenbakizko PINa</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN okerra. Saia zaitez berriro.</string>
@@ -3407,7 +3438,10 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Babeskopiak oso handia den fitxategi bat dauka, eta ezin da egin haren babeskopia. Ezaba ezazu eta sortu beste babeskopia bat.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Sakatu babeskopiak kudeatzeko.</string>
     <string name="RegistrationActivity_wrong_number">Zenbaki okerra?</string>
+    <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Dei iezadazu (%1$02d:%2$02d)</string>
+    <!--    Countdown to when the user can request a new SMS code during registration.-->
+    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Harremanetan jarri Signal Laguntza Taldearekin</string>
     <string name="RegistrationActivity_code_support_subject">Signal Errejistratzea - Androiderako Egiaztatze Kodea</string>
     <string name="RegistrationActivity_incorrect_code">Kodea ez da zuzena</string>
@@ -4214,7 +4248,7 @@
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Desaktibatu jakinarazpenak</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ez mututua</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ez dago isilduta</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Aipamenak</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Jakinarazi beti</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ez jakinarazi</string>
@@ -4251,7 +4285,7 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">Kendu da %1$s</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">Blokeatu da %1$s</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s blokeatu da</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Ezin da kendu %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -5614,11 +5648,11 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">M</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Ezarri</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
-    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Pantaila blokeatzeko gutxieneko denbora minutu bat da.</string>
 
     <!-- EOF -->
 </resources>
