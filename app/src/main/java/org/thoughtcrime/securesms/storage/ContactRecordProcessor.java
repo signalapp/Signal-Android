@@ -28,10 +28,13 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 
 public class ContactRecordProcessor extends DefaultStorageRecordProcessor<SignalContactRecord> {
 
   private static final String TAG = Log.tag(ContactRecordProcessor.class);
+
+  private static final Pattern E164_PATTERN = Pattern.compile("^\\+[1-9]\\d{0,18}$");
 
   private final RecipientTable recipientTable;
 
@@ -140,6 +143,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
       return true;
     } else if (!FeatureFlags.phoneNumberPrivacy() && remote.getServiceId().equals(remote.getPni().orElse(null))) {
       Log.w(TAG, "Found a PNI-only ContactRecord when PNP is disabled -- marking as invalid.");
+      return true;
+    } else if (remote.getNumber().isPresent() && !isValidE164(remote.getNumber().get())) {
+      Log.w(TAG, "Found a record with an invalid E164. Marking as invalid.");
       return true;
     } else {
       return false;
@@ -319,6 +325,10 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     } else {
       return 1;
     }
+  }
+
+  private static boolean isValidE164(String value) {
+    return E164_PATTERN.matcher(value).matches();
   }
 
   private static boolean doParamsMatch(@NonNull SignalContactRecord contact,
