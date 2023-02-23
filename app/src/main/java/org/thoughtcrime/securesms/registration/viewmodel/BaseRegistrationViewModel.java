@@ -36,17 +36,17 @@ import io.reactivex.rxjava3.core.Single;
  */
 public abstract class BaseRegistrationViewModel extends ViewModel {
 
-  private static final String STATE_NUMBER                           = "NUMBER";
-  private static final String STATE_REGISTRATION_SECRET              = "REGISTRATION_SECRET";
-  private static final String STATE_VERIFICATION_CODE                = "TEXT_CODE_ENTERED";
-  private static final String STATE_CAPTCHA                          = "CAPTCHA";
-  private static final String STATE_SUCCESSFUL_CODE_REQUEST_ATTEMPTS = "SUCCESSFUL_CODE_REQUEST_ATTEMPTS";
-  private static final String STATE_REQUEST_RATE_LIMITER             = "REQUEST_RATE_LIMITER";
-  private static final String STATE_KBS_TOKEN                        = "KBS_TOKEN";
-  private static final String STATE_TIME_REMAINING                   = "TIME_REMAINING";
-  private static final String STATE_CAN_CALL_AT_TIME                 = "CAN_CALL_AT_TIME";
-  private static final String STATE_CAN_SMS_AT_TIME                  = "CAN_SMS_AT_TIME";
-  private static final String STATE_RECOVERY_PASSWORD                = "RECOVERY_PASSWORD";
+  private static final String STATE_NUMBER                  = "NUMBER";
+  private static final String STATE_REGISTRATION_SECRET     = "REGISTRATION_SECRET";
+  private static final String STATE_VERIFICATION_CODE       = "TEXT_CODE_ENTERED";
+  private static final String STATE_CAPTCHA                 = "CAPTCHA";
+  private static final String STATE_INCORRECT_CODE_ATTEMPTS = "STATE_INCORRECT_CODE_ATTEMPTS";
+  private static final String STATE_REQUEST_RATE_LIMITER    = "REQUEST_RATE_LIMITER";
+  private static final String STATE_KBS_TOKEN               = "KBS_TOKEN";
+  private static final String STATE_TIME_REMAINING          = "TIME_REMAINING";
+  private static final String STATE_CAN_CALL_AT_TIME        = "CAN_CALL_AT_TIME";
+  private static final String STATE_CAN_SMS_AT_TIME         = "CAN_SMS_AT_TIME";
+  private static final String STATE_RECOVERY_PASSWORD       = "RECOVERY_PASSWORD";
 
   protected final SavedStateHandle        savedState;
   protected final VerifyAccountRepository verifyAccountRepository;
@@ -65,7 +65,7 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     setInitialDefaultValue(STATE_NUMBER, NumberViewState.INITIAL);
     setInitialDefaultValue(STATE_REGISTRATION_SECRET, password);
     setInitialDefaultValue(STATE_VERIFICATION_CODE, "");
-    setInitialDefaultValue(STATE_SUCCESSFUL_CODE_REQUEST_ATTEMPTS, 0);
+    setInitialDefaultValue(STATE_INCORRECT_CODE_ATTEMPTS, 0);
     setInitialDefaultValue(STATE_REQUEST_RATE_LIMITER, new LocalCodeRequestRateLimiter(60_000));
     setInitialDefaultValue(STATE_RECOVERY_PASSWORD, SignalStore.kbsValues().getRecoveryPassword());
   }
@@ -160,13 +160,13 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     savedState.set(STATE_VERIFICATION_CODE, code);
   }
 
-  public void markASuccessfulAttempt() {
+  public void incrementIncorrectCodeAttempts() {
     //noinspection ConstantConditions
-    savedState.set(STATE_SUCCESSFUL_CODE_REQUEST_ATTEMPTS, (Integer) savedState.get(STATE_SUCCESSFUL_CODE_REQUEST_ATTEMPTS) + 1);
+    savedState.set(STATE_INCORRECT_CODE_ATTEMPTS, (Integer) savedState.get(STATE_INCORRECT_CODE_ATTEMPTS) + 1);
   }
 
-  public LiveData<Integer> getSuccessfulCodeRequestAttempts() {
-    return savedState.getLiveData(STATE_SUCCESSFUL_CODE_REQUEST_ATTEMPTS, 0);
+  public LiveData<Integer> getIncorrectCodeAttempts() {
+    return savedState.getLiveData(STATE_INCORRECT_CODE_ATTEMPTS, 0);
   }
 
   public @Nullable TokenData getKeyBackupCurrentToken() {
@@ -244,10 +244,6 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
         })
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSuccess((RegistrationSessionProcessor processor) -> {
-          if (processor.hasResult()) {
-            markASuccessfulAttempt();
-          }
-
           if (processor.hasResult() && processor.isAllowedToRequestCode()) {
             setCanSmsAtTime(processor.getNextCodeViaSmsAttempt());
             setCanCallAtTime(processor.getNextCodeViaCallAttempt());
