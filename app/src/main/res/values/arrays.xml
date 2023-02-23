@@ -17,6 +17,7 @@
 <!-- my --><item>Burmese ဗမာစကား</item>
 <!-- ca --><item>Català</item>
 <!-- cs --><item>Čeština</item>
+<!-- yue --><item>繁體廣東話（香港）</item>
 <!-- zh_CN --><item>Chinese (Simplified) 中文 (简体)</item>
 <!-- zh_TW --><item>Chinese (Traditional) 中文 (繁體)</item>
 <!-- zh_HK --><item>Chinese (Traditional, Hong Kong) 中文 (香港)</item>
@@ -87,6 +88,7 @@
       <item>my</item>
       <item>ca</item>
       <item>cs</item>
+      <item>yue</item>
       <item>zh_CN</item>
       <item>zh_TW</item>
       <item>zh_HK</item>
