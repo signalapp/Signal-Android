@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.attachments
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.drafts
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groupCallRings
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groupReceipts
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.mentions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messageLog
@@ -1077,6 +1078,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       messageLog.deleteAll()
       messages.deleteAllThreads()
       drafts.clearAllDrafts()
+      groupCallRings.deleteAll()
       db.delete(TABLE_NAME, null, null)
     }
 
