@@ -407,14 +407,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/termsFragment"
-        android:name="pigeon.fragments.TermsFragment"
-        tools:layout="@layout/pigeon_fragment_registration_terms">
-
-    </fragment>
-
-
-    <fragment
         android:id="@+id/newDeviceTransfer"
         android:name="org.thoughtcrime.securesms.devicetransfer.newdevice.NewDeviceTransferFragment"
         tools:layout="@layout/device_transfer_fragment">

@@ -97,8 +97,8 @@
         <item name="android:defaultFocusHighlightEnabled" tools:ignore="NewApi">false</item>
     </style>
 
-    <style name="Mp02.Signal.Text.MediumCommonTextButton">
-        <item name="android:textSize">28sp</item>
+    <style name="Mp02.Signal.Text.FocusableMediumCommonTextButton">
+        <item name="android:textSize">24sp</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:textAlignment">textStart</item>
         <item name="android:textColor">@color/mp02_common_text_button</item>
@@ -106,16 +106,6 @@
         <item name="android:ellipsize">end</item>
         <item name="android:focusable">true</item>
         <item name="android:focusableInTouchMode">true</item>
-        <item name="android:defaultFocusHighlightEnabled" tools:ignore="NewApi">false</item>
-    </style>
-
-    <style name="Mp02.Signal.Text.SmallCommonTextButton">
-        <item name="android:textSize">16sp</item>
-        <item name="android:includeFontPadding">false</item>
-        <item name="android:textAlignment">textStart</item>
-        <item name="android:textColor">@color/mp02_common_text_button</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:ellipsize">end</item>
         <item name="android:defaultFocusHighlightEnabled" tools:ignore="NewApi">false</item>
     </style>
 

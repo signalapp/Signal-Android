@@ -10,7 +10,7 @@
     tools:viewBindingIgnore="true">
 
     <TextView
-         style="@style/Mp02.Signal.Text.MediumCommonTextButton"
+         style="@style/Mp02.Signal.Text.FocusableMediumCommonTextButton"
         android:id="@+id/new_message_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:text="@string/Pigeon_HomePage_new_message" />
 
     <TextView
-         style="@style/Mp02.Signal.Text.MediumCommonTextButton"
+         style="@style/Mp02.Signal.Text.FocusableMediumCommonTextButton"
         android:id="@+id/new_group_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
 
 
     <TextView
-         style="@style/Mp02.Signal.Text.MediumCommonTextButton"
+         style="@style/Mp02.Signal.Text.FocusableMediumCommonTextButton"
         android:id="@+id/mark_all_read_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         android:text="@string/Pigeon_HomePage_mark_all_read" />
 
     <TextView
-         style="@style/Mp02.Signal.Text.MediumCommonTextButton"
+         style="@style/Mp02.Signal.Text.FocusableMediumCommonTextButton"
         android:id="@+id/settings_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         android:text="@string/Pigeon_HomePage_settings" />
 
     <TextView
-         style="@style/Mp02.Signal.Text.MediumCommonTextButton"
+         style="@style/Mp02.Signal.Text.FocusableMediumCommonTextButton"
         android:id="@+id/search_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
