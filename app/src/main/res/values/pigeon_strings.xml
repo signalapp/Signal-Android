@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="RegistrationActivity_pigeon_captcha_mouse_cursor">➤</string>
+    <string name="Pigeon_RegistrationActivity_enter_your_phone_number">Mobile</string>
 </resources>
