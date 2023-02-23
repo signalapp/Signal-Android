@@ -54,7 +54,7 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
 
     setContentView(R.layout.main_activity);
 
-    mediaController = new VoiceNoteMediaController(this);
+    mediaController = new VoiceNoteMediaController(this, true);
 
     ConversationListTabRepository         repository = new ConversationListTabRepository();
     ConversationListTabsViewModel.Factory factory    = new ConversationListTabsViewModel.Factory(repository);
