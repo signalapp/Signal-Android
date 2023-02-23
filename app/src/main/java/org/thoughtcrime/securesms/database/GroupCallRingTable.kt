@@ -79,6 +79,10 @@ class GroupCallRingTable(context: Context, databaseHelper: SignalDatabase) : Dat
 
     db.delete(TABLE_NAME, "$DATE_RECEIVED < ?", SqlUtil.buildArgs(System.currentTimeMillis() - VALID_RING_DURATION))
   }
+
+  fun deleteAll() {
+    databaseHelper.signalWritableDatabase.delete(TABLE_NAME, null, null)
+  }
 }
 
 private fun CallManager.RingUpdate.toCode(): Int {
