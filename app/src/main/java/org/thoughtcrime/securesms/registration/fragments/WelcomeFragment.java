@@ -240,7 +240,11 @@ public final class WelcomeFragment extends LoggingFragment {
   }
 
   private void onTermsClicked() {
-    CommunicationActions.openBrowserLink(requireContext(), RegistrationConstants.TERMS_AND_CONDITIONS_URL);
+    if (isSignalVersion()) {
+      CommunicationActions.openBrowserLink(requireContext(), RegistrationConstants.TERMS_AND_CONDITIONS_URL);
+    } else {
+      SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_welcomeFragment_to_termsFragment);
+    }
   }
 
   private boolean canUserSelectBackup() {

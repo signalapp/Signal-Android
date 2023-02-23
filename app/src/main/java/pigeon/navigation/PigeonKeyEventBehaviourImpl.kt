@@ -1,9 +1,11 @@
 package pigeon.navigation
+
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registration.fragments.CaptchaFragment
+import pigeon.fragments.TermsFragment
 
 class PigeonKeyEventBehaviourImpl : KeyEventBehaviour {
   override fun dispatchKeyEvent(event: KeyEvent, fragmentManager: FragmentManager) {
@@ -12,8 +14,15 @@ class PigeonKeyEventBehaviourImpl : KeyEventBehaviour {
 
     when (event.keyCode) {
       KeyEvent.KEYCODE_2, KeyEvent.KEYCODE_4, KeyEvent.KEYCODE_6, KeyEvent.KEYCODE_8, KeyEvent.KEYCODE_5, KeyEvent.KEYCODE_0 -> {
+
         if (fragment is CaptchaFragment) {
           fragment.onKeyDown(event.keyCode, event.action)
+          return
+        }
+
+        if (fragment is TermsFragment && event.action == KeyEvent.ACTION_DOWN) {
+          fragment.onKeyDown(event.keyCode)
+          return
         }
       }
     }
