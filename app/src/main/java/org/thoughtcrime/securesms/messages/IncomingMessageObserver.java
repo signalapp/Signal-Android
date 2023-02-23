@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.jobs.UnableToStartException;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.IncomingMessageProcessor.Processor;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalWebSocket;
@@ -36,6 +35,7 @@ import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableExcept
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -52,23 +52,25 @@ public class IncomingMessageObserver {
 
   private static final String TAG = Log.tag(IncomingMessageObserver.class);
 
-  public static final  int  FOREGROUND_ID           = 313399;
+  public  static final int  FOREGROUND_ID           = 313399;
   private static final long REQUEST_TIMEOUT_MINUTES = 1;
   private static final long OLD_REQUEST_WINDOW_MS   = TimeUnit.MINUTES.toMillis(5);
+  private static final long MAX_BACKGROUND_TIME     = TimeUnit.MINUTES.toMillis(5);
 
   private static final AtomicInteger INSTANCE_COUNT = new AtomicInteger(0);
 
   private final Application                context;
-  private final SignalServiceNetworkAccess networkAccess;
   private final List<Runnable>             decryptionDrainedListeners;
   private final BroadcastReceiver          connectionReceiver;
   private final Map<String, Long>          keepAliveTokens;
 
   private boolean appVisible;
+  private long    lastInteractionTime;
 
   private volatile boolean networkDrained;
   private volatile boolean decryptionDrained;
   private volatile boolean terminated;
+
 
   public IncomingMessageObserver(@NonNull Application context) {
     if (INSTANCE_COUNT.incrementAndGet() != 1) {
@@ -76,9 +78,9 @@ public class IncomingMessageObserver {
     }
 
     this.context                    = context;
-    this.networkAccess              = ApplicationDependencies.getSignalServiceNetworkAccess();
     this.decryptionDrainedListeners = new CopyOnWriteArrayList<>();
     this.keepAliveTokens            = new HashMap<>();
+    this.lastInteractionTime        = System.currentTimeMillis();
 
     new MessageRetrievalThread().start();
 
@@ -139,6 +141,13 @@ public class IncomingMessageObserver {
     return decryptionDrained;
   }
 
+  /**
+   * @return True if the websocket is active, otherwise false.
+   */
+  public boolean isActive() {
+    return isConnectionNecessary();
+  }
+
   public void notifyDecryptionsDrained() {
     List<Runnable> listenersToTrigger = new ArrayList<>(decryptionDrainedListeners.size());
 
@@ -157,33 +166,42 @@ public class IncomingMessageObserver {
 
   private synchronized void onAppForegrounded() {
     appVisible = true;
+    context.startService(new Intent(context, BackgroundService.class));
     notifyAll();
   }
 
   private synchronized void onAppBackgrounded() {
-    appVisible = false;
+    appVisible          = false;
+    lastInteractionTime = System.currentTimeMillis();
     notifyAll();
   }
 
   private synchronized boolean isConnectionNecessary() {
-    boolean registered     = SignalStore.account().isRegistered();
-    boolean fcmEnabled     = SignalStore.account().isFcmEnabled();
-    boolean hasNetwork     = NetworkConstraint.isMet(context);
-    boolean hasProxy       = SignalStore.proxy().isProxyEnabled();
-    boolean forceWebsocket = SignalStore.internalValues().isWebsocketModeForced();
-    long    oldRequest     = System.currentTimeMillis() - OLD_REQUEST_WINDOW_MS;
+    boolean registered       = SignalStore.account().isRegistered();
+    boolean fcmEnabled       = SignalStore.account().isFcmEnabled();
+    boolean hasNetwork       = NetworkConstraint.isMet(context);
+    boolean hasProxy         = SignalStore.proxy().isProxyEnabled();
+    boolean forceWebsocket   = SignalStore.internalValues().isWebsocketModeForced();
+    long    oldRequest       = System.currentTimeMillis() - OLD_REQUEST_WINDOW_MS;
+    long    timeIdle         = appVisible ? 0 : System.currentTimeMillis() - lastInteractionTime;
 
     boolean removedRequests = keepAliveTokens.entrySet().removeIf(e -> e.getValue() < oldRequest);
     if (removedRequests) {
       Log.d(TAG, "Removed old keep web socket open requests.");
     }
 
-    Log.d(TAG, String.format("Network: %s, Foreground: %s, FCM: %s, Stay open requests: [%s], Censored: %s, Registered: %s, Proxy: %s, Force websocket: %s",
-                             hasNetwork, appVisible, fcmEnabled, Util.join(keepAliveTokens.entrySet(), ","), networkAccess.isCensored(), registered, hasProxy, forceWebsocket));
+    String lastInteractionString = appVisible ? "N/A" : timeIdle + " ms (" + (timeIdle < MAX_BACKGROUND_TIME ? "within limit" : "over limit") + ")";
 
-    return registered &&
-           (appVisible || !fcmEnabled || forceWebsocket || Util.hasItems(keepAliveTokens)) &&
-           hasNetwork;
+    boolean conclusion = registered &&
+                         (appVisible || timeIdle < MAX_BACKGROUND_TIME || !fcmEnabled || Util.hasItems(keepAliveTokens)) &&
+                         hasNetwork;
+
+    String needsConnectionString = conclusion ? "Needs Connection" : "Does Not Need Connection";
+
+    Log.d(TAG, String.format(Locale.US, "[" + needsConnectionString + "] Network: %s, Foreground: %s, Time Since Last Interaction: %s,  FCM: %s, Stay open requests: [%s], Registered: %s, Proxy: %s, Force websocket: %s",
+                             hasNetwork, appVisible, lastInteractionString, fcmEnabled, Util.join(keepAliveTokens.entrySet(), ","), registered, hasProxy, forceWebsocket));
+
+    return conclusion;
   }
 
   private synchronized void waitForConnectionNecessary() {
@@ -212,11 +230,13 @@ public class IncomingMessageObserver {
 
   public synchronized void registerKeepAliveToken(String key) {
     keepAliveTokens.put(key, System.currentTimeMillis());
+    lastInteractionTime = System.currentTimeMillis();
     notifyAll();
   }
 
   public synchronized void removeKeepAliveToken(String key) {
     keepAliveTokens.remove(key);
+    lastInteractionTime = System.currentTimeMillis();
     notifyAll();
   }
 
@@ -270,6 +290,10 @@ public class IncomingMessageObserver {
               attempts = 0;
             }
           }
+
+          if (!appVisible) {
+            BackgroundService.stop(context);
+          }
         } catch (Throwable e) {
           attempts++;
           Log.w(TAG, e);
@@ -311,6 +335,40 @@ public class IncomingMessageObserver {
       startForeground(FOREGROUND_ID, builder.build());
 
       return Service.START_STICKY;
+    }
+  }
+
+  /**
+   * A service that exists just to encourage the system to keep our process alive a little longer.
+   */
+  public static class BackgroundService extends Service {
+
+    public static void start(Context context) {
+      try {
+        context.startService(new Intent(context, BackgroundService.class));
+      } catch (Exception e) {
+        Log.w(TAG, "Failed to start background service.", e);
+      }
+    }
+
+    public static void stop(Context context) {
+      context.stopService(new Intent(context, BackgroundService.class));
+    }
+
+    @Override
+    public @Nullable IBinder onBind(Intent intent) {
+      return null;
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+      Log.d(TAG, "Background service started.");
+      return START_STICKY;
+    }
+
+    @Override
+    public void onDestroy() {
+      Log.d(TAG, "Background service destroyed.");
     }
   }
 }

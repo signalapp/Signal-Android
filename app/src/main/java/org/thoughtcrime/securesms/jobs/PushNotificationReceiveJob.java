@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
-import org.thoughtcrime.securesms.messages.RestStrategy;
+import org.thoughtcrime.securesms.messages.WebSocketStrategy;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
@@ -60,7 +60,7 @@ public final class PushNotificationReceiveJob extends BaseJob {
   @Override
   public void onRun() throws IOException {
     BackgroundMessageRetriever retriever = ApplicationDependencies.getBackgroundMessageRetriever();
-    boolean                    result    = retriever.retrieveMessages(context, foregroundServiceDelayMs, new RestStrategy());
+    boolean                    result    = retriever.retrieveMessages(context, foregroundServiceDelayMs, new WebSocketStrategy());
 
     if (result) {
       Log.i(TAG, "Successfully pulled messages.");
