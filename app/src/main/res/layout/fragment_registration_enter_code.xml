@@ -101,6 +101,20 @@
                 app:layout_constraintVertical_bias="1.0"
                 tools:text="@string/RegistrationActivity_resend_code" />
 
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/having_trouble_button"
+                style="@style/Signal.Widget.Button.Large.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/RegistrationActivity_support_bottom_sheet_title"
+                android:textColor="@color/signal_colorPrimary"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/code" />
+
             <org.thoughtcrime.securesms.components.registration.VerificationCodeView
                 android:id="@+id/code"
                 android:layout_width="0dp"

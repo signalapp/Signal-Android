@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.greenrobot.eventbus.EventBus;
@@ -28,9 +29,7 @@ import org.thoughtcrime.securesms.components.registration.VerificationPinKeyboar
 import org.thoughtcrime.securesms.registration.ReceivedSmsEvent;
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository;
 import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewModel;
-import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
-import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer;
@@ -62,7 +61,8 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
   private VerificationPinKeyboard keyboard;
   private ActionCountDownButton   callMeCountDown;
   private ActionCountDownButton   resendSmsCountDown;
-  private View                    wrongNumber;
+  private MaterialButton          wrongNumber;
+  private MaterialButton          bottomSheetButton;
   private boolean                 autoCompleting;
 
   private ViewModel viewModel;
@@ -87,6 +87,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
     callMeCountDown      = view.findViewById(R.id.call_me_count_down);
     resendSmsCountDown   = view.findViewById(R.id.resend_sms_count_down);
     wrongNumber          = view.findViewById(R.id.wrong_number);
+    bottomSheetButton    = view.findViewById(R.id.having_trouble_button);
 
     new SignalStrengthPhoneStateListener(this, this);
 
@@ -96,6 +97,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
     setOnCodeFullyEnteredListener(verificationCodeView);
 
     wrongNumber.setOnClickListener(v -> returnToPhoneEntryScreen());
+    bottomSheetButton.setOnClickListener( v -> showBottomSheet());
 
     callMeCountDown.setTextResources(R.string.RegistrationActivity_call, R.string.RegistrationActivity_call_me_instead_available_in);
     resendSmsCountDown.setTextResources(R.string.RegistrationActivity_resend_code, R.string.RegistrationActivity_resend_sms_available_in);
@@ -120,9 +122,9 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
 
     disposables.bindTo(getViewLifecycleOwner().getLifecycle());
     viewModel = getViewModel();
-    viewModel.getSuccessfulCodeRequestAttempts().observe(getViewLifecycleOwner(), (attempts) -> {
+    viewModel.getIncorrectCodeAttempts().observe(getViewLifecycleOwner(), (attempts) -> {
       if (attempts >= 3) {
-        new ContactSupportBottomSheetFragment(this::openTroubleshootingSteps, this::sendEmailToSupport).show(getChildFragmentManager(), "support_bottom_sheet");
+        bottomSheetButton.setVisibility(View.VISIBLE);
       }
     });
 
@@ -229,6 +231,8 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
   }
 
   protected void handleIncorrectCodeError() {
+    viewModel.incrementIncorrectCodeAttempts();
+
     Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_code, Toast.LENGTH_LONG).show();
     keyboard.displayFailure().addListener(new AssertedSuccessListener<Boolean>() {
       @Override
@@ -416,19 +420,10 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
     });
   }
 
-  private void openTroubleshootingSteps() {
-    CommunicationActions.openBrowserLink(requireContext(), getString(R.string.support_center_url));
-  }
 
-  private void sendEmailToSupport() {
-    String body = SupportEmailUtil.generateSupportEmailBody(requireContext(),
-                                                            R.string.RegistrationActivity_code_support_subject,
-                                                            null,
-                                                            null);
-    CommunicationActions.openEmail(requireContext(),
-                                   SupportEmailUtil.getSupportEmailAddress(requireContext()),
-                                   getString(R.string.RegistrationActivity_code_support_subject),
-                                   body);
+  private void showBottomSheet() {
+    ContactSupportBottomSheetFragment bottomSheet = new ContactSupportBottomSheetFragment();
+    bottomSheet.show(getChildFragmentManager(), "support_bottom_sheet");
   }
 
   @Override
