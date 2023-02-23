@@ -12,6 +12,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -120,9 +121,10 @@ public class ApplicationMigrations {
     static final int REBUILD_MESSAGE_FTS_INDEX_2   = 76;
     static final int GLIDE_CACHE_CLEAR             = 77;
     static final int SYSTEM_NAME_RESYNC            = 78;
+    static final int RECOVERY_PASSWORD_SYNC        = 79;
   }
 
-  public static final int CURRENT_VERSION = 78;
+  public static final int CURRENT_VERSION = 79;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -534,6 +536,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.SYSTEM_NAME_RESYNC) {
       jobs.put(Version.SYSTEM_NAME_RESYNC, new StorageServiceSystemNameMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.RECOVERY_PASSWORD_SYNC) {
+      jobs.put(Version.RECOVERY_PASSWORD_SYNC, new AttributesMigrationJob());
     }
 
     return jobs;

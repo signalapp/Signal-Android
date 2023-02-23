@@ -25,11 +25,13 @@ class RefreshKbsCredentialsJob private constructor(parameters: Parameters) : Bas
 
     @JvmStatic
     fun enqueueIfNecessary() {
-      val lastTimestamp = SignalStore.kbsValues().lastRefreshAuthTimestamp
-      if (lastTimestamp + FREQUENCY.inWholeMilliseconds < System.currentTimeMillis() || lastTimestamp > System.currentTimeMillis()) {
-        ApplicationDependencies.getJobManager().add(RefreshKbsCredentialsJob())
-      } else {
-        Log.d(TAG, "Do not need to refresh credentials. Last refresh: $lastTimestamp")
+      if (SignalStore.kbsValues().hasPin()) {
+        val lastTimestamp = SignalStore.kbsValues().lastRefreshAuthTimestamp
+        if (lastTimestamp + FREQUENCY.inWholeMilliseconds < System.currentTimeMillis() || lastTimestamp > System.currentTimeMillis()) {
+          ApplicationDependencies.getJobManager().add(RefreshKbsCredentialsJob())
+        } else {
+          Log.d(TAG, "Do not need to refresh credentials. Last refresh: $lastTimestamp")
+        }
       }
     }
   }
