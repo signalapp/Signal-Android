@@ -914,7 +914,7 @@ public final class MessageContentProcessor {
                                                      boolean sideEffect)
       throws StorageFailedException
   {
-    log(content.getTimestamp(), "Expiration update.");
+    log(content.getTimestamp(), "Expiration update. Side effect: " + sideEffect);
 
     if (groupId.isPresent() && groupId.get().isV2()) {
       warn(String.valueOf(content.getTimestamp()), "Expiration update received for GV2. Ignoring.");
