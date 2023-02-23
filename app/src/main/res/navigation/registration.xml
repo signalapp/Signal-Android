@@ -116,7 +116,9 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/enterPhoneNumberFragment"
+            app:popUpToInclusive="true" />
 
     </fragment>
 
@@ -205,15 +207,6 @@
         tools:layout="@layout/fragment_registration_lock">
 
         <action
-            android:id="@+id/action_reRegisterWithPinFragment_to_enterCodeFragment"
-            app:destination="@id/enterCodeFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@+id/enterPhoneNumberFragment"/>
-
-        <action
             android:id="@+id/action_reRegisterWithPinFragment_to_registrationCompletePlaceHolderFragment"
             app:destination="@id/registrationCompletePlaceHolderFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -222,6 +215,17 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@+id/welcomeFragment"
             app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_reRegisterWithPinFragment_to_enterPhoneNumberFragment"
+            app:destination="@id/enterPhoneNumberFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/reRegisterWithPinFragment"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <fragment

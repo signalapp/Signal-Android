@@ -33,6 +33,7 @@ import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectCodeException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
+import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse;
 
 import java.io.IOException;
@@ -53,6 +54,9 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
   private static final String STATE_BACKUP_COMPLETED   = "BACKUP_COMPLETED";
 
   private final RegistrationRepository registrationRepository;
+
+  private boolean userSkippedReRegisterFlow = false;
+  private boolean autoShowSmsConfirmDialog = false;
 
   public RegistrationViewModel(@NonNull SavedStateHandle savedStateHandle,
                                boolean isReregister,
@@ -111,6 +115,25 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
   public boolean hasBackupCompleted() {
     Boolean completed = savedState.get(STATE_BACKUP_COMPLETED);
     return completed != null ? completed : false;
+  }
+
+  public boolean hasUserSkippedReRegisterFlow() {
+    return userSkippedReRegisterFlow;
+  }
+
+  public void setUserSkippedReRegisterFlow(boolean userSkippedReRegisterFlow) {
+    this.userSkippedReRegisterFlow = userSkippedReRegisterFlow;
+    if (userSkippedReRegisterFlow) {
+      setAutoShowSmsConfirmDialog(true);
+    }
+  }
+
+  public boolean shouldAutoShowSmsConfirmDialog() {
+    return autoShowSmsConfirmDialog;
+  }
+
+  public void setAutoShowSmsConfirmDialog(boolean autoShowSmsConfirmDialog) {
+    this.autoShowSmsConfirmDialog = autoShowSmsConfirmDialog;
   }
 
   @Override
@@ -216,7 +239,18 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                      throw new IllegalStateException("Unable to get token or master key");
                    }
                  })
-                 .onErrorReturn(t -> new VerifyResponseWithoutKbs(ServiceResponse.forUnknownError(t)))
+                 .onErrorReturn(t -> new VerifyResponseWithRegistrationLockProcessor(ServiceResponse.forUnknownError(t), getKeyBackupCurrentToken()))
+                 .map(p -> {
+                   if (p instanceof VerifyResponseWithRegistrationLockProcessor) {
+                     VerifyResponseWithRegistrationLockProcessor lockProcessor = (VerifyResponseWithRegistrationLockProcessor) p;
+                     if (lockProcessor.wrongPin() && lockProcessor.getTokenData() != null) {
+                       TokenData newToken = TokenData.withResponse(lockProcessor.getTokenData(), lockProcessor.getTokenResponse());
+                       return new VerifyResponseWithRegistrationLockProcessor(lockProcessor.getResponse(), newToken);
+                     }
+                   }
+
+                   return p;
+                 })
                  .doOnSuccess(p -> {
                    if (p.hasResult()) {
                      restoreFromStorageService();
@@ -231,9 +265,13 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
   {
     String localPinHash = SignalStore.kbsValues().getLocalPinHash();
 
-    if (hasRecoveryPassword() && localPinHash != null && PinHashing.verifyLocalPinHash(localPinHash, pin)) {
-      Log.i(TAG, "Local pin matches input, attempting registration");
-      return ReRegistrationData.canProceed(new KbsPinData(SignalStore.kbsValues().getOrCreateMasterKey(), SignalStore.kbsValues().getRegistrationLockTokenResponse()));
+    if (hasRecoveryPassword() && localPinHash != null) {
+      if (PinHashing.verifyLocalPinHash(localPinHash, pin)) {
+        Log.i(TAG, "Local pin matches input, attempting registration");
+        return ReRegistrationData.canProceed(new KbsPinData(SignalStore.kbsValues().getOrCreateMasterKey(), SignalStore.kbsValues().getRegistrationLockTokenResponse()));
+      } else {
+        throw new KeyBackupSystemWrongPinException(new TokenResponse(null, null, 0));
+      }
     } else {
       TokenData data = getKeyBackupCurrentToken();
       if (data == null) {
@@ -248,6 +286,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
       }
 
       setRecoveryPassword(kbsPinData.getMasterKey().deriveRegistrationRecoveryPassword());
+      setKeyBackupTokenData(data);
       return ReRegistrationData.canProceed(kbsPinData);
     }
   }
@@ -270,7 +309,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                       return Single.just(processor);
                                     }
                                   })
-                                  .<VerifyResponseProcessor>flatMap(processor -> {
+                                  .flatMap(processor -> {
                                     if (processor.hasResult()) {
                                       VerifyResponse verifyResponse             = processor.getResult();
                                       boolean        setRegistrationLockEnabled = verifyResponse.getKbsData() != null;
@@ -280,10 +319,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                       }
 
                                       return registrationRepository.registerAccount(registrationData, verifyResponse, setRegistrationLockEnabled)
-                                                                   .map(r -> {
-                                                                     return setRegistrationLockEnabled ? new VerifyResponseWithRegistrationLockProcessor(r, getKeyBackupCurrentToken())
-                                                                                                       : new VerifyResponseWithoutKbs(r);
-                                                                   });
+                                                                   .map(r -> new VerifyResponseWithRegistrationLockProcessor(r, getKeyBackupCurrentToken()));
                                     } else {
                                       return Single.just(processor);
                                     }
@@ -292,11 +328,14 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
   }
 
   public @NonNull Single<Boolean> canEnterSkipSmsFlow() {
+    if (userSkippedReRegisterFlow) {
+      return Single.just(false);
+    }
+
     return Single.just(hasRecoveryPassword())
                  .flatMap(hasRecoveryPassword -> {
                    if (hasRecoveryPassword) {
-                     Log.d(TAG, "Have valid recovery password but still checking kbs credentials as a backup");
-                     return checkForValidKbsAuthCredentials().map(unused -> true);
+                     return Single.just(true);
                    } else {
                      return checkForValidKbsAuthCredentials();
                    }
@@ -310,8 +349,9 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                      return kbsRepository.getToken(p.getValid())
                                                          .flatMap(r -> {
                                                            if (r.getResult().isPresent()) {
-                                                             setKeyBackupTokenData(r.getResult().get());
-                                                             return Single.just(true);
+                                                             TokenData tokenData = r.getResult().get();
+                                                             setKeyBackupTokenData(tokenData);
+                                                             return Single.just(tokenData.getTriesRemaining() > 0);
                                                            } else {
                                                              return Single.just(false);
                                                            }
