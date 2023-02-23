@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 import java.util.Optional;
 
 import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
+import static pigeon.extensions.BuildExtensionsKt.isSignalVersion;
 import static pigeon.extensions.KotilinExtensionsKt.focusOnLeft;
 
 public final class WelcomeFragment extends LoggingFragment {
@@ -102,8 +103,14 @@ public final class WelcomeFragment extends LoggingFragment {
 
       Log.i(TAG, "Skipping restore because this is a reregistration.");
       viewModel.setWelcomeSkippedOnRestore();
-      SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
-                                  WelcomeFragmentDirections.actionSkipRestore());
+      if (isSignalVersion()) {
+        SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
+                                    WelcomeFragmentDirections.actionSkipRestore());
+      } else {
+        SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
+                                    WelcomeFragmentDirections.actionPigeonSkipRestore());
+      }
+
     } else {
 
       setDebugLogSubmitMultiTapView(view.findViewById(R.id.image));
@@ -183,8 +190,13 @@ public final class WelcomeFragment extends LoggingFragment {
 
       if (backup == null) {
         Log.i(TAG, "Skipping backup. No backup found, or no permission to look.");
-        SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
-                                    WelcomeFragmentDirections.actionSkipRestore());
+        if (isSignalVersion()) {
+          SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
+                                      WelcomeFragmentDirections.actionSkipRestore());
+        } else {
+          SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
+                                      WelcomeFragmentDirections.actionSkipRestore());
+        }
       } else {
         SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
                                     WelcomeFragmentDirections.actionRestore());

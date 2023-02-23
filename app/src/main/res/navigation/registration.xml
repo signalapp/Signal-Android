@@ -21,6 +21,14 @@
 
         <action
             android:id="@+id/action_skip_restore"
+            app:destination="@id/enterPhoneNumberFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/action_pigeon_skip_restore"
             app:destination="@id/countryCodeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -49,7 +57,7 @@
         android:id="@+id/countryCodeFragment"
         android:name="pigeon.fragments.CountryCodeFragment"
         android:label="fragment_countryCodee"
-        tools:layout="@layout/fragment_registration_country_code">
+        tools:layout="@layout/fragment_pigeon_registration_country_code">
 
         <action
             android:id="@+id/action_countryCodeFragment_to_enterPhoneNumberFragment"

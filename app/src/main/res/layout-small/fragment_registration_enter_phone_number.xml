@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/pigeon_big_margin"
-            android:text="@string/RegistrationActivity_enter_your_phone_number"
+            android:text="@string/Pigeon_RegistrationActivity_enter_your_phone_number"
             android:textColor="@color/white_focus"
             app:layout_constraintTop_toTopOf="parent" />
 

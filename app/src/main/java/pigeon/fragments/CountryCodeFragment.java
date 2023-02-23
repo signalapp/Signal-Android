@@ -51,7 +51,7 @@ public final class CountryCodeFragment extends LoggingFragment implements Regist
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_registration_country_code, container, false);
+    return inflater.inflate(R.layout.fragment_pigeon_registration_country_code, container, false);
   }
 
   @Override
