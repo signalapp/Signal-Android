@@ -98,10 +98,10 @@
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blokeatutako erabiltzaileak</string>
-    <string name="BlockedUsersActivity__add_blocked_user">Gehitu blokeatutako erabiltzailea</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Blokeatutako erabiltzaileek ezin izango dizute deitu; ezta mezuak bidali ere.</string>
-    <string name="BlockedUsersActivity__no_blocked_users">Blokeatutako erabiltzailerik ez</string>
-    <string name="BlockedUsersActivity__block_user">Blokeatu nahi duzu erabiltzailea?</string>
+    <string name="BlockedUsersActivity__add_blocked_user">Gehitu blokeatutako erabiltzaile bat</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Blokeatutako erabiltzaileek ezin izango dizute deitu, ezta mezuak bidali ere.</string>
+    <string name="BlockedUsersActivity__no_blocked_users">Ez dago blokeatutako erabiltzailerik</string>
+    <string name="BlockedUsersActivity__block_user">Erabiltzailea blokeatu nahi duzu?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" erabiltzaileak ezingo dizu deitu edo mezurik bidali</string>
     <string name="BlockedUsersActivity__block">Blokeatu</string>
 
@@ -139,8 +139,8 @@
     <string name="CreditCardFragment__continue">Jarraitu</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">%1$s blokeatu eta irten?</string>
-    <string name="BlockUnblockDialog_block_s">Blokeatu %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">%1$s blokeatu, eta irten nahi duzu?</string>
+    <string name="BlockUnblockDialog_block_s">%1$s blokeatu nahi duzu?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ez duzu talde honetatik mezu edo egunerapen gehiagorik jasoko, eta kideek ezingo zaituzte talde honetara berriro gehitu.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Taldeko kideak ez dira gai izango zu talde honetan berriro sartzeko.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Taldeko kideak gai izango dira zu talde honetan berriro sartzeko.</string>
@@ -148,15 +148,15 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Elkarri deitzeko eta mezuak bidaltzeko gai izango zarete; horrez gain, zure izena eta argazkia beraiekin partekatuko dira.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Elkarri mezuak bidali ahal izango dizkiozue.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokeatutako pertsonek ezingo dizute deitu edo mezuak bidali.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokeatutako pertsonek ezingo dizute deitu, ezta mezuak bidali ere.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Blokeatutako pertsonek ezingo dizute mezurik bidali.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Ez jaso Signal-en informazio eguneratua eta albisteak.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Hasi berriro Signal-en informazio eguneratua eta albisteak jasotzen.</string>
-    <string name="BlockUnblockDialog_unblock_s">Desblokeatu %1$s?</string>
+    <string name="BlockUnblockDialog_unblock_s">%1$s desblokeatu nahi duzu?</string>
     <string name="BlockUnblockDialog_block">Blokeatu</string>
-    <string name="BlockUnblockDialog_block_and_leave">Blokeatu eta Irten</string>
+    <string name="BlockUnblockDialog_block_and_leave">Blokeatu eta irten</string>
     <string name="BlockUnblockDialog_report_spam_and_block">Salatu spama dela eta blokeatu</string>
 
     <!-- BucketedThreadMedia -->
@@ -367,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Errorea multimedia bidaltzean</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Spam gisa salatua eta blokeatua.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Spam gisa salatu, eta blokeatu egin da.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Une honetan SMS mezuak desgaituta daude. Mezuak telefonoko beste aplikazio batera esporta ditzakezu.</string>
@@ -448,7 +448,7 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$son</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">Blokeatu eskaera?</string>
+    <string name="ConversationFragment__block_request">Eskaera blokeatu nahi duzu?</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s ezingo da talde honetan sartu talderako estekaren bidez, eta ezingo du bertan sartzeko eskatu. Hala ere, eskuz gehi daiteke taldean.</string>
     <!-- Dialog confirm block request button -->
@@ -497,12 +497,12 @@
         <item quantity="other">Kendu finkapena</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Isildu</item>
-        <item quantity="other">Isildu</item>
+        <item quantity="one">Mututu</item>
+        <item quantity="other">Mututu</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Soinua aktibatu</item>
-        <item quantity="other">Soinua aktibatu</item>
+        <item quantity="one">Aktibatu jakinarazpenak</item>
+        <item quantity="other">Aktibatu jakinarazpenak</item>
     </plurals>
     <string name="ConversationListFragment_select">Aukeratu</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -936,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Nahi dut aipamenak jakinaraztea</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Jakinarazpenik jaso nahi duzu isildutako txatetan aipatzen zaituztenean?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Jakinarazpenik jaso nahi duzu mutututako txatetan aipatzen zaituztenean?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Beti jakinarazi</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Ez jakinarazi</string>
 
@@ -955,9 +955,9 @@
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Kopiatu da erabiltzaile-izena</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Ezin izan da erabiltzaile-izena ezabatu. Saiatu berriro beranduago.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Ezin izan da ezabatu erabiltzaile-izena. Saiatu berriro geroago.</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Erabiltzaile izena ezabatu da</string>
+    <string name="ManageProfileFragment__username_deleted">Ezabatu da erabiltzaile-izena</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -1483,10 +1483,10 @@
     <string name="MessageRequestBottomView_unblock">Desblokeatu</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s erabiltzaileari baimena eman nahi diozu zuri mezuak bidaltzeko eta zure izena eta argazkia beraiekin partekatzeko. Zuk onartu arte ez dute jakingo beraien mezua ikusi duzunik.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s erabiltzaileari baimena eman nahi diozu zuri mezuak bidaltzeko eta zure izena eta argazkia beraiekin partzekatzeko. Ez duzu mezurik jasoko zuk desblokeatu arte.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Zuri mezuak bidaltzeko baimena eman nahi diozu %1$s erabiltzaileari, eta zure izena eta argazkia harekin partzekatu? Desblokeatu arte, ez duzu jasoko haren mezurik.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Zuri mezuak bidaltzeko baimena eman nahi diozu %1$s(r)i? Desblokeatzen duzun arte, ez duzu jasoko haren mezurik.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s(r)en berritasun eta albisteak jaso nahi dituzu? Desblokeatzen duzun arte, ez duzu eguneratzerik jasoko.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Zuri mezuak bidaltzeko baimena eman nahi diozu %1$s erabiltzaileari? Desblokeatu arte, ez duzu jasoko haren mezurik.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s erabiltzailearen berritasun eta albisteak jaso nahi dituzu? Desblokeatzen duzun arte, ez duzu eguneratzerik jasoko.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Jarraitu nahi duzu talde honekin duzun solasaldian eta zure izena eta argazkia bere kideekin partekatu?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Eguneratu talde hau ezaugarri berriak, hala nola @aipamenak eta administratzaileak, aktibatzeko. Bere izen edo argazkia partekatu ez duten kideek taldera sartzeko gonbidatuak izango dira.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Jarauntsitako Talde Hau ezin da erabili jadanik oso handia delako. Gehienezko talde tamaina %1$d da.</string>
@@ -1494,7 +1494,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetara sartu eta zure izena eta argazkia kideekin partekatu nahi duzu? Zuk onartu arte, ez dute jakingo beraien mezuak ikusi duzunik.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Talde honetan sartu, eta izena eta argazkia bertako kideekin partekatu nahi duzu? Onartu arte, ez duzu haien mezurik ikusiko.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetara sartu nahi duzu? Onartu arte ez dute jakingo beraien mezuak ikusi dituzunik.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Desblokeatu talde hau eta zure izena eta argazkia beraiekin partekatu? Ez duzu mezurik jasoko zuk desblokeatu arte.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Talde hau desblokeatu nahi duzu, eta zure izena eta argazkia hartako kideekin partekatu? Desblokeatu arte, ez duzu mezurik jasoko.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Ikusi</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s taldeko kidea</string>
@@ -1608,7 +1608,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Markatutako zenbakia ez dago Signal-era erregistratuta. SMS bidez gonbidatu nahiko zenuke?</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PINa desgaitzen baduzu, datu guztiak galduko dituzu Signal berriro erregistratzen duzunean, eskuz babeskopiak egin eta leheneratu ezean. Ezin duzu erregistratzeko blokeoa aktibatu PINa desgaituta dagoen bitartean.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PINa desgaitzen baduzu, datu guztiak galduko dituzu Signal berriro erregistratzen duzunean, babeskopiak eskuz egin eta leheneratu ezean. PINa desgaituta badago, ezin duzu aktibatu erregistratzeko blokeoa.</string>
     <string name="PinOptOutDialog_disable_pin">Desaktibatu PINa</string>
 
     <!-- RatingManager -->
@@ -1733,9 +1733,9 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Kamera</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Soinua aktibatu</string>
+    <string name="WebRtcCallView__unmute">Aktibatu jakinarazpenak</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Isildu</string>
+    <string name="WebRtcCallView__mute">Mututu</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Deitu</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1753,7 +1753,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Ez duzu bere audio edo bideorik jasoko eta ez dute zurerik jasoko.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Ezin da %1$s erabiltzailearen audio eta bideorik jaso.</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ezin da %1$s erabiltzailearen audio eta bideorik jaso.</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Hau zure segurtasun-zenbakiaren aldaketa egiaztatu ez duzulako, euren gailuan arazoren bat dutelako edo blokeatu egin zaituztelako izan daiteke.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Beharbada ez duzu egiaztatu segurtasun-zenbakiaren aldaketa, arazoren bat du gailuan, edo blokeatu egin zaituzte.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Pasatu hatza pantaila partekatua ikusteko.</string>
@@ -1821,11 +1821,16 @@
     <string name="RegistrationActivity_call">Deitu</string>
     <string name="RegistrationActivity_verification_code">Egiaztapen-kodea</string>
     <string name="RegistrationActivity_resend_code">Bidali kodea berriro</string>
+    <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
-    <string name="RegistrationActivity_support_bottom_sheet_body_part_1">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.\nFor more information, please follow </string>
-    <string name="RegistrationActivity_support_bottom_sheet_body_part_2">these troubleshooting steps</string>
-    <string name="RegistrationActivity_support_bottom_sheet_body_part_3"> or </string>
-    <string name="RegistrationActivity_support_bottom_sheet_body_part_4">Contact Support</string>
+    <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Contact Support</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktibatu Erregistratzeko Blokeoa?</string>
@@ -1993,7 +1998,7 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Programatutako mezua</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Zure mezuen historia batu da</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Bateratu da mezuen historia</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s zenbakia %2$s erabiltzailearena da</string>
 
@@ -2673,10 +2678,10 @@
     <string name="arrays__use_default">Erabili lehenetsia</string>
     <string name="arrays__use_custom">Pertsonalizatua</string>
 
-    <string name="arrays__mute_for_one_hour">Isildu ordu baterako</string>
+    <string name="arrays__mute_for_one_hour">Mututu ordubetez</string>
     <string name="arrays__mute_for_eight_hours">Mututu 8 orduz</string>
-    <string name="arrays__mute_for_one_day">Isildu egun baterako</string>
-    <string name="arrays__mute_for_seven_days">Isildu 7 egunetarako</string>
+    <string name="arrays__mute_for_one_day">Mututu egun batez</string>
+    <string name="arrays__mute_for_seven_days">Mututu 7 egunez</string>
     <string name="arrays__always">Beti</string>
 
     <string name="arrays__settings_default">Lehenetsia</string>
@@ -3009,7 +3014,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Bidalitako ordainketa</string>
     <string name="PaymentsDetailsFragment__received_payment">Jasotako ordainketa</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">%1$sordainketa burututa</string>
-    <string name="PaymentsDetailsFragment__block_number">Blokeo zenbakia</string>
+    <string name="PaymentsDetailsFragment__block_number">Blokeatu zenbakia</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Transferentzia</string>
@@ -3658,9 +3663,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" blokeatua izan da.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Ezin izan da \"%1$s\" blokeatu</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" desblokeatua izan da.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" blokeatu da.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Ezin izan da blokeatu \"%1$s\"</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" desblokeatu da.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Berrikusi Kideak</string>
@@ -4051,7 +4056,7 @@
     <string name="PrivacySettingsFragment__messaging">Mezularitza</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Mezuen desagerpena</string>
     <string name="PrivacySettingsFragment__app_security">App segurtasuna</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokeatu pantaila-argazkiak arestikoen zerrendan eta aplikazioaren barruan</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokeatu pantaila-argazkiak azkenaldikoen zerrendan eta aplikazioaren barruan</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal mezuak eta deiak, beti deiak transmititu, eta igorle zigilatua</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Txat berrietarako tenporizadore lehenetsia</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ezarri lehenetsitako desagerpen mezuen tenporizadore bat zuk hasitako txat berri guztientzat.</string>
@@ -4208,9 +4213,9 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Deitu</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Isildu</string>
+    <string name="ConversationSettingsFragment__mute">Mututu</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">Isildu</string>
+    <string name="ConversationSettingsFragment__muted">Mututu</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Bilatu</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Mezuen desagerpena</string>
@@ -4229,9 +4234,9 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Eskaerak &amp; gonbidapenak</string>
     <string name="ConversationSettingsFragment__group_link">Talderako esteka</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Gehitu kontaktu gisa</string>
-    <string name="ConversationSettingsFragment__unmute">Soinua aktibatu</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Elkarrizketa isilarazi %1$s arte</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Elkarrizketa isilduta betirako</string>
+    <string name="ConversationSettingsFragment__unmute">Aktibatu jakinarazpenak</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Mututu elkarrizketa %1$s arte</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Elkarrizketa betiko mututu da</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefono-zenbakia arbelean kopiatu da.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefono zenbakia</string>
     <string name="ConversationSettingsFragment__get_badges">Lortu zure profilerako bereizgarriak Signal-i lagunduz. Sakatu bereizgarri bat gehiago jakiteko.</string>
@@ -4248,7 +4253,7 @@
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Desaktibatu jakinarazpenak</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ez dago isilduta</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ez dago mutututa</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Aipamenak</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Jakinarazi beti</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ez jakinarazi</string>
@@ -5648,7 +5653,7 @@
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
     <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
-    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">min</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
     <string name="TimeDurationPickerDialog_positive_button">Ezarri</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
