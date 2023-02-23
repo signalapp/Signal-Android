@@ -26,21 +26,22 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layoutDirection="ltr"
-            android:layout_marginBottom="@dimen/pigeon_big_margin"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/registerButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/verify_header">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/country_code"
                 style="@style/Mp02.Signal.TextInputLayout.Registration"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:focusable="true"
-                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:enabled="false"
+                android:focusableInTouchMode="false"
+                android:clickable="false"
+                android:visibility="visible"
                 app:errorEnabled="false"
                 app:hintEnabled="false">
 
@@ -49,13 +50,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:digits="+1234567890"
+                    android:imeOptions="actionNext"
                     android:inputType="none"
-                    android:textColor="@color/mp02_listview_color_selector"
+                    android:maxLength="4"
                     android:paddingStart="0dp"
                     android:paddingEnd="0dp"
-                    android:imeOptions="actionNext"
-                    android:maxLength="4"
                     android:singleLine="true"
+                    android:textColor="@color/white_focus"
                     tools:text="+121" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -63,6 +64,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/number"
                 style="@style/Mp02.Signal.TextInputLayout.Registration"
+                android:layout_marginStart="@dimen/pigeon_small_margin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -70,13 +72,13 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/Mp02.Signal.Text.BigCommonTextButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="0dp"
-                    android:paddingEnd="0dp"
                     android:imeOptions="actionDone"
-                    tools:text="@tools:sample/us_phones"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    android:textColor="@color/white_focus"
+                    android:padding="0dp"
+                    tools:text="@tools:sample/us_phones" />
 
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -87,11 +89,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="@dimen/pigeon_big_margin"
             android:text="@string/RegistrationActivity_enter_your_phone_number"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textColor="@color/white_focus"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/verify_subheader"

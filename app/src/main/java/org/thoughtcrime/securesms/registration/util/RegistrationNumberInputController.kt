@@ -78,6 +78,18 @@ class RegistrationNumberInputController(
     }
   }
 
+  fun setPigeonNumberAndCountryCode(numberViewState: NumberViewState) {
+    isUpdating = true
+    phoneNumberInputLayout.setText(numberViewState.nationalNumber)
+    if (numberViewState.countryCode != 0) {
+      val regionCode = numberViewState.countryDisplayName
+      val countryCode = numberViewState.countryCode
+      val fullCountry = "$regionCode +$countryCode"
+      spinnerView.setText(fullCountry)
+    }
+    isUpdating = false
+  }
+
   fun setNumberAndCountryCode(numberViewState: NumberViewState) {
     isUpdating = true
     phoneNumberInputLayout.setText(numberViewState.nationalNumber)
@@ -88,9 +100,8 @@ class RegistrationNumberInputController(
       }
     } else {
       if (numberViewState.countryCode != 0) {
-        val regionCode = numberViewState.countryDisplayName
         val countryCode = numberViewState.countryCode
-        val fullCountry = "$regionCode +$countryCode"
+        val fullCountry = "+$countryCode"
         spinnerView.setText(fullCountry)
       }
     }

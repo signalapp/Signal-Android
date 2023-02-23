@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/countryCodeFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.CountryCodeFragment"
+        android:name="pigeon.fragments.CountryCodeFragment"
         android:label="fragment_countryCodee"
         tools:layout="@layout/fragment_registration_country_code">
 

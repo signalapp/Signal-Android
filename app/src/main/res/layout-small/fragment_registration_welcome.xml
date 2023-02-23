@@ -37,13 +37,13 @@
 
     <TextView
         android:id="@+id/welcome_terms_button"
-        style="@style/Mp02.Signal.Text.CommonTextButton"
+        style="@style/Mp02.Signal.Text.BigCommonTextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:gravity="start"
         android:layout_marginStart="@dimen/pigeon_start_margin"
-        android:layout_marginTop="@dimen/pigeon_top_margin"
+        android:layout_marginTop="@dimen/pigeon_big_margin"
         android:text="@string/RegistrationActivity_terms_and_privacy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

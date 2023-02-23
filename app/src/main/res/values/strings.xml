@@ -1789,7 +1789,7 @@
     <string name="RegistrationActivity_next">Next</string>
     <string name="RegistrationActivity_continue">Continue</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
-    <string name="RegistrationActivity_enter_your_phone_number">Enter your phone number</string>
+    <string name="RegistrationActivity_enter_your_phone_number">Mobile</string>
     <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Enter the code we sent to %s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Make sure your phone has a cellular signal to receive your SMS or call</string>

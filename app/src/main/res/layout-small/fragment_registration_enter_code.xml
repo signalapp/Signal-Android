@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Mp02.Signal.Background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    style="@style/Mp02.Signal.Background"
+    android:padding="@dimen/pigeon_small_margin"
     tools:context=".registration.fragments.EnterSmsCodeFragment"
     tools:viewBindingIgnore="true">
 
@@ -31,9 +32,9 @@
                 android:layout_marginEnd="@dimen/registrationactivity_text_view_padding"
                 android:hyphenationFrequency="normal"
                 android:maxWidth="150dp"
-                android:visibility="gone"
                 android:text="@string/RegistrationActivity_wrong_number"
                 android:textColor="@color/signal_colorPrimary"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -42,15 +43,14 @@
 
             <TextView
                 android:id="@+id/verify_header"
+                style="@style/Mp02.Signal.Text.CommonTextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                style="@style/Mp02.Signal.Text.CommonTextButton"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="@dimen/pigeon_big_margin"
                 android:gravity="start"
                 android:text="@string/RegistrationActivity_verification_code"
-                android:textAppearance="@style/Signal.Text.HeadlineMedium"
+                android:textColor="@color/white_focus"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,13 +78,13 @@
                 android:hyphenationFrequency="normal"
                 android:maxWidth="150dp"
                 android:maxLines="2"
-                android:visibility="gone"
                 android:textColor="@color/signal_text_secondary"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintVertical_bias="1.0"
-                tools:text="@string/RegistrationActivity_call"
-                tools:ignore="UnusedAttribute" />
+                tools:ignore="UnusedAttribute"
+                tools:text="@string/RegistrationActivity_call" />
 
             <org.thoughtcrime.securesms.components.registration.ActionCountDownButton
                 android:id="@+id/resend_sms_count_down"
@@ -96,15 +96,29 @@
                 android:hyphenationFrequency="normal"
                 android:maxWidth="150dp"
                 android:maxLines="2"
-                android:visibility="gone"
                 android:textColor="@color/signal_text_secondary"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/call_me_count_down"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_bias="1.0"
-                tools:text="@string/RegistrationActivity_resend_code"
-                tools:ignore="UnusedAttribute" />
+                tools:ignore="UnusedAttribute"
+                tools:text="@string/RegistrationActivity_resend_code" />
+
+            <EditText
+                android:id="@+id/verification_code"
+                style="@style/Mp02.Signal.Text.BigCommonTextButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="phone"
+                android:padding="0dp"
+                android:maxLength="6"
+                android:textAlignment="textStart"
+                android:textColor="@color/white_focus"
+                app:layout_constraintTop_toBottomOf="@+id/verify_header"
+                tools:text="@tools:sample/us_zipcodes" />
 
             <org.thoughtcrime.securesms.components.registration.VerificationCodeView
                 android:id="@+id/code"
@@ -113,20 +127,27 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="32dp"
-                android:visibility="visible"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/wrong_number" />
+
+            <org.thoughtcrime.securesms.components.registration.VerificationPinKeyboard
+                android:id="@+id/keyboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/verification_code"
+                tools:visibility="gone" />
 
             <TextView
                 android:id="@+id/verification_nav"
                 style="@style/Mp02.Signal.Text.CommonTextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginStart="@dimen/pigeon_start_margin"
+                android:layout_marginBottom="@dimen/pigeon_bottom_margin"
                 android:text="@string/RegistrationActivity_next"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -134,11 +155,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-    <org.thoughtcrime.securesms.components.registration.VerificationPinKeyboard
-        android:id="@+id/keyboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:visibility="gone" />
 
 </LinearLayout>

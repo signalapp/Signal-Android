@@ -17,7 +17,8 @@ import com.google.android.material.theme.overlay.MaterialThemeOverlay
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.visible
 import pigeon.extensions.isSignalVersion
-import pigeon.extensions.onFocusTextChangeListener
+import pigeon.extensions.focusOnLeft
+import pigeon.extensions.setBigText
 import kotlin.math.max
 
 /**
@@ -53,8 +54,11 @@ class CircularProgressMaterialButton @JvmOverloads constructor(
     }
   }
 
-  fun setupAnimation(){
-    materialButton.onFocusTextChangeListener()
+  fun setupAnimation(isBigSize:Boolean = false){
+    materialButton.focusOnLeft()
+    if (isBigSize){
+      materialButton.setBigText()
+    }
   }
 
   fun setText(@StringRes resId: Int) {

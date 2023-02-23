@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:padding="@dimen/pigeon_small_margin"
-    tools:context=".registration.fragments.CountryCodeFragment"
+    tools:context="pigeon.fragments.CountryCodeFragment"
     tools:viewBindingIgnore="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,26 +17,27 @@
 
         <TextView
             android:id="@+id/verify_header"
-            style="@style/Mp02.Signal.Text.CommonTextButton"
+            style="@style/Mp02.Signal.Text.BigCommonTextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="@dimen/pigeon_start_margin"
-            android:layout_marginTop="@dimen/pigeon_top_margin"
+            android:layout_marginTop="@dimen/pigeon_big_margin"
             android:text="@string/RegistrationActivity_country_code_hint"
             android:textColor="@color/white_focus"
+            android:defaultFocusHighlightEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="o" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/country_code"
             style="@style/Mp02.Signal.TextInputLayout.Registration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/pigeon_small_margin"
-            android:layout_marginStart="@dimen/pigeon_start_margin"
+            android:gravity="start"
+            android:enabled="false"
             app:errorEnabled="false"
             app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@+id/verify_header">
@@ -45,11 +46,11 @@
                 style="@style/Mp02.Signal.Text.BigCommonTextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionNext"
                 android:inputType="none"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
                 android:singleLine="true"
+                android:textAlignment="textStart"
                 android:textColor="@color/white_focus"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
