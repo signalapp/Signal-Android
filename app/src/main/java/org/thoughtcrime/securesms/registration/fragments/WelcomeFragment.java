@@ -195,7 +195,7 @@ public final class WelcomeFragment extends LoggingFragment {
                                       WelcomeFragmentDirections.actionSkipRestore());
         } else {
           SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
-                                      WelcomeFragmentDirections.actionSkipRestore());
+                                      WelcomeFragmentDirections.actionPigeonSkipRestore());
         }
       } else {
         SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
