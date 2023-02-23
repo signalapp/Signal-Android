@@ -137,6 +137,9 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
         } else if (processor.isKbsLocked()) {
           Log.w(TAG, "Unable to continue skip flow, KBS is locked")
           onAccountLocked()
+        } else if (processor.isIncorrectRegistrationRecoveryPassword()) {
+          Log.w(TAG, "Registration recovery password was incorrect. Moving to SMS verification.")
+          onSkipPinEntry()
         } else if (processor.isServerSentError()) {
           Log.i(TAG, "Error from server, not likely recoverable", processor.error)
           Toast.makeText(requireContext(), R.string.RegistrationActivity_error_connecting_to_service, Toast.LENGTH_LONG).show()

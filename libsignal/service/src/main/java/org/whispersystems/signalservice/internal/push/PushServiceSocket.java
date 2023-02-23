@@ -68,6 +68,7 @@ import org.whispersystems.signalservice.api.push.exceptions.DeprecatedVersionExc
 import org.whispersystems.signalservice.api.push.exceptions.ExpectationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.ExternalServiceFailureException;
 import org.whispersystems.signalservice.api.push.exceptions.HttpConflictException;
+import org.whispersystems.signalservice.api.push.exceptions.IncorrectRegistrationRecoveryPasswordException;
 import org.whispersystems.signalservice.api.push.exceptions.InvalidTransportModeException;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
@@ -2519,6 +2520,8 @@ public class PushServiceSocket {
     @Override
     public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
       switch (responseCode) {
+        case 403:
+          throw new IncorrectRegistrationRecoveryPasswordException();
         case 404:
           throw new NoSuchSessionException();
         case 409:

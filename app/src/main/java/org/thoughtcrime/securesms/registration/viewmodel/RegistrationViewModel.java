@@ -225,7 +225,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                 registrationRepository.getProfileKey(getNumber().getE164Number()),
                                 getFcmToken(),
                                 registrationRepository.getPniRegistrationId(),
-                                getRecoveryPassword());
+                                getSessionId() != null ? null : getRecoveryPassword());
   }
 
   public @NonNull Single<VerifyResponseProcessor> verifyReRegisterWithPin(@NonNull String pin) {
