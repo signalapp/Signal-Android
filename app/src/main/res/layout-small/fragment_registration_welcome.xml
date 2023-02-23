@@ -30,7 +30,7 @@
         android:layout_marginTop="@dimen/pigeon_normal_margin"
         android:gravity="center"
         android:visibility="gone"
-        android:text="@string/RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message"
+        android:text="@string/Pigeon_RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message"
         android:textColor="@color/white_not_focus"
         app:layout_constraintStart_toStartOf="@+id/welcome_continue_button"
         app:layout_constraintTop_toTopOf="parent" />
