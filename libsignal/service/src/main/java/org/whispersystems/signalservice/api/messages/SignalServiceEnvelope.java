@@ -331,6 +331,6 @@ public class SignalServiceEnvelope {
                                      proto.getDestinationUuid(),
                                      proto.getUrgent(),
                                      proto.getStory(),
-                                     proto.getReportingToken().toByteArray());
+                                     proto.hasReportingToken() ? proto.getReportingToken().toByteArray() : null);
   }
 }
