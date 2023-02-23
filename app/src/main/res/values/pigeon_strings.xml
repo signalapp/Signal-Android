@@ -79,4 +79,10 @@ If you have questions about our Privacy Policy please contact us at privacy@sign
     <string name="terms_and_policy_14">Effective as of May 25, 2018\n\n
 Updated May 25, 2018\n
     </string>
+    <string name="Pigeon_HomePage_new_message">New message</string>
+    <string name="Pigeon_HomePage_new_group">New group</string>
+    <string name="Pigeon_HomePage_mark_all_read">Mark all read</string>
+    <string name="Pigeon_HomePage_settings">Settings</string>
+    <string name="Pigeon_HomePage_search">Search</string>
+
 </resources>
