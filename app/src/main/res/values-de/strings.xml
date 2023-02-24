@@ -422,7 +422,7 @@
     <string name="ConversationFragment_deleting">Löschen</string>
     <string name="ConversationFragment_deleting_messages">Nachrichten werden gelöscht …</string>
     <string name="ConversationFragment_delete_for_me">Für mich löschen</string>
-    <string name="ConversationFragment_delete_for_everyone">Für jeden löschen</string>
+    <string name="ConversationFragment_delete_for_everyone">Für alle löschen</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">Auf diesem Gerät löschen</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
