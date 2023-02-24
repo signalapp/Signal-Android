@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.registration.viewmodel.ReRegisterWithPinViewMo
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.LifecycleDisposable
-import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -199,9 +198,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.pin_restore_entry_fra
   private fun enableAndFocusPinEntry() {
     binding.pinRestorePinInput.isEnabled = true
     binding.pinRestorePinInput.isFocusable = true
-    if (binding.pinRestorePinInput.requestFocus()) {
-      ServiceUtil.getInputMethodManager(binding.pinRestorePinInput.context).showSoftInput(binding.pinRestorePinInput, 0)
-    }
+    ViewUtil.focusAndShowKeyboard(binding.pinRestorePinInput)
   }
 
   private fun getPinEntryKeyboardType(): PinKeyboardType {
