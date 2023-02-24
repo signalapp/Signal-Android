@@ -165,7 +165,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                     VerifyResponseProcessor processor = new VerifyResponseWithoutKbs(verifyAccountWithoutKbsResponse);
                                     String                  pin       = SignalStore.kbsValues().getPin();
 
-                                    if (processor.registrationLock() && SignalStore.kbsValues().getRegistrationLockToken() != null && pin != null) {
+                                    if ((processor.isKbsLocked() || processor.registrationLock()) && SignalStore.kbsValues().getRegistrationLockToken() != null && pin != null) {
                                       KbsPinData pinData = new KbsPinData(SignalStore.kbsValues().getOrCreateMasterKey(), SignalStore.kbsValues().getRegistrationLockTokenResponse());
 
                                       return verifyAccountRepository.registerAccount(sessionId, getRegistrationData(), pin, () -> pinData)
