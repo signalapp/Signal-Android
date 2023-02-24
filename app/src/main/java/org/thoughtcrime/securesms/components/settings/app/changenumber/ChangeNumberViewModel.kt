@@ -170,7 +170,7 @@ class ChangeNumberViewModel(
       .observeOn(Schedulers.io())
       .flatMap { processor ->
         if (processor.isAlreadyVerified() || processor.hasResult() && processor.isVerified()) {
-          changeNumberRepository.changeNumber(sessionId, number.e164Number)
+          changeNumberRepository.changeNumber(sessionId = sessionId, newE164 = number.e164Number)
         } else if (processor.error == null) {
           Single.just<ServiceResponse<VerifyResponse>>(ServiceResponse.forApplicationError(IncorrectCodeException(), 403, null))
         } else {
@@ -201,6 +201,24 @@ class ChangeNumberViewModel(
         Log.w(TAG, "Error attempting to change local number", t)
         VerifyResponseWithRegistrationLockProcessor(ServiceResponse.forUnknownError(t), processor.tokenData)
       }
+  }
+
+  fun changeNumberWithRecoveryPassword(): Single<Boolean> {
+    val recoveryPassword = SignalStore.kbsValues().recoveryPassword
+
+    return if (SignalStore.kbsValues().hasPin() && recoveryPassword != null) {
+      changeNumberRepository.changeNumber(recoveryPassword = recoveryPassword, newE164 = number.e164Number)
+        .map { r -> VerifyResponseWithoutKbs(r) }
+        .flatMap { p ->
+          if (p.hasResult()) {
+            onVerifySuccess(p).map { true }
+          } else {
+            Single.just(false)
+          }
+        }
+    } else {
+      Single.just(false)
+    }
   }
 
   class Factory(owner: SavedStateRegistryOwner) : AbstractSavedStateViewModelFactory(owner, null) {

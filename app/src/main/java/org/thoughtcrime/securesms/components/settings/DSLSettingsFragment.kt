@@ -89,8 +89,9 @@ abstract class DSLSettingsFragment(
   }
 
   override fun onDestroyView() {
-    super.onDestroyView()
     recyclerView = null
+    toolbar = null
+    super.onDestroyView()
   }
 
   fun setTitle(@StringRes resId: Int) {

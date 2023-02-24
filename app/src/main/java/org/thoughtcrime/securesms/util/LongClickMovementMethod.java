@@ -16,20 +16,22 @@ import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
 
+import java.lang.ref.WeakReference;
+
 public class LongClickMovementMethod extends LinkMovementMethod {
   @SuppressLint("StaticFieldLeak")
   private static LongClickMovementMethod sInstance;
 
-  private final GestureDetector gestureDetector;
-  private View widget;
-  private LongClickCopySpan currentSpan;
+  private final GestureDetector     gestureDetector;
+  private       WeakReference<View> widget;
+  private       LongClickCopySpan   currentSpan;
 
   private LongClickMovementMethod(final Context context) {
     gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
       @Override
       public void onLongPress(MotionEvent e) {
-        if (currentSpan != null && widget != null) {
-          currentSpan.onLongClick(widget);
+        if (currentSpan != null && widget != null && widget.get() != null) {
+          currentSpan.onLongClick(widget.get());
           widget = null;
           currentSpan = null;
         }
@@ -37,8 +39,8 @@ public class LongClickMovementMethod extends LinkMovementMethod {
 
       @Override
       public boolean onSingleTapUp(MotionEvent e) {
-        if (currentSpan != null && widget != null) {
-          currentSpan.onClick(widget);
+        if (currentSpan != null && widget != null && widget.get() != null) {
+          currentSpan.onClick(widget.get());
           widget = null;
           currentSpan = null;
         }
@@ -80,7 +82,7 @@ public class LongClickMovementMethod extends LinkMovementMethod {
         }
 
         this.currentSpan = aSingleSpan;
-        this.widget = widget;
+        this.widget = new WeakReference<>(widget);
         return gestureDetector.onTouchEvent(event);
       } else if (action == MotionEvent.ACTION_UP && Selection.getSelectionEnd(buffer) > 0){
         Selection.setSelection(buffer, 0);

@@ -7,11 +7,14 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.changeNumberSuccess
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.getCaptchaArguments
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.getViewModel
+import org.thoughtcrime.securesms.registration.RegistrationSessionProcessor
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
@@ -54,9 +57,24 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
     lifecycleDisposable += viewModel
       .ensureDecryptionsDrained()
       .onErrorComplete()
-      .andThen(viewModel.requestVerificationCode(mode, mccMncProducer.mcc, mccMncProducer.mnc))
+      .andThen(viewModel.changeNumberWithRecoveryPassword())
+      .flatMap { changed ->
+        if (changed) {
+          Single.just(RequestCodeResult.RecoveryPasswordWorked)
+        } else {
+          viewModel.requestVerificationCode(mode, mccMncProducer.mcc, mccMncProducer.mnc)
+            .map { p -> RequestCodeResult.RequestedVerificationCode(p) }
+        }
+      }
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { processor ->
+      .subscribe { result ->
+        if (result is RequestCodeResult.RecoveryPasswordWorked) {
+          changeNumberSuccess()
+          return@subscribe
+        }
+
+        val processor = (result as RequestCodeResult.RequestedVerificationCode).processor
+
         if (processor.hasResult()) {
           findNavController().safeNavigate(R.id.action_changePhoneNumberVerifyFragment_to_changeNumberEnterCodeFragment)
         } else if (processor.captchaRequired()) {
@@ -73,5 +91,10 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
           findNavController().navigateUp()
         }
       }
+  }
+
+  private sealed interface RequestCodeResult {
+    object RecoveryPasswordWorked : RequestCodeResult
+    class RequestedVerificationCode(val processor: RegistrationSessionProcessor) : RequestCodeResult
   }
 }
