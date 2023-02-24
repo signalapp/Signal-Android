@@ -129,8 +129,13 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
     if (supportActionBar != null) {
       supportActionBar.setTitle(null);
     }
-    controller.prepopulateCountryCode();
-    controller.setNumberAndCountryCode(viewModel.getNumber());
+
+    final NumberViewState viewModelNumber = viewModel.getNumber();
+    if (viewModelNumber.getCountryCode() == 0) {
+      controller.prepopulateCountryCode();
+    }
+    controller.setNumberAndCountryCode(viewModelNumber);
+
     showKeyboard(number.getEditText());
 
     if (viewModel.hasUserSkippedReRegisterFlow() && viewModel.shouldAutoShowSmsConfirmDialog()) {
