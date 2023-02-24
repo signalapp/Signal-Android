@@ -49,11 +49,12 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
   }
 
   private fun requestCode() {
+    val mode = if (ChangeNumberVerifyFragmentArgs.fromBundle(requireArguments()).smsListenerEnabled) VerifyAccountRepository.Mode.SMS_WITH_LISTENER else VerifyAccountRepository.Mode.SMS_WITHOUT_LISTENER
     val mccMncProducer = MccMncProducer(requireContext())
     lifecycleDisposable += viewModel
       .ensureDecryptionsDrained()
       .onErrorComplete()
-      .andThen(viewModel.requestVerificationCode(VerifyAccountRepository.Mode.SMS_WITHOUT_LISTENER, mccMncProducer.mcc, mccMncProducer.mnc))
+      .andThen(viewModel.requestVerificationCode(mode, mccMncProducer.mcc, mccMncProducer.mnc))
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { processor ->
         if (processor.hasResult()) {

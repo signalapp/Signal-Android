@@ -210,7 +210,7 @@ public class PushServiceSocket {
   private static final String RESERVE_USERNAME_PATH      = "/v1/accounts/username_hash/reserve";
   private static final String CONFIRM_USERNAME_PATH      = "/v1/accounts/username_hash/confirm";
   private static final String DELETE_ACCOUNT_PATH        = "/v1/accounts/me";
-  private static final String CHANGE_NUMBER_PATH         = "/v1/accounts/number";
+  private static final String CHANGE_NUMBER_PATH         = "/v2/accounts/number";
   private static final String IDENTIFIER_REGISTERED_PATH = "/v1/accounts/account/%s";
 
   private static final String PREKEY_METADATA_PATH      = "/v2/keys?identity=%s";

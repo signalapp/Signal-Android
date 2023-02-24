@@ -45,7 +45,7 @@ class ChangeNumberConfirmFragment : LoggingFragment(R.layout.fragment_change_num
 
       task.addOnSuccessListener {
         Log.i(TAG, "Successfully registered SMS listener.")
-        navigateToVerify()
+        navigateToVerify(smsListenerEnabled = true)
       }
 
       task.addOnFailureListener { e ->
@@ -57,8 +57,8 @@ class ChangeNumberConfirmFragment : LoggingFragment(R.layout.fragment_change_num
     }
   }
 
-  private fun navigateToVerify() {
-    findNavController().safeNavigate(R.id.action_changePhoneNumberConfirmFragment_to_changePhoneNumberVerifyFragment)
+  private fun navigateToVerify(smsListenerEnabled: Boolean = false) {
+    findNavController().safeNavigate(R.id.action_changePhoneNumberConfirmFragment_to_changePhoneNumberVerifyFragment, ChangeNumberVerifyFragmentArgs.Builder().setSmsListenerEnabled(smsListenerEnabled).build().toBundle())
   }
 
   companion object {

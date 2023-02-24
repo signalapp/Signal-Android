@@ -24,7 +24,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
   companion object {
     const val KEY = "PnpInitializeDevicesJob"
     private val TAG = Log.tag(PnpInitializeDevicesJob::class.java)
-    private const val PLACEHOLDER_CODE = "123456"
+    private const val PLACEHOLDER_SESSION_ID = "123456789"
 
     @JvmStatic
     fun enqueueIfNecessary() {
@@ -88,7 +88,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
       try {
         Log.i(TAG, "Calling change number with our current number to distribute PNI messages")
         changeNumberRepository
-          .changeNumber(code = PLACEHOLDER_CODE, newE164 = e164, pniUpdateMode = true)
+          .changeNumber(sessionId = PLACEHOLDER_SESSION_ID, newE164 = e164, pniUpdateMode = true)
           .map(::VerifyResponseWithoutKbs)
           .safeBlockingGet()
           .resultOrThrow
