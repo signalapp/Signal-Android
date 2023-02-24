@@ -236,7 +236,10 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                  .observeOn(Schedulers.io())
                  .flatMap(data -> {
                    if (data.canProceed) {
-                     return verifyReRegisterWithRecoveryPassword(pin, data.pinData);
+                     return updateFcmTokenValue().subscribeOn(Schedulers.io())
+                                                 .observeOn(Schedulers.io())
+                                                 .onErrorReturnItem("")
+                                                 .flatMap(s -> verifyReRegisterWithRecoveryPassword(pin, data.pinData));
                    } else {
                      throw new IllegalStateException("Unable to get token or master key");
                    }
