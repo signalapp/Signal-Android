@@ -497,8 +497,8 @@
         <item quantity="other">Kendu finkapena</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Mututu</item>
-        <item quantity="other">Mututu</item>
+        <item quantity="one">Desaktibatu jakinarazpenak</item>
+        <item quantity="other">Desaktibatu jakinarazpenak</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
         <item quantity="one">Aktibatu jakinarazpenak</item>
@@ -936,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Nahi dut aipamenak jakinaraztea</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Jakinarazpenik jaso nahi duzu mutututako txatetan aipatzen zaituztenean?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Jakinarazpenak desaktibatuta dauzkaten txatetan aipatzen zaituztenean, jakinarazpenik jaso nahi duzu?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Beti jakinarazi</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Ez jakinarazi</string>
 
@@ -1735,7 +1735,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Aktibatu jakinarazpenak</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Mututu</string>
+    <string name="WebRtcCallView__mute">Desaktibatu jakinarazpenak</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Deitu</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1830,7 +1830,7 @@
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Harremanetan jarri laguntza taldearekin</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktibatu Erregistratzeko Blokeoa?</string>
@@ -2678,10 +2678,10 @@
     <string name="arrays__use_default">Erabili lehenetsia</string>
     <string name="arrays__use_custom">Pertsonalizatua</string>
 
-    <string name="arrays__mute_for_one_hour">Mututu ordubetez</string>
-    <string name="arrays__mute_for_eight_hours">Mututu 8 orduz</string>
-    <string name="arrays__mute_for_one_day">Mututu egun batez</string>
-    <string name="arrays__mute_for_seven_days">Mututu 7 egunez</string>
+    <string name="arrays__mute_for_one_hour">Desaktibatu jakinarazpenak ordubetez</string>
+    <string name="arrays__mute_for_eight_hours">Desaktibatu jakinarazpenak 8 orduz</string>
+    <string name="arrays__mute_for_one_day">Desaktibatu jakinarazpenak egun batez</string>
+    <string name="arrays__mute_for_seven_days">Desaktibatu jakinarazpenak 7 egunez</string>
     <string name="arrays__always">Beti</string>
 
     <string name="arrays__settings_default">Lehenetsia</string>
@@ -2718,9 +2718,9 @@
     <string name="preferences__pref_use_address_book_photos">Erabili kontaktuen-zerrendako irudiak</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Erakutsi sistemaren kontaktuen irudiak, baldin badaude</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Mantendu txat mututuak artxibatuta</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Mantendu jakinarazpenak desaktibatuta dauzkaten txatak artxibatuta</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Mezu berriak jasotzean, artxibatutako txat mututuek artxibatuta jarraituko dute.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Mezu berriak jasotzean, artxibatuta dauden eta jakinarazpenak desaktibatuta dauzkaten txatek artxibatuta jarraituko dute.</string>
     <string name="preferences__generate_link_previews">Sortu esteken aurrebistak</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Eskuratu esteken aurrebistak zuzenean webguneetatik eta erabili bidaltzen dituzun mezuetan.</string>
     <string name="preferences__change_passphrase">Aldatu pasaesaldia</string>
@@ -4213,9 +4213,9 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Deitu</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Mututu</string>
+    <string name="ConversationSettingsFragment__mute">Desaktibatu jakinarazpenak</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">Mututu</string>
+    <string name="ConversationSettingsFragment__muted">Jakinarazpenak desaktibatuta</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Bilatu</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Mezuen desagerpena</string>
@@ -4235,8 +4235,8 @@
     <string name="ConversationSettingsFragment__group_link">Talderako esteka</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Gehitu kontaktu gisa</string>
     <string name="ConversationSettingsFragment__unmute">Aktibatu jakinarazpenak</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Mututu elkarrizketa %1$s arte</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Elkarrizketa betiko mututu da</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Desaktibatu elkarrizketaren jakinarazpenak %1$s arte</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Elkarrizketaren jakinarazpenak betiko desaktibatu dira</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefono-zenbakia arbelean kopiatu da.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefono zenbakia</string>
     <string name="ConversationSettingsFragment__get_badges">Lortu zure profilerako bereizgarriak Signal-i lagunduz. Sakatu bereizgarri bat gehiago jakiteko.</string>
@@ -4253,7 +4253,7 @@
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Desaktibatu jakinarazpenak</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ez dago mutututa</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Jakinarazpenak ez daude desaktibatuta</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Aipamenak</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Jakinarazi beti</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ez jakinarazi</string>

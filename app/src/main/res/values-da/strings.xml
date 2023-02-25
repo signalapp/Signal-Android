@@ -601,7 +601,7 @@
     <string name="BackupsPreferenceFragment__last_backup">Seneste sikkerhedskopi: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Mappe til sikkerhedskopi</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Tid til en backup</string>
+    <string name="BackupsPreferenceFragment__backup_time">Tidspunkt for sikkerhedskopiering</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificer adgangssætning for sikkerhedskopi</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test din adgangssætning for sikkerhedskopi og bekræft, at den matcher</string>
     <string name="BackupsPreferenceFragment__turn_on">Aktiver</string>
@@ -1830,7 +1830,7 @@
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Kontakt Support</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktiver registreringslås?</string>
