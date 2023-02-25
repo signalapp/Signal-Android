@@ -1,7 +1,7 @@
 import groovy.io.FileType
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
-import org.signal.StaticIpResolver
+import org.signal.buildtools.StaticIpResolver
 
 ext {
     autoResConfig = this.&autoResConfig

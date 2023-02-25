@@ -5,4 +5,5 @@ plugins {
 dependencies {
     implementation libs.android.library
     implementation libs.android.application
+    implementation project(':tools')
 }

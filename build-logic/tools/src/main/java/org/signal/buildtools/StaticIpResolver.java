@@ -1,6 +1,5 @@
-package org.signal;
+package org.signal.buildtools;
 
-import org.gradle.internal.impldep.org.eclipse.jgit.annotations.NonNull;
 import org.xbill.DNS.ARecord;
 import org.xbill.DNS.Lookup;
 import org.xbill.DNS.Record;
@@ -68,7 +67,7 @@ public final class StaticIpResolver {
     }
   }
 
-  private static @NonNull Lookup doLookup(@NonNull String hostname) throws UnknownHostException {
+  private static Lookup doLookup(String hostname) throws UnknownHostException {
     try {
       return new Lookup(hostname);
     } catch (Throwable e) {

@@ -11,9 +11,9 @@ plugins {
     id 'kotlin-parcelize'
     id 'com.squareup.wire'
     id 'android-constants'
+    id 'translations'
 }
 
-apply from: 'translations.gradle'
 apply from: 'static-ips.gradle'
 
 protobuf {
