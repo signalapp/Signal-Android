@@ -825,7 +825,7 @@ public final class MessageContentProcessor {
       warn(content.getTimestamp(), "Group message missing destination uuid, defaulting to ACI");
       authServiceId = SignalStore.account().requireAci();
     }
-    SignalDatabase.groups().fixMissingMasterKey(authServiceId, group.getMasterKey());
+    SignalDatabase.groups().fixMissingMasterKey(group.getMasterKey());
   }
 
   /**

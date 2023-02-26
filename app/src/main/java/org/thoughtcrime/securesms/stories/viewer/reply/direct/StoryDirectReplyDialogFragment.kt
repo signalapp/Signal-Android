@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
@@ -60,7 +61,7 @@ class StoryDirectReplyDialogFragment :
     get() = requireArguments().getLong(ARG_STORY_ID)
 
   private val recipientId: RecipientId?
-    get() = requireArguments().getParcelable(ARG_RECIPIENT_ID)
+    get() = requireArguments().getParcelableCompat(ARG_RECIPIENT_ID, RecipientId::class.java)
 
   override val withDim: Boolean = true
 

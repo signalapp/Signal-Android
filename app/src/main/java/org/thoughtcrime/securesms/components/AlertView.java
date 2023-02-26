@@ -28,7 +28,6 @@ public class AlertView extends LinearLayout {
     initialize(attrs);
   }
 
-  @TargetApi(VERSION_CODES.HONEYCOMB)
   public AlertView(final Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     initialize(attrs);

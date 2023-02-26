@@ -13,7 +13,6 @@ import android.widget.ImageView;
 
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 
-@TargetApi(21)
 abstract class CircleSquareImageViewTransition extends Transition {
 
   private static final String CIRCLE_RATIO = "CIRCLE_RATIO";

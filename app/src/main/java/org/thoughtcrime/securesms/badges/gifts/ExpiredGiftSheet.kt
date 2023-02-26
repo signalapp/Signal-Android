@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.badges.gifts
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.badges.gifts.ExpiredGiftSheetConfiguration.forExpiredBadge
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
@@ -28,7 +29,7 @@ class ExpiredGiftSheet : DSLSettingsBottomSheetFragment() {
   }
 
   private val badge: Badge
-    get() = requireArguments().getParcelable(ARG_BADGE)!!
+    get() = requireArguments().getParcelableCompat(ARG_BADGE, Badge::class.java)!!
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     ExpiredGiftSheetConfiguration.register(adapter)

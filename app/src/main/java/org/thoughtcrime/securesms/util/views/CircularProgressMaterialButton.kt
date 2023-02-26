@@ -14,6 +14,7 @@ import androidx.core.content.withStyledAttributes
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.theme.overlay.MaterialThemeOverlay
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.visible
 import kotlin.math.max
@@ -76,7 +77,7 @@ class CircularProgressMaterialButton @JvmOverloads constructor(
 
   override fun onRestoreInstanceState(state: Parcelable) {
     val stateBundle = state as Bundle
-    val superState: Parcelable? = stateBundle.getParcelable(SUPER_STATE)
+    val superState: Parcelable? = stateBundle.getParcelableCompat(SUPER_STATE, Parcelable::class.java)
     super.onRestoreInstanceState(superState)
 
     currentState = if (materialButton.visibility == INVISIBLE) State.PROGRESS else State.BUTTON

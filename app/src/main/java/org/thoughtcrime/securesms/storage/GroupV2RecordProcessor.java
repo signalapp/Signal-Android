@@ -58,7 +58,7 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
                           return StorageSyncModels.localToRemoteRecord(settings);
                         } else {
                           Log.w(TAG, "No local master key. Assuming it matches remote since the groupIds match. Enqueuing a fetch to fix the bad state.");
-                          groupDatabase.fixMissingMasterKey(null, record.getMasterKeyOrThrow());
+                          groupDatabase.fixMissingMasterKey(record.getMasterKeyOrThrow());
                           return StorageSyncModels.localToRemoteRecord(settings, record.getMasterKeyOrThrow());
                         }
                       })

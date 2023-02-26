@@ -11,6 +11,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
@@ -73,7 +74,7 @@ class ViewReceivedGiftBottomSheet : DSLSettingsBottomSheetFragment() {
   private val lifecycleDisposable = LifecycleDisposable()
 
   private val sentFrom: RecipientId
-    get() = requireArguments().getParcelable(ARG_SENT_FROM)!!
+    get() = requireArguments().getParcelableCompat(ARG_SENT_FROM, RecipientId::class.java)!!
 
   private val messageId: Long
     get() = requireArguments().getLong(ARG_MESSAGE_ID)

@@ -284,15 +284,14 @@ public class VerifyDisplayFragment extends Fragment implements ViewTreeObserver.
   public boolean onContextItemSelected(MenuItem item) {
     if (fingerprint == null) return super.onContextItemSelected(item);
 
-    switch (item.getItemId()) {
-      case R.id.menu_copy:
-        handleCopyToClipboard(fingerprint, codes.length);
-        return true;
-      case R.id.menu_compare:
-        handleCompareWithClipboard(fingerprint);
-        return true;
-      default:
-        return super.onContextItemSelected(item);
+    if (item.getItemId() ==  R.id.menu_copy) {
+      handleCopyToClipboard(fingerprint, codes.length);
+      return true;
+    } else if (item.getItemId() == R.id.menu_compare) {
+      handleCompareWithClipboard(fingerprint);
+      return true;
+    } else {
+      return super.onContextItemSelected(item);
     }
   }
 

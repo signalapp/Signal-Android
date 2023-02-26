@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.mediasend.v2
 
 import android.os.Bundle
+import org.signal.core.util.getParcelableArrayListCompat
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -89,9 +91,9 @@ sealed class MediaSelectionDestination {
       return when {
         bundle.containsKey(WALLPAPER) -> Wallpaper
         bundle.containsKey(AVATAR) -> Avatar
-        bundle.containsKey(RECIPIENT) -> SingleRecipient(requireNotNull(bundle.getParcelable(RECIPIENT)))
-        bundle.containsKey(STORY) -> SingleStory(requireNotNull(bundle.getParcelable(STORY)))
-        bundle.containsKey(RECIPIENT_LIST) -> MultipleRecipients.fromParcel(requireNotNull(bundle.getParcelableArrayList(RECIPIENT_LIST)))
+        bundle.containsKey(RECIPIENT) -> SingleRecipient(requireNotNull(bundle.getParcelableCompat(RECIPIENT, RecipientId::class.java)))
+        bundle.containsKey(STORY) -> SingleStory(requireNotNull(bundle.getParcelableCompat(STORY, RecipientId::class.java)))
+        bundle.containsKey(RECIPIENT_LIST) -> MultipleRecipients.fromParcel(requireNotNull(bundle.getParcelableArrayListCompat(RECIPIENT_LIST, ContactSearchKey.RecipientSearchKey::class.java)))
         else -> ChooseAfterMediaSelection
       }
     }

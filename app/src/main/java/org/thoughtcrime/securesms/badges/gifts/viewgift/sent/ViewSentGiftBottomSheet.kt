@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.gifts.viewgift.ViewGiftRepository
 import org.thoughtcrime.securesms.badges.models.BadgeDisplay112
@@ -41,7 +42,7 @@ class ViewSentGiftBottomSheet : DSLSettingsBottomSheetFragment() {
   }
 
   private val sentTo: RecipientId
-    get() = requireArguments().getParcelable(ARG_SENT_TO)!!
+    get() = requireArguments().getParcelableCompat(ARG_SENT_TO, RecipientId::class.java)!!
 
   private val giftBadge: GiftBadge
     get() = GiftBadge.parseFrom(requireArguments().getByteArray(ARG_GIFT_BADGE))

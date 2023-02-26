@@ -439,7 +439,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             SignalStore.donationsValues().subscriptionEndOfPeriodRedemptionStarted = 0L
             SignalStore.donationsValues().subscriptionEndOfPeriodConversionStarted = 0L
             SignalStore.donationsValues().setLastEndOfPeriod(0L)
-            Toast.makeText(context, "Cleared", Toast.LENGTH_SHORT)
+            Toast.makeText(context, "Cleared", Toast.LENGTH_SHORT).show()
           }
         )
       }

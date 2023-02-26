@@ -15,6 +15,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -67,7 +68,7 @@ class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRe
 
   fun restoreFromInstanceState(inState: Bundle) {
     if (inState.containsKey(TEXT_STORY_INSTANCE_STATE)) {
-      val state: TextStoryPostCreationState = inState.getParcelable(TEXT_STORY_INSTANCE_STATE)!!
+      val state: TextStoryPostCreationState = inState.getParcelableCompat(TEXT_STORY_INSTANCE_STATE, TextStoryPostCreationState::class.java)!!
       textFontSubject.onNext(store.state.textFont)
       store.update { state }
     }

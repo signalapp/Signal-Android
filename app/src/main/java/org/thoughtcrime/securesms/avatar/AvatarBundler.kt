@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.avatar
 
+import android.net.Uri
 import android.os.Bundle
+import org.signal.core.util.getParcelableCompat
 
 /**
  * Utility class which encapsulates reading and writing Avatar objects to and from Bundles.
@@ -33,7 +35,7 @@ object AvatarBundler {
   }
 
   fun extractPhoto(bundle: Bundle): Avatar.Photo = Avatar.Photo(
-    uri = requireNotNull(bundle.getParcelable(URI)),
+    uri = requireNotNull(bundle.getParcelableCompat(URI, Uri::class.java)),
     size = bundle.getLong(SIZE),
     databaseId = bundle.getDatabaseId()
   )

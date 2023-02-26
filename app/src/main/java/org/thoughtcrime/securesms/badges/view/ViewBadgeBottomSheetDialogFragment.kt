@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -122,9 +123,9 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
     }
   }
 
-  private fun getStartBadge(): Badge? = requireArguments().getParcelable(ARG_START_BADGE)
+  private fun getStartBadge(): Badge? = requireArguments().getParcelableCompat(ARG_START_BADGE, Badge::class.java)
 
-  private fun getRecipientId(): RecipientId = requireNotNull(requireArguments().getParcelable(ARG_RECIPIENT_ID))
+  private fun getRecipientId(): RecipientId = requireNotNull(requireArguments().getParcelableCompat(ARG_RECIPIENT_ID, RecipientId::class.java))
 
   companion object {
 

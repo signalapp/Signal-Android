@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import org.signal.core.util.ThreadUtil
+import org.signal.core.util.getParcelableCompat
 import org.signal.qr.kitkat.ScanListener
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.WrapperDialogFragment
@@ -84,10 +85,10 @@ class VerifyIdentityFragment : Fragment(R.layout.fragment_container), ScanListen
   }
 
   private val recipientId: RecipientId
-    get() = requireArguments().getParcelable(EXTRA_RECIPIENT)!!
+    get() = requireArguments().getParcelableCompat(EXTRA_RECIPIENT, RecipientId::class.java)!!
 
   private val remoteIdentity: IdentityKeyParcelable
-    get() = requireArguments().getParcelable(EXTRA_IDENTITY)!!
+    get() = requireArguments().getParcelableCompat(EXTRA_IDENTITY, IdentityKeyParcelable::class.java)!!
 
   private val isVerified: Boolean
     get() = requireArguments().getBoolean(EXTRA_VERIFIED)

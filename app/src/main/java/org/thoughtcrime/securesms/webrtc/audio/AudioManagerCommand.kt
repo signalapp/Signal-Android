@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.webrtc.audio
 import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
+import org.signal.core.util.readParcelableCompat
+import org.signal.core.util.readSerializableCompat
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.ParcelUtil
 
@@ -36,7 +38,7 @@ sealed class AudioManagerCommand : Parcelable {
       @JvmField
       val CREATOR: Parcelable.Creator<StartIncomingRinger> = ParcelCheat { parcel ->
         StartIncomingRinger(
-          ringtoneUri = parcel.readParcelable(Uri::class.java.classLoader)!!,
+          ringtoneUri = parcel.readParcelableCompat(Uri::class.java)!!,
           vibrate = ParcelUtil.readBoolean(parcel)
         )
       }
@@ -83,7 +85,12 @@ sealed class AudioManagerCommand : Parcelable {
 
     companion object {
       @JvmField
-      val CREATOR: Parcelable.Creator<SetUserDevice> = ParcelCheat { SetUserDevice(it.readParcelable(RecipientId::class.java.classLoader), it.readSerializable() as SignalAudioManager.AudioDevice) }
+      val CREATOR: Parcelable.Creator<SetUserDevice> = ParcelCheat {
+        SetUserDevice(
+          it.readParcelableCompat(RecipientId::class.java),
+          it.readSerializableCompat(SignalAudioManager.AudioDevice::class.java)!!
+        )
+      }
     }
   }
 
@@ -98,8 +105,8 @@ sealed class AudioManagerCommand : Parcelable {
       @JvmField
       val CREATOR: Parcelable.Creator<SetDefaultDevice> = ParcelCheat { parcel ->
         SetDefaultDevice(
-          recipientId = parcel.readParcelable(RecipientId::class.java.classLoader),
-          device = parcel.readSerializable() as SignalAudioManager.AudioDevice,
+          recipientId = parcel.readParcelableCompat(RecipientId::class.java),
+          device = parcel.readSerializableCompat(SignalAudioManager.AudioDevice::class.java)!!,
           clearUserEarpieceSelection = ParcelUtil.readBoolean(parcel)
         )
       }

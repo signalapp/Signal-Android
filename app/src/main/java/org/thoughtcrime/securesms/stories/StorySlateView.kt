@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -135,7 +136,7 @@ class StorySlateView @JvmOverloads constructor(
 
   override fun onRestoreInstanceState(state: Parcelable?) {
     if (state is Bundle) {
-      val rootState: Parcelable? = state.getParcelable("ROOT")
+      val rootState: Parcelable? = state.getParcelableCompat("ROOT", Parcelable::class.java)
       this.state = State.fromCode(state.getInt("STATE", State.HIDDEN.code))
       this.postId = state.getLong("ID")
       super.onRestoreInstanceState(rootState)

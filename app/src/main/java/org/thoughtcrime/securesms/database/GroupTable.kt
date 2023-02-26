@@ -34,7 +34,6 @@ import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.protos.groups.Member
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil
@@ -670,7 +669,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
    * There was a point in time where we weren't properly responding to group creates on linked devices. This would result in us having a Recipient entry for the
    * group, but we'd either be missing the group entry, or that entry would be missing a master key. This method fixes this scenario.
    */
-  fun fixMissingMasterKey(authServiceId: ServiceId?, groupMasterKey: GroupMasterKey) {
+  fun fixMissingMasterKey(groupMasterKey: GroupMasterKey) {
     val groupId = GroupId.v2(groupMasterKey)
     if (getGroupV1ByExpectedV2(groupId).isPresent) {
       Log.w(TAG, "There already exists a V1 group that should be migrated into this group. But if the recipient already exists, there's not much we can do here.")
@@ -1206,7 +1205,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
       if (memberLevel.isAbsent()) {
         memberLevel = DecryptedGroupUtil.findRequestingByUuid(decryptedGroup.requestingMembersList, serviceId.get().uuid())
-          .map { m: DecryptedRequestingMember? -> MemberLevel.REQUESTING_MEMBER }
+          .map { _ -> MemberLevel.REQUESTING_MEMBER }
       }
 
       return if (memberLevel.isPresent) {

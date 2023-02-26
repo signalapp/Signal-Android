@@ -19,6 +19,8 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.BreakIteratorCompat
+import org.signal.core.util.getParcelableArrayListCompat
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
@@ -408,16 +410,16 @@ class MediaSelectionViewModel(
   }
 
   fun onRestoreState(savedInstanceState: Bundle) {
-    val selection: List<Media> = savedInstanceState.getParcelableArrayList(STATE_SELECTION) ?: emptyList()
-    val focused: Media? = savedInstanceState.getParcelable(STATE_FOCUSED)
+    val selection: List<Media> = savedInstanceState.getParcelableArrayListCompat(STATE_SELECTION, Media::class.java) ?: emptyList()
+    val focused: Media? = savedInstanceState.getParcelableCompat(STATE_FOCUSED, Media::class.java)
     val quality: SentMediaQuality = SentMediaQuality.fromCode(savedInstanceState.getInt(STATE_QUALITY))
     val message: CharSequence? = savedInstanceState.getCharSequence(STATE_MESSAGE)
     val viewOnce: MediaSelectionState.ViewOnceToggleState = MediaSelectionState.ViewOnceToggleState.fromCode(savedInstanceState.getInt(STATE_VIEW_ONCE))
     val touchEnabled: Boolean = savedInstanceState.getBoolean(STATE_TOUCH_ENABLED)
     val sent: Boolean = savedInstanceState.getBoolean(STATE_SENT)
-    val cameraFirstCapture: Media? = savedInstanceState.getParcelable(STATE_CAMERA_FIRST_CAPTURE)
+    val cameraFirstCapture: Media? = savedInstanceState.getParcelableCompat(STATE_CAMERA_FIRST_CAPTURE, Media::class.java)
 
-    val editorStates: List<Bundle> = savedInstanceState.getParcelableArrayList(STATE_EDITORS) ?: emptyList()
+    val editorStates: List<Bundle> = savedInstanceState.getParcelableArrayListCompat(STATE_EDITORS, Bundle::class.java) ?: emptyList()
     val editorStateMap = editorStates.associate { it.toAssociation() }
 
     selectedMediaSubject.onNext(selection)
@@ -438,7 +440,7 @@ class MediaSelectionViewModel(
   }
 
   private fun Bundle.toAssociation(): Pair<Uri, Any> {
-    val key: Uri = requireNotNull(getParcelable(BUNDLE_URI))
+    val key: Uri = requireNotNull(getParcelableCompat(BUNDLE_URI, Uri::class.java))
 
     val value: Any = if (getBoolean(BUNDLE_IS_IMAGE)) {
       ImageEditorFragment.Data(this)

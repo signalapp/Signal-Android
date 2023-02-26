@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
@@ -56,7 +57,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
     DonationCheckoutDelegate.ErrorHandler().attach(this, null, errorSource)
 
     setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
-      val result: DonationProcessorActionResult = bundle.getParcelable(StripePaymentInProgressFragment.REQUEST_KEY)!!
+      val result: DonationProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, DonationProcessorActionResult::class.java)!!
       if (result.status == DonationProcessorActionResult.Status.SUCCESS) {
         findNavController().popBackStack()
         setFragmentResult(REQUEST_KEY, bundle)
