@@ -242,7 +242,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
       profile.putExtra("next_intent", main);
       startActivity(profile);
     } else {
-      RegistrationUtil.maybeMarkRegistrationComplete(requireContext());
+      RegistrationUtil.maybeMarkRegistrationComplete();
       ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
       startActivity(MainActivity.clearTop(activity));
     }
