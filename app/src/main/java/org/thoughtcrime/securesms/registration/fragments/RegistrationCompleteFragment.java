@@ -50,24 +50,16 @@ public final class RegistrationCompleteFragment extends LoggingFragment {
     if (SignalStore.storageService().needsAccountRestore()) {
       Log.i(TAG, "Performing pin restore");
       activity.startActivity(new Intent(activity, PinRestoreActivity.class));
-    } else if (!viewModel.isReregister()) {
+    } else {
+      boolean needsPin     = !SignalStore.kbsValues().hasPin() && !viewModel.isReregister();
       boolean needsProfile = Recipient.self().getProfileName().isEmpty() || !AvatarHelper.hasAvatar(activity, Recipient.self().getId());
-      boolean needsPin     = !SignalStore.kbsValues().hasPin();
 
       Log.i(TAG, "Pin restore flow not required." +
-                 " profile name: "   + Recipient.self().getProfileName().isEmpty() +
+                 " profile name: " + Recipient.self().getProfileName().isEmpty() +
                  " profile avatar: " + !AvatarHelper.hasAvatar(activity, Recipient.self().getId()) +
-                 " needsPin:"        + needsPin);
+                 " needsPin:" + needsPin);
 
       Intent startIntent = MainActivity.clearTop(activity);
-
-      if (needsPin) {
-        startIntent = chainIntents(CreateKbsPinActivity.getIntentForPinCreate(requireContext()), startIntent);
-      }
-
-      if (needsProfile) {
-        startIntent = chainIntents(EditProfileActivity.getIntentForUserProfile(activity), startIntent);
-      }
 
       if (!needsProfile && !needsPin) {
         ApplicationDependencies.getJobManager()
@@ -76,11 +68,18 @@ public final class RegistrationCompleteFragment extends LoggingFragment {
                                .enqueue();
 
         RegistrationUtil.maybeMarkRegistrationComplete(requireContext());
+      } else {
+        if (needsPin) {
+          startIntent = chainIntents(CreateKbsPinActivity.getIntentForPinCreate(requireContext()), startIntent);
+        }
+
+        if (needsProfile) {
+          startIntent = chainIntents(EditProfileActivity.getIntentForUserProfile(activity), startIntent);
+        }
       }
 
       activity.startActivity(startIntent);
     }
-
     activity.finish();
     ActivityNavigator.applyPopAnimationsToPendingTransition(activity);
   }
