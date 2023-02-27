@@ -122,7 +122,11 @@ public abstract class TimedEventManager<E> {
     Intent        intent        = new Intent(context, alarmClass);
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable());
 
-    pendingIntent.cancel();
-    ServiceUtil.getAlarmManager(context).cancel(pendingIntent);
+    try {
+      pendingIntent.cancel();
+      ServiceUtil.getAlarmManager(context).cancel(pendingIntent);
+    } catch (SecurityException e) {
+      Log.i(TAG, "Unable to cancel alarm because we don't have permission");
+    }
   }
 }
