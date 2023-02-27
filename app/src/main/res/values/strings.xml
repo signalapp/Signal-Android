@@ -1167,8 +1167,8 @@
     <string name="Megaphones_new_group">New group</string>
     <string name="Megaphones_invite_friends">Invite friends</string>
     <string name="Megaphones_use_sms">Use SMS</string>
-    <string name="Megaphones_appearance">Appearance</string>
-    <string name="Megaphones_add_photo">Add photo</string>
+    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_add_a_profile_photo">Add a profile photo</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Replies</string>
