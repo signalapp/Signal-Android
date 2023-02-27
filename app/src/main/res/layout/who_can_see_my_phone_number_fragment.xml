@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:layout_marginBottom="16dp"
-        android:text="@string/save"
+        android:text="@string/RegistrationActivity_next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
