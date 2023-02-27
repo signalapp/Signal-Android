@@ -162,7 +162,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addBlocking("app-dependencies", this::initializeAppDependencies)
                             .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
                             .addBlocking("app-migrations", this::initializeApplicationMigrations)
-                            .addBlocking("mark-registration", () -> RegistrationUtil.maybeMarkRegistrationComplete(this))
+                            .addBlocking("mark-registration", () -> RegistrationUtil.maybeMarkRegistrationComplete())
                             .addBlocking("lifecycle-observer", () -> ApplicationDependencies.getAppForegroundObserver().addListener(this))
                             .addBlocking("message-retriever", this::initializeMessageRetrieval)
                             .addBlocking("dynamic-theme", () -> DynamicTheme.setDefaultDayNightMode(this))
