@@ -8,6 +8,7 @@ import android.database.MergeCursor
 import android.net.Uri
 import androidx.core.content.contentValuesOf
 import com.fasterxml.jackson.annotation.JsonProperty
+import org.json.JSONObject
 import org.jsoup.helper.StringUtil
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
@@ -59,6 +60,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.isScheduled
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -1743,9 +1745,21 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       val extraString = cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET_EXTRAS))
       val extra: Extra? = if (extraString != null) {
         try {
-          JsonUtils.fromJson(extraString, Extra::class.java)
-        } catch (e: IOException) {
-          Log.w(TAG, "Failed to decode extras!")
+          val jsonObject = SaneJSONObject(JSONObject(extraString))
+          Extra(
+            isViewOnce = jsonObject.getBoolean("isRevealable"),
+            isSticker = jsonObject.getBoolean("isSticker"),
+            stickerEmoji = jsonObject.getString("stickerEmoji"),
+            isAlbum = jsonObject.getBoolean("isAlbum"),
+            isRemoteDelete = jsonObject.getBoolean("isRemoteDelete"),
+            isMessageRequestAccepted = jsonObject.getBoolean("isMessageRequestAccepted"),
+            isGv2Invite = jsonObject.getBoolean("isGv2Invite"),
+            groupAddedBy = jsonObject.getString("groupAddedBy"),
+            individualRecipientId = jsonObject.getString("individualRecipientId")!!,
+            bodyRanges = jsonObject.getString("bodyRanges"),
+            isScheduled = jsonObject.getBoolean("isScheduled")
+          )
+        } catch (exception: Exception) {
           null
         }
       } else {

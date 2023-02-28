@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewTreeObserver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +38,8 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
   private VoiceNoteMediaController      mediaController;
   private ConversationListTabsViewModel conversationListTabsViewModel;
 
+  private boolean onFirstRender = false;
+
   public static @NonNull Intent clearTop(@NonNull Context context) {
     Intent intent = new Intent(context, MainActivity.class);
 
@@ -53,6 +56,21 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     super.onCreate(savedInstanceState, ready);
 
     setContentView(R.layout.main_activity);
+    final View content = findViewById(android.R.id.content);
+    content.getViewTreeObserver().addOnPreDrawListener(
+        new ViewTreeObserver.OnPreDrawListener() {
+          @Override
+          public boolean onPreDraw() {
+            // Use pre draw listener to delay drawing frames till conversation list is ready
+            if (onFirstRender) {
+              content.getViewTreeObserver().removeOnPreDrawListener(this);
+              return true;
+            } else {
+              return false;
+            }
+          }
+        });
+
 
     mediaController = new VoiceNoteMediaController(this, true);
 
@@ -156,6 +174,10 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     if (data != null) {
       CommunicationActions.handlePotentialSignalMeUrl(this, data.toString());
     }
+  }
+
+  public void onFirstRender() {
+    onFirstRender = true;
   }
 
   @Override

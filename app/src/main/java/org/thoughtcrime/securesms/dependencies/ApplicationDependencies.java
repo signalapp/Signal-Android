@@ -87,6 +87,7 @@ public class ApplicationDependencies {
   private static final Object LOCK                    = new Object();
   private static final Object FRAME_RATE_TRACKER_LOCK = new Object();
   private static final Object JOB_MANAGER_LOCK        = new Object();
+  private static final Object SIGNAL_HTTP_CLIENT_LOCK = new Object();
 
   private static Application           application;
   private static Provider              provider;
@@ -544,7 +545,7 @@ public class ApplicationDependencies {
 
   public static @NonNull OkHttpClient getSignalOkHttpClient() {
     if (signalOkHttpClient == null) {
-      synchronized (LOCK) {
+      synchronized (SIGNAL_HTTP_CLIENT_LOCK) {
         if (signalOkHttpClient == null) {
           try {
             OkHttpClient   baseClient    = ApplicationDependencies.getOkHttpClient();
