@@ -11,7 +11,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.sp
 
-private val typography = Typography().apply {
+private val typography = Typography().run {
   copy(
     headlineLarge = headlineLarge.copy(
       lineHeight = 40.sp,

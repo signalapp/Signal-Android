@@ -35,6 +35,13 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_privacySettingsFragment_to_phoneNumberPrivacySettingsFragment"
+            app:destination="@id/phoneNumberPrivacySettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
 
     </fragment>
 
@@ -47,6 +54,11 @@
         android:id="@+id/advancedPrivacySettingsFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.privacy.advanced.AdvancedPrivacySettingsFragment"
         android:label="advanced_privacy_settings_fragment" />
+
+    <fragment
+        android:id="@+id/phoneNumberPrivacySettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.pnp.PhoneNumberPrivacySettingsFragment"
+        android:label="phone_number_privacy_settings_fragment" />
 
     <include app:graph="@navigation/app_settings_expire_timer" />
 

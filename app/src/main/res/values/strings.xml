@@ -3458,6 +3458,18 @@
     <string name="BackupUtil_unknown">Unknown</string>
     <string name="preferences_app_protection__see_my_phone_number">See my phone number</string>
     <string name="preferences_app_protection__find_me_by_phone_number">Find me by phone number</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">Phone number</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">Choose who can see your phone number and who can contact you on Signal with it.</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Who can see my number</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Who can find me by number</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Your phone number will be visible to people and groups you message. People who have your number in their phone contacts will also see it on Signal.</string>
     <string name="PhoneNumberPrivacy_everyone">Everyone</string>
     <string name="PhoneNumberPrivacy_my_contacts">My contacts</string>
     <string name="PhoneNumberPrivacy_nobody">Nobody</string>
