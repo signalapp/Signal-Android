@@ -43,6 +43,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import io.reactivex.rxjava3.disposables.Disposable;
+
 /**
  * The application-level manager of our websocket connection.
  * <p>
@@ -198,7 +200,7 @@ public class IncomingMessageObserver {
 
     String needsConnectionString = conclusion ? "Needs Connection" : "Does Not Need Connection";
 
-    Log.d(TAG, String.format(Locale.US, "[" + needsConnectionString + "] Network: %s, Foreground: %s, Time Since Last Interaction: %s,  FCM: %s, Stay open requests: [%s], Registered: %s, Proxy: %s, Force websocket: %s",
+    Log.d(TAG, String.format(Locale.US, "[" + needsConnectionString + "] Network: %s, Foreground: %s, Time Since Last Interaction: %s, FCM: %s, Stay open requests: [%s], Registered: %s, Proxy: %s, Force websocket: %s",
                              hasNetwork, appVisible, lastInteractionString, fcmEnabled, Util.join(keepAliveTokens.entrySet(), ","), registered, hasProxy, forceWebsocket));
 
     return conclusion;
@@ -263,6 +265,15 @@ public class IncomingMessageObserver {
 
         Log.i(TAG, "Making websocket connection....");
         SignalWebSocket signalWebSocket = ApplicationDependencies.getSignalWebSocket();
+
+        Disposable webSocketDisposable = signalWebSocket.getWebSocketState().subscribe(state -> {
+          Log.d(TAG, "WebSocket State: " + state);
+
+          // Any state change at all means that we are not drained
+          networkDrained    = false;
+          decryptionDrained = false;
+        });
+
         signalWebSocket.connect();
 
         try {
@@ -281,6 +292,8 @@ public class IncomingMessageObserver {
                 Log.i(TAG, "Network was newly-drained. Enqueuing a job to listen for decryption draining.");
                 networkDrained = true;
                 ApplicationDependencies.getJobManager().add(new PushDecryptDrainedJob());
+              } else if (!result.isPresent()) {
+                Log.w(TAG, "Got tombstone, but we thought the network was already drained!");
               }
             } catch (WebSocketUnavailableException e) {
               Log.i(TAG, "Pipe unexpectedly unavailable, connecting");
@@ -300,6 +313,7 @@ public class IncomingMessageObserver {
         } finally {
           Log.w(TAG, "Shutting down pipe...");
           disconnect();
+          webSocketDisposable.dispose();
         }
 
         Log.i(TAG, "Looping...");

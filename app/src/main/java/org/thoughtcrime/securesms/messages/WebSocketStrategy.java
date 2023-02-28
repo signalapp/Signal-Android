@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
 import org.thoughtcrime.securesms.jobs.MarkerJob;
-import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
 
 import java.util.Optional;
