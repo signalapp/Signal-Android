@@ -30,7 +30,7 @@ class RegistrationNumberInputController(
   private val spinnerView: MaterialAutoCompleteTextView = countryCodeInputLayout.editText as MaterialAutoCompleteTextView
   private val supportedCountryPrefixes: List<CountryPrefix> = PhoneNumberUtil.getInstance().supportedCallingCodes
     .map { CountryPrefix(it, PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(it)) }
-    .sortedBy { it.digits }
+    .sortedBy { it.digits.toString() }
   private val spinnerAdapter: ArrayAdapter<CountryPrefix> = ArrayAdapter<CountryPrefix>(context, R.layout.registration_country_code_dropdown_item, supportedCountryPrefixes)
   private val countryCodeEntryListener = CountryCodeEntryListener()
 
