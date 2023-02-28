@@ -33,6 +33,8 @@ dependencyResolutionManagement {
             // Kotlin
             alias('kotlin-stdlib-jdk8').to('org.jetbrains.kotlin', 'kotlin-stdlib-jdk8').versionRef('kotlin')
             alias('kotlin-reflect').to('org.jetbrains.kotlin', 'kotlin-reflect').versionRef('kotlin')
+            alias('kotlin-gradle-plugin').to('org.jetbrains.kotlin', 'kotlin-gradle-plugin').versionRef('kotlin')
+            alias('ktlint').to('org.jlleitschuh.gradle:ktlint-gradle:11.1.0')
 
             // Android X
             alias('androidx-activity-ktx').to('androidx.activity:activity-ktx:1.5.1')

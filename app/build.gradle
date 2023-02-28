@@ -84,15 +84,15 @@ def selectableVariants = [
 android {
     namespace 'org.thoughtcrime.securesms'
 
-    buildToolsVersion BUILD_TOOLS_VERSION
-    compileSdkVersion COMPILE_SDK_VERSION
+    buildToolsVersion = signalBuildToolsVersion
+    compileSdkVersion = signalCompileSdkVersion
 
     flavorDimensions 'distribution', 'environment'
     useLibrary 'org.apache.http.legacy'
     testBuildType 'instrumentation'
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
         freeCompilerArgs = ["-Xallow-result-return-type"]
     }
 
@@ -139,9 +139,10 @@ android {
 
     compileOptions {
         coreLibraryDesugaringEnabled true
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
+        sourceCompatibility signalJavaVersion
+        targetCompatibility signalJavaVersion
     }
+
     packagingOptions {
         resources {
             excludes += ['LICENSE.txt', 'LICENSE', 'NOTICE', 'asm-license.txt', 'META-INF/LICENSE', 'META-INF/NOTICE', 'META-INF/proguard/androidx-annotations.pro', 'libsignal_jni.dylib', 'signal_jni.dll']
@@ -162,8 +163,8 @@ android {
         versionCode canonicalVersionCode * postFixSize
         versionName canonicalVersionName
 
-        minSdkVersion MIN_SDK_VERSION
-        targetSdkVersion TARGET_SDK_VERSION
+        minSdkVersion signalMinSdkVersion
+        targetSdkVersion signalTargetSdkVersion
 
         multiDexEnabled true
 
