@@ -961,9 +961,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Zerbait gertatu da erabiltzaile-izenarekin, eta jada ez dago kontuari esleitua. Berriro konfiguratu, edo beste bat aukera dezakezu.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">Konpondu orain</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1596,15 +1596,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">Bidali SMS kodea</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal-eko erregistroa: Laguntza behar dut Android-erako PINa berriro erregistratzeko</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">PINa zeuk sortutako kode bat da, %1$d digitu baino gehiagokoa, eta zenbakizkoa nahiz alfanumerikoa izan daiteke.\n\nPINa gogoratzen ez baduzu, beste bat sor dezakezu.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">PINa gogoratzen ez baduzu, beste bat sor dezakezu.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">PINa idazteko saiakerak agortu zaizkizu, baina, beste PIN bat sortzen baduzu, oraindik ere Signal-eko kontuan sar zaitezke.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Markatutako zenbakia ez dago Signal-era erregistratuta. SMS bidez gonbidatu nahiko zenuke?</string>
@@ -1791,7 +1791,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Lagunekin konektatzeko, Signal-ek kontaktuak eta multimedia-edukia atzitzeko baimena behar du. Signal-en kontaktuak aurkitzeko aukera pribatuaren bidez kargatzen dira kontaktuak; hau da, muturretik muturrera enkriptatuta daude, eta Signal zerbitzuak ezin ditu ikusi.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Zenbakia erregistratzeko saiakera gehiegi egin dituzu. Mesedez, saia zaitez beranduago.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">Saiakera gehiegi egin dituzu zenbaki hau erregistratzeko. Saiatu berriro denbora hau igarotakoan: %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Ezin da zerbitzura konektatu. Egiaztatu sarearen ezarpenak eta saiatu berriz.</string>
     <string name="RegistrationActivity_non_standard_number_format">Zenbaki-formatu ez-estandarra</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Idatzi duzun zenbakiak (%1$s) formatu ez-estandar bat du.\n\n%2$s esan nahi al zenuen?</string>
@@ -1799,9 +1799,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Deia eskatu da</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">SMSa eskatu da</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">Egiaztapen-kodea eskatu da</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Hurrats %1$d falta zaizu arazterko txosten bat bidaltzeko.</item>
         <item quantity="other">%1$d hurrats falta zaizkizu arazterko txosten bat bidaltzeko.</item>
@@ -1822,15 +1822,15 @@
     <string name="RegistrationActivity_verification_code">Egiaztapen-kodea</string>
     <string name="RegistrationActivity_resend_code">Bidali kodea berriro</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Erregistratzeko arazoak dituzu?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Ziurtatu telefonoak seinalea duela SMSa edo deia jasotzeko.\n • Egiaztatu zure zenbakian telefono-deiak jaso ditzakezula.\n • Egiaztatu telefono-zenbakia zuzen idatzi duzula.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Informazio gehiago lortzeko, jarraitu arazoak konpontzeko urrats hauei edo jarri laguntza-zerbitzuarekin harremanetan</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">arazoak konpontzeko urrats hauek</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Harremanetan jarri laguntza taldearekin</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Jarri harremanetan laguntza-zerbitzuarekin</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktibatu Erregistratzeko Blokeoa?</string>
@@ -2598,7 +2598,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">Falta dira</string>
-    <string name="message_details_recipient_header__sent_to">Honi bidalia</string>
+    <string name="message_details_recipient_header__sent_to">Honi bidali zaio:</string>
     <string name="message_details_recipient_header__sent_from">Honengandik bidalia</string>
     <string name="message_details_recipient_header__delivered_to">Honi banatua</string>
     <string name="message_details_recipient_header__read_by">Honek irakurria</string>
@@ -3339,7 +3339,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">Idatzi zure PINa</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Idatzi konturako sortu duzun PIN-a. PIN hau ez da zure SMS berifikazio gakoa.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Idatzi zure konturako sortu duzun PINa.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Idatzi PIN alfanumerikoa</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Idatzi zenbakizko PINa</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN okerra. Saia zaitez berriro.</string>
@@ -3446,7 +3446,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Dei iezadazu (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">Bidali berriro kodea (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Harremanetan jarri Signal Laguntza Taldearekin</string>
     <string name="RegistrationActivity_code_support_subject">Signal Errejistratzea - Androiderako Egiaztatze Kodea</string>
     <string name="RegistrationActivity_incorrect_code">Kodea ez da zuzena</string>
@@ -3715,17 +3715,17 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wifi-konexio ahula. Datu-konexiora aldatu da.</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">Zure kontua ezabatzean zera gertatuko da:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">Kontua ezabatuz gero:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Idatzi zure telefono zenbakia</string>
     <string name="DeleteAccountFragment__delete_account">Ezabatu kontua</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Ezabatu kontuaren informazioa eta profileko argazkia</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Ezabatu kontuko informazioa eta profileko argazkia</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Ezabatu mezu guztiak</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Ezabatu %1$s ordainketa-kontuan</string>
     <string name="DeleteAccountFragment__no_country_code">Ez duzu herrialde-kodea idatzi</string>
     <string name="DeleteAccountFragment__no_number">Ez duzu zenbakia idatzi</string>
     <string name="DeleteAccountFragment__the_phone_number">Idatzi duzun telefono zenbakia eta zure kontuarena ez datoz bat.</string>
     <string name="DeleteAccountFragment__are_you_sure">Ziur zaude kontua ezabatu nahi duzula?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Signal-eko kontua ezabatu, eta aplikazioa berrezarri egingo da. Prozesua amaitzean, aplikazioa itxi egingo da.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Signal-eko kontua ezabatuko da, eta aplikazioa berrezarriko. Aplikazioa itxi egingo da prozesua amaitu ondoren.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Ezin izan dira ezabatu datu lokalak. Sistemaren aplikazioen ezarpenetan ezabatu beharko dituzu.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Aplikazioaren Ezarpenak Ireki</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -4378,7 +4378,7 @@
     <string name="MediaReviewFragment__add_to_story">Gehitu istorioan</string>
     <string name="MediaReviewFragment__add_a_message">Gehitu mezu bat</string>
     <string name="MediaReviewFragment__add_a_reply">Gehitu erantzun bat</string>
-    <string name="MediaReviewFragment__send_to">Honi bidali</string>
+    <string name="MediaReviewFragment__send_to">Bidali honi:</string>
     <string name="MediaReviewFragment__view_once_message">Mezua behin ikusi</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Elementu bat edo gehiago handiegiak dira</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Elementu bat edo gehiago handiegiak dira</string>
@@ -5135,7 +5135,7 @@
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">Berretsi dohaintza</string>
     <!-- Heading text specifying who the gift will be sent to -->
-    <string name="GiftFlowConfirmationFragment__send_to">Honi bidali</string>
+    <string name="GiftFlowConfirmationFragment__send_to">Bidali honi:</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Mezu pribatu baten bidez emango zaio hartzaileari dohaintzaren berri. Gehitu mezua behean.</string>
     <!-- Text explaining that this gift is a one time donation -->

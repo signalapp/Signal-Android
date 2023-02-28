@@ -961,9 +961,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">உங்கள் பயனர்பெயரில் ஏதோ தவறாகிவிட்டது, அது இனி உங்கள் கணக்கில் ஒதுக்கப்படாது. நீங்கள் முயற்சி செய்து மீண்டும் அமைக்கலாம் அல்லது புதியதைத் தேர்ந்தெடுக்கலாம்.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">இப்பொழுதே சரிபார்</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1596,15 +1596,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">SMS குறியீட்டை அனுப்பு</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal பதிவு - Androidக்கான மறுபதிவு PIN உடன் செய்ய உதவி தேவை</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">உங்கள் பின் என்பது நீங்கள் உருவாக்கிய %1$d+ இலக்கக் குறியீடாகும், இது எண் அல்லது எண்ணெழுத்து ஆகும்.\n\nஉங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், புதிய ஒன்றை உருவாக்கலாம்.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">உங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், புதிய ஒன்றை உருவாக்கலாம்.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">உங்களது பின் யூகங்கள் தீர்ந்துவிட்டன, ஆனால் புதிய பின்னை உருவாக்குவதன் மூலம் உங்கள் Signal கணக்கைத் தொடர்ந்து அணுகலாம்.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">எச்சரிக்கை</string>
@@ -1791,7 +1791,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">நண்பர்களுடன் நீங்கள் இணைவதற்கு உதவ சிக்னலுக்கு தொடர்புகளின் அனுமதி தேவை. உங்கள் தொடர்புகள் சிக்னலின் தனிப்பட்ட தொடர்பு கண்டறிதலைப் பயன்படுத்தி பதிவேற்றப்படுகின்றன, அதாவது அவை முடிவிலிருந்து-முடிவுவரை மறையாக்கப்பட்டவை மற்றும் சிக்னல் சேவைக்கு ஒருபோதும் தெரியப்படுவதில்லை.</string>
     <string name="RegistrationActivity_rate_limited_to_service">இந்த எண்ணை பதிவு செய்ய நீங்கள் பல முயற்சிகளை செய்துள்ளீர்கள். சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">இந்த எண்ணை பதிவு செய்ய நீங்கள் பல முயற்சிகளை செய்துள்ளீர்கள். %1$s இல் மீண்டும் முயற்சிக்கவும்.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">சேவையுடன் இணைக்க முடியவில்லை. பிணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
     <string name="RegistrationActivity_non_standard_number_format">நான்-ஸ்டாண்டர்ட் எண் வடிவம்</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">நீங்கள் உள்ளிட்ட எண் (%1$s) நான்-ஸ்டாண்டர்ட் எண் வடிவத்தைக் கொண்டுள்ளது.\n\nநீங்கள் %2$s-ஐ நினைத்தீர்களா?</string>
@@ -1799,9 +1799,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">அழைப்பு கோரப்பட்டது</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">SMS கோரப்பட்டது</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">சரிபார்ப்புக் குறியீடு கோரப்பட்டது</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">பிழைத்திருத்த பதிவைச் சமர்ப்பிப்பதில் இருந்து இப்போது நீங்கள் %1$d விலகிவிட்டீர்கள்.</item>
         <item quantity="other">பிழைத்திருத்த பதிவைச் சமர்ப்பிப்பதில் இருந்து இப்போது நீங்கள் %1$d படிகள் தொலைவில் உள்ளீர்கள்.</item>
@@ -1822,13 +1822,13 @@
     <string name="RegistrationActivity_verification_code">சரிபார்ப்புக் குறியீடு</string>
     <string name="RegistrationActivity_resend_code">குறியீட்டை மீண்டும் அனுப்பு</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">பதிவு செய்வதில் சிக்கல் உள்ளதா?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• உங்கள் SMS அல்லது அழைப்பு பெற உங்கள் ஃபோனில் செல்லுலார் சிக்னல் உள்ளதா என்பதை உறுதிப்படுத்தவும் \n • எண்\n க்கு ஃபோன் அழைப்பைப் பெற முடியுமா என்பதை உறுதிப்படுத்தவும் • உங்கள் ஃபோன் எண்ணை சரியாக உள்ளிட்டுள்ளீர்களா எனச் சரிபார்க்கவும்.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">மேலும் தகவலுக்கு, இந்த சரிசெய்தல் படிகளைப் பின்பற்றவும் அல்லது ஆதரவைத் தொடர்பு கொள்ளவும்</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">இந்த சரிசெய்தல் படிகள்</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">தொடர்பு ஆதரவு</string>
 
@@ -2598,7 +2598,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">நிலுவையில் உள்ளது</string>
-    <string name="message_details_recipient_header__sent_to">அனுப்பப்பட்டது</string>
+    <string name="message_details_recipient_header__sent_to">இவருக்கு அனுப்பப்பட்டது</string>
     <string name="message_details_recipient_header__sent_from">அனுப்புனர்</string>
     <string name="message_details_recipient_header__delivered_to">வழங்கப்பட்டது</string>
     <string name="message_details_recipient_header__read_by">படித்தவர்கள்</string>
@@ -3339,7 +3339,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">உங்கள் பின்னை உள்ளிடவும்</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">உங்கள் கணக்கிற்கு நீங்கள் உருவாக்கிய பின்னை உள்ளிடவும். இது உங்கள் SMS சரிபார்ப்புக் குறியீட்டிலிருந்து வேறுபட்டது.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">உங்கள் கணக்கிற்கு நீங்கள் உருவாக்கிய பின்னை உள்ளிடவும்.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">எண்ணெழுத்து பின்னை உள்ளிடவும்</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">எண் பின்னை உள்ளிடவும்</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">தவறான பின். மீண்டும் முயற்சி செய்க.</string>
@@ -3446,7 +3446,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">என்னை அழைக்கவும் (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">குறியீட்டை மீண்டும் அனுப்புக (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal ஆதரவைத் தொடர்பு கொள்ளுங்கள்</string>
     <string name="RegistrationActivity_code_support_subject">Signal பதிவு - அண்ட்ராய்டு க்கான சரிபார்ப்புக் குறியீடு</string>
     <string name="RegistrationActivity_incorrect_code">தவறான குறியீடு</string>
@@ -3715,7 +3715,7 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">பலவீனமான வை-ஃபை. செல்லுலார்க்கு மாறியது.</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">உங்கள் நீக்குகிறது கணக்கு விருப்பம்:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">உங்கள் கணக்கை நீக்குவதால்:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
     <string name="DeleteAccountFragment__delete_account">கணக்கை நீக்கு</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">உங்கள் கணக்குத் தகவல் மற்றும் புரொஃபைல் ஃபோட்டோவை நீக்கவும்</string>
@@ -3725,7 +3725,7 @@
     <string name="DeleteAccountFragment__no_number">இல்லை எண் குறிப்பிடப்பட்டுள்ளது</string>
     <string name="DeleteAccountFragment__the_phone_number">தி தொலைபேசி நீங்கள் உள்ளிட்ட எண் உங்களுடன் பொருந்தவில்லை கணக்கு.</string>
     <string name="DeleteAccountFragment__are_you_sure">உங்கள் கணக்கை நிச்சயமாக நீக்க வேண்டுமா?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">இது உங்கள் Signal கணக்கை நீக்கி செயலியை மீட்டமைக்கும். செயல்பாடு நிறைவடைந்ததும் செயலி மூடப்படும்.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">இது உங்களது Signal கணக்கை நீக்கி செயலியை மீட்டமைக்கும். செயல்பாடு நிறைவடைந்ததும் செயலி மூடப்படும்.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">உள்ளே சேமிக்கப்பட்டிருக்கும் தரவை நீக்க முடியவில்லை. சிஸ்டம் அப்ளிகேஷன் செட்டிங்ஸில் அதை நீங்கள் நேரடியாக அழிக்கலாம்.</string>
     <string name="DeleteAccountFragment__launch_app_settings">பயன்பாட்டு அமைப்புகளை தொடங்கு</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -4378,7 +4378,7 @@
     <string name="MediaReviewFragment__add_to_story">ஸ்டோரியில் சேர்க்கவும்</string>
     <string name="MediaReviewFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
     <string name="MediaReviewFragment__add_a_reply">ஒரு பதிலைச் சேர்க்கவும்</string>
-    <string name="MediaReviewFragment__send_to">அனுப்பவும்</string>
+    <string name="MediaReviewFragment__send_to">இவருக்கு அனுப்பு</string>
     <string name="MediaReviewFragment__view_once_message">ஒருமுறை பார்க்கும் செய்தி</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">ஒன்று அல்லது அதற்கு மேற்பட்ட பொருட்கள் மிகப் பெரியதாக இருந்தன</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ஒன்று அல்லது அதற்கு மேற்பட்ட பொருட்கள் செல்லாதவை</string>
@@ -5135,7 +5135,7 @@
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">நன்கொடையை உறுதிப்படுத்துதல்</string>
     <!-- Heading text specifying who the gift will be sent to -->
-    <string name="GiftFlowConfirmationFragment__send_to">அனுப்பவும்</string>
+    <string name="GiftFlowConfirmationFragment__send_to">இவருக்கு அனுப்பு</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">1 இல் 1 செய்தியில் நன்கொடை பெறுபவருக்கு அறிவிக்கப்படும். உங்கள் சொந்த செய்தியை கீழே சேர்க்கவும்.</string>
     <!-- Text explaining that this gift is a one time donation -->

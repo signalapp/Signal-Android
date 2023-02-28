@@ -923,9 +923,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">သင်၏ သုံးစွဲသူအမည်နှင့်ပတ်သက်၍ တစ်စုံတစ်ခု မှားယွင်းနေပါသည်၊ သင့်အကောင့်အတွက် သတ်မှတ်ပေးတော့မည် မဟုတ်ပါ။ ထပ်မံကြိုးစား၍ သတ်မှတ်နိုင်ပါသည် သို့မဟုတ် အသစ်တစ်ခု ရွေးချယ်နိုင်ပါသည်။</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">ယခု ဖြေရှင်းရန်</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1532,15 +1532,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">SMS ကုဒ် ပို့ရန်</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal မှတ်ပုံတင်ခြင်း- Android အတွက် PIN ပြန်လည်မှတ်ပုံတင်ခြင်းနှင့်အတူ အကူအညီ လိုအပ်ချက်</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">သင်ဖန်တီးထားသော သင်၏ PIN သည် ဂဏန်း %1$d ခုအထက် ပါသော ကုဒ်ဖြစ်ပြီး နံပါတ် သို့မဟုတ် အက္ခရာနံပါတ် ဖြစ်နိုင်ပါသည်။\n\nသင်၏ PIN ကို မမှတ်မိပါက အသစ်တစ်ခု ဖန်တီးနိုင်ပါသည်။</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">သင်၏ PIN ကို မမှတ်မိပါက အသစ်တစ်ခု ဖန်တီးနိုင်ပါသည်။</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">PIN ခန့်မှန်းထည့်သွင်းမှုများ မရှိတော့ပါ၊ သို့သော် PIN အသစ်တစ်ခု ဖန်တီးခြင်းဖြင့် သင့် Signal အကောင့်ကို ဝင်ရောက်သုံးစွဲနိုင်ပါသေးသည်။</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">သတိပေးချက်</string>
@@ -1721,7 +1721,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal သည် သင့်အား မိတ်ဆွေများနှင့် ဆက်သွယ်ပေးရန်အတွက် အဆက်အသွယ် ခွင့်ပြုချက် လိုအပ်ပါသည်။ သင့်အဆက်အသွယ်များကို End-to-end ကုဒ်ပြောင်းဝှက်ထားသော Signal ၏ သီးသန့် အဆက်အသွယ် ရှာဖွေရေးကို သုံး၍ အပ်လုဒ်လုပ်ထားသောကြောင့် Signal ဝန်ဆောင်မှုတွင် မည်သည့်အခါမျှ မြင်ရမည် မဟုတ်ပါ။</string>
     <string name="RegistrationActivity_rate_limited_to_service">ဤနံပတ်ဖြင့် မှတ်ပုံတင်ခြင်းကို အကြိမ်ပေါင်းများစွာ ကြိုးစားပြီးပါပြီ။ ကျေးဇူးပြူ၍ နောင်အခါမှ ပြန်လည်ကြိုးစားပါ။</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">ဤနံပါတ်ကို မှတ်ပုံတင်ရန် ကြိုးပမ်းမှုများစွာ ဆောင်ရွက်ခဲ့ပါသည်။ %1$s အကြာတွင် ထပ်ကြိုးစားကြည့်ပါ။</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ဝန်ဆောင်မှုနှင့် ဆက်သွယ်၍ မရနိုင်ပါ။ အင်တာနက်ချိတ်ဆက်မှုအား နောက်တစ်ကြိမ် စစ်ဆေး၍ ပြန်လည်ကြိုးစားကြည့်ပါ။</string>
     <string name="RegistrationActivity_non_standard_number_format">စံပုံစံနှင့် မကိုက်ညီသည့် နံပါတ်</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">သင်ထည့်သွင်းထားသည့် နံပါတ် (%1$s) သည် စံပုံစံနှင့် မကိုက်ညီပုံပေါ်ပါသည်။\n\nသင်ဆိုလိုသည်မှာ %2$s ဟုတ်ပါသလား။</string>
@@ -1729,9 +1729,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">ကောလ် တောင်းဆိုပြီး</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">SMS တောင်းဆိုပြီး</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">အတည်ပြုကုဒ် တောင်းဆိုပြီး</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">ယခု သင်သည် ပျက်ကွက်မှုပြင်ခြင်း မှတ်တမ်း တင်ရန်အတွက် အဆင့် %1$d ဆင့်သာလိုတော့သည်</item>
     </plurals>
@@ -1751,15 +1751,15 @@
     <string name="RegistrationActivity_verification_code">အတည်ပြုကုဒ်</string>
     <string name="RegistrationActivity_resend_code">ကုဒ် ပြန်ပို့ရန်</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">စာရင်းသွင်းမှုနှင့်စပ်လျဉ်း၍ အခက်အခဲရှိပါသလား။</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• သင့် SMS သို့မဟုတ် ခေါ်ဆိုမှုကို လက်ခံရန် သင့်ဖုန်းတွင် ဆယ်လူလာ လိုင်းရှိကြောင်း သေချာပါစေ\n • နံပါတ်သို့ ဖုန်းခေါ်ဆိုမှု လက်ခံနိုင်ကြောင်း အတည်ပြုပါ\n • သင့်ဖုန်းနံပါတ်ကို မှန်ကန်စွာ ရိုက်ထည့်ထားကြောင်း စစ်ဆေးပါ။</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">နောက်ထပ်အချက်အလက်အတွက် ဤပြဿနာဖြေရှင်းနည်း အဆင့်များအတိုင်း လုပ်ဆောင်ပါ သို့မဟုတ် ပံ့ပိုးမှုစင်တာသို့ ဆက်သွယ်ပါ</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ဤပြဿနာဖြေရှင်းနည်း အဆင့်များ</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">ပံ့ပိုးမှုစင်တာသို့ ဆက်သွယ်ပါ</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">ပံ့ပိုးမှုစင်တာသို့ ဆက်သွယ်ရန်</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">မှတ်ပုံတင်မှု ပိတ်ထားခြင်းကို အသုံးပြုမည်လား?</string>
@@ -2515,7 +2515,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">ဆိုင်းငံ့နေသည်</string>
-    <string name="message_details_recipient_header__sent_to">သို့ပို့ပြီး</string>
+    <string name="message_details_recipient_header__sent_to">ဖော်ပြပါသို့ ပို့ပြီး</string>
     <string name="message_details_recipient_header__sent_from">မှပေးပို့သည်</string>
     <string name="message_details_recipient_header__delivered_to">သို့ပို့ပြီး</string>
     <string name="message_details_recipient_header__read_by">မှဖတ်ပြီး</string>
@@ -3251,7 +3251,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">သင်၏ ပင်နံပါတ် ကိုထည့်ပါ</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">သင့်အကောင့်အတွက် ဖန်တီးထားသော ပင်နံပါတ် ထည့်ပါ၊ SMS စာတိုအနေဖြင့်ပေးပို့သည့် အတည်ပြုကုဒ်နှင့် မတူပါ။</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">သင့်အကောင့်အတွက် သင်ဖန်တီးထားသော PIN ကို ရိုက်ထည့်ပါ။</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">အက္ခရာနံပါတ်ပါ ပင်နံပါတ်ကို ရိုက်ထည့်ပါ</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">နံပါတ်ပါ ပင်နံပါတ်ကို ရိုက်ထည့်ပါ</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">ပင်နံပါတ်မှားနေသည်။ နောက်တစ်ကြိမ် ကြိုးစားပါ။</string>
@@ -3353,7 +3353,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">(%1$02d:%2$02d) အကြာတွင် ဖုန်းခေါ်ရန်</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">ကုဒ် ပြန်ပို့ရန် (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal အကူအညီ ရယူမည်</string>
     <string name="RegistrationActivity_code_support_subject">Signal မှတ်ပုံတင်ခြင်း Android အတွက် အတည်ပြုကုဒ်</string>
     <string name="RegistrationActivity_incorrect_code">ကုဒ် မှားနေပါသည်</string>
@@ -3620,17 +3620,17 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi အားနည်းနေပါသည်။ ဆဲလ်လူလာသို့ ပြောင်းပြီး။</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">သင်၏အကောင့်ကိုဖျက်ခြင်းသည် -</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">သင့်အကောင့်ကိုဖျက်ခြင်းဖြင့်-</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">သင့်ဖုန်းနံပါတ်ကိုထည့်ပါ</string>
     <string name="DeleteAccountFragment__delete_account">အကောင့်ကို ဖျက်ရန်</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">သင်၏ အကောင့်အချက်အလက် နှင့် ပရိုဖိုင်းဓာတ်ပုံများကို ဖျက်ရန်</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">သင်၏ မက်ဆေ့ချ်များအားလုံးကို ဖျက်ရန်</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">သင့်အကောင့်အချက်အလက်နှင့် ပရိုဖိုင်ဓာတ်ပုံကို ဖျက်မည်</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">သင်၏ မက်ဆေ့ချ်များအားလုံးကို ဖျက်မည်</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s ကို သင့်ငွေပေးချေသည့် အကောင့်မှ ဖျက်ရန်</string>
     <string name="DeleteAccountFragment__no_country_code">နိုင်ငံကုဒ်နံပါတ် သတ်မှတ်ထားခြင်း မရှိပါ</string>
     <string name="DeleteAccountFragment__no_number">နံပါတ်သတ်မှတ်ထားခြင်း မရှိပါ</string>
     <string name="DeleteAccountFragment__the_phone_number">သင်ရိုက်ထည့်ထားသော ဖုန်းနံပါတ်သည် သင့်အကောင့်အတွင်းရှိ နံပါတ်နှင့် မကိုက်ညီပါ။</string>
     <string name="DeleteAccountFragment__are_you_sure">သင့်အကောင့်ကို ဖျက်သိမ်းလိုသည်မှ သေချာပါသလား။</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ဤလုပ်ဆောင်ချက်သည် သင့် Signal အကောင့်ကို ဖျက်သိမ်းပြီး အက်ပလီကေးရှင်းကို ရီစက် ချပါမည်။ အက်ပ်သည် ဤလုပ်ဆောင်မှုပြီးလျှင် ပိတ်သွားပါမည်။</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ဤသည်က သင့် Signal အကောင့်ကို ဖျက်သိမ်းပြီး အပလီကေးရှင်းကို ပြန်လည်သတ်မှတ်ပါမည်။ အက်ပ်သည် လုပ်ဆောင်မှုပြီးလျှင် ပိတ်သွားပါမည်။</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">စက်တွင်းရှိဒေတာဖျက်ခြင်း မအောင်မြင်ပါ။ စနစ်ထဲရှိ အက်ပလီကေးရှင်း အပြင်အဆင်များထဲ၌ သင်ကိုယ်တိုင်သွား ရှင်းနိုင်ပါသည်။</string>
     <string name="DeleteAccountFragment__launch_app_settings">ဖုန်းဆက်တင်ကိုဖွင့်မည်</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->

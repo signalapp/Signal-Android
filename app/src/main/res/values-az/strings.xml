@@ -961,9 +961,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">İstifadəçi adınızla bağlı xəta yarandı, o artıq hesabınıza təyin edilməyib. Onu yenidən quraşdırmağa cəhd edin və ya yenisini seçin.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">İndi düzəlt</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1596,15 +1596,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">SMS kodu göndər</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Qeydiyyatı - Android üçün PIN kodla bağlı kömək lazımdır</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">PIN kodunuz yaratdığınız ədədi və ya alfa nömrəli ola bilən %1$d+ rəqəmli koddur.\n\nPIN kodunuzu xatırlamırsınızsa, yenisini yarada bilərsiniz.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">PIN kodunuzu xatırlamırsınızsa, yenisini yarada bilərsiniz.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">PIN kod təxminləriniz tükəndi, lakin siz hələ də yeni PIN kod yaradaraq Signal hesabınıza daxil ola bilərsiniz.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Xəbərdarlıq</string>
@@ -1791,7 +1791,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal-ın dostlarınızla bağlantı qurmağınıza kömək etməsi üçün əlaqələr və media icazələrinə ehtiyacı var. Əlaqələriniz Signal-ın özəl əlaqə kəşfi istifadə edilərək yüklənir, bu da o deməkdir ki, əlaqələriniz bir ucdan digərinə qədər şifrələnir və heç vaxt Signal xidməti tərəfindən görüntülənə bilmir.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Bu nömrəni qeydiyyatdan keçirmək üçün həddindən çox cəhd etdiniz. Zəhmət olmasa daha sonra yenidən sınayın.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">Bu nömrəni qeydiyyatdan keçirmək üçün həddindən çox cəhd etdiniz. %1$s dəqiqə sonra yenidən cəhd edin.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Xidmətlə bağlantı qurula bilmir. Zəhmət olmasa şəbəkə bağlantınızı yoxlayıb yenidən sınayın.</string>
     <string name="RegistrationActivity_non_standard_number_format">Standart olmayan nömrə formatı</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Daxil etdiyiniz nömrə (%1$s) standartlara cavab vermir.\n\nBunu nəzərdə tuturdunuz: %2$s?</string>
@@ -1799,9 +1799,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Zəng tələb olundu</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">SMS tələb olunur</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">Təsdiqləmə kodu tələb olunur</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Xətanın aradan qaldırılması üçün sorğunu daxil etmək üçün %1$d cəmi addım qaldı.</item>
         <item quantity="other">Bir sazlama jurnalını göndərməyinizə %1$d addım qaldı.</item>
@@ -1822,15 +1822,15 @@
     <string name="RegistrationActivity_verification_code">Təsdiqləmə kodu</string>
     <string name="RegistrationActivity_resend_code">Kodu yenidən göndər</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Qeydiyyatdan keçməkdə çətinlik çəkirsiniz?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• SMS qəbulu və ya zəng etmək üçün telefonunuzda mobil siqnalın aktivliyindən əmin olun \n • Nömrəyə telefon zəngi qəbul edə biləcəyinizi təsdiqləyin\n• Telefon nömrənizi düzgün daxil edib-etmədiyinizi yoxlayın.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Əlavə məlumat üçün problemlərin aradan qaldırılması ilə əlaqəli bu addımları yerinə yetirin və ya Dəstək xidmətimizlə əlaqə saxlayın</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">buradakı nasazlıqların aradan qaldırılması addımları</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Dəstək ilə əlaqə</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Dəstək xidməti ilə əlaqə</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Qeydiyyat Kilidi işə salınsın?</string>
@@ -3339,7 +3339,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">PIN-inizi daxil edin</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Hesabınız üçün yaratdığınız PIN-i daxil edin. Bu, SMS təsdiqləmə kodundan fərqlidir.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Hesabınız üçün yaratdığınız PIN kodu daxil edin.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Alfa nömrəli PIN daxil edin</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Rəqəmli PIN yazın</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Yanlış PIN. Yenidən sınayın.</string>
@@ -3446,7 +3446,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Mənə zəng et (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">(%1$02d:%2$02d) ərzində kodu yenidən göndər</string>
     <string name="RegistrationActivity_contact_signal_support">Signal Dəstək komandası ilə əlaqə</string>
     <string name="RegistrationActivity_code_support_subject">Signal Qeydiyyatı - Android üçün Təsdiqləmə Kodu</string>
     <string name="RegistrationActivity_incorrect_code">Yanlış kod</string>
@@ -3718,8 +3718,8 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Hesabınızı silsəniz, aşağıdakılar da silinəcək:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Telefon nömrənizi daxil edin</string>
     <string name="DeleteAccountFragment__delete_account">Hesabı sil</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Hesab məlumatlarınız və profil fotonuz silinəcək</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Bütün mesajlarınız silinəcək</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Hesab məlumatlarınız və profil fotonuzu silin</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Bütün mesajlarınızı silin</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s ödənişlər hesabınızdan silinəcək</string>
     <string name="DeleteAccountFragment__no_country_code">Heç bir ölkə kodu göstərilməyib</string>
     <string name="DeleteAccountFragment__no_number">Heç bir nömrə göstərilməyib</string>

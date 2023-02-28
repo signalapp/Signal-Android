@@ -961,9 +961,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">آپ کے یوزر نیم کے ساتھ کچھ غلط ہو گیا، یہ مزید آپ کے اکاؤنٹ کے لیے تفویض کردہ نہیں ہے۔ آپ کوشش کر سکتے ہیں اور اسے دوبارہ سیٹ کر سکتے ہیں یا ایک نیا منتخب کر سکتے ہیں۔</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">ابھی ٹھیک کریں</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1596,15 +1596,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">SMS کوڈ بھیجیں</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal رجسٹریشن - Android کے لیے پِن کو دوبارہ رجسٹر کرنے میں مدد درکار ہے</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">آپ کا پِن آپ کی طرف سے تخلیق کردہ %1$d+ اعدادی کوڈ ہے جو کہ عددی یا حرفی و عددی ہو سکتا ہے۔\n\nاگر آپ اپنا پِن یاد کرنے سے قاصر ہیں، تو آپ ایک نیا تخلیق کر سکتے ہیں۔</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">اگر آپ اپنا پِن یاد کرنے سے قاصر ہیں، تو آپ ایک نیا تخلیق کر سکتے ہیں۔</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">آپ کے پِن کے اندازے ختم ہو چکے ہیں، تاہم آپ اب بھی ایک نیا پِن تخلیق کر کے اپنے Signal اکاؤنٹ تک رسائی حاصل کر سکتے ہیں۔</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">انتباہ</string>
@@ -1791,7 +1791,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">سگنل کو آپ کے دوستوں سے رابطہ قائم کرنے اور پیغامات بھیجنے کے لیے رابطوں کی اجازت کی ضرورت ہوتی ہے۔ آپ کے رابطے سگنل کی نجی رابطہ دریافت کا استعمال کرتے ہوئے اپ لوڈ کیے جاتے ہیں، جس کا مطلب ہے کہ یہ شروع سے آخر تک خفیہ ہوتے ہیں اور سگنل سروس کو کبھی نظر نہیں آتے۔</string>
     <string name="RegistrationActivity_rate_limited_to_service">آپ نے اس نمبر کو رجسٹر کرنے کے لئے بہت زیادہ کوششیں کی ہیں۔ براہ کرم کچھ دیر بعد کوشش کریں.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">آپ اس نمبر کو رجسٹر کرنے کے لیے بہت مرتبہ کوششیں کر چکے ہیں۔ براہ کرم %1$s میں دوبارہ کوشش کریں۔</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">سروس سے رابطے کے قابل نہیں۔ براہ کرم نیٹ ورک کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
     <string name="RegistrationActivity_non_standard_number_format">غیر معیاری ہندسوں کی ترتیب</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">آپ کا درج کردہ نمبر (%1$s) غیر معیاری فارمیٹ لگ رہا ہے۔\n\nکیا آپ کا مطلب %2$s ہے؟</string>
@@ -1799,9 +1799,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">کال کی درخواست کی گئی</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">SMS کی درخواست کر دی گئی</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">تصدیقی کوڈ کی درخواست کر دی گئی</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">کسی ڈی بَگ لاگ کو شامل کرنے سے آپ %1$d مرحلے دور ہیں۔</item>
         <item quantity="other">کسی ڈی بَگ لاگ کو پیش کرنے کیلئے اب آپ %1$d مرحلے دور ہیں۔</item>
@@ -1822,13 +1822,13 @@
     <string name="RegistrationActivity_verification_code">تصدیقی کوڈ</string>
     <string name="RegistrationActivity_resend_code">کوڈ دوبارہ بھیجیں</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">رجسٹر کرنے میں دشواری کا سامنا ہے؟</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• یقینی بنائیں کہ SMS یا کال موصول کرنے کے لیے آپ کے فون میں سیلولر سگنل موجود ہیں\n • تصدیق کریں کہ آپ نمبر پر فون کال موصول کر سکتے ہیں\n •چیک کریں کہ آپ نے اپنا فون نمبر درست طریقے سے درج کیا ہے۔</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">مزید معلومات کے لیے، ٹربل شوٹنگ کے ان اقدامات پر عمل کریں یا سپورٹ سے رابطہ کریں</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ٹربل شوٹنگ کے یہ اقدامات</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">سپورٹ سے رابطہ کریں</string>
 
@@ -3339,7 +3339,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">اپنا پن داخل کریں</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">اپنے اکاؤنٹ کیلئے جو پن بنایا ہے داخل کریں۔ یہ آپ کے تصدیقی ایس ایم ایس سے مختلف ہے۔</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">وہ پِن درج کریں جو آپ نے اپنے اکاؤنٹ کے لیے تخلیق کیا تھا۔</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Alphanumeric کا پن درج کریں</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">عددی پن درج کریں</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">غلط پن. دوبارہ کوشش کریں.</string>
@@ -3446,7 +3446,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">مجھے کال کریں (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">کوڈ دوبارہ بھیجیں (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal رابطہ سپورٹ کریں</string>
     <string name="RegistrationActivity_code_support_subject">Signal رجسٹریشن- Android کے لیے تصدیقی کوڈ درج کریں</string>
     <string name="RegistrationActivity_incorrect_code">غلط کوڈ</string>
@@ -3715,17 +3715,17 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi کمزور ہے۔ سیلولر پر سوئچ کریں۔</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">آپ کا اکاؤنٹ حذف کرنے سے یہ ہوگا:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">اپنا اکاؤنٹ حذف کرنے سے یہ ہو گا:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">اپنا فون نمبر درج کریں</string>
     <string name="DeleteAccountFragment__delete_account">اکاؤنٹ حذف کریں</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">اپنے اکاؤنٹ کی معلومات اور پروفائل فوٹو حذف کریں</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">اپنے تمام پیغامات کو حذف کریں</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">اپنے اکاؤنٹ کی معلومات اور پروفائل کی تصویر حذف کریں</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">اپنے تمام میسجز حذف کریں</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">اپنے ادائیگیوں کے اکاؤنٹ میں %1$s کو حذف کریں</string>
     <string name="DeleteAccountFragment__no_country_code">ملک کا کوئی کوڈ بتایا نہیں ہے</string>
     <string name="DeleteAccountFragment__no_number">کوئی نمبر نہیں بتایا گیا</string>
     <string name="DeleteAccountFragment__the_phone_number">آپ نے جو فون نمبر داخل کیا ہے وہ آپ کے اکاؤنٹ کے مماثل نہیں ہے۔</string>
     <string name="DeleteAccountFragment__are_you_sure">کیا آپ کو یقین ہے کہ آپ اپنا اکاؤنٹ ختم کرنا چاہتے ہیں؟</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">یہ آپ کا Signal اکاؤنٹ حذف کردے گا اور درخواست کو دوبارہ ترتیب دے گا۔ عمل مکمل ہونے کے بعد ایپ بند ہوجائے گی۔</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">اس سے آپ کا Signal اکاؤنٹ حذف ہو جائے گا اور ایپلیکیشن کو دوبارہ ری سیٹ کرے گا۔ کارروائی مکمل ہونے کے بعد ایپ بند ہو جائے گی۔</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">مقامی ڈیٹا کو حذف کرنے میں ناکام۔ آپ اسے سسٹم ایپلیکیشن کی ترتیبات میں دستی طور پر صاف کرسکتے ہیں۔</string>
     <string name="DeleteAccountFragment__launch_app_settings">ایپ کی ترتیبات لانچ کریں</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -4378,7 +4378,7 @@
     <string name="MediaReviewFragment__add_to_story">سٹوری میں شامل کریں</string>
     <string name="MediaReviewFragment__add_a_message">پیغام شامل کریں</string>
     <string name="MediaReviewFragment__add_a_reply">جواب شامل کریں</string>
-    <string name="MediaReviewFragment__send_to">بھیجیں بطرف</string>
+    <string name="MediaReviewFragment__send_to">بھیجیں بنام</string>
     <string name="MediaReviewFragment__view_once_message">پیغام ایک بار دیکھیں</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">ایک یا زائد آئٹمز بہت بڑی تھیں</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ایک یا زائد آئٹمز غلط تھیں</string>
@@ -5135,7 +5135,7 @@
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">عطیہ کی تصدیق کریں</string>
     <!-- Heading text specifying who the gift will be sent to -->
-    <string name="GiftFlowConfirmationFragment__send_to">بھیجیں بطرف</string>
+    <string name="GiftFlowConfirmationFragment__send_to">بھیجیں بنام</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">وصول کنندہ کو عطیہ کے حوالے سے ایک 1 پر 1 پیغام ارسال کر کے مطلع کیا جائے گا۔ ذیل میں اپنا ذاتی پیغام شامل کریں۔</string>
     <!-- Text explaining that this gift is a one time donation -->

@@ -961,9 +961,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Jokin meni vikaan käyttäjänimessä. Se ei ole enää liitetty tiliisi. Voit yrittää asettaa sen uudelleen tai valita uuden käyttäjänimen.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">Korjaa nyt</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1596,15 +1596,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">Lähetä tekstiviestikoodi</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signalin rekisteröinti – Tarvitsen apua PIN-koodin uudelleenrekisteröintiin Android-laitteella</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">Luomasi PIN-koodi on vähintään %1$d-numeroinen koodi, ja se voi olla numeerinen tai aakkosnumeerinen.\n\nJos olet unohtanut PIN-koodin, voit luoda uuden.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">Jos olet unohtanut PIN-koodin, voit luoda uuden.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Olet syöttänyt PIN-koodin liian monta kertaa väärin, mutta voit edelleen käyttää Signal-tiliäsi luomalla uuden PIN-koodin.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Varoitus</string>
@@ -1791,7 +1791,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal tarvitsee yhteystietojen käyttöoikeuden, jotta voit olla yhteydessä kavereihisi. Yhteystietosi lähetetään käyttäen Signalin yksityistä yhteystietohakua ja ne on suojattu päästä päähän -salauksella. Ne eivät missään vaiheessa paljastu Signal-palvelulle.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Olet yrittänyt rekisteröidä tämän numeron liian monta kertaa. Yritä myöhemmin uudelleen.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">Olet yrittänyt rekisteröidä tämän numeron liian monta kertaa. Yritä uudelleen, kun on kulunut %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Yhteyttä ei voitu muodostaa palveluun. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
     <string name="RegistrationActivity_non_standard_number_format">Epästandardi numeron muoto</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Syöttämäsi numero (%1$s) ei näytä olevan vakiomuotoinen.\n\nTarkoititko %2$s?</string>
@@ -1799,9 +1799,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Puhelu pyydetty</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">Tekstiviesti pyydetty</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">Vahvistuskoodi pyydetty</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Olet tällä hetkellä %1$d askeleen päässä virheenkorjauslokin lähettämisestä.</item>
         <item quantity="other">Vielä %1$d vaihetta virheenkorjauslokin lähettämiseen.</item>
@@ -1822,13 +1822,13 @@
     <string name="RegistrationActivity_verification_code">Vahvistuskoodi</string>
     <string name="RegistrationActivity_resend_code">Lähetä koodi uudelleen</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Onko sinulla ongelmia rekisteröitymisessä?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Varmista, että puhelimesi on yhteydessä matkapuhelinverkkoon ja voi vastaanottaa tekstiviestin tai puhelun\n • Varmista, että voit vastaanottaa puhelun numeroon\n • Tarkista, että olet syöttänyt puhelinnumerosi oikein.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Jos haluat lisätietoja, noudata näitä vianmääritysvaiheita tai ota yhteyttä tukeen</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">näitä vianmääritysvaiheita</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Ota yhteyttä tukeen</string>
 
@@ -2598,7 +2598,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">Käsiteltävänä</string>
-    <string name="message_details_recipient_header__sent_to">Lähetetty käyttäjälle</string>
+    <string name="message_details_recipient_header__sent_to">Lähetetty seuraaville:</string>
     <string name="message_details_recipient_header__sent_from">Lähettäjä</string>
     <string name="message_details_recipient_header__delivered_to">Toimitettu käyttäjälle</string>
     <string name="message_details_recipient_header__read_by">Luettu</string>
@@ -3339,7 +3339,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">Syötä tunnusluku</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Syötä tilille valitsemasi tunnusluku. Se ei ole sama kuin saamasi tekstiviestivahvistuskoodi.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Kirjoita PIN-koodi, jonka loit tiliäsi varten.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Syötä aakkosnumeerinen tunnusluku</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Syötä numeerinen tunnusluku</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Väärä tunnusluku, yritä uudelleen.</string>
@@ -3446,7 +3446,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Soita minulle (%1$02d.%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">Lähetä koodi uudelleen (%1$02d.%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Ota yhteyttä Signalin tukeen</string>
     <string name="RegistrationActivity_code_support_subject">Signalin rekisteröinti – vahvistuskoodi Androidille</string>
     <string name="RegistrationActivity_incorrect_code">Väärä koodi</string>
@@ -3717,7 +3717,7 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Tilin poistamisesta seuraa:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Syötä puhelinnumerosi</string>
-    <string name="DeleteAccountFragment__delete_account">Tili poistetaan</string>
+    <string name="DeleteAccountFragment__delete_account">Poista tili</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Tilisi tiedot ja profiilikuva poistetaan</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Kaikki viestit poistetaan</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s maksutililtäsi poistetaan</string>
@@ -4378,7 +4378,7 @@
     <string name="MediaReviewFragment__add_to_story">Lisää tarinaan</string>
     <string name="MediaReviewFragment__add_a_message">Lisää viesti</string>
     <string name="MediaReviewFragment__add_a_reply">Lisää vastaus</string>
-    <string name="MediaReviewFragment__send_to">Lähetä yhteystiedolle</string>
+    <string name="MediaReviewFragment__send_to">Lähetä henkilölle</string>
     <string name="MediaReviewFragment__view_once_message">Kerran katsottava viesti</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Yksi tai useampi valinnoista olivat liian suuria</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Yksi tai useampi valinnoista olivat virheellisiä</string>
@@ -5135,7 +5135,7 @@
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">Vahvista lahjoitus</string>
     <!-- Heading text specifying who the gift will be sent to -->
-    <string name="GiftFlowConfirmationFragment__send_to">Lähetä yhteystiedolle</string>
+    <string name="GiftFlowConfirmationFragment__send_to">Lähetä henkilölle</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Vastaanottaja saa ilmoituksen lahjoituksesta kahdenkeskisessä viestissä. Lisää oma viestisi alle.</string>
     <!-- Text explaining that this gift is a one time donation -->

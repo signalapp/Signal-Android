@@ -961,9 +961,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Nagkaroon ng problema sa username mo, hindi na ito naka-assign sa iyong account. Maaari mong subukang ilagay ito ulit o pumili ng bago.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">Ayusin</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1596,15 +1596,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">I-send ang SMS code</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Kailangan ng Tulong sa pag-register ulit ng PIN sa Android</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">Ang iyong PIN ay isang %1$d+ digit code na ginawa mo at maaari itong numeric o alphanumeric.\n\nKung hindi mo maalala ang iyong PIN, maaari kang gumawa ng bago.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">Kung hindi mo maalala ang iyong PIN, maaari kang gumawa ng bago.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Naubusan ka na ng PIN guesses, pero maaari mo pa ring ma-access ang iyong Signal account sa pamamagitan ng paggawa ng bagong PIN.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Babala</string>
@@ -1791,7 +1791,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Kinakailangan ng Signal ng pahintulot para ma-access ang contacts para maka-connect ka sa friends mo. Ina-upload ang contacts mo gamit ang private contact discovery ng Signal, kung saan end-to-end encrypted ang mga ito at hindi kailanman makikita ng Signal service.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Nakagawa ka ng napakaraming pagtatangkang irehistro ang numerong ito. Pakiusap na subukang muli kinalaunan.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">Masyadong maraming beses mo nang sinubukang i-register ang number na ito. Subukan ulit pagkatapos ng %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Hindi makakonekta sa serbisyo. Pakisuri ang koneksyon ng network at subukang muli.</string>
     <string name="RegistrationActivity_non_standard_number_format">Non-standard number format</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Ang number na nilagay mo (%1$s) ay mukhang isang non-standard format.\n\nDid you mean %2$s?</string>
@@ -1799,9 +1799,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Call requested</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">Nag-request ng SMS</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">Nag-request ng verification code</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Ikaw ngayon ay %1$d layong-hakbang na lang sa pagsusumite ng debug log.</item>
         <item quantity="other">%1$d hakbang ka pa para makapagsumite ng debug log.</item>
@@ -1822,15 +1822,15 @@
     <string name="RegistrationActivity_verification_code">Verification Code</string>
     <string name="RegistrationActivity_resend_code">I-resend ang Code</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Nagkakaproblema ka ba sa pag-register?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Siguraduhing may signal ang iyong phone para maka-receive ka ng verification code sa SMS o tawag\n • Kumpirmahing nakaka-receive ka ng tawag sa number mo\n • I-check kung tama ang phone number na inilagay mo.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Para sa iba pang impormasyon, sundin ang sumusunod na troubleshooting steps o Kontakin ang Support</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ang sumusunod na troubleshooting steps</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Makipag-ugnayan sa Suporta</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Kontakin ang Support</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Paganahin ang Registration Lock?</string>
@@ -2598,7 +2598,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">Pending</string>
-    <string name="message_details_recipient_header__sent_to">Sent to</string>
+    <string name="message_details_recipient_header__sent_to">Sinend kay</string>
     <string name="message_details_recipient_header__sent_from">Sent from</string>
     <string name="message_details_recipient_header__delivered_to">Delivered to</string>
     <string name="message_details_recipient_header__read_by">Read by</string>
@@ -3014,7 +3014,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Sent payment</string>
     <string name="PaymentsDetailsFragment__received_payment">Received payment</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Payment completed%1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">I-block ang number</string>
+    <string name="PaymentsDetailsFragment__block_number">Block number</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Transfer</string>
@@ -3339,7 +3339,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">Ilagay ang iyong PIN</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Ipasok ang PIN na iyong nilikha para sa iyong account. Ito ay iba sa iyong SMS verification code.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Ilagay ang ginawa mong PIN para sa account na ito.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Ilagay ang alphanumeric na PIN</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Ilagay ang numeric na PIN</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Hindi tama ang PIN. Subukang muli.</string>
@@ -3446,7 +3446,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Tawagan ako (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">I-resend ang Code (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Makipag-ugnayan sa Suporta ng Signal</string>
     <string name="RegistrationActivity_code_support_subject">Pagpaparehistro sa Signal - Verification Code para sa Android</string>
     <string name="RegistrationActivity_incorrect_code">Maling kodigo</string>
@@ -3715,7 +3715,7 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Lumipat sa data connection dahil unstable ang Wi-Fi connection.</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">Ang pag-delete ng iyong account ay magreresulta sa:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">Ang pagbura ng iyong account ay magreresulta sa:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Ilagay ang numero ng iyong telepono</string>
     <string name="DeleteAccountFragment__delete_account">Burahin ang account</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Burahin ang iyong contact info at profile photo</string>
@@ -3725,7 +3725,7 @@
     <string name="DeleteAccountFragment__no_number">Walang specified na number</string>
     <string name="DeleteAccountFragment__the_phone_number">Ang nilagay mong phone number ay hindi match sa number ng iyong account.</string>
     <string name="DeleteAccountFragment__are_you_sure">Sigurado ka bang nais mong burahin ang iyong account?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Buburahin nito ang iyong Signal account at mare-reset ang app. Sasara ang app pagkatapos nito.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Buburahin nito ang iyong Signal account at ire-reset ang app. Magsasara ang app pagkatapos ng proseso.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Hindi mabura ang local data. Pwede mo itong i-clear manually sa system application settings.</string>
     <string name="DeleteAccountFragment__launch_app_settings">I-launch ang App Settings</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->

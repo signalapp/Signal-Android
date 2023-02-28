@@ -923,9 +923,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Ada yang salah dengan nama pengguna Anda, nama pengguna tersebut tidak lagi ditetapkan untuk akun Anda. Anda bisa mencoba dan mengaturnya lagi atau memilih yang baru.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">Perbaiki sekarang</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1532,15 +1532,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">Kirim kode SMS</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Pendaftaran Signal - Perlu Bantuan pendaftaran ulang PIN untuk Android</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">PIN Anda adalah %1$d+ kode digit yang Anda buat, bisa numerik atau alfanumerik.\n\nJika tidak ingat PIN Anda, Anda bisa membuat yang baru.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">Jika tidak ingat PIN Anda, Anda bisa membuat yang baru.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Kesempatan Anda menebak PIN sudah habis, tapi Anda masih bisa mengakses akun Signal dengan membuat PIN baru.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Peringatan</string>
@@ -1721,7 +1721,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal memerlukan akses ke kontak agar dapat terhubung dengan teman Anda. Kontak Anda diunggah menggunakan pendeteksi kontak privat Signal, yang dienkripsi ujung-ke-ujung dan tidak akan terlihat pada layanan Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Anda membuat terlalu banyak percobaan untuk mendaftarkan nomor ini. Mohon coba lagi nanti.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">Anda terlalu sering mencoba mendaftar dengan nomor ini. Mohon coba lagi dalam %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Tidak bisa terhubung ke layanan. Mohon cek koneksi jaringan dan coba lagi.</string>
     <string name="RegistrationActivity_non_standard_number_format">Format nomor tidak umum</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Nomor yang Anda masukkan (%1$s) terlihat bukan format nomor yang umum.\n\nApakah maksud Anda %2$s?</string>
@@ -1729,9 +1729,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Panggilan diminta</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">SMS diminta</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">Kode verifikasi diminta</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">Kamu memiliki %1$d langkah lagi untuk mengirimkan catatan awakutu.</item>
     </plurals>
@@ -1751,15 +1751,15 @@
     <string name="RegistrationActivity_verification_code">Kode Verifikasi</string>
     <string name="RegistrationActivity_resend_code">Kirim Ulang Kode</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Ada masalah saat mendaftar?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Pastikan ponsel Anda memiliki sinyal seluler untuk menerima SMS atau panggilan\n • Pastikan Anda dapat menerima panggilan telepon ke nomor tersebut\n • Pastikan Anda telah memasukkan nomor ponsel yang benar.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Untuk informasi selengkapnya, ikuti langkah pemecahan masalah berikut atau Hubungi Dukungan</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">langkah pemecahan masalah berikut</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Hubungi Bantuan</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Hubungi Dukungan</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Nyalakan Kunci Pendaftaran?</string>
@@ -2515,7 +2515,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">Tertunda</string>
-    <string name="message_details_recipient_header__sent_to">Terkirim ke</string>
+    <string name="message_details_recipient_header__sent_to">Dikirim ke</string>
     <string name="message_details_recipient_header__sent_from">Dikirim dari</string>
     <string name="message_details_recipient_header__delivered_to">Terkirim ke</string>
     <string name="message_details_recipient_header__read_by">Dibaca oleh</string>
@@ -3251,7 +3251,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">Masukkan PIN Anda</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Masukkan PIN yang Anda buat untuk akun Anda. Ini berbeda dari kode verifikasi SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Masukkan PIN yang Anda buat untuk akun Anda.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Masukan PIN alfanumerik</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Masukkan PIN numerik</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN Salah. Coba lagi.</string>
@@ -3353,7 +3353,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Panggil saya (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">Kirim Kode Lagi (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontak Pusat Bantuan Signal</string>
     <string name="RegistrationActivity_code_support_subject">Pendaftaran Signal - Kode Verifikasi untuk Android</string>
     <string name="RegistrationActivity_incorrect_code">Kode Salah</string>

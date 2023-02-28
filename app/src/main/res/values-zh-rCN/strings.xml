@@ -923,9 +923,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">您的用户名出了点问题，它已不再分配给您的账户。您可以尝试重新设置，或选择一个新的用户名。</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">立刻解决</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1532,15 +1532,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">发送短信验证码</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal 注册 - 需要安卓版重新注册 PIN 码的相关帮助</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">PIN 码是您创建的一个不少于 %1$d 位数的密码。这个密码可以是纯数字，也可以是数字和字母的组合。如果您忘记了自己的 PIN 码，您可以创建一个新的 PIN 码。</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">如果您忘记了自己的 PIN 码，您可以创建一个新的 PIN 码。</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">您尝试输入 PIN 码的次数已超过限定的次数，不过您仍然可以通过创建一个新的 PIN 码来登录您的 Signal 账户。</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">警告</string>
@@ -1721,7 +1721,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal 需要通讯录权限以帮助您联系朋友。您的通讯录将通过 Signal 的私密联系人发现技术上传，这意味着您的联系人将获得端对端加密保护，对 Signal 服务绝对不可见。</string>
     <string name="RegistrationActivity_rate_limited_to_service">您尝试注册此号码次数过多，请稍候再试。</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">您尝试注册此号码的次数过多，请在 %1$s 后再试。</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">无法连接到 Signal 服务，请检查网络连接并重试。</string>
     <string name="RegistrationActivity_non_standard_number_format">非标准号码格式</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">您输入的号码（%1$s）似乎是非标准格式。\n\n您要输入的是 %2$s 吗？</string>
@@ -1729,9 +1729,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">已请求通话</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">已请求发送短信</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">已请求发送验证码</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">距离提交调试日志还有 %1$d 步之遥。</item>
     </plurals>
@@ -1751,15 +1751,15 @@
     <string name="RegistrationActivity_verification_code">验证码</string>
     <string name="RegistrationActivity_resend_code">重新发送验证码</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">在注册时遇到问题？</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• 确保您的手机有手机信号，能够接收短信或来电\n • 确认您可以接听拨到该号码的来电 • 检查您输入的电话号码是否正确无误。</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">如需更多信息，请按照这里列出的故障排查步骤进行操作，或联系支持人员</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">这里列出的故障排查步骤</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">联系支持</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">联系支持人员</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">开启注册锁定？</string>
@@ -2515,7 +2515,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">处理中</string>
-    <string name="message_details_recipient_header__sent_to">发至</string>
+    <string name="message_details_recipient_header__sent_to">已发送</string>
     <string name="message_details_recipient_header__sent_from">收自</string>
     <string name="message_details_recipient_header__delivered_to">送达</string>
     <string name="message_details_recipient_header__read_by">已读</string>
@@ -2716,7 +2716,7 @@
     <string name="preferences__advanced_pin_settings">高级 PIN 设置</string>
     <string name="preferences__free_private_messages_and_calls">Signal 用户可使用免费的加密消息和通话</string>
     <string name="preferences__submit_debug_log">提交调试日志</string>
-    <string name="preferences__delete_account">删除帐户</string>
+    <string name="preferences__delete_account">删除账户</string>
     <string name="preferences__support_wifi_calling">“WiFi 呼叫”兼容模式</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">当设备通过 WiFi 发送短信或彩信时，请启用（仅当设备启用“WiFi 呼叫”时，启用该选项）</string>
     <string name="preferences__incognito_keyboard">隐身键盘</string>
@@ -2930,7 +2930,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">已发送付款</string>
     <string name="PaymentsDetailsFragment__received_payment">已接收付款</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">付款已完成 %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">屏蔽电话号码</string>
+    <string name="PaymentsDetailsFragment__block_number">区块码</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">转帐</string>
@@ -3251,7 +3251,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">请输入 PIN 码</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">输入帐户的 PIN 码。该密码不是短信验证码。</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">请输入您为您的账户创建的 PIN 码。</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">输入字母数字 PIN</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">输入数字 PIN</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN 错误，请重试。</string>
@@ -3353,7 +3353,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">给我打电话：（%1$02d:%2$02d）</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">重发验证码（%1$02d:%2$02d）</string>
     <string name="RegistrationActivity_contact_signal_support">联系 Signal 支持</string>
     <string name="RegistrationActivity_code_support_subject">Signal 注册 - 安卓验证码</string>
     <string name="RegistrationActivity_incorrect_code">验证码不正确</string>
@@ -3620,17 +3620,17 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi 信号弱。已切换到蜂窝网络。</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">删除您的帐户后将会：</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">删除账户将会：</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">输入您的电话号码</string>
     <string name="DeleteAccountFragment__delete_account">删除账户</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">删除您的帐户信息和个人资料照片</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">删除您的账户信息和个人资料照片</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">删除您的全部消息</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">在您的付款账户中删除 %1$s</string>
     <string name="DeleteAccountFragment__no_country_code">未指定国家代码</string>
     <string name="DeleteAccountFragment__no_number">未指定号码</string>
     <string name="DeleteAccountFragment__the_phone_number">您输入的手机号码和您的帐户不符。</string>
     <string name="DeleteAccountFragment__are_you_sure">您确定要删除您的账号吗？</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">这将会删除您的Signal帐户，并且会重置这个应用。这个应用将会在这个过程完成后关闭。</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">此操作将会删除您的 Signal 账户并重置 Signal 应用。应用将会在这个过程完成后关闭。</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">删除本地数据失败。您可以手动在系统的应用设置中进行清除。</string>
     <string name="DeleteAccountFragment__launch_app_settings">打开应用设置</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->

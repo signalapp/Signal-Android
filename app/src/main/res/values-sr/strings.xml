@@ -3014,7 +3014,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Пошаљи уплату</string>
     <string name="PaymentsDetailsFragment__received_payment">Примљена уплата</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Уплата завршена %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Блокирај број</string>
+    <string name="PaymentsDetailsFragment__block_number">Број блока</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Пренос</string>

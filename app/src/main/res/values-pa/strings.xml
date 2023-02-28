@@ -961,9 +961,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">ਤੁਹਾਡੇ ਵਰਤੋਂਕਾਰ ਨਾਂ ਨਾਲ ਕੁਝ ਗਲਤ ਵਾਪਰ ਗਿਆ ਹੈ, ਇਹ ਹੁਣ ਤੁਹਾਵਰਤੋਂਕਾਰ ਨਾਂਡੇ ਖਾਤੇ ਨੂੰ ਅਸਾਈਨ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ। ਤੁਸੀਂ ਇਸਨੂੰ ਦੁਬਾਰਾ ਸੈੱਟ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਇੱਕ ਨਵਾਂ ਵਰਤੋਂਕਾਰ ਨਾਂ ਚੁਣ ਸਕਦੇ ਹੋ।</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">ਹੁਣੇ ਠੀਕ ਕਰੋ</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1596,15 +1596,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">SMS ਕੋਡ ਭੇਜੋ</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal ਰਜਿਸਟ੍ਰੇਸ਼ਨ - Android ਦੇ ਲਈ PIN ਨੂੰ ਮੁੜ-ਰਜਿਸਟਰ ਕਰਨ ਲਈ ਮਦਦ ਚਾਹੀਦੀ ਹੈ</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">ਤੁਹਾਡਾ PIN ਤੁਹਾਡੇ ਵੱਲੋਂ ਬਣਾਇਆ ਗਿਆ %1$d+ ਅੰਕਾਂ ਦਾ ਕੋਡ ਹੁੰਦਾ ਹੈ, ਜਿਸ ਵਿੱਚ ਸਿਰਫ਼ ਅੰਕ ਜਾਂ ਅੱਖਰ ਅਤੇ ਅੰਕ ਦੋਵੇਂ ਹੋ ਸਕਦੇ ਹਨ।ਜੇਕਰ ਤੁਹਾਨੂੰ ਆਪਣਾ PIN ਯਾਦ ਨਹੀਂ ਹੈ, ਤਾਂ ਤੁਸੀਂ ਨਵਾਂ PIN ਬਣਾ ਸਕਦੇ ਹੋ।</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">ਜੇਕਰ ਤੁਹਾਨੂੰ ਆਪਣਾ PIN ਯਾਦ ਨਹੀਂ ਹੈ, ਤਾਂ ਤੁਸੀਂ ਨਵਾਂ PIN ਬਣਾ ਸਕਦੇ ਹੋ।</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">PIN ਦਾ ਅੰਦਾਜ਼ਾ ਲਗਾਉਣ ਲਈ ਤੁਹਾਡੇ ਕੋਲ ਉਪਲਬਧ ਮੌਕੇ ਖਤਮ ਹੋ ਗਏ ਹਨ, ਪਰ ਤੁਸੀਂ ਅਜੇ ਵੀ ਇੱਕ ਨਵਾਂ PIN ਬਣਾ ਕੇ ਆਪਣੇ Signal ਖਾਤੇ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ।</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">ਚੇਤਾਵਨੀ</string>
@@ -1791,7 +1791,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">ਤੁਹਾਨੂੰ ਦੋਸਤਾਂ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਵਾਸਤੇ Signal ਨੂੰ ਸੰਪਰਕ ਵਾਸਤੇ ਇਜਾਜ਼ਤਾਂ ਦੀ ਲੋੜ ਹੈ। ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਨੂੰ Signal ਦੇ ਪ੍ਰਾਈਵੇਟ ਸੰਪਰਕ ਡਿਸਕਵਰੀ ਵਰਤ ਕੇ ਅੱਪਲੋਡ ਕੀਤੇ ਜਾਂਦੇ ਹਨ, ਜਿਸ ਦਾ ਅਰਥ ਹੈ ਕਿ ਉਹ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇੰਕ੍ਰਿਪਟ ਹਨ ਅਤੇ Signal ਸੇਵਾ ਨੂੰ ਕਦੇ ਦਿਖਾਈ ਨਹੀਂ ਦਿੰਦੇ ਹਨ।</string>
     <string name="RegistrationActivity_rate_limited_to_service">ਤੁਸੀਂ ਇਸ ਨੰਬਰ ਨੂੰ ਰਜਿਸਟਰ ਕਰਨ ਦੀਆਂ ਬਹੁਤ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਕਰ ਲਈਆਂ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">ਤੁਸੀਂ ਇਸ ਨੰਬਰ ਨੂੰ ਰਜਿਸਟਰ ਕਰਨ ਲਈ ਬਹੁਤ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਕਰ ਚੁੱਕੇ ਹੋ। ਕਿਰਪਾ ਕਰਕੇ %1$s ਬਾਅਦ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ਸੇਵਾ ਨਾਲ ਜੁੜਨ ਵਿੱਚ ਅਸਮਰੱਥ। ਕਿਰਪਾ ਕਰਕੇ ਨੈੱਟਵਰਕ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <string name="RegistrationActivity_non_standard_number_format">ਗ਼ੈਰ-ਮਿਆਰੀ ਅੰਕ ਰੂਪ</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">ਤੁਹਾਡੇ ਵਲੋਂ ਦਿੱਤਾ ਨੰਬਰ (%1$s) ਗੈਰ-ਮਿਆਰੀ ਜਾਪਦਾ ਹੈ।\n\nਕੀ ਤੁਹਾਡਾ ਮਤਲਬ %2$s ਹੈ?</string>
@@ -1799,9 +1799,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">ਕਾਲ ਲਈ ਬੇਨਤੀ ਕੀਤੀ ਗਈ</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">SMS ਲਈ ਬੇਨਤੀ ਕੀਤੀ ਗਈ</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">ਤਸਦੀਕ ਕੋਡ ਲਈ ਬੇਨਤੀ ਕੀਤੀ ਗਈ</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">ਹੁਣ ਤੁਸੀਂ ਡੀਬੱਗ ਲਾਗ ਨੂੰ ਸਬਮਿਟ ਕਰਨ ਤੋਂ %1$d ਕਦਮ ਦੂਰ ਹੋ.</item>
         <item quantity="other">ਹੁਣ ਤੁਸੀਂ ਡੀਬੱਗ ਲੌਗ ਨੂੰ ਦਰਜ ਕਰਨ ਤੋਂ %1$d ਕਦਮ ਦੂਰ ਹੋ।</item>
@@ -1822,15 +1822,15 @@
     <string name="RegistrationActivity_verification_code">ਤਸਦੀਕ ਕੋਡ</string>
     <string name="RegistrationActivity_resend_code">ਕੋਡ ਦੁਬਾਰਾ ਭੇਜੋ</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">ਰਜਿਸਟਰ ਕਰਨ ਵਿੱਚ ਸਮੱਸਿਆ ਪੇਸ਼ ਆ ਰਹੀ ਹੈ?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• SMS ਜਾਂ ਕਾਲ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡੇ ਫ਼ੋਨ ਵਿੱਚ ਸੈਲੂਲਰ ਸਿਗਨਲ ਆ ਰਿਹਾ ਹੋਵੇ\n • ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ ਤੁਸੀਂ ਨੰਬਰ \'ਤੇ ਫ਼ੋਨ ਕਾਲ ਪ੍ਰਾਪਤ ਕਰ ਸਕਦੇ ਹੋ\n • ਜਾਂਚ ਕਰੋ ਕਿ ਤੁਸੀਂ ਆਪਣਾ ਫ਼ੋਨ ਨੰਬਰ ਸਹੀ ਢੰਗ ਨਾਲ ਦਰਜ ਕੀਤਾ ਹੈ।</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਸਮੱਸਿਆ ਦਾ ਨਿਪਟਾਰਾ ਕਰਨ ਵਾਲੇ ਇਹਨਾਂ ਕਦਮਾਂ ਦੀ ਪਾਲਣਾ ਕਰੋ ਜਾਂ ਸਹਾਇਤਾ ਟੀਮ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ਸਮੱਸਿਆ ਦਾ ਨਿਪਟਾਰਾ ਕਰਨ ਵਾਲੇ ਇਹਨਾਂ ਕਦਮਾਂ</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">ਸਹਾਇਤਾ ਦੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">ਸਹਾਇਤਾ ਟੀਮ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">ਰਜਿਸਟਰੇਸ਼ਨ ਲਾਕ ਚਾਲੂ ਕਰਨਾ ਹੈ?</string>
@@ -2598,7 +2598,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">ਬਕਾਇਆ</string>
-    <string name="message_details_recipient_header__sent_to">ਇਸ ਨੂੰ ਭੇਜੇ</string>
+    <string name="message_details_recipient_header__sent_to">ਇਹਨਾਂ ਨੂੰ ਭੇਜਿਆ ਗਿਆ</string>
     <string name="message_details_recipient_header__sent_from">ਇਸ ਵਲੋਂ ਭੇਜੇ</string>
     <string name="message_details_recipient_header__delivered_to">ਇਸ ਲਈ ਪਹੁੰਚਾਏ</string>
     <string name="message_details_recipient_header__read_by">ਪੜ੍ਹੇ</string>
@@ -3339,7 +3339,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">ਆਪਣਾ PIN ਦਰਜ ਕਰੋ</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">ਆਪਣੇ ਖਾਤੇ ਲਈ ਤੁਹਾਡੇ ਵੱਲੋਂ ਬਣਾਇਆ PIN ਦਿਓ। ਇਹ ਤੁਹਾਡੇ SMS ਤਸਦੀਕ ਕੋਡ ਤੋਂ ਵੱਖਰਾ ਹੁੰਦਾ ਹੈ.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">ਉਹ PIN ਦਰਜ ਕਰੋ ਜੋ ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਲਈ ਬਣਾਇਆ ਹੈ।</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">ਅੱਖਰਾਂ ਅਤੇ ਸੰਖਿਆਵਾਂ ਤੋਂ ਬਣਿਆ PIN ਦਰਜ ਕਰੋ</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">ਅੰਕਾਂ ਵਾਲਾ ਪਿੰਨ ਦਿਓ</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">ਗਲਤ PIN। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
@@ -3446,7 +3446,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">ਮੈਨੂੰ ਕਾਲ ਕਰੋ (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">ਕੋਡ ਦੁਬਾਰਾ ਭੇਜੋ (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">ਸੰਪਰਕ Signal ਸਹਾਇਤਾ</string>
     <string name="RegistrationActivity_code_support_subject">Signal ਰਜਿਸਟ੍ਰੇਸ਼ਨ - ਐਂਡਰਾਇਡ ਲਈ ਪੁਸ਼ਟੀਕਰਣ ਕੋਡ</string>
     <string name="RegistrationActivity_incorrect_code">ਗਲਤ ਕੋਡ</string>
@@ -3715,10 +3715,10 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi ਸਿਗਨਲ ਕਮਜ਼ੋਰ ਹੈ। ਸੈਲੂਲਰ \'ਤੇ ਬਦਲਿਆ ਗਿਆ।</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ ਹਟਾਉਣ ਨਾਲ:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">ਜੇ ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਮਿਟਾ ਦਿੰਦੇ ਹੋ ਤਾਂ:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">ਆਪਣਾ ਫੋਨ ਨੰਬਰ ਦਰਜ ਕਰੋ</string>
     <string name="DeleteAccountFragment__delete_account">ਖਾਤਾ ਮਿਟਾਓ</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">ਆਪਣੇ ਖਾਤੇ ਦੀ ਜਾਣਕਾਰੀ ਅਤੇ ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ ਨੂੰ ਮਿਟਾਓ</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">ਤੁਹਾਡੇ ਖਾਤੇ ਦੀ ਜਾਣਕਾਰੀ ਅਤੇ ਪ੍ਰੋਫਾਈਲ ਫ਼ੋਟੋ ਨੂੰ ਵੀ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">ਆਪਣੇ ਸਾਰੇ ਸੁਨੇਹੇ ਮਿਟਾਓ</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">ਤੁਹਾਡੇ ਭੁਗਤਾਨ ਖਾਤੇ ਵਿੱਚ %1$s ਨੂੰ ਮਿਟਾਓ</string>
     <string name="DeleteAccountFragment__no_country_code">ਕੋਈ ਦੇਸ਼ ਦਾ ਕੋਡ ਨਹੀਂ ਦਿੱਤਾ</string>
@@ -4378,7 +4378,7 @@
     <string name="MediaReviewFragment__add_to_story">ਸਟੋਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
     <string name="MediaReviewFragment__add_a_message">ਸੁਨੇਹਾ ਜੋੜੋ</string>
     <string name="MediaReviewFragment__add_a_reply">ਜਵਾਬ ਜੋੜੋ</string>
-    <string name="MediaReviewFragment__send_to">ਇਸ ਨੂੰ ਭੇਜੋ</string>
+    <string name="MediaReviewFragment__send_to">ਇਹਨਾਂ ਨੂੰ ਭੇਜੋ</string>
     <string name="MediaReviewFragment__view_once_message">ਸੁਨੇਹੇ ਨੂੰ ਇੱਕ ਵਾਰ ਵੇਖੋ</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">ਇੱਕ ਜਾਂ ਵੱਧ ਚੀਜ਼ਾਂ ਬਹੁਤ ਵੱਡੀਆਂ ਸਨ</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ਇੱਕ ਜਾਂ ਵੱਧ ਆਈਟਮਾਂ ਵਾਜਬ ਨਹੀਂ ਹਨ</string>
@@ -5135,7 +5135,7 @@
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">ਦਾਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
     <!-- Heading text specifying who the gift will be sent to -->
-    <string name="GiftFlowConfirmationFragment__send_to">ਇਸ ਨੂੰ ਭੇਜੋ</string>
+    <string name="GiftFlowConfirmationFragment__send_to">ਇਹਨਾਂ ਨੂੰ ਭੇਜੋ</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">ਪ੍ਰਾਪਤਕਰਤਾ ਨੂੰ ਸਿੱਧਾ ਚੈਟ ਦੇ ਵਿੱਚ ਦਾਨ ਦੇਣ ਬਾਰੇ ਸੂਚਿਤ ਕੀਤਾ ਜਾਵੇਗਾ। ਹੇਠਾਂ ਆਪਣਾ ਸੁਨੇਹਾ ਸ਼ਾਮਲ ਕਰੋ।</string>
     <!-- Text explaining that this gift is a one time donation -->

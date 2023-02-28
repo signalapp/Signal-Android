@@ -1037,9 +1037,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Із вашим іменем користувача сталася помилка. Ім\'я більше не присвоєно вашому акаунту. Ви можете спробувати встановити це ім\'я повторно або вибрати нове.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">Виправити</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1724,15 +1724,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">Надіслати SMS-код</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Реєстрація в Signal — Потрібна допомога з реєстрацією PIN-коду для Android</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">Ваш PIN-код — це створений вами цифровий або буквено-цифровий код, який містить мінімум %1$d символи.\n\nЯкщо ви не пам\'ятаєте свій PIN-код, ви можете створити новий.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">Якщо ви не пам\'ятаєте свій PIN-код, ви можете створити новий.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Спроби вгадати PIN-код закінчилися, але ви можете зайти у свій акаунт Signal, створивши новий PIN-код.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Попередження</string>
@@ -1931,7 +1931,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal потребує дозволу для перегляду контактів, щоб допомогти вам зв’язатися з друзями. Ваші контакти завантажуються за допомогою функції виявлення приватних контактів Signal, що означає, що вони наскрізне зашифровані і ніколи не відображаються службою Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Ви зробили надто багато спроб зареєструвати цей номер. Будь ласка, спробуйте ще раз пізніше.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">Ви зробили забагато спроб зареєструвати цей номер. Будь ласка, повторіть через %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Немає з\'єднання із сервером. Перевірте чи наявність доступу до Інтернет та спробуйте знову.</string>
     <string name="RegistrationActivity_non_standard_number_format">Нестандартний формат номеру</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Введене число (%1$s) виглядає нестандартним.\n\nВи мали на увазі %2$s?</string>
@@ -1939,9 +1939,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Запит на дзвінок надіслано</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">SMS запитано</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">Код підтвердження запитано</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Ви в %1$d кроці від відправки журналу налагодження</item>
         <item quantity="few">Ви в %1$d кроках від відправки журналу налагодження</item>
@@ -1964,15 +1964,15 @@
     <string name="RegistrationActivity_verification_code">Код підтвердження</string>
     <string name="RegistrationActivity_resend_code">Надіслати код знову</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Виникли проблеми з реєстрацією?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Перевірте сигнал стільникової мережі на вашому телефоні для отримання SMS чи виклику\n • Переконайтеся, що ви можете отримувати телефонні виклики на цей номер\n • Перевірте правильність введеного номеру телефону.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Щоб отримати додаткову інформацію, виконайте ці кроки з вирішення проблем або зверніться до служби підтримки</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ці кроки з вирішення проблем</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Зверніться в службу підтримки</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Звернутись у службу підтримки</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Включити блокування реєстрації?</string>
@@ -2764,7 +2764,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">Очікування</string>
-    <string name="message_details_recipient_header__sent_to">Надіслано до</string>
+    <string name="message_details_recipient_header__sent_to">Надіслано</string>
     <string name="message_details_recipient_header__sent_from">Надіслано з</string>
     <string name="message_details_recipient_header__delivered_to">Доставлено</string>
     <string name="message_details_recipient_header__read_by">Прочитано</string>
@@ -2968,7 +2968,7 @@
     <string name="preferences__advanced_pin_settings">Розширені налаштування PIN-коду</string>
     <string name="preferences__free_private_messages_and_calls">Безкоштовні приватні повідомлення та виклики для користувачів Signal</string>
     <string name="preferences__submit_debug_log">Надіслати журнал відладки</string>
-    <string name="preferences__delete_account">Видалити обліковий запис</string>
+    <string name="preferences__delete_account">Видалити акаунт</string>
     <string name="preferences__support_wifi_calling">Режим сумісності \'WiFi Calling\'</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Увімкніть, якщо ваш пристрій використовує доставку SMS/MMS через WiFi (вмикайте лише якщо «WiFi Calling» увімкнен на вашому пристрої)</string>
     <string name="preferences__incognito_keyboard">Клавіатура в режимі «інкогніто»</string>
@@ -3515,7 +3515,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">Введіть свій PIN-код</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Введіть PIN-код, який ви створили для свого облікового запису. Це не те ж саме. що код перевірки з SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Введіть PIN-код, який ви створили для свого акаунту.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Введіть буквено-цифровий PIN-код</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Введіть цифровий PIN-код</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Неправильний PIN-код. Будь ласка спробуйте ще раз.</string>
@@ -3586,7 +3586,7 @@
     <string name="backup_enable_dialog__folder">Папка</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Я записав цю фразу-пароль. Без неї я не зможу відновити резервну копію.</string>
     <string name="registration_activity__restore_backup">Відновити резервну копію</string>
-    <string name="registration_activity__transfer_or_restore_account">Перенесення або відновлення облікового запису</string>
+    <string name="registration_activity__transfer_or_restore_account">Перенесення або відновлення акаунту</string>
     <string name="registration_activity__transfer_account">Перенести обліковий запис</string>
     <string name="registration_activity__skip">Пропустити</string>
     <string name="preferences_chats__chat_backups">Резервні копії чату</string>
@@ -3632,7 +3632,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Подзвоніть мені (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">Надіслати код повторно (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Зверніться в службу підтримки Signal</string>
     <string name="RegistrationActivity_code_support_subject">Реєстрація в Signal - код підтвердження для Android</string>
     <string name="RegistrationActivity_incorrect_code">Невірний код</string>
@@ -3673,7 +3673,7 @@
     <string name="Recipient_unknown">Невідомо</string>
 
     <!-- TransferOrRestoreFragment -->
-    <string name="TransferOrRestoreFragment__transfer_or_restore_account">Перенесення або выдновлення аккаунта</string>
+    <string name="TransferOrRestoreFragment__transfer_or_restore_account">Перенесення або відновлення акаунту</string>
     <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Якщо Ви вже зареєстрували обліковий запис Signal, ви можете перенести або відновити свій обліковий запис і повідомлення</string>
     <string name="TransferOrRestoreFragment__transfer_from_android_device">Перенести з пристрою Android</string>
     <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Перенести обліковий запис і повідомлення з вашого старого Android-пристрою. У вас повинен бути доступ до свого старого пристрою.</string>
@@ -3905,17 +3905,17 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Слабкий сигнал Wi-Fi. Увімкнено стільникову мережу.</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">Видалення вашого облікового запису призведе до:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">Видалення акаунту:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Введіть ваш номер телефону</string>
-    <string name="DeleteAccountFragment__delete_account">Видалити обліковий запис</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Видалення даних вашого облікового запису та зображення профілю</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Видалити всі ваші повідомлення зараз</string>
+    <string name="DeleteAccountFragment__delete_account">Видалити акаунт</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Видалить дані вашого акаунту і фото профілю</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Видалить усі ваші повідомлення</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Видаліть %1$s зі свого платіжного рахунку</string>
     <string name="DeleteAccountFragment__no_country_code">Код країни не вказано</string>
     <string name="DeleteAccountFragment__no_number">Номер не вказано</string>
     <string name="DeleteAccountFragment__the_phone_number">Наданий номер телефону не належить до вашого облікового запису.</string>
     <string name="DeleteAccountFragment__are_you_sure">Ви дійсно хочете видалити обліковий запис?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ця дія видалить ваш обліковий запис Signal та скине додаток. Після завершення цього процесу додаток закриється.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ця дія видалить ваш акаунт Signal і відновить початковий стан застосунку. Після завершення застосунок закриється.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Не вдалося видалити локальні дані. Ви можете видалити їх вручну в системних налаштуваннях програми.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Відкрийте Налаштування програми</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->

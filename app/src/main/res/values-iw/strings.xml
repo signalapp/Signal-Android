@@ -1037,9 +1037,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">משהו השתבש עם שם המשתמש שלך, הוא כבר לא מקושר לחשבון שלך. אפשר לנסות להגדיר אותו שוב או לבחור אחד חדש.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">תיקון כעת</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1724,15 +1724,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">שליחת קוד SMS</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">הרשמה ל–Signal – עזרה עם PIN הרשמה מחדש עבור Android</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">ה–PIN שלך הוא קוד בעל %1$d תווים או יותר שיצרת ויכול להיות מספרי או אלפא–נומרי.\n\nאם שכחת את ה–PIN שלך, אפשר ליצור אחד חדש.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">אם שכחת את ה–PIN שלך, אפשר ליצור אחד חדש.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">נגמרו לך ניחושי ה–PIN, אבל עדיין אפשר לגשת לחשבון Signal שלך באמצעות יצירת PIN חדש.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">אזהרה</string>
@@ -1931,7 +1931,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal צריך הרשאה אל אנשי הקשר שלך כדי לעזור לך לחבור אל חברים. אנשי הקשר שלך מועלים ע״י שימוש בגילוי אנשי קשר פרטי של Signal, מה שאומר שהם מוצפנים מקצה־אל־קצה ואף פעם אינם גלויים אל השירות של Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">עשית יותר מדי ניסיונות להירשם עם המספר הזה. אנא נסה שוב מאוחר יותר.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">עשית יותר מדי ניסיונות להירשם עם המספר הזה. יש לנסות שוב עוד %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">לא היה ניתן להתחבר אל השירות. אנא בדוק את חיבור האינטרנט ונסה שוב.</string>
     <string name="RegistrationActivity_non_standard_number_format">תסדיר אי־תקני של מספר</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">המספר שהכנסת (%1$s) כנראה בתסדיר בלתי תקני.\n\nהאם התכוונת אל %2$s?</string>
@@ -1939,9 +1939,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">שיחה התבקשה</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">נשלחה בקשה ל–SMS</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">נשלחה בקשה לקוד אימות</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">אתה כעת במרחק צעד %1$d מהגשת יומן ניפוי תקלים.</item>
         <item quantity="two">אתה כעת במרחק %1$d צעדים מהגשת יומן ניפוי תקלים.</item>
@@ -1964,15 +1964,15 @@
     <string name="RegistrationActivity_verification_code">קוד אימות</string>
     <string name="RegistrationActivity_resend_code">שליחת קוד מחדש</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">נתקלת בבעיות בהרשמה?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• לוודא שלטלפון שלך יש אות סלולרי שמאפשר לו לקבל את ה–SMS או השיחה\n • לוודא שיש לך אפשרות לקבל שיחת טלפון למספר\n • לבדוק שהכנסת את מספר הטלפון שלך נכון.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">למידע נוסף, יש לבצע את השלבים הבאים לפתרון תקלות או ליצור קשר עם התמיכה</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">השלבים הבאים לפתרון תקלות</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">צור קשר עם תמיכה</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">יצירת קשר עם תמיכה</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">להפעיל נעילת הרשמה?</string>
@@ -3515,7 +3515,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">הכנס את ה־PIN שלך</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">הכנס את ה־PIN שיצרת עבור החשבון שלך. הוא שונה מקוד הווידוא שלך במסרון.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">צריך להזין את ה–PIN שיצרת עבור החשבון שלך.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">הכנס PIN אלפאנומרי</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">הכנס PIN מספרי</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN שגוי. נסה שוב.</string>
@@ -3632,7 +3632,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">תתקשרו אלי (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">שליחה מחדש של קוד (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">צור קשר עם תמיכת Signal</string>
     <string name="RegistrationActivity_code_support_subject">הרשמת Signal - קוד וידוא עבור Android</string>
     <string name="RegistrationActivity_incorrect_code">קוד שגוי</string>
@@ -3908,8 +3908,8 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">מחיקת החשבון שלך:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">הכנס את מספר הטלפון שלך</string>
     <string name="DeleteAccountFragment__delete_account">מחיקת חשבון</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">מחיקת מידע החשבון שלך ותמונת הפרופיל שלך</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">מחיקת כל ההודעות שלך</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">תמחק את מידע החשבון שלך ותמונת הפרופיל שלך</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">תמחק את כל ההודעות שלך</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">מחיקת %1$s בחשבון התשלומים שלך</string>
     <string name="DeleteAccountFragment__no_country_code">קוד מדינה לא צויין</string>
     <string name="DeleteAccountFragment__no_number">מספר לא צויין</string>
@@ -4584,7 +4584,7 @@
     <string name="MediaReviewFragment__add_to_story">הוספה לסטורי</string>
     <string name="MediaReviewFragment__add_a_message">הוסף הודעה</string>
     <string name="MediaReviewFragment__add_a_reply">הוסף תשובה</string>
-    <string name="MediaReviewFragment__send_to">שלח אל</string>
+    <string name="MediaReviewFragment__send_to">שליחה אל</string>
     <string name="MediaReviewFragment__view_once_message">הודעה לצפייה חד־פעמית</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">פריט אחד או יותר היו יותר מדי גדולים</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">פריט אחד או יותר היו בלתי תקפים</string>
@@ -5359,7 +5359,7 @@
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">אישור תרומה</string>
     <!-- Heading text specifying who the gift will be sent to -->
-    <string name="GiftFlowConfirmationFragment__send_to">שלח אל</string>
+    <string name="GiftFlowConfirmationFragment__send_to">שליחה אל</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">נעדכן את הנמען/ת על התרומה בהודעת 1–על–1. אפשר להוסיף הודעה משלך למטה.</string>
     <!-- Text explaining that this gift is a one time donation -->

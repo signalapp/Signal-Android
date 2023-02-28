@@ -923,9 +923,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Có vấn đề với tên người dùng của bạn, tên này không còn gắn liền với tài khoản của bạn. Bạn có thể thử và đặt lại hoặc chọn một tên mới.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">Sửa ngay</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1532,15 +1532,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">Gửi mã SMS</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Đăng ký Signal - Cần Hỗ trợ để đăng ký lại mã PIN cho thiết bị Android</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">Mã pin của bạn là một mã có %1$d+ ký tự bạn đã tạo, có thể là dãy số hoặc có cả số và chữ cái.\n\nNếu bạn không nhớ mã PIN của mình, bạn có thể tạo một mã mới.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">Nếu bạn không nhớ mã PIN của mình, bạn có thể tạo một mã mới.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Bạn đã hết số lần đoán mã PIN, nhưng bạn vẫn có thể truy cập tài khoản Signal của mình bằng cách tạo một mã PIN mới.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Cảnh báo</string>
@@ -1721,7 +1721,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal cần được cấp quyền truy cập vào liên hệ của bạn để giúp bạn kết nối đến bạn bè. Mọi thông tin liên hệ của bạn được tải lên đều sử dụng trình bảo mật thông tin liên hệ của Signal, nghĩa là chúng sẽ được mã hóa đầu cuối và cũng không được hiển thì trên chính dịch vụ Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Bạn đã thử đăng kí số điện thoại này quá nhiều lần. Vui lòng thử lại sau.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">Bạn đã thử đăng ký số này quá nhiều lần. Vui lòng thử lại trong %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Không thể kết nối với dịch vụ. Vui lòng kiểm tra đuờng truyền mạng và thử lại.</string>
     <string name="RegistrationActivity_non_standard_number_format">Định dạng số không chuẩn</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Số mà bạn nhập vào (%1$s) không đúng. /n/n có phải ý bạn là %2$s?</string>
@@ -1729,9 +1729,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Cuộc gọi được yêu cầu</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">Đã yêu cầu SMS</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">Đã yêu cầu mã xác minh</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">Còn %1$d bước nữa để bạn hoàn thành gửi báo cáo lỗi.</item>
     </plurals>
@@ -1751,15 +1751,15 @@
     <string name="RegistrationActivity_verification_code">Mã Xác minh</string>
     <string name="RegistrationActivity_resend_code">Gửi lại Mã</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Bạn gặp vấn đề khi đăng ký?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Đảm bảo rằng điện thoại của bạn có tín hiệu dữ liệu di động để nhận tin nhắn SMS hoặc cuộc gọi\n • Đảm bảo rằng bạn có thể nhận cuộc gọi đến số\n • Kiểm tra xem bạn đã nhập đúng số điện thoại của mình.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Để biết thêm thông tin, vui lòng làm theo các bước giải quyết vấn đề sau hoặc Liên hệ Hỗ trợ</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">các bước giải quyết vấn đề sau</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Liên lạc Hỗ trợ</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Liên hệ Hỗ trợ</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Bật Khóa đăng kí?</string>
@@ -2515,7 +2515,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">Đang chờ</string>
-    <string name="message_details_recipient_header__sent_to">Gửi từ</string>
+    <string name="message_details_recipient_header__sent_to">Gửi đến</string>
     <string name="message_details_recipient_header__sent_from">Gửi tới</string>
     <string name="message_details_recipient_header__delivered_to">Đã chuyển tới</string>
     <string name="message_details_recipient_header__read_by">Đã đọc bởi</string>
@@ -3251,7 +3251,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">Nhập mã PIN của bạn</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Nhập mã PIN bạn đã tạo cho tài khoản. Mã này khác với mã xác minh SMS của bạn.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Nhập mã PIN bạn đã tạo cho tài khoản của mình.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Nhập mã PIN gồm chữ và số</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Nhập mã PIN bao gồm số</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN không đúng. Hãy thử lại.</string>
@@ -3353,7 +3353,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Gọi tôi (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">Gửi lại Mã (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Liên lạc Bộ phận hỗ trợ Signal</string>
     <string name="RegistrationActivity_code_support_subject">Đăng ký Signal - Mã Xác minh cho Android</string>
     <string name="RegistrationActivity_incorrect_code">Mã không đúng</string>
@@ -3620,7 +3620,7 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi yếu. Đã chuyển qua mạng di động.</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">Xoá tài khoản của bạn sẽ:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">Việc xóa tài khoản của bạn sẽ:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Nhập số điện thoại của bạn</string>
     <string name="DeleteAccountFragment__delete_account">Xóa tài khoản</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Xóa thông tin tài khoản của bạn và ảnh đại diện</string>
@@ -3630,7 +3630,7 @@
     <string name="DeleteAccountFragment__no_number">Số không xác định</string>
     <string name="DeleteAccountFragment__the_phone_number">Số điện thoại bạn nhập vào không khớp với số của tài khoản của bạn.</string>
     <string name="DeleteAccountFragment__are_you_sure">Bạn có chắc muốn Xóa tài khoản?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Việc này sẽ Xóa tài khoản Signal của bạn và cài đặt lại ứng dụng. Ứng dụng sẽ đóng sau khi quá trình hoàn tất.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Thao tác này sẽ xóa tài khoản Signal của bạn và cài đặt lại ứng dụng. Ứng dụng sẽ đóng sau khi quá trình hoàn tất.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Không thể Xóa dữ liệu cục bộ. Bạn có thể tự Xóa trong cài đặt hệ thống ứng dụng.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Mở Cài đặt Ứng dụng</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->

@@ -961,9 +961,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">మీ యూజర్‌నేమ్‌తో ఏదో తప్పు జరిగింది, ఇది మీ ఖాతాకు ఇక ఏమాత్రం కేటాయించబడలేదు. మీరు ప్రయత్నించి, దానిని మళ్లీ సెట్ చేయవచ్చు లేదా ఒక కొత్త దానిని ఎంచుకోవచ్చు.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">ఇప్పుడు పరిష్కరించండి</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1596,15 +1596,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">SMS కోడ్ పంపండి</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal నమోదు చేసుకోవడం - Android కొరకు PIN ను మళ్ళీ నమోదు చేయడంలో సహాయం కావాలి</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">మీ PIN అనేది మీరు సృష్టించిన %1$d+ అంకెల కోడ్, ఇది సంఖ్య లేదా ఆల్ఫాన్యూమరిక్‌గా ఉండవచ్చు.\n\nఒకవేళ మీ PIN ను మీరు గుర్తు పెట్టుకోలేకపోతే, ఒక కొత్త దానిని మీరు సృష్టించవచ్చు.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">ఒకవేళ మీ PIN ను మీరు గుర్తు పెట్టుకోలేకపోతే, ఒక కొత్త దానిని మీరు సృష్టించవచ్చు.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">మీ PIN అంచనాలు అయిపోయాయి, అయితే ఒక కొత్త PIN ను సృష్టించడం ద్వారా మీ Signal ఖాతాను మీరు ఇప్పటికీ యాక్సెస్ చేయవచ్చు.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">హెచ్చరిక</string>
@@ -1791,7 +1791,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">స్నేహితులతో అనుసంధానం కావడానికి సాయపడేందుకు Signal కు కాంటాక్ట్‌ల పర్మిషన్ కావాలి. Signal ప్రైవేట్ కాంటాక్ట్ డిస్కవరీ ఉపయోగించి మీ కాంటాక్ట్‌లు అప్‌లోడ్ చేయబడతాయి, అంటే అవి ఎండ్- టూ-ఎండ్ ఎన్‌క్రిప్ట్ చేయబడ్డవి మరియు Signal సర్వీస్‌కు ఎన్నడూ కనిపించవు.</string>
     <string name="RegistrationActivity_rate_limited_to_service">మీరు ఈ నంబరును నమోదు చేయడానికి చాలా ప్రయత్నాలు చేసారు. దయచేసి తర్వాత మళ్లీ ప్రయత్నించండి.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">ఈ నంబర్‌ను నమోదు చేయడానికి మీరు చాలా ఎక్కువ ప్రయత్నాలు చేశారు. దయచేసి %1$sలో మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">కనెక్ట్ చేయడం సాధ్యం కాలేదు. దయచేసి నెట్వర్క్ కనెక్షన్ను తనిఖీ చేసి మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationActivity_non_standard_number_format">నాన్-స్టాండర్డ్ నెంబర్ ఫార్మెట్</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">మీరు నమోదు చేసిన నెంబరు (%1$s) నాన్-స్టాండర్డ్ ఫార్మెట్‌లో కనిపిస్తోంది.\n\n%2$s అని మీ అర్ధమా?</string>
@@ -1799,9 +1799,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">కాల్ అభ్యర్ధించబడింది</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">SMS అభ్యర్ధించబడింది</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">ధృవీకరణ కోడ్ అభ్యర్ధించబడింది</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">డీబగ్ లాగ్ను సమర్పించకుండా మీరు ఇప్పుడు %1$d దూరంగా ఉన్నారు.</item>
         <item quantity="other">డీబగ్ లాగ్ను సమర్పించకుండా మీరు ఇప్పుడు %1$d మళ్లే ఉన్నారు.</item>
@@ -1822,13 +1822,13 @@
     <string name="RegistrationActivity_verification_code">ధృవీకరణ కోడ్</string>
     <string name="RegistrationActivity_resend_code">కోడ్ మళ్ళీ పంపండి</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">నమోదు చేసుకోవడంలో సమస్య ఉన్నదా?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• మీ SMS లేదా కాల్‌ను అందుకోవడానికి మీ ఫోన్‌కు సెల్యూలర్ సిగ్నల్ ఉన్నట్లుగా ధృవీకరించుకోండి\n • నంబర్‌కు ఫోన్ కాల్‌ను మీరు అందుకోగలరని నిర్ధారించండి\n • మీ ఫోన్ నెంబర్‌ను మీరు సరిగ్గా ఎంటర్ చేసినట్లుగా తనిఖీ చేయండి.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">మరింత సమాచారం కొరకు, దయచేసి ఈ దిగువ సమస్య పరిష్కార దశలను అనుసరించండి లేదా మద్దతును సంప్రదించండి</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ఈ సమస్య పరిష్కార దశలు</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">మద్దతును సంప్రదించండి</string>
 
@@ -2598,7 +2598,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">పెండింగ్‌లో ఉంది</string>
-    <string name="message_details_recipient_header__sent_to">పంపాను</string>
+    <string name="message_details_recipient_header__sent_to">వీరికి పంపబడింది</string>
     <string name="message_details_recipient_header__sent_from">నుండి పంపబడింది</string>
     <string name="message_details_recipient_header__delivered_to">కు పంపిణీ చేయబడింది</string>
     <string name="message_details_recipient_header__read_by">చదివిన వారు</string>
@@ -3014,7 +3014,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">చెల్లింపు పంపబడింది</string>
     <string name="PaymentsDetailsFragment__received_payment">పేమెంట్ అందుకోబడింది</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">పేమెంట్ పూర్తయింది %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">నెంబర్ బ్లాక్ చేయండి</string>
+    <string name="PaymentsDetailsFragment__block_number">బ్లాక్ నెంబర్</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">బదిలీ చేయి</string>
@@ -3339,7 +3339,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">మీ పిన్ను నమోదు చేయండి</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">మీ ఖాతా కోసం మీరు సృష్టించిన పిన్‌ను నమోదు చేయండి. ఇది మీ SMS ధృవీకరణ కోడ్‌కు భిన్నంగా ఉంటుంది.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">మీ ఖాతా కొరకు మీరు సృష్టించిన PIN ను ఎంటర్ చేయండి.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">ఆల్ఫాన్యూమరిక్ పిన్ను నమోదు చేయండి</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">సంఖ్యా పిన్ను నమోదు చేయండి</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">తప్పు పిన్. మళ్ళీ ప్రయత్నించండి.</string>
@@ -3446,7 +3446,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">నాకు కాల్ చేయండి (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">కోడ్ మళ్ళీ పంపండి (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal మద్దతును సంప్రదించండి</string>
     <string name="RegistrationActivity_code_support_subject">Signal రిజిస్ట్రేషన్ - Android కోసం ధృవీకరణ కోడ్</string>
     <string name="RegistrationActivity_incorrect_code">తప్పు కోడ్</string>
@@ -3715,11 +3715,11 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">బలహీనమైన Wi-Fi. సెల్యూలర్‌కు మారండి.</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">మీ ఖాతాను తొలగిస్తుంది:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">మీ ఖాతాను తొలగించడం అనేది:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">మీ ఫోన్ నంబర్‌ను నమోదు చేయండి</string>
     <string name="DeleteAccountFragment__delete_account">ఖాతాను తొలగించండి</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">మీ ఖాతా సమాచారం మరియు ప్రొఫైల్ ఫోటోను తొలగించండి</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">మీ అన్ని సందేశాలను తొలగించండి</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">మీ ఖాతా సమాచారం మరియు ప్రొఫైల్ ఫోటోను తొలగిస్తుంది</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">మీ సందేశాలు అన్నింటిని తొలగిస్తుంది</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">మీ చెల్లింపుల ఖాతాలో %1$s తొలగించండి</string>
     <string name="DeleteAccountFragment__no_country_code">దేశ కోడ్ పేర్కొనబడలేదు</string>
     <string name="DeleteAccountFragment__no_number">సంఖ్య పేర్కొనబడలేదు</string>

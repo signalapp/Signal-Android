@@ -961,9 +961,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Noe gikk galt med brukernavnet ditt. Det er ikke lenger knyttet til kontoen din. Du kan prøve å angi det på nytt, eller velge et annet brukernavn.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">Fiks nå</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1596,15 +1596,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">Send kode på SMS</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Signal-registrering - Trenger hjelp til å registrere PIN-kode for Android</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">PIN-koden din er en kode på minst %1$d tegn som du har valgt selv.\n\nHvis du ikke husker PIN-koden din, kan du opprette en ny.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">Hvis du ikke husker PIN-koden din, kan du opprette en ny.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Du har gått tom for forsøk på å skrive inn PIN-koden, men du kan få tilgang til Signal-kontoen din ved å lage en ny kode.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Advarsel</string>
@@ -1791,7 +1791,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal trenger kontakttillatelsen for å hjelpe deg med å få kontakt med venner. Kontaktene dine lastes opp ved hjelp av Signal private kontaktoppdagelse, noe som betyr at de er ende-til-ende-krypterte og aldri synlige for Signal-tjenesten.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Du har gjort for mange forsøk på å registrere dette nummeret. Prøv igjen senere.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">Du har gjort for mange forsøk på å registrere dette nummeret. Prøv igjen om %1$s minutter.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Klarte ikke å koble til tjenesten. Kontroller at du har en stabil nettilkobling og prøv på nytt.</string>
     <string name="RegistrationActivity_non_standard_number_format">Ikke-standard tallformat</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Tallet du skrev inn (%1$s), ser ut til å være skrevet i et ikke-standard tallformat.\n\nMente du %2$s?</string>
@@ -1799,9 +1799,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Anrop forespurt</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">SMS forespurt</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">Bekreftelseskode forespurt</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Du er nå %1$d steg unna fra å sende inn en feilsøkingslogg.</item>
         <item quantity="other">Du er nå %1$d steg unna fra å sende inn en feilsøkingslogg.</item>
@@ -1822,13 +1822,13 @@
     <string name="RegistrationActivity_verification_code">Bekreftelseskode</string>
     <string name="RegistrationActivity_resend_code">Send koden på nytt</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Har du problemer med å registrere deg?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Pass på at telefonen din har dekning, slik at du kan motta koden på SMS eller via anrop\n • Sørg for at du kan motta anrop til telefonnummeret\n • Dobbeltsjekk at du har skrevet inn riktig telefonnummer.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For å få mer informasjon kan du følge disse feilsøkingstrinnene eller kontakte brukerstøtten vår</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">disse feilsøkingstrinnene</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Kontakt brukerstøtte</string>
 
@@ -3014,7 +3014,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Sendt betaling</string>
     <string name="PaymentsDetailsFragment__received_payment">Mottatt betaling</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Betaling fullført %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Blokker nummeret</string>
+    <string name="PaymentsDetailsFragment__block_number">Blokkeringsnummer</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Overfør</string>
@@ -3339,7 +3339,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">Skriv inn PIN-koden din</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Skriv inn PIN-koden du opprettet for kontoen din. Dette er forskjellig fra SMS-bekreftelseskoden.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Angi PIN-koden som er knyttet til kontoen din.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Skriv inn alfanumerisk PIN</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Skriv inn numerisk PIN</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Feil PIN-kode. Prøv igjen.</string>
@@ -3446,7 +3446,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Ring meg (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">Send koden på nytt (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontakt Signal brukerstøtte</string>
     <string name="RegistrationActivity_code_support_subject">Signal Registrering - Verifikasjonskode for Android</string>
     <string name="RegistrationActivity_incorrect_code">Feil kode</string>
@@ -3718,8 +3718,8 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Sletting av kontoen din vil:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Skriv inn ditt telefonnummer</string>
     <string name="DeleteAccountFragment__delete_account">Slett kontoen</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Slett kontoinformasjonen din og profilbildet ditt</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Slett alle meldingene dine</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">slette kontoinformasjonen og profilbildet ditt</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">slette alle meldingene dine</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Slett %1$s fra betalingskontoen</string>
     <string name="DeleteAccountFragment__no_country_code">Ingen landskode angitt</string>
     <string name="DeleteAccountFragment__no_number">Ikke noe nummer angitt</string>

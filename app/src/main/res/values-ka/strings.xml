@@ -961,9 +961,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">შენს მომხმარებლის სახელს რაღაც მოუვიდა, ის შენს მონაცემებთან აღარ არის დაკავშირებული. შეგიძლია სცადო და ის ახლიდან დააყენო, ან ახალი შეარჩიო.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">ახლა მოგვარება</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1596,15 +1596,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">SMS კოდის გამოგზავნა</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">რეგისტრაცია Signal-ზე - მესაჭიროება დახმარება ანდროიდზე პინ-კოდის თავიდან დასარეგისტრირებლად</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">შენი პინ-კოდი %1$d+ ციფრიანი კოდია, რომელიც შეიძლება იყოს ციფრული, ან ანბანურ-ციფრული.\n\nთუ შენს პინ-კოდს ვერ იხსენებ, შეგიძლია ახალი შექმნა.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">თუ შენს პინ-კოდს ვერ იხსენებ, შეგიძლია ახალი შექმნა.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">პინ-კოდის გამოცნობის ცდები ამოგეწურა, მაგრამ შენი Signal-ის მონაცემებზე წვდომა მაინც გექნება ახალი პინ-კოდის შექმნით.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">გაფრთხილება</string>
@@ -1791,7 +1791,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">მეგობრებთან დაკავშირების დასახმარებლად Signal-ს კონტაქტებზე წვდომის ნებართვა სჭირდება. შენი კონტაქტები იტვირთება Signal-ის პირადი კონტაქტის აღმოჩენის საშუალებით, რაც ნიშნავს, რომ ისინი ბოლომდე დაშიფრულია და არასოდეს ჩანს Signal-ის სერვისისთვის.</string>
     <string name="RegistrationActivity_rate_limited_to_service">თქვენ მოახდინეთ ძალიან ბევრი მცდელობა ამ ნომრის დარეგისტრირებისთვის. გთხოვთ ხელახლა სცადოთ მოგვიანებით.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">ამ ნომრის დარეგისტრირება ზედმეტად ბევრჯერ სცადე. გთხოვთ, %1$s-ში თავიდან სცადო.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">სერვისთან დაკავშირება შეუძლებელია. გთხოვთ, შეამოწმოთ ქსელის კავშირი და ხელახლა სცადოთ.</string>
     <string name="RegistrationActivity_non_standard_number_format">ნომრის არასტანდარტული ფორმატი</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">შენ მიერ შეყვანილი ნომერი (%1$s), როგორც ჩანს, არასტანდარტული ფორმატისაა. %2$s-ს გულისხმობდი?</string>
@@ -1799,9 +1799,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">დარეკვა მოთხოვნილია</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">SMS-ი მოთხოვნილია</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">ვერიფიკაციის კოდი მოთხოვნილია</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">ახლა გაშორებთ %1$d ნაბიჯი პრობლემების მოგვარების ჟურნალის გაგზავნიდან.</item>
         <item quantity="other">ახლა %1$d ნაბიჯი გაშორებს გაუმართაობის რეესტრის გაგზავნისგან.</item>
@@ -1822,13 +1822,13 @@
     <string name="RegistrationActivity_verification_code">ვერიფიკაციის კოდი</string>
     <string name="RegistrationActivity_resend_code">კოდის თავიდან გაგზავნა</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">ვერ რეგისტრირდები?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• დარწმუნდი, რომ შენს ტელეფონს SMS-ის ან ზარის მისაღებად ქსელის კავშირი აქვს\n • დაადასტურე, რომ შეგიძლია ნომერზე სატელეფონო ზარი მიიღო\n • შეამოწმე, რომ სწორად შეიყვანე შენი ტელეფონის ნომერი.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">მეტი ინფორმაციისთვის, გთხოვთ, მიჰყვე პრობლემების მოგვარების ამ ნაბიჯებს ან მხარდაჭერის გუნდს დაუკავშირდე</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">პრობლემების მოგვარების ამ ნაბიჯებს</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">მხარდაჭერის გუნდთან დაკავშირება</string>
 
@@ -3339,7 +3339,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">შეიყვანე შენი პინ-კოდი</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">შეიყვანე შენი მონაცემებისთვის შექმნილი პინ-კოდი. ის განსხვავდება შენი SMS ვერიფიკაციის კოდისგან.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">შეიყვანე შენი ანგარიშისთვის შექმნილი პინ-კოდი.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">შეიყვანე ანბანურ-ციფრული პინ-კოდი</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">შეიყვანე ციფრული პინ-კოდი</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">არასწორი პინ-კოდი. ხელახლა სცადე.</string>
@@ -3446,7 +3446,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">დამირეკეთ (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">კოდის თავიდან გაგზავნა (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">დაუკავშირდით Signal-ის მხარდაჭერას</string>
     <string name="RegistrationActivity_code_support_subject">Signal-ის რეგისტრაცია - დადასტურების კოდი Android-ითვის</string>
     <string name="RegistrationActivity_incorrect_code">არასწორი კოდი</string>
@@ -3715,17 +3715,17 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi კავშირი სუსტია. გადაირთო მობილურის ინტერნეტზე.</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">შენი მონაცემების წაშლა:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">შენი ანგარიშის წაშლით:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">შეიყვანე შენი ტელეფონის ნომერი</string>
     <string name="DeleteAccountFragment__delete_account">მონაცემების წაშლა</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">წაშლის შენს მონაცემებს და პროფილის ფოტოს</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">ყველა შენი შეტყობინების წაშალა</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">წაიშლება შენი მონაცემები და პროფილის ფოტოს</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">წაიშლება ყველა შენი შეტყობინება</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">წაშლის %1$s შენი ტრანზაქციების მონაცემებიდან</string>
     <string name="DeleteAccountFragment__no_country_code">ქვეყნის კოდი არ არის მითითებული</string>
     <string name="DeleteAccountFragment__no_number">ნომერი არ არის მითითებული</string>
     <string name="DeleteAccountFragment__the_phone_number">შეყვანილი მობილურის ნომერი არ ემთხვევა შენს მონაცემებში აღნიშნულს.</string>
     <string name="DeleteAccountFragment__are_you_sure">დარწმუნებული ხარ, რომ შენი მონაცემების წაშლა გსურს?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ეს წაშლის Signal-ის შენ მონაცემებს და განაახლებს აპლიკაციას. პროცესის დასრულების შემდეგ აპლიკაცია დაიხურება.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ეს წაშლის Signal-ის შენს მონაცემებს და განაახლებს აპლიკაციას. პროცესის დასრულების შემდეგ აპლიკაცია დაიხურება.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">ადგილობრივი მონაცემების წაშლა ვერ მოხერხდა. შეგიძლია ისინი ხელით წაშალო სისტემის აპლიკაციის პარამეტრებში.</string>
     <string name="DeleteAccountFragment__launch_app_settings">აპის პარამეტრების გაშვება</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->

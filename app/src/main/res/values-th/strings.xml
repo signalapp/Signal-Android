@@ -923,9 +923,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">เกิดข้อผิดพลาดเกี่ยวกับชื่อผู้ใช้ ไม่สามารถใช้ชื่อผู้ใช้นี้กับบัญชีของคุณได้อีกต่อไป โปรดลองใหม่ด้วยการใส่ชื่อผู้ใช้อีกครั้งหรือตั้งชื่อผู้ใช้ใหม่</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">แก้ไขตอนนี้</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1532,15 +1532,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">ส่งรหัสทาง SMS</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">การลงทะเบียน Signal - ต้องการความช่วยเหลือเกี่ยวกับการลงทะเบียน PIN อีกครั้งสำหรับ Android</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">PIN ของคุณคือรหัส %1$d+ หลักที่คุณสร้างไว้โดยอาจจะเป็นตัวเลขหรือตัวอักษรผสมกับตัวเลข\n\nหากจำ PIN ของตัวเองไม่ได้ คุณสามารถสร้างขึ้นมาใหม่ได้</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">หากจำ PIN ของตัวเองไม่ได้ คุณสามารถสร้างขึ้นมาใหม่ได้</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">คุณลองใส่ PIN จนครบจำนวนครั้งที่อนุญาตแล้ว แต่คุณยังสามารถเข้าถึงบัญชี Signal ของคุณได้ด้วยการสร้าง PIN ใหม่</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">คำเตือน</string>
@@ -1721,7 +1721,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal จำเป็นต้องได้รับการอนุญาตให้ใช้รายชื่อผู้ติดต่อเพื่อช่วยให้คุณเชื่อมต่อกับเพื่อนๆ รายชื่อผู้ติดต่อของคุณจะถูกอัปโหลดโดยใช้โดยใช้การค้นหาผู้ติดต่อส่วนตัว Signal ซึ่งแปลว่าสิ่งนี้เป็นการเข้ารหัสจากต้นทางถึงปลายทางและไม่ปรากฏในบริการของ Signal</string>
     <string name="RegistrationActivity_rate_limited_to_service">คุณได้พยายามลงทะเบียนด้วยหมายเลขนี้หลายครั้งเกินไป โปรดลองใหม่ในภายหลัง</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">คุณพยายามลงทะเบียนด้วยหมายเลขนี้หลายครั้งเกินไป โปรดลองอีกครั้งใน %1$s</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ไม่สามารถเชื่อมต่อบริการได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายและลองอีกครั้ง</string>
     <string name="RegistrationActivity_non_standard_number_format">ฟอร์แมทหมายเลขที่ไม่มีมาตรฐาน</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">ตัวเลขที่คุณป้อน (%1$s) เป็นฟอร์แมทที่ไม่ได้มาตรฐาน\n\n คุณต้องการใส่ %2$sหรือเปล่า</string>
@@ -1729,9 +1729,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">ส่งคำขอการโทรแล้ว</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">ขอรหัสทาง SMS แล้ว</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">ขอรหัสยืนยันแล้ว</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">เหลืออีก %1$d ขั้นตอนในการส่งปูมดีบัก</item>
     </plurals>
@@ -1751,15 +1751,15 @@
     <string name="RegistrationActivity_verification_code">รหัสยืนยัน</string>
     <string name="RegistrationActivity_resend_code">ส่งรหัสอีกครั้ง</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">หากประสบปัญหาในการลงทะเบียน</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• ตรวจสอบว่าโทรศัพท์ของคุณมีสัญญาณมือถือที่จะรับข้อความ SMS หรือสายโทรเข้าได้\n • ตรวจสอบว่าหมายเลขโทรศัพท์ของคุณสามารถรับสายโทรเข้าได้\n • ตรวจสอบว่าคุณใส่หมายเลขโทรศัพท์ถูกต้อง</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">สำหรับข้อมูลเพิ่มเติม โปรดทำตามขั้นตอนการแก้ไขปัญหาที่นี่หรือติดต่อฝ่ายสนับสนุน</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ขั้นตอนการแก้ไขปัญหาที่นี่</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">ติดต่อการสนับสนุน</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">ติดต่อฝ่ายสนับสนุน</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">เปิดกุญแจลงทะเบียนหรือไม่?</string>
@@ -2515,7 +2515,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">รอดำเนินการ</string>
-    <string name="message_details_recipient_header__sent_to">ส่งถึง</string>
+    <string name="message_details_recipient_header__sent_to">ส่งแล้ว:</string>
     <string name="message_details_recipient_header__sent_from">ส่งจาก</string>
     <string name="message_details_recipient_header__delivered_to">ส่งถึงแล้วที่</string>
     <string name="message_details_recipient_header__read_by">อ่านโดย</string>
@@ -3251,7 +3251,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">ใส่รหัส PIN ของคุณ</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">ใส่รหัส PIN ที่คุณสร้างขึ้นสำหรับบัญชีของคุณ รหัสนี้แตกต่างจากรหัสตรวจยืนยันทาง SMS</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">ใส่ PIN ที่คุณสร้างไว้สำหรับบัญชีของคุณ</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">ใส่รหัส PIN ด้วยตัวอักษรและตัวเลข</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">ใส่รหัส PIN ด้วยตัวเลข</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">รหัส PIN ไม่ถูกต้อง ลองอีกครั้ง</string>
@@ -3353,7 +3353,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">โทรหาฉัน (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">ส่งรหัสอีกครั้งใน (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">ติดต่อทีมซัพพอร์ตของ Signal</string>
     <string name="RegistrationActivity_code_support_subject">การลงทะเบียน Signal - รหัสตรวจยืนยันสำหรับ Android</string>
     <string name="RegistrationActivity_incorrect_code">รหัสไม่ถูกต้อง</string>
@@ -3620,17 +3620,17 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi สัญญาณอ่อน กำลังใช้อินเทอร์เน็ตมือถือ</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">การลบบัญชีของคุณจะส่งผลให้:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">การลบบัญชีของคุณจะเป็นการ:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">ป้อนหมายเลขโทรศัพท์ของคุณ</string>
     <string name="DeleteAccountFragment__delete_account">ลบบัญชี</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">ลบข้อมูลบัญชีและรูปโปรไฟล์ของคุณ</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">ลบข้อความของคุณทั้งหมด</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">ลบข้อความทั้งหมดของคุณ</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">ลบ %1$s ในบัญชีชำระเงินของคุณ</string>
     <string name="DeleteAccountFragment__no_country_code">ไม่มีรหัสประเทศระบุไว้</string>
     <string name="DeleteAccountFragment__no_number">ไม่มีหมายเลขระบุไว้</string>
     <string name="DeleteAccountFragment__the_phone_number">หมายเลขโทรศัพท์ที่คุณป้อนไม่ตรงกับหมายเลขในบัญชีคุณ</string>
     <string name="DeleteAccountFragment__are_you_sure">คุณแน่ใจหรือไม่ว่าต้องการลบบัญชี</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">การกระทำนี้จะลบบัญชี Signal ของคุณและรีเซ็ตแอปใหม่ โดยแอปจะปิดลงหลังจากที่กระบวนการนี้เสร็จสิ้น</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">การดำเนินการนี้จะลบบัญชี Signal ของคุณและรีเซ็ตแอปใหม่ โดยแอปจะปิดลงหลังจากที่กระบวนการนี้เสร็จสิ้น</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">ลบข้อมูลในเครื่องไม่สำเร็จ คุณสามารถล้างข้อมูลเองได้ในการตั้งค่าแอปพลิเคชันของระบบ</string>
     <string name="DeleteAccountFragment__launch_app_settings">การตั้งค่าการเริ่มแอป</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -4275,7 +4275,7 @@
     <string name="MediaReviewFragment__add_to_story">เพิ่มไปยังสตอรี่</string>
     <string name="MediaReviewFragment__add_a_message">เพิ่มข้อความ</string>
     <string name="MediaReviewFragment__add_a_reply">เพิ่มการตอบกลับ</string>
-    <string name="MediaReviewFragment__send_to">ส่งไปยัง</string>
+    <string name="MediaReviewFragment__send_to">ส่งไปให้</string>
     <string name="MediaReviewFragment__view_once_message">ดูข้อความครั้งเดียว</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">มีรายการที่ใหญ่เกินไปอย่างน้อยหนึ่งรายการ</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">มีรายการที่ไม่ถูกต้องอย่างน้อยหนึ่งรายการ</string>
@@ -5023,7 +5023,7 @@
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">ยืนยันการบริจาค</string>
     <!-- Heading text specifying who the gift will be sent to -->
-    <string name="GiftFlowConfirmationFragment__send_to">ส่งไปยัง</string>
+    <string name="GiftFlowConfirmationFragment__send_to">ส่งไปให้</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">ผู้รับจะได้รับการแจ้งเตือนในข้อความส่วนตัวว่ามีการบริจาค เพิ่มข้อความของคุณที่ด้านล่างนี้</string>
     <!-- Text explaining that this gift is a one time donation -->

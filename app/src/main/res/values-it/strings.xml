@@ -961,9 +961,9 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__something_went_wrong">Something went wrong with your username, it\'s no longer assigned to your account. You can try and set it again or choose a new one.</string>
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Qualcosa è andato storto con il tuo nome utente: non è più assegnato al tuo account. Puoi provare a impostarlo di nuovo oppure sceglierne un altro.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
-    <string name="UsernameOutOfSyncReminder__fix_now">Fix now</string>
+    <string name="UsernameOutOfSyncReminder__fix_now">Risolvi ora</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1596,15 +1596,15 @@
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send SMS code</string>
+    <string name="ReRegisterWithPinFragment_send_sms_code">Invia codice via SMS</string>
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Need Help with reregister PIN for Android</string>
+    <string name="ReRegisterWithPinFragment_support_email_subject">Registrazione su Signal - Assistenza per registrare di nuovo il tuo PIN per Android</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">Il tuo PIN è un codice di almeno %1$d cifre che hai creato tu e può essere numerico o alfanumerico.\n\nSe non ricordi il tuo PIN, puoi crearne uno nuovo.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">If you can’t remember your PIN, you can create a new one.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">Se non ricordi il tuo PIN, puoi crearne uno nuovo.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Hai esaurito i tentativi per inserire il tuo PIN, ma puoi comunque accedere al tuo account Signal creando un nuovo PIN.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Attenzione</string>
@@ -1791,7 +1791,7 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal richiede l\'accesso ai tuoi contatti per aiutarti a connetterti con gli amici. I tuoi contatti vengono caricati utilizzando la scoperta privata dei contatti di Signal, il che significa che sono crittografati end-to-end e non sono mai visibili al servizio Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Hai fatto troppi tentativi per registrare questo numero. Per favore riprova più tardi.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">You\'ve made too many attempts to register this number. Please try again in %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">Hai fatto troppi tentativi per registrarti con questo numero. Per favore riprova tra %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Impossibile connettersi al servizio. Per favore controlla la connessione a internet e riprova</string>
     <string name="RegistrationActivity_non_standard_number_format">Formato del numero non standard</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Il numero che hai inserito (%1$s) sembra essere in un formato non standard.\n\nIntendevi %2$s?</string>
@@ -1799,9 +1799,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Chiamata richiesta</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS requested</string>
+    <string name="RegistrationActivity_sms_requested">Hai richiesto il codice via SMS</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Verification code requested</string>
+    <string name="RegistrationActivity_code_requested">Hai richiesto l\'invio del codice di verifica</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Ti manca solo %1$d passaggio per inviare un log di debug.</item>
         <item quantity="other">Ti mancano solo %1$d passaggi per inviare un log di debug.</item>
@@ -1822,13 +1822,13 @@
     <string name="RegistrationActivity_verification_code">Codice di verifica</string>
     <string name="RegistrationActivity_resend_code">Rinvia codice</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Having trouble registering?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Problemi con la tua registrazione?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Make sure your phone has a cellular signal to receive your SMS or call\n • Confirm you can receive a phone call to the number\n • Check that you have entered your phone number correctly.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Assicurati che il tuo telefono sia collegato a una rete dati cellulare per poter ricevere il tuo SMS o la chiamata\n • Accertati di poter ricevere una chiamata sul tuo numero\n • Controlla di aver inserito correttamente il tuo numero di telefono.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
-    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">For more information, please follow these troubleshooting steps or Contact Support</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Per maggiori info, segui questi passaggi per risolvere eventuali problemi oppure contatta la nostra assistenza</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">these troubleshooting steps</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">questi passaggi per risolvere eventuali problemi</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Contatta l\'assistenza</string>
 
@@ -3339,7 +3339,7 @@
     <string name="RegistrationLockFragment__enter_your_pin">Inserisci il tuo PIN</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Inserisci il PIN che hai creato per il tuo account. Questo è diverso dal tuo codice di verifica SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Enter the PIN you created for your account.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Inserisci il PIN che hai creato per il tuo account.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Inserisci PIN alfanumerico</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Inserisci PIN numerico</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN errato. Riprova.</string>
@@ -3446,7 +3446,7 @@
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Chiamami (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Resend Code (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">Invia di nuovo il codice (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contatta l\'assistenza Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registrazione Signal - Codice di verifica per Android</string>
     <string name="RegistrationActivity_incorrect_code">Codice errato</string>
@@ -3715,17 +3715,17 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Connessione Wi-Fi debole: passaggio alla rete mobile effettuato.</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">Eliminando il tuo account verranno:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">Eliminando il tuo account:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Inserisci il tuo numero di telefono</string>
     <string name="DeleteAccountFragment__delete_account">Elimina account</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Elimina le informazioni del tuo account e la foto profilo</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Elimina tutti i tuoi messaggi</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Verranno eliminate le informazioni del tuo account e la foto profilo</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Verranno eliminati tutti i tuoi messaggi</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Elimina %1$s nel tuo account pagamenti</string>
     <string name="DeleteAccountFragment__no_country_code">Nessun prefisso telefonico internazionale specificato</string>
     <string name="DeleteAccountFragment__no_number">Nessun numero specificato</string>
     <string name="DeleteAccountFragment__the_phone_number">Il numero di telefono che hai inserito non corrisponde a quello del tuo account.</string>
     <string name="DeleteAccountFragment__are_you_sure">Vuoi davvero eliminare il tuo account?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Questo eliminerà il tuo account Signal e ripristinerà l\'applicazione. L\'app si chiuderà al termine del processo.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Quest\'azione eliminerà il tuo account Signal e ripristinerà l\'applicazione. L\'app si chiuderà al termine del processo.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Impossibile eliminare i dati locali. Puoi cancellarli manualmente nelle impostazioni di sistema dell\'applicazione.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Avvia impostazioni app</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -4378,7 +4378,7 @@
     <string name="MediaReviewFragment__add_to_story">Aggiungi alla Storia</string>
     <string name="MediaReviewFragment__add_a_message">Aggiungi un messaggio</string>
     <string name="MediaReviewFragment__add_a_reply">Aggiungi una risposta</string>
-    <string name="MediaReviewFragment__send_to">Inviato a</string>
+    <string name="MediaReviewFragment__send_to">Invia a</string>
     <string name="MediaReviewFragment__view_once_message">Messaggio visualizzabile una volta</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Uno o più elementi erano troppo grandi</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Uno o più elementi non erano validi</string>
@@ -5135,7 +5135,7 @@
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">Conferma la donazione</string>
     <!-- Heading text specifying who the gift will be sent to -->
-    <string name="GiftFlowConfirmationFragment__send_to">Inviato a</string>
+    <string name="GiftFlowConfirmationFragment__send_to">Invia a</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">La persona destinataria verrà notificata della donazione in un messaggio privato. Aggiungi di seguito il messaggio che vuoi inviare.</string>
     <!-- Text explaining that this gift is a one time donation -->
