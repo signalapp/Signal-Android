@@ -47,6 +47,7 @@ class SignalBackupAgent : BackupAgent() {
   }
 
   override fun onRestore(dataInput: BackupDataInput, appVersionCode: Int, newState: ParcelFileDescriptor) {
+    Log.i(TAG, "Restoring from Android Backup Service.")
     while (dataInput.readNextHeader()) {
       val buffer = ByteArray(dataInput.dataSize)
       dataInput.readEntityData(buffer, 0, dataInput.dataSize)
