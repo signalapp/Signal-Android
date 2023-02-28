@@ -5386,7 +5386,7 @@
     <!-- Title of the screen -->
     <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Exporting SMS messages</string>
     <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">This may take awhile</string>
+    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">This may take a while</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
         <item quantity="one">Exporting %1$d of %2$d…</item>
