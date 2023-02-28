@@ -22,6 +22,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class ModernDecryptingPartInputStream {
 
+  public static final String PREMATURE_END_ERROR_MESSAGE = "Prematurely reached end of stream!";
+
   public static InputStream createFor(@NonNull AttachmentSecret attachmentSecret, @NonNull byte[] random, @NonNull File file, long offset)
       throws IOException
   {
@@ -75,7 +77,7 @@ public class ModernDecryptingPartInputStream {
     for (;;) {
       int read = in.read(buffer, offset, buffer.length-offset);
 
-      if (read == -1)                         throw new IOException("Prematurely reached end of stream!");
+      if (read == -1)                         throw new IOException(PREMATURE_END_ERROR_MESSAGE);
       else if (read + offset < buffer.length) offset += read;
       else                                    return;
     }

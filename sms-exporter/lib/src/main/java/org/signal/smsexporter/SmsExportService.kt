@@ -14,6 +14,7 @@ import org.signal.smsexporter.internal.mms.ExportMmsPartsUseCase
 import org.signal.smsexporter.internal.mms.ExportMmsRecipientsUseCase
 import org.signal.smsexporter.internal.mms.GetOrCreateMmsThreadIdsUseCase
 import org.signal.smsexporter.internal.sms.ExportSmsMessagesUseCase
+import java.io.EOFException
 import java.io.FileNotFoundException
 import java.io.InputStream
 import java.util.concurrent.Executor
@@ -346,8 +347,14 @@ abstract class SmsExportService : Service() {
       onAttachmentPartExportSucceeded(output.message, output.part)
       Try.success(Unit)
     } catch (e: Exception) {
-      Log.d(TAG, "Failed to write attachment to disk.", e)
-      Try.failure(e)
+      if (e is EOFException) {
+        Log.d(TAG, "Unrecoverable failure to write attachment to disk, marking as successful and moving on", e)
+        onAttachmentPartExportSucceeded(output.message, output.part)
+        Try.success(Unit)
+      } else {
+        Log.d(TAG, "Failed to write attachment to disk.", e)
+        Try.failure(e)
+      }
     }
   }
 

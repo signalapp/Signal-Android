@@ -9,6 +9,7 @@ import org.signal.smsexporter.ExportableMessage
 import org.signal.smsexporter.SmsExportService
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.notifications.v2.NotificationPendingIntentHelper
 import org.thoughtcrime.securesms.util.JsonUtils
+import java.io.EOFException
 import java.io.IOException
 import java.io.InputStream
 
@@ -168,7 +170,15 @@ class SignalSmsExportService : SmsExportService() {
 
   @Throws(IOException::class)
   override fun getInputStream(part: ExportableMessage.Mms.Part): InputStream {
-    return SignalDatabase.attachments.getAttachmentStream(JsonUtils.fromJson(part.contentId, AttachmentId::class.java), 0)
+    try {
+      return SignalDatabase.attachments.getAttachmentStream(JsonUtils.fromJson(part.contentId, AttachmentId::class.java), 0)
+    } catch (e: IOException) {
+      if (e.message == ModernDecryptingPartInputStream.PREMATURE_END_ERROR_MESSAGE) {
+        throw EOFException(e.message)
+      } else {
+        throw e
+      }
+    }
   }
 
   override fun onExportPassCompleted() {
