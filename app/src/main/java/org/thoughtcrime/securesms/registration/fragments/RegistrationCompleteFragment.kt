@@ -42,7 +42,7 @@ class RegistrationCompleteFragment : LoggingFragment() {
       Log.i(TAG, "Performing pin restore.")
       activity.startActivity(Intent(activity, PinRestoreActivity::class.java))
     } else {
-      val viewModel: RegistrationViewModel by viewModels()
+      val viewModel: RegistrationViewModel by viewModels(ownerProducer = { requireActivity() })
 
       val isProfileNameEmpty = Recipient.self().profileName.isEmpty
       val isAvatarEmpty = !AvatarHelper.hasAvatar(activity, Recipient.self().id)
