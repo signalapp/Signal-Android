@@ -3,6 +3,7 @@ package org.signal.buildtools
 import org.xbill.DNS.ARecord
 import org.xbill.DNS.Lookup
 import org.xbill.DNS.Record
+import org.xbill.DNS.Resolver
 import org.xbill.DNS.SimpleResolver
 import org.xbill.DNS.Type
 import java.net.UnknownHostException
@@ -12,7 +13,9 @@ import kotlin.streams.toList
  * A tool to resolve hostname to static IPs.
  * Feeds into our custom DNS resolver to provide a static IP fallback for our services.
  */
-object StaticIpResolver {
+class StaticIpResolver @JvmOverloads constructor(
+  private val resolverProvider: () -> Resolver = { SimpleResolver("1.1.1.1") }
+) {
 
   /**
    * Resolves a hostname to a list of IPs, represented as a Java array declaration. e.g.
@@ -23,7 +26,6 @@ object StaticIpResolver {
    *
    * This is intended to be injected as a BuildConfig.
    */
-  @JvmStatic
   fun resolveToBuildConfig(hostName: String): String {
     val ips: List<String> = resolve(hostName)
     val builder = StringBuilder()
@@ -54,7 +56,7 @@ object StaticIpResolver {
 
   private fun resolveOnce(hostName: String): List<String> {
     try {
-      val resolver = SimpleResolver("1.1.1.1")
+      val resolver = resolverProvider()
       val lookup: Lookup = doLookup(hostName)
 
       lookup.setResolver(resolver)
