@@ -64,6 +64,8 @@ task qa {
     group 'Verification'
     description 'Quality Assurance. Run before pushing.'
     dependsOn 'clean',
+            gradle.includedBuild('build-logic').task(':tools:test'),
+            gradle.includedBuild('build-logic').task(':tools:ktlintCheck'),
             ':Signal-Android:testPlayProdReleaseUnitTest',
             ':Signal-Android:lintPlayProdRelease',
             'Signal-Android:ktlintCheck',
