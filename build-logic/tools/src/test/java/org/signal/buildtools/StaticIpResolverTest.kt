@@ -22,7 +22,12 @@ class StaticIpResolverTest {
 
   @Test
   fun `Given a hostname with records, when I resolveToBuildConfig, then I expect a matching IP`() {
-    val staticIpResolver = StaticIpResolver(FakeRecordFetcher())
+    val staticIpResolver = StaticIpResolver(FakeRecordFetcher(mapOf(
+      SIGNAL_DOT_ORG to arrayOf(ARecord(Name.fromString("www."), DClass.ANY, 0L, mockk<Inet4Address> {
+        every { address } returns SIGNAL_IP
+        every { hostAddress } returns STRINGIFIED_IP
+      }))
+    )))
     val actual = staticIpResolver.resolveToBuildConfig(SIGNAL_DOT_ORG)
     val expected = """
       new String[]{"$STRINGIFIED_IP"}
@@ -37,12 +42,7 @@ class StaticIpResolverTest {
     staticIpResolver.resolveToBuildConfig(SIGNAL_DOT_ORG)
   }
 
-  private class FakeRecordFetcher(private val recordMap: Map<String, Array<Record>?> = mapOf(
-    SIGNAL_DOT_ORG to arrayOf(ARecord(Name.fromString("www."), DClass.ANY, 0L, mockk<Inet4Address> {
-      every { address } returns SIGNAL_IP
-      every { hostAddress } returns STRINGIFIED_IP
-    }))
-  )) : StaticIpResolver.RecordFetcher {
+  private class FakeRecordFetcher(private val recordMap: Map<String, Array<Record>?>) : StaticIpResolver.RecordFetcher {
     override fun fetchRecords(hostName: String): Array<Record>? {
       return recordMap[hostName]
     }
