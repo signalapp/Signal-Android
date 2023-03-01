@@ -18,4 +18,6 @@ ktlint {
 
 dependencies {
     implementation(libs.dnsjava)
+    testImplementation(testLibs.junit.junit)
+    testImplementation(testLibs.mockk)
 }

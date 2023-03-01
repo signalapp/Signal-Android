@@ -14,7 +14,7 @@ import kotlin.streams.toList
  * Feeds into our custom DNS resolver to provide a static IP fallback for our services.
  */
 class StaticIpResolver @JvmOverloads constructor(
-  private val resolverProvider: () -> Resolver = { SimpleResolver("1.1.1.1") }
+  private val recordFetcher: RecordFetcher = RealRecordFetcher
 ) {
 
   /**
@@ -56,13 +56,7 @@ class StaticIpResolver @JvmOverloads constructor(
 
   private fun resolveOnce(hostName: String): List<String> {
     try {
-      val resolver = resolverProvider()
-      val lookup: Lookup = doLookup(hostName)
-
-      lookup.setResolver(resolver)
-
-      val records: Array<Record>? = lookup.run()
-
+      val records = recordFetcher.fetchRecords(hostName)
       if (records != null) {
         return records
           .filter { it.type == Type.A }
@@ -71,19 +65,34 @@ class StaticIpResolver @JvmOverloads constructor(
           .map { it.hostAddress }
           .filterNotNull()
       } else {
-        throw IllegalStateException("Failed to resolve host! $hostName")
+        throw IllegalStateException("Failed to resolve host! Lookup did not return any records.. $hostName")
       }
     } catch (e: UnknownHostException) {
-      throw IllegalStateException("Failed to resolve host! $hostName")
+      throw IllegalStateException("Failed to resolve host! $hostName", e)
     }
   }
 
-  @Throws(UnknownHostException::class)
-  private fun doLookup(hostname: String): Lookup {
-    try {
-      return Lookup(hostname)
-    } catch (e: Throwable) {
-      throw UnknownHostException()
+  interface RecordFetcher {
+    fun fetchRecords(hostName: String): Array<Record>?
+  }
+
+  private object RealRecordFetcher : RecordFetcher {
+    override fun fetchRecords(hostName: String): Array<Record>? {
+      val resolver = SimpleResolver("1.1.1.1")
+      val lookup: Lookup = doLookup(hostName)
+
+      lookup.setResolver(resolver)
+
+      return lookup.run()
+    }
+
+    @Throws(UnknownHostException::class)
+    private fun doLookup(hostname: String): Lookup {
+      try {
+        return Lookup(hostname)
+      } catch (e: Throwable) {
+        throw UnknownHostException()
+      }
     }
   }
 }
