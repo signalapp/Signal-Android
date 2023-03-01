@@ -304,6 +304,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
     }
 
     return verifyAccountRepository.registerAccount(null, registrationData, null, null)
+                                  .observeOn(Schedulers.io())
                                   .onErrorReturn(ServiceResponse::forUnknownError)
                                   .map(VerifyResponseWithoutKbs::new)
                                   .flatMap(processor -> {
@@ -329,8 +330,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                     } else {
                                       return Single.just(processor);
                                     }
-                                  })
-                                  .observeOn(AndroidSchedulers.mainThread());
+                                  });
   }
 
   public @NonNull Single<Boolean> canEnterSkipSmsFlow() {
