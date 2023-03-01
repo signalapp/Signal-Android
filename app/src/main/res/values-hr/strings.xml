@@ -1728,9 +1728,9 @@
     <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
     <string name="ReRegisterWithPinFragment_support_email_subject">Registracija Signala – Trebate pomoć s postavljanjem PIN-a za Android?</string>
     <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Vaš PIN je numerički ili alfanumerički kôd od %1$d+ znamenki koji ste sami postavili.\n\nU slučaju da ste zaboravili svoj PIN, može stvoriti novi.</string>
+    <string name="ReRegisterWithPinFragment_need_help_local">Vaš PIN je numerički ili alfanumerički kôd od %1$d+ znamenki koji ste sami postavili.\n\nU slučaju da ste zaboravili svoj PIN, možete stvoriti novi.</string>
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">U slučaju da ste zaboravili svoj PIN, može stvoriti novi.</string>
+    <string name="ReRegisterWithPinFragment_skip_local">U slučaju da ste zaboravili svoj PIN, možete stvoriti novi.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
     <string name="ReRegisterWithPinFragment_out_of_guesses_local">Ponestalo vam je pokušaja za unos PIN-a, no i dalje možete pristupiti svom Signal računu stvaranjem novog PIN-a.</string>
 
@@ -3182,7 +3182,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Pošalji uplatu</string>
     <string name="PaymentsDetailsFragment__received_payment">Zaprimljena uplata</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Plaćanje je dovršeno %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Blokiraj broj</string>
+    <string name="PaymentsDetailsFragment__block_number">Broj bloka</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Prijenos</string>
@@ -3907,9 +3907,9 @@
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Brisanjem vašeg računa, izbrisat ćete:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Unesite vaš broj telefona</string>
-    <string name="DeleteAccountFragment__delete_account">Izbriši korisnički račun</string>
+    <string name="DeleteAccountFragment__delete_account">Korisnički račun</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Podatke o računu i sliku profila</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Sve vaše poruke</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Izbriši sve vaše poruke</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Izbriši %1$s u vašem računu za plaćanja</string>
     <string name="DeleteAccountFragment__no_country_code">Nije naveden kôd države</string>
     <string name="DeleteAccountFragment__no_number">Nije naveden broj</string>
