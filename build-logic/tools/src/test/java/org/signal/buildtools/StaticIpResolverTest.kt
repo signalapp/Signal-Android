@@ -3,13 +3,11 @@ package org.signal.buildtools
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert.assertEquals
-import org.junit.Assert.fail
 import org.junit.Test
 import org.xbill.DNS.ARecord
 import org.xbill.DNS.DClass
 import org.xbill.DNS.Name
 import org.xbill.DNS.Record
-import java.lang.IllegalStateException
 import java.net.Inet4Address
 
 class StaticIpResolverTest {

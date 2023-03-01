@@ -3,7 +3,6 @@ package org.signal.buildtools
 import org.xbill.DNS.ARecord
 import org.xbill.DNS.Lookup
 import org.xbill.DNS.Record
-import org.xbill.DNS.Resolver
 import org.xbill.DNS.SimpleResolver
 import org.xbill.DNS.Type
 import java.net.UnknownHostException
