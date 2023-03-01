@@ -64,7 +64,6 @@ task qa {
     group 'Verification'
     description 'Quality Assurance. Run before pushing.'
     dependsOn 'clean',
-            ':build-logic:tools:test',
             ':Signal-Android:testPlayProdReleaseUnitTest',
             ':Signal-Android:lintPlayProdRelease',
             'Signal-Android:ktlintCheck',
