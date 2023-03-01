@@ -4,11 +4,15 @@ import android.content.Context
 import android.net.Uri
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.doOnNextLayout
+import androidx.core.view.updateLayoutParams
+import androidx.core.widget.doOnTextChanged
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.SimpleColorFilter
@@ -56,6 +60,17 @@ class VoiceNotePlayerView @JvmOverloads constructor(
     closeButton = findViewById(R.id.voice_note_player_close)
 
     infoView.isSelected = true
+    infoView.doOnTextChanged { _, _, _, _ ->
+      infoView.updateLayoutParams<ViewGroup.LayoutParams> {
+        width = ViewGroup.LayoutParams.WRAP_CONTENT
+
+        infoView.doOnNextLayout {
+          infoView.updateLayoutParams<ViewGroup.LayoutParams> {
+            width = infoView.measuredWidth
+          }
+        }
+      }
+    }
 
     val speedTouchTarget: View = findViewById(R.id.voice_note_player_speed_touch_target)
     speedTouchTarget.setOnClickListener {
@@ -111,6 +126,7 @@ class VoiceNotePlayerView @JvmOverloads constructor(
   }
 
   fun setState(state: State) {
+    val prevName = lastState?.name
     this.lastState = state
 
     if (state.isPaused) {
@@ -119,7 +135,7 @@ class VoiceNotePlayerView @JvmOverloads constructor(
       animateToggleToPause()
     }
 
-    if (infoView.text != state.name) {
+    if (prevName != state.name) {
       infoView.text = state.name
     }
 
