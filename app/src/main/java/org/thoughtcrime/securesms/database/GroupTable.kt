@@ -1093,7 +1093,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       .update(MembershipTable.TABLE_NAME)
       .values(RECIPIENT_ID to toId.serialize())
       .where("${MembershipTable.RECIPIENT_ID} = ?", fromId)
-      .run()
+      .run(conflictStrategy = SQLiteDatabase.CONFLICT_IGNORE)
 
     for (group in getGroupsContainingMember(fromId, false, true)) {
       if (group.isV2Group) {
