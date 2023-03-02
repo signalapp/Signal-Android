@@ -83,15 +83,17 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
         registrationId = registrationRepository.registrationId,
         profileKey = registrationRepository.getProfileKey("+15555550101"),
         fcmToken = null,
-        pniRegistrationId = registrationRepository.pniRegistrationId
+        pniRegistrationId = registrationRepository.pniRegistrationId,
+        recoveryPassword = "asdfasdfasdfasdf"
       ),
-      VerifyResponse(VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false), null, null)
+      VerifyResponse(VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false), null, null),
+      false
     ).blockingGet()
 
     ServiceResponseProcessor.DefaultProcessor(response).resultOrThrow
 
     SignalStore.kbsValues().optOut()
-    RegistrationUtil.maybeMarkRegistrationComplete(application)
+    RegistrationUtil.maybeMarkRegistrationComplete()
     SignalDatabase.recipients.setProfileName(Recipient.self().id, ProfileName.fromParts("Tester", "McTesterson"))
 
     return Recipient.self()

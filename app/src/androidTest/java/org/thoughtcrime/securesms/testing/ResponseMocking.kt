@@ -17,6 +17,8 @@ class Get(path: String, responseFactory: ResponseFactory) : Verb("GET", path, re
 
 class Put(path: String, responseFactory: ResponseFactory) : Verb("PUT", path, responseFactory)
 
+class Post(path: String, responseFactory: ResponseFactory) : Verb("POST", path, responseFactory)
+
 fun MockResponse.success(response: Any? = null): MockResponse {
   return setResponseCode(200).apply {
     if (response != null) {

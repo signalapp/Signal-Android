@@ -213,6 +213,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       .query(select, query.whereArgs)
       .use { cursor ->
         return if (cursor.moveToFirst()) {
+          var refreshCursor = false
           val groupRecord = getGroup(cursor)
           if (groupRecord.isPresent && RemappedRecords.getInstance().areAnyRemapped(groupRecord.get().members)) {
             val groupId = groupRecord.get().id
@@ -237,12 +238,23 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
             if (updateCount > 0) {
               Log.i(TAG, "Successfully updated $updateCount rows. GroupId: $groupId, Remaps: $remaps", true)
+              refreshCursor = true
             } else {
               Log.w(TAG, "Failed to update any rows. GroupId: $groupId, Remaps: $remaps", true)
             }
           }
 
-          getGroup(cursor)
+          if (refreshCursor) {
+            readableDatabase.query(select, query.whereArgs).use { refreshedCursor ->
+              if (refreshedCursor.moveToFirst()) {
+                getGroup(refreshedCursor)
+              } else {
+                Optional.empty()
+              }
+            }
+          } else {
+            getGroup(cursor)
+          }
         } else {
           Optional.empty()
         }
