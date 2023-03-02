@@ -62,7 +62,7 @@ object Scaffolds {
 
 @Preview
 @Composable
-fun SettingsScaffoldPreview() {
+private fun SettingsScaffoldPreview() {
   SignalTheme(isDarkMode = false) {
     Scaffolds.Settings(
       "Settings Scaffold",
