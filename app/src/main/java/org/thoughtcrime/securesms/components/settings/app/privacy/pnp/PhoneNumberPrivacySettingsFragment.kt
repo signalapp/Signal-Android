@@ -39,7 +39,7 @@ class PhoneNumberPrivacySettingsFragment : ComposeFragment() {
     Scaffolds.Settings(
       title = stringResource(id = R.string.preferences_app_protection__phone_number),
       onNavigationClick = onNavigationClick,
-      painter = painterResource(id = R.drawable.ic_arrow_left_24),
+      navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding ->
       Box(modifier = Modifier.padding(contentPadding)) {
