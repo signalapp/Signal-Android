@@ -21,7 +21,7 @@ dependencyResolutionManagement {
             alias('android-application').to('com.android.application', 'com.android.application.gradle.plugin').versionRef('android-gradle-plugin')
 
             // Compose
-            alias('androidx-compose-bom').to('androidx.compose:compose-bom:2022.12.00')
+            alias('androidx-compose-bom').to('androidx.compose:compose-bom:2023.01.00')
             alias('androidx-compose-material3').to('androidx.compose.material3', 'material3').withoutVersion()
             alias('androidx-compose-ui-tooling-preview').to('androidx.compose.ui', 'ui-tooling-preview').withoutVersion()
             alias('androidx-compose-ui-tooling-core').to('androidx.compose.ui', 'ui-tooling').withoutVersion()
