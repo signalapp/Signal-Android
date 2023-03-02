@@ -1,5 +1,6 @@
 package org.signal.core.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -7,6 +8,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -52,6 +57,14 @@ object Rows {
 @Composable
 private fun RadioRowPreview() {
   SignalTheme(isDarkMode = false) {
-    Rows.RadioRow(true, "RadioRow")
+    var selected by remember { mutableStateOf(true) }
+
+    Rows.RadioRow(
+      selected,
+      "RadioRow",
+      modifier = Modifier.clickable {
+        selected = !selected
+      }
+    )
   }
 }
