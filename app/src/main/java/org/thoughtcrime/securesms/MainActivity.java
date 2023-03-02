@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
+import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSheetFragment;
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferLockedDialog;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.stories.Stories;
@@ -114,6 +115,11 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     dynamicTheme.onResume(this);
     if (SignalStore.misc().isOldDeviceTransferLocked()) {
       OldDeviceTransferLockedDialog.show(getSupportFragmentManager());
+    }
+
+    if (SignalStore.misc().getShouldShowLinkedDevicesReminder()) {
+      SignalStore.misc().setShouldShowLinkedDevicesReminder(false);
+      RelinkDevicesReminderBottomSheetFragment.show(getSupportFragmentManager());
     }
 
     updateTabVisibility();

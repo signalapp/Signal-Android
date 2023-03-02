@@ -38,12 +38,16 @@ class RegistrationCompleteFragment : LoggingFragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     val activity = requireActivity()
+    val viewModel: RegistrationViewModel by viewModels(ownerProducer = { requireActivity() })
+
+    if (viewModel.isReregister) {
+      SignalStore.misc().shouldShowLinkedDevicesReminder = true
+    }
+
     if (SignalStore.storageService().needsAccountRestore()) {
       Log.i(TAG, "Performing pin restore.")
       activity.startActivity(Intent(activity, PinRestoreActivity::class.java))
     } else {
-      val viewModel: RegistrationViewModel by viewModels(ownerProducer = { requireActivity() })
-
       val isProfileNameEmpty = Recipient.self().profileName.isEmpty
       val isAvatarEmpty = !AvatarHelper.hasAvatar(activity, Recipient.self().id)
       val needsProfile = isProfileNameEmpty || isAvatarEmpty
