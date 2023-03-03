@@ -112,7 +112,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
 
     if (viewModel.isReregister()) {
       cancel.setVisibility(View.VISIBLE);
-      cancel.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
+      cancel.setOnClickListener(v -> requireActivity().finish());
     } else {
       cancel.setVisibility(View.GONE);
     }
