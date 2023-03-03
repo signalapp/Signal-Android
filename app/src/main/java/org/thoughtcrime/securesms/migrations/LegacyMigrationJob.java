@@ -271,7 +271,7 @@ public class LegacyMigrationJob extends MigrationJob {
     try (PushTable.Reader pushReader = pushDatabase.readerFor(pushDatabase.getPending())) {
       SignalServiceEnvelope envelope;
       while ((envelope = pushReader.getNext()) != null) {
-        jobManager.add(new PushDecryptMessageJob(context, envelope));
+        jobManager.add(new PushDecryptMessageJob(envelope));
       }
     }
   }

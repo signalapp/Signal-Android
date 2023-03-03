@@ -52,31 +52,6 @@ public final class PushProcessMessageJob extends BaseJob {
             private final long                 timestamp;
 
   @WorkerThread
-  PushProcessMessageJob(@NonNull SignalServiceContent content,
-                        long smsMessageId,
-                        long timestamp)
-  {
-    this(MessageState.DECRYPTED_OK,
-         content,
-         null,
-         smsMessageId,
-         timestamp);
-  }
-
-  @WorkerThread
-  PushProcessMessageJob(@NonNull MessageState messageState,
-                        @NonNull ExceptionMetadata exceptionMetadata,
-                        long smsMessageId,
-                        long timestamp)
-  {
-    this(messageState,
-         null,
-         exceptionMetadata,
-         smsMessageId,
-         timestamp);
-  }
-
-  @WorkerThread
   public PushProcessMessageJob(@NonNull MessageState messageState,
                                @Nullable SignalServiceContent content,
                                @Nullable ExceptionMetadata exceptionMetadata,

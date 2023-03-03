@@ -271,6 +271,10 @@ public class SignalServiceEnvelope {
     return envelope.getReportingToken().toByteArray();
   }
 
+  public Envelope getProto() {
+    return envelope;
+  }
+
   private SignalServiceEnvelopeProto.Builder serializeToProto() {
     SignalServiceEnvelopeProto.Builder builder = SignalServiceEnvelopeProto.newBuilder()
                                                                            .setType(getType())
