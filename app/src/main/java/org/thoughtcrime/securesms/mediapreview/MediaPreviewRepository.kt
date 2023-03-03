@@ -36,7 +36,7 @@ class MediaPreviewRepository {
 
   /**
    * Accessor for database attachments.
-   * @param startingUri the initial position to select from
+   * @param startingAttachmentId the initial position to select from
    * @param threadId the thread to select from
    * @param sorting the ordering of the results
    * @param limit the maximum quantity of the results
