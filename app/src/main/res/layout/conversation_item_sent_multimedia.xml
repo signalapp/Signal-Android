@@ -29,7 +29,7 @@
             android:layout_height="@dimen/conversation_item_reply_size"
             android:layout_gravity="center"
             android:padding="9dp"
-            android:tint="@color/signal_icon_tint_primary"
+            android:tint="@color/signal_icon_tint_secondary"
             app:srcCompat="@drawable/symbol_reply_24" />
 
     </FrameLayout>
