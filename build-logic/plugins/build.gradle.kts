@@ -26,3 +26,11 @@ dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
     implementation(files(testLibs.javaClass.superclass.protectionDomain.codeSource.location))
 }
+
+ktlint {
+    filter {
+        exclude { element ->
+            element.file.path.contains("/build/generated-sources")
+        }
+    }
+}

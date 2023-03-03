@@ -60,12 +60,19 @@ subprojects {
     }
 }
 
+task buildQa {
+    group 'Verification'
+    description 'Quality Assurance for build logic.'
+    dependsOn gradle.includedBuild('build-logic').task(':tools:test'),
+            gradle.includedBuild('build-logic').task(':tools:ktlintCheck'),
+            gradle.includedBuild('build-logic').task(':plugins:ktlintCheck')
+}
+
 task qa {
     group 'Verification'
     description 'Quality Assurance. Run before pushing.'
     dependsOn 'clean',
-            gradle.includedBuild('build-logic').task(':tools:test'),
-            gradle.includedBuild('build-logic').task(':tools:ktlintCheck'),
+            'buildQa',
             ':Signal-Android:testPlayProdReleaseUnitTest',
             ':Signal-Android:lintPlayProdRelease',
             'Signal-Android:ktlintCheck',
