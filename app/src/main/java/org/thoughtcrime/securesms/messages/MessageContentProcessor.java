@@ -16,6 +16,7 @@ import com.google.protobuf.ByteString;
 import com.mobilecoin.lib.exceptions.SerializationException;
 
 import org.signal.core.util.Hex;
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
@@ -275,7 +276,7 @@ public class MessageContentProcessor {
       throws IOException, GroupChangeBusyException
   {
     try {
-      Recipient threadRecipient = getMessageDestination(content);
+      Recipient threadRecipient = getMessageDestination(content, senderRecipient);
 
       if (shouldIgnore(content, senderRecipient, threadRecipient)) {
         log(content.getTimestamp(), "Ignoring message.");
@@ -326,7 +327,7 @@ public class MessageContentProcessor {
         }
 
         if (content.isNeedsReceipt() && messageId != null) {
-          handleNeedsDeliveryReceipt(content, message, messageId);
+          handleNeedsDeliveryReceipt(senderRecipient.getId(), message, messageId);
         } else if (!content.isNeedsReceipt()) {
           if (RecipientUtil.shouldHaveProfileKey(threadRecipient)) {
             Log.w(TAG, "Received an unsealed sender message from " + senderRecipient.getId() + ", but they should already have our profile key. Correcting.");
@@ -2720,11 +2721,11 @@ public class MessageContentProcessor {
     }
   }
 
-  private void handleNeedsDeliveryReceipt(@NonNull SignalServiceContent content,
+  private void handleNeedsDeliveryReceipt(@NonNull RecipientId senderId,
                                           @NonNull SignalServiceDataMessage message,
                                           @NonNull MessageId messageId)
   {
-    ApplicationDependencies.getJobManager().add(new SendDeliveryReceiptJob(RecipientId.from(content.getSender()), message.getTimestamp(), messageId));
+    SignalExecutors.BOUNDED.execute(() -> ApplicationDependencies.getJobManager().add(new SendDeliveryReceiptJob(senderId, message.getTimestamp(), messageId)));
   }
 
   private void handleViewedReceipt(@NonNull SignalServiceContent content,
@@ -3225,24 +3226,28 @@ public class MessageContentProcessor {
   }
 
   private Recipient getSyncMessageDestination(@NonNull SentTranscriptMessage message) {
-    return getGroupRecipient(message.getDataMessage().get().getGroupContext()).orElseGet(() -> Recipient.externalPush(message.getDestination().get()));
-  }
-
-  private Recipient getMessageDestination(@NonNull SignalServiceContent content) throws BadGroupIdException {
-    if (content.getStoryMessage().isPresent()) {
-      SignalServiceStoryMessage message = content.getStoryMessage().get();
-      return getGroupRecipient(message.getGroupContext()).orElseGet(() -> Recipient.externalPush(content.getSender()));
+    if (message.getDataMessage().get().getGroupContext().isPresent()) {
+      return Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.getDataMessage().get().getGroupContext().get().getMasterKey()));
     } else {
-      SignalServiceDataMessage message = content.getDataMessage().orElse(null);
-      return getGroupRecipient(message != null ? message.getGroupContext() : Optional.empty()).orElseGet(() -> Recipient.externalPush(content.getSender()));
+      return Recipient.externalPush(message.getDestination().get());
     }
   }
 
-  private Optional<Recipient> getGroupRecipient(Optional<SignalServiceGroupV2> message) {
-    if (message.isPresent()) {
-      return Optional.of(Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.get().getMasterKey())));
+  private Recipient getMessageDestination(@NonNull SignalServiceContent content, @NonNull Recipient sender) throws BadGroupIdException {
+    if (content.getStoryMessage().isPresent()) {
+      SignalServiceStoryMessage message = content.getStoryMessage().get();
+      return getGroupRecipient(message.getGroupContext(), sender);
     } else {
-      return Optional.empty();
+      SignalServiceDataMessage message = content.getDataMessage().orElse(null);
+      return getGroupRecipient(message != null ? message.getGroupContext() : Optional.empty(), sender);
+    }
+  }
+
+  private @NonNull Recipient getGroupRecipient(Optional<SignalServiceGroupV2> signalServiceGroup, @NonNull Recipient senderRecipient) {
+    if (signalServiceGroup.isPresent()) {
+      return Recipient.externalPossiblyMigratedGroup(GroupId.v2(signalServiceGroup.get().getMasterKey()));
+    } else {
+      return senderRecipient;
     }
   }
 
