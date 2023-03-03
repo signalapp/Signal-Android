@@ -11,7 +11,9 @@ import androidx.test.platform.app.InstrumentationRegistry
 import okhttp3.mockwebserver.MockResponse
 import org.junit.rules.ExternalResource
 import org.signal.libsignal.protocol.IdentityKey
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
+import org.thoughtcrime.securesms.SignalInstrumentationApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
@@ -54,11 +56,18 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
     private set
   lateinit var others: List<RecipientId>
     private set
+  lateinit var othersKeys: List<IdentityKeyPair>
+
+  val inMemoryLogger: InMemoryLogger
+    get() = (application as SignalInstrumentationApplicationContext).inMemoryLogger
 
   override fun before() {
     context = InstrumentationRegistry.getInstrumentation().targetContext
     self = setupSelf()
-    others = setupOthers()
+
+    val setupOthers = setupOthers()
+    others = setupOthers.first
+    othersKeys = setupOthers.second
 
     InstrumentationApplicationDependencyProvider.clearHandlers()
   }
@@ -99,8 +108,9 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
     return Recipient.self()
   }
 
-  private fun setupOthers(): List<RecipientId> {
+  private fun setupOthers(): Pair<List<RecipientId>, List<IdentityKeyPair>> {
     val others = mutableListOf<RecipientId>()
+    val othersKeys = mutableListOf<IdentityKeyPair>()
 
     if (othersCount !in 0 until 1000) {
       throw IllegalArgumentException("$othersCount must be between 0 and 1000")
@@ -114,11 +124,13 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
       SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true, true, true, true, true, true, true, true))
       SignalDatabase.recipients.setProfileSharing(recipientId, true)
       SignalDatabase.recipients.markRegistered(recipientId, aci)
-      ApplicationDependencies.getProtocolStore().aci().saveIdentity(SignalProtocolAddress(aci.toString(), 0), IdentityKeyUtil.generateIdentityKeyPair().publicKey)
+      val otherIdentity = IdentityKeyUtil.generateIdentityKeyPair()
+      ApplicationDependencies.getProtocolStore().aci().saveIdentity(SignalProtocolAddress(aci.toString(), 0), otherIdentity.publicKey)
       others += recipientId
+      othersKeys += otherIdentity
     }
 
-    return others
+    return others to othersKeys
   }
 
   inline fun <reified T : Activity> launchActivity(initIntent: Intent.() -> Unit = {}): ActivityScenario<T> {

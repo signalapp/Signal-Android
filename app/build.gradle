@@ -145,7 +145,7 @@ android {
 
     packagingOptions {
         resources {
-            excludes += ['LICENSE.txt', 'LICENSE', 'NOTICE', 'asm-license.txt', 'META-INF/LICENSE', 'META-INF/NOTICE', 'META-INF/proguard/androidx-annotations.pro', 'libsignal_jni.dylib', 'signal_jni.dll']
+            excludes += ['LICENSE.txt', 'LICENSE', 'NOTICE', 'asm-license.txt', 'META-INF/LICENSE', 'META-INF/LICENSE.md', 'META-INF/NOTICE', 'META-INF/LICENSE-notice.md', 'META-INF/proguard/androidx-annotations.pro', 'libsignal_jni.dylib', 'signal_jni.dll']
         }
     }
 
@@ -570,6 +570,7 @@ dependencies {
     androidTestImplementation testLibs.androidx.test.ext.junit.ktx
     androidTestImplementation testLibs.mockito.android
     androidTestImplementation testLibs.mockito.kotlin
+    androidTestImplementation testLibs.mockk.android
     androidTestImplementation testLibs.square.okhttp.mockserver
 
     instrumentationImplementation (libs.androidx.fragment.testing) {

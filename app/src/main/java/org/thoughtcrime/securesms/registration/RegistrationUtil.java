@@ -1,9 +1,5 @@
 package org.thoughtcrime.securesms.registration;
 
-import android.content.Context;
-
-import androidx.annotation.NonNull;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;

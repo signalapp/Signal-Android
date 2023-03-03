@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.net.Uri
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.FlakyTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Before
@@ -34,6 +35,7 @@ class AttachmentTableTest {
     assertEquals(attachment2.fileName, attachment.fileName)
   }
 
+  @FlakyTest
   @Test
   fun givenABlobAndDifferentTransformQuality_whenIInsert2AttachmentsForPreUpload_thenIExpectDifferentFileInfos() {
     val blob = BlobProvider.getInstance().forData(byteArrayOf(1, 2, 3, 4, 5)).createForSingleSessionInMemory()
@@ -61,6 +63,7 @@ class AttachmentTableTest {
     assertNotEquals(attachment1Info, attachment2Info)
   }
 
+  @FlakyTest
   @Test
   fun givenIdenticalAttachmentsInsertedForPreUpload_whenIUpdateAttachmentDataAndSpecifyOnlyModifyThisAttachment_thenIExpectDifferentFileInfos() {
     val blob = BlobProvider.getInstance().forData(byteArrayOf(1, 2, 3, 4, 5)).createForSingleSessionInMemory()
