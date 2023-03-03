@@ -86,6 +86,7 @@ import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.RemoteAttestationResponseExpiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
+import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotAssociatedWithAnAccountException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotReservedException;
@@ -348,7 +349,7 @@ public class PushServiceSocket {
     String path = VERIFICATION_SESSION_PATH + "/" + sessionId;
 
     final UpdateVerificationSessionRequestBody requestBody = new UpdateVerificationSessionRequestBody(captchaToken, pushToken, pushChallengeToken, mcc, mnc);
-    try (Response response = makeServiceRequest(path, "PATCH", jsonRequestBody(JsonUtil.toJson(requestBody)), NO_HEADERS, new RegistrationSessionResponseHandler(), Optional.empty(), false)) {
+    try (Response response = makeServiceRequest(path, "PATCH", jsonRequestBody(JsonUtil.toJson(requestBody)), NO_HEADERS, new PatchRegistrationSessionResponseHandler(), Optional.empty(), false)) {
       return parseSessionMetadataResponse(response);
     }
   }
@@ -2522,6 +2523,35 @@ public class PushServiceSocket {
       switch (responseCode) {
         case 403:
           throw new IncorrectRegistrationRecoveryPasswordException();
+        case 404:
+          throw new NoSuchSessionException();
+        case 409:
+          RegistrationSessionMetadataJson response;
+          try {
+            response = JsonUtil.fromJson(body.string(), RegistrationSessionMetadataJson.class);
+          } catch (IOException e) {
+            Log.e(TAG, "Unable to read response body.", e);
+            throw new NonSuccessfulResponseCodeException(409);
+          }
+          if (response.pushChallengedRequired()) {
+            throw new PushChallengeRequiredException();
+          } else if (response.captchaRequired()) {
+            throw new CaptchaRequiredException();
+          } else {
+            throw new HttpConflictException();
+          }
+      }
+    }
+  }
+
+
+  private static class PatchRegistrationSessionResponseHandler implements ResponseCodeHandler {
+
+    @Override
+    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+      switch (responseCode) {
+        case 403:
+          throw new TokenNotAcceptedException();
         case 404:
           throw new NoSuchSessionException();
         case 409:

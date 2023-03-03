@@ -10,6 +10,7 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.pin.KbsRepository;
 import org.thoughtcrime.securesms.pin.TokenData;
@@ -35,6 +36,8 @@ import io.reactivex.rxjava3.core.Single;
  * the specific verify operations for each flow.
  */
 public abstract class BaseRegistrationViewModel extends ViewModel {
+
+  private static final String TAG = Log.tag(BaseRegistrationViewModel.class);
 
   private static final String STATE_NUMBER                  = "NUMBER";
   private static final String STATE_REGISTRATION_SECRET     = "REGISTRATION_SECRET";
@@ -280,10 +283,14 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     }
 
     if (hasCaptchaToken() && processor.captchaRequired()) {
-      return verifyAccountRepository.verifyCaptcha(sessionId, Objects.requireNonNull(getCaptchaToken()), e164, getRegistrationSecret())
+      Log.d(TAG, "Submitting completed captcha challenge");
+      final String captcha = Objects.requireNonNull(getCaptchaToken());
+      clearCaptchaResponse();
+      return verifyAccountRepository.verifyCaptcha(sessionId, captcha, e164, getRegistrationSecret())
                                     .map(RegistrationSessionProcessor.RegistrationSessionProcessorForSession::new);
     } else {
       String challenge = processor.getChallenge();
+      Log.d(TAG, "Handling challenge of type " + challenge);
       if (challenge != null) {
         switch (challenge) {
           case RegistrationSessionProcessor.PUSH_CHALLENGE_KEY:

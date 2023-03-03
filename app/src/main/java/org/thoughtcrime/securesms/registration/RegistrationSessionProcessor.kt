@@ -8,6 +8,7 @@ import org.whispersystems.signalservice.api.push.exceptions.MustRequestNewCodeEx
 import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionException
 import org.whispersystems.signalservice.api.push.exceptions.NonNormalizedPhoneNumberException
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
+import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException
 import org.whispersystems.signalservice.api.util.Preconditions
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor
@@ -39,6 +40,10 @@ sealed class RegistrationSessionProcessor(response: ServiceResponse<Registration
 
   fun pushChallengeRequired(): Boolean {
     return PUSH_CHALLENGE_KEY == getChallenge()
+  }
+
+  fun isTokenRejected(): Boolean {
+    return error is TokenNotAcceptedException
   }
 
   fun isImpossibleNumber(): Boolean {
