@@ -1824,7 +1824,7 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">Problemen met registreren?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Zorg ervoor dat je telefoon een mobiel signaal heeft om je sms of oproep te ontvangen\n • Bevestig dat je een oproep naar nummer\n kunt ontvangen • Controleer of je je telefoonnummer correct hebt ingevoerd.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Zorg ervoor dat je telefoon een mobiel signaal heeft om je sms of oproep te ontvangen\n • Bevestig dat je een oproep naar nummer kunt ontvangen\n • Controleer of je je telefoonnummer correct hebt ingevoerd.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Volg voor meer informatie deze stappen voor probleemoplossing of neem contact op met ons supportteam</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->

@@ -1227,9 +1227,9 @@
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
     <string name="MessageRecord_unanswered_video_call">Chamada de vídeo não atendida</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
-    <string name="MessageRecord_incoming_voice_call">Recebendo chamada de voz</string>
+    <string name="MessageRecord_incoming_voice_call">Chamada de voz recebida</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
-    <string name="MessageRecord_incoming_video_call">Recebendo chamada de vídeo</string>
+    <string name="MessageRecord_incoming_video_call">Chamada de vídeo recebida</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
     <string name="MessageRecord_missed_voice_call">Chamada de voz perdida</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
