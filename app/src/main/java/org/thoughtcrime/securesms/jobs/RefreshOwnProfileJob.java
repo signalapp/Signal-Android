@@ -253,7 +253,6 @@ public class RefreshOwnProfileJob extends BaseJob {
     }
   }
 
-  @VisibleForTesting
   static void checkUsernameIsInSync() {
     try {
       String  localUsername    = SignalDatabase.recipients().getUsername(Recipient.self().getId());

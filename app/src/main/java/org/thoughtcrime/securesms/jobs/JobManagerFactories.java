@@ -141,6 +141,7 @@ public final class JobManagerFactories {
       put(MultiDeviceVerifiedUpdateJob.KEY,          new MultiDeviceVerifiedUpdateJob.Factory());
       put(MultiDeviceViewOnceOpenJob.KEY,            new MultiDeviceViewOnceOpenJob.Factory());
       put(MultiDeviceViewedUpdateJob.KEY,            new MultiDeviceViewedUpdateJob.Factory());
+      put(NewRegistrationUsernameSyncJob.KEY,        new NewRegistrationUsernameSyncJob.Factory());
       put(NullMessageSendJob.KEY,                    new NullMessageSendJob.Factory());
       put(OptimizeMessageSearchIndexJob.KEY,         new OptimizeMessageSearchIndexJob.Factory());
       put(PaymentLedgerUpdateJob.KEY,                new PaymentLedgerUpdateJob.Factory());

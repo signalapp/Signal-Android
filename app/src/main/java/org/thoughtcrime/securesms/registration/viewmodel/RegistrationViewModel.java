@@ -12,6 +12,7 @@ import androidx.savedstate.SavedStateRegistryOwner;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.NewRegistrationUsernameSyncJob;
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -383,7 +384,11 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
     ApplicationDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
     stopwatch.split("AccountRestore");
 
-    ApplicationDependencies.getJobManager().runSynchronously(new StorageSyncJob(), TimeUnit.SECONDS.toMillis(10));
+    ApplicationDependencies
+        .getJobManager()
+        .startChain(new StorageSyncJob())
+        .then(new NewRegistrationUsernameSyncJob())
+        .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10));
     stopwatch.split("ContactRestore");
 
     try {
