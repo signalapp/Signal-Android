@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.push
 
 import android.content.Context
+import com.google.i18n.phonenumbers.PhoneNumberUtil
 import okhttp3.CipherSuite
 import okhttp3.ConnectionSpec
 import okhttp3.Dns
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.net.RemoteDeprecationDetectorInterceptor
 import org.thoughtcrime.securesms.net.SequentialDns
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor
 import org.thoughtcrime.securesms.net.StaticDns
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl
@@ -228,12 +228,12 @@ open class SignalServiceNetworkAccess(context: Context) {
     return getConfiguration(SignalStore.account().e164)
   }
 
-  open fun getConfiguration(localNumber: String?): SignalServiceConfiguration {
-    if (localNumber == null || SignalStore.proxy().isProxyEnabled) {
+  open fun getConfiguration(e164: String?): SignalServiceConfiguration {
+    if (e164 == null || SignalStore.proxy().isProxyEnabled) {
       return uncensoredConfiguration
     }
 
-    val countryCode: Int = PhoneNumberFormatter.getLocalCountryCode()
+    val countryCode: Int = PhoneNumberUtil.getInstance().parse(e164, null).countryCode
 
     return when (SignalStore.settings().censorshipCircumventionEnabled) {
       SettingsValues.CensorshipCircumventionEnabled.ENABLED -> {
