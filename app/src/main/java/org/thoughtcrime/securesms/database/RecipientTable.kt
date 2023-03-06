@@ -24,6 +24,7 @@ import org.signal.core.util.optionalString
 import org.signal.core.util.or
 import org.signal.core.util.readToSet
 import org.signal.core.util.readToSingleBoolean
+import org.signal.core.util.readToSingleLong
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
@@ -3623,6 +3624,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       rotateStorageId(id)
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
+  }
+
+  fun getExpiresInSeconds(id: RecipientId): Long {
+    return readableDatabase
+      .select(MESSAGE_EXPIRATION_TIME)
+      .from(TABLE_NAME)
+      .where(ID_WHERE, id)
+      .run()
+      .readToSingleLong(0L)
   }
 
   /**
