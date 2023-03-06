@@ -24,7 +24,7 @@ object SharedMediaPreference {
   class Model(
     val mediaCursor: Cursor,
     val mediaIds: List<Long>,
-    val onMediaRecordClick: (MediaTable.MediaRecord, Boolean) -> Unit
+    val onMediaRecordClick: (View, MediaTable.MediaRecord, Boolean) -> Unit
   ) : PreferenceModel<Model>() {
     override fun areItemsTheSame(newItem: Model): Boolean {
       return true
@@ -42,8 +42,8 @@ object SharedMediaPreference {
 
     override fun bind(model: Model) {
       rail.setCursor(GlideApp.with(rail), model.mediaCursor)
-      rail.setListener {
-        model.onMediaRecordClick(it, ViewUtil.isLtr(rail))
+      rail.setListener { v, m ->
+        model.onMediaRecordClick(v, m, ViewUtil.isLtr(rail))
       }
     }
   }

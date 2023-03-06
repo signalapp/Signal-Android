@@ -146,7 +146,7 @@ object AndroidTelecomUtil {
           AndroidCallConnectionService.KEY_RECIPIENT_ID to recipientId.serialize(),
           AndroidCallConnectionService.KEY_CALL_ID to callId,
           AndroidCallConnectionService.KEY_VIDEO_CALL to isVideoCall
-        ),
+        )
       )
 
       try {

@@ -14,6 +14,7 @@
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
 
     <string name="yes">Oui</string>
     <string name="no">Non</string>
@@ -100,7 +101,7 @@
     <string name="BlockedUsersActivity__add_blocked_user">Ajouter un utilisateur bloqué</string>
     <string name="BlockedUsersActivity__blocked_users_will">Les utilisateurs bloqués ne pourront ni vous appeler ni vous envoyer des messages.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Aucun utilisateur bloqué</string>
-    <string name="BlockedUsersActivity__block_user">Bloquer cet utilisateur ?</string>
+    <string name="BlockedUsersActivity__block_user">Bloquer cet utilisateur ?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">« %1$s » ne pourra ni vous appeler ni vous envoyer des messages.</string>
     <string name="BlockedUsersActivity__block">Bloquer</string>
 
@@ -138,8 +139,8 @@
     <string name="CreditCardFragment__continue">Poursuivre</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Bloquer et quitter %1$s ?</string>
-    <string name="BlockUnblockDialog_block_s">Bloquer %1$s ?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Bloquer et quitter %1$s ?</string>
+    <string name="BlockUnblockDialog_block_s">Bloquer %1$s ?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Vous ne recevrez plus ni message ni mise à jour de ce groupe et les membres ne pourront plus vous rajouter à ce groupe.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Les membres du groupe ne pourront plus vous rajouter à ce groupe.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Les membres du groupe pourront vous rajouter à ce groupe.</string>
@@ -153,7 +154,7 @@
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Bloquer la réception des mises à jour et des actualités de Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Reprendre la réception des mises à jour et des actualités de Signal.</string>
-    <string name="BlockUnblockDialog_unblock_s">Débloquer %1$s ?</string>
+    <string name="BlockUnblockDialog_unblock_s">Débloquer %1$s ?</string>
     <string name="BlockUnblockDialog_block">Bloquer</string>
     <string name="BlockUnblockDialog_block_and_leave">Bloquer et quitter</string>
     <string name="BlockUnblockDialog_report_spam_and_block">Signaler comme indésirable et bloquer</string>
@@ -196,7 +197,7 @@
     <string name="CensorshipCircumventionMegaphone_no_thanks">Non merci</string>
 
     <!-- ClearProfileActivity -->
-    <string name="ClearProfileActivity_remove">Supprimer</string>
+    <string name="ClearProfileActivity_remove">Effacer</string>
     <string name="ClearProfileActivity_remove_profile_photo">Supprimer la photo de profil ?</string>
     <string name="ClearProfileActivity_remove_group_photo">Supprimer la photo du groupe ?</string>
 
@@ -398,21 +399,21 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Enregistrer dans la mémoire ?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">L’enregistrement de ce contenu dans la mémoire permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
-        <item quantity="other">L’enregistrement des %1$d médias dans la mémoire permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
+        <item quantity="one">L’enregistrement de ce contenu dans l\'espace de stockage permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
+        <item quantity="other">L’enregistrement des %1$d médias dans l\'espace de stockage permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-        <item quantity="one">Erreur d’enregistrement du fichier joint dans la mémoire !</item>
-        <item quantity="other">Erreur d’enregistrement des fichiers joints dans la mémoire !</item>
+        <item quantity="one">Erreur d’enregistrement du fichier joint dans l\'espace de stockage !</item>
+        <item quantity="other">Erreur d’enregistrement des fichiers joints dans l\'espace de stockage !</item>
     </plurals>
-    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire dans la mémoire.</string>
+    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire dans l\'espace de stockage</string>
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="one">Enregistrement du fichier joint</item>
         <item quantity="other">Enregistrement de %1$d fichiers joints</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Enregistrement du fichier joint dans la mémoire…</item>
-        <item quantity="other">Enregistrement de %1$d fichiers joints dans la mémoire…</item>
+        <item quantity="one">Enregistrement du fichier joint dans l\'espace de stockage…</item>
+        <item quantity="other">Enregistrement de %1$d fichiers joints dans l\'espace de stockage…</item>
     </plurals>
     <string name="ConversationFragment_pending">En attente…</string>
     <string name="ConversationFragment_push">Données (Signal)</string>
@@ -423,7 +424,7 @@
     <string name="ConversationFragment_delete_for_me">Supprimer pour moi</string>
     <string name="ConversationFragment_delete_for_everyone">Supprimer pour tout le monde</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Supprimer cet appareil</string>
+    <string name="ConversationFragment_delete_on_this_device">Supprimer de cet appareil</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Supprimer de tous les appareils</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ce message sera supprimé pour tout le monde dans la conversation s’ils utilisent une version récente de Signal. Ils pourront voir que vous avez supprimé un message.</string>
@@ -447,7 +448,7 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$s activé</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">Bloquer la demande ?</string>
+    <string name="ConversationFragment__block_request">Bloquer la demande ?</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">« %1$s » ne pourra ni se joindre ni demander à se joindre à ce groupe grâce au lien de groupe. Cette personne pourra toujours être ajoutée au groupe manuellement.</string>
     <!-- Dialog confirm block request button -->
@@ -455,7 +456,7 @@
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Annuler</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">Bloqués</string>
+    <string name="ConversationFragment__blocked">Bloqué</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Supprimer le filtre</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -547,9 +548,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Faites glisser vers le bas pour filtrer</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Relâchez pour filtrer</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
@@ -613,7 +614,7 @@
     <string name="BackupsPreferenceFragment__d_so_far">%1$d jusqu’à présent…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% jusqu’à présent…</string>
-    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal exige l’autorisation d’accès à la mémoire externe afin de créer des sauvegardes, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal exige l’autorisation d’accès à l\'espace de stockage externe afin de créer des sauvegardes, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -663,9 +664,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Toutes les heures sont indiquées en (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">L\'horaire sélectionné est passé. En le sélectionnant, le message sera envoyé immédiatement.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Envoyer immédiatement</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Envoyer maintenant</string>
@@ -776,8 +777,8 @@
         <item quantity="other">Ces membres devront accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevront aucun message du groupe avant d’en avoir accepté une :</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Ce membre a été supprimé du groupe et ne pourra pas s’y joindre de nouveau avant d’avoir effectué une mise à niveau :</item>
-        <item quantity="other">Ces membres ont été supprimés du groupe et ne pourront pas s’y joindre de nouveau avant d’avoir effectué une mise à niveau :</item>
+        <item quantity="one">Ce membre a été retiré du groupe et ne pourra pas s’y joindre de nouveau avant d’avoir effectué une mise à niveau :</item>
+        <item quantity="other">Ces membres ont été retirés du groupe et ne pourront pas s’y joindre de nouveau avant d’avoir effectué une mise à niveau :</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -792,8 +793,8 @@
         <item quantity="other">Ces membres devront accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevront aucun message du groupe avant d’en avoir accepté une :</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Ce membre ne peut pas se joindre aux Nouveaux groupes et sera supprimé du groupe :</item>
-        <item quantity="other">Ces membres ne peuvent pas se joindre aux Nouveaux groupes et seront supprimés du groupe :</item>
+        <item quantity="one">Ce membre ne peut pas se joindre aux nouveaux groupes et sera éliminé du groupe :</item>
+        <item quantity="other">Ces membres ne peuvent pas se joindre aux nouveaux groupes et seront retirés du groupe :</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -897,9 +898,9 @@
     <string name="AddGroupDetailsFragment__this_field_is_required">Ce champ est requis.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">Échec de création du groupe.</string>
     <string name="AddGroupDetailsFragment__try_again_later">Réessayez plus tard.</string>
-    <string name="AddGroupDetailsFragment__remove">Supprimer</string>
+    <string name="AddGroupDetailsFragment__remove">Retirer</string>
     <string name="AddGroupDetailsFragment__sms_contact">Contact texto</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Supprimer %1$s de ce groupe ?</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">Retirer %1$s de ce groupe ?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal. Les échanges de ce groupe se feront donc par MMS. Le nom personnalisé du groupe, ainsi que les photos, ne seront visibles que par vous.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -935,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me signaler les mentions</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Recevoir des notifications si vous êtes mentionné dans des conversations en sourdine ?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Recevoir des notifications si vous êtes mentionné dans des conversations en sourdine ?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Toujours me prévenir</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Ne pas me prévenir</string>
 
@@ -953,6 +954,16 @@
     <string name="ManageProfileFragment__username_created">Pseudo créé</string>
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Pseudo copié</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Impossible de supprimer le nom d’utilisateur. Réessayez plus tard.</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Nom d’utilisateur supprimé</string>
+
+    <!-- UsernameOutOfSyncReminder -->
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Une erreur s’est produite et votre nom d’utilisateur n’est plus associé à votre compte. Vous pouvez tenter de le reconfigurer ou en choisir un autre.</string>
+    <!-- Action text to navigate user to manually fix the issue with their username -->
+    <string name="UsernameOutOfSyncReminder__fix_now">Résoudre</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1011,7 +1022,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Impossible de se joindre au groupe</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Vous ne pouvez pas vous joindre au groupe avec le lien du groupe car un administrateur vous a supprimé.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Vous ne pouvez pas vous joindre au groupe avec le lien du groupe car un administrateur vous a retiré(e).</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Ce lien de groupe n’est plus valide.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1116,8 +1127,8 @@
     <string name="MediaOverviewActivity_Sort_by">Trier par</string>
     <string name="MediaOverviewActivity_Newest">Le plus récent</string>
     <string name="MediaOverviewActivity_Oldest">Le plus ancien</string>
-    <string name="MediaOverviewActivity_Storage_used">Mémoire utilisée</string>
-    <string name="MediaOverviewActivity_All_storage_use">Utilisation totale de la mémoire</string>
+    <string name="MediaOverviewActivity_Storage_used">Espace de stockage utilisé</string>
+    <string name="MediaOverviewActivity_All_storage_use">Utilisation totale de l\'espace de stockage</string>
     <string name="MediaOverviewActivity_Grid_view_description">Vue en grille</string>
     <string name="MediaOverviewActivity_List_view_description">Vue en liste</string>
     <string name="MediaOverviewActivity_Selected_description">Sélectionné</string>
@@ -1245,8 +1256,8 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">Un membre n’a pas pu être ajouté au Nouveau groupe et a été supprimé du groupe.</item>
-        <item quantity="other">%1$s membres n’ont pas pu être ajoutés au Nouveau groupe et ont été supprimés du groupe.</item>
+        <item quantity="one">Un membre n’a pas pu être ajouté au nouveau groupe et a été retiré du groupe.</item>
+        <item quantity="other">%1$s membres n’ont pas pu être ajoutés au nouveau groupe et ont été retirés du groupe.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1267,9 +1278,9 @@
     <string name="MessageRecord_s_joined_the_group">%1$s s’est joint au groupe.</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">Vous avez supprimé %1$s.</string>
-    <string name="MessageRecord_s_removed_s">%1$s a supprimé %2$s.</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s vous a supprimé du groupe.</string>
+    <string name="MessageRecord_you_removed_s">Vous avez retiré %1$s.</string>
+    <string name="MessageRecord_s_removed_s">%1$s a retiré %2$s.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s vous a retiré du groupe.</string>
     <string name="MessageRecord_you_left_the_group">Vous avez quitté le groupe.</string>
     <string name="MessageRecord_s_left_the_group">%1$s a quitté le groupe.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">Vous n’êtes plus dans le groupe.</string>
@@ -1472,10 +1483,10 @@
     <string name="MessageRequestBottomView_unblock">Débloquer</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Ce contact ne saura pas que vous avez vu ses messages tant que vous n’aurez pas accepté.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Autoriser %1$s à vous envoyer des messages et partager vos nom et photo avec ce contact ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Autoriser %1$s à vous écrire ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Recevoir voir des mises à jour et des nouvelles de%1$s ? Vous ne recevrez aucune mise à jour tant que vous ne l’aurez pas débloqué.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Autoriser %1$s à vous envoyer un message ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Recevoir voir des nouvelles de%1$s ? Vous ne recevrez aucune nouvelle tant que vous ne l’aurez pas débloqué.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Poursuivre votre conversation avec ce groupe et partager vos nom et photo avec ses membres ?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Convertissez ce groupe pour activer de nouvelles fonctions telles que les @mentions et l’administration. Les membres qui n’ont pas partagé leur nom ou leur photo dans ce groupe seront invités à s’y joindre.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ce groupe hérité ne peut plus être utilisé, car il comporte trop de membres. Le nombre maximal de membres d’un groupe est %1$d.</string>
@@ -1483,7 +1494,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vous joindre à ce groupe et partager votre nom et votre photo avec ses membres ? Ils ne sauront pas que vous avez vu leurs messages tant que vous n’aurez pas accepté.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Vous joindre à ce groupe et partager votre nom et votre photo avec ses membres ? Vous ne verrez pas leurs messages tant que vous n’aurez pas accepté.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vous joindre à ce groupe ? Ses membres ne sauront pas que vous avez lu leurs messages tant que vous n’aurez pas accepté.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Débloquer ce groupe et partager votre nom et votre photo avec ses membres ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Débloquer ce groupe et partager vos nom et photo avec ses membres ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Afficher</string>
     <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
@@ -1584,9 +1595,20 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Créer un nouveau NIP</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
+    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
+    <string name="ReRegisterWithPinFragment_send_sms_code">Envoyer un code par SMS</string>
+    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
+    <string name="ReRegisterWithPinFragment_support_email_subject">Inscription à Signal - Besoin d’aide pour inscrire un PIN sur un appareil Android</string>
+    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
+    <string name="ReRegisterWithPinFragment_need_help_local">Votre PIN est un code numérique ou alphanumérique d’au moins %1$d caractères que vous avez créé.\n\nSi vous avez oublié votre PIN, vous pouvez en créer un autre.</string>
+    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
+    <string name="ReRegisterWithPinFragment_skip_local">Si vous avez oublié votre PIN, vous pouvez en créer un autre.</string>
+    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Vous avez atteint le nombre maximal de tentatives autorisées. Cependant, vous pouvez toujours accéder à votre compte Signal en créant un nouveau PIN.</string>
+
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Avertissement</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Si vous désactivez le NIP, vous perdrez toutes vos données lors de votre réinscription sur Signal, à moins que vous ne les sauvegardiez et les restauriez manuellement. Vous ne pouvez pas activer le blocage de l’inscription si le NIP est désactivé.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Si vous désactivez le PIN, vous perdrez toutes vos données lors de votre réinscription sur Signal, à moins que vous ne les sauvegardiez et les restauriez manuellement. Vous ne pouvez pas activer le blocage de l’inscription si le PIN est désactivé.</string>
     <string name="PinOptOutDialog_disable_pin">Désactiver le NIP</string>
 
     <!-- RatingManager -->
@@ -1711,7 +1733,7 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Caméra</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Réactiver</string>
+    <string name="WebRtcCallView__unmute">Réactiver le son</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">Sourdine</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1768,11 +1790,18 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal a besoin des autorisations Contacts et Médias pour vous aider à vous connecter avec vos amis et à envoyer des messages. Vos contacts sont téléversés en utilisant la découverte confidentielle des contacts de Signal, ce qui signifie qu’ils sont chiffrés de bout en bout et ne sont jamais visibles par le service Signal.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal a besoin de l’autorisation Contacts pour vous aider à vous connecter avec vos amis. Vos contacts sont téléversés en utilisant la découverte confidentielle des contacts de Signal, ce qui signifie qu’ils sont chiffrés de bout en bout et ne sont jamais visibles par le service Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Vous avez fait trop d’essais pour inscrire ce numéro. Veuillez réessayer plus tard.</string>
+    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
+    <string name="RegistrationActivity_rate_limited_to_try_again">Vous avez atteint le nombre maximal de tentatives d’inscription de ce numéro. Veuillez réessayer dans %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et réessayer.</string>
     <string name="RegistrationActivity_non_standard_number_format">Format de numéro non standard</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Le numéro que vous avez saisi (%1$s) semble avoir un format atypique.\n\nSerait-ce plutôt %2$s ?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal pour Android – format de numéro de téléphone</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Appel demandé</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
+    <string name="RegistrationActivity_sms_requested">SMS demandé</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
+    <string name="RegistrationActivity_code_requested">Code de vérification demandé</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Vous êtes maintenant à %1$d étape d’envoyer un journal de débogage.</item>
         <item quantity="other">Vous êtes maintenant à %1$d étapes d’envoyer un journal de débogage.</item>
@@ -1792,6 +1821,16 @@
     <string name="RegistrationActivity_call">Appeler</string>
     <string name="RegistrationActivity_verification_code">Code de vérification</string>
     <string name="RegistrationActivity_resend_code">Renvoyer le code</string>
+    <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
+    <string name="RegistrationActivity_support_bottom_sheet_title">Un problème d’inscription ?</string>
+    <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Assurez-vous que votre téléphone dispose d’un signal cellulaire pour recevoir votre SMS ou votre appel.\n • Confirmez que vous pouvez recevoir un appel à ce numéro.\n • Vérifiez que vous avez renseigné votre numéro de téléphone correctement.</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Pour plus d’informations, veuillez suivre ces étapes de dépannage ou contacter le service d’assistance.</string>
+    <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ces étapes de dépannage</string>
+    <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Contacter l’assistance</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Activer le blocage de l’inscription ?</string>
@@ -1877,7 +1916,7 @@
     <string name="StickerPackPreviewActivity_untitled">Sans titre</string>
     <string name="StickerPackPreviewActivity_unknown">Inconnu</string>
     <string name="StickerPackPreviewActivity_install">Installer</string>
-    <string name="StickerPackPreviewActivity_remove">Supprimer</string>
+    <string name="StickerPackPreviewActivity_remove">Retirer</string>
     <string name="StickerPackPreviewActivity_stickers">Autocollants</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Échec de chargement du paquet d’autocollants</string>
 
@@ -1956,6 +1995,12 @@
     <string name="ThreadRecord__reacted_s_to_their_story">A réagi par %1$s à leur Story</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Paiement</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Message programmé</string>
+    <!--  Displayed in the conversation list when your message history has been merged -->
+    <string name="ThreadRecord_message_history_has_been_merged">L’historique de vos messages a fusionné</string>
+    <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
+    <string name="ThreadRecord_s_belongs_to_s">%1$s appartient à %2$s</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
@@ -1976,7 +2021,7 @@
     <string name="UsernameEditFragment__choose_your_username">Choisissez votre pseudo</string>
     <string name="UsernameEditFragment_username">Nom d’utilisateur</string>
     <string name="UsernameEditFragment_delete">Supprimer</string>
-    <string name="UsernameEditFragment_successfully_removed_username">Le nom d’utilisateur a été supprimé avec succès.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">Le nom d’utilisateur a été effacé avec succès.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Une erreur réseau est survenue.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Ce nom d’utilisateur existe déjà.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Les noms d’utilisateur ne peuvent comprendre que a à Z, 0 à 9 et des traits de soulignement.</string>
@@ -2045,8 +2090,8 @@
     <string name="MediaPreviewActivity_you">Vous</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Type de média non pris en charge</string>
     <string name="MediaPreviewActivity_draft">Brouillon</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal a besoin de l’autorisation Stockage afin d’enregistrer sur la mémoire externe, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Stockage.</string>
-    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossible d’enregistrer sur la mémoire externe sans autorisation</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal a besoin de l’autorisation Stockage afin d’enregistrer sur l\'espace de stockage externe, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Stockage.</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossible d’enregistrer sur l\'espace de stockage sans autorisation</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Supprimer le message ?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Ce message sera irrémédiablement supprimé.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s à %2$s</string>
@@ -2633,10 +2678,10 @@
     <string name="arrays__use_default">Utiliser la valeur par défaut</string>
     <string name="arrays__use_custom">Personnalisé</string>
 
-    <string name="arrays__mute_for_one_hour">Sourdine pendant 1 heure</string>
+    <string name="arrays__mute_for_one_hour">Sourdine pendant 1 heure</string>
     <string name="arrays__mute_for_eight_hours">Sourdine pendant 8 heures</string>
-    <string name="arrays__mute_for_one_day">Sourdine pendant 1 jour</string>
-    <string name="arrays__mute_for_seven_days">Sourdine pendant 7 jours</string>
+    <string name="arrays__mute_for_one_day">Sourdine pendant 1 jour</string>
+    <string name="arrays__mute_for_seven_days">Sourdine pendant 7 jours</string>
     <string name="arrays__always">Toujours</string>
 
     <string name="arrays__settings_default">Paramètre par défaut</string>
@@ -2675,7 +2720,7 @@
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Garder les conversations en mode silencieux archivées</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Les conversations en mode silencieux sont archivées, y compris après réception d\'un nouveau message.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Les conversations en mode silencieux sont archivées, y compris après réception d’un nouveau message.</string>
     <string name="preferences__generate_link_previews">Générer des aperçus de lien</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Pour les messages que vous envoyez, récupérez des aperçus de lien directement des sites Web.</string>
     <string name="preferences__change_passphrase">Changer la phrase de passe</string>
@@ -2730,7 +2775,7 @@
     <string name="preferences__mmsc_password">Mot de passe MMSC</string>
     <string name="preferences__sms_delivery_reports">Relevés de remise des textos</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un relevé de remise pour chaque texto envoyé</string>
-    <string name="preferences__data_and_storage">Données et mémoire</string>
+    <string name="preferences__data_and_storage">Données et espace de stockage</string>
     <string name="preferences__storage">Mémoire</string>
     <string name="preferences__payments">Paiements</string>
     <!-- Privacy settings payments section description -->
@@ -2771,19 +2816,19 @@
     <string name="preferences_chats__when_roaming">En itinérance</string>
     <string name="preferences_chats__media_auto_download">Téléchargement automatique des médias</string>
     <string name="preferences_chats__message_history">Historique des messages</string>
-    <string name="preferences_storage__storage_usage">Utilisation de la mémoire</string>
+    <string name="preferences_storage__storage_usage">Utilisation de l\'espace de stockage</string>
     <string name="preferences_storage__photos">Photos</string>
     <string name="preferences_storage__videos">Vidéos</string>
     <string name="preferences_storage__files">Fichiers</string>
     <string name="preferences_storage__audio">Son</string>
-    <string name="preferences_storage__review_storage">État de la mémoire</string>
+    <string name="preferences_storage__review_storage">État de l\'espace de stockage</string>
     <string name="preferences_storage__delete_older_messages">Supprimer les anciens messages ?</string>
     <string name="preferences_storage__clear_message_history">Effacer l’historique des messages ?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">L’historique et les contenus multimédias des messages de plus de %1$s seront irrémédiablement supprimés de votre appareil.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Toutes les conversations seront irrémédiablement réduites aux %1$s messages les plus récents.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tout l’historique et tous les contenus multimédias des messages seront irrémédiablement supprimés de votre appareil.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Voulez-vous vraiment supprimer tout l’historique des messages ?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Tout l’historique des messages sera irrémédiablement supprimé. Cette action ne peut être annulée.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Tout l’historique des messages sera irrémédiablement effacé. Cette action ne peut être annulée.</string>
     <string name="preferences_storage__delete_all_now">Tout supprimer maintenant</string>
     <string name="preferences_storage__forever">Pour toujours</string>
     <string name="preferences_storage__one_year">1 an</string>
@@ -2799,7 +2844,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Paiements</string>
     <string name="preferences_chats__chats">Conversations</string>
-    <string name="preferences_data_and_storage__manage_storage">Gérer la mémoire</string>
+    <string name="preferences_data_and_storage__manage_storage">Gérer l\'espace de stockage</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Utiliser moins de données pour les appels</string>
     <string name="preferences_data_and_storage__never">Jamais</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi et données mobiles</string>
@@ -2969,7 +3014,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Paiement envoyé</string>
     <string name="PaymentsDetailsFragment__received_payment">Paiement reçu</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Le paiement est finalisé %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Bloquer le numéro</string>
+    <string name="PaymentsDetailsFragment__block_number">Numéro de bloc</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Transférer</string>
@@ -3126,7 +3171,7 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Réactiver les notifications</string>
+    <string name="conversation_muted__unmute">Réactiver le son</string>
 
     <!-- conversation_unmuted -->
     <string name="conversation_unmuted__mute_notifications">Notifications en sourdine</string>
@@ -3170,7 +3215,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtrer les conversations non lues</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Supprimer le filtre Non lu</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copier dans le presse-papiers</string>
@@ -3285,7 +3330,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Le compte est verrouillé</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Votre compte a été verrouillé afin de protéger vos données personnelles et votre sécurité. Après %1$d jours d’inactivité dans votre compte, vous pourrez réinscrire ce numéro de téléphone sans avoir besoin de votre NIP. Tout le contenu sera supprimé.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Votre compte a été verrouillé afin de protéger vos données personnelles et votre sécurité. Après %1$d jours d’inactivité dans votre compte, vous pourrez réinscrire ce numéro de téléphone sans avoir besoin de votre PIN. Tout le contenu sera supprimé.</string>
     <string name="AccountLockedFragment__next">Suivant</string>
     <string name="AccountLockedFragment__learn_more">En apprendre davantage</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3293,6 +3338,8 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Saisissez votre NIP</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Saisissez le NIP que vous avez créé pour votre compte. Il est différent de votre code de confirmation reçu par texto.</string>
+    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Saisissez le PIN choisi pour votre compte.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Saisissez un NIP alphanumérique</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Saisissez un NIP numérique</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Le NIP est erroné. Veuillez réessayer.</string>
@@ -3348,7 +3395,7 @@
     <string name="PushDecryptJob_new_locked_message">Nouveau message verrouillé</string>
     <string name="PushDecryptJob_unlock_to_view_pending_messages">Déverrouiller pour visualiser les messages en attente</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Phrase de passe de la sauvegarde</string>
-    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Les sauvegardes sont enregistrées dans la mémoire externe et chiffrées avec la phrase de passe ci-dessous. Vous devez avoir cette phrase de passe afin de restaurer la sauvegarde.</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Les sauvegardes sont enregistrées dans l\'espace de stockage externe et chiffrées avec la phrase de passe ci-dessous. Vous devez avoir cette phrase de passe afin de restaurer la sauvegarde.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Cette phrase de passe est requise afin de restaurer une sauvegarde.</string>
     <string name="backup_enable_dialog__folder">Dossier</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">J’ai noté cette phrase de passe. Sans elle, je ne pourrai pas restaurer une sauvegarde.</string>
@@ -3396,7 +3443,10 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Votre sauvegarde contient un fichier trop volumineux. Veuillez le supprimer et créer une nouvelle sauvegarde.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Toucher pour gérer les sauvegardes</string>
     <string name="RegistrationActivity_wrong_number">Mauvais numéro ?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <!--    Countdown to when the user can request a new code via phone call during registration.-->
+    <string name="RegistrationActivity_call_me_instead_available_in">Appelez-moi dans (%1$02d:%2$02d)</string>
+    <!--    Countdown to when the user can request a new SMS code during registration.-->
+    <string name="RegistrationActivity_resend_sms_available_in">Renvoyer un code (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contacter l’assistance de Signal</string>
     <string name="RegistrationActivity_code_support_subject">Inscription à Signal – Code de confirmation pour Android</string>
     <string name="RegistrationActivity_incorrect_code">Code incorrect</string>
@@ -3495,7 +3545,7 @@
     <string name="DeviceTransferSetup__location_permission">Autorisation de localisation</string>
     <string name="DeviceTransferSetup__location_services">Services de localisation</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Sur l’écran du Wi-Fi Direct, supprimez tous les groupes mémorisés et annulé le lien de tout appareil invité ou connecté.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Sur l’écran du Wi-Fi Direct, effacez tous les groupes mémorisés et annulez le lien de tout appareil invité ou connecté.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Écran Wi-Fi Direct</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Essayez d’activer et de désactiver le Wi-Fi sur les deux appareils.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Assurez-vous que les deux appareils soient en mode transfert.</string>
@@ -3569,16 +3619,16 @@
     <string name="RecipientBottomSheet_add_to_another_group">Ajouter à un autre groupe</string>
     <string name="RecipientBottomSheet_view_safety_number">Afficher le numéro de sécurité</string>
     <string name="RecipientBottomSheet_make_admin">Nommer administrateur</string>
-    <string name="RecipientBottomSheet_remove_as_admin">Supprimer en tant qu’administrateur</string>
-    <string name="RecipientBottomSheet_remove_from_group">Supprimer du groupe</string>
+    <string name="RecipientBottomSheet_remove_as_admin">Retirer en tant qu’administrateur</string>
+    <string name="RecipientBottomSheet_remove_from_group">Retirer du groupe</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">Supprimer %1$s en tant qu’administrateur du groupe ?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Retirer %1$s en tant qu’administrateur du groupe ?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s pourra modifier ce groupe et ses membres."</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">Supprimer %1$s du groupe ?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">Retirer %1$s du groupe ?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Supprimer « %1$s » du groupe ? Cette personne ne pourra plus se joindre au groupe grâce au lien de groupe.</string>
-    <string name="RecipientBottomSheet_remove">Supprimer</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Retirer « %1$s » du groupe ? Cette personne ne pourra plus se joindre au groupe grâce au lien de groupe.</string>
+    <string name="RecipientBottomSheet_remove">Retirer</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">A été copié dans le presse-papiers</string>
 
     <string name="GroupRecipientListItem_admin">Administrateur</string>
@@ -3614,7 +3664,7 @@
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
     <string name="BlockedUsersActivity__s_has_been_blocked">« %1$s » a été bloqué.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Échec de blocage pour « %1$s »</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Échec de blocage de « %1$s »</string>
     <string name="BlockedUsersActivity__s_has_been_unblocked">« %1$s » a été débloqué.</string>
 
     <!-- ReviewCardDialogFragment -->
@@ -3632,15 +3682,15 @@
         <item quantity="one">%1$d groupe en commun</item>
         <item quantity="other">%1$d groupes en commun</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">Supprimer %1$s du groupe ?</string>
-    <string name="ReviewCardDialogFragment__remove">Supprimer</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Échec de suppression du membre du groupe.</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">Retirer %1$s du groupe ?</string>
+    <string name="ReviewCardDialogFragment__remove">Retirer</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Échec du retrait du membre du groupe.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">Membre</string>
     <string name="ReviewCard__request">Demande</string>
     <string name="ReviewCard__your_contact">Votre contact</string>
-    <string name="ReviewCard__remove_from_group">Supprimer du groupe</string>
+    <string name="ReviewCard__remove_from_group">Retirer du groupe</string>
     <string name="ReviewCard__update_contact">Mettre le contact à jour</string>
     <string name="ReviewCard__block">Bloquer</string>
     <string name="ReviewCard__delete">Supprimer</string>
@@ -3668,14 +3718,14 @@
     <string name="DeleteAccountFragment__deleting_your_account_will">Supprimer votre compte implique :</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Saisir votre numéro de téléphone</string>
     <string name="DeleteAccountFragment__delete_account">Supprimer le compte</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Supprimer les informations de votre compte et votre photo de profil</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Supprimer tous vos messages</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">la suppression des informations de votre compte et de votre photo de profil</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">La suppression de tous vos messages</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Supprimer %1$s de votre compte de paiements</string>
     <string name="DeleteAccountFragment__no_country_code">Aucun indicatif de pays n’a été indiqué</string>
     <string name="DeleteAccountFragment__no_number">Aucun numéro n’a été indiqué</string>
     <string name="DeleteAccountFragment__the_phone_number">Le numéro de téléphone que vous avez saisi ne correspond pas à celui de votre compte.</string>
     <string name="DeleteAccountFragment__are_you_sure">Voulez-vous vraiment supprimer votre compte ?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Cela supprimera votre compte Signal et réinitialisera l’application. L’appli se fermera une fois le processus terminé.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Cela supprimera votre compte Signal et réinitialisera l’application. L’appli se fermera une fois le processus terminé.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Échec de suppression des données locales. Vous pouvez les effacer manuellement dans les paramètres des applications du système.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Lancer les paramètres des applis</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -4001,7 +4051,7 @@
     <string name="NotificationProfilesFragment__create_profile">Créer le profil</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Bloqués</string>
+    <string name="PrivacySettingsFragment__blocked">Bloqué</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d contacts</string>
     <string name="PrivacySettingsFragment__messaging">Messagerie</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Messages éphémères</string>
@@ -4184,7 +4234,7 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Demandes d’ajout et invitations</string>
     <string name="ConversationSettingsFragment__group_link">Lien de groupe</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Ajouter comme contact</string>
-    <string name="ConversationSettingsFragment__unmute">Réactiver les notifications</string>
+    <string name="ConversationSettingsFragment__unmute">Réactiver le son</string>
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversation en sourdine jusqu’à %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation en sourdine pour toujours</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numéro de téléphone copié dans le presse-papier.</string>
@@ -4203,7 +4253,7 @@
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Mettre les notifications en sourdine</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Désactivée</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Sourdine désactivée</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Mentions</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Toujours m’avertir</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ne pas m’avertir</string>
@@ -4240,11 +4290,11 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s a été supprimé</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s a été bloqué</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s a été bloqué</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Impossible de supprimer %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Cette personne est sauvegardée dans les Contacts de votre appareil. Veuillez la supprimer de vos Contacts et réessayer.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Cette personne est sauvegardée dans les contacts de votre appareil. Veuillez la supprimer de vos contacts et réessayer.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Voir les Contacts</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -4347,7 +4397,7 @@
 
     <string name="MediaCountIndicatorButton__send">Envoyer</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Appuyez pour retirer</string>
+    <string name="MediaReviewSelectedItem__tap_to_remove">Appuyez pour supprimer</string>
     <string name="MediaReviewSelectedItem__tap_to_select">Appuyez pour sélectionner</string>
 
     <string name="MediaReviewImagePageFragment__discard">Abandonner</string>
@@ -4617,7 +4667,7 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Supprimer le profil</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">« %1$s » supprimé.</string>
+    <string name="NotificationProfileDetails__s_removed">« %1$s » retiré.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Annuler</string>
     <!-- Dialog message shown to confirm deleting a profile -->
@@ -4839,7 +4889,7 @@
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Rendez-vous dans les Paramètres</string>
     <!-- Dialog action to remove viewer from a story -->
-    <string name="StoryViewsFragment__remove">Supprimer</string>
+    <string name="StoryViewsFragment__remove">Retirer</string>
     <!-- Dialog title when removing a viewer from a story -->
     <string name="StoryViewsFragment__remove_viewer">Retirer le spectateur ?</string>
     <!-- Dialog message when removing a viewer from a story -->
@@ -4861,12 +4911,12 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Répondre en privé à %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Répondre à %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Copier</string>
     <!-- Context menu item to delete a story response -->
-    <string name="StoryGroupReplyItem__delete">Supprimer</string>
+    <string name="StoryGroupReplyItem__delete">Effacer</string>
     <!-- Page title for My Story options -->
     <string name="MyStorySettingsFragment__my_story">Ma Story</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
@@ -4923,13 +4973,13 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Ajouter un spectateur</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">Effacer la Story personnalisée</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">Supprimer la Story personnalisée</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove_s">Supprimer %1$s ?</string>
+    <string name="PrivateStorySettingsFragment__remove_s">Retirer %1$s ?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Cette personne ne verra plus votre Story.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove">Supprimer</string>
+    <string name="PrivateStorySettingsFragment__remove">Retirer</string>
     <!-- Dialog title when deleting a custom story -->
     <!-- Dialog message when deleting a custom story -->
     <!-- Page title for editing a custom story name -->
@@ -4966,11 +5016,11 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Supprimer la Story de groupe ?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">« %1$s » sera supprimé de la story.</string>
+    <string name="StoryDialogs__s_will_be_removed">« %1$s » sera supprimée.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Supprimer</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">Effacer la Story personnalisée ?</string>
+    <string name="StoryDialogs__delete_custom_story">Supprimer la Story personnalisée ?</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">« %1$s » et les nouveaux contenus partagés dans cette Story seront supprimés.</string>
     <!-- Dialog positive action for deleting a custom story -->
@@ -5156,7 +5206,7 @@
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">Supprimer la Story</string>
     <!-- Label for context menu item to delete a custom story -->
-    <string name="ContactSearchItems__delete_story">Effacer la Story</string>
+    <string name="ContactSearchItems__delete_story">Supprimer la Story</string>
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">Supprimer la Story de groupe ?</string>
     <!-- Dialog message for removing a group story -->
@@ -5216,7 +5266,7 @@
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Confirmer le numéro de sécurité</string>
     <!-- Menu action to remove user from story -->
-    <string name="SafetyNumberBottomSheetFragment__remove_from_story">Supprimer de la Story</string>
+    <string name="SafetyNumberBottomSheetFragment__remove_from_story">Retirer de la Story</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
     <string name="SafetyNumberBottomSheetFragment__send_anyway">Envoyer quand même</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
@@ -5312,7 +5362,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Exportez vos SMS</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Vous pouvez exporter les SMS vers la base de données de SMS de votre téléphone et vous pourrez choisir de les garder ou de les supprimer de Signal. Cela permet aux autres applis SMS de votre téléphone de les importer. Cette action ne créera pas de fichier partageable contenant l’historique de vos SMS.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Vous pouvez exporter les SMS vers la base de données de SMS de votre téléphone et vous pourrez choisir de les garder ou de les effacer de Signal. Cela permet aux autres applis SMS de votre téléphone de les importer. Cette action ne créera pas de fichier partageable contenant l’historique de vos SMS.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Poursuivre</string>
 
@@ -5367,11 +5417,11 @@
     <!-- Action button to keep messages -->
     <string name="RemoveSmsMessagesDialogFragment__keep_messages">Conserver les messages</string>
     <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Supprimer des messages</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Effacer des messages</string>
     <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Supprimer vos SMS de Signal ?</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Effacer vos SMS de Signal ?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Vous pouvez supprimer les SMS de Signal pour libérer de l\'espace de stockage. Ils seront toujours disponibles à partir d\'autres applis SMS sur votre téléphone.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Vous pouvez effacer les SMS de Signal pour libérer de l\'espace de stockage. Ils seront toujours disponibles à partir d\'autres applis SMS sur votre téléphone.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5556,8 +5606,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Fin de la prise en charge des SMS</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Les SMS ne seront bientôt plus pris en charge dans l\'appli Signal.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">Les SMS ne seront plus pris en charge dans l’appli Signal à partir du %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Les messages SMS sont différents des messages Signal. <b>Cela n\'affecte pas la messagerie cryptée Signal qui continuera à fonctionner.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5569,13 +5619,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Configurer votre nom d\'utilisateur Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Les noms d’utilisateur permettent aux autres de vous envoyer des messages sans avoir besoin de votre numéro de téléphone</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Pas maintenant</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Poursuivre</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5589,15 +5639,25 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Poursuivre</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Configurer votre nom d\'utilisateur Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Modifier le nom d\'utilisateur</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Supprimer le nom d’utilisateur</string>
+
+    <!-- Time duration picker -->
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">min</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
+    <string name="TimeDurationPickerDialog_positive_button">Définir</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Le temps minimum avant que le verrouillage de l’écran ne s’applique est de 1 minute.</string>
 
     <!-- EOF -->
 </resources>

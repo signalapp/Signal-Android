@@ -48,7 +48,6 @@ class PermissionsSettingsFragment : DSLSettingsFragment(
 
   private fun getConfiguration(state: PermissionsSettingsState): DSLConfiguration {
     return configure {
-
       radioListPref(
         title = DSLSettingsText.from(R.string.PermissionsSettingsFragment__add_members),
         isEnabled = state.selfCanEditSettings,

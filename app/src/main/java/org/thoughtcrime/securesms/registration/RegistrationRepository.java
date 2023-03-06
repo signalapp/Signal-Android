@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.registration;
 
 import android.app.Application;
+import android.app.backup.BackupManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,6 +42,7 @@ import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.ServiceResponse;
+import org.whispersystems.signalservice.internal.push.BackupAuthCheckProcessor;
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
 
 import java.io.IOException;
@@ -95,12 +97,13 @@ public final class RegistrationRepository {
   }
 
   public Single<ServiceResponse<VerifyResponse>> registerAccount(@NonNull RegistrationData registrationData,
-                                                                 @NonNull VerifyResponse response)
+                                                                 @NonNull VerifyResponse response,
+                                                                 boolean setRegistrationLockEnabled)
   {
     return Single.<ServiceResponse<VerifyResponse>>fromCallable(() -> {
       try {
         String pin = response.getPin();
-        registerAccountInternal(registrationData, response.getVerifyAccountResponse(), pin, response.getKbsData());
+        registerAccountInternal(registrationData, response.getVerifyAccountResponse(), pin, response.getKbsData(), setRegistrationLockEnabled);
 
         if (pin != null && !pin.isEmpty()) {
           PinState.onPinChangedOrCreated(context, pin, SignalStore.pinValues().getKeyboardType());
@@ -124,7 +127,8 @@ public final class RegistrationRepository {
   private void registerAccountInternal(@NonNull RegistrationData registrationData,
                                        @NonNull VerifyAccountResponse response,
                                        @Nullable String pin,
-                                       @Nullable KbsPinData kbsData)
+                                       @Nullable KbsPinData kbsData,
+                                       boolean setRegistrationLockEnabled)
       throws IOException
   {
     ACI     aci    = ACI.parseOrThrow(response.getUuid());
@@ -170,9 +174,13 @@ public final class RegistrationRepository {
     SignalStore.account().setServicePassword(registrationData.getPassword());
     SignalStore.account().setRegistered(true);
     TextSecurePreferences.setPromptedPushRegistration(context, true);
+    TextSecurePreferences.setUnauthorizedReceived(context, false);
     NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID);
 
-    PinState.onRegistration(context, kbsData, pin, hasPin);
+    PinState.onRegistration(context, kbsData, pin, hasPin, setRegistrationLockEnabled);
+
+    ApplicationDependencies.closeConnections();
+    ApplicationDependencies.getIncomingMessageObserver();
   }
 
   private void generateAndRegisterPreKeys(@NonNull ServiceIdType serviceIdType,
@@ -208,5 +216,17 @@ public final class RegistrationRepository {
     }
 
     return null;
+  }
+
+  public Single<BackupAuthCheckProcessor> getKbsAuthCredential(@NonNull RegistrationData registrationData) {
+    SignalServiceAccountManager accountManager = AccountManagerFactory.createUnauthenticated(context, registrationData.getE164(), SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.getPassword());
+
+    return accountManager.checkBackupAuthCredentials(registrationData.getE164(), SignalStore.kbsValues().getKbsAuthTokenList())
+                         .map(BackupAuthCheckProcessor::new)
+                         .doOnSuccess(processor -> {
+                           if (SignalStore.kbsValues().removeAuthTokens(processor.getInvalid())) {
+                             new BackupManager(context).dataChanged();
+                           }
+                         });
   }
 }

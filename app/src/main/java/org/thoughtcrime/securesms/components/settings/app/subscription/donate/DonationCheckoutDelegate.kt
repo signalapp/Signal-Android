@@ -247,7 +247,8 @@ class DonationCheckoutDelegate(
 
       Log.d(TAG, "Displaying donation error dialog.", true)
       errorDialog = DonationErrorDialogs.show(
-        fragment!!.requireContext(), throwable,
+        fragment!!.requireContext(),
+        throwable,
         object : DonationErrorDialogs.DialogCallback() {
           var tryCCAgain = false
 

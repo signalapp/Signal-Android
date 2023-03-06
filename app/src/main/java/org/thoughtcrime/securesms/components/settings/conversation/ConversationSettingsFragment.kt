@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.conversation
 
+import android.app.ActivityOptions
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -528,10 +529,13 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           SharedMediaPreference.Model(
             mediaCursor = state.sharedMedia,
             mediaIds = state.sharedMediaIds,
-            onMediaRecordClick = { mediaRecord, isLtr ->
+            onMediaRecordClick = { view, mediaRecord, isLtr ->
+              view.transitionName = "thumb"
+              val options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), view, "thumb")
               startActivityForResult(
                 MediaIntentFactory.intentFromMediaRecord(requireContext(), mediaRecord, isLtr, allMediaInRail = true),
-                REQUEST_CODE_RETURN_FROM_MEDIA
+                REQUEST_CODE_RETURN_FROM_MEDIA,
+                options.toBundle()
               )
             }
           )
@@ -561,7 +565,6 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         }
 
         if (recipientSettingsState.selfHasGroups && !state.recipient.isReleaseNotes) {
-
           dividerPref()
 
           val groupsInCommonCount = recipientSettingsState.allGroupsInCommon.size

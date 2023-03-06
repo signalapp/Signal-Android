@@ -131,6 +131,10 @@ public class IncomingMessageObserver {
     }
   }
 
+  public synchronized void removeDecryptionDrainedListener(@NonNull Runnable listener) {
+    decryptionDrainedListeners.remove(listener);
+  }
+
   public boolean isDecryptionDrained() {
     return decryptionDrained;
   }

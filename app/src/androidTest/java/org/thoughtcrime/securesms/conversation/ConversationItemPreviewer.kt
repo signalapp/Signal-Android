@@ -69,7 +69,7 @@ class ConversationItemPreviewer {
       sentTimeMillis = System.currentTimeMillis(),
       serverTimeMillis = System.currentTimeMillis(),
       receivedTimeMillis = System.currentTimeMillis(),
-      attachments = PointerAttachment.forPointers(Optional.of(attachments)),
+      attachments = PointerAttachment.forPointers(Optional.of(attachments))
     )
 
     SignalDatabase.messages.insertSecureDecryptedMessageInbox(message, SignalDatabase.threads.getOrCreateThreadIdFor(other)).get()
@@ -88,7 +88,7 @@ class ConversationItemPreviewer {
       sentTimeMillis = System.currentTimeMillis(),
       serverTimeMillis = System.currentTimeMillis(),
       receivedTimeMillis = System.currentTimeMillis(),
-      attachments = PointerAttachment.forPointers(Optional.of(attachments)),
+      attachments = PointerAttachment.forPointers(Optional.of(attachments))
     )
 
     val insert = SignalDatabase.messages.insertSecureDecryptedMessageInbox(message, SignalDatabase.threads.getOrCreateThreadIdFor(other)).get()

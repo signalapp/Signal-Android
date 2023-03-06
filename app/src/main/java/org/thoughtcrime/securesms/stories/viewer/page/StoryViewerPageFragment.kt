@@ -228,7 +228,7 @@ class StoryViewerPageFragment :
     val singleTapHandler = SingleTapHandler(
       cardWrapper,
       viewModel::goToNextPost,
-      viewModel::goToPreviousPost,
+      viewModel::goToPreviousPost
     )
 
     val gestureDetector = GestureDetectorCompat(
@@ -245,7 +245,9 @@ class StoryViewerPageFragment :
     gestureDetector.setOnDoubleTapListener(null)
 
     val scaleListener = StoryScaleListener(
-      viewModel, sharedViewModel, card
+      viewModel,
+      sharedViewModel,
+      card
     )
 
     val scaleDetector = ScaleGestureDetector(
@@ -1062,7 +1064,7 @@ class StoryViewerPageFragment :
         viewModel.setIsDisplayingForwardDialog(true)
         MultiselectForwardFragmentArgs.create(
           requireContext(),
-          storyPost.conversationMessage.multiselectCollection.toSet(),
+          storyPost.conversationMessage.multiselectCollection.toSet()
         ) {
           MultiselectForwardFragment.showBottomSheet(childFragmentManager, it)
         }

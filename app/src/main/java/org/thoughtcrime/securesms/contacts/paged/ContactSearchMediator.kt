@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit
  * @param selectionLimits [SelectionLimits] describing how large the result set can be.
  * @param displayCheckBox Whether or not to display checkboxes on items.
  * @param displaySmsTag   Whether or not to display the SMS tag on items.
- * @param displayPhoneNumber Whether or not to display phone numbers on known contacts.
+ * @param displaySecondaryInformation Whether or not to display phone numbers on known contacts.
  * @param mapStateToConfiguration Maps a [ContactSearchState] to a [ContactSearchConfiguration]
  * @param callbacks Hooks to help process, filter, and react to selection
  * @param performSafetyNumberChecks Whether to perform safety number checks for selected users
@@ -44,12 +44,12 @@ class ContactSearchMediator(
   selectionLimits: SelectionLimits,
   displayCheckBox: Boolean,
   displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
-  displayPhoneNumber: ContactSearchAdapter.DisplayPhoneNumber,
+  displaySecondaryInformation: ContactSearchAdapter.DisplaySecondaryInformation,
   mapStateToConfiguration: (ContactSearchState) -> ContactSearchConfiguration,
   private val callbacks: Callbacks = SimpleCallbacks(),
   performSafetyNumberChecks: Boolean = true,
   adapterFactory: AdapterFactory = DefaultAdapterFactory,
-  arbitraryRepository: ArbitraryRepository? = null,
+  arbitraryRepository: ArbitraryRepository? = null
 ) {
 
   private val queryDebouncer = Debouncer(300, TimeUnit.MILLISECONDS)
@@ -71,7 +71,7 @@ class ContactSearchMediator(
     fixedContacts = fixedContacts,
     displayCheckBox = displayCheckBox,
     displaySmsTag = displaySmsTag,
-    displayPhoneNumber = displayPhoneNumber,
+    displaySecondaryInformation = displaySecondaryInformation,
     callbacks = object : ContactSearchAdapter.ClickCallbacks {
       override fun onStoryClicked(view: View, story: ContactSearchData.Story, isSelected: Boolean) {
         toggleStorySelection(view, story, isSelected)
@@ -232,7 +232,7 @@ class ContactSearchMediator(
       fixedContacts: Set<ContactSearchKey>,
       displayCheckBox: Boolean,
       displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
-      displayPhoneNumber: ContactSearchAdapter.DisplayPhoneNumber,
+      displaySecondaryInformation: ContactSearchAdapter.DisplaySecondaryInformation,
       callbacks: ContactSearchAdapter.ClickCallbacks,
       longClickCallbacks: ContactSearchAdapter.LongClickCallbacks,
       storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks
@@ -245,12 +245,12 @@ class ContactSearchMediator(
       fixedContacts: Set<ContactSearchKey>,
       displayCheckBox: Boolean,
       displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
-      displayPhoneNumber: ContactSearchAdapter.DisplayPhoneNumber,
+      displaySecondaryInformation: ContactSearchAdapter.DisplaySecondaryInformation,
       callbacks: ContactSearchAdapter.ClickCallbacks,
       longClickCallbacks: ContactSearchAdapter.LongClickCallbacks,
       storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks
     ): PagingMappingAdapter<ContactSearchKey> {
-      return ContactSearchAdapter(context, fixedContacts, displayCheckBox, displaySmsTag, displayPhoneNumber, callbacks, longClickCallbacks, storyContextMenuCallbacks)
+      return ContactSearchAdapter(context, fixedContacts, displayCheckBox, displaySmsTag, displaySecondaryInformation, callbacks, longClickCallbacks, storyContextMenuCallbacks)
     }
   }
 }

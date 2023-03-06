@@ -9,70 +9,71 @@
 <!-- zz --><item>@string/preferences__system_default</item>
 <!-- en --><item>English</item>
 <!-- af --><item>Afrikaans</item>
-<!-- ar --><item>Arabic العربية</item>
+<!-- ar --><item> العربية</item>
 <!-- az --><item>Azərbaycan</item>
-<!-- bn --><item>Bengali বাংলা</item>
+<!-- bn --><item>বাংলা</item>
 <!-- bs --><item>Bosanski</item>
-<!-- bg --><item>Bulgarian български</item>
-<!-- my --><item>Burmese ဗမာစကား</item>
+<!-- bg --><item>български</item>
+<!-- my --><item>မြန်မာဘာသာ</item>
 <!-- ca --><item>Català</item>
 <!-- cs --><item>Čeština</item>
-<!-- zh_CN --><item>Chinese (Simplified) 中文 (简体)</item>
-<!-- zh_TW --><item>Chinese (Traditional) 中文 (繁體)</item>
-<!-- zh_HK --><item>Chinese (Traditional, Hong Kong) 中文 (香港)</item>
+<!-- yue --><item>繁體廣東話（香港）</item>
+<!-- zh_CN --><item>简体中文</item>
+<!-- zh_TW --><item>繁體中文（台灣）</item>
+<!-- zh_HK --><item>繁體中文（香港）</item>
 <!-- da --><item>Dansk</item>
 <!-- de --><item>Deutsch</item>
-<!-- et --><item>Eesti</item>
+<!-- et --><item>Еesti keel</item>
 <!-- es --><item>Español</item>
 <!-- eu --><item>Euskara</item>
 <!-- tl --><item>Filipino</item>
 <!-- fr --><item>Français</item>
 <!-- ga --><item>Gaeilge</item>
 <!-- gl --><item>Galego</item>
-<!-- ka --><item>Georgian ქართული</item>
-<!-- el --><item>Greek ελληνικά</item>
-<!-- gu --><item>Gujarati ગુજરાતી</item>
-<!-- he/iw --><item>Hebrew עברית</item>
-<!-- hi --><item>Hindi हिंदी</item>
+<!-- ka --><item>ქართული</item>
+<!-- el --><item>Ελληνικά</item>
+<!-- gu --><item>ગુજરાતી</item>
+<!-- he/iw --><item>עברית</item>
+<!-- hi --><item>हिंदी</item>
 <!-- hr --><item>Hrvatski</item>
 <!-- id/in --><item>Indonesia</item>
 <!-- it --><item>Italiano</item>
-<!-- ja --><item>Japanese 日本語</item>
-<!-- kn --><item>Kannada ಕನ್ನಡ</item>
-<!-- kk --><item>Kasakh Қазақша</item>
-<!-- km --><item>Khmer ភាសាខ្មែរ</item>
+<!-- ja --><item>日本語</item>
+<!-- kn --><item>ಕನ್ನಡ</item>
+<!-- kk --><item>Қазақша</item>
+<!-- km --><item>ភាសាខ្មែរ</item>
 <!-- sw --><item>Kiswahili</item>
-<!-- ko --><item>Korean 한국어</item>
-<!-- ky --><item>Kyrgyz Кыргыз тили</item>
+<!-- ko --><item>한국어</item>
+<!-- ky --><item>Кыргызча</item>
 <!-- lv --><item>Latviešu</item>
 <!-- lt --><item>Lietuvių</item>
-<!-- mk --><item>Macedonian македонски јазик</item>
+<!-- mk --><item>Македонски</item>
 <!-- hu --><item>Magyar</item>
-<!-- ms --><item>Malay (Bahasa Melayu)</item>
-<!-- ml --><item>Malayalam മലയാളം</item>
-<!-- mr --><item>Marathi मराठी</item>
+<!-- ms --><item>Bahasa Melayu</item>
+<!-- ml --><item>മലയാളം</item>
+<!-- mr --><item>मराठी</item>
 <!-- nl --><item>Nederlands</item>
 <!-- nb --><item>Norsk (bokmål)</item>
-<!-- fa --><item>Persian فارسی</item>
+<!-- fa --><item>فارسی</item>
 <!-- pl --><item>Polski</item>
 <!-- pt --><item>Português</item>
 <!-- pt_BR --><item>Português do Brasil</item>
-<!-- pa --><item>Punjabi ਪੰਜਾਬੀ / پنجابی</item>
+<!-- pa --><item>ਪੰਜਾਬੀ</item>
 <!-- ro --><item>Română</item>
-<!-- ru --><item>Russian Pусский</item>
-<!-- sr --><item>Serbian српски</item>
+<!-- ru --><item>Русский</item>
+<!-- sr --><item>Српски</item>
 <!-- sq --><item>Shqip</item>
 <!-- sl --><item>Slovenščina</item>
-<!-- sk --><item>Slovenský</item>
+<!-- sk --><item>Slovenčina</item>
 <!-- fi --><item>Suomi</item>
 <!-- sv --><item>Svenska</item>
-<!-- ta --><item>Tamil தமிழ்</item>
-<!-- te --><item>Telugu తెలుగు</item>
-<!-- th --><item>Thai ภาษาไทย</item>
+<!-- ta --><item>தமிழ்</item>
+<!-- te --><item>తెలుగు</item>
+<!-- th --><item>ภาษาไทย</item>
 <!-- tr --><item>Türkçe</item>
-<!-- uk --><item>Ukrainian Українська</item>
-<!-- ur --><item>Urdu اردو‎</item>
-<!-- vi --><item>Vietnamese Tiếng Việt</item>
+<!-- uk --><item>Українська</item>
+<!-- ur --><item> اردو‎</item>
+<!-- vi --><item>Tiếng Việt</item>
   </string-array>
 
   <string-array name="language_values">
@@ -87,6 +88,7 @@
       <item>my</item>
       <item>ca</item>
       <item>cs</item>
+      <item>yue</item>
       <item>zh_CN</item>
       <item>zh_TW</item>
       <item>zh_HK</item>

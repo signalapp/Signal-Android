@@ -131,7 +131,7 @@ public final class LocalBackupJob extends BaseJob {
                                                               this::isCanceled);
         stopwatch.split("backup-create");
 
-        boolean valid = BackupVerifier.verifyFile(new FileInputStream(tempFile), backupPassword, finishedEvent.getCount());
+        boolean valid = BackupVerifier.verifyFile(new FileInputStream(tempFile), backupPassword, finishedEvent.getCount(), this::isCanceled);
         stopwatch.split("backup-verify");
         stopwatch.stop(TAG);
 

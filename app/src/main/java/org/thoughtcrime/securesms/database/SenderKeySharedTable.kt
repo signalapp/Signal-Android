@@ -50,7 +50,7 @@ class SenderKeySharedTable internal constructor(context: Context?, databaseHelpe
           ADDRESS to address.name,
           DEVICE to address.deviceId,
           DISTRIBUTION_ID to distributionId.toString(),
-          TIMESTAMP to System.currentTimeMillis(),
+          TIMESTAMP to System.currentTimeMillis()
         )
         db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE)
       }

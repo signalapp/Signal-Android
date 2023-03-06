@@ -13,6 +13,7 @@ data class MediaPreviewV2State(
   val leftIsRecent: Boolean = false,
   val albums: Map<Long, List<Media>> = mapOf(),
   val messageBodies: Map<Long, SpannableString> = mapOf(),
+  val isInSharedAnimation: Boolean = true
 ) {
   enum class LoadState { INIT, DATA_LOADED, MEDIA_READY }
 }

@@ -1,28 +1,11 @@
 plugins {
-    id 'com.android.library'
+    id 'signal-library'
     id 'com.google.protobuf'
-    id 'kotlin-android'
     id 'kotlin-kapt'
 }
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
-
-    defaultConfig {
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
-        multiDexEnabled true
-    }
-
-    compileOptions {
-        coreLibraryDesugaringEnabled true
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+    namespace 'org.signal.core.util'
 }
 
 protobuf {
@@ -41,17 +24,8 @@ protobuf {
 }
 
 dependencies {
-    lintChecks project(':lintchecks')
-
-    coreLibraryDesugaring libs.android.tools.desugar
-
-    api libs.androidx.annotation
-
-    implementation libs.androidx.core.ktx
-    implementation libs.androidx.lifecycle.common.java8
     implementation libs.google.protobuf.javalite
     implementation libs.androidx.sqlite
-    implementation libs.rxjava3.rxjava
 
     testImplementation testLibs.junit.junit
     testImplementation testLibs.mockito.core

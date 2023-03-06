@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.registration
 import org.thoughtcrime.securesms.pin.KeyBackupSystemWrongPinException
 import org.thoughtcrime.securesms.pin.TokenData
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException
+import org.whispersystems.signalservice.api.push.exceptions.IncorrectRegistrationRecoveryPasswordException
+import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionException
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor
@@ -32,12 +34,20 @@ sealed class VerifyResponseProcessor(response: ServiceResponse<VerifyResponse>) 
     return super.getError()
   }
 
+  fun invalidSession(): Boolean {
+    return error is NoSuchSessionException
+  }
+
   fun getLockedException(): LockedException {
     return error as LockedException
   }
 
   open fun isServerSentError(): Boolean {
     return error is NonSuccessfulResponseCodeException
+  }
+
+  fun isIncorrectRegistrationRecoveryPassword(): Boolean {
+    return error is IncorrectRegistrationRecoveryPasswordException
   }
 
   abstract fun isKbsLocked(): Boolean

@@ -20,6 +20,7 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
+import org.whispersystems.util.Base64;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -91,6 +92,7 @@ public class RefreshAttributesJob extends BaseJob {
     String    registrationLockV2          = null;
     KbsValues kbsValues                   = SignalStore.kbsValues();
     int       pniRegistrationId           = new RegistrationRepository(ApplicationDependencies.getApplication()).getPniRegistrationId();
+    String    recoveryPassword            = kbsValues.getRecoveryPassword();
 
     if (kbsValues.isV2RegistrationLockEnabled()) {
       registrationLockV2 = kbsValues.getRegistrationLockToken();
@@ -106,22 +108,27 @@ public class RefreshAttributesJob extends BaseJob {
 
     AccountAttributes.Capabilities capabilities = AppCapabilities.getCapabilities(kbsValues.hasPin() && !kbsValues.hasOptedOut());
     Log.i(TAG, "Calling setAccountAttributes() reglockV1? " + !TextUtils.isEmpty(registrationLockV1) + ", reglockV2? " + !TextUtils.isEmpty(registrationLockV2) + ", pin? " + kbsValues.hasPin() +
+               "\n    Recovery password? " + !TextUtils.isEmpty(recoveryPassword) +
                "\n    Phone number discoverable : " + phoneNumberDiscoverable +
                "\n    Device Name : " + (encryptedDeviceName != null) +
                "\n  Capabilities: " + capabilities);
 
-    SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
-    signalAccountManager.setAccountAttributes(null,
-                                              registrationId,
-                                              fetchesMessages,
-                                              registrationLockV1,
-                                              registrationLockV2,
-                                              unidentifiedAccessKey,
-                                              universalUnidentifiedAccess,
-                                              capabilities,
-                                              phoneNumberDiscoverable,
-                                              encryptedDeviceName,
-                                              pniRegistrationId);
+    AccountAttributes accountAttributes = new AccountAttributes(
+        null,
+        registrationId,
+        fetchesMessages,
+        registrationLockV1,
+        registrationLockV2,
+        unidentifiedAccessKey,
+        universalUnidentifiedAccess,
+        capabilities,
+        phoneNumberDiscoverable,
+        (encryptedDeviceName == null) ? null : Base64.encodeBytes(encryptedDeviceName),
+        pniRegistrationId,
+        recoveryPassword
+    );
+
+    ApplicationDependencies.getSignalServiceAccountManager().setAccountAttributes(accountAttributes);
 
     hasRefreshedThisAppCycle = true;
   }

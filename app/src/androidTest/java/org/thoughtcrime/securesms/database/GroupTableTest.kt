@@ -171,6 +171,48 @@ class GroupTableTest {
   }
 
   @Test
+  fun givenMultipleMmsGroups_whenIGetOrCreateMmsGroup_thenIExpectMyMmsGroup() {
+    val group1Members: List<RecipientId> = listOf(harness.self.id, harness.others[0], harness.others[1])
+    val group2Members: List<RecipientId> = listOf(harness.self.id, harness.others[0], harness.others[2])
+
+    val group1: GroupId = insertMmsGroup(group1Members)
+    val group2: GroupId = insertMmsGroup(group2Members)
+
+    val group1Result: GroupId = groupTable.getOrCreateMmsGroupForMembers(group1Members.toSet())
+    val group2Result: GroupId = groupTable.getOrCreateMmsGroupForMembers(group2Members.toSet())
+
+    assertEquals(group1, group1Result)
+    assertEquals(group2, group2Result)
+    assertNotEquals(group1Result, group2Result)
+  }
+
+  @Test
+  fun givenMultipleMmsGroupsWithDifferentMemberOrders_whenIGetOrCreateMmsGroup_thenIExpectMyMmsGroup() {
+    val group1Members: List<RecipientId> = listOf(harness.self.id, harness.others[0], harness.others[1], harness.others[2]).shuffled()
+    val group2Members: List<RecipientId> = listOf(harness.self.id, harness.others[0], harness.others[2], harness.others[3]).shuffled()
+
+    val group1: GroupId = insertMmsGroup(group1Members)
+    val group2: GroupId = insertMmsGroup(group2Members)
+
+    val group1Result: GroupId = groupTable.getOrCreateMmsGroupForMembers(group1Members.shuffled().toSet())
+    val group2Result: GroupId = groupTable.getOrCreateMmsGroupForMembers(group2Members.shuffled().toSet())
+
+    assertEquals(group1, group1Result)
+    assertEquals(group2, group2Result)
+    assertNotEquals(group1Result, group2Result)
+  }
+
+  @Test
+  fun givenMmsGroupWithOneMember_whenIGetOrCreateMmsGroup_thenIExpectMyMmsGroup() {
+    val groupMembers: List<RecipientId> = listOf(harness.self.id)
+    val group: GroupId = insertMmsGroup(groupMembers)
+
+    val groupResult: GroupId = groupTable.getOrCreateMmsGroupForMembers(groupMembers.toSet())
+
+    assertEquals(group, groupResult)
+  }
+
+  @Test
   fun givenTwoGroupsWithoutMembers_whenIQueryThem_thenIExpectEach() {
     val g1 = insertPushGroup(listOf())
     val g2 = insertPushGroup(listOf())
@@ -180,6 +222,24 @@ class GroupTableTest {
 
     assertEquals(g1, gr1.get().id)
     assertEquals(g2, gr2.get().id)
+  }
+
+  @Test
+  fun givenASharedActiveGroupWithoutAThread_whenISearchForRecipientsWithGroupsInCommon_thenIExpectThatGroup() {
+    val groupInCommon = insertPushGroup()
+    val expected = Recipient.resolved(harness.others[0])
+
+    SignalDatabase.recipients.setProfileSharing(expected.id, false)
+
+    SignalDatabase.recipients.queryGroupMemberContacts("Buddy")!!.use {
+      assertTrue(it.moveToFirst())
+      assertEquals(1, it.count)
+      assertEquals(expected.id.toLong(), it.requireLong(RecipientTable.ID))
+    }
+
+    val groups = groupTable.getPushGroupsContainingMember(expected.id)
+    assertEquals(1, groups.size)
+    assertEquals(groups[0].id, groupInCommon)
   }
 
   private fun insertThread(groupId: GroupId): Long {

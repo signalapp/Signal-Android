@@ -87,8 +87,9 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
       val selectedPosition = items.indexOfFirst { it.isSelected }
 
       adapter.submitList(items) {
-        if (selectedPosition > -1)
+        if (selectedPosition > -1) {
           recycler.smoothScrollToPosition(selectedPosition)
+        }
       }
     }
 

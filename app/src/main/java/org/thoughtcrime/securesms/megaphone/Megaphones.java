@@ -401,6 +401,7 @@ public final class Megaphones {
     return new Megaphone.Builder(Event.SET_UP_YOUR_USERNAME, Megaphone.Style.BASIC)
         .setTitle(R.string.SetUpYourUsername__set_up_your_signal_username)
         .setBody(R.string.SetUpYourUsername__usernames_let_others)
+        .setImage(R.drawable.usernames_64)
         .setActionButton(R.string.SetUpYourUsername__continue, (megaphone, controller) -> {
           controller.onMegaphoneNavigationRequested(ManageProfileActivity.getIntentForUsernameEdit(context));
         })

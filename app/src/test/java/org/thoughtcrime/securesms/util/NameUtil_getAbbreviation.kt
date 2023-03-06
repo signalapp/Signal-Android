@@ -33,7 +33,7 @@ class NameUtil_getAbbreviation(
       arrayOf("љabc ђ123", "љђ"),
       // Works on device, but for whatever reason doesn't work in robolectric
 //      arrayOf("Bob \uD83C\uDDE8\uD83C\uDDFF", "B\uD83C\uDDE8\uD83C\uDDFF"),
-      arrayOf("", null),
+      arrayOf("", null)
     )
   }
 }

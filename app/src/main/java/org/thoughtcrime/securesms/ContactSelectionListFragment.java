@@ -84,6 +84,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -338,7 +339,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
         selectionLimit,
         isMulti,
         ContactSearchAdapter.DisplaySmsTag.DEFAULT,
-        ContactSearchAdapter.DisplayPhoneNumber.ALWAYS,
+        ContactSearchAdapter.DisplaySecondaryInformation.ALWAYS,
         this::mapStateToConfiguration,
         new ContactSearchMediator.SimpleCallbacks() {
           @Override
@@ -347,11 +348,12 @@ public final class ContactSelectionListFragment extends LoggingFragment
           }
         },
         false,
-        (context, fixedContacts, displayCheckBox, displaySmsTag, displayPhoneNumber, callbacks, longClickCallbacks, storyContextMenuCallbacks) -> new ContactSelectionListAdapter(
+        (context, fixedContacts, displayCheckBox, displaySmsTag, displaySecondaryInformation, callbacks, longClickCallbacks, storyContextMenuCallbacks) -> new ContactSelectionListAdapter(
             context,
+            fixedContacts,
             displayCheckBox,
             displaySmsTag,
-            displayPhoneNumber,
+            displaySecondaryInformation,
             new ContactSelectionListAdapter.OnContactSelectionClick() {
               @Override
               public void onNewGroupClicked() {
@@ -441,7 +443,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
     }
 
     return currentSelection == null ? Collections.emptySet()
-                                    : Collections.unmodifiableSet(Stream.of(currentSelection).collect(Collectors.toSet()));
+                                    : Collections.unmodifiableSet(new HashSet<>(currentSelection));
   }
 
   public boolean isMulti() {

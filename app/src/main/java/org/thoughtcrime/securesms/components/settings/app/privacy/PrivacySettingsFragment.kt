@@ -23,17 +23,15 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import mobi.upod.timedurationpicker.TimeDurationPicker
-import mobi.upod.timedurationpicker.TimeDurationPickerDialog
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.BiometricDeviceLockContract
 import org.thoughtcrime.securesms.PassphraseChangeActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.TimeDurationPickerDialog
 import org.thoughtcrime.securesms.components.settings.ClickPreference
 import org.thoughtcrime.securesms.components.settings.ClickPreferenceViewHolder
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -56,8 +54,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import java.lang.Integer.max
-import java.util.concurrent.TimeUnit
+import kotlin.math.max
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 private val TAG = Log.tag(PrivacySettingsFragment::class.java)
 
@@ -257,14 +256,13 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         clickPref(
           title = DSLSettingsText.from(R.string.preferences__inactivity_timeout_interval),
           onClick = {
-            TimeDurationPickerDialog(
-              context,
-              { _: TimeDurationPicker?, duration: Long ->
-                val timeoutMinutes = max(TimeUnit.MILLISECONDS.toMinutes(duration).toInt(), 1)
-                viewModel.setObsoletePasswordTimeout(timeoutMinutes)
-              },
-              0, TimeDurationPicker.HH_MM
-            ).show()
+            childFragmentManager.clearFragmentResult(TimeDurationPickerDialog.RESULT_DURATION)
+            childFragmentManager.clearFragmentResultListener(TimeDurationPickerDialog.RESULT_DURATION)
+            childFragmentManager.setFragmentResultListener(TimeDurationPickerDialog.RESULT_DURATION, this@PrivacySettingsFragment) { _, bundle ->
+              val timeout = bundle.getLong(TimeDurationPickerDialog.RESULT_KEY_DURATION_MILLISECONDS).milliseconds.inWholeMinutes.toInt()
+              viewModel.setObsoletePasswordTimeout(max(timeout, 1))
+            }
+            TimeDurationPickerDialog.create(state.screenLockActivityTimeout.seconds).show(childFragmentManager, null)
           }
         )
       } else {
@@ -291,14 +289,12 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
           summary = DSLSettingsText.from(getScreenLockInactivityTimeoutSummary(state.screenLockActivityTimeout)),
           isEnabled = isKeyguardSecure && state.screenLock,
           onClick = {
-            TimeDurationPickerDialog(
-              context,
-              { _: TimeDurationPicker?, duration: Long ->
-                val timeoutSeconds = TimeUnit.MILLISECONDS.toSeconds(duration)
-                viewModel.setScreenLockTimeout(timeoutSeconds)
-              },
-              0, TimeDurationPicker.HH_MM
-            ).show()
+            childFragmentManager.clearFragmentResult(TimeDurationPickerDialog.RESULT_DURATION)
+            childFragmentManager.clearFragmentResultListener(TimeDurationPickerDialog.RESULT_DURATION)
+            childFragmentManager.setFragmentResultListener(TimeDurationPickerDialog.RESULT_DURATION, this@PrivacySettingsFragment) { _, bundle ->
+              viewModel.setScreenLockTimeout(bundle.getLong(TimeDurationPickerDialog.RESULT_KEY_DURATION_MILLISECONDS).milliseconds.inWholeSeconds)
+            }
+            TimeDurationPickerDialog.create(state.screenLockActivityTimeout.seconds).show(childFragmentManager, null)
           }
         )
       }
@@ -328,7 +324,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
       )
 
       textPref(
-        summary = DSLSettingsText.from(incognitoSummary),
+        summary = DSLSettingsText.from(incognitoSummary)
       )
 
       dividerPref()

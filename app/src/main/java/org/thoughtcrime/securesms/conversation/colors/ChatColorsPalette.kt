@@ -50,12 +50,14 @@ object ChatColorsPalette {
 
     @JvmField
     val TAUPE = ChatColors.forColor(
-      ChatColors.Id.BuiltIn, 0xFF8F616A.toInt()
+      ChatColors.Id.BuiltIn,
+      0xFF8F616A.toInt()
     )
 
     @JvmField
     val STEEL = ChatColors.forColor(
-      ChatColors.Id.BuiltIn, 0xFF71717F.toInt()
+      ChatColors.Id.BuiltIn,
+      0xFF71717F.toInt()
     )
 
     // endregion
@@ -128,7 +130,8 @@ object ChatColorsPalette {
       ChatColors.LinearGradient(
         180f,
         intArrayOf(
-          0xFF6281D5.toInt(), 0xFF974460.toInt()
+          0xFF6281D5.toInt(),
+          0xFF974460.toInt()
         ),
         floatArrayOf(0f, 1f)
       )
@@ -216,7 +219,7 @@ object ChatColorsPalette {
       NameColor(lightColor = 0xFF5E6E0C.toInt(), darkColor = 0xFF8FAA09.toInt()),
       NameColor(lightColor = 0xFF077288.toInt(), darkColor = 0xFF00AED1.toInt()),
       NameColor(lightColor = 0xFFC20AA3.toInt(), darkColor = 0xFFF75FDD.toInt()),
-      NameColor(lightColor = 0xFF2D761E.toInt(), darkColor = 0xFF43B42D.toInt()),
+      NameColor(lightColor = 0xFF2D761E.toInt(), darkColor = 0xFF43B42D.toInt())
     )
   }
 

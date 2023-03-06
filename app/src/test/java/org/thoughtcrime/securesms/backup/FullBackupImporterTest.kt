@@ -21,7 +21,7 @@ class FullBackupImporterTest {
       mapOf(
         "A" to setOf(),
         "B" to setOf(),
-        "C" to setOf(),
+        "C" to setOf()
       )
     )
 
@@ -40,7 +40,7 @@ class FullBackupImporterTest {
     val order = FullBackupImporter.computeTableDropOrder(
       mapOf(
         "A" to setOf("B"),
-        "B" to setOf("C"),
+        "B" to setOf("C")
       )
     )
 
@@ -63,7 +63,7 @@ class FullBackupImporterTest {
         "E" to setOf("G", "H"),
         "F" to setOf(),
         "G" to setOf(),
-        "H" to setOf(),
+        "H" to setOf()
       )
     )
 
@@ -89,7 +89,7 @@ class FullBackupImporterTest {
         "F" to setOf(),
         "G" to setOf(),
         "H" to setOf(),
-        "I" to setOf(),
+        "I" to setOf()
       )
     )
 
@@ -112,7 +112,7 @@ class FullBackupImporterTest {
         "E" to setOf(),
         "F" to setOf(),
         "G" to setOf(),
-        "H" to setOf(),
+        "H" to setOf()
       )
     )
 
@@ -132,7 +132,7 @@ class FullBackupImporterTest {
         "B" to setOf("D"),
         "C" to setOf("D", "E"),
         "D" to setOf(),
-        "E" to setOf(),
+        "E" to setOf()
       )
     )
 
@@ -153,7 +153,7 @@ class FullBackupImporterTest {
         "A" to setOf("D"),
         "B" to setOf("C"),
         "C" to setOf("D"),
-        "D" to setOf(),
+        "D" to setOf()
       )
     )
 

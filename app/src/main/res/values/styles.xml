@@ -465,13 +465,6 @@
         <item name="android:insetBottom">0dp</item>
     </style>
 
-    <style name="Widget.TimeDurationPicker.Dialog">
-        <item name="durationDisplayBackground">?colorControlActivated</item>
-        <item name="textAppearanceDisplay">@style/TextAppearance.TimeDurationPicker.Display.Large.Dark</item>
-        <item name="textAppearanceUnit">@style/TextAppearance.TimeDurationPicker.Unit.Large.Dark</item>
-        <item name="android:layoutDirection">ltr</item>
-    </style>
-
     <style name="ThemeOverlay.Signal.TextInputEditText.FilledBox" parent="ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox">
         <item name="colorControlActivated">@color/signal_colorPrimary</item>
     </style>
@@ -501,26 +494,14 @@
     </style>
 
     <style name="Widget.Signal.TextInputLayout.Registration" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-        <item name="boxBackgroundColor">@color/signal_colorSurfaceVariant</item>
         <item name="boxCornerRadiusTopEnd">4dp</item>
         <item name="boxCornerRadiusTopStart">4dp</item>
-        <item name="hintTextColor">@color/signal_colorPrimary</item>
-        <item name="android:textColorHint">@color/signal_colorOnSurfaceVariant</item>
-        <item name="android:textCursorDrawable">@color/signal_colorPrimary</item>
-        <item name="colorAccent">@android:color/white</item>
         <item name="hintTextAppearance">@style/Signal.Text.LabelMedium</item>
-        <item name="boxStrokeErrorColor">@color/signal_colorError</item>
     </style>
-
-    <style name="Widget.Signal.TextInputEditText.Registration" parent="Widget.MaterialComponents.TextInputEditText.FilledBox">
-        <item name="android:textColor">@color/signal_colorOnSurfaceVariant</item>
-    </style>
-
 
     <style name="Widget.Signal.TextInputLayout.Registration.Dropdown" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
         <item name="android:paddingStart">12dp</item>
         <item name="android:paddingEnd">6dp</item>
-        <item name="boxBackgroundColor">@color/signal_colorSurfaceVariant</item>
         <item name="boxCornerRadiusTopEnd">2dp</item>
         <item name="boxCornerRadiusTopStart">2dp</item>
     </style>

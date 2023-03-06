@@ -33,6 +33,6 @@ object TypefaceHelper {
     SEMI_BOLD(600),
     BOLD(700),
     EXTRA_BOLD(800),
-    BLACK(900),
+    BLACK(900)
   }
 }

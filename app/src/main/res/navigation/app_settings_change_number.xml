@@ -73,6 +73,10 @@
         android:name="org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberVerifyFragment"
         tools:layout="@layout/fragment_change_phone_number_verify">
 
+        <argument android:name="sms_listener_enabled"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
         <action
             android:id="@+id/action_changePhoneNumberVerifyFragment_to_captchaFragment"
             app:destination="@id/captchaFragment"

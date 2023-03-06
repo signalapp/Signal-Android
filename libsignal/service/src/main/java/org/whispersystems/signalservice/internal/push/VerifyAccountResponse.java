@@ -13,6 +13,9 @@ public class VerifyAccountResponse {
   @JsonProperty
   public boolean storageCapable;
 
+  @JsonProperty
+  public String number;
+
   @JsonCreator
   public VerifyAccountResponse() {}
 

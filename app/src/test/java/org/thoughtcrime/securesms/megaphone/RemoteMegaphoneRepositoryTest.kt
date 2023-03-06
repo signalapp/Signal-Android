@@ -199,7 +199,7 @@ class RemoteMegaphoneRepositoryTest {
         primaryActionData,
         secondaryActionData,
         snoozedAt,
-        seenCount,
+        seenCount
       )
     }
   }

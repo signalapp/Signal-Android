@@ -11,5 +11,5 @@ data class ActionItem @JvmOverloads constructor(
   @DrawableRes val iconRes: Int,
   val title: CharSequence,
   @ColorRes val tintRes: Int = R.color.signal_colorOnSurface,
-  val action: Runnable,
+  val action: Runnable
 )

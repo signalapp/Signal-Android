@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layoutDirection="ltr">
+
+
+    <LinearLayout
+        android:id="@+id/duration_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/signal_colorSurfaceVariant"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/duration_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textAppearance="@style/Signal.Text.HeadlineLarge"
+            android:textColor="@color/signal_colorOnSurfaceVariant"
+            tools:text="01" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/TimeDurationPickerDialog_single_letter_hour_abbreviation"
+            android:textAppearance="@style/Signal.Text.BodySmall"
+            android:textColor="@color/signal_colorOnSurfaceVariant" />
+
+        <TextView
+            android:id="@+id/duration_minute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:gravity="center_horizontal"
+            android:textAppearance="@style/Signal.Text.HeadlineLarge"
+            android:textColor="@color/signal_colorOnSurfaceVariant"
+            tools:text="01" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/TimeDurationPickerDialog_single_letter_minute_abbreviation"
+            android:textAppearance="@style/Signal.Text.BodySmall"
+            android:textColor="@color/signal_colorOnSurfaceVariant" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/duration_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingHorizontal="16dp"
+        android:text="@string/TimeDurationPickerDialog_minimum_duration_warning"
+        android:textColor="@color/signal_colorOnSurface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/duration_layout" />
+
+    <org.thoughtcrime.securesms.components.NumericKeyboardView
+        android:id="@+id/duration_keyboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/duration_header" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

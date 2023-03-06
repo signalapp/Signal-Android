@@ -110,7 +110,7 @@ class UsernameEditViewModel extends ViewModel {
 
     uiState.update(state -> new State(ButtonState.SUBMIT_LOADING, UsernameStatus.NONE, state.usernameState));
 
-    Disposable confirmUsernameDisposable = repo.confirmUsername(((UsernameState.Reserved) usernameState).getReserveUsernameResponse())
+    Disposable confirmUsernameDisposable = repo.confirmUsername((UsernameState.Reserved) usernameState)
                                                .subscribe(result -> {
                                                  String nickname = usernameState.getNickname();
 
@@ -128,6 +128,7 @@ class UsernameEditViewModel extends ViewModel {
                                                        onNicknameUpdated(nickname);
                                                      }
                                                      break;
+                                                   case CANDIDATE_GENERATION_ERROR:
                                                    case USERNAME_UNAVAILABLE:
                                                      uiState.update(state -> new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.TAKEN, state.usernameState));
                                                      events.onNext(Event.SUBMIT_FAIL_TAKEN);
@@ -181,8 +182,8 @@ class UsernameEditViewModel extends ViewModel {
     uiState.update(state -> new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, UsernameState.Loading.INSTANCE));
     Disposable reserveDisposable = repo.reserveUsername(nickname).subscribe(result -> {
       result.either(
-          reserveUsernameJsonResponse -> {
-            uiState.update(state -> new State(ButtonState.SUBMIT, UsernameStatus.NONE, new UsernameState.Reserved(reserveUsernameJsonResponse)));
+          reserved -> {
+            uiState.update(state -> new State(ButtonState.SUBMIT, UsernameStatus.NONE, reserved));
             return null;
           },
           failure -> {
@@ -198,6 +199,10 @@ class UsernameEditViewModel extends ViewModel {
               case NETWORK_ERROR:
                 uiState.update(state -> new State(ButtonState.SUBMIT, UsernameStatus.NONE, UsernameState.NoUsername.INSTANCE));
                 events.onNext(Event.NETWORK_FAILURE);
+                break;
+              case CANDIDATE_GENERATION_ERROR:
+                // TODO -- Retry
+                uiState.update(state -> new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.TAKEN, UsernameState.NoUsername.INSTANCE));
                 break;
             }
 

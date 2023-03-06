@@ -25,6 +25,14 @@ class BiometricDeviceAuthentication(
     const val TAG: String = "BiometricDeviceAuth"
     const val BIOMETRIC_AUTHENTICATORS = BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.BIOMETRIC_WEAK
     const val ALLOWED_AUTHENTICATORS = BIOMETRIC_AUTHENTICATORS or BiometricManager.Authenticators.DEVICE_CREDENTIAL
+
+    /**
+     * From the docs on [BiometricManager.canAuthenticate]
+     *
+     * > Note that not all combinations of authenticator types are supported prior to Android 11 (API 30). Specifically, DEVICE_CREDENTIAL alone is unsupported
+     * > prior to API 30, and BIOMETRIC_STRONG | DEVICE_CREDENTIAL is unsupported on API 28-29.
+     */
+    private val DISALLOWED_BIOMETRIC_VERSIONS = setOf(28, 29)
   }
 
   fun authenticate(context: Context, force: Boolean, showConfirmDeviceCredentialIntent: () -> Unit): Boolean {
@@ -35,7 +43,7 @@ class BiometricDeviceAuthentication(
       return false
     }
 
-    return if (Build.VERSION.SDK_INT != 29 && biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS) {
+    return if (!DISALLOWED_BIOMETRIC_VERSIONS.contains(Build.VERSION.SDK_INT) && biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS) {
       if (force) {
         Log.i(TAG, "Listening for biometric authentication...")
         biometricPrompt.authenticate(biometricPromptInfo)

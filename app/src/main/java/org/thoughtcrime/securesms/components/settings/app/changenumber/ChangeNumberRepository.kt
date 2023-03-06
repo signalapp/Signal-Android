@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata
 import org.thoughtcrime.securesms.database.model.toProtoByteString
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.keyvalue.CertificateType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.KbsRepository
@@ -37,6 +38,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
+import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse
@@ -85,16 +87,31 @@ class ChangeNumberRepository(
 
   fun ensureDecryptionsDrained(): Completable {
     return Completable.create { emitter ->
+      val drainedListener = object : Runnable {
+        override fun run() {
+          emitter.onComplete()
+          ApplicationDependencies
+            .getIncomingMessageObserver()
+            .removeDecryptionDrainedListener(this)
+        }
+      }
+
+      emitter.setCancellable {
+        ApplicationDependencies
+          .getIncomingMessageObserver()
+          .removeDecryptionDrainedListener(drainedListener)
+      }
+
       ApplicationDependencies
         .getIncomingMessageObserver()
-        .addDecryptionDrainedListener {
-          emitter.onComplete()
-        }
+        .addDecryptionDrainedListener(drainedListener)
     }.subscribeOn(Schedulers.single())
       .timeout(15, TimeUnit.SECONDS)
   }
 
-  fun changeNumber(code: String, newE164: String, pniUpdateMode: Boolean = false): Single<ServiceResponse<VerifyResponse>> {
+  fun changeNumber(sessionId: String? = null, recoveryPassword: String? = null, newE164: String, pniUpdateMode: Boolean = false): Single<ServiceResponse<VerifyResponse>> {
+    check((sessionId != null && recoveryPassword == null) || (sessionId == null && recoveryPassword != null))
+
     return Single.fromCallable {
       var completed = false
       var attempts = 0
@@ -102,9 +119,9 @@ class ChangeNumberRepository(
 
       while (!completed && attempts < 5) {
         val (request: ChangePhoneNumberRequest, metadata: PendingChangeNumberMetadata) = createChangeNumberRequest(
-          code = code,
+          sessionId = sessionId,
+          recoveryPassword = recoveryPassword,
           newE164 = newE164,
-          registrationLock = null,
           pniUpdateMode = pniUpdateMode
         )
 
@@ -127,7 +144,7 @@ class ChangeNumberRepository(
   }
 
   fun changeNumber(
-    code: String,
+    sessionId: String,
     newE164: String,
     pin: String,
     tokenData: TokenData
@@ -153,10 +170,9 @@ class ChangeNumberRepository(
 
       while (!completed && attempts < 5) {
         val (request: ChangePhoneNumberRequest, metadata: PendingChangeNumberMetadata) = createChangeNumberRequest(
-          code = code,
+          sessionId = sessionId,
           newE164 = newE164,
-          registrationLock = registrationLock,
-          pniUpdateMode = false
+          registrationLock = registrationLock
         )
 
         SignalStore.misc().setPendingChangeNumberMetadata(metadata)
@@ -253,6 +269,8 @@ class ChangeNumberRepository(
     ApplicationDependencies.closeConnections()
     ApplicationDependencies.getIncomingMessageObserver()
 
+    ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
+
     return rotateCertificates()
   }
 
@@ -280,10 +298,11 @@ class ChangeNumberRepository(
   @Suppress("UsePropertyAccessSyntax")
   @WorkerThread
   private fun createChangeNumberRequest(
-    code: String,
+    sessionId: String? = null,
+    recoveryPassword: String? = null,
     newE164: String,
-    registrationLock: String?,
-    pniUpdateMode: Boolean
+    registrationLock: String? = null,
+    pniUpdateMode: Boolean = false
   ): ChangeNumberRequestData {
     val selfIdentifier: String = SignalStore.account().requireAci().toString()
     val aciProtocolStore: SignalProtocolStore = ApplicationDependencies.getProtocolStore().aci()
@@ -336,8 +355,9 @@ class ChangeNumberRepository(
       }
 
     val request = ChangePhoneNumberRequest(
+      sessionId,
+      recoveryPassword,
       newE164,
-      code,
       registrationLock,
       pniIdentity.publicKey,
       deviceMessages,
@@ -353,6 +373,12 @@ class ChangeNumberRepository(
       .build()
 
     return ChangeNumberRequestData(request, metadata)
+  }
+
+  fun verifyAccount(sessionId: String, code: String): Single<ServiceResponse<RegistrationSessionMetadataResponse>> {
+    return Single.fromCallable {
+      accountManager.verifyAccount(code, sessionId)
+    }.subscribeOn(Schedulers.io())
   }
 
   data class ChangeNumberRequestData(val changeNumberRequest: ChangePhoneNumberRequest, val pendingChangeNumberMetadata: PendingChangeNumberMetadata)

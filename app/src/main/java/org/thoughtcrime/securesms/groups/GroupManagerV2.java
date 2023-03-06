@@ -937,6 +937,14 @@ final class GroupManagerV2 {
 
       if (group.isPresent()) {
         Log.i(TAG, "Group already present locally");
+        if (decryptedChange != null) {
+          try {
+            groupsV2StateProcessor.forGroup(SignalStore.account().getServiceIds(), groupMasterKey)
+                                  .updateLocalGroupToRevision(decryptedChange.getRevision(), System.currentTimeMillis(), decryptedChange);
+          } catch (GroupNotAMemberException e) {
+            Log.w(TAG, "Unable to apply join change to existing group", e);
+          }
+        }
       } else {
         groupDatabase.create(groupMasterKey, decryptedGroup);
         Log.i(TAG, "Created local group with placeholder");

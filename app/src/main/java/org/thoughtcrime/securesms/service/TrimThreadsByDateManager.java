@@ -75,7 +75,7 @@ public class TrimThreadsByDateManager extends TimedEventManager<TrimThreadsByDat
   }
 
   @Override
-  protected void scheduleAlarm(@NonNull Application application, long delay) {
+  protected void scheduleAlarm(@NonNull Application application, TrimEvent event, long delay) {
     setAlarm(application, delay, TrimThreadsByDateAlarm.class);
   }
 

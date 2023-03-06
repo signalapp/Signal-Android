@@ -98,7 +98,7 @@ public class ConversationMessage {
   }
 
   public @NonNull SpannableString getDisplayBody(Context context) {
-    return (body != null) ? body : messageRecord.getDisplayBody(context);
+    return (body != null) ? new SpannableString(body) : messageRecord.getDisplayBody(context);
   }
 
   public boolean hasStyleLinks() {

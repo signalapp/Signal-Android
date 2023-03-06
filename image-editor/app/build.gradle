@@ -1,42 +1,17 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+    id 'signal-sample-app'
     id 'kotlin-kapt'
 }
 
 android {
-    compileSdk COMPILE_SDK
+    namespace 'org.signal.imageeditor.app'
 
     defaultConfig {
         applicationId "org.signal.imageeditor.app"
-        versionCode 1
-        versionName "1.0"
-        multiDexEnabled true
-
-        minSdk MINIMUM_SDK
-        targetSdk TARGET_SDK
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
     }
 }
 
 dependencies {
-    implementation libs.androidx.core.ktx
-    implementation libs.androidx.appcompat
-    implementation libs.material.material
-    implementation project(':core-util')
     implementation project(':image-editor')
 
     implementation libs.glide.glide

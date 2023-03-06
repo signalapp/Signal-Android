@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.databinding.UsernameEducationFragmentBinding
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.megaphone.Megaphones
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -25,7 +26,7 @@ class UsernameEducationFragment : Fragment(R.layout.username_education_fragment)
     }
 
     binding.usernameEducationLearnMore.setOnClickListener {
-      // TODO [alex] -- Launch "Learn More" page.
+      CommunicationActions.openBrowserLink(requireContext(), getString(R.string.username_support_url))
     }
 
     binding.continueButton.setOnClickListener {

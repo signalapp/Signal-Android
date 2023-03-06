@@ -110,13 +110,23 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
+        <action
+            android:id="@+id/action_reRegisterWithPinFragment"
+            app:destination="@id/reRegisterWithPinFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/enterPhoneNumberFragment"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <fragment
         android:id="@+id/countryPickerFragment"
         android:name="org.thoughtcrime.securesms.registration.fragments.CountryPickerFragment"
         android:label="fragment_country_picker"
-        tools:layout="@layout/fragment_registration_country_picker"/>
+        tools:layout="@layout/fragment_registration_country_picker" />
 
     <fragment
         android:id="@+id/enterCodeFragment"
@@ -192,6 +202,33 @@
     </fragment>
 
     <fragment
+        android:id="@+id/reRegisterWithPinFragment"
+        android:name="org.thoughtcrime.securesms.registration.fragments.ReRegisterWithPinFragment"
+        tools:layout="@layout/fragment_registration_lock">
+
+        <action
+            android:id="@+id/action_reRegisterWithPinFragment_to_registrationCompletePlaceHolderFragment"
+            app:destination="@id/registrationCompletePlaceHolderFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/welcomeFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_reRegisterWithPinFragment_to_enterPhoneNumberFragment"
+            app:destination="@id/enterPhoneNumberFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/reRegisterWithPinFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
         android:id="@+id/accountLockedFragment"
         android:name="org.thoughtcrime.securesms.registration.fragments.AccountLockedFragment"
         android:label="fragment_account_locked"
@@ -201,7 +238,7 @@
         android:id="@+id/captchaFragment"
         android:name="org.thoughtcrime.securesms.registration.fragments.CaptchaFragment"
         android:label="fragment_captcha"
-        tools:layout="@layout/fragment_registration_captcha"/>
+        tools:layout="@layout/fragment_registration_captcha" />
 
     <fragment
         android:id="@+id/restoreBackupFragment"

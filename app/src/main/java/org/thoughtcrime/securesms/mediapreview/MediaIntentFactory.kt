@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import org.signal.core.util.dp
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.MediaTable.MediaRecord
@@ -15,15 +16,16 @@ object MediaIntentFactory {
 
   const val NOT_IN_A_THREAD = -2
   const val UNKNOWN_TIMESTAMP = -2
-  const val THREAD_ID_EXTRA = "thread_id"
-  const val DATE_EXTRA = "date"
-  const val SIZE_EXTRA = "size"
-  const val CAPTION_EXTRA = "caption"
-  const val LEFT_IS_RECENT_EXTRA = "left_is_recent"
-  const val HIDE_ALL_MEDIA_EXTRA = "came_from_all_media"
-  const val SHOW_THREAD_EXTRA = "show_thread"
-  const val SORTING_EXTRA = "sorting"
-  const val IS_VIDEO_GIF = "is_video_gif"
+
+  @Parcelize
+  data class SharedElementArgs(
+    val width: Int = 1,
+    val height: Int = 1,
+    val topLeft: Float = 0f,
+    val topRight: Float = 0f,
+    val bottomRight: Float = 0f,
+    val bottomLeft: Float = 0f
+  ) : Parcelable
 
   @Parcelize
   data class MediaPreviewArgs(
@@ -38,7 +40,8 @@ object MediaIntentFactory {
     val showThread: Boolean = false,
     val allMediaInRail: Boolean = false,
     val sorting: MediaTable.Sorting,
-    val isVideoGif: Boolean
+    val isVideoGif: Boolean,
+    val sharedElementArgs: SharedElementArgs = SharedElementArgs()
   ) : Parcelable
 
   @JvmStatic
@@ -68,7 +71,15 @@ object MediaIntentFactory {
         leftIsRecent,
         allMediaInRail = allMediaInRail,
         sorting = MediaTable.Sorting.Newest,
-        isVideoGif = attachment.isVideoGif
+        isVideoGif = attachment.isVideoGif,
+        sharedElementArgs = SharedElementArgs(
+          attachment.width,
+          attachment.height,
+          12.dp.toFloat(),
+          12.dp.toFloat(),
+          12.dp.toFloat(),
+          12.dp.toFloat()
+        )
       )
     )
   }

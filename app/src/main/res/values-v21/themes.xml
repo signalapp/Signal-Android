@@ -43,6 +43,7 @@
 
     <style name="TextSecure.MediaPreview" parent="@style/TextSecure.BaseMediaPreview">
         <item name="android:navigationBarColor">@color/media_preview_bar_background</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="Theme.Signal.Light.BottomSheetDialog" parent="Theme.Material3.Light.BottomSheetDialog">

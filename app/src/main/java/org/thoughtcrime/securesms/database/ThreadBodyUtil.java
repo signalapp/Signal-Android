@@ -62,6 +62,8 @@ public final class ThreadBodyUtil {
       return format(EmojiStrings.CARD, getPaymentActivatedSummary(context, record));
     } else if (record.isCallLog() && !record.isGroupCall()) {
       return new ThreadBody(getCallLogSummary(context, record));
+    } else if (MessageRecordUtil.isScheduled(record)) {
+      return new ThreadBody(context.getString(R.string.ThreadRecord_scheduled_message));
     }
 
     boolean hasImage = false;

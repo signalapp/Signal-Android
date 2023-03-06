@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -33,9 +34,9 @@ import java.util.Optional;
 
 /**
  * Encapsulates control of voice note playback from an Activity component.
- *
+ * <p>
  * This class assumes that it will be created within the scope of Activity#onCreate
- *
+ * <p>
  * The workhorse of this repository is the ProgressEventHandler, which will supply a
  * steady stream of update events to the set callback.
  */
@@ -54,15 +55,17 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
   private MutableLiveData<VoiceNotePlaybackState>       voiceNotePlaybackState = new MutableLiveData<>(VoiceNotePlaybackState.NONE);
   private LiveData<Optional<VoiceNotePlayerView.State>> voiceNotePlayerViewState;
   private VoiceNoteProximityWakeLockManager             voiceNoteProximityWakeLockManager;
+  private boolean                                       isMediaBrowserCreationPostponed;
 
   private final MediaControllerCompatCallback mediaControllerCompatCallback = new MediaControllerCompatCallback();
 
   public VoiceNoteMediaController(@NonNull FragmentActivity activity) {
-    this.activity     = activity;
-    this.mediaBrowser = new MediaBrowserCompat(activity,
-                                               new ComponentName(activity, VoiceNotePlaybackService.class),
-                                               new ConnectionCallback(),
-                                               null);
+    this(activity, false);
+  }
+
+  public VoiceNoteMediaController(@NonNull FragmentActivity activity, boolean postponeMediaBrowserCreation) {
+    this.activity                        = activity;
+    this.isMediaBrowserCreationPostponed = postponeMediaBrowserCreation;
 
     activity.getLifecycle().addObserver(this);
 
@@ -71,9 +74,9 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
         VoiceNotePlaybackState.ClipType.Message message         = (VoiceNotePlaybackState.ClipType.Message) playbackState.getClipType();
         LiveRecipient                           sender          = Recipient.live(message.getSenderId());
         LiveRecipient                           threadRecipient = Recipient.live(message.getThreadRecipientId());
-        LiveData<String>                        name            = LiveDataUtil.combineLatest(sender.getLiveDataResolved(),
-                                                                                             threadRecipient.getLiveDataResolved(),
-                                                                                             (s, t) -> VoiceNoteMediaItemFactory.getTitle(activity, s, t, null));
+        LiveData<String> name = LiveDataUtil.combineLatest(sender.getLiveDataResolved(),
+                                                           threadRecipient.getLiveDataResolved(),
+                                                           (s, t) -> VoiceNoteMediaItemFactory.getTitle(activity, s, t, null));
 
         return Transformations.map(name, displayName -> Optional.of(
             new VoiceNotePlayerView.State(
@@ -95,6 +98,17 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
     });
   }
 
+  public void ensureMediaBrowser() {
+    if (mediaBrowser != null) {
+      return;
+    }
+
+    mediaBrowser = new MediaBrowserCompat(activity,
+                                          new ComponentName(activity, VoiceNotePlaybackService.class),
+                                          new ConnectionCallback(),
+                                          null);
+  }
+
   public LiveData<VoiceNotePlaybackState> getVoiceNotePlaybackState() {
     return voiceNotePlaybackState;
   }
@@ -103,8 +117,22 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
     return voiceNotePlayerViewState;
   }
 
+  public void finishPostpone() {
+    isMediaBrowserCreationPostponed = false;
+    if (activity != null && mediaBrowser == null && activity.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) {
+      ensureMediaBrowser();
+      mediaBrowser.disconnect();
+      mediaBrowser.connect();
+    }
+  }
+
   @Override
   public void onResume(@NonNull LifecycleOwner owner) {
+    if (mediaBrowser == null && isMediaBrowserCreationPostponed) {
+      return;
+    }
+
+    ensureMediaBrowser();
     mediaBrowser.disconnect();
     mediaBrowser.connect();
   }
@@ -117,7 +145,9 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
       MediaControllerCompat.getMediaController(activity).unregisterCallback(mediaControllerCompatCallback);
     }
 
-    mediaBrowser.disconnect();
+    if (mediaBrowser != null) {
+      mediaBrowser.disconnect();
+    }
   }
 
   @Override
@@ -201,8 +231,8 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
    * Tells the Media service to resume playback of a given audio slide. If the audio slide is not
    * currently paused, playback will be started from the beginning.
    *
-   * @param audioSlideUri  The Uri of the desired audio slide
-   * @param messageId      The Message id of the given audio slide
+   * @param audioSlideUri The Uri of the desired audio slide
+   * @param messageId     The Message id of the given audio slide
    */
   public void resumePlayback(@NonNull Uri audioSlideUri, long messageId) {
     if (getMediaController() == null) {
@@ -390,8 +420,8 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
   }
 
   private static boolean canExtractPlaybackInformationFromMetadata(@Nullable MediaMetadataCompat mediaMetadataCompat) {
-    return mediaMetadataCompat != null                        &&
-           mediaMetadataCompat.getDescription() != null       &&
+    return mediaMetadataCompat != null &&
+           mediaMetadataCompat.getDescription() != null &&
            mediaMetadataCompat.getDescription().getMediaUri() != null;
   }
 

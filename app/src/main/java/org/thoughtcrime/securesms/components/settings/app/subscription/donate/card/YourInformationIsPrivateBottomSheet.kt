@@ -19,7 +19,6 @@ class YourInformationIsPrivateBottomSheet : DSLSettingsBottomSheetFragment() {
 
   private fun getConfiguration(): DSLConfiguration {
     return configure {
-
       space(10.dp)
 
       noPadTextPref(

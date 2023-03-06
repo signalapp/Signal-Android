@@ -6,22 +6,26 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
+
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.pin.KbsRepository;
 import org.thoughtcrime.securesms.pin.TokenData;
-import org.thoughtcrime.securesms.registration.RequestVerificationCodeResponseProcessor;
+import org.thoughtcrime.securesms.registration.RegistrationSessionProcessor;
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository;
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository.Mode;
 import org.thoughtcrime.securesms.registration.VerifyResponse;
 import org.thoughtcrime.securesms.registration.VerifyResponseProcessor;
 import org.thoughtcrime.securesms.registration.VerifyResponseWithFailedKbs;
+import org.thoughtcrime.securesms.registration.VerifyResponseWithRegistrationLockProcessor;
 import org.thoughtcrime.securesms.registration.VerifyResponseWithSuccessfulKbs;
 import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs;
-import org.thoughtcrime.securesms.registration.VerifyResponseWithRegistrationLockProcessor;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
@@ -33,18 +37,19 @@ import io.reactivex.rxjava3.core.Single;
  */
 public abstract class BaseRegistrationViewModel extends ViewModel {
 
-  private static final long FIRST_CALL_AVAILABLE_AFTER_MS      = TimeUnit.SECONDS.toMillis(64);
-  private static final long SUBSEQUENT_CALL_AVAILABLE_AFTER_MS = TimeUnit.SECONDS.toMillis(300);
+  private static final String TAG = Log.tag(BaseRegistrationViewModel.class);
 
-  private static final String STATE_NUMBER                           = "NUMBER";
-  private static final String STATE_REGISTRATION_SECRET              = "REGISTRATION_SECRET";
-  private static final String STATE_VERIFICATION_CODE                = "TEXT_CODE_ENTERED";
-  private static final String STATE_CAPTCHA                          = "CAPTCHA";
-  private static final String STATE_SUCCESSFUL_CODE_REQUEST_ATTEMPTS = "SUCCESSFUL_CODE_REQUEST_ATTEMPTS";
-  private static final String STATE_REQUEST_RATE_LIMITER             = "REQUEST_RATE_LIMITER";
-  private static final String STATE_KBS_TOKEN                        = "KBS_TOKEN";
-  private static final String STATE_TIME_REMAINING                   = "TIME_REMAINING";
-  private static final String STATE_CAN_CALL_AT_TIME                 = "CAN_CALL_AT_TIME";
+  private static final String STATE_NUMBER                  = "NUMBER";
+  private static final String STATE_REGISTRATION_SECRET     = "REGISTRATION_SECRET";
+  private static final String STATE_VERIFICATION_CODE       = "TEXT_CODE_ENTERED";
+  private static final String STATE_CAPTCHA                 = "CAPTCHA";
+  private static final String STATE_INCORRECT_CODE_ATTEMPTS = "STATE_INCORRECT_CODE_ATTEMPTS";
+  private static final String STATE_REQUEST_RATE_LIMITER    = "REQUEST_RATE_LIMITER";
+  private static final String STATE_KBS_TOKEN               = "KBS_TOKEN";
+  private static final String STATE_TIME_REMAINING          = "TIME_REMAINING";
+  private static final String STATE_CAN_CALL_AT_TIME        = "CAN_CALL_AT_TIME";
+  private static final String STATE_CAN_SMS_AT_TIME         = "CAN_SMS_AT_TIME";
+  private static final String STATE_RECOVERY_PASSWORD       = "RECOVERY_PASSWORD";
 
   protected final SavedStateHandle        savedState;
   protected final VerifyAccountRepository verifyAccountRepository;
@@ -63,14 +68,36 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     setInitialDefaultValue(STATE_NUMBER, NumberViewState.INITIAL);
     setInitialDefaultValue(STATE_REGISTRATION_SECRET, password);
     setInitialDefaultValue(STATE_VERIFICATION_CODE, "");
-    setInitialDefaultValue(STATE_SUCCESSFUL_CODE_REQUEST_ATTEMPTS, 0);
+    setInitialDefaultValue(STATE_INCORRECT_CODE_ATTEMPTS, 0);
     setInitialDefaultValue(STATE_REQUEST_RATE_LIMITER, new LocalCodeRequestRateLimiter(60_000));
+    setInitialDefaultValue(STATE_RECOVERY_PASSWORD, SignalStore.kbsValues().getRecoveryPassword());
   }
 
-  protected <T> void setInitialDefaultValue(@NonNull String key, @NonNull T initialValue) {
+  protected <T> void setInitialDefaultValue(@NonNull String key, @Nullable T initialValue) {
     if (!savedState.contains(key) || savedState.get(key) == null) {
       savedState.set(key, initialValue);
     }
+  }
+
+  public @Nullable String getSessionId() {
+    return SignalStore.registrationValues().getSessionId();
+  }
+
+  public void setSessionId(String sessionId) {
+    SignalStore.registrationValues().setSessionId(sessionId);
+  }
+
+  public @Nullable String getSessionE164() {
+    return SignalStore.registrationValues().getSessionE164();
+  }
+
+  public void setSessionE164(String sessionE164) {
+    SignalStore.registrationValues().setSessionE164(sessionE164);
+  }
+
+  public void resetSession() {
+    setSessionE164(null);
+    setSessionId(null);
   }
 
   public @NonNull NumberViewState getNumber() {
@@ -82,10 +109,17 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     return savedState.getLiveData(STATE_NUMBER);
   }
 
+  public void restorePhoneNumberStateFromE164(String e164) throws NumberParseException {
+    Phonenumber.PhoneNumber phoneNumber = PhoneNumberUtil.getInstance().parse(e164, null);
+    onCountrySelected(null, phoneNumber.getCountryCode());
+    setNationalNumber(String.valueOf(phoneNumber.getNationalNumber()));
+  }
+
   public void onCountrySelected(@Nullable String selectedCountryName, int countryCode) {
     setViewState(getNumber().toBuilder()
                             .selectedCountryDisplayName(selectedCountryName)
-                            .countryCode(countryCode).build());
+                            .countryCode(countryCode)
+                            .build());
   }
 
   public void setNationalNumber(String number) {
@@ -129,22 +163,13 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     savedState.set(STATE_VERIFICATION_CODE, code);
   }
 
-  public void markASuccessfulAttempt() {
+  public void incrementIncorrectCodeAttempts() {
     //noinspection ConstantConditions
-    savedState.set(STATE_SUCCESSFUL_CODE_REQUEST_ATTEMPTS, (Integer) savedState.get(STATE_SUCCESSFUL_CODE_REQUEST_ATTEMPTS) + 1);
+    savedState.set(STATE_INCORRECT_CODE_ATTEMPTS, (Integer) savedState.get(STATE_INCORRECT_CODE_ATTEMPTS) + 1);
   }
 
-  public LiveData<Integer> getSuccessfulCodeRequestAttempts() {
-    return savedState.getLiveData(STATE_SUCCESSFUL_CODE_REQUEST_ATTEMPTS, 0);
-  }
-
-  public @NonNull LocalCodeRequestRateLimiter getRequestLimiter() {
-    //noinspection ConstantConditions
-    return savedState.get(STATE_REQUEST_RATE_LIMITER);
-  }
-
-  public void updateLimiter() {
-    savedState.set(STATE_REQUEST_RATE_LIMITER, savedState.get(STATE_REQUEST_RATE_LIMITER));
+  public LiveData<Integer> getIncorrectCodeAttempts() {
+    return savedState.getLiveData(STATE_INCORRECT_CODE_ATTEMPTS, 0);
   }
 
   public @Nullable TokenData getKeyBackupCurrentToken() {
@@ -155,6 +180,14 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     savedState.set(STATE_KBS_TOKEN, tokenData);
   }
 
+  public void setRecoveryPassword(@Nullable String recoveryPassword) {
+    savedState.set(STATE_RECOVERY_PASSWORD, recoveryPassword);
+  }
+
+  public @Nullable String getRecoveryPassword() {
+    return savedState.get(STATE_RECOVERY_PASSWORD);
+  }
+
   public LiveData<Long> getLockedTimeRemaining() {
     return savedState.getLiveData(STATE_TIME_REMAINING, 0L);
   }
@@ -163,43 +196,118 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     return savedState.getLiveData(STATE_CAN_CALL_AT_TIME, 0L);
   }
 
+  public LiveData<Long> getCanSmsAtTime() {
+    return savedState.getLiveData(STATE_CAN_SMS_AT_TIME, 0L);
+  }
+
   public void setLockedTimeRemaining(long lockedTimeRemaining) {
     savedState.set(STATE_TIME_REMAINING, lockedTimeRemaining);
   }
 
-  public void onStartEnterCode() {
-    savedState.set(STATE_CAN_CALL_AT_TIME, System.currentTimeMillis() + FIRST_CALL_AVAILABLE_AFTER_MS);
+  public void setCanCallAtTime(long callingTimestamp) {
+    savedState.getLiveData(STATE_CAN_CALL_AT_TIME).postValue(callingTimestamp);
   }
 
-  public void onCallRequested() {
-    savedState.set(STATE_CAN_CALL_AT_TIME, System.currentTimeMillis() + SUBSEQUENT_CALL_AVAILABLE_AFTER_MS);
+  public void setCanSmsAtTime(long smsTimestamp) {
+    savedState.getLiveData(STATE_CAN_SMS_AT_TIME).postValue(smsTimestamp);
   }
 
-  public Single<RequestVerificationCodeResponseProcessor> requestVerificationCode(@NonNull Mode mode) {
-    String captcha = getCaptchaToken();
-    clearCaptchaResponse();
+  public Single<RegistrationSessionProcessor> requestVerificationCode(@NonNull Mode mode, @Nullable String mcc, @Nullable String mnc) {
 
-    if (mode == Mode.PHONE_CALL) {
-      onCallRequested();
-    } else if (!getRequestLimiter().canRequest(mode, getNumber().getE164Number(), System.currentTimeMillis())) {
-      return Single.just(RequestVerificationCodeResponseProcessor.forLocalRateLimit());
+    final String e164 = getNumber().getE164Number();
+
+    return getValidSession(e164, mcc, mnc)
+        .flatMap(processor -> {
+          if (!processor.hasResult()) {
+            return Single.just(processor);
+          }
+
+          String sessionId = processor.getSessionId();
+          setSessionId(sessionId);
+          setSessionE164(e164);
+
+          return handleRequiredChallenges(processor, e164);
+        })
+        .flatMap(processor -> {
+          if (!processor.hasResult()) {
+            return Single.just(processor);
+          }
+
+          if (!processor.isAllowedToRequestCode()) {
+            return Single.just(processor);
+          }
+
+          String sessionId = processor.getSessionId();
+          clearCaptchaResponse();
+          return verifyAccountRepository.requestVerificationCode(sessionId,
+                                                                 getNumber().getE164Number(),
+                                                                 getRegistrationSecret(),
+                                                                 mode)
+                                        .map(RegistrationSessionProcessor.RegistrationSessionProcessorForVerification::new);
+        })
+        .observeOn(AndroidSchedulers.mainThread())
+        .doOnSuccess((RegistrationSessionProcessor processor) -> {
+          if (processor.hasResult() && processor.isAllowedToRequestCode()) {
+            setCanSmsAtTime(processor.getNextCodeViaSmsAttempt());
+            setCanCallAtTime(processor.getNextCodeViaCallAttempt());
+          }
+        });
+  }
+
+  public Single<RegistrationSessionProcessor.RegistrationSessionProcessorForSession> validateSession(String e164, @Nullable String mcc, @Nullable String mnc) {
+    String storedSessionId = null;
+    if (e164.equals(getSessionE164())) {
+      storedSessionId = getSessionId();
+    }
+    return verifyAccountRepository.validateSession(storedSessionId, e164, getRegistrationSecret())
+                                  .map(RegistrationSessionProcessor.RegistrationSessionProcessorForSession::new);
+  }
+
+  public Single<RegistrationSessionProcessor.RegistrationSessionProcessorForSession> getValidSession(String e164, @Nullable String mcc, @Nullable String mnc) {
+    return validateSession(e164, mcc, mnc)
+        .flatMap(processor -> {
+          if (processor.isInvalidSession()) {
+            return verifyAccountRepository.requestValidSession(e164, getRegistrationSecret(), mcc, mnc)
+                                          .map(RegistrationSessionProcessor.RegistrationSessionProcessorForSession::new);
+          } else {
+            return Single.just(processor);
+          }
+        });
+  }
+
+  public Single<RegistrationSessionProcessor> handleRequiredChallenges(RegistrationSessionProcessor processor, String e164) {
+    final String sessionId = processor.getSessionId();
+
+    if (processor.isAllowedToRequestCode()) {
+      return Single.just(processor);
     }
 
-    return verifyAccountRepository.requestVerificationCode(getNumber().getE164Number(),
-                                                           getRegistrationSecret(),
-                                                           mode,
-                                                           captcha)
-                                  .map(RequestVerificationCodeResponseProcessor::new)
-                                  .observeOn(AndroidSchedulers.mainThread())
-                                  .doOnSuccess(processor -> {
-                                    if (processor.hasResult()) {
-                                      markASuccessfulAttempt();
-                                      getRequestLimiter().onSuccessfulRequest(mode, getNumber().getE164Number(), System.currentTimeMillis());
-                                    } else {
-                                      getRequestLimiter().onUnsuccessfulRequest();
-                                    }
-                                    updateLimiter();
-                                  });
+    if (hasCaptchaToken() && processor.captchaRequired()) {
+      Log.d(TAG, "Submitting completed captcha challenge");
+      final String captcha = Objects.requireNonNull(getCaptchaToken());
+      clearCaptchaResponse();
+      return verifyAccountRepository.verifyCaptcha(sessionId, captcha, e164, getRegistrationSecret())
+                                    .map(RegistrationSessionProcessor.RegistrationSessionProcessorForSession::new);
+    } else {
+      String challenge = processor.getChallenge();
+      Log.d(TAG, "Handling challenge of type " + challenge);
+      if (challenge != null) {
+        switch (challenge) {
+          case RegistrationSessionProcessor.PUSH_CHALLENGE_KEY:
+            return verifyAccountRepository.requestAndVerifyPushToken(sessionId,
+                                                                     getNumber().getE164Number(),
+                                                                     getRegistrationSecret())
+                                          .map(RegistrationSessionProcessor.RegistrationSessionProcessorForSession::new);
+
+          case RegistrationSessionProcessor.CAPTCHA_KEY:
+            // fall through to passing the processor back so that the eventual subscriber will check captchaRequired() and handle accordingly
+          default:
+            break;
+        }
+      }
+    }
+
+    return Single.just(processor);
   }
 
   public Single<VerifyResponseProcessor> verifyCodeWithoutRegistrationLock(@NonNull String code) {
@@ -261,4 +369,5 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
   protected abstract Single<VerifyResponseProcessor> onVerifySuccess(@NonNull VerifyResponseProcessor processor);
 
   protected abstract Single<VerifyResponseWithRegistrationLockProcessor> onVerifySuccessWithRegistrationLock(@NonNull VerifyResponseWithRegistrationLockProcessor processor, String pin);
+
 }

@@ -33,8 +33,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="bottom"
-            android:paddingTop="16dp"
             android:paddingStart="16dp"
+            android:paddingTop="16dp"
             android:paddingEnd="16dp"
             android:paddingBottom="8dp"
             android:textColor="@color/core_white"
@@ -45,7 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
-            android:background="@color/transparent" />
+            android:background="@color/transparent"
+            android:paddingTop="8dp" />
 
     </LinearLayout>
 
@@ -65,8 +66,9 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="@dimen/signal_m3_toolbar_height"
             android:background="@android:color/transparent"
+            android:minHeight="@dimen/signal_m3_toolbar_height"
             android:theme="?actionBarStyle"
             app:navigationIcon="@drawable/ic_arrow_left_white_24" />
 

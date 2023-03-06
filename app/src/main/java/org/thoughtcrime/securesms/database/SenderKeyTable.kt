@@ -60,7 +60,7 @@ class SenderKeyTable internal constructor(context: Context?, databaseHelper: Sig
           DEVICE to address.deviceId,
           DISTRIBUTION_ID to distributionId.toString(),
           RECORD to record.serialize(),
-          CREATED_AT to System.currentTimeMillis(),
+          CREATED_AT to System.currentTimeMillis()
         )
         db.insertWithOnConflict(TABLE_NAME, null, insertValues, SQLiteDatabase.CONFLICT_REPLACE)
       }

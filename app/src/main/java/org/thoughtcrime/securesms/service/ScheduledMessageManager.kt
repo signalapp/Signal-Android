@@ -1,15 +1,21 @@
 package org.thoughtcrime.securesms.service
 
 import android.app.Application
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.WorkerThread
+import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.IndividualSendJob
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob
+import org.thoughtcrime.securesms.recipients.RecipientId
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Manages waking up and sending scheduled messages at the correct time
@@ -31,19 +37,24 @@ class ScheduledMessageManager(
   @Suppress("UsePropertyAccessSyntax")
   @WorkerThread
   override fun getNextClosestEvent(): Event? {
-    val oldestTimestamp = messagesTable.getOldestScheduledSendTimestamp() ?: return null
+    val oldestMessage: MediaMmsMessageRecord? = messagesTable.getOldestScheduledSendTimestamp() as? MediaMmsMessageRecord
 
-    val delay = (oldestTimestamp - System.currentTimeMillis()).coerceAtLeast(0)
+    if (oldestMessage == null) {
+      cancelAlarm(application, ScheduledMessagesAlarm::class.java)
+      return null
+    }
+
+    val delay = (oldestMessage.scheduledDate - System.currentTimeMillis()).coerceAtLeast(0)
     Log.i(TAG, "The next scheduled message needs to be sent in $delay ms.")
 
-    return Event(delay)
+    return Event(delay, oldestMessage.recipient.id, oldestMessage.threadId)
   }
 
   @WorkerThread
   override fun executeEvent(event: Event) {
     val scheduledMessagesToSend = messagesTable.getScheduledMessagesBefore(System.currentTimeMillis())
     for (record in scheduledMessagesToSend) {
-      if (SignalDatabase.messages.clearScheduledStatus(record.threadId, record.id)) {
+      if (messagesTable.clearScheduledStatus(record.threadId, record.id, record.recipient.expiresInSeconds.seconds.inWholeMilliseconds)) {
         if (record.recipient.isPushGroup) {
           PushGroupSendJob.enqueue(application, ApplicationDependencies.getJobManager(), record.id, record.recipient.id, emptySet(), true)
         } else {
@@ -59,11 +70,18 @@ class ScheduledMessageManager(
   override fun getDelayForEvent(event: Event): Long = event.delay
 
   @WorkerThread
-  override fun scheduleAlarm(application: Application, delay: Long) {
-    trySetExactAlarm(application, System.currentTimeMillis() + delay, ScheduledMessagesAlarm::class.java)
+  override fun scheduleAlarm(application: Application, event: Event, delay: Long) {
+    val conversationIntent = ConversationIntents.createBuilder(application, event.recipientId, event.threadId).build()
+
+    trySetExactAlarm(
+      application,
+      System.currentTimeMillis() + delay,
+      ScheduledMessagesAlarm::class.java,
+      PendingIntent.getActivity(application, 0, conversationIntent, PendingIntentFlags.mutable())
+    )
   }
 
-  data class Event(val delay: Long)
+  data class Event(val delay: Long, val recipientId: RecipientId, val threadId: Long)
 
   class ScheduledMessagesAlarm : BroadcastReceiver() {
 

@@ -44,7 +44,7 @@ public class SignalServiceEnvelopeEntity {
   private Boolean story;
 
   @JsonProperty
-  private byte[] reportingToken;
+  private byte[] reportSpamToken;
 
   public SignalServiceEnvelopeEntity() {}
 
@@ -104,7 +104,7 @@ public class SignalServiceEnvelopeEntity {
     return story != null && story;
   }
 
-  public byte[] getReportingToken() {
-    return reportingToken;
+  public byte[] getReportSpamToken() {
+    return reportSpamToken;
   }
 }

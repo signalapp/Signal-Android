@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.ConversationItemFooter xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/conversation_thumbnail_footer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+    android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
+    android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
+    app:footer_mode="outgoing"
+    app:footer_text_color="@color/signal_text_toolbar_subtitle"
+    app:footer_reveal_dot_color="@color/signal_text_toolbar_subtitle"
+    app:footer_icon_color="@color/signal_text_toolbar_subtitle"
+    tools:showIn="@layout/conversation_item_thumbnail" />

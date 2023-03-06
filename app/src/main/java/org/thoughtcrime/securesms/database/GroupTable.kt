@@ -237,13 +237,13 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
             }
 
             if (updateCount > 0) {
-              getGroup(groupId)
+              Log.i(TAG, "Successfully updated $updateCount rows. GroupId: $groupId, Remaps: $remaps", true)
             } else {
-              throw IllegalStateException("Failed to update group with remapped recipients!")
+              Log.w(TAG, "Failed to update any rows. GroupId: $groupId, Remaps: $remaps", true)
             }
-          } else {
-            getGroup(cursor)
           }
+
+          getGroup(cursor)
         } else {
           Optional.empty()
         }
@@ -502,18 +502,30 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   fun getOrCreateMmsGroupForMembers(members: Set<RecipientId>): GroupId.Mms {
+    val joinedTestMembers = members
+      .toList()
+      .map { it.toLong() }
+      .sorted()
+      .joinToString(separator = ",")
+
     //language=sql
     val statement = """
-      SELECT ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} as gid
-      FROM ${MembershipTable.TABLE_NAME}
-      INNER JOIN $TABLE_NAME ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
-      WHERE ${MembershipTable.TABLE_NAME}.$RECIPIENT_ID IN (${members.joinToString(",") { it.serialize() }}) AND $TABLE_NAME.$MMS = 1
-      GROUP BY $TABLE_NAME.$GROUP_ID
-      HAVING (SELECT COUNT(*) FROM ${MembershipTable.TABLE_NAME} WHERE ${MembershipTable.GROUP_ID} = gid) = ${members.size}
-      ORDER BY ${MembershipTable.TABLE_NAME}.${MembershipTable.ID} ASC
+      SELECT 
+        $TABLE_NAME.$GROUP_ID as gid,
+        (
+            SELECT GROUP_CONCAT(${MembershipTable.RECIPIENT_ID}, ',')
+            FROM (
+              SELECT ${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID}
+              FROM ${MembershipTable.TABLE_NAME}
+              WHERE ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
+              ORDER BY ${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} ASC
+            )
+        ) as $MEMBER_GROUP_CONCAT
+        FROM $TABLE_NAME
+        WHERE $MEMBER_GROUP_CONCAT = ?
     """.toSingleLine()
 
-    return readableDatabase.query(statement).use { cursor ->
+    return readableDatabase.rawQuery(statement, buildArgs(joinedTestMembers)).use { cursor ->
       if (cursor.moveToNext()) {
         return GroupId.parseOrThrow(cursor.requireNonNullString("gid")).requireMms()
       } else {
@@ -553,7 +565,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         ) as $MEMBER_GROUP_CONCAT
       FROM ${MembershipTable.TABLE_NAME}
       INNER JOIN $TABLE_NAME ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
-      INNER JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
+      LEFT JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
     """.toSingleLine()
 
     var query = "${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} = ?"

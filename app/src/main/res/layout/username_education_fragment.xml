@@ -56,7 +56,8 @@
             android:layout_marginTop="40dp"
             android:importantForAccessibility="no"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:srcCompat="@drawable/number_color_48" />
 
         <TextView
             android:id="@+id/username_education_text_1"
@@ -79,7 +80,8 @@
             android:layout_marginTop="36dp"
             android:importantForAccessibility="no"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/username_education_icon_1" />
+            app:layout_constraintTop_toBottomOf="@id/username_education_icon_1"
+            app:srcCompat="@drawable/link_color_48" />
 
         <TextView
             android:id="@+id/username_education_text_2"
@@ -102,7 +104,8 @@
             android:layout_marginTop="36dp"
             android:importantForAccessibility="no"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/username_education_icon_2" />
+            app:layout_constraintTop_toBottomOf="@id/username_education_icon_2"
+            app:srcCompat="@drawable/lock_color_48" />
 
         <TextView
             android:id="@+id/username_education_text_3"

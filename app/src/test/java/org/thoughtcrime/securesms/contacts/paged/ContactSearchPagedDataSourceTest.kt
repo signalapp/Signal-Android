@@ -115,7 +115,7 @@ class ContactSearchPagedDataSourceTest {
       ContactSearchKey.RecipientSearchKey(RecipientId.UNKNOWN, true),
       ContactSearchKey.RecipientSearchKey(RecipientId.UNKNOWN, true),
       ContactSearchKey.RecipientSearchKey(RecipientId.UNKNOWN, true),
-      ContactSearchKey.RecipientSearchKey(RecipientId.UNKNOWN, true),
+      ContactSearchKey.RecipientSearchKey(RecipientId.UNKNOWN, true)
     )
 
     val resultKeys = result.map { it.contactSearchKey }

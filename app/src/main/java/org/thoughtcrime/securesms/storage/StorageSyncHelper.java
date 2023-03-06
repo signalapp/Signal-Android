@@ -105,11 +105,11 @@ public final class StorageSyncHelper {
   }
 
   public static SignalStorageRecord buildAccountRecord(@NonNull Context context, @NonNull Recipient self) {
-    RecipientTable  recipientTable = SignalDatabase.recipients();
-    RecipientRecord record         = recipientTable.getRecordForSync(self.getId());
-    List<RecipientRecord> pinned            = Stream.of(SignalDatabase.threads().getPinnedRecipientIds())
-                                                    .map(recipientTable::getRecordForSync)
-                                                    .toList();
+    RecipientTable        recipientTable = SignalDatabase.recipients();
+    RecipientRecord       record         = recipientTable.getRecordForSync(self.getId());
+    List<RecipientRecord> pinned         = Stream.of(SignalDatabase.threads().getPinnedRecipientIds())
+                                                 .map(recipientTable::getRecordForSync)
+                                                 .toList();
 
     final OptionalBool storyViewReceiptsState = SignalStore.storyValues().getViewedReceiptsEnabled() ? OptionalBool.ENABLED
                                                                                                      : OptionalBool.DISABLED;
@@ -153,6 +153,7 @@ public final class StorageSyncHelper {
                                                          .setStoryViewReceiptsState(storyViewReceiptsState)
                                                          .setHasReadOnboardingStory(hasReadOnboardingStory)
                                                          .setHasSeenGroupStoryEducationSheet(SignalStore.storyValues().getUserHasSeenGroupStoryEducationSheet())
+                                                         .setUsername(self.getUsername().orElse(null))
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);

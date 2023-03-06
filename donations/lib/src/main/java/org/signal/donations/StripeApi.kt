@@ -90,13 +90,15 @@ class StripeApi(
       Single.just(CreatePaymentIntentResult.AmountIsTooSmall(price))
     } else if (Validation.isAmountTooLarge(price)) {
       Single.just(CreatePaymentIntentResult.AmountIsTooLarge(price))
-    } else if (!Validation.supportedCurrencyCodes.contains(price.currency.currencyCode.uppercase(Locale.ROOT))) {
-      Single.just<CreatePaymentIntentResult>(CreatePaymentIntentResult.CurrencyIsNotSupported(price.currency.currencyCode))
     } else {
-      paymentIntentFetcher
-        .fetchPaymentIntent(price, level)
-        .map<CreatePaymentIntentResult> { CreatePaymentIntentResult.Success(it) }
-    }.subscribeOn(Schedulers.io())
+      if (!Validation.supportedCurrencyCodes.contains(price.currency.currencyCode.uppercase(Locale.ROOT))) {
+        Single.just<CreatePaymentIntentResult>(CreatePaymentIntentResult.CurrencyIsNotSupported(price.currency.currencyCode))
+      } else {
+        paymentIntentFetcher
+          .fetchPaymentIntent(price, level)
+          .map<CreatePaymentIntentResult> { CreatePaymentIntentResult.Success(it) }
+      }.subscribeOn(Schedulers.io())
+    }
   }
 
   /**
@@ -231,7 +233,7 @@ class StripeApi(
     val tokenId = paymentSource.getTokenId()
     val parameters = mutableMapOf(
       "card[token]" to tokenId,
-      "type" to "card",
+      "type" to "card"
     )
 
     return postForm("payment_methods", parameters)
@@ -554,5 +556,4 @@ class StripeApi(
       }
     }
   }
-
 }

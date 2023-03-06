@@ -122,6 +122,7 @@
                 app:backgroundTint="@color/signal_colorSurfaceVariant"
                 app:srcCompat="@drawable/symbol_camera_24"
                 app:tint="@color/signal_colorOnSurface"
+                app:shapeAppearanceOverlay="@style/Signal.ShapeOverlay.Rounded.Fab"
                 tools:visibility="visible" />
 
             <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
@@ -138,6 +139,7 @@
                 app:backgroundTint="@color/signal_colorPrimaryContainer"
                 app:srcCompat="@drawable/symbol_edit_24"
                 app:tint="@color/signal_colorOnSurface"
+                app:shapeAppearanceOverlay="@style/Signal.ShapeOverlay.Rounded.Fab"
                 tools:visibility="visible" />
 
             <ViewStub

@@ -9,13 +9,16 @@ import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.KbsRepository
 import org.thoughtcrime.securesms.pin.TokenData
+import org.thoughtcrime.securesms.registration.RegistrationSessionProcessor
 import org.thoughtcrime.securesms.registration.SmsRetrieverReceiver
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
 import org.thoughtcrime.securesms.registration.VerifyResponse
@@ -26,6 +29,7 @@ import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewMod
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
 import org.whispersystems.signalservice.api.push.PNI
+import org.whispersystems.signalservice.api.push.exceptions.IncorrectCodeException
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.util.Objects
 
@@ -152,11 +156,32 @@ class ChangeNumberViewModel(
   }
 
   override fun verifyAccountWithoutRegistrationLock(): Single<ServiceResponse<VerifyResponse>> {
-    return changeNumberRepository.changeNumber(textCodeEntered, number.e164Number)
+    val sessionId = sessionId ?: throw IllegalStateException("No valid registration session")
+
+    return changeNumberRepository.verifyAccount(sessionId, textCodeEntered)
+      .map { RegistrationSessionProcessor.RegistrationSessionProcessorForVerification(it) }
+      .observeOn(AndroidSchedulers.mainThread())
+      .doOnSuccess {
+        if (it.hasResult()) {
+          setCanSmsAtTime(it.getNextCodeViaSmsAttempt())
+          setCanCallAtTime(it.getNextCodeViaCallAttempt())
+        }
+      }
+      .observeOn(Schedulers.io())
+      .flatMap { processor ->
+        if (processor.isAlreadyVerified() || processor.hasResult() && processor.isVerified()) {
+          changeNumberRepository.changeNumber(sessionId = sessionId, newE164 = number.e164Number)
+        } else if (processor.error == null) {
+          Single.just<ServiceResponse<VerifyResponse>>(ServiceResponse.forApplicationError(IncorrectCodeException(), 403, null))
+        } else {
+          Single.just<ServiceResponse<VerifyResponse>>(ServiceResponse.coerceError(processor.response))
+        }
+      }
   }
 
   override fun verifyAccountWithRegistrationLock(pin: String, kbsTokenData: TokenData): Single<ServiceResponse<VerifyResponse>> {
-    return changeNumberRepository.changeNumber(textCodeEntered, number.e164Number, pin, kbsTokenData)
+    val sessionId = sessionId ?: throw IllegalStateException("No valid registration session")
+    return changeNumberRepository.changeNumber(sessionId, number.e164Number, pin, kbsTokenData)
   }
 
   @WorkerThread
@@ -176,6 +201,24 @@ class ChangeNumberViewModel(
         Log.w(TAG, "Error attempting to change local number", t)
         VerifyResponseWithRegistrationLockProcessor(ServiceResponse.forUnknownError(t), processor.tokenData)
       }
+  }
+
+  fun changeNumberWithRecoveryPassword(): Single<Boolean> {
+    val recoveryPassword = SignalStore.kbsValues().recoveryPassword
+
+    return if (SignalStore.kbsValues().hasPin() && recoveryPassword != null) {
+      changeNumberRepository.changeNumber(recoveryPassword = recoveryPassword, newE164 = number.e164Number)
+        .map { r -> VerifyResponseWithoutKbs(r) }
+        .flatMap { p ->
+          if (p.hasResult()) {
+            onVerifySuccess(p).map { true }
+          } else {
+            Single.just(false)
+          }
+        }
+    } else {
+      Single.just(false)
+    }
   }
 
   class Factory(owner: SavedStateRegistryOwner) : AbstractSavedStateViewModelFactory(owner, null) {

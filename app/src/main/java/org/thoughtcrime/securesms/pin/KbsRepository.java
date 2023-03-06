@@ -63,6 +63,26 @@ public class KbsRepository {
     }).subscribeOn(Schedulers.io());
   }
 
+  /**
+   * Fetch and store a new KBS authorization.
+   */
+  public void refreshAuthorization() throws IOException {
+    for (KbsEnclave enclave : KbsEnclaves.all()) {
+      KeyBackupService kbs = ApplicationDependencies.getKeyBackupService(enclave);
+
+      try {
+        String authorization = kbs.getAuthorization();
+        backupAuthToken(authorization);
+      } catch (NonSuccessfulResponseCodeException e) {
+        if (e.getCode() == 404) {
+          Log.i(TAG, "Enclave decommissioned, skipping", e);
+        } else {
+          throw e;
+        }
+      }
+    }
+  }
+
   private @NonNull TokenData getTokenSync(@Nullable String authorization) throws IOException {
     TokenData firstKnownTokenData = null;
 
@@ -101,7 +121,7 @@ public class KbsRepository {
 
   private static void backupAuthToken(String token) {
     final boolean tokenIsNew = SignalStore.kbsValues().appendAuthTokenToList(token);
-    if (tokenIsNew) {
+    if (tokenIsNew && SignalStore.kbsValues().hasPin()) {
       new BackupManager(ApplicationDependencies.getApplication()).dataChanged();
     }
   }

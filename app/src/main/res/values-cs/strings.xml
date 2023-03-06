@@ -14,10 +14,11 @@
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
 
     <string name="yes">Ano</string>
     <string name="no">Ne</string>
-    <string name="delete">Smazat</string>
+    <string name="delete">Odstranit</string>
     <string name="please_wait">Prosím čekejte…</string>
     <string name="save">Uložit</string>
     <string name="note_to_self">= Poznámka pro mne =</string>
@@ -96,13 +97,13 @@
     <string name="BackgroundMessageRetriever_checking_for_messages">Kontroluji zprávy…</string>
 
     <!-- BlockedUsersActivity -->
-    <string name="BlockedUsersActivity__blocked_users">Zablokovaní uživatelé</string>
+    <string name="BlockedUsersActivity__blocked_users">Blokovaní uživatelé</string>
     <string name="BlockedUsersActivity__add_blocked_user">Přidat blokovaného uživatele</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Zablokovaní uživatelé vám nebudou moci zavolat nebo posílat zprávy.</string>
-    <string name="BlockedUsersActivity__no_blocked_users">Žádní zablokovaní uživatelé</string>
-    <string name="BlockedUsersActivity__block_user">Zablokovat uživatele?</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Blokovaní uživatelé vám nebudou moci volat ani posílat zprávy.</string>
+    <string name="BlockedUsersActivity__no_blocked_users">Žádní blokovaní uživatelé</string>
+    <string name="BlockedUsersActivity__block_user">Blokovat uživatele?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" vám nebude moci volat nebo posílat zprávy.</string>
-    <string name="BlockedUsersActivity__block">Zablokovat</string>
+    <string name="BlockedUsersActivity__block">Blokovat</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -138,8 +139,8 @@
     <string name="CreditCardFragment__continue">Pokračovat</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Zablokovat a opustit %1$s?</string>
-    <string name="BlockUnblockDialog_block_s">Zablokovat %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Blokovat a opustit %1$s?</string>
+    <string name="BlockUnblockDialog_block_s">Blokovat %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Od této skupiny již nebudete dostávat zprávy ani aktualizace a členové vás do této skupiny už nebudou moci znovu přidat.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Členové skupiny vás nebudou moci znovu do této skupiny přidat.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Členové skupiny vás budou moci znovu přidat do této skupiny.</string>
@@ -147,16 +148,16 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Budete si schopni vzájemně posílat zprávy a volat a bude s nimi sdíleno vaše jméno a fotografie.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Budete si moci vzájemně posílat zprávy a volat.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Zablokované osoby vám nebudou moci volat ani posílat zprávy.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Zablokované osoby vám nebudou moci posílat zprávy.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokované osoby vám nebudou moci volat ani posílat zprávy.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Blokované osoby vám nebudou moci posílat zprávy.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokovat novinky a aktualizace aplikace Signal.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokovat přijímání aktualizací a novinek ze služby Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Odblokovat novinky a aktualizace aplikace Signal.</string>
-    <string name="BlockUnblockDialog_unblock_s">Odblokovat %1$s?</string>
-    <string name="BlockUnblockDialog_block">Zablokovat</string>
-    <string name="BlockUnblockDialog_block_and_leave">Zablokovat a odejít</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Nahlásit spam a zablokovat</string>
+    <string name="BlockUnblockDialog_unblock_s">Odblokovat: %1$s?</string>
+    <string name="BlockUnblockDialog_block">Blokovat</string>
+    <string name="BlockUnblockDialog_block_and_leave">Blokovat a odejít</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Nahlásit spam a zablokovat</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Dnes</string>
@@ -197,8 +198,8 @@
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Odebrat</string>
-    <string name="ClearProfileActivity_remove_profile_photo">Odebrat profilovou fotografii?</string>
-    <string name="ClearProfileActivity_remove_group_photo">Odebrat skupinovou fotografii?</string>
+    <string name="ClearProfileActivity_remove_profile_photo">Odstranit profilovou fotografii?</string>
+    <string name="ClearProfileActivity_remove_group_photo">Odstranit skupinovou fotografii?</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Aktualizovat Signal</string>
@@ -281,8 +282,8 @@
     <string name="ConversationItem_read_more">Číst dál</string>
     <string name="ConversationItem_download_more">Stáhnout další</string>
     <string name="ConversationItem_pending">Probíhá</string>
-    <string name="ConversationItem_this_message_was_deleted">Tato zpráva byla smazána.</string>
-    <string name="ConversationItem_you_deleted_this_message">Smazali jste tuto zprávu.</string>
+    <string name="ConversationItem_this_message_was_deleted">Tato zpráva byla odstraněna.</string>
+    <string name="ConversationItem_you_deleted_this_message">Tuto zprávu jste odstranili.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Zprávu nelze stáhnout. %1$s ji bude muset poslat znovu.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -352,12 +353,12 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Novinka! Řekněte to nálepkou</string>
 
     <string name="ConversationActivity_cancel">Storno</string>
-    <string name="ConversationActivity_delete_conversation">Smazat konverzaci?</string>
-    <string name="ConversationActivity_delete_and_leave_group">Smazat a opustit skupinu?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Tato konverzace bude smazána ze všech vašich zařízení.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Opustíte tuto skupinu a bude smazána ze všech vašich zařízení.</string>
-    <string name="ConversationActivity_delete">Smazat</string>
-    <string name="ConversationActivity_delete_and_leave">Smazat a opustit</string>
+    <string name="ConversationActivity_delete_conversation">Odstranit konverzaci?</string>
+    <string name="ConversationActivity_delete_and_leave_group">Odstranit a opustit skupinu?</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Tato konverzace bude odstraněna ze všech vašich zařízení.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Tuto skupinu opustíte a bude odstraněna ze všech vašich zařízení.</string>
+    <string name="ConversationActivity_delete">Odstranit</string>
+    <string name="ConversationActivity_delete_and_leave">Odstranit a opustit</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal potřebuje přístup k vašemu mikrofonu pro volání %1$s</string>
 
 
@@ -366,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Chyba při odesílání médií</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Nahlášeno jako spam a zablokováno</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Nahlášeno jako spam a zablokováno.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Odesílání SMS zpráv není v současné době dostupné. Zprávy můžete exportovat do jiné aplikace v telefonu.</string>
@@ -395,10 +396,10 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">Aplikace s kontakty nenalezena.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="one">Smazat označenou zprávu?</item>
-        <item quantity="few">Smazat označené zprávy?</item>
-        <item quantity="many">Smazat označené zprávy?</item>
-        <item quantity="other">Smazat označené zprávy?</item>
+        <item quantity="one">Odstranit označenou zprávu?</item>
+        <item quantity="few">Odstranit označené zprávy?</item>
+        <item quantity="many">Odstranit označené zprávy?</item>
+        <item quantity="other">Odstranit označených zpráv?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Uložit do úložiště?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -432,19 +433,19 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Mažu</string>
     <string name="ConversationFragment_deleting_messages">Mažu zprávy…</string>
-    <string name="ConversationFragment_delete_for_me">Smazat u mne</string>
-    <string name="ConversationFragment_delete_for_everyone">Smazat u všech</string>
+    <string name="ConversationFragment_delete_for_me">Odstranit pro mě</string>
+    <string name="ConversationFragment_delete_for_everyone">Odstranit pro všechny</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Smazat na tomto zařízení</string>
+    <string name="ConversationFragment_delete_on_this_device">Odstranit v tomto zařízení</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Smazat všude</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Tato zpráva bude smazána pro všechny účastníky konverzace, pokud používají poslední verzi Signal. Budou vidět, že jste smazali zprávu.</string>
+    <string name="ConversationFragment_delete_everywhere">Odstranit všude</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Tato zpráva bude odstraněna pro všechny účastníky konverzace, pokud používají poslední verzi aplikace Signal. Uvidí, že jste zprávu smazali.</string>
     <string name="ConversationFragment_quoted_message_not_found">Původní zpráva nebyla nalezena</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Původní zpráva již není dostupná</string>
     <string name="ConversationFragment_failed_to_open_message">Zprávu se nepovedlo otevřít</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Chcete-li rychle odpovědět, přejeďte prstem na zprávě doprava</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Chcete-li rychle odpovědět, přejeďte prstem na zprávě doleva</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odchozí soubory médií pro jednorázové zobrazení jsou po odeslání automaticky odstraněny</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odchozí multimediální soubory se po odeslání automaticky odstraní</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Tuto zprávu jste už zobrazili</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Do této konverzace si můžete přidat své poznámky.\nPokud má váš účet nějaká propojená zařízení, budou nové poznámky synchronizovány.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d členů skupiny má stejné jméno.</string>
@@ -459,30 +460,30 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$s zapnuto</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">Zablokovat žádost?</string>
+    <string name="ConversationFragment__block_request">Blokovat žádost?</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s se nebude moci připojit ani požádat o připojení k této skupině prostřednictvím odkazu na skupinu. Přesto jej/jí lze do skupiny přidat ručně.</string>
     <!-- Dialog confirm block request button -->
-    <string name="ConversationFragment__block_request_button">Zablokovat žádost</string>
+    <string name="ConversationFragment__block_request_button">Blokovat žádost</string>
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Zrušit</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">Blokován(a)</string>
+    <string name="ConversationFragment__blocked">Zablokováno</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Odebrat filtr</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Žádné nepřečtené konverzace</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Smazat vybranou konverzaci?</item>
-        <item quantity="few">Smazat vybrané konverzace?</item>
-        <item quantity="many">Smazat vybrané konverzace?</item>
-        <item quantity="other">Smazat vybrané konverzace?</item>
+        <item quantity="one">Odstranit vybranou konverzaci?</item>
+        <item quantity="few">Odstranit vybrané konverzace?</item>
+        <item quantity="many">Odstranit vybrané konverzace?</item>
+        <item quantity="other">Odstranit vybraných konverzací?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">Tímto trvale smažete označenou konverzaci.</item>
-        <item quantity="few">Tímto trvale smažete %1$d označené konverzace.</item>
-        <item quantity="many">Tímto trvale smažete %1$d označených konverzací.</item>
-        <item quantity="other">Tímto trvale smažete všech %1$d označených konverzací.</item>
+        <item quantity="one">Tímto trvale odstraníte označenou konverzaci.</item>
+        <item quantity="few">Tímto trvale odstraníte %1$d označené konverzace.</item>
+        <item quantity="many">Tímto trvale odstraníte všech %1$d označených konverzací.</item>
+        <item quantity="other">Tímto trvale odstraníte všech %1$d označených konverzací.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Mažu</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Mažu označené konverzace…</string>
@@ -524,16 +525,16 @@
         <item quantity="other">Odepnout</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Ztlumit</item>
-        <item quantity="few">Ztlumit</item>
-        <item quantity="many">Ztlumit</item>
-        <item quantity="other">Ztlumit</item>
+        <item quantity="one">Ztlumená</item>
+        <item quantity="few">Ztlumené</item>
+        <item quantity="many">Ztlumených</item>
+        <item quantity="other">Ztlumených</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Zrušit ztlumení</item>
-        <item quantity="few">Zrušit ztlumení</item>
-        <item quantity="many">Zrušit ztlumení</item>
-        <item quantity="other">Zrušit ztlumení</item>
+        <item quantity="one">Neztlumená</item>
+        <item quantity="few">Neztlumené</item>
+        <item quantity="many">Neztlumených</item>
+        <item quantity="other">Neztlumených</item>
     </plurals>
     <string name="ConversationListFragment_select">Vybrat</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -549,10 +550,10 @@
         <item quantity="other">Nearchivovat</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Smazat</item>
-        <item quantity="few">Smazat</item>
-        <item quantity="many">Smazat</item>
-        <item quantity="other">Smazat</item>
+        <item quantity="one">Odstranit</item>
+        <item quantity="few">Odstranit</item>
+        <item quantity="many">Odstranit</item>
+        <item quantity="other">Odstranit</item>
     </plurals>
     <string name="ConversationListFragment_select_all">Vybrat vše</string>
     <plurals name="ConversationListFragment_s_selected">
@@ -587,9 +588,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Filtrovat přetažením dolů</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Filtrovat uvolněním</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
@@ -703,9 +704,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Všechny časy v (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Vybraný čas je v minulosti. Tím se zpráva odešle okamžitě.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Odeslat okamžitě</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Odeslat nyní</string>
@@ -822,10 +823,10 @@
         <item quantity="other">Tito členové budou muset přijmout pozvánku, aby se znovu připojili k této skupině, a dokud ji nepřijmou, nebudou dostávat skupinové zprávy:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Tento člen byl odebrán ze skupiny a nebude se moci znovu připojit, dokud neupgraduje:</item>
-        <item quantity="few">Tito členové byli odebráni ze skupiny a nebudou se moci znovu připojit, dokud neupgradují:</item>
-        <item quantity="many">Tito členové byli odebráni ze skupiny a nebudou se moci znovu připojit, dokud neupgradují:</item>
-        <item quantity="other">Tito členové byli odebráni ze skupiny a nebudou se moci znovu připojit, dokud neupgradují:</item>
+        <item quantity="one">Tento člen byl ze skupiny odebrán a nebude se k ní moci znovu připojit, dokud neprovede aktualizaci:</item>
+        <item quantity="few">Tito členové byli ze skupiny odebráni a nebudou se k ní moci znovu připojit, dokud neprovedou aktualizaci:</item>
+        <item quantity="many">Těchto členů bylo ze skupiny odebráno a nebudou se k ní moci znovu připojit, dokud neprovedou aktualizaci:</item>
+        <item quantity="other">Těchto členů bylo ze skupiny odebráno a nebudou se k ní moci znovu připojit, dokud neprovedou aktualizaci:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -842,10 +843,10 @@
         <item quantity="other">Tito členové budou muset přijmout pozvánku, aby se znovu připojili k této skupině, a dokud ji nepřijmou, nebudou dostávat skupinové zprávy:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Tento člen není způsobilý pro připojení k nové verzi skupin a bude odstraněn ze skupiny:</item>
-        <item quantity="few">Tito členové nejsou způsobilí pro připojení k nové verzi skupin a budou odstraněni ze skupiny:</item>
-        <item quantity="many">Tito členové nejsou způsobilí pro připojení k nové verzi skupin a budou odstraněni ze skupiny:</item>
-        <item quantity="other">Tito členové nejsou způsobilí pro připojení k nové verzi skupin a budou odstraněni ze skupiny:</item>
+        <item quantity="one">Tento člen se nemůže připojit k Novým skupinám a bude ze skupiny odebrán:</item>
+        <item quantity="few">Tito členové se nemůžou připojit k Novým skupinám a budou ze skupiny odebráni:</item>
+        <item quantity="many">Těchto členů se nemůže připojit k Novým skupinám a budou ze skupiny odebráni:</item>
+        <item quantity="other">Těchto členů se nemůže připojit k Novým skupinám a budou ze skupiny odebráni:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -977,7 +978,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Vybrali jste kontakt, který nepodporuje skupiny Signal, takže tato skupina bude mít formu MMS. Vlastní názvy a fotky MMS skupin uvidíte jen vy.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Vybrali jste kontakt, který nepodporuje skupiny Signal, takže tato skupina bude MMS. Vlastní názvy a fotografie skupin MMS uvidíte pouze vy. Podpora skupin MMS bude brzy ukončena, abychom se mohli zaměřit na šifrované zprávy.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Protože jste vybrali kontakt, který nepodporuje skupiny Signal, bude tato skupina MMS. Vlastní názvy a fotografie skupin MMS uvidíte pouze vy. Podpora skupin MMS bude brzy ukončena, abychom se mohli zaměřit na šifrované zprávy.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Kdo může přidávat nové členy?</string>
@@ -1011,7 +1012,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozornit mne na zmínky</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Zobrazit upozornění při zmínce ve ztišených konverzacích?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Přijímat oznámení, když jste zmíněn/a ve ztlumených konverzacích?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Vždy mne upozornit</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Neupozorňovat mne</string>
 
@@ -1029,6 +1030,16 @@
     <string name="ManageProfileFragment__username_created">Uživatelské jméno vytvořeno</string>
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Uživatelské jméno zkopírováno</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Uživatelské jméno se nepodařilo odstranit. Zkuste to znovu později.</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Uživatelské jméno odstraněno</string>
+
+    <!-- UsernameOutOfSyncReminder -->
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Něco se pokazilo s vaším uživatelským jménem. Již není přiřazeno k vašemu účtu. Můžete ho zkusit nastavit znovu, nebo si zvolit nové.</string>
+    <!-- Action text to navigate user to manually fix the issue with their username -->
+    <string name="UsernameOutOfSyncReminder__fix_now">Opravit hned</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1093,7 +1104,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Nepodařilo se připojit ke skupině</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">K této skupině se nemůžete připojit prostřednictvím odkazu na skupinu, protože vás odstranil správce.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">K této skupině se nemůžete připojit prostřednictvím odkazu na skupinu, protože vás správce odebral.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Tento odkaz skupiny již není platný.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1189,16 +1200,16 @@
     <string name="MediaOverviewActivity_Audio">Audio</string>
     <string name="MediaOverviewActivity_All">Vše</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">Smazat vybranou položku?</item>
-        <item quantity="few">Smazat vybrané položky?</item>
-        <item quantity="many">Smazat vybrané položky?</item>
-        <item quantity="other">Smazat vybrané položky?</item>
+        <item quantity="one">Odstranit vybranou položku?</item>
+        <item quantity="few">Odstranit vybrané položky?</item>
+        <item quantity="many">Odstranit vybraných položek?</item>
+        <item quantity="other">Odstranit vybraných položek?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">Tímto trvale smažete vybraný soubor. Veškerý text zpráv spojený s touto položkou bude také smazán.</item>
-        <item quantity="few">Tímto trvale smažete %1$d vybrané soubory. Veškerý text zpráv spojený s těmito položkami bude také smazán.</item>
-        <item quantity="many">Tímto trvale smažete %1$d vybraných souborů. Veškerý text zpráv spojený s těmito položkami bude také smazán.</item>
-        <item quantity="other">Tímto trvale smažete všech %1$d vybraných souborů. Veškerý text zpráv spojený s těmito položkami bude také smazán.</item>
+        <item quantity="one">Tímto trvale odstraníte vybraný soubor. Veškerý text zpráv přidružený k této položce bude rovněž odstraněn.</item>
+        <item quantity="few">Tímto trvale odstraníte všechny %1$d vybrané soubory. Veškerý text zpráv přidružený k těmto položkám bude rovněž odstraněn.</item>
+        <item quantity="many">Tímto trvale odstraníte všech %1$d vybraných souborů. Veškerý text zpráv přidružený k těmto položkám bude rovněž odstraněn.</item>
+        <item quantity="other">Tímto trvale odstraníte všech %1$d vybraných souborů. Veškerý text zpráv přidružený k těmto položkám bude rovněž odstraněn.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Mazání</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Mazání zpráv…</string>
@@ -1219,10 +1230,10 @@
         <item quantity="other">Uložit</item>
     </plurals>
     <plurals name="MediaOverviewActivity_delete_plural">
-        <item quantity="one">Smazat</item>
-        <item quantity="few">Smazat</item>
-        <item quantity="many">Smazat</item>
-        <item quantity="other">Smazat</item>
+        <item quantity="one">Odstranit</item>
+        <item quantity="few">Odstranit</item>
+        <item quantity="many">Odstranit</item>
+        <item quantity="other">Odstranit</item>
     </plurals>
 
     <plurals name="MediaOverviewActivity_d_selected_s">
@@ -1343,10 +1354,10 @@
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">Člena nebylo možné přidat do nové verze skupiny a byl odebrán.</item>
-        <item quantity="few">%1$s členy nebylo možné přidat do nové verze skupiny a byli odebráni.</item>
-        <item quantity="many">%1$s členů nebylo možné přidat do nové verze skupiny a byli odebráni.</item>
-        <item quantity="other">%1$s členů nebylo možné přidat do nové verze skupiny a byli odebráni.</item>
+        <item quantity="one">Jednoho člena nebylo možné přidat do Nové skupiny a byl odebrán.</item>
+        <item quantity="few">%1$s členy nebylo možné přidat do Nové skupiny a byli odebráni.</item>
+        <item quantity="many">%1$s členů nebylo možné přidat do Nové skupiny a byli odebráni.</item>
+        <item quantity="other">%1$s členů nebylo možné přidat do Nové skupiny a byli odebráni.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1367,9 +1378,9 @@
     <string name="MessageRecord_s_joined_the_group">%1$s se připojili ke skupině.</string>
 
     <!-- GV2 member removals -->
-    <string name="MessageRecord_you_removed_s">Odstranili jste %1$s.</string>
-    <string name="MessageRecord_s_removed_s">%1$s odstranil %2$s.</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s vás odstranil ze skupiny.</string>
+    <string name="MessageRecord_you_removed_s">Odebrali jste %1$s.</string>
+    <string name="MessageRecord_s_removed_s">%1$s odebral/a %2$s.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s vás odebral ze skupiny.</string>
     <string name="MessageRecord_you_left_the_group">Opustili jste skupinu.</string>
     <string name="MessageRecord_s_left_the_group">%1$s opustil skupinu.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">Už nejste členem skupiny.</string>
@@ -1583,15 +1594,15 @@
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Přijmout</string>
     <string name="MessageRequestBottomView_continue">Pokračovat</string>
-    <string name="MessageRequestBottomView_delete">Smazat</string>
-    <string name="MessageRequestBottomView_block">Zablokovat</string>
+    <string name="MessageRequestBottomView_delete">Odstranit</string>
+    <string name="MessageRequestBottomView_block">Blokovat</string>
     <string name="MessageRequestBottomView_unblock">Odblokovat</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Dovolit %1$s zasílat vám zprávy a sdílet vaše jméno a fotografii? Nebudou vědět, že jste viděl jejich zprávy, dokud je nepřijmete.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Dovolit %1$s zasílat vám zprávy a sdílet vaše jméno a fotografii? Dokud je neodblokujete, tak žádné zprávy neobdržíte.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Nechat si od %1$s posílat zprávy a sdílet s nimi vaše jméno a fotografii? Dokud je neodblokujete, nebudete dostávat žádné zprávy.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Povolit %1$s, aby vám napsal? Dokud je neodblokujete, nebudete dostávat žádné zprávy.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Získávat aktualizace a novinky od %1$s? Další aktualizace nedostanete, dokud je neodblokujete.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Nechat si od %1$s posílat zprávy? Dokud je neodblokujete, nebudete dostávat žádné zprávy.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Dostávat aktuality a novinky od %1$s? Dokud je neodblokujete, nebudete dostávat žádné zprávy.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Pokračovat ve vaší konverzaci s touto skupinou a sdílet vaše jméno a fotografii s jejími členy?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Pro aktivaci nových funkcí jako @zmínky a správci aktualizujte tuto skupinu. Členové, kteří dosud nesdílejí své jméno nebo fotografii v této skupině, budou pozváni, aby se připojili.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Tuto starší verzi skupiny již nelze používat, protože je příliš velká. Maximální velikost skupiny je %1$d.</string>
@@ -1599,7 +1610,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Připojit se k této skupině a sdílet vaše jméno a fotografii s jejími členy? Nebudou vědět, že jste viděl jejich zprávy, dokud je nepřijmete.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Přidat se k této skupině a sdílet své jméno a fotografii s jejími členy? Jejich zprávy uvidíte až po přijetí.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete se připojit k této skupině? Dokud tak neučiníte, členové se nedozví, že jste viděli jejich zprávy.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Odblokovat tuto skupinu a sdílet vaše jméno a fotografii s jejími členy? Dokud je neodblokujete, tak žádné zprávy neobdržíte.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Odblokovat tuto skupinu a sdílet své jméno a fotografii s jejími členy? Dokud ji neodblokujete, nebudete dostávat žádné zprávy.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Zobrazit</string>
     <string name="MessageRequestProfileView_member_of_one_group">Člen %1$s</string>
@@ -1712,9 +1723,20 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Vytvořit nový PIN?</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
+    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
+    <string name="ReRegisterWithPinFragment_send_sms_code">Poslat SMS kód</string>
+    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
+    <string name="ReRegisterWithPinFragment_support_email_subject">Registrace Signal – Potřebuji pomoct s opětovnou registrací PIN pro Android</string>
+    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
+    <string name="ReRegisterWithPinFragment_need_help_local">PIN je vámi vytvořený nejméně %1$dmístný kód, který může být numerický nebo alfanumerický.\n\nPokud si svůj PIN nepamatujete, můžete si vytvořit nový.</string>
+    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
+    <string name="ReRegisterWithPinFragment_skip_local">Pokud si svůj PIN nepamatujete, můžete si vytvořit nový.</string>
+    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Došly vám pokusy na zadání PIN, ale přístup ke svému účtu Signal můžete stále získat tak, že si vytvoříte nový PIN.</string>
+
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Varování</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Pokud PIN deaktivujete, tak při opětovné registraci Signal ztratíte všechna data, jestliže si je ručně nezazálohujete a neobnovíte. Když je PIN deaktivován, nemůžete si zapnout zámek registrace.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Pokud deaktivujete PIN, ztratíte při opětovné registraci aplikace Signal všechna data, pokud je nezálohujete a neobnovíte ručně. S deaktivovaným PIN kódem nelze zapnout funkci zámek registrace.</string>
     <string name="PinOptOutDialog_disable_pin">Deaktivovat PIN</string>
 
     <!-- RatingManager -->
@@ -1744,7 +1766,7 @@
     <string name="Recipient_my_story">Můj příběh</string>
 
     <!-- RecipientPreferencesActivity -->
-    <string name="RecipientPreferenceActivity_block">Zablokovat</string>
+    <string name="RecipientPreferenceActivity_block">Blokovat</string>
     <string name="RecipientPreferenceActivity_unblock">Odblokovat</string>
 
     <!-- RecipientProvider -->
@@ -1866,12 +1888,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s je zablokován</string>
+    <string name="CallParticipantView__s_is_blocked">%1$s je blokován</string>
     <string name="CallParticipantView__more_info">Více informací</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Nebudete přijímat jejich audio ani video a oni vaše.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Nemohu přijmout ani audio ani video od %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nemohu přijmout audio ani video od %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">K tomu může dojít v situaci, kdy jste neprovedli ověření bezpečnostního čísla, jejich zařízení je porouchané nebo vás zablokovali.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Důvodem může být to, že uživatel neověřil změnu vašeho bezpečnostního čísla, vyskytl se problém s jeho zařízením nebo vás zablokoval.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Přejetím zobrazíte sdílení obrazovky</string>
@@ -1908,11 +1930,18 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potřebuje oprávnění pro přístup ke kontaktům a médiím, abyste se mohli spojit s přáteli a posílat zprávy. Vaše kontakty jsou nahrávány pomocí soukromého zjišťování kontaktů služby Signal, což znamená, že jsou end-to-end šifrovány a pro Signal nejsou nikdy viditelné.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potřebuje oprávnění pro přístup ke kontaktům, abyste se mohli spojit s přáteli a posílat zprávy. Vaše kontakty jsou nahrávány pomocí soukromého zjišťování kontaktů služby Signal, což znamená, že jsou end-to-end šifrovány a pro Signal nejsou nikdy viditelné.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Učinili jste příliš mnoho pokusů zaregistrovat toto číslo. Zkuste to prosím znovu později.</string>
+    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
+    <string name="RegistrationActivity_rate_limited_to_try_again">Učinili jste příliš mnoho pokusů o registraci tohoto čísla. Zkuste to prosím znovu za %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nelze se připojit k službě. Prosím zkontrolujte připojení k internetu a poté to zkuste znovu.</string>
     <string name="RegistrationActivity_non_standard_number_format">Nestandardní formát čísla</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Zadané číslo (%1$s) má zřejmě nestandardní formát.\n\nMysleli jste %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal pro Android - Formát telefonního čísla</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Vyžádané volání</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
+    <string name="RegistrationActivity_sms_requested">SMS vyžádána</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
+    <string name="RegistrationActivity_code_requested">Ověřovací kód vyžádán</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Zbývá vám %1$d krok k odeslání ladícího logu.</item>
         <item quantity="few">Zbývají vám %1$d kroky k odeslání ladícího logu.</item>
@@ -1934,6 +1963,16 @@
     <string name="RegistrationActivity_call">Volat</string>
     <string name="RegistrationActivity_verification_code">Ověřovací kód</string>
     <string name="RegistrationActivity_resend_code">Znovu odeslat kód</string>
+    <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
+    <string name="RegistrationActivity_support_bottom_sheet_title">Máte potíže s registrací?</string>
+    <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Ujistěte se, že váš telefon má signál, abyste mohli přijímat SMS nebo volání\n • Potvrďte, že můžete na tomto čísle přijímat telefonní hovory\n • Zkontrolujte, že jste své telefonní číslo zadali správně.</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Další informace získáte podle těchto kroků pro řešení problémů, nebo kontaktujte podporu</string>
+    <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">kroků pro řešení problémů</string>
+    <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Kontaktovat podporu</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Zapnout zámek registrace?</string>
@@ -2032,7 +2071,7 @@
     <string name="SubmitDebugLogActivity_failed_to_save">Nepodařilo se uložit</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">Ukládání dokončeno</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Klepnutím na řádek jej smažete</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Klepnutím na řádek jej odstraníte</string>
     <string name="SubmitDebugLogActivity_submit">Odeslat</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Odesílání logů selhalo</string>
     <string name="SubmitDebugLogActivity_success">Úspěšně dokončeno!</string>
@@ -2060,8 +2099,8 @@
     <string name="ThreadRecord_view_once_photo">Fotografie pro jednorázové zobrazení</string>
     <string name="ThreadRecord_view_once_video">Video pro jednorázové zobrazení</string>
     <string name="ThreadRecord_view_once_media">Média pro jednorázové zobrazení</string>
-    <string name="ThreadRecord_this_message_was_deleted">Tato zpráva byla smazána.</string>
-    <string name="ThreadRecord_you_deleted_this_message">Smazali jste tuto zprávu.</string>
+    <string name="ThreadRecord_this_message_was_deleted">Tato zpráva byla odstraněna.</string>
+    <string name="ThreadRecord_you_deleted_this_message">Tuto zprávu jste odstranili.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Odeslali jste žádost o aktivaci Platby</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -2098,6 +2137,12 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Na jeho/její příběh reagovali %1$s</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Platba</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Naplánovaná zpráva</string>
+    <!--  Displayed in the conversation list when your message history has been merged -->
+    <string name="ThreadRecord_message_history_has_been_merged">Historie vašich zpráv byla sloučena</string>
+    <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
+    <string name="ThreadRecord_s_belongs_to_s">%1$s patří uživateli %2$s</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Aktualizace Signal</string>
@@ -2117,8 +2162,8 @@
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Vyberte si své uživatelské jméno</string>
     <string name="UsernameEditFragment_username">Uživatelské jméno</string>
-    <string name="UsernameEditFragment_delete">Smazat</string>
-    <string name="UsernameEditFragment_successfully_removed_username">Uživatelské jméno úspěšně odstraněno.</string>
+    <string name="UsernameEditFragment_delete">Odstranit</string>
+    <string name="UsernameEditFragment_successfully_removed_username">Uživatelské jméno bylo úspěšně odstraněno.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Došlo k chybě v síti.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Toto uživatelské jméno je obsazené.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Uživatelská jména mohou obsahovat pouze a–Z, 0–9 a podtržítka.</string>
@@ -2172,7 +2217,7 @@
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS zpráva byla zašifrována pro neexistující sezení</string>
 
     <!-- MuteDialog -->
-    <string name="MuteDialog_mute_notifications">Ztišit upozornění</string>
+    <string name="MuteDialog_mute_notifications">Vypnout oznámení</string>
 
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Probíhá import</string>
@@ -2191,8 +2236,8 @@
     <string name="MediaPreviewActivity_draft">Koncept</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal potřebuje oprávnění pro přístup k úložišti, aby mohl zapisovat do externího úložiště, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nelze ukládat do externího úložiště bez oprávnění.</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Smazat zprávu?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Tímto trvale smažete tuto zprávu.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Odstranit zprávu?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Tímto tuto zprávu trvale odstraníte.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s pro %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">Odesláno uživateli %1$s</string>
@@ -2237,7 +2282,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Reagoval(a) %1$s na vaše audio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoval(a) %1$s na vaše média pro jednorázové zobrazení.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoval(a) %1$s na vaši nálepku.</string>
-    <string name="MessageNotifier_this_message_was_deleted">Tato zpráva byla smazána.</string>
+    <string name="MessageNotifier_this_message_was_deleted">Tato zpráva byla odstraněna.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Vypnout upozornění, že se kontakt připojil k Signal? Můžete je znovu zapnout v Signal &gt; Nastavení &gt; Upozornění.</string>
 
@@ -2448,7 +2493,7 @@
     <string name="ConversationUpdateItem_enable_call_notifications">Povolit oznámení hovorů</string>
     <string name="ConversationUpdateItem_update_contact">Aktualizovat kontakt</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
-    <string name="ConversationUpdateItem_block_request">Zablokovat žádost</string>
+    <string name="ConversationUpdateItem_block_request">Blokovat žádost</string>
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Žádné společné skupiny. Požadavky pečlivě prověřte.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Žádné kontakty v této skupině. Požadavky pečlivě prověřte.</string>
     <string name="ConversationUpdateItem_view">Zobrazit</string>
@@ -2719,7 +2764,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">Probíhá</string>
-    <string name="message_details_recipient_header__sent_to">Odesláno pro</string>
+    <string name="message_details_recipient_header__sent_to">Odesláno uživateli</string>
     <string name="message_details_recipient_header__sent_from">Odesláno od</string>
     <string name="message_details_recipient_header__delivered_to">Doručeno</string>
     <string name="message_details_recipient_header__read_by">Přečteno</string>
@@ -2799,10 +2844,10 @@
     <string name="arrays__use_default">Použít výchozí</string>
     <string name="arrays__use_custom">Použít vlastní</string>
 
-    <string name="arrays__mute_for_one_hour">Ztišit na 1 hodinu</string>
-    <string name="arrays__mute_for_eight_hours">Ztlumit na 8 hodin</string>
-    <string name="arrays__mute_for_one_day">Ztišit na 1 den</string>
-    <string name="arrays__mute_for_seven_days">Ztišit na 7 dnů</string>
+    <string name="arrays__mute_for_one_hour">Vypnout na 1 hodinu</string>
+    <string name="arrays__mute_for_eight_hours">Vypnout na 8 hodin</string>
+    <string name="arrays__mute_for_one_day">Vypnout na 1 den</string>
+    <string name="arrays__mute_for_seven_days">Vypnout na 7 dnů</string>
     <string name="arrays__always">Vždy</string>
 
     <string name="arrays__settings_default">Výchozí nastavení</string>
@@ -2841,9 +2886,9 @@
     <string name="preferences__pref_use_address_book_photos">Použít fotografii z adresáře</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Pokud je k dispozici, zobrazit fotografii kontaktu z adresáře</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Zachování ztlumených konverzací v archivu</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Ponechat ztlumené konverzace archivované</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Ztlumené chaty, které jsou archivovány, zůstanou archivovány i po příchodu nové zprávy.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Ztlumené konverzace, které jsou archivovány, zůstanou archivovány i po příchodu nové zprávy.</string>
     <string name="preferences__generate_link_previews">Vygenerovat náhledy odkazů</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Pro zprávy, které odesíláte, získat náhledy odkazů přímo z webů.</string>
     <string name="preferences__change_passphrase">Změnit heslo</string>
@@ -2945,14 +2990,14 @@
     <string name="preferences_storage__files">Soubory</string>
     <string name="preferences_storage__audio">Audio</string>
     <string name="preferences_storage__review_storage">Zkontrolovat úložiště</string>
-    <string name="preferences_storage__delete_older_messages">Smazat starší zprávy?</string>
+    <string name="preferences_storage__delete_older_messages">Odstranit starší zprávy?</string>
     <string name="preferences_storage__clear_message_history">Smazat historii zpráv?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tímto trvale smažete veškerou historii zpráv a média z vašeho zařízení starší než %1$s.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tímto trvale odstraníte veškerou historii zpráv a mediální soubory z vašeho zařízení, které jsou starší než %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Tímto trvale zkrátíte všechny konverzace na %1$s nejnovějších zpráv.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tímto trvale smažete celou historii zpráv a média z vašeho zařízení.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Opravdu chcete smazat celou historii zpráv?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Celá historie zpráv bude trvale odstraněna. Tuto akci nelze vrátit zpět.</string>
-    <string name="preferences_storage__delete_all_now">Vše nyní smazat</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tímto trvale odstraníte veškerou historii zpráv a mediální soubory z vašeho zařízení.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Opravdu chcete odstranit veškerou historii zpráv?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Veškerá historie zpráv bude trvale odstraněna. Tuto akci nelze vrátit zpět.</string>
+    <string name="preferences_storage__delete_all_now">Vše nyní odstranit</string>
     <string name="preferences_storage__forever">Navždy</string>
     <string name="preferences_storage__one_year">1 rok</string>
     <string name="preferences_storage__six_months">6 měsíců</string>
@@ -3137,7 +3182,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Odeslaná platba</string>
     <string name="PaymentsDetailsFragment__received_payment">Přijatá platba</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Platba dokončena %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Blokovat číslo</string>
+    <string name="PaymentsDetailsFragment__block_number">Číslo bloku</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Převést</string>
@@ -3222,7 +3267,7 @@
 
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">Nová zpráva pro…</string>
-    <string name="contact_selection_list__unknown_contact_block">Zablokovat uživatele</string>
+    <string name="contact_selection_list__unknown_contact_block">Blokovat uživatele</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Přidat do skupiny</string>
 
     <!-- conversation_callable_insecure -->
@@ -3254,7 +3299,7 @@
     <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">Kopírovat</string>
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_delete">Smazat</string>
+    <string name="conversation_selection__menu_delete">Odstranit</string>
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Přeposlat</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -3296,10 +3341,10 @@
     <!-- conversation_secure_verified -->
 
     <!-- conversation_muted -->
-    <string name="conversation_muted__unmute">Nahlas</string>
+    <string name="conversation_muted__unmute">Zrušit ztlumení</string>
 
     <!-- conversation_unmuted -->
-    <string name="conversation_unmuted__mute_notifications">Ztišit upozornění</string>
+    <string name="conversation_unmuted__mute_notifications">Vypnout oznámení</string>
 
     <!-- conversation -->
     <string name="conversation__menu_group_settings">Nastavení skupiny</string>
@@ -3342,7 +3387,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtrovat nepřečtené konverzace</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Zrušit filtr nepřečtených zpráv</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Zkopírovat do schránky</string>
@@ -3383,7 +3428,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokolem Signal bylo automaticky ochráněno %1$d%% vašich odchozích zpráv za posledních %2$d dnů. Konverzace mezi uživateli Signal jsou vždy koncově šifrovány.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Šiřte informace</string>
     <string name="InsightsDashboardFragment__not_enough_data">Nedostatek dat</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procento je vypočteno na základě odchozích zpráv za posledních %1$d dnů, které nezmizely ani nebyly smazány.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Váš procentuální přehled se počítá na základě odchozích zpráv za posledních %1$d dní, které nezmizely nebo nebyly smazány.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">Zahájit konverzaci</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Pozvěte více kontaktů, aby se připojily k Signal, a začněte komunikovat bezpečně s využitím nových funkcí, které překonávají omezení nezašifrovaných SMS zpráv.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Tyto statistiky jsou vytvořeny lokálně na vašem zařízení a pouze vy je můžete vidět. Nejsou nikdy nikam odesílány.</string>
@@ -3461,7 +3506,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Účet uzamčen</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Váš účet byl uzamčen kvůli ochraně vašeho soukromí a bezpečnosti. Po %1$d dnech nečinnosti na vašem účtu budete moci znovu zaregistrovat toto telefonní číslo, aniž byste potřebovali váš PIN. Veškerý obsah bude smazán.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Váš účet byl zablokován z důvodu ochrany vašeho soukromí a bezpečnosti. Po %1$d dnech nečinnosti na vašem účtu budete moci toto telefonní číslo znovu zaregistrovat, aniž byste potřebovali svůj PIN. Veškerý obsah bude smazán.</string>
     <string name="AccountLockedFragment__next">Další</string>
     <string name="AccountLockedFragment__learn_more">Dozvědět se více</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3469,6 +3514,8 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Zadejte váš PIN</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Zadejte PIN, který jste vytvořili pro váš účet. Je to jiný kód, než ten v ověřovací SMS.</string>
+    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Zadejte PIN, který jste si vytvořili pro svůj účet.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Zadejte alfanumerický PIN</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Zadejte číselný PIN</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Nesprávný PIN. Zkuste to znovu.</string>
@@ -3479,10 +3526,10 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Registrace Signal - Pomoct s PIN pro Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Kvůli vašemu soukromí a bezpečnosti neexistuje žádný způsob, jak obnovit váš PIN. Pokud si nepamatujete váš PIN, můžete se znovu zaregistrovat pomocí SMS po %1$d dni nečinnosti. V takovém případě bude váš účet vymazán a veškerý obsah smazán.</item>
-        <item quantity="few">Kvůli vašemu soukromí a bezpečnosti neexistuje žádný způsob, jak obnovit váš PIN. Pokud si nepamatujete váš PIN, můžete se znovu zaregistrovat pomocí SMS po %1$d dnech nečinnosti. V takovém případě bude váš účet vymazán a veškerý obsah smazán.</item>
-        <item quantity="many">Kvůli vašemu soukromí a bezpečnosti neexistuje žádný způsob, jak obnovit váš PIN. Pokud si nepamatujete váš PIN, můžete se znovu zaregistrovat pomocí SMS po %1$d dnech nečinnosti. V takovém případě bude váš účet vymazán a veškerý obsah smazán.</item>
-        <item quantity="other">Kvůli vašemu soukromí a bezpečnosti neexistuje žádný způsob, jak obnovit váš PIN. Pokud si nepamatujete váš PIN, můžete se znovu zaregistrovat pomocí SMS po %1$d dnech nečinnosti. V takovém případě bude váš účet vymazán a veškerý obsah smazán.</item>
+        <item quantity="one">V zájmu vašeho soukromí a bezpečnosti neexistuje žádný způsob, jak obnovit váš PIN. Pokud si svůj PIN nepamatujete, můžete se po %1$d dni nečinnosti znovu zaregistrovat pomocí SMS. V takovém případě bude váš účet zrušen a veškerý obsah smazán.</item>
+        <item quantity="few">V zájmu vašeho soukromí a bezpečnosti neexistuje žádný způsob, jak obnovit váš PIN. Pokud si svůj PIN nepamatujete, můžete se po %1$d dnech nečinnosti znovu zaregistrovat pomocí SMS. V takovém případě bude váš účet zrušen a veškerý obsah smazán.</item>
+        <item quantity="many">V zájmu vašeho soukromí a bezpečnosti neexistuje žádný způsob, jak obnovit váš PIN. Pokud si svůj PIN nepamatujete, můžete se po %1$d dnech nečinnosti znovu zaregistrovat pomocí SMS. V takovém případě bude váš účet zrušen a veškerý obsah smazán.</item>
+        <item quantity="other">V zájmu vašeho soukromí a bezpečnosti neexistuje žádný způsob, jak obnovit váš PIN. Pokud si svůj PIN nepamatujete, můžete se po %1$d dnech nečinnosti znovu zaregistrovat pomocí SMS. V takovém případě bude váš účet zrušen a veškerý obsah smazán.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3493,10 +3540,10 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">Pokud vám dojdou pokusy, váš účet bude uzamčen na po dobu %1$d dne. Po %1$d dni nečinnosti se můžete znovu zaregistrovat bez vašeho PIN. Váš účet bude vymazán a veškerý obsah smazán.</item>
-        <item quantity="few">Pokud vám dojdou pokusy, váš účet bude uzamčen po dobu %1$d dnů. Po %1$d dnech nečinnosti se můžete znovu zaregistrovat bez vašeho PIN. Váš účet bude vymazán a veškerý obsah smazán.</item>
-        <item quantity="many">Pokud vám dojdou pokusy, váš účet bude uzamčen po dobu %1$d dnů. Po %1$d dnech nečinnosti se můžete znovu zaregistrovat bez vašeho PIN. Váš účet bude vymazán a veškerý obsah smazán.</item>
-        <item quantity="other">Pokud vám dojdou pokusy, váš účet bude uzamčen po dobu %1$d dnů. Po %1$d dnech nečinnosti se můžete znovu zaregistrovat bez vašeho PIN. Váš účet bude vymazán a veškerý obsah smazán.</item>
+        <item quantity="one">Pokud vám dojdou pokusy, bude váš účet zablokován na %1$d den. Po %1$d dni nečinnosti se můžete znovu zaregistrovat bez vašeho PIN. Váš účet bude zrušen a veškerý obsah smazán.</item>
+        <item quantity="few">Pokud vám dojdou pokusy, bude váš účet zablokován na %1$d dny. Po %1$d dnech nečinnosti se můžete znovu zaregistrovat bez vašeho PIN. Váš účet bude zrušen a veškerý obsah smazán.</item>
+        <item quantity="many">Pokud vám dojdou pokusy, bude váš účet zablokován na %1$d dnů. Po %1$d dní nečinnosti se můžete znovu zaregistrovat bez vašeho PIN. Váš účet zrušen a veškerý obsah smazán.</item>
+        <item quantity="other">Pokud vám dojdou pokusy, bude váš účet zablokován na %1$d dnů. Po %1$d dnech nečinnosti se můžete znovu zaregistrovat bez vašeho PIN. Váš účet zrušen a veškerý obsah smazán.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3558,9 +3605,9 @@
     <string name="BackupDialog_enable_local_backups">Povolit lokální zálohy?</string>
     <string name="BackupDialog_enable_backups">Povolit zálohy</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Prosím potvrďte, že jste to pochopili, zaškrtnutím políčka.</string>
-    <string name="BackupDialog_delete_backups">Smazat zálohy?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">Zakázat a smazat všechny lokální zálohy?</string>
-    <string name="BackupDialog_delete_backups_statement">Smazat zálohy</string>
+    <string name="BackupDialog_delete_backups">Odstranit zálohy?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Zakázat a odstranit všechny místní zálohy?</string>
+    <string name="BackupDialog_delete_backups_statement">Odstranit zálohy</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Pro povolení záloh vyberte složku. Zálohy budou uloženy do tohoto umístění.</string>
     <string name="BackupDialog_choose_folder">Vybrat složku</string>
     <string name="BackupDialog_copied_to_clipboard">Zkopírováno do schránky</string>
@@ -3573,16 +3620,19 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Ověřování zálohy Signal…</string>
     <string name="LocalBackupJobApi29_backup_failed">Zálohování selhalo</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Adresář pro vaše zálohy byl smazán nebo přesunut.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Váš adresář se zálohami byl odstraněn nebo přesunut.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Soubor s vaší zálohou je příliš velký pro uložení na tento disk.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Není dost místa pro uložení vaší zálohy.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Vaše nedávná záloha nemohla být vytvořena a ověřena. Vytvořte prosím novou.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Vaše záloha obsahuje příliš velký soubor, který nelze zálohovat. Smažte ho prosím a vytvořte novou zálohu.</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Vaše záloha obsahuje příliš velký soubor, který nelze zálohovat. Odstraňte ho prosím a vytvořte novou zálohu.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Klepněte pro práci se zálohami</string>
     <string name="RegistrationActivity_wrong_number">Špatné číslo?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <!--    Countdown to when the user can request a new code via phone call during registration.-->
+    <string name="RegistrationActivity_call_me_instead_available_in">Zavolejte mi (%1$02d:%2$02d)</string>
+    <!--    Countdown to when the user can request a new SMS code during registration.-->
+    <string name="RegistrationActivity_resend_sms_available_in">Znovu odeslat kód (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontaktujte podporu Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registrace Signal - ověřovací kód pro Android</string>
     <string name="RegistrationActivity_incorrect_code">Špatný kód</string>
@@ -3681,7 +3731,7 @@
     <string name="DeviceTransferSetup__location_permission">Oprávnění k poloze</string>
     <string name="DeviceTransferSetup__location_services">Polohové služby</string>
     <string name="DeviceTransferSetup__wifi">WiFi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Na obrazovce WiFi Direct odeberte všechny zapamatované skupiny a odpojte všechna pozvaná nebo připojená zařízení.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Na obrazovce WiFi Direct odeberte všechny zapamatované skupiny a zrušte propojení všech pozvaných nebo připojených zařízení.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Obrazovka WiFi Direct</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Zkuste vypnout a zapnout Wi-Fi na obou zařízeních.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Ujistěte se, že obě zařízení jsou v režimu přenosu.</string>
@@ -3746,7 +3796,7 @@
     <!-- AdvancedPreferenceFragment -->
 
     <!-- RecipientBottomSheet -->
-    <string name="RecipientBottomSheet_block">Zablokovat</string>
+    <string name="RecipientBottomSheet_block">Blokovat</string>
     <string name="RecipientBottomSheet_unblock">Odblokovat</string>
     <string name="RecipientBottomSheet_add_to_contacts">Přidat do kontaktů</string>
     <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
@@ -3755,15 +3805,15 @@
     <string name="RecipientBottomSheet_add_to_another_group">Přidat do jiné skupiny</string>
     <string name="RecipientBottomSheet_view_safety_number">Zobrazit bezpečnostní číslo</string>
     <string name="RecipientBottomSheet_make_admin">Učinit správcem</string>
-    <string name="RecipientBottomSheet_remove_as_admin">Odebrat oprávnění správce</string>
+    <string name="RecipientBottomSheet_remove_as_admin">Odebrat jako správce</string>
     <string name="RecipientBottomSheet_remove_from_group">Odebrat ze skupiny</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">Odebrat oprávnění správce skupiny uživateli %1$s?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Odebrat %1$s jako správce skupiny?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" bude moci upravovat tuto skupinu a její členy."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Odebrat %1$s ze skupiny?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Odstranit %1$s ze skupiny? Nebudou se moct znovu připojit pomocí odkazu.</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Odebrat %1$s ze skupiny? Nebude se moct znovu připojit přes odkaz na skupinu.</string>
     <string name="RecipientBottomSheet_remove">Odebrat</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">Zkopírováno do schránky</string>
 
@@ -3799,9 +3849,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" byl zablokován.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Nepodařilo se zablokovat \"%1$s\"</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" byl odblokován.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">Uživatel „%1$s“ byl zablokován.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Nepodařilo se zablokovat: „%1$s“</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">Uživatel „%1$s“ byl odblokován.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Prověřit členy</string>
@@ -3824,7 +3874,7 @@
     </plurals>
     <string name="ReviewCardDialogFragment__remove_s_from_group">Odebrat %1$s ze skupiny?</string>
     <string name="ReviewCardDialogFragment__remove">Odebrat</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Odebrání člena skupiny se nezdařilo.</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Člena skupiny se nepodařilo odebrat.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__member">Člen</string>
@@ -3832,8 +3882,8 @@
     <string name="ReviewCard__your_contact">Váš kontakt</string>
     <string name="ReviewCard__remove_from_group">Odebrat ze skupiny</string>
     <string name="ReviewCard__update_contact">Aktualizovat kontakt</string>
-    <string name="ReviewCard__block">Zablokovat</string>
-    <string name="ReviewCard__delete">Smazat</string>
+    <string name="ReviewCard__block">Blokovat</string>
+    <string name="ReviewCard__delete">Odstranit</string>
     <string name="ReviewCard__recently_changed">Nedávno změněno profilové jméno z %1$s na %2$s</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
@@ -3855,18 +3905,18 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Slabá wi-fi. Přepnuto na mobilní data.</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">Vymazání vašeho účtu způsobí:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">Smazáním účtu:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Zadejte vaše tel. číslo</string>
     <string name="DeleteAccountFragment__delete_account">Smazat účet</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Vymazání vašeho účtu a profilové fotografie</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Vymazání všech vašich zpráv</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Odstranit %1$s z vašeho platebního účtu.</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">se odstraní informace o  vašem účtu a profilová fotografie</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">se odstraní všechny vaše zprávy</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Odstranit %1$s z vašeho platebního účtu</string>
     <string name="DeleteAccountFragment__no_country_code">Kód země nebyl zadán</string>
     <string name="DeleteAccountFragment__no_number">Číslo nebylo zadáno</string>
     <string name="DeleteAccountFragment__the_phone_number">Zadané telefonní číslo neodpovídá vašemu účtu.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Opravdu chcete smazat váš účet?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dojde ke smazání účtu Signal a resetování aplikace, které se po ukončení tohoto procesu vypne.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Došlo k chybě při mazání lokálních dat. Můžete je smazat ručně v nastavení systému.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Jste si jisti, že chcete svůj účet smazat?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Tímto smažete svůj účet Signal a resetujete aplikaci. Po dokončení procesu se aplikace zavře.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Nepodařilo se odstranit místní data. Můžete je smazat ručně v systémovém nastavení aplikace.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Spustit nastavení aplikace</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Opouštím skupiny…</string>
@@ -3879,7 +3929,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Odstraňuji uživatelská data a resetuji aplikaci</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">Účet není smazán</string>
+    <string name="DeleteAccountFragment__account_not_deleted">Účet nebyl smazán</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">Při dokončování procesu mazání došlo k problému. Zkontrolujte síťové připojení a zkuste to znovu.</string>
 
@@ -4195,12 +4245,12 @@
     <string name="NotificationProfilesFragment__create_profile">Vytvořit profil</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Blokován(a)</string>
+    <string name="PrivacySettingsFragment__blocked">Zablokováno</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d kontakty</string>
     <string name="PrivacySettingsFragment__messaging">Odesílání zpráv</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Mizející zprávy</string>
     <string name="PrivacySettingsFragment__app_security">Zabezpečení aplikace</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Zablokovat náhled v seznamu aplikací</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokovat snímky obrazovky v seznamu posledních položek a uvnitř aplikace</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal zprávy a hovory, vždy předávat hovory, a utajený odesílatel.</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Výchozí časovač pro nové konverzace</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Nastavení výchozího časovače zmizení zprávy pro všechny vámi zahájené nové konverzace.</string>
@@ -4264,13 +4314,13 @@
     <string name="ChatColorSelectionFragment__chat_color">Barva konverzace</string>
     <string name="ChatColorSelectionFragment__edit">Upravit</string>
     <string name="ChatColorSelectionFragment__duplicate">Duplikovat</string>
-    <string name="ChatColorSelectionFragment__delete">Smazat</string>
+    <string name="ChatColorSelectionFragment__delete">Odstranit</string>
     <string name="ChatColorSelectionFragment__delete_color">Odstranit barvu</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">Tato vlastní barva je použita v %1$d konverzaci. Chcete ji odstranit?</item>
-        <item quantity="few">Tato vlastní barva je použita ve %1$d konverzacích. Chcete ji všude odstranit?</item>
-        <item quantity="many">Tato vlastní barva je použita v %1$d konverzacích. Chcete ji všude odstranit?</item>
-        <item quantity="other">Tato vlastní barva je použita v %1$d konverzacích. Chcete ji všude odstranit?</item>
+        <item quantity="one">Tato vlastní barva se používá v %1$d konverzaci. Chcete ji odstranit pro všechny konverzace?</item>
+        <item quantity="few">Tato vlastní barva se používá v %1$d konverzacích. Chcete ji odstranit pro všechny konverzace?</item>
+        <item quantity="many">Tato vlastní barva se používá v %1$d konverzací. Chcete ji odstranit pro všechny konverzace?</item>
+        <item quantity="other">Tato vlastní barva se používá v %1$d konverzacích. Chcete ji odstranit pro všechny konverzace?</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">Smazat barvu konverzace?</string>
 
@@ -4371,8 +4421,8 @@
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Detaily kontaktu</string>
     <string name="ConversationSettingsFragment__view_safety_number">Zobrazit bezpečnostní číslo</string>
-    <string name="ConversationSettingsFragment__block">Zablokovat</string>
-    <string name="ConversationSettingsFragment__block_group">Zablokovat skupinu</string>
+    <string name="ConversationSettingsFragment__block">Blokovat</string>
+    <string name="ConversationSettingsFragment__block_group">Blokovat skupinu</string>
     <string name="ConversationSettingsFragment__unblock">Odblokovat</string>
     <string name="ConversationSettingsFragment__unblock_group">Odblokovat skupinu</string>
     <string name="ConversationSettingsFragment__add_to_a_group">Přidat do skupiny</string>
@@ -4382,7 +4432,7 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Požadavky &amp; pozvánky</string>
     <string name="ConversationSettingsFragment__group_link">Odkaz skupiny</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Přidat jako kontakt</string>
-    <string name="ConversationSettingsFragment__unmute">Nahlas</string>
+    <string name="ConversationSettingsFragment__unmute">Zrušit ztlumení</string>
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Konverzace ztlumena do %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Konverzace ztlumena navždy</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonní číslo zkopírováno do schránky.</string>
@@ -4400,8 +4450,8 @@
     <string name="PermissionsSettingsFragment__who_can_send_messages">Kdo může odesílat zprávy?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
-    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Ztišit upozornění</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Není ztlumeno</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Vypnout oznámení</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Není vypnuto</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Zmínky</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Vždy poslat notifikaci</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Neupozorňovat</string>
@@ -4428,21 +4478,21 @@
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Videohovor</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">Odebrat</string>
+    <string name="NewConversationActivity__remove">Odstranit</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">Zablokovat</string>
+    <string name="NewConversationActivity__block">Blokovat</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">Odstranit %1$s?</string>
+    <string name="NewConversationActivity__remove_s">Odebrat %1$s?</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">Tato osoba se vám při vyhledávání nezobrazí. Pokud vám v budoucnu pošle zprávu, zobrazí se vám žádost o její zaslání.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s byl(a) odebrán(a)</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s byl/a odebrán/a</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s byl(a) zablokován(a)</string>
+    <string name="NewConversationActivity__s_has_been_blocked">Uživatel %1$s byl zablokován</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">%1$s se nepodařilo odebrat</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Tuto osobu máte uloženou v kontaktech ve svém zařízení. Odeberte ji z kontaktů a zkuste to znovu.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Tuto osobu máte uloženou v kontaktech ve svém zařízení. Odstraňte ji z kontaktů a zkuste to znovu.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Zobrazit kontakt</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -4534,7 +4584,7 @@
     <string name="MediaReviewFragment__add_to_story">Přidat do příběhu</string>
     <string name="MediaReviewFragment__add_a_message">Přidat zprávu</string>
     <string name="MediaReviewFragment__add_a_reply">Přidat odpověď</string>
-    <string name="MediaReviewFragment__send_to">Odeslat</string>
+    <string name="MediaReviewFragment__send_to">Odeslat uživateli</string>
     <string name="MediaReviewFragment__view_once_message">Zpráva pro jednorázové zobrazení</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Jeden nebo více souborů je moc velkých</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Jeden nebo více souborů je neplatných</string>
@@ -4553,7 +4603,7 @@
 
     <string name="MediaCountIndicatorButton__send">Odeslat</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Klepnutím odstranit</string>
+    <string name="MediaReviewSelectedItem__tap_to_remove">Klepnutím ji odeberete</string>
     <string name="MediaReviewSelectedItem__tap_to_select">Klepněte pro výběr</string>
 
     <string name="MediaReviewImagePageFragment__discard">Zahodit</string>
@@ -4585,7 +4635,7 @@
 
     <string name="SubscribeFragment__cancel_subscription">Zrušit předplatné</string>
     <string name="SubscribeFragment__confirm_cancellation">Potvrdit zrušení?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Nebude vám již účtován žádný poplatek. Na konci zúčtovacího období bude váš odznak z vašeho profilu odstraněn.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Nebude vám znovu účtován poplatek. Na konci zúčtovacího období bude odznak z vašeho profilu odstraněn.</string>
     <string name="SubscribeFragment__not_now">Teď ne</string>
     <string name="SubscribeFragment__confirm">Potvrdit</string>
     <string name="SubscribeFragment__update_subscription">Aktualizovat předplatné</string>
@@ -4823,13 +4873,13 @@
     <!-- Button use to permanently delete a notification profile -->
     <string name="NotificationProfileDetails__delete_profile">Smazat profil</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">\"%1$s\" odtraněn.</string>
+    <string name="NotificationProfileDetails__s_removed">„%1$s“ byl odstraněn.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Zpět</string>
     <!-- Dialog message shown to confirm deleting a profile -->
-    <string name="NotificationProfileDetails__permanently_delete_profile">Smazat profil trvale?</string>
+    <string name="NotificationProfileDetails__permanently_delete_profile">Trvale odstranit profil?</string>
     <!-- Dialog button to delete profile -->
-    <string name="NotificationProfileDetails__delete">Smazat</string>
+    <string name="NotificationProfileDetails__delete">Odstranit</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
     <string name="NotificationProfileDetails__edit_notification_profile">Upravit profil oznámení</string>
     <!-- Schedule description if all days are selected -->
@@ -5007,7 +5057,7 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">Příběh od %1$s</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">Smazat příběh?</string>
+    <string name="MyStories__delete_story">Odstranit příběh?</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Příběh bude odstraněn pro vás a  pro všechny, kdo ho obdrželi.</string>
     <!-- Toast shown when story media cannot be saved -->
@@ -5051,7 +5101,7 @@
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Přejít do nastavení</string>
     <!-- Dialog action to remove viewer from a story -->
-    <string name="StoryViewsFragment__remove">Odebrat</string>
+    <string name="StoryViewsFragment__remove">Odstranit</string>
     <!-- Dialog title when removing a viewer from a story -->
     <string name="StoryViewsFragment__remove_viewer">Odebrat sledujícího?</string>
     <!-- Dialog message when removing a viewer from a story -->
@@ -5073,12 +5123,12 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Soukromá odpověď %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Odpovědět uživateli %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Kopírovat</string>
     <!-- Context menu item to delete a story response -->
-    <string name="StoryGroupReplyItem__delete">Smazat</string>
+    <string name="StoryGroupReplyItem__delete">Odstranit</string>
     <!-- Page title for My Story options -->
     <string name="MyStorySettingsFragment__my_story">Můj příběh</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
@@ -5143,7 +5193,7 @@
     <!-- Clickable option to delete a custom story -->
     <string name="PrivateStorySettingsFragment__delete_custom_story">Smazat vlastní příběh</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove_s">Odstranit %1$s?</string>
+    <string name="PrivateStorySettingsFragment__remove_s">Odebrat %1$s?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Tato osoba již váš příběh neuvidí.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
@@ -5182,15 +5232,15 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">Hotovo</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">Odebrat skupinový příběh?</string>
+    <string name="StoryDialogs__remove_group_story">Odstranit skupinový příběh?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">„%1$s“ – bude odebrán.</string>
+    <string name="StoryDialogs__s_will_be_removed">„%1$s“ bude odstraněn.</string>
     <!-- Dialog positive action for removing a group story -->
-    <string name="StoryDialogs__remove">Odebrat</string>
+    <string name="StoryDialogs__remove">Odstranit</string>
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">Smazat vlastní příběh?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">„%1$s“ a aktualizace sdílené k tomuto příběhu budou smazány.</string>
+    <string name="StoryDialogs__s_and_updates_shared">„%1$s“ a aktualizace sdílené k tomuto příběhu budou odstraněny.</string>
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Smazat</string>
     <!-- Dialog title for first time sending something to a beta story -->
@@ -5204,7 +5254,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Odeslat</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Vypnout a smazat</string>
+    <string name="StoryDialogs__turn_off_and_delete">Vypnout a smazat</string>
     <!-- Privacy Settings toggle title for stories -->
     <!-- Privacy Settings toggle summary for stories -->
     <!-- New story viewer selection screen title -->
@@ -5309,7 +5359,7 @@
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">Potvrdit příspěvek</string>
     <!-- Heading text specifying who the gift will be sent to -->
-    <string name="GiftFlowConfirmationFragment__send_to">Odeslat</string>
+    <string name="GiftFlowConfirmationFragment__send_to">Odeslat uživateli</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Příjemce bude o příspěvku informován v soukromé zprávě. Níže můžete přidat vlastní zprávu.</string>
     <!-- Text explaining that this gift is a one time donation -->
@@ -5388,21 +5438,21 @@
     <!-- Label for context menu item to open story settings -->
     <string name="ContactSearchItems__story_settings">Nastavení příběhu</string>
     <!-- Label for context menu item to remove a group story from contact results -->
-    <string name="ContactSearchItems__remove_story">Odebrat příběh</string>
+    <string name="ContactSearchItems__remove_story">Odstranit příběh</string>
     <!-- Label for context menu item to delete a custom story -->
     <string name="ContactSearchItems__delete_story">Smazat příběh</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">Odebrat skupinový příběh?</string>
+    <string name="ContactSearchMediator__remove_group_story">Odstranit skupinový příběh?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">Tím se příběh odstraní z tohoto seznamu. Příběhy z této skupiny si budete moci prohlížet i nadále.</string>
+    <string name="ContactSearchMediator__this_will_remove">Tímto příběh odstraníte z tohoto seznamu. Příběhy z této skupiny si budete moci prohlížet i nadále.</string>
     <!-- Dialog action item for removing a group story -->
-    <string name="ContactSearchMediator__remove">Odebrat</string>
+    <string name="ContactSearchMediator__remove">Odstranit</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_story">Smazat příběh?</string>
+    <string name="ContactSearchMediator__delete_story">Odstranit příběh?</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="ContactSearchMediator__delete_the_custom">Smazat vlastní příběh „%1$s“?</string>
     <!-- Dialog action item for deleting a custom story -->
-    <string name="ContactSearchMediator__delete">Smazat</string>
+    <string name="ContactSearchMediator__delete">Odstranit</string>
     <!-- Donation for a friend expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
         <item quantity="one">%1$d den zbývá</item>
@@ -5477,9 +5527,9 @@
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">Kontakty</string>
     <!-- Context menu label for distribution list headers in review fragment -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Odebrat všechny</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Odstranit všechny</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove">Odebrat</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove">Odstranit</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Soukromí mého příběhu</string>
@@ -5517,7 +5567,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Vypnout příběhy?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Příběhy již nebudete moci sdílet ani zobrazovat. Aktualizace příběhů, které jste nedávno sdíleli, budou také odstraněny.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Příběhy již nebudete moci sdílet ani zobrazovat. Odstraněny budou také aktualizace příběhů, které jste nedávno sdíleli.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Soukromí příběhů</string>
     <!-- Header for section that lists out stories -->
@@ -5554,7 +5604,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Exportujte své SMS zprávy</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Zprávy SMS můžete exportovat do databáze SMS svého telefonu s tím, že budete mít možnost je v aplikaci Signál ponechat nebo odstranit. Můžete je tak importovat do jiných aplikací SMS ve svém telefonu. Nevytvoří se tím ale soubor s historií SMS, který by bylo možné sdílet.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Zprávy SMS můžete exportovat do databáze SMS svého telefonu a budete mít možnost si je v aplikaci Signal ponechat nebo je z ní odebrat. Můžete je tak importovat do jiných aplikací SMS ve svém telefonu. Nevytvoří se tím ale soubor s historií SMS, který by bylo možné sdílet.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Pokračovat</string>
 
@@ -5615,7 +5665,7 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Odstranit SMS zprávy z aplikace Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Nyní můžete odstranit SMS zprávy z aplikace Signal, abyste uvolnili místo v úložišti. I po odebrání budou stále k dispozici ostatním aplikacím SMS ve vašem telefonu.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Nyní můžete z aplikace Signal odebrat SMS zprávy a uvolnit tak místo v úložišti. I po odebrání budou nadále k dispozici ostatním aplikacím SMS ve vašem telefonu.</string>
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
@@ -5806,8 +5856,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Podpora SMS zpráv končí</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Zasílání SMS zpráv v aplikaci Signal již brzy nebude podporováno.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">Zasílání SMS zpráv v aplikaci Signal již nebude od %1$s podporováno.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">Zprávy SMS jsou jiné než zprávy aplikace Signal. <b>To se netýká šifrovaných zpráv Signal, které budou fungovat i nadále.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5819,13 +5869,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Nastavte si uživatelské jméno v aplikaci Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Uživatelská jména umožňují ostatním posílat vám zprávy, aniž by potřebovali znát vaše telefonní číslo</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Nyní ne</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Pokračovat</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5839,15 +5889,25 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Pokračovat</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Nastavte si uživatelské jméno v aplikaci Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Upravit uživatelské jméno</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Odstranit uživatelské jméno</string>
+
+    <!-- Time duration picker -->
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">hod.</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">min.</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
+    <string name="TimeDurationPickerDialog_positive_button">Nastavit</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimální doba, než se aktivuje zámek obrazovky, je 1 minuta.</string>
 
     <!-- EOF -->
 </resources>

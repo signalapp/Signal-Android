@@ -8,8 +8,7 @@ syntax = "proto2";
 
 package signal;
 
-option java_package         = "org.thoughtcrime.securesms.backup";
-option java_outer_classname = "BackupProtos";
+option java_package = "org.thoughtcrime.securesms.backup.proto";
 
 message SqlStatement {
     message SqlParameter {

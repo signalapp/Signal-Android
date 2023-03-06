@@ -153,7 +153,9 @@ class MediaSelectionRepository(context: Context) {
           }.map { media ->
             Stories.MediaTransform.clipMediaToStoryDuration(media)
           }.flatten()
-        } else emptyList()
+        } else {
+          emptyList()
+        }
 
         uploadRepository.applyMediaUpdates(oldToNewMediaMap, singleRecipient)
         uploadRepository.updateCaptions(updatedMedia)

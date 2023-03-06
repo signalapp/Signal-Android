@@ -35,7 +35,7 @@ object ExportMmsRecipientsUseCase {
       val addrValues = contentValuesOf(
         Telephony.Mms.Addr.ADDRESS to recipient,
         Telephony.Mms.Addr.CHARSET to CharacterSets.DEFAULT_CHARSET,
-        Telephony.Mms.Addr.TYPE to if (recipient == sender) PduHeaders.FROM else PduHeaders.TO,
+        Telephony.Mms.Addr.TYPE to if (recipient == sender) PduHeaders.FROM else PduHeaders.TO
       )
 
       context.contentResolver.insert(addrUri, addrValues)

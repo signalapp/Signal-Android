@@ -1,37 +1,11 @@
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
+    id 'signal-library'
 }
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
-
-    defaultConfig {
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
-        multiDexEnabled true
-    }
-
-    compileOptions {
-        coreLibraryDesugaringEnabled true
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+    namespace 'org.signal.imageeditor'
 }
 
 dependencies {
-    lintChecks project(':lintchecks')
-
     implementation project(':core-util')
-
-    coreLibraryDesugaring libs.android.tools.desugar
-
-    implementation libs.androidx.core.ktx
-    implementation libs.androidx.annotation
-    implementation libs.androidx.appcompat
 }

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.service;
 import android.app.AlarmManager;
 import android.app.Application;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -54,7 +55,7 @@ public abstract class TimedEventManager<E> {
           scheduleIfNecessary();
         }, delay);
 
-        scheduleAlarm(application, delay);
+        scheduleAlarm(application, event, delay);
       }
     });
   }
@@ -82,12 +83,12 @@ public abstract class TimedEventManager<E> {
    * use {@link #setAlarm(Context, long, Class)} as a helper method.
    */
   @AnyThread
-  protected abstract void scheduleAlarm(@NonNull Application application, long delay);
+  protected abstract void scheduleAlarm(@NonNull Application application, E event, long delay);
 
   /**
    * Helper method to set an alarm.
    */
-  protected static void setAlarm(@NonNull Context context, long delay, @NonNull Class alarmClass) {
+  protected static void setAlarm(@NonNull Context context, long delay, @NonNull Class<? extends BroadcastReceiver> alarmClass) {
     Intent        intent        = new Intent(context, alarmClass);
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable());
     AlarmManager  alarmManager  = ServiceUtil.getAlarmManager(context);
@@ -96,7 +97,7 @@ public abstract class TimedEventManager<E> {
     alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + delay, pendingIntent);
   }
 
-  protected static void trySetExactAlarm(@NonNull Context context, long timestamp, @NonNull Class alarmClass) {
+  protected static void trySetExactAlarm(@NonNull Context context, long timestamp, @NonNull Class<? extends BroadcastReceiver> alarmClass, @NonNull PendingIntent showIntent) {
     Intent        intent        = new Intent(context, alarmClass);
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable());
     AlarmManager  alarmManager  = ServiceUtil.getAlarmManager(context);
@@ -106,11 +107,7 @@ public abstract class TimedEventManager<E> {
     boolean hasManagerPermission = Build.VERSION.SDK_INT < 31 || alarmManager.canScheduleExactAlarms();
     if (hasManagerPermission) {
       try {
-        if (Build.VERSION.SDK_INT >= 23) {
-          alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timestamp, pendingIntent);
-        } else {
-          alarmManager.setExact(AlarmManager.RTC_WAKEUP, timestamp, pendingIntent);
-        }
+        alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(timestamp, showIntent), pendingIntent);
         return;
       } catch (Exception e) {
         Log.w(TAG, e);
@@ -119,5 +116,17 @@ public abstract class TimedEventManager<E> {
 
     Log.w(TAG, "Unable to schedule exact alarm, falling back to inexact alarm, scheduling alarm for: " + timestamp);
     alarmManager.set(AlarmManager.RTC_WAKEUP, timestamp, pendingIntent);
+  }
+
+  protected static void cancelAlarm(@NonNull Context context, @NonNull Class<? extends BroadcastReceiver> alarmClass) {
+    Intent        intent        = new Intent(context, alarmClass);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable());
+
+    try {
+      pendingIntent.cancel();
+      ServiceUtil.getAlarmManager(context).cancel(pendingIntent);
+    } catch (SecurityException e) {
+      Log.i(TAG, "Unable to cancel alarm because we don't have permission");
+    }
   }
 }

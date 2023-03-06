@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import org.signal.core.util.DimensionUnit
+import org.signal.libsignal.usernames.Username
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
@@ -19,8 +20,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.FragmentResultContract
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Util
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
+import org.whispersystems.util.Base64UrlSafe
 
 /**
  * Allows the user to either share their username directly or to copy it to their clipboard.
@@ -50,7 +50,7 @@ class UsernameShareBottomSheet : DSLSettingsBottomSheetFragment() {
           DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
           DSLSettingsText.CenterModifier,
           DSLSettingsText.ColorModifier(
-            ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant),
+            ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant)
           )
         )
       )
@@ -71,7 +71,7 @@ class UsernameShareBottomSheet : DSLSettingsBottomSheetFragment() {
 
       customPref(
         CopyButton.Model(
-          text = getString(R.string.signal_me_username_url, URLEncoder.encode(username, StandardCharsets.UTF_8.toString())),
+          text = getString(R.string.signal_me_username_url, Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(username))),
           onClick = {
             copyToClipboard(it)
           }
@@ -82,7 +82,7 @@ class UsernameShareBottomSheet : DSLSettingsBottomSheetFragment() {
 
       customPref(
         ShareButton.Model(
-          text = getString(R.string.signal_me_username_url, URLEncoder.encode(username, StandardCharsets.UTF_8.toString())),
+          text = getString(R.string.signal_me_username_url, Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(username))),
           onClick = {
             openShareSheet(it.text)
           }

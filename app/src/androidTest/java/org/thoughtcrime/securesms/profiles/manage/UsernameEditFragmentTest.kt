@@ -100,7 +100,7 @@ class UsernameEditFragmentTest {
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
       Put("/v1/accounts/username/reserved") {
-        MockResponse().success(ReserveUsernameResponse(username, "reservationToken"))
+        MockResponse().success(ReserveUsernameResponse(username))
       },
       Put("/v1/accounts/username/confirm") {
         MockResponse().success()

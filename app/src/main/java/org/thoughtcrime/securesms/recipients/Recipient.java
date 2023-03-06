@@ -1042,7 +1042,11 @@ public class Recipient {
   }
 
   public @NonNull UnidentifiedAccessMode getUnidentifiedAccessMode() {
-    return unidentifiedAccessMode;
+    if (getPni().isPresent() && getPni().equals(getServiceId())) {
+      return UnidentifiedAccessMode.DISABLED;
+    } else {
+      return unidentifiedAccessMode;
+    }
   }
 
   public @Nullable ChatWallpaper getWallpaper() {
@@ -1286,7 +1290,6 @@ public class Recipient {
            expireMessages == other.expireMessages &&
            Objects.equals(profileAvatarFileDetails, other.profileAvatarFileDetails) &&
            profileSharing == other.profileSharing &&
-           lastProfileFetch == other.lastProfileFetch &&
            forceSmsSelection == other.forceSmsSelection &&
            Objects.equals(serviceId, other.serviceId) &&
            Objects.equals(username, other.username) &&

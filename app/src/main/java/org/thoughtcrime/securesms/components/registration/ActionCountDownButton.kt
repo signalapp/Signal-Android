@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.components.registration
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.annotation.StringRes
 import com.google.android.material.button.MaterialButton
-import org.thoughtcrime.securesms.R
 import java.util.concurrent.TimeUnit
 
 class ActionCountDownButton @JvmOverloads constructor(
@@ -11,6 +11,12 @@ class ActionCountDownButton @JvmOverloads constructor(
   attrs: AttributeSet? = null,
   defStyle: Int = 0
 ) : MaterialButton(context, attrs, defStyle) {
+  @StringRes
+  private var enabledText = 0
+
+  @StringRes
+  private var disabledText = 0
+
   private var countDownToTime: Long = 0
   private var listener: Listener? = null
 
@@ -24,8 +30,8 @@ class ActionCountDownButton @JvmOverloads constructor(
     }
   }
 
-  fun setCallEnabled() {
-    setText(R.string.RegistrationActivity_call)
+  private fun setActionEnabled() {
+    setText(enabledText)
     isEnabled = true
     alpha = 1.0f
   }
@@ -38,16 +44,21 @@ class ActionCountDownButton @JvmOverloads constructor(
       val totalRemainingSeconds = TimeUnit.MILLISECONDS.toSeconds(remainingMillis).toInt()
       val minutesRemaining = totalRemainingSeconds / 60
       val secondsRemaining = totalRemainingSeconds % 60
-      text = resources.getString(R.string.RegistrationActivity_call_me_instead_available_in, minutesRemaining, secondsRemaining)
+      text = resources.getString(disabledText, minutesRemaining, secondsRemaining)
       listener?.onRemaining(this, totalRemainingSeconds)
       postDelayed({ updateCountDown() }, 250)
     } else {
-      setCallEnabled()
+      setActionEnabled()
     }
   }
 
   fun setListener(listener: Listener?) {
     this.listener = listener
+  }
+
+  fun setTextResources(@StringRes enabled: Int, @StringRes disabled: Int) {
+    enabledText = enabled
+    disabledText = disabled
   }
 
   interface Listener {

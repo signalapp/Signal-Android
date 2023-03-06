@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.exporter
 
+import org.json.JSONException
 import org.signal.core.util.logging.Log
 import org.signal.smsexporter.ExportableMessage
 import org.signal.smsexporter.SmsExportState
@@ -92,6 +93,11 @@ class SignalSmsExportReader(
           throw NoSuchElementException()
         }
       } catch (e: Throwable) {
+        if (e.cause is JSONException) {
+          Log.w(TAG, "Error processing attachment json, skipping message.", e)
+          return ExportableMessage.Skip(messageReader!!.currentId)
+        }
+
         Log.w(TAG, "Error processing message: isMms: ${record?.isMms} type: ${record?.type}")
         throw e
       }

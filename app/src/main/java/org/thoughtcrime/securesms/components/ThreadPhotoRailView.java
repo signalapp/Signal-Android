@@ -19,6 +19,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MediaTable;
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -97,7 +98,8 @@ public class ThreadPhotoRailView extends FrameLayout {
       }
 
       imageView.setOnClickListener(v -> {
-        if (clickedListener != null) clickedListener.onItemClicked(mediaRecord);
+        MediaPreviewCache.INSTANCE.setDrawable(imageView.getImageDrawable());
+        if (clickedListener != null) clickedListener.onItemClicked(imageView, mediaRecord);
       });
     }
 
@@ -118,6 +120,6 @@ public class ThreadPhotoRailView extends FrameLayout {
   }
 
   public interface OnItemClickedListener {
-    void onItemClicked(MediaTable.MediaRecord mediaRecord);
+    void onItemClicked(View itemView, MediaTable.MediaRecord mediaRecord);
   }
 }

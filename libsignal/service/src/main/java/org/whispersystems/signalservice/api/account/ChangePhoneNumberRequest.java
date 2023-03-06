@@ -14,10 +14,13 @@ import java.util.Map;
 
 public final class ChangePhoneNumberRequest {
   @JsonProperty
-  private String number;
+  private String sessionId;
 
   @JsonProperty
-  private String code;
+  private String recoveryPassword;
+
+  @JsonProperty
+  private String number;
 
   @JsonProperty("reglock")
   private String registrationLock;
@@ -36,18 +39,21 @@ public final class ChangePhoneNumberRequest {
   @JsonProperty
   private Map<String, Integer> pniRegistrationIds;
 
+  @SuppressWarnings("unused") 
   public ChangePhoneNumberRequest() {}
 
-  public ChangePhoneNumberRequest(String number,
-                                  String code,
+  public ChangePhoneNumberRequest(String sessionId,
+                                  String recoveryPassword,
+                                  String number,
                                   String registrationLock,
                                   IdentityKey pniIdentityKey,
                                   List<OutgoingPushMessage> deviceMessages,
                                   Map<String, SignedPreKeyEntity> devicePniSignedPrekeys,
                                   Map<String, Integer> pniRegistrationIds)
   {
+    this.sessionId              = sessionId;
+    this.recoveryPassword       = recoveryPassword;
     this.number                 = number;
-    this.code                   = code;
     this.registrationLock       = registrationLock;
     this.pniIdentityKey         = pniIdentityKey;
     this.deviceMessages         = deviceMessages;
@@ -57,10 +63,6 @@ public final class ChangePhoneNumberRequest {
 
   public String getNumber() {
     return number;
-  }
-
-  public String getCode() {
-    return code;
   }
 
   public String getRegistrationLock() {

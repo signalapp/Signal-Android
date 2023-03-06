@@ -108,6 +108,7 @@ import org.thoughtcrime.securesms.components.reminder.Reminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
+import org.thoughtcrime.securesms.components.reminder.UsernameOutOfSyncReminder;
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
@@ -153,6 +154,7 @@ import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -165,6 +167,7 @@ import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
+import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
@@ -298,7 +301,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                       SelectionLimits.NO_LIMITS,
                                                       false,
                                                       ContactSearchAdapter.DisplaySmsTag.DEFAULT,
-                                                      ContactSearchAdapter.DisplayPhoneNumber.NEVER,
+                                                      ContactSearchAdapter.DisplaySecondaryInformation.NEVER,
                                                       this::mapSearchStateToConfiguration,
                                                       new ContactSearchMediator.SimpleCallbacks(),
                                                       false,
@@ -306,7 +309,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                        fixedContacts,
                                                        displayCheckBox,
                                                        displaySmsTag,
-                                                       displayPhoneNumber,
+                                                       displaySecondaryInformation,
                                                        callbacks,
                                                        longClickCallbacks,
                                                        storyContextMenuCallbacks
@@ -317,7 +320,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                             fixedContacts,
                                                             displayCheckBox,
                                                             displaySmsTag,
-                                                            displayPhoneNumber,
+                                                            displaySecondaryInformation,
                                                             new ContactSearchClickCallbacks(callbacks),
                                                             longClickCallbacks,
                                                             storyContextMenuCallbacks,
@@ -382,6 +385,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     list.setLayoutManager(new LinearLayoutManager(requireActivity()));
     list.setItemAnimator(itemAnimator);
     list.addItemDecoration(archiveDecoration);
+    CachedInflater.from(list.getContext()).cacheUntilLimit(R.layout.conversation_list_item_view, list, 10);
 
     snapToTopDataObserver = new SnapToTopDataObserver(list);
 
@@ -784,6 +788,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       CdsTemporaryErrorBottomSheet.show(getChildFragmentManager());
     } else if (reminderActionId == R.id.reminder_action_cds_permanent_error_learn_more) {
       CdsPermanentErrorBottomSheet.show(getChildFragmentManager());
+    } else if (reminderActionId == R.id.reminder_action_fix_username) {
+      startActivity(ManageProfileActivity.getIntentForUsernameEdit(requireContext()));
     }
   }
 
@@ -1043,6 +1049,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         return Optional.of(new CdsTemporyErrorReminder(context));
       } else if (CdsPermanentErrorReminder.isEligible()) {
         return Optional.of(new CdsPermanentErrorReminder(context));
+      } else if (UsernameOutOfSyncReminder.isEligible()) {
+        return Optional.of(new UsernameOutOfSyncReminder(context));
       } else {
         return Optional.<Reminder>empty();
       }

@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Report 1 to {@link #MAX_MESSAGE_COUNT} message guids received prior to {@link #timestamp} in {@link #threadId} to the server as spam.
@@ -41,7 +42,7 @@ public class ReportSpamJob extends BaseJob {
 
   public ReportSpamJob(long threadId, long timestamp) {
     this(new Parameters.Builder().addConstraint(NetworkConstraint.KEY)
-                                 .setMaxAttempts(5)
+                                 .setLifespan(TimeUnit.DAYS.toMillis(1))
                                  .setQueue("ReportSpamJob")
                                  .build(),
          threadId,
@@ -75,13 +76,14 @@ public class ReportSpamJob extends BaseJob {
     int                         count                          = 0;
     List<ReportSpamData>        reportSpamData                 = SignalDatabase.messages().getReportSpamMessageServerData(threadId, timestamp, MAX_MESSAGE_COUNT);
     SignalServiceAccountManager signalServiceAccountManager    = ApplicationDependencies.getSignalServiceAccountManager();
-    for (ReportSpamData data : reportSpamData) {
-      final RecipientId recipientId = data.getRecipientId();
 
-      Optional<ServiceId> serviceId = Recipient.resolved(recipientId).getServiceId();
+    for (ReportSpamData data : reportSpamData) {
+      RecipientId         recipientId = data.getRecipientId();
+      Recipient           recipient   = Recipient.resolved(recipientId);
+      Optional<ServiceId> serviceId   = recipient.getServiceId();
 
       if (serviceId.isPresent() && !serviceId.get().isUnknown()) {
-        String reportingTokenEncoded = "";
+        String reportingTokenEncoded = null;
 
         byte[] reportingTokenBytes = SignalDatabase.recipients().getReportingToken(recipientId);
         if (reportingTokenBytes != null) {

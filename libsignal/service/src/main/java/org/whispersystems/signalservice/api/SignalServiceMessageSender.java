@@ -279,8 +279,8 @@ public class SignalServiceMessageSender {
                                    Set<SignalServiceStoryMessageRecipient> manifest)
       throws IOException, UntrustedIdentityException
   {
-    if (manifest.isEmpty()) {
-      Log.w(TAG, "Refusing to send sync message for empty manifest.");
+    if (manifest.isEmpty() && !message.getGroupContext().isPresent()) {
+      Log.w(TAG, "Refusing to send sync message for empty manifest in non-group story.");
       return;
     }
 

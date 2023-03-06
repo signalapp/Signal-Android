@@ -12,6 +12,7 @@ import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse
 
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,15 +20,16 @@ import java.util.stream.Stream;
 
 public final class KbsValues extends SignalStoreValues {
 
-  public  static final String V2_LOCK_ENABLED              = "kbs.v2_lock_enabled";
-  private static final String MASTER_KEY                   = "kbs.registration_lock_master_key";
-  private static final String TOKEN_RESPONSE               = "kbs.token_response";
-  private static final String PIN                          = "kbs.pin";
-  private static final String LOCK_LOCAL_PIN_HASH          = "kbs.registration_lock_local_pin_hash";
-  private static final String LAST_CREATE_FAILED_TIMESTAMP = "kbs.last_create_failed_timestamp";
-  public  static final String OPTED_OUT                    = "kbs.opted_out";
-  private static final String PIN_FORGOTTEN_OR_SKIPPED     = "kbs.pin.forgotten.or.skipped";
-  private static final String KBS_AUTH_TOKENS              = "kbs.kbs_auth_tokens";
+  public static final  String V2_LOCK_ENABLED                 = "kbs.v2_lock_enabled";
+  private static final String MASTER_KEY                      = "kbs.registration_lock_master_key";
+  private static final String TOKEN_RESPONSE                  = "kbs.token_response";
+  private static final String PIN                             = "kbs.pin";
+  private static final String LOCK_LOCAL_PIN_HASH             = "kbs.registration_lock_local_pin_hash";
+  private static final String LAST_CREATE_FAILED_TIMESTAMP    = "kbs.last_create_failed_timestamp";
+  public static final  String OPTED_OUT                       = "kbs.opted_out";
+  private static final String PIN_FORGOTTEN_OR_SKIPPED        = "kbs.pin.forgotten.or.skipped";
+  private static final String KBS_AUTH_TOKENS                 = "kbs.kbs_auth_tokens";
+  private static final String KBS_LAST_AUTH_REFRESH_TIMESTAMP = "kbs.kbs_auth_tokens.last_refresh_timestamp";
 
   KbsValues(KeyValueStore store) {
     super(store);
@@ -55,6 +57,8 @@ public final class KbsValues extends SignalStoreValues {
               .remove(PIN)
               .remove(LAST_CREATE_FAILED_TIMESTAMP)
               .remove(OPTED_OUT)
+              .remove(KBS_AUTH_TOKENS)
+              .remove(KBS_LAST_AUTH_REFRESH_TIMESTAMP)
               .commit();
   }
 
@@ -149,6 +153,15 @@ public final class KbsValues extends SignalStoreValues {
     }
   }
 
+  public synchronized @Nullable String getRecoveryPassword() {
+    MasterKey masterKey = getMasterKey();
+    if (masterKey != null && hasPin()) {
+      return masterKey.deriveRegistrationRecoveryPassword();
+    } else {
+      return null;
+    }
+  }
+
   public synchronized @Nullable String getPin() {
     return getString(PIN, null);
   }
@@ -171,6 +184,7 @@ public final class KbsValues extends SignalStoreValues {
 
   public synchronized void putAuthTokenList(List<String> tokens) {
     putList(KBS_AUTH_TOKENS, tokens, StringStringSerializer.INSTANCE);
+    setLastRefreshAuthTimestamp(System.currentTimeMillis());
   }
 
   public synchronized List<String> getKbsAuthTokenList() {
@@ -191,6 +205,16 @@ public final class KbsValues extends SignalStoreValues {
       putAuthTokenList(result);
       return true;
     }
+  }
+
+  public boolean removeAuthTokens(@NonNull List<String> invalid) {
+    List<String> tokens = new ArrayList<>(getKbsAuthTokenList());
+    if (tokens.removeAll(invalid)) {
+      putAuthTokenList(tokens);
+      return true;
+    }
+
+    return false;
   }
 
   /** Should only be called by {@link org.thoughtcrime.securesms.pin.PinState}. */
@@ -219,5 +243,13 @@ public final class KbsValues extends SignalStoreValues {
     } catch (IOException e) {
       throw new AssertionError(e);
     }
+  }
+
+  private void setLastRefreshAuthTimestamp(long timestamp) {
+    putLong(KBS_LAST_AUTH_REFRESH_TIMESTAMP, timestamp);
+  }
+
+  public long getLastRefreshAuthTimestamp() {
+    return getLong(KBS_LAST_AUTH_REFRESH_TIMESTAMP, 0L);
   }
 }

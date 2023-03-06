@@ -105,6 +105,6 @@ fun Locale.orderOfDaysInWeek(): List<DayOfWeek> {
     firstDayOfWeek.plus(3),
     firstDayOfWeek.plus(4),
     firstDayOfWeek.plus(5),
-    firstDayOfWeek.plus(6),
+    firstDayOfWeek.plus(6)
   )
 }

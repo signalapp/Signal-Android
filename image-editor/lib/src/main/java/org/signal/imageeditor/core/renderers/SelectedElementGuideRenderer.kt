@@ -4,9 +4,9 @@ import android.graphics.Color
 import android.graphics.DashPathEffect
 import android.graphics.Paint
 import android.graphics.Path
-import org.signal.core.util.DimensionUnit
 import android.os.Parcel
 import android.os.Parcelable
+import org.signal.core.util.DimensionUnit
 import org.signal.imageeditor.core.Bounds
 import org.signal.imageeditor.core.Renderer
 import org.signal.imageeditor.core.RendererContext
@@ -15,10 +15,14 @@ class SelectedElementGuideRenderer : Renderer {
 
   private val allPointsOnScreen = FloatArray(8)
   private val allPointsInLocalCords = floatArrayOf(
-    Bounds.LEFT, Bounds.TOP,
-    Bounds.RIGHT, Bounds.TOP,
-    Bounds.RIGHT, Bounds.BOTTOM,
-    Bounds.LEFT, Bounds.BOTTOM
+    Bounds.LEFT,
+    Bounds.TOP,
+    Bounds.RIGHT,
+    Bounds.TOP,
+    Bounds.RIGHT,
+    Bounds.BOTTOM,
+    Bounds.LEFT,
+    Bounds.BOTTOM
   )
 
   private val circleRadius = DimensionUnit.DP.toPixels(5f)

@@ -5,7 +5,7 @@ import kotlin.math.max
 
 class AsciiArt {
 
-  private class Table (
+  private class Table(
     private val columns: List<String>,
     private val rows: List<List<String>>
   ) {

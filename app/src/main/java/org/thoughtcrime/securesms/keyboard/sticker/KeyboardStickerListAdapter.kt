@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 class KeyboardStickerListAdapter(
   private val glideRequests: GlideRequests,
   private val eventListener: EventListener?,
-  private val allowApngAnimation: Boolean,
+  private val allowApngAnimation: Boolean
 ) : MappingAdapter() {
 
   init {

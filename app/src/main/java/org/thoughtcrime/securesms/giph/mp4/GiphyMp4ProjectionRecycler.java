@@ -114,7 +114,10 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
       });
       holder.playContent(giphyMp4Playable.getMediaItem(), giphyMp4Playable.getPlaybackPolicyEnforcer());
     } else {
+      giphyMp4Playable.showProjectionArea();
+
       holder.setOnPlaybackReady(() -> {
+        holder.show();
         giphyMp4Playable.hideProjectionArea();
         parent.invalidate();
       });

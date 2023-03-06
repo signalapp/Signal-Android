@@ -28,11 +28,12 @@ class ContactSearchViewModel(
   private val selectionLimits: SelectionLimits,
   private val contactSearchRepository: ContactSearchRepository,
   private val performSafetyNumberChecks: Boolean,
-  private val safetyNumberRepository: SafetyNumberRepository = SafetyNumberRepository(),
   private val arbitraryRepository: ArbitraryRepository?,
   private val searchRepository: SearchRepository,
   private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository
 ) : ViewModel() {
+
+  private val safetyNumberRepository: SafetyNumberRepository by lazy { SafetyNumberRepository() }
 
   private val disposables = CompositeDisposable()
 

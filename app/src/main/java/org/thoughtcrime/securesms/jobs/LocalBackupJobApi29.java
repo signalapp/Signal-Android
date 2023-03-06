@@ -189,16 +189,16 @@ public final class LocalBackupJobApi29 extends BaseJob {
     }
   }
 
-  private boolean verifyBackup(String backupPassword, DocumentFile temporaryFile, BackupEvent finishedEvent) {
+  private boolean verifyBackup(String backupPassword, DocumentFile temporaryFile, BackupEvent finishedEvent) throws FullBackupExporter.BackupCanceledException {
     Boolean valid    = null;
     int     attempts = 0;
 
-    while (attempts < MAX_STORAGE_ATTEMPTS && valid == null) {
+    while (attempts < MAX_STORAGE_ATTEMPTS && valid == null && !isCanceled()) {
       ThreadUtil.sleep(WAIT_FOR_SCOPED_STORAGE[attempts]);
 
       try (InputStream cipherStream = context.getContentResolver().openInputStream(temporaryFile.getUri())) {
         try {
-          valid = BackupVerifier.verifyFile(cipherStream, backupPassword, finishedEvent.getCount());
+          valid = BackupVerifier.verifyFile(cipherStream, backupPassword, finishedEvent.getCount(), this::isCanceled);
         } catch (IOException e) {
           Log.w(TAG, "Unable to verify backup", e);
           valid = false;
@@ -207,6 +207,10 @@ public final class LocalBackupJobApi29 extends BaseJob {
         attempts++;
         Log.w(TAG, "Unable to find backup file, attempt: " + attempts + "/" + MAX_STORAGE_ATTEMPTS);
       }
+    }
+
+    if (isCanceled()) {
+      throw new FullBackupExporter.BackupCanceledException();
     }
 
     return valid != null ? valid : false;

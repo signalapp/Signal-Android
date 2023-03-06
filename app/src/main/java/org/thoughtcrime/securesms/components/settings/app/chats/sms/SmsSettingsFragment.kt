@@ -60,7 +60,6 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
 
   private fun getConfiguration(state: SmsSettingsState): DSLConfiguration {
     return configure {
-
       if (state.useAsDefaultSmsApp) {
         customPref(
           OutlinedLearnMore.Model(

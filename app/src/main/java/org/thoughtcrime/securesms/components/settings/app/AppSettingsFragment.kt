@@ -46,7 +46,6 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
   private fun getConfiguration(state: AppSettingsState): DSLConfiguration {
     return configure {
-
       customPref(
         BioPreference(state.self) {
           findNavController().safeNavigate(R.id.action_appSettingsFragment_to_manageProfileActivity)

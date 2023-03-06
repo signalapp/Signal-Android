@@ -27,13 +27,15 @@ public class AlbumThumbnailView extends FrameLayout {
 
   private int currentSizeClass;
 
+  private final int[] corners = new int[4];
+
   private ViewGroup                 albumCellContainer;
   private Stub<TransferControlView> transferControls;
 
   private final SlideClickListener defaultThumbnailClickListener = (v, slide) -> {
-      if (thumbnailClickListener != null) {
-        thumbnailClickListener.onClick(v, slide);
-      }
+    if (thumbnailClickListener != null) {
+      thumbnailClickListener.onClick(v, slide);
+    }
   };
 
   private final OnLongClickListener defaultLongClickListener = v -> this.performLongClick();
@@ -82,6 +84,7 @@ public class AlbumThumbnailView extends FrameLayout {
     }
 
     showSlides(glideRequests, slides);
+    applyCorners();
   }
 
   public void setCellBackgroundColor(@ColorInt int color) {
@@ -100,6 +103,15 @@ public class AlbumThumbnailView extends FrameLayout {
 
   public void setDownloadClickListener(@Nullable SlidesClickedListener listener) {
     downloadClickListener = listener;
+  }
+
+  public void setRadii(int topLeft, int topRight, int bottomRight, int bottomLeft) {
+    corners[0] = topLeft;
+    corners[1] = topRight;
+    corners[2] = bottomRight;
+    corners[3] = bottomLeft;
+
+    applyCorners();
   }
 
   private void inflateLayout(int sizeClass) {
@@ -122,6 +134,83 @@ public class AlbumThumbnailView extends FrameLayout {
         inflate(getContext(), R.layout.album_thumbnail_many, albumCellContainer);
         break;
     }
+  }
+
+  private void applyCorners() {
+    if (currentSizeClass < 2) {
+      return;
+    }
+
+    switch (currentSizeClass) {
+      case 2:
+        applyCornersForSizeClass2();
+        break;
+      case 3:
+        applyCornersForSizeClass3();
+        break;
+      case 4:
+        applyCornersForSizeClass4();
+        break;
+      case 5:
+        applyCornersForSizeClass5();
+        break;
+      default:
+        applyCornersForManySizeClass();
+    }
+  }
+
+  private ThumbnailView[] getCells() {
+    ThumbnailView one   = findViewById(R.id.album_cell_1);
+    ThumbnailView two   = findViewById(R.id.album_cell_2);
+    ThumbnailView three = findViewById(R.id.album_cell_3);
+    ThumbnailView four  = findViewById(R.id.album_cell_4);
+    ThumbnailView five  = findViewById(R.id.album_cell_5);
+
+    return new ThumbnailView[] { one, two, three, four, five };
+  }
+
+  private void applyCornersForSizeClass2() {
+    ThumbnailView[] cells = getCells();
+    setRelativeRadii(cells[0], corners[0], 0, 0, corners[3]);
+    setRelativeRadii(cells[1], 0, corners[1], corners[2], 0);
+  }
+
+  private void applyCornersForSizeClass3() {
+    ThumbnailView[] cells = getCells();
+    setRelativeRadii(cells[0], corners[0], 0, 0, corners[3]);
+    setRelativeRadii(cells[1], 0, corners[1], 0, 0);
+    setRelativeRadii(cells[2], 0, 0, corners[2], 0);
+  }
+
+  private void applyCornersForSizeClass4() {
+    ThumbnailView[] cells = getCells();
+    setRelativeRadii(cells[0], corners[0], 0, 0, 0);
+    setRelativeRadii(cells[1], 0, corners[1], 0, 0);
+    setRelativeRadii(cells[2], 0, 0, 0, corners[3]);
+    setRelativeRadii(cells[3], 0, 0, corners[2], 0);
+  }
+
+  private void applyCornersForSizeClass5() {
+    ThumbnailView[] cells = getCells();
+    setRelativeRadii(cells[0], corners[0], 0, 0, 0);
+    setRelativeRadii(cells[1], 0, corners[1], 0, 0);
+    setRelativeRadii(cells[2], 0, 0, 0, corners[3]);
+    setRelativeRadii(cells[3], 0, 0, 0, 0);
+    setRelativeRadii(cells[4], 0, 0, corners[2], 0);
+  }
+
+  private void setRelativeRadii(@NonNull ThumbnailView cell, int topLeft, int topRight, int bottomRight, int bottomLeft) {
+    boolean isLTR = getRootView().getLayoutDirection() == LAYOUT_DIRECTION_LTR;
+    cell.setRadii(
+        isLTR ? topLeft : topRight,
+        isLTR ? topRight : topLeft,
+        isLTR ? bottomRight : bottomLeft,
+        isLTR ? bottomLeft : bottomRight
+    );
+  }
+
+  private void applyCornersForManySizeClass() {
+    applyCornersForSizeClass5();
   }
 
   private void showSlides(@NonNull GlideRequests glideRequests, @NonNull List<Slide> slides) {

@@ -82,7 +82,7 @@ class SimpleExoPlayerPool(context: Context) : ExoPlayerPool<ExoPlayer>(MAXIMUM_R
  * players will be returned first when a player is requested via require.
  */
 abstract class ExoPlayerPool<T : ExoPlayer>(
-  private val maximumReservedPlayers: Int,
+  private val maximumReservedPlayers: Int
 ) : AppForegroundObserver.Listener {
 
   companion object {
@@ -130,7 +130,7 @@ abstract class ExoPlayerPool<T : ExoPlayer>(
   @MainThread
   private fun get(allowReserved: Boolean, tag: String): T? {
     val player = findAvailablePlayer(allowReserved)
-    return if (player == null && pool.size < getMaximumAllowed(allowReserved)) {
+    val toReturn = if (player == null && pool.size < getMaximumAllowed(allowReserved)) {
       val newPlayer = createPlayer()
       val poolState = createPoolStateForNewEntry(allowReserved, tag)
       pool[newPlayer] = poolState
@@ -142,7 +142,9 @@ abstract class ExoPlayerPool<T : ExoPlayer>(
     } else {
       Log.d(TAG, "Failed to get an ExoPlayer instance for tag: $tag :: ${poolStats()}")
       null
-    }?.apply {
+    }
+
+    return toReturn?.apply {
       configureForVideoPlayback()
     }
   }

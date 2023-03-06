@@ -79,7 +79,9 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
 
   private val lifecycleDisposable = LifecycleDisposable()
   private val binding by ViewBinderDelegate(FragmentMediaPreviewV2Binding::bind)
-  private val viewModel: MediaPreviewV2ViewModel by viewModels()
+  private val viewModel: MediaPreviewV2ViewModel by viewModels(ownerProducer = {
+    requireActivity()
+  })
   private val debouncer = Debouncer(2, TimeUnit.SECONDS)
 
   private lateinit var pagerAdapter: MediaPreviewV2Adapter
@@ -90,7 +92,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
-    fullscreenHelper = FullscreenHelper(requireActivity())
+    fullscreenHelper = FullscreenHelper(requireActivity(), true)
     individualItemWidth = context.resources.getDimension(R.dimen.media_rail_item_size).roundToInt()
   }
 
@@ -135,7 +137,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   @SuppressLint("RestrictedApi")
   private fun initializeToolbar(toolbar: MaterialToolbar) {
     toolbar.setNavigationOnClickListener {
-      requireActivity().onBackPressed()
+      requireActivity().onBackPressedDispatcher.onBackPressed()
     }
 
     toolbar.setTitleTextAppearance(requireContext(), R.style.Signal_Text_TitleMedium)
@@ -253,7 +255,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     val messageId: Long? = currentItem.attachment?.mmsId
     if (messageId != null) {
       binding.toolbar.setOnClickListener { v ->
-        viewModel.jumpToFragment(v.context, messageId).subscribeBy(
+        lifecycleDisposable += viewModel.jumpToFragment(v.context, messageId).subscribeBy(
           onSuccess = {
             startActivity(it)
             requireActivity().finish()
@@ -350,6 +352,10 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   }
 
   private fun scrollAlbumRailToCurrentAdapterPosition(smooth: Boolean = true) {
+    if (!isResumed) {
+      return
+    }
+
     val currentItemPosition = albumRailAdapter.findSelectedItemPosition()
     val albumRail: RecyclerView = binding.mediaPreviewPlaybackControls.recyclerView
     val offsetFromStart = (albumRail.width - individualItemWidth) / 2

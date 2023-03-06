@@ -69,6 +69,10 @@ public class SignalStorageManifest {
     }
   }
 
+  public Map<Integer, List<StorageId>> getStorageIdsByType() {
+    return storageIdsByType;
+  }
+
   public byte[] serialize() {
     List<ManifestRecord.Identifier> ids = new ArrayList<>(storageIds.size());
 

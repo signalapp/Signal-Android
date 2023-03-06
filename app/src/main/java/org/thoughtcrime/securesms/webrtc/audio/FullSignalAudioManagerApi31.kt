@@ -229,7 +229,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
       else -> AudioDevice.SPEAKER_PHONE
     }
 
-    if (deviceToSet != currentAudioDevice)
+    if (deviceToSet != currentAudioDevice) {
       try {
         val chosenDevice: AudioDeviceInfo = availableCommunicationDevices.first { AudioDeviceMapping.getEquivalentPlatformTypes(deviceToSet).contains(it.type) }
         val result = androidAudioManager.setCommunicationDevice(chosenDevice)
@@ -243,5 +243,6 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
       } catch (e: NoSuchElementException) {
         androidAudioManager.clearCommunicationDevice()
       }
+    }
   }
 }

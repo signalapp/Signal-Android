@@ -52,13 +52,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
-                android:text="@string/SmsRemoval_info_bullet_1"
                 android:textAlignment="viewStart"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:textColor="@color/signal_colorOnSurfaceVariant"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/bullet_1"
-                app:layout_constraintTop_toBottomOf="@id/headline" />
+                app:layout_constraintTop_toBottomOf="@id/headline"
+                tools:text="@string/SmsRemoval_info_bullet_1_s" />
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/bullet_1_barrier"

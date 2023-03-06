@@ -11,6 +11,11 @@ import org.signal.core.util.CursorUtil
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.SignalActivityRule
+import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.FeatureFlagsAccessor
+import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.PNI
+import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
 class RecipientTableTest {
@@ -158,5 +163,48 @@ class RecipientTableTest {
 
     assertNotEquals(0, results.size)
     assertFalse(blockedRecipient in results)
+  }
+
+  @Test
+  fun givenARecipientWithPniAndAci_whenIMarkItUnregistered_thenIExpectItToBeSplit() {
+    FeatureFlagsAccessor.forceValue(FeatureFlags.PHONE_NUMBER_PRIVACY, true)
+
+    val mainId = SignalDatabase.recipients.getAndPossiblyMerge(ACI_A, PNI_A, E164_A)
+
+    SignalDatabase.recipients.markUnregistered(mainId)
+
+    val byAci: RecipientId = SignalDatabase.recipients.getByServiceId(ACI_A).get()
+
+    val byE164: RecipientId = SignalDatabase.recipients.getByE164(E164_A).get()
+    val byPni: RecipientId = SignalDatabase.recipients.getByServiceId(PNI_A).get()
+
+    assertEquals(mainId, byAci)
+    assertEquals(byE164, byPni)
+    assertNotEquals(byAci, byE164)
+  }
+
+  @Test
+  fun givenARecipientWithPniAndAci_whenISplitItForStorageSync_thenIExpectItToBeSplit() {
+    FeatureFlagsAccessor.forceValue(FeatureFlags.PHONE_NUMBER_PRIVACY, true)
+
+    val mainId = SignalDatabase.recipients.getAndPossiblyMerge(ACI_A, PNI_A, E164_A)
+    val mainRecord = SignalDatabase.recipients.getRecord(mainId)
+
+    SignalDatabase.recipients.splitForStorageSync(mainRecord.storageId!!)
+
+    val byAci: RecipientId = SignalDatabase.recipients.getByServiceId(ACI_A).get()
+
+    val byE164: RecipientId = SignalDatabase.recipients.getByE164(E164_A).get()
+    val byPni: RecipientId = SignalDatabase.recipients.getByServiceId(PNI_A).get()
+
+    assertEquals(mainId, byAci)
+    assertEquals(byE164, byPni)
+    assertNotEquals(byAci, byE164)
+  }
+
+  companion object {
+    val ACI_A = ACI.from(UUID.fromString("aaaa0000-5a76-47fa-a98a-7e72c948a82e"))
+    val PNI_A = PNI.from(UUID.fromString("aaaa1111-c960-4f6c-8385-671ad2ffb999"))
+    const val E164_A = "+12222222222"
   }
 }

@@ -31,7 +31,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     @Language("sql")
     val CREATE_TABLE = arrayOf(
-      "CREATE VIRTUAL TABLE $FTS_TABLE_NAME USING fts5($BODY, $THREAD_ID UNINDEXED, content=${MessageTable.TABLE_NAME}, content_rowid=${MessageTable.ID})",
+      "CREATE VIRTUAL TABLE $FTS_TABLE_NAME USING fts5($BODY, $THREAD_ID UNINDEXED, content=${MessageTable.TABLE_NAME}, content_rowid=${MessageTable.ID})"
     )
 
     @Language("sql")

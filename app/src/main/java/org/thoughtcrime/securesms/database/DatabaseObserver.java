@@ -43,6 +43,7 @@ public class DatabaseObserver {
   private static final String KEY_RECIPIENT             = "Recipient";
   private static final String KEY_STORY_OBSERVER        = "Story";
   private static final String KEY_SCHEDULED_MESSAGES    = "ScheduledMessages";
+  private static final String KEY_CONVERSATION_DELETES  = "ConversationDeletes";
 
   private final Application application;
   private final Executor    executor;
@@ -50,6 +51,7 @@ public class DatabaseObserver {
   private final Set<Observer>                   conversationListObservers;
   private final Map<Long, Set<Observer>>        conversationObservers;
   private final Map<Long, Set<Observer>>        verboseConversationObservers;
+  private final Map<Long, Set<Observer>>        conversationDeleteObservers;
   private final Map<UUID, Set<Observer>>        paymentObservers;
   private final Map<Long, Set<Observer>>        scheduledMessageObservers;
   private final Set<Observer>                   allPaymentsObservers;
@@ -68,6 +70,7 @@ public class DatabaseObserver {
     this.conversationListObservers    = new HashSet<>();
     this.conversationObservers        = new HashMap<>();
     this.verboseConversationObservers = new HashMap<>();
+    this.conversationDeleteObservers  = new HashMap<>();
     this.paymentObservers             = new HashMap<>();
     this.allPaymentsObservers         = new HashSet<>();
     this.chatColorsObservers          = new HashSet<>();
@@ -96,6 +99,12 @@ public class DatabaseObserver {
   public void registerVerboseConversationObserver(long threadId, @NonNull Observer listener) {
     executor.execute(() -> {
       registerMapped(verboseConversationObservers, threadId, listener);
+    });
+  }
+
+  public void registerConversationDeleteObserver(long threadId, @NonNull Observer listener) {
+    executor.execute(() -> {
+      registerMapped(conversationDeleteObservers, threadId, listener);
     });
   }
 
@@ -181,6 +190,7 @@ public class DatabaseObserver {
       notificationProfileObservers.remove(listener);
       unregisterMapped(storyObservers, listener);
       unregisterMapped(scheduledMessageObservers, listener);
+      unregisterMapped(conversationDeleteObservers, listener);
     });
   }
 
@@ -210,6 +220,18 @@ public class DatabaseObserver {
         notifyMapped(verboseConversationObservers, threadId);
       });
     }
+  }
+
+  public void notifyConversationDeleteListeners(Set<Long> threadIds) {
+    for (long threadId : threadIds) {
+      notifyConversationDeleteListeners(threadId);
+    }
+  }
+
+  public void notifyConversationDeleteListeners(long threadId) {
+    runPostSuccessfulTransaction(KEY_CONVERSATION_DELETES + threadId, () -> {
+      notifyMapped(conversationDeleteObservers, threadId);
+    });
   }
 
   public void notifyConversationListListeners() {

@@ -259,6 +259,10 @@ public class DateUtils extends android.text.format.DateUtils {
     return getFormattedDateTime(timestamp, "EEE, MMM d, yyyy", locale);
   }
 
+  public static String formatDateWithMonthAndDay(@NonNull Locale locale, long timestamp) {
+    return getFormattedDateTime(timestamp, "MMMM dd", locale);
+  }
+
   public static String formatDateWithoutDayOfWeek(@NonNull Locale locale, long timestamp) {
     return getFormattedDateTime(timestamp, "MMM d yyyy", locale);
   }

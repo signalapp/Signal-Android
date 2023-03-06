@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.mediaoverview;
 
+import android.app.ActivityOptions;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
 
+import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -38,6 +41,7 @@ import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.BottomOffsetDecoration;
@@ -196,11 +200,11 @@ public final class MediaOverviewPageFragment extends Fragment
   }
 
   @Override
-  public void onMediaClicked(@NonNull MediaTable.MediaRecord mediaRecord) {
+  public void onMediaClicked(@NonNull View view, @NonNull MediaTable.MediaRecord mediaRecord) {
     if (actionMode != null) {
       handleMediaMultiSelectClick(mediaRecord);
     } else {
-      handleMediaPreviewClick(mediaRecord);
+      handleMediaPreviewClick(view, mediaRecord);
     }
   }
 
@@ -224,7 +228,7 @@ public final class MediaOverviewPageFragment extends Fragment
     }
   }
 
-  private void handleMediaPreviewClick(@NonNull MediaTable.MediaRecord mediaRecord) {
+  private void handleMediaPreviewClick(@NonNull View view, @NonNull MediaTable.MediaRecord mediaRecord) {
     if (mediaRecord.getAttachment().getUri() == null) {
       return;
     }
@@ -249,8 +253,18 @@ public final class MediaOverviewPageFragment extends Fragment
           threadId == MediaTable.ALL_THREADS,
           true,
           sorting,
-          attachment.isVideoGif());
-      context.startActivity(MediaIntentFactory.create(context, args));
+          attachment.isVideoGif(),
+          new MediaIntentFactory.SharedElementArgs(
+              attachment.getWidth(),
+              attachment.getHeight(),
+              DimensionUnit.DP.toDp(12),
+              DimensionUnit.DP.toDp(12),
+              DimensionUnit.DP.toDp(12),
+              DimensionUnit.DP.toDp(12)
+          ));
+      view.setTransitionName(MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME);
+      ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), view, MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME);
+      context.startActivity(MediaIntentFactory.create(context, args), options.toBundle());
     } else {
       if (!MediaUtil.isAudio(attachment)) {
         showFileExternally(context, mediaRecord);

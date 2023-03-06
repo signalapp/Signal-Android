@@ -35,7 +35,8 @@ class LocalMetricsDatabase private constructor(
     DATABASE_VERSION,
     0,
     SqlCipherDeletingErrorHandler(DATABASE_NAME),
-    SqlCipherDatabaseHook()
+    SqlCipherDatabaseHook(),
+    true
   ),
   SignalDatabaseOpenHelper {
 
@@ -83,7 +84,6 @@ class LocalMetricsDatabase private constructor(
           if (instance == null) {
             SqlCipherLibraryLoader.load()
             instance = LocalMetricsDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context))
-            instance!!.setWriteAheadLoggingEnabled(true)
           }
         }
       }
@@ -129,7 +129,8 @@ class LocalMetricsDatabase private constructor(
     try {
       event.splits.forEach { split ->
         db.insert(
-          TABLE_NAME, null,
+          TABLE_NAME,
+          null,
           ContentValues().apply {
             put(CREATED_AT, event.createdAt)
             put(EVENT_ID, event.eventId)

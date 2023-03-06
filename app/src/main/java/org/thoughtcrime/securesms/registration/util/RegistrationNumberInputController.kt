@@ -30,8 +30,9 @@ class RegistrationNumberInputController(
   private val spinnerView: MaterialAutoCompleteTextView = countryCodeInputLayout.editText as MaterialAutoCompleteTextView
   private val supportedCountryPrefixes: List<CountryPrefix> = PhoneNumberUtil.getInstance().supportedCallingCodes
     .map { CountryPrefix(it, PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(it)) }
-    .sortedBy { it.digits }
+    .sortedBy { it.digits.toString() }
   private val spinnerAdapter: ArrayAdapter<CountryPrefix> = ArrayAdapter<CountryPrefix>(context, R.layout.registration_country_code_dropdown_item, supportedCountryPrefixes)
+  private val countryCodeEntryListener = CountryCodeEntryListener()
 
   private var countryFormatter: AsYouTypeFormatter? = null
   private var isUpdating = true
@@ -41,11 +42,13 @@ class RegistrationNumberInputController(
 
     spinnerView.threshold = 100
     spinnerView.setAdapter(spinnerAdapter)
-    spinnerView.addTextChangedListener(CountryCodeEntryListener())
+    spinnerView.addTextChangedListener(countryCodeEntryListener)
   }
 
   fun prepopulateCountryCode() {
-    spinnerView.setText(supportedCountryPrefixes[0].toString())
+    if (spinnerView.editableText.isBlank()) {
+      spinnerView.setText(supportedCountryPrefixes[0].toString())
+    }
   }
 
   private fun advanceToPhoneNumberInput() {
@@ -73,7 +76,21 @@ class RegistrationNumberInputController(
     }
   }
 
-  fun updateNumber(numberViewState: NumberViewState) {
+  fun setNumberAndCountryCode(numberViewState: NumberViewState) {
+    val countryCode = numberViewState.countryCode
+
+    isUpdating = true
+    phoneNumberInputLayout.setText(numberViewState.nationalNumber)
+    if (numberViewState.countryCode != 0) {
+      spinnerView.setText(supportedCountryPrefixes.first { it.digits == numberViewState.countryCode }.toString())
+    }
+    val regionCode = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode)
+    setCountryFormatter(regionCode)
+
+    isUpdating = false
+  }
+
+  fun updateNumberFormatter(numberViewState: NumberViewState) {
     val countryCode = numberViewState.countryCode
 
     isUpdating = true
@@ -108,7 +125,9 @@ class RegistrationNumberInputController(
     }
     return if (justDigits.isEmpty()) {
       null
-    } else justDigits.toString()
+    } else {
+      justDigits.toString()
+    }
   }
 
   inner class NumberChangedListener : TextWatcher {

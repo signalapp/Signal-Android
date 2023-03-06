@@ -18,5 +18,4 @@ object TestUtil : GooglePayApi.Gateway {
     "MASTERCARD",
     "VISA"
   )
-
 }

@@ -82,7 +82,7 @@ object SqlUtil {
   @JvmStatic
   fun getForeignKeyDependencies(db: SupportSQLiteDatabase, table: String): Set<String> {
     return db.query("PRAGMA foreign_key_list($table)")
-      .readToSet{ cursor ->
+      .readToSet { cursor ->
         cursor.requireNonNullString("table")
       }
   }

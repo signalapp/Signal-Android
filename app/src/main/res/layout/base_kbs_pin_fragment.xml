@@ -16,8 +16,8 @@
             android:id="@+id/kbs_pin_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/edit_kbs_pin_title"
@@ -56,18 +56,22 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:minWidth="210dp"
+            app:errorEnabled="false"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_kbs_pin_description">
+            app:layout_constraintTop_toBottomOf="@+id/edit_kbs_pin_description"
+            app:materialThemeOverlay="@style/Signal.ThemeOverlay.TextInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_kbs_pin_input"
-                style="@style/Widget.Signal.TextInputEditText.Registration"
+                style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:imeOptions="actionDone"
-                android:inputType="numberPassword" />
+                android:inputType="numberPassword"
+                tools:text="1234567890" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.airbnb.lottie.LottieAnimationView

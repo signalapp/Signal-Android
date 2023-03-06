@@ -21,7 +21,7 @@ data class TextStoryPostCreationState(
   val textFont: TextFont = TextFont.REGULAR,
   @IntRange(from = 0, to = 100) val textScale: Int = 50,
   val backgroundColor: ChatColors = TextStoryBackgroundColors.getInitialBackgroundColor(),
-  val linkPreviewUri: String? = null,
+  val linkPreviewUri: String? = null
 ) : Parcelable {
 
   @ColorInt

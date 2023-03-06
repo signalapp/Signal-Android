@@ -14,6 +14,7 @@
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
 
     <string name="yes">Да</string>
     <string name="no">Не</string>
@@ -98,9 +99,9 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Блокирани корисници</string>
     <string name="BlockedUsersActivity__add_blocked_user">Додајте блокираног корисника</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Блокирани корисници вас не могу звати нити слати поруке.</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Блокирани корисници неће моћи да вас зову нити да вам шаљу поруке.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Нема блокираних корисника</string>
-    <string name="BlockedUsersActivity__block_user">Блокирати корисника?</string>
+    <string name="BlockedUsersActivity__block_user">Желите ли да блокирате корисника?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">„%1$s“ неће моћи да вас позове нити шаље поруке.</string>
     <string name="BlockedUsersActivity__block">Блокирај</string>
 
@@ -138,8 +139,8 @@
     <string name="CreditCardFragment__continue">Nastavi</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">Блокирати и напустити групу %1$s?</string>
-    <string name="BlockUnblockDialog_block_s">Блокирати групу %1$s?</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">Желите ли да блокирате и напустите групу %1$s?</string>
+    <string name="BlockUnblockDialog_block_s">Желите ли да блокирате преписку %1$s?</string>
     <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Више нећете примати поруке или ажурирања од ове групе, чланови више неће бити у могућности да Вас поново додају у ову групу.</string>
     <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Чланови групе неће бити у могућности да Вас поново додају у ову групу.</string>
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Чланови групе ће бити у могућности да Вас поново додају у ову групу.</string>
@@ -147,16 +148,16 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Моћи ћете да размењујете поруке и позиве и Ваше име и фотографија ће бити подељени са тим контактом.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Моћи ћете да размењујете поруке.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Блокиране особе неће бити у могућности да Вас зову или да Вам шаљу поруке.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Блокиране особе неће бити у могућности да Вам шаљу поруке.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Блокирани људи неће моћи да вас зову нити да вам шаљу поруке.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Блокирани људи неће моћи да вам шаљу поруке.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Блокирати ажурирање Signal-а и вести.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Блокирајте добијање новости и обавештења од Signal-а.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Поново примати Signal ажурирања и вести.</string>
-    <string name="BlockUnblockDialog_unblock_s">Одблокирати контакт %1$s?</string>
+    <string name="BlockUnblockDialog_unblock_s">Желите ли да одблокирате овог корисника (%1$s)?</string>
     <string name="BlockUnblockDialog_block">Блокирај</string>
     <string name="BlockUnblockDialog_block_and_leave">Блокирај и напусти</string>
-    <string name="BlockUnblockDialog_report_spam_and_block">Пријавити нежељену пошту и блокирати</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Пријави спам и блокирај</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Данас</string>
@@ -197,7 +198,7 @@
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Уклони</string>
-    <string name="ClearProfileActivity_remove_profile_photo">Да уклоним профилну слику?</string>
+    <string name="ClearProfileActivity_remove_profile_photo">Уклонити профилну слику?</string>
     <string name="ClearProfileActivity_remove_group_photo">Уклонити фотографију групе?</string>
 
     <!-- ClientDeprecatedActivity -->
@@ -281,8 +282,8 @@
     <string name="ConversationItem_read_more"> прочитајте више</string>
     <string name="ConversationItem_download_more"> преузмите више</string>
     <string name="ConversationItem_pending"> на чекању</string>
-    <string name="ConversationItem_this_message_was_deleted">Ова порука је избрисана.</string>
-    <string name="ConversationItem_you_deleted_this_message">Избрисали сте ову поруку.</string>
+    <string name="ConversationItem_this_message_was_deleted">Ова порука је обрисана.</string>
+    <string name="ConversationItem_you_deleted_this_message">Обрисали сте ову поруку.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Преузимање поруке није успело. %1$s ће морати поново да је пошаље.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -353,11 +354,11 @@
 
     <string name="ConversationActivity_cancel">Одустани</string>
     <string name="ConversationActivity_delete_conversation">Обрисати преписку?</string>
-    <string name="ConversationActivity_delete_and_leave_group">Избрисати и напустити групу?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Преписка ће бити обрисана са ваших свих уређаја.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Напустићете групу и преписка ће бити обрисана са ваших свих уређаја.</string>
+    <string name="ConversationActivity_delete_and_leave_group">Обрисати и напустити групу?</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Преписка ће бити обрисана са свих ваших уређаја.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Напустићете групу и преписка ће бити обрисана са свих ваших уређаја.</string>
     <string name="ConversationActivity_delete">Обриши</string>
-    <string name="ConversationActivity_delete_and_leave">Избриши и напусти</string>
+    <string name="ConversationActivity_delete_and_leave">Обриши и напусти</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Да бисте позвали контакт %1$s, апликацији Signal је потребан приступ Вашем микрофону.</string>
 
 
@@ -366,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Грешка приликом слања медија</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Пријављено као нежељена пошта и блокирано.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Пријављено је као спам и блокирано.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Размена SMS порука је тренутно онемогућена. Можете да извезете поруке у другу апликацију на телефону.</string>
@@ -393,8 +394,8 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">Aplikacija sa kontaktima nije pronađena.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="one">Желите ли да избришете изабрану поруку?</item>
-        <item quantity="other">Желите ли да избришете изабране поруке?</item>
+        <item quantity="one">Желите ли да обришете изабрану поруку?</item>
+        <item quantity="other">Желите ли да обришете изабране поруке?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Сачувати у складиште?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -420,19 +421,19 @@
     <string name="ConversationFragment_sms">СМС</string>
     <string name="ConversationFragment_deleting">Брисање</string>
     <string name="ConversationFragment_deleting_messages">Брисање порука…</string>
-    <string name="ConversationFragment_delete_for_me">Избриши за мене</string>
-    <string name="ConversationFragment_delete_for_everyone">Избриши за сваког</string>
+    <string name="ConversationFragment_delete_for_me">Обриши за мене</string>
+    <string name="ConversationFragment_delete_for_everyone">Обриши за сваког</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Избриши са овог уређаја</string>
+    <string name="ConversationFragment_delete_on_this_device">Обриши са овог уређаја</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Избриши са свих уређаја</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ова порука ће бити избрисана за све конверзацији ако користе најновију верзију апликације Signal. Моћи ће да виде да сте избрисали поруку.</string>
+    <string name="ConversationFragment_delete_everywhere">Обриши са свих уређаја</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ова порука ће бити обрисана за све кориснике ако користе најновију верзију апликације Signal. Моћи ће да виде да сте обрисали поруку.</string>
     <string name="ConversationFragment_quoted_message_not_found">Оригинална порука није нађена</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Оригинална порука више није доступна</string>
     <string name="ConversationFragment_failed_to_open_message">Порука није успешно учитана</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Повуците поруку ка десно за брз одговор</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Повуците поруку ка лево за брз одговор</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odlazni jednokratni medijski sadržaj se automatski uklanja nakon slanja.</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Одлазни једнократни медијски садржаји се аутоматски уклањају након слања.</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Већ сте видели ову поруку</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Можете да додајете личне белешке у ову конверзацију.\nАко Ваш налог има повезане уређаје, нове белешке ће бити синхронизоване.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d чланова групе имају исти назив.</string>
@@ -447,26 +448,26 @@
     <!-- Message shown to indicate which notification profile is on/active -->
     <string name="ConversationFragment__s_on">%1$s упаљено</string>
     <!-- Dialog title for block group link join requests -->
-    <string name="ConversationFragment__block_request">Блокирати захтев?</string>
+    <string name="ConversationFragment__block_request">Желите ли да блокирате захтев?</string>
     <!-- Dialog message for block group link join requests -->
     <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s neće moći da se pridruži grupi ili zatraži da se pridruži grupi preko linka. I dalje će moći ručno da se doda u grupu.</string>
     <!-- Dialog confirm block request button -->
-    <string name="ConversationFragment__block_request_button">Блокирати захтев</string>
+    <string name="ConversationFragment__block_request_button">Блокирај захтев</string>
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Поништи</string>
     <!-- Message shown after successfully blocking join requests for a user -->
-    <string name="ConversationFragment__blocked">Блокиран/на</string>
+    <string name="ConversationFragment__blocked">Корисник је блокиран</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Уклони филтер</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Нема непрочитаних ћаскања</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Желите ли да избришете изабрану преписку?</item>
-        <item quantity="other">Желите ли да избришете изабране преписке?</item>
+        <item quantity="one">Желите ли да обришете изабрану преписку?</item>
+        <item quantity="other">Желите ли да обришете изабране преписке?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">Овим ћете трајно избрисати изабрану преписку.</item>
-        <item quantity="other">Овим ћете трајно избрисати све изабране преписке (%1$d).</item>
+        <item quantity="one">Овим ћете трајно обрисати изабрану преписку.</item>
+        <item quantity="other">Овим ћете трајно обрисати све изабране преписке (%1$d).</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Брисање</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Брисање означених порука…</string>
@@ -496,12 +497,12 @@
         <item quantity="other">Откачи</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Утишај</item>
-        <item quantity="other">Утишај</item>
+        <item quantity="one">Искључи обавештења</item>
+        <item quantity="other">Искључи обавештења</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Поново укључи</item>
-        <item quantity="other">Поново укључи</item>
+        <item quantity="one">Укључи обавештења</item>
+        <item quantity="other">Укључи обавештења</item>
     </plurals>
     <string name="ConversationListFragment_select">Изабери више</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -513,8 +514,8 @@
         <item quantity="other">Опозови архивирање</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Избриши</item>
-        <item quantity="other">Избриши</item>
+        <item quantity="one">Обриши</item>
+        <item quantity="other">Обриши</item>
     </plurals>
     <string name="ConversationListFragment_select_all">Изабери све</string>
     <plurals name="ConversationListFragment_s_selected">
@@ -547,9 +548,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Повуците надоле да филтрирате</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Отпустите да филтрирате</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Профил</string>
@@ -663,18 +664,18 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Сва времена су у временској зони: (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Изабрано време је у прошлости. Овим ћете одмах послати поруку.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Пошаљи одмах</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Пошаљи сад</string>
     <!-- Context menu option to reschedule a selected message -->
     <string name="ScheduledMessagesBottomSheet_menu_reschedule">Промените време слања</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Избриши</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Обриши</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Желите ли да избришете планирану поруку?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Желите ли да обришете планирану поруку?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Планирана порука се брише…</string>
 
@@ -776,8 +777,8 @@
         <item quantity="other">Ови чланови ће морати да прихвате позивницу да би се поново придружили овој групи и неће примати групне поруке док је не прихвате:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">Овај члан је уклоњен из групе и неће моћи да се поново придружи док не обави надоградњу:</item>
-        <item quantity="other">Ови чланови су уклоњени из групе и неће моћи да се поново придруже док не обаве надоградњу:</item>
+        <item quantity="one">Овај члан је уклоњен из групе и неће моћи да се поново придружи док не изврши надоградњу:</item>
+        <item quantity="other">Ови чланови су уклоњени из групе и неће моћи да се поново придруже док не изврше надоградњу:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -935,7 +936,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Обавести ме за помињања</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Желите ли да примате обавештења када сте поменути у утишаним ћаскањима?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Желите ли да примате обавештења када вас неко помене у ћаскањима за која су искључена обавештења?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Увек ме обавештавај</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Немој да ме обавештаваш</string>
 
@@ -953,6 +954,16 @@
     <string name="ManageProfileFragment__username_created">Korisničko ime je izbrisano</string>
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Korisničko ime je kopirano</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Нисмо успели да избришемо корисничко име. Пробајте поново касније.</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Корисничко име је избрисано</string>
+
+    <!-- UsernameOutOfSyncReminder -->
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Нешто није у реду са вашим корисничким именом – више није повезано са вашим налогом. Можете покушати поново да га подесите или да изаберете ново.</string>
+    <!-- Action text to navigate user to manually fix the issue with their username -->
+    <string name="UsernameOutOfSyncReminder__fix_now">Исправите сад</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1011,7 +1022,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Не може да се придружи групи</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Ne možete da se pridružite ovoj grupi preko linka za grupu jer vas je administrator uklonio.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Не можете да се придружите овој групи преко линка за групу јер вас је администратор уклонио.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Link za grupu više nije ispravan.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1103,12 +1114,12 @@
     <string name="MediaOverviewActivity_Audio">Звук</string>
     <string name="MediaOverviewActivity_All">Сви</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">Желите ли да избришете одабрану ставку?</item>
-        <item quantity="other">Желите ли да избришете одабране ставке?</item>
+        <item quantity="one">Желите ли да обришете одабрану ставку?</item>
+        <item quantity="other">Желите ли да обришете одабране ставке?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">Овим ће изабрани фајл бити трајно избрисан. Све текстуалне поруке повезане са овом ставком такође ће бити избрисане.</item>
-        <item quantity="other">Овим ће сви изабрани фајлови (%1$d) бити трајно избрисани. Све текстуалне поруке повезане са овим ставкама такође ће бити избрисане.</item>
+        <item quantity="one">Овим ће изабрани фајл бити трајно обрисан. Све текстуалне поруке повезане са овом ставком такође ће бити обрисане.</item>
+        <item quantity="other">Овим ће сви изабрани фајлови (%1$d) бити трајно обрисани. Све текстуалне поруке повезане са овим ставкама такође ће бити обрисане.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Брисање</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Брисање порука…</string>
@@ -1127,8 +1138,8 @@
         <item quantity="other">Сачувај</item>
     </plurals>
     <plurals name="MediaOverviewActivity_delete_plural">
-        <item quantity="one">Избриши</item>
-        <item quantity="other">Избриши</item>
+        <item quantity="one">Обриши</item>
+        <item quantity="other">Обриши</item>
     </plurals>
 
     <plurals name="MediaOverviewActivity_d_selected_s">
@@ -1269,7 +1280,7 @@
     <!-- GV2 member removals -->
     <string name="MessageRecord_you_removed_s">Уклонили сте %1$s.</string>
     <string name="MessageRecord_s_removed_s">%1$s уклонио/ла %2$s.</string>
-    <string name="MessageRecord_s_removed_you_from_the_group">%1$s Вас је уклонио из групе.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s вас је уклонио из групе.</string>
     <string name="MessageRecord_you_left_the_group">Напустили сте групу.</string>
     <string name="MessageRecord_s_left_the_group">%1$s је напустио групу.</string>
     <string name="MessageRecord_you_are_no_longer_in_the_group">Нисте више у групи.</string>
@@ -1472,10 +1483,10 @@
     <string name="MessageRequestBottomView_unblock">Одблокирај</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Да ли дозвољавате да вам %1$s шаље поруке и да подели ваше име и слику са њима? Неће знати да сте прочитали њихове поруке док не прихватите.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Да ли дозвољавате да вам %1$s шаље поруке и да подели ваше име и слику са њима? Нећете примати поруке док их не деблокирате.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Желите ли да дозволите да вам %1$s шаље поруке и види ваше име и слику? Нећете примати поруке док не одблокирате овог корисника.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Допустите %1$s да Вам пише? Нећете примати поруке док га не деблокирате.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Добијајте ажурирања и вести од %1$s? Нећете добијати ажурирања док их не деблокирате.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Желите ли да дозволите да вам %1$s пише? Нећете примати поруке док не одблокирате овог корисника.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Желите ли да вам %1$s шаље новости? Нећете примати новости док не одблокирате овог корисника.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Наставити разговор са овом групом и поделите своје име и слику са њеним члановима?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Надоградите ову групу да бисте активирали нове функције попут @помињања и администратора. Чланови који нису поделили своје име или слику у овој групи биће позвани да се придруже.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ова Стара Група не може више да се користи јер је превелика. Максимална величина групе је %1$d.</string>
@@ -1483,7 +1494,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Да ли желите да се придружите овој групи и да са њеним члановима поделите ваше име и слику? Неће знати да сте прочитали поруке док не прихватите.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Придружите се овој групи и поделите своје име и фотографију са њеним члановима? Нећете видети њихове поруке док не прихватите.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Придружите се групи? Неће знати да сте им прочитали поруке док не прихватите.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Да ли желите да одблокирате ову групу и да са њеним члановима поделите ваше име и слику? Нећете добити ни једну поруку док је не одблокирате.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Желите ли да одблокирате ову групу и да са њеним члановима поделите своје име и слику? Нећете примати поруке док је не одблокирате.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Приказ</string>
     <string name="MessageRequestProfileView_member_of_one_group">Члан %1$s</string>
@@ -1584,9 +1595,20 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Направи нови PIN</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
+    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
+    <string name="ReRegisterWithPinFragment_send_sms_code">Пошаљи SMS шифру</string>
+    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
+    <string name="ReRegisterWithPinFragment_support_email_subject">Регистрација Signal-а – Помоћ при поновној регистрацији PIN-а на Android-у</string>
+    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
+    <string name="ReRegisterWithPinFragment_need_help_local">Ваш PIN је шифра од %1$d или више цифара коју сте креирали и која може бити нумеричка или алфанумеричка.\n\nАко не можете да се сетите PIN-а, можете да креирате нови.</string>
+    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
+    <string name="ReRegisterWithPinFragment_skip_local">Ако не можете да се сетите PIN-а, можете да креирате нови.</string>
+    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Искористили сте све покушаје уноса PIN-а, али и даље можете да приступите свом налогу на Signal-у тако што ћете креирати нови PIN.</string>
+
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Упозорење</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ако онемогућите PIN, изгубићете све податке када поново региструјете Signal, осим ако ручно направите резервне копије и вратите податке. Не можете укључити закључавање регистрације док је PIN онемогућен.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ако искључите PIN, изгубићете све податке када поново региструјете Signal, осим ако ручно не направите резервне копије и вратите податке. Не можете укључити закључавање регистрације ако је PIN искључен.</string>
     <string name="PinOptOutDialog_disable_pin">Искључи PIN</string>
 
     <!-- RatingManager -->
@@ -1711,9 +1733,9 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Камера</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Обавести</string>
+    <string name="WebRtcCallView__unmute">Укључи обавештења</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Утишај</string>
+    <string name="WebRtcCallView__mute">Искључи обавештења</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Звони</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1726,12 +1748,12 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">%1$s је блокиран</string>
+    <string name="CallParticipantView__s_is_blocked">Корисник је блокиран (%1$s)</string>
     <string name="CallParticipantView__more_info">Више информација</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Нећете добити њихов аудио или видео, а ни они ваш.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Не може да се прими звук &amp; видео од %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Не може да се прими звук и видео од %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">То је можда зато што нису потврдили промену вашег сигурносног броја, постоји проблем са њиховим уређајем или су вас блокирали.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">То је можда зато што корисник није потврдио промену вашег сигурносног броја, постоји проблем са његовим уређајем или вас је блокирао.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Превуците да бисте видели дељење екрана</string>
@@ -1768,11 +1790,18 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal-у су потребна дозволе за контакте и медије да би се лакше прикачили са пријатељима и слали поруке. Ваши контакти су послани са Signal-ом, што знаћи са си шифровани и невидљиви са стране Signal сервиса.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal-у су потребна дозволе за контакте да би се лакше прикачили са пријатељима. Ваши контакти су послани са Signal-ом, што знаћи са си шифровани и невидљиви са стране Signal сервиса.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Превише пута сте покушали да региструјете овај број. Покушајте поново касније.</string>
+    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
+    <string name="RegistrationActivity_rate_limited_to_try_again">Превише пута сте покушали да региструјете овај број. Пробајте поново за %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Није могуће успоставити везу са сервисом. Проверите да ли сте повезани на интернет и покушајте поново.</string>
     <string name="RegistrationActivity_non_standard_number_format">Не стандардни формат цифре</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Унета цифра (%1$s) нема стандардни формат.\n\nДа ли сте мислили на %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Формат броја телефона</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Затражен позив</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
+    <string name="RegistrationActivity_sms_requested">SMS је затражен</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
+    <string name="RegistrationActivity_code_requested">Шифра за верификацију је затражена</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Преостаје вам још %1$d корак да бисте послали евиденцију отклањања грешака.</item>
         <item quantity="other">Преостаје вам још %1$d корака да бисте послали евиденцију отклањања грешака.</item>
@@ -1792,6 +1821,16 @@
     <string name="RegistrationActivity_call">Позови</string>
     <string name="RegistrationActivity_verification_code">Шифра за верификацију</string>
     <string name="RegistrationActivity_resend_code">Пошаљи шифру поново</string>
+    <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
+    <string name="RegistrationActivity_support_bottom_sheet_title">Имате проблема са регистрацијом?</string>
+    <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Проверите да ли ваш телефон има мобилни сигнал за примање SMS-а или позива\n • Проверите да ли можете да примате телефонске позиве на овај број\n • Проверите да ли сте исправно унели свој број телефона.</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Ако вам је потребно више информација, пратите ове кораке за решавање проблема или се обратите подршци</string>
+    <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">ове кораке за решавање проблема</string>
+    <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Обратите се подршци</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Укључи закључавање регистрације?</string>
@@ -1918,7 +1957,7 @@
     <string name="ThreadRecord_view_once_photo">Једнократна фотографија</string>
     <string name="ThreadRecord_view_once_video">Једнократни видео запис</string>
     <string name="ThreadRecord_view_once_media">Једнократни медиј</string>
-    <string name="ThreadRecord_this_message_was_deleted">Ова порука је избрисана.</string>
+    <string name="ThreadRecord_this_message_was_deleted">Ова порука је обрисана.</string>
     <string name="ThreadRecord_you_deleted_this_message">Избрисали сте ову поруку.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Послали сте захтев за активирање плаћања</string>
@@ -1956,6 +1995,12 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Реаговао/ла је %1$s на причу.</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Плаћање</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Планирана порука</string>
+    <!--  Displayed in the conversation list when your message history has been merged -->
+    <string name="ThreadRecord_message_history_has_been_merged">Историја порука је спојена</string>
+    <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
+    <string name="ThreadRecord_s_belongs_to_s">%2$s је власник броја %1$s</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Надоградња Signal-a</string>
@@ -2028,7 +2073,7 @@
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ММС порука шифрована за непостојећу сесију</string>
 
     <!-- MuteDialog -->
-    <string name="MuteDialog_mute_notifications">Утишај обавештења</string>
+    <string name="MuteDialog_mute_notifications">Искључи обавештења</string>
 
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Увоз у току</string>
@@ -2093,7 +2138,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Реакција %1$s на ваш звучни запис.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реакција %1$s на ваш једнократни медиј.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Реакција %1$s на вашу налепницу.</string>
-    <string name="MessageNotifier_this_message_was_deleted">Ова порука је избрисана.</string>
+    <string name="MessageNotifier_this_message_was_deleted">Ова порука је обрисана.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Искључити нотификације контакта који се придружио Signal-у? Можете их поново омогућити у Signal &gt; Подешавања &gt; Нотификације.</string>
 
@@ -2296,7 +2341,7 @@
     <string name="ConversationUpdateItem_enable_call_notifications">Обавештења о позиву</string>
     <string name="ConversationUpdateItem_update_contact">Ажурирај контакт</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
-    <string name="ConversationUpdateItem_block_request">Блокирати захтев</string>
+    <string name="ConversationUpdateItem_block_request">Блокирај захтев</string>
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Нема заједничких група. Пажљиво прегледајте захтеве.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Нема контаката у овој групи. Пажљиво прегледајте захтеве.</string>
     <string name="ConversationUpdateItem_view">Приказ</string>
@@ -2553,7 +2598,7 @@
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">На чекању</string>
-    <string name="message_details_recipient_header__sent_to">Послато</string>
+    <string name="message_details_recipient_header__sent_to">Послато кориснику</string>
     <string name="message_details_recipient_header__sent_from">Послао</string>
     <string name="message_details_recipient_header__delivered_to">Достављено</string>
     <string name="message_details_recipient_header__read_by">Прочитао</string>
@@ -2633,10 +2678,10 @@
     <string name="arrays__use_default">Користи подразумевано</string>
     <string name="arrays__use_custom">Користи посебно</string>
 
-    <string name="arrays__mute_for_one_hour">Утишај 1 сат</string>
-    <string name="arrays__mute_for_eight_hours">Утишај 8 сати</string>
-    <string name="arrays__mute_for_one_day">Утишај 1 дан</string>
-    <string name="arrays__mute_for_seven_days">Утишај 7 сати</string>
+    <string name="arrays__mute_for_one_hour">Искључи обавештења 1 сат</string>
+    <string name="arrays__mute_for_eight_hours">Искључи обавештења 8 сати</string>
+    <string name="arrays__mute_for_one_day">Искључи обавештења 1 дан</string>
+    <string name="arrays__mute_for_seven_days">Искључи обавештења 7 сати</string>
     <string name="arrays__always">Увек</string>
 
     <string name="arrays__settings_default">Подразумевана поставка</string>
@@ -2673,9 +2718,9 @@
     <string name="preferences__pref_use_address_book_photos">Користите фотографије из адресара</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Користите фотографије контакта из Вашег адресара ако је доступна</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Ostavi ćaskanja sa isključenim obaveštenjima arhivirana</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Остави ћаскања са искљученим обавештењима архивирана</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Ćaskanja sa isključenim obaveštenjima koja su arhivirana ostaće arhivirana kada stigne nova poruka.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Ћаскања са искљученим обавештењима која су архивирана остаће архивирана када стигне нова порука.</string>
     <string name="preferences__generate_link_previews">Generisanje prikaza linka</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Direktno sa veb-sajtova preuzimajte prikaze linkova za poruke koje šaljete.</string>
     <string name="preferences__change_passphrase">Измени лозинку</string>
@@ -2755,7 +2800,7 @@
     <string name="preferences__advanced_pin_settings">Напредна PIN подешавања</string>
     <string name="preferences__free_private_messages_and_calls">Бесплатне приватне поруке и позиви корисницима Signal-a</string>
     <string name="preferences__submit_debug_log">Пошаљи дневник исправљања грешака</string>
-    <string name="preferences__delete_account">Избриши налог</string>
+    <string name="preferences__delete_account">Брисање налога</string>
     <string name="preferences__support_wifi_calling">Компатибилност са „бежичним позивањем“</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Омогућите ако ваш уређај доставља СМС/ММС преко бежичне мреже (омогућите само ако је „WiFi Calling“ омогућено на вашем уређају)</string>
     <string name="preferences__incognito_keyboard">Тајна тастатура</string>
@@ -2777,14 +2822,14 @@
     <string name="preferences_storage__files">Fajlovi</string>
     <string name="preferences_storage__audio">Звук</string>
     <string name="preferences_storage__review_storage">Прегледајте складиште</string>
-    <string name="preferences_storage__delete_older_messages">Брисати старе поруке?</string>
+    <string name="preferences_storage__delete_older_messages">Обрисати старе поруке?</string>
     <string name="preferences_storage__clear_message_history">Желите ли да избришете историју порука?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Овим ћете са уређаја трајно избрисати целокупну историју порука и медијске садржаје који су старији од %1$s.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Овим ћете са уређаја трајно обрисати целокупну историју порука и медијске садржаје који су старији од %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Ово ће трајно да скрати све преписке на %1$s најскоријих порука.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Овим ћете са уређаја трајно избрисати целокупну историју порука и медијске садржаје.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Желите ли сигурно да избришете целокупну историју порука?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Овим ћете са уређаја трајно обрисати целокупну историју порука и медијске садржаје.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Желите ли сигурно да обришете целокупну историју порука?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Целокупна историја порука биће трајно уклоњена. Та радња се не може опозвати.</string>
-    <string name="preferences_storage__delete_all_now">Избриши све сада</string>
+    <string name="preferences_storage__delete_all_now">Обриши све сада</string>
     <string name="preferences_storage__forever">Заувек</string>
     <string name="preferences_storage__one_year">1 година</string>
     <string name="preferences_storage__six_months">6 месеци</string>
@@ -2969,7 +3014,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Пошаљи уплату</string>
     <string name="PaymentsDetailsFragment__received_payment">Примљена уплата</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Уплата завршена %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Блокирај број</string>
+    <string name="PaymentsDetailsFragment__block_number">Број блока</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Пренос</string>
@@ -3054,7 +3099,7 @@
 
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">Нова порука за…</string>
-    <string name="contact_selection_list__unknown_contact_block">Блокирати корисника</string>
+    <string name="contact_selection_list__unknown_contact_block">Блокирај корисника</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Додај у групу</string>
 
     <!-- conversation_callable_insecure -->
@@ -3084,7 +3129,7 @@
     <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">Копирај</string>
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_delete">Избриши</string>
+    <string name="conversation_selection__menu_delete">Обриши</string>
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Проследи</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -3129,7 +3174,7 @@
     <string name="conversation_muted__unmute">Укључи обавештења</string>
 
     <!-- conversation_unmuted -->
-    <string name="conversation_unmuted__mute_notifications">Утишај обавештења</string>
+    <string name="conversation_unmuted__mute_notifications">Искључи обавештења</string>
 
     <!-- conversation -->
     <string name="conversation__menu_group_settings">Поставке групе</string>
@@ -3170,7 +3215,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Филтрирајте непрочитана ћаскања</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Уклони филтер непрочитаних порука</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копирај на клипборд</string>
@@ -3211,7 +3256,7 @@
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal протокол је аутоматски заштитио %1$d%% ваших одлазних порука у последњих %2$d дана. Разговори између корисника Signal-а су увек потпуно енкриптовани.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Шири причу</string>
     <string name="InsightsDashboardFragment__not_enough_data">Недовољно података</string>
-    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ваш проценат увида израчунава се на основу одлазних порука које нису нестале или избрисане у протеклих %1$d дана.</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ваш проценат увида израчунава се на основу одлазних порука које нису нестале или обрисане у протеклих %1$d дана.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">Започните разговор</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Почните безбедно да комуницирате и омогућите нове функције које превазилазе ограничења нешифрованих СМС порука тако што ћете позвати још контаката да се придруже Signal-у.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ове статистике су генерисане локално на вашем уређају и можете их видети само ви. Никада се не преносе нигде.</string>
@@ -3285,7 +3330,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Налог је закључан</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ваш рачун је закључан ради заштите ваше приватности и сигурности. Након %1$d дана неактивности, биће вам омогућена поновна регистрација овог броја телефона без потребе да унесете стари PIN. Сви подаци ће бити избрисани.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ваш рачун је закључан ради заштите ваше приватности и сигурности. Након %1$d дана неактивности, биће вам омогућена поновна регистрација овог броја телефона без потребе да унесете стари PIN. Сви подаци ће бити обрисани.</string>
     <string name="AccountLockedFragment__next">Даље</string>
     <string name="AccountLockedFragment__learn_more">Сазнај више</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -3293,6 +3338,8 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Унесите ваш PIN</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Унесите PIN вашег налога. Ово није исто што и ваш SMS верификациони кôд.</string>
+    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Унесите PIN који сте креирали за свој налог.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Унеси алфанумерички PIN</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Унеси нумерички PIN</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Нетачан PIN. Покушајте поново.</string>
@@ -3303,8 +3350,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal регистрација - Помоћ за PIN na Android-у (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Због ваше приватности и безбедности, не постоји начин да повратите PIN. Ако не можете да се сетите PIN-а, можете поново да верификујете SMS-ом након %1$d дана неактивности. У том случају, ваш налог ће бити избрисан, као и сав његов садржај.</item>
-        <item quantity="other">Због ваше приватности и безбедности, не постоји начин да повратите PIN. Ако не можете да се сетите PIN-а, можете поново да верификујете SMS-ом након %1$d дана неактивности. У том случају, ваш налог ће бити избрисан, као и сав његов садржај.</item>
+        <item quantity="one">Због ваше приватности и безбедности, не постоји начин да повратите PIN. Ако не можете да се сетите PIN-а, можете поново да верификујете SMS-ом након %1$d дана неактивности. У том случају, ваш налог ће бити обрисан, као и сав његов садржај.</item>
+        <item quantity="other">Због ваше приватности и безбедности, не постоји начин да повратите PIN. Ако не можете да се сетите PIN-а, можете поново да верификујете SMS-ом након %1$d дана неактивности. У том случају, ваш налог ће бити обрисан, као и сав његов садржај.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -3313,8 +3360,8 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">Ако искористите све покушаје, налог ће вам бити закључан %1$d дан. Након %1$d дана неактивности моћи ћете поново да се региструјете без PIN-а. Налог ће вам бити избрисан, као и сав његов садржај.</item>
-        <item quantity="other">Ако искористите све покушаје, налог ће вам бити закључан %1$d дан(а). Након %1$d дана неактивности моћи ћете поново да се региструјете без PIN-а. Налог ће вам бити избрисан, као и сав његов садржај.</item>
+        <item quantity="one">Ако искористите све покушаје, налог ће вам бити закључан %1$d дан. Након %1$d дана неактивности моћи ћете поново да се региструјете без PIN-а. Налог ће вам бити обрисан, као и сав његов садржај.</item>
+        <item quantity="other">Ако искористите све покушаје, налог ће вам бити закључан %1$d дан(а). Након %1$d дана неактивности моћи ћете поново да се региструјете без PIN-а. Налог ће вам бити обрисан, као и сав његов садржај.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
@@ -3387,16 +3434,19 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Verifikovanje rezervne kopije Signala…</string>
     <string name="LocalBackupJobApi29_backup_failed">Резервна копија није успела</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ваша фасцикла за резервне копије је избрисана или премештена.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ваша фасцикла за резервне копије је обрисана или премештена.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Fajl rezervne kopije je preveliki da bi se čuvao na ovoj jedinici.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">Нема довољно простора за чување Ваше резервне копије.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Nije bilo moguće kreirati i verifikovati vašu nedavnu rezervnu kopiju. Kreirajte novu.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Vaša rezervna kopija sadrži veoma veliki fajl za koji se ne može kreirati rezervna kopija. Izbrišite ga i kreirajte novu rezervnu kopiju.</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Ваша резервна копија садржи веома велики фајл за који се не може креирати резервна копија. Обришите га и креирајте нову резервну копију.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Додирните за управљање резервним копијама.</string>
     <string name="RegistrationActivity_wrong_number">Погрешан број?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <!--    Countdown to when the user can request a new code via phone call during registration.-->
+    <string name="RegistrationActivity_call_me_instead_available_in">Позови ме (%1$02d:%2$02d)</string>
+    <!--    Countdown to when the user can request a new SMS code during registration.-->
+    <string name="RegistrationActivity_resend_sms_available_in">Поново пошаљи шифру (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Контактирајте Signal подршку</string>
     <string name="RegistrationActivity_code_support_subject">Signal регистрација - верификациони кôд за Android</string>
     <string name="RegistrationActivity_incorrect_code">Погрешан кôд</string>
@@ -3613,9 +3663,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">„%1$s“ је блокиран/на.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Неуспешно блокирање „%1$s“</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">„%1$s“ је деблокиран/на.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">Корисник је блокиран (%1$s).</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Блокирање корисника није успело (%1$s)</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">Корисник је одблокиран (%1$s).</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Прегледајте чланове</string>
@@ -3643,7 +3693,7 @@
     <string name="ReviewCard__remove_from_group">Уклони из групе</string>
     <string name="ReviewCard__update_contact">Ажурирај контакт</string>
     <string name="ReviewCard__block">Блокирај</string>
-    <string name="ReviewCard__delete">Избриши</string>
+    <string name="ReviewCard__delete">Обриши</string>
     <string name="ReviewCard__recently_changed">Недавно су променили име профила од %1$s на %2$s</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
@@ -3665,17 +3715,17 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Slab Wi-Fi – prebačeno na korišćenje mobilnog interneta.</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">Брисање налога ће:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">Ако избришете налог:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Унесите ваш број телефона</string>
     <string name="DeleteAccountFragment__delete_account">Избриши налог</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Обрисати информације о налогу и слику профила</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Обрисати све Ваше поруке</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Избрисати %1$s на рачуну плаћања</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Биће вам избрисане све информације о налогу и профилна фотографија</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Биће вам избрисане све поруке</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Обрисати %1$s на рачуну плаћања</string>
     <string name="DeleteAccountFragment__no_country_code">Није изабран позивни број државе</string>
     <string name="DeleteAccountFragment__no_number">Није наведен број</string>
     <string name="DeleteAccountFragment__the_phone_number">Унет телефонски број се не подудара са вашим налогом.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Да ли заиста желите да избришете ваш налог?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ово ће избрисати ваш Signal налог и ресетовати апликацију. Апликација ће се затворити након завршетка поступка.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Да ли заиста желите да обришете ваш налог?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Овим ћете избрисати налог на Signal-у и ресетовати апликацију. Апликација ће се затворити након завршетка поступка.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Брисање локалних података није успело. Можете их ручно обрисати у поставкама апликације система.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Поставке покретања апликације</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -3689,7 +3739,7 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Брисање података и рисетовање апликације</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">Налог није избрисан</string>
+    <string name="DeleteAccountFragment__account_not_deleted">Налог није обрисан</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">Дошло је до проблема са завршетком процеса брисања. Проверите мрежну везу и покушајте поново.</string>
 
@@ -4001,12 +4051,12 @@
     <string name="NotificationProfilesFragment__create_profile">Креирај профил</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Блокиран/на</string>
+    <string name="PrivacySettingsFragment__blocked">Корисник је блокиран</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d контаката</string>
     <string name="PrivacySettingsFragment__messaging">Поруке</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Самонестајуће поруке</string>
     <string name="PrivacySettingsFragment__app_security">Безбедност апликације</string>
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирање снимка екрана у списку недавних апликација и унутар апликације</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирајте снимке екрана у листи недавних апликација и унутар апликације</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Поруке и позиви преко Signal-а, увек преузмеравај позиве, запечаћени пошиљалац</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Подразумевани тајмер за нове преписке</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Подесите подразумевани тајмер нестајања поруке за све нове преписке које сте започели.</string>
@@ -4070,11 +4120,11 @@
     <string name="ChatColorSelectionFragment__chat_color">Боја ћаскања</string>
     <string name="ChatColorSelectionFragment__edit">Уреди</string>
     <string name="ChatColorSelectionFragment__duplicate">Дупликат</string>
-    <string name="ChatColorSelectionFragment__delete">Избриши</string>
+    <string name="ChatColorSelectionFragment__delete">Обриши</string>
     <string name="ChatColorSelectionFragment__delete_color">Обрисати боју</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">Ова прилагођена боја се користи у %1$d ћаскању. Желите ли да је избришете из свих ћаскања?</item>
-        <item quantity="other">Ова прилагођена боја се користи у %1$d ћаскања. Желите ли да је избришете из свих ћаскања?</item>
+        <item quantity="one">Ова прилагођена боја се користи у %1$d ћаскању. Желите ли да је обришете из свих ћаскања?</item>
+        <item quantity="other">Ова прилагођена боја се користи у %1$d ћаскања. Желите ли да је обришете из свих ћаскања?</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">Обрисати боје ћаскања?</string>
 
@@ -4163,9 +4213,9 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Позови</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__mute">Утишај</string>
+    <string name="ConversationSettingsFragment__mute">Искључи обавештења</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">Утишано</string>
+    <string name="ConversationSettingsFragment__muted">Обавештења су искључена</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Претрага</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Самонестајуће поруке</string>
@@ -4185,8 +4235,8 @@
     <string name="ConversationSettingsFragment__group_link">Link za grupu</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Додај у контакте</string>
     <string name="ConversationSettingsFragment__unmute">Укључи обавештења</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Преписка је утишана до %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Преписка је заувек утишана</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Обавештења у преписци су искључена до %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Обавештења за преписку су трајно искључена</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Број телефона је копиран у оставу.</string>
     <string name="ConversationSettingsFragment__phone_number">Број телефона</string>
     <string name="ConversationSettingsFragment__get_badges">Добијте значке за профил тако што ћете донирати Signal-у. Додирните значку да сазнате више.</string>
@@ -4202,8 +4252,8 @@
     <string name="PermissionsSettingsFragment__who_can_send_messages">Ко може да шаље поруке?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
-    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Утишај обавештења</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Није утишано</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Искључи обавештења</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Обавештења нису искључена</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Помињања</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Увек обавести</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Немој обавештавати</string>
@@ -4240,11 +4290,11 @@
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s је уклољен(а)</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s је блокиран(а)</string>
+    <string name="NewConversationActivity__s_has_been_blocked">Корнисник је блокиран (%1$s)</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Нисмо успели да уклонимо корисника (%1$s)</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Ова особа је сачувана у вашим контактима на уређају. Избришите је из контаката и пробајте поново.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Ова особа је сачувана у вашим контактима на уређају. Обришите је из контаката и пробајте поново.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Прикажи контакт</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -4328,7 +4378,7 @@
     <string name="MediaReviewFragment__add_to_story">Додај садржај у причу</string>
     <string name="MediaReviewFragment__add_a_message">Додати поруку</string>
     <string name="MediaReviewFragment__add_a_reply">Додај одговор</string>
-    <string name="MediaReviewFragment__send_to">Пошаљи у</string>
+    <string name="MediaReviewFragment__send_to">Пошаљи кориснику</string>
     <string name="MediaReviewFragment__view_once_message">Порука виђена једном</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Jedna ili više stavki su prevelike</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Jedna ili više stavki su nevažeće</string>
@@ -4347,7 +4397,7 @@
 
     <string name="MediaCountIndicatorButton__send">Пошаљи</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Пипнути за уклон</string>
+    <string name="MediaReviewSelectedItem__tap_to_remove">Додирните да уклоните</string>
     <string name="MediaReviewSelectedItem__tap_to_select">Додирни за избор</string>
 
     <string name="MediaReviewImagePageFragment__discard">Одбаци</string>
@@ -4615,15 +4665,15 @@
     <string name="NotificationProfilesFragment__on">Укључено</string>
 
     <!-- Button use to permanently delete a notification profile -->
-    <string name="NotificationProfileDetails__delete_profile">Избриши профил</string>
+    <string name="NotificationProfileDetails__delete_profile">Обриши профил</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">\"%1$s\" уклоњено.</string>
+    <string name="NotificationProfileDetails__s_removed">„%1$s” уклоњен/а.</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">Опозови</string>
     <!-- Dialog message shown to confirm deleting a profile -->
-    <string name="NotificationProfileDetails__permanently_delete_profile">Трајно избрисати профил?</string>
+    <string name="NotificationProfileDetails__permanently_delete_profile">Трајно обрисати профил?</string>
     <!-- Dialog button to delete profile -->
-    <string name="NotificationProfileDetails__delete">Избриши</string>
+    <string name="NotificationProfileDetails__delete">Обриши</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
     <string name="NotificationProfileDetails__edit_notification_profile">Уреди профил нотификације</string>
     <!-- Schedule description if all days are selected -->
@@ -4799,9 +4849,9 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">Прича корисника (%1$s)</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">Желите ли да избришете причу?</string>
+    <string name="MyStories__delete_story">Желите ли да обришете причу?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">Ова прича ће бити избрисана и вама и свима који су је примили.</string>
+    <string name="MyStories__this_story_will_be_deleted">Ова прича ће бити обрисана и вама и свима који су је примили.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Nije moguće sačuvati</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4841,7 +4891,7 @@
     <!-- Dialog action to remove viewer from a story -->
     <string name="StoryViewsFragment__remove">Уклони</string>
     <!-- Dialog title when removing a viewer from a story -->
-    <string name="StoryViewsFragment__remove_viewer">Želite li da uklonite gledaoca?</string>
+    <string name="StoryViewsFragment__remove_viewer">Желите ли да уклоните гледаоца?</string>
     <!-- Dialog message when removing a viewer from a story -->
     <string name="StoryViewsFragment__s_will_still_be_able">%1$s će i dalje moći da vidi ovu objavu, ali neće moći da vidi buduće objave koje podelite u priči %2$s.</string>
     <!-- Story View context menu action to remove them from a story -->
@@ -4861,12 +4911,12 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Приватно одговорити %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Одговорите кориснику (%1$s)</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Копирај</string>
     <!-- Context menu item to delete a story response -->
-    <string name="StoryGroupReplyItem__delete">Избриши</string>
+    <string name="StoryGroupReplyItem__delete">Обриши</string>
     <!-- Page title for My Story options -->
     <string name="MyStorySettingsFragment__my_story">Моја прича</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
@@ -4923,7 +4973,7 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Dodajte gledaoca</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">Избриши причу</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">Обриши причу</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">Уклонити %1$s?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
@@ -4970,7 +5020,7 @@
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Уклони</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">Желите ли да избришете причу?</string>
+    <string name="StoryDialogs__delete_custom_story">Желите ли да обришете причу?</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">Прича „%1$s“ и све подељено у њој биће уклоњени.</string>
     <!-- Dialog positive action for deleting a custom story -->
@@ -4986,7 +5036,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Пошаљи</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Искључи и избриши</string>
+    <string name="StoryDialogs__turn_off_and_delete">Искључи и обриши</string>
     <!-- Privacy Settings toggle title for stories -->
     <!-- Privacy Settings toggle summary for stories -->
     <!-- New story viewer selection screen title -->
@@ -5085,7 +5135,7 @@
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">Потврдите донацију</string>
     <!-- Heading text specifying who the gift will be sent to -->
-    <string name="GiftFlowConfirmationFragment__send_to">Пошаљи у</string>
+    <string name="GiftFlowConfirmationFragment__send_to">Пошаљи кориснику</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Прималац ће бити обавештен о донацији у приватној поруци. Унесите поруку у наставку.</string>
     <!-- Text explaining that this gift is a one time donation -->
@@ -5156,7 +5206,7 @@
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">Уклони причу</string>
     <!-- Label for context menu item to delete a custom story -->
-    <string name="ContactSearchItems__delete_story">Избриши причу</string>
+    <string name="ContactSearchItems__delete_story">Обриши причу</string>
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">Желите ли да уклоните групну причу?</string>
     <!-- Dialog message for removing a group story -->
@@ -5164,11 +5214,11 @@
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">Уклони</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_story">Желите ли да избришете причу?</string>
+    <string name="ContactSearchMediator__delete_story">Желите ли да обришете причу?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">Желите ли да избришете причу „%1$s“?</string>
+    <string name="ContactSearchMediator__delete_the_custom">Желите ли да обришете причу „%1$s“?</string>
     <!-- Dialog action item for deleting a custom story -->
-    <string name="ContactSearchMediator__delete">Избриши</string>
+    <string name="ContactSearchMediator__delete">Обриши</string>
     <!-- Donation for a friend expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
         <item quantity="one">Преостало дана: %1$d</item>
@@ -5235,7 +5285,7 @@
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">Именик</string>
     <!-- Context menu label for distribution list headers in review fragment -->
-    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Ukloni sve</string>
+    <string name="SafetyNumberReviewConnectionsFragment__remove_all">Уклони све</string>
     <!-- Context menu label for 1:1 contacts to remove from send -->
     <string name="SafetyNumberReviewConnectionsFragment__remove">Уклони</string>
 
@@ -5275,7 +5325,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Желите ли да искључите приче?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Више нећете моћи да делите или видите приче. Све што сте поделили у причама ће такође бити избрисано.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Више нећете моћи да делите или видите приче. Све што сте поделили у причама ће такође бити обрисано.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Приватност прича</string>
     <!-- Header for section that lists out stories -->
@@ -5367,9 +5417,9 @@
     <!-- Action button to keep messages -->
     <string name="RemoveSmsMessagesDialogFragment__keep_messages">Zadrži poruke</string>
     <!-- Action button to remove messages -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Ukloni poruke</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_messages">Уклони поруке</string>
     <!-- Title of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Želite li da uklonite SMS poruke iz Signala?</string>
+    <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Желите ли да уклоните SMS поруке из Signal-a?</string>
     <!-- Message of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Сада у сваком тренутку можете да уклоните SMS поруке из Signal-а да бисте ослободили простор. Оне ће и даље бити доступне другим апликацијама за SMS на телефону чак и ако их уклоните.</string>
 
@@ -5556,8 +5606,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Подршка за SMS се укида</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Размена SMS порука у апликацији Signal ускоро више неће бити подржана.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">Размена SMS порука у апликацији Signal више неће бити подржана од дана %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS поруке се разликују од порука у Signal-у. <b>То неће утицати на шифровану размену порука у Signal-у, која ће и даље функционисати.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5569,13 +5619,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Подесите корисничко име за Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Корисничка имена омогућавају другима да вам шаљу поруке без потребе за вашим бројем телефона</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Не сада</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Настави</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5589,15 +5639,25 @@
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Настави</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Подесите корисничко име за Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Измените корисничко име</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Избришите корисничко име</string>
+
+    <!-- Time duration picker -->
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">h</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">m</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
+    <string name="TimeDurationPickerDialog_positive_button">Подеси</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Минимално време за активирање закључавања екрана је 1 минут.</string>
 
     <!-- EOF -->
 </resources>

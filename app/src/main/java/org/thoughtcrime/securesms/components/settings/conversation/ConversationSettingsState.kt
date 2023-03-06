@@ -20,7 +20,7 @@ data class ConversationSettingsState(
   val sharedMediaIds: List<Long> = listOf(),
   val displayInternalRecipientDetails: Boolean = false,
   private val sharedMediaLoaded: Boolean = false,
-  private val specificSettingsState: SpecificSettingsState,
+  private val specificSettingsState: SpecificSettingsState
 ) {
 
   val isLoaded: Boolean = recipient != Recipient.UNKNOWN && sharedMediaLoaded && specificSettingsState.isLoaded

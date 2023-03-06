@@ -1,6 +1,15 @@
-apply from: "$rootProject.projectDir/signalModule.gradle"
+plugins {
+    id 'signal-library'
+}
+
+android {
+    namespace 'org.signal.qr'
+}
+
 
 dependencies {
+    implementation project(':core-util')
+
     implementation libs.androidx.camera.core
     implementation libs.androidx.camera.camera2
     implementation libs.androidx.camera.lifecycle
@@ -11,6 +20,4 @@ dependencies {
     implementation libs.google.guava.android
     implementation libs.google.zxing.android.integration
     implementation libs.google.zxing.core
-
-    implementation libs.rxjava3.rxjava
 }

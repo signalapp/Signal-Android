@@ -31,7 +31,7 @@ public final class MasterKey {
     return Hex.toStringCondensed(derive("Registration Lock"));
   }
 
-  public String deriveRegistrationRecoveryToken() {
+  public String deriveRegistrationRecoveryPassword() {
     return Hex.toStringCondensed(derive("Registration Recovery"));
   }
 

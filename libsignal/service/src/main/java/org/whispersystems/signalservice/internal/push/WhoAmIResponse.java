@@ -13,7 +13,7 @@ public class WhoAmIResponse {
   public String number;
 
   @JsonProperty
-  public String username;
+  public String usernameHash;
 
   public String getAci() {
     return uuid;
@@ -27,7 +27,7 @@ public class WhoAmIResponse {
     return number;
   }
 
-  public String getUsername() {
-    return username;
+  public String getUsernameHash() {
+    return usernameHash;
   }
 }

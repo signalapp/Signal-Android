@@ -1,16 +1,12 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'signal-sample-app'
+}
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
+    namespace 'org.signal.devicetransfer.app'
 
     defaultConfig {
         applicationId "org.signal.devicetransfer.app"
-        versionCode 1
-        versionName "1.0"
-
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
 
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
@@ -18,33 +14,8 @@ android {
 
         buildConfigField "String", "LIBSIGNAL_VERSION", "\"libsignal ${libs.versions.libsignal.client.get()}\""
     }
-
-    compileOptions {
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
-    }
-
-    buildTypes {
-        debug {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                    'proguard/proguard.cfg'
-        }
-
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                    'proguard/proguard.cfg'
-        }
-    }
 }
 
 dependencies {
-    implementation libs.androidx.appcompat
-    implementation libs.material.material
-    implementation libs.androidx.constraintlayout
-
-    testImplementation testLibs.junit.junit
-
     implementation project(':device-transfer')
 }

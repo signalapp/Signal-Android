@@ -18,11 +18,11 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools:r8:3.3.75'
-        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath 'com.android.tools.build:gradle:7.4.0'
         classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.5.2'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.17'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jlleitschuh.gradle:ktlint-gradle:10.2.1"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:11.1.0"
         classpath 'app.cash.exhaustive:exhaustive-gradle:0.1.1'
         classpath ('com.squareup.wire:wire-gradle-plugin:4.4.3') {
             exclude group: 'com.squareup.wire', module: 'wire-swift-generator'
@@ -34,26 +34,8 @@ buildscript {
     }
 }
 
-ext {
-    BUILD_TOOL_VERSION = '32.0.0'
-
-    COMPILE_SDK = 33
-    TARGET_SDK  = 31
-    MINIMUM_SDK = 21
-
-    JAVA_VERSION = JavaVersion.VERSION_1_8
-}
-
 wrapper {
     distributionType = Wrapper.DistributionType.ALL
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        mavenLocal()
-    }
 }
 
 subprojects {

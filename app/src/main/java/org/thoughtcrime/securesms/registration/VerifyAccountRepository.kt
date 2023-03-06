@@ -3,24 +3,29 @@ package org.thoughtcrime.securesms.registration
 import android.app.Application
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.AppCapabilities
 import org.thoughtcrime.securesms.gcm.FcmUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.KeyBackupSystemWrongPinException
 import org.thoughtcrime.securesms.push.AccountManagerFactory
+import org.thoughtcrime.securesms.registration.PushChallengeRequest.PushChallengeEvent
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.KbsPinData
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
+import org.whispersystems.signalservice.api.account.AccountAttributes
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionException
 import org.whispersystems.signalservice.internal.ServiceResponse
-import org.whispersystems.signalservice.internal.push.RequestVerificationCodeResponse
-import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
+import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import java.io.IOException
 import java.util.Locale
 import java.util.Optional
+import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
 /**
@@ -28,31 +33,105 @@ import java.util.concurrent.TimeUnit
  */
 class VerifyAccountRepository(private val context: Application) {
 
-  fun requestVerificationCode(
+  fun validateSession(
+    sessionId: String?,
+    e164: String,
+    password: String
+  ): Single<ServiceResponse<RegistrationSessionMetadataResponse>> {
+    return if (sessionId.isNullOrBlank()) {
+      Single.just(ServiceResponse.forApplicationError(NoSuchSessionException(), 409, null))
+    } else {
+      val accountManager: SignalServiceAccountManager = AccountManagerFactory.createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
+      Single.fromCallable { accountManager.getRegistrationSession(sessionId) }.subscribeOn(Schedulers.io())
+    }
+  }
+
+  fun requestValidSession(
     e164: String,
     password: String,
-    mode: Mode,
-    captchaToken: String? = null
-  ): Single<ServiceResponse<RequestVerificationCodeResponse>> {
+    mcc: String?,
+    mnc: String?
+  ): Single<ServiceResponse<RegistrationSessionMetadataResponse>> {
+    return Single.fromCallable {
+      val fcmToken: String? = FcmUtil.getToken(context).orElse(null)
+      val accountManager: SignalServiceAccountManager = AccountManagerFactory.createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
+      if (fcmToken == null) {
+        return@fromCallable accountManager.createRegistrationSession(null, mcc, mnc)
+      } else {
+        return@fromCallable createSessionAndBlockForPushChallenge(accountManager, fcmToken, mcc, mnc)
+      }
+    }
+      .subscribeOn(Schedulers.io())
+  }
+
+  private fun createSessionAndBlockForPushChallenge(accountManager: SignalServiceAccountManager, fcmToken: String, mcc: String?, mnc: String?): ServiceResponse<RegistrationSessionMetadataResponse> {
+    val subscriber = PushTokenChallengeSubscriber()
+    val eventBus = EventBus.getDefault()
+    eventBus.register(subscriber)
+
+    val response: ServiceResponse<RegistrationSessionMetadataResponse> = accountManager.createRegistrationSession(fcmToken, mcc, mnc)
+
+    if (!response.result.isPresent) {
+      return response
+    }
+
+    subscriber.latch.await(PUSH_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
+
+    eventBus.unregister(subscriber)
+
+    val challenge = subscriber.challenge
+
+    return if (challenge != null) {
+      accountManager.submitPushChallengeToken(response.result.get().body.id, challenge)
+    } else {
+      response
+    }
+  }
+
+  fun requestAndVerifyPushToken(
+    sessionId: String,
+    e164: String,
+    password: String
+  ): Single<ServiceResponse<RegistrationSessionMetadataResponse>> {
+    val fcmToken: Optional<String> = FcmUtil.getToken(context)
+    val accountManager = AccountManagerFactory.createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
+    val pushChallenge = PushChallengeRequest.getPushChallengeBlocking(accountManager, sessionId, fcmToken, PUSH_REQUEST_TIMEOUT)
+    return Single.fromCallable {
+      return@fromCallable accountManager.submitPushChallengeToken(sessionId, pushChallenge.orElse(null))
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun verifyCaptcha(
+    sessionId: String,
+    captcha: String,
+    e164: String,
+    password: String
+  ): Single<ServiceResponse<RegistrationSessionMetadataResponse>> {
+    val accountManager = AccountManagerFactory.createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
+    return Single.fromCallable {
+      return@fromCallable accountManager.submitCaptchaToken(sessionId, captcha)
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun requestVerificationCode(
+    sessionId: String,
+    e164: String,
+    password: String,
+    mode: Mode
+  ): Single<ServiceResponse<RegistrationSessionMetadataResponse>> {
     Log.d(TAG, "SMS Verification requested")
 
     return Single.fromCallable {
-      val fcmToken: Optional<String> = FcmUtil.getToken(context)
       val accountManager = AccountManagerFactory.createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
-      val pushChallenge = PushChallengeRequest.getPushChallengeBlocking(accountManager, fcmToken, e164, PUSH_REQUEST_TIMEOUT)
-
       if (mode == Mode.PHONE_CALL) {
-        accountManager.requestVoiceVerificationCode(Locale.getDefault(), Optional.ofNullable(captchaToken), pushChallenge, fcmToken)
+        return@fromCallable accountManager.requestVoiceVerificationCode(sessionId, Locale.getDefault(), mode.isSmsRetrieverSupported)
       } else {
-        accountManager.requestSmsVerificationCode(Locale.getDefault(), mode.isSmsRetrieverSupported, Optional.ofNullable(captchaToken), pushChallenge, fcmToken)
+        return@fromCallable accountManager.requestSmsVerificationCode(sessionId, Locale.getDefault(), mode.isSmsRetrieverSupported)
       }
     }.subscribeOn(Schedulers.io())
   }
 
-  fun verifyAccount(registrationData: RegistrationData): Single<ServiceResponse<VerifyResponse>> {
-    val universalUnidentifiedAccess: Boolean = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
-    val unidentifiedAccessKey: ByteArray = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
-
+  fun verifyAccount(sessionId: String, registrationData: RegistrationData): Single<ServiceResponse<RegistrationSessionMetadataResponse>> {
     val accountManager: SignalServiceAccountManager = AccountManagerFactory.createUnauthenticated(
       context,
       registrationData.e164,
@@ -61,21 +140,14 @@ class VerifyAccountRepository(private val context: Application) {
     )
 
     return Single.fromCallable {
-      val response = accountManager.verifyAccount(
+      accountManager.verifyAccount(
         registrationData.code,
-        registrationData.registrationId,
-        registrationData.isNotFcm,
-        unidentifiedAccessKey,
-        universalUnidentifiedAccess,
-        AppCapabilities.getCapabilities(true),
-        SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable,
-        registrationData.pniRegistrationId
+        sessionId
       )
-      VerifyResponse.from(response, null, null)
     }.subscribeOn(Schedulers.io())
   }
 
-  fun verifyAccountWithPin(registrationData: RegistrationData, pin: String, kbsPinDataProducer: KbsPinDataProducer): Single<ServiceResponse<VerifyResponse>> {
+  fun registerAccount(sessionId: String?, registrationData: RegistrationData, pin: String? = null, kbsPinDataProducer: KbsPinDataProducer? = null): Single<ServiceResponse<VerifyResponse>> {
     val universalUnidentifiedAccess: Boolean = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
     val unidentifiedAccessKey: ByteArray = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
 
@@ -86,30 +158,33 @@ class VerifyAccountRepository(private val context: Application) {
       registrationData.password
     )
 
-    return Single.fromCallable {
-      try {
-        val kbsData = kbsPinDataProducer.produceKbsPinData()
-        val registrationLockV2: String = kbsData.masterKey.deriveRegistrationLock()
+    val kbsData = kbsPinDataProducer?.produceKbsPinData()
+    val registrationLockV2: String? = kbsData?.masterKey?.deriveRegistrationLock()
 
-        val response: ServiceResponse<VerifyAccountResponse> = accountManager.verifyAccountWithRegistrationLockPin(
-          registrationData.code,
-          registrationData.registrationId,
-          registrationData.isNotFcm,
-          registrationLockV2,
-          unidentifiedAccessKey,
-          universalUnidentifiedAccess,
-          AppCapabilities.getCapabilities(true),
-          SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable,
-          registrationData.pniRegistrationId
-        )
-        VerifyResponse.from(response, kbsData, pin)
-      } catch (e: KeyBackupSystemWrongPinException) {
-        ServiceResponse.forExecutionError(e)
-      } catch (e: KeyBackupSystemNoDataException) {
-        ServiceResponse.forExecutionError(e)
-      } catch (e: IOException) {
-        ServiceResponse.forExecutionError(e)
-      }
+    val accountAttributes = AccountAttributes(
+      signalingKey = null,
+      registrationId = registrationData.registrationId,
+      isFetchesMessages = registrationData.isNotFcm,
+      pin = pin,
+      registrationLock = registrationLockV2,
+      unidentifiedAccessKey = unidentifiedAccessKey,
+      isUnrestrictedUnidentifiedAccess = universalUnidentifiedAccess,
+      capabilities = AppCapabilities.getCapabilities(true),
+      isDiscoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable,
+      name = null,
+      pniRegistrationId = registrationData.pniRegistrationId,
+      recoveryPassword = registrationData.recoveryPassword
+    )
+
+    return Single.fromCallable {
+      val response = accountManager.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, true)
+      VerifyResponse.from(response, kbsData, pin)
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun getFcmToken(): Single<String> {
+    return Single.fromCallable {
+      return@fromCallable FcmUtil.getToken(context).orElse("")
     }.subscribeOn(Schedulers.io())
   }
 
@@ -122,6 +197,17 @@ class VerifyAccountRepository(private val context: Application) {
     SMS_WITH_LISTENER(true),
     SMS_WITHOUT_LISTENER(false),
     PHONE_CALL(false);
+  }
+
+  private class PushTokenChallengeSubscriber {
+    var challenge: String? = null
+    val latch = CountDownLatch(1)
+
+    @Subscribe
+    fun onChallengeEvent(pushChallengeEvent: PushChallengeEvent) {
+      challenge = pushChallengeEvent.challenge
+      latch.countDown()
+    }
   }
 
   companion object {

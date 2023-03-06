@@ -21,7 +21,7 @@ class FullBackupExporterTest {
       mapOf(
         "A" to setOf(),
         "B" to setOf(),
-        "C" to setOf(),
+        "C" to setOf()
       )
     )
 
@@ -40,7 +40,7 @@ class FullBackupExporterTest {
     val order = FullBackupExporter.computeTableOrder(
       mapOf(
         "C" to setOf("B"),
-        "B" to setOf("A"),
+        "B" to setOf("A")
       )
     )
 
@@ -63,7 +63,7 @@ class FullBackupExporterTest {
         "H" to setOf(),
         "A" to setOf(),
         "C" to setOf(),
-        "D" to setOf(),
+        "D" to setOf()
       )
     )
 
@@ -89,7 +89,7 @@ class FullBackupExporterTest {
         "B" to setOf(),
         "D" to setOf(),
         "F" to setOf(),
-        "G" to setOf(),
+        "G" to setOf()
       )
     )
 
@@ -112,7 +112,7 @@ class FullBackupExporterTest {
         "B" to setOf(),
         "D" to setOf(),
         "F" to setOf(),
-        "G" to setOf(),
+        "G" to setOf()
       )
     )
 
@@ -132,7 +132,7 @@ class FullBackupExporterTest {
         "D" to setOf("A"),
         "E" to setOf("A", "B"),
         "A" to setOf(),
-        "B" to setOf(),
+        "B" to setOf()
       )
     )
 

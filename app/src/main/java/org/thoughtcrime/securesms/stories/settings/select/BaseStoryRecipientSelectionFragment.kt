@@ -131,7 +131,7 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
 
   override fun getHeaderAction(): HeaderAction {
     return HeaderAction(
-      R.string.BaseStoryRecipientSelectionFragment__select_all,
+      R.string.BaseStoryRecipientSelectionFragment__select_all
     ) {
       viewModel.toggleSelectAll()
     }

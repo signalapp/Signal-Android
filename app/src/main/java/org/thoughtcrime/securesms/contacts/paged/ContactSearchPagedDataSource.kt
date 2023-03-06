@@ -221,10 +221,18 @@ class ContactSearchPagedDataSource(
   }
 
   private fun getNonGroupHeaderLetterMap(section: ContactSearchConfiguration.Section.Individuals, query: String?): Map<RecipientId, String> {
-    return when (section.transportType) {
-      ContactSearchConfiguration.TransportType.PUSH -> contactSearchPagedDataSourceRepository.querySignalContactLetterHeaders(query, section.includeSelf)
-      else -> error("This has only been implemented for push recipients.")
-    }
+    return contactSearchPagedDataSourceRepository.querySignalContactLetterHeaders(
+      query = query,
+      includeSelf = section.includeSelf,
+      includePush = when (section.transportType) {
+        ContactSearchConfiguration.TransportType.PUSH, ContactSearchConfiguration.TransportType.ALL -> true
+        else -> false
+      },
+      includeSms = when (section.transportType) {
+        ContactSearchConfiguration.TransportType.SMS, ContactSearchConfiguration.TransportType.ALL -> true
+        else -> false
+      }
+    )
   }
 
   private fun getStoriesSearchIterator(query: String?): ContactSearchIterator<Cursor> {

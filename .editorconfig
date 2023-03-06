@@ -2,3 +2,4 @@ root = true
 
 [*.kt]
 indent_size = 2
+twitter_compose_allowed_composition_locals=LocalExtendedColors

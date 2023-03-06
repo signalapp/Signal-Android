@@ -73,7 +73,7 @@ object TestMms {
     unread: Boolean = false,
     viewed: Boolean = false,
     threadId: Long = 1,
-    receivedTimestampMillis: Long = System.currentTimeMillis(),
+    receivedTimestampMillis: Long = System.currentTimeMillis()
   ): Long {
     val contentValues = ContentValues().apply {
       put(MessageTable.DATE_SENT, message.sentTimeMillis)

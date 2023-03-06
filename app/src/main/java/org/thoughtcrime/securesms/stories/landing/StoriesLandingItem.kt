@@ -135,7 +135,6 @@ object StoriesLandingItem {
     private val addToStoriesView: View = itemView.findViewById(R.id.add_to_story)
 
     override fun bind(model: Model) {
-
       presentDateOrStatus(model)
       setUpClickListeners(model)
 

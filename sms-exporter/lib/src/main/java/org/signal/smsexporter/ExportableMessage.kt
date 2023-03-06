@@ -61,4 +61,9 @@ sealed interface ExportableMessage {
       }
     }
   }
+
+  data class Skip<out ID : Any>(
+    val id: ID,
+    override val exportState: SmsExportState = SmsExportState()
+  ) : ExportableMessage
 }

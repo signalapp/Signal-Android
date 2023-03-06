@@ -14,6 +14,7 @@
   <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
 
     <string name="yes">Да</string>
     <string name="no">Нет</string>
@@ -366,7 +367,7 @@
 
     <string name="ConversationActivity_error_sending_media">Ошибка при отправке медиафайла</string>
 
-    <string name="ConversationActivity__reported_as_spam_and_blocked">Было сообщено о спаме и пользователь был заблокирован.</string>
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Было сообщено о спаме, и пользователь был заблокирован.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Обмен SMS-сообщениями в настоящее время отключён. Вы можете экспортировать сообщения в другое приложение на вашем телефоне.</string>
@@ -587,9 +588,9 @@
 
     <!-- ConversationListFilterPullView -->
     <!-- Note in revealable view before fully revealed -->
-    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Проведите пальцем вниз, чтобы отфильтровать</string>
     <!-- Note in revealable view after fully revealed -->
-    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
+    <string name="ConversationListFilterPullView__release_to_filter">Отпустите, чтобы отфильтровать</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Профиль</string>
@@ -703,9 +704,9 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Время всегда в (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Selected time is in the past. This will send the message immediately.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">Выбранное время уже прошло. Сообщение будет отправлено немедленно.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Send immediately</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Отправить немедленно</string>
 
     <!-- Context menu option to send a scheduled message now -->
     <string name="ScheduledMessagesBottomSheet_menu_send_now">Отправить сейчас</string>
@@ -1029,6 +1030,16 @@
     <string name="ManageProfileFragment__username_created">Имя пользователя создано</string>
     <!-- Snackbar message after copying username -->
     <string name="ManageProfileFragment__username_copied">Имя пользователя скопировано</string>
+    <!-- Snackbar message after network failure while trying to delete username -->
+    <string name="ManageProfileFragment__couldnt_delete_username">Не удалось удалить имя пользователя. Попробуйте ещё раз позже.</string>
+    <!-- Snackbar message after successful deletion of username -->
+    <string name="ManageProfileFragment__username_deleted">Имя пользователя удалено</string>
+
+    <!-- UsernameOutOfSyncReminder -->
+    <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
+    <string name="UsernameOutOfSyncReminder__something_went_wrong">Что-то пошло не так с вашим именем пользователя, оно больше не закреплено за вашей учётной записью. Вы можете попробовать установить его снова или выбрать новое.</string>
+    <!-- Action text to navigate user to manually fix the issue with their username -->
+    <string name="UsernameOutOfSyncReminder__fix_now">Исправить сейчас</string>
 
 
     <!-- ManageRecipientActivity -->
@@ -1591,7 +1602,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Разрешить %1$s отправлять вам сообщения и открыть ваше имя и фото этому человеку? Вы не получите никаких сообщений, пока не разблокируете его.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Разрешить %1$s отправлять вам сообщения? Вы не получите никаких сообщений, пока не разблокируете этого человека.</string>
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Получать обновления и новости от %1$s? Вы не будете получать никаких сообщений, пока не разблокируете.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Получать обновления и новости от %1$s? Вы не будете получать никаких сообщений, пока не разблокируете этого человека.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Продолжить ваш разговор с этой группой и открыть ваше имя и фото её участникам?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Обновите эту группу, чтобы активировать такие новые функции, как @упоминания и администраторы групп. Участники, которые ещё не открыли свои имена или фото этой группе получат приглашение присоединиться.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Эта Старая группа больше не может быть использована, потому что она слишком большая. Максимальный размер группы — %1$d.</string>
@@ -1599,7 +1610,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и открыть ваше имя и фото её участникам? Они не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Присоединиться к этой группе и открыть ваше имя и фото её участникам? Вы не увидите их сообщения, пока не примете запрос.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе? Её участники не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и открыть ваше имя и фото её участникам? Вы не будете получать сообщений, пока не разблокируете эту группу.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и открыть ваше имя и фото её участникам? Вы не будете получать сообщения, пока не разблокируете эту группу.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Просмотреть</string>
     <string name="MessageRequestProfileView_member_of_one_group">Состоит в %1$s</string>
@@ -1712,9 +1723,20 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Создать новый PIN-код</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
+    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
+    <string name="ReRegisterWithPinFragment_send_sms_code">Отправить SMS-код</string>
+    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
+    <string name="ReRegisterWithPinFragment_support_email_subject">Регистрация в Signal - Нужна помощь с Пин-кодом повторной регистрации для Android</string>
+    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
+    <string name="ReRegisterWithPinFragment_need_help_local">Ваш Пин-код — это код из %1$d+ символов, созданный вами, который может быть цифровым или буквенно-цифровым.\n\nЕсли вы забыли свой Пин-код, вы можете создать новый.</string>
+    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
+    <string name="ReRegisterWithPinFragment_skip_local">Если вы не помните свой Пин-код, то можете создать новый.</string>
+    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Вы использовали все попытки ввести Пин-код, но всё ещё можете получить доступ к своей учётной записи Signal, создав новый Пин-код.</string>
+
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Предупреждение</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то при переустановке Signal потеряете все данные, если заранее вручную не создадите резервную копию. При отключённом PIN-коде нельзя будет включить блокировку регистрации.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите Пин-код, то при переустановке Signal потеряете все данные, если заранее вручную не создадите резервную копию. При отключённом Пин-коде нельзя будет включить блокировку регистрации.</string>
     <string name="PinOptOutDialog_disable_pin">Отключить PIN-код</string>
 
     <!-- RatingManager -->
@@ -1849,9 +1871,9 @@
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Камера</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Вкл. микрофон</string>
+    <string name="WebRtcCallView__unmute">Вкл. звук</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Откл. микрофон</string>
+    <string name="WebRtcCallView__mute">Откл. звук</string>
     <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Звонить</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -1871,7 +1893,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Вы не будете получать аудио и видео этого участника, и он не будет получать ваши.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Невозможно получать аудио и видео от %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Невозможно получать аудио и видео от %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Возможно, это из-за того, что этот участник не подтвердил изменение вашего кода безопасности, что есть какая-то проблема с его устройством или что он вас заблокировал.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Возможно, это из-за того, что этот участник не подтвердил изменение вашего кода безопасности, или есть какая-то проблема с его устройством, или он вас заблокировал.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Проведите, чтобы просмотреть показ экрана</string>
@@ -1908,11 +1930,18 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal необходим доступ к вашим контактам и медиафайлам, чтобы помочь вам связаться с друзьями и отправлять сообщения. Ваши контакты загружаются с помощью технологии конфиденциального обнаружения контактов Signal, которая использует сквозное шифрование, поэтому ваши контакты никогда не видны сервису Signal.</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal необходим доступ к вашим контактам, чтобы помочь вам связаться с друзьями. Ваши контакты загружаются с помощью технологии конфиденциального обнаружения контактов Signal, которая использует сквозное шифрование, поэтому ваши контакты никогда не видны сервису Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Вы сделали слишком много попыток зарегистрировать этот номер. Пожалуйста, попробуйте ещё раз позже.</string>
+    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
+    <string name="RegistrationActivity_rate_limited_to_try_again">Вы сделали слишком много попыток зарегистрировать этот номер. Пожалуйста, попробуйте ещё раз через %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Не удается подключиться к сервису. Пожалуйста, проверьте подключение к сети и повторите попытку.</string>
     <string name="RegistrationActivity_non_standard_number_format">Нестандартный номер телефона</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Номер, который вы ввели (%1$s), похоже, не в стандартном формате.\n\nВы имели в виду %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Формат номера телефона</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Звонок запрошен</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
+    <string name="RegistrationActivity_sms_requested">SMS запрошено</string>
+    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
+    <string name="RegistrationActivity_code_requested">Код подтверждения запрошен</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Вы в %1$d шаге от отправки журнала отладки.</item>
         <item quantity="few">Вы в %1$d шагах от отправки журнала отладки.</item>
@@ -1934,6 +1963,16 @@
     <string name="RegistrationActivity_call">Позвонить</string>
     <string name="RegistrationActivity_verification_code">Код подтверждения</string>
     <string name="RegistrationActivity_resend_code">Отправить код ещё раз</string>
+    <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
+    <string name="RegistrationActivity_support_bottom_sheet_title">Возникли проблемы с регистрацией?</string>
+    <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Убедитесь, что на вашем телефоне есть сигнал сотовой связи для приема SMS или звонка\n • Подтвердите, что можете принять телефонный звонок на номер\n • Проверьте правильность введённого номера телефона.</string>
+    <!--    A call to action for a user having trouble entering the verification to seek further help. -->
+    <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Для получения дополнительной информации выполните следующие шаги для устранения неполадок или свяжитесь с поддержкой</string>
+    <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">следующие шаги для устранения неполадок</string>
+    <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
+    <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Связаться с поддержкой</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Включить блокировку регистрации?</string>
@@ -2098,6 +2137,12 @@
     <string name="ThreadRecord__reacted_s_to_their_story">Отреагировал(-а) %1$s на их историю</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Платёж</string>
+    <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
+    <string name="ThreadRecord_scheduled_message">Запланированное сообщение</string>
+    <!--  Displayed in the conversation list when your message history has been merged -->
+    <string name="ThreadRecord_message_history_has_been_merged">История ваших сообщений была объединена</string>
+    <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
+    <string name="ThreadRecord_s_belongs_to_s">%1$s принадлежит %2$s</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Обновление Signal</string>
@@ -2951,7 +2996,7 @@
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Все разговоры будут безвозвратно обрезаны до %1$s самых новых сообщений.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Все сообщения и медиафайлы будут безвозвратно удалены с вашего устройства.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Вы действительно хотите удалить всю историю сообщений?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Вся история сообщений будет безвозвратно удалена. Это действие невозможно отменено.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Вся история сообщений будет безвозвратно удалена. Это действие невозможно отменить.</string>
     <string name="preferences_storage__delete_all_now">Удалить всё сейчас</string>
     <string name="preferences_storage__forever">Бессрочно</string>
     <string name="preferences_storage__one_year">1 год</string>
@@ -3137,7 +3182,7 @@
     <string name="PaymentsDetailsFragment__sent_payment">Отправленный платёж</string>
     <string name="PaymentsDetailsFragment__received_payment">Полученный платёж</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Платёж завершён %1$s</string>
-    <string name="PaymentsDetailsFragment__block_number">Номер блока</string>
+    <string name="PaymentsDetailsFragment__block_number">Заблокировать номер</string>
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Перевести</string>
@@ -3342,7 +3387,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Фильтровать непрочитанные чаты</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
+    <string name="text_secure_normal__clear_unread_filter">Очистить фильтр непрочитанного</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копировать в буфер обмена</string>
@@ -3425,13 +3470,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Создать новый PIN-код</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Вы можете изменить свой PIN-код, пока это устройство зарегистрировано.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Создать PIN-код</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">ПИН-коды помогут вам восстановить аккаунт и сохранить вашу информацию в зашифрованном виде в Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN-коды могут помочь вам восстановить вашу учётную запись и сохранить вашу информацию в зашифрованном виде в Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Придумайте более надёжный PIN-код</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-коды не совпадают. Попробуйте ещё раз.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Повторно введите ПИН-код, который вы только что создали.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Повторно введите PIN-код, который вы только что создали.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Подтвердите свой PIN-код.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Не удалось создать PIN-код</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Ваш PIN-код не был сохранён. Мы попросим вас создать PIN-код позднее.</string>
@@ -3469,6 +3514,8 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Введите свой PIN-код</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Введите PIN-код, который вы создали для своей учётной записи. Это не то же самое. что проверочный код из SMS.</string>
+    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Введите Пин-код, созданный для вашей учётной записи.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Ввести буквенно-цифровой PIN-код</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Ввести цифровой PIN-код</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Неверный PIN-код. Попробуйте ещё раз.</string>
@@ -3582,7 +3629,10 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Ваша резервная копия содержит очень большой файл, резервное копирование которого невозможно. Пожалуйста, удалите его и создайте новую резервную копию.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Нажмите, чтобы управлять резервным копированием.</string>
     <string name="RegistrationActivity_wrong_number">Неправильный номер?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
+    <!--    Countdown to when the user can request a new code via phone call during registration.-->
+    <string name="RegistrationActivity_call_me_instead_available_in">Позвоните мне (%1$02d:%2$02d)</string>
+    <!--    Countdown to when the user can request a new SMS code during registration.-->
+    <string name="RegistrationActivity_resend_sms_available_in">Отправить код ещё раз (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Связаться с поддержкой Signal</string>
     <string name="RegistrationActivity_code_support_subject">Регистрация в Signal - код подтверждения для Android</string>
     <string name="RegistrationActivity_incorrect_code">Неверный код</string>
@@ -3860,7 +3910,7 @@
     <string name="DeleteAccountFragment__delete_account">Удалить учётную запись</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Удалению информации вашей учётной записи и фотографии профиля</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Удалению всех ваших сообщений</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Удалению %1$s в вашей платёжной учётной записи</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Удалить %1$s в вашей платёжной учётной записи</string>
     <string name="DeleteAccountFragment__no_country_code">Не указан код страны</string>
     <string name="DeleteAccountFragment__no_number">Не указан номер</string>
     <string name="DeleteAccountFragment__the_phone_number">Номер телефона, который вы ввели, не совпадает с номером телефона вашей учётной записи.</string>
@@ -4382,9 +4432,9 @@
     <string name="ConversationSettingsFragment__requests_and_invites">Запросы и приглашения</string>
     <string name="ConversationSettingsFragment__group_link">Ссылка на группу</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Добавить в контакты</string>
-    <string name="ConversationSettingsFragment__unmute">Включить звуки</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Звуки разговора отключены до %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Звуки разговора отключены навсегда</string>
+    <string name="ConversationSettingsFragment__unmute">Включить звук</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Звук разговора отключён до %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Звук разговора отключён навсегда</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Номер телефона был скопирован в буфер обмена.</string>
     <string name="ConversationSettingsFragment__phone_number">Номер телефона</string>
     <string name="ConversationSettingsFragment__get_badges">Получайте значки для своего профиля, поддерживая Signal. Нажмите на значок, чтобы узнать больше.</string>
@@ -5073,7 +5123,7 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Приватный ответ для %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">Reply to %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">Ответить %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Копировать</string>
@@ -5776,7 +5826,7 @@
     <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Ваша информация конфиденциальна</string>
     <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal не собирает и не хранит вашу личную информацию, когда вы делаете пожертвование.</string>
     <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">Для получения ваших пожертвований мы используем компанию Stripe в качестве оператора платежей. Мы не имеем доступа ни к какой информации, которую вы ей предоставляете, не сохраняем и не храним её.</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal не связывает и не может связать ваше пожертвование с вашим аккаунтом Signal.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal не связывает и не может связать ваше пожертвование с вашей учётной записью Signal.</string>
     <string name="YourInformationIsPrivateBottomSheet__thank_you">Спасибо за вашу поддержку!</string>
 
     <!-- GroupStoryEducationSheet -->
@@ -5806,8 +5856,8 @@
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">Поддержка SMS прекращается</string>
-    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">Приложение Signal скоро перестанет поддерживать обмен SMS-сообщениями.</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed, placeholder with be date of removal (e.g., March 21st) -->
+    <string name="SmsRemoval_info_bullet_1_s">Приложение Signal перестанет поддерживать обмен SMS-сообщениями %1$s.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
     <string name="SmsRemoval_info_bullet_2">SMS-сообщения отличаются от сообщений Signal. <b>Это не влияет на зашифрованные сообщения Signal, которые будут продолжать работать.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
@@ -5819,13 +5869,13 @@
 
     <!-- Set up your username megaphone -->
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="SetUpYourUsername__set_up_your_signal_username">Настройте своё имя пользователя Signal</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__usernames_let_others">Usernames let others message you without needing your phone number</string>
+    <string name="SetUpYourUsername__usernames_let_others">Имена пользователей позволяют другим пользователям отправлять вам сообщения без вашего номера телефона</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__not_now">Not now</string>
+    <string name="SetUpYourUsername__not_now">Не сейчас</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__continue">Continue</string>
+    <string name="SetUpYourUsername__continue">Продолжить</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -5833,21 +5883,31 @@
     <!-- Popup menu label for applying italic style -->
     <string name="TextFormatting_italic">Курсив</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Зачеркивание</string>
+    <string name="TextFormatting_strikethrough">Зачёркивание</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Моноспейс</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
-    <string name="UsernameEducationFragment__continue">Continue</string>
+    <string name="UsernameEducationFragment__continue">Продолжить</string>
     <!-- Displayed as a title on the username education screen -->
-    <string name="UsernameEducationFragment__set_up_your_signal_username">Set up your Signal username</string>
+    <string name="UsernameEducationFragment__set_up_your_signal_username">Настроить своё имя пользователя Signal</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Редактировать имя пользователя</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Удалить имя пользователя</string>
+
+    <!-- Time duration picker -->
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
+    <string name="TimeDurationPickerDialog_single_letter_hour_abbreviation">ч</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for minute, e.g., 24m -->
+    <string name="TimeDurationPickerDialog_single_letter_minute_abbreviation">м</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, label for button that will apply the setting -->
+    <string name="TimeDurationPickerDialog_positive_button">Установить</string>
+    <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
+    <string name="TimeDurationPickerDialog_minimum_duration_warning">Минимальное время перед включением блокировки экрана – 1 минута.</string>
 
     <!-- EOF -->
 </resources>

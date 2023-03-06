@@ -12,9 +12,11 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.exporter.flow.SmsExportActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.visible
+import java.util.Locale
 
 class SmsExportMegaphoneActivity : PassphraseRequiredActivity() {
 
@@ -53,6 +55,9 @@ class SmsExportMegaphoneActivity : PassphraseRequiredActivity() {
       binding.laterButton.visible = false
       binding.bullet1Text.setText(R.string.SmsRemoval_info_bullet_1_phase_3)
     } else {
+      val phase3Start = DateUtils.formatDateWithMonthAndDay(Locale.getDefault(), SignalStore.misc().smsPhase3Start)
+      binding.bullet1Text.text = getString(R.string.SmsRemoval_info_bullet_1_s, phase3Start)
+
       binding.headline.setText(R.string.SmsExportMegaphoneActivity__signal_will_no_longer_support_sms)
       binding.laterButton.setOnClickListener {
         onBackPressed()

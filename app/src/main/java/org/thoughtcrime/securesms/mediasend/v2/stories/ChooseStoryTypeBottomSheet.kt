@@ -24,7 +24,8 @@ class ChooseStoryTypeBottomSheet : DSLSettingsBottomSheetFragment(
       textPref(
         title = DSLSettingsText.from(
           stringId = R.string.ChooseStoryTypeBottomSheet__choose_your_story_type,
-          DSLSettingsText.CenterModifier, DSLSettingsText.TitleMediumModifier
+          DSLSettingsText.CenterModifier,
+          DSLSettingsText.TitleMediumModifier
         )
       )
 

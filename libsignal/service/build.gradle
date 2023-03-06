@@ -22,11 +22,6 @@ compileJava {
     options.release = 8
 }
 
-repositories {
-    mavenCentral()
-    mavenLocal()
-}
-
 configurations {
     ideaTestFixturesImplementation { extendsFrom testFixturesImplementation; canBeConsumed false; canBeResolved true }
 }

@@ -42,7 +42,7 @@ class ContactChipViewModel : ViewModel() {
     disposables += getOrCreateRecipientId(selectedContact).map { Recipient.resolved(it) }.observeOn(Schedulers.io()).subscribe { recipient ->
       store.update { it + SelectedContacts.Model(selectedContact, recipient) }
       disposableMap[recipient.id]?.dispose()
-      disposableMap[recipient.id] = store.update(recipient.live().asObservable().toFlowable(BackpressureStrategy.LATEST)) { changedRecipient, state ->
+      disposableMap[recipient.id] = store.update(recipient.live().observable().toFlowable(BackpressureStrategy.LATEST)) { changedRecipient, state ->
         val index = state.indexOfFirst { it.selectedContact.matches(selectedContact) }
         when {
           index == 0 -> {

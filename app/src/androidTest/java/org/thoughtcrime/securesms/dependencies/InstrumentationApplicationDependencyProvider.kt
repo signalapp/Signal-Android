@@ -22,7 +22,6 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl
 import org.whispersystems.signalservice.internal.configuration.SignalCdsiUrl
-import org.whispersystems.signalservice.internal.configuration.SignalContactDiscoveryUrl
 import org.whispersystems.signalservice.internal.configuration.SignalKeyBackupServiceUrl
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl
@@ -66,15 +65,13 @@ class InstrumentationApplicationDependencyProvider(application: Application, def
         0 to arrayOf(SignalCdnUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
         2 to arrayOf(SignalCdnUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT))
       ),
-      arrayOf(SignalContactDiscoveryUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
       arrayOf(SignalKeyBackupServiceUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
       arrayOf(SignalStorageUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
       arrayOf(SignalCdsiUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
       emptyList(),
       Optional.of(SignalServiceNetworkAccess.DNS),
       Optional.empty(),
-      Base64.decode(BuildConfig.ZKGROUP_SERVER_PUBLIC_PARAMS),
-      true
+      Base64.decode(BuildConfig.ZKGROUP_SERVER_PUBLIC_PARAMS)
     )
 
     serviceNetworkAccessMock = mock {

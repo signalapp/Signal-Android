@@ -8,6 +8,7 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
 import org.thoughtcrime.securesms.groups.GroupId
@@ -22,6 +23,7 @@ class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettings
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     ActivityCompat.postponeEnterTransition(this)
+    setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
     super.onCreate(savedInstanceState, ready)
   }
 
@@ -55,7 +57,7 @@ class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettings
         ActivityOptionsCompat.makeSceneTransitionAnimation(
           context,
           avatar,
-          "avatar",
+          "avatar"
         ).toBundle()
       } else {
         null

@@ -50,7 +50,8 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
 
     fun insertInitialDistributionListAtCreationTime(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
       val recipientId = db.insert(
-        RecipientTable.TABLE_NAME, null,
+        RecipientTable.TABLE_NAME,
+        null,
         contentValuesOf(
           RecipientTable.GROUP_TYPE to RecipientTable.GroupType.DISTRIBUTION_LIST.id,
           RecipientTable.DISTRIBUTION_LIST_ID to DistributionListId.MY_STORY_ID,
@@ -59,7 +60,8 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
         )
       )
       db.insert(
-        ListTable.TABLE_NAME, null,
+        ListTable.TABLE_NAME,
+        null,
         contentValuesOf(
           ListTable.ID to DistributionListId.MY_STORY_ID,
           ListTable.NAME to DistributionId.MY_STORY.toString(),
@@ -71,7 +73,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     }
   }
 
-  private object ListTable {
+  object ListTable {
     const val TABLE_NAME = "distribution_list"
 
     const val ID = "_id"
@@ -549,7 +551,9 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
       arrayOf(ListTable.RECIPIENT_ID),
       "${ListTable.DISTRIBUTION_ID} = ?",
       SqlUtil.buildArgs(distributionId.toString()),
-      null, null, null
+      null,
+      null,
+      null
     )?.use { cursor ->
       if (cursor.moveToFirst()) {
         RecipientId.from(CursorUtil.requireLong(cursor, ListTable.RECIPIENT_ID))
@@ -565,7 +569,9 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
       arrayOf(ListTable.RECIPIENT_ID),
       "${ListTable.ID} = ?",
       SqlUtil.buildArgs(distributionListId),
-      null, null, null
+      null,
+      null,
+      null
     )?.use { cursor ->
       if (cursor.moveToFirst()) {
         RecipientId.from(CursorUtil.requireLong(cursor, ListTable.RECIPIENT_ID))

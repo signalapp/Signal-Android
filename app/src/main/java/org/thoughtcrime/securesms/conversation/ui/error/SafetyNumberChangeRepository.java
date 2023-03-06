@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.database.IdentityTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -152,8 +153,24 @@ public final class SafetyNumberChangeRepository {
       for (ChangedRecipient changedRecipient : changedRecipients) {
         SignalProtocolAddress mismatchAddress = changedRecipient.getRecipient().requireServiceId().toProtocolAddress(SignalServiceAddress.DEFAULT_DEVICE_ID);
 
-        Log.d(TAG, "Saving identity for: " + changedRecipient.getRecipient().getId() + " " + changedRecipient.getIdentityRecord().getIdentityKey().hashCode());
-        SignalIdentityKeyStore.SaveResult result = ApplicationDependencies.getProtocolStore().aci().identities().saveIdentity(mismatchAddress, changedRecipient.getIdentityRecord().getIdentityKey(), true);
+        IdentityKey newIdentityKey = messageRecord.getIdentityKeyMismatches()
+                                                  .stream()
+                                                  .filter(mismatch -> mismatch.getRecipientId(context).equals(changedRecipient.getRecipient().getId()))
+                                                  .map(IdentityKeyMismatch::getIdentityKey)
+                                                  .findFirst()
+                                                  .orElse(null);
+
+        if (newIdentityKey == null) {
+          Log.w(TAG, "Could not find new identity key in the MessageRecords mismatched identities! Using the recipients current identity key");
+          newIdentityKey = changedRecipient.getIdentityRecord().getIdentityKey();
+        }
+
+        if (newIdentityKey.hashCode() != changedRecipient.getIdentityRecord().getIdentityKey().hashCode()) {
+          Log.w(TAG, "Note: The new identity key does not match the identity key we currently have for the recipient. This is not unexpected, but calling it out for debugging reasons. New: " + newIdentityKey.hashCode() + ", Current: " + changedRecipient.getIdentityRecord().getIdentityKey().hashCode());
+        }
+
+        Log.d(TAG, "Saving identity for: " + changedRecipient.getRecipient().getId() + " " + newIdentityKey.hashCode());
+        SignalIdentityKeyStore.SaveResult result = ApplicationDependencies.getProtocolStore().aci().identities().saveIdentity(mismatchAddress, newIdentityKey, true);
 
         Log.d(TAG, "Saving identity result: " + result);
         if (result == SignalIdentityKeyStore.SaveResult.NO_CHANGE) {

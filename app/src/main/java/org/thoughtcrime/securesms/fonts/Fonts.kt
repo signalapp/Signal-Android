@@ -91,7 +91,9 @@ object Fonts {
       }
 
       val fontDownloadKey = FontDownloadKey(
-        version, supportedScript, font
+        version,
+        supportedScript,
+        font
       )
 
       val taskInProgress = taskCache[fontDownloadKey]

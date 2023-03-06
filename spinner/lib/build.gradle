@@ -1,43 +1,17 @@
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'org.jlleitschuh.gradle.ktlint'
+    id 'signal-library'
 }
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
-
-    defaultConfig {
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
-        multiDexEnabled true
-    }
-
-    compileOptions {
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-}
-
-ktlint {
-    // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
-    version = "0.43.2"
+    namespace 'org.signal.spinner'
 }
 
 dependencies {
-    implementation libs.jknack.handlebars
-
-    implementation libs.androidx.appcompat
-    implementation libs.material.material
-    implementation libs.androidx.multidex
-    implementation libs.androidx.sqlite
     implementation project(':core-util')
-    testImplementation testLibs.junit.junit
 
+    implementation libs.jknack.handlebars
     implementation libs.nanohttpd.webserver
+    implementation libs.androidx.sqlite
+
+    testImplementation testLibs.junit.junit
 }

@@ -69,7 +69,7 @@ class SpinnerApplicationContext : ApplicationContext() {
         "keyvalue" to DatabaseConfig(db = { KeyValueDatabase.getInstance(this).sqlCipherDatabase }),
         "megaphones" to DatabaseConfig(db = { MegaphoneDatabase.getInstance(this).sqlCipherDatabase }),
         "localmetrics" to DatabaseConfig(db = { LocalMetricsDatabase.getInstance(this).sqlCipherDatabase }),
-        "logs" to DatabaseConfig(db = { LogDatabase.getInstance(this).sqlCipherDatabase }),
+        "logs" to DatabaseConfig(db = { LogDatabase.getInstance(this).sqlCipherDatabase })
       ),
       linkedMapOf(
         StorageServicePlugin.PATH to StorageServicePlugin()

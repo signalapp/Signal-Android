@@ -24,6 +24,7 @@ class AccountAttributes @JsonCreator constructor(
   @JsonProperty val capabilities: Capabilities?,
   @JsonProperty val name: String?,
   @JsonProperty val pniRegistrationId: Int,
+  @JsonProperty val recoveryPassword: String?,
 ) {
   constructor(
     signalingKey: String?,
@@ -36,7 +37,8 @@ class AccountAttributes @JsonCreator constructor(
     capabilities: Capabilities?,
     isDiscoverableByPhoneNumber: Boolean,
     name: String?,
-    pniRegistrationId: Int
+    pniRegistrationId: Int,
+    recoveryPassword: String?
   ) : this(
     signalingKey = signalingKey,
     registrationId = registrationId,
@@ -50,7 +52,8 @@ class AccountAttributes @JsonCreator constructor(
     isDiscoverableByPhoneNumber = isDiscoverableByPhoneNumber,
     capabilities = capabilities,
     name = name,
-    pniRegistrationId = pniRegistrationId
+    pniRegistrationId = pniRegistrationId,
+    recoveryPassword = recoveryPassword
   )
 
   data class Capabilities @JsonCreator constructor(

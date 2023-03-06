@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData;
+import org.thoughtcrime.securesms.jobs.GenerateAudioWaveFormJob;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -656,6 +657,10 @@ public class AttachmentTable extends DatabaseTable {
       //noinspection ResultOfMethodCallIgnored
       transferFile.delete();
     }
+
+    if (placeholder != null && MediaUtil.isAudio(placeholder)) {
+      GenerateAudioWaveFormJob.enqueue(placeholder.getAttachmentId());
+    }
   }
 
   private static @Nullable String getVisualHashStringOrNull(@Nullable Attachment attachment) {
@@ -812,10 +817,14 @@ public class AttachmentTable extends DatabaseTable {
       Log.i(TAG, "Inserted attachment at ID: " + attachmentId);
     }
 
-    for (Attachment attachment : quoteAttachment) {
-      AttachmentId attachmentId = insertAttachment(mmsId, attachment, true);
-      insertedAttachments.put(attachment, attachmentId);
-      Log.i(TAG, "Inserted quoted attachment at ID: " + attachmentId);
+    try {
+      for (Attachment attachment : quoteAttachment) {
+        AttachmentId attachmentId = insertAttachment(mmsId, attachment, true);
+        insertedAttachments.put(attachment, attachmentId);
+        Log.i(TAG, "Inserted quoted attachment at ID: " + attachmentId);
+      }
+    } catch (MmsException e) {
+      Log.w(TAG, "Failed to insert quote attachment! messageId: " + mmsId);
     }
 
     return insertedAttachments;

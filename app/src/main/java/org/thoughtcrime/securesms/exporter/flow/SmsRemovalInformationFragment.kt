@@ -9,8 +9,11 @@ import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.SmsRemovalInformationFragmentBinding
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import java.util.Locale
 
 /**
  * Fragment shown when entering the sms export flow from the basic megaphone.
@@ -38,6 +41,9 @@ class SmsRemovalInformationFragment : LoggingFragment() {
           requireActivity().finish()
         }
       }
+
+      val phase3Start = DateUtils.formatDateWithMonthAndDay(Locale.getDefault(), SignalStore.misc().smsPhase3Start)
+      binding.bullet1Text.text = getString(R.string.SmsRemoval_info_bullet_1_s, phase3Start)
 
       binding.toolbar.setNavigationOnClickListener(goBackClickListener)
       binding.laterButton.setOnClickListener(goBackClickListener)
