@@ -84,3 +84,18 @@ task qa {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+task format {
+    group 'Formatting'
+    description 'Runs the ktlint formatter on all sources in this project and included builds'
+
+    def dependencyList = subprojects.collect {
+        tasks.findByPath(":${it.name}:ktlintFormat")
+    }
+
+    dependencyList.removeIf { it == null}
+    dependencyList.add(0, gradle.includedBuild('build-logic').task(':plugins:ktlintFormat'))
+    dependencyList.add(0, gradle.includedBuild('build-logic').task(':tools:ktlintFormat'))
+
+    dependsOn dependencyList
+}
