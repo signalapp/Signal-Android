@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.testing.Entry
 import org.thoughtcrime.securesms.testing.FakeClientHelpers
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.awaitFor
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
@@ -86,16 +86,17 @@ class MessageProcessingPerformanceTest {
       .inMemoryLogger
       .getLockForUntil(TimingMessageContentProcessor.endTagPredicate(firstPreKeyMessageTimestamp))
 
-    Thread { aliceClient.process(encryptedEnvelope) }.start()
+    Thread { aliceClient.process(encryptedEnvelope, System.currentTimeMillis()) }.start()
     aliceProcessFirstMessageLatch.awaitFor(15.seconds)
 
     // Send message from Alice to Bob
-    bobClient.decrypt(aliceClient.encrypt(System.currentTimeMillis(), bob))
+    val aliceNow = System.currentTimeMillis()
+    bobClient.decrypt(aliceClient.encrypt(aliceNow, bob), aliceNow)
 
     // Build N messages from Bob to Alice
 
     val messageCount = 100
-    val envelopes = ArrayList<SignalServiceEnvelope>(messageCount)
+    val envelopes = ArrayList<Envelope>(messageCount)
     var now = System.currentTimeMillis()
     for (i in 0..messageCount) {
       envelopes += bobClient.encrypt(now)
@@ -114,7 +115,7 @@ class MessageProcessingPerformanceTest {
     Thread {
       for (envelope in envelopes) {
         Log.i(TIMING_TAG, "Retrieved envelope! ${envelope.timestamp}")
-        aliceClient.process(envelope)
+        aliceClient.process(envelope, envelope.timestamp)
       }
     }.start()
 
@@ -124,41 +125,6 @@ class MessageProcessingPerformanceTest {
 
     // Process logs for timing data
     val entries = harness.inMemoryLogger.entries()
-
-    // Calculate decrypt jobs
-    var skipFirst = true
-    var decryptJobCount = 0L
-    var decryptJobDuration = 0L
-    var decryptJobSinceSubmission = 0L
-    var firstDuration = 0L
-    var firstSinceSubmission = 0L
-    entries.filter { it.tag == "JobRunner" }
-      .forEach {
-        val match = jobFinishRegex.matchEntire(it.message!!)
-
-        if (match != null) {
-          val job = match.groupValues[1]
-          if (job == "PushDecryptMessageJob") {
-            if (skipFirst) {
-              skipFirst = false
-            } else {
-              val duration = match.groupValues[2].toLong()
-              val sinceSubmission = match.groupValues[3].toLong()
-              decryptJobCount++
-              decryptJobDuration += duration
-              decryptJobSinceSubmission += sinceSubmission
-
-              if (decryptJobCount == 1L) {
-                firstDuration = duration
-                firstSinceSubmission = sinceSubmission
-              }
-            }
-          }
-        }
-      }
-
-    android.util.Log.w(TAG, "Push Decrypt Job: First runtime ${firstDuration}ms First since submission: ${firstSinceSubmission}ms")
-    android.util.Log.w(TAG, "Push Decrypt Job: Average runtime: ${decryptJobDuration.toFloat() / decryptJobCount.toFloat()}ms Average since submission: ${decryptJobSinceSubmission.toFloat() / decryptJobCount.toFloat()}ms")
 
     // Calculate MessageContentProcessor
 

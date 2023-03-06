@@ -22,6 +22,7 @@ class SignalInstrumentationApplicationContext : ApplicationContext() {
   override fun initializeAppDependencies() {
     val default = ApplicationDependencyProvider(this)
     ApplicationDependencies.init(this, InstrumentationApplicationDependencyProvider(this, default))
+    ApplicationDependencies.getDeadlockDetector().start()
   }
 
   override fun initializeLogging() {

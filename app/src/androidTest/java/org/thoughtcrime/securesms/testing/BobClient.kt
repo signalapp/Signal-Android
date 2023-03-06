@@ -21,16 +21,16 @@ import org.thoughtcrime.securesms.database.OneTimePreKeyTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignedPreKeyTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.testing.FakeClientHelpers.toSignalServiceEnvelope
+import org.thoughtcrime.securesms.testing.FakeClientHelpers.toEnvelope
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.SignalSessionLock
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
 import org.whispersystems.signalservice.api.crypto.SignalSessionBuilder
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import java.util.Optional
 import java.util.UUID
 import java.util.concurrent.locks.ReentrantLock
@@ -59,7 +59,7 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
   }
 
   /** Inspired by SignalServiceMessageSender#getEncryptedMessage */
-  fun encrypt(now: Long): SignalServiceEnvelope {
+  fun encrypt(now: Long): SignalServiceProtos.Envelope {
     val envelopeContent = FakeClientHelpers.encryptedTextMessage(now)
 
     val cipher = SignalServiceCipher(serviceAddress, 1, aciStore, sessionLock, null)
@@ -70,12 +70,12 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
     }
 
     return cipher.encrypt(getAliceProtocolAddress(), getAliceUnidentifiedAccess(), envelopeContent)
-      .toSignalServiceEnvelope(envelopeContent.content.get().dataMessage.timestamp, getAliceServiceId())
+      .toEnvelope(envelopeContent.content.get().dataMessage.timestamp, getAliceServiceId())
   }
 
-  fun decrypt(envelope: SignalServiceEnvelope) {
+  fun decrypt(envelope: SignalServiceProtos.Envelope, serverDeliveredTimestamp: Long) {
     val cipher = SignalServiceCipher(serviceAddress, 1, aciStore, sessionLock, UnidentifiedAccessUtil.getCertificateValidator())
-    cipher.decrypt(envelope)
+    cipher.decrypt(envelope, serverDeliveredTimestamp)
   }
 
   private fun getAliceServiceId(): ServiceId {

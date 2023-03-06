@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
-import org.thoughtcrime.securesms.messages.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.payments.Payments;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -74,11 +73,6 @@ public class MockApplicationDependencyProvider implements ApplicationDependencie
 
   @Override
   public @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess() {
-    return null;
-  }
-
-  @Override
-  public @NonNull IncomingMessageProcessor provideIncomingMessageProcessor() {
     return null;
   }
 

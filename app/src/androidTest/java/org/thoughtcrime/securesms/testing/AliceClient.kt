@@ -6,10 +6,10 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.testing.FakeClientHelpers.toSignalServiceEnvelope
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
+import org.thoughtcrime.securesms.testing.FakeClientHelpers.toEnvelope
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
 
 /**
  * Welcome to Alice's Client.
@@ -28,17 +28,17 @@ class AliceClient(val serviceId: ServiceId, val e164: String, val trustRoot: ECK
     expires = 31337
   )
 
-  fun process(envelope: SignalServiceEnvelope) {
-    ApplicationDependencies.getIncomingMessageProcessor().acquire().use { processor -> processor.processEnvelope(envelope) }
+  fun process(envelope: Envelope, serverDeliveredTimestamp: Long) {
+    ApplicationDependencies.getIncomingMessageObserver().processEnvelope(envelope, serverDeliveredTimestamp)
   }
 
-  fun encrypt(now: Long, destination: Recipient): SignalServiceEnvelope {
+  fun encrypt(now: Long, destination: Recipient): Envelope {
     return ApplicationDependencies.getSignalServiceMessageSender().getEncryptedMessage(
       SignalServiceAddress(destination.requireServiceId(), destination.requireE164()),
       FakeClientHelpers.getTargetUnidentifiedAccess(ProfileKeyUtil.getSelfProfileKey(), ProfileKey(destination.profileKey), aliceSenderCertificate),
       1,
       FakeClientHelpers.encryptedTextMessage(now),
       false
-    ).toSignalServiceEnvelope(now, destination.requireServiceId())
+    ).toEnvelope(now, destination.requireServiceId())
   }
 }

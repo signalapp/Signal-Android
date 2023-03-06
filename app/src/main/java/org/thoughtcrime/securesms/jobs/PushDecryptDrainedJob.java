@@ -9,9 +9,8 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 
 /**
  * A job that has the same queue as {@link PushDecryptMessageJob} that we enqueue so we can notify
- * the {@link org.thoughtcrime.securesms.messages.IncomingMessageObserver} when decryptions have
- * finished. This lets us know not just when the websocket is drained, but when all the decryptions
- * for the messages we pulled down from the websocket have been finished.
+ * the {@link org.thoughtcrime.securesms.messages.IncomingMessageObserver} when the decryption job
+ * queue is empty.
  */
 public class PushDecryptDrainedJob extends BaseJob {
 

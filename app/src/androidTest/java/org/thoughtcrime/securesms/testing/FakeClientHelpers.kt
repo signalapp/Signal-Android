@@ -9,14 +9,15 @@ import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.thoughtcrime.securesms.database.model.toProtoByteString
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
 import org.whispersystems.util.Base64
 import java.util.Optional
 import java.util.UUID
@@ -62,20 +63,17 @@ object FakeClientHelpers {
     return EnvelopeContent.encrypted(content.build(), ContentHint.RESENDABLE, Optional.empty())
   }
 
-  fun OutgoingPushMessage.toSignalServiceEnvelope(timestamp: Long, destination: ServiceId): SignalServiceEnvelope {
-    return SignalServiceEnvelope(
-      this.type,
-      Optional.empty(),
-      1,
-      timestamp,
-      Base64.decode(this.content),
-      timestamp + 1,
-      timestamp + 2,
-      UUID.randomUUID().toString(),
-      destination.toString(),
-      true,
-      false,
-      null
-    )
+  fun OutgoingPushMessage.toEnvelope(timestamp: Long, destination: ServiceId): Envelope {
+    return Envelope.newBuilder()
+      .setType(Envelope.Type.valueOf(this.type))
+      .setSourceDevice(1)
+      .setTimestamp(timestamp)
+      .setServerTimestamp(timestamp + 1)
+      .setDestinationUuid(destination.toString())
+      .setServerGuid(UUID.randomUUID().toString())
+      .setContent(Base64.decode(this.content).toProtoByteString())
+      .setUrgent(true)
+      .setStory(false)
+      .build()
   }
 }

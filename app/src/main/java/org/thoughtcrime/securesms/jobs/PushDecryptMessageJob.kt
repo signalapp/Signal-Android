@@ -47,6 +47,7 @@ class PushDecryptMessageJob private constructor(
     private const val KEY_ENVELOPE = "envelope"
   }
 
+  @Deprecated("No more jobs of this type should be enqueued. Decryptions now happen as things come off of the websocket.")
   @JvmOverloads
   constructor(envelope: SignalServiceEnvelope, smsMessageId: Long = -1) : this(
     Parameters.Builder()
