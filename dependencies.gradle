@@ -4,7 +4,7 @@
 dependencyResolutionManagement {
     versionCatalogs {
         libs {
-            version('androidx-camera', '1.2.0')
+            version('androidx-camera', '1.2.1')
             version('androidx-fragment', '1.5.2')
             version('androidx-lifecycle', '2.5.1')
             version('androidx-navigation', '2.5.2')
