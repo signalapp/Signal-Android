@@ -38,7 +38,7 @@ dependencyResolutionManagement {
 
             // Android X
             alias('androidx-activity-ktx').to('androidx.activity:activity-ktx:1.5.1')
-            alias('androidx-core-ktx').to('androidx.core:core-ktx:1.5.0')
+            alias('androidx-core-ktx').to('androidx.core:core-ktx:1.8.0')
             alias('androidx-fragment-ktx').to('androidx.fragment', 'fragment-ktx').versionRef('androidx-fragment')
             alias('androidx-fragment-testing').to('androidx.fragment', 'fragment-testing').versionRef('androidx-fragment')
             alias('androidx-annotation').to('androidx.annotation:annotation:1.4.0')
