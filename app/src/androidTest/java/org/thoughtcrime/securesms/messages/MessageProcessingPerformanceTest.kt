@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.testing.awaitFor
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
+import android.util.Log as AndroidLog
 
 /**
  * Sends N messages from Bob to Alice to track performance of Alice's processing of messages.
@@ -36,8 +37,6 @@ class MessageProcessingPerformanceTest {
   companion object {
     private val TAG = Log.tag(MessageProcessingPerformanceTest::class.java)
     private val TIMING_TAG = "TIMING_$TAG".substring(0..23)
-
-    private val jobFinishRegex = "\\[JOB::[a-f\\d]{8}-[a-f\\d]{4}-[a-f\\d]{4}-[a-f\\d]{4}-[a-f\\d]{12}]\\[([^]]*)]\\[\\d+] Job finished with result SUCCESS in (\\d+) ms. \\(Time Since Submission: (\\d+) ms.*".toRegex()
   }
 
   @get:Rule
@@ -126,6 +125,16 @@ class MessageProcessingPerformanceTest {
     // Process logs for timing data
     val entries = harness.inMemoryLogger.entries()
 
+    // Calculate decryption average
+
+    val decrypts = entries
+      .filter { it.tag == AliceClient.TAG }
+      .drop(1)
+
+    val totalDecryptDuration = decrypts.sumOf { it.message!!.toLong() }
+
+    AndroidLog.w(TAG, "Decryption: Average runtime: ${totalDecryptDuration.toFloat() / decrypts.size.toFloat()}ms")
+
     // Calculate MessageContentProcessor
 
     val takeLast: List<Entry> = entries.filter { it.tag == TimingMessageContentProcessor.TAG }.drop(2)
@@ -139,7 +148,7 @@ class MessageProcessingPerformanceTest {
       processDuration += end.timestamp - start.timestamp
     }
 
-    android.util.Log.w(TAG, "MessageContentProcessor.process: Average runtime: ${processDuration.toFloat() / processCount.toFloat()}ms")
+    AndroidLog.w(TAG, "MessageContentProcessor.process: Average runtime: ${processDuration.toFloat() / processCount.toFloat()}ms")
 
     // Calculate messages per second from "retrieving" first message post session initialization to processing last message
 
@@ -149,6 +158,6 @@ class MessageProcessingPerformanceTest {
     val duration = (end.timestamp - start.timestamp).toFloat() / 1000f
     val messagePerSecond = messageCount.toFloat() / duration
 
-    android.util.Log.w(TAG, "Processing $messageCount messages took ${duration}s or ${messagePerSecond}m/s")
+    AndroidLog.w(TAG, "Processing $messageCount messages took ${duration}s or ${messagePerSecond}m/s")
   }
 }

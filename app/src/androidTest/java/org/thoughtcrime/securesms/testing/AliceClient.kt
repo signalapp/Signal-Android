@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.testing
 
+import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
@@ -19,6 +20,10 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelo
  */
 class AliceClient(val serviceId: ServiceId, val e164: String, val trustRoot: ECKeyPair) {
 
+  companion object {
+    val TAG = Log.tag(AliceClient::class.java)
+  }
+
   private val aliceSenderCertificate = FakeClientHelpers.createCertificateFor(
     trustRoot = trustRoot,
     uuid = serviceId.uuid(),
@@ -29,7 +34,10 @@ class AliceClient(val serviceId: ServiceId, val e164: String, val trustRoot: ECK
   )
 
   fun process(envelope: Envelope, serverDeliveredTimestamp: Long) {
+    val start = System.currentTimeMillis()
     ApplicationDependencies.getIncomingMessageObserver().processEnvelope(envelope, serverDeliveredTimestamp)
+    val end = System.currentTimeMillis()
+    Log.d(TAG, "${end - start}")
   }
 
   fun encrypt(now: Long, destination: Recipient): Envelope {
