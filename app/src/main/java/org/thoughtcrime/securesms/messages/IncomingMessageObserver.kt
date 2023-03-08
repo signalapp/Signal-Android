@@ -456,11 +456,11 @@ class IncomingMessageObserver(private val context: Application) {
   }
 
   class ForegroundService : Service() {
-    override fun onBind(intent: Intent): IBinder? {
+    override fun onBind(intent: Intent?): IBinder? {
       return null
     }
 
-    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
       super.onStartCommand(intent, flags, startId)
 
       val notification = NotificationCompat.Builder(applicationContext, NotificationChannels.getInstance().BACKGROUND)
@@ -481,9 +481,9 @@ class IncomingMessageObserver(private val context: Application) {
    * A service that exists just to encourage the system to keep our process alive a little longer.
    */
   class BackgroundService : Service() {
-    override fun onBind(intent: Intent): IBinder? = null
+    override fun onBind(intent: Intent?): IBinder? = null
 
-    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
       Log.d(TAG, "Background service started.")
       return START_STICKY
     }
