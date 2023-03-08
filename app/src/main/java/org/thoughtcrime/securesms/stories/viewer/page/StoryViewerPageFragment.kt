@@ -18,7 +18,6 @@ import android.view.View
 import android.view.animation.Interpolator
 import android.widget.FrameLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
@@ -30,6 +29,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.progressindicator.CircularProgressIndicatorSpec
 import com.google.android.material.progressindicator.IndeterminateDrawable
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -176,7 +176,7 @@ class StoryViewerPageFragment :
     val moreButton: View = view.findViewById(R.id.more)
     val distributionList: TextView = view.findViewById(R.id.distribution_list)
     val cardWrapper: TouchInterceptingFrameLayout = view.findViewById(R.id.story_content_card_touch_interceptor)
-    val card: CardView = view.findViewById(R.id.story_content_card)
+    val card: MaterialCardView = view.findViewById(R.id.story_content_card)
     val caption: TextView = view.findViewById(R.id.story_caption)
     val largeCaption: TextView = view.findViewById(R.id.story_large_caption)
     val largeCaptionOverlay: View = view.findViewById(R.id.story_large_caption_overlay)
@@ -610,7 +610,7 @@ class StoryViewerPageFragment :
   private fun adjustConstraintsForScreenDimensions(
     viewsAndReplies: View,
     cardWrapper: View,
-    card: CardView
+    card: MaterialCardView
   ) {
     val constraintSet = ConstraintSet()
     constraintSet.clone(storyPageContainer)

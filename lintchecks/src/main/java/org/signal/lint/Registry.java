@@ -28,7 +28,8 @@ public final class Registry extends IssueRegistry {
                          BlockingGetDetector.UNSAFE_BLOCKING_GET,
                          RecipientIdDatabaseDetector.RECIPIENT_ID_DATABASE_REFERENCE_ISSUE,
                          ThreadIdDatabaseDetector.THREAD_ID_DATABASE_REFERENCE_ISSUE,
-                         StartForegroundServiceDetector.START_FOREGROUND_SERVICE_ISSUE);
+                         StartForegroundServiceDetector.START_FOREGROUND_SERVICE_ISSUE,
+                         CardViewDetector.CARD_VIEW_USAGE);
   }
 
   @Override

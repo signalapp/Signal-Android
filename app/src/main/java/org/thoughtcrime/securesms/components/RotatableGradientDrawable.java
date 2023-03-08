@@ -28,7 +28,7 @@ import kotlin.jvm.functions.Function2;
  * fill the bounds with a gradient.
  *
  * If you wish to apply clipping to this drawable, it is recommended to either use it with
- * a CardView or utilize {@link org.thoughtcrime.securesms.util.CustomDrawWrapperKt#customizeOnDraw(Drawable, Function2)}
+ * a MaterialCardView or utilize {@link org.thoughtcrime.securesms.util.CustomDrawWrapperKt#customizeOnDraw(Drawable, Function2)}
  */
 public final class RotatableGradientDrawable extends Drawable {
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/story_text_post_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/background_protection"
@@ -86,7 +86,7 @@
         app:srcCompat="@drawable/ic_arrow_end_24"
         app:tint="@color/signal_colorSecondaryContainer" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/send_in_progress_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -104,6 +104,6 @@
             android:layout_margin="24dp"
             android:indeterminate="true"
             app:indicatorColor="@color/signal_colorPrimary" />
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

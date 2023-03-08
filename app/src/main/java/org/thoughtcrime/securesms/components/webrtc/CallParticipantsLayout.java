@@ -7,10 +7,10 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexboxLayout;
+import com.google.android.material.card.MaterialCardView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -116,7 +116,7 @@ public class CallParticipantsLayout extends FlexboxLayout {
 
   private void update(int index, int count, @NonNull CallParticipant participant) {
     View                view                = getChildAt(index);
-    CardView            cardView            = view.findViewById(R.id.group_call_participant_card_wrapper);
+    MaterialCardView    cardView            = view.findViewById(R.id.group_call_participant_card_wrapper);
     CallParticipantView callParticipantView = view.findViewById(R.id.group_call_participant);
 
     callParticipantView.setCallParticipant(participant);

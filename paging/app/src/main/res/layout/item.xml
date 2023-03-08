@@ -9,7 +9,7 @@
     android:clipToPadding="false"
     android:clipChildren="false">
 
-  <androidx.cardview.widget.CardView
+  <com.google.android.material.card.MaterialCardView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:cardElevation="5dp"
@@ -25,6 +25,6 @@
         android:fontFamily="monospace"
         tools:text="Spider-Man"/>
 
-  </androidx.cardview.widget.CardView>
+  </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

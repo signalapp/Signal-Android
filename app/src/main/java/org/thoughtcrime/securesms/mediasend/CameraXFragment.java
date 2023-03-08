@@ -26,7 +26,6 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
@@ -35,13 +34,13 @@ import androidx.camera.view.CameraController;
 import androidx.camera.view.LifecycleCameraController;
 import androidx.camera.view.PreviewView;
 import androidx.camera.view.video.ExperimentalVideo;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.util.Executors;
+import com.google.android.material.card.MaterialCardView;
 
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.concurrent.SimpleTask;
@@ -293,9 +292,9 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   }
 
   private void initializeViewFinderAndControlsPositioning() {
-    CardView      cameraCard    = requireView().findViewById(R.id.camerax_camera_parent);
-    View          controls      = requireView().findViewById(R.id.camerax_controls_container);
-    CameraDisplay cameraDisplay = CameraDisplay.getDisplay(requireActivity());
+    MaterialCardView cameraCard    = requireView().findViewById(R.id.camerax_camera_parent);
+    View             controls      = requireView().findViewById(R.id.camerax_controls_container);
+    CameraDisplay    cameraDisplay = CameraDisplay.getDisplay(requireActivity());
 
     if (!cameraDisplay.getRoundViewFinderCorners()) {
       cameraCard.setRadius(0f);

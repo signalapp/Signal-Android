@@ -176,7 +176,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="gone">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/call_screen_pip"
                 android:layout_width="@dimen/picture_in_picture_gesture_helper_pip_width"
                 android:layout_height="@dimen/picture_in_picture_gesture_helper_pip_height"
@@ -196,7 +196,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
         </org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout>
 
         <include
