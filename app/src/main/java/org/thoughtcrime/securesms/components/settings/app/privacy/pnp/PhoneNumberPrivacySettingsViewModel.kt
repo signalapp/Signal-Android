@@ -30,6 +30,7 @@ class PhoneNumberPrivacySettingsViewModel : ViewModel() {
 
   fun setEveryoneCanSeeMyNumber() {
     setPhoneNumberSharingMode(PhoneNumberSharingMode.EVERYONE)
+    setPhoneNumberListingMode(PhoneNumberListingMode.LISTED)
   }
 
   fun setNobodyCanFindMeByMyNumber() {
