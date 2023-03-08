@@ -432,7 +432,7 @@ dependencies {
 
     implementation (libs.androidx.appcompat) {
         version {
-            strictly '1.5.1'
+            strictly '1.6.1'
         }
     }
     implementation libs.androidx.window.window

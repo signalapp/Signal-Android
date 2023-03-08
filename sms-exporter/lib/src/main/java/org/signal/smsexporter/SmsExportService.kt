@@ -1,5 +1,6 @@
 package org.signal.smsexporter
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.Service
 import android.content.Intent
@@ -54,6 +55,7 @@ abstract class SmsExportService : Service() {
     return START_NOT_STICKY
   }
 
+  @SuppressLint("MissingPermission")
   private fun startExport(clearExportState: Boolean) {
     if (isStarted) {
       Log.d(TAG, "Already running exporter.")
