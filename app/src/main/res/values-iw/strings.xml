@@ -583,6 +583,15 @@
     <!-- ConversationTypingView -->
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
+    <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
+    <string name="RelinkDevicesReminderFragment__open_settings">Open settings</string>
+    <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
+    <string name="RelinkDevicesReminderFragment__later">Later</string>
+
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">בחר חברי קבוצה</string>
 
@@ -1263,8 +1272,8 @@
     <string name="Megaphones_new_group">קבוצה חדשה</string>
     <string name="Megaphones_invite_friends">הזמן חברים</string>
     <string name="Megaphones_use_sms">השתמש במסרון</string>
-    <string name="Megaphones_appearance">מראה</string>
-    <string name="Megaphones_add_photo">הוסף תמונה</string>
+    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_add_a_profile_photo">Add a profile photo</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">תשובות</string>
@@ -3640,6 +3649,18 @@
     <string name="BackupUtil_unknown">בלתי ידוע</string>
     <string name="preferences_app_protection__see_my_phone_number">ראה את מספר הטלפון שלי</string>
     <string name="preferences_app_protection__find_me_by_phone_number">מצא אותי לפי מספר טלפון</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">Phone number</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">Choose who can see your phone number and who can contact you on Signal with it.</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Who can see my number</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Who can find me by number</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Your phone number will be visible to people and groups you message. People who have your number in their phone contacts will also see it on Signal.</string>
     <string name="PhoneNumberPrivacy_everyone">כולם</string>
     <string name="PhoneNumberPrivacy_my_contacts">אנשי הקשר שלי</string>
     <string name="PhoneNumberPrivacy_nobody">אף אחד</string>
@@ -4762,7 +4783,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">לא הצלחנו לשלוח את התרומה שלך בגלל שגיאת רשת. כדאי לבדוק את החיבור ולנסות שוב.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_to_s">תרומה ל%1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s תרם/ה ל–Signal בשמך</string>
     <!-- Gift badge redeem action label -->
@@ -5612,7 +5633,7 @@
     <!-- Title of the screen -->
     <string name="ExportingSmsMessagesFragment__exporting_sms_messages">מייצאים הודעות SMS</string>
     <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">זה עשוי לקחת זמן מה</string>
+    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">This may take a while</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
         <item quantity="one">מייצאים %1$d מתוך %2$d…</item>
