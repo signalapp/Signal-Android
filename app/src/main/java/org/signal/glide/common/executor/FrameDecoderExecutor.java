@@ -8,6 +8,8 @@ package org.signal.glide.common.executor;
 import android.os.HandlerThread;
 import android.os.Looper;
 
+import org.signal.core.util.ThreadUtil;
+
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -39,7 +41,7 @@ public class FrameDecoderExecutor {
     public Looper getLooper(int taskId) {
         int idx = taskId % sPoolNumber;
         if (idx >= mHandlerThreadGroup.size()) {
-            HandlerThread handlerThread = new HandlerThread("FrameDecoderExecutor-" + idx);
+            HandlerThread handlerThread = new HandlerThread("FrameDecoderExecutor-" + idx, ThreadUtil.PRIORITY_BACKGROUND_THREAD);
             handlerThread.start();
 
             mHandlerThreadGroup.add(handlerThread);

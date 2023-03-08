@@ -8,6 +8,7 @@ import android.media.AudioManager
 import android.media.SoundPool
 import android.net.Uri
 import android.os.Build
+import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -21,7 +22,7 @@ private val TAG = Log.tag(SignalAudioManager::class.java)
 
 sealed class SignalAudioManager(protected val context: Context, protected val eventListener: EventListener?) {
 
-  private var commandAndControlThread = SignalExecutors.getAndStartHandlerThread("call-audio")
+  private var commandAndControlThread = SignalExecutors.getAndStartHandlerThread("call-audio", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD)
   protected val handler = SignalAudioHandler(commandAndControlThread.looper)
 
   protected var state: State = State.UNINITIALIZED

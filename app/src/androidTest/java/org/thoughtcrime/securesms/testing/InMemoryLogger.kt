@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.testing
 
+import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import java.util.concurrent.CountDownLatch
@@ -13,7 +14,7 @@ typealias LogPredicate = (Entry) -> Boolean
  */
 class InMemoryLogger : Log.Logger() {
 
-  private val executor = SignalExecutors.newCachedSingleThreadExecutor("inmemory-logger")
+  private val executor = SignalExecutors.newCachedSingleThreadExecutor("inmemory-logger", ThreadUtil.PRIORITY_BACKGROUND_THREAD)
   private val predicates = mutableListOf<LogPredicate>()
   private val logEntries = mutableListOf<Entry>()
 

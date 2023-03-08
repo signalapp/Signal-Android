@@ -27,7 +27,7 @@ private val TAG = Log.tag(JumboEmoji::class.java)
  */
 object JumboEmoji {
 
-  private val executor = ThreadUtil.trace(SignalExecutors.newCachedSingleThreadExecutor("jumbo-emoji"))
+  private val executor = ThreadUtil.trace(SignalExecutors.newCachedSingleThreadExecutor("jumbo-emoji", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD))
 
   const val MAX_JUMBOJI_COUNT = 5
 

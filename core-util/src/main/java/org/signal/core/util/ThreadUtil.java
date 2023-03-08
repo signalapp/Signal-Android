@@ -2,6 +2,7 @@ package org.signal.core.util;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Process;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
@@ -18,6 +19,20 @@ import java.util.concurrent.ExecutorService;
  */
 public final class ThreadUtil {
 
+  /**
+   * Default background thread priority.
+   */
+  public static final int PRIORITY_BACKGROUND_THREAD = Process.THREAD_PRIORITY_BACKGROUND;
+  /**
+   * Important background thread priority. This is slightly lower priority than the UI thread. Use for critical work that should run as fast as
+   * possible, but shouldn't block the UI (e.g. message sends)
+   */
+  public static final int PRIORITY_IMPORTANT_BACKGROUND_THREAD = Process.THREAD_PRIORITY_DEFAULT + Process.THREAD_PRIORITY_LESS_FAVORABLE;
+  /**
+   * As important as the UI thread. Use for absolutely critical UI blocking tasks/threads. For example fetching data for display in a recyclerview, or
+   * anything that will block UI.
+   */
+  public static final int PRIORITY_UI_BLOCKING_THREAD = Process.THREAD_PRIORITY_DEFAULT;
   private static volatile Handler handler;
 
   @VisibleForTesting

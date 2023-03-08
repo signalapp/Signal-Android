@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.devicetransfer.SelfSignedIdentity.SelfSignedKeys;
@@ -70,7 +71,7 @@ final class DeviceTransferServer implements Handler.Callback {
     this.context                 = context;
     this.serverTask              = serverTask;
     this.shutdownCallback        = shutdownCallback;
-    this.commandAndControlThread = SignalExecutors.getAndStartHandlerThread("server-cnc");
+    this.commandAndControlThread = SignalExecutors.getAndStartHandlerThread("server-cnc", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD);
     this.handler                 = new Handler(commandAndControlThread.getLooper(), this);
   }
 

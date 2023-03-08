@@ -9,6 +9,7 @@ import android.os.ParcelFileDescriptor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft;
@@ -25,7 +26,7 @@ public class AudioRecorder {
 
   private static final String TAG = Log.tag(AudioRecorder.class);
 
-  private static final ExecutorService executor = SignalExecutors.newCachedSingleThreadExecutor("signal-AudioRecorder");
+  private static final ExecutorService executor = SignalExecutors.newCachedSingleThreadExecutor("signal-AudioRecorder", ThreadUtil.PRIORITY_UI_BLOCKING_THREAD);
 
   private final Context                   context;
   private final AudioRecordingHandler     uiHandler;
