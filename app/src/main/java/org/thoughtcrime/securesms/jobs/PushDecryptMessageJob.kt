@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.ExceptionMetadata
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.MessageState
 import org.thoughtcrime.securesms.messages.MessageDecryptor
+import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.transport.RetryLaterException
@@ -77,7 +78,9 @@ class PushDecryptMessageJob private constructor(
       throw RetryLaterException()
     }
 
-    val result = MessageDecryptor.decrypt(context, envelope.proto, envelope.serverDeliveredTimestamp)
+    val bufferedProtocolStore = BufferedProtocolStore.create()
+    val result = MessageDecryptor.decrypt(context, bufferedProtocolStore, envelope.proto, envelope.serverDeliveredTimestamp)
+    bufferedProtocolStore.flushToDisk()
 
     when (result) {
       is MessageDecryptor.Result.Success -> {

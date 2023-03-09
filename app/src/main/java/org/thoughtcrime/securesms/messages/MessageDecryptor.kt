@@ -38,13 +38,13 @@ import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.jobs.SendRetryReceiptJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
+import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
-import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
@@ -74,7 +74,12 @@ object MessageDecryptor {
    * To keep that property, there may be [Result.followUpOperations] you have to perform after your transaction is committed.
    * These can vary from enqueueing jobs to inserting items into the [org.thoughtcrime.securesms.database.PendingRetryReceiptCache].
    */
-  fun decrypt(context: Context, envelope: Envelope, serverDeliveredTimestamp: Long): Result {
+  fun decrypt(
+    context: Context,
+    bufferedProtocolStore: BufferedProtocolStore,
+    envelope: Envelope,
+    serverDeliveredTimestamp: Long
+  ): Result {
     val selfAci: ServiceId = SignalStore.account().requireAci()
     val selfPni: ServiceId = SignalStore.account().requirePni()
 
@@ -106,9 +111,9 @@ object MessageDecryptor {
       }
     }
 
-    val protocolStore: SignalServiceAccountDataStore = ApplicationDependencies.getProtocolStore().get(destination)
+    val bufferedStore = bufferedProtocolStore.get(destination)
     val localAddress = SignalServiceAddress(selfAci, SignalStore.account().e164)
-    val cipher = SignalServiceCipher(localAddress, SignalStore.account().deviceId, protocolStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator())
+    val cipher = SignalServiceCipher(localAddress, SignalStore.account().deviceId, bufferedStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator())
 
     return try {
       val cipherResult: SignalServiceCipherResult? = cipher.decrypt(envelope, serverDeliveredTimestamp)
