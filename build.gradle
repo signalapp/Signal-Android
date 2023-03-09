@@ -51,7 +51,7 @@ subprojects {
         }
     }
 
-    if (project.name != "Signal-Android" && project.name != "libsignal-service" && project.name != "lintchecks" && !project.name.endsWith("-app")) {
+    if (project.name != "Signal-Android" && project.name != "libsignal-service" && project.name != "lintchecks" && !project.name.endsWith("-app") && project.name != "benchmark") {
         task qa {
             group 'Verification'
             description 'Quality Assurance. Run before pushing'
