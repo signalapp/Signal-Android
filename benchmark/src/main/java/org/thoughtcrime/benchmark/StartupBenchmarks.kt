@@ -52,7 +52,11 @@ class StartupBenchmarks {
       iterations = iterations,
       startupMode = StartupMode.COLD,
       compilationMode = compilationMode,
-      setupBlock = fakeDataSetupBlock
+      setupBlock = {
+        if (compilationMode !is CompilationMode.Partial || iteration == 0) {
+          fakeDataSetupBlock()
+        }
+      }
     ) {
       pressHome()
       startActivityAndWait()

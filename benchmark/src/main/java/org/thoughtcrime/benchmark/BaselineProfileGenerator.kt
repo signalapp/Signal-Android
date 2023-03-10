@@ -26,10 +26,12 @@ class BaselineProfileGenerator {
   fun startup() = baselineProfileRule.collectBaselineProfile(
     packageName = "org.thoughtcrime.securesms",
     profileBlock = {
-      val setupIntent = Intent().apply {
-        component = ComponentName("org.thoughtcrime.securesms", "org.signal.benchmark.BenchmarkSetupActivity")
+      if (iteration == 0) {
+        val setupIntent = Intent().apply {
+          component = ComponentName("org.thoughtcrime.securesms", "org.signal.benchmark.BenchmarkSetupActivity")
+        }
+        startActivityAndWait(setupIntent)
       }
-      startActivityAndWait(setupIntent)
       startActivityAndWait()
       device.findObject(By.textContains("Buddy")).click();
       device.wait(
