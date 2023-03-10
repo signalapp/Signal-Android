@@ -384,8 +384,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
 
     subheader.setText(requireContext().getString(R.string.RegistrationActivity_enter_the_code_we_sent_to_s, viewModel.getNumber().getFullFormattedNumber()));
 
-    MccMncProducer mccMncProducer = new MccMncProducer(requireContext());
-    Disposable request = viewModel.validateSession(sessionE164, mccMncProducer.getMcc(), mccMncProducer.getMnc())
+    Disposable request = viewModel.validateSession(sessionE164)
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .subscribe(processor -> {
                                     if (!processor.hasResult()) {

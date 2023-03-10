@@ -355,15 +355,14 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   public void onStart() {
     super.onStart();
     String sessionE164 = viewModel.getSessionE164();
-    if (sessionE164 != null && viewModel.getSessionId() != null) {
+    if (sessionE164 != null && viewModel.getSessionId() != null && viewModel.getCaptchaToken() == null) {
       checkIfSessionIsInProgressAndAdvance(sessionE164);
     }
   }
 
   private void checkIfSessionIsInProgressAndAdvance(@NonNull String sessionE164) {
     NavController  navController  = NavHostFragment.findNavController(this);
-    MccMncProducer mccMncProducer = new MccMncProducer(requireContext());
-    Disposable request = viewModel.validateSession(sessionE164, mccMncProducer.getMcc(), mccMncProducer.getMnc())
+    Disposable request = viewModel.validateSession(sessionE164)
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .subscribe(processor -> {
                                     if (processor.hasResult() && processor.canSubmitProofImmediately()) {
