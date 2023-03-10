@@ -528,9 +528,9 @@
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
     <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">Open settings</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">ဆက်တင် ဖွင့်ရန်</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
-    <string name="RelinkDevicesReminderFragment__later">Later</string>
+    <string name="RelinkDevicesReminderFragment__later">နောက်မှလုပ်မည်</string>
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">မန်ဘာများ ရွေးရန်</string>
@@ -1129,7 +1129,7 @@
     <string name="Megaphones_invite_friends">သူငယ်ချင်းများကို ဖိတ်ပါ</string>
     <string name="Megaphones_use_sms">SMS ကိုသုံးပါ</string>
     <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">Add a profile photo</string>
+    <string name="Megaphones_add_a_profile_photo">ပရိုဖိုင် ဓာတ်ပုံ ပေါင်းထည့်ရန်</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">ပြန်စာများ</string>
@@ -3371,17 +3371,17 @@
     <string name="preferences_app_protection__see_my_phone_number">ကျွန်ုပ်ဖုန်းနံပါတ်ကိုကြည့်မည်</string>
     <string name="preferences_app_protection__find_me_by_phone_number">ဖုန်းနံပါတ်အားဖြင့်ကျွန်ုပ်ကိုရှာပါ</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Phone number</string>
+    <string name="preferences_app_protection__phone_number">ဖုန်းနံပါတ်</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Choose who can see your phone number and who can contact you on Signal with it.</string>
+    <string name="preferences_app_protection__choose_who_can_see">သင့်ဖုန်းနံပါတ်ကို မြင်နိုင်သူများနှင့် Signal တွင် ထိုနံပါတ်ဖြင့် သင့်ထံသို့ ဆက်သွယ်နိုင်သူများကို ရွေးချယ်ပါ။</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Who can see my number</string>
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">ကျွန်ုပ်၏ဖုန်းနံပါတ်ကို မြင်နိုင်သူများ</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Who can find me by number</string>
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">ဖုန်းနံပါတ်ဖြင့် ကျွန်ုပ်ကို ရှာနိုင်သူများ</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Your phone number will be visible to people and groups you message. People who have your number in their phone contacts will also see it on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">သင်မက်ဆေ့ချ်ပို့သော လူများနှင့် အဖွဲ့များသည် သင်၏ ဖုန်းနံပါတ်ကို မြင်တွေ့ရပါမည်။ သင့်ဖုန်းနံပါတ်ကို ဖုန်းအဆက်အသွယ်များထဲတွင် ထည့်ထားသူများသည်လည်း Signal ပေါ်တွင် သင့်ဖုန်းနံပါတ်ကို တွေ့ရှိရပါမည်။</string>
     <string name="PhoneNumberPrivacy_everyone">လူသားတိုင်း</string>
     <string name="PhoneNumberPrivacy_my_contacts">ကျွန်ုပ်၏အဆက်အသွယ်များ</string>
     <string name="PhoneNumberPrivacy_nobody">ဘယ်သူမှ</string>
@@ -5270,7 +5270,7 @@
     <!-- Title of the screen -->
     <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS မက်ဆေ့ချ်များ ထုတ်ခြင်း</string>
     <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">This may take a while</string>
+    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">အချိန်အနည်းငယ် ကြာနိုင်ပါသည်</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
         <item quantity="other">%1$d/%2$d ထုတ်နေဆဲ…</item>
