@@ -254,7 +254,7 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
         });
   }
 
-  public Single<RegistrationSessionProcessor.RegistrationSessionProcessorForSession> validateSession(String e164, @Nullable String mcc, @Nullable String mnc) {
+  public Single<RegistrationSessionProcessor.RegistrationSessionProcessorForSession> validateSession(String e164) {
     String storedSessionId = null;
     if (e164.equals(getSessionE164())) {
       storedSessionId = getSessionId();
@@ -264,7 +264,7 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
   }
 
   public Single<RegistrationSessionProcessor.RegistrationSessionProcessorForSession> getValidSession(String e164, @Nullable String mcc, @Nullable String mnc) {
-    return validateSession(e164, mcc, mnc)
+    return validateSession(e164)
         .flatMap(processor -> {
           if (processor.isInvalidSession()) {
             return verifyAccountRepository.requestValidSession(e164, getRegistrationSecret(), mcc, mnc)
