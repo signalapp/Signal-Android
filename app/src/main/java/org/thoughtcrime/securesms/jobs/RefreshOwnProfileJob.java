@@ -267,7 +267,16 @@ public class RefreshOwnProfileJob extends BaseJob {
       String         serverUsernameHash = whoAmIResponse.getUsernameHash();
       String         localUsernameHash  = Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(localUsername));
 
+      if (!hasServerUsername) {
+        Log.w(TAG, "No remote username is set.");
+      }
+
+      if (!Objects.equals(localUsernameHash, serverUsernameHash)) {
+        Log.w(TAG, "Local username hash does not match server username hash.");
+      }
+
       if (!hasServerUsername || !Objects.equals(localUsernameHash, serverUsernameHash)) {
+        Log.i(TAG, "Attempting to resynchronize username.");
         tryToReserveAndConfirmLocalUsername(localUsername, localUsernameHash);
       }
     } catch (IOException | BaseUsernameException e) {
