@@ -18,6 +18,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
@@ -164,9 +165,9 @@ public final class SqlUtilTest {
     assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.get(0).getWhereArgs());
   }
 
-  @Test(expected = IllegalArgumentException.class)
   public void buildCollectionQuery_none() {
-    SqlUtil.buildCollectionQuery("a", Collections.emptyList());
+    List<SqlUtil.Query> results = SqlUtil.buildCollectionQuery("a", Collections.emptyList());
+    assertTrue(results.isEmpty());
   }
 
   @Test

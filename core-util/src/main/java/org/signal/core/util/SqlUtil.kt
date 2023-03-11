@@ -244,11 +244,13 @@ object SqlUtil {
   @JvmOverloads
   @JvmStatic
   fun buildCollectionQuery(column: String, values: Collection<Any?>, prefix: String = "", maxSize: Int = MAX_QUERY_ARGS): List<Query> {
-    require(!values.isEmpty()) { "Must have values!" }
-
-    return values
-      .chunked(maxSize)
-      .map { batch -> buildSingleCollectionQuery(column, batch, prefix) }
+    return if (values.isEmpty()) {
+      emptyList()
+    } else {
+      values
+        .chunked(maxSize)
+        .map { batch -> buildSingleCollectionQuery(column, batch, prefix) }
+    }
   }
 
   /**

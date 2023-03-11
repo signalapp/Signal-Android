@@ -1193,7 +1193,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     if (message.getScheduledDate() != -1) {
       return;
     }
-    MessageRecord messageRecord = MessageTable.readerFor(message, threadId).getCurrent();
 
     if (getListAdapter() != null) {
       setLastSeen(0);

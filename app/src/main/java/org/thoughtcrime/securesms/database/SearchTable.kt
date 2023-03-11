@@ -128,7 +128,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
    * Be smart about where you call this.
    */
   fun rebuildIndex(batchSize: Long = 10_000L) {
-    val maxId: Long = SignalDatabase.messages.nextId
+    val maxId: Long = SignalDatabase.messages.getNextId()
 
     Log.i(TAG, "Re-indexing. Operating on ID's 1-$maxId in steps of $batchSize.")
 

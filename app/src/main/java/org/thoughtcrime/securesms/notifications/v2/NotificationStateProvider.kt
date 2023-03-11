@@ -33,7 +33,7 @@ object NotificationStateProvider {
       }
 
       MessageTable.mmsReaderFor(unreadMessages).use { reader ->
-        var record: MessageRecord? = reader.next
+        var record: MessageRecord? = reader.getNext()
         while (record != null) {
           val threadRecipient: Recipient? = SignalDatabase.threads.getRecipientForThreadId(record.threadId)
           if (threadRecipient != null) {
@@ -73,7 +73,7 @@ object NotificationStateProvider {
             )
           }
           try {
-            record = reader.next
+            record = reader.getNext()
           } catch (e: IllegalStateException) {
             // XXX Weird SQLCipher bug that's being investigated
             record = null
