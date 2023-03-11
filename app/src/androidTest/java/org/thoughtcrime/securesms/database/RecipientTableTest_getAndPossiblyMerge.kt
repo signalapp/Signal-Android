@@ -359,6 +359,18 @@ class RecipientTableTest_getAndPossiblyMerge {
       expectSessionSwitchoverEvent(id2, E164_B)
     }
 
+    test("steal, e164+pni+aci & e164+aci, no pni provided, change number") {
+      given(E164_A, PNI_A, ACI_A)
+      given(E164_B, null, ACI_B)
+
+      process(E164_A, null, ACI_B)
+
+      expect(null, PNI_A, ACI_A)
+      expect(E164_A, null, ACI_B)
+
+      expectChangeNumberEvent()
+    }
+
     test("merge, e164 & pni & aci, all provided") {
       given(E164_A, null, null)
       given(null, PNI_A, null)
