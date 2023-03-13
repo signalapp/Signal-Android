@@ -4,7 +4,6 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.usernames.BaseUsernameException;
@@ -253,7 +252,17 @@ public class RefreshOwnProfileJob extends BaseJob {
     }
   }
 
-  static void checkUsernameIsInSync() {
+  static void checkUsernameIsInSync() throws IOException {
+    if (TextUtils.isEmpty(SignalDatabase.recipients().getUsername(Recipient.self().getId()))) {
+      Log.i(TAG, "No local username. Clearing username from server.");
+      ApplicationDependencies.getSignalServiceAccountManager().deleteUsername();
+    } else {
+      Log.i(TAG, "Local user has a username, attempting username synchronization.");
+      performLocalRemoteComparison();
+    }
+  }
+
+  private static void performLocalRemoteComparison() {
     try {
       String  localUsername    = SignalDatabase.recipients().getUsername(Recipient.self().getId());
       boolean hasLocalUsername = !TextUtils.isEmpty(localUsername);
