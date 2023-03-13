@@ -31,7 +31,7 @@ public class LocalBackupListener extends PersistentAlarmManagerListener {
   @Override
   protected long onAlarm(Context context, long scheduledTime) {
     if (SignalStore.settings().isBackupEnabled()) {
-      LocalBackupJob.enqueue(shouldScheduleExact());
+      LocalBackupJob.enqueue(false);
     }
 
     return setNextBackupTimeToIntervalFromNow(context);
