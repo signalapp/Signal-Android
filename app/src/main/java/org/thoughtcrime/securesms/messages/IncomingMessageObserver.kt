@@ -221,11 +221,12 @@ class IncomingMessageObserver(private val context: Application) {
   }
 
   fun terminateAsync() {
+    Log.w(TAG, "Termination Enqueued! ${this.hashCode()}", Throwable())
     INSTANCE_COUNT.decrementAndGet()
     context.unregisterReceiver(connectionReceiver)
 
     SignalExecutors.BOUNDED.execute {
-      Log.w(TAG, "Beginning termination.")
+      Log.w(TAG, "Beginning termination. ${this.hashCode()}")
       terminated = true
       disconnect()
     }
@@ -371,7 +372,7 @@ class IncomingMessageObserver(private val context: Application) {
   private inner class MessageRetrievalThread : Thread("MessageRetrievalService"), Thread.UncaughtExceptionHandler {
 
     init {
-      Log.i(TAG, "Initializing! (" + this.hashCode() + ")")
+      Log.i(TAG, "Initializing! (${this.hashCode()})")
       uncaughtExceptionHandler = this
     }
 
@@ -461,7 +462,7 @@ class IncomingMessageObserver(private val context: Application) {
         }
         Log.i(TAG, "Looping...")
       }
-      Log.w(TAG, "Terminated! (" + this.hashCode() + ")")
+      Log.w(TAG, "Terminated! (${this.hashCode()})")
     }
 
     override fun uncaughtException(t: Thread, e: Throwable) {
