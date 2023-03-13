@@ -200,7 +200,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
       ThreadBodyUtil.getFormattedBodyFor(context, record).body
     } else if (record.isStoryReaction()) {
       ThreadBodyUtil.getFormattedBodyFor(context, record).body
-    } else if (record.isPaymentNotification()) {
+    } else if (record.isPaymentNotification) {
       ThreadBodyUtil.getFormattedBodyFor(context, record).body
     } else {
       MentionUtil.updateBodyWithDisplayNames(context, record) ?: ""
@@ -310,6 +310,8 @@ class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, va
       context.getString(R.string.MessageNotifier_reacted_s_to_your_sticker, EMOJI_REPLACEMENT_STRING)
     } else if (record.isMms && record.isViewOnce) {
       context.getString(R.string.MessageNotifier_reacted_s_to_your_view_once_media, EMOJI_REPLACEMENT_STRING)
+    } else if (record.isPaymentNotification) {
+      context.getString(R.string.MessageNotifier_reacted_s_to_your_payment, EMOJI_REPLACEMENT_STRING)
     } else if (!bodyIsEmpty) {
       context.getString(R.string.MessageNotifier_reacted_s_to_s, EMOJI_REPLACEMENT_STRING, body)
     } else if (record.isMediaMessage() && MediaUtil.isVideoType(getMessageContentType((record as MmsMessageRecord)))) {
