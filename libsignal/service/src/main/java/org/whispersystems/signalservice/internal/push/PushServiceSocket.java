@@ -2625,7 +2625,7 @@ public class PushServiceSocket {
     RegistrationSessionMetadataHeaders responseHeaders = new RegistrationSessionMetadataHeaders(serverDeliveredTimestamp);
     RegistrationSessionMetadataJson responseBody = JsonUtil.fromJson(readBodyString(response), RegistrationSessionMetadataJson.class);
 
-    return new RegistrationSessionMetadataResponse(responseHeaders, responseBody);
+    return new RegistrationSessionMetadataResponse(responseHeaders, responseBody, null);
   }
 
   public static final class GroupHistory {
