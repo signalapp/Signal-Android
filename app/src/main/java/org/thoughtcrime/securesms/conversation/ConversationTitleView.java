@@ -8,11 +8,11 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Collectors;
@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public class ConversationTitleView extends RelativeLayout {
+public class ConversationTitleView extends ConstraintLayout {
 
   private static final String STATE_ROOT = "root";
   private static final String STATE_IS_SELF = "is_self";
