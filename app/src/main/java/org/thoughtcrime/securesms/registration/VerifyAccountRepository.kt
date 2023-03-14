@@ -167,13 +167,13 @@ class VerifyAccountRepository(private val context: Application) {
     val accountAttributes = AccountAttributes(
       signalingKey = null,
       registrationId = registrationData.registrationId,
-      isFetchesMessages = registrationData.isNotFcm,
+      fetchesMessages = registrationData.isNotFcm,
       pin = pin,
       registrationLock = registrationLockV2,
       unidentifiedAccessKey = unidentifiedAccessKey,
-      isUnrestrictedUnidentifiedAccess = universalUnidentifiedAccess,
+      unrestrictedUnidentifiedAccess = universalUnidentifiedAccess,
       capabilities = AppCapabilities.getCapabilities(true),
-      isDiscoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable,
+      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable,
       name = null,
       pniRegistrationId = registrationData.pniRegistrationId,
       recoveryPassword = registrationData.recoveryPassword

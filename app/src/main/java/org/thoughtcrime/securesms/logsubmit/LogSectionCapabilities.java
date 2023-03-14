@@ -34,15 +34,15 @@ public final class LogSectionCapabilities implements LogSection {
     RecipientRecord.Capabilities   globalCapabilities = SignalDatabase.recipients().getCapabilities(self.getId());
 
     StringBuilder builder = new StringBuilder().append("-- Local").append("\n")
-                              .append("GV2                : ").append(localCapabilities.isGv2()).append("\n")
-                              .append("GV1 Migration      : ").append(localCapabilities.isGv1Migration()).append("\n")
-                              .append("Sender Key         : ").append(localCapabilities.isSenderKey()).append("\n")
-                              .append("Announcement Groups: ").append(localCapabilities.isAnnouncementGroup()).append("\n")
-                              .append("Change Number      : ").append(localCapabilities.isChangeNumber()).append("\n")
-                              .append("Stories            : ").append(localCapabilities.isStories()).append("\n")
-                              .append("Gift Badges        : ").append(localCapabilities.isGiftBadges()).append("\n")
-                              .append("\n")
-                              .append("-- Global").append("\n");
+                                               .append("GV2                : ").append(localCapabilities.getGv2()).append("\n")
+                                               .append("GV1 Migration      : ").append(localCapabilities.getGv1Migration()).append("\n")
+                                               .append("Sender Key         : ").append(localCapabilities.getSenderKey()).append("\n")
+                                               .append("Announcement Groups: ").append(localCapabilities.getAnnouncementGroup()).append("\n")
+                                               .append("Change Number      : ").append(localCapabilities.getChangeNumber()).append("\n")
+                                               .append("Stories            : ").append(localCapabilities.getStories()).append("\n")
+                                               .append("Gift Badges        : ").append(localCapabilities.getGiftBadges()).append("\n")
+                                               .append("\n")
+                                               .append("-- Global").append("\n");
 
     if (globalCapabilities != null) {
       builder.append("GV1 Migration      : ").append(globalCapabilities.getGroupsV1MigrationCapability()).append("\n")
