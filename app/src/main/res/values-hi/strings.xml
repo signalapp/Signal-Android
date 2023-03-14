@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">अपने डिवाइस को फिर से लिंक करें</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">जब आपका डिवाइस अपंजीकृत था तब आपके द्वारा जोड़े गए डिवाइस अनलिंक हो गए थे। किसी भी डिवाइस को फिर से लिंक करने के लिए सेटिंग्स में जाएं।</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">सेटिंग्स खोलें</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">नया समूह</string>
     <string name="Megaphones_invite_friends">मित्रों को आमंत्रित करें</string>
     <string name="Megaphones_use_sms">SMS का उपयोग करें</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">चैट का रंग</string>
     <string name="Megaphones_add_a_profile_photo">एक प्रोफ़ाइल फ़ोटो जोड़ें</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2140,12 +2140,14 @@
     <string name="MessageNotifier_contact_message">%1$s%2$s</string>
     <string name="MessageNotifier_unknown_contact_message">संपर्क</string>
     <string name="MessageNotifier_reacted_s_to_s">प्रतिक्रिया की गई %1$s से: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">आपके वीडियो पर %1$s ने प्रतिक्रिया व्यक्त की गई</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">आपकी तस्वीर पर %1$s ने प्रतिक्रिया व्यक्त की.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">आपके GIF पर %1$s ने प्रतिक्रिया दी.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">आपकी फ़ाइल पर %1$sने प्रतिक्रिया व्यक्त की|</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">आपके ऑडियो के लिए %1$sप्रतिक्रिया व्यक्त की।</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">आपके एक-बार-देखने-योग्य वीडियो पर %1$s प्रतिक्रिया की।</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">आपके वीडियो पर %1$s ने प्रतिक्रिया दी।</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">आपकी तस्वीर पर %1$s ने प्रतिक्रिया दी।</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">आपके GIF पर %1$s ने प्रतिक्रिया दी।</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">आपकी फ़ाइल पर %1$sने प्रतिक्रिया व्यक्त दी।</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">आपके ऑडियो के लिए %1$sप्रतिक्रिया व्यक्त दी।</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">आपके एक-बार-देखने-योग्य वीडियो पर %1$s प्रतिक्रिया दी।</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">आपके स्टिकर पर %1$sको पुन: सक्रिय किया।</string>
     <string name="MessageNotifier_this_message_was_deleted">यह मेसेज डिलीट कर दिया गया है।</string>
 
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">मेरा नंबर कौन देख सकता है</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">कोई भी Signal पर आपका फोन नंबर नहीं देखेगा</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">मुझे नंबर से कौन ढूंढ सकता है</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">आपका दान किसी नेटवर्क दोष के कारण नहीं भेजा जा सका। अपना कनेक्शन जाँचें और फिर से प्रयास करें।</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$s की ओर से दान</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s ने आपकी ओर से Signal को दान दिया</string>
     <!-- Gift badge redeem action label -->
@@ -5126,7 +5128,7 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">आपने %1$s की स्टोरी पर प्रतिक्रिया दी।</string>
+    <string name="ConversationItem__you_reacted_to_s_story">आपने %1$s की स्टोरी पर प्रतिक्रिया दी</string>
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">आपकी स्टोरी पर प्रतिक्रिया दी</string>
     <!-- Conversation Item label for reactions to an unavailable story -->

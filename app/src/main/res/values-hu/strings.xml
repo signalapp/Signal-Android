@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Csatlakoztasd újra az eszközeidet</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">A hozzáadott eszközök leválasztásra kerültek az eszköz regisztrációjának törlésekor. Lépj a Beállításokba az eszközök újracsatlakoztatásához.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Beállítok megnyitása</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Új csoport</string>
     <string name="Megaphones_invite_friends">Barátok meghívása</string>
     <string name="Megaphones_use_sms">SMS használata</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Csevegés színe</string>
     <string name="Megaphones_add_a_profile_photo">Profilkép hozzáadása</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -1999,9 +1999,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Beváltottál egy jelvényt</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Reakció a Történetedre: %1$s</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Reagált a Történetedre: %1$s</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Reakció a Történetére: %1$s</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Reagált a Történetére: %1$s</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Fizetés</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">Titkosítatlan SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Névjegy</string>
-    <string name="MessageNotifier_reacted_s_to_s">%1$s reakció erre: \"%2$s\"</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Reakció a videódra: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Reakció a képedre: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Reakció a GIF képedre: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Reakció a fájlodra: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Reakció a hangfájlodra: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reakció az egyszer megtekinthető videódra: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Reakció a matricádra: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_s">%1$s reagált erre: „%2$s”.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Reagált a videódra: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Reagált a képedre: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Reagált a GIF-edre: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Reagált a fájlodra: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Reagált a hangfájlodra: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagált az egyszer megtekinthető videódra: %1$s.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Reagált a matricádra: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ez az üzenet ki lett törölve.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Kikapcsolod az új kontakt érhető el Signalon értesítést? Újra engedélyezheted a Signal &gt; Beállítások &gt; Értesítések menüpontban.</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Kézbesítési probléma</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Egy üzenet, matrica, reakció emoji, kézbesítési nyugta, vagy média küldése %1$s kontakttól nem érkezett meg hozzád. A küldési kísérlet történhetett egyéni, vagy csoportüzenetben is.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Egy üzenet, matrica, reakció emoji, kézbesítési nyugta, vagy média küldése %1$s kontakttól nem érkezett meg hozzád.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s üzenete, matricája, reakciója vagy olvasási értesítése nem érkezett meg hozzád. A küldési kísérlet történhetett egyéni, vagy csoportüzenetben is.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s üzenete, matricája, reakciója vagy olvasási értesítése nem érkezett meg hozzád.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Keresztnév (kötelező)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Ki láthatja a telefonszámomat?</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">A Signalon senki nem láthatja a telefonszámod</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Ki találhat meg a telefonszámom szerint?</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3853,7 +3855,7 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Tárca kikapcsolása</string>
     <string name="DeactivateWalletFragment__your_balance">Egyenleged</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">A fizetések kikapcsolása előtt javasolt alaptőkédet egy másik tárca címére átutalni. Ha mégis úgy döntesz, hogy most nem utalod át egyenlegedet, akkor az továbbra is a Signalhoz kapcsolt tárcádban lesz. A fizetések újraaktiválásakor az egyenleg újra elérhető lesz.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">A fizetések kikapcsolása előtt javasolt a pénzösszegeidet egy másik tárca címére átutalni. Ha mégis úgy döntesz, hogy most nem utalod át az egyenleged, az továbbra is a Signalhoz kapcsolt tárcádban lesz. A fizetések újraaktiválásakor az egyenleg újra elérhető lesz.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Maradék egyenleg átutalása</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Kikapcsolás átutalás nélkül</string>
     <string name="DeactivateWalletFragment__deactivate">Kikapcsolás</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Adományod hálózati hiba miatt nem küldhető el. Ellenőrizd az internetkapcsolatod, és próbáld újra!</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Adomány %1$s nevében</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s adományozott a Signalnak a nevedben</string>
     <!-- Gift badge redeem action label -->
@@ -4922,13 +4924,13 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Nem válaszolhatsz erre a Történetre, mert már nem vagy tagja ennek a csoportnak.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reakció elküldve a Történetre</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reagált a Történetre</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Megtekintések</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Válaszok</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">Reagálás a Történetre</string>
+    <string name="StoryReplyComposer__react_to_this_story">Reakció a Történetre</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Privát válasz küldése %1$s részére</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->

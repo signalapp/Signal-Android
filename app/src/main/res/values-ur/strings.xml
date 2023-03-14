@@ -21,7 +21,7 @@
     <string name="delete">حذف کریں</string>
     <string name="please_wait">برائے مہربانی انتظار کریں۔۔۔</string>
     <string name="save">محفوظ کریں</string>
-    <string name="note_to_self">اپنے لئے نوٹ کریں</string>
+    <string name="note_to_self">خود کے لیے نوٹ</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -544,11 +544,11 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">اپنی ڈیوائسز کو دوبارہ لنک کریں</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">جب آپ کی ڈیوائس غیر رجسٹر شدہ تھی اس وقت آپ کی جانب سے شامل کردہ ڈیوائسز غیر لنک کردہ ہو گئی تھیں۔ کوئی بھی ڈیوائسز دوبارہ لنک کرنے کے لیے سیٹنگز میں جائیں۔</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">ترتیبات کھولیں</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">سیٹنگز کھولیں</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
     <string name="RelinkDevicesReminderFragment__later">بعد میں</string>
 
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">نیا گروپ</string>
     <string name="Megaphones_invite_friends">دوستوں کو مدعو کریں</string>
     <string name="Megaphones_use_sms">ایس ایم ایس کا استعمال کریں</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">چیٹ کے رنگ</string>
     <string name="Megaphones_add_a_profile_photo">پروفائل فوٹو شامل کریں</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -1999,9 +1999,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">آپ نے ایک بیج ریڈیم کیا ہے</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">آپ کی سٹوری پر %1$s ردعمل دیا</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">آپ کی سٹوری پر %1$s ری ایکٹ کیا</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">ان کی سٹوری پر %1$s ردعمل دیا</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">ان کی سٹوری پر %1$s ری ایکٹ کیا</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">پیمنٹ</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">غیر محفوظ ایس ایم ایس</string>
     <string name="MessageNotifier_contact_message">%1$s%2$s</string>
     <string name="MessageNotifier_unknown_contact_message">رابطہ کریں</string>
-    <string name="MessageNotifier_reacted_s_to_s">اس پر رد عمل%1$s ظاہر کیا: \"%2$s\"۔</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">آپ کی ویڈیو پر رد عمل %1$s ظاہر کیا</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">آپ کی تصویر پر رد عمل%1$s ظاہر کیا</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">آپ کے GIF پر %1$s ردعمل دیا۔</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">آپ کی فائل پر رد عمل%1$s ظاہر کیا</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">آپ کی آڈیو پر رد عمل %1$s ظاہر کیا</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">ایک بار آپ کے ملاحظہ کرنے والے میڈیا پر ردعمل %1$s کا اظہار کیا۔</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">آپ کی اسٹیکر پر رد عمل %1$s ظاہر کیا</string>
+    <string name="MessageNotifier_reacted_s_to_s">%1$s ری ایکٹ کیا: \"%2$s\" پر۔</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">آپ کی ویڈیو پر %1$s ری ایکٹ کیا۔</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">آپ کی تصویر پر %1$s ری ایکٹ کیا۔</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">آپ کے GIF پر %1$s ری ایکٹ کیا۔</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">آپ کی فائل پر %1$s ری ایکٹ کیا۔</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">آپ کی آڈیو پر %1$s ری ایکٹ کیا۔</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">آپ کے ایک وقتی دیکھے جانے والے میڈیا پر %1$s ری ایکٹ کیا۔</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">آپ کے اسٹیکر پر %1$s ری ایکٹ کیا۔</string>
     <string name="MessageNotifier_this_message_was_deleted">یہ پیغام حذف کردیا گیا تھا۔</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">رابطے میں شامل Signal اطلاعات بند کردیں؟ آپ انہیں Signal &amp; gt میں دوبارہ فعال کرسکتے ہیں۔ ترتیبات &amp; gt؛ اطلاعات۔</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">فراہمی کا مسئلہ</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">کوئی پیغام ، اسٹیکر ، رد عمل ، یا پڑھی ہوئی رسید آپ کو %1$s سے نہیں پہنچا ہے۔ ہوسکتا ہے کہ انہوں نے یہ آپ کو براہ راست یا کسی گروپ میں بھیجنے کی کوشش کی ہو۔</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">کوئی پیغام ، اسٹیکر ، رد عمل ، یا پڑھی ہوئی رسید آپ کو %1$s سے نہیں پہنچا سکتی ہے۔</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s کی طرف سے کوئی میسج، اسٹیکر، ری ایکشن، یا میسج پڑھنے کا ثبوت آپ کو ڈیلیور نہیں کیا جا سکا۔ انہوں نے یہ آپ کو براہ راست، یا کسی گروپ میں بھیجنے کی کوشش کی ہو گی۔</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s کی طرف سے کوئی میسج، اسٹیکر، ری ایکشن، یا میسج پڑھنے کا ثبوت آپ کو ڈیلیور نہیں کیا جا سکا۔</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">پہلا نام (ضروری)</string>
@@ -3470,11 +3472,11 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">میرا نمبر کون دیکھ سکتا ہے</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Signal پر کوئی بھی آپ کا فون نمبر نہیں دیکھ سکے گا</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">کون مجھے میرے نمبر کے ذریعے تلاش کر سکتا ہے</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">آپ کا فون نمبر ان لوگوں اور گروپس کو نظر آئے گا جنہیں آپ میسج کرتے ہیں۔ جن لوگوں کے فون رابطوں میں آپ کا نمبر محفوظ ہے وہ اسے Signal پر بھی دیکھیں گے۔</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">آپ کا فون نمبر ان لوگوں اور گروپس کو نظر آئے گا جنہیں آپ میسج کرتے ہیں۔ جن لوگوں کے فون رابطوں میں آپ کا نمبر محفوظ ہے وہ بھی اسے Signal پر دیکھیں گے۔</string>
     <string name="PhoneNumberPrivacy_everyone">ہر ایک</string>
     <string name="PhoneNumberPrivacy_my_contacts">میرے رابطے</string>
     <string name="PhoneNumberPrivacy_nobody">کوئی نہیں</string>
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Wallet کو غیر فعال کریں</string>
     <string name="DeactivateWalletFragment__your_balance">آپ کا بیلنس</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">یہ تجویز کی جاتی ہے کہ ادائیگی غیر فعال کرنے سے پہلے آپ اپنے فنڈز کو دوسرے بٹوے کے پتے پر منتقل کریں۔ اگر آپ ابھی اپنے فنڈز کی منتقلی نہ کرنا چاہتے ہیں تو ، اگر آپ ادائیگیوں کو دوبارہ متحرک کرتے ہیں تو وہ Signal سے منسلک آپ کے پرس میں رہیں گے۔</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">یہ تجویز پیش کی جاتی ہے کہ پیمنٹس کو غیر فعال کرنے سے قبل آپ اپنے فنڈز کو کسی دوسرے والیٹ ایڈریس پر ٹرانسفر کریں۔ اگر آپ فی الحال اپنے فنڈز کو ٹرانسفر کرنے کا انتخاب نہیں کرنا چاہتے، تو آپ کی جانب سے پیمنٹس کو دوبارہ فعال کرنے کی صورت میں یہ Signal سے لنک کردہ آپ کے والیٹ میں موجود رہیں گے۔</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">باقی بیلنس منتقل کریں</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">منتقلی کے بغیر غیر فعال کریں</string>
     <string name="DeactivateWalletFragment__deactivate">غیر فعال کریں</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">منتقلی کے بغیر غیر فعال کریں؟</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">اگر آپ ادائیگیوں کو دوبارہ فعال کرنے کا انتخاب کرتے ہیں تو آپ کا بیلنس Signal سے منسلک آپ کے Wallet میں رہے گا۔</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">اگر آپ پیمنٹس کو دوبارہ فعال کرنے کا انتخاب کرتے ہیں تو آپ کا بیلنس Signal سے لنک کردہ آپ کے والیٹ میں موجود رہے گا۔</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Wallet کو غیر فعال کرنے میں خرابی۔</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4175,7 +4177,7 @@
     <string name="Donate2022Q2Megaphone_not_now">ابھی نہیں</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">رد عمل کو اپنی مرضی کے مطابق بنائیں</string>
+    <string name="EditReactionsFragment__customize_reactions">ری ایکشنز کو حسبِ ضرورت بنائیں</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">ایموجی کو تبدیل کرنے کے لئے ٹیپ کریں</string>
     <string name="EditReactionsFragment__reset">دوبارہ بحال کریں</string>
     <string name="EditReactionsFragment_save">محفوظ کریں</string>
@@ -4522,7 +4524,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">ماہانہ عطیہ منسوخ ہو گیا</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">آپ کا بوسٹ بیج زائد المیعاد ہو گیا ہے اور آپ کی پروفائل پر مزید دکھائی نہیں دیتا۔</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">آپ ایک بار کے تعاون کے ساتھ آئندہ 30 دنوں کے لیے اپنا بوسٹ بیج دوبارہ فعال کر سکتے ہیں۔</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">آپ ایک وقتی تعاون کے ساتھ آئندہ 30 دنوں کے لیے اپنا بوسٹ بیج دوبارہ فعال کر سکتے ہیں۔</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">آپ Signal استعمال کرنا جاری رکھ سکتے ہیں لیکن اپنے لیے بنائی گئی ٹیکنالوجی کی سپورٹ کے لیے، ماہانہ عطیہ دینے کے ذریعے عطیہ دینے والا بننے کو زیر غور لائیں۔</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">عطیہ گزار بنیں</string>
@@ -4534,7 +4536,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">آپ کا ماہانہ متواتر عطیہ منسوخ ہو گیا تھا کیونکہ ہم آپ کی پیمنٹ پر عمل کاری نہیں کر سکے۔ آپ کا بیج آپ کی پروفائل پر مزید دکھائی نہیں دیتا۔</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">آپ کا متواتر ماہانہ عطیہ منسوخ کر دیا گیا تھا۔ %1$s آپ کا %2$s بیج آپ کی پروفائل پر مزید دکھائی نہیں دیتا۔</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">آپ Signal استعمال کرنا جاری رکھ سکتے ہیں لیکن ایپ کی سپورٹ اور اپنے بیج کو دوبارہ فعال کرنے کے لیے، ابھی تجدید کریں۔</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">آپ Signal استعمال کرنا جاری رکھ سکتے ہیں مگر صرف ایپ کو سپورٹ کرنے اور اپنے بیج کو دوبارہ فعال کرنے کے لیے، ابھی تجدید کریں۔</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">سبسکرپشن کی تجدید کریں</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay پر جائیں</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">نیٹ ورک کی خرابی کے باعث آپ کا عطیہ بھیجا نہیں جا سکا۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$s کی جانب سے عطیہ</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s نے آپ کی جانب سے Signal کو عطیہ کیا</string>
     <!-- Gift badge redeem action label -->
@@ -4922,13 +4924,13 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">آپ اس سٹوری کا جواب نہیں دے سکتے کیونکہ آپ اس گروپ کے ممبر نہیں رہے۔</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">سٹوری پر ردعمل دیا</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">سٹوری پر ری ایکٹ کیا</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">ویوز</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">جوابات</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">اس سٹوری پر ردعمل دیں</string>
+    <string name="StoryReplyComposer__react_to_this_story">اس سٹوری پر ری ایکٹ کریں</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s کو نجی طور پر جواب دینا</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
@@ -4974,11 +4976,11 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">انتخاب کریں کہ کون آپ کی سٹوری دیکھ سکتا ہے۔ تبدیلیاں ان سٹوریز کو متاثر نہیں کریں گی جو آپ پہلے ہی بھیج چکے ہیں۔</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">جوابات &amp; ردعمل</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">جوابات اور ری ایکشنز</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">جوابات &amp;ردعمل کو اجازت دیں</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">جوابات اور ری ایکشنز کی اجازت دیں</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">اپنی سٹوری دیکھنے والے لوگوں کو ردعمل اور جواب دینے کی اجازت دیں</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">جو لوگ آپ کی سٹوری دیکھ سکتے ہیں انہیں اس پر ری ایکٹ کرنے اور جواب دینے کی اجازت دیں</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal کنکشنز</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5126,11 +5128,11 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">آپ نے %1$s کی سٹوری پر ردعمل دیا</string>
+    <string name="ConversationItem__you_reacted_to_s_story">آپ نے %1$s کی سٹوری پر ری ایکٹ کیا</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">آپ کی سٹوری پر ردعمل دیا</string>
+    <string name="ConversationItem__reacted_to_your_story">آپ کی سٹوری پر ری ایکٹ کیا</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">سٹوری پر ردعمل دیا</string>
+    <string name="ConversationItem__reacted_to_a_story">سٹوری پر ری ایکٹ کیا</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->

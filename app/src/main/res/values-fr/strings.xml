@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Liez de nouveau vos appareils</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Les appareils que vous avez ajoutés ont été dissociés lorsque votre appareil a été supprimé. Rendez-vous dans les paramètres pour relier vos appareils.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Ouvrir les paramètres</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Nouveau groupe</string>
     <string name="Megaphones_invite_friends">Inviter des amis</string>
     <string name="Megaphones_use_sms">Utiliser les textos</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Thème de la conversation</string>
     <string name="Megaphones_add_a_profile_photo">Ajouter une photo de profil</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -1999,7 +1999,7 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Vous avez récupéré un macaron</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">A réagi à votre Story par %1$s</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">A réagi par %1$s à votre Story</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
     <string name="ThreadRecord__reacted_s_to_their_story">A réagi par %1$s à leur Story</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">Texto non sécurisé</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contact</string>
-    <string name="MessageNotifier_reacted_s_to_s">A réagi %1$s à : « %2$s ».</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">A réagi %1$s à votre vidéo.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">A réagi %1$s à votre image.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">A réagi avec %1$s à votre GIF.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">A réagi %1$s à votre fichier.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">A réagi %1$s à votre son.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">A réagi %1$s à votre média éphémère.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">A réagi %1$s à votre autocollant.</string>
+    <string name="MessageNotifier_reacted_s_to_s">A réagi par %1$s à : « %2$s ».</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">A réagi par %1$s à votre vidéo.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">A réagi par %1$s à votre image.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">A réagi par %1$s à votre GIF.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">A réagi par %1$s à votre fichier.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">A réagi par %1$s à votre message vocal.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">A réagi par %1$s à votre média éphémère.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">A réagi par %1$s à votre autocollant.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ce message a été supprimé.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Désactiver les notifications pour les contacts qui se sont joints à Signal ? Vous pouvez les réactiver dans Signal &gt; Paramètres &gt; Notifications</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Qui peut voir mon numéro de téléphone</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Personne ne verra votre numéro de téléphone sur Signal.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Qui peut me retrouver grâce à mon numéro de téléphone</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Votre don ne peut pas être envoyé à cause d\'une erreur de réseau. Vérifiez votre connexion et réessayez.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Don de la part de %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s a effectué un don de votre part</string>
     <!-- Gift badge redeem action label -->

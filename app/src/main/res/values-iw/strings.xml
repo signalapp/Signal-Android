@@ -21,7 +21,7 @@
     <string name="delete">מחיקה</string>
     <string name="please_wait">אנא המתן…</string>
     <string name="save">שמור</string>
-    <string name="note_to_self">הערה לעצמי</string>
+    <string name="note_to_self">הערות לעצמי</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -584,11 +584,11 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">קישור מחדש של המכשירים שלך</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">המכשירים שהוספת נותקו כשבוטלה ההרשמה של המכשיר שלך. צריך ללכת להגדרות כדי לקשר מחדש את המכשירים.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">פתח הגדרות</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">פתיחת הגדרות</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
     <string name="RelinkDevicesReminderFragment__later">מאוחר יותר</string>
 
@@ -1272,8 +1272,8 @@
     <string name="Megaphones_new_group">קבוצה חדשה</string>
     <string name="Megaphones_invite_friends">הזמן חברים</string>
     <string name="Megaphones_use_sms">השתמש במסרון</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">הוסף תמונת פרופיל</string>
+    <string name="Megaphones_chat_colors">צבעי צ׳אט</string>
+    <string name="Megaphones_add_a_profile_photo">הוספת תמונת פרופיל</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">תשובות</string>
@@ -2283,14 +2283,16 @@
     <string name="MessageNotifier_unsecured_sms">מסרון בלתי מאובטח</string>
     <string name="MessageNotifier_contact_message">%1$s%2$s</string>
     <string name="MessageNotifier_unknown_contact_message">איש קשר</string>
-    <string name="MessageNotifier_reacted_s_to_s">הגיב עם %1$s אל: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">הגיב עם %1$s אל הסרטון שלך.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">הגיב עם %1$s אל התמונה שלך.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">הגיב %1$s אל ה־GIF שלך.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">הגיב עם %1$s אל הקובץ שלך.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">הגיב עם %1$s אל השמע שלך.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">הגיב/ה עם %1$s אל המדיה לצפייה חד־פעמית שלך.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">הגיב עם %1$s אל המדבקה שלך.</string>
+    <string name="MessageNotifier_reacted_s_to_s">הגיב/ה %1$s ל: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">הגיב/ה %1$s לסרטון שלך.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">הגיב/ה %1$s לתמונה שלך.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">הגיב/ה %1$s ל–GIF שלך.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">הגיב/ה %1$s לקובץ שלך.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">הגיב/ה %1$s להודעה הקולית שלך.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">הגיב/ה %1$s למדיה לצפייה חד–פעמית שלך.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">הגיב/ה %1$s לסטיקר שלך.</string>
     <string name="MessageNotifier_this_message_was_deleted">הודעה זו נמחקה.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">לכבות התראות של איש קשר הצטרף אל Signal? אתה יכול לאפשר אותן שוב דרך Signal &lt; הגדרות &lt; התראות.</string>
@@ -2705,8 +2707,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">סוגיית מסירה</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">הודעה, מדבקה, תגובה או אישור קריאה לא יכלו להימסר אליך מאת %1$s. הצד השני ניסה אולי לשלוח זאת ישירות אליך, או בקבוצה.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">הודעה, מדבקה, תגובה או אישור קריאה לא יכלו להימסר אליך מאת %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">לא ניתן היה למסור לך הודעה, סטיקר, תגובה או אישור קריאה מאת %1$s. יתכן שהצד השני ניסה לשלוח לך את זה ישירות, או בקבוצה.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">לא ניתן היה למסור לך הודעה, סטיקר, תגובה או אישור קריאה מאת %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">שם פרטי (דרוש)</string>
@@ -3656,7 +3658,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">מי יכול לראות את המספר שלי</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">אף אחד לא יראה את מספר הטלפון שלך ב–Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">מי יכול למצוא אותי לפי המספר שלי</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4045,12 +4047,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">בטל הפעלת ארנק</string>
     <string name="DeactivateWalletFragment__your_balance">המאזן שלך</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">מומלץ שתעביר את הכספים שלך אל כתובת ארנק אחרת לפני ביטול הפעלת תשלומים. אם תבחר לא להעביר את הכספים שלך עכשיו, הם יישארו בארנק שמקושר אל Signal אם תפעיל מחדש תשלומים.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">מומלץ להעביר את הכספים שלך לכתובת ארנק אחרת לפני ביטול ההפעלה של תשלומים. במקרה של בחירה לא להעביר את הכספים עכשיו, הם יישארו בארנק שמקושר אל Signal בעת הפעלה מחדש של תשלומים.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">העבר מאזן נותר</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">בטל הפעלה בלי להעביר</string>
     <string name="DeactivateWalletFragment__deactivate">בטל הפעלה</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">לבטל הפעלה בלי להעביר?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">המאזן שלך יישאר בארנק שמקושר אל Signal אם תבחר להפעיל מחדש תשלומים.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">היתרה שלך תישאר בארנק שמקושר אל Signal במקרה של בחירה להפעיל מחדש את תשלומים.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">שגיאה בביטול הפעלת ארנק.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4373,7 +4375,7 @@
     <string name="Donate2022Q2Megaphone_not_now">לא עכשיו</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">התאם אישית תגובות</string>
+    <string name="EditReactionsFragment__customize_reactions">התאמה אישית של תגובות</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">הקש כדי להחליף אימוג’י</string>
     <string name="EditReactionsFragment__reset">אפס</string>
     <string name="EditReactionsFragment_save">שמור</string>
@@ -4783,7 +4785,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">לא הצלחנו לשלוח את התרומה שלך בגלל שגיאת רשת. כדאי לבדוק את החיבור ולנסות שוב.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">תרומה בשם %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s תרם/ה ל–Signal בשמך</string>
     <!-- Gift badge redeem action label -->
@@ -5194,7 +5196,7 @@
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">תשובות ותגובות</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">התר תשובות ותגובות</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">הפעלת תשובות ותגובות</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">אפשר לתת לאנשים שיכולים לצפות בסטורי שלך להגיב ולהשיב</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
@@ -5633,7 +5635,7 @@
     <!-- Title of the screen -->
     <string name="ExportingSmsMessagesFragment__exporting_sms_messages">מייצאים הודעות SMS</string>
     <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">זה עשוי לקחת זמן מה</string>
+    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">זה עשוי לקחת זמן</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
         <item quantity="one">מייצאים %1$d מתוך %2$d…</item>

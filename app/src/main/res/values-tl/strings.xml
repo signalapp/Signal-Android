@@ -544,13 +544,13 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">I-relink ang devices mo</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Na-unlink ang devices na inilagay mo noong na-unregister ang iyong device. Pumunta sa Settings para i-relink ang anumang devices.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Buksan ang settings</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
-    <string name="RelinkDevicesReminderFragment__later">Mamaya na</string>
+    <string name="RelinkDevicesReminderFragment__later">Mamaya na lang</string>
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">Piliin ang members</string>
@@ -2001,7 +2001,7 @@
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Nag-react ng %1$s sa story mo</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Nag-react ng %1$s sa story nila</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Nag-react ng %1$s sa story niya</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Payment</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2141,11 +2141,13 @@
     <string name="MessageNotifier_unknown_contact_message">Kontak</string>
     <string name="MessageNotifier_reacted_s_to_s">Nag-react ng %1$s sa: \"%2$s\".</string>
     <string name="MessageNotifier_reacted_s_to_your_video">Nag-react ng %1$s sa iyong video.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Nag-react ng %1$s sa iyong imahe.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Reacted %1$s to your GIF.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Nag-react ng %1$s sa iyong image.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Nag-react ng %1$s sa iyong GIF.</string>
     <string name="MessageNotifier_reacted_s_to_your_file">Nag-react ng %1$s sa iyong file.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Nag-react ng %1$s sa iyong audio.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reacted %1$s to your view-once media.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Nag-react ng %1$s sa iyong view-once media.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Nag-react ng %1$s sa iyong sticker.</string>
     <string name="MessageNotifier_this_message_was_deleted">Nabura na ang message na ito.</string>
 
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Delivery Issue</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Ang message, sticker, reaction, o read receipt mula kay %1$s ay hindi ma-deliver sa\'yo. Maaaring sinubukan niyang i-send ito sa\'yo directly o sa isang group.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Ang message, sticker, reaction, o read receipt mula kay %1$s ay hindi ma-deliver sa\'yo.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Hindi ma-deliver sa \'yo ang message, sticker, reaction, o read receipt mula kay %1$s. Maaaring sinubukan niyang i-send ito sa \'yo directly o sa isang group.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Hindi ma-deliver sa \'yo ang message, sticker, reaction, o read receipt mula kay %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Pangalan (kailangan)</string>
@@ -3464,13 +3466,13 @@
     <string name="preferences_app_protection__see_my_phone_number">Ipakita ang aking phone number</string>
     <string name="preferences_app_protection__find_me_by_phone_number">Find me by phone number</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Numero ng telepono</string>
+    <string name="preferences_app_protection__phone_number">Phone number</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Piliin kung sinong pwedeng makakita ng phone number mo at kung sinong pwedeng kumontak sa \'yo sa Signal gamit ito.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Sinong makakakita ng number ko</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Walang makakakita ng phone number mo sa Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Sinong makakahanap sa \'kin gamit ang number ko</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">I-deactivate ang Wallet</string>
     <string name="DeactivateWalletFragment__your_balance">Your balance</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">It\'s recommended that you transfer your funds to another wallet address bago mo i-deactivate ang payments. If you choose not to transfer your funds now, mananatili ito sa iyong wallet linked to Signal kapag nag-reactivate ka ng payments.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Inirerekomenda naming i-transfer mo muna ang iyong funds sa iba pang wallet address bago mo i-deactivate ang payments. Kapag pinili mong hindi i-transfer ang iyong funds ngayon, mananatili ito sa iyong wallet na naka-link sa Signal kapag ni-reactivate mo ang payments.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">I-transfer ang remaining balance</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Deactivate without transferring</string>
     <string name="DeactivateWalletFragment__deactivate">I-deactivate</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Gusto mo bang mag-deactivate without transferring?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Ang balance mo ay mananatili sa iyong wallet linked to Signal kapag nag-reactivate ka ng payments.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Mananatili ang balance mo sa iyong wallet na naka-link sa Signal kapag nag-reactivate ka ng payments.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Error deactivating wallet.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4522,7 +4524,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Kinancel ang Monthly Donation</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Expired na ang iyong Boost badge at hindi na ito makikita sa profile mo.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Pwede mong i-reactivate ang iyong Boost badge nang dagdag na 30 araw sa pamamagitan ng one-time contribution.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Pwede mong i-reactivate ang iyong Boost badge nang karagdagang 30 araw sa pamamagitan ng one-time contribution.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Pwede mo pa ring gamitin ang Signal app pero para masuportahan ang technology na ginawa para sa\'yo, inaanyayahan ka naming magbigay ng monthly donation.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Become a Sustainer</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Hindi maipadala ang donation mo dahil sa network error. I-check ang iyong connection at subukan ulit.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Donation sa pangalan ni %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">Nag-donate sa Signal si %1$s para sa iyo</string>
     <!-- Gift badge redeem action label -->
@@ -4976,9 +4978,9 @@
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">Replies &amp; reactions</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Allow replies &amp; reactions</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Payagan ang replies &amp; reactions</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Payagang mag-react at mag-reply ang mga taong nag-view ng story mo</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Payagang mag-react at mag-reply ang mga taong pwedeng mag-view ng story mo</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal Connections</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5128,7 +5130,7 @@
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">Nag-react ka sa story ni %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">Nag-react sa iyong story</string>
+    <string name="ConversationItem__reacted_to_your_story">Nag-react sa story mo</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
     <string name="ConversationItem__reacted_to_a_story">Nag-react sa isang story</string>
 

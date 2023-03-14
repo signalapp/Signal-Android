@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Koppel je apparaten opnieuw</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">De apparaten die je hebt toegevoegd, zijn ontkoppeld toen je de registratie van je apparaat ongedaan maakte. Ga naar Instellingen om apparaten opnieuw te koppelen.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Instellingen openen</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Nieuwe-stijl groep</string>
     <string name="Megaphones_invite_friends">Kennissen uitnodigen</string>
     <string name="Megaphones_use_sms">Sms gebruiken</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Gesprekskleur</string>
     <string name="Megaphones_add_a_profile_photo">Voeg een profielfoto toe</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2001,7 +2001,7 @@
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Heeft %1$s op je verhaal gereageerd</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Heeft %1$s op hun verhaal gereageerd</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Hebt %1$s op hun verhaal gereageerd</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Overschrijving</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">Onbeveiligde sms</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contactpersoon</string>
-    <string name="MessageNotifier_reacted_s_to_s">reageerde met %1$s op “%2$s”.</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">reageerde met %1$s op je video.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">reageerde met %1$s op je afbeelding.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Reageerde met %1$s op “%2$s”.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Reageerde met %1$s op je video.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Reageerde met %1$s op je afbeelding.</string>
     <string name="MessageNotifier_reacted_s_to_your_gif">Reageerde met %1$s op je GIF.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">reageerde met %1$s op je bestand.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">reageerde met %1$s op je audio.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">reageerde met %1$s op je eenmaligeweergave-media.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">reageerde met %1$s op je sticker.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Reageerde met %1$s op je bestand.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Reageerde met %1$s op je audio.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reageerde met %1$s op je eenmaligeweergave-media.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Reageerde met %1$s op je sticker.</string>
     <string name="MessageNotifier_this_message_was_deleted">Dit bericht is gewist.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Zet meldingen uit over mensen die bereikbaar zijn via Signal. Je kunt ze opnieuw aanzetten in Signal &gt; Instellingen &gt; Meldingen.</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Wie kan mijn nummer zien</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Niemand zal jouw telefoonnummer zien op Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Wie kan mij vinden via mijn nummer</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3858,7 +3860,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Uitschakelen zonder overschrijven</string>
     <string name="DeactivateWalletFragment__deactivate">Uitschakelen</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Uitschakelen zonder overschrijven?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Je krediet is wanneer je overschrijvingen inschakelt weer beschikbaar in de portemonnee die aan Signal is gekoppeld.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Je krediet blijft beschikbaar in de portemonnee die aan Signal is gekoppeld, zodra je overschrijvingen inschakelt.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Fout bij het uitschakelen van je portemonnee</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4534,7 +4536,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Je maandelijkse donaties zijn stopgezet omdat Signal je betaling niet kon verwerken. Je badge is niet langer op je profiel zichtbaar.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Je terugkerende maandelijkse donatie werd geannuleerd. %1$s Je %2$s badge is niet langer zichtbaar op je profiel.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Je kunt Signal gewoon blijven gebruiken, maar als je Signal wilt ondersteunen en je badge weer wilt weergeven dan kun je nu je donaties vernieuwen.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Je kunt Signal gewoon blijven gebruiken, maar als je Signal wilt ondersteunen en je badge weer wilt weergeven dan moet je je donaties vernieuwen.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Maandelijkse donaties vernieuwen</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay openen</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Je donatie kon niet worden verstuurd vanwege een netwerkfout. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Donatie namens %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s heeft namens jou gedoneerd aan Signal</string>
     <!-- Gift badge redeem action label -->
@@ -4928,7 +4930,7 @@
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Reacties</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">Op dit verhaal reageren</string>
+    <string name="StoryReplyComposer__react_to_this_story">Reageer op dit verhaal</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Één-op-één-reactie aan het schrijven naar %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->

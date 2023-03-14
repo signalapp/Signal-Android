@@ -524,9 +524,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Paut semula peranti anda</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Peranti yang anda tambahkan tidak dapat dipautkan apabila peranti anda tidak didaftarkan. Pergi ke Tetapan untuk memaut semula mana-mana peranti.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Buka tetapan</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1128,7 +1128,7 @@
     <string name="Megaphones_new_group">Kumpulan baru</string>
     <string name="Megaphones_invite_friends">Jemput rakan</string>
     <string name="Megaphones_use_sms">Gunakan SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Warna sembang</string>
     <string name="Megaphones_add_a_profile_photo">Tambah foto profil</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -1928,9 +1928,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Anda telah menebus lencana</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Menghantar reaksi %1$s kepada cerita anda</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Memberi reaksi %1$s kepada cerita anda</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Menghantar reaksi %1$s kepada cerita mereka</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Memberi reaksi %1$s kepada cerita mereka</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Pembayaran</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2067,14 +2067,16 @@
     <string name="MessageNotifier_unsecured_sms">SMS yang tidak selamat</string>
     <string name="MessageNotifier_contact_message">%1$s%2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kenalan</string>
-    <string name="MessageNotifier_reacted_s_to_s">Memberikan reaksi %1$s kepada: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Memberikan reaksi %1$s kepada video anda.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Memberikan reaksi %1$s kepada imej anda.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Menunjukkan reaksi %1$s terhadap GIF anda.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Memberikan reaksi %1$s kepada fail anda.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Memberikan reaksi %1$s kepada audio anda.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Memberikan reaksi %1$s kepada media lihat sekali anda.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Memberikan reaksi %1$s kepada pelekat anda.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Memberi reaksi %1$s kepada: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Memberi reaksi %1$s kepada video anda.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Memberi reaksi %1$s kepada imej anda.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Memberi reaksi %1$s terhadap GIF anda.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Memberi reaksi %1$s kepada fail anda.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Memberi reaksi %1$s kepada audio anda.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Memberi reaksi %1$s kepada media lihat sekali anda.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Memberi reaksi %1$s kepada pelekat anda.</string>
     <string name="MessageNotifier_this_message_was_deleted">Mesej ini telah dipadam.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Matikan pemberitahuan kenalan telah menyertai Signal? Anda boleh mendayakannya lagi dalam Signal &gt; Tetapan &gt; Pemberitahuan.</string>
@@ -2456,8 +2458,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Isu penghantaran</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Mesej, pelekat, reaksi, atau resit baca tidak dapat disampaikan kepada anda daripada %1$s. Mereka mungkin telah cuba menghantarnya kepada anda secara langsung, atau dalam kumpulan.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Mesej, pelekat, reaksi, atau resit baca tidak dapat disampaikan kepada anda daripada %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Mesej, pelekat, reaksi, atau resit baca tidak dapat disampaikan kepada anda daripada %1$s. Mereka mungkin telah cuba menghantarnya kepada anda secara terus, atau dalam kumpulan.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Mesej, pelekat, reaksi, atau resit baca tidak dapat dihantar kepada anda daripada %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Nama pertama (diperlukan)</string>
@@ -3377,7 +3379,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Siapa boleh lihat nombor saya</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Tiada sesiapa yang akan nampak nombor telefon anda di Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Siapa boleh cari saya dengan nombor</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3757,12 +3759,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Nyahaktifkan Dompet</string>
     <string name="DeactivateWalletFragment__your_balance">Baki anda</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Sebaiknya pindahkan dana anda ke alamat dompet lain sebelum menyahaktifkan pembayaran. Sekiranya anda memilih untuk tidak memindahkan dana anda sekarang, dana akan kekal dalam dompet anda yang dipautkan dengan Signal jika anda mengaktifkan semula pembayaran.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Anda disyorkan agar memindahkan dana anda ke alamat dompet lain sebelum menyahaktifkan pembayaran. Jika anda memilih untuk tidak memindahkan dana anda sekarang, ia akan kekal dalam dompet anda yang dipautkan ke Signal jika anda mengaktifkan semula pembayaran.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Pindah baki yang tinggal</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Nyahaktifkan tanpa pemindahan</string>
     <string name="DeactivateWalletFragment__deactivate">Nyahaktifkan</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Nyahaktifkan tanpa pemindahan?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Baki anda akan kekal dalam dompet anda yang dipautkan dengan Signal jika anda memilih untuk mengaktifkan semula pembayaran.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Baki anda akan kekal dalam dompet anda yang dipautkan ke Signal jika anda memilih untuk mengaktifkan semula pembayaran.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Ralat semasa menyahaktifkan dompet.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4474,7 +4476,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Derma anda tidak boleh dihantar kerana ralat rangkaian. Periksa sambungan anda dan cuba lagi.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Derma bagi pihak %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s menderma kepada Signal bagi pihak anda</string>
     <!-- Gift badge redeem action label -->
@@ -4816,13 +4818,13 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Anda tidak boleh membalas cerita ini kerana anda bukan lagi ahli kumpulan ini.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Telah menghantar reaksi kepada cerita</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Memberi reaksi kepada cerita</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Tontonan</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Balasan</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">Telah menghantar reaksi kepada cerita ini</string>
+    <string name="StoryReplyComposer__react_to_this_story">Memberi reaksi kepada cerita ini</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Balas secara peribadi kepada %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
@@ -4869,7 +4871,7 @@
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Benarkan balasan &amp; reaksi</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Benarkan orang yang boleh menonton cerita anda menghantar reaksi dan membalas</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Benarkan orang yang boleh menonton cerita anda memberi reaksi dan membalas</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Hubungan Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5016,11 +5018,11 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Anda menghantar reaksi kepada cerita %1$s</string>
+    <string name="ConversationItem__you_reacted_to_s_story">Anda memberi reaksi kepada cerita %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">Menghantar reaksi kepada cerita anda</string>
+    <string name="ConversationItem__reacted_to_your_story">Memberi reaksi kepada cerita anda</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">Menghantar reaksi kepada cerita</string>
+    <string name="ConversationItem__reacted_to_a_story">Memberi reaksi kepada cerita</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->

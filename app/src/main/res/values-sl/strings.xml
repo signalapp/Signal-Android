@@ -584,9 +584,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Znova povežite svoje naprave</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Povezava z napravami, ki ste jih dodali, je bila prekinjena, ko je bila vaša naprava odjavljena. Pojdite v Nastavitve, da znova povežete naprave.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Odpri nastavitve</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1272,7 +1272,7 @@
     <string name="Megaphones_new_group">Nova skupina</string>
     <string name="Megaphones_invite_friends">Vabilo prijateljem_icam</string>
     <string name="Megaphones_use_sms">Uporabi SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Barve klepeta</string>
     <string name="Megaphones_add_a_profile_photo">Dodaj profilno fotografijo</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2141,9 +2141,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Vnovčili ste značko</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Na vašo zgodbo se je odzval_a: %1$s</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">%1$s se je odzval_a na vašo zgodbo</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Vaš odziv na zgodbo: %1$s</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Odzvali ste se na zgodbo uporabnika_ce %1$s</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Plačilo</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2283,14 +2283,16 @@
     <string name="MessageNotifier_unsecured_sms">Nezavarovan SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Stik</string>
-    <string name="MessageNotifier_reacted_s_to_s">%1$s spremenjeno v: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">%1$s spremenjeno v vaš video.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">%1$s spremenjeno v vašo sliko.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Reagiral_a z %1$s na vaš GIF.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">%1$s spremenjeno v vašo datoteko.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">%1$s spremenjeno v vaš zvok.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reakcija %1$s na vaše medijsko sporočilo za enkraten ogled.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s spremenjeno v vašo nalepko.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Odziv na \"%2$s\": %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Odziv vaš video: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Odziv na vašo sliko: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Odziv na vaš GIF: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Odziv na vašo datoteko: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Odziv na vaš zvok: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Odziv na vaše medijsko sporočilo za enkraten ogled: %1$s</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Odziv na vašo nalepko: %1$s</string>
     <string name="MessageNotifier_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Želite izklopiti obvestila o novih članih Signalove skupine? Kasneje jih lahko spet vklopite v Signal &gt; Nastavitve &gt; Obvestila.</string>
@@ -2705,8 +2707,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Problem pri dostavi</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Sporočilo, nalepka, odziv ali potrdilo o branju uporabnika_ce %1$s. vam ni bilo mogoče dostaviti. Lahko so bili poslani osebno ali prek skupine.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Sporočilo, nalepka, odziv ali potrdilo o branju uporabnika_ce %1$s vam ni bilo mogoče dostaviti.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Sporočila, nalepke, odziva ali potrdila o branju uporabnika_ce %1$s vam ni bilo mogoče dostaviti. Lahko so bili poslani osebno ali prek skupine.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Sporočila, nalepke, odziva ali potrdila o branju uporabnika_ce %1$s vam ni bilo mogoče dostaviti.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Ime (zahtevano)</string>
@@ -3656,11 +3658,11 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Kdo lahko vidi mojo številko</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Vaše telefonske številke ne bo videl nihče v Signalu</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Kdo me lahko najde preko telefonske številke</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Vaša telefonska številka bo vidna osebam in skupinam, ki jim pošiljate sporočila. Ljudje, ki imajo vašo številko v svojih telefonskih stikih, jo bodo videli tudi v Signalu.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Vaša telefonska številka bo vidna osebam in skupinam, ki jim pošiljate sporočila. Ljudje, ki imajo vašo številko med svojimi telefonskimi stiki, jo bodo videli tudi v Signalu.</string>
     <string name="PhoneNumberPrivacy_everyone">Kdorkoli</string>
     <string name="PhoneNumberPrivacy_my_contacts">Moji stiki</string>
     <string name="PhoneNumberPrivacy_nobody">Nikogar</string>
@@ -4045,7 +4047,7 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Deaktiviraj denarnico</string>
     <string name="DeactivateWalletFragment__your_balance">Vaše stanje</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Pred deaktivacijo plačilnega računa je zaželeno, da prenesete svoja sredstva v drugo denarnico. Če jih ne boste prenesli zdaj, bodo ostala v vaši denarnici, ki je povezana s Signalom, za primer, da boste kdaj ponovno aktivirali plačila.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Pred deaktivacijo plačil je priporočeno, da prenesete svoja sredstva v drugo denarnico. Če jih ne boste prenesli zdaj, bodo ostala v vaši denarnici, ki je povezana s Signalom, za primer, da boste kdaj ponovno aktivirali plačila.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Prenesi preostala sredstva</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Deaktiviraj brez prenosa</string>
     <string name="DeactivateWalletFragment__deactivate">Deaktiviraj</string>
@@ -4740,7 +4742,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Vaše mesečne donacije so bile preklicane, ker nismo mogli procesirati plačila. Značka ni več vidna na vašem profilu.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Vaša tekoča mesečna donacija je bila preklicana. %1$s Vaša značka %2$s ni več vidna na vašem profilu.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Še naprej lahko uporabljate Signal, za nadaljevanje podpore in reaktiviranje vaše značke pa obnovite naročnino.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Še naprej lahko uporabljate Signal, za nadaljevanje podpore aplikaciji in reaktiviranje vaše značke pa obnovite naročnino zdaj.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovitev naročnine</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Pojdi na Google Pay</string>
@@ -4783,7 +4785,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Vaše donacije ni bilo mogoče poslati zaradi napake v omrežju. Preverite povezavo in poskusite znova.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Donacija v imenu uporabnika/-ce %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s je doniral_a Signalu v vašem imenu</string>
     <!-- Gift badge redeem action label -->
@@ -5192,11 +5194,11 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Izberite, kdo lahko vidi vašo zgodbo. Spremembe ne bodo vplivale na že poslane zgodbe.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">Odgovori &amp; odzivi</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">Odgovori in odzivi</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Dovoli odgovore &amp; odzive</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Dovoli odgovore in odzive</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Dovolite ljudem, ki lahko vidijo vašo zgodbo, odgovore in odzive</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Dovolite odgovore in odzive ljudem, ki lahko vidijo vašo zgodbo</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal povezave</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5346,11 +5348,11 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Reagirali ste na zgodbo uporabnika_ce %1$s</string>
+    <string name="ConversationItem__you_reacted_to_s_story">Odzvali ste se na zgodbo uporabnika_ce %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">Reakcije na vašo zgodbo</string>
+    <string name="ConversationItem__reacted_to_your_story">Odzivi na vašo zgodbo</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">Reakcije na zgodbo</string>
+    <string name="ConversationItem__reacted_to_a_story">Odzivi na zgodbo</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->

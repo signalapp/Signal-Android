@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Vuelve a vincular tus dispositivos</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Los dispositivos que has añadido se desvincularon cuando se canceló el registro de tu dispositivo. Ve a Ajustes para volver a vincular cualquier dispositivo.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Abrir ajustes</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Nuevo grupo</string>
     <string name="Megaphones_invite_friends">Invitar amistades</string>
     <string name="Megaphones_use_sms">Usar SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Colores del chat</string>
     <string name="Megaphones_add_a_profile_photo">Añade una foto a tu perfil</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2139,13 +2139,15 @@
     <string name="MessageNotifier_unsecured_sms">SMS no cifrado</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contacto</string>
-    <string name="MessageNotifier_reacted_s_to_s">Reacción %1$s a: «%2$s».</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Reacción a tu video: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Reacción a tu foto: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_s">Ha reaccionado con %1$s a: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Reacción a tu vídeo: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Reacción a tu foto: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_gif">Reacción a tu GIF: %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Reacción a tu fichero: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Reacción a tu archivo: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Reacción a tu audio: %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reacción a tu adjunto para ver una vez: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reacción a tu archivo multimedia para ver una vez: %1$s.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reacción a tu sticker: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Mensaje eliminado.</string>
 
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Fallo en la entrega</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">No se ha podido recibir un mensaje, sticker, adjunto, reacción o notificación de lectura de %1$s. Lo ha enviado en un chat o en un grupo común.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">No se ha podido recibir un mensaje, sticker, adjunto, reacción o notificación de lectura de %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">No se ha podido recibir un mensaje, sticker, reacción o notificación de lectura de %1$s. Puede haberlo enviado en un chat privado o en un grupo común.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">No se ha podido recibir un mensaje, sticker, reacción o notificación de lectura de %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Nombre (necesario)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Quién puede ver mi número</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nadie podrá ver que usas tu número de teléfono para comunicarte a través de Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Quién puede encontrarme a través de mi número</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">No se ha podido mandar tu donación a causa de un error de la red. Comprueba tu conexión y vuelve a intentarlo.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Donación en nombre de %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s ha donado a Signal en tu nombre</string>
     <!-- Gift badge redeem action label -->

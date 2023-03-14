@@ -524,9 +524,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Түзмөктөрүңүздү кайра байланыштырыңыз</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Түзмөгүңүздү кайра каттап жатканда, буга чейин кошкон түзмөктөрүңүз ажырап калган. Аларды кайра байланыштыруу үчүн параметрлерге өтүңүз.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Параметрлерди ачуу</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1128,7 +1128,7 @@
     <string name="Megaphones_new_group">Жаңы топ</string>
     <string name="Megaphones_invite_friends">Досторду чакыруу</string>
     <string name="Megaphones_use_sms">SMS колдонуу</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Маектин түсү</string>
     <string name="Megaphones_add_a_profile_photo">Профиль сүрөтүн кошуу</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -1928,9 +1928,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Төшбелги алдыңыз</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Окуяңызга %1$s деген реакция кылды</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Окуяңызга %1$s деген сезимин билдирди</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Окуясына %1$s деген реакция кылды</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Окуясына %1$s деген сезимин билдирди</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Төлөм</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2067,14 +2067,16 @@
     <string name="MessageNotifier_unsecured_sms">Корголбогон SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Байланыш</string>
-    <string name="MessageNotifier_reacted_s_to_s">Төмөнкүгө %1$s деп реакция кылды: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Видеоңузга %1$s деп реакция кылды.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Сүрөтүңүзгө %1$s деп реакция кылды.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">GIF анимацияңызга %1$s деп реакция кылды.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Файлыңызга %1$s деп реакция кылды.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Аудиоңузга %1$s деп реакция кылды.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Бир жолу көрүлүүчү медиафайлыңызга %1$s деп реакция кылды.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Стикериңизге %1$s деп реакция кылды.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Төмөнкүгө %1$s деген сезимин билдирди: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Видеоңузга %1$s деген сезимин билдирди.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Сүрөтүңүзгө %1$s деген сезимин билдирди.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">GIF анимацияңызга %1$s деген сезимин билдирди.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Файлыңызга %1$s деген сезимин билдирди.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Аудиоңузга %1$s деген сезимин билдирди.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Бир жолу көрүлүүчү медиа файлыңызга %1$s деген сезимин билдирди.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Стикериңизге %1$s деген сезимин билдирди.</string>
     <string name="MessageNotifier_this_message_was_deleted">Бул билдирүү өчүрүлгөн.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">«Signal\'га байланыш кошулду» деген билдирмени өчүрөсүзбү? Аны кайра Signal\'дан &gt; Тууралоо &gt; Билдирмелер бөлүмүнөн иштете аласыз.</string>
@@ -2456,8 +2458,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Ката кетти</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s жөнөткөн билдирүү, стикер, реакция же окулду деген билдирме сизге жетпей калды. Ал бул нерселерди түздөн-түз сизге же кандайдыр бир топко жөнөткөнгө аракет кылган.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s жөнөткөн билдирүү, стикер, реакция же окулду деген билдирме сизге жетпей калды.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s жөнөткөн билдирүү, стикер, билдирген сезими же окулду деген билдирме сизге жетпей калды. Ал бул нерселерди түздөн-түз сизге же кандайдыр бир топко жөнөткөнгө аракет кылган.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s жөнөткөн билдирүү, стикер, билдирген сезими же окулду деген билдирме сизге жетпей калды.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Атыңыз (талап кылынат)</string>
@@ -3377,7 +3379,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Менин номерим кимге көрүнөт</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Номериңиз Signal\'да эч кимге көрүнбөйт</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Номерим аркылуу мени ким таба алат</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3757,12 +3759,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Капчыкты өчүрүү</string>
     <string name="DeactivateWalletFragment__your_balance">Балансыңыз</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Төлөмдөрдү өчүрүүдөн мурун акчаңызды башка капчык дарегине которуу сунушталат. Эгерде сиз акчаңызды азыр которбоону чечсеңиз, төлөмдөрдү кайра жандандырсаңыз, алар Signal менен байланышкан капчыгыңызда кала берет.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Төлөмдөрдү өчүрүүдөн мурун акчаңызды башка капчыкка которуп коюңуз. Эгер акчаңызды азыр которбосоңуз, төлөмдөрдү кайра иштеткенде, алар Signal\'га байланган капчыгыңызда кала берет.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Калган балансты которуу</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Которуусуз өчүрүү</string>
     <string name="DeactivateWalletFragment__deactivate">Деактивдештирүү</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Которуусуз өчүрүлсүнбү?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Төлөмдөрдү кайра жандандырууну тандасаңыз, балансыңыз Signal менен байланышкан капчыгыңызда кала берет.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Төлөмдөрдү кайра иштеткениңизде, каражаттар Signal\'га байланган капчыгыңызда кала берет.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Капчыкты өчүрүү катасы.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4076,7 +4078,7 @@
     <string name="Donate2022Q2Megaphone_not_now">Азыр эмес</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">Реакцияларды ыңгайлаштыруу</string>
+    <string name="EditReactionsFragment__customize_reactions">Сезимдер топтомун ыңгайлаштыруу</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">Быйтыкчаны алмаштыруу үчүн басыңыз</string>
     <string name="EditReactionsFragment__reset">Баштапкы абалга келтирүү</string>
     <string name="EditReactionsFragment_save">Сактоо</string>
@@ -4419,7 +4421,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Айлык колдоо жокко чыгарылды</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Колдоочу төшбелгисинин мөөнөтү бүтүп, профилиңизде көрүнбөй калды.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Бир жолу салым кошуп, колдоочу төшбелгиңизди дагы 30 күнгө иштете аласыз.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Бир жолу салым кошуп, колдоочу төшбелгиңизди дагы 30 күнгө узарта аласыз.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal\'ды колдоно берсеңиз болот, бирок сиздей адамдар үчүн иштелип чыккан технологияга колдоо көрсөтүү үчүн ай сайын салым кошуп, Signal\'дын Колдоочусу болуп албайсызбы?</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Колдоочу болуңуз</string>
@@ -4431,7 +4433,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Төлөмүңүз алынбагандыктан, ай сайын кошуп турган салымыңыз токтотулду. Төшбелгиңиз профилиңизде мындан ары көрүнбөйт.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Ай сайын кошуп турган салымыңыз токтотулду. %1$s Сиздин %2$s төшбелгиңиз профилиңизде мындан ары көрүнбөйт.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal\'ды колдоно берсеңиз болот, бирок колдонмону колдоп, төшбелгиңизди кайра иштетүү үчүн аны азыр жаңыртыңыз.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal\'ды колдоно берсеңиз болот, бирок колдонмону колдоп, төшбелгиңизди кайра иштетүү үчүн аны жаңыртышыңыз керек.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Жазылууну жаңыртуу</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay\'ге өтүү</string>
@@ -4474,7 +4476,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Интернет жок болгондуктан, колдооңуз жөнөтүлгөн жок. Байланышыңызды текшерип, кайталап көрүңүз.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$s атынан колдоо көрсөттү</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s сиздин атыңыздан Signal\'га колдоо көрсөттү</string>
     <!-- Gift badge redeem action label -->
@@ -4816,13 +4818,13 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Бул топтон чыгып кеткениңизден улам, бул окуяга жооп бере албайсыз.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Окуяга реакция кылды</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Окуяга сезимин билдирди</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Көрүүлөр</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Жооптор</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">Бул окуяга реакция кылуу</string>
+    <string name="StoryReplyComposer__react_to_this_story">Бул окуяга сезимди билдирүү</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s үчүн жеке жооп берүүдө</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
@@ -4865,11 +4867,11 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Окуяңызды кимдер көрө аларын тандаңыз. Киргизилген өзгөрүүлөр буга чейин жөнөтүлгөн окуяларга таасир этпейт.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">Жооптор жана реакциялар</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">Жооптор жана сезимдер</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Жоопторго жана реакцияларга уруксат берүү</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Жоопторго жана сезимдерге уруксат берүү</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Окуяңызды көрө алган адамдарга жооп берип, реакция кылуу үчүн мүмкүнчүлүк бериңиз</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Окуяңызды көрө алган адамдарга жооп берип, сезимдерин билдиргенге мүмкүнчүлүк бериңиз</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal байланыштары</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5016,11 +5018,11 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Сиз %1$s окуясына реакция кылдыңыз</string>
+    <string name="ConversationItem__you_reacted_to_s_story">%1$s түзгөн окуяга сезимиңизди билдирдиңиз</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">Окуяңызга реакция кылды</string>
+    <string name="ConversationItem__reacted_to_your_story">Окуяңызга сезимин билдирди</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">Окуяга реакция кылды</string>
+    <string name="ConversationItem__reacted_to_a_story">Окуяга сезимин билдирүү</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->

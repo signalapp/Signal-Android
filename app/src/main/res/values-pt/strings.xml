@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Revincule os seus dispositivos</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Os dispositivos que adicionou foram desvinculados quando o dispositivo não estava registado. Aceda às Definições para revincular dispositivos.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Abrir definições</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Novo grupo</string>
     <string name="Megaphones_invite_friends">Convidar amigos</string>
     <string name="Megaphones_use_sms">Utilizar SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Cor dos chats</string>
     <string name="Megaphones_add_a_profile_photo">Adicionar uma fotografia de perfil</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2146,6 +2146,8 @@
     <string name="MessageNotifier_reacted_s_to_your_file">Reagiu %1$s ao seu ficheiro.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Reagiu %1$s ao seu áudio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagiu %1$s ao seu ficheiro multimédia de visualização única</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagiu %1$s ao seu autocolante.</string>
     <string name="MessageNotifier_this_message_was_deleted">Esta mensagem foi eliminada.</string>
 
@@ -2539,7 +2541,7 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Problema na entrega</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Uma mensagem, autocolante, reação ou recibo de leitura enviado(a) por %1$s não pode ser entregue a si. Essa mensagem poderá ter sido tentada enviada para si diretamente ou através de um grupo.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Uma mensagem, autocolante, reação ou confirmação de leitura enviado por %1$s não pôde ser entregue a si. Poderá ter sido enviado diretamente a si, ou num grupo.</string>
     <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Não lhe foi possível entregar uma mensagem, autocolante, reação ou recibo de leitura enviado por %1$s.</string>
 
     <!-- profile_create_activity -->
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Quem pode ver o seu número</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Ninguém verá o seu número de telemóvel no Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Quem me pode encontrar através do número</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">A sua doação não pôde ser enviada devido a um erro de rede. Verifique a sua ligação e tente novamente.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Doação em nome de %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s doou ao Signal em seu nome</string>
     <!-- Gift badge redeem action label -->
@@ -5126,7 +5128,7 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Você reagiu à história de %1$s</string>
+    <string name="ConversationItem__you_reacted_to_s_story">Reagiu à história de %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">Reagiu à sua história</string>
     <!-- Conversation Item label for reactions to an unavailable story -->

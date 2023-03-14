@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">നിങ്ങളുടെ ഉപകരണങ്ങൾ റീലിങ്ക് ചെയ്യുക</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">നിങ്ങളുടെ ഉപകരണം അൺരജിസ്റ്റർ ചെയ്തപ്പോൾ നിങ്ങൾ ചേർത്ത ഉപകരണങ്ങൾ അൺലിങ്ക് ചെയ്തു. ഉപകരണങ്ങൾ റീലിങ്ക് ചെയ്യാൻ ക്രമീകരണത്തിലേക്ക് പോക്കുക.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">ക്രമീകരണങ്ങൾ തുറക്കുക</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">പുതിയ ഗ്രൂപ്പ്</string>
     <string name="Megaphones_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
     <string name="Megaphones_use_sms">SMS ഉപയോഗിക്കുക</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">ചാറ്റ് നിറങ്ങൾ</string>
     <string name="Megaphones_add_a_profile_photo">ഒരു പ്രൊഫൈൽ ഫോട്ടോ ചേർക്കുക</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">സുരക്ഷിതമല്ലാത്ത SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">കോൺ‌ടാക്റ്റ്</string>
-    <string name="MessageNotifier_reacted_s_to_s">\"%2$s\"- നോട് %1$s പ്രതികരിച്ചു</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">നിങ്ങളുടെ വീഡിയോയോട് %1$s പ്രതികരിച്ചു.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">നിങ്ങളുടെ ചിത്രത്തോട് %1$s പ്രതികരിച്ചു.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">നിങ്ങളുടെ GIF-നോട് %1$s എന്ന് പ്രതികരിച്ചു.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">നിങ്ങളുടെ ഫയലിനോട് %1$s പ്രതികരിച്ചു.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">നിങ്ങളുടെ ഓഡിയോയോട് %1$s പ്രതികരിച്ചു.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">നിങ്ങളുടെ ഒരിക്കൽ മാത്രം കാണാവുന്ന മീഡിയയിലേക്കുള്ള പ്രതികരണം %1$s ആണ്</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">നിങ്ങളുടെ സ്റ്റിക്കറിനോട് %1$s പ്രതികരിച്ചു.</string>
+    <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" എന്നതിനോട് %1$s നൽകി പ്രതികരിച്ചു</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">നിങ്ങളുടെ വീഡിയോയോട് %1$s നൽകി പ്രതികരിച്ചു.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">നിങ്ങളുടെ ചിത്രത്തോട് %1$s നൽകി പ്രതികരിച്ചു.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">നിങ്ങളുടെ GIF-നോട് %1$s നൽകി പ്രതികരിച്ചു.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">നിങ്ങളുടെ ഫയലിനോട് %1$s നൽകി പ്രതികരിച്ചു.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">നിങ്ങളുടെ ഓഡിയോയോട് %1$s നൽകി പ്രതികരിച്ചു.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">ഒരിക്കൽ മാത്രം കാണാവുന്ന മീഡിയയോട് %1$s നൽകി പ്രതികരിച്ചു.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">നിങ്ങളുടെ സ്റ്റിക്കറിനോട് %1$s നൽകി പ്രതികരിച്ചു.</string>
     <string name="MessageNotifier_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">\"കോൺ‌ടാക്റ്റ് Signal-ഇൽ (സിഗ്‌നലിൽ)‌ ചേർ‌ന്നു\" എന്ന അറിയിപ്പുകൾ ഓഫാക്കണോ? നിങ്ങൾക്ക് അവ വീണ്ടും പ്രവർത്തനക്ഷമമാക്കാം: Signal-ഇൽ (സിഗ്നലിൽ) &gt; ക്രമീകരണങ്ങൾ &gt; അറിയിപ്പുകൾ.</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">ഡെലിവറി പ്രശ്നം</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s-ൽ നിന്ന് ഒരു സന്ദേശം, സ്റ്റിക്കർ, പ്രതികരണം, അല്ലെങ്കിൽ വായിച്ച രസീത് എന്നിവ നിങ്ങൾക്ക് വേണ്ടി ഡെലിവർ ചെയ്യാൻ കഴിഞ്ഞില്ല. അവർ അത് നേരിട്ടോ അല്ലെങ്കിൽ ഒരു ഗ്രൂപ്പിലോ നിങ്ങൾക്ക് അയയ്ക്കാൻ ശ്രമിച്ചിരിക്കാം.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s-ൽ നിന്ന് ഒരു സന്ദേശം, സ്റ്റിക്കർ, പ്രതികരണം, അല്ലെങ്കിൽ വായിച്ച രസീത് എന്നിവ നിങ്ങൾക്ക് വേണ്ടി ഡെലിവർ ചെയ്യാൻ കഴിഞ്ഞില്ല.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s എന്നയാളിൽ നിന്ന് സന്ദേശം, സ്റ്റിക്കർ, പ്രതികരണം, അല്ലെങ്കിൽ വായിച്ചെന്ന രസീത് എന്നിവ നിങ്ങൾക്ക് ലഭിക്കില്ല. അവർ അത് നേരിട്ടോ അല്ലെങ്കിൽ ഒരു ഗ്രൂപ്പിലോ നിങ്ങൾക്ക് അയയ്ക്കാൻ ശ്രമിച്ചിരിക്കാം.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s എന്നയാളിൽ നിന്ന് സന്ദേശം, സ്റ്റിക്കർ, പ്രതികരണം, അല്ലെങ്കിൽ വായിച്ചെന്ന രസീത് എന്നിവ നിങ്ങൾക്ക് ലഭിക്കില്ല.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">പേരിൻ്റെ ആദ്യ ഭാഗം (ആവശ്യമാണ്)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">എന്റെ നമ്പർ ആർക്കൊക്കെ കാണാനാകും</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Signal-ൽ നിങ്ങളുടെ ഫോൺ നമ്പർ ആർക്കും കാണാനാകില്ല</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">നമ്പർ ഉപയോഗിച്ച് എന്നെ ആർക്കൊക്കെ കണ്ടെത്താനാകും</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3853,7 +3855,7 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">വാലറ്റ് നിർജ്ജീവമാക്കുക</string>
     <string name="DeactivateWalletFragment__your_balance">നിങ്ങളുടെ ബാലൻസ്</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">പേയ്‌മെന്റുകൾ നിർജ്ജീവമാക്കുന്നതിന് മുമ്പ് നിങ്ങളുടെ ഫണ്ടുകൾ മറ്റൊരു വാലറ്റ് വിലാസത്തിലേക്ക് ട്രാൻസ്ഫർ ചെയ്യാൻ ശുപാർശ ചെയ്യുന്നു. നിങ്ങളുടെ ഫണ്ടുകൾ ഇപ്പോൾ ട്രാൻസ്ഫർ ചെയ്യാതിരിക്കാൻ നിങ്ങൾ തീരുമാനിക്കുകയാണെങ്കിൽ, നിങ്ങൾ പേയ്‌മെന്റുകൾ വീണ്ടും സജീവമാക്കുകയാണെങ്കിൽ, Signal-മായി ബന്ധിപ്പിച്ചിട്ടുള്ള നിങ്ങളുടെ വാലറ്റിൽ അവ തുടരും.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">പേയ്‌മെന്റുകൾ നിർജ്ജീവമാക്കുന്നതിന് മുമ്പ് നിങ്ങളുടെ ഫണ്ടുകൾ മറ്റൊരു വാലറ്റ് വിലാസത്തിലേക്ക് ട്രാൻസ്ഫർ ചെയ്യാൻ ശുപാർശ ചെയ്യുന്നു. നിങ്ങളുടെ ഫണ്ടുകൾ ഇപ്പോൾ ട്രാൻസ്ഫർ ചെയ്യാതിരിക്കാൻ നിങ്ങൾ തീരുമാനിക്കുകയും, നിങ്ങൾ പേയ്‌മെന്റുകൾ വീണ്ടും സജീവമാക്കുകയുമാണെങ്കിൽ, Signal-മായി ബന്ധിപ്പിച്ചിട്ടുള്ള നിങ്ങളുടെ വാലറ്റിൽ അവ തുടരും.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">ബാക്കിയുള്ള ബാലൻസ് ട്രാൻസ്ഫർ ചെയ്യുക</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">ട്രാൻസ്ഫർ ചെയ്യാതെ നിർജ്ജീവമാക്കുക</string>
     <string name="DeactivateWalletFragment__deactivate">നിർജ്ജീവമാക്കുക</string>
@@ -4534,7 +4536,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">നിങ്ങളുടെ പേയ്മെന്‍റ് പ്രോസസ് ചെയ്യാൻ കഴിയാത്തതിനാൽ നിങ്ങളുടെ പ്രതിമാസ സംഭാവന റദ്ദായി. നിങ്ങളുടെ ബാഡ്‍ജ് ഇനി പ്രൊഫൈലിൽ ലഭ്യമാകില്ല.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">നിങ്ങളുടെ ആവർത്തിക്കുന്ന പ്രതിമാസ സംഭാവന റദ്ദാക്കി. %1$s നിങ്ങളുടെ %2$s ബാഡ്‌ജ് ഇനിമുതൽ നിങ്ങളുടെ പ്രൊഫൈലിൽ ദൃശ്യമാകില്ല.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">നിങ്ങൾക്ക് Signal ഉപയോഗിക്കുന്നത് തുടരാം, എന്നാൽ ആപ്പിനെ പിന്തുണയ്‌ക്കാനും നിങ്ങളുടെ ബാഡ്‌ജ് വീണ്ടും ആക്‌ടിവേറ്റ് ചെയ്യാനും, ഇപ്പോൾ പുതുക്കുക.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">നിങ്ങൾക്ക് Signal ഉപയോഗിക്കുന്നത് തുടരാം, എന്നാൽ ആപ്പിനെ പിന്തുണയ്‌ക്കാനും നിങ്ങളുടെ ബാഡ്‌ജ് വീണ്ടും സജീവമാക്കാനും ഇപ്പോൾ പുതുക്കുക.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">സബ്‍സ്ക്രിപ്ഷൻ പുതുക്കുക</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay-യിലേക്ക് പോകുക</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">ഒരു നെറ്റ്‌വർക്ക് പിശക് കാരണം നിങ്ങളുടെ സംഭാവന അയയ്‌ക്കാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$s എന്നയാളുടെ പേരിലുള്ള സംഭാവന</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s നിങ്ങളുടെ പേരിൽ Signal-ലേക്ക് സംഭാവന ചെയ്‌തു</string>
     <!-- Gift badge redeem action label -->

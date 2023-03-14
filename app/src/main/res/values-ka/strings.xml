@@ -21,7 +21,7 @@
     <string name="delete">წაშლა</string>
     <string name="please_wait">გთხოვთ დაელოდოთ…</string>
     <string name="save">შენახვა</string>
-    <string name="note_to_self">შენიშვნა საკუთარ თავს</string>
+    <string name="note_to_self">ჩემი ჩანიშვნები</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">თავიდან მიაბი შენი მოწყობილობები</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">შენ მიერ დამატებული მოწყობილობები მას შემდეგ აღარ არის მიბმული, რაც შენი მოწყობილობის რეგისტრაცია გააუქმე. მოწყობილობების ახლიდან მისაბმელად გადადი პარამეტრებში.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">პარამეტრებში შესვლა</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">ახალი ჯგუფი</string>
     <string name="Megaphones_invite_friends">მოიწვიე მეგობრები</string>
     <string name="Megaphones_use_sms">SMS-ის გამოყენება</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">ჩატის ფერები</string>
     <string name="Megaphones_add_a_profile_photo">პროფილის ფოტოს დამატება</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2139,13 +2139,15 @@
     <string name="MessageNotifier_unsecured_sms">დაუცველი SMS-ი</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">კონტაქტი</string>
-    <string name="MessageNotifier_reacted_s_to_s">გამოეხმაურა %1$s-ს: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_s">გამოეხმაურა %1$s: \"%2$s-ს\".</string>
     <string name="MessageNotifier_reacted_s_to_your_video">გამოეხმაურა %1$s შენს ვიდეოს.</string>
     <string name="MessageNotifier_reacted_s_to_your_image">გამოეხმაურა %1$s შენს სურათს.</string>
     <string name="MessageNotifier_reacted_s_to_your_gif">გამოეხმაურა %1$s შენს GIF-ს.</string>
     <string name="MessageNotifier_reacted_s_to_your_file">გამოეხმაურა %1$s შენს ფაილს.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">გამოეხმაურა %1$s შენს აუდიოს.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">გამოეხმაურა %1$s შენს ერთჯერად მედია-ფაილს.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">გამოეხმაურა %1$s შენს ერთხელ სანახავ მედია-ფაილს.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">გამოეხმაურა %1$s შენს სტიკერს.</string>
     <string name="MessageNotifier_this_message_was_deleted">ეს შეტყობინება იქნა წაშლილი.</string>
 
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">გაგზავნის პრობლემა</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">შეტყობინება, სტიკერი, რეაქცია ან წაკითვის დასტური ვერ გამოგეგზავნება %1$s -სგან. შესაძლოა მან გამოგზავნა პირდაპირ, ან ჯგუფში სცადა.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">შეტყობინება, სტიკერი, რეაქცია ან წაკითხვის დასტური ვერ გამოგეგზავნება %1$s -სგან.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s -სგან შეტყობინება, სტიკერი, რეაქცია ან წაკითხვის დასტური ვერ გამოგეგზავნება. შესაძლოა მან გამოგზავნა პირდაპირ, ან ჯგუფში სცადა.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s -სგან შეტყობინება, სტიკერი, რეაქცია ან წაკითხვის დასტური ვერ გამოგეგზავნება.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">სახელი (სავალდებულო)</string>
@@ -3470,11 +3472,11 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">ვის შეუძლია ჩემი ნომრის ნახვა</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Signal-ზე შენი ტელეფონის ნომერს ვერავინ ნახავს</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">ვის შეუძლია ნომრით მიპოვოს</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">შენი ტელეფონის ნომერი ხილული იქნება ყველა ადამიანისა და ჯგუფისთვის, რომელთაც სწერ. ადამიანები, რომლებსაც შენი ნომერი სატელეფონო კონტაქტებში აქვთ, მას Signal-ზეც ნახავენ.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">შენი ტელეფონის ნომერი ხილული იქნება ყველა ადამიანისა და ჯგუფისთვის, ვისთანაც მიმოწერა გაქვს. ადამიანები, რომლებსაც შენი ნომერი სატელეფონო კონტაქტებში აქვთ, მას Signal-ზეც ნახავენ.</string>
     <string name="PhoneNumberPrivacy_everyone">ყველა</string>
     <string name="PhoneNumberPrivacy_my_contacts">ჩემი კონტაქტები</string>
     <string name="PhoneNumberPrivacy_nobody">არავინ</string>
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">საფულის დეაქტივაცია</string>
     <string name="DeactivateWalletFragment__your_balance">შენი ბალანსი</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">გადახდების დეაქტივაციამდე რეკომენდებულია შენი თანხების სხვა საფულის მისამართზე გადარიცხვა. თუ გადაწყვეტ, რომ შენი თანხები ახლა არ გადარიცხო, ისინი დარჩება Signal-თან დაკავშირებულ შენს საფულეში, თუ ხელახლა გააქტიურებთ გადახდებს.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">გადახდების დეაქტივაციამდე რეკომენდებულია, შენი თანხები სხვა საფულის მისამართზე გადარიცხო. თუ გადაწყვეტ, რომ შენი თანხები ახლა არ გადარიცხო, ისინი დარჩება Signal-თან დაკავშირებულ შენს საფულეში, თუ გადახდებს ხელახლა გააქტიურებ.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">დარჩენილი ბალანსის გადატანა</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">დეაქტივაცია გადატანის გარეშე</string>
     <string name="DeactivateWalletFragment__deactivate">დეაქტივაცია</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">გსურს გადატანის გარეშე დეაქტივაცია?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">შენი ბალანსი დარჩება შენს საფულეში, რომელიც დაკავშირებულია Signal-თან, თუ ტრანზაქციების ხელახლა გააქტიურებას გადაწყვეტ.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">თუ ტრანზაქციების ხელახლა გააქტიურებას გადაწყვეტ, შენი ბალანსი შენს საფულეში დარჩება, რომელიც Signal-თანაა დაკავშირებული.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">საფულის დეაქტივაციისას ხარვეზი მოხდა.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4522,7 +4524,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">ყოველთვიური დონაცია გაუქმებულია</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">შენი ბუსტის ემბლემას ვადა ამოეწურა და შენს პროფილზე ის აღარ ჩანს.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">ერთჯერადი კონტრიბუციით შეგიძლია ბუსტის ემბლემა დამატებით 30 დღით გააგრძელო.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">შეგიძლია ერთჯერადი კონტრიბუციით ბუსტის ემბლემა დამატებით 30 დღით გააგრძელო.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">შეგიძლია Signal-ის გამოყენება გააგრძელო, მაგრამ შენთვის შექმნილი ტექნოლოგიის დასახმარებლად, შენ გაქვს შესაძლებლობა მისი მხარდამჭერი გახდე ყოველთვიური დონაციების გაკეთებით.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">გახდი მხარდამჭერი</string>
@@ -4534,7 +4536,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">შენი განმეორებადი ყოველთვიური დონაცია გაუქმდა, რადგან შენი ტრანზაქცია ვერ დავამუშავეთ. შენი ემბლემა აღარ ჩანს შენს პროფილზე.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">შენი განმეორებადი ყოველთვიური დონაცია გაუქმდა. %1$s შენი %2$s ემბლემა აღარ ჩანს შენს პროფილზე.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">შეგიძლია გააგრძელო Signal-ის გამოყენება, მაგრამ აპის მხარდასაჭერად და შენი ემბლემის ხელახლა გასააქტიურებლად, აღადგინე გამოწერა.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">შეგიძლია Signal-ის გამოყენება გააგრძელო, მაგრამ აპის მხარდასაჭერად და შენი ემბლემის ხელახლა გასააქტიურებლად, გამოწერა უნდა აღადგინო.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">გამოწერის განახლება</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay-ში შესვლა</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">შენი დონაცია ვერ გაიგზავნა კავშირის ხარვეზის გამო. შეამოწმე შენი კავშირი და თავიდან სცადე.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">დონაცია %1$s-ის სახელზე</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s-მა Signal-ს დონაცია შენს სახელზე გაუკეთა</string>
     <!-- Gift badge redeem action label -->
@@ -4976,7 +4978,7 @@
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">პასუხები &amp; გამოხმაურება</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">პასუხებისა &amp; გამოხმაურებების დაშვება</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">პასუხებისა &amp; გამოხმაურების დაშვება</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">ნება მიეცი ადამიანებს, რომლებსაც შეუძლიათ შენი Story-ის ნახვა, მას გამოეხმაურონ</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->

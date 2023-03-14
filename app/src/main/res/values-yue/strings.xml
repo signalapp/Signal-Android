@@ -21,7 +21,7 @@
     <string name="delete">刪除</string>
     <string name="please_wait">請等等…</string>
     <string name="save">儲存</string>
-    <string name="note_to_self">樹窿</string>
+    <string name="note_to_self">俾自己嘅筆記</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -524,9 +524,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">重新連結裝置</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">裝置取消註冊嘅時候，之前新增咗嘅裝置已經解除連結。請到「設定」重新連結裝置。</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">打開設定</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1128,8 +1128,8 @@
     <string name="Megaphones_new_group">全新嘅谷</string>
     <string name="Megaphones_invite_friends">誠邀好友</string>
     <string name="Megaphones_use_sms">發短訊</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">加張個人資料嘅相</string>
+    <string name="Megaphones_chat_colors">聊天顏色</string>
+    <string name="Megaphones_add_a_profile_photo">加入個人檔案相片</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">回覆</string>
@@ -1928,9 +1928,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">你兌換咗一個徽章</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">用 %1$s 回應咗你嘅限時動態</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">對你嘅限時動態傳送咗 %1$s 心情回應</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">用 %1$s 回應咗佢嘅限時動態</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">對佢嘅限時動態傳送咗 %1$s 心情回應</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">付款</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2067,14 +2067,16 @@
     <string name="MessageNotifier_unsecured_sms">無加密嘅短訊</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">聯絡人</string>
-    <string name="MessageNotifier_reacted_s_to_s">對「%2$s」畀咗 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">對您條片畀咗 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">對您幅圖畀咗 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">對您個 GIF 畀咗 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">對您個檔案畀咗 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">對您嘅音訊畀咗 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">對您嘅流聲掠影多媒體檔案畀咗 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">對您嘅貼圖畀咗 %1$s 心情。</string>
+    <string name="MessageNotifier_reacted_s_to_s">傳送咗 %1$s 心情回應：「%2$s」。</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">對你嘅影片傳送咗 %1$s 心情回應。</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">對你嘅圖片傳送咗 %1$s 心情回應。</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">對你嘅 GIF 傳送咗 %1$s 心情回應。</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">對你嘅檔案傳送咗 %1$s 心情回應。</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">對你嘅音訊傳送咗 %1$s 心情回應。</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">對你嘅「閱後即毀」媒體檔案傳送咗 %1$s 心情回應。</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">對你嘅貼圖傳送咗 %1$s 心情回應。</string>
     <string name="MessageNotifier_this_message_was_deleted">呢個訊息已被刪除。</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">係咪要閂咗聯絡人加入 Signal 嘅通知？您可以喺 Signal &gt; 設定 &gt; 通知 度再啟用返。</string>
@@ -2456,8 +2458,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">送遞有問題</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s 有個訊息、貼圖、心情或者睇咗扱嘅印送遞唔到畀您。都送唔到過嚟吖嘛，咁都唔知佢係直接發畀您，定發去谷度。</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s 有個訊息、貼圖、心情或者睇咗扱嘅印送遞唔到畀您。</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">系統傳送唔到 %1$s 俾你嘅訊息、貼圖、心情回應或者已讀標記。佢可能係直接或者透過群組傳送俾你嘅。</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">系統傳送唔到 %1$s 俾你嘅訊息、貼圖、心情回應或者已讀標記。</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">名 (必填)</string>
@@ -3371,13 +3373,13 @@
     <string name="preferences_app_protection__see_my_phone_number">見到我嘅電話冧把</string>
     <string name="preferences_app_protection__find_me_by_phone_number">用電話冧把摷到我</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">電話冧把</string>
+    <string name="preferences_app_protection__phone_number">手機號碼</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">選擇邊個可以睇到你嘅手機號碼，同埋喺 Signal 度用手機號碼聯絡你。</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">邊個可以睇到我嘅手機號碼</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">冇人會喺 Signal 度睇到你嘅手機號碼</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">邊個可以用手機號碼搵到我</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3757,12 +3759,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">停用銀包</string>
     <string name="DeactivateWalletFragment__your_balance">您嘅結餘</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">建議您停用付款之前，先轉移您嘅款項到另一個銀包位址。若果您而家揀唔轉移您嘅款項，假如您重新啟用付款，啲款項到時仍然會留喺您連結咗 Signal 嘅銀包入面。</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">我哋建議你喺停用付款功能之前，先將你嘅資金轉移到另一個錢包位址。如果你而家唔轉移資金，當你重新啟用付款功能嗰陣，你嘅資金到時仍然會留喺連結咗 Signal 嘅錢包入面。</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">轉移剩返嘅結餘</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">唔轉移就停用</string>
     <string name="DeactivateWalletFragment__deactivate">停用</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">係咪要唔轉移就停用？</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">假如您揀去重新啟用付款，您嘅結餘到時仍然會留喺您連結咗 Signal 嘅銀包入面。</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">如果你重新啟用付款功能，你嘅餘額到時仍然會留喺連結咗 Signal 嘅錢包入面。</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">停用銀包嘅時候發生錯誤。</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4076,7 +4078,7 @@
     <string name="Donate2022Q2Megaphone_not_now">遲啲先啦</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">自選在意嘅心情</string>
+    <string name="EditReactionsFragment__customize_reactions">自訂心情回應</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">撳一下替換另一個表情符號</string>
     <string name="EditReactionsFragment__reset">重設</string>
     <string name="EditReactionsFragment_save">儲存</string>
@@ -4419,7 +4421,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">每月捐款已經取消</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">您個「集氣」襟章已經褪色夠鐘換喇，因此已經喺您嘅個人資料度除返落嚟唔再睇到。</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">您可以單次捐款，將您嘅「集氣」襟章重新掛上 30 日。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">你可以透過單次捐款重新啟動你嘅捐款徽章，將佢延長 30 日。</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal 一切如常運作，並讓您自由使用。假如您想力撐為您而設嘅科技，請考慮做我哋每月捐款計劃嘅後援金主。</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">擔當後援</string>
@@ -4431,7 +4433,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">由於我哋處理唔到你嘅付款，所以你嘅每月定期捐款已經取消。你嘅個人檔案唔會再顯示徽章。</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">你嘅每月定期捐款已經取消。%1$s 你嘅個人檔案唔會再顯示「%2$s」徽章。</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal 一切如常運作，並讓您自由使用。若要繼續支持呢個 app 並掛返起您個襟章，請立即續期。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">你可以如常使用 Signal，但係如果想支持應用程式同埋重新啟動你嘅徽章，請立即續期贊助。</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">為課金計劃續期</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">跳去 Google Pay</string>
@@ -4474,7 +4476,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">由於網路發生錯誤，系統發送唔到你嘅捐款。請檢查你嘅連線，然後再試一次。</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">代表 %1$s 捐款</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s 代表你向 Signal 捐款</string>
     <!-- Gift badge redeem action label -->
@@ -4816,13 +4818,13 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">由於你唔再係呢個群組嘅成員，所以冇得回覆呢個限時動態。</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">對呢味是日花生畀咗心情</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">對限時動態傳送咗心情回應</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">遊覽</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">回覆</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">對呢味是日花生畀心情</string>
+    <string name="StoryReplyComposer__react_to_this_story">對呢個限時動態傳送心情回應</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">私底下回覆緊 %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
@@ -4865,11 +4867,11 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">選擇邊個可以睇到你嘅限時動態。呢個選擇唔會影響你喺更改前發送嘅限時動態。</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">回覆與心情</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">回覆同心情回應</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">俾人哋回覆同埋畀心情</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">允許回覆同心情回應</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">可以遊覽是日花生嘅花生友，都開放畀佢哋回覆同畀心情</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">睇到你限時動態嘅人都可以俾心情回應同回覆</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal 人脈</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5016,11 +5018,11 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">您對 %1$s 嘅是日花生畀咗心情</string>
+    <string name="ConversationItem__you_reacted_to_s_story">你對 %1$s 嘅限時動態傳送咗心情回應</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">對您嘅是日花生畀咗心情</string>
+    <string name="ConversationItem__reacted_to_your_story">對你嘅限時動態傳送咗心情回應</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">對一味是日花生畀咗心情</string>
+    <string name="ConversationItem__reacted_to_a_story">對一則限時動態傳送咗心情回應</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->

@@ -524,13 +524,13 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">သင့်စက်များကို ပြန်ချိတ်ရန်</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">သင့်စက်ကို စာရင်းမသွင်းထားပါက သင် ပေါင်းထည့်ထားသော စက်များသည် ချိတ်ဆက်မှုပြုတ်နေပါမည်။ စက်တစ်လုံးလုံးကို ပြန်ချိတ်ရန် ဆက်တင်သို့ သွားပါ။</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">ဆက်တင် ဖွင့်ရန်</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
-    <string name="RelinkDevicesReminderFragment__later">နောက်မှလုပ်မည်</string>
+    <string name="RelinkDevicesReminderFragment__later">နောက်မှ</string>
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">မန်ဘာများ ရွေးရန်</string>
@@ -1128,8 +1128,8 @@
     <string name="Megaphones_new_group">အဖွဲ့သစ်</string>
     <string name="Megaphones_invite_friends">သူငယ်ချင်းများကို ဖိတ်ပါ</string>
     <string name="Megaphones_use_sms">SMS ကိုသုံးပါ</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">ပရိုဖိုင် ဓာတ်ပုံ ပေါင်းထည့်ရန်</string>
+    <string name="Megaphones_chat_colors">ချက်(တ်)အရောင်</string>
+    <string name="Megaphones_add_a_profile_photo">ပရိုဖိုင်ပုံ ပေါင်းထည့်ရန်</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">ပြန်စာများ</string>
@@ -2067,14 +2067,16 @@
     <string name="MessageNotifier_unsecured_sms">မလုံခြုံသော SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">အဆက်အသွယ်</string>
-    <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">သင့် ဗီဒီယို သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">သင့် ရုပ်ပုံ သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">သင့် GIF အား %1$s တုံ့ပြန်ခဲ့သည်။</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">သင့် ဖိုင်သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">သင့် အသံဖိုင် သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">သင့် တစ်ခါကြည့် မီဒီယာ သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">သင့် စတစ်ကာ သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+    <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" ကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">သင့်ဗီဒီယိုကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">သင့်ရုပ်ပုံကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">သင့် GIF ကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">သင့်ဖိုင်ကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">သင့်အသံဖိုင်ကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">သင့်တစ်ကြိမ်ကြည့် မီဒီယာကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">သင့်စတစ်ကာကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
     <string name="MessageNotifier_this_message_was_deleted">ဤမက်ဆေ့အား ဖျက်ပြီးပါပြီ။</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">အဆက်အသွယ်မှ​ Signal သို့ ဝင်ရောက်သည်ဆိုသည့် အသိပေးချက်များကို ပိတ်မည်လား? Signal &gt; အပြင်အဆင်များ &gt; အသိပေးချက်များ ထဲဝင်၍ ၎င်းအသိပေးချက်များကို ဖွင့်လို့ရပါသည်။</string>
@@ -3375,13 +3377,13 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">သင့်ဖုန်းနံပါတ်ကို မြင်နိုင်သူများနှင့် Signal တွင် ထိုနံပါတ်ဖြင့် သင့်ထံသို့ ဆက်သွယ်နိုင်သူများကို ရွေးချယ်ပါ။</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">ကျွန်ုပ်၏ဖုန်းနံပါတ်ကို မြင်နိုင်သူများ</string>
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">ကျွန်ုပ်၏ ဖုန်းနံပါတ်ကို မြင်နိုင်သူများ</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Signal ပေါ်တွင် သင့်ဖုန်းနံပါတ်ကို မည်သူမျှ မြင်နိုင်မည် မဟုတ်ပါ</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">ဖုန်းနံပါတ်ဖြင့် ကျွန်ုပ်ကို ရှာနိုင်သူများ</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">သင်မက်ဆေ့ချ်ပို့သော လူများနှင့် အဖွဲ့များသည် သင်၏ ဖုန်းနံပါတ်ကို မြင်တွေ့ရပါမည်။ သင့်ဖုန်းနံပါတ်ကို ဖုန်းအဆက်အသွယ်များထဲတွင် ထည့်ထားသူများသည်လည်း Signal ပေါ်တွင် သင့်ဖုန်းနံပါတ်ကို တွေ့ရှိရပါမည်။</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">သင် မက်ဆေ့ချ်ပို့သော လူများနှင့် အဖွဲ့များသည် သင့်ဖုန်းနံပါတ်ကို မြင်တွေ့ရပါမည်။ သင့်ဖုန်းနံပါတ်ကို ဖုန်းအဆက်အသွယ်များထဲတွင် ထည့်ထားသူများသည်လည်း သင့်ဖုန်းနံပါတ်ကို Signal ပေါ်တွင် တွေ့ရှိရပါမည်။</string>
     <string name="PhoneNumberPrivacy_everyone">လူသားတိုင်း</string>
     <string name="PhoneNumberPrivacy_my_contacts">ကျွန်ုပ်၏အဆက်အသွယ်များ</string>
     <string name="PhoneNumberPrivacy_nobody">ဘယ်သူမှ</string>
@@ -4474,7 +4476,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">ကွန်ရက်ချို့ယွင်းချက်ကြောင့် သင့်လှူဒါန်းမှုကို မပေးပို့နိုင်ပါ။ ချိတ်ဆက်မှုစစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$s ကိုယ်စား လှူဒါန်းမှု</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s သည် သင့်ကိုယ်စား Signal သို့ လှူဒါန်းထားပါသည်</string>
     <!-- Gift badge redeem action label -->

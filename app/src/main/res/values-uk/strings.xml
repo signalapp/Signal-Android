@@ -584,11 +584,11 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Прив\'яжіть пристрої повторно</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Додані пристрої було відв\'язано, коли була скасована реєстрація вашого пристрою. Перейдіть у налаштування, щоб повторно прив’язати пристрої.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">Відкрити налаштування</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">До налаштувань</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
     <string name="RelinkDevicesReminderFragment__later">Пізніше</string>
 
@@ -1272,8 +1272,8 @@
     <string name="Megaphones_new_group">Нова група</string>
     <string name="Megaphones_invite_friends">Запросити друзів</string>
     <string name="Megaphones_use_sms">Використовувати SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">Додати фото профілю</string>
+    <string name="Megaphones_chat_colors">Кольори чату</string>
+    <string name="Megaphones_add_a_profile_photo">Фото профілю</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Відповіді</string>
@@ -2141,9 +2141,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Ви активували значок</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Реакція %1$s на вашу сторі</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Реакція на вашу сторі: %1$s</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Реакція %1$s на сторі</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Реакція на сторі: %1$s</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Платіж</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2283,14 +2283,16 @@
     <string name="MessageNotifier_unsecured_sms">Незахищене SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Контакт</string>
-    <string name="MessageNotifier_reacted_s_to_s">Відреагував (-ла) %1$sна: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Відреагував (-ла) %1$s на ваше відео.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Відреагував (-ла) %1$s на ваше зображення.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Відреагував %1$s на вашу GIF.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Відреагував (-ла) %1$s на ваш файл.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Відреагував (-ла) %1$s на ваше аудіо.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Відреагував (-ла) %1$s на ваше одноразове медіа</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Відреагував (-ла) %1$s на ваш стікер.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Реакція %1$s на «%2$s».</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Реакція на ваше відео: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Реакція на ваше зображення: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Реакція на ваш GIF: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Реакція на ваш файл: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Реакція на ваше аудіо: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реакція на ваше одноразове медіа: %1$s.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Реакція на ваш стікер: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Це повідомлення було видалено.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Вимкнути сповіщення \"Контакт приєднався до Signal\"? Ви можете заново включити їх в Signal &gt; Налаштування &gt; Сповіщення.</string>
@@ -2705,8 +2707,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Проблема з доставленням</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Не вдалось доставити повідомлення, стікер, реакцію або повідомлення про прочитання від %1$sдо вас. Ця людина могла відправити вищевказане безпосередньо вам або в яку-небудь групу.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Не вдалося доставити повідомлення, стікер, реакцію або повідомлення про прочитання від %1$s вам.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Не вдалося доставити повідомлення, стікер, реакцію або повідомлення про прочитання від користувача %1$s до вас. Можливо, користувач надіслав це безпосередньо вам або в групу.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Не вдалося доставити повідомлення, стікер, реакцію або повідомлення про прочитання від користувача %1$s до вас.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Ім\'я (обов\'язково)</string>
@@ -3656,7 +3658,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Хто може бачити мій номер</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Ніхто не бачитиме ваш номер телефону в Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Хто може знайти мене за номером телефону</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4045,12 +4047,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Вимкнути гаманець</string>
     <string name="DeactivateWalletFragment__your_balance">Ваш баланс</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Перш ніж відключати платежі, ми рекомендуємо перевести кошти на інший гаманець. Якщо ви вирішите не передавати свої кошти зараз, вони залишаться у вашому Гаманці, прив\'язаного з Signal, якщо ви знову активуєте платежі.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Перш ніж відключити платежі, ми рекомендуємо перевести кошти в інший гаманець. Інакше кошти залишаться у вашому гаманці, прив\'язаному до Signal, якщо ви знову активуєте платежі.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Перевести кошти, що залишились на балансі</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Вимкнути без переводу коштів</string>
     <string name="DeactivateWalletFragment__deactivate">Вимкнути</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Вимкнути без переводу коштів?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Баланс залишиться на рахунку, який додано до Signal, якщо ви вирішите знов увімкнути платежі.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Баланс залишиться в гаманці, прив\'язаному до Signal, якщо ви вирішите знов увімкнути платежі.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Помилка при вимкненні гаманця.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4740,7 +4742,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Регулярний щомісячний донат було скасовано, тому що ми не змогли обробити ваш платіж. Ваш значок більше не відображається в профілі.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Регулярний щомісячний донат було скасовано. %1$s Ваш значок %2$s більше не відображається в профілі.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Ви можете продовжувати використовувати Signal, але щоб підтримати застосунок і повторно активувати свій значок, ви можете поновити передплату.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Ви можете продовжувати використовувати Signal. Якщо ви бажаєте підтримати застосунок і повторно активувати свій значок, ви можете поновити передплату.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Поновити передплату</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">До Google Pay</string>
@@ -4783,7 +4785,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Не вдалося надіслати донат через помилку мережі. Перевірте з\'єднання та спробуйте ще.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Донат від імені користувача %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s підтримує Signal донатом від вашого імені</string>
     <!-- Gift badge redeem action label -->
@@ -5192,11 +5194,11 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Виберіть, хто може переглядати ваші сторіз. Зміни не впливатимуть на вже надіслані сторіз.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">Відповіді &amp; реакції</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">Відповіді і реакції</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Дозволити відповіді &amp; реакції</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Дозволити відповіді і реакції</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Дозвольте тим, хто бачить вашу сторі, реагувати та відповідати на неї</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Дозвольте глядачам своїх сторіз реагувати і відповідати на них</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Контакти в Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5348,9 +5350,9 @@
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">Ви відреагували на сторі користувача %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">Реакції на вашу сторі</string>
+    <string name="ConversationItem__reacted_to_your_story">Реакція на вашу сторі</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">Реакції на сторі</string>
+    <string name="ConversationItem__reacted_to_a_story">Реакція на сторі</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -5633,7 +5635,7 @@
     <!-- Title of the screen -->
     <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Експорт SMS-повідомлень…</string>
     <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Це може зайняти певний час</string>
+    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Це може тривати певний час</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
         <item quantity="one">Експорт %1$d з %2$d…</item>

@@ -524,13 +524,13 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">เชื่อมโยงอุปกรณ์ของคุณอีกครั้ง</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">มีการเลิกเชื่อมโยงอุปกรณ์ที่ถูกเพิ่มเข้ามาในตอนที่อุปกรณ์หลักของคุณไม่ได้ลงทะเบียน ไปที่การตั้งค่าเพื่อเชื่อมโยงอุปกรณ์อีกครั้ง</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">เปิดการตั้งค่า</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
-    <string name="RelinkDevicesReminderFragment__later">ไว้คราวหน้า</string>
+    <string name="RelinkDevicesReminderFragment__later">ไว้ภายหลัง</string>
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">เลือกสมาชิก</string>
@@ -1128,8 +1128,8 @@
     <string name="Megaphones_new_group">กลุ่มใหม่</string>
     <string name="Megaphones_invite_friends">เชิญเพื่อน</string>
     <string name="Megaphones_use_sms">ใช้ SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">เพิ่มภาพโปรไฟล์</string>
+    <string name="Megaphones_chat_colors">สีแชท</string>
+    <string name="Megaphones_add_a_profile_photo">เพิ่มรูปโปรไฟล์</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">ตอบกลับ</string>
@@ -1928,9 +1928,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">คุณแลกรับโล่แล้ว</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">แสดงความรู้สึกต่อสตอรี่ของคุณด้วย %1$s</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">แสดงความรู้สึก %1$s ต่อสตอรี่ของคุณ</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">คุณแสดงความรู้สึกต่อสตอรี่ด้วย %1$s</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">คุณแสดงความรู้สึก %1$s ต่อสตอรี่</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">การชำระเงิน</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2067,14 +2067,16 @@
     <string name="MessageNotifier_unsecured_sms">SMS ที่ไม่ปลอดภัย</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">ผู้ติดต่อ</string>
-    <string name="MessageNotifier_reacted_s_to_s">ตอบสนอง %1$s ต่อ: \"%2$s\"</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">ตอบสนอง %1$s ต่อวิดีโอของคุณ</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">ตอบสนอง %1$s ต่อรูปภาพของคุณ</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">%1$s ที่ตอบสนองกับ GIF ของคุณ</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">ตอบสนอง %1$s ต่อแฟ้มของคุณ</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">ตอบสนอง %1$s ต่อเสียงของคุณ</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">ตอบสนอง %1$s กับสื่อที่ดูได้ครั้งเดียวของคุณ</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">ตอบสนอง %1$s ต่อสติกเกอร์ของคุณ</string>
+    <string name="MessageNotifier_reacted_s_to_s">แสดงความรู้สึก %1$s ต่อ: \"%2$s\"</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">แสดงความรู้สึก %1$s ต่อวิดีโอของคุณ</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">แสดงความรู้สึก %1$s ต่อรูปภาพของคุณ</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">แสดงความรู้สึก %1$s ต่อ GIF ของคุณ</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">แสดงความรู้สึก %1$s ต่อไฟล์ของคุณ</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">แสดงความรู้สึก %1$s ต่อเสียงของคุณ</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">แสดงความรู้สึก %1$s ต่อไฟล์สื่อแบบที่ดูได้ครั้งเดียวของคุณ</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">แสดงความรู้สึก %1$s ต่อสติกเกอร์ของคุณ</string>
     <string name="MessageNotifier_this_message_was_deleted">ข้อความนี้ถูกลบแล้ว</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ปิดการแจ้งเตือนเมื่อผู้ติดต่อได้เข้าร่วม Signal? คุณสามารถเปิดมันได้อีกครั้งในSignal &gt; Settings &gt; Notifications.</string>
@@ -2456,8 +2458,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">ปัญหาการจัดส่ง</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">ข้อความ สติกเกอร์ การตอบสนอง การตอบรับเมื่ออ่าน หรือสื่อไม่สามารถส่งให้คุณได้จาก %1$s พวกเขาอาจลองส่งให้คุณโดยตรงหรือในกลุ่มแล้ว</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">ข้อความ สติกเกอร์ การตอบสนอง หรือการตอบรับเมื่ออ่านไม่สามารถส่งให้คุณจาก %1$s</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">มีข้อความ สติกเกอร์ การแสดงความรู้สึก หรือการแจ้งว่าอ่านแล้วจาก %1$s ที่ไม่สามารถส่งถึงคุณได้ ผู้ใช้คนนี้อาจลองส่งให้คุณโดยตรงหรือส่งเข้ากลุ่มแล้ว</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">มีข้อความ สติกเกอร์ การแสดงความรู้สึก หรือการแจ้งว่าอ่านแล้วจาก %1$s ที่ไม่สามารถส่งถึงคุณได้</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">ชื่อ (ต้องมี)</string>
@@ -3377,11 +3379,11 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">คนที่สามารถเห็นหมายเลขโทรศัพท์ของฉัน</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">จะไม่มีใครเห็นหมายเลขโทรศัพท์ของคุณบน Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">คนที่สามารถใช้หมายเลขโทรศัพท์ค้นหาฉันได้</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">ผู้ใช้และกลุ่มที่คุณส่งข้อความหาจะสามารถเห็นหมายเลขโทรศัพท์ของคุณ และคนที่มีหมายเลขโทรศัพท์ของคุณอยู่ในรายชื่อผู้ติดต่อบนโทรศัพท์ก็จะสามารถเห็นหมายเลขของคุณบน Signal ด้วยเช่นกัน</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">ผู้ใช้และกลุ่มที่คุณส่งข้อความหาจะเห็นหมายเลขโทรศัพท์ของคุณ และคนที่มีหมายเลขโทรศัพท์ของคุณอยู่ในรายชื่อผู้ติดต่อบนโทรศัพท์ก็จะสามารถดูหมายเลขของคุณบน Signal ได้ด้วยเช่นกัน</string>
     <string name="PhoneNumberPrivacy_everyone">ทุกคน</string>
     <string name="PhoneNumberPrivacy_my_contacts">ผู้ติดต่อของฉัน</string>
     <string name="PhoneNumberPrivacy_nobody">คนที่คุณไม่รู้จัก</string>
@@ -4076,7 +4078,7 @@
     <string name="Donate2022Q2Megaphone_not_now">ไม่ใช่ตอนนี้</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">ปรับแต่งการตอบสนอง</string>
+    <string name="EditReactionsFragment__customize_reactions">ปรับแต่งค่าการแสดงความรู้สึก</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">แตะเพื่อเปลี่ยนอีโมจิ</string>
     <string name="EditReactionsFragment__reset">รีเซ็ต</string>
     <string name="EditReactionsFragment_save">บันทึก</string>
@@ -4419,7 +4421,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">ยกเลิกการบริจาครายเดือนแล้ว</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">โล่ Boost ของคุณหมดอายุแล้ว และจะไม่แสดงบนโปรไฟล์คุณอีกต่อไป</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">คุณสามารถเปิดใช้งานโล่ Boost ได้ใหม่เป็นเวลา 30 วันด้วยการบริจาคหนึ่งครั้ง</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">คุณสามารถเปิดใช้งานโล่บูสต์ได้ใหม่เป็นเวลา 30 วันด้วยการบริจาคหนึ่งครั้ง</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">คุณสามารถใช้ Signal ต่อไปได้ แต่หากต้องการสนับสนุนเทคโนโลยีที่สร้างมาเพื่อคุณ ให้ลองพิจารณาการเป็นผู้สนับสนุนด้วยการบริจาครายเดือน</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">เป็นผู้สนับสนุน</string>
@@ -4474,7 +4476,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">ไม่สามารถส่งการบริจาคได้เนื่องจากข้อผิดพลาดของเครือข่าย ตรวจสอบการเชื่อมต่อแล้วลองอีกครั้ง</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">การบริจาคในนามของ %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s บริจาคให้ Signal ในนามของคุณ</string>
     <!-- Gift badge redeem action label -->
@@ -4865,9 +4867,9 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">เลือกว่าจะให้ใครเห็นสตอรี่ของคุณบ้าง การเปลี่ยนแปลงจะไม่ส่งผลต่อสตอรี่ที่ส่งไปแล้ว</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">การตอบกลับ &amp; การตอบสนอง</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">การตอบกลับและการแสดงความรู้สึก</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">อนุญาตการตอบกลับ &amp; การตอบสนอง</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">อนุญาตการตอบกลับและการแสดงความรู้สึก</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">ให้คนที่ดูสตอรี่ของคุณแสดงความรู้สึกและตอบกลับได้</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->

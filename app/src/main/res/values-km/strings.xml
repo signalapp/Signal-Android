@@ -524,9 +524,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">ភ្ជាប់ឧបករណ៍របស់អ្នកឡើងវិញ</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">ឧបករណ៍ដែលអ្នកបានបញ្ចូលត្រូវបានផ្តាច់នៅពេលដែលឧបករណ៍របស់អ្នកមិនត្រូវបានចុះឈ្មោះ។ ចូលទៅកាន់ការកំណត់ ដើម្បីភ្ជាប់ឧបករណ៍ណាមួយឡើងវិញ។</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">បើកការកំណត់</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1128,8 +1128,8 @@
     <string name="Megaphones_new_group">ក្រុមថ្មី</string>
     <string name="Megaphones_invite_friends">អញ្ជើញមិត្តភក្តិ</string>
     <string name="Megaphones_use_sms">ប្រើប្រាស់ SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">បន្ថែមរូបតំណាងគណនីអ្នក</string>
+    <string name="Megaphones_chat_colors">ពណ៌ការជជែក</string>
+    <string name="Megaphones_add_a_profile_photo">បញ្ចូលរូបថតប្រូហ្វាល់</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">ការឆ្លើយតប</string>
@@ -2067,14 +2067,16 @@
     <string name="MessageNotifier_unsecured_sms">SMS គ្មានសុវត្ថិភាព</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">ទំនាក់ទំនង</string>
-    <string name="MessageNotifier_reacted_s_to_s">ប្រតិកម្ម %1$s ទៅ៖ \"%2$s\"។</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">ប្រតិកម្ម %1$s ទៅវីដេអូអ្នក។</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">ប្រតិកម្ម %1$s ទៅរូបភាពអ្នក។</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">ប្រតិកម្ម %1$s ទៅ GIF របស់អ្នក។</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">ប្រតិកម្ម %1$s ទៅឯកសារអ្នក។</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">ប្រតិកម្ម %1$s ទៅសំឡេងអ្នក។</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">ប្រតិកម្ម%1$s ទៅឯកសារមេឌៀមើលម្តងរបស់អ្នក។</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">ប្រតិកម្ម %1$s ទៅស្ទីកគ័រអ្នក។</string>
+    <string name="MessageNotifier_reacted_s_to_s">បានប្រតិកម្ម %1$s ទៅនឹង៖ \"%2$s\"។</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">បានប្រតិកម្ម %1$s ទៅនឹងវីដេអូរបស់អ្នក។</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">បានប្រតិកម្ម %1$s ទៅនឹងរូបភាពរបស់អ្នក។</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">បានប្រតិកម្ម %1$s ទៅនឹងរូបចលនារបស់អ្នក។</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">បានប្រតិកម្ម %1$s ទៅនឹងឯកសាររបស់អ្នក។</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">បានប្រតិកម្ម %1$s ទៅនឹងសំឡេងរបស់អ្នក។</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">បានប្រតិកម្ម %1$s ទៅនឹងមេឌៀដែលមើលបានតែម្តងរបស់អ្នក។</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">បានប្រតិកម្ម %1$s ទៅនឹងស្ទីគ័ររបស់អ្នក។</string>
     <string name="MessageNotifier_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">បិទសារជូនដំណឹងលេខទំនាក់ទំនងចូលរួម Signal? អ្នកអាចបើកវាម្តងទៀតក្នុង Signal &gt; ការកំណត់ &gt; សារជូនដំណឹង។</string>
@@ -2456,8 +2458,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">បញ្ហាការបញ្ជូន</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">សារ រូបស្ទីកគ័រ ប្រតិកម្ម និងការទទួលការអាន មិនអាចបញ្ជូនទៅអ្នកពី %1$s ទេ។​ ពួកគេអាចព្យាយាមបញ្ជូនវាទៅអ្នកផ្ទាល់ ឬនៅក្នុងក្រុម។</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">សារ រូបស្ទីកគ័រ ប្រតិកម្ម និងការទទួលការអាន មិនអាចបញ្ជូនទៅអ្នកពី %1$s។</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">សារ ស្ទីគ័រ ប្រតិកម្ម ឬមុខងារអានសារមិនអាចបញ្ជូនពី %1$s ទៅអ្នកបានទេ។ គេប្រហែលជាបានសាកល្បងផ្ញើវាទៅអ្នកដោយផ្ទាល់ ឬនៅក្នុងក្រុម។</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">សារ ស្ទីគ័រ ប្រតិកម្ម ឬមុខងារអានសារមិនអាចបញ្ជូនពី %1$s ទៅអ្នកបានទេ។</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">ឈ្មោះ (ចាំបាច់)</string>
@@ -3371,13 +3373,13 @@
     <string name="preferences_app_protection__see_my_phone_number">មើលលេខទូរស័ព្ទរបស់ខ្ញុំ</string>
     <string name="preferences_app_protection__find_me_by_phone_number">ស្វែងរកលេខទូរស័ព្ទរបស់ខ្ញុំ</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">លេខទូរស័ព្ទ</string>
+    <string name="preferences_app_protection__phone_number">លេខទូរសព្ទ</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">ជ្រើសរើសអ្នកដែលអាចមើលឃើញលេខទូរសព្ទរបស់អ្នក និងអ្នកណាដែលអាចប្រើវាទាក់ទងអ្នកបាននៅលើ Signal។</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">អ្នកដែលអាចមើលឃើញលេខរបស់ខ្ញុំ</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">គ្មាននរណាម្នាក់មើលឃើញលេខទូរសព្ទរបស់អ្នកនៅលើ Signal ទេ</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">អ្នកដែលអាចរកខ្ញុំឃើញតាមលេខរបស់ខ្ញុំ</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3757,12 +3759,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">បិទដំណើរការ Wallet</string>
     <string name="DeactivateWalletFragment__your_balance">សមតុល្យរបស់អ្នក</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">អ្នកគួរតែផ្ទេរប្រាក់របស់អ្នកទៅកាន់អាសយដ្ឋានកាបូបមួយផ្សេងទៀត មុនពេលអ្នកបិទដំណើរការការទូទាត់ប្រាក់។ ប្រសិនបើអ្នកជ្រើសរើសមិនផ្ទេរប្រាក់របស់អ្នកឥឡូវនេះ ប្រាក់នឹងនៅតែមាននៅក្នុងកាបូបរបស់អ្នកដែលភ្ជាប់ទៅ Signal ប្រសិនបើអ្នកដំណើរការការទូទាត់ឡើងវិញ។</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">អ្នកគួរតែផ្ទេរប្រាក់របស់អ្នកទៅកាន់អាសយដ្ឋានកាបូបមួយផ្សេងទៀត មុនពេលបិទដំណើរការការបង់ប្រាក់។ ប្រសិនបើអ្នកជ្រើសរើសមិនផ្ទេរប្រាក់របស់អ្នកឥឡូវនេះទេ ប្រាក់នោះនឹងនៅតែមាននៅក្នុងកាបូបរបស់អ្នកដែលបានភ្ជាប់ជាមួយ Signal ប្រសិនបើអ្នកសម្រេចឲ្យការបង់ប្រាក់បើកដំណើរការឡើងវិញ។</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">ផ្ទេរសមតុល្យដែលនៅសល់</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">បិទដំណើរការដោយមិនចាំបាច់ផ្ទេរ</string>
     <string name="DeactivateWalletFragment__deactivate">បិទ</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">បិទដំណើរការដោយមិនចាំបាច់ផ្ទេរ?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">សមតុល្យរបស់អ្នកនឹងនៅក្នុងកាបូបលុយដែលអ្នកភ្ជាប់ជាមួយ Signal ប្រសិនបើអ្នកសម្រេចអោយការទូទាត់ប្រាក់ដំណើរការឡើងវិញ។</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">សមតុល្យរបស់អ្នកនឹងនៅតែមាននៅក្នុងកាបូបរបស់អ្នកដែលបានភ្ជាប់ជាមួយ Signal ប្រសិនបើអ្នកសម្រេចឲ្យការបង់ប្រាក់បើកដំណើរការឡើងវិញ។</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">មានបញ្ហាក្នុងការបិទកាបូបលុយ</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4076,7 +4078,7 @@
     <string name="Donate2022Q2Megaphone_not_now">ពេលក្រោយ</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">ដាក់រូបប្រតិកម្មតាមចំនូលចិត្ត</string>
+    <string name="EditReactionsFragment__customize_reactions">ដាក់រូបប្រតិកម្មតាមបំណង</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">ចុចដើម្បីដាក់រូបតំណាងអារម្មណ៍ជំនួស</string>
     <string name="EditReactionsFragment__reset">កំណត់ឡើងវិញ</string>
     <string name="EditReactionsFragment_save">រក្សាទុក</string>
@@ -4474,7 +4476,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">ការបរិច្ចាគរបស់អ្នកមិនអាចផ្ញើបានទេ ដោយសារមានបញ្ហាបណ្តាញ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">ការបរិច្ចាគតាងនាមឲ្យ %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s បានបរិច្ចាគទៅ Signal ជំនួសឲ្យអ្នក</string>
     <!-- Gift badge redeem action label -->
@@ -4865,9 +4867,9 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">ជ្រើសរើសអ្នកដែលអាចមើលរឿងរ៉ាវរបស់អ្នកបាន។ ការផ្លាស់ប្តូរនានានឹងមិនប៉ះពាល់ដល់រឿងរ៉ាវដែលអ្នកបានផ្ញើហើយនោះទេ។</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">ការឆ្លើយតប និងការប្រតិកម្ម</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">ការឆ្លើយតប និងប្រតិកម្ម</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">អនុញ្ញាតការឆ្លើយតប និងការប្រតិកម្ម</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">អនុញ្ញាតការឆ្លើយតប និងប្រតិកម្ម</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">អនុញ្ញាតឲ្យមនុស្សដែលអាចមើលរឿងរ៉ាវរបស់អ្នក ប្រតិកម្ម និងឆ្លើយតបបាន</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
@@ -5270,7 +5272,7 @@
     <!-- Title of the screen -->
     <string name="ExportingSmsMessagesFragment__exporting_sms_messages">ការនាំចេញសារជាអក្សរ</string>
     <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">វាអាចចំណាយពេលបន្តិច</string>
+    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">វាអាចនឹងចំណាយពេលបន្តិច</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
         <item quantity="other">កំពុងនាំចេញ %1$d នៃ %2$d …</item>

@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Свържете устройствата отново</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Връзката с добавените от вас устройства беше прекъсната, когато дерегистрирахте устройството си. Отидете на „Настройки“, за да свържете устройствата отново.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Отваряне на настройките</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,8 +1176,8 @@
     <string name="Megaphones_new_group">Нова група</string>
     <string name="Megaphones_invite_friends">Покани приятели</string>
     <string name="Megaphones_use_sms">Ползвай SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">Добави профилна снимка</string>
+    <string name="Megaphones_chat_colors">Цветове на чата</string>
+    <string name="Megaphones_add_a_profile_photo">Добавяне на профилна снимка</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Отговори</string>
@@ -2001,7 +2001,7 @@
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Реагира с %1$s на историята ви</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Реагира с %1$s на историята</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Реагирахте с %1$s на историята</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Плащане</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2146,6 +2146,8 @@
     <string name="MessageNotifier_reacted_s_to_your_file">Реагира с %1$s на вашия файл.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Реагира с %1$s на вашето аудио.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реагира с %1$s на вашата еднократна медия.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Реагира с %1$s на вашия стикер.</string>
     <string name="MessageNotifier_this_message_was_deleted">Това съобщение беше изтрито.</string>
 
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Грешка при доставяне</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Съобщение, стикер, реакция или известие за прочетено съобщение не успя да бъде доставено до вас от %1$s. Може да са опитали да ви го изпратят лично на вас или на група.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Съобщение, стикер, реакция или известие за прочетено съобщение не успя да бъде доставено до вас от %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Съобщение, стикер, реакция или разписка за прочитане не успя да бъде доставена до вас от %1$s. Може да са опитали да го изпратят лично на вас или на група.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Съобщение, стикер, реакция или разписка за прочитане не успя да бъде доставена до вас от %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Собствено име (задължително)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Кой може да вижда номера ми</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Никой няма да вижда телефонния ви номер в Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Кой може да ме намери по номер</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Вашето дарение не беше изпратено заради мрежова грешка. Проверете връзката си и опитайте отново.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Дарение от името на %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s дари на Signal от ваше име</string>
     <!-- Gift badge redeem action label -->

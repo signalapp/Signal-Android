@@ -544,11 +544,11 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">మీ పరికరాలను తిరిగి లింక్ చేయండి</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">మీ పరికరం నమోదు చేయబడనప్పుడు మీరు జోడించిన పరికరాలు అన్‌లింక్ చేయబడ్డాయి. ఏవైనా పరికరాలను తిరిగి లింక్ చేయడానికి సెట్టింగ్‌లకు వెళ్ళండి.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">సెట్టింగ్‌లను ఓపెన్ చేయండి</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">సెట్టింగ్‌లను తెరవండి</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
     <string name="RelinkDevicesReminderFragment__later">తర్వాత</string>
 
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">కొత్త సమూహం</string>
     <string name="Megaphones_invite_friends">స్నేహితులను ఆహ్వానించండి</string>
     <string name="Megaphones_use_sms">సందేశాన్ని వాడుటకు</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">చాట్ రంగులు</string>
     <string name="Megaphones_add_a_profile_photo">ప్రొఫైల్ చిత్రాన్ని జోడించండి</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -1999,9 +1999,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">మీరు ఒక బ్యాడ్జీని రీడిమ్ చేసుకున్నారు</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">మీ స్టోరీకు %1$s ప్రతిస్పందించారు</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">మీ కథకు %1$s ప్రతిస్పందించారు</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">వారి స్టోరీకు %1$s ప్రతిస్పందించారు</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">వారి కథకు %1$s ప్రతిస్పందించారు</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">చెల్లింపు</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">భద్రతలేని సందేశం</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">పరిచయం</string>
-    <string name="MessageNotifier_reacted_s_to_s">దీనికి %1$sను ప్రతిస్పందించారు: %2$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">మీ వీడియోకు %1$s స్పందించింది.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">మీ చిత్రానికి %1$s ప్రతిస్పందించింది.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">మీ GIFలో %1$sకు ప్రతిస్పందించారు.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">మీ ఫైల్‌కు %1$s ప్రతిస్పందించింది.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">మీ ఆడియోకు %1$s స్పందించింది.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">మీ వీక్షణ-ఒకసారి మీడియాకు %1$s స్పందించింది.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">మీ స్టిక్కర్‌కు %1$s స్పందించింది.</string>
+    <string name="MessageNotifier_reacted_s_to_s">దీనికి %1$s ప్రతిస్పందించారు: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">మీ వీడియోకు %1$s ప్రతిస్పందించారు.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">మీ చిత్రానికి %1$s ప్రతిస్పందించారు.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">మీ GIF కు %1$s ప్రతిస్పందించారు.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">మీ ఫైల్‌కు %1$s ప్రతిస్పందించారు.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">మీ ఆడియోకు %1$s ప్రతిస్పందించారు.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">మీ ఒక్కసారి-వీక్షించండి మీడియాకు %1$s ప్రతిస్పందించారు.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">మీ స్టిక్కర్‌కు %1$s ప్రతిస్పందించారు.</string>
     <string name="MessageNotifier_this_message_was_deleted">ఈ సందేశం తొలగించబడింది.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">చేరిన Signal నోటిఫికేషన్‌లను ఆపివేయాలా? మీరు వాటిని Signal &gt; సెట్టింగులు &gt; నోటిఫికేషన్‌లు.</string>
@@ -2539,7 +2541,7 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">నిర్వహణ సమస్య</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s నుంచి సందేశం, స్టిక్కర్, ప్రతిస్పందన, లేదా రీడ్ రిసిప్ట్‌ని మీకు డెలివరీ చేయలేం. వారు మీకు నేరుగా లేదా గ్రూపులో పంపడానికి ప్రయత్నించి ఉండవచ్చు.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s నుంచి సందేశం, స్టిక్కర్, ప్రతిస్పందన, లేదా రీడ్ రిసిప్ట్ మీకు డెలివరీ చేయబడదు. వారు మీకు నేరుగా లేదా గ్రూపులో పంపడానికి ప్రయత్నించి ఉండవచ్చు.</string>
     <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s నుంచి సందేశం, స్టిక్కర్, ప్రతిస్పందన, లేదా రీడ్ రిసిప్ట్ మీకు డెలివరీ చేయబడదు.</string>
 
     <!-- profile_create_activity -->
@@ -3464,17 +3466,17 @@
     <string name="preferences_app_protection__see_my_phone_number">నా ఫోన్ నంబర్ చూడండి</string>
     <string name="preferences_app_protection__find_me_by_phone_number">ఫోన్ నంబర్ ద్వారా నన్ను కనుగొనండి</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">ఫోను నంబరు</string>
+    <string name="preferences_app_protection__phone_number">ఫోన్ నంబర్</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">మీ ఫోన్ నంబర్‌ను ఎవరు చూడగలరు మరియు దానితో Signal లో మిమ్మల్ని ఎవరు సంప్రదించగలరో ఎంచుకోండి.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">నా నంబర్‌ను ఎవరు చూడగలరు</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Signal లో మీ ఫోన్ నంబర్‌ను ఎవరూ చూడరు</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">నంబర్ ద్వారా నన్ను ఎవరు కనుగొనగలరు</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">మీరు సందేశం పంపే వ్యక్తులు మరియు గ్రూప్‌లకు మీ ఫోన్ నంబర్ కనిపిస్తుంది. వారి ఫోన్ పరిచయాలలో మీ నంబర్ ఉన్న వ్యక్తులు కూడా దీన్ని Signal‌లో చూస్తారు.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">మీరు సందేశం పంపే వ్యక్తులు మరియు గ్రూప్‌లకు మీ ఫోన్ నంబర్ కనిపిస్తుంది. వారి ఫోన్ పరిచయాలలో మీ నంబర్ ఉన్న వ్యక్తులు కూడా దీన్ని Signal లో చూస్తారు.</string>
     <string name="PhoneNumberPrivacy_everyone">ప్రతి ఒక్కరూ</string>
     <string name="PhoneNumberPrivacy_my_contacts">నా పరిచయాలు</string>
     <string name="PhoneNumberPrivacy_nobody">యెవరు లేరు</string>
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">వ్యాలెట్‌ని డీయాక్టివేట్ చేయండి</string>
     <string name="DeactivateWalletFragment__your_balance">మీ బ్యాలెన్స్</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">పేమెంట్‌లను డీ యాక్టివేట్ చేయడానికి ముందు మీ ఫండ్స్‌ని మరో వ్యాలెట్ చిరునామాకు బదిలీ చేయాలని మీకు సిఫారసు చేయబడుతోంది. మీరు మీ ఫండ్స్‌ని ఇప్పుడు బదిలీ చేయరాదని ఎంచుకుంటే, మీరు పేమెంట్‌లను రీయాక్టివేట్ చేసినట్లయితే, Signal కు లింక్ చేయబడ్డ మీ వ్యాలెట్‌లో అవి ఉంటాయి.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">చెల్లింపులను డీయాక్టివేట్ చేయడానికి ముందు మీ నిధులను మరో వ్యాలెట్ చిరునామాకు మీరు బదిలీ చేయాలని మీకు సిఫారసు చేయబడుతోంది. ఒకవేళ మీరు మీ నిధులను ఇప్పుడు బదిలీ చేయరాదని ఎంచుకుంటే, ఒకవేళ మీరు చెల్లింపులను రీయాక్టివేట్ చేస్తే, Signal కు లింక్ చేయబడ్డ మీ వ్యాలెట్‌లో అవి ఉంటాయి.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">మిగిలిన మొత్తాన్ని బదిలీ చేయడం</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">బదిలీ చేయకుండానే డీయాక్టివేట్ చేయడం</string>
     <string name="DeactivateWalletFragment__deactivate">నిష్క్రియం చేయండి</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">బదిలీ చేయకుండానే డీయాక్టివేట్ చేయాలా?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">మీరు చెల్లింపులను తిరిగి సక్రియం చేయడానికి ఎంచుకుంటే మీ బ్యాలెన్స్ Signal తో అనుసంధానించబడిన మీ వాలెట్‌లో ఉంటుంది.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">ఒకవేళ మీరు చెల్లింపులను రీయాక్టివేట్ చేయడానికి ఎంచుకుంటే మీ నిలవ Signal తో లింక్ చేయబడ్డ మీ వాలెట్‌లో ఉంటుంది.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">వ్యాలెట్‌ని డీయాక్టివేట్ చేయడంలో దోషం.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4175,7 +4177,7 @@
     <string name="Donate2022Q2Megaphone_not_now">ఇప్పుడు కాదు</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">కస్టమైజ్ రియాక్షన్‌లు</string>
+    <string name="EditReactionsFragment__customize_reactions">ప్రతిస్పందనలను అనుకూలపరచండి</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">ఎమోజీని విడుదల చేయడానికి తట్టండి</string>
     <string name="EditReactionsFragment__reset">పునరుద్ధరించు</string>
     <string name="EditReactionsFragment_save">భద్రపరుచు</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">ఒక నెట్‌వర్క్ దోషం కారణంగా మీ విరాళాన్ని పంపలేరు. మీ కనెక్షన్‌ను తనిఖీ చేయండి మరియు మళ్ళీ ప్రయత్నించండి.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$s తరఫున విరాళం</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">మీ తరఫున %1$s Signalకు విరాళం ఇచ్చారు</string>
     <!-- Gift badge redeem action label -->
@@ -4922,13 +4924,13 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">ఈ గ్రూప్‌లో మీరు ఇక ఏమాత్రం సభ్యులు కానందు వల్ల, ఈ కథకు మీరు బదులివ్వలేరు.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">స్టోరీకు ప్రతిస్పందించారు</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">కథకు ప్రతిస్పందించారు</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">వీక్షణలు</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">రిప్లైలు</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">ఈ స్టోరీకు ప్రతిస్పందించండి</string>
+    <string name="StoryReplyComposer__react_to_this_story">ఈ కథకు ప్రతిస్పందించండి</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$sకు ప్రైవేట్‌గా బదులివ్వడం</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
@@ -4974,11 +4976,11 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">మీ స్టోరీను ఎవరు చూడవచ్చు అనేది ఎంచుకోండి. మీరు ఇప్పటికే పంపిన స్టోరీలను మార్పులు ప్రభావితం చేయవు.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">రిప్లైలు &amp; రియాక్షన్‌లు</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">ప్రత్యుత్తరాలు &amp; ప్రతిస్పందనలు</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">రిప్లైలు &amp; రియాక్షన్‌లు అనుమతించండి</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">ప్రత్యుత్తరాలు &amp; ప్రతిస్పందనలను అనుమతించండి</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">మీ స్టోరీను వీక్షించగల వ్యక్తులను ప్రతిస్పందించడానికి మరియు ప్రత్యుత్తరం ఇచ్చేందుకు అనుమతించండి</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">మీ కథను వీక్షించగల వ్యక్తులను ప్రతిస్పందించడానికి మరియు ప్రత్యుత్తరం ఇచ్చేందుకు అనుమతించండి</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal కనెక్షన్‌లు</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5126,11 +5128,11 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">మీరు %1$s యొక్క స్టోరీకు ప్రతిస్పందించారు</string>
+    <string name="ConversationItem__you_reacted_to_s_story">మీరు %1$s యొక్క కథకు ప్రతిస్పందించారు</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">మీ స్టోరీకు ప్రతిస్పందించారు</string>
+    <string name="ConversationItem__reacted_to_your_story">మీ కథకు ప్రతిస్పందించారు</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">ఒక స్టోరీకు ప్రతిస్పందించారు</string>
+    <string name="ConversationItem__reacted_to_a_story">ఒక కథకు ప్రతిస్పందించారు</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->

@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">ನಿಮ್ಮ ಸಾಧನಗಳನ್ನು ಮರುಲಿಂಕ್ ಮಾಡಿ</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">ನಿಮ್ಮ ಸಾಧನವನ್ನು ನೋಂದಾಯಿಸದಿದ್ದಾಗ ನೀವು ಸೇರಿಸಿದ ಸಾಧನಗಳು ಅನ್‌ಲಿಂಕ್ ಆಗಿವೆ. ಯಾವುದೇ ಸಾಧನವನ್ನು ಮರುಲಿಂಕ್ ಮಾಡಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಎಂಬಲ್ಲಿಗೆ ಹೋಗಿ.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">ಹೊಸ ಗುಂಪು</string>
     <string name="Megaphones_invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
     <string name="Megaphones_use_sms">ಎಸ್‌ಎಂಎಸ್ ಬಳಸಿ</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">ಚಾಟ್ ಬಣ್ಣಗಳು</string>
     <string name="Megaphones_add_a_profile_photo">ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಸೇರಿಸಿ</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -1999,9 +1999,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">ನೀವು ಒಂದು ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ರಿಡೀಮ್ ಮಾಡಿದ್ದೀರಿ</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">ನಿಮ್ಮ ಸ್ಟೋರಿಗೆ %1$s ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">%1$s ಅವರು ನಿಮ್ಮ ಸ್ಟೋರಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">ಅವರ ಸ್ಟೋರಿಗೆ %1$s ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">%1$s ಅವರು ತಮ್ಮ ಸ್ಟೋರಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">ಪಾವತಿ</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">ಅಸುರಕ್ಷಿತ ಎಸ್‌ಎಂಎಸ್</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">ಸಂಪರ್ಕ</string>
-    <string name="MessageNotifier_reacted_s_to_s">%1$s ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">%1$s ನಿಮ್ಮ ವೀಡಿಯೊಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">%1$s ನಿಮ್ಮ ಚಿತ್ರಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">ನಿಮ್ಮ GIF ಗೆ %1$s ಅವರು ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">%1$s ನಿಮ್ಮ ಫೈಲ್ ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ನಿಮ್ಮ ಆಡಿಯೊಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">ನಿಮ್ಮ ವ್ಯೂ-ಒನ್ಸ್ ಮೀಡಿಯಾಕ್ಕೆ %1$s ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s ನಿಮ್ಮ ಸ್ಟಿಕ್ಕರ್‌ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
+    <string name="MessageNotifier_reacted_s_to_s">%1$s ಅವರು ಇವರಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">%1$s ಅವರು ನಿಮ್ಮ ವೀಡಿಯೊಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">%1$s ಅವರು ನಿಮ್ಮ ಚಿತ್ರಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">%1$s ಅವರು ನಿಮ್ಮ GIF ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">%1$s ಅವರು ನಿಮ್ಮ ಫೈಲ್‌ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ಅವರು ನಿಮ್ಮ ಆಡಿಯೊಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$s ಅವರು ನಿಮ್ಮ ವ್ಯೂ-ಒನ್ಸ್ ಮೀಡಿಯಾಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s ಅವರು ನಿಮ್ಮ ಸ್ಟಿಕ್ಕರ್‌ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
     <string name="MessageNotifier_this_message_was_deleted">ಈ ಮೆಸೇಜನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ಸಂಪರ್ಕ Signal ಗೆ ಸೇರಿದ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಆಫ್ ಮಾಡುವುದೇ? Signal &gt; ಸೆಟ್ಟಿಂಗ್‌ಗಳು &gt; ನೊಟಿಫಿಕೇಶನ್‌ಗಳಲ್ಲಿ ಇದನ್ನು ನೀವು ಪುನಃ ಸಕ್ರಿಯಗೊಳಿಸಬಹುದು.</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">ಡೆಲಿವರಿ ಸಮಸ್ಯೆ</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">ಮೆಸೇಜ್, ಸ್ಟಿಕ್ಕರ್, ಪ್ರತಿಸ್ಪಂದನೆ ಅಥವಾ ರೀಡ್ ರಿಸಿಟ್ ಅನ್ನು %1$s ಇಂದ ನಿಮಗೆ ಡೆಲಿವರಿ ಮಾಡಲಾಗದು. ಅವರು ನೇರವಾಗಿ ಅಥವಾ ಗ್ರೂಪ್‌ನಲ್ಲಿ ನಿಮಗೆ ಕಳುಹಿಸಲು ಪ್ರಯತ್ನಿಸಿರಬಹುದು.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">ಮೆಸೇಜ್, ಸ್ಟಿಕ್ಕರ್, ಪ್ರತಿಸ್ಪಂದನೆ ಅಥವಾ ರೀಡ್ ರಿಸಿಟ್ ಅನ್ನು %1$s ಇಂದ ನಿಮಗೆ ಡೆಲಿವರಿ ಮಾಡಲಾಗದು.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">ಮೆಸೇಜ್, ಸ್ಟಿಕ್ಕರ್, ಪ್ರತಿಕ್ರಿಯೆ ಅಥವಾ ಓದಿದ ರಸೀದಿಯನ್ನು %1$s ಅವರಿಂದ ನಿಮಗೆ ಡೆಲಿವರಿ ಮಾಡಲಾಗಲಿಲ್ಲ. ಅವರು ನೇರವಾಗಿ ಅಥವಾ ಗ್ರೂಪ್‌ನಲ್ಲಿ ನಿಮಗೆ ಕಳುಹಿಸಲು ಪ್ರಯತ್ನಿಸಿರಬಹುದು.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">ಮೆಸೇಜ್, ಸ್ಟಿಕ್ಕರ್, ಪ್ರತಿಕ್ರಿಯೆ ಅಥವಾ ಓದಿದ ರಸೀದಿಯನ್ನು %1$s ಅವರಿಂದ ನಿಮಗೆ ಡೆಲಿವರಿ ಮಾಡಲಾಗಲಿಲ್ಲ.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">ಮೊದಲ ಹೆಸರು (ಅಗತ್ಯವಿದೆ)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">ನನ್ನ ಸಂಖ್ಯೆಯನ್ನು ಯಾರು ನೋಡಬಹುದು</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Signal ನಲ್ಲಿ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಯಾರೂ ನೋಡಲಾಗುವುದಿಲ್ಲ</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">ಸಂಖ್ಯೆಯ ಮೂಲಕ ನನ್ನನ್ನು ಯಾರು ಕಂಡುಹಿಡಿಯಬಹುದು</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">ವಾಲೆಟ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
     <string name="DeactivateWalletFragment__your_balance">ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">ಪೇಮೆಂಟ್ಸ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವದಕ್ಕೂ ಮುನ್ನ ಇನ್ನೊಂದು ವಾಲೆಟ್‌ಗೆ ನಿಮ್ಮ ಹಣವನ್ನು ವರ್ಗಾವಣೆ ಮಾಡಿಕೊಳ್ಳುವುದನ್ನು ನಿಮಗೆ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಈಗ ನಿಮ್ಮ ಹಣವನ್ನು ವರ್ಗಾವಣೆ ಮಾಡದಿರಲು ನೀವು ಆಯ್ಕೆ ಮಾಡಿಕೊಂಡರೆ, ಪೇಮೆಂಟ್‌ಗಳನ್ನು ನೀವು ಪುನಃ ಸಕ್ರಿಯಗೊಳಿಸಿದರೆ Signal ಗೆ ಲಿಂಕ್‌ ಮಾಡಿದ ನಿಮ್ಮ ವಾಲೆಟ್‌ನಲ್ಲಿಯೇ ಅವು ಇರುತ್ತವೆ.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">ಪಾವತಿಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದಕ್ಕೂ ಮುನ್ನ ಇನ್ನೊಂದು ವಾಲೆಟ್ ವಿಳಾಸಕ್ಕೆ ನಿಮ್ಮ ಹಣವನ್ನು ವರ್ಗಾವಣೆ ಮಾಡಿಕೊಳ್ಳುವುದನ್ನು ನಿಮಗೆ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಈಗ ನಿಮ್ಮ ಹಣವನ್ನು ವರ್ಗಾವಣೆ ಮಾಡದಿರಲು ನೀವು ಆಯ್ಕೆ ಮಾಡಿಕೊಂಡರೆ, ಪಾವತಿಗಳನ್ನು ನೀವು ಪುನಃ ಸಕ್ರಿಯಗೊಳಿಸಿದರೆ Signal ಗೆ ಲಿಂಕ್‌ ಮಾಡಿದ ನಿಮ್ಮ ವಾಲೆಟ್‌ನಲ್ಲಿಯೇ ಅವು ಇರುತ್ತವೆ.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">ಉಳಿದ ಬ್ಯಾಲೆನ್ಸ್ ಅನ್ನು ವರ್ಗಾವಣೆ ಮಾಡಿ</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">ವರ್ಗಾಯಿಸದೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
     <string name="DeactivateWalletFragment__deactivate">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">ವರ್ಗಾವಣೆ ಮಾಡದೇ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದೇ?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">ನೀವು ಪೇಮೆಂಟ್ಸ್ ಪುನಃ ಸಕ್ರಿಯಗೊಳಿಸಲು ನೀವು ಆಯ್ಕೆ ಮಾಡಿಕೊಂಡರೆ, Signal ಗೆ ಲಿಂಕ್ ಮಾಡಿದ ನಿಮ್ಮ ವಾಲೆಟ್‌ನಲ್ಲಿ ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಇರುತ್ತದೆ.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">ನೀವು ಪಾವತಿಗಳನ್ನು ಪುನಃ ಸಕ್ರಿಯಗೊಳಿಸಲು ಆಯ್ಕೆ ಮಾಡಿಕೊಂಡರೆ, Signal ಗೆ ಲಿಂಕ್ ಮಾಡಿದ ನಿಮ್ಮ ವಾಲೆಟ್‌ನಲ್ಲಿ ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಇರುತ್ತದೆ.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">ವಾಲೆಟ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವಲ್ಲಿ ದೋಷ.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4175,7 +4177,7 @@
     <string name="Donate2022Q2Megaphone_not_now">ಈಗಲ್ಲ</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">ಪ್ರತಿಸ್ಪಂದನೆಗಳನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಿ</string>
+    <string name="EditReactionsFragment__customize_reactions">ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಿ</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">ಎಮೋಜಿ ಬದಲಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
     <string name="EditReactionsFragment__reset">ಮರುಹೊಂದಿಸಿ</string>
     <string name="EditReactionsFragment_save">ಉಳಿಸಿ</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">ನೆಟ್‌ವರ್ಕ್ ದೋಷದಿಂದಾಗಿ ನಿಮ್ಮ ದೇಣಿಗೆಯನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಇನ್ನೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$s ಅವರ ಪರವಾಗಿ ದೇಣಿಗೆ</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s ಅವರು ನಿಮ್ಮ ಪರವಾಗಿ ಸಿಗ್ನಲ್‌ಗೆ ದೇಣಿಗೆ ನೀಡಿದ್ದಾರೆ</string>
     <!-- Gift badge redeem action label -->
@@ -4974,9 +4976,9 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಯಾರು ನೋಡಬಹುದು ಎಂದು ಆಯ್ಕೆ ಮಾಡಿ. ನೀವು ಈಗಾಗಲೇ ಕಳುಹಿಸಿದ ಸ್ಟೋರೀಸ್ ಮೇಲೆ ಬದಲಾವಣೆಗಳು ಪರಿಣಾಮ ಬೀರುವುದಿಲ್ಲ.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">ಉತ್ತರಗಳು &amp; ಪ್ರತಿಕ್ರಿಯೆಗಳು</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">ಉತ್ತರಗಳು ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆಗಳು</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">ಉತ್ತರಗಳು &amp; ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ಅನುಮತಿಸಿ</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">ಉತ್ತರಗಳು ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ಅನುಮತಿಸಿ</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ವೀಕ್ಷಿಸಬಹುದಾದ ಜನರು ಪ್ರತಿಕ್ರಿಯಿಸಲಿ ಮತ್ತು ಉತ್ತರಿಸಲಿ</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->

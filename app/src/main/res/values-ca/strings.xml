@@ -21,7 +21,7 @@
     <string name="delete">Esborra</string>
     <string name="please_wait">Espereu, si us plau…</string>
     <string name="save">Desa</string>
-    <string name="note_to_self">Notifica-m\'ho</string>
+    <string name="note_to_self">Notes personals</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -544,11 +544,11 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Torna a enllaçar els teus dispositius</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Els dispositius que has afegit s\'han desenllaçat quan el teu dispositiu no estava registrat. Ves a Ajustos per tornar a enllaçar qualsevol dispositiu.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">Obre la configuració</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">Obre els ajustos</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
     <string name="RelinkDevicesReminderFragment__later">Després</string>
 
@@ -1176,8 +1176,8 @@
     <string name="Megaphones_new_group">Grup nou</string>
     <string name="Megaphones_invite_friends">Convideu-hi amistats</string>
     <string name="Megaphones_use_sms">Usa SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">Afegiu una fotografia de perfil</string>
+    <string name="Megaphones_chat_colors">Colors del xat</string>
+    <string name="Megaphones_add_a_profile_photo">Afegeix una fotografia de perfil</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Respostes</string>
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">SMS no segur</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contacte</string>
-    <string name="MessageNotifier_reacted_s_to_s">%1$s ha reaccionat a : \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">%1$s ha reaccionat al vostre vídeo.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">%1$s ha reaccionat al vostre missatge.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">%1$s ha reaccionat al vostre GIF.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">%1$s ha reaccionat al vostre fitxer.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ha reaccionat al vostre àudio.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$s ha reaccionat al vostre contingut d\'una visualització.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s ha reaccionat al vostre adhesiu.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Ha reaccionat amb %1$s a: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Reacció al teu vídeo: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Reacció a la teva imatge: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Reacció al teu GIF: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Reacció al teu arxiu: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Reacció al teu àudio: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reacció al teu arxiu multimèdia d\'una visualització: %1$s.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Reacció al teu sticker: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Aquest missatge s\'ha esborrat.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Voleu desactivar les notificacions de contactes afegits al Signal? Les podeu tornar a activar a Signal &gt; Configuració &gt; Notificacions.</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Problema de lliurament</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">No se us ha pogut lliurar un missatge, adhesiu, reacció o rebut de lectura de %1$s. És possible que hagin intentat enviar-vos-ho directament o en grup.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">No se us ha pogut lliurar un missatge, adhesiu, reacció o rebut de lectura de %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">No se t\'ha pogut entregar un missatge, sticker, reacció o confirmació de lectura de %1$s. És possible que hagin intentat enviar-t\'ho directament o a través d\'un grup.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">No se t\'ha pogut entregar un missatge, sticker, reacció o confirmació de lectura de %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Nom (cal)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Qui pot veure el meu número</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Ningú no veurà el teu número de telèfon a Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Qui pot trobar-me a través del meu número</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Desactiva la cartera</string>
     <string name="DeactivateWalletFragment__your_balance">El saldo</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Es recomana transferir els fons a una altra adreça de cartera abans de desactivar els pagaments. Si decidiu no transferir els fons ara, quedaran a la cartera enllaçada al Signal si reactiveu els pagaments.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Es recomana transferir els fons a una altra adreça de cartera abans de desactivar els pagaments. Si decideixes no transferir els fons ara, quedaran a la cartera enllaçada al Signal si reactives els pagaments.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Transfereix el saldo restant</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Desactiveu-ho sense transferència</string>
     <string name="DeactivateWalletFragment__deactivate">Desactiva\'ls</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Voleu desactivar els fons sense transferir-los?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">El saldo es mantindrà a la cartera enllaçada amb el Signal si decidiu reactivar els pagaments.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">El saldo es mantindrà a la cartera enllaçada amb Signal si decideixes reactivar els pagaments.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Error en desactivar la cartera</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">No s\'ha pogut enviar la teva donació a causa d\'un error de la xarxa. Comprova la connexió i torna-ho a provar.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Donació en nom de %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s ha fet una donació a Signal en nom teu</string>
     <!-- Gift badge redeem action label -->
@@ -4928,7 +4930,7 @@
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Respostes</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">Reaccioneu a aquesta història</string>
+    <string name="StoryReplyComposer__react_to_this_story">Reaccionar a aquesta història</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Es respon privadament a %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
@@ -4976,9 +4978,9 @@
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">Respostes i reaccions</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Permet respostes i reaccions</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Permetre respostes i reaccions</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Permet que les persones que puguin veure la història hi reaccionin i hi responguin.</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Permet que les persones que poden veure la història hi reaccionin i hi responguin.</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Contactes de Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5130,7 +5132,7 @@
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">Ha reaccionat a la teva història</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">Ha reaccionat a una història.</string>
+    <string name="ConversationItem__reacted_to_a_story">Ha reaccionat a una història</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->

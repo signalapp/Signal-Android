@@ -564,9 +564,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Atkārtoti piesaistiet savas ierīces</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Jūsu pievienotās ierīces tika atsaistītas, kad ierīce tika atreģistrēta. Atveriet sadaļu Iestatījumi, lai atkārtoti piesaistītu visas ierīces.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Atvērt iestatījumus</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1224,8 +1224,8 @@
     <string name="Megaphones_new_group">Jauna grupa</string>
     <string name="Megaphones_invite_friends">Uzaicināt draugus</string>
     <string name="Megaphones_use_sms">Izmantot SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">Pievienojiet profila fotoattēlu</string>
+    <string name="Megaphones_chat_colors">Sarunas krāsas</string>
+    <string name="Megaphones_add_a_profile_photo">Pievienojiet profila attēlu</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Atbildes</string>
@@ -2211,14 +2211,16 @@
     <string name="MessageNotifier_unsecured_sms">Nedroša SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kontakts</string>
-    <string name="MessageNotifier_reacted_s_to_s">Reaģēja %1$s uz “%2$s”</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Reaģēja %1$s uz jūsu video.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Reaģēja %1$s uz jūsu attēlu</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Uz jūsu GIF reaģēja ar %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Reaģēja %1$s uz jūsu failu.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Reaģēja %1$s uz jūsu audio</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Uz jūsu vienreiz skatāmo multivides vienumu reaģēja %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Reaģēja %1$s uz jūsu uzlīmi.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Reakcija uz “%2$s”: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Reakcija uz jūsu video: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Reakcija uz jūsu attēlu: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Reakcija uz jūsu GIF: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Reakcija uz jūsu failu: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Reakcija uz jūsu audio: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reakcija uz jūsu vienreiz skatāmo multivides vienumu: %1$s.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Reakcija uz jūsu uzlīmi: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ziņojums ir izdzēsts.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Vai izslēgt paziņojumus par kontaktpersonām, kas sākušās lietot Signal? Paziņojumus var atkal iespējot sadaļā Signal &gt; Iestatījumi &gt; Paziņojumi.</string>
@@ -3563,11 +3565,11 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Kas var redzēt manu numuru</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Neviens neredzēs jūsu tālruņa numuru lietotnē Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Kas var mani atrast pēc numura</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Jūsu tālruņa numurs būs redzams cilvēkiem un grupām, kurām sūtāt ziņojumu. Cilvēki, kuru tālruņa katologā ir jūsu numurs, to redzēs arī lietotnē Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Jūsu tālruņa numurs būs redzams cilvēkiem un grupām, kurām sūtāt ziņu. Cilvēki, kuru tālruņa katalogā ir jūsu numurs, to redzēs arī lietotnē Signal.</string>
     <string name="PhoneNumberPrivacy_everyone">Ikviens</string>
     <string name="PhoneNumberPrivacy_my_contacts">Manas kontaktpersonas</string>
     <string name="PhoneNumberPrivacy_nobody">Neviens</string>
@@ -4274,7 +4276,7 @@
     <string name="Donate2022Q2Megaphone_not_now">Ne tagad</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">Pielāgot emociju izpausmes</string>
+    <string name="EditReactionsFragment__customize_reactions">Pielāgot reakcijas</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">Pieskarieties, lai aizvietotu emocijzīmi</string>
     <string name="EditReactionsFragment__reset">Atstatīt</string>
     <string name="EditReactionsFragment_save">Saglabāt</string>
@@ -4625,7 +4627,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Ikmēneša ziedojums atcelts</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Jūsu Atbalsta nozīmītei ir beidzies termiņš, un tā vairs nav redzama uz jūsu profila.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Jūs varat atkārtoti aktivizēt jūsu Atbalsta nozīmīti uz nākamajām 30 dienām ar vienreizēju ziedojumu.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Jūs varat atkārtoti aktivizēt jūsu Sponsora nozīmīti uz nākamajām 30 dienām ar vienreizēju ziedojumu.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Jūs varat turpināt izmantot Signal, bet, lai atbalstītu tehnoloģiju, kas izveidota jums, apsveriet iespēju kļūt par uzturētāju veicot ikmēneša ziedojumu.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Kļūstiet par Uzturētāju</string>
@@ -4680,7 +4682,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Jūsu ziedojumu neizdevās nosūtīt tīkla kļūdas dēļ. Pārbaudiet savienojumu un mēģiniet vēlreiz.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Ziedojums lietotāja %1$s vārdā</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s ziedoja Signal jūsu vārdā</string>
     <!-- Gift badge redeem action label -->

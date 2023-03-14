@@ -21,7 +21,7 @@
     <string name="delete">ડિલીટ કરો</string>
     <string name="please_wait">મહેરબાની કરીને રાહ જુઓ…</string>
     <string name="save">સેવ કરો</string>
-    <string name="note_to_self">પોતાના માટે નોટ</string>
+    <string name="note_to_self">પોતાના માટે નોંધ</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">તમારા ડિવાઇસને ફરીથી લિંક કરો</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">જ્યારે તમારું ડિવાઇસ નોંધાયેલ ન હતું ત્યારે તમે ઉમેરેલા ડિવાઇસને અનલિંક કરવામાં આવ્યા હતા. કોઈ પણ ડિવાઇસને ફરીથી લિંક કરવા માટે સેટિંગ્સ પર જાઓ.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">સેટિંગ્સ ખોલો</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,8 +1176,8 @@
     <string name="Megaphones_new_group">નવું ગ્રુપ</string>
     <string name="Megaphones_invite_friends">મિત્રોને આમંત્રિત કરો</string>
     <string name="Megaphones_use_sms">SMS નો ઉપયોગ કરો</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">એક પ્રોફાઇલ ફોટો ઉમેરો</string>
+    <string name="Megaphones_chat_colors">ચેટ કલર</string>
+    <string name="Megaphones_add_a_profile_photo">કોઈ પ્રોફાઇલ ફોટો ઉમેરો</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">જવાબો</string>
@@ -1999,9 +1999,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">તમે એક બૅજ રિડિમ કર્યો</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">તમારી સ્ટોરી પર %1$s એ પ્રતિક્રિયા આપી</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">%1$s એ તમારી સ્ટોરી પર પ્રતિક્રિયા આપી</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">તેમની સ્ટોરી પર %1$s એ પ્રતિક્રિયા આપી</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">%1$s એ તેમની સ્ટોરી પર પ્રતિક્રિયા આપી</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">પેમેન્ટ</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2139,13 +2139,15 @@
     <string name="MessageNotifier_unsecured_sms">અસુરક્ષિત SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">સંપર્ક</string>
-    <string name="MessageNotifier_reacted_s_to_s">%1$s પ્રતિક્રિયા આપી: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">તમારી વિડિયો પર %1$s પ્રતિક્રિયા આપી.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">તમારી છબી પર %1$s પ્રતિક્રિયા આપી.</string>
+    <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" પર %1$s પ્રતિક્રિયા આપી.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">તમારા વીડિયો પર %1$s પ્રતિક્રિયા આપી.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">તમારા ફોટો પર %1$s પ્રતિક્રિયા આપી.</string>
     <string name="MessageNotifier_reacted_s_to_your_gif">તમારી GIF પર %1$s પ્રતિક્રિયા આપી.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">તમારી ફાઇલ પર %1$s ની પ્રતિક્રિયા આપી.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">તમારા ઓડિયો પર %1$sપર પ્રતિક્રિયા આપી.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">તમારા વ્યુ-વન્સ મીડિયા પર %1$s એ પ્રતિક્રિયા આપી.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">તમારી ફાઈલ પર %1$s પ્રતિક્રિયા આપી.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">તમારા ઓડિયો પર %1$s પ્રતિક્રિયા આપી.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">તમારા વ્યૂ-વન્સ મીડિયા પર %1$s પ્રતિક્રિયા આપી.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">તમારા સ્ટીકર પર %1$s પ્રતિક્રિયા આપી.</string>
     <string name="MessageNotifier_this_message_was_deleted">આ મેસેજ ડિલીટ કર્યો.</string>
 
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">ડિલિવરી મુદ્દો</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s તરફથી તમને મેસેજ, સ્ટીકર, પ્રતિક્રિયા અથવા વાંચવાની રસીદ આપી શકાઈ નથી. તેઓએ તેને સીધા તમને અથવા ગ્રુપમાં મોકલવાનો પ્રયત્ન કર્યો હશે.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">એક મેસેજ, સ્ટીકર, પ્રતિક્રિયા અથવા વાંચવાની રસીદ %1$s તરફથી તમને પહોંચાડી શકાઈ નથી.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s તરફથી તમને મેસેજ, સ્ટિકર, પ્રતિક્રિયા અથવા વાંચી લીધાનું નિશાન મોકલી શકાયું નથી. તેઓએ તેને સીધા તમને અથવા ગ્રૂપમાં મોકલવાનો પ્રયત્ન કર્યો હશે.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s તરફથી તમને એક મેસેજ, સ્ટિકર, પ્રતિક્રિયા અથવા વાંચી લીધાનું નિશાન મોકલી શકાયું નથી.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">પ્રથમ નામ (જરૂરી)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">મારો નંબર કોણ જોઈ શકે</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Signal પર કોઈ પણ તમારો ફોન નંબર જોશે નહીં</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">મને નંબરથી કોણ શોધી શકે</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">વોલેટને નિષ્ક્રિય કરો</string>
     <string name="DeactivateWalletFragment__your_balance">તમારું બેલેન્સ</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">એવી ભલામણ કરવામાં આવે છે કે તમે પેમેન્ટને નિષ્ક્રિય કરતા પહેલા તમારા ફંડને બીજા વૉલેટ એડ્રેસ પર સ્થાનાંતરિત કરો. જો તમે હવે તમારા ફંડને સ્થાનાંતરિત ન કરવાનું પસંદ કરો છો, તો જો તમે પેમેન્ટ્સને ફરીથી સક્રિય કરો છો તો તે Signal સાથે જોડાયેલા તમારા વૉલેટમાં રહેશે.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">એવી ભલામણ કરવામાં આવે છે કે તમે પેમેન્ટને નિષ્ક્રિય કરતા પહેલા તમારા ફંડને બીજા વૉલેટ એડ્રેસ પર ટ્રાન્સફર કરો. જો તમે અત્યારે તમારા ફંડને ટ્રાન્સફર ન કરવાનું પસંદ કરો છો, તો જો તમે પેમેન્ટને ફરીથી સક્રિય કરો તો તે તમારા Signal સાથે જોડાયેલા વૉલેટમાં રહેશે.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">બાકીનું બેલેન્સ સ્થાનાંતરિત કરો</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">સ્થાનાંતરિત કર્યા વિના નિષ્ક્રિય કરો</string>
     <string name="DeactivateWalletFragment__deactivate">નિષ્ક્રિય કરો</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">સ્થાનાંતરિત કર્યા વિના નિષ્ક્રિય કરવું છે?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">જો તમે પેમેન્ટને ફરીથી સક્રિય કરવાનું પસંદ કરો છો તો તમારું બેલેન્સ Signal સાથે જોડાયેલા તમારા વૉલેટમાં રહેશે.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">જો તમે પેમેન્ટને ફરીથી સક્રિય કરવાનું પસંદ કરો છો તો તમારું બેલેન્સ તમારા Signal સાથે જોડાયેલા વૉલેટમાં રહેશે.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">વોલેટ નિષ્ક્રિય કરવામાં ભૂલ.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4175,7 +4177,7 @@
     <string name="Donate2022Q2Megaphone_not_now">અત્યારે નહીં</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">કસ્ટમાઇઝ પ્રતિક્રિયાઓ</string>
+    <string name="EditReactionsFragment__customize_reactions">પ્રતિક્રિયાઓ કસ્ટમાઇઝ કરો</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">ઇમોજી બદલવા માટે ટેપ કરો</string>
     <string name="EditReactionsFragment__reset">ફરીથી સેટ કરો</string>
     <string name="EditReactionsFragment_save">સેવ કરો</string>
@@ -4534,7 +4536,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">તમારું પુનરાવર્તિત માસિક યોગદાન રદ થઈ ગયું હતું કારણ કે અમે તમારી ચુકવણીની પ્રક્રિયા ન કરી શક્યા. તમારું બૅજ હવે તમારી પ્રોફાઇલ પર દેખાશે નહીં.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">તમારું પુનરાવર્તિત માસિક દાન રદ થઈ ગયું હતું. %1$s તમારું %2$s બૅજ હવે તમારી પ્રોફાઇલ પર દેખાશે નહીં.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">તમે Signalનો ઉપયોગ કરવાનું ચાલુ રાખી શકો છો પરંતુ એપ્લિકેશનને સહયોગ આપવા અને તમારા બૅજને ફરીથી સક્રિય કરવા, હમણાં જ રિન્યૂ કરો.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">તમે Signalનો ઉપયોગ કરવાનું ચાલુ રાખી શકો છો પરંતુ ઍપને સહયોગ આપવા અને તમારા બૅજને ફરીથી સક્રિય કરવા, હમણાં જ રિન્યૂ કરો.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">સબ્સ્ક્રિપ્શન રિન્યૂ કરો</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay પર જાઓ</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">નેટવર્ક ભૂલને કારણે તમારું દાન મોકલી ન શકાયું. તમારું કનેક્શન તપાસો અને ફરીથી પ્રયત્ન કરો.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$s વતી દાન</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$sએ તમારા વતી Signalને દાન આપ્યું</string>
     <!-- Gift badge redeem action label -->

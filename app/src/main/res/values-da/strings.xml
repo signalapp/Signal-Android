@@ -21,7 +21,7 @@
     <string name="delete">Slet</string>
     <string name="please_wait">Vent venligst …</string>
     <string name="save">Gem</string>
-    <string name="note_to_self">Egen note</string>
+    <string name="note_to_self">Personlig note</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Tilknyt dine enheder igen</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">De enheder, du tilføjede, mistede forbindelse, da enhedens registrering blev fjernet. Gå til Indstillinger for at tilknytte enheder igen.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Åbn indstillinger</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Ny gruppe</string>
     <string name="Megaphones_invite_friends">Inviter venner</string>
     <string name="Megaphones_use_sms">Brug SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Chatfarver</string>
     <string name="Megaphones_add_a_profile_photo">Tilføj et profilbillede</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2145,7 +2145,9 @@
     <string name="MessageNotifier_reacted_s_to_your_gif">Reagerede med %1$s på din GIF.</string>
     <string name="MessageNotifier_reacted_s_to_your_file">Reagerede med %1$s på din fil.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Reagerede med %1$s på din lydfil.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerede med %1$s på din vis-én-gang mediefil.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerede med %1$s på din engangsmediefil.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerede med %1$s på dit klistermærke.</string>
     <string name="MessageNotifier_this_message_was_deleted">Beskeden blev slettet.</string>
 
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Leveringsproblem</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">En besked, klistermærke, reaktion eller læsekvittering kunne ikke leveres til dig fra %1$s. Vedkommende har muligvis forsøgt at sende direkte til dig eller i en gruppe.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">En besked, klistermærke, reaktion eller læsekvittering kunne ikke leveres til dig fra %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">En besked, klistermærke, reaktion eller kvittering for læsning kunne ikke leveres til dig fra %1$s. Vedkommende har muligvis forsøgt at sende direkte til dig eller i en gruppe.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">En besked, klistermærke, reaktion eller kvittering for læsning kunne ikke leveres til dig fra %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Fornavn (påkrævet)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Personer, der kan se mit nummer</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Ingen kan se dit telefonnummer på Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Personer, der kan finde mig med mit nummer</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4522,7 +4524,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Månedlig donation annulleret</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Din Boost-badge er udløbet, og er ikke længere synligt på din profil.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan genaktivere din Boost-badge i yderligere 30 dage med et engangsbidrag.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan genaktivere din Boost-badge i 30 dage med et engangsbidrag.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Du kan fortsætte med at bruge Signal, men hvis du vil støtte teknologi, der er udviklet til dig, kan du overveje at støtte ved at lave en månedlig donation.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bliv bidragsyder</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Din donation kunne ikke sendes på grund af en netværksfejl. Tjek din forbindelse, og prøv igen.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Donation på vegne af %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s donerede til Signal på dine vegne</string>
     <!-- Gift badge redeem action label -->
@@ -4974,9 +4976,9 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Vælg, hvem der kan se din historie. Ændringer vil ikke påvirke historier, som du allerede har sendt.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">Svar &amp; reaktioner</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">Svar og reaktioner</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Tillad svar &amp; reaktioner</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Tillad svar og reaktioner</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Lad folk, der kan se din historie, reagere og svare</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->

@@ -524,9 +524,9 @@
     <string name="ConversationTypingView__plus_d">+ %1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Liên kết lại các thiết bị của bạn</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Các thiết bị bạn thêm đã bị hủy liên kết khi thiết bị được ngưng đăng ký. Vào mục Cài đặt để liên kết lại bất kỳ thiết bị nào.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Mở cài đặt</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1128,7 +1128,7 @@
     <string name="Megaphones_new_group">Tạo nhóm mới</string>
     <string name="Megaphones_invite_friends">Mời bạn bè</string>
     <string name="Megaphones_use_sms">Sử dụng SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Màu trò chuyện</string>
     <string name="Megaphones_add_a_profile_photo">Thêm ảnh đại diện</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2067,14 +2067,16 @@
     <string name="MessageNotifier_unsecured_sms">SMS không bảo mật</string>
     <string name="MessageNotifier_contact_message">%1$s%2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Liên hệ</string>
-    <string name="MessageNotifier_reacted_s_to_s">Đã bày tỏ cảm xúc %1$s cho \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Đã bày tỏ cảm xúc %1$s cho video của bạn.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Đã bày tỏ cảm xúc %1$s cho hình ảnh của bạn.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Đã bày tỏ cảm xúc %1$scho hình GIF của bạn.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Đã bày tỏ cảm xúc %1$s cho tệp tin của bạn.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Đã bày tỏ cảm xúc %1$s cho tệp âm thanh của bạn.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Đã bày tỏ cảm xúc %1$s về tệp đa phương tiện xem một lần của bạn.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Đã bày tỏ cảm xúc %1$s cho nhãn dán của bạn.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Đã bày tỏ cảm xúc %1$s với \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Đã bày tỏ cảm xúc %1$s với video của bạn.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Đã bày tỏ cảm xúc %1$s với hình ảnh của bạn.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Đã bày tỏ cảm xúc %1$s với hình GIF của bạn.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Đã bày tỏ cảm xúc %1$s với tệp của bạn.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Đã bày tỏ cảm xúc %1$s với tệp âm thanh của bạn.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Đã bày tỏ cảm xúc %1$s với tệp đa phương tiện xem một lần của bạn.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Đã bày tỏ cảm xúc %1$s với nhãn dán của bạn.</string>
     <string name="MessageNotifier_this_message_was_deleted">Tin nhắn này đã bị xóa.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Tắt thông báo khi liên hệ bắt đầu sử dụng Signal? Bạn có thể bật lại ở Signal &gt; Cài đặt &gt; Thông báo.</string>
@@ -3377,7 +3379,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Ai Có Thể Thấy Số Điện Thoại Của Tôi</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Sẽ không có ai có thể thấy số điện thoại của bạn trên Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Ai Có Thể Tìm Tôi Bằng Số Điện Thoại</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3757,12 +3759,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Ngưng kích hoạt ví</string>
     <string name="DeactivateWalletFragment__your_balance">Số dư của bạn</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Nó được khuyến khích rằng bạn chuyển khoản quỹ của mình sang một địa chỉ ví khác trước khi ngưng kích hoạt thanh toán. Nếu bạn chọn để không chuyển khoản quỹ của mình bây giờ, chúng sẽ nằm trong ví của bạn mà đã được liên kết với Signal khi bạn kích hoạt lại thanh toán.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Bạn được khuyến khích chuyển khoản quỹ của mình sang một địa chỉ ví khác trước khi ngưng kích hoạt thanh toán. Nếu bạn chọn không chuyển khoản quỹ của mình bây giờ, chúng sẽ nằm trong ví của bạn mà đã được liên kết với Signal khi bạn kích hoạt lại thanh toán.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Chuyển khoản số dư còn lại</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Ngưng kích hoạt mà không chuyển khoản</string>
     <string name="DeactivateWalletFragment__deactivate">Ngưng kích hoạt</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Ngưng kích hoạt mà không chuyển khoản?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Số dư của bạn sẽ nằm trong ví của bạn mà đã được liên kết với Signal nếu như bạn chọn để kích hoạt lại thanh toán.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Số dư của bạn sẽ giữ nguyên trong ví mà đã được liên kết với Signal nếu như bạn chọn để kích hoạt lại thanh toán.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Gặp lỗi khi ngưng kích hoạt ví.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4474,7 +4476,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Khoản ủng hộ của bạn không thể gửi đi được vì lỗi mạng. Kiểm tra kết nối của bạn và thử lại.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Khoản ủng hộ thay cho %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s đã thay mặt bạn ủng hộ Signal</string>
     <!-- Gift badge redeem action label -->

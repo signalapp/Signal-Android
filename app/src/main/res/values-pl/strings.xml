@@ -584,9 +584,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Połącz ponownie urządzenia</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Dodane przez Ciebie urządzenia zostały rozłączone z powodu wyrejestrowanego urządzenia. Przejdź do ustawień, aby ponownie połączyć urządzenia.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Otwórz ustawienia</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1272,7 +1272,7 @@
     <string name="Megaphones_new_group">Nowa grupa</string>
     <string name="Megaphones_invite_friends">Zaproś znajomych</string>
     <string name="Megaphones_use_sms">Użyj SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Kolory czatu</string>
     <string name="Megaphones_add_a_profile_photo">Dodaj zdjęcie profilowe</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2141,9 +2141,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Odebrałeś(-aś) odznakę</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Zareagował(a) tak: %1$s na Twoją relację</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Zareagował(a) tak %1$s na Twoją relację</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Zareagował(a) tak: %1$s na relację</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Zareagował(a) tak %1$s na relację</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Płatność</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2290,6 +2290,8 @@
     <string name="MessageNotifier_reacted_s_to_your_file">Zareagował(a) tak %1$s na Twój plik.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Zareagował(a) tak %1$s na Twoje audio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Zareagował(a) tak %1$s na Twoje multimedia jednorazowe.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Zareagował(a) tak %1$s na Twoją naklejkę.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ta wiadomość została usunięta.</string>
 
@@ -2705,7 +2707,7 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Problem z dostarczeniem wiadomości</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Nie udało się dostarczyć Ci wiadomości, naklejki, reakcji lub potwierdzenia przeczytania od %1$s. Ten kontakt mógł próbować przesłać Ci tę wiadomość, bezpośrednio lub w rozmowie grupowej.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Nie udało się dostarczyć Ci wiadomości, naklejki, reakcji lub potwierdzenia przeczytania od %1$s. Ten kontakt mógł próbować przesłać Ci tę wiadomość bezpośrednio lub w rozmowie grupowej.</string>
     <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Nie udało się dostarczyć Ci wiadomości, naklejki, reakcji lub potwierdzenia przeczytania od %1$s.</string>
 
     <!-- profile_create_activity -->
@@ -3656,7 +3658,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Kto może zobaczyć mój numer</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nikt nie zobaczy Twojego numeru telefonu w Signal.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Kto może mnie znaleźć po numerze telefonu</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4045,7 +4047,7 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Dezaktywuj portfel</string>
     <string name="DeactivateWalletFragment__your_balance">Twoje środki</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Przed dezaktywacją płatności, zalecamy przeniesienie środków do innego portfela. Jeśli postanowisz nie przenosić teraz swoich środków, pozostaną one w Twoim portfelu, powiązanym z Signal, jeśli reaktywujesz płatności.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Przed dezaktywacją płatności zalecamy przeniesienie środków do innego portfela. Jeśli postanowisz nie przenosić teraz swoich środków, pozostaną one w Twoim portfelu powiązanym z Signal, jeśli reaktywujesz płatności.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Przenieś pozostałe środki</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Dezaktywuj bez przenoszenia</string>
     <string name="DeactivateWalletFragment__deactivate">Dezaktywuj</string>
@@ -4783,7 +4785,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Nie udało się wysłać darowizny z powodu błędu sieci. Sprawdź jakość łącza i spróbuj ponownie.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Darowizna w imieniu: %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s wpłacił(a) w Twoim imieniu darowiznę na rzecz Signal</string>
     <!-- Gift badge redeem action label -->
@@ -5196,7 +5198,7 @@
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Pozwalaj na odpowiedzi i reakcje</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Pozwól ludziom, oglądającym Twoją relację, zareagować i odpowiedzieć</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Pozwól osobom oglądającym Twoją relację zareagować i odpowiedzieć</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Kontakty Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5346,7 +5348,7 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Zareagowałeś(aś) na relację od %1$s</string>
+    <string name="ConversationItem__you_reacted_to_s_story">Zareagowałeś(-aś) na relację od %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">Zareagowano na Twoją relację</string>
     <!-- Conversation Item label for reactions to an unavailable story -->

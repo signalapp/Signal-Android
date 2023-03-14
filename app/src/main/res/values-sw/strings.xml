@@ -21,7 +21,7 @@
     <string name="delete">Futa</string>
     <string name="please_wait">Tafadhali subiri…</string>
     <string name="save">Hifadhi</string>
-    <string name="note_to_self">Kiandiko Kwangu</string>
+    <string name="note_to_self">Kikumbusho Kwangu</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Unganisha tena vifaa vyako</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Vifaa ulivyoviongeza viliondolewa wakati kifaa chako kilipokuwa hakijasajiliwa. Nenda kwenye Mipangilio ili kuunganisha tena vifaa.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Fungua mipangilio</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Kikundi kipya</string>
     <string name="Megaphones_invite_friends">Alika marafiki</string>
     <string name="Megaphones_use_sms">Tumia SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Rangi ya gumzo</string>
     <string name="Megaphones_add_a_profile_photo">Ongeza picha ya wasifu</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -1999,9 +1999,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Umekomboa beji</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">%1$s ame-react kwa stori yako</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Ametoa hisia%1$s kwa hadithi yako</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">%1$s ame-react kwa stori yake</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Ametoa hisia%1$s kwa hadithi zao</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Malipo</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2140,12 +2140,14 @@
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Mawasiliano</string>
     <string name="MessageNotifier_reacted_s_to_s">Ametoa hisia %1$skwa: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Ametoa hisia%1$s kwa video yako.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Ametoa hisia%1$s kwa picha yako.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">%1$s kaonyesha reaction kwa GIF yako.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Ametoa hisia %1$s kwa video yako.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Ametoa hisia %1$s kwa picha yako.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Ametoa hisia%1$s kwa GIF yako.</string>
     <string name="MessageNotifier_reacted_s_to_your_file">Ametoa hisia %1$s kwa faili yako.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Ametoa hisia %1$s kwa sauti yako.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Ametoa hisia ya %1$s kwenye media yako ya kutazama mara moja.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Ametoa hisia %1$s kwenye media yako ya kutazama mara moja.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Ametoa hisia%1$s kwa kibandiko chako.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ujumbe huu umefutwa.</string>
 
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Hitilafu ya Uwasilishaji</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Ujumbe, kibandiko, majibu au ripoti ya kusoma haikuweza kuwasilishwa kwako kutoka kwa %1$s. Labda alijaribu kukutumia moja kwa moja, au kwenye kikundi.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Ujumbe, vibandiko, majibu su ripoti ya kusomwa haikuweza kuwasilishwa kwako kutoka kwa %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Ujumbe, kibandiko, hisia au ripoti ya kusomwa haikuweza kuwasilishwa kwako kutoka kwa %1$s. Labda walijaribu kukutumia moja kwa moja, au kwenye kikundi.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Ujumbe, kibandiko, hisia au ripoti ya kusomwa haikuweza kuwasilishwa kwako kutoka kwa %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Jina la kwanza (linahitajika)</string>
@@ -3466,15 +3468,15 @@
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Nambari ya simu</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Chagua nani anayeweza kuona nambari yako ya simu na kuwasiliana nawe kwenye Signal.</string>
+    <string name="preferences_app_protection__choose_who_can_see">Chagua nani anayeweza kuona nambari yako ya simu na kuwasiliana nawe kwenye Signal kwa kuitumia.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Nani anaweza kuona nambari yangu</string>
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Anayeweza kuona nambari yangu</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Hakuna atakayeona nambari yako ya simu kwenye Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Nani anaweza kunipata kupitia nambari yangu</string>
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Yule anayeweza kunipata kupitia nambari yangu</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Nambari yako ya simu itaonekana na watu na vikundi unavyovitumia ujumbe. Watu ambao wamehifadhi nambari yako pia wataiona kwenye Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Nambari yako ya simu itaonekana na watu na vikundi unavyovitumia ujumbe. Watu ambao wamehifadhi nambari yako ya simu pia wataiona kwenye Signal.</string>
     <string name="PhoneNumberPrivacy_everyone">Kila mtu</string>
     <string name="PhoneNumberPrivacy_my_contacts">Waasiliani wangu</string>
     <string name="PhoneNumberPrivacy_nobody">Hakuna mtu</string>
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Zima Mkoba</string>
     <string name="DeactivateWalletFragment__your_balance">Salio lako</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Inashauriwa uhamishie fedha zako kwa anwani nyingine ya mkoba kabla ya kuzima malipo. Ukichagua kutohamisha pesa zako sasa, zitabaki kwenye mkoba wako uliounganishwa na Signal ikiwa utawezasha malipo tena.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Inashauriwa uhamishie fedha zako kwa anwani nyingine ya mkoba kabla ya kuzima malipo. Ukichagua kutohamisha pesa zako sasa, zitabakia kwenye mkoba wako uliounganishwa na Signal ikiwa utawezesha malipo tena.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Hamisha salio lililobakia</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Zima bila kuhamisha</string>
     <string name="DeactivateWalletFragment__deactivate">Zima</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Ungependa kuzima bila kuhamisha?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Salio lako litabaki kwenye mkoba wako uliounganishwa kwenye Signal ukichagua kuwezesha tena malipo.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Salio lako litabakia kwenye mkoba wako uliounganishwa na Signal ukichagua kuwezesha malipo tena.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Hitilafu imetokea wakati wa kuzima mkoba.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4175,7 +4177,7 @@
     <string name="Donate2022Q2Megaphone_not_now">Sio sasa</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">Badilisha majibu yakufae</string>
+    <string name="EditReactionsFragment__customize_reactions">Weka hisia zitakazokufaa</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">Gusa ili ubadilishe emoji</string>
     <string name="EditReactionsFragment__reset">Seti upya tena</string>
     <string name="EditReactionsFragment_save">Hifadhi</string>
@@ -4522,7 +4524,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Mchango wa Kila Mwezi Umeghairishwa</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Beji yako ya Boost imekwisha muda na haionekani tena kwenye wasifu wako.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Unaweza kuamilisha tena beji yako ya Boost kwa siku zingine 30 kwa mchango wa mara moja.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Unaweza kuwezesha tena beji yako ya Boost kwa siku zingine 30 kwa mchango wa mara moja.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Unaweza kuendelea kutumia Signal lakini ili kuunga mkono teknolojia iliyotengenezwa kwa ajili yako, zingatia kuwa mfadhili kwa kutoa mchango wa kila mwezi.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Kuwa Mfadhili</string>
@@ -4534,7 +4536,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Mchango wako wa kujirudia kila mwezi umeghairishwa kwa sababu tumeshindwa kuchakata malipo yako. Beji yako haionekani tena kwenye wasifu wako.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Mchango wako wa kujirudia kila mwezi umeghairishwa. %1$s Beji yako ya %2$s haionekani tena kwenye wasifu wako.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Unaweza kuendelea kutumia Signal lakini ili kuunga mkono programu na kuanzisha upya beji yako, itengeneze upya sasa.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Unaweza kuendelea kutumia Signal lakini ili kuunga mkono programu na kuanzisha upya beji yako, ianzishwe upya sasa.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Tengeneza upya usajili wako</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Nenda Google Pay</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Mchango wako umeshindwa kutumwa kwa sababu ya hitilafu za kimtandao. Angalia muunganisho wa mtandao wako kisha ujaribu tena.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Mchango kwa niaba ya %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s ameichangia Signal kwa niaba yako</string>
     <!-- Gift badge redeem action label -->
@@ -4922,13 +4924,13 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Huwezi kujibu stori hii kwa sababu wewe si mwanachama tena wa kikundi hiki.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Ame-react kwa stori</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Ametoa hisia kwa hadithi yako</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Mitazamo</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Majibu</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">React kwa stori hii</string>
+    <string name="StoryReplyComposer__react_to_this_story">Toa hisia kwa hadithi hii</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Kujibu %1$s kwa faragha</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
@@ -4974,11 +4976,11 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Chagua watakaoona stori yako. Mabadiliko hayataathiri stori ulizotuma tayari.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">Majibu &amp; reactions</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">Majibu na hisia</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Ruhusu majibu &amp;amo; reactions</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Ruhusu majibu na hisia</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Waruhusu watu wanaoweza kuona stori yako ku-react na kujibu</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Waruhusu watu wanaoweza kuona hadithi yako watoe hisia na majibu</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal Connections</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5126,11 +5128,11 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Uli-react kwa story ya %1$s</string>
+    <string name="ConversationItem__you_reacted_to_s_story">Ulitoa hisia kwa hadithi ya %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">Ali-react kwa stori yako</string>
+    <string name="ConversationItem__reacted_to_your_story">Ametoa hisia kwa hadithi yako</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">Ali-react kwa stori</string>
+    <string name="ConversationItem__reacted_to_a_story">Ametoa hisia kwa hadithi</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->

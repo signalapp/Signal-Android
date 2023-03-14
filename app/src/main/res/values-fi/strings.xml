@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Linkitä laitteet uudelleen</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Lisäämiesi laitteiden linkitys poistettiin, kun laitteesi rekisteröinti poistettiin. Siirry asetuksiin linkittääksesi laitteita.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Avaa asetukset</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Uusi ryhmä</string>
     <string name="Megaphones_invite_friends">Kutsu ystäviä</string>
     <string name="Megaphones_use_sms">Käytä tekstiviestiä</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Keskustelun värit</string>
     <string name="Megaphones_add_a_profile_photo">Lisää profiilikuva</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">Salaamaton tekstiviesti</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Yhteystieto</string>
-    <string name="MessageNotifier_reacted_s_to_s">lähetti reaktion %1$s viestiisi %2$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">lähetti reaktion %1$s videoosi.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">lähetti reaktion %1$s kuvaasi.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">lähetti reaktion %1$s GIF:iisi.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">lähetti reaktion %1$s tiedostoosi.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">lähetti reaktion %1$s ääniviestiisi.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">lähetti reaktion %1$s kerran katsottavaan mediaasi.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">lähetti reaktion %1$s tarraasi.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Lähetti reaktion %1$s viestiin: %2$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Lähetti reaktion %1$s videoosi.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Lähetti reaktion %1$s kuvaasi.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Lähetti reaktion %1$s GIF:iisi.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Lähetti reaktion %1$s tiedostoosi.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Lähetti reaktion %1$s ääniviestiisi.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Lähetti reaktion %1$s kerran katsottavaan mediaasi.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Lähetti reaktion %1$s tarraasi.</string>
     <string name="MessageNotifier_this_message_was_deleted">Viesti poistettiin.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Poistetaanko Yhteystietosi liittyi Signaliin -ilmoitukset käytöstä? Voit ottaa ne uudelleen käyttöön avaamalla Signal &gt; Asetukset &gt; Ilmoitukset.</string>
@@ -2539,7 +2541,7 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Ongelma viestin toimituksessa</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Lähettäjän %1$s viestiä, tarraa, reaktiota, lukukuittausta tai mediaa ei voitu toimittaa sinulle. Se on ehkä yritetty lähettää sinulle suoraan tai ryhmässä.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Lähettäjän %1$s viestiä, tarraa, reaktiota tai lukukuittausta ei voitu toimittaa sinulle. Se on ehkä yritetty lähettää sinulle suoraan tai ryhmässä.</string>
     <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Lähettäjän %1$s viestiä, tarraa, reaktiota tai lukukuittausta ei voitu toimittaa sinulle.</string>
 
     <!-- profile_create_activity -->
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Kuka voi nähdä numeroni</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Kukaan ei näe puhelinnumeroasi Signalissa</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Kuka voi löytää minut puhelinnumerolla</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4534,7 +4536,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Toistuva kuukausittainen lahjoituksesi peruutettiin automaattisesti, koska maksuasi ei voitu käsitellä. Merkki ei näy enää profiilissasi.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Toistuva kuukausittainen lahjoituksesi peruutettiin. %1$s %2$s-merkki ei näy enää profiilissasi.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Voit jatkaa Signalin käyttöä, mutta tukeaksesi sovellusta ja aktivoidaksesi merkin uudelleen, uusi lahjoitus nyt.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Voit jatkaa Signalin käyttöä, mutta jos haluat tukea sovellusta ja aktivoida merkin uudelleen, uusi lahjoitus nyt.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Uusi tilaus</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Siirry Google Payhin</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Lahjoitustasi ei voitu lähettää verkkovirheen takia. Tarkista yhteytesi ja yritä uudelleen.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Lahjoitus henkilön %1$s puolesta</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s lahjoitti Signalille puolestasi</string>
     <!-- Gift badge redeem action label -->
@@ -4978,7 +4980,7 @@
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Salli vastaukset ja reaktiot</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Anna tarinasi katsoneiden ihmisten reagoida ja vastata</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Anna henkilöiden, jotka voivat nähdä tarinasi, reagoida ja vastata</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal-kontaktit</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5126,7 +5128,7 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Reagoit käyttäjän %1$s tarinaan</string>
+    <string name="ConversationItem__you_reacted_to_s_story">Reagoit henkilön %1$s tarinaan</string>
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">Lähetti reaktion tarinaasi</string>
     <!-- Conversation Item label for reactions to an unavailable story -->

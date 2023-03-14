@@ -21,7 +21,7 @@
     <string name="delete">Ištrinti</string>
     <string name="please_wait">Palaukite…</string>
     <string name="save">Įrašyti</string>
-    <string name="note_to_self">Pastabos sau</string>
+    <string name="note_to_self">Priminimas sau</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -584,9 +584,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Iš naujo susiek savo įrenginius</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Įrenginiai, kuriuos pridėjai, buvo atsieti išregistravus tavo įrenginį. Eik į nustatymus ir iš naujo susiek įrenginius.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Atverti nustatymus</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1272,8 +1272,8 @@
     <string name="Megaphones_new_group">Nauja grupė</string>
     <string name="Megaphones_invite_friends">Pakviesti draugus</string>
     <string name="Megaphones_use_sms">Naudokite SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">Pridėkite profilio nuotrauką</string>
+    <string name="Megaphones_chat_colors">Pokalbio spalvos</string>
+    <string name="Megaphones_add_a_profile_photo">Pridėti profilio nuotrauką</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Atsakymai</string>
@@ -2141,9 +2141,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Tu pasiėmei ženklelį</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Sureagavo į tavo istoriją „%1$s“</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Sureagavo į tavo istoriją %1$s</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Sureagavai į istoriją „%1$s“</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Sureagavai į istoriją %1$s</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Mokėjimas</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2283,14 +2283,16 @@
     <string name="MessageNotifier_unsecured_sms">Neapsaugota SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Adresatas</string>
-    <string name="MessageNotifier_reacted_s_to_s">Sureagavo %1$s į: „%2$s“.</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Sureagavo į jūsų vaizdo įrašą: %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Sureagavo į jūsų paveikslą: %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Sureagavo į jūsų GIF: %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Sureagavo į jūsų failą: %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Sureagavo į jūsų garso įrašą: %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Sureagavo į jūsų vienkartinės peržiūros mediją: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Sureagavo į jūsų lipduką: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Sureagavo %1$s į „%2$s“.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Sureagavo į tavo vaizdo įrašą %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Sureagavo į tavo nuotrauką %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Sureagavo į tavo GIF %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Sureagavo į tavo failą %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Sureagavo į tavo garso įrašą %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Sureagavo į tavo vienkartinės peržiūros įrašą %1$s.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Sureagavo į tavo lipduką %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Išjungti pranešimus apie tai, kad adresatai prisijungė prie Signal? Galėsite ir vėl įjungti šiuos pranešimus, perėję į Signal &gt; Nustatymai &gt; Pranešimai.</string>
@@ -2705,8 +2707,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Pristatymo problema</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Nepavyko jums nuo %1$s pristatyti žinutės, lipduko, reakcijos ar pranešimo apie žinutės skaitymą. Gali būti, kad šis žmogus bandė siųsti jums tiesiogiai arba grupėje.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Nepavyko jums nuo %1$s pristatyti žinutės, lipduko, reakcijos ar pranešimo apie žinutės skaitymą.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Nepavyko tau pristatyti žinutės, lipduko, reakcijos ar perskaitymo pranešimo nuo %1$s. Gali būti, kad šis žmogus tau bandė siųsti tiesiogiai arba grupėje.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Nepavyko tau pristatyti žinutės, lipduko, reakcijos ar perskaitymo pranešimo nuo %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Vardas (būtinas)</string>
@@ -3652,11 +3654,11 @@
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Telefono numeris</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Pasirink, kas gali matyti tavo tel. numerį, ir kas gali su tavimi susisiekti per „Signal“.</string>
+    <string name="preferences_app_protection__choose_who_can_see">Pasirink, kas gali matyti tavo tel. numerį, ir kas gali juo su tavimi susisiekti per „Signal“.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Kas gali matyti mano tel. numerį</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Niekas nematys tavo tel. numerio programėlėje „Signal“</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Kas gali mane rasti pagal numerį</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4045,12 +4047,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Pasyvinti piniginę</string>
     <string name="DeactivateWalletFragment__your_balance">Jūsų likutis</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Rekomenduojama, kad prieš pasyvindami mokėjimus, pervestumėte savo lėšas į kitos piniginės adresą. Jei dabar pasirinksite nepervesti lėšų, jos išliks jūsų piniginėje susietos su Signal tam atvejui, jei pasirinksite iš naujo aktyvuoti mokėjimus.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Prieš deaktyvinant mokėjimus rekomenduojama pervesti savo lėšas į kitos piniginės adresą. Jei dabar pasirinksi nepervesti savo lėšų, jos liks su „Signal“ susietoje tavo piniginėje, jei iš naujo aktyvinsi mokėjimus.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Pervesti likusį likutį</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Pasyvinti be pervedimo</string>
     <string name="DeactivateWalletFragment__deactivate">Pasyvinti</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Pasyvinti be pervedimo?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Jūsų likutis išliks jūsų piniginėje susietas su Signal tam atvejui, jei pasirinksite iš naujo aktyvuoti mokėjimus.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Tavo likutis liks su „Signal“ susietoje tavo piniginėje, jei pasirinksi iš naujo aktyvinti mokėjimus.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Klaida pasyvinant piniginę.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4728,7 +4730,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Kasmėnesinė parama nutraukta</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Tavo rėmėjo ženklelis nebegalioja ir nebėra matomas tavo profilyje.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Gali pratęsti rėmėjo ženklelį dar 30-čiai dienų, jei skirsi vienkartinę paramą.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Gali pratęsti savo rėmėjo ženklelį dar 30-čiai dienų, jei skirsi vienkartinę paramą.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Gali ir toliau naudoti „Signal“, bet jei nori palaikyti tau kuriamą technologiją, apsvarstyk galimybę tapti rėmėju ir skirti kasmėnesinę paramą.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Tapti rėmėju</string>
@@ -4783,7 +4785,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Tinklo klaida sutrukdė nusiųsti tavo paramą. Patikrink interneto ryšį ir bandyk dar kartą.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Parama %1$s vardu</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s skyrė „Signal“ paramą tavo vardu</string>
     <!-- Gift badge redeem action label -->

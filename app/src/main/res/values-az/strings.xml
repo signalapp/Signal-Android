@@ -544,11 +544,11 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Cihazlarınızı yenidən əlaqələndirin</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Cihazınız qeydiyyatdan çıxarıldıqda əlavə etdiyiniz cihazlarla əlaqə kəsildi. İstənilən cihazı yenidən əlaqələndirmək üçün Parametrlərə keçin.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">Tənzimləmələri aç</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">Parametrləri aç</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
     <string name="RelinkDevicesReminderFragment__later">Daha sonra</string>
 
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Yeni qrup</string>
     <string name="Megaphones_invite_friends">Dostları dəvət et</string>
     <string name="Megaphones_use_sms">SMS istifadə et</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Çat rəngləri</string>
     <string name="Megaphones_add_a_profile_photo">Bir profil fotosu əlavə et</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">Güvənli olmayan SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Əlaqə</string>
-    <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" mesajına reaksiya verdi: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Videonuza reaksiya verdi: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Şəklinizə reaksiya verdi: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">GIF-inizə reaksiya verdi: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Faylınıza reaksiya verdi: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Səsinizə reaksiya verdi: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Bir dəfə baxıla bilən medianıza reaksiya verdi: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Stikerinizə reaksiya verdi: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" mesajına reaksiya verdi: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Videonuza reaksiya verdi: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Şəklinizə reaksiya verdi: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">GIF-inizə reaksiya verdi: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Faylınıza reaksiya verdi: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Səsinizə reaksiya verdi: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Bir dəfə baxıla bilən media faylınıza reaksiya verdi: %1$s.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Stikerinizə reaksiya verdi: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Mesaj silindi.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Əlaqə Signal-a qoşuldu bildirişləri söndürülsün? Bunu Signal &gt; Tənzimləmələr &gt; Bildirişlər üzərindən təkrar fəallaşdıra bilərsiniz.</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Çatdırılma problemi</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s tərəfindən göndərilən bir mesaj, stiker, reaksiya və ya oxundu bildirişi sizə çatdırıla bilmədi. Sizə birbaşa və ya qrup daxilindən göndərməyə çalışmış ola bilər.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s tərəfindən göndərilən bir mesaj, stiker, reaksiya və ya oxundu bildirişi sizə çatdırıla bilmədi.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s tərəfindən göndərilən bir mesaj, stiker, reaksiya və ya oxunma bildirişi sizə çatdırılmadı. O, bunu sizə birbaşa və ya qrup daxilində göndərməyə çalışmış ola bilər.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s tərəfindən göndərilən mesaj, stiker, reaksiya və ya oxunma bildirişi sizə çatdırılmadı.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Ad (tələb olunur)</string>
@@ -3470,11 +3472,11 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Nömrəmi kim görə bilər?</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Telefon nömrənizi Signal-da heç kim görməyəcək</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Məni nömrəmlə kim tapa bilər?</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Telefon nömrənizi mesaj göndərdiyiniz şəxslər və qruplar görə bilər. Ünvan kitabçasında telefon nömrəniz olan şəxslər də Signal-da bunu görə biləcək.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Telefon nömrənizi mesaj göndərdiyiniz şəxslər və qruplar görə bilər. Kontaktlar siyahısında telefon nömrəniz olan şəxslər də Signal-da bunu görə biləcək.</string>
     <string name="PhoneNumberPrivacy_everyone">Hər kəs</string>
     <string name="PhoneNumberPrivacy_my_contacts">Əlaqələrim</string>
     <string name="PhoneNumberPrivacy_nobody">Heç kim</string>
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Pulqabını deaktiv et</string>
     <string name="DeactivateWalletFragment__your_balance">Balansınız</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Ödənişləri deaktiv etməzdən əvvəl pulunuzu başqa bir pulqabı ünvanına köçürmək məsləhət görülür. Pulunuzu indi köçürməməyi seçsəniz, ödənişləri yenidən aktivləşdirdiyiniz təqdirdə, pulunuz Signal-a bağlı pulqabınızda qalacaq.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Ödənişləri qeyri-aktiv etməzdən əvvəl pulunuzu başqa bir pulqabı ünvanına köçürməniz məsləhət görülür. Pulunuzu indi köçürməməyi seçsəniz, ödənişləri yenidən aktivləşdirdiyiniz təqdirdə, pulunuz Signal-la əlaqələndirilmiş pulqabınızda qalacaq.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Qalan balansı köçür</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Köçürmə olmadan deaktiv et</string>
     <string name="DeactivateWalletFragment__deactivate">Deaktiv et</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Köçürmə olmadan deaktiv edilsin?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Ödənişləri yenidən aktivləşdirməyi seçsəniz, balansınız Signal-a bağlı pulqabınızda qalacaq.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Ödənişləri yenidən aktivləşdirməyi seçsəniz, balansınız Signal-a əlaqələndirilmiş pulqabınızda qalacaq.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Pulqabını deaktiv edərkən xəta baş verdi.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4175,7 +4177,7 @@
     <string name="Donate2022Q2Megaphone_not_now">İndi yox</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">Reaksiyaları özəlləşdirin</string>
+    <string name="EditReactionsFragment__customize_reactions">Reaksiyaları fərdiləşdirin</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">Bir ifadəni əvəz etmək üçün toxunun</string>
     <string name="EditReactionsFragment__reset">Sıfırla</string>
     <string name="EditReactionsFragment_save">Saxla</string>
@@ -4522,7 +4524,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Aylıq ianə ləğv edildi</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Stimul nişanınızın müddəti bitdi və artıq profilinizdə görünmür.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Stimul nişanını növbəti 30 gün üçün birdəfəlik ianə edərək yenidən aktivləşdirə bilərsiniz.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Boost nişanını növbəti 30 gün üçün birdəfəlik ianə ilə yenidən aktivləşdirə bilərsiniz.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal-dan istifadəyə davam edə bilərsiniz, ancaq sizin üçün qurulmuş texnologiyanı dəstəkləmək məqsədilə aylıq ianə verərək davamlı dəstəkçi olmağı da nəzərə ala bilərsiniz.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bir dəstəkçi olun</string>
@@ -4534,7 +4536,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Ödənişinizi emal edə bilmədiyimizə görə təkrarlanan aylıq ianəniz ləğv edildi. Artıq nişanınız profilinizdə görünmür.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Təkrarlanan aylıq ianəniz ləğv edildi. %1$s Sizin %2$s nişanınız artıq profilinizdə görünmür.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal-dan istifadəyə davam edə bilərsiniz, ancaq tətbiqi dəstəkləmək və nişanınızı təkrar aktivləşdirmək üçün abunəliyi indi yeniləyin.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal-dan istifadəyə davam edə bilərsiniz, ancaq tətbiqi dəstəkləmək və nişanınızı təkrar aktivləşdirmək üçün indi yeniləyin.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Abunəliyi yenilə</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Play-ə keç</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Şəbəkə xətasına görə ianənizi göndərmək mümkün olmadı. Bağlantınızı yoxlayıb yenidən cəhd edin.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$s adından ianə</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s sizin adınızdan Signal-a ianə verdi</string>
     <!-- Gift badge redeem action label -->
@@ -4974,9 +4976,9 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Hekayənizə kimin baxa bildiyini seçin. Dəyişikliklər artıq göndərdiyiniz hekayələrə tətbiq olunmayacaq.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">Cavablar &amp; reaksiyalar</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">Cavablar və reaksiyalar</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Cavablara &amp; reaksiyalara icazə ver</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Cavablara və reaksiyalara icazə ver</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Hekayələrinizi görən şəxslərin reaksiya və cavab verməsinə icazə verin</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
@@ -5126,11 +5128,11 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">%1$s paylaşan hekayəyə reaksiya verdiniz</string>
+    <string name="ConversationItem__you_reacted_to_s_story">%1$s adlı istifadəçinin hekayəsinə reaksiya verdiniz</string>
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">Hekayənizə reaksiya verildi</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">Hekayəyə reaksiya verildi</string>
+    <string name="ConversationItem__reacted_to_a_story">Bir hekayəyə reaksiya verildi</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -5391,7 +5393,7 @@
     <!-- Title of the screen -->
     <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS mesajları ixrac olunur</string>
     <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Bu bir qədər çəkə bilər</string>
+    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Bu, bir qədər çəkə bilər</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
         <item quantity="one">%1$d/%2$d ixrac olunur…</item>

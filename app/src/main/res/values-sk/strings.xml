@@ -584,11 +584,11 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Znova pripojte svoje zariadenia</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Zariadenia, ktoré ste pridali, boli odpojené, keď vaše zariadenie nebolo registrované. Prejdite do časti Nastavenia a znova pripojte všetky zariadenia.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">Otvorte nastavenia</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">Otvoriť nastavenia</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
     <string name="RelinkDevicesReminderFragment__later">Neskôr</string>
 
@@ -1272,8 +1272,8 @@
     <string name="Megaphones_new_group">Nová skupina</string>
     <string name="Megaphones_invite_friends">Pozvať priateľov</string>
     <string name="Megaphones_use_sms">Použiť SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">Pridajte profilovú fotografiu</string>
+    <string name="Megaphones_chat_colors">Farba četu</string>
+    <string name="Megaphones_add_a_profile_photo">Pridať profilovú fotku</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Odpovede</string>
@@ -2290,6 +2290,8 @@
     <string name="MessageNotifier_reacted_s_to_your_file">reagoval/a na váš súbor: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">reagoval/a na váš zvuk: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoval(a) %1$s na vaše médium na jedno zobrazenie</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">reagoval/a na vašu nálepku: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Táto správa bola vymazaná.</string>
 
@@ -3656,7 +3658,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Kto môže vidieť moje telefónne číslo</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nikto neuvidí vaše telefónne číslo v službe Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Kto ma môže vyhľadať pomocou telefónneho čísla</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4783,7 +4785,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Váš príspevok nebolo možné odoslať z dôvodu chyby siete. Skontrolujte pripojenie a skúste to znovu.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Príspevok v mene používateľa %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">Používateľ %1$s prispel na Signal vo vašom mene</string>
     <!-- Gift badge redeem action label -->

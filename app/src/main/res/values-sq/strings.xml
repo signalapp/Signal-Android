@@ -21,7 +21,7 @@
     <string name="delete">Fshije</string>
     <string name="please_wait">Ju lutemi, prisni…</string>
     <string name="save">Ruaje</string>
-    <string name="note_to_self">Shënim për Veten</string>
+    <string name="note_to_self">Shënim për veten</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -544,11 +544,11 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Rilidh pajisjet e tua</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Pajisjet që shtove u shkëputën kur pajisja u çregjistrua. Shko tek parametrat për të rilidhur çdo pajisje.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">Hap cilësimet</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">Hap parametrat</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
     <string name="RelinkDevicesReminderFragment__later">Më vonë</string>
 
@@ -1176,8 +1176,8 @@
     <string name="Megaphones_new_group">Grup i ri</string>
     <string name="Megaphones_invite_friends">Ftoni shokë</string>
     <string name="Megaphones_use_sms">Use SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">Shtoni një foto profili</string>
+    <string name="Megaphones_chat_colors">Ngjyrat e bisedës</string>
+    <string name="Megaphones_add_a_profile_photo">Shto foto profili</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Përgjigje</string>
@@ -2140,13 +2140,15 @@
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
     <string name="MessageNotifier_reacted_s_to_s">Reagoi me %1$s ndaj: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Reagoi me %1$s ndaj videos tuaj.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Reagoi me %1$s ndaj figurës tuaj.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Reagoi me %1$s ndaj GIF-it tuaj.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Reagoi me %1$s ndaj kartelës tuaj.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Reagoi me %1$s ndaj audios tuaj.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoi me %1$s te media juaj për një parje të vetme.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoi me %1$s ndaj ngjitësit tuaj.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Reagoi me %1$s ndaj videos tënde.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Reagoi me %1$s ndaj figurës tënde.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Reagoi me %1$s ndaj GIF-it tënd.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Reagoi me %1$s ndaj kartelës tënde.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Reagoi me %1$s ndaj audios tënde.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoi me %1$s te media jote, të cilën mund ta shohësh veç një herë.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoi me %1$s ndaj ngjitësit tënd.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ky mesazh u fshi.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Të çaktivizohen njoftime Signal për kontakte të sapoardhur? Mund t\\’i aktivizoni sërish që nga Signal &gt; Rregullime &gt; Njoftime.</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Problem Dërgimi</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">S\\’u dërgua dot te ju një mesazh, ngjitës, reagim, ose dëftesë leximi nga %1$s. Mund të ketë provuar ta dërgojë drejtpërsëdrejti për ju, ose në një grup.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">S\\’u dërgua dot te ju një mesazh, ngjitës, reagim, ose dëftesë leximi nga %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Një mesazh, ngjitës, reagim, ose verifikim leximi i %1$s nuk u dërgua dot te ti. Mund të ketë provuar ta dërgojë drejtpërsëdrejti te ti ose në një grup.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Një mesazh, ngjitës, reagim, ose verifikim leximi i %1$s nuk u dërgua dot te ti.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Emër (i domosdoshëm)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Kush mund të shohë numrin tim</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Askush nuk do ta shohë numrin tënd të telefonit në Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Kush mund të më gjejë nëpërmjet numrit</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Çaktivizoni Portofolin</string>
     <string name="DeactivateWalletFragment__your_balance">Depozita juaj</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Rekomandohet që të shpërngulni fondet tuaja në një portofol tjetër, përpara se të çaktivizoni pagesat. Nëse zgjidhni të mos shpërngulen fonte tuaja tani, do të mbeten në portofolin tuaj të lidhur me Signal-in, nëse riaktivizoni pagesat.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Rekomandohet që të transferosh fondet e tua në një portofol tjetër, para se të çaktivizosh pagesat. Nëse zgjedh të mos transferosh fondet e tua tani, do të mbeten në portofolin tënd të lidhur me Signal, nëse riaktivizon pagesat.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Shpërngulni depozitën e mbetur</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Çaktivizoje pa e shpërngulur</string>
     <string name="DeactivateWalletFragment__deactivate">Çaktivizoje</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Të çaktivizohet pa e shpërngulur?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Depozita juaj do të mbetet në portofolin tuaj të lidhur me Signal-in, nëse zgjidhni të riaktivizoni pagesat.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Depozita jote do të mbetet në portofolin tënd të lidhur me Signal, nëse zgjedh të riaktivizosh pagesat.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Gabim gjatë çaktivizimit të portofolit.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4175,7 +4177,7 @@
     <string name="Donate2022Q2Megaphone_not_now">Jo tani</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">Përshtatni reagime</string>
+    <string name="EditReactionsFragment__customize_reactions">Personalizo reagimet</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">Prekeni që të zëvendësoni një emoxhi</string>
     <string name="EditReactionsFragment__reset">Riktheje</string>
     <string name="EditReactionsFragment_save">Ruaje</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Dhurata jote nuk u dërgua dot për shkak të një gabimi në rrjet. Kontrollo lidhjen e internetit dhe riprovo.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Dhurim në emër të %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s dhuroi për Signal në emrin tënd</string>
     <!-- Gift badge redeem action label -->
@@ -4974,9 +4976,9 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Zgjidh personat që mund ta shohin postimin e përkohshëm. Ndryshimet nuk zbatohen te postimet e përkohshme që tashmë i ke dërguar.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">Përgjigje &amp; reagime</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">Përgjigjet &amp; reagimet</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Lejo përgjigje &amp; reagime</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Lejo përgjigjet &amp; reagimet</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Lëri njerëzit që mund të shohin postimin tënd të përkohshëm të reagojnë dhe të përgjigjen</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
@@ -5126,7 +5128,7 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Ti reagove ndaj postimit të përkohshëm të %1$s</string>
+    <string name="ConversationItem__you_reacted_to_s_story">Reagove ndaj postimit të përkohshëm të %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">Reagoi ndaj postimit tënd të përkohshëm</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
@@ -5391,7 +5393,7 @@
     <!-- Title of the screen -->
     <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Mesazhet SMS po eksportohen</string>
     <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Kjo mund të dojë pak kohë</string>
+    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Mund të duhet pak kohë</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
         <item quantity="one">Po eksportohet %1$d nga %2$d…</item>

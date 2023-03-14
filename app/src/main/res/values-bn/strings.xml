@@ -21,7 +21,7 @@
     <string name="delete">মুছে ফেলুন</string>
     <string name="please_wait">অনুগ্রহপূর্বক অপেক্ষা করুন…</string>
     <string name="save">সংরক্ষণ</string>
-    <string name="note_to_self">নিজের উদ্দেশ্যে মন্তব্য</string>
+    <string name="note_to_self">নিজের জন্য নোট</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -544,13 +544,13 @@
     <string name="ConversationTypingView__plus_d">+ %1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">আপনার ডিভাইস আবারো লিংক করুন</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">যখন আপনার ডিভাইসটি নিবন্ধনহীন অবস্থায় ছিলো তখন আপনার সংযুক্ত ডিভাইসগুলো আনলিংক করা হয়েছিলো। যেকোনো ডিভাইস আবারো লিংক করতে সেটিংসে যান।</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">সেটিংস খুলুন</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
-    <string name="RelinkDevicesReminderFragment__later">পরবর্তীতে</string>
+    <string name="RelinkDevicesReminderFragment__later">পরে</string>
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">সদস্য নির্বাচন করুন</string>
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">নতুন গ্রুপ</string>
     <string name="Megaphones_invite_friends">বন্ধুদের আমন্ত্রণ</string>
     <string name="Megaphones_use_sms">এসএমএস ব্যবহার করুন</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">চ্যাটের রং</string>
     <string name="Megaphones_add_a_profile_photo">একটি প্রোফাইল ছবি যুক্ত করুন</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">অনিরাপদ এসএমএস</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">পরিচিতি</string>
-    <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" তে %1$s প্রতিক্রিয়া|</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">আপনার ভিডিওতে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">আপনার চিত্রে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">আপনার GIF তে %1$s প্রতিক্রিয়া জানিয়েছেন৷</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">আপনার ফাইলে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">আপনার অডিওতে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">আপনার একবার-দেখা মিডিয়ায় %1$s প্রতিক্রিয়া দেখিয়েছে।</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">আপনার স্টিকারে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
+    <string name="MessageNotifier_reacted_s_to_s">%1$s রিঅ্যাক্ট করেছেন: \"%2$s\"-এ।</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">আপনার ভিডিওতে %1$s রিঅ্যাক্ট করেছেন।</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">আপনার ছবিতে %1$s রিঅ্যাক্ট করেছেন।</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">আপনার GIF-এ %1$s রিঅ্যাক্ট করেছেন।</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">আপনার ফাইলে %1$s রিঅ্যাক্ট করেছেন।</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">আপনার অডিওতে %1$s রিঅ্যাক্ট করেছেন।</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">আপনার ভিউ-ওয়ান্স মিডিয়াতে %1$s রিঅ্যাক্ট করেছেন।</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">আপনার স্টিকারে %1$s রিঅ্যাক্ট করেছেন।</string>
     <string name="MessageNotifier_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">কন্ট্যাক্টের Signal-এ যোগ দেওয়ার নোটিফিকেশনটি বন্ধ করবেন? আপনি Signal &gt; সেটিংস &gt; নোটিফিকেশন অপশনে গিয়ে এটি চালু করতে পারবেন।</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">পাঠানোর ক্ষেত্রে সমস্যা</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s থেকে আপনাকে কোনও মেসেজ, স্টিকার, প্রতিক্রিয়া বা পাঠের রশিদ পাঠানো যায়নি। তারা হয়তো আপনাকে সরাসরি বা একটি গ্রুপে এটি পাঠানোর চেষ্টা করেছেন।</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s থেকে আপনাকে কোনও মেসেজ, স্টিকার বা পাঠের রসিদ পাঠানো যায়নি।</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s-এর কাছ থেকে আপনাকে কোনো ম্যাসেজ, স্টিকার, প্রতিক্রিয়া বা রিড রিসিপ্ট পাঠানো যায়নি। তারা হয়তো আপনাকে সরাসরি বা একটি গ্রুপে এটি পাঠানোর চেষ্টা করেছেন।</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s-এর কাছ থেকে আপনাকে কোনো ম্যাসেজ, স্টিকার বা রিড রিসিপ্ট পাঠানো যায়নি।</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">নামের প্রথম অংশ (প্রয়োজনীয়)</string>
@@ -3464,17 +3466,17 @@
     <string name="preferences_app_protection__see_my_phone_number">আমার ফোন নম্বর দেখুন</string>
     <string name="preferences_app_protection__find_me_by_phone_number">ফোন নম্বর দিয়ে আমাকে সন্ধান করুন</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">ফোন নাম্বার</string>
+    <string name="preferences_app_protection__phone_number">ফোন নম্বর</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">আপনার ফোন নম্বর কে দেখতে পাবেন এবং এটি ব্যবহার করে Signal-এ কে আপনার সাথে যোগাযোগ করতে পারবেন তা নির্বাচন করুন।</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">আমার নম্বর কে দেখতে পাবেন</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">কেউ Signal-এ আপনার ফোন নম্বর দেখতে পাবেন না</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">নম্বরের মাধ্যমে কে আমাকে খুঁজে পাবেন</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">আপনি যেসব লোকজন ও গ্রুপকে মেসেজ পাঠাবেন তারা আপনার ফোন নম্বরটি দেখতে পাবেন। যেসকল লোকের ফোনের কন্টাক্টে আপনার ফোন নম্বরটি রয়েছে তারাও Signal-এ সেটি দেখতে পাবেন।</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">আপনি যেসকল ব্যক্তি ও গ্রুপকে ম্যাসেজ পাঠাবেন তারা আপনার ফোন নম্বরটি দেখতে পাবেন। যেসকল ব্যক্তির ফোনের কন্টাক্টে আপনার ফোন নম্বরটি রয়েছে তারাও Signal-এ সেটি দেখতে পাবেন।</string>
     <string name="PhoneNumberPrivacy_everyone">সকলে</string>
     <string name="PhoneNumberPrivacy_my_contacts">আমার পরিচিতিগুলি</string>
     <string name="PhoneNumberPrivacy_nobody">কেউ না</string>
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">ওয়ালেট বন্ধ করুন</string>
     <string name="DeactivateWalletFragment__your_balance">আপনার ব্যালেন্স</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">পেমেন্ট বন্ধ করার পূর্বে আপনাকে আপনার টাকা অন্য ওয়ালেটের ঠিকানায় পাঠানোর সুপারিশ করা হচ্ছে। আপনি এখন আপনার টাকা ট্রান্সফার করতে না চাইলে, আপনি পেমেন্ট পুনরায় চালু করলে সেগুলো আপনার Signal-এর সাথে লিংক করা ওয়ালেটেই থাকবে।</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">পেমেন্ট নিষ্ক্রিয় করার পূর্বে আপনাকে আপনার অর্থ অন্য ওয়ালেটের ঠিকানায় পাঠানোর জন্য পরামর্শ দেওয়া হচ্ছে। আপনি এখন আপনার অর্থ পাঠাতে না চাইলে, পেমেন্ট পুনরায় চালু করার পর সেগুলো আপনার Signal-এর সাথে লিংককৃত ওয়ালেটেই থাকবে।</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">অবশিষ্ট ব্যালেন্স ট্রান্সফার করুন</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">ট্রান্সফার না করেই বন্ধ করুন</string>
     <string name="DeactivateWalletFragment__deactivate">বন্ধ করুন</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">ট্রান্সফার না করেই বন্ধ করবেন?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">আপনি পেমেন্ট পুনঃসক্রিয় করা বেছে নিলে আপনার ব্যালান্স Signal-এর সাথে লিঙ্ক করা আপনার ওয়ালেটে থাকবে।</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">আপনি পেমেন্ট পুনরায় সক্রিয় করলে আপনার ব্যালান্স Signal-এর সাথে লিংককৃত ওয়ালেটে থাকবে।</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">ওয়ালেট বন্ধ করতে ত্রুটি।</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4522,7 +4524,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">মাসিক ডোনেশন বাতিল করা হয়েছে</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">আপনার বুস্ট ব্যাজের মেয়াদ শেষ হয়ে গেছে এবং আপনার প্রোফাইলে তা আর দৃশ্যমান নয়।</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">এককালীন অনুদানের মাধ্যমে আপনি আপনার বুস্ট ব্যাজকে আরও 30 দিনের জন্য পুনরায় সক্রিয় করতে পারেন।</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">এককালীন অনুদানের মাধ্যমে আপনি আপনার বুস্ট ব্যাজকে আরো 30 দিনের জন্য পুনরায় সক্রিয় করতে পারবেন।</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">আপনি Signal ব্যবহার চালিয়ে যেতে পারেন তবে, আপনার জন্য তৈরি এই প্রযুক্তিকে সমর্থন করার জন্য, মাসিক ডোনেশন দিয়ে একজন সাসটেইনার হওয়ার কথা বিবেচনা করুন।</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">একজন সাসটেইনার হোন</string>
@@ -4534,7 +4536,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">আপনার পুনরাবৃত্ত মাসিক ডোনেশন বাতিল করা হয়েছে, কারণ আমরা আপনার পেমেন্টটি প্রক্রিয়া করতে পারিনি। আপনার ব্যাজটি আপনার প্রোফাইলে আর দৃশ্যমান নয়৷</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">আপনার পুনরাবৃত্ত মাসিক ডোনেশন বাতিল করা হয়েছে। %1$s আপনার %2$s ব্যাজ আপনার প্রোফাইলে আর দেখা যাবে না।</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">আপনি Signal ব্যবহার চালিয়ে যেতে পারেন তবে অ্যাপটিকে সমর্থন করতে এবং আপনার ব্যাজ পুনরায় সক্রিয় করতে, এখনই নবায়ন করুন।</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">আপনি Signal ব্যবহার চালিয়ে যেতে পারবেন, তবে অ্যাপটিকে সহায়তা করতে ও আপনার ব্যাজ পুনরায় সক্রিয় করতে, এখনই নবায়ন করুন।</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">সাবস্ক্রিপশন নবায়ন করুন</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay-তে যান</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">নেটওয়ার্ক ত্রুটির কারণে আপনার ডোনেশন পাঠানো যায়নি। আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$s-এর পক্ষ থেকে ডোনেশন</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">আপনার পক্ষ হয়ে %1$s Signal-কে ডোনেট করেছেন</string>
     <!-- Gift badge redeem action label -->
@@ -4922,13 +4924,13 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">আপনি এই স্টোরির উত্তর দিতে পারবেন না, কারণ আপনি আর এই গ্রুপের সদস্য নন।</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">স্টোরি-তে রিঅ্যাক্ট করা হয়েছে</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">স্টোরিতে রিঅ্যাক্ট করেছেন</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">ভিউ</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">রিপ্লাই</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">স্টোরি-তে রিঅ্যাক্ট করুন</string>
+    <string name="StoryReplyComposer__react_to_this_story">এই স্টোরিতে রিঅ্যাক্ট করুন</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s-কে ব্যক্তিগতভাবে রিপ্লাই করা হচ্ছে</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
@@ -4974,11 +4976,11 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">আপনার স্টোরি কে দেখতে পাবেন তা নির্ধারণ করুন৷ পরিবর্তনগুলো আপনার ইতোমধ্যে পাঠানো স্টোরিগুলোকে প্রভাবিত করবে না।</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">উত্তর &amp; রিঅ্যাকশন</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">উত্তর ও প্রতিক্রিয়া</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">উত্তর &amp; রিঅ্যাকশন অনুমোদন করুন</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">উত্তর ও প্রতিক্রিয়ার অনুমতি দিন</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">যারা আপনার স্টোরি দেখতে পাবেন তাদের রিঅ্যাক্ট এবং উত্তর দিতে দিন</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">আপনার স্টোরিতে কারা রিঅ্যাক্ট করতে ও উত্তর দিতে পারবেন তা নির্ধারণ করুন</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal কানেকশন</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5126,11 +5128,11 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">আপনি %1$s-এর স্টোরি-তে রিঅ্যাক্ট করেছেন</string>
+    <string name="ConversationItem__you_reacted_to_s_story">আপনি %1$s-এর স্টোরিতে রিঅ্যাক্ট করেছেন</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">আপনার স্টোরি-তে রিঅ্যাক্ট করেছেন</string>
+    <string name="ConversationItem__reacted_to_your_story">আপনার স্টোরিতে রিঅ্যাক্ট করেছেন</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">একটি স্টোরি-তে রিঅ্যাক্ট করেছেন</string>
+    <string name="ConversationItem__reacted_to_a_story">একটি স্টোরিতে রিঅ্যাক্ট করেছেন</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -5391,7 +5393,7 @@
     <!-- Title of the screen -->
     <string name="ExportingSmsMessagesFragment__exporting_sms_messages">এসএমএস ম্যাসেজ এক্সপোর্ট করা হচ্ছে</string>
     <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">কিছুটা সময় লাগতে পারে</string>
+    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">এতে কিছুটা সময় লাগতে পারে</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
         <item quantity="one">%2$d-এর %1$d এক্সপোর্ট করা হচ্ছে…</item>

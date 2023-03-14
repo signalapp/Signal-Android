@@ -21,7 +21,7 @@
     <string name="delete">Borrar</string>
     <string name="please_wait">Por favor, agarda…</string>
     <string name="save">Gardar</string>
-    <string name="note_to_self">Notificacións propias</string>
+    <string name="note_to_self">Notas privadas</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Volve vincular os dispositivos</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Os dispositivos que conectaches desvinculáronse cando o teu dispositivo quedou sen rexistrar. Vai a Configuración e volve vincular todos os dispositivos.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Abrir configuración</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Novo grupo</string>
     <string name="Megaphones_invite_friends">Convidar amizades</string>
     <string name="Megaphones_use_sms">Utilizar SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Cor da conversa</string>
     <string name="Megaphones_add_a_profile_photo">Engadir unha foto de perfil</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">SMS insegura</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contacto</string>
-    <string name="MessageNotifier_reacted_s_to_s">Reaccionou con %1$s a: \"%2$s\"</string>
+    <string name="MessageNotifier_reacted_s_to_s">Reaccionou con %1$s a: «%2$s».</string>
     <string name="MessageNotifier_reacted_s_to_your_video">Reaccionou con %1$s ao teu vídeo.</string>
     <string name="MessageNotifier_reacted_s_to_your_image">Reaccionou con %1$s á túa imaxe.</string>
     <string name="MessageNotifier_reacted_s_to_your_gif">%1$s reaccionou ao teu GIF.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Reaccionou con %1$s ao teu ficheiro.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Reaccionou con %1$s ao teu arquivo.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Reaccionou con %1$s ao teu audio.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reaccionou con %1$s ao teu multimedia dunha soa visualización</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Reaccionou con %1$s ao teu adhesivo.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reaccionou con %1$s ao teu arquivo multimedia dunha soa visualización.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Reaccionou con %1$s ao teu sticker.</string>
     <string name="MessageNotifier_this_message_was_deleted">Eliminouse a mensaxe.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desactivar as notificacións de quen se une a Signal? Poderás volver activalas en Signal&gt; Axustes &gt; Notificacións.</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Problema co envío</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Non se che puido entregar unha mensaxe, adhesivo, reacción ou informe de lectura de %1$s. Puido ser unha entrega directa ou desde un grupo.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Non se che puido entregar unha mensaxe, adhesivo ou informe de lectura desde %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Non se che puido entregar unha mensaxe, sticker, reacción ou informe de lectura de %1$s. Puido ser unha entrega directa ou desde un grupo.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Non se che puido entregar unha mensaxe, sticker ou informe de lectura de %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Nome (obrigatorio)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Quen pode ver o meu número de teléfono</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Ninguén poderá ver o teu número de teléfono en Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Quen me pode atopar polo meu número</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4522,7 +4524,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Cancelar donativo mensual</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">A túa insignia de Empurrón caducou e xa non aparece no teu perfil.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Podes reactivar a túa insignia de Empurrón durante 30 días máis cun donativo puntual.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Podes reactivar a túa insignia de doante durante 30 días máis cun donativo puntual.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Podes seguir empregando Signal, pero para apoiar as tecnoloxías que se centran en ti, considera formar parte do noso plan de doantes mensuais.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Forma parte do noso plan de doantes</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Non se enviou a túa doazón por un erro de rede. Comproba a túa conexión e inténtao de novo.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Doazón en nome de %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s doou a Signal no teu nome</string>
     <!-- Gift badge redeem action label -->
@@ -4974,9 +4976,9 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Elixe quen pode ver a túa historia. Os cambios non afectarán as historias que xa compartiches.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">Respostas &amp; reaccións</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">Respostas e reaccións</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Permitir respostas &amp; reaccións</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Permitir respostas e reaccións</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Permitir ás persoas que ven a túa historia reaccionar e responder</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->

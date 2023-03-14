@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Lotu gailuak berriro</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Gailua erregistrotik kentzean, gehitutako gailuen lotura kendu egin da. Joan ezarpenetara gailuak berriro lotzeko.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Ireki ezarpenak</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,8 +1176,8 @@
     <string name="Megaphones_new_group">Talde berria</string>
     <string name="Megaphones_invite_friends">Gonbidatu lagunak</string>
     <string name="Megaphones_use_sms">SMSa erabili</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">Gehitu profileko argazki bat</string>
+    <string name="Megaphones_chat_colors">Txataren koloreak</string>
+    <string name="Megaphones_add_a_profile_photo">Gehitu profileko argazkia</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Erantzunak</string>
@@ -1999,9 +1999,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Bereizgarri bat aktibatu duzu</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">%1$s emojiarekin erreakzionatu du zure istorioa ikustean</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Zure istorioari bidalitako erreakzioa: %1$s</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">%1$s emojiarekin erreakzionatu duzu haren istorioa ikustean</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Haren istorioari bidalitako erreakzioa: %1$s</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Ordainketa</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">SMS ez segurua</string>
     <string name="MessageNotifier_contact_message">%1$s%2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kontaktua</string>
-    <string name="MessageNotifier_reacted_s_to_s">%1$s izan da \"%2$s\"rekiko erreakzioa.</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">%1$s izan da zure bideoarekiko erreakzioa.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">%1$s izan da zure irudiarekiko erreakzioa.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">%1$s(e)k zure GIFari buruzko erreakzio bat bidali du.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">%1$s izan da zure fitxategiarekiko erreakzioa.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">%1$s izan da zure audioarekiko erreakzioa.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$s izan da zure behin ikusteko mediarekiko erreakzioa.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s izan da zure eranskailuarekiko erreakzioa.</string>
+    <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" mezuari bidalitako erreakzioa: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Zure bideoari bidalitako erreakzioa: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Zure irudiari bidalitako erreakzioa: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Zure GIFari bidalitako erreakzioa: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Zure fitxategiari bidalitako erreakzioa: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Zure audioari bidalitako erreakzioa: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Zure behin ikusteko multimedia-edukiari bidalitako erreakzioa: %1$s.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Zure eranskailuari bidalitako erreakzioa: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Mezu hau ezabatu egin da.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desaktibatu nahi duzu kontaktu bat batzen denean bidaltzen diren jakinarazpenak? Berriro aktiba ditzakezu Signal &gt; Ezarpenak &gt; Jakinarazpenak atalean.</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Entregarekin erlazionatutako arazoa</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Ezin izan zaizu entregatu %1$s(e)k bidalitako mezu, sticker, erreakzio edo irakurragiri bat. Agian zuzenean bidali nahi izan dizu, edo talde batean.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Ezin izan zaizu entregatu %1$s(e)k bidalitako mezu, sticker, erreakzio edo irakurragiri bat.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Ezin izan dizugu bidali honen mezu, eranskailu, erreakzio edo irakurragiririk: %1$s. Baliteke zuzenean edo talde batean bidaltzen saiatu izatea.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Ezin izan dizugu bidali honen mezu, eranskailu, erreakzio edo irakurragiririk: %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Izena (beharrezkoa)</string>
@@ -3464,17 +3466,17 @@
     <string name="preferences_app_protection__see_my_phone_number">Ikusi nire telefono zenbakia</string>
     <string name="preferences_app_protection__find_me_by_phone_number">Topa nazazu telefono zenbakia erabiliz</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Telefono zenbakia</string>
+    <string name="preferences_app_protection__phone_number">Telefono-zenbakia</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Aukeratu nork ikus dezakeen zure telefono-zenbakia eta nor jar daitekeen zurekin harremanetan Signal-en.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Nork ikus dezake nire zenbakia?</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Ez du inork ikusiko zure telefonoa Signal-en.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Nork aurki nazake nire zenbakia erabiliz?</string>
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Nork aurki nazake zenbakia erabiliz?</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Mezuak bidaltzen dizkiezun pertsonek eta taldeek ikusgai izango dute zure telefono-zenbakia. Telefonoko kontaktuetan zure zenbakia duten pertsonek Signal-en ere ikusiko dute.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Zure mezuak jasotzen dituzten pertsonek zure telefono-zenbakia ikusi ahalko dute. Telefonoko kontaktuetan zure zenbakia duten pertsonek Signal-en ere ikusiko dute.</string>
     <string name="PhoneNumberPrivacy_everyone">Guztiak</string>
     <string name="PhoneNumberPrivacy_my_contacts">Nire kontaktuak</string>
     <string name="PhoneNumberPrivacy_nobody">Inor ez</string>
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Diru-zorroa deskatibatu</string>
     <string name="DeactivateWalletFragment__your_balance">Zure balantzea</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Ordainketak desaktibatu aurretik, zure fondoak beste diru-zorro helbide batera transferitzea gomendatzen da. Zure funtsak orain ez transferitzea aukeratzen baduzu, zure diru-zorroan geratuko dira Signal-i lotuta, ordainketak berriro aktibatzen badituzu.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Ordainketak desaktibatu aurretik, funtsak beste zorro baten helbidera transferitzea gomendatzen da. Dirua orain ez transferitzea aukeratzen baduzu, ordainketak berriro aktibatzen badituzu, Signal-ekin lotutako zorroan jarraituko du.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Transferitu gainerako balantzea</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Desaktibatu transferitu gabe</string>
     <string name="DeactivateWalletFragment__deactivate">Desaktibatu</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Desaktibatu transferitu gabe?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Zure saldoa Signal-i lotutako diru-zorroan geratuko da ordainketak berriro aktibatzea aukeratzen baduzu.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Ordainketak berriro aktibatzea aukeratzen baduzu, saldoa Signal-ekin lotutako zorroan geratuko da.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Errorea diru-zorroa desaktibatzean.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4522,7 +4524,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Hileko dohaintza bertan behera utzi da</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Emaile-bereizgarria iraungi egin da, eta jada ez dago ikusgai profilean.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Ekarpen puntual bat eginda, beste 30 egunez aktiba dezakezu emaile-bereizgarria.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Ekarpen bat eginda, bultzada-bereizgarria beste 30 egunez berraktiba dezakezu.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal erabiltzen jarrai dezakezu, baina, zuretzat eraikitako teknologiari laguntzeko, hilero dohaintza bat eginez dohaintza-emaile bihurtzea eskertuko genizuke.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bilaka zaitez sostengatzaile</string>
@@ -4534,7 +4536,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Hileroko dohaintza bertan behera utzi da, ezin izan dugulako prozesatu ordainketa. Bereizgarria jada ez dago ikusgai profilean.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Hileroko dohaintza bertan behera utzi da. %1$s Aurrerantzean, %2$s bereizgarria ez da ikusgai egongo profilean.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal erabiltzen jarrai dezakezu, baina aplikazioari laguntzeko eta bereizgarria berriro aktibatzeko, berritu harpidetza.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal erabiltzen jarrai dezakezu, baina, aplikazioari laguntzeko eta bereizgarria berriro aktibatzeko, berritu orain.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Berritu harpidetza</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Joan Google Play-ra</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Sareko errore bat dela eta, ezin izan da bidali dohaintza. Egiaztatu Internetera konektatuta zaudela eta saiatu berriro.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Dohaintza honen izenean: %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s erabiltzaileak dohaitza bat egin dio Signal-i zure izenean</string>
     <!-- Gift badge redeem action label -->
@@ -4922,13 +4924,13 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Ezin diozu erantzun istorio honi, jada ez zarelako talde honetako kidea.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Istorioari buruzko erreakzio bat bidali du</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Erreakzio bat bidali dio istorioari</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Ikustaldiak</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Erantzunak</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">Bidali istorio honi buruzko erreakzio bat</string>
+    <string name="StoryReplyComposer__react_to_this_story">Bidali erreakzio bat istorio honi</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$sri modu pribatuan erantzuten</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
@@ -4974,11 +4976,11 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Aukeratu nork ikus dezakeen istorioa. Aldaketek ez dute eraginik izango lehenago bidalitako istorioetan.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">Erantzunak &amp; erreakzioak</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">Erantzunak eta erreakzioak</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Baimendu erantzunak &amp; erreakzioak</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Baimendu erantzunak eta erreakzioak</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Eman istorioa ikus dezaketenei erreakzioak bidaltzeko aukera</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Utzi zure istorioa ikus dezakeen jendeari erreakzioak bidaltzen eta erantzuten</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal-eko konexioak</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5126,11 +5128,11 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">%1$s(r)en istorioari buruzko erreakzio bat bidali duzu</string>
+    <string name="ConversationItem__you_reacted_to_s_story">%1$s erabiltzailearen istorioari erreakzio bat bidali diozu</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">Zure istorioari buruzko erreakzio bat bidali du</string>
+    <string name="ConversationItem__reacted_to_your_story">Zure istorioari erreakzio bat bidali dio</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">Istorio bati buruzko erreakzio bat bidali du</string>
+    <string name="ConversationItem__reacted_to_a_story">Istorio bati erreakzio bat bidali dio</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->

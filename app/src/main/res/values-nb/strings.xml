@@ -544,11 +544,11 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Koble til enhetene dine på nytt</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Enhetene som du la til, ble koblet fra da du avregistrerte deg. Gå til innstillingene for å koble til enhetene på nytt.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">Åpne innstillinger</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">Åpne innstillingene</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
     <string name="RelinkDevicesReminderFragment__later">Senere</string>
 
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Ny gruppe</string>
     <string name="Megaphones_invite_friends">Inviter venner</string>
     <string name="Megaphones_use_sms">Bruk SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Samtalefarger</string>
     <string name="Megaphones_add_a_profile_photo">Legg til et profilbilde</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-    <string name="MessageNotifier_reacted_s_to_s">Reagerte %1$s til \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Reagerte %1$s til videoen din.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Reagerte %1$s til bildet ditt.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Reagerte med %1$s på «%2$s».</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Reagerte med %1$s på videoen din.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Reagerte med %1$s på bildet ditt.</string>
     <string name="MessageNotifier_reacted_s_to_your_gif">Reagerte med %1$s på GIF-en din.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Reagerte %1$s på filen din.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Reagerte %1$s på lyden din.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerte %1$spå engangsmediet ditt.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerte %1$s på klistremerket ditt.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Reagerte med %1$s på filen din.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Reagerte med %1$s på lyden din.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerte med %1$s på vis-én-gang-mediefilen din.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerte med %1$s på klistremerket ditt.</string>
     <string name="MessageNotifier_this_message_was_deleted">Denne meldingen ble slettet.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Skru av varsling når kontakter tar i bruk Signal? Du kan skru de på igjen i Signal&gt; Innstillinger &gt; Varsler.</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Problemer med levering</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">En melding, et klistremerke, en reaksjon, en lesebekreftelse eller et medium kunne ikke leveres til deg fra %1$s. Vedkommende kan ha prøvd å sende elementet til deg direkte eller i en gruppe.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">En melding, et klistremerke, en reaksjon, en lesebekreftelse eller et medium fra %1$s kunne ikke leveres til deg.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">En melding, et klistremerke, en reaksjon eller en lesebekreftelse fra %1$s kunne ikke leveres til deg. Vedkommende kan ha prøvd å sende dette til deg direkte eller i en gruppe.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">En melding, et klistremerke, en reaksjon eller en lesebekreftelse fra %1$s kunne ikke leveres til deg.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Fornavn (påkrevd)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Hvem kan se telefonnummeret mitt?</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Ingen kan se telefonnummeret ditt på Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Hvem kan finne meg ved å søke opp telefonnummeret mitt?</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Deaktiver lommeboken</string>
     <string name="DeactivateWalletFragment__your_balance">Din balanse</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Vi anbefaler deg å overføre pengene til en annen lommebokadresse før du deaktiverer betalingene. Hvis du velger å ikke overføre pengene dine nå, forblir de i lommeboken som er knyttet til Signal hvis du aktiverer betalinger på nytt.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Vi anbefaler deg å overføre pengene til en annen lommebokadresse før du deaktiverer betalinger. Hvis du velger å ikke overføre pengene nå, forblir de i lommeboken som er knyttet til Signal, hvis du aktiverer betalinger på nytt.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Overfør gjenværende saldo</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Deaktiver uten å overføre</string>
     <string name="DeactivateWalletFragment__deactivate">Deaktiver</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Vil du deaktivere uten å overføre?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Kontosaldoen din vil holde seg i lommeboken du har koblet til Signal, hvis du ønsker å reaktivere betalingene.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Saldoen din forblir i lommeboken som er knyttet til Signal, hvis du velger å aktivere betalinger på nytt.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Feil ved deaktivering av lommeboken.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4175,7 +4177,7 @@
     <string name="Donate2022Q2Megaphone_not_now">Ikke nå</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">Tilpasse reaksjonene</string>
+    <string name="EditReactionsFragment__customize_reactions">Tilpass reaksjonene</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">Trykk for å erstatte en emoji</string>
     <string name="EditReactionsFragment__reset">Tilbakestill</string>
     <string name="EditReactionsFragment_save">Lagre</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Pengegaven kunne ikke sendes på grunn av en nettverksfeil. Sjekk internettilkoblingen og prøv igjen.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Pengegave på vegne av %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s ga penger til Signal på dine vegne</string>
     <!-- Gift badge redeem action label -->
@@ -4978,7 +4980,7 @@
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Tillat svar og reaksjoner</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Gjør det mulig for de som kan se storyen din å reagere og svare</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Gjør det mulig for de som kan se storyen din, å reagere og svare</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal-kontakter</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->

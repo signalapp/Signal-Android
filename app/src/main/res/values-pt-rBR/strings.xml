@@ -544,11 +544,11 @@
     <string name="ConversationTypingView__plus_d">+ %1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Reconecte seus dispositivos</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Os dispositivos que você adicionou foram desconectados quando o registro do seu dispositivo foi cancelado. Abra as configurações para conectar os dispositivos novamente.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">Mostrar configurações</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">Abrir configurações</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
     <string name="RelinkDevicesReminderFragment__later">Mais tarde</string>
 
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Novo grupo</string>
     <string name="Megaphones_invite_friends">Convidar amigos(as)</string>
     <string name="Megaphones_use_sms">Usar SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Cores do chat</string>
     <string name="Megaphones_add_a_profile_photo">Adicionar uma foto de perfil</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2145,7 +2145,9 @@
     <string name="MessageNotifier_reacted_s_to_your_gif">Reagiu com %1$s ao seu GIF.</string>
     <string name="MessageNotifier_reacted_s_to_your_file">Reagiu com %1$s ao seu arquivo.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Reagiu com %1$s ao seu áudio.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagiu com %1$s à sua mídia efêmera.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagiu com %1$s à sua mídia temporária.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagiu com %1$s à sua figurinha.</string>
     <string name="MessageNotifier_this_message_was_deleted">Esta mensagem foi apagada.</string>
 
@@ -2539,7 +2541,7 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Problema na entrega</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Não foi possível entregar para você uma mensagem (texto, figurinha, reação ou confirmação de leitura) de %1$s. Essa pessoa tentou enviar para você diretamente ou em um grupo.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Não foi possível entregar para você uma mensagem (texto, figurinha, reação ou confirmação de leitura) de %1$s. Essa pessoa tentou entrar em contato com você diretamente ou em um grupo.</string>
     <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Não foi possível entregar para você uma mensagem (texto, figurinha, reação ou confirmação de leitura) de %1$s.</string>
 
     <!-- profile_create_activity -->
@@ -3470,11 +3472,11 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Quem pode ver meu número?</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Ninguém verá seu número de telefone no Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Quem pode encontrar meu número?</string>
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Quem pode encontrar meu número</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Seu número de telefone estará visível para as pessoas e grupos para os quais você envia mensagens. As pessoas que têm o seu número em seus contatos também o verão no Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Seu número de telefone estará visível para as pessoas e grupos para os quais você envia mensagens. As pessoas que têm o seu número nos contatos também vão ver seu perfil no Signal.</string>
     <string name="PhoneNumberPrivacy_everyone">Todo mundo</string>
     <string name="PhoneNumberPrivacy_my_contacts">Meus contatos</string>
     <string name="PhoneNumberPrivacy_nobody">Ninguém</string>
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Desativar carteira</string>
     <string name="DeactivateWalletFragment__your_balance">Seu saldo</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">É recomendável que você transfira o seu saldo para outro endereço de carteira antes de desativar o módulo de pagamentos. Se você optar por não transferir o seu saldo agora, ele permanecerá em sua carteira vinculada à sua conta do Signal, mas estará suspenso para utilização até o momento em que você decida reativar o módulo de pagamentos.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">É recomendável que você transfira o seu saldo para outro endereço de carteira antes de desativar o módulo de pagamentos. Se você optar por não transferir o seu saldo agora, ele permanecerá em sua carteira vinculada à conta do Signal, mas estará suspenso para utilização até que você decida reativar o módulo de pagamentos.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Transferir saldo remanescente</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Desativar sem transferir</string>
     <string name="DeactivateWalletFragment__deactivate">Desativar</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Desativar sem transferir?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Seu saldo permanecerá em sua carteira vinculada à sua conta do Signal, mas estará suspenso para utilização até o momento em que você decida reativar o módulo de pagamentos.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Seu saldo permanecerá na carteira vinculada à sua conta do Signal, mas estará suspenso para utilização até que você decida reativar o módulo de pagamentos.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Erro ao desativar a carteira.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4534,7 +4536,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Sua doação mensal recorrente foi cancelada porque não foi possível processar seu pagamento. Seu selo não é mais visível no seu perfil.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Sua doação mensal recorrente foi cancelada. %1$s O %2$s selo não está mais visível no seu perfil.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Você ainda pode usar o Signal, mas para apoiar o aplicativo e ter esse selo novamente, faça uma doação mensal.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Você ainda pode usar o Signal, mas que tal renovar agora para apoiar o app e ganhar esse selo novamente?</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Fazer doação mensal</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Vá ao Google Pay</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Não foi possível enviar sua doação devido a um erro de rede. Verifique a sua conexão e tente novamente.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Doação em nome de %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s fez uma doação para o Signal no seu nome</string>
     <!-- Gift badge redeem action label -->
@@ -4974,9 +4976,9 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Escolha quem pode ver seu story. As alterações não afetarão os stories que você já enviou.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">Respostas &amp; reações</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">Respostas e reações</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Permitir respostas &amp; reações</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Permitir respostas e reações</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Permitir que as pessoas que podem ver o seu story possam reagir e responder</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->

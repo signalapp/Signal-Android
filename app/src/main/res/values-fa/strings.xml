@@ -21,7 +21,7 @@
     <string name="delete">پاک کردن</string>
     <string name="please_wait">لطفاً صبر کنید…</string>
     <string name="save">ذخیره</string>
-    <string name="note_to_self">یادداشت برای خود</string>
+    <string name="note_to_self">یادداشت به خود</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -544,13 +544,13 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">دستگاه‌هایتان را دوباره پیوند دهید</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">با لغو ثبت‌نام دستگاهتان، پیوند دستگاه‌هایی که اضافه کردید لغو شد. برای پیوند دادن مجدد هریک از دستگاه‌هایتان، به «تنظیمات» بروید.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">بازکردن تنظیمات</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
-    <string name="RelinkDevicesReminderFragment__later">بعدا</string>
+    <string name="RelinkDevicesReminderFragment__later">بعداً</string>
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">اعضا را انتخاب کنید</string>
@@ -1176,8 +1176,8 @@
     <string name="Megaphones_new_group">گروه جدید</string>
     <string name="Megaphones_invite_friends">دعوت دوستان</string>
     <string name="Megaphones_use_sms">استفاده از پیامک</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">یک عکس پروفایل اضافه کنید</string>
+    <string name="Megaphones_chat_colors">رنگ‌های گفتگو</string>
+    <string name="Megaphones_add_a_profile_photo">یک عکس نمایه اضافه کنید</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">پاسخ‌ها</string>
@@ -2001,7 +2001,7 @@
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">با %1$s به استوری شما واکنش نشان داد</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">با %1$s به استوری او واکنش نشان داد</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">با %1$s به استوری او واکنش نشان دادید</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">پرداخت</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">پیامک ناامن</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">مخاطب</string>
-    <string name="MessageNotifier_reacted_s_to_s">%1$s به «%2$s» واکنش نشان داد.</string>
+    <string name="MessageNotifier_reacted_s_to_s">با %1$s به «%2$s» واکنش نشان داد.</string>
     <string name="MessageNotifier_reacted_s_to_your_video">%1$s به ویدئوی شما واکنش نشان داد.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">%1$s به تصویر شما واکنش نشان داد.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">به گیف شما واکنش %1$s داد.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">%1$s به فایل شما واکنش نشان داد.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">%1$s به فایل صوتی شما واکنش نشان داد.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$s به رسانه‌ٔ یکبار مصرف شما واکنش نشان داد.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s به استیکر شما واکنش نشان داد.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">با %1$s به عکس شما واکنش نشان داد.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">با %1$s به گیف شما واکنش داد.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">با %1$s به فایل شما واکنش نشان داد.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">با %1$s به فایل صوتی شما واکنش نشان داد.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">با %1$s به رسانه یک‌بارمصرف شما واکنش نشان داد.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">با %1$s به استیکر شما واکنش نشان داد.</string>
     <string name="MessageNotifier_this_message_was_deleted">این پیام پاک شده بود.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">می‌خواهید اعلان‌های پیوستن مخاطبان به سیگنال را خاموش کنید؟ می‌توانید آن‌ها را دوباره در سیگنال &gt; تنظیمات &gt; اعلان‌ها فعال کنید.</string>
@@ -2540,7 +2542,7 @@
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">اشکال تحویل</string>
     <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">یک پیام، استیکر، واکنش، یا رسید خوانده شدن از %1$s نتوانست به شما تحویل داده شود. آن‌ها ممکن است آن را به طور مستقیم، یا در یک گروه به شما ارسال کرده باشند.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">یک پیام، استیکر، واکنش، یا رسید خوانده شدن از %1$s نتوانست به شما تحویل داده شود.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">یک پیام، استیکر، واکنش، یا رسید خوانده شدن از %1$s به شما قابل تحویل نبود.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">نام کوچک (الزامی)</string>
@@ -3464,17 +3466,17 @@
     <string name="preferences_app_protection__see_my_phone_number">دیدن شماره‌تلفن من</string>
     <string name="preferences_app_protection__find_me_by_phone_number">پیدا کردن من با شماره‌تلفن</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">شماره‌تلفن</string>
+    <string name="preferences_app_protection__phone_number">شماره تلفن</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">انتخاب کنید که چه‌کسی بتواند شماره تلفن شما را ببیند و از طریق شماره تلفن‌تان در سیگنال با شما تماس بگیرد.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">چه‌کسی می‌تواند شماره من را ببیند</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">هیچ‌کسی شماره‌تلفن شما را در سیگنال نخواهد دید</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">چه‌کسی می‌تواند من را با شماره تلفنم پیدا کند</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">شماره‌تلفن شما برای افراد و گروه‌هایی که به آن‌ها پیام می‌دهید قابل مشاهده خواهد بود. افرادی که شماره شما را در مخاطبان تلفن خود دارند نیز آن را در سیگنال خواهند دید.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">شماره‌تلفن شما برای افراد و گروه‌هایی که به آن‌ها پیام می‌دهید قابل مشاهده خواهد بود. افرادی که شماره شما را در مخاطبان تلفن خود دارند، آن را در سیگنال نیز خواهند دید.</string>
     <string name="PhoneNumberPrivacy_everyone">همه</string>
     <string name="PhoneNumberPrivacy_my_contacts">مخاطبین من</string>
     <string name="PhoneNumberPrivacy_nobody">هیچ‌کس</string>
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">غیرفعال کردن کیف پول</string>
     <string name="DeactivateWalletFragment__your_balance">موجودی شما</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">توصیه می‌شود که قبل از اینکه پرداخت‌ها را غیرفعال کنید، اعتبار خود را به نشانی کیف پول دیگری انتقال دهید. اگر اکنون تصمیم بگیرید که اعتبار‌های خود را حالا انتقال ندهید، آن‌ها در صورتی که پرداخت‌ها را دوباره فعال کنید، در کیف پول پیوند داده شده به سیگنال شما باقی خواهند ماند.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">توصیه می‌شود قبل از اینکه پرداخت‌ها را غیرفعال کنید، وجوه خود را به نشانی کیف پول دیگری انتقال دهید. اگر تصمیم بگیرید وجوه خود را اکنون انتقال ندهید، چنانچه پرداخت‌ها را دوباره فعال کنید، این وجوه در کیف پول پیوندداده‌شده به سیگنال شما باقی خواهند ماند.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">انتقال موجودی باقی‌مانده</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">غیرفعال کردن بدون انتقال</string>
     <string name="DeactivateWalletFragment__deactivate">غیرفعال کردن</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">غیرفعال کردن بدون انتقال؟</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">موجودی شما، اگر تصمیم به فعال کردن دوبارهٔ پرداخت‌ها بگیرید، در کیف پول پیوند داده شده به سیگنال شما باقی خواهد ماند.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">اگر تصمیم به فعال کردن دوباره پرداخت‌ها بگیرید، موجودی شما در کیف پول پیوندداده‌شده به سیگنال شما باقی خواهد ماند.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">خطا در غیرفعال کردن کیف پول.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4522,7 +4524,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">کمک مالی ماهانه لغو شد</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">نشان ارتقاء شما منقضی شده است و دیگر در نمایه‌تان قابل مشاهده نیست.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">می‌توانید با یک کمک مالی یک‌-باره، نشان ارتقاء خود را برای ۳۰ روز دیگر دوباره فعال کنید.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">می‌توانید با یک کمک مالی یک‌باره، نشان ارتقاء خود را برای ۳۰ روز دیگر دوباره فعال کنید.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">همچنان می‌توانید از سیگنال استفاده کنید، اما در نظر بگیرید که با اهدای کمک مالی ماهانه برای پشتیبانی از این فناوری که برای شما ساخته شده است، می‌توانید یکی از حامیان ما شوید.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">به یک حامی تبدیل شوید</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">کمک مالی اهدایی شما به دلیل خطای شبکه ارسال نشد. اتصال خود را بررسی و دوباره تلاش کنید.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">کمک مالی از طرف %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s از طرف شما به سیگنال کمک مالی اهدا کرد</string>
     <!-- Gift badge redeem action label -->

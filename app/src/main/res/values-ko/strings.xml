@@ -524,9 +524,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">기기 다시 연결</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">기기 등록을 해제하여 기기 연결이 해제됐습니다. 설정으로 가서 기기를 다시 연결하세요.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">설정 열기</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1128,7 +1128,7 @@
     <string name="Megaphones_new_group">새 그룹</string>
     <string name="Megaphones_invite_friends">친구 초대</string>
     <string name="Megaphones_use_sms">SMS 사용하기</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">채팅 색</string>
     <string name="Megaphones_add_a_profile_photo">프로필 사진 추가</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2067,14 +2067,16 @@
     <string name="MessageNotifier_unsecured_sms">비보안 SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">연락처</string>
-    <string name="MessageNotifier_reacted_s_to_s">\'%2$s\'에 대해 %1$s로 리액션했습니다.</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">동영상에 대해 %1$s로 리액션했습니다.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">이미지에 대해 %1$s로 리액션했습니다.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">나의 GIF에 %1$s 이모지로 반응했습니다.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">파일에 대해 %1$s로 리액션했습니다.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">오디오에 대해 %1$s로 리액션했습니다.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">조회 수 1회인 미디어에 %1$s으(로) 리액션했습니다.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">스티커에 대해 %1$s로 리액션했습니다.</string>
+    <string name="MessageNotifier_reacted_s_to_s">\'%2$s\'에 %1$s 이모지로 반응했습니다.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">내 동영상에 %1$s 이모지로 반응했습니다.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">내 이미지에 %1$s 이모지로 반응했습니다.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">내 GIF에 %1$s 이모지로 반응했습니다.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">내 파일에 %1$s 이모지로 반응했습니다.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">내 오디오에 %1$s 이모지로 반응했습니다.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">한 번만 볼 수 있는 내 미디어에 %1$s 이모지로 반응했습니다.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">내 스티커에 %1$s 이모지로 반응했습니다.</string>
     <string name="MessageNotifier_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">연락처 인물이 Signal에 가입했다는 알림을 끄시겠습니까? Signal &gt; 설정 &gt; 알림에서 다시 활성화할 수 있습니다.</string>
@@ -2456,8 +2458,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">배송 문제</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s에서 메시지, 스티커, 반응 또는 수신 확인을 전달할 수 없습니다. 사용자에게 직접 또는 그룹으로 전송하려고 했을 수 있습니다.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s에서 메시지, 스티커, 반응 또는 수신 확인을 전달할 수 없습니다.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s 님이 보낸 메시지, 스티커, 반응 또는 수신 확인을 받지 못했습니다. 사용자에게 직접 보내거나 그룹에서 보내려고 했을 수 있습니다.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s 님이 보낸 메시지, 스티커, 반응 또는 수신 확인을 받지 못했습니다.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">이름(필수)</string>
@@ -3377,11 +3379,11 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">내 전화번호를 볼 수 있는 사람</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">아무도 Signal에서 내 전화번호를 볼 수 없습니다.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">전화번호로 나를 찾을 수 있는 사람</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">내가 메시지를 보낸 사람 또는 그룹에 내 휴대전화 번호가 표시됩니다. 내 번호를 휴대전화 연락처에 가지고 있는 사람도 Signal에서 나를 볼 수 있습니다.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">내가 메시지를 보낸 사람 또는 그룹에 내 전화번호가 표시됩니다. 내 번호를 휴대전화 연락처에 저장한 사람도 Signal에서 나를 볼 수 있습니다.</string>
     <string name="PhoneNumberPrivacy_everyone">모두</string>
     <string name="PhoneNumberPrivacy_my_contacts">내 연락처</string>
     <string name="PhoneNumberPrivacy_nobody">아무도</string>
@@ -3757,12 +3759,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">지갑 비활성화</string>
     <string name="DeactivateWalletFragment__your_balance">잔액</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">결제를 비활성화하기 전에 다른 지갑 주소로 자금을 이체하는 것이 좋습니다. 지금 자금을 이체하지 않기로 선택하면 결제를 다시 활성화하면 Signal에 연결된 지갑에 남아 있게 됩니다.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">결제를 비활성화하기 전에 다른 지갑 주소로 자금을 이체하는 것이 좋습니다. 지금 자금을 이체하지 않기로 선택할 경우 결제를 다시 활성화하면 자금이 Signal에 연결된 지갑에 남아 있게 됩니다.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">잔액 이체</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">전송하지 않고 비활성화</string>
     <string name="DeactivateWalletFragment__deactivate">비활성화</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">이전하지 않고 비활성화하시겠습니까?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">결제를 다시 활성화하기로 선택한 경우 잔액은 Signal에 연결된 지갑에 남아 있습니다.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">결제를 다시 활성화하기로 선택할 경우 잔액이 Signal에 연결된 지갑에 남아 있게 됩니다.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">지갑을 비활성화하는 동안 오류가 발생했습니다.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4076,7 +4078,7 @@
     <string name="Donate2022Q2Megaphone_not_now">나중에</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">반응 사용자 정의</string>
+    <string name="EditReactionsFragment__customize_reactions">반응 사용자 지정</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">이모티콘을 바꾸려면 탭하세요.</string>
     <string name="EditReactionsFragment__reset">초기화</string>
     <string name="EditReactionsFragment_save">저장</string>
@@ -4431,7 +4433,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">결제를 처리할 수 없어 월간 기부를 취소했습니다. 배지가 더는 프로필에 표시되지 않습니다.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">월간 기부를 취소했습니다. %1$s %2$s 배지가 더는 프로필에 표시되지 않습니다.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal을 계속 사용할 수는 있지만 앱을 지지하고 배지를 재활성화하려면 지금 갱신하세요.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal을 계속 사용할 수는 있지만 앱을 지원하고 배지를 재활성화하려면 지금 갱신하세요.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">구독 갱신</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay로 이동</string>
@@ -4474,7 +4476,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">네트워크 오류로 인해 기부를 보내지 못했습니다. 연결을 확인하고 다시 시도하세요.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$s 님 대신 기부</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s 님이 귀하를 대신해 Signal에 기부했습니다.</string>
     <!-- Gift badge redeem action label -->
@@ -4869,7 +4871,7 @@
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">답장 및 반응 허용</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">스토리를 볼 수 있는 사용자의 반응 및 답장 허용</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">내 스토리를 볼 수 있는 사용자의 반응 및 답장 허용</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal 커넥션</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5018,9 +5020,9 @@
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">%1$s 님의 스토리에 반응했습니다.</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">내 스토리에 반응함</string>
+    <string name="ConversationItem__reacted_to_your_story">내 스토리에 반응했습니다.</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">스토리에 반응함</string>
+    <string name="ConversationItem__reacted_to_a_story">스토리에 반응했습니다.</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->

@@ -524,9 +524,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">端末を再リンクしてください</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">端末の登録解除時に、追加した端末のリンクが解除されました。設定に移動して、任意の端末を再リンクしてください。</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">設定を開く</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1128,7 +1128,7 @@
     <string name="Megaphones_new_group">新規グループ</string>
     <string name="Megaphones_invite_friends">友達を招待しましょう</string>
     <string name="Megaphones_use_sms">SMSを使用する</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">チャットの色</string>
     <string name="Megaphones_add_a_profile_photo">プロフィール画像を追加しよう</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -1928,9 +1928,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">バッジに引き換えました</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">あなたのストーリーにリアクション%1$sしました</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">あなたのストーリーに%1$sのリアクションがありました。</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">彼らのストーリー%1$sにリアクションしました</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">この人のストーリーに%1$sのリアクションをしました</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">支払い</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2067,14 +2067,16 @@
     <string name="MessageNotifier_unsecured_sms">安全でないSMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">連絡先</string>
-    <string name="MessageNotifier_reacted_s_to_s">「%2$s」に %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">あなたのビデオに %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">あなたの画像に %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">あなたのGIFに %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">あなたのファイルに %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">あなたの音声に %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">あなたの使い捨てメディアに %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">あなたのステッカーに %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_s">「%2$s」に %1$sのリアクションをしました。</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">あなたの動画に %1$sのリアクションがありました。</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">あなたの画像に %1$sのリアクションがありました。</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">あなたのGIFに %1$sのリアクションがありました。</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">あなたのファイルに %1$sのリアクションがありました。</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">あなたの音声に %1$sのリアクションがありました。</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">あなたの使い捨てメディアに %1$sのリアクションがありました。</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">あなたのステッカーに %1$sのリアクションがありました。</string>
     <string name="MessageNotifier_this_message_was_deleted">このメッセージは消去されました。</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">連絡先のSignal参加時の通知を受け取らないようにしますか？この設定はあとでSignal &gt; 設定 &gt; 通知から元に戻せます。</string>
@@ -2456,7 +2458,7 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">配送エラー</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s からのメッセージ、ステッカー、リアクションまたは既読通知を、あなたに配送できませんでした。直接またはグループで、送信しようとしているかもしれません。</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%1$s からのメッセージ、ステッカー、リアクションまたは既読通知をあなたに配送できませんでした。直接送信を試みたか、グループ内で送ろうとしたかもしれません。</string>
     <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%1$s からのメッセージ、ステッカー、リアクションまたは既読通知を、あなたに配送できませんでした。</string>
 
     <!-- profile_create_activity -->
@@ -3377,7 +3379,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">電話番号を見ることができる人</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">あなたの電話番号は、誰のSignalにも表示されません</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">私を電話番号から検索できる人</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4474,7 +4476,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">ネットワークエラーのため寄付を送信できませんでした。インターネット接続を確認して再度試してください。</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$sに代わって寄付をする</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s があなたに代わってSignalに寄付しました</string>
     <!-- Gift badge redeem action label -->
@@ -4816,13 +4818,13 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">このグループのメンバーではなくなったので、このストーリーに返信することはできません。</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ストーリーにリアクションがありました</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ストーリーにリアクションしました</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">閲覧</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">返信</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">ストーリーにリアクション</string>
+    <string name="StoryReplyComposer__react_to_this_story">ストーリーにリアクションする</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s に個人的に返信しています</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
@@ -5018,9 +5020,9 @@
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">%1$s のストーリーにリアクションしました</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">あなたのストーリーにリアクションされました</string>
+    <string name="ConversationItem__reacted_to_your_story">あなたのストーリーにリアクションがありました</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">ストーリーにリアクションがありました</string>
+    <string name="ConversationItem__reacted_to_a_story">ストーリーにリアクションしました</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -5270,7 +5272,7 @@
     <!-- Title of the screen -->
     <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMSメッセージをエクスポートしています</string>
     <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">しばらく掛かるかも知れません</string>
+    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">少し時間がかかるかも知れません</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
         <item quantity="other">%2$d 件中 %1$d 件をエクスポートしています…</item>

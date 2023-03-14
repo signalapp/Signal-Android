@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Ricollega i tuoi dispositivi</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">I dispositivi che avevi aggiunto sono stati scollegati quando è stata annullata la registrazione del tuo dispositivo. Vai nelle Impostazioni per ricollegare i dispositivi che ti interessano.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Apri impostazioni</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Nuovo gruppo</string>
     <string name="Megaphones_invite_friends">Invita amici</string>
     <string name="Megaphones_use_sms">Usa SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Colori chat</string>
     <string name="Megaphones_add_a_profile_photo">Aggiungi una foto profilo</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2001,7 +2001,7 @@
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Ha reagito con %1$s alla tua Storia</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Ha reagito con %1$s alla propria Storia</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Hai reagito con %1$s alla sua Storia</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Pagamento</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">SMS non sicuro</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contatto</string>
-    <string name="MessageNotifier_reacted_s_to_s">Reagito %1$s a: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Reagito %1$s al tuo video.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Reagito %1$s alla tua immagine.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Reagito %1$s alla tua GIF.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Reagito %1$s al tuo file.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Reagito %1$s al tuo audio.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagito %1$s al tuo media visualizzabile una volta.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Reagito %1$s al tuo adesivo.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Ha reagito con %1$s a: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Ha reagito con %1$s al tuo video.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Ha reagito con %1$s alla tua immagine.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Ha reagito con %1$s alla tua GIF.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Ha reagito con %1$s al tuo file.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Ha reagito con %1$s al tuo audio.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Ha reagito con %1$s al tuo media visualizzabile una volta.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Ha reagito con %1$s al tuo sticker.</string>
     <string name="MessageNotifier_this_message_was_deleted">Questo messaggio è stato eliminato.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Disattivare le notifiche quando un contatto si unisce a Signal? Puoi attivarle di nuovo in Signal &gt; Impostazioni &gt; Notifiche.</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Problema di consegna</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Non è stato possibile consegnarti un messaggio, un adesivo, una reazione o una conferma di lettura da %1$s. Potrebbero aver provato a inviartelo direttamente o in gruppo.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Non è stato possibile consegnarti un messaggio, un adesivo, una reazione o una conferma di lettura da %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Non è stato possibile consegnarti un messaggio, uno sticker, una reazione o una conferma di lettura da parte di %1$s. Questa persona potrebbe aver provato a inviarti il contenuto in una chat singola o in un gruppo.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Non è stato possibile consegnarti un messaggio, uno sticker, una reazione o una conferma di lettura da parte di %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Nome (obbligatorio)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Chi può vedere il mio numero di telefono</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nessuno vedrà il tuo numero di telefono su Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Chi può trovarmi tramite il mio numero</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Disattiva portafoglio</string>
     <string name="DeactivateWalletFragment__your_balance">Il tuo saldo</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Si consiglia di trasferire i fondi su un altro indirizzo del portafoglio prima di disattivare i pagamenti. Se scegli di non trasferire i tuoi fondi ora, rimarranno nel tuo portafoglio collegato a Signal se riattivi i pagamenti.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Ti consigliamo di trasferire i fondi su un altro indirizzo del wallet prima di disattivare i pagamenti. Se scegli di non trasferirli ora, i tuoi fondi rimarranno nel tuo wallet collegato a Signal se riattivi i pagamenti.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Trasferisci il saldo rimanente</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Disattiva senza trasferire</string>
     <string name="DeactivateWalletFragment__deactivate">Disattiva</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Disattivare senza trasferire?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Il tuo saldo rimarrà nel tuo portafoglio collegato a Signal se scegli di riattivare i pagamenti.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Il tuo saldo rimarrà nel tuo wallet collegato a Signal se scegli di riattivare i pagamenti.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Errore durante la disattivazione del portafoglio.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4175,7 +4177,7 @@
     <string name="Donate2022Q2Megaphone_not_now">Non ora</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">Personalizza reazioni</string>
+    <string name="EditReactionsFragment__customize_reactions">Personalizza le reazioni</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">Clicca per sostituire un\'emoji</string>
     <string name="EditReactionsFragment__reset">Resetta</string>
     <string name="EditReactionsFragment_save">Salva</string>
@@ -4522,7 +4524,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Donazione mensile cancellata</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Il tuo badge Boost è scaduto e non è più visibile sul tuo profilo.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Puoi riattivare il tuo badge Boost per altri 30 giorni con un contributo una tantum.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Puoi riattivare il tuo Badge Signal - Boost per altri 30 giorni con una donazione singola.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Puoi continuare a usare Signal, ma puoi scegliere di effettuare una donazione mensile per sostenere una tecnologia costruita per te.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Diventa un sostenitore</string>
@@ -4534,7 +4536,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">La tua donazione mensile ricorrente è stata cancellata perché non abbiamo potuto elaborare il tuo pagamento. Il tuo badge non è più visibile sul tuo profilo.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">La tua donazione mensile ricorrente è stata annullata. %1$s Il tuo badge %2$s non è più visibile sul tuo profilo.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puoi continuare a usare Signal ma, se vuoi, puoi rinnovare il tuo contributo per sostenere l\'app e riattivare il tuo badge.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puoi continuare a usare Signal ma, se vuoi, puoi rinnovare la tua donazione per sostenere l\'app e riattivare il tuo badge.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Rinnova contributo</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Vai a Google Pay</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Impossibile inviare la tua donazione per via di un errore di rete. Controlla la tua connessione e riprova.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Donazione per conto di %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s ha fatto una donazione a Signal per conto tuo</string>
     <!-- Gift badge redeem action label -->

@@ -624,13 +624,13 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">أعد ربط أجهزتك</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">تم إلغاء ربط الأجهزة التي أضفتها عند إلغاء تسجيل جهازك. انتقل إلى الإعدادات لتعيد ربط أي أجهزة.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">فتح الإعدادات</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
-    <string name="RelinkDevicesReminderFragment__later">لاحقا</string>
+    <string name="RelinkDevicesReminderFragment__later">لاحقًا</string>
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">حدِّد الأعضاء</string>
@@ -1368,8 +1368,8 @@
     <string name="Megaphones_new_group">مجموعة جديدة</string>
     <string name="Megaphones_invite_friends">دعوة الأصدقاء</string>
     <string name="Megaphones_use_sms">استخدام رسالة قصيرة</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">إضافة صورة للملف الشخصي</string>
+    <string name="Megaphones_chat_colors">لون الدردشة</string>
+    <string name="Megaphones_add_a_profile_photo">إضافة صورة للحساب الشخصي</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">الإجابات</string>
@@ -2428,13 +2428,15 @@
     <string name="MessageNotifier_contact_message">%1$s%2$s</string>
     <string name="MessageNotifier_unknown_contact_message">جهة اتصال</string>
     <string name="MessageNotifier_reacted_s_to_s">تفاعل %1$s مع: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">تفاعل %1$s مع الفيديو الخاص بك.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">تفاعل %1$s مع الصورة الخاصة بك.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">تفاعل %1$s على صورة GIF الخاصة بك.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">تفاعل %1$s مع الملف الخاص بك.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">تفاعل %1$s مع التسجيل الصوتي الخاص بك.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">تفاعل %1$s مع وسائطك التي تُعرَض مرة واحدة</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">تم تفاعل %1$s مع الملصق الخاص بك.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">تفاعل %1$s مع فيديوهاتك.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">تفاعل %1$s مع صورتك.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">تفاعل %1$s مع صورتك الـ GIF.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">تفاعل %1$s مع ملفك الخاص.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">تفاعل %1$s مع تسجيلك الصوتي.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">تفاعل %1$s مع وسائطك التي تُعرَض مرة واحدة.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">تم تفاعل %1$s مع ملصقك الخاص.</string>
     <string name="MessageNotifier_this_message_was_deleted">تم حذف هذه الرسالة.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">تعطيل إشعارات انضمام شخص إلى Signal ؟ تمكنك تفعيلها مجددا في Signal &gt; الإعدادات &gt; الإشعارات.</string>
@@ -2871,8 +2873,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">مشكل في التوصيل</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">تعذر توصيل رسالة – نصية، ملصقة، رد فعل، وصل القراءة، أو وسيط – من %1$s. يُحتمَل أنها أُرسلَت إليك مباشرة أو أنها قد أُرسلَت في مجموعة.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">لم يتمكن %1$s من توصيل رسالة أو ملصقا أو رد فعل أو وصل القراءة إليك.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">لم يتمكن %1$s من توصيل رسالة نصية أو ملصقة أو رد فعل أو وصل القراءة إليك. يُحتمَل أنها أُرسلَت إليك مباشرة أو أنها قد أُرسلَت في مجموعة.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">لم يتمكن %1$s من توصيل رسالة أو ملصق أو رد فعل أو وصل القراءة إليك.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">الاسم الأول (مطلوب)</string>
@@ -3842,7 +3844,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">من يُمكنه رؤية رقمي</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">لن يرى أي أحد رقم هاتفك في Signal.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">مَن يُمكنه العثور عليَّ باستخدام رقمي</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4237,12 +4239,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">تعطيل المحفظة</string>
     <string name="DeactivateWalletFragment__your_balance">رصيدك</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">يٌوصَى بإرسال مبالغك إلى عنوان محفظة أخرى قبل تعطيل الدفوعات. إذا اخترت عدم إرسال مبالغك الآن، سوف تبقى في محفظتك مرتبطة بـ Signal إذا أعدت تفعيل الدفوعات.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">يُوصَى بإرسال رصيدك المالي إلى عنوان محفظة أخرى قبل تعطيل عمليات الدفع. إذا اخترت عدم إرسال رصيدك المالي الآن، ستبقى في محفظتك مرتبطة بـ Signal إذا أعدت تفعيل الدفوعات.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">إرسال الرصيد المتبقي</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">تعطيل بدون أي إرسال</string>
     <string name="DeactivateWalletFragment__deactivate">تعطيل</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">تعطيل بدون أي إرسال ؟</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">سوف يبقى رصيدك في محفظتك المرتبطة بـ Signal إذا اخترت إعادة تفعيل الدفوعات.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">سيبقى رصيدك في محفظتك المرتبطة بـ Signal إذا اخترت إعادة تفعيل عمليات الدفع.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">حدث خطأ خلال تعطيل المحفظة.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4989,7 +4991,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">تعذّر إرسال هديتك بسبب خطأ في الشبكة. تحقّق من اتصالك بالشبكة ثم حاول مجددًا.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">تبرّع نيابة عن %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">تبرّع %1$s لـ Signal نيابة عنك</string>
     <!-- Gift badge redeem action label -->
@@ -5568,9 +5570,9 @@
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">لقد تفاعلت مع قصة %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">تفاعل مع قصتك</string>
+    <string name="ConversationItem__reacted_to_your_story">تفاعَلَ مع قصتك</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">تفاعل مع قصة</string>
+    <string name="ConversationItem__reacted_to_a_story">تفاعَلَ مع قصة</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->

@@ -544,9 +544,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Повторно поврзете ги вашите уреди</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Се прекина поврзаноста со уредите кои ги додадовте кога се отстрани регистрацијата на вашиот уред. Одете во поставувања за повторно да ги поврзете уредите.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Отвори поставувања</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1176,7 +1176,7 @@
     <string name="Megaphones_new_group">Нова група</string>
     <string name="Megaphones_invite_friends">Покани пријатели</string>
     <string name="Megaphones_use_sms">Користи SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Боја на разговор</string>
     <string name="Megaphones_add_a_profile_photo">Додајте слика на профилот</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2140,13 +2140,15 @@
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Контакт</string>
     <string name="MessageNotifier_reacted_s_to_s">Реагираше со %1$s на „%2$s“.</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Реагираше со %1$s на Вашето видео.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Реагираше со %1$s на Вашата слика.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Реагираше со %1$s на Вашиот GIF.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Реагираше со %1$s на Вашата датотека.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Реагираше со %1$s на Вашето аудио.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реагираше со %1$s на Вашата еднократно видлива медиумска датотека.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Реагираше со %1$s на Вашиот стикер.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Реагираше со %1$s на вашето видео.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Реагираше со %1$s на вашата слика.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Реагираше со %1$s на вашиот GIF.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Реагираше со %1$s на вашата датотека.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Реагираше со %1$s на вашето аудио.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реагираше со %1$s на вашата еднократно видлива медиумска датотека.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Реагираше со %1$s на вашата налепница.</string>
     <string name="MessageNotifier_this_message_was_deleted">Оваа порака е избришана.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Дали да се исклучат известувања кога контакт ќе се приклучи на Signal? Можете да ги вклучите повторно во Signal &gt; Поставувања &gt; Известувања.</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Проблем со испорака</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Порака, налепница, реакција или потврда за прочитани пораки не може да Ви се достави од %1$s. Можеби се обиделе да Ви испратат директно или во група.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Порака, налепница, реакција или потврда за прочитани пораки не може да Ви се достави од %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Не можеше да се испрати до вас порака, налепница, реакција или потврда за прочитана порака од %1$s. Или се обиделе да ви ја испратат директно или во група.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Не можеше да се испрати до вас порака, налепница, реакција или потврда за прочитана порака од %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Име (задолжително)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Кој може да го види мојот број</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Никој нема да го види вашиот телефонски број на Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Кој може да ме пронајде со мојот телефонски број</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Деактивирај го паричникот</string>
     <string name="DeactivateWalletFragment__your_balance">Вашиот баланс</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Препорачливо е да ги префрлите Вашите средства на адресата на друг паричник пред да ги деактивирате плаќањата. Ако изберете да не ги префлите Вашите средства сега, тие ќе останат на Вашиот паричник врзан со Signal, во случај да ги реактивирате плаќањата пак.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Се препорачува да ги префрлите средствата до друга адреса на паричник пред да ги деактивирате плаќањата. Ако решите да не ги префрлите средствата сега, тие ќе останат во вашиот паричник кој е поврзан за Signal ако ги реактивирате плаќањата.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Префли го преостанатиот баланс</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Деактивирај без пренос</string>
     <string name="DeactivateWalletFragment__deactivate">Деактивирај</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Да деактивирам без пренос?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Вашата состјоба ќе остане на Вашиот паричник врзан со Signal ако изберете да ги реактивирате плаќањата.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Средствата на вашатата сметка ќе останат во вашиот паричник врзан со Signal ако изберете да ги реактивирате плаќањата.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Грешка при деактивирање на паричникот.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Вашата донација не можеше да се испрати поради мрежна грешка. Проверете ја интернет врската и обидете се повторно.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Донација во име на %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s донираше на Signal во ваше име</string>
     <!-- Gift badge redeem action label -->

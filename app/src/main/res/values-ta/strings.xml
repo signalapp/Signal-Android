@@ -544,11 +544,11 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">உங்கள் டிவைஸ்களை மீண்டும் இணைக்கவும்</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">உங்கள் டிவைஸ் பதிவு செய்யப்படாதபோது நீங்கள் சேர்த்த டிவைஸ்கள் இணைக்கப்படவில்லை. எந்த டிவைஸ்களையும் மீண்டும் இணைக்க அமைப்புகளுக்குச் செல்லவும்.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">அமைப்புகளைத் திறக்கவும்</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">அமைப்புகளைத் திற</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
     <string name="RelinkDevicesReminderFragment__later">பிறகு</string>
 
@@ -1176,8 +1176,8 @@
     <string name="Megaphones_new_group">புதிய குழு</string>
     <string name="Megaphones_invite_friends">நண்பர்களை அழை</string>
     <string name="Megaphones_use_sms">எஸ்எம்எஸ் பயன்படுத்தவும்</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">கூட்டு ஒரு சுயவிவரம் புகைப்படம்</string>
+    <string name="Megaphones_chat_colors">சாட் கலர்ஸ்</string>
+    <string name="Megaphones_add_a_profile_photo">சுயவிவரப் புகைப்படத்தைச் சேர்க்கவும்</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">பதிலகள்</string>
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">பாதுகாப்பற்ற SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">தொடர்பு</string>
-    <string name="MessageNotifier_reacted_s_to_s">%1$s என வினைபுரிந்தார்: \"%2$s\" க்கு.</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">உங்கள் காணொளிக்கு %1$s என வினைபுரிந்தார்.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">உங்கள் படத்திற்கு %1$s என வினைபுரிந்தார்.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">உங்கள் ஜிஃப்-க்கு %1$s என்று பதிலளித்துள்ளார்.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">உங்கள் கோப்பிற்கு %1$s என வினைபுரிந்தார்.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">உங்கள் கேட்பொலிக்கு %1$s என வினைபுரிந்தார்.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$sஉங்கள் பார்வைக்கு ஒரு முறை ஊடகங்களுக்கு அவர் பதில்செயல் காட்டியுள்ளீர்கள்</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">உங்கள் ஒட்டிக்கு %1$s என வினைபுரிந்தார்.</string>
+    <string name="MessageNotifier_reacted_s_to_s">%1$s என எதிர்வினையாற்றினார்: \"%2$s\" மெசேஜில்.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">உங்கள் வீடியோவுக்கு %1$s என்று எதிர்வினையாற்றினார்.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">உங்கள் படத்திற்கு %1$s என்று எதிர்வினையாற்றினார்.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">உங்கள் GIFக்கு %1$s என்று எதிர்வினையாற்றினார்.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">உங்கள் கோப்பிற்கு %1$s என்று எதிர்வினையாற்றினார்.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">உங்கள் ஆடியோவுக்கு %1$s என்று எதிர்வினையாற்றினார்.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">உங்கள் ஒரு முறை-பார்வைக்கு ஊடகங்களுக்கு %1$s என்று எதிர்வினையாற்றினார்.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">உங்கள் ஸ்டிக்கருக்கு %1$s என்று எதிர்வினையாற்றினார்.</string>
     <string name="MessageNotifier_this_message_was_deleted">இந்த மெசேஜ் நீக்கப்பட்டது.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">இணைந்த சிக்னல் Signal அறிவிப்புகளை முடக்குவதா? அமைப்புகள் மற்றும் அறிவிப்புகளுக்குச் சென்று அவற்றை Signal settings சிக்னலில் மீண்டும் இயக்கலாம்.</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">டெலிவரி பிரச்சினை</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">ஒரு செய்தி, ஓட்டி, எதிர்வினை, அல்லது ரசீதைப் படியுங்கள் உங்களிடமிருந்து வழங்க முடியவில்லை %1$s. அவர்கள் அதை உங்களுக்கு நேரடியாக அனுப்ப முயற்சித்திருக்கலாம், அல்லது ஒருகுழு.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">ஒரு செய்தி, ஓட்டி, எதிர்வினை, அல்லது ரசீதைப் படியுங்கள் உங்களிடமிருந்து வழங்க முடியவில்லை %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">ஒரு செய்தி, ஸ்டிக்கர், எதிர்வினை அல்லது வாசிப்பு ரசீதை %1$s -இலிருந்து உங்களுக்கு வழங்க முடியவில்லை. அவர்கள் அதை உங்களுக்கு நேரடியாகவோ அல்லது குழுவாகவோ அனுப்ப முயன்றிருக்கலாம்.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">ஒரு செய்தி, ஸ்டிக்கர், எதிர்வினை அல்லது வாசிப்பு ரசீதை %1$s -இலிருந்து உங்களுக்கு வழங்க முடியவில்லை.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">முதல் பெயர் (தேவை)</string>
@@ -3464,17 +3466,17 @@
     <string name="preferences_app_protection__see_my_phone_number">எனது தொலைபேசி எண்ணைக் காண்க</string>
     <string name="preferences_app_protection__find_me_by_phone_number">தொலைபேசி எண் மூலம் என்னைக் கண்டுபிடிக்க</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">தொலைபேசி எண்</string>
+    <string name="preferences_app_protection__phone_number">ஃபோன் எண்</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">உங்கள் ஃபோன் எண்ணை யார் பார்க்கலாம் மற்றும் யார் உங்களை Signal இல் தொடர்பு கொள்ளலாம் என்பதைத் தேர்வுசெய்யவும்.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">எனது எண்ணை யார் பார்க்கலாம்</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Signal இல் உங்கள் ஃபோன் எண்ணை யாரும் பார்க்க மாட்டார்கள்</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">எண் மூலம் என்னை யார் கண்டுபிடிக்க முடியும்</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">நீங்கள் செய்தி அனுப்பும் நபர்களுக்கும் குழுக்களுக்கும் உங்கள் ஃபோன் எண் தெரியும். ஃபோன் தொடர்புகளில் உங்கள் எண்ணை வைத்திருப்பவர்கள் அதை Signal இலும் பார்ப்பார்கள்.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">நீங்கள் மெசேஜ் அனுப்பும் நபர்களுக்கும் குழுக்களுக்கும் உங்கள் ஃபோன் எண் தெரியும். ஃபோன் தொடர்புகளில் உங்கள் எண்ணை வைத்திருப்பவர்கள் அதை Signal இலும் பார்ப்பார்கள்.</string>
     <string name="PhoneNumberPrivacy_everyone">எல்லோரும்</string>
     <string name="PhoneNumberPrivacy_my_contacts">எனது தொடர்புகள்</string>
     <string name="PhoneNumberPrivacy_nobody">ஒருவருமில்லை</string>
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">செயலிழக்க Wallet</string>
     <string name="DeactivateWalletFragment__your_balance">உங்கள் சமநிலை</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">நீங்கள் பரிந்துரைக்கப்படுகிறது பரிமாற்றம் உங்கள் நிதி மற்றொருவருக்கு பணப்பை முகவரி செயலிழக்க முன் கொடுப்பனவுகள். வேண்டாம் என்று நீங்கள் தேர்வுசெய்தால்பரிமாற்றம் உங்கள் நிதி இப்போது, ​​அவை உங்களிடம் இருக்கும் பணப்பை இணைக்கப்பட்டுள்ளது க்கு Signal நீங்கள் மீண்டும் செயல்படுத்தினால் கொடுப்பனவுகள்.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">பணம் செலுத்துவதை செயலிழக்கச் செய்வதற்கு முன், உங்கள் நிதியை வேறொரு வாலட் முகவரிக்கு மாற்றுவது பரிந்துரைக்கப்படுகிறது. உங்கள் நிதியை இப்போது மாற்ற வேண்டாம் என நீங்கள் தேர்வுசெய்தால், நீங்கள் பேமெண்ட்டுகளை மீண்டும் செயல்படுத்தினால், அவை சிக்னலுடன் இணைக்கப்பட்ட உங்கள் வாலட்டில் இருக்கும்.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">இடமாற்றம் மீதமுள்ள சமநிலை</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">செயலிழக்க இல்லாமல் இடமாற்றம்</string>
     <string name="DeactivateWalletFragment__deactivate">செயலிழக்க</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">செயலிழக்க இல்லாமல் இடமாற்றம்?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">கொடுப்பனவுகளை மீண்டும் செயல்படுத்த நீங்கள் தேர்வுசெய்தால், Signal லுடன் இணைக்கப்பட்ட உங்கள் பணப்பையில் உங்கள் இருப்பு இருக்கும்.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">கட்டணங்களை மீண்டும் செயல்படுத்த நீங்கள் தேர்வுசெய்தால், Signal உடன் இணைக்கப்பட்ட உங்கள் வாலட்டில் உங்கள் இருப்பு இருக்கும்.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">செயலிழக்க பிழை பணப்பை.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4175,7 +4177,7 @@
     <string name="Donate2022Q2Megaphone_not_now">இப்போது இல்லை</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">தனிப்பயனாக்கலாம் எதிர்வினைகள்</string>
+    <string name="EditReactionsFragment__customize_reactions">எதிர்வினைகளை தனிப்பயனாக்கவும்</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">தட்டவும் ஒரு மாற்ற ஈமோஜி</string>
     <string name="EditReactionsFragment__reset">மீட்டமைக்க</string>
     <string name="EditReactionsFragment_save">சேமி</string>
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">நெட்வொர்க் பிழையின் காரணமாக உங்கள் நன்கொடையை அனுப்ப முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$s சார்பாக நன்கொடை</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">உங்கள் சார்பாக Signalக்கு %1$s நன்கொடை அளித்துள்ளார்</string>
     <!-- Gift badge redeem action label -->
@@ -4974,9 +4976,9 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">உங்கள் ஸ்டோரியை யார் பார்வையிடலாம் என்பதைத் தேர்வுசெய்யவும். நீங்கள் ஏற்கனவே அனுப்பிய ஸ்டோரீஸ்-ஐ மாற்றங்கள் பாதிக்காது.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">பதில்கள் &amp;ஆம்ப்; எதிர்வினைகள்</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">பதில்கள் &amp; எதிர்வினைகள்</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">பதில்களை அனுமதிக்கவும் &amp;ஆம்ப்; எதிர்வினைகள்</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">பதில்கள் &amp; எதிர்வினைகளை அனுமதிக்கவும்</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">உங்கள் ஸ்டோரியைப் பார்க்கக்கூடியவர்கள் எதிர்வினையாற்றி பதிலளிக்கட்டும்</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
@@ -5126,7 +5128,7 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">%1$s-யின் ஸ்டோரிக்கு நீங்கள் எதிர்வினையாற்றி உள்ளீர்கள்</string>
+    <string name="ConversationItem__you_reacted_to_s_story">%1$s -யின் ஸ்டோரிக்கு நீங்கள் எதிர்வினையாற்றி உள்ளீர்கள்</string>
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">உங்கள் ஸ்டோரிக்கு எதிர்வினையாற்றினார்</string>
     <!-- Conversation Item label for reactions to an unavailable story -->

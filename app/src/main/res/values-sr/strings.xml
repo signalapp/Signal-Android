@@ -21,7 +21,7 @@
     <string name="delete">Обриши</string>
     <string name="please_wait">Сачекајте…</string>
     <string name="save">Сачувај</string>
-    <string name="note_to_self">Подсетник</string>
+    <string name="note_to_self">Моја белешка</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -544,11 +544,11 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Поново повезивање уређаја</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Веза са уређајима које сте додали је прекинута када је регистрација вашег уређаја опозвана. Идите у подешавања да бисте поново повезали све уређаје.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
-    <string name="RelinkDevicesReminderFragment__open_settings">Отворити подешавања</string>
+    <string name="RelinkDevicesReminderFragment__open_settings">Отвори подешавања</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
     <string name="RelinkDevicesReminderFragment__later">Касније</string>
 
@@ -1176,8 +1176,8 @@
     <string name="Megaphones_new_group">Нова група</string>
     <string name="Megaphones_invite_friends">Позивница пријатељима</string>
     <string name="Megaphones_use_sms">Користи СМС</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">Додајте фотографију за профил</string>
+    <string name="Megaphones_chat_colors">Боја ћаскања</string>
+    <string name="Megaphones_add_a_profile_photo">Додајте профилну фотографију</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Одговора</string>
@@ -1999,9 +1999,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Искористили сте значку</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Реаговао/ла је %1$s на вашу причу.</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Реаговао/ла је %1$s на вашу причу</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Реаговао/ла је %1$s на причу.</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Реаговао/ла је %1$s на причу</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Плаћање</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2139,14 +2139,16 @@
     <string name="MessageNotifier_unsecured_sms">Необезбеђени СМС</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Контакт</string>
-    <string name="MessageNotifier_reacted_s_to_s">Реаговао %1$s на: „%2$s”.</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Реакција %1$s на ваш видео.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Реакција %1$s на вашу слику.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Реакција %1$s на ваш GIF.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Dobili ste reakciju %1$s na vaš fajl.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Реакција %1$s на ваш звучни запис.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реакција %1$s на ваш једнократни медиј.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Реакција %1$s на вашу налепницу.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Реаговао/ла је %1$s на: „%2$s“.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Реаговао/ла је %1$s на ваш видео.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Реаговао/ла је %1$s на вашу слику.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Реаговао/ла је %1$s на ваш GIF.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Реаговао/ла је %1$s на ваш фајл.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Реаговао/ла је %1$s на ваш аудио.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реаговао/ла је %1$s на ваш једнократни садржај.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Реаговао/ла је %1$s на вашу налепницу.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ова порука је обрисана.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Искључити нотификације контакта који се придружио Signal-у? Можете их поново омогућити у Signal &gt; Подешавања &gt; Нотификације.</string>
@@ -2539,8 +2541,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Проблем у испоруци</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Порука, налепница, реакција, потврда о читању или медиј од %1$s није могло да се испоручи. Можда су то покушали да вам пошаљу директно или у групи.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Порука, налепница, реакција или потврда о читању од %1$s није вам достављена.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Порука, налепница, реакција или потврда о читању коју шаље %1$s није вам достављена. Овај корисник је можда покушао да вам је пошаље директно или у групи.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Порука, налепница, реакција или потврда о читању коју шаље %1$s није вам достављена.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Име (потребно)</string>
@@ -3470,7 +3472,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Ко може да види мој број</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Нико неће видети ваш број телефона у Signal-у</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Ко може да ме пронађе преко броја телефона</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3853,12 +3855,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Деактивирати новчаник</string>
     <string name="DeactivateWalletFragment__your_balance">Ваш салдо</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Препоручује се да преносите средства на другу адресу новчаника пре деактивирања плаћања. Ако одлучите да не преносите своја средства сада, они ће остати у вашем новчанику везаном за Signal ако поново активирате уплате.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Препоручујемо вам да пренесете средства на другу адресу новчаника пре деактивирања плаћања. Ако не пренесете средства сада, остаће у вашем новчанику повезаном за Signal ако поново активирате плаћања.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Пренос преосталог салда</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Деактивирање без преноса података</string>
     <string name="DeactivateWalletFragment__deactivate">Деактивирати</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Деактивирање без преноса података?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Ваш салдо ће остати у вашем новчанику везаном за Signal ако поново активирате уплате.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Ваша средства ће остати у вашем новчанику повезаном за Signal ако поново активирате плаћања.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Грешка деактивирајући новчаник.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4577,7 +4579,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Ваша донација није послата због грешке у мрежи. Проверите да ли сте повезани и пробајте поново.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Донација у име корисника (%1$s)</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s је дао/ла донацију Signal-у у ваше име</string>
     <!-- Gift badge redeem action label -->
@@ -4974,9 +4976,9 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Бирајте ко може да види вашу причу. Промене неће утицати на приче које сте већ послали.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">Одговори &amp; реакције</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">Одговори и реакције</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Дозволи одговоре &amp; реакције</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Активирај одговоре и реакције</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Дозволите људима који могу да виде вашу причу да реагују и одговоре на њу</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->

@@ -564,9 +564,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-asociază-ți dispozitivele</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Dispozitivele pe care le-ai adăugat au fost deconectate când dispozitivului tău i-a fost anulată înregistrarea. Mergi la Setări ca să re-asociezi dispozitive.</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">Deschide setările</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1224,7 +1224,7 @@
     <string name="Megaphones_new_group">Grup nou</string>
     <string name="Megaphones_invite_friends">Invită prieteni</string>
     <string name="Megaphones_use_sms">Utilizează SMS</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
+    <string name="Megaphones_chat_colors">Culoare conversație</string>
     <string name="Megaphones_add_a_profile_photo">Adaugă o poză de profil</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -2218,6 +2218,8 @@
     <string name="MessageNotifier_reacted_s_to_your_file">A reacționat cu %1$s la fișierul tău.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">A reacționat cu %1$s la înregistrarea ta audio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">A reacționat cu %1$s la fișierul media vizibil o singură dată.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">A reacționat cu %1$s la autocolantul tău.</string>
     <string name="MessageNotifier_this_message_was_deleted">Acest mesaj a fost șters.</string>
 
@@ -3563,7 +3565,7 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Cine îmi poate vedea numărul</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nimeni nu va vedea numărul tău de telefon pe Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Cine mă poate găsi după număr</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4680,7 +4682,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Donația ta nu a putut fi trimisă din cauza unei erori de rețea. Verifică-ți conexiunea și încearcă din nou.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Donație în numele persoanei %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s donați către Signal în numele tău</string>
     <!-- Gift badge redeem action label -->
@@ -5240,7 +5242,7 @@
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">A reacționat la povestea ta</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">Ai reacționat la poveste</string>
+    <string name="ConversationItem__reacted_to_a_story">A reacționat la o poveste</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->

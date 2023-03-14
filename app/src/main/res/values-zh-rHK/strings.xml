@@ -524,9 +524,9 @@
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
     <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__relink_your_devices">Re-link your devices</string>
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">重新連結裝置</string>
     <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
-    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">The devices you added were unlinked when your device was unregistered. Go to Settings to re-link any devices.</string>
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">取消註冊裝置時，你新增的裝置已解除連結。請前往「設定」重新連結裝置。</string>
     <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
     <string name="RelinkDevicesReminderFragment__open_settings">開啟設定</string>
     <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
@@ -1128,8 +1128,8 @@
     <string name="Megaphones_new_group">建立新群組</string>
     <string name="Megaphones_invite_friends">邀請好友</string>
     <string name="Megaphones_use_sms">使用短訊</string>
-    <string name="Megaphones_chat_colors">Chat colors</string>
-    <string name="Megaphones_add_a_profile_photo">新增個人資料照片</string>
+    <string name="Megaphones_chat_colors">聊天顏色</string>
+    <string name="Megaphones_add_a_profile_photo">新增個人檔案相片</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">回覆</string>
@@ -2068,13 +2068,15 @@
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">聯絡人</string>
     <string name="MessageNotifier_reacted_s_to_s">對「%2$s」表達了 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">對您的影片表達了 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">對您的圖片表達了 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">對您的 GIF 表達了 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">對您的檔案表達了 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">對您的音訊表達了 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">對您的閱後即焚媒體表達了 %1$s 心情。</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">對您的貼圖表達了 %1$s 心情。</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">對你的影片表達了 %1$s 心情。</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">對你的圖片表達了 %1$s 心情。</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">對你的 GIF 表達了 %1$s 心情。</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">對你的檔案表達了 %1$s 心情。</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">對你的音訊表達了 %1$s 心情。</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">對你的「閱後即焚」多媒體檔案表達了 %1$s 心情。</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">對你的貼圖表達了 %1$s 心情。</string>
     <string name="MessageNotifier_this_message_was_deleted">此訊息已被刪除。</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">要關閉聯絡人加入 Signal 的通知嗎？您可在 Signal &gt;「設定」&gt;「通知」中再次啟用。</string>
@@ -2456,8 +2458,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">送遞問題</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">來自 %1$s 的一則訊息、貼圖、心情或已讀標記無法向您送達。未知是直接發送給您，還是發送到某個群組中。</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">來自 %1$s 的一則訊息、貼圖、心情或已讀標記無法向您送達。</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">系統無法將 %1$s 的訊息、貼圖、心情回應或已讀標記傳送給你。他們可能是直接或透過群組向你傳送的。</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">系統無法將 %1$s 的訊息、貼圖、心情回應或已讀標記傳送給你。</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">名字 (必填)</string>
@@ -3373,11 +3375,11 @@
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">電話號碼</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">選擇誰可以看到你的電話號碼，以及誰可以透過它在 Signal 上與你聯絡。</string>
+    <string name="preferences_app_protection__choose_who_can_see">選擇誰可以看到你的電話號碼，以及誰可以透過電話號碼在 Signal 與你聯絡。</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">誰可以看到我的號碼</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nobody will see your phone number on Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">沒有人會在 Signal 看到你的電話號碼</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">誰可以透過電話號碼找到我</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -3757,12 +3759,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">停用錢包</string>
     <string name="DeactivateWalletFragment__your_balance">您的餘額</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">建議您在停用付款之前，將您的款項轉移到另一個錢包位址。若您現在選擇不作轉移，假如您重新啟用付款，您的款項將會保留在您已連結至 Signal 的錢包中。</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">我們建議你在停用付款之前，將你的資金轉移到另一個錢包位址。若你現在選擇不作轉移，當你重新啟用付款時，你的款項將會保留在已連結至 Signal 的錢包中。</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">轉移尚餘款項</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">停用而不轉移</string>
     <string name="DeactivateWalletFragment__deactivate">停用</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">要停用而不作轉移嗎？</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">若您選擇重新啟用付款，您的餘額將會保留在您已連結至 Signal 的錢包中。</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">若你選擇重新啟用付款，你的餘額將會保留在已連結至 Signal 的錢包中。</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">停用錢包時發生錯誤。</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4076,7 +4078,7 @@
     <string name="Donate2022Q2Megaphone_not_now">現在不要</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">自訂心情</string>
+    <string name="EditReactionsFragment__customize_reactions">自訂心情回應</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">輕觸以替換表情符號</string>
     <string name="EditReactionsFragment__reset">重設</string>
     <string name="EditReactionsFragment_save">儲存</string>
@@ -4474,7 +4476,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">由於發生網路錯誤，系統無法發送你的捐款。請檢查你的網路連線，然後再試一次。</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Donation on behalf of %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">代表 %1$s 捐款</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s 已代表你捐款給 Signal</string>
     <!-- Gift badge redeem action label -->
@@ -4865,7 +4867,7 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">選擇誰可以瀏覽你的限時動態。這不會影響你在更改前發送的限時動態。</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">回覆和心情</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">回覆和心情回應</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">允許回覆和表達心情</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
