@@ -135,6 +135,7 @@ import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.isStory
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.Closeable
@@ -3721,8 +3722,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     MmsReader(readableDatabase.query(TABLE_NAME, MMS_PROJECTION, query, null, null, null, "1")).use { reader ->
-      val record: MessageRecord? = reader.getNext()
-      if (record != null) {
+      val record: MessageRecord? = reader.firstOrNull()
+      if (record != null && !record.isStory()) {
         return getRootOfQuoteChain(MessageId(record.id))
       }
     }
