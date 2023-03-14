@@ -1059,20 +1059,26 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun deleteConversations(selectedConversations: Set<Long>) {
-    val recipientIdsForThreadIds = getRecipientIdsForThreadIds(selectedConversations)
+    val recipientIds = getRecipientIdsForThreadIds(selectedConversations)
 
+    val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(ID, selectedConversations)
     writableDatabase.withinTransaction { db ->
-      messages.deleteThreads(selectedConversations)
-      drafts.clearDrafts(selectedConversations)
+      for (query in queries) {
+        db.delete(TABLE_NAME, query.where, query.whereArgs)
+      }
 
-      SqlUtil.buildCollectionQuery(ID, selectedConversations)
-        .forEach { db.delete(TABLE_NAME, it.where, it.whereArgs) }
+      messages.deleteAbandonedMessages()
+      attachments.trimAllAbandonedAttachments()
+      groupReceipts.deleteAbandonedRows()
+      mentions.deleteAbandonedMentions()
+      drafts.clearDrafts(selectedConversations)
+      attachments.deleteAbandonedAttachmentFiles()
     }
 
     notifyConversationListListeners()
     notifyConversationListeners(selectedConversations)
     ApplicationDependencies.getDatabaseObserver().notifyConversationDeleteListeners(selectedConversations)
-    ConversationUtil.clearShortcuts(context, recipientIdsForThreadIds)
+    ConversationUtil.clearShortcuts(context, recipientIds)
   }
 
   fun deleteAllConversations() {
