@@ -66,7 +66,6 @@ public class SendReadReceiptJob extends BaseJob {
   public SendReadReceiptJob(long threadId, @NonNull RecipientId recipientId, List<Long> messageSentTimestamps, List<MessageId> messageIds) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
-                           .addConstraint(DecryptionsDrainedConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
                            .setQueue(recipientId.toQueueKey())

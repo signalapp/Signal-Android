@@ -52,7 +52,6 @@ public class SendDeliveryReceiptJob extends BaseJob {
   public SendDeliveryReceiptJob(@NonNull RecipientId recipientId, long messageSentTimestamp, @NonNull MessageId messageId) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
-                           .addConstraint(DecryptionsDrainedConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
                            .setQueue(recipientId.toQueueKey())
