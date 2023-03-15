@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFi
 import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterLerp
 import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterPullState
 import org.thoughtcrime.securesms.databinding.CallLogFragmentBinding
+import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.main.SearchBinder
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
@@ -112,6 +113,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       }
 
     binding.recycler.adapter = adapter
+    requireListener<Material3OnScrollHelperBinder>().bindScrollHelper(binding.recycler)
 
     initializePullToFilter()
     initializeTapToScrollToTop()
