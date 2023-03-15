@@ -247,6 +247,12 @@ class RecipientTableTest_getAndPossiblyMerge {
       expectSessionSwitchoverEvent(E164_A)
     }
 
+    test("e164 matches, e164 + aci provided") {
+      given(E164_A, PNI_A, null)
+      process(E164_A, null, ACI_A)
+      expect(E164_A, PNI_A, ACI_A)
+    }
+
     test("pni matches, all provided, no pni session") {
       given(null, PNI_A, null)
       process(E164_A, PNI_A, ACI_A)
