@@ -303,7 +303,7 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
       return Single.just(processor);
     }
 
-    if (hasCaptchaToken() && processor.captchaRequired()) {
+    if (hasCaptchaToken() && processor.captchaRequired(getExcludedChallenges())) {
       Log.d(TAG, "Submitting completed captcha challenge");
       final String captcha = Objects.requireNonNull(getCaptchaToken());
       clearCaptchaResponse();

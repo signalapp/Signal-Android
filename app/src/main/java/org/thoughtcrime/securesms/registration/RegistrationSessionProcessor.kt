@@ -27,10 +27,6 @@ sealed class RegistrationSessionProcessor(response: ServiceResponse<Registration
     val REQUESTABLE_INFORMATION = listOf(PUSH_CHALLENGE_KEY, CAPTCHA_KEY)
   }
 
-  public override fun captchaRequired(): Boolean {
-    return super.captchaRequired() || (hasResult() && CAPTCHA_KEY == getChallenge(emptyList()))
-  }
-
   public override fun rateLimit(): Boolean {
     return error is RateLimitException
   }
@@ -39,9 +35,17 @@ sealed class RegistrationSessionProcessor(response: ServiceResponse<Registration
     return super.getError()
   }
 
+  fun captchaRequired(excludedChallenges: List<String>): Boolean {
+    return response.status == 402 || (hasResult() && CAPTCHA_KEY == getChallenge(excludedChallenges))
+  }
+
   fun pushChallengeTimedOut(): Boolean {
-    val state: RegistrationSessionState = response.result.get().state ?: return false
-    return state.pushChallengeTimedOut
+    if (response.result.isEmpty) {
+      return false
+    } else {
+      val state: RegistrationSessionState = response.result.get().state ?: return false
+      return state.pushChallengeTimedOut
+    }
   }
 
   fun isTokenRejected(): Boolean {

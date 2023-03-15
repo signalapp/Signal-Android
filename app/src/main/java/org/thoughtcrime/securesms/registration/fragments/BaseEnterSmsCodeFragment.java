@@ -335,7 +335,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
                                   .subscribe(processor -> {
                                     if (processor.hasResult()) {
                                       Toast.makeText(requireContext(), getCodeRequestedToastText(mode), Toast.LENGTH_LONG).show();
-                                    } else if (processor.captchaRequired()) {
+                                    } else if (processor.captchaRequired(viewModel.getExcludedChallenges())) {
                                       navigateToCaptcha();
                                     } else if (processor.rateLimit()) {
                                       handleRateLimited();
