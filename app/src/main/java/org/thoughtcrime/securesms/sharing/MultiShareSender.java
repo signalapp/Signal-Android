@@ -348,7 +348,9 @@ public final class MultiShareSender {
           linkPreview.getDate(),
           linkPreview.getThumbnail().map(thumbnail ->
                                              thumbnail instanceof UriAttachment ? thumbnail
-                                                                                : new ImageSlide(context,
+                                                                                : thumbnail.getUri() == null
+                                                                                  ? null
+                                                                                  : new ImageSlide(context,
                                                                                                  thumbnail.getUri(),
                                                                                                  thumbnail.getContentType(),
                                                                                                  thumbnail.getSize(),
