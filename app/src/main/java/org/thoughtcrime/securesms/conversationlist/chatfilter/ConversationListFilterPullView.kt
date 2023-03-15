@@ -275,11 +275,11 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     }
   }
 
-  interface OnFilterStateChanged {
+  fun interface OnFilterStateChanged {
     fun newState(state: FilterPullState, source: ConversationFilterSource)
   }
 
-  interface OnCloseClicked {
+  fun interface OnCloseClicked {
     fun onCloseClicked()
   }
 }

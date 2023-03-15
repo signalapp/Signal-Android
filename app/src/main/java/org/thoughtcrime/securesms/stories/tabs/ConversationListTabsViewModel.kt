@@ -27,6 +27,10 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
       store.update { it.copy(unreadMessagesCount = unreadChats) }
     }
 
+    disposables += repository.getNumberOfUnseenCalls().subscribe { unseenCalls ->
+      store.update { it.copy(unreadCallsCount = unseenCalls) }
+    }
+
     disposables += repository.getNumberOfUnseenStories().subscribe { unseenStories ->
       store.update { it.copy(unreadStoriesCount = unseenStories) }
     }
@@ -39,6 +43,11 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
   fun onChatsSelected() {
     internalTabClickEvents.onNext(ConversationListTab.CHATS)
     store.update { it.copy(tab = ConversationListTab.CHATS, prevTab = it.tab) }
+  }
+
+  fun onCallsSelected() {
+    internalTabClickEvents.onNext(ConversationListTab.CALLS)
+    store.update { it.copy(tab = ConversationListTab.CALLS, prevTab = it.tab) }
   }
 
   fun onStoriesSelected() {

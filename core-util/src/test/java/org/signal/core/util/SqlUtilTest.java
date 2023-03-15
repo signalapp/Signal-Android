@@ -282,6 +282,16 @@ public final class SqlUtilTest {
     assertArrayEquals(new String[] { "5", "6" }, output.get(1).getWhereArgs());
   }
 
+  @Test
+  public void aggregateQueries() {
+    SqlUtil.Query q1 = SqlUtil.buildQuery("a = ?", 1);
+    SqlUtil.Query q2 = SqlUtil.buildQuery("b = ?", 2);
+    SqlUtil.Query q3 = q1.and(q2);
+
+    assertEquals("(a = ?) AND (b = ?)", q3.getWhere());
+    assertArrayEquals(new String[]{"1", "2"}, q3.getWhereArgs());
+  }
+
   private static byte[] hexToBytes(String hex) {
     try {
       return Hex.fromStringCondensed(hex);

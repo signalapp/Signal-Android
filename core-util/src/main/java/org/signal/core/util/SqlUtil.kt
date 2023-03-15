@@ -394,5 +394,15 @@ object SqlUtil {
     return Query(query, args.toTypedArray())
   }
 
-  class Query(val where: String, val whereArgs: Array<String>)
+  class Query(val where: String, val whereArgs: Array<String>) {
+    infix fun and(other: Query): Query {
+      return if (where.isNotEmpty() && other.where.isNotEmpty()) {
+        Query("($where) AND (${other.where})", whereArgs + other.whereArgs)
+      } else if (where.isNotEmpty()) {
+        this
+      } else {
+        other
+      }
+    }
+  }
 }

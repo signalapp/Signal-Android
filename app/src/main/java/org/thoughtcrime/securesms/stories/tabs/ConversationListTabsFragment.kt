@@ -6,7 +6,6 @@ import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.fragment.app.Fragment
@@ -16,6 +15,9 @@ import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.model.KeyPath
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.ViewBinderDelegate
+import org.thoughtcrime.securesms.databinding.ConversationListTabsBinding
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.visible
 import java.text.NumberFormat
 
@@ -25,33 +27,24 @@ import java.text.NumberFormat
 class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
 
   private val viewModel: ConversationListTabsViewModel by viewModels(ownerProducer = { requireActivity() })
-
-  private lateinit var chatsUnreadIndicator: TextView
-  private lateinit var storiesUnreadIndicator: TextView
-  private lateinit var chatsIcon: LottieAnimationView
-  private lateinit var storiesIcon: LottieAnimationView
-  private lateinit var chatsPill: ImageView
-  private lateinit var storiesPill: ImageView
-
+  private val binding by ViewBinderDelegate(ConversationListTabsBinding::bind)
   private var shouldBeImmediate = true
   private var pillAnimator: Animator? = null
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    chatsUnreadIndicator = view.findViewById(R.id.chats_unread_indicator)
-    storiesUnreadIndicator = view.findViewById(R.id.stories_unread_indicator)
-    chatsIcon = view.findViewById(R.id.chats_tab_icon)
-    storiesIcon = view.findViewById(R.id.stories_tab_icon)
-    chatsPill = view.findViewById(R.id.chats_pill)
-    storiesPill = view.findViewById(R.id.stories_pill)
-
     val iconTint = ContextCompat.getColor(requireContext(), R.color.signal_colorOnSecondaryContainer)
 
-    chatsIcon.addValueCallback(
+    binding.chatsTabIcon.addValueCallback(
       KeyPath("**"),
       LottieProperty.COLOR
     ) { iconTint }
 
-    storiesIcon.addValueCallback(
+    binding.callsTabIcon.addValueCallback(
+      KeyPath("**"),
+      LottieProperty.COLOR
+    ) { iconTint }
+
+    binding.storiesTabIcon.addValueCallback(
       KeyPath("**"),
       LottieProperty.COLOR
     ) { iconTint }
@@ -60,9 +53,15 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
       viewModel.onChatsSelected()
     }
 
+    view.findViewById<View>(R.id.calls_tab_touch_point).setOnClickListener {
+      viewModel.onCallsSelected()
+    }
+
     view.findViewById<View>(R.id.stories_tab_touch_point).setOnClickListener {
       viewModel.onStoriesSelected()
     }
+
+    binding.callsTabGroup.visible = FeatureFlags.callsTab()
 
     viewModel.state.observe(viewLifecycleOwner) {
       update(it, shouldBeImmediate)
@@ -71,31 +70,39 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
   }
 
   private fun update(state: ConversationListTabsState, immediate: Boolean) {
-    chatsIcon.isSelected = state.tab == ConversationListTab.CHATS
-    chatsPill.isSelected = state.tab == ConversationListTab.CHATS
+    binding.chatsTabIcon.isSelected = state.tab == ConversationListTab.CHATS
+    binding.chatsPill.isSelected = state.tab == ConversationListTab.CHATS
 
-    storiesIcon.isSelected = state.tab == ConversationListTab.STORIES
-    storiesPill.isSelected = state.tab == ConversationListTab.STORIES
+    binding.callsTabIcon.isSelected = state.tab == ConversationListTab.CALLS
+    binding.callsPill.isSelected = state.tab == ConversationListTab.CALLS
+
+    binding.storiesTabIcon.isSelected = state.tab == ConversationListTab.STORIES
+    binding.storiesPill.isSelected = state.tab == ConversationListTab.STORIES
 
     val hasStateChange = state.tab != state.prevTab
     if (immediate) {
-      chatsIcon.pauseAnimation()
-      storiesIcon.pauseAnimation()
+      binding.chatsTabIcon.pauseAnimation()
+      binding.callsTabIcon.pauseAnimation()
+      binding.storiesTabIcon.pauseAnimation()
 
-      chatsIcon.progress = if (state.tab == ConversationListTab.CHATS) 1f else 0f
-      storiesIcon.progress = if (state.tab == ConversationListTab.STORIES) 1f else 0f
+      binding.chatsTabIcon.progress = if (state.tab == ConversationListTab.CHATS) 1f else 0f
+      binding.callsTabIcon.progress = if (state.tab == ConversationListTab.CALLS) 1f else 0f
+      binding.storiesTabIcon.progress = if (state.tab == ConversationListTab.STORIES) 1f else 0f
 
-      runPillAnimation(0, chatsPill, storiesPill)
+      runPillAnimation(0, binding.chatsPill, binding.callsPill, binding.storiesPill)
     } else if (hasStateChange) {
-      runLottieAnimations(chatsIcon, storiesIcon)
-      runPillAnimation(150, chatsPill, storiesPill)
+      runLottieAnimations(binding.chatsTabIcon, binding.callsTabIcon, binding.storiesTabIcon)
+      runPillAnimation(150, binding.chatsPill, binding.callsPill, binding.storiesPill)
     }
 
-    chatsUnreadIndicator.visible = state.unreadMessagesCount > 0
-    chatsUnreadIndicator.text = formatCount(state.unreadMessagesCount)
+    binding.chatsUnreadIndicator.alpha = if (state.unreadMessagesCount > 0) 1f else 0f
+    binding.chatsUnreadIndicator.text = formatCount(state.unreadMessagesCount)
 
-    storiesUnreadIndicator.visible = state.unreadStoriesCount > 0
-    storiesUnreadIndicator.text = formatCount(state.unreadStoriesCount)
+    binding.callsUnreadIndicator.alpha = if (state.unreadCallsCount > 0) 1f else 0f
+    binding.callsUnreadIndicator.text = formatCount(state.unreadCallsCount)
+
+    binding.storiesUnreadIndicator.alpha = if (state.unreadStoriesCount > 0) 1f else 0f
+    binding.storiesUnreadIndicator.text = formatCount(state.unreadStoriesCount)
 
     requireView().visible = state.visibilityState.isVisible()
   }

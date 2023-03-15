@@ -125,6 +125,10 @@ class SelectBuilderPart3(
     return SelectBuilderPart4b(db, columns, tableName, where, whereArgs, limit)
   }
 
+  fun limit(limit: Int, offset: Int): SelectBuilderPart4b {
+    return SelectBuilderPart4b(db, columns, tableName, where, whereArgs, "$offset,$limit")
+  }
+
   fun run(): Cursor {
     return db.query(
       SupportSQLiteQueryBuilder
@@ -150,6 +154,10 @@ class SelectBuilderPart4a(
 
   fun limit(limit: String): SelectBuilderPart5 {
     return SelectBuilderPart5(db, columns, tableName, where, whereArgs, orderBy, limit)
+  }
+
+  fun limit(limit: Int, offset: Int): SelectBuilderPart5 {
+    return SelectBuilderPart5(db, columns, tableName, where, whereArgs, orderBy, "$offset,$limit")
   }
 
   fun run(): Cursor {

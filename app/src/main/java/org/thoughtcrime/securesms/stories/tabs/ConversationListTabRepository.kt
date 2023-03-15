@@ -46,4 +46,8 @@ class ConversationListTabRepository {
       refresh()
     }.subscribeOn(Schedulers.io())
   }
+
+  fun getNumberOfUnseenCalls(): Observable<Long> {
+    return Observable.just(99)
+  }
 }

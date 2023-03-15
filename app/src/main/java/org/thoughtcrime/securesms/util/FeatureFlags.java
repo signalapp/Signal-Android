@@ -106,6 +106,7 @@ public final class FeatureFlags {
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
   private static final String TEXT_FORMATTING                   = "android.textFormatting";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
+  private static final String CALLS_TAB                         = "android.calls.tab";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -162,7 +163,8 @@ public final class FeatureFlags {
       PAYPAL_ONE_TIME_DONATIONS,
       PAYPAL_RECURRING_DONATIONS,
       TEXT_FORMATTING,
-      ANY_ADDRESS_PORTS_KILL_SWITCH
+      ANY_ADDRESS_PORTS_KILL_SWITCH,
+      CALLS_TAB
   );
 
   @VisibleForTesting
@@ -582,6 +584,13 @@ public final class FeatureFlags {
    */
   public static boolean callingFieldTrialAnyAddressPortsKillSwitch() {
     return getBoolean(ANY_ADDRESS_PORTS_KILL_SWITCH, false);
+  }
+
+  /**
+   * Whether or not the calls tab is enabled
+   */
+  public static boolean callsTab() {
+    return getBoolean(CALLS_TAB, false);
   }
 
   /** Only for rendering debug info. */
