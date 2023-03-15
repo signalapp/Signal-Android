@@ -21,7 +21,7 @@
     <string name="delete">Scrios</string>
     <string name="please_wait">Fan le do thoil…</string>
     <string name="save">Cuir i dtaisce é</string>
-    <string name="note_to_self">Nóta Pearsanta</string>
+    <string name="note_to_self">Nóta Chugam Féin</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -2355,16 +2355,16 @@
     <string name="MessageNotifier_unsecured_sms">SMS nach bhfuil slán</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Teagmhálaí</string>
-    <string name="MessageNotifier_reacted_s_to_s">Freagraíodh %1$s do: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Freagraíodh %1$s do d\'fhíseán.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Freagraíodh %1$s do d\'íomhá.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Freagraíodh %1$s do do GIF.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Freagraíodh %1$s do do chomhad.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">D\'fhreagair %1$s do mhír fuaime.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Freagraíodh %1$s do do mheán amhairc aonuaire.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Tugadh freagairt %1$s do: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Tugadh freagairt %1$s do d\'fhíseán.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Tugadh freagairt %1$s do d\'íomhá.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Tugadh freagairt %1$s do do GIF.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Tugadh freagairt %1$s do do chomhad.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Tugadh freagairt %1$s do do mhír fuaime.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Tugadh freagairt %1$s do do mheán amhairc aonuaire.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
     <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Freagraíodh %1$s do do ghreamán.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Tugadh freagairt %1$s do do ghreamán.</string>
     <string name="MessageNotifier_this_message_was_deleted">Scriosadh an teachtaireacht seo.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Ar mhúch tú na fógraí gur thosaigh teagmhálaithe ag baint feidhm as Signal? Is féidir leat iad a chumasú arís i Signal &gt; Socruithe &gt; Fógraí.</string>
@@ -3745,13 +3745,13 @@
     <string name="preferences_app_protection__see_my_phone_number">See My Phone Number</string>
     <string name="preferences_app_protection__find_me_by_phone_number">Find Me by Phone Number</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Uimhir Ghutháin</string>
+    <string name="preferences_app_protection__phone_number">Uimhir ghutháin</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Roghnaigh na daoine atá in ann d\'uimhir ghutháin a fheiceáil agus teagmháil a dhéanamh leat ar Signal léi.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Na daoine atá in ann m\'uimhir a fheiceáil</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Ní fheicfidh duine ar bith d\'uimhir ghutháin ar Signal</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Ní fheicfidh aon duine d\'uimhir ghutháin ar Signal</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Na daoine atá in ann mé a aimsiú le m\'uimhir</string>
     <!-- Subtext below radio buttons when who can see my number is set to everyone -->
@@ -4148,7 +4148,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Deactivate Without Transferring</string>
     <string name="DeactivateWalletFragment__deactivate">Díchumasaigh</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Deactivate Without Transferring?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Your balance will remain in your wallet linked to Signal if you choose to reactivate payments.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Fanfaidh d\'iarmhéid i do sparán atá nasctha le Signal má roghnaíonn tú íocaíochtaí a athghníomhachtú.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Tharla earráid le díghníomhachtú an sparáin.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4845,7 +4845,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Cuireadh do thabhartas míosúil athfhillteach ar ceal mar níorbh fhéidir linn d\'íocaíocht a phróiseáil. Níl do shuaitheantas infheicthe ar do phróifíl a thuilleadh.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Cuireadh do thabhartas míosúil athfhillteach ar ceal. %1$s Níl do shuaitheantas %2$s infheicthe ar do phróifíl a thuilleadh.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Is féidir leanúint le húsáid Signal ach chun tacú leis an aip agus do shuaitheantas a athghníomhachtú, athnuaigh anois.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Is féidir leat leanúint le húsáid Signal ach chun tacú leis an aip agus do shuaitheantas a athghníomhachtú, athnuaigh anois.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Athnuaigh síntiús</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Téigh chuig Google Pay</string>
@@ -5303,11 +5303,11 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Roghnaigh an lucht féachana ar do scéal. Ní bheidh tionchar ag athruithe ar scéalta a sheol tú cheana.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">Freagraí agus Freagairtí</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">Freagraí agus freagairtí</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Ceadaigh Freagraí agus Freagairtí</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Ceadaigh freagraí agus freagairtí</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Lig don lucht féachana freagair agus freagairt do do scéal</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Lig don lucht féachana freagra agus freagairt a thabhairt ar do scéal</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Teagmhálaithe Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
