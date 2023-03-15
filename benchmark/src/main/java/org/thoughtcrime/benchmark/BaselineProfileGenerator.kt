@@ -23,22 +23,20 @@ class BaselineProfileGenerator {
   val baselineProfileRule = BaselineProfileRule()
 
   @Test
-  fun startup() = baselineProfileRule.collectBaselineProfile(
-    packageName = "org.thoughtcrime.securesms",
-    profileBlock = {
-      if (iteration == 0) {
-        val setupIntent = Intent().apply {
-          component = ComponentName("org.thoughtcrime.securesms", "org.signal.benchmark.BenchmarkSetupActivity")
+  fun startup() {
+    var setup = false
+    baselineProfileRule.collectBaselineProfile(
+      packageName = "org.thoughtcrime.securesms",
+      profileBlock = {
+        if (!setup) {
+          BenchmarkSetup.setup("cold-start", device)
+          setup = true
         }
-        startActivityAndWait(setupIntent)
+        startActivityAndWait()
+        device.findObject(By.textContains("Buddy")).click();
+        device.wait(Until.hasObject(By.textContains("Signal message")), 10_000L)
+        device.wait(Until.hasObject(By.textContains("Test")), 5_000L)
       }
-      startActivityAndWait()
-      device.findObject(By.textContains("Buddy")).click();
-      device.wait(
-        Until.hasObject(By.clazz("$packageName.conversation.ConversationActivity")),
-        10000L
-      )
-      device.wait(Until.hasObject(By.textContains("Test")), 10_000L)
-    }
-  )
+    )
+  }
 }
