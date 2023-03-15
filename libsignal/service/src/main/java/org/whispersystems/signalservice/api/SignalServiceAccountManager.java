@@ -557,7 +557,9 @@ public class SignalServiceAccountManager {
                                                               boolean clearAll)
       throws IOException, InvalidKeyException
   {
-    ManifestRecord.Builder manifestRecordBuilder = ManifestRecord.newBuilder().setVersion(manifest.getVersion());
+    ManifestRecord.Builder manifestRecordBuilder = ManifestRecord.newBuilder()
+                                                                 .setSourceDevice(manifest.getSourceDeviceId())
+                                                                 .setVersion(manifest.getVersion());
 
     for (StorageId id : manifest.getStorageIds()) {
       ManifestRecord.Identifier idProto = ManifestRecord.Identifier.newBuilder()
@@ -599,7 +601,7 @@ public class SignalServiceAccountManager {
         ids.add(StorageId.forType(id.getRaw().toByteArray(), id.getTypeValue()));
       }
 
-      SignalStorageManifest conflictManifest = new SignalStorageManifest(record.getVersion(), ids);
+      SignalStorageManifest conflictManifest = new SignalStorageManifest(record.getVersion(), record.getSourceDevice(), ids);
 
       return Optional.of(conflictManifest);
     } else {

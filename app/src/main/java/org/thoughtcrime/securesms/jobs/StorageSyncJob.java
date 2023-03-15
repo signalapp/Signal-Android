@@ -245,7 +245,7 @@ public class StorageSyncJob extends BaseJob {
       self = freshSelf();
     }
 
-    Log.i(TAG, "Our version: " + localManifest.getVersion() + ", their version: " + remoteManifest.getVersion());
+    Log.i(TAG, "Our version: " + localManifest.getVersionString() + ", their version: " + remoteManifest.getVersionString());
 
     if (remoteManifest.getVersion() > localManifest.getVersion()) {
       Log.i(TAG, "[Remote Sync] Newer manifest version found!");
@@ -314,7 +314,7 @@ public class StorageSyncJob extends BaseJob {
     }
 
     if (remoteManifest != localManifest) {
-      Log.i(TAG, "[Remote Sync] Saved new manifest. Now at version: " + remoteManifest.getVersion());
+      Log.i(TAG, "[Remote Sync] Saved new manifest. Now at version: " + remoteManifest.getVersionString());
       SignalStore.storageService().setManifest(remoteManifest);
     }
 
@@ -338,7 +338,7 @@ public class StorageSyncJob extends BaseJob {
 
       Log.i(TAG, "ID Difference :: " + idDifference);
 
-      remoteWriteOperation = new WriteOperationResult(new SignalStorageManifest(remoteManifest.getVersion() + 1, localStorageIds),
+      remoteWriteOperation = new WriteOperationResult(new SignalStorageManifest(remoteManifest.getVersion() + 1, SignalStore.account().getDeviceId(), localStorageIds),
                                                       remoteInserts,
                                                       remoteDeletes);
 
@@ -361,14 +361,14 @@ public class StorageSyncJob extends BaseJob {
         throw new RetryLaterException();
       }
 
-      Log.i(TAG, "Saved new manifest. Now at version: " + remoteWriteOperation.getManifest().getVersion());
+      Log.i(TAG, "Saved new manifest. Now at version: " + remoteWriteOperation.getManifest().getVersionString());
       SignalStore.storageService().setManifest(remoteWriteOperation.getManifest());
 
       stopwatch.split("remote-write");
 
       needsMultiDeviceSync = true;
     } else {
-      Log.i(TAG, "No remote writes needed. Still at version: " + remoteManifest.getVersion());
+      Log.i(TAG, "No remote writes needed. Still at version: " + remoteManifest.getVersionString());
     }
 
     List<Integer>   knownTypes      = getKnownTypes();

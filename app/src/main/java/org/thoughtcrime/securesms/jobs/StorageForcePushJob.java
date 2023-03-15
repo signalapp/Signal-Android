@@ -108,7 +108,7 @@ public class StorageForcePushJob extends BaseJob {
     inserts.add(accountRecord);
     allNewStorageIds.add(accountRecord.getId());
 
-    SignalStorageManifest manifest = new SignalStorageManifest(newVersion, allNewStorageIds);
+    SignalStorageManifest manifest = new SignalStorageManifest(newVersion, SignalStore.account().getDeviceId(), allNewStorageIds);
     StorageSyncValidations.validateForcePush(manifest, inserts, Recipient.self().fresh());
 
     try {

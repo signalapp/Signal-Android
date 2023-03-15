@@ -14,14 +14,16 @@ import java.util.Map;
 import java.util.Optional;
 
 public class SignalStorageManifest {
-  public static final SignalStorageManifest EMPTY = new SignalStorageManifest(0, Collections.emptyList());
+  public static final SignalStorageManifest EMPTY = new SignalStorageManifest(0, 1, Collections.emptyList());
 
   private final long                          version;
+  private final int                           sourceDeviceId;
   private final List<StorageId>               storageIds;
   private final Map<Integer, List<StorageId>> storageIdsByType;
 
-  public SignalStorageManifest(long version, List<StorageId> storageIds) {
+  public SignalStorageManifest(long version, int sourceDeviceId, List<StorageId> storageIds) {
     this.version          = version;
+    this.sourceDeviceId   = sourceDeviceId;
     this.storageIds       = storageIds;
     this.storageIdsByType = new HashMap<>();
 
@@ -45,7 +47,7 @@ public class SignalStorageManifest {
         ids.add(StorageId.forType(id.getRaw().toByteArray(), id.getTypeValue()));
       }
 
-      return new SignalStorageManifest(manifest.getVersion(), ids);
+      return new SignalStorageManifest(manifest.getVersion(), manifestRecord.getSourceDevice(), ids);
     } catch (InvalidProtocolBufferException e) {
       throw new AssertionError(e);
     }
@@ -53,6 +55,14 @@ public class SignalStorageManifest {
 
   public long getVersion() {
     return version;
+  }
+
+  public int getSourceDeviceId() {
+    return sourceDeviceId;
+  }
+
+  public String getVersionString() {
+    return version + "." + sourceDeviceId;
   }
 
   public List<StorageId> getStorageIds() {
@@ -83,7 +93,10 @@ public class SignalStorageManifest {
                                        .build());
     }
 
-    ManifestRecord manifestRecord = ManifestRecord.newBuilder().addAllIdentifiers(ids).build();
+    ManifestRecord manifestRecord = ManifestRecord.newBuilder()
+                                                  .addAllIdentifiers(ids)
+                                                  .setSourceDevice(sourceDeviceId)
+                                                  .build();
 
     return StorageManifest.newBuilder()
                           .setVersion(version)
