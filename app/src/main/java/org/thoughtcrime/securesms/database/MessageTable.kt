@@ -1324,6 +1324,20 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return MmsReader(rawQueryWithAttachments(query, args, false, limit.toLong()))
   }
 
+  fun getUnreadMisedCallCount(): Long {
+    return readableDatabase
+      .select("COUNT(*)")
+      .from(TABLE_NAME)
+      .where(
+        "($TYPE = ? OR $TYPE = ?) AND $READ = ?",
+        MessageTypes.MISSED_AUDIO_CALL_TYPE,
+        MessageTypes.MISSED_VIDEO_CALL_TYPE,
+        0
+      )
+      .run()
+      .readToSingleLong(0L)
+  }
+
   fun getParentStoryIdForGroupReply(messageId: Long): GroupReply? {
     return readableDatabase
       .select(PARENT_STORY_ID)

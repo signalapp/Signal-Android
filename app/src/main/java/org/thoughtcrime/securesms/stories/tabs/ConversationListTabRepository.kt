@@ -48,6 +48,18 @@ class ConversationListTabRepository {
   }
 
   fun getNumberOfUnseenCalls(): Observable<Long> {
-    return Observable.just(99)
+    return Observable.create { emitter ->
+      fun refresh() {
+        emitter.onNext(SignalDatabase.messages.getUnreadMisedCallCount())
+      }
+
+      val listener = DatabaseObserver.Observer {
+        refresh()
+      }
+
+      ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(listener)
+      emitter.setCancellable { ApplicationDependencies.getDatabaseObserver().unregisterObserver(listener) }
+      refresh()
+    }
   }
 }
