@@ -142,22 +142,16 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
   private fun goToStateFromCalling(state: ConversationListTabsState, navController: NavController) {
     when (state.tab) {
       ConversationListTab.CALLS -> return
-      ConversationListTab.CHATS -> navController.popBackStack()
-      ConversationListTab.STORIES -> {
-        navController.popBackStack()
-        goToStateFromConversationList(state, navController)
-      }
+      ConversationListTab.CHATS -> navController.popBackStack(R.id.conversationListFragment, false)
+      ConversationListTab.STORIES -> navController.navigate(R.id.action_callLogFragment_to_storiesLandingFragment)
     }
   }
 
   private fun goToStateFromStories(state: ConversationListTabsState, navController: NavController) {
     when (state.tab) {
       ConversationListTab.STORIES -> return
-      ConversationListTab.CHATS -> navController.popBackStack()
-      ConversationListTab.CALLS -> {
-        navController.popBackStack()
-        goToStateFromConversationList(state, navController)
-      }
+      ConversationListTab.CHATS -> navController.popBackStack(R.id.conversationListFragment, false)
+      ConversationListTab.CALLS -> navController.navigate(R.id.action_storiesLandingFragment_to_callLogFragment)
     }
   }
 

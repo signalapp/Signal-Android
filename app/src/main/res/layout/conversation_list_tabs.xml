@@ -230,16 +230,4 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="99+" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/calls_tab_group"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:constraint_referenced_ids="calls_pill,calls_tab_container,calls_tab_icon,calls_tab_label,calls_tab_touch_point,calls_unread_indicator" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/stories_tab_group"
-        app:constraint_referenced_ids="stories_pill,stories_tab_container,stories_tab_icon,stories_tab_label,stories_tab_touch_point,stories_unread_indicator"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,13 +6,16 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.Observables
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.Material3SearchToolbar
@@ -27,6 +30,8 @@ import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterLerp
 import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterPullState
 import org.thoughtcrime.securesms.databinding.CallLogFragmentBinding
 import org.thoughtcrime.securesms.main.SearchBinder
+import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
+import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -38,6 +43,10 @@ import java.util.Objects
 @SuppressLint("DiscouragedApi")
 class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Callbacks, CallLogContextMenu.Callbacks {
 
+  companion object {
+    private const val LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD = 25
+  }
+
   private val viewModel: CallLogViewModel by viewModels()
   private val binding: CallLogFragmentBinding by ViewBinderDelegate(CallLogFragmentBinding::bind)
   private val disposables = LifecycleDisposable()
@@ -48,6 +57,8 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       viewModel.clearSelected()
     }
   )
+
+  private val tabsViewModel: ConversationListTabsViewModel by viewModels(ownerProducer = { requireActivity() })
 
   private val menuProvider = object : MenuProvider {
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -103,11 +114,36 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     binding.recycler.adapter = adapter
 
     initializePullToFilter()
+    initializeTapToScrollToTop()
+
+    requireActivity().onBackPressedDispatcher.addCallback(
+      viewLifecycleOwner,
+      object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+          if (!closeSearchIfOpen()) {
+            tabsViewModel.onChatsSelected()
+          }
+        }
+      }
+    )
   }
 
   override fun onResume() {
     super.onResume()
     initializeSearchAction()
+  }
+
+  private fun initializeTapToScrollToTop() {
+    disposables += tabsViewModel.tabClickEvents
+      .filter { it == ConversationListTab.CALLS }
+      .subscribeBy(onNext = {
+        val layoutManager = binding.recycler.layoutManager as? LinearLayoutManager ?: return@subscribeBy
+        if (layoutManager.findFirstVisibleItemPosition() <= LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD) {
+          binding.recycler.smoothScrollToPosition(0)
+        } else {
+          binding.recycler.scrollToPosition(0)
+        }
+      })
   }
 
   private fun initializeSearchAction() {
@@ -199,6 +235,15 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
 
   private fun isSearchOpen(): Boolean {
     return isSearchVisible() || viewModel.hasSearchQuery
+  }
+
+  private fun closeSearchIfOpen(): Boolean {
+    if (isSearchOpen()) {
+      requireListener<SearchBinder>().getSearchToolbar().get().collapse()
+      requireListener<SearchBinder>().onSearchClosed()
+      return true
+    }
+    return false
   }
 
   private fun isSearchVisible(): Boolean {
