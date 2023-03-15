@@ -128,6 +128,7 @@ sealed class ConversationSettingsViewModel(
 
   private class RecipientSettingsViewModel(
     private val recipientId: RecipientId,
+    private val isCallInfo: Boolean,
     private val repository: ConversationSettingsRepository
   ) : ConversationSettingsViewModel(
     repository,
@@ -151,12 +152,13 @@ sealed class ConversationSettingsViewModel(
         state.copy(
           recipient = recipient,
           buttonStripState = ButtonStripPreference.State(
+            isMessageAvailable = isCallInfo,
             isVideoAvailable = recipient.registered == RecipientTable.RegisteredState.REGISTERED && !recipient.isSelf && !recipient.isBlocked && !recipient.isReleaseNotes,
             isAudioAvailable = isAudioAvailable,
             isAudioSecure = recipient.registered == RecipientTable.RegisteredState.REGISTERED,
             isMuted = recipient.isMuted,
             isMuteAvailable = !recipient.isSelf,
-            isSearchAvailable = true
+            isSearchAvailable = !isCallInfo
           ),
           disappearingMessagesLifespan = recipient.expiresInSeconds,
           canModifyBlockedState = !recipient.isSelf && RecipientUtil.isBlockable(recipient),
@@ -256,6 +258,7 @@ sealed class ConversationSettingsViewModel(
 
   private class GroupSettingsViewModel(
     private val groupId: GroupId,
+    private val isCallInfo: Boolean,
     private val repository: ConversationSettingsRepository
   ) : ConversationSettingsViewModel(repository, SpecificSettingsState.GroupSettingsState(groupId)) {
 
@@ -271,12 +274,13 @@ sealed class ConversationSettingsViewModel(
         state.copy(
           recipient = recipient,
           buttonStripState = ButtonStripPreference.State(
+            isMessageAvailable = isCallInfo,
             isVideoAvailable = recipient.isPushV2Group && !recipient.isBlocked && isActive,
             isAudioAvailable = false,
             isAudioSecure = recipient.isPushV2Group,
             isMuted = recipient.isMuted,
             isMuteAvailable = true,
-            isSearchAvailable = true,
+            isSearchAvailable = !isCallInfo,
             isAddToStoryAvailable = recipient.isPushV2Group && !recipient.isBlocked && isActive && !SignalStore.storyValues().isFeatureDisabled
           ),
           canModifyBlockedState = RecipientUtil.isBlockable(recipient),
@@ -479,6 +483,7 @@ sealed class ConversationSettingsViewModel(
   class Factory(
     private val recipientId: RecipientId? = null,
     private val groupId: GroupId? = null,
+    private val isCallInfo: Boolean,
     private val repository: ConversationSettingsRepository
   ) : ViewModelProvider.Factory {
 
@@ -486,8 +491,8 @@ sealed class ConversationSettingsViewModel(
       return requireNotNull(
         modelClass.cast(
           when {
-            recipientId != null -> RecipientSettingsViewModel(recipientId, repository)
-            groupId != null -> GroupSettingsViewModel(groupId, repository)
+            recipientId != null -> RecipientSettingsViewModel(recipientId, isCallInfo, repository)
+            groupId != null -> GroupSettingsViewModel(groupId, isCallInfo, repository)
             else -> error("One of RecipientId or GroupId required.")
           }
         )

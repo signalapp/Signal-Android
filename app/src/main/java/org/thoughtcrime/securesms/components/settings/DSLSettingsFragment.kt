@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EdgeEffect
 import androidx.annotation.CallSuper
-import androidx.annotation.Discouraged
 import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
 import androidx.annotation.StringRes
@@ -21,7 +20,10 @@ import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import java.lang.UnsupportedOperationException
 
-@Discouraged("The DSL API can be completely replaced by compose. See ComposeFragment or ComposeBottomSheetFragment for an alternative to this API")
+/**
+ * The DSL API can be completely replaced by compose.
+ * See ComposeFragment or ComposeBottomSheetFragment for an alternative to this API
+ */
 abstract class DSLSettingsFragment(
   @StringRes private val titleId: Int = -1,
   @MenuRes private val menuId: Int = -1,

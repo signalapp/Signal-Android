@@ -20,7 +20,10 @@ fun configure(init: DSLConfiguration.() -> Unit): DSLConfiguration {
   return configuration
 }
 
-@Discouraged("The DSL API can be completely replaced by compose. See ComposeFragment or ComposeBottomSheetFragment for an alternative to this API")
+/**
+ * The DSL API can be completely replaced by compose.
+ * See ComposeFragment or ComposeBottomSheetFragment for an alternative to this API
+ */
 class DSLConfiguration {
   private val children = arrayListOf<MappingModel<*>>()
 

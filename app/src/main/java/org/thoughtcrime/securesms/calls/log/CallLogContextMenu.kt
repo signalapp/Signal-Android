@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -69,7 +70,8 @@ class CallLogContextMenu(
       iconRes = R.drawable.symbol_info_24,
       title = fragment.getString(R.string.CallContextMenu__info)
     ) {
-      // TODO
+      val intent = ConversationSettingsActivity.forCall(fragment.requireContext(), call.peer)
+      fragment.startActivity(intent)
     }
   }
 
@@ -91,7 +93,7 @@ class CallLogContextMenu(
       iconRes = R.drawable.symbol_trash_24,
       title = fragment.getString(R.string.CallContextMenu__delete)
     ) {
-      // TODO [alex] what does this actually delete
+      // TODO [alex] Delete message by message id
     }
   }
 
