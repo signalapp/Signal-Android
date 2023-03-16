@@ -165,7 +165,7 @@ class CallLogAdapter(
       binding.callType.setImageResource(
         when (callType) {
           CallTable.Type.AUDIO_CALL -> R.drawable.symbol_phone_24
-          CallTable.Type.VIDEO_CALL -> R.drawable.ic_video_call_24
+          CallTable.Type.VIDEO_CALL -> R.drawable.symbol_video_24
         }
       )
       binding.callType.visible = true
@@ -174,13 +174,13 @@ class CallLogAdapter(
     @DrawableRes
     private fun getCallStateDrawableRes(callEvent: CallTable.Event, callDirection: CallTable.Direction): Int {
       if (callEvent == CallTable.Event.MISSED) {
-        return R.drawable.ic_update_audio_call_missed_16
+        return R.drawable.symbol_missed_incoming_compact_16
       }
 
       return if (callDirection == CallTable.Direction.INCOMING) {
-        R.drawable.ic_update_audio_call_incoming_16
+        R.drawable.symbol_arrow_downleft_compact_16
       } else {
-        R.drawable.ic_update_audio_call_outgoing_16
+        R.drawable.symbol_arrow_upright_compact_16
       }
     }
 

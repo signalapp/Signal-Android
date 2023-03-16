@@ -36,7 +36,7 @@ class CallLogContextMenu(
   private fun getVideoCallActionItem(call: CallLogRow.Call): ActionItem {
     // TODO [alex] -- Need group calling disposition to make this correct
     return ActionItem(
-      iconRes = R.drawable.ic_video_call_24,
+      iconRes = R.drawable.symbol_video_24,
       title = fragment.getString(R.string.CallContextMenu__video_call)
     ) {
       CommunicationActions.startVideoCall(fragment, call.peer)
