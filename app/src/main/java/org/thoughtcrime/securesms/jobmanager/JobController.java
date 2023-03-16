@@ -157,6 +157,41 @@ class JobController {
   }
 
   @WorkerThread
+  void submitJobs(@NonNull List<Job> jobs) {
+    List<Job> canRun = new ArrayList<>(jobs.size());
+
+    synchronized (this) {
+      for (Job job : jobs) {
+        if (exceedsMaximumInstances(job)) {
+          jobTracker.onStateChange(job, JobTracker.JobState.IGNORED);
+          Log.w(TAG, JobLogger.format(job, "Already at the max instance count. Factory limit: " + job.getParameters().getMaxInstancesForFactory() + ", Queue limit: " + job.getParameters().getMaxInstancesForQueue() + ". Skipping."));
+        } else {
+          canRun.add(job);
+        }
+      }
+
+      if (canRun.isEmpty()) {
+        return;
+      }
+
+      List<FullSpec> fullSpecs = canRun.stream().map(it -> buildFullSpec(it, Collections.emptyList())).collect(java.util.stream.Collectors.toList());
+      jobStorage.insertJobs(fullSpecs);
+
+      scheduleJobs(canRun);
+    }
+
+    // We have no control over what happens in jobs' onSubmit method, so we drop our lock to reduce the possibility of a deadlock
+    for (Job job : canRun) {
+      job.setContext(application);
+      job.onSubmit();
+    }
+
+    synchronized (this) {
+      notifyAll();
+    }
+  }
+
+  @WorkerThread
   synchronized void cancelJob(@NonNull String id) {
     Job runningJob = runningJobs.get(id);
 
@@ -359,25 +394,26 @@ class JobController {
   @WorkerThread
   private boolean chainExceedsMaximumInstances(@NonNull List<List<Job>> chain) {
     if (chain.size() == 1 && chain.get(0).size() == 1) {
-      Job solo = chain.get(0).get(0);
+      return exceedsMaximumInstances(chain.get(0).get(0));
+    } else {
+      return false;
+    }
+  }
 
-      boolean exceedsFactory = solo.getParameters().getMaxInstancesForFactory() != Job.Parameters.UNLIMITED &&
-                               jobStorage.getJobCountForFactory(solo.getFactoryKey()) >= solo.getParameters().getMaxInstancesForFactory();
+  @WorkerThread
+  private boolean exceedsMaximumInstances(@NonNull Job job) {
+    boolean exceedsFactory = job.getParameters().getMaxInstancesForFactory() != Job.Parameters.UNLIMITED &&
+                             jobStorage.getJobCountForFactory(job.getFactoryKey()) >= job.getParameters().getMaxInstancesForFactory();
 
-      if (exceedsFactory) {
-        return true;
-      }
-
-      boolean exceedsQueue   = solo.getParameters().getQueue() != null                                    &&
-                               solo.getParameters().getMaxInstancesForQueue() != Job.Parameters.UNLIMITED &&
-                               jobStorage.getJobCountForFactoryAndQueue(solo.getFactoryKey(), solo.getParameters().getQueue()) >= solo.getParameters().getMaxInstancesForQueue();
-
-      if (exceedsQueue) {
-        return true;
-      }
+    if (exceedsFactory) {
+      return true;
     }
 
-    return false;
+    boolean exceedsQueue   = job.getParameters().getQueue() != null                                    &&
+                             job.getParameters().getMaxInstancesForQueue() != Job.Parameters.UNLIMITED &&
+                             jobStorage.getJobCountForFactoryAndQueue(job.getFactoryKey(), job.getParameters().getQueue()) >= job.getParameters().getMaxInstancesForQueue();
+
+    return exceedsQueue;
   }
 
   @WorkerThread

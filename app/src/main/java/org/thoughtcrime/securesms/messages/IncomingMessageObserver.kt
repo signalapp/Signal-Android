@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
 import org.thoughtcrime.securesms.jobs.UnableToStartException
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.messages.MessageDecryptor.FollowUpOperation
 import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -253,7 +254,7 @@ class IncomingMessageObserver(private val context: Application) {
   }
 
   @VisibleForTesting
-  fun processEnvelope(bufferedProtocolStore: BufferedProtocolStore, envelope: SignalServiceProtos.Envelope, serverDeliveredTimestamp: Long): List<Runnable>? {
+  fun processEnvelope(bufferedProtocolStore: BufferedProtocolStore, envelope: SignalServiceProtos.Envelope, serverDeliveredTimestamp: Long): List<FollowUpOperation>? {
     return when (envelope.type.number) {
       SignalServiceProtos.Envelope.Type.RECEIPT_VALUE -> {
         processReceipt(envelope)
@@ -274,36 +275,33 @@ class IncomingMessageObserver(private val context: Application) {
     }
   }
 
-  private fun processMessage(bufferedProtocolStore: BufferedProtocolStore, envelope: SignalServiceProtos.Envelope, serverDeliveredTimestamp: Long): List<Runnable> {
+  private fun processMessage(bufferedProtocolStore: BufferedProtocolStore, envelope: SignalServiceProtos.Envelope, serverDeliveredTimestamp: Long): List<FollowUpOperation> {
     val result = MessageDecryptor.decrypt(context, bufferedProtocolStore, envelope, serverDeliveredTimestamp)
 
-    when (result) {
+    val extraJob: Job? = when (result) {
       is MessageDecryptor.Result.Success -> {
-        ApplicationDependencies.getJobManager().add(
-          PushProcessMessageJob(
-            result.toMessageState(),
-            result.toSignalServiceContent(),
-            null,
-            -1,
-            result.envelope.timestamp
-          )
+        PushProcessMessageJob(
+          result.toMessageState(),
+          result.toSignalServiceContent(),
+          null,
+          -1,
+          result.envelope.timestamp
         )
       }
 
       is MessageDecryptor.Result.Error -> {
-        ApplicationDependencies.getJobManager().add(
-          PushProcessMessageJob(
-            result.toMessageState(),
-            null,
-            result.errorMetadata.toExceptionMetadata(),
-            -1,
-            result.envelope.timestamp
-          )
+        PushProcessMessageJob(
+          result.toMessageState(),
+          null,
+          result.errorMetadata.toExceptionMetadata(),
+          -1,
+          result.envelope.timestamp
         )
       }
 
       is MessageDecryptor.Result.Ignore -> {
         // No action needed
+        null
       }
 
       else -> {
@@ -311,7 +309,7 @@ class IncomingMessageObserver(private val context: Application) {
       }
     }
 
-    return result.followUpOperations
+    return result.followUpOperations + FollowUpOperation { extraJob }
   }
 
   private fun processReceipt(envelope: SignalServiceProtos.Envelope) {
@@ -412,13 +410,14 @@ class IncomingMessageObserver(private val context: Application) {
                 val startTime = System.currentTimeMillis()
                 ReentrantSessionLock.INSTANCE.acquire().use {
                   SignalDatabase.rawDatabase.withinTransaction {
-                    val followUpOperations = batch
+                    val followUpOperations: List<FollowUpOperation> = batch
                       .mapNotNull { processEnvelope(bufferedStore, it.envelope, it.serverDeliveredTimestamp) }
                       .flatten()
 
                     bufferedStore.flushToDisk()
 
-                    followUpOperations.forEach { it.run() }
+                    val jobs = followUpOperations.mapNotNull { it.run() }
+                    ApplicationDependencies.getJobManager().addAll(jobs)
                   }
                 }
 

@@ -37,7 +37,11 @@ class AliceClient(val serviceId: ServiceId, val e164: String, val trustRoot: ECK
   fun process(envelope: Envelope, serverDeliveredTimestamp: Long) {
     val start = System.currentTimeMillis()
     val bufferedStore = BufferedProtocolStore.create()
-    ApplicationDependencies.getIncomingMessageObserver().processEnvelope(bufferedStore, envelope, serverDeliveredTimestamp)
+    ApplicationDependencies.getIncomingMessageObserver()
+      .processEnvelope(bufferedStore, envelope, serverDeliveredTimestamp)
+      ?.mapNotNull { it.run() }
+      ?.forEach { ApplicationDependencies.getJobManager().add(it) }
+
     bufferedStore.flushToDisk()
     val end = System.currentTimeMillis()
     Log.d(TAG, "${end - start}")

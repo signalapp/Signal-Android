@@ -35,10 +35,14 @@ class PreKeysSyncJob private constructor(private val forceRotate: Boolean = fals
     private const val PREKEY_MINIMUM = 10
     private val REFRESH_INTERVAL = TimeUnit.DAYS.toMillis(3)
 
+    fun create(forceRotate: Boolean = false): PreKeysSyncJob {
+      return PreKeysSyncJob(forceRotate)
+    }
+
     @JvmStatic
     @JvmOverloads
     fun enqueue(forceRotate: Boolean = false) {
-      ApplicationDependencies.getJobManager().add(PreKeysSyncJob(forceRotate))
+      ApplicationDependencies.getJobManager().add(create(forceRotate))
     }
 
     @JvmStatic

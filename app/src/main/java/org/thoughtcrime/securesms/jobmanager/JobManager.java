@@ -12,7 +12,6 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.impl.DefaultExecutorFactory;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
@@ -177,7 +176,6 @@ public class JobManager implements ConstraintObserver.Notifier {
 
     runOnExecutor(() -> {
       jobController.submitJobWithExistingDependencies(job, Collections.emptyList(), dependsOnQueue);
-      jobController.wakeUp();
     });
   }
 
@@ -190,7 +188,20 @@ public class JobManager implements ConstraintObserver.Notifier {
 
     runOnExecutor(() -> {
       jobController.submitJobWithExistingDependencies(job, dependsOn, dependsOnQueue);
-      jobController.wakeUp();
+    });
+  }
+
+  public void addAll(@NonNull List<Job> jobs) {
+    if (jobs.isEmpty()) {
+      return;
+    }
+
+    for (Job job : jobs) {
+      jobTracker.onStateChange(job, JobTracker.JobState.PENDING);
+    }
+
+    runOnExecutor(() -> {
+      jobController.submitJobs(jobs);
     });
   }
 
