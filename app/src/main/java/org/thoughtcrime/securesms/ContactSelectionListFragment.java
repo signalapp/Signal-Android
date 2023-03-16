@@ -344,7 +344,8 @@ public final class ContactSelectionListFragment extends LoggingFragment {
             isMulti,
             ContactSearchAdapter.DisplaySmsTag.DEFAULT,
             ContactSearchAdapter.DisplaySecondaryInformation.ALWAYS,
-            newCallCallback != null
+            newCallCallback != null,
+            false
         ),
         this::mapStateToConfiguration,
         new ContactSearchMediator.SimpleCallbacks() {

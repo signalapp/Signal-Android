@@ -127,7 +127,8 @@ class MultiselectForwardFragment :
       ContactSearchAdapter.DisplayOptions(
         displayCheckBox = !args.selectSingleRecipient,
         displaySmsTag = ContactSearchAdapter.DisplaySmsTag.DEFAULT,
-        displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER
+        displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER,
+        displayStoryRing = true
       ),
       this::getConfiguration,
       object : ContactSearchMediator.SimpleCallbacks() {
@@ -136,7 +137,6 @@ class MultiselectForwardFragment :
         }
       }
     )
-
     contactSearchRecycler.adapter = contactSearchMediator.adapter
 
     callback = findListener()!!

@@ -5,10 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import com.google.android.material.button.MaterialButton
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.disposables.Disposable
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.FromTextView
@@ -19,6 +24,7 @@ import org.thoughtcrime.securesms.contacts.LetterHeaderDecoration
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
+import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -45,7 +51,7 @@ open class ContactSearchAdapter(
 ) : PagingMappingAdapter<ContactSearchKey>(), FastScrollAdapter {
 
   init {
-    registerStoryItems(this, displayOptions.displayCheckBox, onClickCallbacks::onStoryClicked, storyContextMenuCallbacks)
+    registerStoryItems(this, displayOptions.displayCheckBox, onClickCallbacks::onStoryClicked, storyContextMenuCallbacks, displayOptions.displayStoryRing)
     registerKnownRecipientItems(this, fixedContacts, displayOptions, onClickCallbacks::onKnownRecipientClicked, longClickCallbacks::onKnownRecipientLongClick, callButtonClickCallbacks)
     registerHeaders(this)
     registerExpands(this, onClickCallbacks::onExpandClicked)
@@ -70,11 +76,12 @@ open class ContactSearchAdapter(
       mappingAdapter: MappingAdapter,
       displayCheckBox: Boolean = false,
       storyListener: OnClickedCallback<ContactSearchData.Story>,
-      storyContextMenuCallbacks: StoryContextMenuCallbacks? = null
+      storyContextMenuCallbacks: StoryContextMenuCallbacks? = null,
+      showStoryRing: Boolean = false
     ) {
       mappingAdapter.registerFactory(
         StoryModel::class.java,
-        LayoutFactory({ StoryViewHolder(it, displayCheckBox, storyListener, storyContextMenuCallbacks) }, R.layout.contact_search_item)
+        LayoutFactory({ StoryViewHolder(it, displayCheckBox, storyListener, storyContextMenuCallbacks, showStoryRing) }, R.layout.contact_search_story_item)
       )
     }
 
@@ -158,15 +165,47 @@ open class ContactSearchAdapter(
 
   private class StoryViewHolder(
     itemView: View,
-    displayCheckBox: Boolean,
-    onClick: OnClickedCallback<ContactSearchData.Story>,
-    private val storyContextMenuCallbacks: StoryContextMenuCallbacks?
-  ) : BaseRecipientViewHolder<StoryModel, ContactSearchData.Story>(itemView, DisplayOptions(displayCheckBox = displayCheckBox), onClick, EmptyCallButtonClickCallbacks) {
-    override fun isSelected(model: StoryModel): Boolean = model.isSelected
-    override fun getData(model: StoryModel): ContactSearchData.Story = model.story
-    override fun getRecipient(model: StoryModel): Recipient = model.story.recipient
+    val displayCheckBox: Boolean,
+    val onClick: OnClickedCallback<ContactSearchData.Story>,
+    private val storyContextMenuCallbacks: StoryContextMenuCallbacks?,
+    private val showStoryRing: Boolean = false
+  ) : MappingViewHolder<StoryModel>(itemView) {
 
-    override fun bindNumberField(model: StoryModel) {
+    val avatar: AvatarView = itemView.findViewById(R.id.contact_photo_image)
+    val badge: BadgeImageView = itemView.findViewById(R.id.contact_badge)
+    val checkbox: CheckBox = itemView.findViewById(R.id.check_box)
+    val name: FromTextView = itemView.findViewById(R.id.name)
+    val number: TextView = itemView.findViewById(R.id.number)
+    val groupStoryIndicator: AppCompatImageView = itemView.findViewById(R.id.group_story_indicator)
+    var storyViewState: Observable<StoryViewState>? = null
+    var storyDisposable: Disposable? = null
+
+    override fun bind(model: StoryModel) {
+      itemView.setOnClickListener { onClick.onClicked(avatar, getData(model), isSelected(model)) }
+      bindLongPress(model)
+
+      bindCheckbox(model)
+
+      if (payload.isNotEmpty()) {
+        return
+      }
+
+      storyViewState = if (showStoryRing) StoryViewState.getForRecipientId(getRecipient(model).id) else null
+      avatar.setStoryRingFromState(StoryViewState.NONE)
+      groupStoryIndicator.isActivated = false
+
+      name.setText(getRecipient(model))
+      badge.setBadgeFromRecipient(getRecipient(model))
+
+      bindAvatar(model)
+      bindNumberField(model)
+    }
+
+    fun isSelected(model: StoryModel): Boolean = model.isSelected
+    fun getData(model: StoryModel): ContactSearchData.Story = model.story
+    fun getRecipient(model: StoryModel): Recipient = model.story.recipient
+
+    fun bindNumberField(model: StoryModel) {
       number.visible = true
 
       val count = if (model.story.recipient.isGroup) {
@@ -193,17 +232,23 @@ open class ContactSearchAdapter(
       }
     }
 
-    override fun bindAvatar(model: StoryModel) {
-      if (model.story.recipient.isMyStory) {
-        avatar.setFallbackPhotoProvider(MyStoryFallbackPhotoProvider(Recipient.self().getDisplayName(context), 40.dp))
-        avatar.setAvatarUsingProfile(Recipient.self())
-      } else {
-        avatar.setFallbackPhotoProvider(Recipient.DEFAULT_FALLBACK_PHOTO_PROVIDER)
-        super.bindAvatar(model)
-      }
+    fun bindCheckbox(model: StoryModel) {
+      checkbox.visible = displayCheckBox
+      checkbox.isChecked = isSelected(model)
     }
 
-    override fun bindLongPress(model: StoryModel) {
+    fun bindAvatar(model: StoryModel) {
+      if (model.story.recipient.isMyStory) {
+        avatar.setFallbackPhotoProvider(MyStoryFallbackPhotoProvider(Recipient.self().getDisplayName(context), 40.dp))
+        avatar.displayProfileAvatar(Recipient.self())
+      } else {
+        avatar.setFallbackPhotoProvider(Recipient.DEFAULT_FALLBACK_PHOTO_PROVIDER)
+        avatar.displayChatAvatar(getRecipient(model))
+      }
+      groupStoryIndicator.visible = showStoryRing && model.story.recipient.isGroup
+    }
+
+    fun bindLongPress(model: StoryModel) {
       if (storyContextMenuCallbacks == null) {
         return
       }
@@ -263,6 +308,20 @@ open class ContactSearchAdapter(
       override fun getPhotoForLocalNumber(): FallbackContactPhoto {
         return GeneratedContactPhoto(name, R.drawable.symbol_person_40, targetSize)
       }
+    }
+
+    override fun onAttachedToWindow() {
+      storyDisposable = storyViewState?.observeOn(AndroidSchedulers.mainThread())?.subscribe {
+        avatar.setStoryRingFromState(it)
+        when (it) {
+          StoryViewState.UNVIEWED -> groupStoryIndicator.isActivated = true
+          else -> groupStoryIndicator.isActivated = false
+        }
+      }
+    }
+
+    override fun onDetachedFromWindow() {
+      storyDisposable?.dispose()
     }
   }
 
@@ -661,7 +720,8 @@ open class ContactSearchAdapter(
     val displayCheckBox: Boolean = false,
     val displaySmsTag: DisplaySmsTag = DisplaySmsTag.NEVER,
     val displaySecondaryInformation: DisplaySecondaryInformation = DisplaySecondaryInformation.NEVER,
-    val displayCallButtons: Boolean = false
+    val displayCallButtons: Boolean = false,
+    val displayStoryRing: Boolean = false
   )
 
   fun interface OnClickedCallback<D : ContactSearchData> {
