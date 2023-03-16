@@ -300,31 +300,32 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     contactSearchMediator = new ContactSearchMediator(this,
                                                       Collections.emptySet(),
                                                       SelectionLimits.NO_LIMITS,
-                                                      false,
-                                                      ContactSearchAdapter.DisplaySmsTag.DEFAULT,
-                                                      ContactSearchAdapter.DisplaySecondaryInformation.NEVER,
+                                                      new ContactSearchAdapter.DisplayOptions(
+                                                          false,
+                                                          ContactSearchAdapter.DisplaySmsTag.DEFAULT,
+                                                          ContactSearchAdapter.DisplaySecondaryInformation.NEVER,
+                                                          false
+                                                      ),
                                                       this::mapSearchStateToConfiguration,
                                                       new ContactSearchMediator.SimpleCallbacks(),
                                                       false,
                                                       (context,
                                                        fixedContacts,
-                                                       displayCheckBox,
-                                                       displaySmsTag,
-                                                       displaySecondaryInformation,
+                                                       displayOptions,
                                                        callbacks,
                                                        longClickCallbacks,
-                                                       storyContextMenuCallbacks
+                                                       storyContextMenuCallbacks,
+                                                       callButtonClickCallbacks
                                                       ) -> {
                                                         //noinspection CodeBlock2Expr
                                                         return new ConversationListSearchAdapter(
                                                             context,
                                                             fixedContacts,
-                                                            displayCheckBox,
-                                                            displaySmsTag,
-                                                            displaySecondaryInformation,
+                                                            displayOptions,
                                                             new ContactSearchClickCallbacks(callbacks),
                                                             longClickCallbacks,
                                                             storyContextMenuCallbacks,
+                                                            callButtonClickCallbacks,
                                                             getViewLifecycleOwner(),
                                                             GlideApp.with(this)
                                                         );
@@ -655,7 +656,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
               null
           ));
 
-          builder.setHasEmptyState(true);
+          builder.withEmptyState(emptyStateBuilder -> {
+            builder.addSection(ContactSearchConfiguration.Section.Empty.INSTANCE);
+            return Unit.INSTANCE;
+          });
         } else {
           builder.arbitrary(
               conversationFilterRequest.getSource() == ConversationFilterSource.DRAG

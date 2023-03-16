@@ -69,7 +69,7 @@ import java.util.stream.Stream;
  * @author Moxie Marlinspike
  */
 public class NewConversationActivity extends ContactSelectionActivity
-    implements ContactSelectionListFragment.ListCallback, ContactSelectionListFragment.OnItemLongClickListener
+    implements ContactSelectionListFragment.NewConversationCallback, ContactSelectionListFragment.OnItemLongClickListener
 {
 
   @SuppressWarnings("unused")

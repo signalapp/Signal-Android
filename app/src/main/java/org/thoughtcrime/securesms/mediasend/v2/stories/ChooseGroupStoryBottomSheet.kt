@@ -66,9 +66,11 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
     mediator = ContactSearchMediator(
       fragment = this,
       selectionLimits = FeatureFlags.shareSelectionLimit(),
-      displayCheckBox = true,
-      displaySmsTag = ContactSearchAdapter.DisplaySmsTag.DEFAULT,
-      displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER,
+      displayOptions = ContactSearchAdapter.DisplayOptions(
+        displayCheckBox = true,
+        displaySmsTag = ContactSearchAdapter.DisplaySmsTag.DEFAULT,
+        displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER
+      ),
       mapStateToConfiguration = { state ->
         ContactSearchConfiguration.build {
           query = state.query

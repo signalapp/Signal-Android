@@ -44,32 +44,51 @@ class ContactSearchPagedDataSource(
 
   private var searchCache = SearchCache()
   private var searchSize = -1
+  private var displayEmptyState: Boolean = false
 
+  /**
+   * When determining when the list is in an empty state, we ignore any arbitrary items, since in general
+   * they are always present. If you'd like arbitrary items to appear even when the list is empty, ensure
+   * they are added to the empty state configuration.
+   */
   override fun size(): Int {
-    searchSize = contactConfiguration.sections.sumOf {
+    val (arbitrarySections, nonArbitrarySections) = contactConfiguration.sections.partition {
+      it is ContactSearchConfiguration.Section.Arbitrary
+    }
+
+    val sizeOfNonArbitrarySections = nonArbitrarySections.sumOf {
       getSectionSize(it, contactConfiguration.query)
     }
 
-    return if (searchSize == 0 && contactConfiguration.hasEmptyState) {
-      1
+    displayEmptyState = sizeOfNonArbitrarySections == 0
+    searchSize = if (displayEmptyState) {
+      contactConfiguration.emptyStateSections.sumOf {
+        getSectionSize(it, contactConfiguration.query)
+      }
     } else {
-      searchSize
+      arbitrarySections.sumOf {
+        getSectionSize(it, contactConfiguration.query)
+      } + sizeOfNonArbitrarySections
     }
+
+    return searchSize
   }
 
   override fun load(start: Int, length: Int, cancellationSignal: PagedDataSource.CancellationSignal): MutableList<ContactSearchData> {
-    if (searchSize == 0 && contactConfiguration.hasEmptyState) {
-      return mutableListOf(ContactSearchData.Empty(contactConfiguration.query))
+    val sections: List<ContactSearchConfiguration.Section> = if (displayEmptyState) {
+      contactConfiguration.emptyStateSections
+    } else {
+      contactConfiguration.sections
     }
 
-    val sizeMap: Map<ContactSearchConfiguration.Section, Int> = contactConfiguration.sections.associateWith { getSectionSize(it, contactConfiguration.query) }
+    val sizeMap: Map<ContactSearchConfiguration.Section, Int> = sections.associateWith { getSectionSize(it, contactConfiguration.query) }
     val startIndex: Index = findIndex(sizeMap, start)
     val endIndex: Index = findIndex(sizeMap, start + length)
 
-    val indexOfStartSection = contactConfiguration.sections.indexOf(startIndex.category)
-    val indexOfEndSection = contactConfiguration.sections.indexOf(endIndex.category)
+    val indexOfStartSection = sections.indexOf(startIndex.category)
+    val indexOfEndSection = sections.indexOf(endIndex.category)
 
-    val results: List<List<ContactSearchData>> = contactConfiguration.sections.mapIndexed { index, section ->
+    val results: List<List<ContactSearchData>> = sections.mapIndexed { index, section ->
       if (index in indexOfStartSection..indexOfEndSection) {
         getSectionData(
           section = section,
@@ -122,6 +141,7 @@ class ContactSearchPagedDataSource(
       is ContactSearchConfiguration.Section.ContactsWithoutThreads -> getContactsWithoutThreadsIterator(query).getCollectionSize(section, query, null)
       is ContactSearchConfiguration.Section.PhoneNumber -> if (isPossiblyPhoneNumber(query)) 1 else 0
       is ContactSearchConfiguration.Section.Username -> if (isPossiblyUsername(query)) 1 else 0
+      is ContactSearchConfiguration.Section.Empty -> 1
     }
   }
 
@@ -160,6 +180,7 @@ class ContactSearchPagedDataSource(
       is ContactSearchConfiguration.Section.ContactsWithoutThreads -> getContactsWithoutThreadsContactData(section, query, startIndex, endIndex)
       is ContactSearchConfiguration.Section.PhoneNumber -> getPossiblePhoneNumber(section, query)
       is ContactSearchConfiguration.Section.Username -> getPossibleUsername(section, query)
+      is ContactSearchConfiguration.Section.Empty -> listOf(ContactSearchData.Empty(query))
     }
   }
 

@@ -26,15 +26,14 @@ import java.util.Locale
 class ConversationListSearchAdapter(
   context: Context,
   fixedContacts: Set<ContactSearchKey>,
-  displayCheckBox: Boolean,
-  displaySmsTag: DisplaySmsTag,
-  displaySecondaryInformation: DisplaySecondaryInformation,
+  displayOptions: DisplayOptions,
   onClickedCallbacks: ConversationListSearchClickCallbacks,
   longClickCallbacks: LongClickCallbacks,
   storyContextMenuCallbacks: StoryContextMenuCallbacks,
+  callButtonClickCallbacks: CallButtonClickCallbacks,
   lifecycleOwner: LifecycleOwner,
   glideRequests: GlideRequests
-) : ContactSearchAdapter(context, fixedContacts, displayCheckBox, displaySmsTag, displaySecondaryInformation, onClickedCallbacks, longClickCallbacks, storyContextMenuCallbacks) {
+) : ContactSearchAdapter(context, fixedContacts, displayOptions, onClickedCallbacks, longClickCallbacks, storyContextMenuCallbacks, callButtonClickCallbacks) {
 
   init {
     registerFactory(

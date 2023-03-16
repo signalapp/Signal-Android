@@ -37,20 +37,19 @@ import org.thoughtcrime.securesms.util.visible
 open class ContactSearchAdapter(
   private val context: Context,
   fixedContacts: Set<ContactSearchKey>,
-  displayCheckBox: Boolean,
-  displaySmsTag: DisplaySmsTag,
-  displaySecondaryInformation: DisplaySecondaryInformation,
+  displayOptions: DisplayOptions,
   onClickCallbacks: ClickCallbacks,
   longClickCallbacks: LongClickCallbacks,
-  storyContextMenuCallbacks: StoryContextMenuCallbacks
+  storyContextMenuCallbacks: StoryContextMenuCallbacks,
+  callButtonClickCallbacks: CallButtonClickCallbacks
 ) : PagingMappingAdapter<ContactSearchKey>(), FastScrollAdapter {
 
   init {
-    registerStoryItems(this, displayCheckBox, onClickCallbacks::onStoryClicked, storyContextMenuCallbacks)
-    registerKnownRecipientItems(this, fixedContacts, displayCheckBox, displaySmsTag, displaySecondaryInformation, onClickCallbacks::onKnownRecipientClicked, longClickCallbacks::onKnownRecipientLongClick)
+    registerStoryItems(this, displayOptions.displayCheckBox, onClickCallbacks::onStoryClicked, storyContextMenuCallbacks)
+    registerKnownRecipientItems(this, fixedContacts, displayOptions, onClickCallbacks::onKnownRecipientClicked, longClickCallbacks::onKnownRecipientLongClick, callButtonClickCallbacks)
     registerHeaders(this)
     registerExpands(this, onClickCallbacks::onExpandClicked)
-    registerFactory(UnknownRecipientModel::class.java, LayoutFactory({ UnknownRecipientViewHolder(it, onClickCallbacks::onUnknownRecipientClicked, displayCheckBox) }, R.layout.contact_search_unknown_item))
+    registerFactory(UnknownRecipientModel::class.java, LayoutFactory({ UnknownRecipientViewHolder(it, onClickCallbacks::onUnknownRecipientClicked, displayOptions.displayCheckBox) }, R.layout.contact_search_unknown_item))
   }
 
   override fun getBubbleText(position: Int): CharSequence {
@@ -82,15 +81,16 @@ open class ContactSearchAdapter(
     fun registerKnownRecipientItems(
       mappingAdapter: MappingAdapter,
       fixedContacts: Set<ContactSearchKey>,
-      displayCheckBox: Boolean,
-      displaySmsTag: DisplaySmsTag,
-      displaySecondaryInformation: DisplaySecondaryInformation,
+      displayOptions: DisplayOptions,
       recipientListener: OnClickedCallback<ContactSearchData.KnownRecipient>,
-      recipientLongClickCallback: OnLongClickedCallback<ContactSearchData.KnownRecipient>
+      recipientLongClickCallback: OnLongClickedCallback<ContactSearchData.KnownRecipient>,
+      recipientCallButtonClickCallbacks: CallButtonClickCallbacks
     ) {
       mappingAdapter.registerFactory(
         RecipientModel::class.java,
-        LayoutFactory({ KnownRecipientViewHolder(it, fixedContacts, displayCheckBox, displaySmsTag, displaySecondaryInformation, recipientListener, recipientLongClickCallback) }, R.layout.contact_search_item)
+        LayoutFactory({
+          KnownRecipientViewHolder(it, fixedContacts, displayOptions, recipientListener, recipientLongClickCallback, recipientCallButtonClickCallbacks)
+        }, R.layout.contact_search_item)
       )
     }
 
@@ -161,7 +161,7 @@ open class ContactSearchAdapter(
     displayCheckBox: Boolean,
     onClick: OnClickedCallback<ContactSearchData.Story>,
     private val storyContextMenuCallbacks: StoryContextMenuCallbacks?
-  ) : BaseRecipientViewHolder<StoryModel, ContactSearchData.Story>(itemView, displayCheckBox, DisplaySmsTag.NEVER, onClick) {
+  ) : BaseRecipientViewHolder<StoryModel, ContactSearchData.Story>(itemView, DisplayOptions(displayCheckBox = displayCheckBox), onClick, EmptyCallButtonClickCallbacks) {
     override fun isSelected(model: StoryModel): Boolean = model.isSelected
     override fun getData(model: StoryModel): ContactSearchData.Story = model.story
     override fun getRecipient(model: StoryModel): Recipient = model.story.recipient
@@ -334,6 +334,7 @@ open class ContactSearchAdapter(
       checkbox.isSelected = false
       name.setText(
         when (model.data.mode) {
+          ContactSearchConfiguration.NewRowMode.NEW_CALL -> R.string.contact_selection_list__new_call
           ContactSearchConfiguration.NewRowMode.NEW_CONVERSATION -> R.string.contact_selection_list__unknown_contact
           ContactSearchConfiguration.NewRowMode.BLOCK -> R.string.contact_selection_list__unknown_contact_block
           ContactSearchConfiguration.NewRowMode.ADD_TO_GROUP -> R.string.contact_selection_list__unknown_contact_add_to_group
@@ -349,12 +350,11 @@ open class ContactSearchAdapter(
   private class KnownRecipientViewHolder(
     itemView: View,
     private val fixedContacts: Set<ContactSearchKey>,
-    displayCheckBox: Boolean,
-    displaySmsTag: DisplaySmsTag,
-    private val displaySecondaryInformation: DisplaySecondaryInformation,
+    displayOptions: DisplayOptions,
     onClick: OnClickedCallback<ContactSearchData.KnownRecipient>,
-    private val onLongClick: OnLongClickedCallback<ContactSearchData.KnownRecipient>
-  ) : BaseRecipientViewHolder<RecipientModel, ContactSearchData.KnownRecipient>(itemView, displayCheckBox, displaySmsTag, onClick), LetterHeaderDecoration.LetterHeaderItem {
+    private val onLongClick: OnLongClickedCallback<ContactSearchData.KnownRecipient>,
+    callButtonClickCallbacks: CallButtonClickCallbacks
+  ) : BaseRecipientViewHolder<RecipientModel, ContactSearchData.KnownRecipient>(itemView, displayOptions, onClick, callButtonClickCallbacks), LetterHeaderDecoration.LetterHeaderItem {
 
     private var headerLetter: String? = null
 
@@ -370,10 +370,10 @@ open class ContactSearchAdapter(
         val count = recipient.participantIds.size
         number.text = context.resources.getQuantityString(R.plurals.ContactSearchItems__group_d_members, count, count)
         number.visible = true
-      } else if (displaySecondaryInformation == DisplaySecondaryInformation.ALWAYS && recipient.combinedAboutAndEmoji != null) {
+      } else if (displayOptions.displaySecondaryInformation == DisplaySecondaryInformation.ALWAYS && recipient.combinedAboutAndEmoji != null) {
         number.text = recipient.combinedAboutAndEmoji
         number.visible = true
-      } else if (displaySecondaryInformation == DisplaySecondaryInformation.ALWAYS && recipient.hasE164()) {
+      } else if (displayOptions.displaySecondaryInformation == DisplaySecondaryInformation.ALWAYS && recipient.hasE164()) {
         number.text = PhoneNumberFormatter.prettyPrint(recipient.requireE164())
         number.visible = true
       } else {
@@ -410,9 +410,9 @@ open class ContactSearchAdapter(
    */
   abstract class BaseRecipientViewHolder<T : MappingModel<T>, D : ContactSearchData>(
     itemView: View,
-    private val displayCheckBox: Boolean,
-    private val displaySmsTag: DisplaySmsTag,
-    val onClick: OnClickedCallback<D>
+    val displayOptions: DisplayOptions,
+    val onClick: OnClickedCallback<D>,
+    val onCallButtonClickCallbacks: CallButtonClickCallbacks
   ) : MappingViewHolder<T>(itemView) {
 
     protected val avatar: AvatarImageView = itemView.findViewById(R.id.contact_photo_image)
@@ -422,6 +422,8 @@ open class ContactSearchAdapter(
     protected val number: TextView = itemView.findViewById(R.id.number)
     protected val label: TextView = itemView.findViewById(R.id.label)
     protected val smsTag: View = itemView.findViewById(R.id.sms_tag)
+    private val startAudio: View = itemView.findViewById(R.id.start_audio)
+    private val startVideo: View = itemView.findViewById(R.id.start_video)
 
     override fun bind(model: T) {
       if (isEnabled(model)) {
@@ -442,10 +444,11 @@ open class ContactSearchAdapter(
       bindNumberField(model)
       bindLabelField(model)
       bindSmsTagField(model)
+      bindCallButtons(model)
     }
 
     protected open fun bindCheckbox(model: T) {
-      checkbox.visible = displayCheckBox
+      checkbox.visible = displayOptions.displayCheckBox
       checkbox.isChecked = isSelected(model)
     }
 
@@ -476,7 +479,7 @@ open class ContactSearchAdapter(
     }
 
     protected open fun bindSmsTagField(model: T) {
-      smsTag.visible = when (displaySmsTag) {
+      smsTag.visible = when (displayOptions.displaySmsTag) {
         DisplaySmsTag.DEFAULT -> isSmsContact(model)
         DisplaySmsTag.IF_NOT_REGISTERED -> isNotRegistered(model)
         DisplaySmsTag.NEVER -> false
@@ -484,6 +487,25 @@ open class ContactSearchAdapter(
     }
 
     protected open fun bindLongPress(model: T) = Unit
+
+    private fun bindCallButtons(model: T) {
+      val recipient = getRecipient(model)
+      if (displayOptions.displayCallButtons && (recipient.isPushGroup || recipient.isRegistered)) {
+        startVideo.visible = true
+        startAudio.visible = !recipient.isPushGroup
+
+        startVideo.setOnClickListener {
+          onCallButtonClickCallbacks.onVideoCallButtonClicked(recipient)
+        }
+
+        startAudio.setOnClickListener {
+          onCallButtonClickCallbacks.onAudioCallButtonClicked(recipient)
+        }
+      } else {
+        startVideo.visible = false
+        startAudio.visible = false
+      }
+    }
 
     private fun isSmsContact(model: T): Boolean {
       return (getRecipient(model).isForceSmsSelection || getRecipient(model).isUnregistered) && !getRecipient(model).isDistributionList
@@ -635,6 +657,13 @@ open class ContactSearchAdapter(
     ALWAYS
   }
 
+  data class DisplayOptions(
+    val displayCheckBox: Boolean = false,
+    val displaySmsTag: DisplaySmsTag = DisplaySmsTag.NEVER,
+    val displaySecondaryInformation: DisplaySecondaryInformation = DisplaySecondaryInformation.NEVER,
+    val displayCallButtons: Boolean = false
+  )
+
   fun interface OnClickedCallback<D : ContactSearchData> {
     fun onClicked(view: View, data: D, isSelected: Boolean)
   }
@@ -650,6 +679,16 @@ open class ContactSearchAdapter(
     fun onUnknownRecipientClicked(view: View, unknownRecipient: ContactSearchData.UnknownRecipient, isSelected: Boolean) {
       throw NotImplementedError()
     }
+  }
+
+  interface CallButtonClickCallbacks {
+    fun onVideoCallButtonClicked(recipient: Recipient)
+    fun onAudioCallButtonClicked(recipient: Recipient)
+  }
+
+  object EmptyCallButtonClickCallbacks : CallButtonClickCallbacks {
+    override fun onVideoCallButtonClicked(recipient: Recipient) = Unit
+    override fun onAudioCallButtonClicked(recipient: Recipient) = Unit
   }
 
   interface LongClickCallbacks {

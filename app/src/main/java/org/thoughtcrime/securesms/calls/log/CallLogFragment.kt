@@ -18,6 +18,7 @@ import io.reactivex.rxjava3.kotlin.Observables
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.new.NewCallActivity
 import org.thoughtcrime.securesms.components.Material3SearchToolbar
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
@@ -114,6 +115,9 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
 
     binding.recycler.adapter = adapter
     requireListener<Material3OnScrollHelperBinder>().bindScrollHelper(binding.recycler)
+    binding.fab.setOnClickListener {
+      startActivity(NewCallActivity.createIntent(requireContext()))
+    }
 
     initializePullToFilter()
     initializeTapToScrollToTop()

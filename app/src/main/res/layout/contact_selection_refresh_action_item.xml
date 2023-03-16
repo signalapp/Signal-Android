@@ -11,30 +11,46 @@
     tools:viewBindingIgnore="true">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/invite_image"
+        android:id="@+id/image"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@color/signal_colorSurfaceVariant"
         android:importantForAccessibility="no"
         android:scaleType="centerInside"
-        android:src="@drawable/symbol_invite_24"
+        android:src="@drawable/symbol_refresh_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle" />
 
     <TextView
-        android:id="@+id/invite_text"
+        android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:ellipsize="marquee"
         android:labelFor="@id/action_icon"
         android:singleLine="true"
-        android:text="@string/contact_selection_activity__invite_to_signal"
+        android:text="@string/contact_selection_activity__refresh_contacts"
         android:textAppearance="@style/Signal.Text.BodyLarge"
+        app:layout_constraintBottom_toTopOf="@id/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ellipsize="marquee"
+        android:labelFor="@id/action_icon"
+        android:singleLine="true"
+        android:text="@string/contact_selection_activity__missing_someone"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/invite_image"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 </androidx.constraintlayout.widget.ConstraintLayout>
