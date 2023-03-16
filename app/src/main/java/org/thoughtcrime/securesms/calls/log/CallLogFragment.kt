@@ -119,6 +119,8 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       startActivity(NewCallActivity.createIntent(requireContext()))
     }
 
+    binding.pullView.setPillText(R.string.CallLogFragment__filtered_by_missed)
+
     initializePullToFilter()
     initializeTapToScrollToTop()
 
