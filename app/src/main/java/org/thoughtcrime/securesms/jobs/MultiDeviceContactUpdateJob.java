@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -101,10 +101,10 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_RECIPIENT, recipientId != null ? recipientId.serialize() : null)
-                             .putBoolean(KEY_FORCE_SYNC, forceSync)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_RECIPIENT, recipientId != null ? recipientId.serialize() : null)
+                                    .putBoolean(KEY_FORCE_SYNC, forceSync)
+                                    .serialize();
   }
 
   @Override
@@ -404,7 +404,9 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<MultiDeviceContactUpdateJob> {
     @Override
-    public @NonNull MultiDeviceContactUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull MultiDeviceContactUpdateJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       String      serialized = data.getString(KEY_RECIPIENT);
       RecipientId address    = serialized != null ? RecipientId.from(serialized) : null;
 

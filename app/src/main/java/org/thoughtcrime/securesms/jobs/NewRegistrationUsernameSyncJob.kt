@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import java.io.IOException
@@ -26,7 +25,7 @@ class NewRegistrationUsernameSyncJob private constructor(parameters: Parameters)
       .build()
   )
 
-  override fun serialize(): Data = Data.EMPTY
+  override fun serialize(): ByteArray? = null
 
   override fun getFactoryKey(): String = KEY
 
@@ -41,7 +40,7 @@ class NewRegistrationUsernameSyncJob private constructor(parameters: Parameters)
   }
 
   class Factory : Job.Factory<NewRegistrationUsernameSyncJob> {
-    override fun create(parameters: Parameters, data: Data): NewRegistrationUsernameSyncJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): NewRegistrationUsernameSyncJob {
       return NewRegistrationUsernameSyncJob(parameters)
     }
   }

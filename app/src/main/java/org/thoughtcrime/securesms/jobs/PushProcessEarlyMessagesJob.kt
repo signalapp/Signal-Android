@@ -4,7 +4,6 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.ServiceMessageId
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.messages.MessageContentProcessor
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
@@ -30,8 +29,8 @@ class PushProcessEarlyMessagesJob private constructor(parameters: Parameters) : 
     return KEY
   }
 
-  override fun serialize(): Data {
-    return Data.EMPTY
+  override fun serialize(): ByteArray? {
+    return null
   }
 
   override fun onRun() {
@@ -67,7 +66,7 @@ class PushProcessEarlyMessagesJob private constructor(parameters: Parameters) : 
   }
 
   class Factory : Job.Factory<PushProcessEarlyMessagesJob> {
-    override fun create(parameters: Parameters, data: Data): PushProcessEarlyMessagesJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): PushProcessEarlyMessagesJob {
       return PushProcessEarlyMessagesJob(parameters)
     }
   }

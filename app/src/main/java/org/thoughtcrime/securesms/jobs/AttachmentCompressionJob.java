@@ -5,6 +5,7 @@ import android.media.MediaDataSource;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.google.android.exoplayer2.util.MimeTypes;
@@ -22,7 +23,7 @@ import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
@@ -106,12 +107,12 @@ public final class AttachmentCompressionJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_ROW_ID, attachmentId.getRowId())
-                             .putLong(KEY_UNIQUE_ID, attachmentId.getUniqueId())
-                             .putBoolean(KEY_MMS, mms)
-                             .putInt(KEY_MMS_SUBSCRIPTION_ID, mmsSubscriptionId)
-                             .build();
+  public @Nullable byte [] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_ROW_ID, attachmentId.getRowId())
+                                    .putLong(KEY_UNIQUE_ID, attachmentId.getUniqueId())
+                                    .putBoolean(KEY_MMS, mms)
+                                    .putInt(KEY_MMS_SUBSCRIPTION_ID, mmsSubscriptionId)
+                                    .serialize();
   }
 
   @Override
@@ -341,7 +342,9 @@ public final class AttachmentCompressionJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<AttachmentCompressionJob> {
     @Override
-    public @NonNull AttachmentCompressionJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull AttachmentCompressionJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       return new AttachmentCompressionJob(parameters,
                                           new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)),
                                           data.getBoolean(KEY_MMS),

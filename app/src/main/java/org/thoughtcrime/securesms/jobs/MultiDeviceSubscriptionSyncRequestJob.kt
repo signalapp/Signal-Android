@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
@@ -38,7 +37,7 @@ class MultiDeviceSubscriptionSyncRequestJob private constructor(parameters: Para
     }
   }
 
-  override fun serialize(): Data = Data.EMPTY
+  override fun serialize(): ByteArray? = null
 
   override fun getFactoryKey(): String = KEY
 
@@ -69,7 +68,7 @@ class MultiDeviceSubscriptionSyncRequestJob private constructor(parameters: Para
   }
 
   class Factory : Job.Factory<MultiDeviceSubscriptionSyncRequestJob> {
-    override fun create(parameters: Parameters, data: Data): MultiDeviceSubscriptionSyncRequestJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): MultiDeviceSubscriptionSyncRequestJob {
       return MultiDeviceSubscriptionSyncRequestJob(parameters)
     }
   }

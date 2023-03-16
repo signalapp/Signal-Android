@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -118,12 +118,12 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder()
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder()
                    .putString(DATA_ERROR_SOURCE, errorSource.serialize())
                    .putLong(DATA_GIFT_MESSAGE_ID, giftMessageId)
                    .putBoolean(DATA_PRIMARY, makePrimary)
-                   .build();
+                   .serialize();
   }
 
   @Override
@@ -161,7 +161,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   }
 
   private void doRun() throws Exception {
-    boolean isKeepAlive409 = getInputData() != null && getInputData().getBooleanOrDefault(INPUT_KEEP_ALIVE_409, false);
+    boolean isKeepAlive409 = getInputData() != null && JsonJobData.deserialize(getInputData()).getBooleanOrDefault(INPUT_KEEP_ALIVE_409, false);
     if (isKeepAlive409) {
       Log.d(TAG, "Keep-Alive redemption job hit a 409. Exiting.", true);
       return;
@@ -233,9 +233,9 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   }
 
   private @Nullable ReceiptCredentialPresentation getPresentationFromInputData() throws InvalidInputException {
-    Data inputData = getInputData();
+    JsonJobData inputData = JsonJobData.deserialize(getInputData());
 
-    if (inputData == null) {
+    if (inputData.isEmpty()) {
       Log.w(TAG, "No input data. Exiting.", true);
       return null;
     }
@@ -281,7 +281,9 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
   public static class Factory implements Job.Factory<DonationReceiptRedemptionJob> {
     @Override
-    public @NonNull DonationReceiptRedemptionJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull DonationReceiptRedemptionJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       String              serializedErrorSource = data.getStringOrDefault(DATA_ERROR_SOURCE, DonationErrorSource.UNKNOWN.serialize());
       long                messageId             = data.getLongOrDefault(DATA_GIFT_MESSAGE_ID, NO_ID);
       boolean             primary               = data.getBooleanOrDefault(DATA_PRIMARY, false);

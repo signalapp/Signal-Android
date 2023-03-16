@@ -3,11 +3,11 @@ package org.thoughtcrime.securesms.migrations;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackOperationJob;
@@ -66,7 +66,7 @@ public class StickerLaunchMigrationJob extends MigrationJob {
   public static class Factory implements Job.Factory<StickerLaunchMigrationJob> {
     @Override
     public @NonNull
-    StickerLaunchMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    StickerLaunchMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new StickerLaunchMigrationJob(parameters);
     }
   }

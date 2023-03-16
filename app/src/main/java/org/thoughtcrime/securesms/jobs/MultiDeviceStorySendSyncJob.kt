@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessageRecipient
@@ -44,11 +44,11 @@ class MultiDeviceStorySendSyncJob private constructor(parameters: Parameters, pr
     }
   }
 
-  override fun serialize(): Data {
-    return Data.Builder()
+  override fun serialize(): ByteArray? {
+    return JsonJobData.Builder()
       .putLong(DATA_SENT_TIMESTAMP, sentTimestamp)
       .putLong(DATA_DELETED_MESSAGE_ID, deletedMessageId)
-      .build()
+      .serialize()
   }
 
   override fun getFactoryKey(): String = KEY
@@ -90,7 +90,8 @@ class MultiDeviceStorySendSyncJob private constructor(parameters: Parameters, pr
   class RetryableException : Exception()
 
   class Factory : Job.Factory<MultiDeviceStorySendSyncJob> {
-    override fun create(parameters: Parameters, data: Data): MultiDeviceStorySendSyncJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): MultiDeviceStorySendSyncJob {
+      val data = JsonJobData.deserialize(serializedData)
       return MultiDeviceStorySendSyncJob(
         parameters = parameters,
         sentTimestamp = data.getLong(DATA_SENT_TIMESTAMP),

@@ -210,7 +210,7 @@ public class FastJobStorage implements JobStorage {
   }
 
   @Override
-  public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime, @NonNull String serializedData) {
+  public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime, @NonNull byte[] serializedData) {
     JobSpec job = getJobById(id);
     if (job == null || !job.isMemoryOnly()) {
       jobDatabase.updateJobAfterRetry(id, isRunning, runAttempt, nextRunAttemptTime, serializedData);

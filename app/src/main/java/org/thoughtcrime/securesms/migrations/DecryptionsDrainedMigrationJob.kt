@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.migrations
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.PushDecryptDrainedJob
 
@@ -29,7 +28,7 @@ internal class DecryptionsDrainedMigrationJob(
   override fun shouldRetry(e: Exception): Boolean = false
 
   class Factory : Job.Factory<DecryptionsDrainedMigrationJob> {
-    override fun create(parameters: Parameters, data: Data): DecryptionsDrainedMigrationJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): DecryptionsDrainedMigrationJob {
       return DecryptionsDrainedMigrationJob(parameters)
     }
   }

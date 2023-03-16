@@ -19,8 +19,8 @@ import org.thoughtcrime.securesms.database.model.addLink
 import org.thoughtcrime.securesms.database.model.addStyle
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
@@ -81,7 +81,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
     }
   }
 
-  override fun serialize(): Data = Data.Builder().putBoolean(KEY_FORCE, force).build()
+  override fun serialize(): ByteArray? = JsonJobData.Builder().putBoolean(KEY_FORCE, force).serialize()
 
   override fun getFactoryKey(): String = KEY
 
@@ -418,7 +418,8 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
   )
 
   class Factory : Job.Factory<RetrieveRemoteAnnouncementsJob> {
-    override fun create(parameters: Parameters, data: Data): RetrieveRemoteAnnouncementsJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): RetrieveRemoteAnnouncementsJob {
+      val data = JsonJobData.deserialize(serializedData)
       return RetrieveRemoteAnnouncementsJob(data.getBoolean(KEY_FORCE), parameters)
     }
   }

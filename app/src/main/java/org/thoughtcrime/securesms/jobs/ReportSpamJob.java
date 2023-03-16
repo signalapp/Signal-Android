@@ -1,12 +1,13 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageTable.ReportSpamData;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -19,9 +20,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulRespons
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -56,10 +55,10 @@ public class ReportSpamJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_THREAD_ID, threadId)
-                             .putLong(KEY_TIMESTAMP, timestamp)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_THREAD_ID, threadId)
+                                    .putLong(KEY_TIMESTAMP, timestamp)
+                                    .serialize();
   }
 
   @Override
@@ -117,7 +116,8 @@ public class ReportSpamJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<ReportSpamJob> {
     @Override
-    public @NonNull ReportSpamJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull ReportSpamJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
       return new ReportSpamJob(parameters, data.getLong(KEY_THREAD_ID), data.getLong(KEY_TIMESTAMP));
     }
   }

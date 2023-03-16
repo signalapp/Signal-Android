@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.migrations
 
 import com.bumptech.glide.Glide
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 
 /**
@@ -28,7 +27,7 @@ internal class ClearGlideCacheMigrationJob(
   override fun shouldRetry(e: Exception): Boolean = false
 
   class Factory : Job.Factory<ClearGlideCacheMigrationJob> {
-    override fun create(parameters: Parameters, data: Data): ClearGlideCacheMigrationJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): ClearGlideCacheMigrationJob {
       return ClearGlideCacheMigrationJob(parameters)
     }
   }

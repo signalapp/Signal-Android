@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.jobs
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint
 
 /**
@@ -23,10 +23,10 @@ class LeaveGroupV2Job(parameters: Parameters, private val groupId: GroupId.V2) :
     groupId = groupId
   )
 
-  override fun serialize(): Data {
-    return Data.Builder()
+  override fun serialize(): ByteArray? {
+    return JsonJobData.Builder()
       .putString(KEY_GROUP_ID, groupId.toString())
-      .build()
+      .serialize()
   }
 
   override fun getFactoryKey(): String {
@@ -42,7 +42,8 @@ class LeaveGroupV2Job(parameters: Parameters, private val groupId: GroupId.V2) :
   override fun onFailure() = Unit
 
   class Factory : Job.Factory<LeaveGroupV2Job> {
-    override fun create(parameters: Parameters, data: Data): LeaveGroupV2Job {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): LeaveGroupV2Job {
+      val data = JsonJobData.deserialize(serializedData)
       return LeaveGroupV2Job(parameters, GroupId.parseOrThrow(data.getString(KEY_GROUP_ID)).requireV2())
     }
   }

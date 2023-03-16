@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -45,7 +44,7 @@ class RefreshKbsCredentialsJob private constructor(parameters: Parameters) : Bas
       .build()
   )
 
-  override fun serialize(): Data = Data.Builder().build()
+  override fun serialize(): ByteArray? = null
 
   override fun getFactoryKey(): String = KEY
 
@@ -60,7 +59,7 @@ class RefreshKbsCredentialsJob private constructor(parameters: Parameters) : Bas
   override fun onFailure() = Unit
 
   class Factory : Job.Factory<RefreshKbsCredentialsJob> {
-    override fun create(parameters: Parameters, data: Data): RefreshKbsCredentialsJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): RefreshKbsCredentialsJob {
       return RefreshKbsCredentialsJob(parameters)
     }
   }

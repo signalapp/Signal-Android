@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.mms.pdu_alt.GenericPdu;
 import com.google.android.mms.pdu_alt.NotificationInd;
@@ -12,7 +13,7 @@ import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
@@ -44,10 +45,10 @@ public class MmsReceiveJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_DATA, Base64.encodeBytes(data))
-                             .putInt(KEY_SUBSCRIPTION_ID, subscriptionId)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_DATA, Base64.encodeBytes(data))
+                                    .putInt(KEY_SUBSCRIPTION_ID, subscriptionId)
+                                    .serialize();
   }
 
   @Override
@@ -123,8 +124,9 @@ public class MmsReceiveJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<MmsReceiveJob> {
     @Override
-    public @NonNull MmsReceiveJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull MmsReceiveJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       try {
+        JsonJobData data = JsonJobData.deserialize(serializedData);
         return new MmsReceiveJob(parameters, Base64.decode(data.getString(KEY_DATA)), data.getInt(KEY_SUBSCRIPTION_ID));
       } catch (IOException e) {
         throw new AssertionError(e);

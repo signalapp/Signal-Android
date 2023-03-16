@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
@@ -11,7 +12,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -59,10 +60,10 @@ public class RetrieveProfileAvatarJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_PROFILE_AVATAR, profileAvatar)
-                             .putString(KEY_RECIPIENT, recipient.getId().serialize())
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_PROFILE_AVATAR, profileAvatar)
+                                    .putString(KEY_RECIPIENT, recipient.getId().serialize())
+                                    .serialize();
   }
 
   @Override
@@ -136,7 +137,9 @@ public class RetrieveProfileAvatarJob extends BaseJob {
   public static final class Factory implements Job.Factory<RetrieveProfileAvatarJob> {
 
     @Override
-    public @NonNull RetrieveProfileAvatarJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull RetrieveProfileAvatarJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       return new RetrieveProfileAvatarJob(parameters,
                                           Recipient.resolved(RecipientId.from(data.getString(KEY_RECIPIENT))),
                                           data.getString(KEY_PROFILE_AVATAR));

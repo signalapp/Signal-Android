@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -107,8 +107,8 @@ public class ResendMessageJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder()
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder()
                    .putString(KEY_RECIPIENT_ID, recipientId.serialize())
                    .putLong(KEY_SENT_TIMESTAMP, sentTimestamp)
                    .putBlobAsString(KEY_CONTENT, content.toByteArray())
@@ -116,7 +116,7 @@ public class ResendMessageJob extends BaseJob {
                    .putBoolean(KEY_URGENT, urgent)
                    .putBlobAsString(KEY_GROUP_ID, groupId != null ? groupId.getDecodedId() : null)
                    .putString(KEY_DISTRIBUTION_ID, distributionId != null ? distributionId.toString() : null)
-                   .build();
+                   .serialize();
   }
 
   @Override
@@ -199,7 +199,9 @@ public class ResendMessageJob extends BaseJob {
   public static final class Factory implements Job.Factory<ResendMessageJob> {
 
     @Override
-    public @NonNull ResendMessageJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull ResendMessageJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       Content content;
       try {
         content = Content.parseFrom(data.getStringAsBlob(KEY_CONTENT));

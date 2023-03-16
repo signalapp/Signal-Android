@@ -6,8 +6,8 @@ import org.signal.libsignal.protocol.state.SignalProtocolStore
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -78,10 +78,10 @@ class PreKeysSyncJob private constructor(private val forceRotate: Boolean = fals
 
   override fun getFactoryKey(): String = KEY
 
-  override fun serialize(): Data {
-    return Data.Builder()
+  override fun serialize(): ByteArray? {
+    return JsonJobData.Builder()
       .putBoolean(KEY_FORCE_ROTATE, forceRotate)
-      .build()
+      .serialize()
   }
 
   override fun onRun() {
@@ -175,7 +175,8 @@ class PreKeysSyncJob private constructor(private val forceRotate: Boolean = fals
   }
 
   class Factory : Job.Factory<PreKeysSyncJob> {
-    override fun create(parameters: Parameters, data: Data): PreKeysSyncJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): PreKeysSyncJob {
+      val data = JsonJobData.deserialize(serializedData)
       return PreKeysSyncJob(data.getBooleanOrDefault(KEY_FORCE_ROTATE, false), parameters)
     }
   }

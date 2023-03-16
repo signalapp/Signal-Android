@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.migrations;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
 import org.signal.core.util.logging.Log;
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.database.PushTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
@@ -282,7 +282,7 @@ public class LegacyMigrationJob extends MigrationJob {
 
   public static final class Factory implements Job.Factory<LegacyMigrationJob> {
     @Override
-    public @NonNull LegacyMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull LegacyMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new LegacyMigrationJob(parameters);
     }
   }

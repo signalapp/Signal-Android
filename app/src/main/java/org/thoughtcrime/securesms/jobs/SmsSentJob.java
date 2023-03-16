@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.telephony.SmsManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageTable;
@@ -11,7 +12,7 @@ import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
@@ -54,13 +55,13 @@ public class SmsSentJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
-                             .putBoolean(KEY_IS_MULTIPART, isMultipart)
-                             .putString(KEY_ACTION, action)
-                             .putInt(KEY_RESULT, result)
-                             .putInt(KEY_RUN_ATTEMPT, runAttempt)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId)
+                                    .putBoolean(KEY_IS_MULTIPART, isMultipart)
+                                    .putString(KEY_ACTION, action)
+                                    .putInt(KEY_RESULT, result)
+                                    .putInt(KEY_RUN_ATTEMPT, runAttempt)
+                                    .serialize();
   }
 
   @Override
@@ -126,7 +127,9 @@ public class SmsSentJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<SmsSentJob> {
     @Override
-    public @NonNull SmsSentJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull SmsSentJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       return new SmsSentJob(parameters,
                             data.getLong(KEY_MESSAGE_ID),
                             data.getBooleanOrDefault(KEY_IS_MULTIPART, true),

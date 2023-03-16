@@ -9,8 +9,8 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.audio.AudioWaveForms
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.util.MediaUtil
 import kotlin.time.Duration.Companion.days
 
@@ -46,11 +46,11 @@ class GenerateAudioWaveFormJob private constructor(private val attachmentId: Att
       .build()
   )
 
-  override fun serialize(): Data {
-    return Data.Builder()
+  override fun serialize(): ByteArray? {
+    return JsonJobData.Builder()
       .putLong(KEY_PART_ROW_ID, attachmentId.rowId)
       .putLong(KEY_PAR_UNIQUE_ID, attachmentId.uniqueId)
-      .build()
+      .serialize()
   }
 
   override fun getFactoryKey(): String = KEY
@@ -87,7 +87,8 @@ class GenerateAudioWaveFormJob private constructor(private val attachmentId: Att
   override fun onFailure() = Unit
 
   class Factory : Job.Factory<GenerateAudioWaveFormJob> {
-    override fun create(parameters: Parameters, data: Data): GenerateAudioWaveFormJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): GenerateAudioWaveFormJob {
+      val data = JsonJobData.deserialize(serializedData)
       return GenerateAudioWaveFormJob(AttachmentId(data.getLong(KEY_PART_ROW_ID), data.getLong(KEY_PAR_UNIQUE_ID)), parameters)
     }
   }

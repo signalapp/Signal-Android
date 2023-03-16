@@ -5,8 +5,12 @@ import androidx.annotation.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.JsonUtils;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,9 +18,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class Data {
+public class JsonJobData {
 
-  public static final Data EMPTY = new Data.Builder().build();
+  public static final String TAG = Log.tag(JsonJobData.class);
+
+  public static final JsonJobData EMPTY = new JsonJobData.Builder().build();
 
   @JsonProperty private final Map<String, String>    strings;
   @JsonProperty private final Map<String, String[]>  stringArrays;
@@ -31,18 +37,31 @@ public class Data {
   @JsonProperty private final Map<String, Boolean>   booleans;
   @JsonProperty private final Map<String, boolean[]> booleanArrays;
 
-  public Data(@JsonProperty("strings")       @NonNull Map<String, String>    strings,
-              @JsonProperty("stringArrays")  @NonNull Map<String, String[]>  stringArrays,
-              @JsonProperty("integers")      @NonNull Map<String, Integer>   integers,
-              @JsonProperty("integerArrays") @NonNull Map<String, int[]>     integerArrays,
-              @JsonProperty("longs")         @NonNull Map<String, Long>      longs,
-              @JsonProperty("longArrays")    @NonNull Map<String, long[]>    longArrays,
-              @JsonProperty("floats")        @NonNull Map<String, Float>     floats,
-              @JsonProperty("floatArrays")   @NonNull Map<String, float[]>   floatArrays,
-              @JsonProperty("doubles")       @NonNull Map<String, Double>    doubles,
-              @JsonProperty("doubleArrays")  @NonNull Map<String, double[]>  doubleArrays,
-              @JsonProperty("booleans")      @NonNull Map<String, Boolean>   booleans,
-              @JsonProperty("booleanArrays") @NonNull Map<String, boolean[]> booleanArrays)
+  public static @NonNull JsonJobData deserialize(@Nullable byte[] data) {
+    if (data == null) {
+      return EMPTY;
+    }
+
+    try {
+      return JsonUtils.fromJson(data, JsonJobData.class);
+    } catch (IOException e) {
+      Log.e(TAG, "Failed to deserialize JSON.", e);
+      throw new AssertionError(e);
+    }
+  }
+
+  private JsonJobData(@JsonProperty("strings")       @NonNull Map<String, String>    strings,
+                      @JsonProperty("stringArrays")  @NonNull Map<String, String[]>  stringArrays,
+                      @JsonProperty("integers")      @NonNull Map<String, Integer>   integers,
+                      @JsonProperty("integerArrays") @NonNull Map<String, int[]>     integerArrays,
+                      @JsonProperty("longs")         @NonNull Map<String, Long>      longs,
+                      @JsonProperty("longArrays")    @NonNull Map<String, long[]>    longArrays,
+                      @JsonProperty("floats")        @NonNull Map<String, Float>     floats,
+                      @JsonProperty("floatArrays")   @NonNull Map<String, float[]>   floatArrays,
+                      @JsonProperty("doubles")       @NonNull Map<String, Double>    doubles,
+                      @JsonProperty("doubleArrays")  @NonNull Map<String, double[]>  doubleArrays,
+                      @JsonProperty("booleans")      @NonNull Map<String, Boolean>   booleans,
+                      @JsonProperty("booleanArrays") @NonNull Map<String, boolean[]> booleanArrays)
   {
     this.strings       = strings;
     this.stringArrays  = stringArrays;
@@ -256,6 +275,34 @@ public class Data {
     return new Builder(this);
   }
 
+  public boolean isEmpty() {
+    return strings.isEmpty() &&
+        stringArrays.isEmpty() &&
+        integers.isEmpty() &&
+        integerArrays.isEmpty() &&
+        longs.isEmpty() &&
+        longArrays.isEmpty() &&
+        floats.isEmpty() &&
+        floatArrays.isEmpty() &&
+        doubles.isEmpty() &&
+        doubleArrays.isEmpty() &&
+        booleans.isEmpty() &&
+        booleanArrays.isEmpty();
+  }
+
+  public @Nullable byte[] serialize() {
+    if (isEmpty()) {
+      return null;
+    } else {
+      try {
+        return JsonUtils.toJson(this).getBytes(StandardCharsets.UTF_8);
+      } catch (IOException e) {
+        Log.e(TAG, "Failed to serialize to JSON.", e);
+        throw new AssertionError(e);
+      }
+    }
+  }
+
 
   public static class Builder {
 
@@ -274,7 +321,7 @@ public class Data {
 
     public Builder() { }
 
-    private Builder(@NonNull Data oldData) {
+    private Builder(@NonNull JsonJobData oldData) {
       strings.putAll(oldData.strings);
       stringArrays.putAll(oldData.stringArrays);
       integers.putAll(oldData.integers);
@@ -385,24 +432,28 @@ public class Data {
       return this;
     }
 
-    public Data build() {
-      return new Data(strings,
-                      stringArrays,
-                      integers,
-                      integerArrays,
-                      longs,
-                      longArrays,
-                      floats,
-                      floatArrays,
-                      doubles,
-                      doubleArrays,
-                      booleans,
-                      booleanArrays);
+    public JsonJobData build() {
+      return new JsonJobData(strings,
+                             stringArrays,
+                             integers,
+                             integerArrays,
+                             longs,
+                             longArrays,
+                             floats,
+                             floatArrays,
+                             doubles,
+                             doubleArrays,
+                             booleans,
+                             booleanArrays);
+    }
+
+    public @Nullable byte[] serialize() {
+      return build().serialize();
     }
   }
 
   public interface Serializer {
-    @NonNull String serialize(@NonNull Data data);
-    @NonNull Data deserialize(@NonNull String serialized);
+    @NonNull String serialize(@NonNull JsonJobData data);
+    @NonNull JsonJobData deserialize(@NonNull String serialized);
   }
 }

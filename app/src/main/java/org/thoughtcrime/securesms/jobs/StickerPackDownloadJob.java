@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.util.Preconditions;
 
 import org.signal.core.util.logging.Log;
@@ -9,7 +10,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerTable;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -87,12 +88,12 @@ public class StickerPackDownloadJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_PACK_ID, packId)
-                             .putString(KEY_PACK_KEY, packKey)
-                             .putBoolean(KEY_REFERENCE_PACK, isReferencePack)
-                             .putBoolean(KEY_NOTIFY, notify)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_PACK_ID, packId)
+                                    .putString(KEY_PACK_KEY, packKey)
+                                    .putBoolean(KEY_REFERENCE_PACK, isReferencePack)
+                                    .putBoolean(KEY_NOTIFY, notify)
+                                    .serialize();
   }
 
   @Override
@@ -178,7 +179,9 @@ public class StickerPackDownloadJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<StickerPackDownloadJob> {
     @Override
-    public @NonNull StickerPackDownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull StickerPackDownloadJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       return new StickerPackDownloadJob(parameters,
                                         data.getString(KEY_PACK_ID),
                                         data.getString(KEY_PACK_KEY),

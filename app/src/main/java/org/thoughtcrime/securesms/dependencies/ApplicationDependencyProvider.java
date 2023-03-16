@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.database.PendingRetryReceiptCache;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobMigrator;
 import org.thoughtcrime.securesms.jobmanager.impl.FactoryJobPredicate;
-import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.GroupCallUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
@@ -170,7 +169,6 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull JobManager provideJobManager() {
     JobManager.Configuration config = new JobManager.Configuration.Builder()
-                                                                  .setDataSerializer(new JsonDataSerializer())
                                                                   .setJobFactories(JobManagerFactories.getJobFactories(context))
                                                                   .setConstraintFactories(JobManagerFactories.getConstraintFactories(context))
                                                                   .setConstraintObservers(JobManagerFactories.getConstraintObservers(context))

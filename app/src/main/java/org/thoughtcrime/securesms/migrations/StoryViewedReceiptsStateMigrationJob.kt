@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.migrations
 
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -35,7 +34,7 @@ internal class StoryViewedReceiptsStateMigrationJob(
   override fun shouldRetry(e: Exception): Boolean = false
 
   class Factory : Job.Factory<StoryViewedReceiptsStateMigrationJob> {
-    override fun create(parameters: Parameters, data: Data): StoryViewedReceiptsStateMigrationJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): StoryViewedReceiptsStateMigrationJob {
       return StoryViewedReceiptsStateMigrationJob(parameters)
     }
   }

@@ -40,7 +40,6 @@ class JobController {
   private final JobStorage             jobStorage;
   private final JobInstantiator        jobInstantiator;
   private final ConstraintInstantiator constraintInstantiator;
-  private final Data.Serializer        dataSerializer;
   private final JobTracker             jobTracker;
   private final Scheduler              scheduler;
   private final Debouncer              debouncer;
@@ -51,7 +50,6 @@ class JobController {
                 @NonNull JobStorage jobStorage,
                 @NonNull JobInstantiator jobInstantiator,
                 @NonNull ConstraintInstantiator constraintInstantiator,
-                @NonNull Data.Serializer dataSerializer,
                 @NonNull JobTracker jobTracker,
                 @NonNull Scheduler scheduler,
                 @NonNull Debouncer debouncer,
@@ -61,7 +59,6 @@ class JobController {
     this.jobStorage             = jobStorage;
     this.jobInstantiator        = jobInstantiator;
     this.constraintInstantiator = constraintInstantiator;
-    this.dataSerializer         = dataSerializer;
     this.jobTracker             = jobTracker;
     this.scheduler              = scheduler;
     this.debouncer              = debouncer;
@@ -229,7 +226,7 @@ class JobController {
     List<JobSpec> updatedJobs = new LinkedList<>();
 
     for (JobSpec job : allJobs) {
-      JobSpec updated = updater.update(job, dataSerializer);
+      JobSpec updated = updater.update(job);
       if (updated != job) {
         updatedJobs.add(updated);
       }
@@ -255,7 +252,7 @@ class JobController {
 
     int    nextRunAttempt     = job.getRunAttempt() + 1;
     long   nextRunAttemptTime = System.currentTimeMillis() + backoffInterval;
-    String serializedData     = dataSerializer.serialize(job.serialize());
+    byte[] serializedData     = job.serialize();
 
     jobStorage.updateJobAfterRetry(job.getId(), false, nextRunAttempt, nextRunAttemptTime, serializedData);
     jobTracker.onStateChange(job, JobTracker.JobState.PENDING);
@@ -279,7 +276,7 @@ class JobController {
   }
 
   @WorkerThread
-  synchronized void onSuccess(@NonNull Job job, @Nullable Data outputData) {
+  synchronized void onSuccess(@NonNull Job job, @Nullable byte[] outputData) {
     if (outputData != null) {
       List<JobSpec> updates = Stream.of(jobStorage.getDependencySpecsThatDependOnJob(job.getId()))
                                     .map(DependencySpec::getJobId)
@@ -452,7 +449,7 @@ class JobController {
                                   job.getRunAttempt(),
                                   job.getParameters().getMaxAttempts(),
                                   job.getParameters().getLifespan(),
-                                  dataSerializer.serialize(job.serialize()),
+                                  job.serialize(),
                                   null,
                                   false,
                                   job.getParameters().isMemoryOnly());
@@ -511,8 +508,7 @@ class JobController {
     Job.Parameters parameters = buildJobParameters(jobSpec, constraintSpecs);
 
     try {
-      Data data = dataSerializer.deserialize(jobSpec.getSerializedData());
-      Job  job  = jobInstantiator.instantiate(jobSpec.getFactoryKey(), parameters, data);
+      Job job = jobInstantiator.instantiate(jobSpec.getFactoryKey(), parameters, jobSpec.getSerializedData());
 
       job.setRunAttempt(jobSpec.getRunAttempt());
       job.setNextRunAttemptTime(jobSpec.getNextRunAttemptTime());
@@ -542,11 +538,11 @@ class JobController {
                   .setMaxAttempts(jobSpec.getMaxAttempts())
                   .setQueue(jobSpec.getQueueKey())
                   .setConstraints(Stream.of(constraintSpecs).map(ConstraintSpec::getFactoryKey).toList())
-                  .setInputData(jobSpec.getSerializedInputData() != null ? dataSerializer.deserialize(jobSpec.getSerializedInputData()) : null)
+                  .setInputData(jobSpec.getSerializedInputData())
                   .build();
   }
 
-  private @NonNull JobSpec mapToJobWithInputData(@NonNull JobSpec jobSpec, @NonNull Data inputData) {
+  private @NonNull JobSpec mapToJobWithInputData(@NonNull JobSpec jobSpec, @NonNull byte[] inputData) {
     return new JobSpec(jobSpec.getId(),
                        jobSpec.getFactoryKey(),
                        jobSpec.getQueueKey(),
@@ -556,7 +552,7 @@ class JobController {
                        jobSpec.getMaxAttempts(),
                        jobSpec.getLifespan(),
                        jobSpec.getSerializedData(),
-                       dataSerializer.serialize(inputData),
+                       inputData,
                        jobSpec.isRunning(),
                        jobSpec.isMemoryOnly());
   }
