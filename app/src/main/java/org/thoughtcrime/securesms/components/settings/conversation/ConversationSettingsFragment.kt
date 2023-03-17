@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.cash.exhaustive.Exhaustive
@@ -49,6 +50,7 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.AvatarPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.BioTextPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference
+import org.thoughtcrime.securesms.components.settings.conversation.preferences.CallPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.GroupDescriptionPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.InternalPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.LargeIconClickPreference
@@ -83,6 +85,7 @@ import org.thoughtcrime.securesms.stories.viewer.AddToGroupStoryDelegate
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
+import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
@@ -92,6 +95,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity
+import java.util.Locale
 
 private const val REQUEST_CODE_VIEW_CONTACT = 1
 private const val REQUEST_CODE_ADD_CONTACT = 2
@@ -103,6 +107,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
   menuId = R.menu.conversation_settings
 ) {
 
+  private val args: ConversationSettingsFragmentArgs by navArgs()
   private val alertTint by lazy { ContextCompat.getColor(requireContext(), R.color.signal_alert_primary) }
   private val blockIcon by lazy {
     ContextUtil.requireDrawable(requireContext(), R.drawable.ic_block_tinted_24).apply {
@@ -122,13 +127,12 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
   private val viewModel by viewModels<ConversationSettingsViewModel>(
     factoryProducer = {
-      val args = ConversationSettingsFragmentArgs.fromBundle(requireArguments())
       val groupId = args.groupId as? ParcelableGroupId
 
       ConversationSettingsViewModel.Factory(
         recipientId = args.recipientId,
         groupId = ParcelableGroupId.get(groupId),
-        isCallInfo = args.isCallInfo,
+        callMessageIds = args.callMessageIds ?: longArrayOf(),
         repository = ConversationSettingsRepository(requireContext())
       )
     }
@@ -221,6 +225,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     InternalPreference.register(adapter)
     GroupDescriptionPreference.register(adapter)
     LegacyGroupPreference.register(adapter)
+    CallPreference.register(adapter)
 
     val recipientId = args.recipientId
     if (recipientId != null) {
@@ -436,6 +441,17 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       )
 
       dividerPref()
+
+      if (state.calls.isNotEmpty()) {
+        val firstCall = state.calls.first()
+        sectionHeaderPref(DSLSettingsText.from(DateUtils.formatDate(Locale.getDefault(), firstCall.record.timestamp)))
+
+        for (call in state.calls) {
+          customPref(call)
+        }
+
+        dividerPref()
+      }
 
       val summary = DSLSettingsText.from(formatDisappearingMessagesLifespan(state.disappearingMessagesLifespan))
       val icon = if (state.disappearingMessagesLifespan <= 0 || state.recipient.isBlocked) {

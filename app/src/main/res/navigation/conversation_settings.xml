@@ -48,9 +48,9 @@
             app:nullable="true" />
 
         <argument
-            android:name="is_call_info"
-            app:argType="boolean"
-            android:defaultValue="false" />
+            android:name="call_message_ids"
+            app:argType="long[]"
+            app:nullable="true" />
 
         <action
             android:id="@+id/action_conversationSettingsFragment_to_soundsAndNotificationsSettingsFragment"

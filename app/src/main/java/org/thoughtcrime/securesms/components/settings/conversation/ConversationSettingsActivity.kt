@@ -67,7 +67,7 @@ class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettings
 
     @JvmStatic
     fun forGroup(context: Context, groupId: GroupId): Intent {
-      val startBundle = ConversationSettingsFragmentArgs.Builder(null, ParcelableGroupId.from(groupId))
+      val startBundle = ConversationSettingsFragmentArgs.Builder(null, ParcelableGroupId.from(groupId), null)
         .build()
         .toBundle()
 
@@ -77,7 +77,7 @@ class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettings
 
     @JvmStatic
     fun forRecipient(context: Context, recipientId: RecipientId): Intent {
-      val startBundle = ConversationSettingsFragmentArgs.Builder(recipientId, null)
+      val startBundle = ConversationSettingsFragmentArgs.Builder(recipientId, null, null)
         .build()
         .toBundle()
 
@@ -86,17 +86,14 @@ class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettings
     }
 
     @JvmStatic
-    fun forCall(context: Context, callPeer: Recipient): Intent {
+    fun forCall(context: Context, callPeer: Recipient, callMessageIds: LongArray): Intent {
       val startBundleBuilder = if (callPeer.isGroup) {
-        ConversationSettingsFragmentArgs.Builder(null, ParcelableGroupId.from(callPeer.requireGroupId()))
+        ConversationSettingsFragmentArgs.Builder(null, ParcelableGroupId.from(callPeer.requireGroupId()), callMessageIds)
       } else {
-        ConversationSettingsFragmentArgs.Builder(callPeer.id, null)
+        ConversationSettingsFragmentArgs.Builder(callPeer.id, null, callMessageIds)
       }
 
-      val startBundle = startBundleBuilder
-        .setIsCallInfo(true)
-        .build()
-        .toBundle()
+      val startBundle = startBundleBuilder.build().toBundle()
 
       return getIntent(context)
         .putExtra(ARG_START_BUNDLE, startBundle)

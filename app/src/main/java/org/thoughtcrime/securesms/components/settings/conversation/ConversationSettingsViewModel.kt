@@ -16,6 +16,7 @@ import org.signal.core.util.CursorUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference
+import org.thoughtcrime.securesms.components.settings.conversation.preferences.CallPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.LegacyGroupPreference
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.RecipientTable
@@ -33,6 +34,7 @@ import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Optional
 
 sealed class ConversationSettingsViewModel(
+  private val callMessageIds: LongArray,
   private val repository: ConversationSettingsRepository,
   specificSettingsState: SpecificSettingsState
 ) : ViewModel() {
@@ -62,6 +64,10 @@ sealed class ConversationSettingsViewModel(
 
     val sharedMedia: LiveData<Optional<Cursor>> = LiveDataUtil.mapAsync(SignalExecutors.BOUNDED, updater) { tId ->
       repository.getThreadMedia(tId)
+    }
+
+    store.update(repository.getCallEvents(callMessageIds).toObservable()) { callRecords, state ->
+      state.copy(calls = callRecords.map { CallPreference.Model(it) })
     }
 
     store.update(sharedMedia) { cursor, state ->
@@ -128,9 +134,10 @@ sealed class ConversationSettingsViewModel(
 
   private class RecipientSettingsViewModel(
     private val recipientId: RecipientId,
-    private val isCallInfo: Boolean,
+    private val callMessageIds: LongArray,
     private val repository: ConversationSettingsRepository
   ) : ConversationSettingsViewModel(
+    callMessageIds,
     repository,
     SpecificSettingsState.RecipientSettingsState()
   ) {
@@ -152,13 +159,13 @@ sealed class ConversationSettingsViewModel(
         state.copy(
           recipient = recipient,
           buttonStripState = ButtonStripPreference.State(
-            isMessageAvailable = isCallInfo,
+            isMessageAvailable = callMessageIds.isNotEmpty(),
             isVideoAvailable = recipient.registered == RecipientTable.RegisteredState.REGISTERED && !recipient.isSelf && !recipient.isBlocked && !recipient.isReleaseNotes,
             isAudioAvailable = isAudioAvailable,
             isAudioSecure = recipient.registered == RecipientTable.RegisteredState.REGISTERED,
             isMuted = recipient.isMuted,
             isMuteAvailable = !recipient.isSelf,
-            isSearchAvailable = !isCallInfo
+            isSearchAvailable = callMessageIds.isEmpty()
           ),
           disappearingMessagesLifespan = recipient.expiresInSeconds,
           canModifyBlockedState = !recipient.isSelf && RecipientUtil.isBlockable(recipient),
@@ -258,9 +265,9 @@ sealed class ConversationSettingsViewModel(
 
   private class GroupSettingsViewModel(
     private val groupId: GroupId,
-    private val isCallInfo: Boolean,
+    private val callMessageIds: LongArray,
     private val repository: ConversationSettingsRepository
-  ) : ConversationSettingsViewModel(repository, SpecificSettingsState.GroupSettingsState(groupId)) {
+  ) : ConversationSettingsViewModel(callMessageIds, repository, SpecificSettingsState.GroupSettingsState(groupId)) {
 
     private val liveGroup = LiveGroup(groupId)
 
@@ -274,13 +281,13 @@ sealed class ConversationSettingsViewModel(
         state.copy(
           recipient = recipient,
           buttonStripState = ButtonStripPreference.State(
-            isMessageAvailable = isCallInfo,
+            isMessageAvailable = callMessageIds.isNotEmpty(),
             isVideoAvailable = recipient.isPushV2Group && !recipient.isBlocked && isActive,
             isAudioAvailable = false,
             isAudioSecure = recipient.isPushV2Group,
             isMuted = recipient.isMuted,
             isMuteAvailable = true,
-            isSearchAvailable = !isCallInfo,
+            isSearchAvailable = callMessageIds.isEmpty(),
             isAddToStoryAvailable = recipient.isPushV2Group && !recipient.isBlocked && isActive && !SignalStore.storyValues().isFeatureDisabled
           ),
           canModifyBlockedState = RecipientUtil.isBlockable(recipient),
@@ -483,7 +490,7 @@ sealed class ConversationSettingsViewModel(
   class Factory(
     private val recipientId: RecipientId? = null,
     private val groupId: GroupId? = null,
-    private val isCallInfo: Boolean,
+    private val callMessageIds: LongArray,
     private val repository: ConversationSettingsRepository
   ) : ViewModelProvider.Factory {
 
@@ -491,8 +498,8 @@ sealed class ConversationSettingsViewModel(
       return requireNotNull(
         modelClass.cast(
           when {
-            recipientId != null -> RecipientSettingsViewModel(recipientId, isCallInfo, repository)
-            groupId != null -> GroupSettingsViewModel(groupId, isCallInfo, repository)
+            recipientId != null -> RecipientSettingsViewModel(recipientId, callMessageIds, repository)
+            groupId != null -> GroupSettingsViewModel(groupId, callMessageIds, repository)
             else -> error("One of RecipientId or GroupId required.")
           }
         )
