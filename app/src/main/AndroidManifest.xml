@@ -602,12 +602,6 @@
             android:windowSoftInputMode="adjustResize"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".ClearAvatarPromptActivity"
-              android:theme="@style/Theme.AppCompat.Dialog.Alert"
-              android:icon="@drawable/clear_profile_avatar"
-              android:label="@string/AndroidManifest_remove_photo"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
     <activity android:name=".contacts.TurnOffContactJoinedNotificationsActivity"
               android:theme="@style/Theme.AppCompat.Dialog.Alert" />
 
