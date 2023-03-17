@@ -1,18 +1,17 @@
 package org.thoughtcrime.securesms.calls.log
 
+import android.content.res.Resources
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.fragments.requireListener
 
 class CallLogActionMode(
-  private val fragment: CallLogFragment,
-  private val onResetSelectionState: () -> Unit
+  private val callback: Callback
 ) : ActionMode.Callback {
 
   private var actionMode: ActionMode? = null
+  private var count: Int = 0
 
   override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
     mode?.title = getTitle(1)
@@ -28,32 +27,48 @@ class CallLogActionMode(
   }
 
   override fun onDestroyActionMode(mode: ActionMode?) {
-    onResetSelectionState()
+    callback.onResetSelectionState()
     endIfActive()
   }
 
+  fun isInActionMode(): Boolean {
+    return actionMode != null
+  }
+
+  fun getCount(): Int {
+    return if (actionMode != null) count else 0
+  }
+
   fun setCount(count: Int) {
+    this.count = count
     actionMode?.title = getTitle(count)
   }
 
   fun start() {
-    actionMode = (fragment.requireActivity() as AppCompatActivity).startSupportActionMode(this)
-    fragment.requireListener<CallLogFragment.Callback>().onMultiSelectStarted()
+    actionMode = callback.startActionMode(this)
   }
 
   fun end() {
-    fragment.requireListener<CallLogFragment.Callback>().onMultiSelectFinished()
+    callback.onActionModeWillEnd()
     actionMode?.finish()
+    count = 0
     actionMode = null
   }
 
   private fun getTitle(callLogsSelected: Int): String {
-    return fragment.requireContext().resources.getQuantityString(R.plurals.ConversationListFragment_s_selected, callLogsSelected, callLogsSelected)
+    return callback.getResources().getQuantityString(R.plurals.ConversationListFragment_s_selected, callLogsSelected, callLogsSelected)
   }
 
   private fun endIfActive() {
     if (actionMode != null) {
       end()
     }
+  }
+
+  interface Callback {
+    fun startActionMode(callback: ActionMode.Callback): ActionMode?
+    fun onActionModeWillEnd()
+    fun getResources(): Resources
+    fun onResetSelectionState()
   }
 }

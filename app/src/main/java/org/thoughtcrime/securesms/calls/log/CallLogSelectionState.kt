@@ -9,6 +9,9 @@ sealed class CallLogSelectionState {
 
   abstract fun count(totalCount: Int): Int
 
+  abstract fun selected(): Set<CallLogRow.Id>
+  fun isExclusionary(): Boolean = this is Excludes
+
   protected abstract fun select(callId: CallLogRow.Id): CallLogSelectionState
   protected abstract fun deselect(callId: CallLogRow.Id): CallLogSelectionState
 
@@ -43,6 +46,10 @@ sealed class CallLogSelectionState {
     override fun deselect(callId: CallLogRow.Id): CallLogSelectionState {
       return Includes(includes - callId)
     }
+
+    override fun selected(): Set<CallLogRow.Id> {
+      return includes
+    }
   }
 
   /**
@@ -63,6 +70,8 @@ sealed class CallLogSelectionState {
     override fun deselect(callId: CallLogRow.Id): CallLogSelectionState {
       return Excludes(excluded + callId)
     }
+
+    override fun selected(): Set<CallLogRow.Id> = excluded
   }
 
   companion object {

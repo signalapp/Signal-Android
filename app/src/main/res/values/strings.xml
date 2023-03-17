@@ -5724,7 +5724,7 @@
     <!-- Displayed as a context menu item to delete this call -->
     <string name="CallContextMenu__delete">Delete</string>
 
-    <!-- Call Log action bar menu -->
+    <!-- Call Log Fragment -->
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filter missed calls</string>
     <!-- Action bar menu item to clear missed call filter -->
@@ -5737,6 +5737,22 @@
     <string name="CallLogFragment__start_a_new_call">Start a new call</string>
     <!-- Filter pull text when pulled -->
     <string name="CallLogFragment__filtered_by_missed">Filtered by missed</string>
+    <!-- Bottom bar option to select all call entries -->
+    <string name="CallLogFragment__select_all">Select all</string>
+    <!-- Bottom bar option to delete all selected call entries -->
+    <string name="CallLogFragment__delete">Delete</string>
+    <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
+    <plurals name="CallLogFragment__delete_d_calls" translatable="false">
+        <item quantity="one">Delete %1$d call?</item>
+        <item quantity="other">Delete %1$d calls?</item>
+    </plurals>
+    <!-- Positive action on multi-delete protection dialog -->
+    <string name="CallLogFragment__delete_for_me">Delete for me</string>
+    <!-- Snackbar label after deleting call logs -->
+    <plurals name="CallLogFragment__d_calls_deleted">
+        <item quantity="one">%1$d call deleted</item>
+        <item quantity="other">%1$d calls deleted</item>
+    </plurals>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->

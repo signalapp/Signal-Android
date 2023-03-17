@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.databinding.CallLogAdapterItemBinding
 import org.thoughtcrime.securesms.databinding.ConversationListItemClearFilterBinding
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingViewHolder
@@ -35,7 +36,9 @@ class CallLogAdapter(
           CallModelViewHolder(
             it,
             callbacks::onCallClicked,
-            callbacks::onCallLongClicked
+            callbacks::onCallLongClicked,
+            callbacks::onStartAudioCallClicked,
+            callbacks::onStartVideoCallClicked
           )
         },
         inflater = CallLogAdapterItemBinding::inflate
@@ -50,7 +53,7 @@ class CallLogAdapter(
     )
   }
 
-  fun submitCallRows(rows: List<CallLogRow>, selectionState: CallLogSelectionState) {
+  fun submitCallRows(rows: List<CallLogRow?>, selectionState: CallLogSelectionState) {
     submitList(
       rows.filterNotNull().map {
         when (it) {
@@ -103,7 +106,9 @@ class CallLogAdapter(
   private class CallModelViewHolder(
     binding: CallLogAdapterItemBinding,
     private val onCallClicked: (CallLogRow.Call) -> Unit,
-    private val onCallLongClicked: (View, CallLogRow.Call) -> Boolean
+    private val onCallLongClicked: (View, CallLogRow.Call) -> Boolean,
+    private val onStartAudioCallClicked: (Recipient) -> Unit,
+    private val onStartVideoCallClicked: (Recipient) -> Unit
   ) : BindingViewHolder<CallModel, CallLogAdapterItemBinding>(binding) {
     override fun bind(model: CallModel) {
       itemView.setOnClickListener {
@@ -130,7 +135,7 @@ class CallLogAdapter(
       binding.callRecipientBadge.setBadgeFromRecipient(model.call.peer)
       binding.callRecipientName.text = model.call.peer.getDisplayName(context)
       presentCallInfo(event, direction, model.call.date)
-      presentCallType(type)
+      presentCallType(type, model.call.peer)
     }
 
     private fun presentCallInfo(event: CallTable.Event, direction: CallTable.Direction, date: Long) {
@@ -161,13 +166,18 @@ class CallLogAdapter(
       binding.callInfo.setTextColor(color)
     }
 
-    private fun presentCallType(callType: CallTable.Type) {
-      binding.callType.setImageResource(
-        when (callType) {
-          CallTable.Type.AUDIO_CALL -> R.drawable.symbol_phone_24
-          CallTable.Type.VIDEO_CALL -> R.drawable.symbol_video_24
+    private fun presentCallType(callType: CallTable.Type, peer: Recipient) {
+      when (callType) {
+        CallTable.Type.AUDIO_CALL -> {
+          binding.callType.setImageResource(R.drawable.symbol_phone_24)
+          binding.callType.setOnClickListener { onStartAudioCallClicked(peer) }
         }
-      )
+        CallTable.Type.VIDEO_CALL -> {
+          binding.callType.setImageResource(R.drawable.symbol_video_24)
+          binding.callType.setOnClickListener { onStartVideoCallClicked(peer) }
+        }
+      }
+
       binding.callType.visible = true
     }
 
@@ -225,5 +235,15 @@ class CallLogAdapter(
      * Invoked when the clear filter button is pressed
      */
     fun onClearFilterClicked()
+
+    /**
+     * Invoked when user presses the audio icon
+     */
+    fun onStartAudioCallClicked(peer: Recipient)
+
+    /**
+     * Invoked when user presses the video icon
+     */
+    fun onStartVideoCallClicked(peer: Recipient)
   }
 }

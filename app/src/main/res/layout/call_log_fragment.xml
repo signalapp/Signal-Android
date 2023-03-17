@@ -58,4 +58,15 @@
         app:srcCompat="@drawable/symbol_phone_plus_24"
         app:tint="@color/signal_colorOnSurface" />
 
+    <org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
+        android:id="@+id/bottom_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

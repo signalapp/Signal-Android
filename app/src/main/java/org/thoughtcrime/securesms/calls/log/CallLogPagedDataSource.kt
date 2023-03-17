@@ -10,8 +10,11 @@ class CallLogPagedDataSource(
 
   private val hasFilter = filter == CallLogFilter.MISSED
 
+  var callsCount = 0
+
   override fun size(): Int {
-    return repository.getCallsCount(query, filter) + (if (hasFilter) 1 else 0)
+    callsCount = repository.getCallsCount(query, filter)
+    return callsCount + (if (hasFilter) 1 else 0)
   }
 
   override fun load(start: Int, length: Int, cancellationSignal: PagedDataSource.CancellationSignal): MutableList<CallLogRow> {

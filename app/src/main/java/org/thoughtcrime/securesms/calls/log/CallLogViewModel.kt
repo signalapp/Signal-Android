@@ -1,11 +1,16 @@
 package org.thoughtcrime.securesms.calls.log
 
 import androidx.lifecycle.ViewModel
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.BackpressureStrategy
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.processors.BehaviorProcessor
 import org.signal.paging.ObservablePagedData
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
-import org.signal.paging.PagingController
+import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.util.rx.RxStore
 
 /**
@@ -15,22 +20,23 @@ class CallLogViewModel(
   private val callLogRepository: CallLogRepository = CallLogRepository()
 ) : ViewModel() {
   private val callLogStore = RxStore(CallLogState())
-  private val pagedData: Observable<ObservablePagedData<CallLogRow.Id, CallLogRow>> = callLogStore
-    .stateFlowable
-    .toObservable()
-    .map { (query, filter) ->
-      PagedData.createForObservable(
-        CallLogPagedDataSource(query, filter, callLogRepository),
-        pagingConfig
-      )
-    }
 
-  val controller: Observable<PagingController<CallLogRow.Id>> = pagedData.map { it.controller }
-  val data: Observable<MutableList<CallLogRow>> = pagedData.switchMap { it.data }
-  val selected: Observable<CallLogSelectionState> = callLogStore
+  private val disposables = CompositeDisposable()
+  private val pagedData: BehaviorProcessor<ObservablePagedData<CallLogRow.Id, CallLogRow>> = BehaviorProcessor.create()
+
+  private val distinctQueryFilterPairs = callLogStore
     .stateFlowable
-    .toObservable()
+    .map { (query, filter) -> Pair(query, filter) }
+    .distinctUntilChanged()
+
+  val controller = ProxyPagingController<CallLogRow.Id>()
+  val data: Flowable<MutableList<CallLogRow?>> = pagedData.switchMap { it.data.toFlowable(BackpressureStrategy.LATEST) }
+  val selected: Flowable<CallLogSelectionState> = callLogStore
+    .stateFlowable
     .map { it.selectionState }
+
+  val totalCount: Flowable<Int> = Flowable.combineLatest(distinctQueryFilterPairs, data) { a, _ -> a }
+    .map { (query, filter) -> callLogRepository.getCallsCount(query, filter) }
 
   val selectionStateSnapshot: CallLogSelectionState
     get() = callLogStore.state.selectionState
@@ -46,11 +52,46 @@ class CallLogViewModel(
     .setStartIndex(0)
     .build()
 
+  init {
+    disposables.add(callLogStore)
+    disposables += distinctQueryFilterPairs.subscribe { (query, filter) ->
+      pagedData.onNext(
+        PagedData.createForObservable(
+          CallLogPagedDataSource(query, filter, callLogRepository),
+          pagingConfig
+        )
+      )
+    }
+
+    disposables += pagedData.map { it.controller }.subscribe {
+      controller.set(it)
+    }
+
+    disposables += callLogRepository.listenForChanges().subscribe {
+      controller.onDataInvalidated()
+    }
+  }
+
+  override fun onCleared() {
+    disposables.dispose()
+  }
+
+  fun selectAll() {
+    callLogStore.update {
+      val selectionState = CallLogSelectionState.selectAll()
+      it.copy(selectionState = selectionState)
+    }
+  }
+
   fun toggleSelected(callId: CallLogRow.Id) {
     callLogStore.update {
       val selectionState = it.selectionState.toggle(callId)
       it.copy(selectionState = selectionState)
     }
+  }
+
+  fun deleteCall(call: CallLogRow.Call): Single<Int> {
+    return callLogRepository.deleteSelectedCallLogs(setOf(call.call.messageId))
   }
 
   fun clearSelected() {
@@ -65,6 +106,20 @@ class CallLogViewModel(
 
   fun setFilter(filter: CallLogFilter) {
     callLogStore.update { it.copy(filter = filter) }
+  }
+
+  fun deleteSelection(): Single<Int> {
+    val stateSnapshot = callLogStore.state
+    val messageIds: Set<Long> = stateSnapshot.selectionState.selected()
+      .filterIsInstance<CallLogRow.Id.Call>()
+      .map { it.messageId }
+      .toSet()
+
+    return if (stateSnapshot.selectionState.isExclusionary()) {
+      callLogRepository.deleteAllCallLogsExcept(messageIds)
+    } else {
+      callLogRepository.deleteSelectedCallLogs(messageIds)
+    }
   }
 
   private data class CallLogState(

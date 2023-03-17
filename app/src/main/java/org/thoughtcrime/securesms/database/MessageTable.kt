@@ -44,6 +44,7 @@ import org.signal.core.util.forEach
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
+import org.signal.core.util.readToSet
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleLong
 import org.signal.core.util.readToSingleObject
@@ -385,6 +386,20 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
            ) 
          ORDER BY $DATE_RECEIVED DESC LIMIT 1
        """.toSingleLine()
+
+    private val IS_CALL_TYPE_CLAUSE = """(
+      ($TYPE = ${MessageTypes.INCOMING_AUDIO_CALL_TYPE})
+      OR
+      ($TYPE = ${MessageTypes.INCOMING_VIDEO_CALL_TYPE})
+      OR
+      ($TYPE = ${MessageTypes.OUTGOING_AUDIO_CALL_TYPE})
+      OR
+      ($TYPE = ${MessageTypes.OUTGOING_VIDEO_CALL_TYPE})
+      OR
+      ($TYPE = ${MessageTypes.MISSED_AUDIO_CALL_TYPE})
+      OR
+      ($TYPE = ${MessageTypes.MISSED_VIDEO_CALL_TYPE})
+    )""".toSingleLine()
 
     @JvmStatic
     fun mmsReaderFor(cursor: Cursor): MmsReader {
@@ -2964,6 +2979,56 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     return messageId
+  }
+
+  /**
+   * Deletes the call updates specified in the messageIds set.
+   */
+  fun deleteCallUpdates(messageIds: Set<Long>): Int {
+    return deleteCallUpdatesInternal(messageIds, SqlUtil.CollectionOperator.IN)
+  }
+
+  /**
+   * Deletes all call updates except for those specified in the parameter.
+   */
+  fun deleteAllCallUpdatesExcept(excludedMessageIds: Set<Long>): Int {
+    return deleteCallUpdatesInternal(excludedMessageIds, SqlUtil.CollectionOperator.NOT_IN)
+  }
+
+  private fun deleteCallUpdatesInternal(messageIds: Set<Long>, collectionOperator: SqlUtil.CollectionOperator): Int {
+    var rowsDeleted = 0
+    val threadIds: Set<Long> = writableDatabase.withinTransaction {
+      SqlUtil.buildCollectionQuery(
+        column = ID,
+        values = messageIds,
+        prefix = "$IS_CALL_TYPE_CLAUSE AND ",
+        collectionOperator = collectionOperator
+      ).map { query ->
+        val threadSet = writableDatabase.select(ID)
+          .from(TABLE_NAME)
+          .where(query.where, query.whereArgs)
+          .run()
+          .readToSet { cursor ->
+            cursor.requireLong(ID)
+          }
+
+        val rows = writableDatabase
+          .delete(TABLE_NAME)
+          .where(query.where, query.whereArgs)
+          .run()
+
+        if (rows <= 0) {
+          Log.w(TAG, "Failed to delete some rows during call update deletion.")
+        }
+
+        rowsDeleted += rows
+        threadSet
+      }.flatten().toSet()
+    }
+
+    notifyConversationListeners(threadIds)
+    notifyConversationListListeners()
+    return rowsDeleted
   }
 
   fun deleteMessage(messageId: Long): Boolean {

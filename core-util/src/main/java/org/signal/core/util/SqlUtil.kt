@@ -243,13 +243,19 @@ object SqlUtil {
    */
   @JvmOverloads
   @JvmStatic
-  fun buildCollectionQuery(column: String, values: Collection<Any?>, prefix: String = "", maxSize: Int = MAX_QUERY_ARGS): List<Query> {
+  fun buildCollectionQuery(
+    column: String,
+    values: Collection<Any?>,
+    prefix: String = "",
+    maxSize: Int = MAX_QUERY_ARGS,
+    collectionOperator: CollectionOperator = CollectionOperator.IN
+  ): List<Query> {
     return if (values.isEmpty()) {
       emptyList()
     } else {
       values
         .chunked(maxSize)
-        .map { batch -> buildSingleCollectionQuery(column, batch, prefix) }
+        .map { batch -> buildSingleCollectionQuery(column, batch, prefix, collectionOperator) }
     }
   }
 
@@ -261,7 +267,12 @@ object SqlUtil {
    */
   @JvmOverloads
   @JvmStatic
-  fun buildSingleCollectionQuery(column: String, values: Collection<Any?>, prefix: String = ""): Query {
+  fun buildSingleCollectionQuery(
+    column: String,
+    values: Collection<Any?>,
+    prefix: String = "",
+    collectionOperator: CollectionOperator = CollectionOperator.IN
+  ): Query {
     require(!values.isEmpty()) { "Must have values!" }
 
     val query = StringBuilder()
@@ -276,7 +287,7 @@ object SqlUtil {
       }
       i++
     }
-    return Query("$prefix $column IN ($query)".trim(), buildArgs(*args))
+    return Query("$prefix $column ${collectionOperator.sql} ($query)".trim(), buildArgs(*args))
   }
 
   @JvmStatic
@@ -404,5 +415,10 @@ object SqlUtil {
         other
       }
     }
+  }
+
+  enum class CollectionOperator(val sql: String) {
+    IN("IN"),
+    NOT_IN("NOT IN")
   }
 }

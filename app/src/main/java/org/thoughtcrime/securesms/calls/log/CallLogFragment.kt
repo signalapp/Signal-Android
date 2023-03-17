@@ -1,28 +1,36 @@
 package org.thoughtcrime.securesms.calls.log
 
 import android.annotation.SuppressLint
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ActionMode
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.kotlin.Observables
+import io.reactivex.rxjava3.kotlin.Flowables
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.new.NewCallActivity
 import org.thoughtcrime.securesms.components.Material3SearchToolbar
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
+import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
+import org.thoughtcrime.securesms.conversation.SignalBottomActionBarController
 import org.thoughtcrime.securesms.conversationlist.ConversationFilterBehavior
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView.OnCloseClicked
@@ -32,8 +40,10 @@ import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterPullState
 import org.thoughtcrime.securesms.databinding.CallLogFragmentBinding
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.main.SearchBinder
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -53,12 +63,9 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   private val binding: CallLogFragmentBinding by ViewBinderDelegate(CallLogFragmentBinding::bind)
   private val disposables = LifecycleDisposable()
   private val callLogContextMenu = CallLogContextMenu(this, this)
-  private val callLogActionMode = CallLogActionMode(
-    fragment = this,
-    onResetSelectionState = {
-      viewModel.clearSelected()
-    }
-  )
+  private val callLogActionMode = CallLogActionMode(CallLogActionModeCallback())
+
+  private lateinit var signalBottomActionBarController: SignalBottomActionBarController
 
   private val tabsViewModel: ConversationListTabsViewModel by viewModels(ownerProducer = { requireActivity() })
 
@@ -90,36 +97,49 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
 
     val adapter = CallLogAdapter(this)
     disposables.bindTo(viewLifecycleOwner)
-    disposables += viewModel.controller
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe {
-        adapter.setPagingController(it)
-      }
+    adapter.setPagingController(viewModel.controller)
 
-    disposables += Observables.combineLatest(viewModel.data, viewModel.selected)
+    disposables += Flowables.combineLatest(viewModel.data, viewModel.selected)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { (data, selected) ->
         adapter.submitCallRows(data, selected)
       }
 
-    disposables += viewModel.selected
-      .observeOn(AndroidSchedulers.mainThread())
+    disposables += Flowables.combineLatest(viewModel.selected, viewModel.totalCount)
       .distinctUntilChanged()
-      .subscribe {
-        if (!it.isNotEmpty(adapter.itemCount)) {
-          callLogActionMode.end()
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { (selected, totalCount) ->
+        if (selected.isNotEmpty(totalCount)) {
+          callLogActionMode.setCount(selected.count(totalCount))
         } else {
-          callLogActionMode.setCount(it.count(adapter.itemCount))
+          callLogActionMode.end()
         }
       }
 
     binding.recycler.adapter = adapter
+
     requireListener<Material3OnScrollHelperBinder>().bindScrollHelper(binding.recycler)
     binding.fab.setOnClickListener {
       startActivity(NewCallActivity.createIntent(requireContext()))
     }
 
     binding.pullView.setPillText(R.string.CallLogFragment__filtered_by_missed)
+
+    binding.bottomActionBar.setItems(
+      listOf(
+        ActionItem(
+          iconRes = R.drawable.symbol_check_circle_24,
+          title = getString(R.string.CallLogFragment__select_all)
+        ) {
+          viewModel.selectAll()
+        },
+        ActionItem(
+          iconRes = R.drawable.symbol_trash_24,
+          title = getString(R.string.CallLogFragment__delete),
+          action = this::handleDeleteSelectedRows
+        )
+      )
+    )
 
     initializePullToFilter()
     initializeTapToScrollToTop()
@@ -133,6 +153,12 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
           }
         }
       }
+    )
+
+    signalBottomActionBarController = SignalBottomActionBarController(
+      binding.bottomActionBar,
+      binding.recycler,
+      BottomActionBarControllerCallback()
     )
   }
 
@@ -152,6 +178,25 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
           binding.recycler.scrollToPosition(0)
         }
       })
+  }
+
+  private fun handleDeleteSelectedRows() {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, callLogActionMode.getCount(), callLogActionMode.getCount()))
+      .setPositiveButton(R.string.CallLogFragment__delete_for_me) { _, _ ->
+        disposables += viewModel.deleteSelection()
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribeBy(onSuccess = {
+            callLogActionMode.end()
+            Snackbar.make(
+              binding.root,
+              resources.getQuantityString(R.plurals.CallLogFragment__d_calls_deleted, it, it),
+              Snackbar.LENGTH_SHORT
+            ).show()
+          })
+      }
+      .setNegativeButton(android.R.string.cancel) { _, _ -> }
+      .show()
   }
 
   private fun initializeSearchAction() {
@@ -205,7 +250,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       }
 
       override fun canStartNestedScroll(): Boolean {
-        return !isSearchOpen() || binding.pullView.isCloseable()
+        return !callLogActionMode.isInActionMode() || !isSearchOpen() || binding.pullView.isCloseable()
       }
     }
 
@@ -218,6 +263,9 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   override fun onCallClicked(callLogRow: CallLogRow.Call) {
     if (viewModel.selectionStateSnapshot.isNotEmpty(binding.recycler.adapter!!.itemCount)) {
       viewModel.toggleSelected(callLogRow.id)
+    } else {
+      val intent = ConversationSettingsActivity.forCall(requireContext(), callLogRow.peer, longArrayOf(callLogRow.call.messageId))
+      startActivity(intent)
     }
   }
 
@@ -231,9 +279,35 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     binding.recyclerCoordinatorAppBar.setExpanded(false, true)
   }
 
+  override fun onStartAudioCallClicked(peer: Recipient) {
+    CommunicationActions.startVoiceCall(this, peer)
+  }
+
+  override fun onStartVideoCallClicked(peer: Recipient) {
+    CommunicationActions.startVideoCall(this, peer)
+  }
+
   override fun startSelection(call: CallLogRow.Call) {
     callLogActionMode.start()
     viewModel.toggleSelected(call.id)
+  }
+
+  override fun deleteCall(call: CallLogRow.Call) {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, 1, 1))
+      .setPositiveButton(R.string.CallLogFragment__delete_for_me) { _, _ ->
+        disposables += viewModel.deleteCall(call)
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribeBy(onSuccess = {
+            Snackbar.make(
+              binding.root,
+              resources.getQuantityString(R.plurals.CallLogFragment__d_calls_deleted, it, it),
+              Snackbar.LENGTH_SHORT
+            ).show()
+          })
+      }
+      .setNegativeButton(android.R.string.cancel) { _, _ -> }
+      .show()
   }
 
   private fun filterMissedCalls() {
@@ -257,6 +331,29 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   private fun isSearchVisible(): Boolean {
     return requireListener<SearchBinder>().getSearchToolbar().resolved() &&
       requireListener<SearchBinder>().getSearchToolbar().get().getVisibility() == View.VISIBLE
+  }
+
+  private inner class BottomActionBarControllerCallback : SignalBottomActionBarController.Callback {
+    override fun onBottomActionBarVisibilityChanged(visibility: Int) = Unit
+  }
+
+  private inner class CallLogActionModeCallback : CallLogActionMode.Callback {
+    override fun startActionMode(callback: ActionMode.Callback): ActionMode? {
+      val actionMode = (requireActivity() as AppCompatActivity).startSupportActionMode(callback)
+      requireListener<Callback>().onMultiSelectStarted()
+      signalBottomActionBarController.setVisibility(true)
+      return actionMode
+    }
+
+    override fun onActionModeWillEnd() {
+      requireListener<Callback>().onMultiSelectFinished()
+      signalBottomActionBarController.setVisibility(false)
+    }
+
+    override fun getResources(): Resources = resources
+    override fun onResetSelectionState() {
+      viewModel.clearSelected()
+    }
   }
 
   interface Callback {

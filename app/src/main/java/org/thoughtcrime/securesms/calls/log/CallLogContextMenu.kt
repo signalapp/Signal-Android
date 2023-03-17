@@ -93,11 +93,12 @@ class CallLogContextMenu(
       iconRes = R.drawable.symbol_trash_24,
       title = fragment.getString(R.string.CallContextMenu__delete)
     ) {
-      // TODO [alex] Delete message by message id
+      callbacks.deleteCall(call)
     }
   }
 
   interface Callbacks {
     fun startSelection(call: CallLogRow.Call)
+    fun deleteCall(call: CallLogRow.Call)
   }
 }
