@@ -101,6 +101,7 @@ public final class SendRetryReceiptJob extends BaseJob {
 
   @Override
   public void onFailure() {
+    ApplicationDependencies.getJobManager().add(new AutomaticSessionResetJob(recipientId, errorMessage.getDeviceId(), System.currentTimeMillis()));
   }
 
   public static final class Factory implements Job.Factory<SendRetryReceiptJob> {
