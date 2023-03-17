@@ -17,6 +17,7 @@ import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.ConversationListTabsBinding
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.visible
 import java.text.NumberFormat
@@ -61,18 +62,7 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
       viewModel.onStoriesSelected()
     }
 
-    if (!FeatureFlags.callsTab()) {
-      listOf(
-        binding.callsPill,
-        binding.callsTabIcon,
-        binding.callsTabContainer,
-        binding.callsTabLabel,
-        binding.callsUnreadIndicator,
-        binding.callsTabTouchPoint
-      ).forEach {
-        it.visible = false
-      }
-    }
+    updateTabsVisibility()
 
     viewModel.state.observe(viewLifecycleOwner) {
       update(it, shouldBeImmediate)
@@ -80,48 +70,100 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
     }
   }
 
+  override fun onResume() {
+    super.onResume()
+    updateTabsVisibility()
+  }
+
+  private fun updateTabsVisibility() {
+    listOf(
+      binding.callsPill,
+      binding.callsTabIcon,
+      binding.callsTabContainer,
+      binding.callsTabLabel,
+      binding.callsUnreadIndicator,
+      binding.callsTabTouchPoint
+    ).forEach {
+      it.visible = FeatureFlags.callsTab()
+    }
+
+    listOf(
+      binding.storiesPill,
+      binding.storiesTabIcon,
+      binding.storiesTabContainer,
+      binding.storiesTabLabel,
+      binding.storiesUnreadIndicator,
+      binding.storiesTabTouchPoint
+    ).forEach {
+      it.visible = Stories.isFeatureEnabled()
+    }
+
+    update(viewModel.stateSnapshot, true)
+  }
+
   private fun update(state: ConversationListTabsState, immediate: Boolean) {
     binding.chatsTabIcon.isSelected = state.tab == ConversationListTab.CHATS
     binding.chatsPill.isSelected = state.tab == ConversationListTab.CHATS
+
+    if (Stories.isFeatureEnabled()) {
+      binding.storiesTabIcon.isSelected = state.tab == ConversationListTab.STORIES
+      binding.storiesPill.isSelected = state.tab == ConversationListTab.STORIES
+    }
 
     if (FeatureFlags.callsTab()) {
       binding.callsTabIcon.isSelected = state.tab == ConversationListTab.CALLS
       binding.callsPill.isSelected = state.tab == ConversationListTab.CALLS
     }
 
-    binding.storiesTabIcon.isSelected = state.tab == ConversationListTab.STORIES
-    binding.storiesPill.isSelected = state.tab == ConversationListTab.STORIES
-
     val hasStateChange = state.tab != state.prevTab
     if (immediate) {
       binding.chatsTabIcon.pauseAnimation()
-      binding.storiesTabIcon.pauseAnimation()
-
       binding.chatsTabIcon.progress = if (state.tab == ConversationListTab.CHATS) 1f else 0f
-      binding.storiesTabIcon.progress = if (state.tab == ConversationListTab.STORIES) 1f else 0f
+
+      if (Stories.isFeatureEnabled()) {
+        binding.storiesTabIcon.pauseAnimation()
+        binding.storiesTabIcon.progress = if (state.tab == ConversationListTab.STORIES) 1f else 0f
+      }
 
       if (FeatureFlags.callsTab()) {
         binding.callsTabIcon.pauseAnimation()
         binding.callsTabIcon.progress = if (state.tab == ConversationListTab.CALLS) 1f else 0f
-        runPillAnimation(0, binding.callsPill, binding.chatsPill, binding.storiesPill)
-      } else {
-        runPillAnimation(0, binding.chatsPill, binding.storiesPill)
       }
+
+      runPillAnimation(
+        0,
+        listOfNotNull(
+          binding.chatsPill,
+          binding.callsPill.takeIf { FeatureFlags.callsTab() },
+          binding.storiesPill.takeIf { Stories.isFeatureEnabled() }
+        )
+      )
     } else if (hasStateChange) {
-      if (FeatureFlags.callsTab()) {
-        runLottieAnimations(binding.callsTabIcon, binding.chatsTabIcon, binding.storiesTabIcon)
-        runPillAnimation(150, binding.callsPill, binding.chatsPill, binding.storiesPill)
-      } else {
-        runLottieAnimations(binding.chatsTabIcon, binding.storiesTabIcon)
-        runPillAnimation(150, binding.chatsPill, binding.storiesPill)
-      }
+      runLottieAnimations(
+        listOfNotNull(
+          binding.chatsTabIcon,
+          binding.callsTabIcon.takeIf { FeatureFlags.callsTab() },
+          binding.storiesTabIcon.takeIf { Stories.isFeatureEnabled() }
+        )
+      )
+
+      runPillAnimation(
+        150,
+        listOfNotNull(
+          binding.chatsPill,
+          binding.callsPill.takeIf { FeatureFlags.callsTab() },
+          binding.storiesPill.takeIf { Stories.isFeatureEnabled() }
+        )
+      )
     }
 
     binding.chatsUnreadIndicator.visible = state.unreadMessagesCount > 0
     binding.chatsUnreadIndicator.text = formatCount(state.unreadMessagesCount)
 
-    binding.storiesUnreadIndicator.visible = state.unreadStoriesCount > 0 || state.hasFailedStory
-    binding.storiesUnreadIndicator.text = if (state.hasFailedStory) "!" else formatCount(state.unreadStoriesCount)
+    if (Stories.isFeatureEnabled()) {
+      binding.storiesUnreadIndicator.visible = state.unreadStoriesCount > 0 || state.hasFailedStory
+      binding.storiesUnreadIndicator.text = if (state.hasFailedStory) "!" else formatCount(state.unreadStoriesCount)
+    }
 
     if (FeatureFlags.callsTab()) {
       binding.callsUnreadIndicator.visible = state.unreadCallsCount > 0
@@ -131,7 +173,7 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
     requireView().visible = state.visibilityState.isVisible()
   }
 
-  private fun runLottieAnimations(vararg toAnimate: LottieAnimationView) {
+  private fun runLottieAnimations(toAnimate: List<LottieAnimationView>) {
     toAnimate.forEach {
       if (it.isSelected) {
         it.resumeAnimation()
@@ -145,7 +187,7 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
     }
   }
 
-  private fun runPillAnimation(duration: Long, vararg toAnimate: ImageView) {
+  private fun runPillAnimation(duration: Long, toAnimate: List<ImageView>) {
     val (selected, unselected) = toAnimate.partition { it.isSelected }
 
     pillAnimator?.cancel()
