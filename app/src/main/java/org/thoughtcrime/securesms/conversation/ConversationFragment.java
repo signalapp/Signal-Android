@@ -2116,7 +2116,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void goToMediaPreview(ConversationItem parent, View sharedElement, MediaIntentFactory.MediaPreviewArgs args) {
       if (listener.isInBubble()) {
-        requireActivity().startActivity(MediaIntentFactory.create(requireActivity(), args));
+        requireActivity().startActivity(MediaIntentFactory.create(requireActivity(), args.skipSharedElementTransition(true)));
         return;
       }
 
