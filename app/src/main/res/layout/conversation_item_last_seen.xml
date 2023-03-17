@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:viewBindingIgnore="true"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:paddingHorizontal="8dp"
     android:paddingTop="24dp"
-    android:paddingBottom="20dp">
+    android:paddingBottom="20dp"
+    tools:viewBindingIgnore="true">
 
     <View
-        android:id="@+id/last_seen_divider"
-        android:layout_width="match_parent"
+        android:id="@+id/last_seen_divider_left"
+        android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginBottom="3dp"
+        android:layout_margin="13dp"
+        android:layout_weight="1.5"
         android:background="@color/core_grey_45" />
 
     <TextView
         android:id="@+id/text"
+        style="@style/Signal.Text.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
-        style="@style/Signal.Text.Caption"
+        android:background="@color/signal_background_primary"
         android:fontFamily="sans-serif-medium"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="4dp"
+        android:textAlignment="center"
         android:textColor="@color/signal_text_primary"
         tools:text="3 unread messages" />
+
+    <View
+        android:id="@+id/last_seen_divider_right"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_margin="13dp"
+        android:layout_weight="1.55"
+        android:background="@color/core_grey_45" />
 
 </LinearLayout>

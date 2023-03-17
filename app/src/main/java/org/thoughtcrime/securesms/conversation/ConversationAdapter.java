@@ -125,12 +125,12 @@ public class ConversationAdapter
   private PulseRequest        pulseRequest;
 
   public ConversationAdapter(@NonNull Context context,
-                      @NonNull LifecycleOwner lifecycleOwner,
-                      @NonNull GlideRequests glideRequests,
-                      @NonNull Locale locale,
-                      @Nullable ItemClickListener clickListener,
-                      @NonNull Recipient recipient,
-                      @NonNull Colorizer colorizer)
+                             @NonNull LifecycleOwner lifecycleOwner,
+                             @NonNull GlideRequests glideRequests,
+                             @NonNull Locale locale,
+                             @Nullable ItemClickListener clickListener,
+                             @NonNull Recipient recipient,
+                             @NonNull Colorizer colorizer)
   {
     super(new DiffUtil.ItemCallback<ConversationMessage>() {
       @Override
@@ -362,24 +362,12 @@ public class ConversationAdapter
       viewHolder.setText(DateUtils.getConversationDateHeaderString(viewHolder.itemView.getContext(), locale, conversationMessage.getMessageRecord().getDateSent()));
     }
 
-    if (type == HEADER_TYPE_POPOVER_DATE) {
-      if (hasWallpaper) {
-        viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_18);
+    if (type == HEADER_TYPE_INLINE_DATE) {
+      if (hasWallpaper && ThemeUtil.isDarkTheme(context)) {
+        viewHolder.setTextColor(ContextCompat.getColor(context, R.color.signal_colorNeutralInverse));
       } else {
-        viewHolder.setBackgroundRes(R.drawable.sticky_date_header_background);
+        viewHolder.setTextColor(ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant));
       }
-    } else if (type == HEADER_TYPE_INLINE_DATE) {
-      if (hasWallpaper) {
-        viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_18);
-      } else {
-        viewHolder.clearBackground();
-      }
-    }
-
-    if (hasWallpaper && ThemeUtil.isDarkTheme(context)) {
-      viewHolder.setTextColor(ContextCompat.getColor(context, R.color.signal_colorNeutralInverse));
-    } else {
-      viewHolder.setTextColor(ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant));
     }
   }
 
@@ -417,7 +405,7 @@ public class ConversationAdapter
       viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_18);
       viewHolder.setDividerColor(viewHolder.itemView.getResources().getColor(R.color.transparent_black_80));
     } else {
-      viewHolder.clearBackground();
+      viewHolder.setTextColor(ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant));
       viewHolder.setDividerColor(viewHolder.itemView.getResources().getColor(R.color.core_grey_45));
     }
   }
@@ -697,12 +685,14 @@ public class ConversationAdapter
 
   static class StickyHeaderViewHolder extends RecyclerView.ViewHolder {
     TextView textView;
-    View     divider;
+    View     leftDivider;
+    View     rightDivider;
 
     StickyHeaderViewHolder(View itemView) {
       super(itemView);
       textView = itemView.findViewById(R.id.text);
-      divider  = itemView.findViewById(R.id.last_seen_divider);
+      leftDivider  = itemView.findViewById(R.id.last_seen_divider_left);
+      rightDivider  = itemView.findViewById(R.id.last_seen_divider_right);
     }
 
     StickyHeaderViewHolder(TextView textView) {
@@ -723,8 +713,9 @@ public class ConversationAdapter
     }
 
     public void setDividerColor(@ColorInt int color) {
-      if (divider != null) {
-        divider.setBackgroundColor(color);
+      if (leftDivider != null && rightDivider != null) {
+        leftDivider.setBackgroundColor(color);
+        rightDivider.setBackgroundColor(color);
       }
     }
 
