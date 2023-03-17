@@ -120,8 +120,8 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
     binding.chatsUnreadIndicator.visible = state.unreadMessagesCount > 0
     binding.chatsUnreadIndicator.text = formatCount(state.unreadMessagesCount)
 
-    binding.storiesUnreadIndicator.visible = state.unreadStoriesCount > 0
-    binding.storiesUnreadIndicator.text = formatCount(state.unreadStoriesCount)
+    binding.storiesUnreadIndicator.visible = state.unreadStoriesCount > 0 || state.hasFailedStory
+    binding.storiesUnreadIndicator.text = if (state.hasFailedStory) "!" else formatCount(state.unreadStoriesCount)
 
     if (FeatureFlags.callsTab()) {
       binding.callsUnreadIndicator.visible = state.unreadCallsCount > 0

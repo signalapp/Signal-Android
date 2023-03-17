@@ -60,6 +60,7 @@ class StoriesLandingViewModel(private val storiesLandingRepository: StoriesLandi
 
   fun markStoriesRead() {
     storiesLandingRepository.markStoriesRead()
+    storiesLandingRepository.markFailedStoriesNotified()
   }
 
   class Factory(private val storiesLandingRepository: StoriesLandingRepository) : ViewModelProvider.Factory {

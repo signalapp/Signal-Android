@@ -1314,6 +1314,17 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return markedMessageInfos
   }
 
+  fun markAllFailedStoriesNotified() {
+    val where = "$IS_STORY_CLAUSE AND (${getOutgoingTypeClause()}) AND $NOTIFIED = 0 AND ($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_SENT_FAILED_TYPE}"
+
+    writableDatabase
+      .update("$TABLE_NAME INDEXED BY $INDEX_THREAD_DATE")
+      .values(NOTIFIED to 1)
+      .where(where)
+      .run()
+    notifyConversationListListeners()
+  }
+
   fun markOnboardingStoryRead() {
     val recipientId = SignalStore.releaseChannelValues().releaseChannelRecipientId ?: return
     val where = "$IS_STORY_CLAUSE AND NOT (${getOutgoingTypeClause()}) AND $READ = 0 AND $RECIPIENT_ID = ?"
@@ -1457,6 +1468,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return readableDatabase
       .rawQuery(query, null)
       .readToList { RecipientId.from(it.getLong(0)) }
+  }
+
+  fun hasFailedOutgoingStory(): Boolean {
+    val where = "$IS_STORY_CLAUSE AND (${getOutgoingTypeClause()}) AND $NOTIFIED = 0 AND ($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_SENT_FAILED_TYPE}"
+    return readableDatabase.exists(TABLE_NAME).where(where).run()
   }
 
   fun getOrderedStoryRecipientsAndIds(isOutgoingOnly: Boolean): List<StoryResult> {
@@ -1998,6 +2014,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         NOTIFIED to 1,
         REACTIONS_LAST_SEEN to System.currentTimeMillis()
       )
+      .where("$ID = ?", id)
+      .run()
+  }
+
+  fun markAsNotNotified(id: Long) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(NOTIFIED to 0)
       .where("$ID = ?", id)
       .run()
   }

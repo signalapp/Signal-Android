@@ -47,6 +47,22 @@ class ConversationListTabRepository {
     }.subscribeOn(Schedulers.io())
   }
 
+  fun getHasFailedOutgoingStories(): Observable<Boolean> {
+    return Observable.create<Boolean> { emitter ->
+      fun refresh() {
+        emitter.onNext(SignalDatabase.messages.hasFailedOutgoingStory())
+      }
+
+      val listener = DatabaseObserver.Observer {
+        refresh()
+      }
+
+      ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(listener)
+      emitter.setCancellable { ApplicationDependencies.getDatabaseObserver().unregisterObserver(listener) }
+      refresh()
+    }.subscribeOn(Schedulers.io())
+  }
+
   fun getNumberOfUnseenCalls(): Observable<Long> {
     return Observable.create { emitter ->
       fun refresh() {

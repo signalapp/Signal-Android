@@ -34,6 +34,10 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
     disposables += repository.getNumberOfUnseenStories().subscribe { unseenStories ->
       store.update { it.copy(unreadStoriesCount = unseenStories) }
     }
+
+    disposables += repository.getHasFailedOutgoingStories().subscribe { hasFailedStories ->
+      store.update { it.copy(hasFailedStory = hasFailedStories) }
+    }
   }
 
   override fun onCleared() {
