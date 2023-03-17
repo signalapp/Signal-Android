@@ -164,6 +164,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
       log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getRecipient().getId() + ", Attachments: " + buildAttachmentString(message.getAttachments()));
 
       List<Recipient> targets;
+      List<RecipientId> skipped = Collections.emptyList();
 
       if (Util.hasItems(filterRecipientIds)) {
         targets = new ArrayList<>(filterRecipientIds.size() + existingNetworkFailures.size());
@@ -172,13 +173,15 @@ public final class PushDistributionListSendJob extends PushSendJob {
       } else if (!existingNetworkFailures.isEmpty()) {
         targets = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).toList();
       } else {
-        targets = Stream.of(Stories.getRecipientsToSendTo(messageId, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies())).distinctBy(Recipient::getId).toList();
+        Stories.SendData data = Stories.getRecipientsToSendTo(messageId, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies());
+        targets = data.getTargets();
+        skipped = data.getSkipped();
       }
 
       List<SendMessageResult> results = deliver(message, targets);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
 
-      PushGroupSendJob.processGroupMessageResults(context, messageId, -1, null, message, results, targets, Collections.emptyList(), existingNetworkFailures, existingIdentityMismatches);
+      PushGroupSendJob.processGroupMessageResults(context, messageId, -1, null, message, results, targets, skipped, existingNetworkFailures, existingIdentityMismatches);
 
     } catch (UntrustedIdentityException | UndeliverableMessageException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
