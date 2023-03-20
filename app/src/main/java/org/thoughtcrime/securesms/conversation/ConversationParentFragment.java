@@ -155,7 +155,6 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactShareEditActivity;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
-import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.conversation.drafts.DraftViewModel;
 import org.thoughtcrime.securesms.conversation.ui.groupcall.GroupCallViewModel;
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQuery;
@@ -176,7 +175,6 @@ import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -237,7 +235,6 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
-import org.thoughtcrime.securesms.mms.QuoteId;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -1681,7 +1678,21 @@ public class ConversationParentFragment extends Fragment
                   break;
                 case Draft.QUOTE:
                   SettableFuture<Boolean> quoteResult = new SettableFuture<>();
-                  new QuoteRestorationTask(draft.getValue(), quoteResult).execute();
+                  disposables.add(draftViewModel.loadDraftQuote(draft.getValue()).subscribe(
+                      conversationMessage -> {
+                        handleReplyMessage(conversationMessage);
+                        quoteResult.set(true);
+                      },
+                      err -> {
+                        Log.e(TAG, "Failed to restore a quote from a draft.", err);
+                        quoteResult.set(false);
+                      },
+                      () -> {
+                        Log.e(TAG, "Failed to restore a quote from a draft. No matching message record.");
+                        quoteResult.set(false);
+                      }
+                  ));
+
                   quoteResult.addListener(listener);
                   break;
                 case Draft.VOICE_NOTE:
@@ -4255,50 +4266,6 @@ public class ConversationParentFragment extends Fragment
           startActivity(VerifyIdentityActivity.newIntent(requireContext(), unverifiedIdentities.get(which), false));
         });
         builder.show();
-      }
-    }
-  }
-
-  private class QuoteRestorationTask extends AsyncTask<Void, Void, ConversationMessage> {
-
-    private final String                  serialized;
-    private final SettableFuture<Boolean> future;
-
-    QuoteRestorationTask(@NonNull String serialized, @NonNull SettableFuture<Boolean> future) {
-      this.serialized = serialized;
-      this.future     = future;
-    }
-
-    @Override
-    protected ConversationMessage doInBackground(Void... voids) {
-      QuoteId quoteId = QuoteId.deserialize(ApplicationDependencies.getApplication(), serialized);
-
-      if (quoteId == null) {
-        return null;
-      }
-
-      Context context = ApplicationDependencies.getApplication();
-
-      MessageRecord messageRecord = SignalDatabase.messages().getMessageFor(quoteId.getId(), quoteId.getAuthor());
-      if (messageRecord == null) {
-        return null;
-      }
-
-      if (messageRecord instanceof MediaMmsMessageRecord) {
-        messageRecord = ((MediaMmsMessageRecord) messageRecord).withAttachments(context, SignalDatabase.attachments().getAttachmentsForMessage(messageRecord.getId()));
-      }
-
-      return ConversationMessageFactory.createWithUnresolvedData(context, messageRecord);
-    }
-
-    @Override
-    protected void onPostExecute(ConversationMessage conversationMessage) {
-      if (conversationMessage != null) {
-        handleReplyMessage(conversationMessage);
-        future.set(true);
-      } else {
-        Log.e(TAG, "Failed to restore a quote from a draft. No matching message record.");
-        future.set(false);
       }
     }
   }
