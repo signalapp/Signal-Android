@@ -485,8 +485,8 @@
         <item quantity="other">वाचले</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">वाचले नाही</item>
-        <item quantity="other">वाचले नाही</item>
+        <item quantity="one">न वाचलेले</item>
+        <item quantity="other">न वाचलेले</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">पिन करा</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">आपल्या ऑडिओवर %1$s प्रतिक्रिया दिली.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">आपल्या एकदा-बघा मिडियावर %1$s प्रतिक्रिया दिली.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">आपल्या पेमेंट्स वर %1$s प्रतिक्रिया दिली.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">आपल्या स्टिकरवर %1$s प्रतिक्रिया दिली.</string>
     <string name="MessageNotifier_this_message_was_deleted">हा संदेश हटवला गेला.</string>
 

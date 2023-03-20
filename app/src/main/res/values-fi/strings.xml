@@ -482,11 +482,11 @@
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Luettu</item>
-        <item quantity="other">Luettu</item>
+        <item quantity="other">Luettua</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="one">Lukematon</item>
-        <item quantity="other">Lukematon</item>
+        <item quantity="other">Lukematonta</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Kiinnitä</item>
@@ -510,8 +510,8 @@
         <item quantity="other">Arkistoi</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Pal. arkistosta</item>
-        <item quantity="other">Pal. arkistosta</item>
+        <item quantity="one">Palauta arkistosta</item>
+        <item quantity="other">Palauta arkistosta</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">Poista</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Lähetti reaktion %1$s ääniviestiisi.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Lähetti reaktion %1$s kerran katsottavaan mediaasi.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Lähetti reaktion %1$s maksuusi.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Lähetti reaktion %1$s tarraasi.</string>
     <string name="MessageNotifier_this_message_was_deleted">Viesti poistettiin.</string>
 

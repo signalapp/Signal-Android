@@ -21,7 +21,7 @@
     <string name="delete">លុប</string>
     <string name="please_wait">សូមរង់ចាំ…</string>
     <string name="save">រក្សាទុក</string>
-    <string name="note_to_self">កំណត់ចំណាំខ្លួនឯង</string>
+    <string name="note_to_self">កំណត់ចំណាំផ្ទាល់ខ្លួន</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -490,10 +490,10 @@
     </plurals>
     <string name="ConversationListFragment_select">ជ្រើសរើស</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="other">បណ្ណសារ</item>
+        <item quantity="other">ទុកក្នុងបណ្ណសារ</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="other">បិទបណ្ណសារ</item>
+        <item quantity="other">ឈប់ទុកក្នុងបណ្ណសារ</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="other">លុប</item>
@@ -2075,7 +2075,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">បានប្រតិកម្ម %1$s ទៅនឹងសំឡេងរបស់អ្នក។</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">បានប្រតិកម្ម %1$s ទៅនឹងមេឌៀដែលមើលបានតែម្តងរបស់អ្នក។</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">បានប្រតិកម្ម %1$s ទៅនឹងការបង់ប្រាក់របស់អ្នក។</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">បានប្រតិកម្ម %1$s ទៅនឹងស្ទីគ័ររបស់អ្នក។</string>
     <string name="MessageNotifier_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
 

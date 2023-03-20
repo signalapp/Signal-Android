@@ -502,15 +502,15 @@
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Прочитане</item>
-        <item quantity="few">Прочитане</item>
-        <item quantity="many">Прочитане</item>
-        <item quantity="other">Прочитане</item>
+        <item quantity="few">Прочитані</item>
+        <item quantity="many">Прочитані</item>
+        <item quantity="other">Прочитані</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="one">Непрочитане</item>
-        <item quantity="few">Непрочитане</item>
-        <item quantity="many">Непрочитане</item>
-        <item quantity="other">Непрочитане</item>
+        <item quantity="few">Непрочитані</item>
+        <item quantity="many">Непрочитані</item>
+        <item quantity="other">Непрочитані</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Закріпити</item>
@@ -555,7 +555,7 @@
         <item quantity="many">Видалити</item>
         <item quantity="other">Видалити</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">Обрати все</string>
+    <string name="ConversationListFragment_select_all">Вибрати все</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d обрано</item>
         <item quantity="few">%1$d обрано</item>
@@ -2291,7 +2291,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Реакція на ваше аудіо: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реакція на ваше одноразове медіа: %1$s.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Реакція на ваш платіж: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Реакція на ваш стікер: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Це повідомлення було видалено.</string>
 

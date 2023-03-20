@@ -481,12 +481,12 @@
         <item quantity="other">%1$d söhbət gələnlər qutusuna köçürüldü</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Oxundu</item>
-        <item quantity="other">Oxundu</item>
+        <item quantity="one">Oxunmuş</item>
+        <item quantity="other">Oxunmuş</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Oxunmadı</item>
-        <item quantity="other">Oxunmadı</item>
+        <item quantity="one">Oxunmamış</item>
+        <item quantity="other">Oxunmamış</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Sancaqla</item>
@@ -497,17 +497,17 @@
         <item quantity="other">Sancağı götür</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Səsi bağla</item>
-        <item quantity="other">Səsi bağla</item>
+        <item quantity="one">Səssiz et</item>
+        <item quantity="other">Səssiz et</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
         <item quantity="one">Səsi aç</item>
         <item quantity="other">Səsi aç</item>
     </plurals>
-    <string name="ConversationListFragment_select">Seçin</string>
+    <string name="ConversationListFragment_select">Seç</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Arxivlə</item>
-        <item quantity="other">Arxivlə</item>
+        <item quantity="one">Arxivləşdir</item>
+        <item quantity="other">Arxivləşdir</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
         <item quantity="one">Arxivdən çıxart</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Səsinizə reaksiya verdi: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Bir dəfə baxıla bilən media faylınıza reaksiya verdi: %1$s.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Ödənişinizə %1$s reaksiyası verdi.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Stikerinizə reaksiya verdi: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Mesaj silindi.</string>
 

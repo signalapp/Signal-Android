@@ -2075,7 +2075,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">對你的語音作出了 %1$s 反應。</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">對你的一次觀看的媒體做出%1$s反應。</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">對你的付款傳送了 %1$s 回應。</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">對你的貼圖作出了 %1$s 反應。</string>
     <string name="MessageNotifier_this_message_was_deleted">此訊息已被刪除。</string>
 

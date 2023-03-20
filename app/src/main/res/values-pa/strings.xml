@@ -481,28 +481,28 @@
         <item quantity="other">%1$d ਗੱਲਬਾਤਾਂ ਨੂੰ ਇਨਬਾਕਸ ਵਿੱਚ ਭੇਜਿਆ ਗਿਆ</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">ਪੜ੍ਹੇ</item>
-        <item quantity="other">ਪੜ੍ਹੇ</item>
+        <item quantity="one">ਪੜ੍ਹਿਆ ਗਿਆ</item>
+        <item quantity="other">ਪੜ੍ਹੇ ਗਏ</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">ਨਾ-ਪੜ੍ਹੇ</item>
-        <item quantity="other">ਨਾ-ਪੜ੍ਹੇ</item>
+        <item quantity="one">ਨਹੀਂ-ਪੜ੍ਹਿਆ ਗਿਆ</item>
+        <item quantity="other">ਨਹੀਂ-ਪੜ੍ਹੇ ਗਏ</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">ਟੰਗੋ</item>
-        <item quantity="other">ਟੰਗੋ</item>
+        <item quantity="one">ਪਿੰਨ ਕਰੋ</item>
+        <item quantity="other">ਪਿੰਨ ਕਰੋ</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">ਲਾਹੋ</item>
-        <item quantity="other">ਲਾਹੋ</item>
+        <item quantity="one">ਅਣਪਿੰਨ ਕਰੋ</item>
+        <item quantity="other">ਅਣਪਿੰਨ ਕਰੋ</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="one">ਮਿਊਟ ਕਰੋ</item>
         <item quantity="other">ਮਿਊਟ ਕਰੋ</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">ਅਨਮਿਊਟ ਕਰੋ</item>
-        <item quantity="other">ਅਨਮਿਊਟ ਕਰੋ</item>
+        <item quantity="one">ਅਣਮਿਊਟ ਕਰੋ</item>
+        <item quantity="other">ਅਣਮਿਊਟ ਕਰੋ</item>
     </plurals>
     <string name="ConversationListFragment_select">ਚੁਣੋ</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -517,7 +517,7 @@
         <item quantity="one">ਮਿਟਾਓ</item>
         <item quantity="other">ਮਿਟਾਓ</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ</string>
+    <string name="ConversationListFragment_select_all">ਸਾਰਿਆਂ ਨੂੰ ਚੁਣੋ</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$dਚੁਣਿਆ</item>
         <item quantity="other">%1$dਚੁਣੇ</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">ਤੁਹਾਡੇ ਆਡੀਓ ਉੱਤੇ %1$s ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ।</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">ਤੁਹਾਡੇ ਇੱਕ ਵਾਰ ਦੇਖੇ ਜਾ ਸਕਣ ਵਾਲੇ ਮੀਡੀਆ ਉੱਤੇ %1$s ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ।</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">ਤੁਹਾਡੇ ਭੁਗਤਾਨ ਉੱਤੇ %1$s ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">ਤੁਹਾਡੇ ਸਟਿੱਕਰ ਉੱਤੇ %1$s ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ।</string>
     <string name="MessageNotifier_this_message_was_deleted">ਇਹ ਸੁਨੇਹਾ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ ਸੀ।</string>
 

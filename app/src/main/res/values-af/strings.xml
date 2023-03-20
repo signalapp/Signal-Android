@@ -481,7 +481,7 @@
         <item quantity="other">%1$d gesprekke na inkassie geskuif</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Lees</item>
+        <item quantity="one">Gelees</item>
         <item quantity="other">Gelees</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
@@ -494,7 +494,7 @@
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
         <item quantity="one">Verwyder speld</item>
-        <item quantity="other">Verwyder speld</item>
+        <item quantity="other">Verwyder spelde</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="one">Demp</item>
@@ -504,7 +504,7 @@
         <item quantity="one">Ontdemp</item>
         <item quantity="other">Ontdemp</item>
     </plurals>
-    <string name="ConversationListFragment_select">Kies</string>
+    <string name="ConversationListFragment_select">Selekteer</string>
     <plurals name="ConversationListFragment_archive_plural">
         <item quantity="one">Argiveer</item>
         <item quantity="other">Argiveer</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Het %1$s gereageer op jou oudio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Het %1$s op jou eenkeerkyk-media gereageer.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Het %1$s op jou betaling gereageer.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Het %1$s op jou plakker gereageer.</string>
     <string name="MessageNotifier_this_message_was_deleted">Hierdie boodskap is geskrap.</string>
 

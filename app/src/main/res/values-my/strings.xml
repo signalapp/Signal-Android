@@ -471,7 +471,7 @@
         <item quantity="other">ပြောစကား %1$d ကို စာပုံးထဲသို့ရွေ့သည်</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="other">ဖတ်သည်</item>
+        <item quantity="other">ဖတ်ပြီး</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="other">မဖတ်ရသေး</item>
@@ -488,7 +488,7 @@
     <plurals name="ConversationListFragment_unmute_plural">
         <item quantity="other">အသံပြန်ဖွင့်ရန်</item>
     </plurals>
-    <string name="ConversationListFragment_select">ရွေးမယ်</string>
+    <string name="ConversationListFragment_select">ရွေးရန်</string>
     <plurals name="ConversationListFragment_archive_plural">
         <item quantity="other">စုစည်းရန်</item>
     </plurals>
@@ -498,7 +498,7 @@
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="other">ဖျက်ရန်</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">အားလုံးကို ရွေးမယ်</string>
+    <string name="ConversationListFragment_select_all">အားလုံး ရွေးရန်</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="other">%1$d ရွေးထားပြီး</item>
     </plurals>
@@ -2075,7 +2075,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">သင့်အသံဖိုင်ကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">သင့်တစ်ကြိမ်ကြည့် မီဒီယာကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">သင့်ငွေပေးချေမှုကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">သင့်စတစ်ကာကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
     <string name="MessageNotifier_this_message_was_deleted">ဤမက်ဆေ့အား ဖျက်ပြီးပါပြီ။</string>
 

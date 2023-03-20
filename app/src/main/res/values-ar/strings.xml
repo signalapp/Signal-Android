@@ -521,28 +521,28 @@
         <item quantity="other">تم نقل %1$d رسالة إلى الوارد</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="zero">اقرأ</item>
-        <item quantity="one">اقرأ</item>
-        <item quantity="two">اقرأ</item>
-        <item quantity="few">اقرأ</item>
-        <item quantity="many">اقرأ</item>
-        <item quantity="other">اقرأ</item>
+        <item quantity="zero">مقروءة</item>
+        <item quantity="one">مقروء</item>
+        <item quantity="two">مقروءة</item>
+        <item quantity="few">مقروءة</item>
+        <item quantity="many">مقروءة</item>
+        <item quantity="other">مقروءة</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="zero">غير مقروء</item>
+        <item quantity="zero">غير مقروءة</item>
         <item quantity="one">غير مقروء</item>
-        <item quantity="two">غير مقروءه</item>
-        <item quantity="few">غير مقروءه</item>
-        <item quantity="many">غير مقروء</item>
-        <item quantity="other">غير مقروء</item>
+        <item quantity="two">غير مقروءة</item>
+        <item quantity="few">غير مقروءة</item>
+        <item quantity="many">غير مقروءة</item>
+        <item quantity="other">غير مقروءة</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="zero">تثبيت</item>
         <item quantity="one">تثبيت</item>
         <item quantity="two">تثبيت</item>
-        <item quantity="few">ثبت</item>
+        <item quantity="few">تثبيت</item>
         <item quantity="many">تثبيت</item>
-        <item quantity="other">ثبت</item>
+        <item quantity="other">تثبيت</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
         <item quantity="zero">إلغاء التثبيت</item>
@@ -554,7 +554,7 @@
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="zero">كتم الدردشات</item>
-        <item quantity="one">كتم الدردشات</item>
+        <item quantity="one">كتم الدردشة</item>
         <item quantity="two">كتم الدردشات</item>
         <item quantity="few">كتم الدردشات</item>
         <item quantity="many">كتم الدردشات</item>
@@ -562,28 +562,28 @@
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
         <item quantity="zero">إلغاء كتم الدردشات</item>
-        <item quantity="one">إلغاء كتم الدردشات</item>
+        <item quantity="one">إلغاء كتم الدردشة</item>
         <item quantity="two">إلغاء كتم الدردشات</item>
         <item quantity="few">إلغاء كتم الدردشات</item>
         <item quantity="many">إلغاء كتم الدردشات</item>
         <item quantity="other">إلغاء كتم الدردشات</item>
     </plurals>
-    <string name="ConversationListFragment_select">حَدِّد</string>
+    <string name="ConversationListFragment_select">تحديد</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="zero">أرشيف</item>
-        <item quantity="one">أرشيف</item>
-        <item quantity="two">أرشيف</item>
-        <item quantity="few">أرشيف</item>
-        <item quantity="many">أرشيف</item>
-        <item quantity="other">أرشيف</item>
+        <item quantity="zero">أرشفة</item>
+        <item quantity="one">أرشفة</item>
+        <item quantity="two">أرشفة</item>
+        <item quantity="few">أرشفة</item>
+        <item quantity="many">أرشفة</item>
+        <item quantity="other">أرشفة</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="zero">أخرج من الأرشيف</item>
-        <item quantity="one">أخرج من الأرشيف</item>
-        <item quantity="two">أخرج من الأرشيف</item>
-        <item quantity="few">أخرج من الأرشيف</item>
-        <item quantity="many">أخرج من الأرشيف</item>
-        <item quantity="other">أخرج من الأرشيف</item>
+        <item quantity="zero">إخراج من الأرشيف</item>
+        <item quantity="one">إخراج من الأرشيف</item>
+        <item quantity="two">إخراج من الأرشيف</item>
+        <item quantity="few">إخراج من الأرشيف</item>
+        <item quantity="many">إخراج من الأرشيف</item>
+        <item quantity="other">إخراج من الأرشيف</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="zero">حذف</item>
@@ -593,7 +593,7 @@
         <item quantity="many">حذف</item>
         <item quantity="other">حذف</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">اختيار الجميع</string>
+    <string name="ConversationListFragment_select_all">تحديد الكل</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="zero">تم تحديد %1$d</item>
         <item quantity="one">تم تحديد %1$d</item>
@@ -2435,7 +2435,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">تفاعل %1$s مع تسجيلك الصوتي.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">تفاعل %1$s مع وسائطك التي تُعرَض مرة واحدة.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">تفاعل %1$s مع عملية الدفع الخاصة بك.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">تم تفاعل %1$s مع ملصقك الخاص.</string>
     <string name="MessageNotifier_this_message_was_deleted">تم حذف هذه الرسالة.</string>
 

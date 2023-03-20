@@ -481,41 +481,41 @@
         <item quantity="other">%1$d مکالمه به صندوق ورودی انتقال یافت</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">خوانده</item>
-        <item quantity="other">خوانده</item>
+        <item quantity="one">خوانده‌شده</item>
+        <item quantity="other">خوانده‌شده</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="one">نخوانده</item>
         <item quantity="other">نخوانده</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">سنجاق</item>
-        <item quantity="other">سنجاق</item>
+        <item quantity="one">سنجاق شود</item>
+        <item quantity="other">سنجاق شود</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
         <item quantity="one">برداشتن سنجاق</item>
         <item quantity="other">برداشتن سنجاق</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">بی‌صدا</item>
-        <item quantity="other">بی‌صدا</item>
+        <item quantity="one">بی‌‌صدا شود</item>
+        <item quantity="other">بی‌صدا شود</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">باصدا</item>
-        <item quantity="other">باصدا</item>
+        <item quantity="one">صدادار شود</item>
+        <item quantity="other">صدادار شود</item>
     </plurals>
     <string name="ConversationListFragment_select">انتخاب</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">بایگانی</item>
-        <item quantity="other">بایگانی</item>
+        <item quantity="one">بایگانی شود</item>
+        <item quantity="other">بایگانی شود</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">خروج از بایگانی</item>
-        <item quantity="other">خروج از بایگانی</item>
+        <item quantity="one">از بایگانی خارج شود</item>
+        <item quantity="other">از بایگانی خارج شود</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">پاک کردن</item>
-        <item quantity="other">پاک کردن</item>
+        <item quantity="one">پاک شود</item>
+        <item quantity="other">پاک شود</item>
     </plurals>
     <string name="ConversationListFragment_select_all">انتخاب همه</string>
     <plurals name="ConversationListFragment_s_selected">
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">با %1$s به فایل صوتی شما واکنش نشان داد.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">با %1$s به رسانه یک‌بارمصرف شما واکنش نشان داد.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">با %1$s به پرداخت شما واکنش نشان داد.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">با %1$s به استیکر شما واکنش نشان داد.</string>
     <string name="MessageNotifier_this_message_was_deleted">این پیام پاک شده بود.</string>
 

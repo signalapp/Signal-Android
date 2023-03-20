@@ -489,12 +489,12 @@
         <item quantity="other">படிக்காதவை</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">ஒட்டு</item>
-        <item quantity="other">பின்</item>
+        <item quantity="one">பின்</item>
+        <item quantity="other">பின்கள்</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">விலக்கு</item>
-        <item quantity="other">அவிழ்</item>
+        <item quantity="one">பின்னை அகற்று</item>
+        <item quantity="other">பின்களை அகற்று</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="one">ஒலியடக்கு</item>
@@ -502,22 +502,22 @@
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
         <item quantity="one">ஒலி இயக்கு</item>
-        <item quantity="other">ஒலி இயக்கு</item>
+        <item quantity="other">ஒலிகளை இயக்கு</item>
     </plurals>
-    <string name="ConversationListFragment_select">தேர்வு</string>
+    <string name="ConversationListFragment_select">தேர்ந்தெடு</string>
     <plurals name="ConversationListFragment_archive_plural">
         <item quantity="one">காப்பகப்படுத்து</item>
         <item quantity="other">காப்பகப்படுத்து</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">காப்பகமகற்று</item>
-        <item quantity="other">காப்பகம் அகற்று</item>
+        <item quantity="one">காப்பகத்தில் இருந்து எடு</item>
+        <item quantity="other">காப்பகத்தில் இருந்து எடு</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">நீக்கு</item>
         <item quantity="other">நீக்கு</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">அனைத்தையும் தேர்வுசெய்</string>
+    <string name="ConversationListFragment_select_all">அனைத்தையும் தேர்ந்தெடு</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d தேர்ந்தெடுக்கப்பட்டது</item>
         <item quantity="other">%1$d தேர்ந்தெடுக்கப்பட்டது</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">உங்கள் ஆடியோவுக்கு %1$s என்று எதிர்வினையாற்றினார்.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">உங்கள் ஒரு முறை-பார்வைக்கு ஊடகங்களுக்கு %1$s என்று எதிர்வினையாற்றினார்.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">உங்கள் பேமெண்ட்டிற்கு %1$s என்று எதிர்வினையாற்றினார்.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">உங்கள் ஸ்டிக்கருக்கு %1$s என்று எதிர்வினையாற்றினார்.</string>
     <string name="MessageNotifier_this_message_was_deleted">இந்த மெசேஜ் நீக்கப்பட்டது.</string>
 

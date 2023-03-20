@@ -491,14 +491,14 @@
         <item quantity="other">%1$d sarunas pārvietotas uz iesūtni</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="zero">Lasīts</item>
+        <item quantity="zero">Lasīti</item>
         <item quantity="one">Lasīts</item>
-        <item quantity="other">Lasīts</item>
+        <item quantity="other">Lasīti</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="zero">Nelasīts</item>
+        <item quantity="zero">Nelasīti</item>
         <item quantity="one">Nelasīts</item>
-        <item quantity="other">Nelasīts</item>
+        <item quantity="other">Nelasīti</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="zero">Piespraust</item>
@@ -511,9 +511,9 @@
         <item quantity="other">Atspraust</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="zero">Izslēgt</item>
-        <item quantity="one">Izslēgt</item>
-        <item quantity="other">Izslēgt</item>
+        <item quantity="zero">Apklusināt</item>
+        <item quantity="one">Apklusināt</item>
+        <item quantity="other">Apklusināt</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
         <item quantity="zero">Ieslēgt</item>
@@ -2219,7 +2219,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Reakcija uz jūsu audio: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reakcija uz jūsu vienreiz skatāmo multivides vienumu: %1$s.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reakcija uz jūsu maksājumu: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reakcija uz jūsu uzlīmi: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ziņojums ir izdzēsts.</string>
 
