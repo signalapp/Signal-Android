@@ -260,6 +260,15 @@ public class ConversationViewModel extends ViewModel {
     }
   }
 
+  void setDistributionType(int distributionType) {
+    Long threadId = this.threadId.getValue();
+    if (threadId == null) {
+      return;
+    }
+
+    conversationRepository.setConversationDistributionType(threadId, distributionType);
+  }
+
   void submitMarkReadRequest(long timestampSince) {
     markReadRequestPublisher.onNext(timestampSince);
   }

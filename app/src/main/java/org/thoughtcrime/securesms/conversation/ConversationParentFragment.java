@@ -1273,34 +1273,16 @@ public class ConversationParentFragment extends Fragment
   public void handleDistributionBroadcastEnabled(MenuItem item) {
     distributionType = ThreadTable.DistributionTypes.BROADCAST;
     draftViewModel.setDistributionType(distributionType);
+    viewModel.setDistributionType(distributionType);
     item.setChecked(true);
-
-    if (threadId != -1) {
-      new AsyncTask<Void, Void, Void>() {
-        @Override
-        protected Void doInBackground(Void... params) {
-          SignalDatabase.threads().setDistributionType(threadId, ThreadTable.DistributionTypes.BROADCAST);
-          return null;
-        }
-      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-    }
   }
 
   @Override
   public void handleDistributionConversationEnabled(MenuItem item) {
     distributionType = ThreadTable.DistributionTypes.CONVERSATION;
     draftViewModel.setDistributionType(distributionType);
+    viewModel.setDistributionType(distributionType);
     item.setChecked(true);
-
-    if (threadId != -1) {
-      new AsyncTask<Void, Void, Void>() {
-        @Override
-        protected Void doInBackground(Void... params) {
-          SignalDatabase.threads().setDistributionType(threadId, ThreadTable.DistributionTypes.CONVERSATION);
-          return null;
-        }
-      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-    }
   }
 
   @Override
