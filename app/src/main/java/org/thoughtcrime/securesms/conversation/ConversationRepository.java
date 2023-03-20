@@ -212,4 +212,8 @@ class ConversationRepository {
       }
     });
   }
+
+  public void setConversationMuted(@NonNull RecipientId recipientId, long until) {
+    SignalExecutors.BOUNDED.execute(() -> SignalDatabase.recipients().setMuted(recipientId, until));
+  }
 }

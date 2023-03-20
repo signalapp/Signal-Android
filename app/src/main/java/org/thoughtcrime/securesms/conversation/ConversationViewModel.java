@@ -338,6 +338,10 @@ public class ConversationViewModel extends ViewModel {
     return conversationStateStore.getState().getSecurityInfo().isPushAvailable();
   }
 
+  void muteConversation(long until) {
+    conversationRepository.setConversationMuted(args.getRecipientId(), until);
+  }
+
   @NonNull ConversationState getConversationStateSnapshot() {
     return conversationStateStore.getState();
   }
