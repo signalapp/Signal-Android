@@ -922,8 +922,6 @@ public class ConversationParentFragment extends Fragment
       if (isActiveGroup) {
         inflater.inflate(R.menu.conversation_message_requests_group, menu);
       }
-
-      super.onCreateOptionsMenu(menu, inflater);
     }
 
     if (viewModel.isPushAvailable()) {
@@ -947,7 +945,7 @@ public class ConversationParentFragment extends Fragment
         inflater.inflate(R.menu.conversation_callable_insecure, menu);
       }
     } else if (isGroupConversation()) {
-      if (isActiveV2Group && Build.VERSION.SDK_INT > 19) {
+      if (isActiveV2Group) {
         inflater.inflate(R.menu.conversation_callable_groupv2, menu);
         if (groupCallViewModel != null && Boolean.TRUE.equals(groupCallViewModel.hasActiveGroupCall().getValue())) {
           hideMenuItem(menu, R.id.menu_video_secure);
@@ -1097,8 +1095,6 @@ public class ConversationParentFragment extends Fragment
         }
     }
 
-    super.onCreateOptionsMenu(menu, inflater);
-
     int toolbarTextAndIconColor = getResources().getColor(wallpaper.getDrawable() != null ? R.color.signal_colorNeutralInverse : R.color.signal_colorOnSurface);
     setToolbarActionItemTint(toolbar, toolbarTextAndIconColor);
   }
@@ -1115,7 +1111,6 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-    super.onOptionsItemSelected(item);
     int itemId = item.getItemId();
 
     if (itemId == R.id.menu_call_secure) {
