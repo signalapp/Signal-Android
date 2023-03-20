@@ -18,7 +18,7 @@
             android:id="@+id/close"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="?attr/selectableItemBackground"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/Material3SearchToolbar__close"
             android:scaleType="centerInside"
             app:layout_constraintEnd_toEndOf="parent"
