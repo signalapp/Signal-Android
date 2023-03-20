@@ -477,28 +477,28 @@
         <item quantity="other">未読にする</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="other">ピン留め</item>
+        <item quantity="other">ピン留めする</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="other">ピン留め解除</item>
+        <item quantity="other">ピン留めを解除する</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="other">ミュート</item>
+        <item quantity="other">ミュートする</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="other">ミュート解除</item>
+        <item quantity="other">ミュートを解除する</item>
     </plurals>
-    <string name="ConversationListFragment_select">選択</string>
+    <string name="ConversationListFragment_select">選択する</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="other">アーカイブ</item>
+        <item quantity="other">アーカイブする</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="other">アーカイブ解除</item>
+        <item quantity="other">アーカイブを解除する</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="other">消去</item>
+        <item quantity="other">消去する</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">すべて選択</string>
+    <string name="ConversationListFragment_select_all">すべて選択する</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="other">%1$d件選択済み</item>
     </plurals>
@@ -2075,7 +2075,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">あなたの音声に %1$sのリアクションがありました。</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">あなたの使い捨てメディアに %1$sのリアクションがありました。</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">あなたの支払いに %1$s のリアクションがありました。</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">あなたのステッカーに %1$sのリアクションがありました。</string>
     <string name="MessageNotifier_this_message_was_deleted">このメッセージは消去されました。</string>
 

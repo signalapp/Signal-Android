@@ -525,16 +525,16 @@
         <item quantity="other">Odepnout</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Ztlumená</item>
-        <item quantity="few">Ztlumené</item>
-        <item quantity="many">Ztlumených</item>
-        <item quantity="other">Ztlumených</item>
+        <item quantity="one">Ztlumit</item>
+        <item quantity="few">Ztlumit</item>
+        <item quantity="many">Ztlumit</item>
+        <item quantity="other">Ztlumit</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Neztlumená</item>
-        <item quantity="few">Neztlumené</item>
-        <item quantity="many">Neztlumených</item>
-        <item quantity="other">Neztlumených</item>
+        <item quantity="one">Zrušit ztišení</item>
+        <item quantity="few">Zrušit ztišení</item>
+        <item quantity="many">Zrušit ztišení</item>
+        <item quantity="other">Zrušit ztišení</item>
     </plurals>
     <string name="ConversationListFragment_select">Vybrat</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -544,10 +544,10 @@
         <item quantity="other">Archivovat</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Nearchivovat</item>
-        <item quantity="few">Nearchivovat</item>
-        <item quantity="many">Nearchivovat</item>
-        <item quantity="other">Nearchivovat</item>
+        <item quantity="one">Zrušit archivaci</item>
+        <item quantity="few">Zrušit archivaci</item>
+        <item quantity="many">Zrušit archivaci</item>
+        <item quantity="other">Zrušit archivaci</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">Odstranit</item>
@@ -2291,7 +2291,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Reagoval/a %1$s na vaše audio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoval/a %1$s na vaše média pro jednorázové zobrazení.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reagoval/a %1$s na vaši platbu.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoval/a %1$s na vaši nálepku.</string>
     <string name="MessageNotifier_this_message_was_deleted">Tato zpráva byla odstraněna.</string>
 

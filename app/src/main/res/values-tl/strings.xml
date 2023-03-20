@@ -489,12 +489,12 @@
         <item quantity="other">Unread</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">Pin</item>
-        <item quantity="other">Pin</item>
+        <item quantity="one">I-pin</item>
+        <item quantity="other">I-pin</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">Unpin</item>
-        <item quantity="other">Unpin</item>
+        <item quantity="one">I-unpin</item>
+        <item quantity="other">I-unpin</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="one">I-mute</item>
@@ -504,14 +504,14 @@
         <item quantity="one">I-unmute</item>
         <item quantity="other">I-unmute</item>
     </plurals>
-    <string name="ConversationListFragment_select">Select</string>
+    <string name="ConversationListFragment_select">Piliin</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Archive</item>
-        <item quantity="other">Archive</item>
+        <item quantity="one">I-archive</item>
+        <item quantity="other">I-archive</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Unarchive</item>
-        <item quantity="other">Unarchive</item>
+        <item quantity="one">I-unarchive</item>
+        <item quantity="other">I-unarchive</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">Burahin</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Nag-react ng %1$s sa iyong audio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Nag-react ng %1$s sa iyong view-once media.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Nag-react ng %1$s sa payment mo.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Nag-react ng %1$s sa iyong sticker.</string>
     <string name="MessageNotifier_this_message_was_deleted">Nabura na ang message na ito.</string>
 

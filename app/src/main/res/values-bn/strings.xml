@@ -489,29 +489,29 @@
         <item quantity="other">অপঠিত</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">পিন</item>
-        <item quantity="other">পিন</item>
+        <item quantity="one">পিন করুন</item>
+        <item quantity="other">পিন করুন</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
         <item quantity="one">আনপিন করুন</item>
         <item quantity="other">আনপিন করুন</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">মিউট করুন</item>
-        <item quantity="other">মিউট করুন</item>
+        <item quantity="one">নীরব করুন</item>
+        <item quantity="other">নীরব করুন</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">আনমিউট করুন</item>
-        <item quantity="other">আনমিউট করুন</item>
+        <item quantity="one">সরব করুন</item>
+        <item quantity="other">সরব করুন</item>
     </plurals>
-    <string name="ConversationListFragment_select">নির্বাচন</string>
+    <string name="ConversationListFragment_select">নির্বাচন করুন</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">লুকাইয়া রাখুন</item>
-        <item quantity="other">লুকাইয়া রাখুন</item>
+        <item quantity="one">আর্কাইভ করুন</item>
+        <item quantity="other">আর্কাইভ করুন</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">পুনরুদ্ধার করুন</item>
-        <item quantity="other">পুনরুদ্ধার করুন</item>
+        <item quantity="one">আনআর্কাইভ করুন</item>
+        <item quantity="other">আনআর্কাইভ করুন</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">মুছে ফেলুন</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">আপনার অডিওতে %1$s রিঅ্যাক্ট করেছেন।</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">আপনার ভিউ-ওয়ান্স মিডিয়াতে %1$s রিঅ্যাক্ট করেছেন।</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">আপনার পেমেন্টে %1$s রিঅ্যাক্ট করেছেন।</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">আপনার স্টিকারে %1$s রিঅ্যাক্ট করেছেন।</string>
     <string name="MessageNotifier_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
 

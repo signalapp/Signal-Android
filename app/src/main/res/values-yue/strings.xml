@@ -480,7 +480,7 @@
         <item quantity="other">置頂</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="other">唔使置頂</item>
+        <item quantity="other">取消置頂</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="other">靜音</item>
@@ -490,10 +490,10 @@
     </plurals>
     <string name="ConversationListFragment_select">揀選</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="other">封印</item>
+        <item quantity="other">封存</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="other">解除封印</item>
+        <item quantity="other">取消封存</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="other">刪除</item>
@@ -2075,7 +2075,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">對你嘅音訊傳送咗 %1$s 心情回應。</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">對你嘅「閱後即毀」媒體檔案傳送咗 %1$s 心情回應。</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">對你嘅付款傳送咗 %1$s 心情回應。</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">對你嘅貼圖傳送咗 %1$s 心情回應。</string>
     <string name="MessageNotifier_this_message_was_deleted">呢個訊息已被刪除。</string>
 

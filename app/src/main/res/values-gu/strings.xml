@@ -493,8 +493,8 @@
         <item quantity="other">પિન કરો</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">પિન દૂર કરો</item>
-        <item quantity="other">પિન દૂર કરો</item>
+        <item quantity="one">અનપિન કરો</item>
+        <item quantity="other">અનપિન કરો</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="one">મ્યૂટ કરો</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">તમારા ઓડિયો પર %1$s પ્રતિક્રિયા આપી.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">તમારા વ્યૂ-વન્સ મીડિયા પર %1$s પ્રતિક્રિયા આપી.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">તમારી ચુકવણી પર %1$s પ્રતિક્રિયા આપી.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">તમારા સ્ટીકર પર %1$s પ્રતિક્રિયા આપી.</string>
     <string name="MessageNotifier_this_message_was_deleted">આ મેસેજ ડિલીટ કર્યો.</string>
 

@@ -504,18 +504,18 @@
         <item quantity="one">Укључи обавештења</item>
         <item quantity="other">Укључи обавештења</item>
     </plurals>
-    <string name="ConversationListFragment_select">Изабери више</string>
+    <string name="ConversationListFragment_select">Изабери</string>
     <plurals name="ConversationListFragment_archive_plural">
         <item quantity="one">Архивирај</item>
         <item quantity="other">Архивирај</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Опозови архивирање</item>
-        <item quantity="other">Опозови архивирање</item>
+        <item quantity="one">Распакуј</item>
+        <item quantity="other">Распакуј</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Обриши</item>
-        <item quantity="other">Обриши</item>
+        <item quantity="one">Избриши</item>
+        <item quantity="other">Избриши</item>
     </plurals>
     <string name="ConversationListFragment_select_all">Изабери све</string>
     <plurals name="ConversationListFragment_s_selected">
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Реаговао/ла је %1$s на ваш аудио.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реаговао/ла је %1$s на ваш једнократни садржај.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Реаговао/ла је %1$s на вашу уплату.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Реаговао/ла је %1$s на вашу налепницу.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ова порука је обрисана.</string>
 

@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Reagoi me %1$s ndaj audios tënde.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoi me %1$s te media jote, të cilën mund ta shohësh veç një herë.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reagoi me %1$s ndaj pagesës tënde.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoi me %1$s ndaj ngjitësit tënd.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ky mesazh u fshi.</string>
 

@@ -501,34 +501,34 @@
         <item quantity="other">%1$d שיחות הועברו לתיבת הדואר הנכנס</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">קרא</item>
-        <item quantity="two">קרא</item>
-        <item quantity="many">קרא</item>
-        <item quantity="other">קרא</item>
+        <item quantity="one">נקראה</item>
+        <item quantity="two">נקראו</item>
+        <item quantity="many">נקראו</item>
+        <item quantity="other">נקראו</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">בטל קריאה</item>
-        <item quantity="two">בטל קריאה</item>
-        <item quantity="many">בטל קריאה</item>
-        <item quantity="other">בטל קריאה</item>
+        <item quantity="one">סימון כלא נקרא</item>
+        <item quantity="two">סימון כלא נקראו</item>
+        <item quantity="many">סימון כלא נקראו</item>
+        <item quantity="other">סימון כלא נקראו</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">הצמד</item>
-        <item quantity="two">הצמד</item>
-        <item quantity="many">הצמד</item>
-        <item quantity="other">הצמד</item>
+        <item quantity="one">הצמדה</item>
+        <item quantity="two">הצמדה</item>
+        <item quantity="many">הצמדה</item>
+        <item quantity="other">הצמדה</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">בטל הצמדה</item>
-        <item quantity="two">בטל הצמדה</item>
-        <item quantity="many">בטל הצמדה</item>
-        <item quantity="other">בטל הצמדה</item>
+        <item quantity="one">ביטול הצמדה</item>
+        <item quantity="two">ביטול הצמדה</item>
+        <item quantity="many">ביטול הצמדה</item>
+        <item quantity="other">ביטול הצמדה</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">מושתק</item>
-        <item quantity="two">מושתקים</item>
-        <item quantity="many">מושתקים</item>
-        <item quantity="other">מושתקים</item>
+        <item quantity="one">השתקה</item>
+        <item quantity="two">השתקה</item>
+        <item quantity="many">השתקה</item>
+        <item quantity="other">השתקה</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
         <item quantity="one">ביטול השתקה</item>
@@ -536,18 +536,18 @@
         <item quantity="many">ביטול השתקה</item>
         <item quantity="other">ביטול השתקה</item>
     </plurals>
-    <string name="ConversationListFragment_select">בחר</string>
+    <string name="ConversationListFragment_select">בחירה</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">ארכב</item>
-        <item quantity="two">ארכב</item>
-        <item quantity="many">ארכב</item>
-        <item quantity="other">ארכב</item>
+        <item quantity="one">העברה לארכיון</item>
+        <item quantity="two">העברה לארכיון</item>
+        <item quantity="many">העברה לארכיון</item>
+        <item quantity="other">העברה לארכיון</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">בטל ארכוב</item>
-        <item quantity="two">בטל ארכוב</item>
-        <item quantity="many">בטל ארכוב</item>
-        <item quantity="other">בטל ארכוב</item>
+        <item quantity="one">הוצאה מהארכיון</item>
+        <item quantity="two">הוצאה מהארכיון</item>
+        <item quantity="many">הוצאה מהארכיון</item>
+        <item quantity="other">הוצאה מהארכיון</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">מחיקה</item>
@@ -555,7 +555,7 @@
         <item quantity="many">מחיקה</item>
         <item quantity="other">מחיקה</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">בחר הכול</string>
+    <string name="ConversationListFragment_select_all">בחירת הכל</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d נבחר</item>
         <item quantity="two">%1$d נבחרו</item>
@@ -2291,7 +2291,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">הגיב/ה %1$s להודעה הקולית שלך.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">הגיב/ה %1$s למדיה לצפייה חד–פעמית שלך.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">הגיב/ה %1$s לתשלום שלך.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">הגיב/ה %1$s לסטיקר שלך.</string>
     <string name="MessageNotifier_this_message_was_deleted">הודעה זו נמחקה.</string>
 

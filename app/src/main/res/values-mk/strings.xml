@@ -482,11 +482,11 @@
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Прочитано</item>
-        <item quantity="other">Прочитано</item>
+        <item quantity="other">Прочитани</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="one">Непрочитано</item>
-        <item quantity="other">Непрочитано</item>
+        <item quantity="other">Непрочитани</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Закачи</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Реагираше со %1$s на вашето аудио.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реагираше со %1$s на вашата еднократно видлива медиумска датотека.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Реагираше со %1$s на вашето плаќање.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Реагираше со %1$s на вашата налепница.</string>
     <string name="MessageNotifier_this_message_was_deleted">Оваа порака е избришана.</string>
 

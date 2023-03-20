@@ -481,12 +481,12 @@
         <item quantity="other">%1$d συνομιλίες μεταφέρθηκαν στα εισερχόμενα</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Σημ. αναγνωσμ.</item>
-        <item quantity="other">Σήμ. ως αναγν.</item>
+        <item quantity="one">Διαβάστηκε</item>
+        <item quantity="other">Διαβάστηκαν</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Σημ. μη αναγν.</item>
-        <item quantity="other">Σήμ. μη αναγν.</item>
+        <item quantity="one">Μη αναγνωσμένο</item>
+        <item quantity="other">Μη αναγνωσμένα</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Καρφίτσωμα</item>
@@ -506,12 +506,12 @@
     </plurals>
     <string name="ConversationListFragment_select">Επιλογή</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Αρχειοθ.</item>
+        <item quantity="one">Αρχειοθέτηση</item>
         <item quantity="other">Αρχειοθέτηση</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Αποαρχειοθ.</item>
-        <item quantity="other">Κατάργ. αρχ.</item>
+        <item quantity="one">Κατάργηση αρχειοθέτησης</item>
+        <item quantity="other">Κατάργηση αρχειοθέτησης</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">Διαγραφή</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Αντέδρασε με %1$s στο ηχητικό σου.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Αντέδρασε με %1$s στο πολυμέσο μεμονωμένης προβολής.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Αντέδρασε με %1$s στην πληρωμή σου.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Αντέδρασε με %1$s στο αυτοκόλλητό σου.</string>
     <string name="MessageNotifier_this_message_was_deleted">Αυτό το μήνυμα διαγράφηκε.</string>
 

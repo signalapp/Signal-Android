@@ -481,20 +481,20 @@
         <item quantity="other">%1$d conversas movéronse á caixa de entrada</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Lidos</item>
-        <item quantity="other">Lido</item>
+        <item quantity="one">Lido</item>
+        <item quantity="other">Lidos</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Sen ler</item>
-        <item quantity="other">Sen ler</item>
+        <item quantity="one">Non lido</item>
+        <item quantity="other">Non lidos</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">Ancorar</item>
-        <item quantity="other">Ancorar</item>
+        <item quantity="one">Fixar</item>
+        <item quantity="other">Fixar</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">Desancorar</item>
-        <item quantity="other">Desancorar</item>
+        <item quantity="one">Soltar</item>
+        <item quantity="other">Soltar</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="one">Silenciar</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Reaccionou con %1$s ao teu audio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reaccionou con %1$s ao teu arquivo multimedia dunha soa visualización.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reaccionou con %1$s ao teu pagamento.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reaccionou con %1$s ao teu sticker.</string>
     <string name="MessageNotifier_this_message_was_deleted">Eliminouse a mensaxe.</string>
 

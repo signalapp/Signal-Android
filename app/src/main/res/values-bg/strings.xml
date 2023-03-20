@@ -482,11 +482,11 @@
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Прочетено</item>
-        <item quantity="other">Прочетено</item>
+        <item quantity="other">Прочетени</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Непрочитане</item>
-        <item quantity="other">Непрочитане</item>
+        <item quantity="one">Непрочетено</item>
+        <item quantity="other">Непрочетени</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Закачане</item>
@@ -501,10 +501,10 @@
         <item quantity="other">Заглушаване</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Изключване на тих режим</item>
+        <item quantity="one">Премахни заглушаване</item>
         <item quantity="other">Премахни заглушаване</item>
     </plurals>
-    <string name="ConversationListFragment_select">Изберете</string>
+    <string name="ConversationListFragment_select">Избиране</string>
     <plurals name="ConversationListFragment_archive_plural">
         <item quantity="one">Архивиране</item>
         <item quantity="other">Архивиране</item>
@@ -517,7 +517,7 @@
         <item quantity="one">Изтриване</item>
         <item quantity="other">Изтриване</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">Избери всичко</string>
+    <string name="ConversationListFragment_select_all">Избиране на всичко</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d избрано</item>
         <item quantity="other">%1$d избрани</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Реагира с %1$s на вашето аудио.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реагира с %1$s на вашата еднократна медия.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Реагира с %1$s на вашето плащане.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Реагира с %1$s на вашия стикер.</string>
     <string name="MessageNotifier_this_message_was_deleted">Това съобщение беше изтрито.</string>
 

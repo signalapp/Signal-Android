@@ -489,8 +489,8 @@
         <item quantity="other">Ongelezen</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">Vast­prikken</item>
-        <item quantity="other">Vast­prikken</item>
+        <item quantity="one">Vastprikken</item>
+        <item quantity="other">Vastprikken</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
         <item quantity="one">Losmaken</item>
@@ -510,12 +510,12 @@
         <item quantity="other">Archiveren</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Dearchi­veren</item>
-        <item quantity="other">Dearchi­veren</item>
+        <item quantity="one">Dearchiveren</item>
+        <item quantity="other">Dearchiveren</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Wissen</item>
-        <item quantity="other">Wissen</item>
+        <item quantity="one">Verwijderen</item>
+        <item quantity="other">Verwijderen</item>
     </plurals>
     <string name="ConversationListFragment_select_all">Alles selecteren</string>
     <plurals name="ConversationListFragment_s_selected">
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Reageerde met %1$s op je audio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reageerde met %1$s op je eenmaligeweergave-media.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reageerde met %1$s op je betaling.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reageerde met %1$s op je sticker.</string>
     <string name="MessageNotifier_this_message_was_deleted">Dit bericht is gewist.</string>
 

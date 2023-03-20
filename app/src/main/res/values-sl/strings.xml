@@ -502,15 +502,15 @@
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Prebrano</item>
-        <item quantity="two">Prebrano</item>
-        <item quantity="few">Prebrano</item>
-        <item quantity="other">Prebrano</item>
+        <item quantity="two">Prebrani</item>
+        <item quantity="few">Prebrana</item>
+        <item quantity="other">Prebranih</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="one">Neprebrano</item>
-        <item quantity="two">Neprebrano</item>
-        <item quantity="few">Neprebrano</item>
-        <item quantity="other">Neprebrano</item>
+        <item quantity="two">Neprebrani</item>
+        <item quantity="few">Neprebrana</item>
+        <item quantity="other">Neprebranih</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Pripni</item>
@@ -544,10 +544,10 @@
         <item quantity="other">Premakni v arhiv</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Premakni v nabiralnik</item>
-        <item quantity="two">Premakni v nabiralnik</item>
-        <item quantity="few">Od-arhiviraj</item>
-        <item quantity="other">Premakni v nabiralnik</item>
+        <item quantity="one">Odstrani iz arhiva</item>
+        <item quantity="two">Odstrani iz arhiva</item>
+        <item quantity="few">Odstrani iz arhiva</item>
+        <item quantity="other">Odstrani iz arhiva</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">Izbriši</item>
@@ -2291,7 +2291,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Odziv na vaš zvok: %1$s</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Odziv na vaše medijsko sporočilo za enkraten ogled: %1$s</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Odziv na vaše plačilo: %1$s</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Odziv na vašo nalepko: %1$s</string>
     <string name="MessageNotifier_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
 

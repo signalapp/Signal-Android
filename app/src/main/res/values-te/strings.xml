@@ -481,43 +481,43 @@
         <item quantity="other">%1$d సంభాషణలు ఇన్‌బాక్స్‌కు తరలించబడ్డాయి</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">చదవడం</item>
+        <item quantity="one">చదివినది</item>
         <item quantity="other">చదివినవి</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">చదవనివి</item>
+        <item quantity="one">చదవనిది</item>
         <item quantity="other">చదవనివి</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">పిన్</item>
-        <item quantity="other">పిన్</item>
+        <item quantity="other">పిన్స్</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">అ</item>
-        <item quantity="other">అన్‌పిన్</item>
+        <item quantity="one">అన్‌పిన్</item>
+        <item quantity="other">అన్‌పిన్స్</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="one">మ్యూట్</item>
-        <item quantity="other">మ్యూట్‌లు</item>
+        <item quantity="other">మ్యూట్స్</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
         <item quantity="one">అన్‌మ్యూట్</item>
-        <item quantity="other">అన్‌మ్యూట్‌లు</item>
+        <item quantity="other">అన్‌మ్యూట్స్</item>
     </plurals>
     <string name="ConversationListFragment_select">ఎంచుకోండి</string>
     <plurals name="ConversationListFragment_archive_plural">
         <item quantity="one">ఆర్కైవ్</item>
-        <item quantity="other">ఆర్కైవ్‌లు</item>
+        <item quantity="other">ఆర్కైవ్స్</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
         <item quantity="one">అన్‌ఆర్కైవ్</item>
-        <item quantity="other">అన్‌ఆర్కైవ్</item>
+        <item quantity="other">అన్‌ఆర్కైవ్స్</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">తొలగించండి</item>
         <item quantity="other">తొలగించండి</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">అన్నీ ఎంచుకో</string>
+    <string name="ConversationListFragment_select_all">అన్నిటిని ఎంచుకోండి</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$dఎంచుకోబడింది</item>
         <item quantity="other">%1$d ఎంచుకోబడింది</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">మీ ఆడియోకు %1$s ప్రతిస్పందించారు.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">మీ ఒక్కసారి-వీక్షించండి మీడియాకు %1$s ప్రతిస్పందించారు.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">మీ చెల్లింపుకు %1$s ప్రతిస్పందించారు.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">మీ స్టిక్కర్‌కు %1$s ప్రతిస్పందించారు.</string>
     <string name="MessageNotifier_this_message_was_deleted">ఈ సందేశం తొలగించబడింది.</string>
 

@@ -2291,7 +2291,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Reagira s %1$s na vašu glasovnu poruku.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagira s %1$s na vaš jednom vidljiv medijski zapis.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reagira s %1$s na vašu uplatu.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagira s %1$s na vašu naljepnicu.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ova poruka je izbrisana.</string>
 

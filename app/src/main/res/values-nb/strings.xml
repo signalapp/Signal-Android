@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Reagerte med %1$s på lyden din.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerte med %1$s på vis-én-gang-mediefilen din.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reagerte med %1$s på betalingen din.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerte med %1$s på klistremerket ditt.</string>
     <string name="MessageNotifier_this_message_was_deleted">Denne meldingen ble slettet.</string>
 

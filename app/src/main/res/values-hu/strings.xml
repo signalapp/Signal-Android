@@ -489,12 +489,12 @@
         <item quantity="other">Olvasatlan</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">Rögzít</item>
+        <item quantity="one">Rögzítés</item>
         <item quantity="other">Rögzítés</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">Felold</item>
-        <item quantity="other">Feloldás</item>
+        <item quantity="one">Rögzítés feloldása</item>
+        <item quantity="other">Rögzítés feloldása</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="one">Némítás</item>
@@ -510,8 +510,8 @@
         <item quantity="other">Archiválás</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Archívumból ki</item>
-        <item quantity="other">Archívumból ki</item>
+        <item quantity="one">Archiválás feloldása</item>
+        <item quantity="other">Archiválás feloldása</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">Törlés</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Reagált a hangfájlodra: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagált az egyszer megtekinthető videódra: %1$s.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reagált a fizetésedre: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagált a matricádra: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ez az üzenet ki lett törölve.</string>
 

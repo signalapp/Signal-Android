@@ -471,16 +471,16 @@
         <item quantity="other">Memindahkan %1$d percakapan ke kotak masuk</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="other">Tandai Terbaca</item>
+        <item quantity="other">Sudah Dibaca</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="other">Belum dibaca</item>
+        <item quantity="other">Belum Dibaca</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="other">Sematkan</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="other">Cabut Semat</item>
+        <item quantity="other">Lepas Sematan</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="other">Bisukan</item>
@@ -490,7 +490,7 @@
     </plurals>
     <string name="ConversationListFragment_select">Pilih</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="other">Arispkan</item>
+        <item quantity="other">Arsipkan</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
         <item quantity="other">Buka Arsip</item>
@@ -2075,7 +2075,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Menanggapi %1$s pada audio Anda.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Menanggapi %1$s pada media sekali-lihat Anda.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Menanggapi %1$s pada pembayaran Anda.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Menanggapi %1$s pada stiker Anda.</string>
     <string name="MessageNotifier_this_message_was_deleted">Pesan ini telah dihapus.</string>
 
