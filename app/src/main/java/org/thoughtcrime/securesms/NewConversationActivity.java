@@ -102,7 +102,7 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   @Override
-  public void onBeforeContactSelected(@NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
+  public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
     boolean smsSupported = SignalStore.misc().getSmsExportPhase().allowSmsFeatures();
 
     if (recipientId.isPresent()) {

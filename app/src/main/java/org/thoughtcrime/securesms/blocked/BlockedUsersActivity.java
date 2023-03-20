@@ -97,7 +97,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
   }
 
   @Override
-  public void onBeforeContactSelected(@NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
+  public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
     final String displayName = recipientId.map(id -> Recipient.resolved(id).getDisplayName(this)).orElse(number);
 
     AlertDialog confirmationDialog = new MaterialAlertDialogBuilder(this)

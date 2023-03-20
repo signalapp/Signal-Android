@@ -5757,6 +5757,12 @@
         <item quantity="one">%1$d call deleted</item>
         <item quantity="other">%1$d calls deleted</item>
     </plurals>
+    <!-- Undo action for deletion snackbar -->
+    <string name="CallLogFragment__undo">Undo</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__no_calls">No calls.</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__get_started_by_calling_a_friend">Get started by calling a friend.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->

@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
+import org.thoughtcrime.securesms.util.visible
 import java.util.Objects
 
 /**
@@ -99,18 +100,19 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     disposables.bindTo(viewLifecycleOwner)
     adapter.setPagingController(viewModel.controller)
 
-    disposables += Flowables.combineLatest(viewModel.data, viewModel.selected)
+    disposables += Flowables.combineLatest(viewModel.data, viewModel.selectedAndStagedDeletion)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { (data, selected) ->
-        adapter.submitCallRows(data, selected)
+        val filteredCount = adapter.submitCallRows(data, selected.first, selected.second)
+        binding.emptyState.visible = filteredCount == 0
       }
 
-    disposables += Flowables.combineLatest(viewModel.selected, viewModel.totalCount)
+    disposables += Flowables.combineLatest(viewModel.selectedAndStagedDeletion, viewModel.totalCount)
       .distinctUntilChanged()
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { (selected, totalCount) ->
-        if (selected.isNotEmpty(totalCount)) {
-          callLogActionMode.setCount(selected.count(totalCount))
+        if (selected.first.isNotEmpty(totalCount)) {
+          callLogActionMode.setCount(selected.first.count(totalCount))
         } else {
           callLogActionMode.end()
         }
@@ -181,19 +183,23 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   }
 
   private fun handleDeleteSelectedRows() {
+    val count = callLogActionMode.getCount()
     MaterialAlertDialogBuilder(requireContext())
-      .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, callLogActionMode.getCount(), callLogActionMode.getCount()))
+      .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, count, count))
       .setPositiveButton(R.string.CallLogFragment__delete_for_me) { _, _ ->
-        disposables += viewModel.deleteSelection()
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribeBy(onSuccess = {
-            callLogActionMode.end()
-            Snackbar.make(
-              binding.root,
-              resources.getQuantityString(R.plurals.CallLogFragment__d_calls_deleted, it, it),
-              Snackbar.LENGTH_SHORT
-            ).show()
-          })
+        viewModel.stageSelectionDeletion()
+        callLogActionMode.end()
+        Snackbar
+          .make(
+            binding.root,
+            resources.getQuantityString(R.plurals.CallLogFragment__d_calls_deleted, count, count),
+            Snackbar.LENGTH_SHORT
+          )
+          .addCallback(SnackbarDeletionCallback())
+          .setAction(R.string.CallLogFragment__undo) {
+            viewModel.cancelStagedDeletion()
+          }
+          .show()
       }
       .setNegativeButton(android.R.string.cancel) { _, _ -> }
       .show()
@@ -296,15 +302,18 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, 1, 1))
       .setPositiveButton(R.string.CallLogFragment__delete_for_me) { _, _ ->
-        disposables += viewModel.deleteCall(call)
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribeBy(onSuccess = {
-            Snackbar.make(
-              binding.root,
-              resources.getQuantityString(R.plurals.CallLogFragment__d_calls_deleted, it, it),
-              Snackbar.LENGTH_SHORT
-            ).show()
-          })
+        viewModel.stageCallDeletion(call)
+        Snackbar
+          .make(
+            binding.root,
+            resources.getQuantityString(R.plurals.CallLogFragment__d_calls_deleted, 1, 1),
+            Snackbar.LENGTH_SHORT
+          )
+          .addCallback(SnackbarDeletionCallback())
+          .setAction(R.string.CallLogFragment__undo) {
+            viewModel.cancelStagedDeletion()
+          }
+          .show()
       }
       .setNegativeButton(android.R.string.cancel) { _, _ -> }
       .show()
@@ -353,6 +362,12 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     override fun getResources(): Resources = resources
     override fun onResetSelectionState() {
       viewModel.clearSelected()
+    }
+  }
+
+  private inner class SnackbarDeletionCallback : Snackbar.Callback() {
+    override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+      viewModel.commitStagedDeletion()
     }
   }
 

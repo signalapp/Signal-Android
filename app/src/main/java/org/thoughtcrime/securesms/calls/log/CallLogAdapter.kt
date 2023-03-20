@@ -53,15 +53,24 @@ class CallLogAdapter(
     )
   }
 
-  fun submitCallRows(rows: List<CallLogRow?>, selectionState: CallLogSelectionState) {
-    submitList(
-      rows.filterNotNull().map {
+  fun submitCallRows(
+    rows: List<CallLogRow?>,
+    selectionState: CallLogSelectionState,
+    stagedDeletion: CallLogStagedDeletion?
+  ): Int {
+    val filteredRows = rows
+      .filterNotNull()
+      .filterNot { stagedDeletion?.isStagedForDeletion(it.id) == true }
+      .map {
         when (it) {
           is CallLogRow.Call -> CallModel(it, selectionState, itemCount)
           is CallLogRow.ClearFilter -> ClearFilterModel()
         }
       }
-    )
+
+    submitList(filteredRows)
+
+    return filteredRows.size
   }
 
   private class CallModel(
@@ -172,6 +181,7 @@ class CallLogAdapter(
           binding.callType.setImageResource(R.drawable.symbol_phone_24)
           binding.callType.setOnClickListener { onStartAudioCallClicked(peer) }
         }
+
         CallTable.Type.VIDEO_CALL -> {
           binding.callType.setImageResource(R.drawable.symbol_video_24)
           binding.callType.setOnClickListener { onStartVideoCallClicked(peer) }

@@ -113,7 +113,7 @@ class SelectRecipientsFragment : LoggingFragment(), ContactSelectionListFragment
     return mode or ContactSelectionDisplayMode.FLAG_HIDE_GROUPS_V1
   }
 
-  override fun onBeforeContactSelected(recipientId: Optional<RecipientId>, number: String?, callback: Consumer<Boolean>) {
+  override fun onBeforeContactSelected(isFromUnknownSearchKey: Boolean, recipientId: Optional<RecipientId>, number: String?, callback: Consumer<Boolean>) {
     if (recipientId.isPresent) {
       viewModel.select(recipientId.get())
       callback.accept(true)

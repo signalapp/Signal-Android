@@ -42,6 +42,30 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/conversation_list_item_view" />
 
+    <LinearLayout
+        android:id="@+id/empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="96dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/CallLogFragment__no_calls"
+            android:textAlignment="center"
+            android:textAppearance="@style/Signal.Text.BodyLarge" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/CallLogFragment__get_started_by_calling_a_friend"
+            android:textAlignment="center"
+            android:textAppearance="@style/Signal.Text.BodyLarge" />
+
+    </LinearLayout>
+
     <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

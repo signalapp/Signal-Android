@@ -638,6 +638,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
   private class ListClickListener {
     public void onItemClick(ContactSearchKey contact) {
+      boolean         isUnknown       = contact instanceof ContactSearchKey.UnknownRecipientKey;
       SelectedContact selectedContact = contact.requireSelectedContact();
 
       if (!canSelectSelf && !selectedContact.hasUsername() && Recipient.self().getId().equals(selectedContact.getOrCreateRecipientId(requireContext()))) {
@@ -668,7 +669,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
               SelectedContact selected  = SelectedContact.forUsername(recipient.getId(), username);
 
               if (onContactSelectedListener != null) {
-                onContactSelectedListener.onBeforeContactSelected(Optional.of(recipient.getId()), null, allowed -> {
+                onContactSelectedListener.onBeforeContactSelected(true, Optional.of(recipient.getId()), null, allowed -> {
                   if (allowed) {
                     markContactSelected(selected);
                   }
@@ -686,7 +687,11 @@ public final class ContactSelectionListFragment extends LoggingFragment {
           });
         } else {
           if (onContactSelectedListener != null) {
-            onContactSelectedListener.onBeforeContactSelected(Optional.ofNullable(selectedContact.getRecipientId()), selectedContact.getNumber(), allowed -> {
+            onContactSelectedListener.onBeforeContactSelected(
+                isUnknown,
+                Optional.ofNullable(selectedContact.getRecipientId()),
+                selectedContact.getNumber(),
+                allowed -> {
               if (allowed) {
                 markContactSelected(selectedContact);
               }
@@ -955,7 +960,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     /**
      * Provides an opportunity to disallow selecting an item. Call the callback with false to disallow, or true to allow it.
      */
-    void onBeforeContactSelected(@NonNull Optional<RecipientId> recipientId, @Nullable String number, @NonNull Consumer<Boolean> callback);
+    void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, @Nullable String number, @NonNull Consumer<Boolean> callback);
 
     void onContactDeselected(@NonNull Optional<RecipientId> recipientId, @Nullable String number);
 

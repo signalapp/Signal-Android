@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.calls.log
 
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -42,16 +42,16 @@ class CallLogRepository : CallLogPagedDataSource.CallRepository {
 
   fun deleteSelectedCallLogs(
     selectedMessageIds: Set<Long>
-  ): Single<Int> {
-    return Single.fromCallable {
+  ): Completable {
+    return Completable.fromAction {
       SignalDatabase.messages.deleteCallUpdates(selectedMessageIds)
     }.observeOn(Schedulers.io())
   }
 
   fun deleteAllCallLogsExcept(
     selectedMessageIds: Set<Long>
-  ): Single<Int> {
-    return Single.fromCallable {
+  ): Completable {
+    return Completable.fromAction {
       SignalDatabase.messages.deleteAllCallUpdatesExcept(selectedMessageIds)
     }.observeOn(Schedulers.io())
   }
