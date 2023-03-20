@@ -4,7 +4,6 @@ package org.thoughtcrime.securesms.database.model
 
 import com.google.protobuf.ByteString
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.BodyRange
 
 /**
@@ -49,7 +48,7 @@ fun BodyRangeList.Builder.addButton(label: String, action: String, start: Int, l
 }
 
 fun List<BodyRange>?.toBodyRangeList(): BodyRangeList? {
-  if (this == null || !FeatureFlags.textFormatting()) {
+  if (this == null) {
     return null
   }
 

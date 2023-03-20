@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardCallback
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
@@ -56,6 +57,7 @@ import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPager
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
 import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReplyComposer
 import org.thoughtcrime.securesms.util.DeleteDialog
+import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -350,8 +352,16 @@ class StoryGroupReplyFragment :
   }
 
   override fun onSendActionClicked() {
-    val (body, mentions, bodyRanges) = composer.consumeInput()
-    performSend(body, mentions, bodyRanges)
+    val send = Runnable {
+      val (body, mentions, bodyRanges) = composer.consumeInput()
+      performSend(body, mentions, bodyRanges)
+    }
+
+    if (SignalStore.uiHints().hasNotSeenTextFormattingAlert() && composer.input.hasStyling()) {
+      Dialogs.showFormattedTextDialog(requireContext(), send)
+    } else {
+      send.run()
+    }
   }
 
   override fun onPickAnyReactionClicked() {
