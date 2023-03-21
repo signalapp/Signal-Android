@@ -646,5 +646,4 @@
         <item name="colorControlHighlight">@color/signal_accent_primary</item>
         <item name="colorControlActivated">@color/signal_accent_primary</item>
     </style>
-
 </resources>

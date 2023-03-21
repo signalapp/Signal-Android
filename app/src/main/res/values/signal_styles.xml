@@ -323,6 +323,10 @@
         <item name="indicatorColor">@color/signal_colorPrimaryContainer</item>
     </style>
 
+    <style name="Widget.Signal.CompoundButton.MaterialSwitch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Signal.MaterialSwitch</item>
+    </style>
+
     <style name="Signal.ThemeOverlay.TextInputLayout" parent="ThemeOverlay.Material3">
         <item name="colorSurfaceVariant">@color/signal_colorSurfaceVariant</item>
         <item name="colorOnSurfaceVariant">@color/signal_colorOnSurfaceVariant</item>
@@ -331,4 +335,22 @@
         <item name="colorOnSurface">@color/signal_colorOnSurface</item>
         <item name="colorError">@color/signal_colorError</item>
     </style>
+
+    <style name="ThemeOverlay.Signal.MaterialSwitch" parent="ThemeOverlay.Material3">
+        <item name="colorPrimary">@color/signal_colorPrimary</item>
+        <item name="colorPrimaryContainer">@color/signal_colorPrimaryContainer</item>
+        <item name="colorSecondary">@color/signal_colorSecondary</item>
+        <item name="colorSecondaryContainer">@color/signal_colorSecondaryContainer</item>
+        <item name="colorSurface">@color/signal_colorSurface</item>
+        <item name="colorSurfaceVariant">@color/signal_colorSurfaceVariant</item>
+        <item name="colorOnPrimary">@color/signal_colorOnPrimary</item>
+        <item name="colorOnPrimaryContainer">@color/signal_colorOnPrimaryContainer</item>
+        <item name="colorOnSecondary">@color/signal_colorOnSecondary</item>
+        <item name="colorOnSecondaryContainer">@color/signal_colorOnSecondaryContainer</item>
+        <item name="colorOnSurface">@color/signal_colorOnSurface</item>
+        <item name="colorOnSurfaceVariant">@color/signal_colorOnSurfaceVariant</item>
+        <item name="colorOnBackground">@color/signal_colorOnBackground</item>
+        <item name="colorOutline">@color/signal_colorOutline</item>
+    </style>
+
 </resources>

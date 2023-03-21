@@ -85,7 +85,8 @@
         app:layout_constraintStart_toStartOf="@id/group_link_enable_and_share_approve_outline"
         app:layout_constraintTop_toTopOf="@id/group_link_enable_and_share_approve_outline" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <com.google.android.material.materialswitch.MaterialSwitch
+        style="@style/Widget.Signal.CompoundButton.MaterialSwitch"
         android:id="@+id/group_link_enable_and_share_approve_new_members_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

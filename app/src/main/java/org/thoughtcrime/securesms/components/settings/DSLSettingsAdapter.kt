@@ -13,7 +13,7 @@ import androidx.annotation.CallSuper
 import androidx.annotation.Discouraged
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.materialswitch.MaterialSwitch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.models.AsyncSwitch
@@ -205,7 +205,7 @@ class MultiSelectListPreferenceViewHolder(itemView: View) : PreferenceViewHolder
 
 class SwitchPreferenceViewHolder(itemView: View) : PreferenceViewHolder<SwitchPreference>(itemView) {
 
-  private val switchWidget: SwitchMaterial = itemView.findViewById(R.id.switch_widget)
+  private val switchWidget: MaterialSwitch = itemView.findViewById(R.id.switch_widget)
 
   override fun bind(model: SwitchPreference) {
     super.bind(model)
