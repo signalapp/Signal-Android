@@ -19,8 +19,10 @@ class CallLogContextMenu(
   private val callbacks: Callbacks
 ) {
   fun show(anchor: View, call: CallLogRow.Call) {
+    anchor.isSelected = true
     SignalContextMenu.Builder(anchor, anchor.parent as ViewGroup)
       .preferredVerticalPosition(SignalContextMenu.VerticalPosition.BELOW)
+      .onDismiss { anchor.isSelected = false }
       .show(
         listOfNotNull(
           getVideoCallActionItem(call),

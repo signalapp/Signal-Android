@@ -15,7 +15,9 @@ import org.thoughtcrime.securesms.util.livedata.Store
 class ConversationListTabsViewModel(repository: ConversationListTabRepository) : ViewModel() {
   private val store = Store(ConversationListTabsState())
 
-  val stateSnapshot: ConversationListTabsState = store.state
+  val stateSnapshot: ConversationListTabsState
+    get() = store.state
+
   val state: LiveData<ConversationListTabsState> = Transformations.distinctUntilChanged(store.stateLiveData)
   val disposables = CompositeDisposable()
 
