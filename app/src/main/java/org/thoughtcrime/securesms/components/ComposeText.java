@@ -298,6 +298,8 @@ public class ComposeText extends EmojiEditText {
     addTextChangedListener(mentionValidatorWatcher);
 
     if (FeatureFlags.textFormatting()) {
+      addTextChangedListener(new ComposeTextStyleWatcher());
+
       setCustomSelectionActionModeCallback(new ActionMode.Callback() {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -350,7 +352,7 @@ public class ComposeText extends EmojiEditText {
           }
 
           if (style != null) {
-            replacement.setSpan(style, 0, charSequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            replacement.setSpan(style, 0, charSequence.length(), MessageStyler.SPAN_FLAGS);
           }
 
           clearComposingText();

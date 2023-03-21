@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.util.PlaceholderURLSpan
 object MessageStyler {
 
   const val MONOSPACE = "monospace"
+  const val SPAN_FLAGS = Spanned.SPAN_EXCLUSIVE_INCLUSIVE
 
   @JvmStatic
   fun boldStyle(): CharacterStyle {
@@ -61,7 +62,7 @@ object MessageStyler {
           }
 
           if (styleSpan != null) {
-            span.setSpan(styleSpan, range.start, range.start + range.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            span.setSpan(styleSpan, range.start, range.start + range.length, SPAN_FLAGS)
             appliedStyle = true
           }
         } else if (range.hasLink() && range.link != null) {
@@ -121,6 +122,7 @@ object MessageStyler {
     }
   }
 
+  @JvmStatic
   fun isSupportedCharacterStyle(style: CharacterStyle): Boolean {
     return when (style) {
       is StyleSpan -> style.style == Typeface.ITALIC || style.style == Typeface.BOLD
