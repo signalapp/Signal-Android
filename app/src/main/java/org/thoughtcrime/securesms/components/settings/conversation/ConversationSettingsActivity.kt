@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.DynamicConversationSettingsTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 
-class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettingsFragment.Callback {
+open class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettingsFragment.Callback {
 
   override val dynamicTheme: DynamicTheme = DynamicConversationSettingsTheme()
 
@@ -96,6 +96,7 @@ class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettings
       val startBundle = startBundleBuilder.build().toBundle()
 
       return getIntent(context)
+        .setClass(context, CallInfoActivity::class.java)
         .putExtra(ARG_START_BUNDLE, startBundle)
     }
 
