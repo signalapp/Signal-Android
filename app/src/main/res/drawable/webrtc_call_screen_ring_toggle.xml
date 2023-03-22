@@ -3,19 +3,19 @@
     <item android:state_activated="false">
         <layer-list>
             <item android:drawable="@drawable/webrtc_call_screen_circle_grey_disabled" />
-            <item android:bottom="14dp" android:drawable="@drawable/ic_ring_disabled_28" android:left="14dp" android:right="14dp" android:top="14dp" />
+            <item android:bottom="14dp" android:drawable="@drawable/symbol_bell_ring_fill_disabled_24" android:left="14dp" android:right="14dp" android:top="14dp" />
         </layer-list>
     </item>
     <item android:state_checked="true">
         <layer-list>
-            <item android:drawable="@drawable/circle_tintable" />
-            <item android:bottom="14dp" android:drawable="@drawable/ic_ring_grey_28" android:left="14dp" android:right="14dp" android:top="14dp" />
+            <item android:drawable="@drawable/webrtc_call_screen_circle_checked" />
+            <item android:bottom="14dp" android:drawable="@drawable/symbol_bell_ring_fill_white_24" android:left="14dp" android:right="14dp" android:top="14dp" />
         </layer-list>
     </item>
     <item>
         <layer-list>
-            <item android:drawable="@drawable/webrtc_call_screen_circle_grey" />
-            <item android:bottom="14dp" android:drawable="@drawable/ic_ring_28" android:left="14dp" android:right="14dp" android:top="14dp" />
+            <item android:drawable="@drawable/webrtc_call_screen_circle_unchecked" />
+            <item android:bottom="14dp" android:drawable="@drawable/symbol_bell_ring_fill_24" android:left="14dp" android:right="14dp" android:top="14dp" />
         </layer-list>
     </item>
 </selector>

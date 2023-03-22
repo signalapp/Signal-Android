@@ -5,10 +5,10 @@
         android:top="4dp"
         android:left="4dp"
         android:right="4dp"
-        android:drawable="@drawable/webrtc_call_screen_circle_grey_selector" />
+        android:drawable="@drawable/webrtc_call_screen_circle_checked" />
     <item
         android:bottom="14dp"
-        android:drawable="@drawable/ic_switch_camera_28"
+        android:drawable="@drawable/symbol_switch_white_24"
         android:left="14dp"
         android:right="14dp"
         android:top="14dp" />
