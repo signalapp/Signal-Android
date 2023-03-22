@@ -14,7 +14,6 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil
 import org.thoughtcrime.securesms.util.safeUnregisterReceiver
 import org.whispersystems.signalservice.api.util.Preconditions
 
@@ -41,9 +40,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   companion object {
     @JvmStatic
     fun create(context: Context, eventListener: EventListener?, isGroup: Boolean): SignalAudioManager {
-      return if (AndroidTelecomUtil.telecomSupported && !isGroup) {
-        TelecomAwareSignalAudioManager(context, eventListener)
-      } else if (Build.VERSION.SDK_INT >= 31) {
+      return if (Build.VERSION.SDK_INT >= 31) {
         FullSignalAudioManagerApi31(context, eventListener)
       } else {
         FullSignalAudioManager(context, eventListener)
@@ -407,65 +404,5 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
 
       handler.post { onWiredHeadsetChange(pluggedIn, hasMic) }
     }
-  }
-}
-
-class TelecomAwareSignalAudioManager(context: Context, eventListener: EventListener?) : SignalAudioManager(context, eventListener) {
-
-  override fun setDefaultAudioDevice(recipientId: RecipientId?, newDefaultDevice: AudioDevice, clearUserEarpieceSelection: Boolean) {
-    if (recipientId != null && AndroidTelecomUtil.getSelectedAudioDevice(recipientId) == AudioDevice.EARPIECE) {
-      selectAudioDevice(recipientId, newDefaultDevice)
-    }
-  }
-
-  override fun initialize() {
-    val focusedGained = androidAudioManager.requestCallAudioFocus()
-    if (!focusedGained) {
-      handler.postDelayed({ androidAudioManager.requestCallAudioFocus() }, 500)
-    }
-
-    state = State.PREINITIALIZED
-  }
-
-  override fun start() {
-    incomingRinger.stop()
-    outgoingRinger.stop()
-
-    val focusedGained = androidAudioManager.requestCallAudioFocus()
-    if (!focusedGained) {
-      handler.postDelayed({ androidAudioManager.requestCallAudioFocus() }, 500)
-    }
-
-    state = State.RUNNING
-  }
-
-  override fun stop(playDisconnect: Boolean) {
-    incomingRinger.stop()
-    outgoingRinger.stop()
-
-    if (playDisconnect && state != State.UNINITIALIZED) {
-      val volume: Float = androidAudioManager.ringVolumeWithMinimum()
-      soundPool.play(disconnectedSoundId, volume, volume, 0, 0, 1.0f)
-    }
-
-    state = State.UNINITIALIZED
-
-    androidAudioManager.abandonCallAudioFocus()
-  }
-
-  override fun selectAudioDevice(recipientId: RecipientId?, device: AudioDevice) {
-    if (recipientId != null) {
-      selectedAudioDevice = device
-      AndroidTelecomUtil.selectAudioDevice(recipientId, device)
-      handler.postDelayed({ AndroidTelecomUtil.selectAudioDevice(recipientId, selectedAudioDevice) }, 1000)
-    }
-  }
-
-  override fun startIncomingRinger(ringtoneUri: Uri?, vibrate: Boolean) {
-    incomingRinger.start(ringtoneUri, vibrate)
-  }
-
-  override fun startOutgoingRinger() {
-    outgoingRinger.start(OutgoingRinger.Type.RINGING)
   }
 }

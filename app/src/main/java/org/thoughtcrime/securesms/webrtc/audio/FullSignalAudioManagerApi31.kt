@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.AudioDeviceCallback
 import android.media.AudioDeviceInfo
 import android.media.AudioManager
+import android.media.MediaRouter
 import android.net.Uri
 import androidx.annotation.RequiresApi
 import org.signal.core.util.logging.Log
@@ -25,7 +26,6 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
   private var savedIsSpeakerPhoneOn = false
   private var savedIsMicrophoneMute = false
   private var hasWiredHeadset = false
-  private var hasBluetoothHeadset = false
   private var autoSwitchToWiredHeadset = true
   private var autoSwitchToBluetooth = true
 
@@ -175,7 +175,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
     }
     val availableCommunicationDevices: List<AudioDeviceInfo> = androidAudioManager.availableCommunicationDevices
     availableCommunicationDevices.forEach { Log.d(TAG, "Detected communication device of type: ${it.type}") }
-    hasBluetoothHeadset = availableCommunicationDevices.any { AudioDeviceMapping.fromPlatformType(it.type) == AudioDevice.BLUETOOTH }
+    val hasBluetoothHeadset = isBluetoothHeadsetConnected()
     hasWiredHeadset = availableCommunicationDevices.any { AudioDeviceMapping.fromPlatformType(it.type) == AudioDevice.WIRED_HEADSET }
     Log.i(
       TAG,
@@ -244,5 +244,11 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
         androidAudioManager.clearCommunicationDevice()
       }
     }
+  }
+
+  private fun isBluetoothHeadsetConnected(): Boolean {
+    val mediaRouter = context.getSystemService(Context.MEDIA_ROUTER_SERVICE) as MediaRouter
+    val liveAudioRoute = mediaRouter.getSelectedRoute(MediaRouter.ROUTE_TYPE_LIVE_AUDIO)
+    return liveAudioRoute.deviceType == MediaRouter.RouteInfo.DEVICE_TYPE_BLUETOOTH
   }
 }
