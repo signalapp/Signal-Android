@@ -485,8 +485,8 @@
         <item quantity="other">വായിച്ചു</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">വായിച്ചില്ല</item>
-        <item quantity="other">വായിച്ചില്ല</item>
+        <item quantity="one">വായിച്ചിട്ടില്ല</item>
+        <item quantity="other">വായിച്ചിട്ടില്ല</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">പിൻ</item>
@@ -510,8 +510,8 @@
         <item quantity="other">ആർക്കൈവ്</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">അൺആർക്കൈവ്</item>
-        <item quantity="other">അൺആർക്കൈവ്</item>
+        <item quantity="one">ആർക്കൈവ് ചെയ്തത് മാറ്റൂ</item>
+        <item quantity="other">ആർക്കൈവ് ചെയ്തത് മാറ്റൂ</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">ഇല്ലാതാക്കൂ</item>

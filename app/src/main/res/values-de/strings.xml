@@ -481,12 +481,12 @@
         <item quantity="other">%1$d Unterhaltungen in Eingang verschoben</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Gelesen</item>
-        <item quantity="other">Gelesen</item>
+        <item quantity="one">Lesen</item>
+        <item quantity="other">Lesen</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Ungelesen</item>
-        <item quantity="other">Ungelesen</item>
+        <item quantity="one">Nicht lesen</item>
+        <item quantity="other">Nicht lesen</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Anheften</item>

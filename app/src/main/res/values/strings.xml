@@ -388,7 +388,7 @@
     <string name="SendingFormattingTextDialog_title">Sending formatted text</string>
     <!-- Message for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_message">Some people may be using a version of Signal that doesn\'t support formatted text. They will not be able to see the formatting changes you\'ve made to your message.</string>
-    <!-- Button text for confirming they'd like to send the message with formatting after seeing warning. -->
+    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
     <string name="SendingFormattingTextDialog_send_anyway_button">Send anyway</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
     <string name="SendingFormattingTextDialog_cancel_send_button">Cancel</string>
@@ -5710,7 +5710,7 @@
     <string name="TimeDurationPickerDialog_minimum_duration_warning">Minimum time before screen lock applies is 1 minute.</string>
 
     <!-- Call Log -->
-    <!-- Displayed below the user's name in row items on the call log. First placeholder is the call status, second is when it occurred -->
+    <!-- Displayed below the user\'s name in row items on the call log. First placeholder is the call status, second is when it occurred -->
     <string name="CallLogAdapter__s_dot_s">%s &#183; %s</string>
     <!-- Displayed for incoming calls -->
     <string name="CallLogAdapter__incoming">Incoming</string>

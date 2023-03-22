@@ -501,16 +501,16 @@
         <item quantity="other">%1$d razgovora je premješteno u pristiglu poštu</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Pročitano</item>
-        <item quantity="few">Pročitano</item>
-        <item quantity="many">Pročitano</item>
-        <item quantity="other">Pročitano</item>
+        <item quantity="one">Označi kao pročitano</item>
+        <item quantity="few">Označi kao pročitano</item>
+        <item quantity="many">Označi kao pročitano</item>
+        <item quantity="other">Označi kao pročitano</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Nepročitano</item>
-        <item quantity="few">Nepročitano</item>
-        <item quantity="many">Nepročitano</item>
-        <item quantity="other">Nepročitano</item>
+        <item quantity="one">Označi kao nepročitano</item>
+        <item quantity="few">Označi kao nepročitano</item>
+        <item quantity="many">Označi kao nepročitano</item>
+        <item quantity="other">Označi kao nepročitano</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Prikvači</item>

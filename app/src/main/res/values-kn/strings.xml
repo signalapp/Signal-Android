@@ -510,8 +510,8 @@
         <item quantity="other">ಆರ್ಕೈವ್ ಮಾಡಿ</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">ಅನ್‌ಆರ್ಕೈವ್</item>
-        <item quantity="other">ಅನ್ಆ‌ರ್ಕೈವ್</item>
+        <item quantity="one">ಆರ್ಕೈವ್‌ನಿಂದ ತೆಗೆಯಿರಿ</item>
+        <item quantity="other">ಆರ್ಕೈವ್‌ನಿಂದ ತೆಗೆಯಿರಿ</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">ಅಳಿಸಿ</item>

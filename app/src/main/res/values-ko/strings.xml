@@ -477,10 +477,10 @@
         <item quantity="other">읽지 않음 표시</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="other">상단 고정</item>
+        <item quantity="other">고정</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="other">상단 고정 해제</item>
+        <item quantity="other">고정 해제</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="other">알림 끄기</item>
@@ -2075,7 +2075,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">내 오디오에 %1$s 이모지로 반응했습니다.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">한 번만 볼 수 있는 내 미디어에 %1$s 이모지로 반응했습니다.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">내 결제에 %1$s 이모지로 반응했습니다.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">내 스티커에 %1$s 이모지로 반응했습니다.</string>
     <string name="MessageNotifier_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
 

@@ -485,8 +485,8 @@
         <item quantity="other">পড়ুন</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">অপঠিত</item>
-        <item quantity="other">অপঠিত</item>
+        <item quantity="one">পড়া হয়নি</item>
+        <item quantity="other">পড়া হয়নি</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">পিন করুন</item>
@@ -497,12 +497,12 @@
         <item quantity="other">আনপিন করুন</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">নীরব করুন</item>
-        <item quantity="other">নীরব করুন</item>
+        <item quantity="one">মিউট করুন</item>
+        <item quantity="other">মিউট করুন</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">সরব করুন</item>
-        <item quantity="other">সরব করুন</item>
+        <item quantity="one">আনমিউট করুন</item>
+        <item quantity="other">আনমিউট করুন</item>
     </plurals>
     <string name="ConversationListFragment_select">নির্বাচন করুন</string>
     <plurals name="ConversationListFragment_archive_plural">

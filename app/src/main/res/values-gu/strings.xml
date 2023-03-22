@@ -481,11 +481,11 @@
         <item quantity="other">%1$d વાતચીતોને ઇનબોક્સમાં ખસેડી</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">વાંચેલ</item>
+        <item quantity="one">વાંચેલ તરીકે ચિહ્નિત કરો</item>
         <item quantity="other">વાંચેલ</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">ન વાંચેલ</item>
+        <item quantity="one">ન વાંચેલ તરીકે ચિહ્નિત કરો</item>
         <item quantity="other">ન વાંચેલ</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">

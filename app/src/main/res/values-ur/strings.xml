@@ -481,20 +481,20 @@
         <item quantity="other">%1$d گفتگو ان باکس میں چلی گئیں</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">پڑھا گیا</item>
-        <item quantity="other">پڑھا گیا</item>
+        <item quantity="one">پڑھی گئی</item>
+        <item quantity="other">پڑھی گئی</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">ناپڑھا گیا</item>
-        <item quantity="other">ناپڑھا گیا</item>
+        <item quantity="one">غیر پڑھی گئی</item>
+        <item quantity="other">غیر پڑھی گئی</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">پن کریں</item>
         <item quantity="other">پن کریں</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">ان پن کریں</item>
-        <item quantity="other">ان پن کریں</item>
+        <item quantity="one">ان پِن کریں</item>
+        <item quantity="other">ان پِن کریں</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="one">خاموش کریں</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">آپ کی آڈیو پر %1$s ری ایکٹ کیا۔</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">آپ کے ایک وقتی دیکھے جانے والے میڈیا پر %1$s ری ایکٹ کیا۔</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">آپ کی پیمنٹ پر %1$s ری ایکٹ کیا۔</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">آپ کے اسٹیکر پر %1$s ری ایکٹ کیا۔</string>
     <string name="MessageNotifier_this_message_was_deleted">یہ پیغام حذف کردیا گیا تھا۔</string>
 

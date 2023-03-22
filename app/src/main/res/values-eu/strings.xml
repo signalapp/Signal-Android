@@ -481,8 +481,8 @@
         <item quantity="other">%1$d elkarrizketa eraman dira sarrera-ontzira</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Irakurrita</item>
-        <item quantity="other">Irakurrita</item>
+        <item quantity="one">Irakurria</item>
+        <item quantity="other">Irakurriak</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="one">Irakurri gabe</item>
@@ -517,7 +517,7 @@
         <item quantity="one">Ezabatu</item>
         <item quantity="other">Ezabatu</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">Denak hautatu</string>
+    <string name="ConversationListFragment_select_all">Dena hautatu</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d hautatua</item>
         <item quantity="other">%1$d hautatua</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Zure audioari bidalitako erreakzioa: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Zure behin ikusteko multimedia-edukiari bidalitako erreakzioa: %1$s.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">%1$s erreakzionatu dio zure ordainketari.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Zure eranskailuari bidalitako erreakzioa: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Mezu hau ezabatu egin da.</string>
 

@@ -501,16 +501,16 @@
         <item quantity="other">%1$d разговора перемещено во Входящие</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Прочитано</item>
-        <item quantity="few">Прочитано</item>
-        <item quantity="many">Прочитано</item>
-        <item quantity="other">Прочитано</item>
+        <item quantity="one">Прочитать</item>
+        <item quantity="few">Прочитать</item>
+        <item quantity="many">Прочитать</item>
+        <item quantity="other">Прочитать</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Не прочитано</item>
-        <item quantity="few">Не прочитано</item>
-        <item quantity="many">Не прочитано</item>
-        <item quantity="other">Не прочитано</item>
+        <item quantity="one">Отм. как непрочитанное</item>
+        <item quantity="few">Отм. как непрочитанные</item>
+        <item quantity="many">Отм. как непрочитанные</item>
+        <item quantity="other">Отм. как непрочитанные</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Прикрепить</item>

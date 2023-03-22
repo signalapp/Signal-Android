@@ -485,7 +485,7 @@
         <item quantity="other">Leídos</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">No leído</item>
+        <item quantity="one">Marcar como no leído</item>
         <item quantity="other">No leídos</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
@@ -493,7 +493,7 @@
         <item quantity="other">Fijar</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">No fijar</item>
+        <item quantity="one">Marcar como no leídos</item>
         <item quantity="other">No fijar</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">

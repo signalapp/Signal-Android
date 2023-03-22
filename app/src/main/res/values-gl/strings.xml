@@ -485,8 +485,8 @@
         <item quantity="other">Lidos</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Non lido</item>
-        <item quantity="other">Non lidos</item>
+        <item quantity="one">Sen ler</item>
+        <item quantity="other">Sen ler</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Fixar</item>

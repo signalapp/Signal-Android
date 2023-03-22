@@ -488,7 +488,7 @@
     <plurals name="ConversationListFragment_unmute_plural">
         <item quantity="other">ئۈنلۈك</item>
     </plurals>
-    <string name="ConversationListFragment_select">تاللا</string>
+    <string name="ConversationListFragment_select">تاللاش</string>
     <plurals name="ConversationListFragment_archive_plural">
         <item quantity="other">ئارخىپ</item>
     </plurals>
@@ -498,7 +498,7 @@
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="other">ئۆچۈرۈش</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">ھەممىنى تاللا</string>
+    <string name="ConversationListFragment_select_all">ھەممىنى تاللاش</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="other">%1$d تاللانغان</item>
     </plurals>
@@ -2067,14 +2067,16 @@
     <string name="MessageNotifier_unsecured_sms">شىفىرلانمىغان كۆپ ۋاسىتە ئۇچۇر</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">ئالاقەداش</string>
-    <string name="MessageNotifier_reacted_s_to_s">«%2$s» غا قايتۇرغان ئىنكاس %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">سىنىڭىزغا %1$s ئىنكاس قايتۇردى.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">رەسىمىڭىزگە%1$s ئىنكاس قايتۇردى.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">GIF غا %1$s ئىنكاس قايتۇردى</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">ھۆججىتىڭىز %1$s ئىنكاس قايتۇردى.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">ئۈنىڭىزگە %1$s ئىنكاس قايتۇردى.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">كۆرۈن-غايىپ ۋاسىتىڭىزگە %1$s ئىنكاس قايتۇردى.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">چىراي ئىپادىڭىزگە %1$s ئىنكاس قايتۇردى.</string>
+    <string name="MessageNotifier_reacted_s_to_s">«%2$s» گە قايتۇرغان ئىنكاس %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">سىنىڭىزغا قايتۇرغان ئىنكاس %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">رەسىمىڭىزگە قايتۇرغان ئىنكاس %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">سىزنىڭ GIF گە قايتۇرغان ئىنكاس %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">ھۆججىتىڭىزگە قايتۇرغان ئىنكاس %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">ئۈنىڭىزگە قايتۇرغان ئىنكاس %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">بىر قېتىم كۆرۈشكە بولىدىغان مېدىياغا ئىنكاس %1$s.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">چىقىمىڭىزغا %1$s ئىنكاسىنى قايتۇردى.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">چاپلىقىڭىزغا قايتۇرغان ئىنكاس %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">بۇ ئۇچۇر ئۆچۈرۈلگەن</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ئالاقەداشلار Signal غا قوشۇلغانلىق ئۇقتۇرۇشىنى تاقامسىز؟ سىز Signal &gt; تەڭشەكلەر&gt;ئۇقتۇرۇشتىن قايتا قوزغىتالايسىز.</string>
@@ -3757,12 +3759,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">ھەمياننى ئاكتىپسىزلا</string>
     <string name="DeactivateWalletFragment__your_balance">قالدۇقىڭىز</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">چىقىمنى ئاكتىپسىزلاشتىن بۇرۇن مەبلىغىڭىزنى باشقا ھەميان ئادرېسىغا يۆتكەش تەۋسىيە قىلىنىدۇ. ئەگەر ھازىر مەبلىغىڭىزنى يۆتكىمەسلىكنى تاللىسىڭىز ، چىقىمنى قايتا ئاكتىپلىسىڭىز ئۇلار Signal غا باغلانغان ھەميانىڭىزدا قالىدۇ.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">چىقىمنى ئاكتىپسىزلاشتىن بۇرۇن مەبلىغىڭىزنى باشقا ھەميان ئادرېسىغا يۆتكەش تەۋسىيە قىلىنىدۇ. ئەگەر ھازىر مەبلىغىڭىزنى يۆتكىمەسلىكنى تاللىسىڭىز، چىقىمنى قايتا ئاكتىپلىسىڭىز ئۇلار Signal غا باغلانغان ھەميانىڭىزدا قالىدۇ.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">قالغان قالدۇقنى يۆتكە</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">يۆتكىمەي تۇرۇپ ئاكتىپسىزلا</string>
     <string name="DeactivateWalletFragment__deactivate">چەكلە</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">يۆتكىمەي تۇرۇپ ئاكتىپسىزلىسۇنمۇ؟</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">ئەگەر چىقىمنى قايتا ئاكتىپلاشنى تاللىسىڭىز ، قالدۇقىڭىز Signal غا باغلانغان ھەميانىڭىزدا قالىدۇ.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">ئەگەر چىقىمنى قايتا ئاكتىپلاشنى تاللىسىڭىز، قالدۇق سوممىڭىز Signal غا باغلانغان ھەميانىڭىزدا قالىدۇ.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">ئاكتىپسىزلاشتا خاتالىق كۆرۈلدى.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4076,7 +4078,7 @@
     <string name="Donate2022Q2Megaphone_not_now">ھازىر ئەمەس</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">ئىختىيارىچە ئىنكاس</string>
+    <string name="EditReactionsFragment__customize_reactions">ئىنكاسلارنى خاسلاشتۇرۇش</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">چېكىلسە چىراي بەلگىنى ئالماشتۇرىدۇ</string>
     <string name="EditReactionsFragment__reset">ئەسلىگە قايتۇر</string>
     <string name="EditReactionsFragment_save">ساقلا</string>
@@ -4431,7 +4433,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">سىز تۆلىگەن پۇلنى بىر تەرەپ قىلالمىغاچقا ئايلىق ئىئانىڭىز بىكار قىلىندى. ئىزنىكىڭىز ئەمدى ئارخىپىڭىزدا كۆرۈنمەيدۇ.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">ئايلىق ئىئانىڭىز بىكار قىلىندى. %1$s %2$s ئىزنىكىڭىز ئەمدى ئارخىپىڭىزدا كۆرۈنمەيدۇ.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal يەنىلا ئىشلىتەلەيسىز، لېكىن ئەپنى قوللاش ۋە ئىزنەكلىرىڭىزنى قايتا قوزغىتىش ئۈچۈن مۇشتەرىلىكنى يېڭىلاڭ.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal نى يەنىلا ئىشلىتەلەيسىز، لېكىن ئەپنى قوللاش ۋە ئىزنەكلىرىڭىزنى قايتا قوزغىتىش ئۈچۈن مۇشتەرىلىكنى يېڭىلاڭ.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">مۇشتەرىلىكنى يېڭىلاش</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay غا كىرىڭ</string>

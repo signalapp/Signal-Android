@@ -481,12 +481,12 @@
         <item quantity="other">Flyttet %1$d samtaler til innboksen</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Les</item>
-        <item quantity="other">Lest</item>
+        <item quantity="one">Sett som lest</item>
+        <item quantity="other">Sett som lest</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Uleste</item>
-        <item quantity="other">Ulest</item>
+        <item quantity="one">Sett som ulest</item>
+        <item quantity="other">Sett som ulest</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Fest</item>
@@ -497,12 +497,12 @@
         <item quantity="other">Løsne</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Dempet samtale</item>
-        <item quantity="other">Dempede samtaler</item>
+        <item quantity="one">Demp</item>
+        <item quantity="other">Demp</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Samtale med lyd slått på</item>
-        <item quantity="other">Samtaler med lyd slått på</item>
+        <item quantity="one">Slå på lyd</item>
+        <item quantity="other">Slå på lyd</item>
     </plurals>
     <string name="ConversationListFragment_select">Velg</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -511,7 +511,7 @@
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
         <item quantity="one">Hent fra arkiv</item>
-        <item quantity="other">Fjern fra arkiv</item>
+        <item quantity="other">Hent fra arkiv</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">Slett</item>

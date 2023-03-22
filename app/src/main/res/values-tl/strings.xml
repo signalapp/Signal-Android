@@ -504,7 +504,7 @@
         <item quantity="one">I-unmute</item>
         <item quantity="other">I-unmute</item>
     </plurals>
-    <string name="ConversationListFragment_select">Piliin</string>
+    <string name="ConversationListFragment_select">Select</string>
     <plurals name="ConversationListFragment_archive_plural">
         <item quantity="one">I-archive</item>
         <item quantity="other">I-archive</item>
@@ -517,7 +517,7 @@
         <item quantity="one">Burahin</item>
         <item quantity="other">Burahin</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">Piliin lahat</string>
+    <string name="ConversationListFragment_select_all">Select all</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d selected</item>
         <item quantity="other">%1$d selected</item>

@@ -481,11 +481,11 @@
         <item quantity="other">%1$d Bisedat u transferuan te mesazhet hyrëse</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Lexojeni</item>
-        <item quantity="other">Lexo</item>
+        <item quantity="one">Lexoje</item>
+        <item quantity="other">Lexoji</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Çlexojeni</item>
+        <item quantity="one">E palexuar</item>
         <item quantity="other">Të palexuara</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
@@ -497,27 +497,27 @@
         <item quantity="other">Çfiksoji</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Hiqi zërin</item>
-        <item quantity="other">Hiqu zërin</item>
+        <item quantity="one">Heshte</item>
+        <item quantity="other">HeshtHeshte</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Ktheja zërin</item>
-        <item quantity="other">Kthejua zërin</item>
+        <item quantity="one">Me zë</item>
+        <item quantity="other">Me zë</item>
     </plurals>
-    <string name="ConversationListFragment_select">Përzgjidhni</string>
+    <string name="ConversationListFragment_select">Përzgjidh</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Arkivoje</item>
-        <item quantity="other">Arkivoji</item>
+        <item quantity="one">Arkivo</item>
+        <item quantity="other">Arkivo</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Çarkivoje</item>
-        <item quantity="other">Çarkivoji</item>
+        <item quantity="one">Çarkivo</item>
+        <item quantity="other">Çarkivo</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">Fshije</item>
         <item quantity="other">Fshiji</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">Selekto të tëra</string>
+    <string name="ConversationListFragment_select_all">Përzgjidh të gjitha</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d i përzgjedhur</item>
         <item quantity="other">%1$d të përzgjedhura</item>

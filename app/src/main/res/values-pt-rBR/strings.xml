@@ -493,29 +493,29 @@
         <item quantity="other">Fixar</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">Desafixada</item>
-        <item quantity="other">Desafixadas</item>
+        <item quantity="one">Desafixar</item>
+        <item quantity="other">Desafixar</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Silenciada</item>
-        <item quantity="other">Silenciadas</item>
+        <item quantity="one">Silenciar</item>
+        <item quantity="other">Silenciar</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Reativada</item>
-        <item quantity="other">Reativadas</item>
+        <item quantity="one">Reativar</item>
+        <item quantity="other">Reativar</item>
     </plurals>
     <string name="ConversationListFragment_select">Selecionar</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Arquivada</item>
-        <item quantity="other">Arquivadas</item>
+        <item quantity="one">Arquivar</item>
+        <item quantity="other">Arquivar</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Desarquivada</item>
-        <item quantity="other">Desarquivadas</item>
+        <item quantity="one">Desarquivar</item>
+        <item quantity="other">Desarquivar</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Apagada</item>
-        <item quantity="other">Apagadas</item>
+        <item quantity="one">Apagar</item>
+        <item quantity="other">Apagar</item>
     </plurals>
     <string name="ConversationListFragment_select_all">Selecionar todas</string>
     <plurals name="ConversationListFragment_s_selected">

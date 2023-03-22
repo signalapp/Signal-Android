@@ -481,8 +481,8 @@
         <item quantity="other">%1$d დიალოგი გადატანილია ინბოქსში</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">წაკითხვა</item>
-        <item quantity="other">წაკითხვა</item>
+        <item quantity="one">წაკითხული</item>
+        <item quantity="other">წაკითხული</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="one">წაუკითხავი</item>
@@ -510,8 +510,8 @@
         <item quantity="other">დაარქივება</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">არქივიდან აღება</item>
-        <item quantity="other">არქივიდან აღება</item>
+        <item quantity="one">არქივიდან ამოღება</item>
+        <item quantity="other">არქივიდან ამოღება</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">წაშლა</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">გამოეხმაურა %1$s შენს აუდიოს.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">გამოეხმაურა %1$s შენს ერთხელ სანახავ მედია-ფაილს.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">შენი ტრანზაქცია %1$s-ით დაარეაქტა.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">გამოეხმაურა %1$s შენს სტიკერს.</string>
     <string name="MessageNotifier_this_message_was_deleted">ეს შეტყობინება იქნა წაშლილი.</string>
 

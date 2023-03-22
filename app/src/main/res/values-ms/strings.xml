@@ -480,7 +480,7 @@
         <item quantity="other">Pin</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="other">Batalkan pin</item>
+        <item quantity="other">Nyahpin</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="other">Redamkan</item>
@@ -493,7 +493,7 @@
         <item quantity="other">Arkib</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="other">Nyahrkib</item>
+        <item quantity="other">Nyaharkib</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="other">Padam</item>

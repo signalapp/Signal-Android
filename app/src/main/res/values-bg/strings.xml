@@ -481,12 +481,12 @@
         <item quantity="other">%1$d разговора са преместени във входящата кутия</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Прочетено</item>
-        <item quantity="other">Прочетени</item>
+        <item quantity="one">Маркирай прочетено</item>
+        <item quantity="other">Маркирай прочетени</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Непрочетено</item>
-        <item quantity="other">Непрочетени</item>
+        <item quantity="one">Маркирай непрочетено</item>
+        <item quantity="other">Маркирай непрочетени</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Закачане</item>

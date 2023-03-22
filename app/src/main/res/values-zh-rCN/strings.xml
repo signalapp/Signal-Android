@@ -471,10 +471,10 @@
         <item quantity="other">已将 %1$d 个对话移至收件箱</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="other">已读</item>
+        <item quantity="other">标为已读</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="other">未读</item>
+        <item quantity="other">标为未读</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="other">置顶</item>

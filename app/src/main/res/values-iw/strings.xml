@@ -501,10 +501,10 @@
         <item quantity="other">%1$d שיחות הועברו לתיבת הדואר הנכנס</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">נקראה</item>
-        <item quantity="two">נקראו</item>
-        <item quantity="many">נקראו</item>
-        <item quantity="other">נקראו</item>
+        <item quantity="one">סימון כנקרא</item>
+        <item quantity="two">סימון כנקראו</item>
+        <item quantity="many">סימון כנקראו</item>
+        <item quantity="other">סימון כנקראו</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="one">סימון כלא נקרא</item>

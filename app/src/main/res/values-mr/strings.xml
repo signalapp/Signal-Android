@@ -497,8 +497,8 @@
         <item quantity="other">अनपिन करा</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">मूक करा</item>
-        <item quantity="other">मूक करा</item>
+        <item quantity="one">म्यूट करा</item>
+        <item quantity="other">म्यूट करा</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
         <item quantity="one">अनम्यूट करा</item>

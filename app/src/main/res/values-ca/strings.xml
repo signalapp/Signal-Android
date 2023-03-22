@@ -493,8 +493,8 @@
         <item quantity="other">Fixar</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">No fixat</item>
-        <item quantity="other">No fixats</item>
+        <item quantity="one">No fixar</item>
+        <item quantity="other">No fixar</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="one">Silenciar</item>
@@ -504,7 +504,7 @@
         <item quantity="one">No silenciar</item>
         <item quantity="other">No silenciar</item>
     </plurals>
-    <string name="ConversationListFragment_select">Selecció</string>
+    <string name="ConversationListFragment_select">Seleccionar</string>
     <plurals name="ConversationListFragment_archive_plural">
         <item quantity="one">Arxivar</item>
         <item quantity="other">Arxivar</item>

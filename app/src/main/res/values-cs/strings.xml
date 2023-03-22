@@ -501,16 +501,16 @@
         <item quantity="other">%1$d konverzací přesunuto do složky příchozích zpráv</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Přečteno</item>
-        <item quantity="few">Přečteno</item>
-        <item quantity="many">Přečteno</item>
-        <item quantity="other">Přečteno</item>
+        <item quantity="one">Přečíst</item>
+        <item quantity="few">Přečíst</item>
+        <item quantity="many">Přečíst</item>
+        <item quantity="other">Přečíst</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Nepřečteno</item>
-        <item quantity="few">Nepřečteno</item>
-        <item quantity="many">Nepřečteno</item>
-        <item quantity="other">Nepřečteno</item>
+        <item quantity="one">Zrušit přečtení</item>
+        <item quantity="few">Zrušit přečtení</item>
+        <item quantity="many">Zrušit přečtení</item>
+        <item quantity="other">Zrušit přečtení</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Připnout</item>

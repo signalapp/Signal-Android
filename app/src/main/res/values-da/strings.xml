@@ -510,8 +510,8 @@
         <item quantity="other">Arkivér</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Ophæv arkivering</item>
-        <item quantity="other">Ophæv arkivering</item>
+        <item quantity="one">Fjern arkivering</item>
+        <item quantity="other">Fjern arkivering</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">Slet</item>

@@ -481,12 +481,12 @@
         <item quantity="other">%1$d keskustelua siirretty Saapuneet-kansioon</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Luettu</item>
-        <item quantity="other">Luettua</item>
+        <item quantity="one">Luetuksi</item>
+        <item quantity="other">Luetuiksi</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Lukematon</item>
-        <item quantity="other">Lukematonta</item>
+        <item quantity="one">Lukemattomaksi</item>
+        <item quantity="other">Lukemattomiksi</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Kiinnitä</item>

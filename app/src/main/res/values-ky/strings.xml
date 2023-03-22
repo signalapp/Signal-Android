@@ -471,7 +471,7 @@
         <item quantity="other">%1$d сүйлөшүү \"Келген билдирүүлөр\" кутусуна жылдырылды</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="other">Окулду</item>
+        <item quantity="other">Окуу</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="other">Окула элек</item>
@@ -493,7 +493,7 @@
         <item quantity="other">Архивдөө</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="other">Архивден чыгар</item>
+        <item quantity="other">Архивден чыгаруу</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="other">Өчүрүү</item>

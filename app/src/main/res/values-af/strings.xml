@@ -494,7 +494,7 @@
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
         <item quantity="one">Verwyder speld</item>
-        <item quantity="other">Verwyder spelde</item>
+        <item quantity="other">Verwyder speld</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="one">Demp</item>

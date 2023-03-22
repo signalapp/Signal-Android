@@ -501,16 +501,16 @@
         <item quantity="other">%1$d pokalbių perkelta į gautųjų aplanką</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Perskaityta</item>
-        <item quantity="few">Perskaitytos</item>
-        <item quantity="many">Perskaitytos</item>
-        <item quantity="other">Perskaitytos</item>
+        <item quantity="one">Žymėti kaip skaitytas</item>
+        <item quantity="few">Žymėti kaip skaitytas</item>
+        <item quantity="many">Žymėti kaip skaitytas</item>
+        <item quantity="other">Žymėti kaip skaitytas</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Neskaityta</item>
-        <item quantity="few">Neskaitytos</item>
-        <item quantity="many">Neskaitytos</item>
-        <item quantity="other">Neskaitytos</item>
+        <item quantity="one">Žymėti kaip neskaitytas</item>
+        <item quantity="few">Žymėti kaip neskaitytas</item>
+        <item quantity="many">Žymėti kaip neskaitytas</item>
+        <item quantity="other">Žymėti kaip neskaitytas</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Prisegti</item>

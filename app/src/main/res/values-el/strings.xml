@@ -485,39 +485,39 @@
         <item quantity="other">Διαβάστηκαν</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Μη αναγνωσμένο</item>
-        <item quantity="other">Μη αναγνωσμένα</item>
+        <item quantity="one">Δεν διαβάστηκε</item>
+        <item quantity="other">Δεν διαβάστηκαν</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">Καρφίτσωμα</item>
-        <item quantity="other">Καρφίτσωμα</item>
+        <item quantity="one">Καρφιτσώθηκε</item>
+        <item quantity="other">Καρφιτσώθηκαν</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">Ξεκαρφίτσωμα</item>
-        <item quantity="other">Ξεκαρφίτσωμα</item>
+        <item quantity="one">Καταργήθηκε το καρφίτσωμα</item>
+        <item quantity="other">Καταργήθηκε το καρφίτσωμα</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Σίγαση</item>
-        <item quantity="other">Σίγαση</item>
+        <item quantity="one">Καταργήθηκε η σίγαση</item>
+        <item quantity="other">Καταργήθηκε η σίγαση</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Αναίρεση σίγασης</item>
-        <item quantity="other">Αναίρεση σίγασης</item>
+        <item quantity="one">Αναιρέθηκε η σίγαση</item>
+        <item quantity="other">Αναιρέθηκε η σίγαση</item>
     </plurals>
-    <string name="ConversationListFragment_select">Επιλογή</string>
+    <string name="ConversationListFragment_select">Επιλέχθηκε</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Αρχειοθέτηση</item>
-        <item quantity="other">Αρχειοθέτηση</item>
+        <item quantity="one">Αρχειοθετήθηκε</item>
+        <item quantity="other">Αρχειοθετήθηκαν</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Κατάργηση αρχειοθέτησης</item>
-        <item quantity="other">Κατάργηση αρχειοθέτησης</item>
+        <item quantity="one">Καταργήθηκε η αρχειοθέτηση</item>
+        <item quantity="other">Καταργήθηκε η αρχειοθέτηση</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Διαγραφή</item>
-        <item quantity="other">Διαγραφή</item>
+        <item quantity="one">Διαγράφηκε</item>
+        <item quantity="other">Διαγράφηκαν</item>
     </plurals>
-    <string name="ConversationListFragment_select_all">Επιλογή όλων</string>
+    <string name="ConversationListFragment_select_all">Επιλέχθηκαν όλα</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d επιλεγμένο</item>
         <item quantity="other">%1$d επιλεγμένα</item>

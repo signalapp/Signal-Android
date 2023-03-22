@@ -481,23 +481,23 @@
         <item quantity="other">%1$d مکالمه به صندوق ورودی انتقال یافت</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">خوانده‌شده</item>
-        <item quantity="other">خوانده‌شده</item>
+        <item quantity="one">خوانده شده است</item>
+        <item quantity="other">خوانده شده است</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">نخوانده</item>
-        <item quantity="other">نخوانده</item>
+        <item quantity="one">خوانده نشده است</item>
+        <item quantity="other">خوانده نشده است</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">سنجاق شود</item>
         <item quantity="other">سنجاق شود</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">برداشتن سنجاق</item>
-        <item quantity="other">برداشتن سنجاق</item>
+        <item quantity="one">سنجاق برداشته شود</item>
+        <item quantity="other">سنجاق برداشته شود</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">بی‌‌صدا شود</item>
+        <item quantity="one">بی‌صدا شود</item>
         <item quantity="other">بی‌صدا شود</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
@@ -514,8 +514,8 @@
         <item quantity="other">از بایگانی خارج شود</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">پاک شود</item>
-        <item quantity="other">پاک شود</item>
+        <item quantity="one">حذف شود</item>
+        <item quantity="other">حذف شود</item>
     </plurals>
     <string name="ConversationListFragment_select_all">انتخاب همه</string>
     <plurals name="ConversationListFragment_s_selected">
