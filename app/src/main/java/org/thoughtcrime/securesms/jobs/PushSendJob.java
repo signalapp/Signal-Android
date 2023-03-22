@@ -482,7 +482,7 @@ public abstract class PushSendJob extends SendJob {
                 builder.setStyle(SignalServiceProtos.BodyRange.Style.ITALIC);
                 break;
               case SPOILER:
-                // Intentionally left blank
+                builder.setStyle(SignalServiceProtos.BodyRange.Style.SPOILER);
                 break;
               case STRIKETHROUGH:
                 builder.setStyle(SignalServiceProtos.BodyRange.Style.STRIKETHROUGH);

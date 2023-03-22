@@ -26,11 +26,13 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewKt;
 import androidx.core.widget.TextViewCompat;
 
+import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
+import org.thoughtcrime.securesms.components.spoiler.SpoilerRendererDelegate;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.Util;
@@ -66,7 +68,8 @@ public class EmojiTextView extends AppCompatTextView {
   private boolean                isJumbomoji;
   private boolean                forceJumboEmoji;
 
-  private MentionRendererDelegate mentionRendererDelegate;
+  private       MentionRendererDelegate mentionRendererDelegate;
+  private final SpoilerRendererDelegate spoilerRendererDelegate;
 
   public EmojiTextView(Context context) {
     this(context, null);
@@ -95,6 +98,7 @@ public class EmojiTextView extends AppCompatTextView {
     if (renderMentions) {
       mentionRendererDelegate = new MentionRendererDelegate(getContext(), ContextCompat.getColor(getContext(), R.color.transparent_black_20));
     }
+    spoilerRendererDelegate = new SpoilerRendererDelegate(this);
 
     textDirection = getLayoutDirection() == LAYOUT_DIRECTION_LTR ? TextDirectionHeuristics.FIRSTSTRONG_RTL : TextDirectionHeuristics.ANYRTL_LTR;
 
@@ -103,11 +107,14 @@ public class EmojiTextView extends AppCompatTextView {
 
   @Override
   protected void onDraw(Canvas canvas) {
-    if (renderMentions && getText() instanceof Spanned && getLayout() != null) {
+    if (getText() instanceof Spanned && getLayout() != null) {
       int checkpoint = canvas.save();
       canvas.translate(getTotalPaddingLeft(), getTotalPaddingTop());
       try {
-        mentionRendererDelegate.draw(canvas, (Spanned) getText(), getLayout());
+        if (renderMentions) {
+          mentionRendererDelegate.draw(canvas, (Spanned) getText(), getLayout());
+        }
+        spoilerRendererDelegate.draw(canvas, (Spanned) getText(), getLayout());
       } finally {
         canvas.restoreToCount(checkpoint);
       }
@@ -379,6 +386,12 @@ public class EmojiTextView extends AppCompatTextView {
   public void invalidateDrawable(@NonNull Drawable drawable) {
     if (drawable instanceof EmojiProvider.EmojiDrawable) invalidate();
     else                                                 super.invalidateDrawable(drawable);
+  }
+
+  @Override
+  public void setTextColor(int color) {
+    super.setTextColor(color);
+    spoilerRendererDelegate.updateFromTextColor();
   }
 
   @Override

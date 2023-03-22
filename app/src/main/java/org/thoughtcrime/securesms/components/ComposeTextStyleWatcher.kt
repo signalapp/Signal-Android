@@ -6,9 +6,9 @@ import android.text.Spannable
 import android.text.Spanned
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.text.style.CharacterStyle
 import org.signal.core.util.StringUtil
 import org.thoughtcrime.securesms.conversation.MessageStyler
+import org.thoughtcrime.securesms.conversation.MessageStyler.isSupportedStyle
 
 /**
  * Formatting should only grow when appending until a white space character is entered/pasted.
@@ -44,37 +44,49 @@ class ComposeTextStyleWatcher : TextWatcher {
 
     s.removeSpan(markerAnnotation)
 
-    if (editStart < 0 || editEnd < 0 || editStart >= editEnd || (editStart == 0 && editEnd == s.length)) {
-      return
-    }
-
-    val change = s.subSequence(editStart, editEnd)
-    if (change.isEmpty() || textSnapshotPriorToChange == null || (editEnd - editStart == 1 && !StringUtil.isVisuallyEmpty(change[0])) || TextUtils.equals(textSnapshotPriorToChange, change)) {
-      textSnapshotPriorToChange = null
-      return
-    }
-    textSnapshotPriorToChange = null
-
-    var newEnd = editStart
-    for (i in change.indices) {
-      if (StringUtil.isVisuallyEmpty(change[i])) {
-        newEnd = editStart + i
-        break
+    try {
+      if (editStart < 0 || editEnd < 0 || editStart >= editEnd || (editStart == 0 && editEnd == s.length)) {
+        return
       }
-    }
 
-    s.getSpans(editStart, editEnd, CharacterStyle::class.java)
-      .filter { MessageStyler.isSupportedCharacterStyle(it) }
-      .forEach { style ->
-        val styleStart = s.getSpanStart(style)
-        val styleEnd = s.getSpanEnd(style)
+      val change = s.subSequence(editStart, editEnd)
+      if (change.isEmpty() || textSnapshotPriorToChange == null || (editEnd - editStart == 1 && !StringUtil.isVisuallyEmpty(change[0])) || TextUtils.equals(textSnapshotPriorToChange, change)) {
+        textSnapshotPriorToChange = null
+        return
+      }
+      textSnapshotPriorToChange = null
 
-        if (styleEnd == editEnd && styleStart < styleEnd) {
-          s.removeSpan(style)
-          s.setSpan(style, styleStart, newEnd, MessageStyler.SPAN_FLAGS)
-        } else {
-          s.removeSpan(style)
+      var newEnd = editStart
+      for (i in change.indices) {
+        if (StringUtil.isVisuallyEmpty(change[i])) {
+          newEnd = editStart + i
+          break
         }
       }
+
+      s.getSpans(editStart, editEnd, Object::class.java)
+        .filter { it.isSupportedStyle() }
+        .forEach { style ->
+          val styleStart = s.getSpanStart(style)
+          val styleEnd = s.getSpanEnd(style)
+
+          if (styleEnd == editEnd && styleStart < styleEnd) {
+            s.removeSpan(style)
+            s.setSpan(style, styleStart, newEnd, MessageStyler.SPAN_FLAGS)
+          } else if (styleStart >= styleEnd) {
+            s.removeSpan(style)
+          }
+        }
+    } finally {
+      s.getSpans(editStart, editEnd, Object::class.java)
+        .filter { it.isSupportedStyle() }
+        .forEach { style ->
+          val styleStart = s.getSpanStart(style)
+          val styleEnd = s.getSpanEnd(style)
+          if (styleEnd == styleStart || styleStart > styleEnd) {
+            s.removeSpan(style)
+          }
+        }
+    }
   }
 }

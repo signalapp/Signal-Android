@@ -107,6 +107,7 @@ public final class FeatureFlags {
   private static final String TEXT_FORMATTING                   = "android.textFormatting";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
   private static final String CALLS_TAB                         = "android.calls.tab";
+  private static final String TEXT_FORMATTING_SPOILER_SEND      = "android.textFormatting.spoilerSend";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -164,7 +165,8 @@ public final class FeatureFlags {
       PAYPAL_RECURRING_DONATIONS,
       TEXT_FORMATTING,
       ANY_ADDRESS_PORTS_KILL_SWITCH,
-      CALLS_TAB
+      CALLS_TAB,
+      TEXT_FORMATTING_SPOILER_SEND
   );
 
   @VisibleForTesting
@@ -227,7 +229,8 @@ public final class FeatureFlags {
       CREDIT_CARD_PAYMENTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       CDS_HARD_LIMIT,
-      TEXT_FORMATTING
+      TEXT_FORMATTING,
+      TEXT_FORMATTING_SPOILER_SEND
   );
 
   /**
@@ -577,6 +580,13 @@ public final class FeatureFlags {
    */
   public static boolean textFormatting() {
     return getBoolean(TEXT_FORMATTING, false);
+  }
+
+  /**
+   * Whether or not we should show spoiler text formatting option.
+   */
+  public static boolean textFormattingSpoilerSend() {
+    return getBoolean(TEXT_FORMATTING_SPOILER_SEND, false);
   }
 
   /**
