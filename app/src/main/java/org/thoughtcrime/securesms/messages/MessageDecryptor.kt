@@ -57,7 +57,6 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.PniSignatureMessage
-import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageException
 import java.util.Optional
 
 /**
@@ -339,18 +338,10 @@ object MessageDecryptor {
   }
 
   private fun logPrefix(envelope: Envelope, cipherResult: SignalServiceCipherResult): String {
-    return logPrefix(envelope.timestamp, cipherResult.metadata.sourceServiceId.toString(), envelope.sourceDevice)
+    return logPrefix(envelope.timestamp, cipherResult.metadata.sourceServiceId.toString(), cipherResult.metadata.sourceDeviceId)
   }
 
   private fun logPrefix(envelope: Envelope, exception: ProtocolException): String {
-    return if (exception.sender != null) {
-      logPrefix(envelope.timestamp, exception.sender, exception.senderDevice)
-    } else {
-      logPrefix(envelope.timestamp, envelope.sourceUuid, envelope.sourceDevice)
-    }
-  }
-
-  private fun logPrefix(envelope: Envelope, exception: UnsupportedDataMessageException): String {
     return if (exception.sender != null) {
       logPrefix(envelope.timestamp, exception.sender, exception.senderDevice)
     } else {
