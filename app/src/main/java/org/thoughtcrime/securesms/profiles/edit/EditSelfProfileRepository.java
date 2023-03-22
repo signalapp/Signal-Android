@@ -145,7 +145,7 @@ public class EditSelfProfileRepository implements EditProfileRepository {
                              .then(Arrays.asList(new MultiDeviceProfileKeyUpdateJob(), new MultiDeviceProfileContentUpdateJob()))
                              .enqueue();
 
-      RegistrationUtil.maybeMarkRegistrationComplete(context);
+      RegistrationUtil.maybeMarkRegistrationComplete();
 
       if (avatar != null) {
         SignalStore.misc().markHasEverHadAnAvatar();

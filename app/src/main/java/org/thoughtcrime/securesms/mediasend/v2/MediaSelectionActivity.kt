@@ -22,6 +22,8 @@ import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.google.android.material.animation.ArgbEvaluatorCompat
 import org.signal.core.util.BreakIteratorCompat
+import org.signal.core.util.getParcelableArrayListExtraCompat
+import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
@@ -89,8 +91,8 @@ class MediaSelectionActivity :
     WindowUtil.setNavigationBarColor(this, 0x01000000)
     WindowUtil.setStatusBarColor(window, Color.TRANSPARENT)
 
-    val sendType: MessageSendType = requireNotNull(intent.getParcelableExtra(MESSAGE_SEND_TYPE))
-    val initialMedia: List<Media> = intent.getParcelableArrayListExtra(MEDIA) ?: listOf()
+    val sendType: MessageSendType = requireNotNull(intent.getParcelableExtraCompat(MESSAGE_SEND_TYPE, MessageSendType::class.java))
+    val initialMedia: List<Media> = intent.getParcelableArrayListExtraCompat(MEDIA, Media::class.java) ?: listOf()
     val message: CharSequence? = if (shareToTextStory) null else draftText
     val isReply: Boolean = intent.getBooleanExtra(IS_REPLY, false)
     val isAddToGroupStoryFlow: Boolean = intent.getBooleanExtra(IS_ADD_TO_GROUP_STORY_FLOW, false)

@@ -82,6 +82,7 @@ import org.signal.core.util.Stopwatch;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.MainFragment;
 import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.MuteDialog;
@@ -385,7 +386,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     list.setLayoutManager(new LinearLayoutManager(requireActivity()));
     list.setItemAnimator(itemAnimator);
     list.addItemDecoration(archiveDecoration);
-    CachedInflater.from(list.getContext()).cacheUntilLimit(R.layout.conversation_list_item_view, list, 10);
 
     snapToTopDataObserver = new SnapToTopDataObserver(list);
 
@@ -575,28 +575,38 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     super.onOptionsItemSelected(item);
 
-    switch (item.getItemId()) {
-      case R.id.menu_new_group:
-        handleCreateGroup(); return true;
-      case R.id.menu_settings:
-        handleDisplaySettings(); return true;
-      case R.id.menu_clear_passphrase:
-        handleClearPassphrase(); return true;
-      case R.id.menu_mark_all_read:
-        handleMarkAllRead(); return true;
-      case R.id.menu_invite:
-        handleInvite(); return true;
-      case R.id.menu_insights:
-        handleInsights(); return true;
-      case R.id.menu_notification_profile:
-        handleNotificationProfile(); return true;
-      case R.id.menu_filter_unread_chats:
-        handleFilterUnreadChats(); return true;
-      case R.id.menu_clear_unread_filter:
-        onClearFilterClick(); return true;
-    }
+    int itemId = item.getItemId();
 
-    return false;
+    if (itemId == R.id.menu_new_group) {
+      handleCreateGroup();
+      return true;
+    } else if (itemId == R.id.menu_settings) {
+      handleDisplaySettings();
+      return true;
+    } else if (itemId == R.id.menu_clear_passphrase) {
+      handleClearPassphrase();
+      return true;
+    } else if (itemId == R.id.menu_mark_all_read) {
+      handleMarkAllRead();
+      return true;
+    } else if (itemId == R.id.menu_invite) {
+      handleInvite();
+      return true;
+    } else if (itemId == R.id.menu_insights) {
+      handleInsights();
+      return true;
+    } else if (itemId == R.id.menu_notification_profile) {
+      handleNotificationProfile();
+      return true;
+    } else if (itemId == R.id.menu_filter_unread_chats) {
+      handleFilterUnreadChats();
+      return true;
+    } else if (itemId == R.id.menu_clear_unread_filter) {
+      onClearFilterClick();
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @Override
@@ -840,7 +850,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void updateSearchToolbarHint(@NonNull ConversationFilterRequest conversationFilterRequest) {
-    requireCallback().getSearchToolbar().get().setSearchInputHint(
+    Stub<Material3SearchToolbar> searchToolbar = requireCallback().getSearchToolbar();
+    if (!searchToolbar.resolved()) {
+      return;
+    }
+    searchToolbar.get().setSearchInputHint(
         conversationFilterRequest.getFilter() == ConversationFilter.OFF ? R.string.SearchToolbar_search : R.string.SearchToolbar_search_unread_chats
     );
   }
@@ -877,13 +891,14 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         startupStopwatch.split("data-set");
         SignalLocalMetrics.ColdStart.onConversationListDataLoaded();
         defaultAdapter.unregisterAdapterDataObserver(this);
-        list.post(() -> {
-          AppStartup.getInstance().onCriticalRenderEventEnd();
-          startupStopwatch.split("first-render");
-          startupStopwatch.stop(TAG);
-
-          if (getContext() != null) {
-            ConversationFragment.prepare(getContext());
+        if (requireActivity() instanceof MainActivity) {
+          ((MainActivity) requireActivity()).onFirstRender();
+        }
+        list.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+          @Override
+          public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+            list.removeOnLayoutChangeListener(this);
+            list.post(ConversationListFragment.this::onFirstRender);
           }
         });
       }
@@ -956,6 +971,17 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       defaultAdapter.setSelectedConversations(conversations);
       updateMultiSelectState();
     });
+  }
+
+  private void onFirstRender() {
+    AppStartup.getInstance().onCriticalRenderEventEnd();
+    startupStopwatch.split("first-render");
+    startupStopwatch.stop(TAG);
+    mediaControllerOwner.getVoiceNoteMediaController().finishPostpone();
+    requireCallback().getSearchToolbar().get();
+    if (getContext() != null) {
+      ConversationFragment.prepare(getContext());
+    }
   }
 
   private void onConversationListChanged(@NonNull List<Conversation> conversations) {

@@ -21,7 +21,7 @@ public final class DecryptionsDrainedConstraint implements Constraint {
 
   @Override
   public boolean isMet() {
-    return ApplicationDependencies.getIncomingMessageObserver().isDecryptionDrained();
+    return ApplicationDependencies.getIncomingMessageObserver().getDecryptionDrained();
   }
 
   @Override

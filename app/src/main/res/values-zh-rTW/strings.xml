@@ -523,6 +523,15 @@
     <!-- ConversationTypingView -->
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
+    <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">重新連結裝置</string>
+    <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">取消註冊裝置時，你新增的裝置已解除連結。請前往「設定」重新連結裝置。</string>
+    <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
+    <string name="RelinkDevicesReminderFragment__open_settings">開啟設定</string>
+    <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
+    <string name="RelinkDevicesReminderFragment__later">稍後</string>
+
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">選擇成員</string>
 
@@ -1119,8 +1128,8 @@
     <string name="Megaphones_new_group">新增群組</string>
     <string name="Megaphones_invite_friends">邀請好友</string>
     <string name="Megaphones_use_sms">使用 SMS</string>
-    <string name="Megaphones_appearance">介面設定</string>
-    <string name="Megaphones_add_photo">新增照片</string>
+    <string name="Megaphones_chat_colors">聊天顏色</string>
+    <string name="Megaphones_add_a_profile_photo">新增個人資料照片</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">回覆</string>
@@ -2065,6 +2074,8 @@
     <string name="MessageNotifier_reacted_s_to_your_file">對你的檔案作出了 %1$s 反應。</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">對你的語音作出了 %1$s 反應。</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">對你的一次觀看的媒體做出%1$s反應。</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">對你的付款傳送了 %1$s 回應。</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">對你的貼圖作出了 %1$s 反應。</string>
     <string name="MessageNotifier_this_message_was_deleted">此訊息已被刪除。</string>
 
@@ -3361,6 +3372,18 @@
     <string name="BackupUtil_unknown">未知</string>
     <string name="preferences_app_protection__see_my_phone_number">查看我的電話號碼</string>
     <string name="preferences_app_protection__find_me_by_phone_number">透過電話號碼找到我</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">電話號碼</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">選擇誰可以看到你的電話號碼，以及誰可以透過它在 Signal 上與你聯絡。</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">誰可以看到我的號碼</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">沒有人會在 Signal 看到你的電話號碼</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">誰可以透過電話號碼找到我</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">你的電話號碼將顯示給你傳送訊息的人和群組。 電話號碼中包含你電話號碼的人也會在Signal上看到它。</string>
     <string name="PhoneNumberPrivacy_everyone">所有人</string>
     <string name="PhoneNumberPrivacy_my_contacts">我的聯絡人</string>
     <string name="PhoneNumberPrivacy_nobody">沒有人</string>
@@ -4453,7 +4476,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">由於發生網路錯誤，系統無法發送你的捐款。請檢查你的網路連線，然後再試一次。</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_to_s">捐款給 %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">代表 %1$s 捐款</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s 已代表你捐款給 Signal</string>
     <!-- Gift badge redeem action label -->

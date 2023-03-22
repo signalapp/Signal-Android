@@ -1,9 +1,5 @@
 package org.thoughtcrime.securesms.registration;
 
-import android.content.Context;
-
-import androidx.annotation.NonNull;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
@@ -22,7 +18,7 @@ public final class RegistrationUtil {
    * path a user has taken. This will only truly mark registration as complete if all of the
    * requirements are met.
    */
-  public static void maybeMarkRegistrationComplete(@NonNull Context context) {
+  public static void maybeMarkRegistrationComplete() {
     if (!SignalStore.registrationValues().isRegistrationComplete() &&
         SignalStore.account().isRegistered()                       &&
         !Recipient.self().getProfileName().isEmpty()               &&

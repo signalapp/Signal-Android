@@ -13,6 +13,7 @@ import org.whispersystems.signalservice.api.util.Preconditions
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
+import org.whispersystems.signalservice.internal.push.RegistrationSessionState
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -26,10 +27,6 @@ sealed class RegistrationSessionProcessor(response: ServiceResponse<Registration
     val REQUESTABLE_INFORMATION = listOf(PUSH_CHALLENGE_KEY, CAPTCHA_KEY)
   }
 
-  public override fun captchaRequired(): Boolean {
-    return super.captchaRequired() || (hasResult() && CAPTCHA_KEY == getChallenge())
-  }
-
   public override fun rateLimit(): Boolean {
     return error is RateLimitException
   }
@@ -38,8 +35,17 @@ sealed class RegistrationSessionProcessor(response: ServiceResponse<Registration
     return super.getError()
   }
 
-  fun pushChallengeRequired(): Boolean {
-    return PUSH_CHALLENGE_KEY == getChallenge()
+  fun captchaRequired(excludedChallenges: List<String>): Boolean {
+    return response.status == 402 || (hasResult() && CAPTCHA_KEY == getChallenge(excludedChallenges))
+  }
+
+  fun pushChallengeTimedOut(): Boolean {
+    if (response.result.isEmpty) {
+      return false
+    } else {
+      val state: RegistrationSessionState = response.result.get().state ?: return false
+      return state.pushChallengeTimedOut
+    }
   }
 
   fun isTokenRejected(): Boolean {
@@ -107,9 +113,15 @@ sealed class RegistrationSessionProcessor(response: ServiceResponse<Registration
     return result.body.allowedToRequestCode
   }
 
-  fun getChallenge(): String? {
+  /**
+   * Parse the response body for the server requested challenges that the client may submit.
+   *
+   * @param exclusions a collection of keys to ignore, used when they've already tried and failed
+   * @return the next challenge
+   */
+  fun getChallenge(exclusions: Collection<String>): String? {
     Preconditions.checkState(hasResult(), "This can only be called when result is present!")
-    return result.body.requestedInformation.firstOrNull { REQUESTABLE_INFORMATION.contains(it) }
+    return result.body.requestedInformation.filterNot { exclusions.contains(it) }.firstOrNull { REQUESTABLE_INFORMATION.contains(it) }
   }
 
   fun isVerified(): Boolean {

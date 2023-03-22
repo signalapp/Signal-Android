@@ -18,6 +18,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
@@ -132,7 +133,7 @@ class StoryGroupReplyFragment :
     get() = requireArguments().getLong(ARG_STORY_ID)
 
   private val groupRecipientId: RecipientId
-    get() = requireArguments().getParcelable(ARG_GROUP_RECIPIENT_ID)!!
+    get() = requireArguments().getParcelableCompat(ARG_GROUP_RECIPIENT_ID, RecipientId::class.java)!!
 
   private val isFromNotification: Boolean
     get() = requireArguments().getBoolean(ARG_IS_FROM_NOTIFICATION, false)

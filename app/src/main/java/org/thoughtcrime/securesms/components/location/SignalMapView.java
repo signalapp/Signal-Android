@@ -36,7 +36,6 @@ public class SignalMapView extends LinearLayout {
     initialize(context);
   }
 
-  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
   public SignalMapView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     initialize(context);

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.dependencies
 
 import android.app.Application
 import okhttp3.ConnectionSpec
+import okhttp3.WebSocketListener
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -14,8 +15,10 @@ import org.thoughtcrime.securesms.KbsEnclave
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess
 import org.thoughtcrime.securesms.push.SignalServiceTrustStore
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache
+import org.thoughtcrime.securesms.testing.Get
 import org.thoughtcrime.securesms.testing.Verb
 import org.thoughtcrime.securesms.testing.runSync
+import org.thoughtcrime.securesms.testing.success
 import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.KeyBackupService
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
@@ -47,6 +50,12 @@ class InstrumentationApplicationDependencyProvider(application: Application, def
     runSync {
       webServer = MockWebServer()
       baseUrl = webServer.url("").toString()
+
+      addMockWebRequestHandlers(
+        Get("/v1/websocket/") {
+          MockResponse().success().withWebSocketUpgrade(object : WebSocketListener() {})
+        }
+      )
     }
 
     webServer.setDispatcher(object : Dispatcher() {

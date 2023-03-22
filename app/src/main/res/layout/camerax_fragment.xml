@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:viewBindingIgnore="true">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/camerax_camera_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="top"
             app:implementationMode="compatible" />
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <FrameLayout
         android:id="@+id/camerax_controls_container"

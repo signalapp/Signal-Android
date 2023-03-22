@@ -67,10 +67,6 @@ public abstract class ServiceResponseProcessor<T> {
     return response.getStatus() == 401 || response.getStatus() == 403;
   }
 
-  protected boolean captchaRequired() {
-    return response.getStatus() == 402;
-  }
-
   protected boolean notFound() {
     return response.getStatus() == 404;
   }

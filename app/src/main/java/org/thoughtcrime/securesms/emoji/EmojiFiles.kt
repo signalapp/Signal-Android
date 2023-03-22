@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
@@ -142,7 +143,6 @@ object EmojiFiles {
     private fun getDirectory(context: Context): File = File(context.getEmojiDirectory(), this.uuid.toString()).apply { mkdir() }
 
     companion object {
-
       private val objectMapper = ObjectMapper().registerKotlinModule()
 
       @JvmStatic
@@ -150,7 +150,12 @@ object EmojiFiles {
       fun readVersion(context: Context, skipValidation: Boolean = false): Version? {
         val version = try {
           getInputStream(context, context.getVersionFile()).use {
-            objectMapper.readValue(it, Version::class.java)
+            val tree: JsonNode = objectMapper.readTree(it)
+            Version(
+              version = tree["version"].asInt(),
+              uuid = objectMapper.convertValue(tree["uuid"], UUID::class.java),
+              density = tree["density"].asText()
+            )
           }
         } catch (e: Exception) {
           Log.w(TAG, "Could not read current emoji version from disk.", e)
@@ -222,8 +227,15 @@ object EmojiFiles {
       @JvmStatic
       fun read(context: Context, version: Version): NameCollection {
         try {
-          getInputStream(context, context.getNameFile(version.uuid)).use {
-            return objectMapper.readValue(it)
+          getInputStream(context, context.getNameFile(version.uuid)).use { inputStream ->
+            val tree: JsonNode = objectMapper.readTree(inputStream)
+            val elements = tree["names"].elements().asSequence().map {
+              Name(
+                name = it["name"].asText(),
+                uuid = objectMapper.convertValue(it["uuid"], UUID::class.java)
+              )
+            }.toList()
+            return NameCollection(objectMapper.convertValue(tree["versionUuid"], UUID::class.java), elements)
           }
         } catch (e: Exception) {
           return NameCollection(version.uuid, listOf())

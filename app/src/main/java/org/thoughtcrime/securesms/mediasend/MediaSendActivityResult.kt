@@ -6,6 +6,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parceler
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler
+import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.StoryType
@@ -43,7 +44,7 @@ class MediaSendActivityResult(
 
     @JvmStatic
     fun fromData(data: Intent): MediaSendActivityResult {
-      return data.getParcelableExtra(EXTRA_RESULT) ?: throw IllegalArgumentException()
+      return data.getParcelableExtraCompat(EXTRA_RESULT, MediaSendActivityResult::class.java) ?: throw IllegalArgumentException()
     }
   }
 }

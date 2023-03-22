@@ -9,6 +9,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import org.signal.core.util.getParcelableArrayListExtraCompat
+import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FragmentWrapperActivity
@@ -22,7 +24,7 @@ open class MultiselectForwardActivity : FragmentWrapperActivity(), MultiselectFo
     private const val ARGS = "args"
   }
 
-  private val args: MultiselectForwardFragmentArgs get() = intent.getParcelableExtra(ARGS)!!
+  private val args: MultiselectForwardFragmentArgs get() = intent.getParcelableExtraCompat(ARGS, MultiselectForwardFragmentArgs::class.java)!!
 
   override val contentViewId: Int = R.layout.multiselect_forward_activity
 
@@ -73,7 +75,7 @@ open class MultiselectForwardActivity : FragmentWrapperActivity(), MultiselectFo
       } else if (intent == null || !intent.hasExtra(RESULT_SELECTION)) {
         throw IllegalStateException("Selection contract requires a selection.")
       } else {
-        val selection: List<ContactSearchKey.RecipientSearchKey> = intent.getParcelableArrayListExtra(RESULT_SELECTION)!!
+        val selection: List<ContactSearchKey.RecipientSearchKey> = intent.getParcelableArrayListExtraCompat(RESULT_SELECTION, ContactSearchKey.RecipientSearchKey::class.java)!!
         selection
       }
     }

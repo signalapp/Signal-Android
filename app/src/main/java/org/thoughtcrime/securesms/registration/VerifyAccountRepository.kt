@@ -22,6 +22,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionException
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
+import org.whispersystems.signalservice.internal.push.RegistrationSessionState
 import java.io.IOException
 import java.util.Locale
 import java.util.Optional
@@ -84,7 +85,9 @@ class VerifyAccountRepository(private val context: Application) {
     return if (challenge != null) {
       accountManager.submitPushChallengeToken(response.result.get().body.id, challenge)
     } else {
-      response
+      val registrationSessionState = RegistrationSessionState(pushChallengeTimedOut = true)
+      val rawResponse: RegistrationSessionMetadataResponse = response.result.get()
+      ServiceResponse.forResult(rawResponse.copy(state = registrationSessionState), 200, null)
     }
   }
 

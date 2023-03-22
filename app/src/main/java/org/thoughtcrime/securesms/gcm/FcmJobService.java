@@ -13,7 +13,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
-import org.thoughtcrime.securesms.messages.RestStrategy;
+import org.thoughtcrime.securesms.messages.WebSocketStrategy;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -49,7 +49,7 @@ public class FcmJobService extends JobService {
     SignalExecutors.UNBOUNDED.execute(() -> {
       Context                    context   = getApplicationContext();
       BackgroundMessageRetriever retriever = ApplicationDependencies.getBackgroundMessageRetriever();
-      boolean                    success   = retriever.retrieveMessages(context, new RestStrategy(), new RestStrategy());
+      boolean                    success   = retriever.retrieveMessages(context, new WebSocketStrategy());
 
       if (success) {
         Log.i(TAG, "Successfully retrieved messages.");

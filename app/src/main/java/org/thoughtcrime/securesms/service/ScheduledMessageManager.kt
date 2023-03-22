@@ -54,7 +54,8 @@ class ScheduledMessageManager(
   override fun executeEvent(event: Event) {
     val scheduledMessagesToSend = messagesTable.getScheduledMessagesBefore(System.currentTimeMillis())
     for (record in scheduledMessagesToSend) {
-      if (messagesTable.clearScheduledStatus(record.threadId, record.id, record.recipient.expiresInSeconds.seconds.inWholeMilliseconds)) {
+      val expiresIn = SignalDatabase.recipients.getExpiresInSeconds(record.recipient.id)
+      if (messagesTable.clearScheduledStatus(record.threadId, record.id, expiresIn.seconds.inWholeMilliseconds)) {
         if (record.recipient.isPushGroup) {
           PushGroupSendJob.enqueue(application, ApplicationDependencies.getJobManager(), record.id, record.recipient.id, emptySet(), true)
         } else {

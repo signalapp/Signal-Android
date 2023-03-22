@@ -7,23 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.InviteActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.conversationlist.ConversationListFragment;
+import org.thoughtcrime.securesms.databinding.OnboardingMegaphoneCardBinding;
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
-import org.thoughtcrime.securesms.util.SmsUtil;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity;
 
 import java.util.ArrayList;
@@ -56,7 +54,6 @@ public class OnboardingMegaphoneView extends FrameLayout {
   }
 
   public void present(@NonNull Megaphone megaphone, @NonNull MegaphoneActionController listener) {
-    this.cardList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     this.cardList.setAdapter(new CardAdapter(getContext(), listener));
   }
 
@@ -64,9 +61,8 @@ public class OnboardingMegaphoneView extends FrameLayout {
 
     private static final int TYPE_GROUP      = 0;
     private static final int TYPE_INVITE     = 1;
-    private static final int TYPE_SMS        = 2;
-    private static final int TYPE_APPEARANCE = 3;
-    private static final int TYPE_ADD_PHOTO  = 4;
+    private static final int TYPE_APPEARANCE = 2;
+    private static final int TYPE_ADD_PHOTO  = 3;
 
     private final Context                   context;
     private final MegaphoneActionController controller;
@@ -75,7 +71,7 @@ public class OnboardingMegaphoneView extends FrameLayout {
     CardAdapter(@NonNull Context context, @NonNull MegaphoneActionController controller) {
       this.context    = context;
       this.controller = controller;
-      this.data       = buildData(context);
+      this.data       = buildData();
 
       if (data.isEmpty()) {
         Log.i(TAG, "Nothing to show (constructor)! Considering megaphone completed.");
@@ -97,11 +93,10 @@ public class OnboardingMegaphoneView extends FrameLayout {
 
     @Override
     public @NonNull CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-      View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.onboarding_megaphone_list_item, parent, false);
+      View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.onboarding_megaphone_card, parent, false);
       switch (viewType) {
         case TYPE_GROUP:      return new GroupCardViewHolder(view);
         case TYPE_INVITE:     return new InviteCardViewHolder(view);
-        case TYPE_SMS:        return new SmsCardViewHolder(view);
         case TYPE_APPEARANCE: return new AppearanceCardViewHolder(view);
         case TYPE_ADD_PHOTO:  return new AddPhotoCardViewHolder(view);
         default:              throw new IllegalStateException("Invalid viewType! " + viewType);
@@ -121,7 +116,7 @@ public class OnboardingMegaphoneView extends FrameLayout {
     @Override
     public void onClick() {
       data.clear();
-      data.addAll(buildData(context));
+      data.addAll(buildData());
       if (data.isEmpty()) {
         Log.i(TAG, "Nothing to show! Considering megaphone completed.");
         controller.onMegaphoneCompleted(Megaphones.Event.ONBOARDING);
@@ -129,7 +124,7 @@ public class OnboardingMegaphoneView extends FrameLayout {
       notifyDataSetChanged();
     }
 
-    private static List<Integer> buildData(@NonNull Context context) {
+    private static List<Integer> buildData() {
       List<Integer> data = new ArrayList<>();
 
       if (SignalStore.onboarding().shouldShowNewGroup()) {
@@ -148,10 +143,6 @@ public class OnboardingMegaphoneView extends FrameLayout {
         data.add(TYPE_APPEARANCE);
       }
 
-      if (SignalStore.onboarding().shouldShowSms()) {
-        data.add(TYPE_SMS);
-      }
-
       return data;
     }
   }
@@ -161,25 +152,22 @@ public class OnboardingMegaphoneView extends FrameLayout {
   }
 
   private static abstract class CardViewHolder extends RecyclerView.ViewHolder {
-    private final ImageView image;
-    private final TextView  actionButton;
-    private final View      closeButton;
+    private final OnboardingMegaphoneCardBinding binding;
 
     public CardViewHolder(@NonNull View itemView) {
       super(itemView);
-      this.image        = itemView.findViewById(R.id.onboarding_megaphone_item_image);
-      this.actionButton = itemView.findViewById(R.id.onboarding_megaphone_item_button);
-      this.closeButton  = itemView.findViewById(R.id.onboarding_megaphone_item_close);
+      binding = OnboardingMegaphoneCardBinding.bind(itemView);
     }
 
     public void bind(@NonNull ActionClickListener listener, @NonNull MegaphoneActionController controller) {
-      image.setImageResource(getImageRes());
-      actionButton.setText(getButtonStringRes());
-      actionButton.setOnClickListener(v -> {
+      binding.getRoot().setCardBackgroundColor(ContextCompat.getColor(binding.getRoot().getContext(), getBackgroundColor()));
+      binding.icon.setImageResource(getImageRes());
+      binding.text.setText(getButtonStringRes());
+      binding.getRoot().setOnClickListener(v -> {
         onActionClicked(controller);
         listener.onClick();
       });
-      closeButton.setOnClickListener(v -> {
+      binding.close.setOnClickListener(v -> {
         onCloseClicked();
         listener.onClick();
       });
@@ -187,6 +175,7 @@ public class OnboardingMegaphoneView extends FrameLayout {
 
     abstract @StringRes int getButtonStringRes();
     abstract @DrawableRes int getImageRes();
+    abstract @ColorRes int getBackgroundColor();
     abstract void onActionClicked(@NonNull MegaphoneActionController controller);
     abstract void onCloseClicked();
   }
@@ -204,7 +193,12 @@ public class OnboardingMegaphoneView extends FrameLayout {
 
     @Override
     int getImageRes() {
-      return R.drawable.ic_megaphone_start_group;
+      return R.drawable.symbol_group_24;
+    }
+
+    @Override
+    int getBackgroundColor() {
+      return R.color.onboarding_background_1;
     }
 
     @Override
@@ -231,7 +225,12 @@ public class OnboardingMegaphoneView extends FrameLayout {
 
     @Override
     int getImageRes() {
-      return R.drawable.ic_megaphone_invite_friends;
+      return R.drawable.symbol_invite_24;
+    }
+
+    @Override
+    int getBackgroundColor() {
+      return R.color.onboarding_background_2;
     }
 
     @Override
@@ -245,35 +244,6 @@ public class OnboardingMegaphoneView extends FrameLayout {
     }
   }
 
-  private static class SmsCardViewHolder extends CardViewHolder {
-
-    public SmsCardViewHolder(@NonNull View itemView) {
-      super(itemView);
-    }
-
-    @Override
-    int getButtonStringRes() {
-      return R.string.Megaphones_use_sms;
-    }
-
-    @Override
-    int getImageRes() {
-      return R.drawable.ic_megaphone_use_sms;
-    }
-
-    @Override
-    void onActionClicked(@NonNull MegaphoneActionController controller) {
-      Intent intent = SmsUtil.getSmsRoleIntent(controller.getMegaphoneActivity());
-      controller.onMegaphoneNavigationRequested(intent, ConversationListFragment.SMS_ROLE_REQUEST_CODE);
-      SignalStore.onboarding().setShowSms(false);
-    }
-
-    @Override
-    void onCloseClicked() {
-      SignalStore.onboarding().setShowSms(false);
-    }
-  }
-
   private static class AppearanceCardViewHolder extends CardViewHolder {
 
     public AppearanceCardViewHolder(@NonNull View itemView) {
@@ -282,12 +252,17 @@ public class OnboardingMegaphoneView extends FrameLayout {
 
     @Override
     int getButtonStringRes() {
-      return R.string.Megaphones_appearance;
+      return R.string.Megaphones_chat_colors;
     }
 
     @Override
     int getImageRes() {
-      return R.drawable.ic_signal_appearance;
+      return R.drawable.ic_color_24;
+    }
+
+    @Override
+    int getBackgroundColor() {
+      return R.color.onboarding_background_3;
     }
 
     @Override
@@ -310,12 +285,17 @@ public class OnboardingMegaphoneView extends FrameLayout {
 
     @Override
     int getButtonStringRes() {
-      return R.string.Megaphones_add_photo;
+      return R.string.Megaphones_add_a_profile_photo;
     }
 
     @Override
     int getImageRes() {
-      return R.drawable.ic_signal_add_photo;
+      return R.drawable.symbol_person_circle_24;
+    }
+
+    @Override
+    int getBackgroundColor() {
+      return R.color.onboarding_background_4;
     }
 
     @Override

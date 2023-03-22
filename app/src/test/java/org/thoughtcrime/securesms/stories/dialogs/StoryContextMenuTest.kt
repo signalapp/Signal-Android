@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.stories.dialogs
 import android.app.Application
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.fragment.app.Fragment
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Assert.assertEquals
@@ -15,6 +16,7 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.database.FakeMessageRecords
 import org.thoughtcrime.securesms.database.model.StoryType
@@ -61,8 +63,8 @@ class StoryContextMenuTest {
     // THEN
     verify(fragment).startActivity(intentCaptor.capture())
     val chooserIntent: Intent = intentCaptor.firstValue
-    val targetIntent: Intent = chooserIntent.getParcelableExtra(Intent.EXTRA_INTENT)!!
-    assertEquals(PartAuthority.getAttachmentPublicUri(PartAuthority.getAttachmentDataUri(attachmentId)), targetIntent.getParcelableExtra(Intent.EXTRA_STREAM))
+    val targetIntent: Intent = chooserIntent.getParcelableExtraCompat(Intent.EXTRA_INTENT, Intent::class.java)!!
+    assertEquals(PartAuthority.getAttachmentPublicUri(PartAuthority.getAttachmentDataUri(attachmentId)), targetIntent.getParcelableExtraCompat(Intent.EXTRA_STREAM, Uri::class.java))
     assertEquals(MediaUtil.IMAGE_JPEG, targetIntent.type)
     assertTrue(Intent.FLAG_GRANT_READ_URI_PERMISSION and chooserIntent.flags == Intent.FLAG_GRANT_READ_URI_PERMISSION)
   }
@@ -82,7 +84,7 @@ class StoryContextMenuTest {
     // THEN
     verify(fragment).startActivity(intentCaptor.capture())
     val chooserIntent: Intent = intentCaptor.firstValue
-    val targetIntent: Intent = chooserIntent.getParcelableExtra(Intent.EXTRA_INTENT)!!
+    val targetIntent: Intent = chooserIntent.getParcelableExtraCompat(Intent.EXTRA_INTENT, Intent::class.java)!!
     assertEquals(expected, targetIntent.getStringExtra(Intent.EXTRA_TEXT))
   }
 
@@ -102,7 +104,7 @@ class StoryContextMenuTest {
     // THEN
     verify(fragment).startActivity(intentCaptor.capture())
     val chooserIntent: Intent = intentCaptor.firstValue
-    val targetIntent: Intent = chooserIntent.getParcelableExtra(Intent.EXTRA_INTENT)!!
+    val targetIntent: Intent = chooserIntent.getParcelableExtraCompat(Intent.EXTRA_INTENT, Intent::class.java)!!
     assertEquals(expected, targetIntent.getStringExtra(Intent.EXTRA_TEXT))
   }
 
@@ -124,7 +126,7 @@ class StoryContextMenuTest {
     // THEN
     verify(fragment).startActivity(intentCaptor.capture())
     val chooserIntent: Intent = intentCaptor.firstValue
-    val targetIntent: Intent = chooserIntent.getParcelableExtra(Intent.EXTRA_INTENT)!!
+    val targetIntent: Intent = chooserIntent.getParcelableExtraCompat(Intent.EXTRA_INTENT, Intent::class.java)!!
     assertEquals(expected, targetIntent.getStringExtra(Intent.EXTRA_TEXT))
   }
 }

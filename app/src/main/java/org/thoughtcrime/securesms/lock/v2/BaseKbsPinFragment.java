@@ -203,7 +203,7 @@ public abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> 
 
   private void onPinSkipped() {
     PinOptOutDialog.show(requireContext(), () -> {
-      RegistrationUtil.maybeMarkRegistrationComplete(requireContext());
+      RegistrationUtil.maybeMarkRegistrationComplete();
       closeNavGraphBranch();
     });
   }

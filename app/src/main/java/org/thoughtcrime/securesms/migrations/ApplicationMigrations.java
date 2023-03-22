@@ -122,9 +122,10 @@ public class ApplicationMigrations {
     static final int GLIDE_CACHE_CLEAR             = 77;
     static final int SYSTEM_NAME_RESYNC            = 78;
     static final int RECOVERY_PASSWORD_SYNC        = 79;
+    static final int DECRYPTIONS_DRAINED           = 80;
   }
 
-  public static final int CURRENT_VERSION = 79;
+  public static final int CURRENT_VERSION = 80;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -540,6 +541,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.RECOVERY_PASSWORD_SYNC) {
       jobs.put(Version.RECOVERY_PASSWORD_SYNC, new AttributesMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.DECRYPTIONS_DRAINED) {
+      jobs.put(Version.DECRYPTIONS_DRAINED, new DecryptionsDrainedMigrationJob());
     }
 
     return jobs;

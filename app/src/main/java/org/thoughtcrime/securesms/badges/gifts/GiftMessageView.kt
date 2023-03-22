@@ -58,7 +58,7 @@ class GiftMessageView @JvmOverloads constructor(
 
     if (isOutgoing) {
       actionView.setText(R.string.GiftMessageView__view)
-      titleView.text = context.getString(R.string.GiftMessageView__donation_to_s, recipient.getDisplayName(context))
+      titleView.text = context.getString(R.string.GiftMessageView__donation_on_behalf_of_s, recipient.getDisplayName(context))
     } else {
       titleView.text = context.getString(R.string.GiftMessageView__s_donated_to_signal_on, recipient.getShortDisplayName(context))
       when (giftBadge.redemptionState) {

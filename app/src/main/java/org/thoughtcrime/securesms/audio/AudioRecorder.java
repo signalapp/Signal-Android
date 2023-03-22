@@ -68,7 +68,8 @@ public class AudioRecorder {
       Log.i(TAG, "Running startRecording() + " + Thread.currentThread().getId());
       try {
         if (recorder != null) {
-          throw new AssertionError("We can only record once at a time.");
+          recordingSingle.onError(new IllegalStateException("We can only do one recording at a time!"));
+          return;
         }
 
         ParcelFileDescriptor fds[] = ParcelFileDescriptor.createPipe();

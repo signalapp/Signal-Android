@@ -497,6 +497,34 @@ public class JobManager implements ConstraintObserver.Notifier {
       enqueue();
     }
 
+    public Optional<JobTracker.JobState> enqueueAndBlockUntilCompletion(long timeout) {
+      CountDownLatch                       latch       = new CountDownLatch(1);
+      AtomicReference<JobTracker.JobState> resultState = new AtomicReference<>();
+      JobTracker.JobListener               listener    = new JobTracker.JobListener() {
+        @Override
+        public void onStateChanged(@NonNull Job job, @NonNull JobTracker.JobState jobState) {
+          if (jobState.isComplete()) {
+            jobManager.removeListener(this);
+            resultState.set(jobState);
+            latch.countDown();
+          }
+        }
+      };
+
+      enqueue(listener);
+
+      try {
+        if (!latch.await(timeout, TimeUnit.MILLISECONDS)) {
+          return Optional.empty();
+        }
+      } catch (InterruptedException e) {
+        Log.w(TAG, "Interrupted during enqueueSynchronously()", e);
+        return Optional.empty();
+      }
+
+      return Optional.ofNullable(resultState.get());
+    }
+
     @VisibleForTesting
     public List<List<Job>> getJobListChain() {
       return jobs;

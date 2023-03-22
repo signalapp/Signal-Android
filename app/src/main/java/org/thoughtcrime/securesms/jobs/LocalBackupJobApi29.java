@@ -206,6 +206,8 @@ public final class LocalBackupJobApi29 extends BaseJob {
       } catch (IOException e) {
         attempts++;
         Log.w(TAG, "Unable to find backup file, attempt: " + attempts + "/" + MAX_STORAGE_ATTEMPTS);
+      } catch (SecurityException e) {
+        Log.w(TAG, "Getting security exception when attempting to read file, aborting", e);
       }
     }
 

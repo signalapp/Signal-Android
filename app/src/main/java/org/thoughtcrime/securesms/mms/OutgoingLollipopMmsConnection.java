@@ -50,10 +50,10 @@ public class OutgoingLollipopMmsConnection extends LollipopMmsConnection impleme
     super(context, ACTION);
   }
 
-  @TargetApi(VERSION_CODES.LOLLIPOP_MR1)
+  @TargetApi(22)
   @Override
   public synchronized void onResult(Context context, Intent intent) {
-    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP_MR1) {
+    if (VERSION.SDK_INT >= 22) {
       Log.i(TAG, "HTTP status: " + intent.getIntExtra(SmsManager.EXTRA_MMS_HTTP_STATUS, -1));
     }
 
@@ -61,7 +61,6 @@ public class OutgoingLollipopMmsConnection extends LollipopMmsConnection impleme
   }
 
   @Override
-  @TargetApi(VERSION_CODES.LOLLIPOP)
   public @Nullable synchronized SendConf send(@NonNull byte[] pduBytes, int subscriptionId)
       throws UndeliverableMessageException
   {

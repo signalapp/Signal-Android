@@ -14,7 +14,7 @@ permissions:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-8-cores
 
     steps:
     - uses: actions/checkout@v3
@@ -24,15 +24,13 @@ jobs:
       with:
         distribution: temurin
         java-version: 11
+        cache: gradle
 
     - name: Validate Gradle Wrapper
       uses: gradle/wrapper-validation-action@v1
 
-    - name: Remove Android 31 (S)
-      run: $ANDROID_HOME/tools/bin/sdkmanager --uninstall "platforms;android-31"
-
     - name: Build with Gradle
-      run: ./gradlew qa
+      run: ./gradlew qa --parallel
 
     - name: Archive reports for failed build
       if: ${{ failure() }}

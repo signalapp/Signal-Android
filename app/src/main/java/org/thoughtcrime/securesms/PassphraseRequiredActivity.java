@@ -20,20 +20,17 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferActivity;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrationActivity;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.pin.PinRestoreActivity;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
-import org.thoughtcrime.securesms.profiles.username.AddAUsernameActivity;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.AppStartup;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Locale;
@@ -55,7 +52,6 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   private static final int STATE_TRANSFER_ONGOING    = 8;
   private static final int STATE_TRANSFER_LOCKED     = 9;
   private static final int STATE_CHANGE_NUMBER_LOCK  = 10;
-  private static final int STATE_CREATE_USERNAME     = 11;
 
   private SignalServiceNetworkAccess networkAccess;
   private BroadcastReceiver          clearKeyReceiver;
@@ -160,7 +156,6 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       case STATE_TRANSFER_ONGOING:    return getOldDeviceTransferIntent();
       case STATE_TRANSFER_LOCKED:     return getOldDeviceTransferLockedIntent();
       case STATE_CHANGE_NUMBER_LOCK:  return getChangeNumberLockIntent();
-      case STATE_CREATE_USERNAME:     return getCreateUsernameIntent();
       default:                        return null;
     }
   }
@@ -180,8 +175,6 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       return STATE_CREATE_SIGNAL_PIN;
     } else if (userMustSetProfileName()) {
       return STATE_CREATE_PROFILE_NAME;
-    } else if (shouldAskUserToCreateUsername()) {
-      return STATE_CREATE_USERNAME;
     } else if (userMustCreateSignalPin()) {
       return STATE_CREATE_SIGNAL_PIN;
     } else if (EventBus.getDefault().getStickyEvent(TransferStatus.class) != null && getClass() != OldDeviceTransferActivity.class) {
@@ -205,13 +198,6 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   private boolean userMustSetProfileName() {
     return !SignalStore.registrationValues().isRegistrationComplete() && Recipient.self().getProfileName().isEmpty();
-  }
-
-  private boolean shouldAskUserToCreateUsername() {
-    return FeatureFlags.usernames() &&
-           FeatureFlags.phoneNumberPrivacy() &&
-           !SignalStore.uiHints().hasSetOrSkippedUsernameCreation() &&
-           SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode() == PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED;
   }
 
   private Intent getCreatePassphraseIntent() {
@@ -271,10 +257,6 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   private Intent getChangeNumberLockIntent() {
     return ChangeNumberLockActivity.createIntent(this);
-  }
-
-  private Intent getCreateUsernameIntent() {
-    return getRoutedIntent(AddAUsernameActivity.class, getIntent());
   }
 
   private Intent getRoutedIntent(Intent destination, @Nullable Intent nextIntent) {

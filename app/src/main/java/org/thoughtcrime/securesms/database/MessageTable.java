@@ -901,12 +901,12 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
                      message.isJustAGroupLeave()  ||
                      (type & MessageTypes.GROUP_UPDATE_BIT) > 0;
 
-    boolean unread = !silent && (Util.isDefaultSmsProvider(context) ||
-                                 message.isSecureMessage()          ||
-                                 message.isGroup()                  ||
-                                 message.isPreKeyBundle());
+    boolean unread = !silent && (message.isSecureMessage() ||
+                                 message.isGroup() ||
+                                 message.isPreKeyBundle() ||
+                                 Util.isDefaultSmsProvider(context));
 
-    long       threadId;
+    long threadId;
 
     if (groupRecipient == null) threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
     else                        threadId = SignalDatabase.threads().getOrCreateThreadIdFor(groupRecipient);

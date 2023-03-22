@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
 import kotlinx.parcelize.Parcelize
+import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -34,7 +35,7 @@ class StoriesMultiselectForwardActivity : MultiselectForwardActivity() {
 
     val preview1View: ImageView = findViewById(R.id.preview_media_1)
     val preview2View: ImageView = findViewById(R.id.preview_media_2)
-    val previewMedia: List<Uri> = intent.getParcelableArrayListExtra(PREVIEW_MEDIA)!!
+    val previewMedia: List<Uri> = intent.getParcelableArrayListExtraCompat(PREVIEW_MEDIA, Uri::class.java)!!
 
     preview1View.visible = previewMedia.isNotEmpty()
     preview2View.visible = previewMedia.size > 1

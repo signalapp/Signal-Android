@@ -112,7 +112,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
 
     if (viewModel.isReregister()) {
       cancel.setVisibility(View.VISIBLE);
-      cancel.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
+      cancel.setOnClickListener(v -> requireActivity().finish());
     } else {
       cancel.setVisibility(View.GONE);
     }
@@ -283,7 +283,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                     if (processor.verificationCodeRequestSuccess()) {
                                       disposables.add(updateFcmTokenValue());
                                       SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
-                                    } else if (processor.captchaRequired()) {
+                                    } else if (processor.captchaRequired(viewModel.getExcludedChallenges())) {
                                       Log.i(TAG, "Unable to request sms code due to captcha required");
                                       SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionRequestCaptcha());
                                     } else if (processor.exhaustedVerificationCodeAttempts()) {
@@ -355,15 +355,14 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   public void onStart() {
     super.onStart();
     String sessionE164 = viewModel.getSessionE164();
-    if (sessionE164 != null && viewModel.getSessionId() != null) {
+    if (sessionE164 != null && viewModel.getSessionId() != null && viewModel.getCaptchaToken() == null) {
       checkIfSessionIsInProgressAndAdvance(sessionE164);
     }
   }
 
   private void checkIfSessionIsInProgressAndAdvance(@NonNull String sessionE164) {
     NavController  navController  = NavHostFragment.findNavController(this);
-    MccMncProducer mccMncProducer = new MccMncProducer(requireContext());
-    Disposable request = viewModel.validateSession(sessionE164, mccMncProducer.getMcc(), mccMncProducer.getMnc())
+    Disposable request = viewModel.validateSession(sessionE164)
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .subscribe(processor -> {
                                     if (processor.hasResult() && processor.canSubmitProofImmediately()) {

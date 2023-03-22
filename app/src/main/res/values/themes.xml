@@ -47,6 +47,7 @@
     </style>
 
     <style name="TextSecure.BaseMediaPreview" parent="@style/TextSecure.BaseDarkNoActionBar">
+        <item name="android:windowBackground">@color/signal_colorSurface</item>
         <item name="colorPrimaryDark">@color/media_preview_bar_background</item>
         <item name="android:textColorSecondary">@color/white</item>
     </style>

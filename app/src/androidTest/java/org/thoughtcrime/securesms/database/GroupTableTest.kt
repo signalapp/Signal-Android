@@ -119,7 +119,7 @@ class GroupTableTest {
     }
 
     val groupRecord = groupTable.getGroup(v2Group).get()
-    assertEquals(groupRecord.members.toSet(), setOf(harness.self.id, harness.others[1]))
+    assertEquals(setOf(harness.self.id, harness.others[1]), groupRecord.members.toSet())
   }
 
   @Test

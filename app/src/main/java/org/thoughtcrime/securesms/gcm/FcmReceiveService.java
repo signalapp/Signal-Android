@@ -81,13 +81,18 @@ public class FcmReceiveService extends FirebaseMessagingService {
     boolean enqueueSuccessful = false;
 
     try {
-      long timeSinceLastRefresh = System.currentTimeMillis() - SignalStore.misc().getLastFcmForegroundServiceTime();
+      boolean highPriority         = remoteMessage != null && remoteMessage.getPriority() == RemoteMessage.PRIORITY_HIGH;
+      long    timeSinceLastRefresh = System.currentTimeMillis() - SignalStore.misc().getLastFcmForegroundServiceTime();
+
       Log.d(TAG, String.format(Locale.US, "[handleReceivedNotification] API: %s, FeatureFlag: %s, RemoteMessagePriority: %s, TimeSinceLastRefresh: %s ms", Build.VERSION.SDK_INT, FeatureFlags.useFcmForegroundService(), remoteMessage != null ? remoteMessage.getPriority() : "n/a", timeSinceLastRefresh));
 
-      if (FeatureFlags.useFcmForegroundService() && Build.VERSION.SDK_INT >= 31 && remoteMessage != null && remoteMessage.getPriority() == RemoteMessage.PRIORITY_HIGH && timeSinceLastRefresh > FCM_FOREGROUND_INTERVAL) {
+      if (highPriority && FeatureFlags.useFcmForegroundService()) {
         enqueueSuccessful = FcmFetchManager.enqueue(context, true);
         SignalStore.misc().setLastFcmForegroundServiceTime(System.currentTimeMillis());
-      } else if (Build.VERSION.SDK_INT < 26 || remoteMessage == null || remoteMessage.getPriority() == RemoteMessage.PRIORITY_HIGH) {
+      } else if (highPriority && Build.VERSION.SDK_INT >= 31 && timeSinceLastRefresh > FCM_FOREGROUND_INTERVAL) {
+        enqueueSuccessful = FcmFetchManager.enqueue(context, true);
+        SignalStore.misc().setLastFcmForegroundServiceTime(System.currentTimeMillis());
+      } else if (highPriority || Build.VERSION.SDK_INT < 26 || remoteMessage == null) {
         enqueueSuccessful = FcmFetchManager.enqueue(context, false);
       }
     } catch (Exception e) {

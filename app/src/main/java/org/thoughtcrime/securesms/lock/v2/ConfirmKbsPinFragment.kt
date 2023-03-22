@@ -85,12 +85,12 @@ internal class ConfirmKbsPinFragment : BaseKbsPinFragment<ConfirmKbsPinViewModel
         confirm.cancelSpinning()
         requireActivity().setResult(Activity.RESULT_OK)
         closeNavGraphBranch()
-        RegistrationUtil.maybeMarkRegistrationComplete(requireContext())
+        RegistrationUtil.maybeMarkRegistrationComplete()
         StorageSyncHelper.scheduleSyncForDataChange()
       }
       SaveAnimation.FAILURE -> {
         confirm.cancelSpinning()
-        RegistrationUtil.maybeMarkRegistrationComplete(requireContext())
+        RegistrationUtil.maybeMarkRegistrationComplete()
         displayFailedDialog()
       }
     }

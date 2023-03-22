@@ -31,7 +31,6 @@ public class InsetAwareConstraintLayout extends ConstraintLayout {
   }
 
   @Override
-  @TargetApi(20)
   public WindowInsets onApplyWindowInsets(WindowInsets insets) {
     if (Build.VERSION.SDK_INT < 30) {
       return super.onApplyWindowInsets(insets);

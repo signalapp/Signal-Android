@@ -4,10 +4,11 @@
 dependencyResolutionManagement {
     versionCatalogs {
         libs {
-            version('androidx-camera', '1.2.0')
-            version('androidx-fragment', '1.5.2')
+            version('androidx-appcompat', '1.6.1')
+            version('androidx-camera', '1.2.1')
+            version('androidx-fragment', '1.5.5')
             version('androidx-lifecycle', '2.5.1')
-            version('androidx-navigation', '2.5.2')
+            version('androidx-navigation', '2.5.3')
             version('androidx-window', '1.0.0')
             version('exoplayer', '2.18.1')
             version('glide', '4.13.2')
@@ -21,7 +22,7 @@ dependencyResolutionManagement {
             alias('android-application').to('com.android.application', 'com.android.application.gradle.plugin').versionRef('android-gradle-plugin')
 
             // Compose
-            alias('androidx-compose-bom').to('androidx.compose:compose-bom:2022.12.00')
+            alias('androidx-compose-bom').to('androidx.compose:compose-bom:2023.01.00')
             alias('androidx-compose-material3').to('androidx.compose.material3', 'material3').withoutVersion()
             alias('androidx-compose-ui-tooling-preview').to('androidx.compose.ui', 'ui-tooling-preview').withoutVersion()
             alias('androidx-compose-ui-tooling-core').to('androidx.compose.ui', 'ui-tooling').withoutVersion()
@@ -33,21 +34,22 @@ dependencyResolutionManagement {
             // Kotlin
             alias('kotlin-stdlib-jdk8').to('org.jetbrains.kotlin', 'kotlin-stdlib-jdk8').versionRef('kotlin')
             alias('kotlin-reflect').to('org.jetbrains.kotlin', 'kotlin-reflect').versionRef('kotlin')
+            alias('kotlin-gradle-plugin').to('org.jetbrains.kotlin', 'kotlin-gradle-plugin').versionRef('kotlin')
+            alias('ktlint').to('org.jlleitschuh.gradle:ktlint-gradle:11.1.0')
 
             // Android X
-            alias('androidx-activity-ktx').to('androidx.activity:activity-ktx:1.5.1')
-            alias('androidx-core-ktx').to('androidx.core:core-ktx:1.5.0')
+            alias('androidx-activity-ktx').to('androidx.activity', 'activity-ktx').versionRef('androidx-appcompat')
+            alias('androidx-appcompat').to('androidx.appcompat', 'appcompat').versionRef('androidx-appcompat')
+            alias('androidx-core-ktx').to('androidx.core:core-ktx:1.9.0')
             alias('androidx-fragment-ktx').to('androidx.fragment', 'fragment-ktx').versionRef('androidx-fragment')
             alias('androidx-fragment-testing').to('androidx.fragment', 'fragment-testing').versionRef('androidx-fragment')
             alias('androidx-annotation').to('androidx.annotation:annotation:1.4.0')
-            alias('androidx-appcompat').to('androidx.appcompat:appcompat:1.5.1')
             alias('androidx-constraintlayout').to('androidx.constraintlayout:constraintlayout:2.0.4')
             alias('androidx-window-window').to('androidx.window', 'window').versionRef('androidx-window')
             alias('androidx-window-java').to('androidx.window', 'window-java').versionRef('androidx-window')
             alias('androidx-recyclerview').to('androidx.recyclerview:recyclerview:1.2.1')
             alias('androidx-legacy-support').to('androidx.legacy:legacy-support-v13:1.0.0')
             alias('androidx-legacy-preference').to('androidx.legacy:legacy-preference-v14:1.0.0')
-            alias('androidx-cardview').to('androidx.cardview:cardview:1.0.0')
             alias('androidx-preference').to('androidx.preference:preference:1.0.0')
             alias('androidx-gridlayout').to('androidx.gridlayout:gridlayout:1.0.0')
             alias('androidx-exifinterface').to('androidx.exifinterface:exifinterface:1.3.3')
@@ -102,7 +104,7 @@ dependencyResolutionManagement {
             alias('libsignal-android').to('org.signal', 'libsignal-android').versionRef('libsignal-client')
             alias('signal-aesgcmprovider').to('org.signal:aesgcmprovider:0.0.3')
             alias('signal-argon2').to('org.signal:argon2:13.1')
-            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.25.0')
+            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.25.1')
             alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.3-FTS-S2')
 
             // Third Party
@@ -167,6 +169,7 @@ dependencyResolutionManagement {
             alias('assertj-core').to('org.assertj:assertj-core:3.11.1')
             alias('square-okhttp-mockserver').to('com.squareup.okhttp3:mockwebserver:3.12.13')
             alias('mockk').to('io.mockk:mockk:1.13.2')
+            alias('mockk-android').to('io.mockk:mockk-android:1.13.2')
 
             alias('conscrypt-openjdk-uber').to('org.conscrypt:conscrypt-openjdk-uber:2.0.0')
         }

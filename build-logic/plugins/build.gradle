@@ -1,8 +1,0 @@
-plugins {
-    id "groovy-gradle-plugin"
-}
-
-dependencies {
-    implementation libs.android.library
-    implementation libs.android.application
-}

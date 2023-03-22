@@ -12,6 +12,7 @@ import androidx.annotation.Px
 import androidx.annotation.UiThread
 import androidx.core.os.bundleOf
 import org.signal.core.util.dp
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.Slide
@@ -95,8 +96,8 @@ class ConversationItemThumbnail @JvmOverloads constructor(
 
   override fun onRestoreInstanceState(state: Parcelable) {
     if (state is Bundle && state.containsKey(STATE_STATE)) {
-      val root = state.getParcelable<Parcelable>(STATE_ROOT)
-      this.state = state.getParcelable(STATE_STATE)!!
+      val root: Parcelable? = state.getParcelableCompat(STATE_ROOT, Parcelable::class.java)
+      this.state = state.getParcelableCompat(STATE_STATE, ConversationItemThumbnailState::class.java)!!
       super.onRestoreInstanceState(root)
     } else {
       super.onRestoreInstanceState(state)

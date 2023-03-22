@@ -34,7 +34,6 @@ import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.protos.groups.Member
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
-import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil
@@ -214,6 +213,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       .query(select, query.whereArgs)
       .use { cursor ->
         return if (cursor.moveToFirst()) {
+          var refreshCursor = false
           val groupRecord = getGroup(cursor)
           if (groupRecord.isPresent && RemappedRecords.getInstance().areAnyRemapped(groupRecord.get().members)) {
             val groupId = groupRecord.get().id
@@ -238,12 +238,23 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
             if (updateCount > 0) {
               Log.i(TAG, "Successfully updated $updateCount rows. GroupId: $groupId, Remaps: $remaps", true)
+              refreshCursor = true
             } else {
               Log.w(TAG, "Failed to update any rows. GroupId: $groupId, Remaps: $remaps", true)
             }
           }
 
-          getGroup(cursor)
+          if (refreshCursor) {
+            readableDatabase.query(select, query.whereArgs).use { refreshedCursor ->
+              if (refreshedCursor.moveToFirst()) {
+                getGroup(refreshedCursor)
+              } else {
+                Optional.empty()
+              }
+            }
+          } else {
+            getGroup(cursor)
+          }
         } else {
           Optional.empty()
         }
@@ -670,7 +681,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
    * There was a point in time where we weren't properly responding to group creates on linked devices. This would result in us having a Recipient entry for the
    * group, but we'd either be missing the group entry, or that entry would be missing a master key. This method fixes this scenario.
    */
-  fun fixMissingMasterKey(authServiceId: ServiceId?, groupMasterKey: GroupMasterKey) {
+  fun fixMissingMasterKey(groupMasterKey: GroupMasterKey) {
     val groupId = GroupId.v2(groupMasterKey)
     if (getGroupV1ByExpectedV2(groupId).isPresent) {
       Log.w(TAG, "There already exists a V1 group that should be migrated into this group. But if the recipient already exists, there's not much we can do here.")
@@ -1094,7 +1105,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       .update(MembershipTable.TABLE_NAME)
       .values(RECIPIENT_ID to toId.serialize())
       .where("${MembershipTable.RECIPIENT_ID} = ?", fromId)
-      .run()
+      .run(conflictStrategy = SQLiteDatabase.CONFLICT_IGNORE)
 
     for (group in getGroupsContainingMember(fromId, false, true)) {
       if (group.isV2Group) {
@@ -1206,7 +1217,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
       if (memberLevel.isAbsent()) {
         memberLevel = DecryptedGroupUtil.findRequestingByUuid(decryptedGroup.requestingMembersList, serviceId.get().uuid())
-          .map { m: DecryptedRequestingMember? -> MemberLevel.REQUESTING_MEMBER }
+          .map { _ -> MemberLevel.REQUESTING_MEMBER }
       }
 
       return if (memberLevel.isPresent) {

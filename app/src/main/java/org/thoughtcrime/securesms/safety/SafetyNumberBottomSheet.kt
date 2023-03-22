@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.safety
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.database.model.IdentityRecord
@@ -126,7 +127,7 @@ object SafetyNumberBottomSheet {
    * @throws IllegalArgumentException if the bundle does not contain the correct parcelized arguments.
    */
   fun getArgsFromBundle(bundle: Bundle): SafetyNumberBottomSheetArgs {
-    val args = bundle.getParcelable<SafetyNumberBottomSheetArgs>(ARGS)
+    val args: SafetyNumberBottomSheetArgs? = bundle.getParcelableCompat(ARGS, SafetyNumberBottomSheetArgs::class.java)
     Preconditions.checkArgument(args != null)
     return args!!
   }

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.keyvalue
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
@@ -358,6 +359,8 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
   }
 
   /** Do not alter. If you need to migrate more stuff, create a new method. */
+  @SuppressLint("ApplySharedPref")
+  @Suppress("DEPRECATION")
   private fun migrateFromSharedPrefsV2(context: Context) {
     Log.i(TAG, "[V2] Migrating account values from shared prefs.")
 

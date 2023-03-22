@@ -7,19 +7,23 @@ apply plugin: 'signing'
 apply plugin: 'idea'
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
 
-sourceCompatibility = 1.8
-archivesBaseName    = "signal-service-java"
-version             = lib_signal_service_version_number
-group               = lib_signal_service_group_info
+archivesBaseName = "signal-service-java"
+version          = lib_signal_service_version_number
+group            = lib_signal_service_group_info
 
 java {
-    targetCompatibility = 1.8
     withJavadocJar()
     withSourcesJar()
 }
 
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
 compileJava {
-    options.release = 8
+    options.release = 11
 }
 
 configurations {

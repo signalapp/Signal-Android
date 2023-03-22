@@ -117,7 +117,7 @@
         app:barrierDirection="end"
         app:constraint_referenced_ids="typing_avatar_1, typing_avatar_2, typing_avatar_3, typing_count" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/indicator_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -143,6 +143,6 @@
                 app:typingIndicator_tint="@color/signal_inverse_primary" />
 
         </FrameLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </org.thoughtcrime.securesms.components.ConversationTypingView>

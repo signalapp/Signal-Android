@@ -22,11 +22,11 @@ public class AccountManagerFactory {
   public static @NonNull SignalServiceAccountManager createAuthenticated(@NonNull Context context,
                                                                          @NonNull ACI aci,
                                                                          @NonNull PNI pni,
-                                                                         @NonNull String number,
+                                                                         @NonNull String e164,
                                                                          int deviceId,
                                                                          @NonNull String password)
   {
-    if (ApplicationDependencies.getSignalServiceNetworkAccess().isCensored(number)) {
+    if (ApplicationDependencies.getSignalServiceNetworkAccess().isCensored(e164)) {
       SignalExecutors.BOUNDED.execute(() -> {
         try {
           ProviderInstaller.installIfNeeded(context);
@@ -36,10 +36,10 @@ public class AccountManagerFactory {
       });
     }
 
-    return new SignalServiceAccountManager(ApplicationDependencies.getSignalServiceNetworkAccess().getConfiguration(number),
+    return new SignalServiceAccountManager(ApplicationDependencies.getSignalServiceNetworkAccess().getConfiguration(e164),
                                            aci,
                                            pni,
-                                           number,
+                                           e164,
                                            deviceId,
                                            password,
                                            BuildConfig.SIGNAL_AGENT,
@@ -51,11 +51,11 @@ public class AccountManagerFactory {
    * Should only be used during registration when you haven't yet been assigned an ACI.
    */
   public static @NonNull SignalServiceAccountManager createUnauthenticated(@NonNull Context context,
-                                                                           @NonNull String number,
+                                                                           @NonNull String e164,
                                                                            int deviceId,
                                                                            @NonNull String password)
   {
-    if (new SignalServiceNetworkAccess(context).isCensored(number)) {
+    if (new SignalServiceNetworkAccess(context).isCensored(e164)) {
       SignalExecutors.BOUNDED.execute(() -> {
         try {
           ProviderInstaller.installIfNeeded(context);
@@ -65,10 +65,10 @@ public class AccountManagerFactory {
       });
     }
 
-    return new SignalServiceAccountManager(ApplicationDependencies.getSignalServiceNetworkAccess().getConfiguration(number),
+    return new SignalServiceAccountManager(ApplicationDependencies.getSignalServiceNetworkAccess().getConfiguration(e164),
                                            null,
                                            null,
-                                           number,
+                                           e164,
                                            deviceId,
                                            password,
                                            BuildConfig.SIGNAL_AGENT,

@@ -1,0 +1,145 @@
+import groovy.io.FileType
+import groovy.transform.stc.ClosureParams
+import groovy.transform.stc.SimpleType
+import org.signal.buildtools.StaticIpResolver
+
+ext {
+    autoResConfig = this.&autoResConfig
+}
+
+def allStringsResourceFiles(@ClosureParams(value = SimpleType.class, options = ['java.io.File']) Closure c) {
+    file('src/main/res').eachFileRecurse(FileType.FILES) { f ->
+        if (f.name == 'strings.xml') {
+            c(f)
+        }
+    }
+}
+
+/**
+ * Discovers supported languages listed as under the res/values- directory.
+ */
+def autoResConfig() {
+    def files = []
+    allStringsResourceFiles { f ->
+        files.add(f.parentFile.name)
+    }
+    ['en'] + files.collect { f -> f =~ /^values-([a-z]{2,3}(-r[A-Z]{2})?)$/ }
+            .findAll { matcher -> matcher.find() }
+            .collect { matcher -> matcher.group(1) }
+            .sort()
+}
+
+task replaceEllipsis {
+    group 'Translate'
+    description 'Process strings for ellipsis characters.'
+    doLast {
+        allStringsResourceFiles { f ->
+            def before = f.text
+            def after = f.text.replace('...', '…')
+            if (before != after) {
+                f.text = after
+                logger.info("$f.parentFile.name/$f.name...updated")
+            }
+        }
+    }
+}
+
+task cleanApostropheErrors {
+    group 'Translate'
+    description 'Fix transifex apostrophe string errors.'
+    doLast {
+        allStringsResourceFiles { f ->
+            def before = f.text
+            def after = before.replaceAll(/([^\\=08])(')/, '$1\\\\\'')
+            if (before != after) {
+                f.text = after
+                logger.info("$f.parentFile.name/$f.name...updated")
+            }
+        }
+    }
+}
+
+task excludeNonTranslatables {
+    group 'Translate'
+    description 'Remove strings that are marked "translatable"="false" or are ExtraTranslations.'
+    doLast {
+        def englishFile = file('src/main/res/values/strings.xml')
+
+        def english = new XmlParser().parse(englishFile)
+        def nonTranslatable = english
+                .findAll { it['@translatable'] == 'false' }
+                .collect { it['@name'] }
+                .toSet()
+        def all = english.collect { it['@name'] }.toSet()
+        def translatable = all - nonTranslatable
+        def inMultiline = false
+        def endBlockName = ""
+
+        allStringsResourceFiles { f ->
+            if (f != englishFile) {
+                def newLines = f.readLines()
+                        .collect { line ->
+                            if (!inMultiline) {
+                                def singleLineMatcher = line =~ /name="([^"]*)".*(<\/|\/>)/
+                                if (singleLineMatcher.find()) {
+                                    def name = singleLineMatcher.group(1)
+                                    if (!line.contains('excludeNonTranslatables') && !translatable.contains(name)) {
+                                        return "  <!-- Removed by excludeNonTranslatables ${line.trim()} -->"
+                                    }
+                                } else {
+                                    def multilineStartMatcher = line =~ /<(.*) .?name="([^"]*)".*/
+                                    if (multilineStartMatcher.find()) {
+                                        endBlockName = multilineStartMatcher.group(1)
+                                        def name = multilineStartMatcher.group(2)
+                                        if (!line.contains('excludeNonTranslatables') && !translatable.contains(name)) {
+                                            inMultiline = true;
+                                            return "  <!-- Removed by excludeNonTranslatables ${line.trim()}"
+                                        }
+                                    }
+                                }
+                            } else {
+                                def multilineEndMatcher = line =~ /<\/${endBlockName}/
+                                if (multilineEndMatcher.find()) {
+                                    inMultiline = false
+                                    return "${line} -->"
+                                }
+                            }
+
+                            return line
+                        }
+
+                f.write(newLines.join("\n") + "\n")
+            }
+        }
+    }
+}
+
+task postTranslateQa {
+    group 'Translate'
+    description 'Runs QA to check validity of updated strings, and ensure presence of any new languages in internal lists.'
+    dependsOn ':qa'
+}
+
+task postTranslateIpFetch {
+    group 'Translate'
+    description 'Fetches static IPs for core hosts and writes them to static-ips.gradle'
+    doLast {
+        def staticIpResolver = new StaticIpResolver()
+        new File(projectDir, "static-ips.gradle").text = """
+            ext.service_ips='${staticIpResolver.resolveToBuildConfig("chat.signal.org")}'
+            ext.storage_ips='${staticIpResolver.resolveToBuildConfig("storage.signal.org")}'
+            ext.cdn_ips='${staticIpResolver.resolveToBuildConfig("cdn.signal.org")}'
+            ext.cdn2_ips='${staticIpResolver.resolveToBuildConfig("cdn2.signal.org")}'
+            ext.cds_ips='${staticIpResolver.resolveToBuildConfig("api.directory.signal.org")}'
+            ext.kbs_ips='${staticIpResolver.resolveToBuildConfig("api.backup.signal.org")}'
+            ext.sfu_ips='${staticIpResolver.resolveToBuildConfig("sfu.voip.signal.org")}'
+            ext.content_proxy_ips='${staticIpResolver.resolveToBuildConfig("contentproxy.signal.org")}'
+        """.stripIndent().trim()
+    }
+}
+
+task translateQa {
+    group 'Translate'
+    description 'Post-process for ellipsis, apostrophes and non-translatables.'
+    dependsOn replaceEllipsis, cleanApostropheErrors, excludeNonTranslatables, postTranslateIpFetch, postTranslateQa
+}

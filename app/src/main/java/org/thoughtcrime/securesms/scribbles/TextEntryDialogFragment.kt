@@ -12,6 +12,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.fragment.app.FragmentManager
 import com.airbnb.lottie.SimpleColorFilter
+import org.signal.core.util.getParcelableCompat
 import org.signal.imageeditor.core.HiddenEditText
 import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer
@@ -42,7 +43,7 @@ class TextEntryDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_im
       dismissAllowingStateLoss()
     }
 
-    val element: EditorElement = requireNotNull(requireArguments().getParcelable("element"))
+    val element: EditorElement = requireNotNull(requireArguments().getParcelableCompat("element", EditorElement::class.java))
     val incognito = requireArguments().getBoolean("incognito")
     val selectAll = requireArguments().getBoolean("selectAll")
 

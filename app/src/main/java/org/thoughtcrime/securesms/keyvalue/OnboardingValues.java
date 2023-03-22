@@ -4,9 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.LocaleFeatureFlags;
-import org.thoughtcrime.securesms.util.Util;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -14,7 +11,6 @@ public final class OnboardingValues extends SignalStoreValues {
 
   private static final String SHOW_NEW_GROUP      = "onboarding.new_group";
   private static final String SHOW_INVITE_FRIENDS = "onboarding.invite_friends";
-  private static final String SHOW_SMS            = "onboarding.sms";
   private static final String SHOW_APPEARANCE     = "onboarding.appearance";
   private static final String SHOW_ADD_PHOTO      = "onboarding.add_photo";
 
@@ -26,7 +22,6 @@ public final class OnboardingValues extends SignalStoreValues {
   void onFirstEverAppLaunch() {
     putBoolean(SHOW_NEW_GROUP, true);
     putBoolean(SHOW_INVITE_FRIENDS, true);
-    putBoolean(SHOW_SMS, true);
     putBoolean(SHOW_APPEARANCE, true);
     putBoolean(SHOW_ADD_PHOTO, true);
   }
@@ -39,7 +34,6 @@ public final class OnboardingValues extends SignalStoreValues {
   public void clearAll() {
     setShowNewGroup(false);
     setShowInviteFriends(false);
-    setShowSms(false);
     setShowAppearance(false);
     setShowAddPhoto(false);
   }
@@ -47,7 +41,6 @@ public final class OnboardingValues extends SignalStoreValues {
   public boolean hasOnboarding(@NonNull Context context) {
     return shouldShowNewGroup()      ||
            shouldShowInviteFriends() ||
-           shouldShowSms()           ||
            shouldShowAppearance()    ||
            shouldShowAddPhoto();
   }
@@ -68,14 +61,6 @@ public final class OnboardingValues extends SignalStoreValues {
     return getBoolean(SHOW_INVITE_FRIENDS, false);
   }
 
-  public void setShowSms(boolean value) {
-    putBoolean(SHOW_SMS, value);
-  }
-
-  public boolean shouldShowSms() {
-    return false;
-  }
-
   public void setShowAppearance(boolean value) {
     putBoolean(SHOW_APPEARANCE, value);
   }
@@ -88,7 +73,7 @@ public final class OnboardingValues extends SignalStoreValues {
     putBoolean(SHOW_ADD_PHOTO, value);
   }
 
-  public boolean shouldShowAddPhoto(){
+  public boolean shouldShowAddPhoto() {
     return getBoolean(SHOW_ADD_PHOTO, false);
   }
 }

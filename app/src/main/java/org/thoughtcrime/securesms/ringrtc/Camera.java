@@ -204,7 +204,6 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
     cameraEventListener.onCameraSwitchCompleted(new CameraState(getActiveDirection(), getCount()));
   }
 
-  @TargetApi(21)
   private static class FilteredCamera2Enumerator extends Camera2Enumerator {
 
     private static final String TAG = Log.tag(Camera2Enumerator.class);

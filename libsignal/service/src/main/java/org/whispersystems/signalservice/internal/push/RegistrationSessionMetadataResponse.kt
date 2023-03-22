@@ -8,7 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class RegistrationSessionMetadataResponse(
   val headers: RegistrationSessionMetadataHeaders,
-  val body: RegistrationSessionMetadataJson
+  val body: RegistrationSessionMetadataJson,
+  val state: RegistrationSessionState?,
 )
 
 data class RegistrationSessionMetadataHeaders(
@@ -32,3 +33,7 @@ data class RegistrationSessionMetadataJson(
     return requestedInformation.contains("captcha")
   }
 }
+
+data class RegistrationSessionState(
+  var pushChallengeTimedOut: Boolean,
+)

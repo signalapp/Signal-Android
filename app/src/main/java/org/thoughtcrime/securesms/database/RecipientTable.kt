@@ -24,6 +24,7 @@ import org.signal.core.util.optionalString
 import org.signal.core.util.or
 import org.signal.core.util.readToSet
 import org.signal.core.util.readToSingleBoolean
+import org.signal.core.util.readToSingleLong
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
@@ -524,73 +525,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
 
     return serviceIdToProfileKey
-  }
-
-  private fun fetchRecipient(serviceId: ServiceId?, e164: String?, changeSelf: Boolean): RecipientFetch {
-    val byE164 = e164?.let { getByE164(it) } ?: Optional.empty()
-    val byAci = serviceId?.let { getByServiceId(it) } ?: Optional.empty()
-
-    var logs = LogBundle(
-      bySid = byAci.map { id -> RecipientLogDetails(id = id) }.orElse(null),
-      byE164 = byE164.map { id -> RecipientLogDetails(id = id) }.orElse(null),
-      label = "L0"
-    )
-
-    if (byAci.isPresent && byE164.isPresent && byAci.get() == byE164.get()) {
-      return RecipientFetch.Match(byAci.get(), logs.label("L0"))
-    }
-
-    if (byAci.isPresent && byE164.isAbsent()) {
-      val aciRecord: RecipientRecord = getRecord(byAci.get())
-      logs = logs.copy(bySid = aciRecord.toLogDetails())
-
-      if (e164 != null && (changeSelf || serviceId != SignalStore.account().aci)) {
-        val changedNumber: RecipientId? = if (aciRecord.e164 != null && aciRecord.e164 != e164) aciRecord.id else null
-        return RecipientFetch.MatchAndUpdateE164(byAci.get(), e164, changedNumber, logs.label("L1"))
-      } else if (e164 == null) {
-        return RecipientFetch.Match(byAci.get(), logs.label("L2"))
-      } else {
-        return RecipientFetch.Match(byAci.get(), logs.label("L3"))
-      }
-    }
-
-    if (byAci.isAbsent() && byE164.isPresent) {
-      val e164Record: RecipientRecord = getRecord(byE164.get())
-      logs = logs.copy(byE164 = e164Record.toLogDetails())
-
-      if (serviceId != null && e164Record.serviceId == null) {
-        return RecipientFetch.MatchAndUpdateAci(byE164.get(), serviceId, logs.label("L4"))
-      } else if (serviceId != null && e164Record.serviceId != SignalStore.account().aci) {
-        return RecipientFetch.InsertAndReassignE164(serviceId, e164, byE164.get(), logs.label("L5"))
-      } else if (serviceId != null) {
-        return RecipientFetch.Insert(serviceId, null, logs.label("L6"))
-      } else {
-        return RecipientFetch.Match(byE164.get(), logs.label("L7"))
-      }
-    }
-
-    if (byAci.isAbsent() && byE164.isAbsent()) {
-      return RecipientFetch.Insert(serviceId, e164, logs.label("L8"))
-    }
-
-    require(byAci.isPresent && byE164.isPresent && byAci.get() != byE164.get()) { "Assumed conditions at this point." }
-
-    val aciRecord: RecipientRecord = getRecord(byAci.get())
-    val e164Record: RecipientRecord = getRecord(byE164.get())
-
-    logs = logs.copy(bySid = aciRecord.toLogDetails(), byE164 = e164Record.toLogDetails())
-
-    if (e164Record.serviceId == null) {
-      val changedNumber: RecipientId? = if (aciRecord.e164 != null) aciRecord.id else null
-      return RecipientFetch.MatchAndMerge(sidId = byAci.get(), e164Id = byE164.get(), changedNumber = changedNumber, logs.label("L9"))
-    } else {
-      if (e164Record.serviceId != SignalStore.account().aci) {
-        val changedNumber: RecipientId? = if (aciRecord.e164 != null) aciRecord.id else null
-        return RecipientFetch.MatchAndReassignE164(id = byAci.get(), e164Id = byE164.get(), e164 = e164!!, changedNumber = changedNumber, logs.label("L10"))
-      } else {
-        return RecipientFetch.Match(byAci.get(), logs.label("L11"))
-      }
-    }
   }
 
   fun getOrInsertFromServiceId(serviceId: ServiceId): RecipientId {
@@ -3692,6 +3626,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
+  fun getExpiresInSeconds(id: RecipientId): Long {
+    return readableDatabase
+      .select(MESSAGE_EXPIRATION_TIME)
+      .from(TABLE_NAME)
+      .where(ID_WHERE, id)
+      .run()
+      .readToSingleLong(0L)
+  }
+
   /**
    * Will update the database with the content values you specified. It will make an intelligent
    * query such that this will only return true if a row was *actually* updated.
@@ -4265,14 +4208,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return !this.isPresent
   }
 
-  private fun RecipientRecord.toLogDetails(): RecipientLogDetails {
-    return RecipientLogDetails(
-      id = this.id,
-      serviceId = this.serviceId,
-      e164 = this.e164
-    )
-  }
-
   private data class MergeResult(
     val finalId: RecipientId,
     val neededThreadMerge: Boolean
@@ -4616,84 +4551,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  private sealed class RecipientFetch(val logBundle: LogBundle?) {
-    /**
-     * We have a matching recipient, and no writes need to occur.
-     */
-    data class Match(val id: RecipientId, val bundle: LogBundle?) : RecipientFetch(bundle)
-
-    /**
-     * We found a matching recipient and can update them with a new E164.
-     */
-    data class MatchAndUpdateE164(val id: RecipientId, val e164: String, val changedNumber: RecipientId?, val bundle: LogBundle) : RecipientFetch(bundle)
-
-    /**
-     * We found a matching recipient and can give them an E164 that used to belong to someone else.
-     */
-    data class MatchAndReassignE164(val id: RecipientId, val e164Id: RecipientId, val e164: String, val changedNumber: RecipientId?, val bundle: LogBundle) : RecipientFetch(bundle)
-
-    /**
-     * We found a matching recipient and can update them with a new ACI.
-     */
-    data class MatchAndUpdateAci(val id: RecipientId, val serviceId: ServiceId, val bundle: LogBundle) : RecipientFetch(bundle)
-
-    /**
-     * We found a matching recipient and can insert an ACI as a *new user*.
-     */
-    data class MatchAndInsertAci(val id: RecipientId, val serviceId: ServiceId, val bundle: LogBundle) : RecipientFetch(bundle)
-
-    /**
-     * The ACI maps to ACI-only recipient, and the E164 maps to a different E164-only recipient. We need to merge the two together.
-     */
-    data class MatchAndMerge(val sidId: RecipientId, val e164Id: RecipientId, val changedNumber: RecipientId?, val bundle: LogBundle) : RecipientFetch(bundle)
-
-    /**
-     * We don't have a matching recipient, so we need to insert one.
-     */
-    data class Insert(val serviceId: ServiceId?, val e164: String?, val bundle: LogBundle) : RecipientFetch(bundle)
-
-    /**
-     * We need to create a new recipient and give it the E164 of an existing recipient.
-     */
-    data class InsertAndReassignE164(val serviceId: ServiceId?, val e164: String?, val e164Id: RecipientId, val bundle: LogBundle) : RecipientFetch(bundle)
-  }
-
-  /**
-   * Simple class for [fetchRecipient] to pass back info that can be logged.
-   */
-  private data class LogBundle(
-    val label: String,
-    val serviceId: ServiceId? = null,
-    val e164: String? = null,
-    val bySid: RecipientLogDetails? = null,
-    val byE164: RecipientLogDetails? = null
-  ) {
-    fun label(label: String): LogBundle {
-      return this.copy(label = label)
-    }
-  }
-
-  /**
-   * Minimal info about a recipient that we'd want to log. Used in [fetchRecipient].
-   */
-  private data class RecipientLogDetails(
-    val id: RecipientId,
-    val serviceId: ServiceId? = null,
-    val e164: String? = null
-  )
-
   data class CdsV2Result(
     val pni: PNI,
     val aci: ACI?
-  ) {
-    fun bestServiceId(): ServiceId {
-      return if (aci != null) {
-        aci
-      } else {
-        pni
-      }
-    }
-  }
+  )
 
   data class ProcessPnpTupleResult(
     val finalId: RecipientId,

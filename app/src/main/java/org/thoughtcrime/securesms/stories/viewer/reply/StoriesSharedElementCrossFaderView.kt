@@ -6,11 +6,11 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.AttributeSet
 import android.widget.ImageView
-import androidx.cardview.widget.CardView
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.google.android.material.card.MaterialCardView
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.transitions.CrossfaderTransition
@@ -24,7 +24,7 @@ import kotlin.reflect.KProperty
 class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null
-) : CardView(context, attrs), CrossfaderTransition.Crossfadeable {
+) : MaterialCardView(context, attrs), CrossfaderTransition.Crossfadeable {
 
   companion object {
     val CORNER_RADIUS_START = DimensionUnit.DP.toPixels(12f)

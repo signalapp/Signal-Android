@@ -69,7 +69,7 @@ public class UnidentifiedAccessUtil {
 
   @WorkerThread
   public static Map<RecipientId, Optional<UnidentifiedAccessPair>> getAccessMapFor(@NonNull Context context, @NonNull List<Recipient> recipients, boolean isForStory) {
-    List<Optional<UnidentifiedAccessPair>> accessList = getAccessFor(context, recipients, true, isForStory);
+    List<Optional<UnidentifiedAccessPair>> accessList = getAccessFor(context, recipients, isForStory, true);
 
     Iterator<Recipient>                        recipientIterator = recipients.iterator();
     Iterator<Optional<UnidentifiedAccessPair>> accessIterator    = accessList.iterator();

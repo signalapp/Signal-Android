@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:viewBindingIgnore="true"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="10dp"
     android:clipChildren="false"
     android:clipToPadding="false"
-    tools:parentTag="android.widget.FrameLayout">
+    android:paddingBottom="10dp"
+    tools:parentTag="android.widget.FrameLayout"
+    tools:viewBindingIgnore="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:clipChildren="false"
         android:clipToPadding="false"
-        android:clipChildren="false">
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
@@ -26,18 +25,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="12dp"
-            android:clipToPadding="false"
+            android:background="@color/signal_background_primary"
             android:clipChildren="false"
-            android:background="@color/signal_background_primary">
+            android:clipToPadding="false"
+            android:paddingBottom="12dp">
 
             <TextView
                 android:id="@+id/onboarding_megaphone_title"
+                style="@style/TextAppearance.Signal.Title2.Bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
-                style="@style/TextAppearance.Signal.Title2.Bold"
                 android:text="@string/Megaphones_get_started"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,7 +48,10 @@
                 android:layout_marginTop="10dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
-                app:layout_constraintTop_toBottomOf="@id/onboarding_megaphone_title"/>
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/onboarding_megaphone_title"
+                tools:listitem="@layout/onboarding_megaphone_card" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

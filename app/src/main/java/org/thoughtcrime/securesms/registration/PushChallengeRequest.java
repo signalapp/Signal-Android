@@ -38,7 +38,7 @@ public final class PushChallengeRequest {
                                                           @NonNull Optional<String> fcmToken,
                                                           long timeoutMs)
   {
-    if (!fcmToken.isPresent()) {
+    if (fcmToken.isEmpty() || fcmToken.get().isEmpty()) {
       Log.w(TAG, "Push challenge not requested, as no FCM token was present");
       return Optional.empty();
     }

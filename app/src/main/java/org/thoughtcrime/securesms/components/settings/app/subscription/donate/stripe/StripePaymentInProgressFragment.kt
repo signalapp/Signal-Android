@@ -16,6 +16,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
@@ -125,7 +126,7 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
         Log.d(TAG, "3DS action required. Displaying dialog...")
         Single.create<StripeIntentAccessor> { emitter ->
           val listener = FragmentResultListener { _, bundle ->
-            val result: StripeIntentAccessor? = bundle.getParcelable(Stripe3DSDialogFragment.REQUEST_KEY)
+            val result: StripeIntentAccessor? = bundle.getParcelableCompat(Stripe3DSDialogFragment.REQUEST_KEY, StripeIntentAccessor::class.java)
             if (result != null) {
               emitter.onSuccess(result)
             } else {

@@ -1313,7 +1313,6 @@ public class ConversationParentFragment extends Fragment
     });
   }
 
-  @TargetApi(Build.VERSION_CODES.KITKAT)
   private void handleMakeDefaultSms() {
     startActivityForResult(SmsUtil.getSmsRoleIntent(requireContext()), SMS_DEFAULT);
   }
@@ -3382,13 +3381,8 @@ public class ConversationParentFragment extends Fragment
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
     voiceNoteMediaController.pausePlayback();
-    try {
-      recordingSession = new RecordingSession(audioRecorder.startRecording());
-      disposables.add(recordingSession);
-    } catch (AssertionError err) {
-      Log.e(TAG, "Could not start audio recording.", err);
-      Toast.makeText(requireContext(), R.string.ConversationActivity_unable_to_record_audio, Toast.LENGTH_SHORT).show();
-    }
+    recordingSession = new RecordingSession(audioRecorder.startRecording());
+    disposables.add(recordingSession);
   }
 
   @Override

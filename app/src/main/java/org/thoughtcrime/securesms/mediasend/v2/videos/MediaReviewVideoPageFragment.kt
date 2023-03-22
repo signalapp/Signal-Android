@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
@@ -99,7 +100,7 @@ class MediaReviewVideoPageFragment : Fragment(R.layout.fragment_container), Vide
     }
   }
 
-  private fun requireUri(): Uri = requireNotNull(requireArguments().getParcelable(ARG_URI))
+  private fun requireUri(): Uri = requireNotNull(requireArguments().getParcelableCompat(ARG_URI, Uri::class.java))
   private fun requireMaxCompressedVideoSize(): Long = sharedViewModel.getMediaConstraints().getCompressedVideoMaxSize(requireContext()).toLong()
   private fun requireMaxAttachmentSize(): Long = sharedViewModel.getMediaConstraints().getVideoMaxSize(requireContext()).toLong()
   private fun requireIsVideoGif(): Boolean = requireNotNull(requireArguments().getBoolean(ARG_IS_VIDEO_GIF))

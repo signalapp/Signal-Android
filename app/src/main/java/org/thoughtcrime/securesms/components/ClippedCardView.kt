@@ -6,8 +6,8 @@ import android.graphics.Path
 import android.graphics.Rect
 import android.graphics.RectF
 import android.util.AttributeSet
-import androidx.cardview.widget.CardView
 import androidx.core.graphics.withClip
+import com.google.android.material.card.MaterialCardView
 
 /**
  * Adds manual clipping around the card. This ensures that software rendering
@@ -16,7 +16,7 @@ import androidx.core.graphics.withClip
 class ClippedCardView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null
-) : CardView(context, attrs) {
+) : MaterialCardView(context, attrs) {
 
   private val bounds = Rect()
   private val boundsF = RectF()

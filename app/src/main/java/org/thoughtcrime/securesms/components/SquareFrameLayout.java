@@ -23,7 +23,7 @@ public class SquareFrameLayout extends FrameLayout {
     this(context, attrs, 0);
   }
 
-  @TargetApi(VERSION_CODES.HONEYCOMB) @SuppressWarnings("unused")
+  @SuppressWarnings("unused")
   public SquareFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
 

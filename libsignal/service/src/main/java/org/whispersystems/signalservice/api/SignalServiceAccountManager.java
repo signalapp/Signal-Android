@@ -211,18 +211,7 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public Single<ServiceResponse<BackupAuthCheckResponse>> checkBackupAuthCredentials(@Nonnull String e164, @Nonnull List<String> basicAuthTokens) {
-    List<String> usernamePasswords = basicAuthTokens
-        .stream()
-        .limit(10)
-        .map(t -> {
-          try {
-            return new String(Base64.decode(t.replace("Basic ", "").trim()), StandardCharsets.ISO_8859_1);
-          } catch (IOException e) {
-            return null;
-          }
-        })
-        .collect(Collectors.toList());
+  public Single<ServiceResponse<BackupAuthCheckResponse>> checkBackupAuthCredentials(@Nonnull String e164, @Nonnull List<String> usernamePasswords) {
 
     return pushServiceSocket.checkBackupAuthCredentials(new BackupAuthCheckRequest(e164, usernamePasswords), DefaultResponseMapper.getDefault(BackupAuthCheckResponse.class));
   }

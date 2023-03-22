@@ -2,10 +2,10 @@ package org.whispersystems.signalservice.api;
 
 import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketRequestMessage;
 import org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketResponseMessage;
@@ -15,6 +15,7 @@ import org.whispersystems.util.Base64;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.concurrent.TimeoutException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -218,30 +219,33 @@ public final class SignalWebSocket {
 
   /**
    * <p>
-   * A blocking call that reads a message off the pipe. When this call returns, the message has been
-   * acknowledged and will not be retransmitted. This will return {@link Optional#empty()} when an
-   * empty response is hit, which indicates the WebSocket is empty.
+   * A blocking call that reads a message off the pipe. When this call returns, if the callback indicates the
+   * message was successfully processed, then the message will be ack'ed on the serve and will not be retransmitted.
+   * <p>
+   * This will return true if there are more messages to be read from the websocket, or false if the websocket is empty.
    * <p>
    * You can specify a {@link MessageReceivedCallback} that will be called before the received message is acknowledged.
    * This allows you to write the received message to durable storage before acknowledging receipt of it to the
    * server.
    * <p>
-   * Important: The empty response will only be hit once for each connection. That means if you get
-   * an empty response and call readOrEmpty() again on the same instance, you will not get an empty
-   * response, and instead will block until you get an actual message. This will, however, reset if
-   * connection breaks (if, for instance, you lose and regain network).
+   * Important: This will only return `false` once for each connection. That means if you get false call readMessage()
+   * again on the same instance, you will not get an immediate `false` return value, and instead will block until
+   * you get an actual message. This will, however, reset if connection breaks (if, for instance, you lose and regain network).
    *
    * @param timeout  The timeout to wait for.
    * @param callback A callback that will be called before the message receipt is acknowledged to the server.
    * @return The message read (same as the message sent through the callback).
    */
   @SuppressWarnings("DuplicateThrows")
-  public Optional<SignalServiceEnvelope> readOrEmpty(long timeout, MessageReceivedCallback callback)
+  public boolean readMessage(long timeout, MessageReceivedCallback callback)
       throws TimeoutException, WebSocketUnavailableException, IOException
   {
     while (true) {
       WebSocketRequestMessage  request  = getWebSocket().readRequest(timeout);
       WebSocketResponseMessage response = createWebSocketResponse(request);
+
+      AtomicBoolean successfullyProcessed = new AtomicBoolean(false);
+
       try {
         if (isSignalServiceEnvelope(request)) {
           Optional<String> timestampHeader = findHeader(request);
@@ -255,15 +259,18 @@ public final class SignalWebSocket {
             }
           }
 
-          SignalServiceEnvelope envelope = new SignalServiceEnvelope(request.getBody().toByteArray(), timestamp);
+          SignalServiceProtos.Envelope envelope = SignalServiceProtos.Envelope.parseFrom(request.getBody().toByteArray());
 
-          callback.onMessage(envelope);
-          return Optional.of(envelope);
+          successfullyProcessed.set(callback.onMessage(envelope, timestamp));
+
+          return true;
         } else if (isSocketEmptyRequest(request)) {
-          return Optional.empty();
+          return false;
         }
       } finally {
-        getWebSocket().sendResponse(response);
+        if (successfullyProcessed.get()) {
+          getWebSocket().sendResponse(response);
+        }
       }
     }
   }
@@ -314,6 +321,8 @@ public final class SignalWebSocket {
    * received.
    */
   public interface MessageReceivedCallback {
-    void onMessage(SignalServiceEnvelope envelope);
+
+    /** True if you successfully processed the message, otherwise false. **/
+    boolean onMessage(SignalServiceProtos.Envelope envelope, long serverDeliveredTimestamp);
   }
 }

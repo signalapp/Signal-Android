@@ -11,9 +11,9 @@ plugins {
     id 'kotlin-parcelize'
     id 'com.squareup.wire'
     id 'android-constants'
+    id 'translations'
 }
 
-apply from: 'translations.gradle'
 apply from: 'static-ips.gradle'
 
 protobuf {
@@ -46,8 +46,8 @@ ktlint {
     version = "0.47.1"
 }
 
-def canonicalVersionCode = 1226
-def canonicalVersionName = "6.13.6"
+def canonicalVersionCode = 1232
+def canonicalVersionName = "6.14.5"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -84,15 +84,15 @@ def selectableVariants = [
 android {
     namespace 'org.thoughtcrime.securesms'
 
-    buildToolsVersion BUILD_TOOLS_VERSION
-    compileSdkVersion COMPILE_SDK_VERSION
+    buildToolsVersion = signalBuildToolsVersion
+    compileSdkVersion = signalCompileSdkVersion
 
     flavorDimensions 'distribution', 'environment'
     useLibrary 'org.apache.http.legacy'
     testBuildType 'instrumentation'
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
         freeCompilerArgs = ["-Xallow-result-return-type"]
     }
 
@@ -139,12 +139,13 @@ android {
 
     compileOptions {
         coreLibraryDesugaringEnabled true
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
+        sourceCompatibility signalJavaVersion
+        targetCompatibility signalJavaVersion
     }
+
     packagingOptions {
         resources {
-            excludes += ['LICENSE.txt', 'LICENSE', 'NOTICE', 'asm-license.txt', 'META-INF/LICENSE', 'META-INF/NOTICE', 'META-INF/proguard/androidx-annotations.pro', 'libsignal_jni.dylib', 'signal_jni.dll']
+            excludes += ['LICENSE.txt', 'LICENSE', 'NOTICE', 'asm-license.txt', 'META-INF/LICENSE', 'META-INF/LICENSE.md', 'META-INF/NOTICE', 'META-INF/LICENSE-notice.md', 'META-INF/proguard/androidx-annotations.pro', 'libsignal_jni.dylib', 'signal_jni.dll']
         }
     }
 
@@ -162,8 +163,8 @@ android {
         versionCode canonicalVersionCode * postFixSize
         versionName canonicalVersionName
 
-        minSdkVersion MIN_SDK_VERSION
-        targetSdkVersion TARGET_SDK_VERSION
+        minSdkVersion signalMinSdkVersion
+        targetSdkVersion signalTargetSdkVersion
 
         multiDexEnabled true
 
@@ -431,7 +432,7 @@ dependencies {
 
     implementation (libs.androidx.appcompat) {
         version {
-            strictly '1.5.1'
+            strictly '1.6.1'
         }
     }
     implementation libs.androidx.window.window
@@ -439,7 +440,6 @@ dependencies {
     implementation libs.androidx.recyclerview
     implementation libs.material.material
     implementation libs.androidx.legacy.support
-    implementation libs.androidx.cardview
     implementation libs.androidx.preference
     implementation libs.androidx.legacy.preference
     implementation libs.androidx.gridlayout
@@ -569,6 +569,7 @@ dependencies {
     androidTestImplementation testLibs.androidx.test.ext.junit.ktx
     androidTestImplementation testLibs.mockito.android
     androidTestImplementation testLibs.mockito.kotlin
+    androidTestImplementation testLibs.mockk.android
     androidTestImplementation testLibs.square.okhttp.mockserver
 
     instrumentationImplementation (libs.androidx.fragment.testing) {

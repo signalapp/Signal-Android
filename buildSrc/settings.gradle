@@ -1,2 +1,0 @@
-enableFeaturePreview('VERSION_CATALOGS')
-apply from: '../dependencies.gradle'

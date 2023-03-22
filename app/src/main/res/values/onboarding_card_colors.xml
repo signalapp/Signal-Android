@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="onboarding_background_1">#FFF6EDE0</color>
+    <color name="onboarding_background_2">#FFDEE5D6</color>
+    <color name="onboarding_background_3">#FFD6E5E5</color>
+    <color name="onboarding_background_4">#FFE5DBE7</color>
+</resources>

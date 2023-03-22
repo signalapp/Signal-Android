@@ -471,16 +471,16 @@
         <item quantity="other">Memindahkan %1$d percakapan ke kotak masuk</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="other">Tandai Terbaca</item>
+        <item quantity="other">Sudah Dibaca</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="other">Belum dibaca</item>
+        <item quantity="other">Belum Dibaca</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="other">Sematkan</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="other">Cabut Semat</item>
+        <item quantity="other">Lepas Sematan</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="other">Bisukan</item>
@@ -490,7 +490,7 @@
     </plurals>
     <string name="ConversationListFragment_select">Pilih</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="other">Arispkan</item>
+        <item quantity="other">Arsipkan</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
         <item quantity="other">Buka Arsip</item>
@@ -522,6 +522,15 @@
 
     <!-- ConversationTypingView -->
     <string name="ConversationTypingView__plus_d">+%1$d</string>
+
+    <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Tautkan kembali perangkat Anda</string>
+    <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Perangkat yang Anda tambahkan telah diputus penautannya saat perangkat batal didaftarkan. Buka Pengaturan untuk menautkan kembali perangkat.</string>
+    <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
+    <string name="RelinkDevicesReminderFragment__open_settings">Buka pengaturan</string>
+    <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
+    <string name="RelinkDevicesReminderFragment__later">Nanti</string>
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">Pilih anggota</string>
@@ -1119,8 +1128,8 @@
     <string name="Megaphones_new_group">Grup baru</string>
     <string name="Megaphones_invite_friends">Undang teman</string>
     <string name="Megaphones_use_sms">Gunakan SMS</string>
-    <string name="Megaphones_appearance">Tampilan</string>
-    <string name="Megaphones_add_photo">Tambahkan foto</string>
+    <string name="Megaphones_chat_colors">Warna obrolan</string>
+    <string name="Megaphones_add_a_profile_photo">Tambahkan foto profil</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Balasan</string>
@@ -1919,9 +1928,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Anda menebus sebuah lencana</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Memberi tanggapan %1$s ke cerita Anda</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Menanggapi %1$s pada cerita Anda</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Memberi tanggapan %1$s ke cerita mereka</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Menanggapi %1$s pada cerita mereka</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Pembayaran</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2058,14 +2067,16 @@
     <string name="MessageNotifier_unsecured_sms">SMS tidak terenkripsi</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kontak</string>
-    <string name="MessageNotifier_reacted_s_to_s">Memberi tanggapan %1$s untuk: \"%2$s\".</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Memberi tanggapan %1$s untuk video Anda.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Memberi tanggapan %1$s untuk gambar Anda.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Memberi tanggapan %1$s untuk GIF Anda.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Memberi tanggapan %1$s untuk file Anda.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Memberi tanggapan %1$s untuk audio Anda.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Memberi tanggapan %1$s untuk media sekali-lihat Anda.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Memberi tanggapan %1$s untuk stiker Anda.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Menanggapi %1$s pada: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Menanggapi %1$s pada video Anda.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Menanggapi %1$s pada gambar Anda.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Menanggapi %1$s pada GIF Anda.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Menanggapi %1$s pada file Anda.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Menanggapi %1$s pada audio Anda.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Menanggapi %1$s pada media sekali-lihat Anda.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Menanggapi %1$s pada pembayaran Anda.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Menanggapi %1$s pada stiker Anda.</string>
     <string name="MessageNotifier_this_message_was_deleted">Pesan ini telah dihapus.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Matikan notifikasi kontak bergabung Signal? Anda dapat menyalakannya kembali di Signal &gt; Pengaturan &gt; Notifikasi.</string>
@@ -2447,8 +2458,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Masalah Pengiriman</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Sebuah pesan, stiker, tanggapan, atau tanda pesan terbaca tidak dapat Anda terima dari %1$s. Mereka mungkin mencoba mengirimkannya secara langsung, atau di dalam grup.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Sebuah pesan, stiker, tanggapan, atau tanda pesan terbaca tidak dapat Anda terima dari %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Sebuah pesan, stiker, tanggapan, atau bukti pesan terbaca tidak dapat Anda terima dari %1$s. Mereka mungkin mencoba mengirimkannya langsung kepada Anda, atau di dalam grup.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Sebuah pesan, stiker, tanggapan, atau bukti pesan terbaca tidak dapat Anda terima dari %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Nama depan (diperlukan)</string>
@@ -3361,6 +3372,18 @@
     <string name="BackupUtil_unknown">Tidak dikenal</string>
     <string name="preferences_app_protection__see_my_phone_number">Lihat nomor telepon saya</string>
     <string name="preferences_app_protection__find_me_by_phone_number">Temukan saya melalui nomor telepon</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">Nomor telepon</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">Pilih siapa yang bisa melihat nomor telepon Anda dan siapa yang bisa menghubungi Anda di Signal dengan nomor tersebut.</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Siapa bisa melihat nomor saya</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Tidak akan ada yang melihat nomor Anda di Signal</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Siapa bisa menemukan saya dengan nomor telepon</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Nomor telepon Anda akan terlihat oleh orang dan grup yang Anda kirimi pesan. Orang yang menyimpan nomor Anda di kontaknya juga akan dapat melihat nomor telepon Anda di Signal.</string>
     <string name="PhoneNumberPrivacy_everyone">Semua orang</string>
     <string name="PhoneNumberPrivacy_my_contacts">Kontak saya</string>
     <string name="PhoneNumberPrivacy_nobody">Tak seorangpun</string>
@@ -3736,12 +3759,12 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Nonaktifkan Wallet</string>
     <string name="DeactivateWalletFragment__your_balance">Saldo Anda</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Anda direkomendasikan untuk mentransfer dana Anda ke alamat wallet lain sebelum menonaktifkan pembayaran. Jika Anda memilih untuk tidak mentransfernya sekarang, dana Anda akan tetap di wallet yang tersambung ke Signal jika Anda mengaktifkan kembali pembayaran.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Disarankan untuk mentransfer dana Anda ke alamat dompet lain sebelum menonaktifkan pembayaran. Jika Anda memilih untuk tidak mentransfernya sekarang, dana Anda akan tetap ada di dompet yang terhubung dengan Signal jika Anda mengaktifkan kembali pembayaran.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Transfer saldo yang tersisa</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Nonaktifkan tanpa transfer</string>
     <string name="DeactivateWalletFragment__deactivate">Nonaktifkan</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Nonaktifkan tanpa transfer?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Saldo Anda akan tetap di dalam wallet yang terhubung ke Signal jika Anda memilih untuk mengaktifkan kembali pembayaran.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Saldo Anda akan tetap ada di dompet yang terhubung dengan Signal jika Anda memilih untuk mengaktifkan kembali pembayaran.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Gagal menonaktifkan wallet.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -4398,7 +4421,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Donasi Bulanan Dibatalkan</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Lencana Boost Anda telah kedaluwarsa dan tidak terlihat lagi di profil Anda.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Anda dapat mengaktifkan kembali lencana Boost Anda selama 30 hari lagi dengan kontribusi satu kali.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Anda dapat mengaktifkan kembali lencana Boost untuk 30 hari lagi dengan kontribusi satu kali.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Anda tetap dapat menggunakan Signal, tetapi untuk mendukung teknologi yang dibuat untuk Anda, pertimbangkan untuk menjadi penyokong dengan memberikan donasi bulanan.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi Penyokong</string>
@@ -4410,7 +4433,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Donasi bulanan berulang Anda telah dibatalkan karena kami tidak dapat memproses pembayaran Anda. Lencana Anda tidak terlihat lagi di profil Anda.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Donasi bulanan berulang Anda telah dibatalkan. %1$s Lencana %2$s Anda tidak terlihat lagi di profil Anda.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Anda tetap dapat menggunakan Signal, tetapi untuk mendukung aplikasi dan mengaktifkan kembali lencana Anda, perpanjang langganan sekarang.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Anda tetap dapat menggunakan Signal, tetapi untuk mendukung aplikasi dan mengaktifkan kembali lencana Anda, lakukan perpanjangan sekarang.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Perpanjang langganan</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Pergi ke Google Pay</string>
@@ -4453,7 +4476,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Donasi Anda tidak bisa dikirim karena kesalahan jaringan. Periksa koneksi dan coba lagi.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_to_s">Donasi ke %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Donasi atas nama %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s berdonasi ke Signal atas nama Anda</string>
     <!-- Gift badge redeem action label -->

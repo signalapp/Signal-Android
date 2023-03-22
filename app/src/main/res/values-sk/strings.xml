@@ -583,6 +583,15 @@
     <!-- ConversationTypingView -->
     <string name="ConversationTypingView__plus_d">+%1$d</string>
 
+    <!-- Title for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
+    <string name="RelinkDevicesReminderFragment__relink_your_devices">Znova pripojte svoje zariadenia</string>
+    <!-- Description for a reminder bottom sheet to users who have re-registered that they need to go back to re-link their devices. -->
+    <string name="RelinkDevicesReminderFragment__the_devices_you_added_were_unlinked">Zariadenia, ktoré ste pridali, boli odpojené, keď vaše zariadenie nebolo registrované. Prejdite do časti Nastavenia a znova pripojte všetky zariadenia.</string>
+    <!-- Button label for the re-link devices bottom sheet reminder to navigate to the Devices page in the settings. -->
+    <string name="RelinkDevicesReminderFragment__open_settings">Otvoriť nastavenia</string>
+    <!-- Button label for the re-link devices bottom sheet reminder to dismiss the pop up. -->
+    <string name="RelinkDevicesReminderFragment__later">Neskôr</string>
+
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">Vyberte členov</string>
 
@@ -1263,8 +1272,8 @@
     <string name="Megaphones_new_group">Nová skupina</string>
     <string name="Megaphones_invite_friends">Pozvať priateľov</string>
     <string name="Megaphones_use_sms">Použiť SMS</string>
-    <string name="Megaphones_appearance">Vzhľad</string>
-    <string name="Megaphones_add_photo">Pridať fotku</string>
+    <string name="Megaphones_chat_colors">Farba četu</string>
+    <string name="Megaphones_add_a_profile_photo">Pridať profilovú fotku</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Odpovede</string>
@@ -2132,9 +2141,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Odomkli ste odznak</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Poslal/a %1$s ako reakciu na tvoj príbeh</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Reagoval/a %1$s na váš príbeh</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Poslal/a si %1$s ako reakciu na ich príbeh</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Reagovali ste %1$s na ich príbeh</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Platba</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -2274,14 +2283,16 @@
     <string name="MessageNotifier_unsecured_sms">Nezabezpečená SMS</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-    <string name="MessageNotifier_reacted_s_to_s">reagoval/a na „%2$s“: %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">reagoval/a na vaše video: %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">reagoval/a na váš obrázok: %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">%1$s reagoval na váš GIF.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">reagoval/a na váš súbor: %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">reagoval/a na váš zvuk: %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoval(a) %1$s na vaše médium na jedno zobrazenie</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">reagoval/a na vašu nálepku: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Reagoval/a %1$s na: „%2$s“.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Reagoval/a %1$s na vaše video.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Reagoval/a %1$s na váš obrázok.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Reagoval/a %1$s na vaše GIF.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Reagoval/a %1$s na váš súbor.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Reagoval/a %1$s na vaše audio.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoval/a %1$s na vaše jednorazové médium.</string>
+    <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoval/a %1$s na vašu nálepku.</string>
     <string name="MessageNotifier_this_message_was_deleted">Táto správa bola vymazaná.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Vypnúť upozornenia na to, že kontakt začal používať Signal? Môžete ich znova zapnúť v Signal &gt; Nastavenia &gt; Upozornenia.</string>
@@ -2696,8 +2707,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Problém s doručením</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Správu, nálepku, reakciu, potvrdenie o prečítaní, alebo média od %1$s vám nebolo možné doručiť. Možno sa vám pokúsili poslať ho priamo, alebo v skupine.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Od %1$s vám nebolo možné doručiť správu, nálepku, reakciu alebo potvrdenie o prečítaní.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Správu, nálepku, reakciu alebo potvrdenie o prečítaní od používateľa %1$s vám nebolo možné doručiť. Možno sa vám to pokúsil poslať priamo alebo v skupine.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Správu, nálepku, reakciu alebo potvrdenie o prečítaní od používateľa %1$s vám nebolo možné doručiť.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Meno (povinné)</string>
@@ -3640,6 +3651,18 @@
     <string name="BackupUtil_unknown">Neznáma</string>
     <string name="preferences_app_protection__see_my_phone_number">Ukázať moje telefónne číslo</string>
     <string name="preferences_app_protection__find_me_by_phone_number">Nájsť ma podľa telefónneho čísla</string>
+    <!-- Phone number heading displayed as a screen title -->
+    <string name="preferences_app_protection__phone_number">Telefónne číslo</string>
+    <!-- Subtext below option to launch into phone number privacy settings screen -->
+    <string name="preferences_app_protection__choose_who_can_see">Vyberte si, kto môže vidieť vaše telefónne číslo a kto vás môže pomocou neho kontaktovať v službe Signal.</string>
+    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_see_my_number">Kto môže vidieť moje telefónne číslo</string>
+    <!-- Subtext below radio buttons when who can see my number is set to nobody -->
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_will_see">Nikto neuvidí vaše telefónne číslo v službe Signal</string>
+    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
+    <string name="PhoneNumberPrivacySettingsFragment__who_can_find_me_by_number">Kto ma môže vyhľadať pomocou telefónneho čísla</string>
+    <!-- Subtext below radio buttons when who can see my number is set to everyone -->
+    <string name="PhoneNumberPrivacySettingsFragment__your_phone_number">Vaše telefónne číslo sa zobrazí ľuďom a skupinám, ktorým pošlete správu. Ľudia, ktorí majú vaše telefónne číslo vo svojich kontaktoch, ho v službe Signal budú vidieť tiež.</string>
     <string name="PhoneNumberPrivacy_everyone">Každý</string>
     <string name="PhoneNumberPrivacy_my_contacts">Moje kontakty</string>
     <string name="PhoneNumberPrivacy_nobody">Nikto</string>
@@ -4024,7 +4047,7 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Deaktivovať peňaženku</string>
     <string name="DeactivateWalletFragment__your_balance">Váš zostatok</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">Odporúčame, aby ste pred deaktiváciou platieb vaše prostriedky previedli na adresu inej peňaženky. Ak sa rozhodnete, že vaše prostriedky neprevediete teraz, zostanú v peňaženke prepojenej so Signal, ak platby reaktivujete.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">Odporúčame vám, aby ste pred deaktiváciou platieb previedli svoje prostriedky na adresu inej peňaženky. Ak sa rozhodnete, že svoje prostriedky neprevediete teraz, zostanú v peňaženke prepojenej so službou Signal, ak platby opätovne aktivujete.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Previesť zostávajúcu čiastku</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Deaktivovať bez prevodu</string>
     <string name="DeactivateWalletFragment__deactivate">Deaktivovať</string>
@@ -4352,7 +4375,7 @@
     <string name="Donate2022Q2Megaphone_not_now">Teraz nie</string>
 
     <!-- EditReactionsFragment -->
-    <string name="EditReactionsFragment__customize_reactions">Prispôsobte reakcie</string>
+    <string name="EditReactionsFragment__customize_reactions">Prispôsobiť reakcie</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">Ťuknutím nahradíte emotikon</string>
     <string name="EditReactionsFragment__reset">Resetovať</string>
     <string name="EditReactionsFragment_save">Uložiť</string>
@@ -4719,7 +4742,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Váš opakovaný mesačný príspevok bol zrušený, pretože sme nemohli spracovať vašu platbu. Váš odznak sa už vo vašom profile nezobrazuje.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Váš opakovaný mesačný príspevok bol zrušený. %1$s Váš odznak %2$s sa už vo vašom profile nezobrazuje.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal môžete používať aj naďalej, ak však chcete podporiť aplikáciu a znova aktivovať svoj odznak, obnovte ho teraz.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal môžete používať aj naďalej, ak však chcete podporiť aplikáciu a znova aktivovať svoj odznak, obnovte svoje predplatné.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnoviť predplatné</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Prejdite do služby Google Pay</string>
@@ -4762,7 +4785,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Váš príspevok nebolo možné odoslať z dôvodu chyby siete. Skontrolujte pripojenie a skúste to znovu.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_to_s">Príspevok pre používateľa %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Príspevok v mene používateľa %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">Používateľ %1$s prispel na Signal vo vašom mene</string>
     <!-- Gift badge redeem action label -->
@@ -5119,7 +5142,7 @@
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Odpovede</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">Reagujte na tento príbeh</string>
+    <string name="StoryReplyComposer__react_to_this_story">Reagovať na tento príbeh</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Súkromne odpovedáte %1$s</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->

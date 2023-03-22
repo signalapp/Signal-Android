@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
+import javax.annotation.Nullable;
+
 public class JsonUtils {
 
   private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -54,13 +56,17 @@ public class JsonUtils {
       this.delegate = delegate;
     }
 
-    public String getString(String name) throws JSONException {
+    public @Nullable String getString(String name) throws JSONException {
       if (delegate.isNull(name)) return null;
       else                       return delegate.getString(name);
     }
 
     public long getLong(String name) throws JSONException {
       return delegate.getLong(name);
+    }
+
+    public boolean getBoolean(String name) throws JSONException {
+      return delegate.getBoolean(name);
     }
 
     public boolean isNull(String name) {

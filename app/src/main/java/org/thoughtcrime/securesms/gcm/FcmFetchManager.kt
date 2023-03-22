@@ -8,7 +8,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob
-import org.thoughtcrime.securesms.messages.RestStrategy
+import org.thoughtcrime.securesms.messages.WebSocketStrategy
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
 
 /**
@@ -97,7 +97,7 @@ object FcmFetchManager {
 
   @JvmStatic
   fun retrieveMessages(context: Context) {
-    val success = ApplicationDependencies.getBackgroundMessageRetriever().retrieveMessages(context, RestStrategy(), RestStrategy())
+    val success = ApplicationDependencies.getBackgroundMessageRetriever().retrieveMessages(context, WebSocketStrategy())
 
     if (success) {
       Log.i(TAG, "Successfully retrieved messages.")

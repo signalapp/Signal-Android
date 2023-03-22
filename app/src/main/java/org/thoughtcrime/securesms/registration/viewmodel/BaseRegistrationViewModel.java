@@ -25,6 +25,8 @@ import org.thoughtcrime.securesms.registration.VerifyResponseWithSuccessfulKbs;
 import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -43,6 +45,7 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
   private static final String STATE_REGISTRATION_SECRET     = "REGISTRATION_SECRET";
   private static final String STATE_VERIFICATION_CODE       = "TEXT_CODE_ENTERED";
   private static final String STATE_CAPTCHA                 = "CAPTCHA";
+  private static final String STATE_PUSH_TIMED_OUT          = "PUSH_TIMED_OUT";
   private static final String STATE_INCORRECT_CODE_ATTEMPTS = "STATE_INCORRECT_CODE_ATTEMPTS";
   private static final String STATE_REQUEST_RATE_LIMITER    = "REQUEST_RATE_LIMITER";
   private static final String STATE_KBS_TOKEN               = "KBS_TOKEN";
@@ -71,6 +74,7 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     setInitialDefaultValue(STATE_INCORRECT_CODE_ATTEMPTS, 0);
     setInitialDefaultValue(STATE_REQUEST_RATE_LIMITER, new LocalCodeRequestRateLimiter(60_000));
     setInitialDefaultValue(STATE_RECOVERY_PASSWORD, SignalStore.kbsValues().getRecoveryPassword());
+    setInitialDefaultValue(STATE_PUSH_TIMED_OUT, false);
   }
 
   protected <T> void setInitialDefaultValue(@NonNull String key, @Nullable T initialValue) {
@@ -172,6 +176,18 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     return savedState.getLiveData(STATE_INCORRECT_CODE_ATTEMPTS, 0);
   }
 
+  public void markPushChallengeTimedOut() {
+    savedState.set(STATE_PUSH_TIMED_OUT, true);
+  }
+
+  public List<String> getExcludedChallenges() {
+    ArrayList<String> challengeKeys = new ArrayList<>();
+    if (Boolean.TRUE.equals(savedState.get(STATE_PUSH_TIMED_OUT))) {
+      challengeKeys.add(RegistrationSessionProcessor.PUSH_CHALLENGE_KEY);
+    }
+    return challengeKeys;
+  }
+
   public @Nullable TokenData getKeyBackupCurrentToken() {
     return savedState.get(STATE_KBS_TOKEN);
   }
@@ -254,7 +270,7 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
         });
   }
 
-  public Single<RegistrationSessionProcessor.RegistrationSessionProcessorForSession> validateSession(String e164, @Nullable String mcc, @Nullable String mnc) {
+  public Single<RegistrationSessionProcessor.RegistrationSessionProcessorForSession> validateSession(String e164) {
     String storedSessionId = null;
     if (e164.equals(getSessionE164())) {
       storedSessionId = getSessionId();
@@ -264,11 +280,16 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
   }
 
   public Single<RegistrationSessionProcessor.RegistrationSessionProcessorForSession> getValidSession(String e164, @Nullable String mcc, @Nullable String mnc) {
-    return validateSession(e164, mcc, mnc)
+    return validateSession(e164)
         .flatMap(processor -> {
           if (processor.isInvalidSession()) {
             return verifyAccountRepository.requestValidSession(e164, getRegistrationSecret(), mcc, mnc)
-                                          .map(RegistrationSessionProcessor.RegistrationSessionProcessorForSession::new);
+                                          .map(RegistrationSessionProcessor.RegistrationSessionProcessorForSession::new)
+                                          .doOnSuccess(createSessionProcessor -> {
+                                            if (createSessionProcessor.pushChallengeTimedOut()) {
+                                              markPushChallengeTimedOut();
+                                            }
+                                          });
           } else {
             return Single.just(processor);
           }
@@ -282,14 +303,14 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
       return Single.just(processor);
     }
 
-    if (hasCaptchaToken() && processor.captchaRequired()) {
+    if (hasCaptchaToken() && processor.captchaRequired(getExcludedChallenges())) {
       Log.d(TAG, "Submitting completed captcha challenge");
       final String captcha = Objects.requireNonNull(getCaptchaToken());
       clearCaptchaResponse();
       return verifyAccountRepository.verifyCaptcha(sessionId, captcha, e164, getRegistrationSecret())
                                     .map(RegistrationSessionProcessor.RegistrationSessionProcessorForSession::new);
     } else {
-      String challenge = processor.getChallenge();
+      String challenge = processor.getChallenge(getExcludedChallenges());
       Log.d(TAG, "Handling challenge of type " + challenge);
       if (challenge != null) {
         switch (challenge) {
