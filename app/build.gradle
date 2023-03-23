@@ -185,6 +185,7 @@ android {
         buildConfigField "String", "SIGNAL_CDSI_URL", "\"https://cdsi.signal.org\""
         buildConfigField "String", "SIGNAL_SERVICE_STATUS_URL", "\"uptime.signal.org\""
         buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api.backup.signal.org\""
+        buildConfigField "String", "SIGNAL_SVR2_URL", "\"https://svr2.staging.signal.org\""
         buildConfigField "String", "SIGNAL_SFU_URL", "\"https://sfu.voip.signal.org\""
         buildConfigField "String", "SIGNAL_STAGING_SFU_URL", "\"https://sfu.staging.voip.signal.org\""
         buildConfigField "String[]", "SIGNAL_SFU_INTERNAL_NAMES", "new String[]{\"Test\", \"Staging\", \"Development\"}"
@@ -200,6 +201,7 @@ android {
         buildConfigField "String[]", "SIGNAL_CONTENT_PROXY_IPS", content_proxy_ips
         buildConfigField "String", "SIGNAL_AGENT", "\"OWA\""
         buildConfigField "String", "CDSI_MRENCLAVE", "\"0f6fd79cdfdaa5b2e6337f534d3baf999318b0c462a7ac1f41297a3e4b424a57\""
+        buildConfigField "String", "SVR2_MRENCLAVE", "\"dc9fd472a5a9c871a3c7f76f1af60aa9c1f314abf2e8d1e0c4ba25c8aaa2848c\""
         buildConfigField "org.thoughtcrime.securesms.KbsEnclave", "KBS_ENCLAVE", "new org.thoughtcrime.securesms.KbsEnclave(\"e18376436159cda3ad7a45d9320e382e4a497f26b0dca34d8eab0bd0139483b5\", " +
                                                                                                                            "\"3a485adb56e2058ef7737764c738c4069dd62bc457637eafb6bbce1ce29ddb89\", " +
                                                                                                                            "\"45627094b2ea4a66f4cf0b182858a8dcf4b8479122c3820fe7fd0551a6d4cf5c\")"
