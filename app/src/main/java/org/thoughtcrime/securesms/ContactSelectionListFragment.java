@@ -137,15 +137,16 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   private TextView                        headerActionView;
   private ContactSearchMediator           contactSearchMediator;
 
-  @Nullable private NewConversationCallback newConversationCallback;
-  @Nullable private NewCallCallback         newCallCallback;
-  @Nullable private ScrollCallback          scrollCallback;
-  @Nullable private OnItemLongClickListener onItemLongClickListener;
-  private           SelectionLimits         selectionLimit = SelectionLimits.NO_LIMITS;
-  private           Set<RecipientId>        currentSelection;
-  private           boolean                 isMulti;
-  private           boolean                 canSelectSelf;
-  private           ListClickListener       listClickListener = new ListClickListener();
+  @Nullable private NewConversationCallback              newConversationCallback;
+  @Nullable private NewCallCallback                      newCallCallback;
+  @Nullable private ScrollCallback                       scrollCallback;
+  @Nullable private OnItemLongClickListener              onItemLongClickListener;
+  private           SelectionLimits                      selectionLimit    = SelectionLimits.NO_LIMITS;
+  private           Set<RecipientId>                     currentSelection;
+  private           boolean                              isMulti;
+  private           boolean                              canSelectSelf;
+  private           ListClickListener                    listClickListener = new ListClickListener();
+  @Nullable private SwipeRefreshLayout.OnRefreshListener onRefreshListener;
 
   @Override
   public void onAttach(@NonNull Context context) {
@@ -362,7 +363,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
             new ContactSelectionListAdapter.OnContactSelectionClick() {
               @Override
               public void onRefreshContactsClicked() {
-                newCallCallback.onRefresh();
+                if (onRefreshListener != null) {
+                  setRefreshing(true);
+                  onRefreshListener.onRefresh();
+                }
               }
 
               @Override
@@ -416,6 +420,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   public void onDestroyView() {
     super.onDestroyView();
     constraintLayout = null;
+    onRefreshListener = null;
   }
 
   private @NonNull Bundle safeArguments() {
@@ -806,6 +811,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   }
 
   public void setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener onRefreshListener) {
+    this.onRefreshListener = onRefreshListener;
     this.swipeRefresh.setOnRefreshListener(onRefreshListener);
   }
 
@@ -981,8 +987,6 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
   public interface NewCallCallback {
     void onInvite();
-
-    void onRefresh();
   }
 
   public interface ScrollCallback {
