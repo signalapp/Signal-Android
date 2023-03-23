@@ -337,12 +337,13 @@ public class SignalServiceMessageSender {
                               SignalServiceCallMessage message)
       throws IOException, UntrustedIdentityException
   {
-    Log.d(TAG, "[" + message.getTimestamp() + "] Sending a call message (single recipient).");
+    long timestamp = System.currentTimeMillis();
+    Log.d(TAG, "[" + timestamp + "] Sending a call message (single recipient).");
 
     Content         content         = createCallContent(message);
     EnvelopeContent envelopeContent = EnvelopeContent.encrypted(content, ContentHint.DEFAULT, Optional.empty());
 
-    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), System.currentTimeMillis(), envelopeContent, false, null, message.isUrgent(), false);
+    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, envelopeContent, false, null, message.isUrgent(), false);
   }
 
   public List<SendMessageResult> sendCallMessage(List<SignalServiceAddress> recipients,
@@ -350,12 +351,13 @@ public class SignalServiceMessageSender {
                                                  SignalServiceCallMessage message)
       throws IOException
   {
-    Log.d(TAG, "[" + message.getTimestamp() + "] Sending a call message (multiple recipients).");
+    long timestamp = System.currentTimeMillis();
+    Log.d(TAG, "[" + timestamp + "] Sending a call message (multiple recipients).");
 
     Content         content         = createCallContent(message);
     EnvelopeContent envelopeContent = EnvelopeContent.encrypted(content, ContentHint.DEFAULT, Optional.empty());
 
-    return sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), System.currentTimeMillis(), envelopeContent, false, null, null, message.isUrgent(), false);
+    return sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, envelopeContent, false, null, null, message.isUrgent(), false);
   }
 
   public List<SendMessageResult> sendCallMessage(DistributionId distributionId,
@@ -364,7 +366,7 @@ public class SignalServiceMessageSender {
                                                  SignalServiceCallMessage message)
       throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
   {
-    Log.d(TAG, "[" + message.getTimestamp() + "] Sending a call message (sender key).");
+    Log.d(TAG, "[" + message.getTimestamp().get() + "] Sending a call message (sender key).");
 
     Content content = createCallContent(message);
     return sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp().get(), content, ContentHint.IMPLICIT, message.getGroupId(), false, SenderKeyGroupEvents.EMPTY, message.isUrgent(), false);
