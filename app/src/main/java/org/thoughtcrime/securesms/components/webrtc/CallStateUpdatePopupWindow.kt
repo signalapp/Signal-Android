@@ -36,6 +36,8 @@ class CallStateUpdatePopupWindow(private val parent: ViewGroup) : PopupWindow(
         onCallStateUpdate(pending)
       }
     }
+
+    animationStyle = R.style.CallStateToastAnimation
   }
 
   fun setEnabled(enabled: Boolean) {
