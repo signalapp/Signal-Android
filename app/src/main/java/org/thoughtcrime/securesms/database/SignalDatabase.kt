@@ -272,8 +272,12 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       return context.getDatabasePath(DATABASE_NAME)
     }
 
+    /**
+     * After restoring a backup, we want to make sure that we run all of the onUpgrade logic necessary to bring the databases up to our current versions.
+     * There's also some cleanup we wan tto do to remove any possibly bad/stale data.
+     */
     @JvmStatic
-    fun upgradeRestored(database: net.zetetic.database.sqlcipher.SQLiteDatabase) {
+    fun runPostBackupRestoreTasks(database: net.zetetic.database.sqlcipher.SQLiteDatabase) {
       synchronized(SignalDatabase::class.java) {
         database.withinTransaction { db ->
           instance!!.onUpgrade(db, db.getVersion(), -1)
@@ -281,6 +285,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
           instance!!.messageTable.deleteAbandonedMessages()
           instance!!.messageTable.trimEntriesForExpiredMessages()
           instance!!.reactionTable.deleteAbandonedReactions()
+          instance!!.searchTable.fullyResetTables()
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS key_value")
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS megaphone")
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS job_spec")

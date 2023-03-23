@@ -9,6 +9,7 @@ import org.signal.core.util.SqlUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
+import org.thoughtcrime.securesms.jobs.RebuildMessageSearchIndexJob
 
 /**
  * Contains all databases necessary for full-text search (FTS).
@@ -222,7 +223,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   /**
-   * Drops all tables and recreates them. Should only be done in extreme circumstances.
+   * Drops all tables and recreates them.
    */
   fun fullyResetTables() {
     Log.w(TAG, "[fullyResetTables] Dropping tables and triggers...")
@@ -241,10 +242,9 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     Log.w(TAG, "[fullyResetTables] Recreating triggers...")
     CREATE_TRIGGERS.forEach { writableDatabase.execSQL(it) }
 
-    Log.w(TAG, "[fullyResetTables] Rebuilding index...")
-    rebuildIndex()
+    RebuildMessageSearchIndexJob.enqueue()
 
-    Log.w(TAG, "[fullyResetTables] Done")
+    Log.w(TAG, "[fullyResetTables] Done. Index will be rebuilt asynchronously)")
   }
 
   private fun createFullTextSearchQuery(query: String): String {

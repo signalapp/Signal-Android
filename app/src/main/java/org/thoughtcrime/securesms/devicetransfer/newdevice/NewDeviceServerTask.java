@@ -49,7 +49,7 @@ final class NewDeviceServerTask implements ServerTask {
                                     inputStream,
                                     passphrase);
 
-      SignalDatabase.upgradeRestored(database);
+      SignalDatabase.runPostBackupRestoreTasks(database);
       NotificationChannels.getInstance().restoreContactNotificationChannels();
 
       AppInitialization.onPostBackupRestore(context);
