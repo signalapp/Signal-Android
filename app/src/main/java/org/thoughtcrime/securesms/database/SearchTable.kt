@@ -34,20 +34,24 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       "CREATE VIRTUAL TABLE $FTS_TABLE_NAME USING fts5($BODY, $THREAD_ID UNINDEXED, content=${MessageTable.TABLE_NAME}, content_rowid=${MessageTable.ID})"
     )
 
+    private const val TRIGGER_AFTER_INSERT = "message_ai"
+    private const val TRIGGER_AFTER_DELETE = "message_ad"
+    private const val TRIGGER_AFTER_UPDATE = "message_au"
+
     @Language("sql")
     val CREATE_TRIGGERS = arrayOf(
       """
-        CREATE TRIGGER message_ai AFTER INSERT ON ${MessageTable.TABLE_NAME} BEGIN
+        CREATE TRIGGER $TRIGGER_AFTER_INSERT AFTER INSERT ON ${MessageTable.TABLE_NAME} BEGIN
           INSERT INTO $FTS_TABLE_NAME($ID, $BODY, $THREAD_ID) VALUES (new.${MessageTable.ID}, new.${MessageTable.BODY}, new.${MessageTable.THREAD_ID});
         END;
       """,
       """
-        CREATE TRIGGER message_ad AFTER DELETE ON ${MessageTable.TABLE_NAME} BEGIN
+        CREATE TRIGGER $TRIGGER_AFTER_DELETE AFTER DELETE ON ${MessageTable.TABLE_NAME} BEGIN
           INSERT INTO $FTS_TABLE_NAME($FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${MessageTable.ID}, old.${MessageTable.BODY}, old.${MessageTable.THREAD_ID});
         END;
       """,
       """
-        CREATE TRIGGER message_au AFTER UPDATE ON ${MessageTable.TABLE_NAME} BEGIN
+        CREATE TRIGGER $TRIGGER_AFTER_UPDATE AFTER UPDATE ON ${MessageTable.TABLE_NAME} BEGIN
           INSERT INTO $FTS_TABLE_NAME($FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${MessageTable.ID}, old.${MessageTable.BODY}, old.${MessageTable.THREAD_ID});
           INSERT INTO $FTS_TABLE_NAME($ID, $BODY, $THREAD_ID) VALUES (new.${MessageTable.ID}, new.${MessageTable.BODY}, new.${MessageTable.THREAD_ID});
         END;
@@ -128,7 +132,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
    * Be smart about where you call this.
    */
   fun rebuildIndex(batchSize: Long = 10_000L) {
-    val maxId: Long = SignalDatabase.messages.nextId
+    val maxId: Long = SignalDatabase.messages.getNextId()
 
     Log.i(TAG, "Re-indexing. Operating on ID's 1-$maxId in steps of $batchSize.")
 
@@ -215,6 +219,32 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     Log.d(TAG, "Took ${System.currentTimeMillis() - startTime} ms and $totalIterations iterations across $totalBatches batches to optimize. Of that time, $actualWorkTime ms were spent actually working (~${actualWorkTime / totalBatches} ms/batch). The rest was spent sleeping.")
     return true
+  }
+
+  /**
+   * Drops all tables and recreates them. Should only be done in extreme circumstances.
+   */
+  fun fullyResetTables() {
+    Log.w(TAG, "[fullyResetTables] Dropping tables and triggers...")
+    writableDatabase.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
+    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_config")
+    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_content")
+    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_data")
+    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_idx")
+    writableDatabase.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_INSERT")
+    writableDatabase.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_DELETE")
+    writableDatabase.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_UPDATE")
+
+    Log.w(TAG, "[fullyResetTables] Recreating table...")
+    CREATE_TABLE.forEach { writableDatabase.execSQL(it) }
+
+    Log.w(TAG, "[fullyResetTables] Recreating triggers...")
+    CREATE_TRIGGERS.forEach { writableDatabase.execSQL(it) }
+
+    Log.w(TAG, "[fullyResetTables] Rebuilding index...")
+    rebuildIndex()
+
+    Log.w(TAG, "[fullyResetTables] Done")
   }
 
   private fun createFullTextSearchQuery(query: String): String {

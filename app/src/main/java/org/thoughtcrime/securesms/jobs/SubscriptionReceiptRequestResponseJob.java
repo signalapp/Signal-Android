@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Pa
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -96,11 +96,11 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    Data.Builder builder = new Data.Builder().putBlobAsString(DATA_SUBSCRIBER_ID, subscriberId.getBytes())
-                                             .putBoolean(DATA_IS_FOR_KEEP_ALIVE, isForKeepAlive);
+  public @Nullable byte[] serialize() {
+    JsonJobData.Builder builder = new JsonJobData.Builder().putBlobAsString(DATA_SUBSCRIBER_ID, subscriberId.getBytes())
+                                                           .putBoolean(DATA_IS_FOR_KEEP_ALIVE, isForKeepAlive);
 
-    return builder.build();
+    return builder.serialize();
   }
 
   @Override
@@ -375,7 +375,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   private void onAlreadyRedeemed(ServiceResponse<ReceiptCredentialResponse> response) throws Exception {
     if (isForKeepAlive) {
       Log.i(TAG, "KeepAlive: Latest paid receipt on subscription already redeemed with a different request credential, ignoring.", response.getApplicationError().get(), true);
-      setOutputData(new Data.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_KEEP_ALIVE_409, true).build());
+      setOutputData(new JsonJobData.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_KEEP_ALIVE_409, true).serialize());
     } else {
       Log.w(TAG, "Latest paid receipt on subscription already redeemed with a different request credential.", response.getApplicationError().get(), true);
       DonationError.routeDonationError(context, DonationError.genericBadgeRedemptionFailure(getErrorSource()));
@@ -422,7 +422,9 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
   public static class Factory implements Job.Factory<SubscriptionReceiptRequestResponseJob> {
     @Override
-    public @NonNull SubscriptionReceiptRequestResponseJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull SubscriptionReceiptRequestResponseJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       SubscriberId subscriberId        = SubscriberId.fromBytes(data.getStringAsBlob(DATA_SUBSCRIBER_ID));
       boolean      isForKeepAlive      = data.getBooleanOrDefault(DATA_IS_FOR_KEEP_ALIVE, false);
       String       requestString       = data.getStringOrDefault(DATA_REQUEST_BYTES, null);

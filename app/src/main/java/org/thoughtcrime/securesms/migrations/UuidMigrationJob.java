@@ -4,11 +4,11 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -83,7 +83,7 @@ public class UuidMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<UuidMigrationJob> {
     @Override
-    public @NonNull UuidMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull UuidMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new UuidMigrationJob(parameters);
     }
   }

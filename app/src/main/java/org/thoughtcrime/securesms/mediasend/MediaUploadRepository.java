@@ -8,6 +8,7 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -56,7 +57,7 @@ public class MediaUploadRepository {
   public MediaUploadRepository(@NonNull Context context) {
     this.context       = context;
     this.uploadResults = new LinkedHashMap<>();
-    this.executor      = SignalExecutors.newCachedSingleThreadExecutor("signal-MediaUpload");
+    this.executor      = SignalExecutors.newCachedSingleThreadExecutor("signal-MediaUpload", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD);
   }
 
   public void startUpload(@NonNull Media media, @Nullable Recipient recipient) {

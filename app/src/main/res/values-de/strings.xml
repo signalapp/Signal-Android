@@ -481,12 +481,12 @@
         <item quantity="other">%1$d Unterhaltungen in Eingang verschoben</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Gelesen</item>
-        <item quantity="other">Gelesen</item>
+        <item quantity="one">Lesen</item>
+        <item quantity="other">Lesen</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Ungelesen</item>
-        <item quantity="other">Ungelesen</item>
+        <item quantity="one">Nicht lesen</item>
+        <item quantity="other">Nicht lesen</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Anheften</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Hat mit %1$s auf dein Audio reagiert.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Hat mit %1$s auf deine einmalig anzeigbaren Medieninhalte reagiert.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Hat mit %1$s auf deine Zahlung reagiert.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Hat mit %1$s auf deinen Sticker reagiert.</string>
     <string name="MessageNotifier_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
 

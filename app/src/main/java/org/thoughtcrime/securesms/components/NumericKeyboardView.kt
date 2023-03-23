@@ -22,6 +22,7 @@ class NumericKeyboardView @JvmOverloads constructor(
   var listener: Listener? = null
 
   init {
+    layoutDirection = LAYOUT_DIRECTION_LTR
     inflate(context, R.layout.numeric_keyboard_view, this)
 
     findViewById<TextView>(R.id.numeric_keyboard_1).setOnClickListener {

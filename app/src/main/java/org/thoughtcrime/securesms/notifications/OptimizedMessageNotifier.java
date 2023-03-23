@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.ExceptionUtil;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
@@ -28,7 +29,7 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @MainThread
   public OptimizedMessageNotifier(@NonNull Application context) {
-    this.limiter                = new LeakyBucketLimiter(5, 1000, new Handler(SignalExecutors.getAndStartHandlerThread("signal-notifier").getLooper()));
+    this.limiter                = new LeakyBucketLimiter(5, 1000, new Handler(SignalExecutors.getAndStartHandlerThread("signal-notifier", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD).getLooper()));
     this.defaultMessageNotifier = new DefaultMessageNotifier(context);
   }
 
@@ -55,6 +56,11 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   @Override
   public void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId) {
     getNotifier().notifyMessageDeliveryFailed(context, recipient, conversationId);
+  }
+
+  @Override
+  public void notifyStoryDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId threadId) {
+    getNotifier().notifyStoryDeliveryFailed(context, recipient, threadId);
   }
 
   @Override

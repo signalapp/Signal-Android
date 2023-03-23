@@ -40,7 +40,7 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    if (MediaPreviewCache.drawable != null) {
+    if (MediaPreviewCache.drawable != null && !args.skipSharedElementTransition) {
       val originalCorners = ShapeAppearanceModel.Builder()
         .setTopLeftCornerSize(args.sharedElementArgs.topLeft)
         .setTopRightCornerSize(args.sharedElementArgs.topRight)
@@ -90,7 +90,7 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
 
     transitionImageView = findViewById(R.id.transition_image_view)
     val cacheDrawable = MediaPreviewCache.drawable
-    if (cacheDrawable != null) {
+    if (cacheDrawable != null && !args.skipSharedElementTransition) {
       val bounds = cacheDrawable.bounds
       val aspectRatio = bounds.width().toFloat() / bounds.height()
       val screenRatio = resources.displayMetrics.widthPixels.toFloat() / resources.displayMetrics.heightPixels

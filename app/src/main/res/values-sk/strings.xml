@@ -501,10 +501,10 @@
         <item quantity="other">%1$d konverzácií bolo presunutých medzi doručené správy</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Čítať</item>
-        <item quantity="few">Čítať</item>
-        <item quantity="many">Čítať</item>
-        <item quantity="other">Čítať</item>
+        <item quantity="one">Prečítané</item>
+        <item quantity="few">Prečítané</item>
+        <item quantity="many">Prečítané</item>
+        <item quantity="other">Prečítané</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="one">Neprečítané</item>
@@ -538,10 +538,10 @@
     </plurals>
     <string name="ConversationListFragment_select">Vybrať</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Archív</item>
-        <item quantity="few">Archív</item>
-        <item quantity="many">Archív</item>
-        <item quantity="other">Archív</item>
+        <item quantity="one">Archivovať</item>
+        <item quantity="few">Archivovať</item>
+        <item quantity="many">Archivovať</item>
+        <item quantity="other">Archivovať</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
         <item quantity="one">Odarchivovať</item>
@@ -2291,7 +2291,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Reagoval/a %1$s na vaše audio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoval/a %1$s na vaše jednorazové médium.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reagoval/a %1$s na vašu platbu.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoval/a %1$s na vašu nálepku.</string>
     <string name="MessageNotifier_this_message_was_deleted">Táto správa bola vymazaná.</string>
 

@@ -73,6 +73,7 @@
 <!-- tr --><item>Türkçe</item>
 <!-- uk --><item>Українська</item>
 <!-- ur --><item> اردو‎</item>
+<!-- ug --><item>ئۇيغۇرچە</item>
 <!-- vi --><item>Tiếng Việt</item>
   </string-array>
 
@@ -144,6 +145,7 @@
       <item>tr</item>
       <item>uk</item>
       <item>ur</item>
+      <item>ug</item>
       <item>vi</item>
   </string-array>
 

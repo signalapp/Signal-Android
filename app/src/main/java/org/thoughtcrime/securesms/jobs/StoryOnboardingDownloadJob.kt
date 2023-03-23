@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -62,7 +61,7 @@ class StoryOnboardingDownloadJob private constructor(parameters: Parameters) : B
     }
   }
 
-  override fun serialize(): Data = Data.EMPTY
+  override fun serialize(): ByteArray? = null
   override fun getFactoryKey(): String = KEY
   override fun onFailure() = Unit
 
@@ -188,7 +187,7 @@ class StoryOnboardingDownloadJob private constructor(parameters: Parameters) : B
   }
 
   class Factory : Job.Factory<StoryOnboardingDownloadJob> {
-    override fun create(parameters: Parameters, data: Data): StoryOnboardingDownloadJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): StoryOnboardingDownloadJob {
       return StoryOnboardingDownloadJob(parameters)
     }
   }

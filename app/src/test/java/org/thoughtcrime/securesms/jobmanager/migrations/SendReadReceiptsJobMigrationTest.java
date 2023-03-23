@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobmanager.migrations;
 
 import org.junit.Test;
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -26,20 +26,21 @@ public class SendReadReceiptsJobMigrationTest {
     SendReadReceiptJob   job     = new SendReadReceiptJob(1, RecipientId.from(2), new ArrayList<>(), new ArrayList<>());
     JobMigration.JobData jobData = new JobMigration.JobData(job.getFactoryKey(),
                                                             "asdf",
-                                                            new Data.Builder()
+                                                            new JsonJobData.Builder()
                                                                     .putString("recipient", RecipientId.from(2).serialize())
                                                                     .putLongArray("message_ids", new long[]{1, 2, 3, 4, 5})
-                                                                    .putLong("timestamp", 292837649).build());
+                                                                    .putLong("timestamp", 292837649).serialize());
     when(mockDatabase.getThreadIdForMessage(anyLong())).thenReturn(1234L);
 
     // WHEN
     JobMigration.JobData result = testSubject.migrate(jobData);
+    JsonJobData          data   = JsonJobData.deserialize(result.getData());
 
     // THEN
-    assertEquals(1234L, result.getData().getLong("thread"));
-    assertEquals(RecipientId.from(2).serialize(), result.getData().getString("recipient"));
-    assertTrue(result.getData().hasLongArray("message_ids"));
-    assertTrue(result.getData().hasLong("timestamp"));
+    assertEquals(1234L, data.getLong("thread"));
+    assertEquals(RecipientId.from(2).serialize(), data.getString("recipient"));
+    assertTrue(data.hasLongArray("message_ids"));
+    assertTrue(data.hasLong("timestamp"));
   }
 
   @Test
@@ -48,10 +49,10 @@ public class SendReadReceiptsJobMigrationTest {
     SendReadReceiptJob   job     = new SendReadReceiptJob(1, RecipientId.from(2), new ArrayList<>(), new ArrayList<>());
     JobMigration.JobData jobData = new JobMigration.JobData(job.getFactoryKey(),
                                                             "asdf",
-                                                            new Data.Builder()
+                                                            new JsonJobData.Builder()
                                                                 .putString("recipient", RecipientId.from(2).serialize())
                                                                 .putLongArray("message_ids", new long[]{})
-                                                                .putLong("timestamp", 292837649).build());
+                                                                .putLong("timestamp", 292837649).serialize());
     when(mockDatabase.getThreadIdForMessage(anyLong())).thenReturn(-1L);
 
     // WHEN
@@ -77,7 +78,7 @@ public class SendReadReceiptsJobMigrationTest {
   @Test
   public void givenSomeOtherJobDataWithThreadId_whenIMigrate_thenIDoNotReplace() {
     // GIVEN
-    JobMigration.JobData jobData = new JobMigration.JobData("SomeOtherJob", "asdf", new Data.Builder().putLong("thread", 1).build());
+    JobMigration.JobData jobData = new JobMigration.JobData("SomeOtherJob", "asdf", new JsonJobData.Builder().putLong("thread", 1).serialize());
 
     // WHEN
     JobMigration.JobData result = testSubject.migrate(jobData);
@@ -89,7 +90,7 @@ public class SendReadReceiptsJobMigrationTest {
   @Test
   public void givenSomeOtherJobDataWithoutThreadId_whenIMigrate_thenIDoNotReplace() {
     // GIVEN
-    JobMigration.JobData jobData = new JobMigration.JobData("SomeOtherJob", "asdf", new Data.Builder().build());
+    JobMigration.JobData jobData = new JobMigration.JobData("SomeOtherJob", "asdf", new JsonJobData.Builder().serialize());
 
     // WHEN
     JobMigration.JobData result = testSubject.migrate(jobData);

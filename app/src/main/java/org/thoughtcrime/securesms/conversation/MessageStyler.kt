@@ -8,7 +8,6 @@ import android.text.style.StrikethroughSpan
 import android.text.style.StyleSpan
 import android.text.style.TypefaceSpan
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.PlaceholderURLSpan
 
 /**
@@ -17,6 +16,7 @@ import org.thoughtcrime.securesms.util.PlaceholderURLSpan
 object MessageStyler {
 
   const val MONOSPACE = "monospace"
+  const val SPAN_FLAGS = Spanned.SPAN_EXCLUSIVE_INCLUSIVE
 
   @JvmStatic
   fun boldStyle(): CharacterStyle {
@@ -62,7 +62,7 @@ object MessageStyler {
           }
 
           if (styleSpan != null) {
-            span.setSpan(styleSpan, range.start, range.start + range.length, Spanned.SPAN_EXCLUSIVE_INCLUSIVE)
+            span.setSpan(styleSpan, range.start, range.start + range.length, SPAN_FLAGS)
             appliedStyle = true
           }
         } else if (range.hasLink() && range.link != null) {
@@ -82,17 +82,14 @@ object MessageStyler {
 
   @JvmStatic
   fun hasStyling(text: Spanned): Boolean {
-    return if (FeatureFlags.textFormatting()) {
-      text.getSpans(0, text.length, CharacterStyle::class.java)
-        .any { s -> isSupportedCharacterStyle(s) && text.getSpanEnd(s) - text.getSpanStart(s) > 0 }
-    } else {
-      false
-    }
+    return text
+      .getSpans(0, text.length, CharacterStyle::class.java)
+      .any { s -> isSupportedCharacterStyle(s) && text.getSpanEnd(s) - text.getSpanStart(s) > 0 }
   }
 
   @JvmStatic
   fun getStyling(text: CharSequence?): BodyRangeList? {
-    val bodyRanges = if (text is Spanned && FeatureFlags.textFormatting()) {
+    val bodyRanges = if (text is Spanned) {
       text
         .getSpans(0, text.length, CharacterStyle::class.java)
         .filter { s -> isSupportedCharacterStyle(s) }
@@ -125,7 +122,8 @@ object MessageStyler {
     }
   }
 
-  private fun isSupportedCharacterStyle(style: CharacterStyle): Boolean {
+  @JvmStatic
+  fun isSupportedCharacterStyle(style: CharacterStyle): Boolean {
     return when (style) {
       is StyleSpan -> style.style == Typeface.ITALIC || style.style == Typeface.BOLD
       is StrikethroughSpan -> true

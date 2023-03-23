@@ -57,6 +57,10 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="AvatarView">
+        <attr name="storyRingScale" format="float" />
+    </declare-styleable>
+
     <attr name="minWidth" format="dimension" />
     <attr name="maxWidth" format="dimension" />
     <attr name="minHeight" format="dimension" />

@@ -481,12 +481,12 @@
         <item quantity="other">%1$d әңгіме кіріс қалтасына көшірілді</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Оқылды</item>
-        <item quantity="other">Оқылды</item>
+        <item quantity="one">Оқылған</item>
+        <item quantity="other">Оқылған</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Оқылмады</item>
-        <item quantity="other">Оқылмады</item>
+        <item quantity="one">Оқылмаған</item>
+        <item quantity="other">Оқылмаған</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Бекіту</item>
@@ -504,14 +504,14 @@
         <item quantity="one">Дыбысын қосу</item>
         <item quantity="other">Дыбысын қосу</item>
     </plurals>
-    <string name="ConversationListFragment_select">Бөлектеу</string>
+    <string name="ConversationListFragment_select">Таңдау</string>
     <plurals name="ConversationListFragment_archive_plural">
         <item quantity="one">Мұрағаттау</item>
         <item quantity="other">Мұрағаттау</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Мұрағатты шешу</item>
-        <item quantity="other">Мұрағатты ашу</item>
+        <item quantity="one">Мұрағаттан шығару</item>
+        <item quantity="other">Мұрағаттан шығару</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">Жою</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Аудиоңызға %1$s деп реакция білдірді.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Бір рет көрсетілетін мультимедиа файлыңызға %1$s деп реакция білдірді.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Төлеміңізге %1$s деп реакция қалдырды.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Стикеріңізге %1$s деп реакция білдірді.</string>
     <string name="MessageNotifier_this_message_was_deleted">Бұл хат жойылды.</string>
 

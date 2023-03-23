@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Annotation;
@@ -17,9 +16,6 @@ import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.text.style.CharacterStyle;
 import android.text.style.RelativeSizeSpan;
-import android.text.style.StrikethroughSpan;
-import android.text.style.StyleSpan;
-import android.text.style.TypefaceSpan;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -63,7 +59,6 @@ import static org.thoughtcrime.securesms.database.MentionUtil.MENTION_STARTER;
 public class ComposeText extends EmojiEditText {
 
   private static final char EMOJI_STARTER       = ':';
-  private static final long EMOJI_KEYWORD_DELAY = 1500;
 
   private static final Pattern TIME_PATTERN = Pattern.compile("^[0-9]{1,2}:[0-9]{1,2}$");
 
@@ -75,13 +70,6 @@ public class ComposeText extends EmojiEditText {
   @Nullable private InputPanel.MediaListener      mediaListener;
   @Nullable private CursorPositionChangedListener cursorPositionChangedListener;
   @Nullable private InlineQueryChangedListener    inlineQueryChangedListener;
-
-  private final Runnable keywordSearchRunnable = () -> {
-    Editable text = getText();
-    if (text != null && enoughToFilter(text, true)) {
-      performFiltering(text, true);
-    }
-  };
 
   public ComposeText(Context context) {
     super(context);
@@ -310,6 +298,8 @@ public class ComposeText extends EmojiEditText {
     addTextChangedListener(mentionValidatorWatcher);
 
     if (FeatureFlags.textFormatting()) {
+      addTextChangedListener(new ComposeTextStyleWatcher());
+
       setCustomSelectionActionModeCallback(new ActionMode.Callback() {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -362,7 +352,7 @@ public class ComposeText extends EmojiEditText {
           }
 
           if (style != null) {
-            replacement.setSpan(style, 0, charSequence.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+            replacement.setSpan(style, 0, charSequence.length(), MessageStyler.SPAN_FLAGS);
           }
 
           clearComposingText();
@@ -530,6 +520,11 @@ public class ComposeText extends EmojiEditText {
       }
     }
     return -1;
+  }
+
+  @Override
+  protected boolean shouldPersistSignalStylingWhenPasting() {
+    return true;
   }
 
   /**

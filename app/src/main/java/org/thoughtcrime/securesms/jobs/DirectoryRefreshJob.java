@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -50,10 +50,10 @@ public class DirectoryRefreshJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_RECIPIENT, recipient != null ? recipient.getId().serialize() : null)
-                             .putBoolean(KEY_NOTIFY_OF_NEW_USERS, notifyOfNewUsers)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_RECIPIENT, recipient != null ? recipient.getId().serialize() : null)
+                                    .putBoolean(KEY_NOTIFY_OF_NEW_USERS, notifyOfNewUsers)
+                                    .serialize();
   }
 
   @Override
@@ -89,7 +89,9 @@ public class DirectoryRefreshJob extends BaseJob {
   public static final class Factory implements Job.Factory<DirectoryRefreshJob> {
 
     @Override
-    public @NonNull DirectoryRefreshJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull DirectoryRefreshJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       String    serialized       = data.hasString(KEY_RECIPIENT) ? data.getString(KEY_RECIPIENT) : null;
       Recipient recipient        = serialized != null ? Recipient.resolved(RecipientId.from(serialized)) : null;
       boolean   notifyOfNewUsers = data.getBoolean(KEY_NOTIFY_OF_NEW_USERS);

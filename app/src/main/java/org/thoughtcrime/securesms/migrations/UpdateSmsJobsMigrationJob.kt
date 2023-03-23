@@ -2,9 +2,8 @@ package org.thoughtcrime.securesms.migrations
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
-import org.thoughtcrime.securesms.jobmanager.Data.Serializer
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
@@ -35,20 +34,20 @@ internal class UpdateSmsJobsMigrationJob(
     val idOffset = SignalStore.plaintext().smsMigrationIdOffset
     check(idOffset >= 0) { "Invalid ID offset of $idOffset -- this shouldn't be possible!" }
 
-    ApplicationDependencies.getJobManager().update { jobSpec, serializer ->
+    ApplicationDependencies.getJobManager().update { jobSpec ->
       when (jobSpec.factoryKey) {
-        "PushTextSendJob" -> jobSpec.updateAndSerialize(serializer, "message_id", null, idOffset)
-        "ReactionSendJob" -> jobSpec.updateAndSerialize(serializer, "message_id", "is_mms", idOffset)
-        "RemoteDeleteSendJob" -> jobSpec.updateAndSerialize(serializer, "message_id", "is_mms", idOffset)
-        "SmsSendJob" -> jobSpec.updateAndSerialize(serializer, "message_id", null, idOffset)
-        "SmsSentJob" -> jobSpec.updateAndSerialize(serializer, "message_id", null, idOffset)
+        "PushTextSendJob" -> jobSpec.updateAndSerialize("message_id", null, idOffset)
+        "ReactionSendJob" -> jobSpec.updateAndSerialize("message_id", "is_mms", idOffset)
+        "RemoteDeleteSendJob" -> jobSpec.updateAndSerialize("message_id", "is_mms", idOffset)
+        "SmsSendJob" -> jobSpec.updateAndSerialize("message_id", null, idOffset)
+        "SmsSentJob" -> jobSpec.updateAndSerialize("message_id", null, idOffset)
         else -> jobSpec
       }
     }
   }
 
-  private fun JobSpec.updateAndSerialize(serializer: Serializer, idKey: String, isMmsKey: String?, offset: Long): JobSpec {
-    val data = serializer.deserialize(this.serializedData)
+  private fun JobSpec.updateAndSerialize(idKey: String, isMmsKey: String?, offset: Long): JobSpec {
+    val data = JsonJobData.deserialize(this.serializedData)
 
     if (isMmsKey != null && data.getBooleanOrDefault(isMmsKey, false)) {
       return this
@@ -57,10 +56,10 @@ internal class UpdateSmsJobsMigrationJob(
     return if (data.hasLong(idKey)) {
       val currentValue: Long = data.getLong(idKey)
       val updatedValue: Long = currentValue + offset
-      val updatedData: Data = data.buildUpon().putLong(idKey, updatedValue).build()
+      val updatedData: JsonJobData = data.buildUpon().putLong(idKey, updatedValue).build()
 
       Log.d(TAG, "Updating job with factory ${this.factoryKey} from $currentValue to $updatedValue")
-      this.withData(serializer.serialize(updatedData))
+      this.withData(updatedData.serialize())
     } else {
       this
     }
@@ -69,7 +68,7 @@ internal class UpdateSmsJobsMigrationJob(
   override fun shouldRetry(e: Exception): Boolean = false
 
   class Factory : Job.Factory<UpdateSmsJobsMigrationJob> {
-    override fun create(parameters: Parameters, data: Data): UpdateSmsJobsMigrationJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): UpdateSmsJobsMigrationJob {
       return UpdateSmsJobsMigrationJob(parameters)
     }
   }

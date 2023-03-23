@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
@@ -10,7 +11,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -63,10 +64,10 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_TARGET_RECIPIENT_ID, targetRecipientId.serialize())
-                             .putString(KEY_THREAD_RECIPIENT_ID, threadRecipientId.serialize())
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_TARGET_RECIPIENT_ID, targetRecipientId.serialize())
+                                    .putString(KEY_THREAD_RECIPIENT_ID, threadRecipientId.serialize())
+                                    .serialize();
   }
 
   @Override
@@ -146,7 +147,9 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
   public static final class Factory implements Job.Factory<SenderKeyDistributionSendJob> {
 
     @Override
-    public @NonNull SenderKeyDistributionSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull SenderKeyDistributionSendJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       return new SenderKeyDistributionSendJob(RecipientId.from(data.getString(KEY_TARGET_RECIPIENT_ID)),
                                               RecipientId.from(data.getString(KEY_THREAD_RECIPIENT_ID)),
                                               parameters);

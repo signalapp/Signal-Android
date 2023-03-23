@@ -7,7 +7,6 @@ import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.AvatarRenderer
 import org.thoughtcrime.securesms.avatar.Avatars
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.AvatarHelper
@@ -39,7 +38,7 @@ class CreateReleaseChannelJob private constructor(parameters: Parameters) : Base
     }
   }
 
-  override fun serialize(): Data = Data.EMPTY
+  override fun serialize(): ByteArray? = null
 
   override fun getFactoryKey(): String = KEY
 
@@ -102,7 +101,7 @@ class CreateReleaseChannelJob private constructor(parameters: Parameters) : Base
   override fun onShouldRetry(e: Exception): Boolean = e is RetryLaterException
 
   class Factory : Job.Factory<CreateReleaseChannelJob> {
-    override fun create(parameters: Parameters, data: Data): CreateReleaseChannelJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): CreateReleaseChannelJob {
       return CreateReleaseChannelJob(parameters)
     }
   }

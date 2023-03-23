@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.jobs
 import okhttp3.ResponseBody
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.AutoDownloadEmojiConstraint
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.s3.S3
@@ -28,11 +28,11 @@ class FetchRemoteMegaphoneImageJob(parameters: Parameters, private val uuid: Str
     imageUrl = imageUrl
   )
 
-  override fun serialize(): Data {
-    return Data.Builder()
+  override fun serialize(): ByteArray? {
+    return JsonJobData.Builder()
       .putString(KEY_UUID, uuid)
       .putString(KEY_IMAGE_URL, imageUrl)
-      .build()
+      .serialize()
   }
 
   override fun getFactoryKey(): String {
@@ -65,7 +65,8 @@ class FetchRemoteMegaphoneImageJob(parameters: Parameters, private val uuid: Str
   }
 
   class Factory : Job.Factory<FetchRemoteMegaphoneImageJob> {
-    override fun create(parameters: Parameters, data: Data): FetchRemoteMegaphoneImageJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): FetchRemoteMegaphoneImageJob {
+      val data = JsonJobData.deserialize(serializedData)
       return FetchRemoteMegaphoneImageJob(parameters, data.getString(KEY_UUID), data.getString(KEY_IMAGE_URL))
     }
   }

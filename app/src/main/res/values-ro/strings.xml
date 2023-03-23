@@ -2219,7 +2219,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">A reacționat cu %1$s la înregistrarea ta audio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">A reacționat cu %1$s la fișierul media vizibil o singură dată.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">A reacționat cu %1$s la plata ta.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">A reacționat cu %1$s la autocolantul tău.</string>
     <string name="MessageNotifier_this_message_was_deleted">Acest mesaj a fost șters.</string>
 

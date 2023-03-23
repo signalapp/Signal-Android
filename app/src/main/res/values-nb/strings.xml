@@ -481,12 +481,12 @@
         <item quantity="other">Flyttet %1$d samtaler til innboksen</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Les</item>
-        <item quantity="other">Lest</item>
+        <item quantity="one">Sett som lest</item>
+        <item quantity="other">Sett som lest</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Uleste</item>
-        <item quantity="other">Ulest</item>
+        <item quantity="one">Sett som ulest</item>
+        <item quantity="other">Sett som ulest</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Fest</item>
@@ -497,12 +497,12 @@
         <item quantity="other">Løsne</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Dempet samtale</item>
-        <item quantity="other">Dempede samtaler</item>
+        <item quantity="one">Demp</item>
+        <item quantity="other">Demp</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Samtale med lyd slått på</item>
-        <item quantity="other">Samtaler med lyd slått på</item>
+        <item quantity="one">Slå på lyd</item>
+        <item quantity="other">Slå på lyd</item>
     </plurals>
     <string name="ConversationListFragment_select">Velg</string>
     <plurals name="ConversationListFragment_archive_plural">
@@ -511,7 +511,7 @@
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
         <item quantity="one">Hent fra arkiv</item>
-        <item quantity="other">Fjern fra arkiv</item>
+        <item quantity="other">Hent fra arkiv</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">Slett</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Reagerte med %1$s på lyden din.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerte med %1$s på vis-én-gang-mediefilen din.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reagerte med %1$s på betalingen din.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerte med %1$s på klistremerket ditt.</string>
     <string name="MessageNotifier_this_message_was_deleted">Denne meldingen ble slettet.</string>
 

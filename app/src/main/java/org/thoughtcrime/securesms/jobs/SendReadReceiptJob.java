@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.ListUtil;
@@ -13,7 +14,7 @@ import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -117,7 +118,7 @@ public class SendReadReceiptJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @Nullable byte[] serialize() {
     long[] sentTimestamps = new long[messageSentTimestamps.size()];
     for (int i = 0; i < sentTimestamps.length; i++) {
       sentTimestamps[i] = messageSentTimestamps.get(i);
@@ -125,12 +126,12 @@ public class SendReadReceiptJob extends BaseJob {
 
     List<String> serializedMessageIds = messageIds.stream().map(MessageId::serialize).collect(Collectors.toList());
 
-    return new Data.Builder().putString(KEY_RECIPIENT, recipientId.serialize())
-                             .putLongArray(KEY_MESSAGE_SENT_TIMESTAMPS, sentTimestamps)
-                             .putStringListAsArray(KEY_MESSAGE_IDS, serializedMessageIds)
-                             .putLong(KEY_TIMESTAMP, timestamp)
-                             .putLong(KEY_THREAD, threadId)
-                             .build();
+    return new JsonJobData.Builder().putString(KEY_RECIPIENT, recipientId.serialize())
+                                    .putLongArray(KEY_MESSAGE_SENT_TIMESTAMPS, sentTimestamps)
+                                    .putStringListAsArray(KEY_MESSAGE_IDS, serializedMessageIds)
+                                    .putLong(KEY_TIMESTAMP, timestamp)
+                                    .putLong(KEY_THREAD, threadId)
+                                    .serialize();
   }
 
   @Override
@@ -219,7 +220,9 @@ public class SendReadReceiptJob extends BaseJob {
     }
 
     @Override
-    public @NonNull SendReadReceiptJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull SendReadReceiptJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       long            timestamp      = data.getLong(KEY_TIMESTAMP);
       long[]          ids            = data.hasLongArray(KEY_MESSAGE_SENT_TIMESTAMPS) ? data.getLongArray(KEY_MESSAGE_SENT_TIMESTAMPS) : new long[0];
       List<Long>      sentTimestamps = new ArrayList<>(ids.length);
@@ -227,7 +230,7 @@ public class SendReadReceiptJob extends BaseJob {
       List<MessageId> messageIds     = rawMessageIds.stream().map(MessageId::deserialize).collect(Collectors.toList());
       long            threadId       = data.getLong(KEY_THREAD);
       RecipientId     recipientId    = data.hasString(KEY_RECIPIENT) ? RecipientId.from(data.getString(KEY_RECIPIENT))
-                                                                     : Recipient.external(application, data.getString(KEY_ADDRESS)).getId();
+                                                                               : Recipient.external(application, data.getString(KEY_ADDRESS)).getId();
 
       for (long id : ids) {
         sentTimestamps.add(id);

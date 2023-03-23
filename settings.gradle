@@ -56,6 +56,7 @@ include ':qr-app'
 include ':sticky-header-grid'
 include ':photoview'
 include ':core-ui'
+include ':benchmark'
 
 project(':app').name = 'Signal-Android'
 project(':paging').projectDir = file('paging/lib')

@@ -92,7 +92,7 @@ public final class WifiDirect {
 
   WifiDirect(@NonNull Context context) {
     this.context                    = context.getApplicationContext();
-    this.wifiDirectCallbacksHandler = SignalExecutors.getAndStartHandlerThread("wifi-direct-cb");
+    this.wifiDirectCallbacksHandler = SignalExecutors.getAndStartHandlerThread("wifi-direct-cb", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD);
   }
 
   /**

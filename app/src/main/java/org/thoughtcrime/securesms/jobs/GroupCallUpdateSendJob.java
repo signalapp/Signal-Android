@@ -8,7 +8,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
@@ -87,12 +87,12 @@ public class GroupCallUpdateSendJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_RECIPIENT_ID, recipientId.serialize())
-                             .putString(KEY_ERA_ID, eraId)
-                             .putString(KEY_RECIPIENTS, RecipientId.toSerializedList(recipients))
-                             .putInt(KEY_INITIAL_RECIPIENT_COUNT, initialRecipientCount)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_RECIPIENT_ID, recipientId.serialize())
+                                    .putString(KEY_ERA_ID, eraId)
+                                    .putString(KEY_RECIPIENTS, RecipientId.toSerializedList(recipients))
+                                    .putInt(KEY_INITIAL_RECIPIENT_COUNT, initialRecipientCount)
+                                    .serialize();
   }
 
   @Override
@@ -175,7 +175,9 @@ public class GroupCallUpdateSendJob extends BaseJob {
 
     @Override
     public @NonNull
-    GroupCallUpdateSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    GroupCallUpdateSendJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       RecipientId       recipientId           = RecipientId.from(data.getString(KEY_RECIPIENT_ID));
       String            eraId                 = data.getString(KEY_ERA_ID);
       List<RecipientId> recipients            = RecipientId.fromSerializedList(data.getString(KEY_RECIPIENTS));

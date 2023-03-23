@@ -26,14 +26,14 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/conversation_list_item_unchecked"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
             app:srcCompat="@drawable/multiselect_empty_ring" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/conversation_list_item_checked"
             android:layout_width="24dp"
             android:layout_height="24dp"

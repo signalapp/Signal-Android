@@ -493,8 +493,8 @@
         <item quantity="other">Sabitle</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">Kaldır</item>
-        <item quantity="other">Kaldır</item>
+        <item quantity="one">Sabitlenenlerden kaldır</item>
+        <item quantity="other">Sabitlenenlerden kaldır</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
         <item quantity="one">Sessize al</item>
@@ -510,8 +510,8 @@
         <item quantity="other">Arşivle</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Çıkart</item>
-        <item quantity="other">Çıkart</item>
+        <item quantity="one">Arşivden çıkart</item>
+        <item quantity="other">Arşivden çıkart</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">Sil</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Sesine %1$s tepkisi verdi.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Bir kez görüntülenen içeriğine %1$s tepkisi verdi.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Ödemene %1$s tepkisi verdi.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Çıkartmana %1$s tepkisi verdi.</string>
     <string name="MessageNotifier_this_message_was_deleted">Bu ileti silindi.</string>
 

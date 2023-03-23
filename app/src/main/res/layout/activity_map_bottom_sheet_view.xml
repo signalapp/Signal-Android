@@ -23,7 +23,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            android:background="@color/signal_colorBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"

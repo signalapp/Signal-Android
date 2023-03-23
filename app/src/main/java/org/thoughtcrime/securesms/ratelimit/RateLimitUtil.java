@@ -8,7 +8,7 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.IndividualSendJob;
 
@@ -35,12 +35,10 @@ public final class RateLimitUtil {
 
     SignalDatabase.messages().clearRateLimitStatus(messageIds);
 
-    ApplicationDependencies.getJobManager().update((job, serializer) -> {
-      Data data = serializer.deserialize(job.getSerializedData());
-
-      if (job.getFactoryKey().equals(IndividualSendJob.KEY) && messageIds.contains(IndividualSendJob.getMessageId(data))) {
+    ApplicationDependencies.getJobManager().update((job) -> {
+      if (job.getFactoryKey().equals(IndividualSendJob.KEY) && messageIds.contains(IndividualSendJob.getMessageId(job.getSerializedData()))) {
         return job.withNextRunAttemptTime(System.currentTimeMillis());
-      } else if (job.getFactoryKey().equals(PushGroupSendJob.KEY) && messageIds.contains(PushGroupSendJob.getMessageId(data))) {
+      } else if (job.getFactoryKey().equals(PushGroupSendJob.KEY) && messageIds.contains(PushGroupSendJob.getMessageId(job.getSerializedData()))) {
         return job.withNextRunAttemptTime(System.currentTimeMillis());
       } else {
         return job;

@@ -485,8 +485,8 @@
         <item quantity="other">വായിച്ചു</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">വായിച്ചില്ല</item>
-        <item quantity="other">വായിച്ചില്ല</item>
+        <item quantity="one">വായിച്ചിട്ടില്ല</item>
+        <item quantity="other">വായിച്ചിട്ടില്ല</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">പിൻ</item>
@@ -510,8 +510,8 @@
         <item quantity="other">ആർക്കൈവ്</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">അൺആർക്കൈവ്</item>
-        <item quantity="other">അൺആർക്കൈവ്</item>
+        <item quantity="one">ആർക്കൈവ് ചെയ്തത് മാറ്റൂ</item>
+        <item quantity="other">ആർക്കൈവ് ചെയ്തത് മാറ്റൂ</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="one">ഇല്ലാതാക്കൂ</item>
@@ -2147,7 +2147,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">നിങ്ങളുടെ ഓഡിയോയോട് %1$s നൽകി പ്രതികരിച്ചു.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">ഒരിക്കൽ മാത്രം കാണാവുന്ന മീഡിയയോട് %1$s നൽകി പ്രതികരിച്ചു.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">നിങ്ങളുടെ പേയ്മെന്‍റിനോട് %1$s എന്ന് പ്രതികരിച്ചു.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">നിങ്ങളുടെ സ്റ്റിക്കറിനോട് %1$s നൽകി പ്രതികരിച്ചു.</string>
     <string name="MessageNotifier_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
 

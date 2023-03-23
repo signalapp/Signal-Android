@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -69,7 +69,7 @@ class EditNotificationProfileScheduleFragment : LoggingFragment(R.layout.fragmen
 
     lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)
 
-    val enableToggle: SwitchMaterial = view.findViewById(R.id.edit_notification_profile_schedule_switch)
+    val enableToggle: MaterialSwitch = view.findViewById(R.id.edit_notification_profile_schedule_switch)
     enableToggle.setOnClickListener { viewModel.setEnabled(enableToggle.isChecked) }
 
     val startTime: TextView = view.findViewById(R.id.edit_notification_profile_schedule_start_time)

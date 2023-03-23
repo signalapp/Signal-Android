@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
@@ -14,7 +15,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -112,16 +113,16 @@ public class ReactionSendJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId.getId())
-                             .putString(KEY_REACTION_EMOJI, reaction.getEmoji())
-                             .putString(KEY_REACTION_AUTHOR, reaction.getAuthor().serialize())
-                             .putLong(KEY_REACTION_DATE_SENT, reaction.getDateSent())
-                             .putLong(KEY_REACTION_DATE_RECEIVED, reaction.getDateReceived())
-                             .putBoolean(KEY_REMOVE, remove)
-                             .putString(KEY_RECIPIENTS, RecipientId.toSerializedList(recipients))
-                             .putInt(KEY_INITIAL_RECIPIENT_COUNT, initialRecipientCount)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId.getId())
+                                    .putString(KEY_REACTION_EMOJI, reaction.getEmoji())
+                                    .putString(KEY_REACTION_AUTHOR, reaction.getAuthor().serialize())
+                                    .putLong(KEY_REACTION_DATE_SENT, reaction.getDateSent())
+                                    .putLong(KEY_REACTION_DATE_RECEIVED, reaction.getDateReceived())
+                                    .putBoolean(KEY_REMOVE, remove)
+                                    .putString(KEY_RECIPIENTS, RecipientId.toSerializedList(recipients))
+                                    .putInt(KEY_INITIAL_RECIPIENT_COUNT, initialRecipientCount)
+                                    .serialize();
   }
 
   @Override
@@ -261,7 +262,9 @@ public class ReactionSendJob extends BaseJob {
 
     @Override
     public @NonNull
-    ReactionSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    ReactionSendJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       long              messageId             = data.getLong(KEY_MESSAGE_ID);
       List<RecipientId> recipients            = RecipientId.fromSerializedList(data.getString(KEY_RECIPIENTS));
       int               initialRecipientCount = data.getInt(KEY_INITIAL_RECIPIENT_COUNT);

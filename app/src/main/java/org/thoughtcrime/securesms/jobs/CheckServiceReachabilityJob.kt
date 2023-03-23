@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -42,8 +41,8 @@ class CheckServiceReachabilityJob private constructor(params: Parameters) : Base
     }
   }
 
-  override fun serialize(): Data {
-    return Data.EMPTY
+  override fun serialize(): ByteArray? {
+    return null
   }
 
   override fun getFactoryKey(): String {
@@ -114,7 +113,7 @@ class CheckServiceReachabilityJob private constructor(params: Parameters) : Base
   }
 
   class Factory : Job.Factory<CheckServiceReachabilityJob> {
-    override fun create(parameters: Parameters, data: Data): CheckServiceReachabilityJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): CheckServiceReachabilityJob {
       return CheckServiceReachabilityJob(parameters)
     }
   }

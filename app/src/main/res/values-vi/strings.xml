@@ -471,7 +471,7 @@
         <item quantity="other">Đã chuyển %1$d cuộc trò chuyện vào hộp thư đến</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="other">Đọc</item>
+        <item quantity="other">Đã đọc</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="other">Chưa đọc</item>
@@ -493,7 +493,7 @@
         <item quantity="other">Lưu trữ</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="other">Lấy ra</item>
+        <item quantity="other">Bỏ lưu trữ</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
         <item quantity="other">Xóa</item>
@@ -2075,7 +2075,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Đã bày tỏ cảm xúc %1$s với tệp âm thanh của bạn.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Đã bày tỏ cảm xúc %1$s với tệp đa phương tiện xem một lần của bạn.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Đã bày tỏ cảm xúc %1$s với khoản thanh toán của bạn.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Đã bày tỏ cảm xúc %1$s với nhãn dán của bạn.</string>
     <string name="MessageNotifier_this_message_was_deleted">Tin nhắn này đã bị xóa.</string>
 

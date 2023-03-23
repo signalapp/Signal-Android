@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -8,7 +9,7 @@ import org.thoughtcrime.securesms.database.StickerTable;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -56,18 +57,18 @@ public class StickerDownloadJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_PACK_ID, sticker.getPackId())
-                             .putString(KEY_PACK_KEY, sticker.getPackKey())
-                             .putString(KEY_PACK_TITLE, sticker.getPackTitle())
-                             .putString(KEY_PACK_AUTHOR, sticker.getPackAuthor())
-                             .putInt(KEY_STICKER_ID, sticker.getStickerId())
-                             .putString(KEY_EMOJI, sticker.getEmoji())
-                             .putString(KEY_CONTENT_TYPE, sticker.getContentType())
-                             .putBoolean(KEY_COVER, sticker.isCover())
-                             .putBoolean(KEY_INSTALLED, sticker.isInstalled())
-                             .putBoolean(KEY_NOTIFY, notify)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_PACK_ID, sticker.getPackId())
+                                    .putString(KEY_PACK_KEY, sticker.getPackKey())
+                                    .putString(KEY_PACK_TITLE, sticker.getPackTitle())
+                                    .putString(KEY_PACK_AUTHOR, sticker.getPackAuthor())
+                                    .putInt(KEY_STICKER_ID, sticker.getStickerId())
+                                    .putString(KEY_EMOJI, sticker.getEmoji())
+                                    .putString(KEY_CONTENT_TYPE, sticker.getContentType())
+                                    .putBoolean(KEY_COVER, sticker.isCover())
+                                    .putBoolean(KEY_INSTALLED, sticker.isInstalled())
+                                    .putBoolean(KEY_NOTIFY, notify)
+                                    .serialize();
   }
 
   @Override
@@ -116,7 +117,9 @@ public class StickerDownloadJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<StickerDownloadJob> {
     @Override
-    public @NonNull StickerDownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull StickerDownloadJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       IncomingSticker sticker = new IncomingSticker(data.getString(KEY_PACK_ID),
                                                     data.getString(KEY_PACK_KEY),
                                                     data.getString(KEY_PACK_TITLE),

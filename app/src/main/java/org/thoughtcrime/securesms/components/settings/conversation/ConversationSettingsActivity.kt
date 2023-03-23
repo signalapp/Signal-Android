@@ -13,11 +13,12 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.ParcelableGroupId
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.DynamicConversationSettingsTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 
-class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettingsFragment.Callback {
+open class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettingsFragment.Callback {
 
   override val dynamicTheme: DynamicTheme = DynamicConversationSettingsTheme()
 
@@ -66,7 +67,7 @@ class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettings
 
     @JvmStatic
     fun forGroup(context: Context, groupId: GroupId): Intent {
-      val startBundle = ConversationSettingsFragmentArgs.Builder(null, ParcelableGroupId.from(groupId))
+      val startBundle = ConversationSettingsFragmentArgs.Builder(null, ParcelableGroupId.from(groupId), null)
         .build()
         .toBundle()
 
@@ -76,11 +77,26 @@ class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettings
 
     @JvmStatic
     fun forRecipient(context: Context, recipientId: RecipientId): Intent {
-      val startBundle = ConversationSettingsFragmentArgs.Builder(recipientId, null)
+      val startBundle = ConversationSettingsFragmentArgs.Builder(recipientId, null, null)
         .build()
         .toBundle()
 
       return getIntent(context)
+        .putExtra(ARG_START_BUNDLE, startBundle)
+    }
+
+    @JvmStatic
+    fun forCall(context: Context, callPeer: Recipient, callMessageIds: LongArray): Intent {
+      val startBundleBuilder = if (callPeer.isGroup) {
+        ConversationSettingsFragmentArgs.Builder(null, ParcelableGroupId.from(callPeer.requireGroupId()), callMessageIds)
+      } else {
+        ConversationSettingsFragmentArgs.Builder(callPeer.id, null, callMessageIds)
+      }
+
+      val startBundle = startBundleBuilder.build().toBundle()
+
+      return getIntent(context)
+        .setClass(context, CallInfoActivity::class.java)
         .putExtra(ARG_START_BUNDLE, startBundle)
     }
 

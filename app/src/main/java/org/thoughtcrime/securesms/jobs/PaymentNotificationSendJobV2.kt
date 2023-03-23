@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -32,11 +32,11 @@ class PaymentNotificationSendJobV2 private constructor(
 
   constructor(recipientId: RecipientId, uuid: UUID) : this(Parameters.Builder().build(), recipientId, uuid)
 
-  override fun serialize(): Data {
-    return Data.Builder()
+  override fun serialize(): ByteArray? {
+    return JsonJobData.Builder()
       .putString(KEY_RECIPIENT, recipientId.serialize())
       .putString(KEY_UUID, uuid.toString())
-      .build()
+      .serialize()
   }
 
   override fun getFactoryKey(): String {
@@ -80,7 +80,8 @@ class PaymentNotificationSendJobV2 private constructor(
   override fun onFailure() = Unit
 
   class Factory : Job.Factory<PaymentNotificationSendJobV2?> {
-    override fun create(parameters: Parameters, data: Data): PaymentNotificationSendJobV2 {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): PaymentNotificationSendJobV2 {
+      val data = JsonJobData.deserialize(serializedData)
       return PaymentNotificationSendJobV2(
         parameters,
         RecipientId.from(data.getString(KEY_RECIPIENT)),

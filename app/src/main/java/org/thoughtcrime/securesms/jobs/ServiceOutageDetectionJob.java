@@ -1,12 +1,13 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
@@ -39,8 +40,8 @@ public class ServiceOutageDetectionJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return Data.EMPTY;
+  public @Nullable byte[] serialize() {
+    return null;
   }
 
   @Override
@@ -95,7 +96,7 @@ public class ServiceOutageDetectionJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<ServiceOutageDetectionJob> {
     @Override
-    public @NonNull ServiceOutageDetectionJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull ServiceOutageDetectionJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new ServiceOutageDetectionJob(parameters);
     }
   }

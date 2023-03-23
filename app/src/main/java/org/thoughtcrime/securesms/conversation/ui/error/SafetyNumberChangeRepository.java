@@ -36,6 +36,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -157,6 +158,7 @@ public final class SafetyNumberChangeRepository {
                                                   .stream()
                                                   .filter(mismatch -> mismatch.getRecipientId(context).equals(changedRecipient.getRecipient().getId()))
                                                   .map(IdentityKeyMismatch::getIdentityKey)
+                                                  .filter(Objects::nonNull)
                                                   .findFirst()
                                                   .orElse(null);
 

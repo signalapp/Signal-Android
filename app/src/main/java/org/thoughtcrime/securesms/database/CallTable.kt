@@ -14,7 +14,10 @@ import org.signal.core.util.requireObject
 import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
+import org.thoughtcrime.securesms.calls.log.CallLogFilter
+import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallEvent
 
@@ -134,6 +137,86 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       calls.putAll(cursor.readToList { c -> c.requireLong(MESSAGE_ID) to Call.deserialize(c) })
     }
     return calls
+  }
+
+  private fun getCallsCursor(isCount: Boolean, offset: Int, limit: Int, searchTerm: String?, filter: CallLogFilter): Cursor {
+    val filterClause = when (filter) {
+      CallLogFilter.ALL -> SqlUtil.buildQuery("")
+      CallLogFilter.MISSED -> SqlUtil.buildQuery("$EVENT == ${Event.serialize(Event.MISSED)}")
+    }
+
+    val queryClause = if (!searchTerm.isNullOrEmpty()) {
+      val glob = SqlUtil.buildCaseInsensitiveGlobPattern(searchTerm)
+      val selection =
+        """
+        ${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED} = ? AND ${RecipientTable.TABLE_NAME}.${RecipientTable.HIDDEN} = ? AND
+        (
+          sort_name GLOB ? OR 
+          ${RecipientTable.TABLE_NAME}.${RecipientTable.USERNAME} GLOB ? OR 
+          ${RecipientTable.TABLE_NAME}.${RecipientTable.PHONE} GLOB ? OR 
+          ${RecipientTable.TABLE_NAME}.${RecipientTable.EMAIL} GLOB ?
+        )
+        """.trimIndent()
+      SqlUtil.buildQuery(selection, 0, 0, glob, glob, glob, glob)
+    } else {
+      SqlUtil.buildQuery("")
+    }
+
+    val whereClause = filterClause and queryClause
+    val where = if (whereClause.where.isNotEmpty()) {
+      "WHERE ${whereClause.where}"
+    } else {
+      ""
+    }
+
+    val offsetLimit = if (limit > 0) {
+      "LIMIT $offset,$limit"
+    } else {
+      ""
+    }
+
+    //language=sql
+    val statement = """
+      SELECT
+      ${if (isCount) "COUNT(*)," else "$TABLE_NAME.*, ${MessageTable.DATE_RECEIVED},"}
+      LOWER(
+        COALESCE(
+          NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.SYSTEM_JOINED_NAME}, ''),
+          NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.SYSTEM_GIVEN_NAME}, ''),
+          NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_JOINED_NAME}, ''),
+          NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_GIVEN_NAME}, ''),
+          NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.USERNAME}, '')
+        )
+      ) AS sort_name
+      FROM $TABLE_NAME
+      INNER JOIN ${RecipientTable.TABLE_NAME} ON ${RecipientTable.TABLE_NAME}.${RecipientTable.ID} = $TABLE_NAME.$PEER
+      INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID
+      $where
+      ORDER BY ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} DESC
+      $offsetLimit
+    """.trimIndent()
+
+    return readableDatabase.query(statement, whereClause.whereArgs)
+  }
+
+  fun getCallsCount(searchTerm: String?, filter: CallLogFilter): Int {
+    return getCallsCursor(true, 0, 0, searchTerm, filter).use {
+      it.moveToFirst()
+      it.getInt(0)
+    }
+  }
+
+  fun getCalls(offset: Int, limit: Int, searchTerm: String?, filter: CallLogFilter): List<CallLogRow.Call> {
+    return getCallsCursor(false, offset, limit, searchTerm, filter).readToList {
+      val call = Call.deserialize(it)
+      val recipient = Recipient.resolved(call.peer)
+      val date = it.requireLong(MessageTable.DATE_RECEIVED)
+      CallLogRow.Call(
+        call = call,
+        peer = recipient,
+        date = date
+      )
+    }
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {

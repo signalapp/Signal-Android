@@ -19,7 +19,10 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.emoji.EmojiStrings
+import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.conversation.ConversationIntents
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -315,6 +318,46 @@ object NotificationFactory {
       setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_failed))
       setContentText(context.getString(R.string.MessageNotifier_failed_to_deliver_message))
       setTicker(context.getString(R.string.MessageNotifier_error_delivering_message))
+      setContentIntent(NotificationPendingIntentHelper.getActivity(context, 0, intent, PendingIntentFlags.mutable()))
+      setAutoCancel(true)
+      setAlarms(recipient)
+      setChannelId(NotificationChannels.getInstance().FAILURES)
+    }
+
+    NotificationManagerCompat.from(context).safelyNotify(recipient, NotificationIds.getNotificationIdForMessageDeliveryFailed(thread), builder.build())
+  }
+
+  fun notifyStoryDeliveryFailed(context: Context, recipient: Recipient, thread: ConversationId) {
+    val intent = Intent(context, MyStoriesActivity::class.java).makeUniqueToPreventMerging()
+
+    val contentTitle = if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
+      if (recipient.isGroup) {
+        context.getString(R.string.MessageNotifier_group_story_title, recipient.getDisplayName(context))
+      } else {
+        recipient.getDisplayName(context)
+      }
+    } else {
+      context.getString(R.string.SingleRecipientNotificationBuilder_signal)
+    }
+
+    val largeIcon = if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
+      if (recipient.isMyStory) {
+        Recipient.self().getContactDrawable(context)
+      } else {
+        recipient.getContactDrawable(context)
+      }
+    } else {
+      GeneratedContactPhoto("Unknown", R.drawable.ic_profile_outline_40).asDrawable(context, AvatarColor.UNKNOWN)
+    }.toLargeBitmap(context)
+
+    val builder: NotificationBuilder = NotificationBuilder.create(context)
+
+    builder.apply {
+      setSmallIcon(R.drawable.ic_notification)
+      setLargeIcon(largeIcon)
+      setContentTitle(contentTitle)
+      setContentText(String.format("%s %s", EmojiStrings.FAILED_STORY, context.getString(R.string.MessageNotifier_story_delivery_failed)))
+      setTicker(context.getString(R.string.MessageNotifier_story_delivery_failed))
       setContentIntent(NotificationPendingIntentHelper.getActivity(context, 0, intent, PendingIntentFlags.mutable()))
       setAutoCancel(true)
       setAlarms(recipient)

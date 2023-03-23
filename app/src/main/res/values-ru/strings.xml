@@ -501,16 +501,16 @@
         <item quantity="other">%1$d разговора перемещено во Входящие</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Прочитано</item>
-        <item quantity="few">Прочитано</item>
-        <item quantity="many">Прочитано</item>
-        <item quantity="other">Прочитано</item>
+        <item quantity="one">Прочитать</item>
+        <item quantity="few">Прочитать</item>
+        <item quantity="many">Прочитать</item>
+        <item quantity="other">Прочитать</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Не прочитано</item>
-        <item quantity="few">Не прочитано</item>
-        <item quantity="many">Не прочитано</item>
-        <item quantity="other">Не прочитано</item>
+        <item quantity="one">Отм. как непрочитанное</item>
+        <item quantity="few">Отм. как непрочитанные</item>
+        <item quantity="many">Отм. как непрочитанные</item>
+        <item quantity="other">Отм. как непрочитанные</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Прикрепить</item>
@@ -2291,7 +2291,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Отреагировал(-а) %1$s на ваше аудио.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Отреагировал(-а) %1$s на ваш одноразовый медиафайл.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Отреагировал(-а) %1$s на ваш платёж.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Отреагировал(-а) %1$s на ваш стикер.</string>
     <string name="MessageNotifier_this_message_was_deleted">Это сообщение было удалено.</string>
 

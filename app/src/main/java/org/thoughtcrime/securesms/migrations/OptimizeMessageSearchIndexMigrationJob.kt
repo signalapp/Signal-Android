@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.migrations
 
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.OptimizeMessageSearchIndexJob
 
@@ -28,7 +27,7 @@ internal class OptimizeMessageSearchIndexMigrationJob(
   override fun shouldRetry(e: Exception): Boolean = false
 
   class Factory : Job.Factory<OptimizeMessageSearchIndexMigrationJob> {
-    override fun create(parameters: Parameters, data: Data): OptimizeMessageSearchIndexMigrationJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): OptimizeMessageSearchIndexMigrationJob {
       return OptimizeMessageSearchIndexMigrationJob(parameters)
     }
   }

@@ -31,9 +31,9 @@ public abstract class JobMigration {
 
     private final String factoryKey;
     private final String queueKey;
-    private final Data   data;
+    private final byte[] data;
 
-    public JobData(@NonNull String factoryKey, @Nullable String queueKey, @NonNull Data data) {
+    public JobData(@NonNull String factoryKey, @Nullable String queueKey, @Nullable byte[] data) {
       this.factoryKey = factoryKey;
       this.queueKey   = queueKey;
       this.data       = data;
@@ -47,7 +47,7 @@ public abstract class JobMigration {
       return new JobData(factoryKey, newQueueKey, data);
     }
 
-    public @NonNull JobData withData(@NonNull Data newData) {
+    public @NonNull JobData withData(@Nullable byte[] newData) {
       return new JobData(factoryKey, queueKey, newData);
     }
 
@@ -59,7 +59,7 @@ public abstract class JobMigration {
       return queueKey;
     }
 
-    public @NonNull Data getData() {
+    public @NonNull byte[] getData() {
       return data;
     }
   }

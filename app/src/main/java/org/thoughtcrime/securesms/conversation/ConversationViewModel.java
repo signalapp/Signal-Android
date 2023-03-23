@@ -260,6 +260,15 @@ public class ConversationViewModel extends ViewModel {
     }
   }
 
+  void setDistributionType(int distributionType) {
+    Long threadId = this.threadId.getValue();
+    if (threadId == null) {
+      return;
+    }
+
+    conversationRepository.setConversationDistributionType(threadId, distributionType);
+  }
+
   void submitMarkReadRequest(long timestampSince) {
     markReadRequestPublisher.onNext(timestampSince);
   }
@@ -336,6 +345,10 @@ public class ConversationViewModel extends ViewModel {
 
   boolean isPushAvailable() {
     return conversationStateStore.getState().getSecurityInfo().isPushAvailable();
+  }
+
+  void muteConversation(long until) {
+    conversationRepository.setConversationMuted(args.getRecipientId(), until);
   }
 
   @NonNull ConversationState getConversationStateSnapshot() {

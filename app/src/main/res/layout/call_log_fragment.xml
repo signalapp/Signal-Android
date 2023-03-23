@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/recycler_coordinator_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        app:expanded="false"
+        app:layout_behavior="org.thoughtcrime.securesms.conversationlist.ConversationFilterBehavior">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed|exitUntilCollapsed">
+
+            <org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView
+                android:id="@+id/pull_view"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:background="@color/signal_colorBackground"
+                app:layout_scrollInterpolator="@android:anim/linear_interpolator" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/signal_colorBackground"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"
+        android:scrollbars="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/conversation_list_item_view" />
+
+    <LinearLayout
+        android:id="@+id/empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="96dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/CallLogFragment__no_calls"
+            android:textAlignment="center"
+            android:textAppearance="@style/Signal.Text.BodyLarge" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/CallLogFragment__get_started_by_calling_a_friend"
+            android:textAlignment="center"
+            android:textAppearance="@style/Signal.Text.BodyLarge" />
+
+    </LinearLayout>
+
+    <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/CallLogFragment__start_a_new_call"
+        android:focusable="true"
+        android:theme="@style/Widget.Material3.FloatingActionButton.Secondary"
+        android:transitionName="new_convo_fab"
+        app:backgroundTint="@color/signal_colorPrimaryContainer"
+        app:shapeAppearanceOverlay="@style/Signal.ShapeOverlay.Rounded.Fab"
+        app:srcCompat="@drawable/symbol_phone_plus_24"
+        app:tint="@color/signal_colorOnSurface" />
+
+    <org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
+        android:id="@+id/bottom_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

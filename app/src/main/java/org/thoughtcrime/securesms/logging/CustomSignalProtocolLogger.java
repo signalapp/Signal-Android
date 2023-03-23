@@ -21,7 +21,7 @@ public class CustomSignalProtocolLogger implements SignalProtocolLogger {
         break;
       case ERROR:
       case ASSERT:
-        Log.e(tag, message);
+        Log.e(tag, message, true);
         break;
     }
   }

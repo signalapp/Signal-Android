@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.audio;
 
 import android.media.MediaRecorder;
+import android.os.Build;
 import android.os.ParcelFileDescriptor;
 
 import org.signal.core.util.logging.Log;
@@ -30,7 +31,7 @@ public class MediaRecorderWrapper implements Recorder {
       recorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
       recorder.setOutputFile(fileDescriptor.getFileDescriptor());
       recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-      recorder.setAudioSamplingRate(SAMPLE_RATE);
+      recorder.setAudioSamplingRate(getSampleRate());
       recorder.setAudioEncodingBitRate(BIT_RATE);
       recorder.setAudioChannels(CHANNELS);
       recorder.prepare();
@@ -61,5 +62,13 @@ public class MediaRecorderWrapper implements Recorder {
       recorder.release();
       recorder = null;
     }
+  }
+
+  private static int getSampleRate() {
+    if ("Xiaomi".equals(Build.MANUFACTURER) && "Mi 9T".equals(Build.MODEL)) {
+      // Recordings sound robotic with the standard sample rate.
+      return 44000;
+    }
+    return SAMPLE_RATE;
   }
 }

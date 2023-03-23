@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.logging.Log;
-import org.signal.donations.StripeIntentAccessor;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
@@ -19,7 +18,7 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptSerial;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -119,17 +118,17 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    Data.Builder builder = new Data.Builder().putString(DATA_PAYMENT_INTENT_ID, paymentIntentId)
-                                             .putString(DATA_ERROR_SOURCE, donationErrorSource.serialize())
-                                             .putLong(DATA_BADGE_LEVEL, badgeLevel)
-                                             .putString(DATA_DONATION_PROCESSOR, donationProcessor.getCode());
+  public @Nullable byte[] serialize() {
+    JsonJobData.Builder builder = new JsonJobData.Builder().putString(DATA_PAYMENT_INTENT_ID, paymentIntentId)
+                                                           .putString(DATA_ERROR_SOURCE, donationErrorSource.serialize())
+                                                           .putLong(DATA_BADGE_LEVEL, badgeLevel)
+                                                           .putString(DATA_DONATION_PROCESSOR, donationProcessor.getCode());
 
     if (requestContext != null) {
       builder.putBlobAsString(DATA_REQUEST_BYTES, requestContext.serialize());
     }
 
-    return builder.build();
+    return builder.serialize();
   }
 
   @Override
@@ -175,9 +174,9 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
 
       Log.d(TAG, "Validated credential. Handing off to next job.", true);
       ReceiptCredentialPresentation receiptCredentialPresentation = getReceiptCredentialPresentation(receiptCredential);
-      setOutputData(new Data.Builder().putBlobAsString(DonationReceiptRedemptionJob.INPUT_RECEIPT_CREDENTIAL_PRESENTATION,
-                                                       receiptCredentialPresentation.serialize())
-                                      .build());
+      setOutputData(new JsonJobData.Builder().putBlobAsString(DonationReceiptRedemptionJob.INPUT_RECEIPT_CREDENTIAL_PRESENTATION,
+                                                              receiptCredentialPresentation.serialize())
+                                             .serialize());
     } else {
       Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orElse(null), true);
       throw new RetryableException();
@@ -265,7 +264,9 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
 
   public static class Factory implements Job.Factory<BoostReceiptRequestResponseJob> {
     @Override
-    public @NonNull BoostReceiptRequestResponseJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull BoostReceiptRequestResponseJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       String              paymentIntentId      = data.getString(DATA_PAYMENT_INTENT_ID);
       DonationErrorSource donationErrorSource  = DonationErrorSource.deserialize(data.getStringOrDefault(DATA_ERROR_SOURCE, DonationErrorSource.BOOST.serialize()));
       long                badgeLevel           = data.getLongOrDefault(DATA_BADGE_LEVEL, Long.parseLong(SubscriptionLevels.BOOST_LEVEL));

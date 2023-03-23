@@ -191,7 +191,7 @@ public final class MultiShareSender {
   }
 
   public static @NonNull MessageSendType resolveTransportOption(@NonNull Context context, boolean forceSms) {
-    if (forceSms) {
+    if (forceSms && SignalStore.misc().getSmsExportPhase().allowSmsFeatures()) {
       return MessageSendType.getFirstForTransport(context, false, MessageSendType.TransportType.SMS);
     } else {
       return MessageSendType.SignalMessageSendType.INSTANCE;
@@ -348,7 +348,9 @@ public final class MultiShareSender {
           linkPreview.getDate(),
           linkPreview.getThumbnail().map(thumbnail ->
                                              thumbnail instanceof UriAttachment ? thumbnail
-                                                                                : new ImageSlide(context,
+                                                                                : thumbnail.getUri() == null
+                                                                                  ? null
+                                                                                  : new ImageSlide(context,
                                                                                                  thumbnail.getUri(),
                                                                                                  thumbnail.getContentType(),
                                                                                                  thumbnail.getSize(),

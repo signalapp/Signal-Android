@@ -1,23 +1,16 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.app.Application;
-
 import androidx.annotation.NonNull;
-
-import com.annimon.stream.Stream;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
@@ -25,9 +18,6 @@ import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTi
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class GroupV1MigrationJob extends BaseJob {
@@ -67,9 +57,9 @@ public class GroupV1MigrationJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_RECIPIENT_ID, recipientId.serialize())
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_RECIPIENT_ID, recipientId.serialize())
+                                    .serialize();
   }
 
   @Override
@@ -105,7 +95,8 @@ public class GroupV1MigrationJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<GroupV1MigrationJob> {
     @Override
-    public @NonNull GroupV1MigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull GroupV1MigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
       return new GroupV1MigrationJob(parameters, RecipientId.from(data.getString(KEY_RECIPIENT_ID)));
     }
   }

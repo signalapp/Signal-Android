@@ -4,10 +4,13 @@ import android.content.Context
 import android.net.Uri
 import android.text.Spannable
 import android.text.SpannableString
+import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
+import org.thoughtcrime.securesms.conversation.ConversationMessage
+import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory
 import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.database.DraftTable
 import org.thoughtcrime.securesms.database.DraftTable.Drafts
@@ -16,9 +19,12 @@ import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.adjustBodyRanges
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.mms.QuoteId
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.Base64
@@ -78,6 +84,21 @@ class DraftRepository(
 
       DatabaseDraft(drafts, updatedText)
     }.subscribeOn(Schedulers.io())
+  }
+
+  fun loadDraftQuote(serialized: String): Maybe<ConversationMessage> {
+    return Maybe.fromCallable {
+      val quoteId: QuoteId = QuoteId.deserialize(context, serialized) ?: return@fromCallable null
+      val messageRecord: MessageRecord = SignalDatabase.messages.getMessageFor(quoteId.id, quoteId.author)?.let {
+        if (it is MediaMmsMessageRecord) {
+          it.withAttachments(context, SignalDatabase.attachments.getAttachmentsForMessage(it.id))
+        } else {
+          it
+        }
+      } ?: return@fromCallable null
+
+      ConversationMessageFactory.createWithUnresolvedData(context, messageRecord)
+    }
   }
 
   data class DatabaseDraft(val drafts: Drafts, val updatedText: CharSequence?)

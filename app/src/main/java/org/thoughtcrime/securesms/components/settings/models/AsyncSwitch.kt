@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.components.settings.models
 
 import android.view.View
 import android.widget.ViewSwitcher
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.materialswitch.MaterialSwitch
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
@@ -33,7 +33,7 @@ object AsyncSwitch {
   }
 
   class ViewHolder(itemView: View) : PreferenceViewHolder<Model>(itemView) {
-    private val switchWidget: SwitchMaterial = itemView.findViewById(R.id.switch_widget)
+    private val switchWidget: MaterialSwitch = itemView.findViewById(R.id.switch_widget)
     private val switcher: ViewSwitcher = itemView.findViewById(R.id.switcher)
 
     override fun bind(model: Model) {

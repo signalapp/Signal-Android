@@ -554,7 +554,7 @@
     </plurals>
     <string name="ConversationListFragment_select">Roghnaigh</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Cuir sa chartlann</item>
+        <item quantity="one">Cuir sa chartlann í</item>
         <item quantity="two">Cuir sa chartlann iad</item>
         <item quantity="few">Cuir sa chartlann iad</item>
         <item quantity="many">Cuir sa chartlann iad</item>
@@ -2363,7 +2363,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Tugadh freagairt %1$s do do mhír fuaime.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Tugadh freagairt %1$s do do mheán amhairc aonuaire.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Tugadh freagairt %1$s do d\'íocaíocht.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Tugadh freagairt %1$s do do ghreamán.</string>
     <string name="MessageNotifier_this_message_was_deleted">Scriosadh an teachtaireacht seo.</string>
 

@@ -4,7 +4,6 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.usernames.BaseUsernameException;
@@ -18,7 +17,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -92,8 +91,8 @@ public class RefreshOwnProfileJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return Data.EMPTY;
+  public @Nullable byte[] serialize() {
+    return null;
   }
 
   @Override
@@ -253,7 +252,17 @@ public class RefreshOwnProfileJob extends BaseJob {
     }
   }
 
-  static void checkUsernameIsInSync() {
+  static void checkUsernameIsInSync() throws IOException {
+    if (TextUtils.isEmpty(SignalDatabase.recipients().getUsername(Recipient.self().getId()))) {
+      Log.i(TAG, "No local username. Clearing username from server.");
+      ApplicationDependencies.getSignalServiceAccountManager().deleteUsername();
+    } else {
+      Log.i(TAG, "Local user has a username, attempting username synchronization.");
+      performLocalRemoteComparison();
+    }
+  }
+
+  private static void performLocalRemoteComparison() {
     try {
       String  localUsername    = SignalDatabase.recipients().getUsername(Recipient.self().getId());
       boolean hasLocalUsername = !TextUtils.isEmpty(localUsername);
@@ -267,7 +276,16 @@ public class RefreshOwnProfileJob extends BaseJob {
       String         serverUsernameHash = whoAmIResponse.getUsernameHash();
       String         localUsernameHash  = Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(localUsername));
 
+      if (!hasServerUsername) {
+        Log.w(TAG, "No remote username is set.");
+      }
+
+      if (!Objects.equals(localUsernameHash, serverUsernameHash)) {
+        Log.w(TAG, "Local username hash does not match server username hash.");
+      }
+
       if (!hasServerUsername || !Objects.equals(localUsernameHash, serverUsernameHash)) {
+        Log.i(TAG, "Attempting to resynchronize username.");
         tryToReserveAndConfirmLocalUsername(localUsername, localUsernameHash);
       }
     } catch (IOException | BaseUsernameException e) {
@@ -426,7 +444,7 @@ public class RefreshOwnProfileJob extends BaseJob {
   public static final class Factory implements Job.Factory<RefreshOwnProfileJob> {
 
     @Override
-    public @NonNull RefreshOwnProfileJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull RefreshOwnProfileJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new RefreshOwnProfileJob(parameters);
     }
   }

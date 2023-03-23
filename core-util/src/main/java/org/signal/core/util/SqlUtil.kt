@@ -243,12 +243,20 @@ object SqlUtil {
    */
   @JvmOverloads
   @JvmStatic
-  fun buildCollectionQuery(column: String, values: Collection<Any?>, prefix: String = "", maxSize: Int = MAX_QUERY_ARGS): List<Query> {
-    require(!values.isEmpty()) { "Must have values!" }
-
-    return values
-      .chunked(maxSize)
-      .map { batch -> buildSingleCollectionQuery(column, batch, prefix) }
+  fun buildCollectionQuery(
+    column: String,
+    values: Collection<Any?>,
+    prefix: String = "",
+    maxSize: Int = MAX_QUERY_ARGS,
+    collectionOperator: CollectionOperator = CollectionOperator.IN
+  ): List<Query> {
+    return if (values.isEmpty()) {
+      emptyList()
+    } else {
+      values
+        .chunked(maxSize)
+        .map { batch -> buildSingleCollectionQuery(column, batch, prefix, collectionOperator) }
+    }
   }
 
   /**
@@ -259,7 +267,12 @@ object SqlUtil {
    */
   @JvmOverloads
   @JvmStatic
-  fun buildSingleCollectionQuery(column: String, values: Collection<Any?>, prefix: String = ""): Query {
+  fun buildSingleCollectionQuery(
+    column: String,
+    values: Collection<Any?>,
+    prefix: String = "",
+    collectionOperator: CollectionOperator = CollectionOperator.IN
+  ): Query {
     require(!values.isEmpty()) { "Must have values!" }
 
     val query = StringBuilder()
@@ -274,7 +287,7 @@ object SqlUtil {
       }
       i++
     }
-    return Query("$prefix $column IN ($query)".trim(), buildArgs(*args))
+    return Query("$prefix $column ${collectionOperator.sql} ($query)".trim(), buildArgs(*args))
   }
 
   @JvmStatic
@@ -392,5 +405,20 @@ object SqlUtil {
     return Query(query, args.toTypedArray())
   }
 
-  class Query(val where: String, val whereArgs: Array<String>)
+  class Query(val where: String, val whereArgs: Array<String>) {
+    infix fun and(other: Query): Query {
+      return if (where.isNotEmpty() && other.where.isNotEmpty()) {
+        Query("($where) AND (${other.where})", whereArgs + other.whereArgs)
+      } else if (where.isNotEmpty()) {
+        this
+      } else {
+        other
+      }
+    }
+  }
+
+  enum class CollectionOperator(val sql: String) {
+    IN("IN"),
+    NOT_IN("NOT IN")
+  }
 }

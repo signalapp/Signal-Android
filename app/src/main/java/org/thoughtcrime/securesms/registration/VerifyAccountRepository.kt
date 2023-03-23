@@ -42,7 +42,7 @@ class VerifyAccountRepository(private val context: Application) {
     return if (sessionId.isNullOrBlank()) {
       Single.just(ServiceResponse.forApplicationError(NoSuchSessionException(), 409, null))
     } else {
-      val accountManager: SignalServiceAccountManager = AccountManagerFactory.createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
+      val accountManager: SignalServiceAccountManager = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
       Single.fromCallable { accountManager.getRegistrationSession(sessionId) }.subscribeOn(Schedulers.io())
     }
   }
@@ -55,7 +55,7 @@ class VerifyAccountRepository(private val context: Application) {
   ): Single<ServiceResponse<RegistrationSessionMetadataResponse>> {
     return Single.fromCallable {
       val fcmToken: String? = FcmUtil.getToken(context).orElse(null)
-      val accountManager: SignalServiceAccountManager = AccountManagerFactory.createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
+      val accountManager: SignalServiceAccountManager = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
       if (fcmToken == null) {
         return@fromCallable accountManager.createRegistrationSession(null, mcc, mnc)
       } else {
@@ -97,7 +97,7 @@ class VerifyAccountRepository(private val context: Application) {
     password: String
   ): Single<ServiceResponse<RegistrationSessionMetadataResponse>> {
     val fcmToken: Optional<String> = FcmUtil.getToken(context)
-    val accountManager = AccountManagerFactory.createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
+    val accountManager = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
     val pushChallenge = PushChallengeRequest.getPushChallengeBlocking(accountManager, sessionId, fcmToken, PUSH_REQUEST_TIMEOUT)
     return Single.fromCallable {
       return@fromCallable accountManager.submitPushChallengeToken(sessionId, pushChallenge.orElse(null))
@@ -110,7 +110,7 @@ class VerifyAccountRepository(private val context: Application) {
     e164: String,
     password: String
   ): Single<ServiceResponse<RegistrationSessionMetadataResponse>> {
-    val accountManager = AccountManagerFactory.createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
+    val accountManager = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
     return Single.fromCallable {
       return@fromCallable accountManager.submitCaptchaToken(sessionId, captcha)
     }.subscribeOn(Schedulers.io())
@@ -125,7 +125,7 @@ class VerifyAccountRepository(private val context: Application) {
     Log.d(TAG, "SMS Verification requested")
 
     return Single.fromCallable {
-      val accountManager = AccountManagerFactory.createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
+      val accountManager = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
       if (mode == Mode.PHONE_CALL) {
         return@fromCallable accountManager.requestVoiceVerificationCode(sessionId, Locale.getDefault(), mode.isSmsRetrieverSupported)
       } else {
@@ -135,7 +135,7 @@ class VerifyAccountRepository(private val context: Application) {
   }
 
   fun verifyAccount(sessionId: String, registrationData: RegistrationData): Single<ServiceResponse<RegistrationSessionMetadataResponse>> {
-    val accountManager: SignalServiceAccountManager = AccountManagerFactory.createUnauthenticated(
+    val accountManager: SignalServiceAccountManager = AccountManagerFactory.getInstance().createUnauthenticated(
       context,
       registrationData.e164,
       SignalServiceAddress.DEFAULT_DEVICE_ID,
@@ -154,7 +154,7 @@ class VerifyAccountRepository(private val context: Application) {
     val universalUnidentifiedAccess: Boolean = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
     val unidentifiedAccessKey: ByteArray = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
 
-    val accountManager: SignalServiceAccountManager = AccountManagerFactory.createUnauthenticated(
+    val accountManager: SignalServiceAccountManager = AccountManagerFactory.getInstance().createUnauthenticated(
       context,
       registrationData.e164,
       SignalServiceAddress.DEFAULT_DEVICE_ID,
@@ -167,13 +167,13 @@ class VerifyAccountRepository(private val context: Application) {
     val accountAttributes = AccountAttributes(
       signalingKey = null,
       registrationId = registrationData.registrationId,
-      isFetchesMessages = registrationData.isNotFcm,
+      fetchesMessages = registrationData.isNotFcm,
       pin = pin,
       registrationLock = registrationLockV2,
       unidentifiedAccessKey = unidentifiedAccessKey,
-      isUnrestrictedUnidentifiedAccess = universalUnidentifiedAccess,
+      unrestrictedUnidentifiedAccess = universalUnidentifiedAccess,
       capabilities = AppCapabilities.getCapabilities(true),
-      isDiscoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable,
+      discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable,
       name = null,
       pniRegistrationId = registrationData.pniRegistrationId,
       recoveryPassword = registrationData.recoveryPassword

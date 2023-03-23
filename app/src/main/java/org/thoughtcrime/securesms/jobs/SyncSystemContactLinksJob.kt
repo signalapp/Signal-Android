@@ -12,7 +12,6 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
@@ -32,7 +31,7 @@ class SyncSystemContactLinksJob private constructor(parameters: Parameters) : Ba
       .build()
   )
 
-  override fun serialize(): Data = Data.EMPTY
+  override fun serialize(): ByteArray? = null
   override fun getFactoryKey() = KEY
   override fun onFailure() = Unit
   override fun onShouldRetry(e: Exception) = false
@@ -94,7 +93,7 @@ class SyncSystemContactLinksJob private constructor(parameters: Parameters) : Ba
   }
 
   class Factory : Job.Factory<SyncSystemContactLinksJob> {
-    override fun create(parameters: Parameters, data: Data) = SyncSystemContactLinksJob(parameters)
+    override fun create(parameters: Parameters, serializedData: ByteArray?) = SyncSystemContactLinksJob(parameters)
   }
 
   companion object {

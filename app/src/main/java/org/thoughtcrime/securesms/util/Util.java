@@ -71,6 +71,8 @@ public class Util {
 
   private static final long BUILD_LIFESPAN = TimeUnit.DAYS.toMillis(90);
 
+  public static final String COPY_LABEL = "text\u00AD";
+
   public static <T> List<T> asList(T... elements) {
     List<T> result = new LinkedList<>();
     Collections.addAll(result, elements);
@@ -482,7 +484,7 @@ public class Util {
   }
 
   public static void copyToClipboard(@NonNull Context context, @NonNull CharSequence text) {
-    ServiceUtil.getClipboardManager(context).setPrimaryClip(ClipData.newPlainText("text", text));
+    ServiceUtil.getClipboardManager(context).setPrimaryClip(ClipData.newPlainText(COPY_LABEL, text));
   }
 
   @SafeVarargs

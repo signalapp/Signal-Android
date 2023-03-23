@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.signal.core.util.Hex;
@@ -59,11 +60,11 @@ public class MultiDeviceStickerPackOperationJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_PACK_ID, packId)
-                             .putString(KEY_PACK_KEY, packKey)
-                             .putString(KEY_TYPE, type.name())
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_PACK_ID, packId)
+                                    .putString(KEY_PACK_KEY, packKey)
+                                    .putString(KEY_TYPE, type.name())
+                                    .serialize();
   }
 
   @Override
@@ -115,7 +116,9 @@ public class MultiDeviceStickerPackOperationJob extends BaseJob {
   public static class Factory implements Job.Factory<MultiDeviceStickerPackOperationJob> {
 
     @Override
-    public @NonNull MultiDeviceStickerPackOperationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull MultiDeviceStickerPackOperationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       return new MultiDeviceStickerPackOperationJob(parameters,
                                                     data.getString(KEY_PACK_ID),
                                                     data.getString(KEY_PACK_KEY),

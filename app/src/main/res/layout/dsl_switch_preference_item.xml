@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/dsl_preference_item_background"
-    android:minHeight="56dp">
+    android:minHeight="56dp"
+    tools:viewBindingIgnore="true">
 
     <ImageView
         android:id="@+id/icon"
@@ -55,15 +55,15 @@
         tools:text="Some random text to get stuff onto more than one line but not absurdly long like lorem/random"
         tools:visibility="visible" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/switch_widget"
+        style="@style/Widget.Signal.CompoundButton.MaterialSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
-        android:clickable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:useMaterialThemeColors="true" />
+        tools:checked="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

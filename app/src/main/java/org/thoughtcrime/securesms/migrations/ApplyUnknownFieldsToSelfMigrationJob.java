@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -8,7 +9,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -86,7 +86,7 @@ public class ApplyUnknownFieldsToSelfMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<ApplyUnknownFieldsToSelfMigrationJob> {
     @Override
-    public @NonNull ApplyUnknownFieldsToSelfMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull ApplyUnknownFieldsToSelfMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new ApplyUnknownFieldsToSelfMigrationJob(parameters);
     }
   }

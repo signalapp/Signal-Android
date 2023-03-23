@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:viewBindingIgnore="true"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/conversation_item_background"
+    android:focusable="true"
+    android:minHeight="@dimen/contact_selection_item_height"
+    android:paddingStart="@dimen/dsl_settings_gutter"
+    android:paddingEnd="@dimen/dsl_settings_gutter">
+
+    <org.thoughtcrime.securesms.avatar.view.AvatarView
+        android:id="@+id/contact_photo_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/SingleContactSelectionActivity_contact_photo"
+        android:cropToPadding="true"
+        android:foreground="@drawable/contact_photo_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:storyRingScale="0.75"
+        tools:ignore="UnusedAttribute"
+        tools:src="@color/blue_600" />
+
+    <org.thoughtcrime.securesms.badges.BadgeImageView
+        android:id="@+id/contact_badge"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="22dp"
+        android:contentDescription="@string/ImageView__badge"
+        app:badge_size="medium"
+        app:layout_constraintStart_toStartOf="@id/contact_photo_image"
+        app:layout_constraintTop_toTopOf="@id/contact_photo_image"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/group_story_indicator"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/group_story_indicator_background"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/contact_photo_image"
+        app:layout_constraintTop_toTopOf="@id/contact_photo_image"
+        app:tint="@color/group_story_indicator_tint_selector"
+        app:srcCompat="@drawable/symbol_stories_fill_compact_12" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/check_box"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="?contactCheckboxBackground"
+        android:button="@null"
+        android:clickable="false"
+        android:focusable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <org.thoughtcrime.securesms.components.FromTextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:drawablePadding="4dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.Signal.Body1"
+        android:textColor="@color/signal_text_primary"
+        app:layout_constraintBottom_toTopOf="@id/number"
+        app:layout_constraintEnd_toStartOf="@id/check_box"
+        app:layout_constraintStart_toEndOf="@id/contact_photo_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:drawableStart="@drawable/ic_bell_24"
+        tools:drawableTint="@color/signal_icon_tint_secondary"
+        tools:text="@sample/contacts.json/data/name" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/signal_text_secondary"
+        android:textDirection="ltr"
+        app:emoji_forceCustom="true"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/name"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/contact_photo_image"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        tools:text="@tools:sample/lorem/random" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -94,7 +94,7 @@ public class CreateGroupActivity extends ContactSelectionActivity {
   }
 
   @Override
-  public void onBeforeContactSelected(@NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
+  public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
     if (contactsFragment.hasQueryFilter()) {
       getContactFilterView().clear();
     }

@@ -38,3 +38,7 @@ fun String.asListContains(item: String): Boolean {
 fun String.toSingleLine(): String {
   return this.trimIndent().split("\n").joinToString(separator = " ")
 }
+
+fun String?.emptyIfNull(): String {
+  return this ?: ""
+}

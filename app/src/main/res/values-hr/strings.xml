@@ -501,16 +501,16 @@
         <item quantity="other">%1$d razgovora je premješteno u pristiglu poštu</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Pročitano</item>
-        <item quantity="few">Pročitano</item>
-        <item quantity="many">Pročitano</item>
-        <item quantity="other">Pročitano</item>
+        <item quantity="one">Označi kao pročitano</item>
+        <item quantity="few">Označi kao pročitano</item>
+        <item quantity="many">Označi kao pročitano</item>
+        <item quantity="other">Označi kao pročitano</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Nepročitano</item>
-        <item quantity="few">Nepročitano</item>
-        <item quantity="many">Nepročitano</item>
-        <item quantity="other">Nepročitano</item>
+        <item quantity="one">Označi kao nepročitano</item>
+        <item quantity="few">Označi kao nepročitano</item>
+        <item quantity="many">Označi kao nepročitano</item>
+        <item quantity="other">Označi kao nepročitano</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
         <item quantity="one">Prikvači</item>
@@ -2291,7 +2291,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Reagira s %1$s na vašu glasovnu poruku.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagira s %1$s na vaš jednom vidljiv medijski zapis.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reagira s %1$s na vašu uplatu.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reagira s %1$s na vašu naljepnicu.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ova poruka je izbrisana.</string>
 

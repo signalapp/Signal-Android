@@ -62,9 +62,10 @@
             android:layout_gravity="center"
             android:text="@string/WebRtcCallView__your_video_is_off"
             android:textAppearance="@style/TextAppearance.Signal.Body2"
-            android:textColor="@color/white"
+            android:textColor="@color/signal_light_colorOnPrimary"
             android:visibility="gone"
-            app:drawableTopCompat="@drawable/ic_video_off_solid_white_28"
+            app:drawableTopCompat="@drawable/symbol_video_slash_fill_24"
+            app:drawableTint="@color/signal_light_colorOnPrimary"
             tools:visibility="visible" />
 
     </FrameLayout>
@@ -557,7 +558,7 @@
                 android:text="@string/WebRtcCallView__start_call"
                 android:textAllCaps="false"
                 android:textColor="@color/core_green_text_button"
-                app:backgroundTint="@color/core_green"
+                app:backgroundTint="@color/signal_light_colorPrimary"
                 app:cornerRadius="28dp" />
 
         </LinearLayout>

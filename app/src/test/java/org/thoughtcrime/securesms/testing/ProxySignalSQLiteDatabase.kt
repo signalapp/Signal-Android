@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.testing
 
 import android.content.ContentValues
 import android.database.Cursor
+import androidx.sqlite.db.SupportSQLiteQuery
+import org.signal.core.util.toAndroidQuery
 import java.util.Locale
 import android.database.sqlite.SQLiteDatabase as AndroidSQLiteDatabase
 import android.database.sqlite.SQLiteTransactionListener as AndroidSQLiteTransactionListener
@@ -47,6 +49,11 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
     limit: String?
   ): Cursor {
     return database.queryWithFactory(null, distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit)
+  }
+
+  override fun query(query: SupportSQLiteQuery): Cursor? {
+    val converted = query.toAndroidQuery()
+    return database.rawQuery(converted.where, converted.whereArgs)
   }
 
   override fun query(table: String?, columns: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, groupBy: String?, having: String?, orderBy: String?): Cursor {

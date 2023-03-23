@@ -9,6 +9,7 @@ import android.os.ParcelFileDescriptor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft;
@@ -25,7 +26,7 @@ public class AudioRecorder {
 
   private static final String TAG = Log.tag(AudioRecorder.class);
 
-  private static final ExecutorService executor = SignalExecutors.newCachedSingleThreadExecutor("signal-AudioRecorder");
+  private static final ExecutorService executor = SignalExecutors.newCachedSingleThreadExecutor("signal-AudioRecorder", ThreadUtil.PRIORITY_UI_BLOCKING_THREAD);
 
   private final Context                   context;
   private final AudioRecordingHandler     uiHandler;
@@ -68,7 +69,8 @@ public class AudioRecorder {
       Log.i(TAG, "Running startRecording() + " + Thread.currentThread().getId());
       try {
         if (recorder != null) {
-          throw new AssertionError("We can only record once at a time.");
+          recordingSingle.onError(new IllegalStateException("We can only do one recording at a time!"));
+          return;
         }
 
         ParcelFileDescriptor fds[] = ParcelFileDescriptor.createPipe();

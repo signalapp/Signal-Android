@@ -73,6 +73,7 @@ dependencyResolutionManagement {
             alias('androidx-sharetarget').to('androidx.sharetarget:sharetarget:1.2.0-rc02')
             alias('androidx-sqlite').to('androidx.sqlite:sqlite:2.1.0')
             alias('androidx-core-role').to('androidx.core:core-role:1.0.0')
+            alias('androidx-profileinstaller').to('androidx.profileinstaller:profileinstaller:1.2.2')
 
             // Material
             alias('material-material').to('com.google.android.material:material:1.8.0')
@@ -105,7 +106,7 @@ dependencyResolutionManagement {
             alias('signal-aesgcmprovider').to('org.signal:aesgcmprovider:0.0.3')
             alias('signal-argon2').to('org.signal:argon2:13.1')
             alias('signal-ringrtc').to('org.signal:ringrtc-android:2.25.1')
-            alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.3-FTS-S2')
+            alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.3-FTS-S3')
 
             // Third Party
             alias('greenrobot-eventbus').to('org.greenrobot:eventbus:3.0.0')
@@ -145,6 +146,16 @@ dependencyResolutionManagement {
             alias('mp4parser-streaming').to('org.mp4parser', 'streaming').versionRef('mp4parser')
             alias('mp4parser-muxer').to('org.mp4parser', 'muxer').versionRef('mp4parser')
             bundle('mp4parser', ['mp4parser-isoparser', 'mp4parser-streaming', 'mp4parser-muxer'])
+        }
+
+        benchmarkLibs {
+            version('androidx-test-ext-junit', '1.1.3')
+
+            // Macrobench/Baseline profiles
+            alias ('androidx-test-ext-junit').to('androidx.test.ext', 'junit').versionRef('androidx-test-ext-junit')
+            alias('espresso-core').to('androidx.test.espresso:espresso-core:3.4.0')
+            alias('uiautomator').to('androidx.test.uiautomator:uiautomator:2.2.0')
+            alias('androidx-benchmark-macro').to('androidx.benchmark:benchmark-macro-junit4:1.1.1')
         }
 
         testLibs {

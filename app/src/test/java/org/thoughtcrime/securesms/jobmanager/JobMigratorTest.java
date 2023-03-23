@@ -53,7 +53,7 @@ public class JobMigratorTest {
     JobMigration migration2 = spy(new EmptyMigration(3));
 
     JobMigrator subject = new JobMigrator(1, 3, Arrays.asList(migration1, migration2));
-    int         version = subject.migrate(simpleJobStorage(), mock(Data.Serializer.class));
+    int         version = subject.migrate(simpleJobStorage());
 
     assertEquals(3, version);
     verify(migration1).migrate(any());
@@ -66,7 +66,7 @@ public class JobMigratorTest {
     JobMigration migration2 = spy(new EmptyMigration(3));
 
     JobMigrator subject = new JobMigrator(2, 3, Arrays.asList(migration1, migration2));
-    int         version = subject.migrate(simpleJobStorage(), mock(Data.Serializer.class));
+    int         version = subject.migrate(simpleJobStorage());
 
     assertEquals(3, version);
     verify(migration1, never()).migrate(any());
@@ -79,7 +79,7 @@ public class JobMigratorTest {
     JobMigration migration2 = spy(new EmptyMigration(3));
 
     JobMigrator subject = new JobMigrator(3, 3, Arrays.asList(migration1, migration2));
-    int         version = subject.migrate(simpleJobStorage(), mock(Data.Serializer.class));
+    int         version = subject.migrate(simpleJobStorage());
 
     assertEquals(3, version);
     verify(migration1, never()).migrate(any());
@@ -88,7 +88,7 @@ public class JobMigratorTest {
 
   private static JobStorage simpleJobStorage() {
     JobStorage jobStorage = mock(JobStorage.class);
-    when(jobStorage.getAllJobSpecs()).thenReturn(new ArrayList<>(Collections.singletonList(new JobSpec("1", "f1", null, 1, 1, 1, 1, 1, "", null, false, false))));
+    when(jobStorage.getAllJobSpecs()).thenReturn(new ArrayList<>(Collections.singletonList(new JobSpec("1", "f1", null, 1, 1, 1, 1, 1, null, null, false, false))));
     return jobStorage;
   }
 

@@ -1347,7 +1347,7 @@ public class MessageContentProcessor {
         threadId = SignalDatabase.threads().getOrCreateThreadIdFor(getSyncMessageDestination(message));
       } else if (dataMessage.getRemoteDelete().isPresent()) {
         handleRemoteDelete(content, dataMessage, senderRecipient, processingEarlyContent);
-      } else if (dataMessage.getAttachments().isPresent() || dataMessage.getQuote().isPresent() || dataMessage.getPreviews().isPresent() || dataMessage.getSticker().isPresent() || dataMessage.isViewOnce() || dataMessage.getMentions().isPresent()) {
+      } else if (dataMessage.getAttachments().isPresent() || dataMessage.getQuote().isPresent() || dataMessage.getPreviews().isPresent() || dataMessage.getSticker().isPresent() || dataMessage.isViewOnce() || dataMessage.getMentions().isPresent() || dataMessage.getBodyRanges().isPresent()) {
         threadId = handleSynchronizeSentMediaMessage(message, content.getTimestamp());
       } else {
         threadId = handleSynchronizeSentTextMessage(message, content.getTimestamp());
@@ -2094,12 +2094,14 @@ public class MessageContentProcessor {
       MmsMessageRecord                            story                = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
       Recipient                                   threadRecipient      = SignalDatabase.threads().getRecipientForThreadId(story.getThreadId());
       boolean                                     groupStory           = threadRecipient != null && threadRecipient.isActiveGroup();
+      BodyRangeList                               bodyRanges           = null;
       String                                      body;
 
       if (reaction.isPresent() && EmojiUtil.isEmoji(reaction.get().getEmoji())) {
         body = reaction.get().getEmoji();
       } else {
-        body = message.getDataMessage().get().getBody().orElse(null);
+        body       = message.getDataMessage().get().getBody().orElse(null);
+        bodyRanges = getBodyRangeList(message.getDataMessage().get().getBodyRanges());
       }
 
       if (message.getDataMessage().get().getGroupContext().isPresent()) {
@@ -2107,15 +2109,15 @@ public class MessageContentProcessor {
       } else if (groupStory || story.getStoryType().isStoryWithReplies()) {
         parentStoryId   = new ParentStoryId.DirectReply(storyMessageId.getId());
 
-        String        quoteBody  = "";
-        BodyRangeList bodyRanges = null;
+        String        quoteBody        = "";
+        BodyRangeList quotedBodyRanges = null;
 
         if (story.getStoryType().isTextStory()) {
-          quoteBody  = story.getBody();
-          bodyRanges = story.getMessageRanges();
+          quoteBody        = story.getBody();
+          quotedBodyRanges = story.getMessageRanges();
         }
 
-        quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, quoteBody, false, story.getSlideDeck().asAttachments(), Collections.emptyList(), QuoteModel.Type.NORMAL, bodyRanges);
+        quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, quoteBody, false, story.getSlideDeck().asAttachments(), Collections.emptyList(), QuoteModel.Type.NORMAL, quotedBodyRanges);
         expiresInMillis = TimeUnit.SECONDS.toMillis(message.getDataMessage().get().getExpiresInSeconds());
       } else {
         warn(envelopeTimestamp, "Story has replies disabled. Dropping reply.");
@@ -2141,7 +2143,7 @@ public class MessageContentProcessor {
                                                          Collections.emptySet(),
                                                          null,
                                                          true,
-                                                         null,
+                                                         bodyRanges,
                                                          -1);
 
       if (recipient.getExpiresInSeconds() != message.getDataMessage().get().getExpiresInSeconds()) {
@@ -2205,6 +2207,7 @@ public class MessageContentProcessor {
     Set<DistributionId>       distributionIds = manifest.getDistributionIdSet();
     Optional<GroupId>         groupId         = storyMessage.getGroupContext().map(it -> GroupId.v2(it.getMasterKey()));
     String                    textStoryBody   = storyMessage.getTextAttachment().map(this::serializeTextAttachment).orElse(null);
+    BodyRangeList             bodyRanges      = getBodyRangeList(storyMessage.getBodyRanges());
     StoryType                 storyType       = getStoryType(storyMessage);
     List<LinkPreview>         linkPreviews    = getLinkPreviews(storyMessage.getTextAttachment().flatMap(t -> t.getPreview().map(Collections::singletonList)),
                                                                 "",
@@ -2216,13 +2219,13 @@ public class MessageContentProcessor {
     for (final DistributionId distributionId : distributionIds) {
       RecipientId distributionRecipientId   = SignalDatabase.distributionLists().getOrCreateByDistributionId(distributionId, manifest);
       Recipient   distributionListRecipient = Recipient.resolved(distributionRecipientId);
-      insertSentStoryMessage(message, distributionListRecipient, textStoryBody, attachments, message.getTimestamp(), storyType, linkPreviews);
+      insertSentStoryMessage(message, distributionListRecipient, textStoryBody, attachments, message.getTimestamp(), storyType, linkPreviews, bodyRanges);
     }
 
     if (groupId.isPresent()) {
       Optional<RecipientId> groupRecipient = SignalDatabase.recipients().getByGroupId(groupId.get());
       if (groupRecipient.isPresent()) {
-        insertSentStoryMessage(message, Recipient.resolved(groupRecipient.get()), textStoryBody, attachments, message.getTimestamp(), storyType, linkPreviews);
+        insertSentStoryMessage(message, Recipient.resolved(groupRecipient.get()), textStoryBody, attachments, message.getTimestamp(), storyType, linkPreviews, bodyRanges);
       }
     }
 
@@ -2235,7 +2238,8 @@ public class MessageContentProcessor {
                                       @NonNull List<Attachment> pendingAttachments,
                                       long sentAtTimestamp,
                                       @NonNull StoryType storyType,
-                                      @NonNull List<LinkPreview> linkPreviews)
+                                      @NonNull List<LinkPreview> linkPreviews,
+                                      @Nullable BodyRangeList bodyRanges)
       throws MmsException
   {
     if (SignalDatabase.messages().isOutgoingStoryAlreadyInDatabase(recipient.getId(), sentAtTimestamp)) {
@@ -2262,7 +2266,7 @@ public class MessageContentProcessor {
                                                        Collections.emptySet(),
                                                        null,
                                                        true,
-                                                       null,
+                                                       bodyRanges,
                                                        -1);
 
     MessageTable messageTable = SignalDatabase.messages();
@@ -2335,6 +2339,7 @@ public class MessageContentProcessor {
     Optional<List<Mention>>     mentions        = getMentions(message.getDataMessage().get().getMentions());
     Optional<GiftBadge>         giftBadge       = getGiftBadge(message.getDataMessage().get().getGiftBadge());
     boolean                     viewOnce        = message.getDataMessage().get().isViewOnce();
+    BodyRangeList               bodyRanges      = getBodyRangeList(message.getDataMessage().get().getBodyRanges());
     List<Attachment>            syncAttachments = viewOnce ? Collections.singletonList(new TombstoneAttachment(MediaUtil.VIEW_ONCE, false))
                                                            : PointerAttachment.forPointers(message.getDataMessage().get().getAttachments());
 
@@ -2361,7 +2366,7 @@ public class MessageContentProcessor {
                                                        Collections.emptySet(),
                                                        giftBadge.orElse(null),
                                                        true,
-                                                       null,
+                                                       bodyRanges,
                                                        -1);
 
     if (recipients.getExpiresInSeconds() != message.getDataMessage().get().getExpiresInSeconds()) {
@@ -3182,7 +3187,7 @@ public class MessageContentProcessor {
   }
 
   private @Nullable BodyRangeList getBodyRangeList(Optional<List<SignalServiceProtos.BodyRange>> bodyRanges) {
-    if (!bodyRanges.isPresent()) {
+    if (bodyRanges.isEmpty()) {
       return null;
     }
 

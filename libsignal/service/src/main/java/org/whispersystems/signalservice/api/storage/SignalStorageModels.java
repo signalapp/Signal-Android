@@ -27,7 +27,7 @@ public final class SignalStorageModels {
       ids.add(StorageId.forType(id.getRaw().toByteArray(), id.getTypeValue()));
     }
 
-    return new SignalStorageManifest(manifestRecord.getVersion(), ids);
+    return new SignalStorageManifest(manifestRecord.getVersion(), manifestRecord.getSourceDevice(), ids);
   }
 
   public static SignalStorageRecord remoteToLocalStorageRecord(StorageItem item, int type, StorageKey storageKey) throws IOException, InvalidKeyException {

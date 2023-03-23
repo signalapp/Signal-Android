@@ -71,7 +71,7 @@ public class PaymentRecipientSelectionFragment extends LoggingFragment implement
   }
 
   @Override
-  public void onBeforeContactSelected(@NonNull Optional<RecipientId> recipientId, @Nullable String number, @NonNull Consumer<Boolean> callback) {
+  public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, @Nullable String number, @NonNull Consumer<Boolean> callback) {
     if (recipientId.isPresent()) {
       SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
                      () -> Recipient.resolved(recipientId.get()),

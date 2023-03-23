@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.mediasend.CompositeMediaTransform
@@ -30,16 +31,23 @@ import org.thoughtcrime.securesms.mediasend.MediaUploadRepository
 import org.thoughtcrime.securesms.mediasend.SentMediaQualityTransform
 import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
 import org.thoughtcrime.securesms.mediasend.VideoTrimTransform
+import org.thoughtcrime.securesms.mms.GifSlide
+import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.mms.Slide
+import org.thoughtcrime.securesms.mms.SlideDeck
+import org.thoughtcrime.securesms.mms.VideoSlide
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult
+import org.thoughtcrime.securesms.sms.MessageSender.SendType
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageUtil
 import java.util.Collections
 import java.util.Optional
@@ -113,8 +121,8 @@ class MediaSelectionRepository(context: Context) {
         StoryType.NONE
       }
 
-      if (isSms || MessageSender.isLocalSelfSend(context, singleRecipient, MessageSender.SendType.SIGNAL) || (scheduledTime != -1L && storyType == StoryType.NONE)) {
-        Log.i(TAG, "SMS, local self-send, or scheduled send. Skipping pre-upload.")
+      if (isSms || MessageSender.isLocalSelfSend(context, singleRecipient, SendType.SIGNAL)) {
+        Log.i(TAG, "SMS or local self-send. Skipping pre-upload.")
         emitter.onSuccess(
           MediaSendActivityResult(
             recipientId = singleRecipient!!.id,
@@ -128,6 +136,26 @@ class MediaSelectionRepository(context: Context) {
             scheduledTime = scheduledTime
           )
         )
+      } else if (scheduledTime != -1L && storyType == StoryType.NONE) {
+        Log.i(TAG, "Scheduled message. Skipping pre-upload.")
+        if (contacts.isEmpty()) {
+          emitter.onSuccess(
+            MediaSendActivityResult(
+              recipientId = singleRecipient!!.id,
+              nonUploadedMedia = updatedMedia,
+              body = trimmedBody,
+              messageSendType = sendType,
+              isViewOnce = isViewOnce,
+              mentions = trimmedMentions,
+              bodyRanges = trimmedBodyRanges,
+              storyType = StoryType.NONE,
+              scheduledTime = scheduledTime
+            )
+          )
+        } else {
+          scheduleMessages(sendType, contacts.map { it.recipientId }, trimmedBody, updatedMedia, trimmedMentions, trimmedBodyRanges, isViewOnce, scheduledTime)
+          emitter.onComplete()
+        }
       } else {
         val splitMessage = MessageUtil.getSplitMessage(context, trimmedBody, sendType.calculateCharacters(trimmedBody).maxPrimaryMessageSize)
         val splitBody = splitMessage.body
@@ -258,6 +286,57 @@ class MediaSelectionRepository(context: Context) {
     }
 
     return modelsToRender
+  }
+
+  @WorkerThread
+  private fun scheduleMessages(
+    sendType: MessageSendType,
+    recipientIds: List<RecipientId>,
+    body: String,
+    nonUploadedMedia: List<Media>,
+    mentions: List<Mention>,
+    bodyRanges: BodyRangeList?,
+    isViewOnce: Boolean,
+    scheduledDate: Long
+  ) {
+    val slideDeck = SlideDeck()
+    val context: Context = ApplicationDependencies.getApplication()
+
+    for (mediaItem in nonUploadedMedia) {
+      if (MediaUtil.isVideoType(mediaItem.mimeType)) {
+        slideDeck.addSlide(VideoSlide(context, mediaItem.uri, mediaItem.size, mediaItem.isVideoGif, mediaItem.width, mediaItem.height, mediaItem.caption.orElse(null), mediaItem.transformProperties.orElse(null)))
+      } else if (MediaUtil.isGif(mediaItem.mimeType)) {
+        slideDeck.addSlide(GifSlide(context, mediaItem.uri, mediaItem.size, mediaItem.width, mediaItem.height, mediaItem.isBorderless, mediaItem.caption.orElse(null)))
+      } else if (MediaUtil.isImageType(mediaItem.mimeType)) {
+        slideDeck.addSlide(ImageSlide(context, mediaItem.uri, mediaItem.mimeType, mediaItem.size, mediaItem.width, mediaItem.height, mediaItem.isBorderless, mediaItem.caption.orElse(null), null, mediaItem.transformProperties.orElse(null)))
+      } else {
+        Log.w(TAG, "Asked to send an unexpected mimeType: '" + mediaItem.mimeType + "'. Skipping.")
+      }
+    }
+    val splitMessage = MessageUtil.getSplitMessage(context, body, sendType.calculateCharacters(body).maxPrimaryMessageSize)
+    val splitBody = splitMessage.body
+    if (splitMessage.textSlide.isPresent) {
+      slideDeck.addSlide(splitMessage.textSlide.get())
+    }
+
+    for (recipientId in recipientIds) {
+      val recipient = Recipient.resolved(recipientId)
+      val thread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+
+      val outgoingMessage = OutgoingMessage(
+        recipient = recipient,
+        body = splitBody,
+        attachments = slideDeck.asAttachments(),
+        sentTimeMillis = System.currentTimeMillis(),
+        isViewOnce = isViewOnce,
+        mentions = mentions,
+        bodyRanges = bodyRanges,
+        isSecure = true,
+        scheduledDate = scheduledDate
+      )
+
+      MessageSender.send(context, outgoingMessage, thread, SendType.SIGNAL, null, null)
+    }
   }
 
   @WorkerThread
