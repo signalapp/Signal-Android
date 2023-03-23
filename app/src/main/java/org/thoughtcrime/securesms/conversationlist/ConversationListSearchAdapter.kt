@@ -69,7 +69,6 @@ class ConversationListSearchAdapter(
     private val noResults = itemView.findViewById<TextView>(R.id.search_no_results)
 
     override fun bind(model: EmptyModel) {
-      println("BIND")
       noResults.text = context.getString(R.string.SearchFragment_no_results, model.empty.query ?: "")
     }
   }

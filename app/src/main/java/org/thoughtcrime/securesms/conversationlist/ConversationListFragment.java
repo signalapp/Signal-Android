@@ -659,7 +659,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           ));
 
           builder.withEmptyState(emptyStateBuilder -> {
-            builder.addSection(ContactSearchConfiguration.Section.Empty.INSTANCE);
+            emptyStateBuilder.addSection(ContactSearchConfiguration.Section.Empty.INSTANCE);
             return Unit.INSTANCE;
           });
         } else {
