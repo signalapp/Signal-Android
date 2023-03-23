@@ -76,11 +76,8 @@ public class WebRtcCallView extends ConstraintLayout {
   public static final int CONTROLS_HEIGHT     = 98;
 
   private WebRtcAudioOutputToggleButton audioToggle;
-  private TextView                      audioToggleLabel;
   private AccessibleToggleButton        videoToggle;
-  private TextView                      videoToggleLabel;
   private AccessibleToggleButton        micToggle;
-  private TextView                      micToggleLabel;
   private ViewGroup                     smallLocalRenderFrame;
   private CallParticipantView           smallLocalRender;
   private View                          largeLocalRenderFrame;
@@ -96,14 +93,10 @@ public class WebRtcCallView extends ConstraintLayout {
   private RecipientId                   recipientId;
   private ImageView                     answer;
   private ImageView                     cameraDirectionToggle;
-  private TextView                      cameraDirectionToggleLabel;
   private AccessibleToggleButton        ringToggle;
-  private TextView                      ringToggleLabel;
   private PictureInPictureGestureHelper pictureInPictureGestureHelper;
   private ImageView                     hangup;
-  private TextView                      hangupLabel;
   private View                          answerWithoutVideo;
-  private View                          answerWithoutVideoLabel;
   private View                          topGradient;
   private View                          footerGradient;
   private View                          startCallControls;
@@ -166,11 +159,8 @@ public class WebRtcCallView extends ConstraintLayout {
     super.onFinishInflate();
 
     audioToggle                   = findViewById(R.id.call_screen_speaker_toggle);
-    audioToggleLabel              = findViewById(R.id.call_screen_speaker_toggle_label);
     videoToggle                   = findViewById(R.id.call_screen_video_toggle);
-    videoToggleLabel              = findViewById(R.id.call_screen_video_toggle_label);
     micToggle                     = findViewById(R.id.call_screen_audio_mic_toggle);
-    micToggleLabel                = findViewById(R.id.call_screen_audio_mic_toggle_label);
     smallLocalRenderFrame         = findViewById(R.id.call_screen_pip);
     smallLocalRender              = findViewById(R.id.call_screen_small_local_renderer);
     largeLocalRenderFrame         = findViewById(R.id.call_screen_large_local_renderer_frame);
@@ -184,13 +174,9 @@ public class WebRtcCallView extends ConstraintLayout {
     participantsParent            = findViewById(R.id.call_screen_participants_parent);
     answer                        = findViewById(R.id.call_screen_answer_call);
     cameraDirectionToggle         = findViewById(R.id.call_screen_camera_direction_toggle);
-    cameraDirectionToggleLabel    = findViewById(R.id.call_screen_camera_direction_toggle_label);
     ringToggle                    = findViewById(R.id.call_screen_audio_ring_toggle);
-    ringToggleLabel               = findViewById(R.id.call_screen_audio_ring_toggle_label);
     hangup                        = findViewById(R.id.call_screen_end_call);
-    hangupLabel                   = findViewById(R.id.call_screen_end_call_label);
     answerWithoutVideo            = findViewById(R.id.call_screen_answer_without_video);
-    answerWithoutVideoLabel       = findViewById(R.id.call_screen_answer_without_video_label);
     topGradient                   = findViewById(R.id.call_screen_header_gradient);
     footerGradient                = findViewById(R.id.call_screen_footer_gradient);
     startCallControls             = findViewById(R.id.call_screen_start_call_controls);
@@ -212,8 +198,6 @@ public class WebRtcCallView extends ConstraintLayout {
     fullScreenShade               = findViewById(R.id.call_screen_full_shade);
 
     View      decline                = findViewById(R.id.call_screen_decline_call);
-    View      answerLabel            = findViewById(R.id.call_screen_answer_call_label);
-    View      declineLabel           = findViewById(R.id.call_screen_decline_call_label);
 
     callParticipantsPager.setPageTransformer(new MarginPageTransformer(ViewUtil.dpToPx(4)));
 
@@ -238,9 +222,7 @@ public class WebRtcCallView extends ConstraintLayout {
     topViews.add(topGradient);
 
     incomingCallViews.add(answer);
-    incomingCallViews.add(answerLabel);
     incomingCallViews.add(decline);
-    incomingCallViews.add(declineLabel);
     incomingCallViews.add(footerGradient);
     incomingCallViews.add(incomingRingStatus);
 
@@ -639,7 +621,6 @@ public class WebRtcCallView extends ConstraintLayout {
 
     if (webRtcControls.displayAnswerWithoutVideo()) {
       visibleViewSet.add(answerWithoutVideo);
-      visibleViewSet.add(answerWithoutVideoLabel);
 
       answer.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.webrtc_call_screen_answer_with_video));
     }
@@ -650,7 +631,6 @@ public class WebRtcCallView extends ConstraintLayout {
 
     if (webRtcControls.displayAudioToggle()) {
       visibleViewSet.add(audioToggle);
-      visibleViewSet.add(audioToggleLabel);
 
       audioToggle.setControlAvailability(webRtcControls.enableHandsetInAudioToggle(),
                                          webRtcControls.enableHeadsetInAudioToggle());
@@ -660,23 +640,19 @@ public class WebRtcCallView extends ConstraintLayout {
 
     if (webRtcControls.displayCameraToggle()) {
       visibleViewSet.add(cameraDirectionToggle);
-      visibleViewSet.add(cameraDirectionToggleLabel);
     }
 
     if (webRtcControls.displayEndCall()) {
       visibleViewSet.add(hangup);
-      visibleViewSet.add(hangupLabel);
       visibleViewSet.add(footerGradient);
     }
 
     if (webRtcControls.displayMuteAudio()) {
       visibleViewSet.add(micToggle);
-      visibleViewSet.add(micToggleLabel);
     }
 
     if (webRtcControls.displayVideoToggle()) {
       visibleViewSet.add(videoToggle);
-      visibleViewSet.add(videoToggleLabel);
     }
 
     if (webRtcControls.displaySmallOngoingCallButtons()) {
@@ -701,8 +677,8 @@ public class WebRtcCallView extends ConstraintLayout {
 
     if (webRtcControls.displayRingToggle()) {
       visibleViewSet.add(ringToggle);
-      visibleViewSet.add(ringToggleLabel);
     }
+
 
     if (webRtcControls.isFadeOutEnabled()) {
       if (!controls.isFadeOutEnabled()) {

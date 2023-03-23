@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
+import org.thoughtcrime.securesms.components.webrtc.CallStateUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallToastPopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput;
@@ -112,6 +113,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   public static final String EXTRA_STARTED_FROM_FULLSCREEN   = WebRtcCallActivity.class.getCanonicalName() + ".STARTED_FROM_FULLSCREEN";
 
   private CallParticipantsListUpdatePopupWindow participantUpdateWindow;
+  private CallStateUpdatePopupWindow            callStateUpdatePopupWindow;
   private WifiToCellularPopupWindow             wifiToCellularPopupWindow;
   private DeviceOrientationMonitor              deviceOrientationMonitor;
 
@@ -312,8 +314,9 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     callScreen = findViewById(R.id.callScreen);
     callScreen.setControlsListener(new ControlsListener());
 
-    participantUpdateWindow   = new CallParticipantsListUpdatePopupWindow(callScreen);
-    wifiToCellularPopupWindow = new WifiToCellularPopupWindow(callScreen);
+    participantUpdateWindow    = new CallParticipantsListUpdatePopupWindow(callScreen);
+    callStateUpdatePopupWindow = new CallStateUpdatePopupWindow(callScreen);
+    wifiToCellularPopupWindow  = new WifiToCellularPopupWindow(callScreen);
   }
 
   private void initializeViewModel(boolean isLandscapeEnabled) {
@@ -356,6 +359,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     addOnPictureInPictureModeChangedListener(info -> {
       viewModel.setIsInPipMode(info.isInPictureInPictureMode());
       participantUpdateWindow.setEnabled(!info.isInPictureInPictureMode());
+      callStateUpdatePopupWindow.setEnabled(!info.isInPictureInPictureMode());
     });
   }
 
@@ -800,6 +804,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     @Override
     public void onMicChanged(boolean isMicEnabled) {
+      callStateUpdatePopupWindow.onCallStateUpdate(isMicEnabled ? CallStateUpdatePopupWindow.CallStateUpdate.MIC_ON
+                                                                : CallStateUpdatePopupWindow.CallStateUpdate.MIC_OFF);
       handleSetMuteAudio(!isMicEnabled);
     }
 
@@ -851,9 +857,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     public void onRingGroupChanged(boolean ringGroup, boolean ringingAllowed) {
       if (ringingAllowed) {
         ApplicationDependencies.getSignalCallManager().setRingGroup(ringGroup);
+        callStateUpdatePopupWindow.onCallStateUpdate(ringGroup ? CallStateUpdatePopupWindow.CallStateUpdate.RINGING_ON
+                                                               : CallStateUpdatePopupWindow.CallStateUpdate.RINGING_OFF);
       } else {
         ApplicationDependencies.getSignalCallManager().setRingGroup(false);
-        Toast.makeText(WebRtcCallActivity.this, R.string.WebRtcCallActivity__group_is_too_large_to_ring_the_participants, Toast.LENGTH_SHORT).show();
+        callStateUpdatePopupWindow.onCallStateUpdate(CallStateUpdatePopupWindow.CallStateUpdate.RINGING_DISABLED);
       }
     }
   }

@@ -17,30 +17,19 @@
         android:background="@drawable/call_participant_update_window_background"
         android:elevation="4dp">
 
-        <org.thoughtcrime.securesms.components.AvatarImageView
-            android:id="@+id/avatar"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginVertical="8dp"
-            android:layout_marginStart="8dp"
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="24dp"
+            android:importantForAccessibility="no"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:background="@drawable/circle_ultramarine"
             tools:src="@drawable/ic_profile_80"
-            tools:visibility="visible" />
-
-        <org.thoughtcrime.securesms.badges.BadgeImageView
-            android:id="@+id/badge"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:contentDescription="@string/ImageView__badge"
-            app:badge_size="small"
-            app:layout_constraintStart_toStartOf="@id/avatar"
-            app:layout_constraintTop_toTopOf="@id/avatar"
             tools:visibility="visible" />
 
         <TextView
@@ -58,7 +47,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@id/avatar"
+            app:layout_constraintStart_toEndOf="@id/icon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
             app:layout_goneMarginStart="24dp"
