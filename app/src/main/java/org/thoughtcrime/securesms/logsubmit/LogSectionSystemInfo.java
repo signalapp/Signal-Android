@@ -181,9 +181,9 @@ public class LogSectionSystemInfo implements LogSection {
 
     if (aci != null) {
       String aciString = aci.toString();
-      String lastTwo   = aciString.substring(aciString.length() - 2);
+      String lastThree = aciString.substring(aciString.length() - 3);
 
-      return "********-****-****-****-**********" + lastTwo;
+      return "********-****-****-****-*********" + lastThree;
     } else {
       return "N/A";
     }
