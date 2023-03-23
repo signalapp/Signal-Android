@@ -1,6 +1,7 @@
 package org.signal.core.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import org.signal.core.ui.theme.SignalTheme
 
 object Rows {
@@ -28,7 +30,8 @@ object Rows {
   fun RadioRow(
     selected: Boolean,
     text: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    label: String? = null
   ) {
     Row(
       modifier = modifier
@@ -45,10 +48,21 @@ object Rows {
         modifier = Modifier.padding(end = 24.dp)
       )
 
-      Text(
-        text = text,
-        style = MaterialTheme.typography.bodyLarge
-      )
+      Column {
+        Text(
+          text = text,
+          style = MaterialTheme.typography.bodyLarge
+        )
+
+        if (label != null) {
+          Text(
+            text = label,
+            fontSize = 14.sp,
+            lineHeight = 20.sp,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+          )
+        }
+      }
     }
   }
 }
@@ -62,6 +76,7 @@ private fun RadioRowPreview() {
     Rows.RadioRow(
       selected,
       "RadioRow",
+      label = "RadioRow Label",
       modifier = Modifier.clickable {
         selected = !selected
       }

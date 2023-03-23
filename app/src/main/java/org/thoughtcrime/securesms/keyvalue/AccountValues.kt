@@ -25,8 +25,8 @@ import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceIds
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import java.lang.IllegalStateException
 import java.security.SecureRandom
+import kotlin.time.Duration.Companion.days
 
 internal class AccountValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
@@ -57,6 +57,12 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     private const val KEY_PNI_ACTIVE_SIGNED_PREKEY_ID = "account.pni_active_signed_prekey_id"
     private const val KEY_PNI_SIGNED_PREKEY_FAILURE_COUNT = "account.pni_signed_prekey_failure_count"
     private const val KEY_PNI_NEXT_ONE_TIME_PREKEY_ID = "account.pni_next_one_time_prekey_id"
+
+    @VisibleForTesting
+    const val KEY_ACCOUNT_DATA_REPORT = "account.data_report"
+
+    @VisibleForTesting
+    const val KEY_ACCOUNT_DATA_REPORT_DOWNLOAD_TIME = "account.data_report_download_time"
 
     @VisibleForTesting
     const val KEY_E164 = "account.e164"
@@ -316,6 +322,34 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     if (previous && !registered) {
       clearLocalCredentials()
     }
+  }
+
+  val accountDataReport: String?
+    get() = getString(KEY_ACCOUNT_DATA_REPORT, null)
+
+  fun setAccountDataReport(report: String, downloadTime: Long) {
+    store.beginWrite()
+      .putString(KEY_ACCOUNT_DATA_REPORT, report)
+      .putLong(KEY_ACCOUNT_DATA_REPORT_DOWNLOAD_TIME, downloadTime)
+      .apply()
+  }
+
+  fun hasAccountDataReport(): Boolean = store.containsKey(KEY_ACCOUNT_DATA_REPORT)
+
+  fun clearOldAccountDataReport(): Boolean {
+    return if (hasAccountDataReport() && (getLong(KEY_ACCOUNT_DATA_REPORT_DOWNLOAD_TIME, 0) + 30.days.inWholeMilliseconds) < System.currentTimeMillis()) {
+      deleteAccountDataReport()
+      true
+    } else {
+      false
+    }
+  }
+
+  fun deleteAccountDataReport() {
+    store.beginWrite()
+      .remove(KEY_ACCOUNT_DATA_REPORT)
+      .remove(KEY_ACCOUNT_DATA_REPORT_DOWNLOAD_TIME)
+      .apply()
   }
 
   val deviceName: String?

@@ -620,6 +620,9 @@ public class SignalServiceAccountManager {
     return out;
   }
 
+  public String getAccountDataReport() throws IOException {
+    return pushServiceSocket.getAccountDataReport();
+  }
 
   public String getNewDeviceVerificationCode() throws IOException {
     return this.pushServiceSocket.getNewDeviceVerificationCode();

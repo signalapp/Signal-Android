@@ -492,6 +492,9 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   private void initializeCleanup() {
     int deleted = SignalDatabase.attachments().deleteAbandonedPreuploadedAttachments();
     Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
+    if (SignalStore.account().clearOldAccountDataReport()) {
+      Log.i(TAG, "Deleted " + deleted + " expired account data report.");
+    }
   }
 
   private void initializeGlideCodecs() {

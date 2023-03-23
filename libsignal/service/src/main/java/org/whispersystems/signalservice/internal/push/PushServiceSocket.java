@@ -213,6 +213,7 @@ public class PushServiceSocket {
   private static final String DELETE_ACCOUNT_PATH        = "/v1/accounts/me";
   private static final String CHANGE_NUMBER_PATH         = "/v2/accounts/number";
   private static final String IDENTIFIER_REGISTERED_PATH = "/v1/accounts/account/%s";
+  private static final String REQUEST_ACCOUNT_DATA_PATH  = "/v2/accounts/data_report";
 
   private static final String PREKEY_METADATA_PATH      = "/v2/keys?identity=%s";
   private static final String PREKEY_PATH               = "/v2/keys/%s?identity=%s";
@@ -416,6 +417,10 @@ public class PushServiceSocket {
     } catch (NotFoundException e) {
       return false;
     }
+  }
+
+  public String getAccountDataReport() throws IOException {
+    return makeServiceRequest(REQUEST_ACCOUNT_DATA_PATH, "GET", null);
   }
 
   public CdsiAuthResponse getCdsiAuth() throws IOException {
