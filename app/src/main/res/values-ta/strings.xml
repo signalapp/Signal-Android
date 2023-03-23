@@ -481,15 +481,15 @@
         <item quantity="other">%1$d உரையாடல்கள் இன்பாக்ஸுக்கு நகர்த்தப்பட்டது</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">படித்தது</item>
-        <item quantity="other">படித்தவை</item>
+        <item quantity="one">படித்ததாகக் குறி</item>
+        <item quantity="other">படித்ததாகக் குறி</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">படிக்காதது</item>
-        <item quantity="other">படிக்காதவை</item>
+        <item quantity="one">படிக்காததாகக் குறி</item>
+        <item quantity="other">படிக்காததாகக் குறி</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">பின்</item>
+        <item quantity="one">பின்செய்</item>
         <item quantity="other">பின்கள்</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
@@ -502,7 +502,7 @@
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
         <item quantity="one">ஒலி இயக்கு</item>
-        <item quantity="other">ஒலிகளை இயக்கு</item>
+        <item quantity="other">ஒலி இயக்கு</item>
     </plurals>
     <string name="ConversationListFragment_select">தேர்ந்தெடு</string>
     <plurals name="ConversationListFragment_archive_plural">
