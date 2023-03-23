@@ -3,7 +3,7 @@
     <item android:drawable="@drawable/webrtc_call_screen_circle_grey_selector" />
     <item
         android:bottom="14dp"
-        android:drawable="@drawable/ic_video_off_solid_white_28"
+        android:drawable="@drawable/symbol_video_slash_fill_24"
         android:left="14dp"
         android:right="14dp"
         android:top="14dp" />

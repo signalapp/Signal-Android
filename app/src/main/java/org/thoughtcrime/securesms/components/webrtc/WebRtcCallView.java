@@ -92,6 +92,7 @@ public class WebRtcCallView extends ConstraintLayout {
   private ControlsListener              controlsListener;
   private RecipientId                   recipientId;
   private ImageView                     answer;
+  private TextView                      answerWithoutVideoLabel;
   private ImageView                     cameraDirectionToggle;
   private AccessibleToggleButton        ringToggle;
   private PictureInPictureGestureHelper pictureInPictureGestureHelper;
@@ -173,6 +174,7 @@ public class WebRtcCallView extends ConstraintLayout {
     parent                        = findViewById(R.id.call_screen);
     participantsParent            = findViewById(R.id.call_screen_participants_parent);
     answer                        = findViewById(R.id.call_screen_answer_call);
+    answerWithoutVideoLabel       = findViewById(R.id.call_screen_answer_without_video_label);
     cameraDirectionToggle         = findViewById(R.id.call_screen_camera_direction_toggle);
     ringToggle                    = findViewById(R.id.call_screen_audio_ring_toggle);
     hangup                        = findViewById(R.id.call_screen_end_call);
@@ -198,6 +200,8 @@ public class WebRtcCallView extends ConstraintLayout {
     fullScreenShade               = findViewById(R.id.call_screen_full_shade);
 
     View      decline                = findViewById(R.id.call_screen_decline_call);
+    View      answerLabel            = findViewById(R.id.call_screen_answer_call_label);
+    View      declineLabel           = findViewById(R.id.call_screen_decline_call_label);
 
     callParticipantsPager.setPageTransformer(new MarginPageTransformer(ViewUtil.dpToPx(4)));
 
@@ -222,7 +226,9 @@ public class WebRtcCallView extends ConstraintLayout {
     topViews.add(topGradient);
 
     incomingCallViews.add(answer);
+    incomingCallViews.add(answerLabel);
     incomingCallViews.add(decline);
+    incomingCallViews.add(declineLabel);
     incomingCallViews.add(footerGradient);
     incomingCallViews.add(incomingRingStatus);
 
@@ -621,6 +627,7 @@ public class WebRtcCallView extends ConstraintLayout {
 
     if (webRtcControls.displayAnswerWithoutVideo()) {
       visibleViewSet.add(answerWithoutVideo);
+      visibleViewSet.add(answerWithoutVideoLabel);
 
       answer.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.webrtc_call_screen_answer_with_video));
     }
