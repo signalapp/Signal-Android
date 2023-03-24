@@ -129,6 +129,7 @@ public class LongMessageFragment extends FullScreenDialogFragment {
       SpannableString styledBody  = linkifyMessageBody(new SpannableString(trimmedBody));
 
       bubble.setVisibility(View.VISIBLE);
+      text.enableSpoilerFiltering();
       text.setText(styledBody);
       text.setMovementMethod(LinkMovementMethod.getInstance());
       text.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().getMessageFontSize());

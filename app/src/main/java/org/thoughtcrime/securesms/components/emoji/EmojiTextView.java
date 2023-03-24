@@ -8,6 +8,7 @@ import android.os.Build;
 import android.text.Annotation;
 import android.text.Layout;
 import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextDirectionHeuristic;
@@ -315,12 +316,19 @@ public class EmojiTextView extends AppCompatTextView {
     if (maxLength > 0 && getText().length() > maxLength + 1) {
       SpannableStringBuilder newContent = new SpannableStringBuilder();
 
-      CharSequence shortenedText = getText().subSequence(0, maxLength);
-      if (shortenedText instanceof Spanned) {
-        Spanned          spanned            = (Spanned) shortenedText;
-        List<Annotation> mentionAnnotations = MentionAnnotation.getMentionAnnotations(spanned, maxLength - 1, maxLength);
-        if (!mentionAnnotations.isEmpty()) {
-          shortenedText = shortenedText.subSequence(0, spanned.getSpanStart(mentionAnnotations.get(0)));
+      SpannableString shortenedText = new SpannableString(getText().subSequence(0, maxLength));
+      List<Annotation> mentionAnnotations = MentionAnnotation.getMentionAnnotations(shortenedText, maxLength - 1, maxLength);
+      if (!mentionAnnotations.isEmpty()) {
+        shortenedText = new SpannableString(shortenedText.subSequence(0, shortenedText.getSpanStart(mentionAnnotations.get(0))));
+      }
+
+      Object[] endSpans = shortenedText.getSpans(shortenedText.length() - 1, shortenedText.length(), Object.class);
+      for (Object span : endSpans) {
+        if (shortenedText.getSpanFlags(span) == Spanned.SPAN_EXCLUSIVE_INCLUSIVE) {
+          int start = shortenedText.getSpanStart(span);
+          int end   = shortenedText.getSpanEnd(span);
+          shortenedText.removeSpan(span);
+          shortenedText.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
       }
 
@@ -330,12 +338,18 @@ public class EmojiTextView extends AppCompatTextView {
 
       EmojiParser.CandidateList newCandidates = isInEditMode() ? null : EmojiProvider.getCandidates(newContent);
 
+      Spannable newTextToSet;
       if (useSystemEmoji || newCandidates == null || newCandidates.size() == 0) {
-        super.setText(newContent, BufferType.SPANNABLE);
+        newTextToSet = newContent;
       } else {
-        CharSequence emojified = EmojiProvider.emojify(newCandidates, newContent, this, isJumbomoji || forceJumboEmoji);
-        super.setText(emojified, BufferType.SPANNABLE);
+        newTextToSet = EmojiProvider.emojify(newCandidates, newContent, this, isJumbomoji || forceJumboEmoji);
       }
+
+      if (spoilerFilteringSpannableFactory != null) {
+        spoilerFilteringSpannableFactory.wrap(newTextToSet);
+      }
+
+      super.setText(newContent, BufferType.SPANNABLE);
     }
   }
 

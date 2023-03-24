@@ -44,8 +44,8 @@ object MessageStyler {
   }
 
   @JvmStatic
-  fun spoilerStyle(id: Any, start: Int, length: Int, body: Spannable? = null): Annotation {
-    return SpoilerAnnotation.spoilerAnnotation(arrayOf(id, start, length, body?.toString()).contentHashCode())
+  fun spoilerStyle(id: Any, start: Int, length: Int): Annotation {
+    return SpoilerAnnotation.spoilerAnnotation(arrayOf(id, start, length).contentHashCode())
   }
 
   @JvmStatic
@@ -61,8 +61,11 @@ object MessageStyler {
 
     messageRanges
       .rangesList
-      .filter { r -> r.start >= 0 && r.start < span.length && r.start + r.length >= 0 && r.start + r.length <= span.length }
+      .filter { r -> r.start >= 0 && r.start < span.length && r.start + r.length >= 0 }
       .forEach { range ->
+        val start = range.start
+        val end = (range.start + range.length).coerceAtMost(span.length)
+
         if (range.hasStyle()) {
           val styleSpan: Any? = when (range.style) {
             BodyRangeList.BodyRange.Style.BOLD -> boldStyle()
@@ -70,9 +73,9 @@ object MessageStyler {
             BodyRangeList.BodyRange.Style.STRIKETHROUGH -> strikethroughStyle()
             BodyRangeList.BodyRange.Style.MONOSPACE -> monoStyle()
             BodyRangeList.BodyRange.Style.SPOILER -> {
-              val spoiler = spoilerStyle(id, range.start, range.length, span)
+              val spoiler = spoilerStyle(id, range.start, range.length)
               if (hideSpoilerText) {
-                span.setSpan(SpoilerAnnotation.SpoilerClickableSpan(spoiler), range.start, range.start + range.length, SPAN_FLAGS)
+                span.setSpan(SpoilerAnnotation.SpoilerClickableSpan(spoiler), start, end, SPAN_FLAGS)
               }
               spoiler
             }
@@ -80,11 +83,11 @@ object MessageStyler {
           }
 
           if (styleSpan != null) {
-            span.setSpan(styleSpan, range.start, range.start + range.length, SPAN_FLAGS)
+            span.setSpan(styleSpan, start, end, SPAN_FLAGS)
             appliedStyle = true
           }
         } else if (range.hasLink() && range.link != null) {
-          span.setSpan(PlaceholderURLSpan(range.link), range.start, range.start + range.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+          span.setSpan(PlaceholderURLSpan(range.link), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
           hasLinks = true
         } else if (range.hasButton() && range.button != null) {
           bottomButton = range.button
