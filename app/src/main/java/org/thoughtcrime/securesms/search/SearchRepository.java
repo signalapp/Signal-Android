@@ -321,7 +321,7 @@ public class SearchRepository {
       BodyRangeList.Builder builder = BodyRangeList.newBuilder();
       for (BodyRangeList.BodyRange range : bodyRanges.getRangesList()) {
         int adjustedStart = range.getStart() - startIndex + startOffset;
-        if (adjustedStart >= 0 && adjustedStart + range.getLength() <= cleanSnippet.length()) {
+        if (adjustedStart >= 0 && adjustedStart + range.getLength() <= bodySnippet.length()) {
           builder.addRanges(range.toBuilder().setStart(adjustedStart).build());
         }
       }

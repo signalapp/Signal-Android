@@ -70,12 +70,12 @@ public class SearchUtil {
         throw new InvalidParameterException("match mode must be STRICT or MATCH_ALL: " + matchMode);
     }
 
-    CharacterStyle[] styles = styleFactory.createStyles();
     for (Pair<Integer, Integer> range : ranges) {
+      CharacterStyle[] styles = styleFactory.createStyles();
       for (CharacterStyle style : styles) {
         List<Annotation> annotations = SpoilerAnnotation.getSpoilerAnnotations(spanned, range.first(), range.second());
         if (annotations.isEmpty()) {
-          spanned.setSpan(style, range.first(), range.second(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+          spanned.setSpan(style, range.first(), range.second(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
       }
     }
