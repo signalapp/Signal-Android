@@ -256,11 +256,11 @@ public class SearchRepository {
 
         if (ranges != null) {
           updatedBody = SpannableString.valueOf(updatedBody);
-          MessageStyler.style(result.getMessageId(), BodyRangeUtil.adjustBodyRanges(ranges, bodyAdjustments), (Spannable) updatedBody);
+          MessageStyler.style(result.getReceivedTimestampMs(), BodyRangeUtil.adjustBodyRanges(ranges, bodyAdjustments), (Spannable) updatedBody);
 
           updatedSnippet = SpannableString.valueOf(updatedSnippet);
           //noinspection ConstantConditions
-          updateSnippetWithStyles(result.getMessageId(), updatedBody, (SpannableString) updatedSnippet, BodyRangeUtil.adjustBodyRanges(ranges, snippetAdjustments));
+          updateSnippetWithStyles(result.getReceivedTimestampMs(), updatedBody, (SpannableString) updatedSnippet, BodyRangeUtil.adjustBodyRanges(ranges, snippetAdjustments));
         }
 
         updatedResults.add(new MessageResult(result.getConversationRecipient(), result.getMessageRecipient(), updatedBody, updatedSnippet, result.getThreadId(), result.getMessageId(), result.getReceivedTimestampMs(), result.isMms()));
@@ -361,7 +361,7 @@ public class SearchRepository {
           SpannableString body = new SpannableString(record.getBody());
 
           if (bodyRanges != null) {
-            MessageStyler.style(record.getId(), bodyRanges, body);
+            MessageStyler.style(record.getDateSent(), bodyRanges, body);
           }
 
           CharSequence updatedBody    = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, body, mentions).getBody();

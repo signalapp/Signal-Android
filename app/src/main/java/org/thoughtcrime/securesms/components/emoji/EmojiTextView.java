@@ -94,7 +94,7 @@ public class EmojiTextView extends AppCompatTextView {
     forceJumboEmoji = a.getBoolean(R.styleable.EmojiTextView_emoji_forceJumbo, false);
     a.recycle();
 
-    a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.textSize});
+    a                = context.obtainStyledAttributes(attrs, new int[] { android.R.attr.textSize });
     originalFontSize = a.getDimensionPixelSize(0, 0);
     a.recycle();
 
@@ -116,20 +116,34 @@ public class EmojiTextView extends AppCompatTextView {
   @Override
   protected void onDraw(Canvas canvas) {
     isInOnDraw = true;
-    if (getText() instanceof Spanned && getLayout() != null) {
-      int checkpoint = canvas.save();
-      canvas.translate(getTotalPaddingLeft(), getTotalPaddingTop());
-      try {
-        if (renderMentions) {
-          mentionRendererDelegate.draw(canvas, (Spanned) getText(), getLayout());
-        }
-        spoilerRendererDelegate.draw(canvas, (Spanned) getText(), getLayout());
-      } finally {
-        canvas.restoreToCount(checkpoint);
-      }
+
+    boolean hasSpannedText = getText() instanceof Spanned;
+    boolean hasLayout      = getLayout() != null;
+
+    if (hasSpannedText && hasLayout) {
+      drawSpecialRenderers(canvas, mentionRendererDelegate, spoilerRendererDelegate);
     }
+
     super.onDraw(canvas);
+
+    if (hasSpannedText && !hasLayout && getLayout() != null) {
+      drawSpecialRenderers(canvas, null, spoilerRendererDelegate);
+    }
+
     isInOnDraw = false;
+  }
+
+  private void drawSpecialRenderers(@NonNull Canvas canvas, @Nullable MentionRendererDelegate mentionDelegate, @NonNull SpoilerRendererDelegate spoilerDelegate) {
+    int checkpoint = canvas.save();
+    canvas.translate(getTotalPaddingLeft(), getTotalPaddingTop());
+    try {
+      if (mentionDelegate != null) {
+        mentionDelegate.draw(canvas, (Spanned) getText(), getLayout());
+      }
+      spoilerDelegate.draw(canvas, (Spanned) getText(), getLayout());
+    } finally {
+      canvas.restoreToCount(checkpoint);
+    }
   }
 
   @Override
@@ -214,7 +228,8 @@ public class EmojiTextView extends AppCompatTextView {
       int start = layout.getLineStart(lines - 1);
 
       if ((getLayoutDirection() == LAYOUT_DIRECTION_LTR && textDirection.isRtl(text, 0, text.length())) ||
-          (getLayoutDirection() == LAYOUT_DIRECTION_RTL && !textDirection.isRtl(text, 0, text.length()))) {
+          (getLayoutDirection() == LAYOUT_DIRECTION_RTL && !textDirection.isRtl(text, 0, text.length())))
+      {
         lastLineWidth = getMeasuredWidth();
       } else {
         lastLineWidth = (int) getPaint().measureText(text, start, text.length());
@@ -340,10 +355,10 @@ public class EmojiTextView extends AppCompatTextView {
           return;
         }
 
-        int          overflowEnd   = getLayout().getLineEnd(maxLines - 1);
-        CharSequence overflow      = getText().subSequence(overflowStart, overflowEnd);
-        float        adjust        = overflowText != null ? getPaint().measureText(overflowText, 0, overflowText.length()) : 0f;
-        CharSequence ellipsized    = StringUtil.trim(TextUtils.ellipsize(overflow, getPaint(), getWidth() - adjust, TextUtils.TruncateAt.END));
+        int          overflowEnd = getLayout().getLineEnd(maxLines - 1);
+        CharSequence overflow    = getText().subSequence(overflowStart, overflowEnd);
+        float        adjust      = overflowText != null ? getPaint().measureText(overflowText, 0, overflowText.length()) : 0f;
+        CharSequence ellipsized  = StringUtil.trim(TextUtils.ellipsize(overflow, getPaint(), getWidth() - adjust, TextUtils.TruncateAt.END));
 
         SpannableStringBuilder newContent = new SpannableStringBuilder();
         newContent.append(getText().subSequence(0, overflowStart))
@@ -374,16 +389,16 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   private boolean unchanged(CharSequence text, CharSequence overflowText, BufferType bufferType) {
-    return Util.equals(previousText, text)                 &&
+    return Util.equals(previousText, text) &&
            Util.equals(previousOverflowText, overflowText) &&
-           Util.equals(previousBufferType, bufferType)     &&
-           useSystemEmoji == useSystemEmoji()              &&
-           !sizeChangeInProgress                           &&
+           Util.equals(previousBufferType, bufferType) &&
+           useSystemEmoji == useSystemEmoji() &&
+           !sizeChangeInProgress &&
            previousTransformationMethod == getTransformationMethod();
   }
 
   private boolean useSystemEmoji() {
-   return isInEditMode() || (!forceCustom && SignalStore.settings().isPreferSystemEmoji());
+    return isInEditMode() || (!forceCustom && SignalStore.settings().isPreferSystemEmoji());
   }
 
   @Override
@@ -400,7 +415,7 @@ public class EmojiTextView extends AppCompatTextView {
   @Override
   public void invalidateDrawable(@NonNull Drawable drawable) {
     if (drawable instanceof EmojiProvider.EmojiDrawable) invalidate();
-    else                                                 super.invalidateDrawable(drawable);
+    else super.invalidateDrawable(drawable);
   }
 
   @Override
