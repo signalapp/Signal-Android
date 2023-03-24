@@ -22,27 +22,23 @@ object SpoilerAnnotation {
   }
 
   @JvmStatic
-  fun isSpoilerAnnotation(annotation: Annotation): Boolean {
-    return SPOILER_ANNOTATION == annotation.key
+  fun isSpoilerAnnotation(annotation: Any): Boolean {
+    return SPOILER_ANNOTATION == (annotation as? Annotation)?.key
   }
 
-  @JvmStatic
-  fun getSpoilerAnnotations(spanned: Spanned): List<Annotation> {
-    val spoilerAnnotations: Map<Pair<Int, Int>, Annotation> = spanned.getSpans(0, spanned.length, Annotation::class.java)
+  fun getSpoilerAndClickAnnotations(spanned: Spanned, start: Int = 0, end: Int = spanned.length): Map<Annotation, SpoilerClickableSpan?> {
+    val spoilerAnnotations: Map<Pair<Int, Int>, Annotation> = spanned.getSpans(start, end, Annotation::class.java)
       .filter { isSpoilerAnnotation(it) }
       .associateBy { (spanned.getSpanStart(it) to spanned.getSpanEnd(it)) }
 
-    val spoilerClickSpans: Map<Pair<Int, Int>, SpoilerClickableSpan> = spanned.getSpans(0, spanned.length, SpoilerClickableSpan::class.java)
+    val spoilerClickSpans: Map<Pair<Int, Int>, SpoilerClickableSpan> = spanned.getSpans(start, end, SpoilerClickableSpan::class.java)
       .associateBy { (spanned.getSpanStart(it) to spanned.getSpanEnd(it)) }
 
-    return spoilerAnnotations.mapNotNull { (position, annotation) ->
-      if (spoilerClickSpans[position]?.spoilerRevealed != true && !revealedSpoilers.contains(annotation.value)) {
-        annotation
-      } else {
-        revealedSpoilers.add(annotation.value)
-        null
+    return spoilerAnnotations
+      .map { (position, annotation) ->
+        annotation to spoilerClickSpans[position]
       }
-    }
+      .toMap()
   }
 
   @JvmStatic
@@ -57,18 +53,12 @@ object SpoilerAnnotation {
     revealedSpoilers.clear()
   }
 
-  class SpoilerClickableSpan(spoiler: Annotation) : ClickableSpan() {
-    private val spoiler: Annotation
-    var spoilerRevealed = false
-      private set
-
-    init {
-      this.spoiler = spoiler
-      spoilerRevealed = revealedSpoilers.contains(spoiler.value)
-    }
+  class SpoilerClickableSpan(private val spoiler: Annotation) : ClickableSpan() {
+    val spoilerRevealed
+      get() = revealedSpoilers.contains(spoiler.value)
 
     override fun onClick(widget: View) {
-      spoilerRevealed = true
+      revealedSpoilers.add(spoiler.value)
     }
 
     override fun updateDrawState(ds: TextPaint) {

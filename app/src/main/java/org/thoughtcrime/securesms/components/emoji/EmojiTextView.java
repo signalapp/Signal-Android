@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Annotation;
 import android.text.Layout;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextDirectionHeuristic;
@@ -26,7 +27,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewKt;
 import androidx.core.widget.TextViewCompat;
 
-import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
 import org.thoughtcrime.securesms.components.spoiler.SpoilerRendererDelegate;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.util.SpoilerFilteringSpannable;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Arrays;
@@ -67,9 +68,11 @@ public class EmojiTextView extends AppCompatTextView {
   private TextDirectionHeuristic textDirection;
   private boolean                isJumbomoji;
   private boolean                forceJumboEmoji;
+  private boolean                isInOnDraw;
 
-  private       MentionRendererDelegate mentionRendererDelegate;
-  private final SpoilerRendererDelegate spoilerRendererDelegate;
+  private       MentionRendererDelegate          mentionRendererDelegate;
+  private final SpoilerRendererDelegate          spoilerRendererDelegate;
+  private       SpoilerFilteringSpannableFactory spoilerFilteringSpannableFactory;
 
   public EmojiTextView(Context context) {
     this(context, null);
@@ -105,8 +108,14 @@ public class EmojiTextView extends AppCompatTextView {
     setEmojiCompatEnabled(useSystemEmoji());
   }
 
+  public void enableSpoilerFiltering() {
+    spoilerFilteringSpannableFactory = new SpoilerFilteringSpannableFactory();
+    setSpannableFactory(spoilerFilteringSpannableFactory);
+  }
+
   @Override
   protected void onDraw(Canvas canvas) {
+    isInOnDraw = true;
     if (getText() instanceof Spanned && getLayout() != null) {
       int checkpoint = canvas.save();
       canvas.translate(getTotalPaddingLeft(), getTotalPaddingTop());
@@ -120,6 +129,7 @@ public class EmojiTextView extends AppCompatTextView {
       }
     }
     super.onDraw(canvas);
+    isInOnDraw = false;
   }
 
   @Override
@@ -151,12 +161,17 @@ public class EmojiTextView extends AppCompatTextView {
     useSystemEmoji               = useSystemEmoji();
     previousTransformationMethod = getTransformationMethod();
 
+    Spannable textToSet;
     if (useSystemEmoji || candidates == null || candidates.size() == 0) {
-      super.setText(new SpannableStringBuilder(Optional.ofNullable(text).orElse("")), BufferType.SPANNABLE);
+      textToSet = new SpannableStringBuilder(Optional.ofNullable(text).orElse(""));
     } else {
-      CharSequence emojified = EmojiProvider.emojify(candidates, text, this, isJumbomoji || forceJumboEmoji);
-      super.setText(new SpannableStringBuilder(emojified), BufferType.SPANNABLE);
+      textToSet = new SpannableStringBuilder(EmojiProvider.emojify(candidates, text, this, isJumbomoji || forceJumboEmoji));
     }
+
+    if (spoilerFilteringSpannableFactory != null) {
+      textToSet = spoilerFilteringSpannableFactory.wrap(textToSet);
+    }
+    super.setText(textToSet, BufferType.SPANNABLE);
 
     // Android fails to ellipsize spannable strings. (https://issuetracker.google.com/issues/36991688)
     // We ellipsize them ourselves by manually truncating the appropriate section.
@@ -408,6 +423,17 @@ public class EmojiTextView extends AppCompatTextView {
   public void setMentionBackgroundTint(@ColorInt int mentionBackgroundTint) {
     if (renderMentions) {
       mentionRendererDelegate.setTint(mentionBackgroundTint);
+    }
+  }
+
+  private class SpoilerFilteringSpannableFactory extends Spannable.Factory {
+    @Override
+    public @NonNull Spannable newSpannable(CharSequence source) {
+      return wrap(super.newSpannable(source));
+    }
+
+    @NonNull SpoilerFilteringSpannable wrap(Spannable source) {
+      return new SpoilerFilteringSpannable(source, () -> isInOnDraw);
     }
   }
 }

@@ -815,7 +815,7 @@ class StoryViewerPageFragment :
       val displayBodySpan = SpannableString(storyPost.content.attachment.caption ?: "")
       val ranges: BodyRangeList? = storyPost.conversationMessage.messageRecord.messageRanges
       if (ranges != null && displayBodySpan.isNotEmpty()) {
-        MessageStyler.style(ranges, displayBodySpan)
+        MessageStyler.style(storyPost.id, ranges, displayBodySpan)
       }
 
       displayBodySpan

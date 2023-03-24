@@ -9,6 +9,7 @@ import android.text.Layout
 import android.text.Spanned
 import android.view.animation.LinearInterpolator
 import android.widget.TextView
+import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation.SpoilerClickableSpan
 import org.thoughtcrime.securesms.components.spoiler.SpoilerRenderer.MultiLineSpoilerRenderer
 import org.thoughtcrime.securesms.components.spoiler.SpoilerRenderer.SingleLineSpoilerRenderer
 
@@ -26,7 +27,7 @@ class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextVi
   private var spoilerDrawablePool = mutableMapOf<Annotation, List<SpoilerDrawable>>()
   private var nextSpoilerDrawablePool = mutableMapOf<Annotation, List<SpoilerDrawable>>()
 
-  private val cachedAnnotations = HashMap<Int, List<Annotation>>()
+  private val cachedAnnotations = HashMap<Int, Map<Annotation, SpoilerClickableSpan?>>()
   private val cachedMeasurements = HashMap<Int, SpanMeasurements>()
 
   private val animator = ValueAnimator.ofInt(0, 100).apply {
@@ -56,10 +57,14 @@ class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextVi
 
   fun draw(canvas: Canvas, text: Spanned, layout: Layout) {
     var hasSpoilersToRender = false
-    val annotations: List<Annotation> = cachedAnnotations.getFromCache(text) { SpoilerAnnotation.getSpoilerAnnotations(text) }
+    val annotations: Map<Annotation, SpoilerClickableSpan?> = cachedAnnotations.getFromCache(text) { SpoilerAnnotation.getSpoilerAndClickAnnotations(text) }
 
     nextSpoilerDrawablePool.clear()
-    for (annotation in annotations) {
+    for ((annotation, clickSpan) in annotations.entries) {
+      if (clickSpan?.spoilerRevealed == true) {
+        continue
+      }
+
       val spanStart: Int = text.getSpanStart(annotation)
       val spanEnd: Int = text.getSpanEnd(annotation)
       if (spanStart >= spanEnd) {

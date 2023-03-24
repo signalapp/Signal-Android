@@ -256,11 +256,11 @@ public class SearchRepository {
 
         if (ranges != null) {
           updatedBody = SpannableString.valueOf(updatedBody);
-          MessageStyler.style(BodyRangeUtil.adjustBodyRanges(ranges, bodyAdjustments), (Spannable) updatedBody);
+          MessageStyler.style(result.getMessageId(), BodyRangeUtil.adjustBodyRanges(ranges, bodyAdjustments), (Spannable) updatedBody);
 
           updatedSnippet = SpannableString.valueOf(updatedSnippet);
           //noinspection ConstantConditions
-          updateSnippetWithStyles(updatedBody, (SpannableString) updatedSnippet, BodyRangeUtil.adjustBodyRanges(ranges, snippetAdjustments));
+          updateSnippetWithStyles(result.getMessageId(), updatedBody, (SpannableString) updatedSnippet, BodyRangeUtil.adjustBodyRanges(ranges, snippetAdjustments));
         }
 
         updatedResults.add(new MessageResult(result.getConversationRecipient(), result.getMessageRecipient(), updatedBody, updatedSnippet, result.getThreadId(), result.getMessageId(), result.getReceivedTimestampMs(), result.isMms()));
@@ -302,7 +302,7 @@ public class SearchRepository {
     }
   }
 
-  private void updateSnippetWithStyles(@NonNull CharSequence body, @NonNull SpannableString bodySnippet, @NonNull BodyRangeList bodyRanges) {
+  private void updateSnippetWithStyles(long id, @NonNull CharSequence body, @NonNull SpannableString bodySnippet, @NonNull BodyRangeList bodyRanges) {
     CharSequence cleanSnippet = bodySnippet;
     int          startOffset  = 0;
 
@@ -326,7 +326,7 @@ public class SearchRepository {
         }
       }
 
-      MessageStyler.style(builder.build(), bodySnippet);
+      MessageStyler.style(id, builder.build(), bodySnippet);
     }
   }
 
@@ -361,7 +361,7 @@ public class SearchRepository {
           SpannableString body = new SpannableString(record.getBody());
 
           if (bodyRanges != null) {
-            MessageStyler.style(bodyRanges, body);
+            MessageStyler.style(record.getId(), bodyRanges, body);
           }
 
           CharSequence updatedBody    = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, body, mentions).getBody();

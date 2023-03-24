@@ -19,6 +19,9 @@ object MessageStyler {
 
   const val MONOSPACE = "monospace"
   const val SPAN_FLAGS = Spanned.SPAN_EXCLUSIVE_INCLUSIVE
+  const val DRAFT_ID = "DRAFT"
+  const val COMPOSE_ID = "COMPOSE"
+  const val QUOTE_ID = "QUOTE"
 
   @JvmStatic
   fun boldStyle(): CharacterStyle {
@@ -41,13 +44,13 @@ object MessageStyler {
   }
 
   @JvmStatic
-  fun spoilerStyle(start: Int, length: Int, body: Spannable? = null): Annotation {
-    return SpoilerAnnotation.spoilerAnnotation(arrayOf(start, length, body?.toString()).contentHashCode())
+  fun spoilerStyle(id: Any, start: Int, length: Int, body: Spannable? = null): Annotation {
+    return SpoilerAnnotation.spoilerAnnotation(arrayOf(id, start, length, body?.toString()).contentHashCode())
   }
 
   @JvmStatic
   @JvmOverloads
-  fun style(messageRanges: BodyRangeList?, span: Spannable, hideSpoilerText: Boolean = true): Result {
+  fun style(id: Any, messageRanges: BodyRangeList?, span: Spannable, hideSpoilerText: Boolean = true): Result {
     if (messageRanges == null) {
       return Result.none()
     }
@@ -67,7 +70,7 @@ object MessageStyler {
             BodyRangeList.BodyRange.Style.STRIKETHROUGH -> strikethroughStyle()
             BodyRangeList.BodyRange.Style.MONOSPACE -> monoStyle()
             BodyRangeList.BodyRange.Style.SPOILER -> {
-              val spoiler = spoilerStyle(range.start, range.length, span)
+              val spoiler = spoilerStyle(id, range.start, range.length, span)
               if (hideSpoilerText) {
                 span.setSpan(SpoilerAnnotation.SpoilerClickableSpan(spoiler), range.start, range.start + range.length, SPAN_FLAGS)
               }

@@ -363,7 +363,7 @@ public class ComposeText extends EmojiEditText {
           } else if (item.getItemId() == R.id.edittext_monospace) {
             style = MessageStyler.monoStyle();
           } else if (item.getItemId() == R.id.edittext_spoiler) {
-            style = MessageStyler.spoilerStyle(start, charSequence.length(), text);
+            style = MessageStyler.spoilerStyle(MessageStyler.COMPOSE_ID, start, charSequence.length(), text);
           }
 
           if (style != null) {

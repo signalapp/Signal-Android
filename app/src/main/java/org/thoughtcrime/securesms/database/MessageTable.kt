@@ -67,7 +67,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment.DisplayOrderComparator
 import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment
 import org.thoughtcrime.securesms.contactshare.Contact
-import org.thoughtcrime.securesms.conversation.MessageStyler.style
+import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.database.EarlyReceiptCache.Receipt
 import org.thoughtcrime.securesms.database.MentionUtil.UpdatedBodyAndMentions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.attachments
@@ -5109,7 +5109,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           val updated: UpdatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, quoteText, quoteMentions)
           val styledText = SpannableString(updated.body)
 
-          style(bodyRanges.adjustBodyRanges(updated.bodyAdjustments), styledText)
+          MessageStyler.style(id = quoteId, messageRanges = bodyRanges.adjustBodyRanges(updated.bodyAdjustments), span = styledText)
 
           quoteText = styledText
           quoteMentions = updated.mentions

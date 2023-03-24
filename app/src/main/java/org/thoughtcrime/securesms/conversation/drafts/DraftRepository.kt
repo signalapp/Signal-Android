@@ -79,7 +79,7 @@ class DraftRepository(
 
         updatedText = SpannableString(updated.body)
         MentionAnnotation.setMentionAnnotations(updatedText, updated.mentions)
-        MessageStyler.style(messageRanges = bodyRanges.adjustBodyRanges(updated.bodyAdjustments), span = updatedText, hideSpoilerText = false)
+        MessageStyler.style(id = MessageStyler.DRAFT_ID, messageRanges = bodyRanges.adjustBodyRanges(updated.bodyAdjustments), span = updatedText, hideSpoilerText = false)
       }
 
       DatabaseDraft(drafts, updatedText)
