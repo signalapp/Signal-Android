@@ -39,10 +39,12 @@ object NotificationProfilePreference {
     override fun bind(model: Model) {
       super.bind(model)
       itemView.setOnClickListener { model.onClick() }
+      switchWidget.setOnCheckedChangeListener(null)
       switchWidget.visible = model.showSwitch
       switchWidget.isEnabled = model.isEnabled
       switchWidget.isChecked = model.isOn
       iconView.background.colorFilter = SimpleColorFilter(model.color.colorInt())
+      switchWidget.setOnCheckedChangeListener { _, _ -> model.onClick() }
     }
   }
 }

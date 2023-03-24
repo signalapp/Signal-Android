@@ -38,17 +38,26 @@ object AsyncSwitch {
 
     override fun bind(model: Model) {
       super.bind(model)
+      switchWidget.setOnCheckedChangeListener(null)
       switchWidget.isEnabled = model.isEnabled
       switchWidget.isChecked = model.isChecked
       itemView.isEnabled = !model.isProcessing && model.isEnabled
       switcher.displayedChild = if (model.isProcessing) 1 else 0
 
-      itemView.setOnClickListener {
+      fun onClick() {
         if (!model.isProcessing) {
           itemView.isEnabled = false
           switcher.displayedChild = 1
           model.onClick()
         }
+      }
+
+      itemView.setOnClickListener {
+        onClick()
+      }
+
+      switchWidget.setOnCheckedChangeListener { _, _ ->
+        onClick()
       }
     }
   }

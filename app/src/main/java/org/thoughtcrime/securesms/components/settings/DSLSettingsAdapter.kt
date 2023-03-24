@@ -209,8 +209,15 @@ class SwitchPreferenceViewHolder(itemView: View) : PreferenceViewHolder<SwitchPr
 
   override fun bind(model: SwitchPreference) {
     super.bind(model)
+    switchWidget.setOnCheckedChangeListener(null)
+
     switchWidget.isEnabled = model.isEnabled
     switchWidget.isChecked = model.isChecked
+
+    switchWidget.setOnCheckedChangeListener { _, _ ->
+      model.onClick()
+    }
+
     itemView.setOnClickListener {
       model.onClick()
     }
