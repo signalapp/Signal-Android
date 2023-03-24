@@ -981,6 +981,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
     }
 
+    if (update.new.username != null) {
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(USERNAME to null)
+        .where("$USERNAME = ?", update.new.username!!)
+        .run()
+    }
+
     val updateCount = writableDatabase.update(TABLE_NAME, values, "$STORAGE_SERVICE_ID = ?", arrayOf(Base64.encodeBytes(update.old.id.raw)))
     if (updateCount < 1) {
       throw AssertionError("Account update didn't match any rows!")
