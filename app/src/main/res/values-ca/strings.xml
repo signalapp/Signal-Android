@@ -389,9 +389,9 @@
     <!-- Message for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_message">Some people may be using a version of Signal that doesn\'t support formatted text. They will not be able to see the formatting changes you\'ve made to your message.</string>
     <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">Send anyway</string>
+    <string name="SendingFormattingTextDialog_send_anyway_button">Envia\'l tanmateix</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">Cancel</string>
+    <string name="SendingFormattingTextDialog_cancel_send_button">Cancel·la</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -1744,19 +1744,17 @@
         <item quantity="other">%1$s, %2$s i %3$d més són en aquesta trucada.</item>
     </plurals>
 
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__flip">Canvia</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__speaker">Altaveu</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__camera">Càmera</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">No silenciats</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Silenci</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__ring">Truca</string>
-    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <!-- Toggle content description for toggling camera direction  -->
+    <string name="WebRtcCallView__toggle_camera_direction">Toggle camera direction</string>
+    <!-- Toggle content description for toggling audio output  -->
+    <string name="WebRtcCallView__toggle_speaker">Toggle speaker</string>
+    <!-- Toggle content description for toggling camera state  -->
+    <string name="WebRtcCallView__toggle_camera">Toggle camera</string>
+    <!-- Toggle content description for toggling mute state  -->
+    <string name="WebRtcCallView__toggle_mute">Toggle mute</string>
+    <!-- Toggle content description for toggling group ring state  -->
+    <string name="WebRtcCallView__toggle_ring">Toggle ring</string>
+    <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Penja</string>
 
     <!-- CallParticipantsListDialog -->
@@ -2135,9 +2133,9 @@
     <string name="MessageNotifier_locked_message">Missatge blocat</string>
     <string name="MessageNotifier_message_delivery_failed">El missatge no s\'ha pogut entregar.</string>
     <!-- Shown in a notification when a story the user tries to send fails to be sent -->
-    <string name="MessageNotifier_story_delivery_failed">Story failed to send</string>
+    <string name="MessageNotifier_story_delivery_failed">No s\'ha pogut enviar la història</string>
     <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
-    <string name="MessageNotifier_group_story_title">You to %1$s</string>
+    <string name="MessageNotifier_group_story_title">Vós a %1$s</string>
     <string name="MessageNotifier_failed_to_deliver_message">No s\'ha pogut entregar el missatge.</string>
     <string name="MessageNotifier_error_delivering_message">S\'ha produït un error en entregar el missatge.</string>
     <string name="MessageNotifier_message_delivery_paused">Lliurament de missatge interromput</string>
@@ -2282,7 +2280,7 @@
     <!-- Row item description for refreshing contacts -->
     <string name="contact_selection_activity__missing_someone">Missing someone? Try refreshing</string>
     <!-- Row header title for more section -->
-    <string name="contact_selection_activity__more">More</string>
+    <string name="contact_selection_activity__more">Més</string>
 
     <!-- contact_filter_toolbar -->
     <string name="contact_filter_toolbar__clear_entered_text_description">Neteja el text escrit</string>
@@ -4840,7 +4838,7 @@
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">Converses</string>
     <!-- Label for Calls tab in home app screen -->
-    <string name="ConversationListTabs__calls">Calls</string>
+    <string name="ConversationListTabs__calls">Trucades</string>
     <!-- Label for Stories tab in home app screen -->
     <string name="ConversationListTabs__stories">Històries</string>
     <!-- String for counts above 99 in conversation list tabs -->
@@ -5717,53 +5715,53 @@
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
-    <string name="CallContextMenu__video_call">Video call</string>
+    <string name="CallContextMenu__video_call">Trucada de vídeo</string>
     <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">Join call</string>
+    <string name="CallContextMenu__join_call">Afegeix-me a la trucada</string>
     <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">Return to call</string>
+    <string name="CallContextMenu__return_to_call">Torna a la trucada</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Audio call</string>
+    <string name="CallContextMenu__audio_call">Trucada</string>
     <!-- Displayed as a context menu item to go to chat -->
-    <string name="CallContextMenu__go_to_chat">Go to chat</string>
+    <string name="CallContextMenu__go_to_chat">Ves a la conversa</string>
     <!-- Displayed as a context menu item to see call info -->
-    <string name="CallContextMenu__info">Info</string>
+    <string name="CallContextMenu__info">Informació</string>
     <!-- Displayed as a context menu item to select multiple calls -->
-    <string name="CallContextMenu__select">Select</string>
+    <string name="CallContextMenu__select">Seleccionar</string>
     <!-- Displayed as a context menu item to delete this call -->
-    <string name="CallContextMenu__delete">Delete</string>
+    <string name="CallContextMenu__delete">Suprimits</string>
 
     <!-- Call Log Fragment -->
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filter missed calls</string>
     <!-- Action bar menu item to clear missed call filter -->
-    <string name="CallLogFragment__clear_filter">Clear filter</string>
+    <string name="CallLogFragment__clear_filter">Restablir filtres</string>
     <!-- Action bar menu item to open settings -->
-    <string name="CallLogFragment__settings">Settings</string>
+    <string name="CallLogFragment__settings">Configuració</string>
     <!-- Action bar menu item to open notification profile settings -->
-    <string name="CallLogFragment__notification_profile">Notification Profile</string>
+    <string name="CallLogFragment__notification_profile">Perfil de notificacions</string>
     <!-- Call log new call content description -->
     <string name="CallLogFragment__start_a_new_call">Start a new call</string>
     <!-- Filter pull text when pulled -->
     <string name="CallLogFragment__filtered_by_missed">Filtered by missed</string>
     <!-- Bottom bar option to select all call entries -->
-    <string name="CallLogFragment__select_all">Select all</string>
+    <string name="CallLogFragment__select_all">Selecciona-ho tot</string>
     <!-- Bottom bar option to delete all selected call entries -->
-    <string name="CallLogFragment__delete">Delete</string>
+    <string name="CallLogFragment__delete">Suprimits</string>
     <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
   <!-- Removed by excludeNonTranslatables <plurals name="CallLogFragment__delete_d_calls" translatable="false">
         <item quantity="one">Delete %1$d call?</item>
         <item quantity="other">Delete %1$d calls?</item>
     </plurals> -->
     <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Delete for me</string>
+    <string name="CallLogFragment__delete_for_me">Esborrar per a mi</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d call deleted</item>
         <item quantity="other">%1$d calls deleted</item>
     </plurals>
     <!-- Undo action for deletion snackbar -->
-    <string name="CallLogFragment__undo">Undo</string>
+    <string name="CallLogFragment__undo">Desfés</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">No calls.</string>
     <!-- Shown during empty state -->

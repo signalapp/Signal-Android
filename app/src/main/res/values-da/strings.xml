@@ -389,9 +389,9 @@
     <!-- Message for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_message">Some people may be using a version of Signal that doesn\'t support formatted text. They will not be able to see the formatting changes you\'ve made to your message.</string>
     <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">Send anyway</string>
+    <string name="SendingFormattingTextDialog_send_anyway_button">Send alligevel</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">Cancel</string>
+    <string name="SendingFormattingTextDialog_cancel_send_button">Annuller</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -1744,19 +1744,17 @@
         <item quantity="other">%1$s, %2$s, og %3$d andre deltager i dette opkald</item>
     </plurals>
 
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__flip">Vend</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__speaker">Højttaler</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__camera">Kamera</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Slå notifikationer til</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Ignorer</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__ring">Ring</string>
-    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <!-- Toggle content description for toggling camera direction  -->
+    <string name="WebRtcCallView__toggle_camera_direction">Toggle camera direction</string>
+    <!-- Toggle content description for toggling audio output  -->
+    <string name="WebRtcCallView__toggle_speaker">Toggle speaker</string>
+    <!-- Toggle content description for toggling camera state  -->
+    <string name="WebRtcCallView__toggle_camera">Toggle camera</string>
+    <!-- Toggle content description for toggling mute state  -->
+    <string name="WebRtcCallView__toggle_mute">Toggle mute</string>
+    <!-- Toggle content description for toggling group ring state  -->
+    <string name="WebRtcCallView__toggle_ring">Toggle ring</string>
+    <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Afslut opkald</string>
 
     <!-- CallParticipantsListDialog -->
@@ -2135,9 +2133,9 @@
     <string name="MessageNotifier_locked_message">Låst besked</string>
     <string name="MessageNotifier_message_delivery_failed">Levering af besked mislykkedes.</string>
     <!-- Shown in a notification when a story the user tries to send fails to be sent -->
-    <string name="MessageNotifier_story_delivery_failed">Story failed to send</string>
+    <string name="MessageNotifier_story_delivery_failed">Historien blev ikke sendt</string>
     <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
-    <string name="MessageNotifier_group_story_title">You to %1$s</string>
+    <string name="MessageNotifier_group_story_title">Dig til %1$s</string>
     <string name="MessageNotifier_failed_to_deliver_message">Kunne ikke levere besked.</string>
     <string name="MessageNotifier_error_delivering_message">Fejl ved levering af besked.</string>
     <string name="MessageNotifier_message_delivery_paused">Levering af besked sat på pause.</string>
@@ -2282,7 +2280,7 @@
     <!-- Row item description for refreshing contacts -->
     <string name="contact_selection_activity__missing_someone">Missing someone? Try refreshing</string>
     <!-- Row header title for more section -->
-    <string name="contact_selection_activity__more">More</string>
+    <string name="contact_selection_activity__more">Mere</string>
 
     <!-- contact_filter_toolbar -->
     <string name="contact_filter_toolbar__clear_entered_text_description">Fjern tekst</string>
@@ -4840,7 +4838,7 @@
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">Samtaler</string>
     <!-- Label for Calls tab in home app screen -->
-    <string name="ConversationListTabs__calls">Calls</string>
+    <string name="ConversationListTabs__calls">Opkald</string>
     <!-- Label for Stories tab in home app screen -->
     <string name="ConversationListTabs__stories">Historier</string>
     <!-- String for counts above 99 in conversation list tabs -->
@@ -5709,61 +5707,61 @@
     <!-- Displayed below the user\'s name in row items on the call log. First placeholder is the call status, second is when it occurred -->
     <string name="CallLogAdapter__s_dot_s">%1$s · %2$s</string>
     <!-- Displayed for incoming calls -->
-    <string name="CallLogAdapter__incoming">Incoming</string>
+    <string name="CallLogAdapter__incoming">Indkommende</string>
     <!-- Displayed for outgoing calls -->
-    <string name="CallLogAdapter__outgoing">Outgoing</string>
+    <string name="CallLogAdapter__outgoing">Udgående</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Missed</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
-    <string name="CallContextMenu__video_call">Video call</string>
+    <string name="CallContextMenu__video_call">Videoopkald</string>
     <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">Join call</string>
+    <string name="CallContextMenu__join_call">Deltag i opkald</string>
     <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">Return to call</string>
+    <string name="CallContextMenu__return_to_call">Tilbage til opkald</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Audio call</string>
+    <string name="CallContextMenu__audio_call">Lydopkald</string>
     <!-- Displayed as a context menu item to go to chat -->
-    <string name="CallContextMenu__go_to_chat">Go to chat</string>
+    <string name="CallContextMenu__go_to_chat">Gå til samtale</string>
     <!-- Displayed as a context menu item to see call info -->
-    <string name="CallContextMenu__info">Info</string>
+    <string name="CallContextMenu__info">Information</string>
     <!-- Displayed as a context menu item to select multiple calls -->
-    <string name="CallContextMenu__select">Select</string>
+    <string name="CallContextMenu__select">Vælg</string>
     <!-- Displayed as a context menu item to delete this call -->
-    <string name="CallContextMenu__delete">Delete</string>
+    <string name="CallContextMenu__delete">Slet</string>
 
     <!-- Call Log Fragment -->
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filter missed calls</string>
     <!-- Action bar menu item to clear missed call filter -->
-    <string name="CallLogFragment__clear_filter">Clear filter</string>
+    <string name="CallLogFragment__clear_filter">Ryd filter</string>
     <!-- Action bar menu item to open settings -->
-    <string name="CallLogFragment__settings">Settings</string>
+    <string name="CallLogFragment__settings">Indstillinger</string>
     <!-- Action bar menu item to open notification profile settings -->
-    <string name="CallLogFragment__notification_profile">Notification Profile</string>
+    <string name="CallLogFragment__notification_profile">Notifikationsprofil</string>
     <!-- Call log new call content description -->
     <string name="CallLogFragment__start_a_new_call">Start a new call</string>
     <!-- Filter pull text when pulled -->
     <string name="CallLogFragment__filtered_by_missed">Filtered by missed</string>
     <!-- Bottom bar option to select all call entries -->
-    <string name="CallLogFragment__select_all">Select all</string>
+    <string name="CallLogFragment__select_all">Vælg alle</string>
     <!-- Bottom bar option to delete all selected call entries -->
-    <string name="CallLogFragment__delete">Delete</string>
+    <string name="CallLogFragment__delete">Slet</string>
     <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
   <!-- Removed by excludeNonTranslatables <plurals name="CallLogFragment__delete_d_calls" translatable="false">
         <item quantity="one">Delete %1$d call?</item>
         <item quantity="other">Delete %1$d calls?</item>
     </plurals> -->
     <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Delete for me</string>
+    <string name="CallLogFragment__delete_for_me">Slet for mig</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d call deleted</item>
         <item quantity="other">%1$d calls deleted</item>
     </plurals>
     <!-- Undo action for deletion snackbar -->
-    <string name="CallLogFragment__undo">Undo</string>
+    <string name="CallLogFragment__undo">Fortryd</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">No calls.</string>
     <!-- Shown during empty state -->

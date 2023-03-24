@@ -389,9 +389,9 @@
     <!-- Message for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_message">Some people may be using a version of Signal that doesn\'t support formatted text. They will not be able to see the formatting changes you\'ve made to your message.</string>
     <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">Send anyway</string>
+    <string name="SendingFormattingTextDialog_send_anyway_button">照樣傳送</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">Cancel</string>
+    <string name="SendingFormattingTextDialog_cancel_send_button">取消</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -1675,19 +1675,17 @@
         <item quantity="other">%1$s、%2$s 同其餘 %3$d 人嚟到呢次通話</item>
     </plurals>
 
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__flip">前後轉換</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__speaker">喇叭</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__camera">相機</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">取消靜音</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">靜音</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__ring">喺人哋度唥鐘</string>
-    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <!-- Toggle content description for toggling camera direction  -->
+    <string name="WebRtcCallView__toggle_camera_direction">Toggle camera direction</string>
+    <!-- Toggle content description for toggling audio output  -->
+    <string name="WebRtcCallView__toggle_speaker">Toggle speaker</string>
+    <!-- Toggle content description for toggling camera state  -->
+    <string name="WebRtcCallView__toggle_camera">Toggle camera</string>
+    <!-- Toggle content description for toggling mute state  -->
+    <string name="WebRtcCallView__toggle_mute">Toggle mute</string>
+    <!-- Toggle content description for toggling group ring state  -->
+    <string name="WebRtcCallView__toggle_ring">Toggle ring</string>
+    <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">收線</string>
 
     <!-- CallParticipantsListDialog -->
@@ -2063,9 +2061,9 @@
     <string name="MessageNotifier_locked_message">訊息已上鎖</string>
     <string name="MessageNotifier_message_delivery_failed">訊息送遞唔到。</string>
     <!-- Shown in a notification when a story the user tries to send fails to be sent -->
-    <string name="MessageNotifier_story_delivery_failed">Story failed to send</string>
+    <string name="MessageNotifier_story_delivery_failed">限時動態發送失敗</string>
     <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
-    <string name="MessageNotifier_group_story_title">You to %1$s</string>
+    <string name="MessageNotifier_group_story_title">您畀 %1$s</string>
     <string name="MessageNotifier_failed_to_deliver_message">送遞唔到訊息。</string>
     <string name="MessageNotifier_error_delivering_message">送遞訊息嘅時候發生錯誤。</string>
     <string name="MessageNotifier_message_delivery_paused">訊息送遞已暫止。</string>
@@ -2209,7 +2207,7 @@
     <!-- Row item description for refreshing contacts -->
     <string name="contact_selection_activity__missing_someone">Missing someone? Try refreshing</string>
     <!-- Row header title for more section -->
-    <string name="contact_selection_activity__more">More</string>
+    <string name="contact_selection_activity__more">更多</string>
 
     <!-- contact_filter_toolbar -->
     <string name="contact_filter_toolbar__clear_entered_text_description">清除輸入咗嘅文字</string>
@@ -4737,7 +4735,7 @@
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">傾偈</string>
     <!-- Label for Calls tab in home app screen -->
-    <string name="ConversationListTabs__calls">Calls</string>
+    <string name="ConversationListTabs__calls">通話</string>
     <!-- Label for Stories tab in home app screen -->
     <string name="ConversationListTabs__stories">是日花生</string>
     <!-- String for counts above 99 in conversation list tabs -->
@@ -5592,52 +5590,52 @@
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
-    <string name="CallContextMenu__video_call">Video call</string>
+    <string name="CallContextMenu__video_call">視像通話</string>
     <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">Join call</string>
+    <string name="CallContextMenu__join_call">加入通話</string>
     <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">Return to call</string>
+    <string name="CallContextMenu__return_to_call">返回通話</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Audio call</string>
+    <string name="CallContextMenu__audio_call">語音通話</string>
     <!-- Displayed as a context menu item to go to chat -->
-    <string name="CallContextMenu__go_to_chat">Go to chat</string>
+    <string name="CallContextMenu__go_to_chat">跳去傾偈</string>
     <!-- Displayed as a context menu item to see call info -->
-    <string name="CallContextMenu__info">Info</string>
+    <string name="CallContextMenu__info">詳細</string>
     <!-- Displayed as a context menu item to select multiple calls -->
-    <string name="CallContextMenu__select">Select</string>
+    <string name="CallContextMenu__select">揀選</string>
     <!-- Displayed as a context menu item to delete this call -->
-    <string name="CallContextMenu__delete">Delete</string>
+    <string name="CallContextMenu__delete">刪除</string>
 
     <!-- Call Log Fragment -->
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filter missed calls</string>
     <!-- Action bar menu item to clear missed call filter -->
-    <string name="CallLogFragment__clear_filter">Clear filter</string>
+    <string name="CallLogFragment__clear_filter">清除篩選條件</string>
     <!-- Action bar menu item to open settings -->
-    <string name="CallLogFragment__settings">Settings</string>
+    <string name="CallLogFragment__settings">設定</string>
     <!-- Action bar menu item to open notification profile settings -->
-    <string name="CallLogFragment__notification_profile">Notification Profile</string>
+    <string name="CallLogFragment__notification_profile">通知吾揀單</string>
     <!-- Call log new call content description -->
     <string name="CallLogFragment__start_a_new_call">Start a new call</string>
     <!-- Filter pull text when pulled -->
     <string name="CallLogFragment__filtered_by_missed">Filtered by missed</string>
     <!-- Bottom bar option to select all call entries -->
-    <string name="CallLogFragment__select_all">Select all</string>
+    <string name="CallLogFragment__select_all">全部揀晒</string>
     <!-- Bottom bar option to delete all selected call entries -->
-    <string name="CallLogFragment__delete">Delete</string>
+    <string name="CallLogFragment__delete">刪除</string>
     <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
   <!-- Removed by excludeNonTranslatables <plurals name="CallLogFragment__delete_d_calls" translatable="false">
         <item quantity="one">Delete %1$d call?</item>
         <item quantity="other">Delete %1$d calls?</item>
     </plurals> -->
     <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Delete for me</string>
+    <string name="CallLogFragment__delete_for_me">喺我自己部機度刪除</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="other">%1$d calls deleted</item>
     </plurals>
     <!-- Undo action for deletion snackbar -->
-    <string name="CallLogFragment__undo">Undo</string>
+    <string name="CallLogFragment__undo">復原</string>
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">No calls.</string>
     <!-- Shown during empty state -->

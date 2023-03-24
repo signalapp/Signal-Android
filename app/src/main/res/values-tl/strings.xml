@@ -391,7 +391,7 @@
     <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
     <string name="SendingFormattingTextDialog_send_anyway_button">Send anyway</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">Cancel</string>
+    <string name="SendingFormattingTextDialog_cancel_send_button">Kanselahin</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -1744,19 +1744,17 @@
         <item quantity="other">Sila %1$s, %2$s, at %3$d others ay nasa call na ito</item>
     </plurals>
 
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__flip">Switch</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__speaker">Speaker</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__camera">Camera</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">I-unmute</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">I-mute</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__ring">Ring</string>
-    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <!-- Toggle content description for toggling camera direction  -->
+    <string name="WebRtcCallView__toggle_camera_direction">Toggle camera direction</string>
+    <!-- Toggle content description for toggling audio output  -->
+    <string name="WebRtcCallView__toggle_speaker">Toggle speaker</string>
+    <!-- Toggle content description for toggling camera state  -->
+    <string name="WebRtcCallView__toggle_camera">Toggle camera</string>
+    <!-- Toggle content description for toggling mute state  -->
+    <string name="WebRtcCallView__toggle_mute">Toggle mute</string>
+    <!-- Toggle content description for toggling group ring state  -->
+    <string name="WebRtcCallView__toggle_ring">Toggle ring</string>
+    <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Tapusin ang tawag</string>
 
     <!-- CallParticipantsListDialog -->
@@ -2135,7 +2133,7 @@
     <string name="MessageNotifier_locked_message">Naka-lock na mensahe</string>
     <string name="MessageNotifier_message_delivery_failed">Nabigo ang paghahatid ng mensahe.</string>
     <!-- Shown in a notification when a story the user tries to send fails to be sent -->
-    <string name="MessageNotifier_story_delivery_failed">Story failed to send</string>
+    <string name="MessageNotifier_story_delivery_failed">Hindi na-send ang story</string>
     <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
     <string name="MessageNotifier_group_story_title">You to %1$s</string>
     <string name="MessageNotifier_failed_to_deliver_message">Nabigong ihatid ang mensahe.</string>
@@ -4840,7 +4838,7 @@
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">Mga chat</string>
     <!-- Label for Calls tab in home app screen -->
-    <string name="ConversationListTabs__calls">Calls</string>
+    <string name="ConversationListTabs__calls">Mga Tawag</string>
     <!-- Label for Stories tab in home app screen -->
     <string name="ConversationListTabs__stories">Stories</string>
     <!-- String for counts above 99 in conversation list tabs -->
@@ -5719,7 +5717,7 @@
     <!-- Displayed as a context menu item to start a video call -->
     <string name="CallContextMenu__video_call">Video call</string>
     <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">Join call</string>
+    <string name="CallContextMenu__join_call">Mag-join sa call</string>
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">Return to call</string>
     <!-- Displayed as a context menu item to start an audio call -->
@@ -5731,17 +5729,17 @@
     <!-- Displayed as a context menu item to select multiple calls -->
     <string name="CallContextMenu__select">Select</string>
     <!-- Displayed as a context menu item to delete this call -->
-    <string name="CallContextMenu__delete">Delete</string>
+    <string name="CallContextMenu__delete">Burahin</string>
 
     <!-- Call Log Fragment -->
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">Filter missed calls</string>
     <!-- Action bar menu item to clear missed call filter -->
-    <string name="CallLogFragment__clear_filter">Clear filter</string>
+    <string name="CallLogFragment__clear_filter">I-clear ang filter</string>
     <!-- Action bar menu item to open settings -->
     <string name="CallLogFragment__settings">Settings</string>
     <!-- Action bar menu item to open notification profile settings -->
-    <string name="CallLogFragment__notification_profile">Notification Profile</string>
+    <string name="CallLogFragment__notification_profile">Profile ng notification</string>
     <!-- Call log new call content description -->
     <string name="CallLogFragment__start_a_new_call">Start a new call</string>
     <!-- Filter pull text when pulled -->
@@ -5749,14 +5747,14 @@
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Select all</string>
     <!-- Bottom bar option to delete all selected call entries -->
-    <string name="CallLogFragment__delete">Delete</string>
+    <string name="CallLogFragment__delete">Burahin</string>
     <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
   <!-- Removed by excludeNonTranslatables <plurals name="CallLogFragment__delete_d_calls" translatable="false">
         <item quantity="one">Delete %1$d call?</item>
         <item quantity="other">Delete %1$d calls?</item>
     </plurals> -->
     <!-- Positive action on multi-delete protection dialog -->
-    <string name="CallLogFragment__delete_for_me">Delete for me</string>
+    <string name="CallLogFragment__delete_for_me">Burahin sa \'kin</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
         <item quantity="one">%1$d call deleted</item>
