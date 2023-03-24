@@ -398,14 +398,13 @@ class IncomingMessageObserver(private val context: Application) {
 
         signalWebSocket.connect()
         try {
-          val bufferedStore = BufferedProtocolStore.create()
-
           while (isConnectionNecessary()) {
             try {
               Log.d(TAG, "Reading message...")
 
               val hasMore = signalWebSocket.readMessageBatch(WEBSOCKET_READ_TIMEOUT, 30) { batch ->
                 Log.i(TAG, "Retrieved ${batch.size} envelopes!")
+                val bufferedStore = BufferedProtocolStore.create()
 
                 val startTime = System.currentTimeMillis()
                 ReentrantSessionLock.INSTANCE.acquire().use {
