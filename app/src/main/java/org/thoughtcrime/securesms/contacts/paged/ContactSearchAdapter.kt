@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.FromTextView
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller.FastScrollAdapter
+import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.contacts.LetterHeaderDecoration
@@ -341,18 +342,21 @@ open class ContactSearchAdapter(
         knownRecipient.recipient.getDisplayName(context)
       }
 
-      var letter = BreakIteratorCompat.getInstance().apply { setText(name) }.take(1)
-      if (letter != null) {
-        letter = letter.trim { it <= ' ' }
-        if (letter.isNotEmpty()) {
-          val firstChar = letter[0]
-          if (Character.isLetterOrDigit(firstChar)) {
-            return firstChar.uppercaseChar().toString()
+      val letter: CharSequence = BreakIteratorCompat.getInstance()
+        .apply { setText(name) }
+        .asSequence()
+        .map { charSequence -> charSequence.trim { it <= ' ' } }
+        .filter { it.isNotEmpty() }
+        .mapNotNull {
+          when {
+            EmojiUtil.isEmoji(it.toString()) -> it
+            Character.isLetterOrDigit(it[0]) -> it[0].uppercaseChar().toString()
+            else -> null
           }
         }
-      }
+        .firstOrNull() ?: "#"
 
-      return "#"
+      return letter
     }
 
     override fun areItemsTheSame(newItem: RecipientModel): Boolean {
