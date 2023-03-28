@@ -314,7 +314,7 @@ public class RecipientUtil {
       return false;
     }
 
-    if (threadId == -1 || !SignalDatabase.messages().hasMeaningfulMessage(threadId)) {
+    if (threadId == -1 || SignalDatabase.messages().canSetUniversalTimer(threadId)) {
       SignalDatabase.recipients().setExpireMessages(recipient.getId(), defaultTimer);
       OutgoingMessage outgoingMessage = OutgoingMessage.expirationUpdateMessage(recipient, System.currentTimeMillis(), defaultTimer * 1000L);
       MessageSender.send(context, outgoingMessage, SignalDatabase.threads().getOrCreateThreadIdFor(recipient), MessageSender.SendType.SIGNAL, null, null);

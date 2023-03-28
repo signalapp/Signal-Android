@@ -105,7 +105,7 @@ class ConversationRepository {
         conversationRecipient.getExpiresInSeconds() == 0 &&
         !conversationRecipient.isGroup() &&
         conversationRecipient.isRegistered() &&
-        (threadId == -1 || !SignalDatabase.messages().hasMeaningfulMessage(threadId)))
+        (threadId == -1 || SignalDatabase.messages().canSetUniversalTimer(threadId)))
     {
       showUniversalExpireTimerUpdate = true;
     }

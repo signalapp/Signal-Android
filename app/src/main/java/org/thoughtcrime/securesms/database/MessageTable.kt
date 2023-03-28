@@ -1688,6 +1688,23 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .readToSingleInt()
   }
 
+  fun canSetUniversalTimer(threadId: Long): Boolean {
+    if (threadId == -1L) {
+      return true
+    }
+
+    val meaningfulQuery = buildMeaningfulMessagesQuery(threadId)
+    val isNotJoinedType = SqlUtil.buildQuery("$TYPE & ${MessageTypes.BASE_TYPE_MASK} != ${MessageTypes.JOINED_TYPE}")
+
+    val query = meaningfulQuery and isNotJoinedType
+    val hasMeaningfulMessages = readableDatabase
+      .exists(TABLE_NAME)
+      .where(query.where, query.whereArgs)
+      .run()
+
+    return !hasMeaningfulMessages
+  }
+
   fun hasMeaningfulMessage(threadId: Long): Boolean {
     if (threadId == -1L) {
       return false
@@ -1716,19 +1733,19 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   private fun buildMeaningfulMessagesQuery(threadId: Long): SqlUtil.Query {
     val query = """
       $THREAD_ID = ? AND
-      $STORY_TYPE = ? AND
-      $PARENT_STORY_ID <= ? AND
+      $STORY_TYPE = 0 AND
+      $PARENT_STORY_ID <= 0 AND
       (
-        NOT $TYPE & ? AND
-        $TYPE != ? AND
-        $TYPE != ? AND
-        $TYPE != ? AND
-        $TYPE != ? AND
+        NOT $TYPE & ${MessageTypes.IGNORABLE_TYPESMASK_WHEN_COUNTING} AND
+        $TYPE != ${MessageTypes.PROFILE_CHANGE_TYPE} AND
+        $TYPE != ${MessageTypes.CHANGE_NUMBER_TYPE} AND
+        $TYPE != ${MessageTypes.SMS_EXPORT_TYPE} AND
+        $TYPE != ${MessageTypes.BOOST_REQUEST_TYPE} AND
         $TYPE & ${MessageTypes.GROUP_V2_LEAVE_BITS} != ${MessageTypes.GROUP_V2_LEAVE_BITS}
       )
     """.toSingleLine()
 
-    return SqlUtil.buildQuery(query, threadId, 0, 0, MessageTypes.IGNORABLE_TYPESMASK_WHEN_COUNTING, MessageTypes.PROFILE_CHANGE_TYPE, MessageTypes.CHANGE_NUMBER_TYPE, MessageTypes.SMS_EXPORT_TYPE, MessageTypes.BOOST_REQUEST_TYPE)
+    return SqlUtil.buildQuery(query, threadId)
   }
 
   fun setNetworkFailures(messageId: Long, failures: Set<NetworkFailure?>?) {
