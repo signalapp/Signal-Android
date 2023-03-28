@@ -411,9 +411,9 @@ public class SearchRepository {
     for (String query : queries) {
       int foundIndex = lowerBody.indexOf(query.toLowerCase());
       if (foundIndex != -1) {
-        int snippetStart = Math.max(0, Math.max(lowerBody.lastIndexOf(' ', foundIndex - 5) + 1, foundIndex - 15));
-        int lastSpace    = lowerBody.indexOf(' ', foundIndex + 30);
-        int snippetEnd   = Math.min(lowerBody.length(), lastSpace > 0 ? Math.min(lastSpace, foundIndex + 40) : foundIndex + 40);
+        int snippetStart = Math.max(0, Math.max(TextUtils.lastIndexOf(styledBody,' ', foundIndex - 5) + 1, foundIndex - 15));
+        int lastSpace    = TextUtils.indexOf(styledBody, ' ', foundIndex + 30);
+        int snippetEnd   = Math.min(styledBody.length(), lastSpace > 0 ? Math.min(lastSpace, foundIndex + 40) : foundIndex + 40);
 
         return new SpannableStringBuilder().append(snippetStart > 0 ? SNIPPET_WRAP : "")
                                            .append(styledBody.subSequence(snippetStart, snippetEnd))
