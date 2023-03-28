@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import android.Manifest;
-import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,10 +21,8 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobmanager.impl.ChargingConstraint;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
@@ -59,8 +56,6 @@ public final class LocalBackupJob extends BaseJob {
                                                   .setMaxAttempts(3);
     if (force) {
       jobManager.cancelAllInQueue(QUEUE);
-    } else if (Build.VERSION.SDK_INT < 31) {
-      parameters.addConstraint(ChargingConstraint.KEY);
     }
 
     if (BackupUtil.isUserSelectionRequired(ApplicationDependencies.getApplication())) {
