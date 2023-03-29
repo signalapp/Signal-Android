@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme;
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata;
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraintObserver;
 
@@ -30,6 +31,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String PNI_INITIALIZED_DEVICES         = "misc.pni_initialized_devices";
   private static final String SMS_PHASE_1_START_MS            = "misc.sms_export.phase_1_start.3";
   private static final String LINKED_DEVICES_REMINDER         = "misc.linked_devices_reminder";
+  private static final String USERNAME_QR_CODE_COLOR          = "mis.username_qr_color_scheme";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -252,4 +254,15 @@ public final class MiscellaneousValues extends SignalStoreValues {
   public boolean getShouldShowLinkedDevicesReminder() {
     return getBoolean(LINKED_DEVICES_REMINDER, false);
   }
+
+  /** The color the user saved for rendering their shareable username QR code. */
+  public @NonNull UsernameQrCodeColorScheme getUsernameQrCodeColorScheme() {
+    String serialized = getString(USERNAME_QR_CODE_COLOR, null);
+    return UsernameQrCodeColorScheme.deserialize(serialized);
+  }
+
+  public void setUsernameQrCodeColorScheme(@NonNull UsernameQrCodeColorScheme color) {
+    putString(USERNAME_QR_CODE_COLOR, color.serialize());
+  }
+
 }

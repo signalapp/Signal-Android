@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.qr.QrView;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.thoughtcrime.securesms.qr.QrCode;
+import org.thoughtcrime.securesms.qr.QrCodeUtil;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
@@ -123,7 +123,7 @@ public class GroupLinkShareQrDialogFragment extends DialogFragment {
   }
 
   private static Uri createTemporaryPng(@Nullable String url) throws IOException {
-    Bitmap qrBitmap = QrCode.create(url, Color.BLACK, Color.WHITE);
+    Bitmap qrBitmap = QrCodeUtil.create(url, Color.BLACK, Color.WHITE);
 
     try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
       qrBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);

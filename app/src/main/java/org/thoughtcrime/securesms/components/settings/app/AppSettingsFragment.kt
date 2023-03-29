@@ -47,9 +47,19 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
   private fun getConfiguration(state: AppSettingsState): DSLConfiguration {
     return configure {
       customPref(
-        BioPreference(state.self) {
-          findNavController().safeNavigate(R.id.action_appSettingsFragment_to_manageProfileActivity)
-        }
+        BioPreference(
+          recipient = state.self,
+          onRowClicked = {
+            findNavController().safeNavigate(R.id.action_appSettingsFragment_to_manageProfileActivity)
+          },
+          onQrButtonClicked = {
+            if (Recipient.self().getUsername().isPresent()) {
+              findNavController().safeNavigate(R.id.action_appSettingsFragment_to_usernameLinkSettingsFragment)
+            } else {
+              findNavController().safeNavigate(R.id.action_appSettingsFragment_to_usernameEducationFragment)
+            }
+          }
+        )
       )
 
       clickPref(
@@ -216,7 +226,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
     }
   }
 
-  private class BioPreference(val recipient: Recipient, val onClick: () -> Unit) : PreferenceModel<BioPreference>() {
+  private class BioPreference(val recipient: Recipient, val onRowClicked: () -> Unit, val onQrButtonClicked: () -> Unit) : PreferenceModel<BioPreference>() {
     override fun areContentsTheSame(newItem: BioPreference): Boolean {
       return super.areContentsTheSame(newItem) && recipient.hasSameContent(newItem.recipient)
     }
@@ -231,11 +241,12 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
     private val avatarView: AvatarImageView = itemView.findViewById(R.id.icon)
     private val aboutView: TextView = itemView.findViewById(R.id.about)
     private val badgeView: BadgeImageView = itemView.findViewById(R.id.badge)
+    private val qrButton: View = itemView.findViewById(R.id.qr_button)
 
     override fun bind(model: BioPreference) {
       super.bind(model)
 
-      itemView.setOnClickListener { model.onClick() }
+      itemView.setOnClickListener { model.onRowClicked() }
 
       titleView.text = model.recipient.profileName.toString()
       summaryView.text = PhoneNumberFormatter.prettyPrint(model.recipient.requireE164())
@@ -245,6 +256,14 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
       titleView.visibility = View.VISIBLE
       summaryView.visibility = View.VISIBLE
       avatarView.visibility = View.VISIBLE
+
+      if (FeatureFlags.usernames()) {
+        qrButton.visibility = View.VISIBLE
+        qrButton.isClickable = true
+        qrButton.setOnClickListener { model.onQrButtonClicked() }
+      } else {
+        qrButton.visibility = View.GONE
+      }
 
       if (model.recipient.combinedAboutAndEmoji != null) {
         aboutView.text = model.recipient.combinedAboutAndEmoji
