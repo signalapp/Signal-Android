@@ -233,7 +233,7 @@ class ContactSearchPagedDataSource(
     cursor.moveToPosition(-1)
     while (cursor.moveToNext()) {
       val sortName = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.NAME_COLUMN))
-      if (!sortName.first().isDigit()) {
+      if (sortName.isNotEmpty() && !sortName.first().isDigit()) {
         return cursor.position
       }
     }
