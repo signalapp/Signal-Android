@@ -9,6 +9,6 @@ object TestDbUtils {
     val database: SQLiteDatabase = SignalDatabase.messages.databaseHelper.signalWritableDatabase
     val contentValues = ContentValues()
     contentValues.put(MessageTable.DATE_RECEIVED, timestamp)
-    val rowsUpdated = database.update(MessageTable.TABLE_NAME, contentValues, MessageTable.ID_WHERE, buildArgs(messageId))
+    val rowsUpdated = database.update(MessageTable.TABLE_NAME, contentValues, DatabaseTable.ID_WHERE, buildArgs(messageId))
   }
 }
