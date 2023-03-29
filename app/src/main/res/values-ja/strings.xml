@@ -385,11 +385,11 @@
     <string name="ConversationActivity__you_will_be_reminded_again_soon">まもなくリマインドされます。</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">Sending formatted text</string>
+    <string name="SendingFormattingTextDialog_title">書式付きテキストの送信</string>
     <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Some people may be using a version of Signal that doesn\'t support formatted text. They will not be able to see the formatting changes you\'ve made to your message.</string>
+    <string name="SendingFormattingTextDialog_message">書式付きテキストをサポートしていないバージョンの Signal を使用しているユーザーもいるかもしれません。その人たちは、あなたがメッセージに加えた書式の変更を見ることができません。</string>
     <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">とにかく送信する</string>
+    <string name="SendingFormattingTextDialog_send_anyway_button">送信する</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
     <string name="SendingFormattingTextDialog_cancel_send_button">キャンセル</string>
 
@@ -2063,7 +2063,7 @@
     <!-- Shown in a notification when a story the user tries to send fails to be sent -->
     <string name="MessageNotifier_story_delivery_failed">ストーリーを送信できませんでした</string>
     <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
-    <string name="MessageNotifier_group_story_title">あなたから %1$s</string>
+    <string name="MessageNotifier_group_story_title">あなたから %1$s へ</string>
     <string name="MessageNotifier_failed_to_deliver_message">メッセージを配送できませんでした。</string>
     <string name="MessageNotifier_error_delivering_message">メッセージの配送中にエラーが発生しました。</string>
     <string name="MessageNotifier_message_delivery_paused">メッセージの配送が保留されました。</string>
@@ -2203,9 +2203,9 @@
     <string name="contact_selection_activity__invite_to_signal">Signalに招待する</string>
     <string name="contact_selection_activity__new_group">新規グループ</string>
     <!-- Row item title for refreshing contacts -->
-    <string name="contact_selection_activity__refresh_contacts">Refresh contacts</string>
+    <string name="contact_selection_activity__refresh_contacts">連絡先を更新</string>
     <!-- Row item description for refreshing contacts -->
-    <string name="contact_selection_activity__missing_someone">Missing someone? Try refreshing</string>
+    <string name="contact_selection_activity__missing_someone">連絡先が見つからない場合は更新してみましょう</string>
     <!-- Row header title for more section -->
     <string name="contact_selection_activity__more">その他</string>
 
@@ -3002,6 +3002,8 @@
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">メモ</string>
+    <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
+    <string name="EditNoteFragment__content_description_save_note">Save note</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">決済を確認</string>
@@ -3043,7 +3045,7 @@
 
     <!-- contact_selection_list -->
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
-    <string name="contact_selection_list__new_call">New call to…</string>
+    <string name="contact_selection_list__new_call">新しい通話先は…</string>
     <string name="contact_selection_list__unknown_contact">新規メッセージ…</string>
     <string name="contact_selection_list__unknown_contact_block">ユーザーをブロックする</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">グループに追加</string>
@@ -3894,6 +3896,60 @@
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">確認の頻度は次第に少なくなります。</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">あなたの電話番号をSignalに再登録する際に、Signal PINを要求します。</string>
     <string name="AccountSettingsFragment__change_phone_number">電話番号を変更</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Request account data</string>
+
+    <!-- ExportAccountDataFragment -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Download and export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <!-- Button action to download the report data -->
+    <string name="ExportAccountDataFragment__download_report">Download report</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <!-- Button action to delete the requested account data -->
+    <string name="ExportAccountDataFragment__delete_report">Delete report</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <!-- Message shown when report download fails -->
+    <string name="ExportAccountDataFragment__report_download_failed">Your report could not be downloaded due to a network error. Check your connection and try again.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+
+    <!-- Action to delete report in confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_action">Delete</string>
+    <!-- Title for delete report confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_confirmation">Delete report?</string>
+    <!-- Message for delete report confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_confirmation_message">This will not delete any data from your account.</string>
+
+    <!-- Shown as a snackbar letting the user know the report was deleted -->
+    <string name="ExportAccountDataFragment__delete_report_snackbar">Report deleted</string>
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Downloading report…</string>
+    <!-- Explanation that the downloaded report will be available for 30 days before it is deleted -->
+    <string name="ExportAccountDataFragment__report_deletion_disclaimer">Your report will be available for export for 30 days and will then be automatically deleted.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">現在使用している電話番号を、新しい電話番号に変更する際に使用してください。この変更を元に戻すことはできません。続ける前に、新しい電話番号がSMSや通話を受信できることを確認してください。</string>
@@ -5555,12 +5611,20 @@
     <string name="TextFormatting_strikethrough">取り消し線</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">等幅</string>
+    <!-- Popup menu label for applying spoiler style -->
+    <string name="TextFormatting_spoiler">Spoiler</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">続行</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">Signalユーザーネームを設定する</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Usernames are paired with a set of digits and aren\'t shared on your profile</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Each username has a unique QR code and link you can share with friends to start a chat with you</string>
+    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Turn off phone number discovery under Settings &gt; Privacy &gt; Phone number &gt; Who can find my number, to use your username as the primary way others can contact you</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5582,11 +5646,11 @@
     <!-- Displayed below the user\'s name in row items on the call log. First placeholder is the call status, second is when it occurred -->
     <string name="CallLogAdapter__s_dot_s">%1$s · %2$s</string>
     <!-- Displayed for incoming calls -->
-    <string name="CallLogAdapter__incoming">受信</string>
+    <string name="CallLogAdapter__incoming">着信</string>
     <!-- Displayed for outgoing calls -->
-    <string name="CallLogAdapter__outgoing">送信</string>
+    <string name="CallLogAdapter__outgoing">発信</string>
     <!-- Displayed for missed calls -->
-    <string name="CallLogAdapter__missed">Missed</string>
+    <string name="CallLogAdapter__missed">不在着信</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5608,7 +5672,7 @@
 
     <!-- Call Log Fragment -->
     <!-- Action bar menu item to only display missed calls -->
-    <string name="CallLogFragment__filter_missed_calls">Filter missed calls</string>
+    <string name="CallLogFragment__filter_missed_calls">不在着信を検索する</string>
     <!-- Action bar menu item to clear missed call filter -->
     <string name="CallLogFragment__clear_filter">検索条件を解除する</string>
     <!-- Action bar menu item to open settings -->
@@ -5616,9 +5680,9 @@
     <!-- Action bar menu item to open notification profile settings -->
     <string name="CallLogFragment__notification_profile">通知プロファイル</string>
     <!-- Call log new call content description -->
-    <string name="CallLogFragment__start_a_new_call">Start a new call</string>
+    <string name="CallLogFragment__start_a_new_call">通話を開始する</string>
     <!-- Filter pull text when pulled -->
-    <string name="CallLogFragment__filtered_by_missed">Filtered by missed</string>
+    <string name="CallLogFragment__filtered_by_missed">未確認のものを検索する</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">すべて選択する</string>
     <!-- Bottom bar option to delete all selected call entries -->
@@ -5632,30 +5696,35 @@
     <string name="CallLogFragment__delete_for_me">自分の分だけ消去</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
-        <item quantity="other">%1$d calls deleted</item>
+        <item quantity="other">%1$d の通話が消去されました</item>
     </plurals>
     <!-- Undo action for deletion snackbar -->
     <string name="CallLogFragment__undo">元に戻す</string>
     <!-- Shown during empty state -->
-    <string name="CallLogFragment__no_calls">No calls.</string>
+    <string name="CallLogFragment__no_calls">表示できる通話はありません。</string>
     <!-- Shown during empty state -->
-    <string name="CallLogFragment__get_started_by_calling_a_friend">Get started by calling a friend.</string>
+    <string name="CallLogFragment__get_started_by_calling_a_friend">友達に電話をかけましょう。</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
-    <string name="NewCallActivity__new_call">New call</string>
+    <string name="NewCallActivity__new_call">通話する</string>
 
     <!-- Call state update popups -->
     <!-- Displayed when the user enables group call ringing -->
-    <string name="CallStateUpdatePopupWindow__ringing_on">Ringing on</string>
+    <string name="CallStateUpdatePopupWindow__ringing_on">呼び出し音が鳴っています</string>
     <!-- Displayed when the user disables group call ringing -->
-    <string name="CallStateUpdatePopupWindow__ringing_off">Ringing off</string>
+    <string name="CallStateUpdatePopupWindow__ringing_off">呼び出し音が鳴っていません</string>
     <!-- Displayed when the user cannot enable group call ringing -->
-    <string name="CallStateUpdatePopupWindow__group_is_too_large">Group is too large to ring the participants</string>
+    <string name="CallStateUpdatePopupWindow__group_is_too_large">グループが大きすぎるため、参加者を呼べません。</string>
     <!-- Displayed when the user turns on their mic -->
-    <string name="CallStateUpdatePopupWindow__mic_on">Mic on</string>
+    <string name="CallStateUpdatePopupWindow__mic_on">マイクオン</string>
     <!-- Displayed when the user turns off their mic -->
-    <string name="CallStateUpdatePopupWindow__mic_off">Mic off</string>
+    <string name="CallStateUpdatePopupWindow__mic_off">マイクオフ</string>
+
+    <!-- Accessibility label describing the capture button on the camera screen -->
+    <string name="CameraControls_capture_button_accessibility_label">Capture Button</string>
+    <!-- Accessibility label describing the continue button on the camera screen -->
+    <string name="CameraControls_continue_button_accessibility_label">Continue Button</string>
 
     <!-- EOF -->
 </resources>

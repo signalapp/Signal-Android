@@ -385,9 +385,9 @@
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Скоро вы снова получите напоминание об этом.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">Sending formatted text</string>
+    <string name="SendingFormattingTextDialog_title">Отправка отформатированного текста</string>
     <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Some people may be using a version of Signal that doesn\'t support formatted text. They will not be able to see the formatting changes you\'ve made to your message.</string>
+    <string name="SendingFormattingTextDialog_message">Некоторые пользователи могут использовать версию Signal, которая не поддерживает отформатированный текст. Они не будут видеть изменения форматирования, которые вы внесли в своё сообщение.</string>
     <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
     <string name="SendingFormattingTextDialog_send_anyway_button">Всё равно отправить</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
@@ -2422,9 +2422,9 @@
     <string name="contact_selection_activity__invite_to_signal">Пригласить в Signal</string>
     <string name="contact_selection_activity__new_group">Новая группа</string>
     <!-- Row item title for refreshing contacts -->
-    <string name="contact_selection_activity__refresh_contacts">Refresh contacts</string>
+    <string name="contact_selection_activity__refresh_contacts">Обновить контакты</string>
     <!-- Row item description for refreshing contacts -->
-    <string name="contact_selection_activity__missing_someone">Missing someone? Try refreshing</string>
+    <string name="contact_selection_activity__missing_someone">Не можете кого-то найти? Попробуйте обновить</string>
     <!-- Row header title for more section -->
     <string name="contact_selection_activity__more">Больше</string>
 
@@ -3254,6 +3254,8 @@
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Заметка</string>
+    <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
+    <string name="EditNoteFragment__content_description_save_note">Save note</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Подтвердить платёж</string>
@@ -3295,7 +3297,7 @@
 
     <!-- contact_selection_list -->
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
-    <string name="contact_selection_list__new_call">New call to…</string>
+    <string name="contact_selection_list__new_call">Новый звонок…</string>
     <string name="contact_selection_list__unknown_contact">Новое сообщение для…</string>
     <string name="contact_selection_list__unknown_contact_block">Заблокировать пользователя</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Добавить в группу</string>
@@ -4185,6 +4187,60 @@
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Напоминания будут появляться реже со временем</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Требовать вводить ваш PIN-код Signal при повторной регистрации вашего номера телефона в Signal</string>
     <string name="AccountSettingsFragment__change_phone_number">Изменить номер телефона</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Request account data</string>
+
+    <!-- ExportAccountDataFragment -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Download and export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <!-- Button action to download the report data -->
+    <string name="ExportAccountDataFragment__download_report">Download report</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <!-- Button action to delete the requested account data -->
+    <string name="ExportAccountDataFragment__delete_report">Delete report</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <!-- Message shown when report download fails -->
+    <string name="ExportAccountDataFragment__report_download_failed">Your report could not be downloaded due to a network error. Check your connection and try again.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+
+    <!-- Action to delete report in confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_action">Delete</string>
+    <!-- Title for delete report confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_confirmation">Delete report?</string>
+    <!-- Message for delete report confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_confirmation_message">This will not delete any data from your account.</string>
+
+    <!-- Shown as a snackbar letting the user know the report was deleted -->
+    <string name="ExportAccountDataFragment__delete_report_snackbar">Report deleted</string>
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Downloading report…</string>
+    <!-- Explanation that the downloaded report will be available for 30 days before it is deleted -->
+    <string name="ExportAccountDataFragment__report_deletion_disclaimer">Your report will be available for export for 30 days and will then be automatically deleted.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Используйте эту функцию, чтобы изменить свой текущий номер телефона на новый. Это изменение нельзя отменить.\n\nПеред тем как продолжить, убедитесь, что ваш новый номер может принимать SMS или звонки.</string>
@@ -5930,12 +5986,20 @@
     <string name="TextFormatting_strikethrough">Зачёркивание</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Моноспейс</string>
+    <!-- Popup menu label for applying spoiler style -->
+    <string name="TextFormatting_spoiler">Spoiler</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Продолжить</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">Настроить своё имя пользователя Signal</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Usernames are paired with a set of digits and aren\'t shared on your profile</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Each username has a unique QR code and link you can share with friends to start a chat with you</string>
+    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Turn off phone number discovery under Settings &gt; Privacy &gt; Phone number &gt; Who can find my number, to use your username as the primary way others can contact you</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5957,11 +6021,11 @@
     <!-- Displayed below the user\'s name in row items on the call log. First placeholder is the call status, second is when it occurred -->
     <string name="CallLogAdapter__s_dot_s">%1$s · %2$s</string>
     <!-- Displayed for incoming calls -->
-    <string name="CallLogAdapter__incoming">Входящее</string>
+    <string name="CallLogAdapter__incoming">Входящие</string>
     <!-- Displayed for outgoing calls -->
-    <string name="CallLogAdapter__outgoing">исходящее</string>
+    <string name="CallLogAdapter__outgoing">Исходящие</string>
     <!-- Displayed for missed calls -->
-    <string name="CallLogAdapter__missed">Missed</string>
+    <string name="CallLogAdapter__missed">Пропущенные</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5983,7 +6047,7 @@
 
     <!-- Call Log Fragment -->
     <!-- Action bar menu item to only display missed calls -->
-    <string name="CallLogFragment__filter_missed_calls">Filter missed calls</string>
+    <string name="CallLogFragment__filter_missed_calls">Отфильтровать пропущенные звонки</string>
     <!-- Action bar menu item to clear missed call filter -->
     <string name="CallLogFragment__clear_filter">Очистить фильтр</string>
     <!-- Action bar menu item to open settings -->
@@ -5991,9 +6055,9 @@
     <!-- Action bar menu item to open notification profile settings -->
     <string name="CallLogFragment__notification_profile">Профиль уведомлений</string>
     <!-- Call log new call content description -->
-    <string name="CallLogFragment__start_a_new_call">Start a new call</string>
+    <string name="CallLogFragment__start_a_new_call">Начать новый звонок</string>
     <!-- Filter pull text when pulled -->
-    <string name="CallLogFragment__filtered_by_missed">Filtered by missed</string>
+    <string name="CallLogFragment__filtered_by_missed">Отфильтровано по пропущенным</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Выбрать все</string>
     <!-- Bottom bar option to delete all selected call entries -->
@@ -6007,33 +6071,38 @@
     <string name="CallLogFragment__delete_for_me">Удалить для меня</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
-        <item quantity="one">%1$d call deleted</item>
-        <item quantity="few">%1$d calls deleted</item>
-        <item quantity="many">%1$d calls deleted</item>
-        <item quantity="other">%1$d calls deleted</item>
+        <item quantity="one">%1$d звонок удалён</item>
+        <item quantity="few">%1$d звонка удалено</item>
+        <item quantity="many">%1$d звонков удалено</item>
+        <item quantity="other">%1$d звонка удалено</item>
     </plurals>
     <!-- Undo action for deletion snackbar -->
     <string name="CallLogFragment__undo">Отменить</string>
     <!-- Shown during empty state -->
-    <string name="CallLogFragment__no_calls">No calls.</string>
+    <string name="CallLogFragment__no_calls">Нет звонков.</string>
     <!-- Shown during empty state -->
-    <string name="CallLogFragment__get_started_by_calling_a_friend">Get started by calling a friend.</string>
+    <string name="CallLogFragment__get_started_by_calling_a_friend">Начните со звонка другу.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
-    <string name="NewCallActivity__new_call">New call</string>
+    <string name="NewCallActivity__new_call">Новый звонок</string>
 
     <!-- Call state update popups -->
     <!-- Displayed when the user enables group call ringing -->
-    <string name="CallStateUpdatePopupWindow__ringing_on">Ringing on</string>
+    <string name="CallStateUpdatePopupWindow__ringing_on">Звонки включены</string>
     <!-- Displayed when the user disables group call ringing -->
-    <string name="CallStateUpdatePopupWindow__ringing_off">Ringing off</string>
+    <string name="CallStateUpdatePopupWindow__ringing_off">Звонки отключены</string>
     <!-- Displayed when the user cannot enable group call ringing -->
-    <string name="CallStateUpdatePopupWindow__group_is_too_large">Group is too large to ring the participants</string>
+    <string name="CallStateUpdatePopupWindow__group_is_too_large">Невозможно звонить участникам: группа слишком большая</string>
     <!-- Displayed when the user turns on their mic -->
-    <string name="CallStateUpdatePopupWindow__mic_on">Mic on</string>
+    <string name="CallStateUpdatePopupWindow__mic_on">Микрофон включён</string>
     <!-- Displayed when the user turns off their mic -->
-    <string name="CallStateUpdatePopupWindow__mic_off">Mic off</string>
+    <string name="CallStateUpdatePopupWindow__mic_off">Микрофон выключен</string>
+
+    <!-- Accessibility label describing the capture button on the camera screen -->
+    <string name="CameraControls_capture_button_accessibility_label">Capture Button</string>
+    <!-- Accessibility label describing the continue button on the camera screen -->
+    <string name="CameraControls_continue_button_accessibility_label">Continue Button</string>
 
     <!-- EOF -->
 </resources>

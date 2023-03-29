@@ -385,13 +385,13 @@
     <string name="ConversationActivity__you_will_be_reminded_again_soon">I-re-remind ka ulit sa susunod tungkol dito.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">Sending formatted text</string>
+    <string name="SendingFormattingTextDialog_title">Nagse-send ng formatted text</string>
     <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Some people may be using a version of Signal that doesn\'t support formatted text. They will not be able to see the formatting changes you\'ve made to your message.</string>
+    <string name="SendingFormattingTextDialog_message">Maaaring gumagamit ang iba ng version ng Signal na hindi sinusuportahan ang formatted text. Hindi nila makikita ang formatting changes na ginawa mo sa iyong message.</string>
     <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">Send anyway</string>
+    <string name="SendingFormattingTextDialog_send_anyway_button">I-send pa rin</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">Kanselahin</string>
+    <string name="SendingFormattingTextDialog_cancel_send_button">I-cancel</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -2135,7 +2135,7 @@
     <!-- Shown in a notification when a story the user tries to send fails to be sent -->
     <string name="MessageNotifier_story_delivery_failed">Hindi na-send ang story</string>
     <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
-    <string name="MessageNotifier_group_story_title">You to %1$s</string>
+    <string name="MessageNotifier_group_story_title">Ikaw para sa %1$s</string>
     <string name="MessageNotifier_failed_to_deliver_message">Nabigong ihatid ang mensahe.</string>
     <string name="MessageNotifier_error_delivering_message">Nagka-error sa paghahatid ng mensahe.</string>
     <string name="MessageNotifier_message_delivery_paused">Message delivery paused.</string>
@@ -2276,9 +2276,9 @@
     <string name="contact_selection_activity__invite_to_signal">Imbitahan sa Signal</string>
     <string name="contact_selection_activity__new_group">Bagong grupo</string>
     <!-- Row item title for refreshing contacts -->
-    <string name="contact_selection_activity__refresh_contacts">Refresh contacts</string>
+    <string name="contact_selection_activity__refresh_contacts">I-refresh ang contacts</string>
     <!-- Row item description for refreshing contacts -->
-    <string name="contact_selection_activity__missing_someone">Missing someone? Try refreshing</string>
+    <string name="contact_selection_activity__missing_someone">May nawawala ka bang contact? Subukang mag-refresh</string>
     <!-- Row header title for more section -->
     <string name="contact_selection_activity__more">More</string>
 
@@ -3086,6 +3086,8 @@
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Note</string>
+    <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
+    <string name="EditNoteFragment__content_description_save_note">Save note</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">I-confirm ang payment</string>
@@ -3127,7 +3129,7 @@
 
     <!-- contact_selection_list -->
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
-    <string name="contact_selection_list__new_call">New call to…</string>
+    <string name="contact_selection_list__new_call">Bagong call kay…</string>
     <string name="contact_selection_list__unknown_contact">Bagong mensahe para kay…</string>
     <string name="contact_selection_list__unknown_contact_block">I-block ang user</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">I-add sa group</string>
@@ -3991,6 +3993,60 @@
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Hindi ka na masyadong tatanungin over time</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Require your Signal PIN para ma-register ulit ang iyong phone number with Signal</string>
     <string name="AccountSettingsFragment__change_phone_number">Change phone number</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Request account data</string>
+
+    <!-- ExportAccountDataFragment -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Download and export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <!-- Button action to download the report data -->
+    <string name="ExportAccountDataFragment__download_report">Download report</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <!-- Button action to delete the requested account data -->
+    <string name="ExportAccountDataFragment__delete_report">Delete report</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <!-- Message shown when report download fails -->
+    <string name="ExportAccountDataFragment__report_download_failed">Your report could not be downloaded due to a network error. Check your connection and try again.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+
+    <!-- Action to delete report in confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_action">Delete</string>
+    <!-- Title for delete report confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_confirmation">Delete report?</string>
+    <!-- Message for delete report confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_confirmation_message">This will not delete any data from your account.</string>
+
+    <!-- Shown as a snackbar letting the user know the report was deleted -->
+    <string name="ExportAccountDataFragment__delete_report_snackbar">Report deleted</string>
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Downloading report…</string>
+    <!-- Explanation that the downloaded report will be available for 30 days before it is deleted -->
+    <string name="ExportAccountDataFragment__report_deletion_disclaimer">Your report will be available for export for 30 days and will then be automatically deleted.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gamitin ito para mabago ang iyong current phone number sa isang new phone number. You can\'t undo this change.\n\nBago magpatuloy, siguraduhing nakaka-receive ng SMS at calls ang new number mo.</string>
@@ -4838,7 +4894,7 @@
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">Mga chat</string>
     <!-- Label for Calls tab in home app screen -->
-    <string name="ConversationListTabs__calls">Mga Tawag</string>
+    <string name="ConversationListTabs__calls">Calls</string>
     <!-- Label for Stories tab in home app screen -->
     <string name="ConversationListTabs__stories">Stories</string>
     <!-- String for counts above 99 in conversation list tabs -->
@@ -5680,12 +5736,20 @@
     <string name="TextFormatting_strikethrough">Strikethrough</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Monospace</string>
+    <!-- Popup menu label for applying spoiler style -->
+    <string name="TextFormatting_spoiler">Spoiler</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Magpatuloy</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">I-set up ang iyong Signal username</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Usernames are paired with a set of digits and aren\'t shared on your profile</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Each username has a unique QR code and link you can share with friends to start a chat with you</string>
+    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Turn off phone number discovery under Settings &gt; Privacy &gt; Phone number &gt; Who can find my number, to use your username as the primary way others can contact you</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5719,33 +5783,33 @@
     <!-- Displayed as a context menu item to join an ongoing group call -->
     <string name="CallContextMenu__join_call">Mag-join sa call</string>
     <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">Return to call</string>
+    <string name="CallContextMenu__return_to_call">Bumalik sa call</string>
     <!-- Displayed as a context menu item to start an audio call -->
     <string name="CallContextMenu__audio_call">Audio call</string>
     <!-- Displayed as a context menu item to go to chat -->
-    <string name="CallContextMenu__go_to_chat">Go to chat</string>
+    <string name="CallContextMenu__go_to_chat">Pumunta sa chat</string>
     <!-- Displayed as a context menu item to see call info -->
     <string name="CallContextMenu__info">Info</string>
     <!-- Displayed as a context menu item to select multiple calls -->
-    <string name="CallContextMenu__select">Select</string>
+    <string name="CallContextMenu__select">Pumili</string>
     <!-- Displayed as a context menu item to delete this call -->
     <string name="CallContextMenu__delete">Burahin</string>
 
     <!-- Call Log Fragment -->
     <!-- Action bar menu item to only display missed calls -->
-    <string name="CallLogFragment__filter_missed_calls">Filter missed calls</string>
+    <string name="CallLogFragment__filter_missed_calls">I-filter ang missed calls</string>
     <!-- Action bar menu item to clear missed call filter -->
     <string name="CallLogFragment__clear_filter">I-clear ang filter</string>
     <!-- Action bar menu item to open settings -->
     <string name="CallLogFragment__settings">Settings</string>
     <!-- Action bar menu item to open notification profile settings -->
-    <string name="CallLogFragment__notification_profile">Profile ng notification</string>
+    <string name="CallLogFragment__notification_profile">Notification Profile</string>
     <!-- Call log new call content description -->
-    <string name="CallLogFragment__start_a_new_call">Start a new call</string>
+    <string name="CallLogFragment__start_a_new_call">Magsimula ng bagong call</string>
     <!-- Filter pull text when pulled -->
-    <string name="CallLogFragment__filtered_by_missed">Filtered by missed</string>
+    <string name="CallLogFragment__filtered_by_missed">Missed calls lang ang ipakita</string>
     <!-- Bottom bar option to select all call entries -->
-    <string name="CallLogFragment__select_all">Select all</string>
+    <string name="CallLogFragment__select_all">Piliin lahat</string>
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">Burahin</string>
     <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
@@ -5757,19 +5821,19 @@
     <string name="CallLogFragment__delete_for_me">Burahin sa \'kin</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
-        <item quantity="one">%1$d call deleted</item>
-        <item quantity="other">%1$d calls deleted</item>
+        <item quantity="one">%1$d call ang binura</item>
+        <item quantity="other">%1$d calls ang binura</item>
     </plurals>
     <!-- Undo action for deletion snackbar -->
-    <string name="CallLogFragment__undo">Undo</string>
+    <string name="CallLogFragment__undo">I-undo</string>
     <!-- Shown during empty state -->
-    <string name="CallLogFragment__no_calls">No calls.</string>
+    <string name="CallLogFragment__no_calls">Walang calls.</string>
     <!-- Shown during empty state -->
-    <string name="CallLogFragment__get_started_by_calling_a_friend">Get started by calling a friend.</string>
+    <string name="CallLogFragment__get_started_by_calling_a_friend">Magsimula sa pamamagitan ng pagtawag sa kaibigan mo.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
-    <string name="NewCallActivity__new_call">New call</string>
+    <string name="NewCallActivity__new_call">Bagong call</string>
 
     <!-- Call state update popups -->
     <!-- Displayed when the user enables group call ringing -->
@@ -5777,11 +5841,16 @@
     <!-- Displayed when the user disables group call ringing -->
     <string name="CallStateUpdatePopupWindow__ringing_off">Ringing off</string>
     <!-- Displayed when the user cannot enable group call ringing -->
-    <string name="CallStateUpdatePopupWindow__group_is_too_large">Group is too large to ring the participants</string>
+    <string name="CallStateUpdatePopupWindow__group_is_too_large">Ang group ay masyadong malaki para tawagan ang participants</string>
     <!-- Displayed when the user turns on their mic -->
     <string name="CallStateUpdatePopupWindow__mic_on">Mic on</string>
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Mic off</string>
+
+    <!-- Accessibility label describing the capture button on the camera screen -->
+    <string name="CameraControls_capture_button_accessibility_label">Capture Button</string>
+    <!-- Accessibility label describing the continue button on the camera screen -->
+    <string name="CameraControls_continue_button_accessibility_label">Continue Button</string>
 
     <!-- EOF -->
 </resources>

@@ -385,9 +385,9 @@
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Du vil få en påminnelse igjen snart.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">Sending formatted text</string>
+    <string name="SendingFormattingTextDialog_title">Sender formatert tekst</string>
     <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Some people may be using a version of Signal that doesn\'t support formatted text. They will not be able to see the formatting changes you\'ve made to your message.</string>
+    <string name="SendingFormattingTextDialog_message">Enkelte bruker en versjon av Signal som ikke støtter formatert tekst. De vil ikke kunne se den nye formateringen av meldingen.</string>
     <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
     <string name="SendingFormattingTextDialog_send_anyway_button">Send likevel</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
@@ -2276,9 +2276,9 @@
     <string name="contact_selection_activity__invite_to_signal">Inviter til Signal</string>
     <string name="contact_selection_activity__new_group">Ny gruppe</string>
     <!-- Row item title for refreshing contacts -->
-    <string name="contact_selection_activity__refresh_contacts">Refresh contacts</string>
+    <string name="contact_selection_activity__refresh_contacts">Oppdater kontakter</string>
     <!-- Row item description for refreshing contacts -->
-    <string name="contact_selection_activity__missing_someone">Missing someone? Try refreshing</string>
+    <string name="contact_selection_activity__missing_someone">Mangler det noen? Last inn kontaktene på nytt</string>
     <!-- Row header title for more section -->
     <string name="contact_selection_activity__more">Mer</string>
 
@@ -3086,6 +3086,8 @@
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Notat</string>
+    <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
+    <string name="EditNoteFragment__content_description_save_note">Save note</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Bekreft betaling</string>
@@ -3127,7 +3129,7 @@
 
     <!-- contact_selection_list -->
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
-    <string name="contact_selection_list__new_call">New call to…</string>
+    <string name="contact_selection_list__new_call">Nytt anrop til …</string>
     <string name="contact_selection_list__unknown_contact">Ny melding til…</string>
     <string name="contact_selection_list__unknown_contact_block">Blokker brukeren</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Legg til gruppen</string>
@@ -3991,6 +3993,60 @@
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du vil bli spurt sjeldnere over tid</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Krev Signal-PIN for å registrere telefonnummeret på nytt hos Signal</string>
     <string name="AccountSettingsFragment__change_phone_number">Endre telefonnummer</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Request account data</string>
+
+    <!-- ExportAccountDataFragment -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Download and export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <!-- Button action to download the report data -->
+    <string name="ExportAccountDataFragment__download_report">Download report</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <!-- Button action to delete the requested account data -->
+    <string name="ExportAccountDataFragment__delete_report">Delete report</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <!-- Message shown when report download fails -->
+    <string name="ExportAccountDataFragment__report_download_failed">Your report could not be downloaded due to a network error. Check your connection and try again.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+
+    <!-- Action to delete report in confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_action">Delete</string>
+    <!-- Title for delete report confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_confirmation">Delete report?</string>
+    <!-- Message for delete report confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_confirmation_message">This will not delete any data from your account.</string>
+
+    <!-- Shown as a snackbar letting the user know the report was deleted -->
+    <string name="ExportAccountDataFragment__delete_report_snackbar">Report deleted</string>
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Downloading report…</string>
+    <!-- Explanation that the downloaded report will be available for 30 days before it is deleted -->
+    <string name="ExportAccountDataFragment__report_deletion_disclaimer">Your report will be available for export for 30 days and will then be automatically deleted.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Velg dette for å bytte ut det nåværende telefonnummeret ditt. Denne endringen kan ikke angres senere. Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du fortsetter.</string>
@@ -4838,7 +4894,7 @@
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">Samtaler</string>
     <!-- Label for Calls tab in home app screen -->
-    <string name="ConversationListTabs__calls">Samtaler</string>
+    <string name="ConversationListTabs__calls">Anrop</string>
     <!-- Label for Stories tab in home app screen -->
     <string name="ConversationListTabs__stories">Storyer</string>
     <!-- String for counts above 99 in conversation list tabs -->
@@ -5680,12 +5736,20 @@
     <string name="TextFormatting_strikethrough">Gjennomstreking</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Fast tegnavstand</string>
+    <!-- Popup menu label for applying spoiler style -->
+    <string name="TextFormatting_spoiler">Spoiler</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Fortsett</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">Velg et brukernavn på Signal</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Usernames are paired with a set of digits and aren\'t shared on your profile</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Each username has a unique QR code and link you can share with friends to start a chat with you</string>
+    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Turn off phone number discovery under Settings &gt; Privacy &gt; Phone number &gt; Who can find my number, to use your username as the primary way others can contact you</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5707,19 +5771,19 @@
     <!-- Displayed below the user\'s name in row items on the call log. First placeholder is the call status, second is when it occurred -->
     <string name="CallLogAdapter__s_dot_s">%1$s · %2$s</string>
     <!-- Displayed for incoming calls -->
-    <string name="CallLogAdapter__incoming">Incoming</string>
+    <string name="CallLogAdapter__incoming">Innkommende</string>
     <!-- Displayed for outgoing calls -->
-    <string name="CallLogAdapter__outgoing">Outgoing</string>
+    <string name="CallLogAdapter__outgoing">Utgående</string>
     <!-- Displayed for missed calls -->
-    <string name="CallLogAdapter__missed">Missed</string>
+    <string name="CallLogAdapter__missed">Ubesvart</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
     <string name="CallContextMenu__video_call">Videoanrop</string>
     <!-- Displayed as a context menu item to join an ongoing group call -->
-    <string name="CallContextMenu__join_call">Bli med i samtale</string>
+    <string name="CallContextMenu__join_call">Bli med i samtalen</string>
     <!-- Displayed as a context menu item to return to active call -->
-    <string name="CallContextMenu__return_to_call">Gå tilbake til samtale</string>
+    <string name="CallContextMenu__return_to_call">Gå tilbake til anropet</string>
     <!-- Displayed as a context menu item to start an audio call -->
     <string name="CallContextMenu__audio_call">Taleanrop</string>
     <!-- Displayed as a context menu item to go to chat -->
@@ -5733,7 +5797,7 @@
 
     <!-- Call Log Fragment -->
     <!-- Action bar menu item to only display missed calls -->
-    <string name="CallLogFragment__filter_missed_calls">Filter missed calls</string>
+    <string name="CallLogFragment__filter_missed_calls">Vis ubesvarte anrop</string>
     <!-- Action bar menu item to clear missed call filter -->
     <string name="CallLogFragment__clear_filter">Tøm filter</string>
     <!-- Action bar menu item to open settings -->
@@ -5741,9 +5805,9 @@
     <!-- Action bar menu item to open notification profile settings -->
     <string name="CallLogFragment__notification_profile">Varslingsprofil</string>
     <!-- Call log new call content description -->
-    <string name="CallLogFragment__start_a_new_call">Start a new call</string>
+    <string name="CallLogFragment__start_a_new_call">Start et nytt anrop</string>
     <!-- Filter pull text when pulled -->
-    <string name="CallLogFragment__filtered_by_missed">Filtered by missed</string>
+    <string name="CallLogFragment__filtered_by_missed">Viser kun ubesvarte</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">Velg alle</string>
     <!-- Bottom bar option to delete all selected call entries -->
@@ -5757,31 +5821,36 @@
     <string name="CallLogFragment__delete_for_me">Slett for meg</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
-        <item quantity="one">%1$d call deleted</item>
-        <item quantity="other">%1$d calls deleted</item>
+        <item quantity="one">%1$d anrop slettet</item>
+        <item quantity="other">%1$d anrop slettet</item>
     </plurals>
     <!-- Undo action for deletion snackbar -->
     <string name="CallLogFragment__undo">Angre</string>
     <!-- Shown during empty state -->
-    <string name="CallLogFragment__no_calls">No calls.</string>
+    <string name="CallLogFragment__no_calls">Ingen anrop.</string>
     <!-- Shown during empty state -->
-    <string name="CallLogFragment__get_started_by_calling_a_friend">Get started by calling a friend.</string>
+    <string name="CallLogFragment__get_started_by_calling_a_friend">Kom i gang ved å ringe en venn.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
-    <string name="NewCallActivity__new_call">New call</string>
+    <string name="NewCallActivity__new_call">Nytt anrop</string>
 
     <!-- Call state update popups -->
     <!-- Displayed when the user enables group call ringing -->
-    <string name="CallStateUpdatePopupWindow__ringing_on">Ringing on</string>
+    <string name="CallStateUpdatePopupWindow__ringing_on">Anrop på</string>
     <!-- Displayed when the user disables group call ringing -->
-    <string name="CallStateUpdatePopupWindow__ringing_off">Ringing off</string>
+    <string name="CallStateUpdatePopupWindow__ringing_off">Anrop av</string>
     <!-- Displayed when the user cannot enable group call ringing -->
-    <string name="CallStateUpdatePopupWindow__group_is_too_large">Group is too large to ring the participants</string>
+    <string name="CallStateUpdatePopupWindow__group_is_too_large">Gruppen er for stor til å ringe deltakerne</string>
     <!-- Displayed when the user turns on their mic -->
-    <string name="CallStateUpdatePopupWindow__mic_on">Mic on</string>
+    <string name="CallStateUpdatePopupWindow__mic_on">Mikrofon på</string>
     <!-- Displayed when the user turns off their mic -->
-    <string name="CallStateUpdatePopupWindow__mic_off">Mic off</string>
+    <string name="CallStateUpdatePopupWindow__mic_off">Mikrofon av</string>
+
+    <!-- Accessibility label describing the capture button on the camera screen -->
+    <string name="CameraControls_capture_button_accessibility_label">Capture Button</string>
+    <!-- Accessibility label describing the continue button on the camera screen -->
+    <string name="CameraControls_continue_button_accessibility_label">Continue Button</string>
 
     <!-- EOF -->
 </resources>

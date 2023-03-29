@@ -362,7 +362,7 @@
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Για να καλέσεις τον/την %1$s, το Signal χρειάζεται πρόσβαση στο μικρόφωνό σου.</string>
 
 
-    <string name="ConversationActivity_join">Γίνε μέλος</string>
+    <string name="ConversationActivity_join">Μπες στην κλήση</string>
     <string name="ConversationActivity_full">Γεμάτο</string>
 
     <string name="ConversationActivity_error_sending_media">Σφάλμα στην αποστολή πολυμέσων</string>
@@ -385,9 +385,9 @@
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Θα σου το θυμίσουμε ξανά σύντομα.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">Sending formatted text</string>
+    <string name="SendingFormattingTextDialog_title">Αποστολή μορφοποιημένου κειμένου</string>
     <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Some people may be using a version of Signal that doesn\'t support formatted text. They will not be able to see the formatting changes you\'ve made to your message.</string>
+    <string name="SendingFormattingTextDialog_message">Κάποιοι μπορεί να χρησιμοποιούν μια έκδοση του Signal που δεν υποστηρίζει μορφοποιημένο κείμενο. Δεν θα μπορούν να δουν τις αλλαγές μορφοποίησης που έχεις κάνει στο μήνυμά σου.</string>
     <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
     <string name="SendingFormattingTextDialog_send_anyway_button">Αποστόλη παρ\' όλα αυτά</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
@@ -1237,23 +1237,23 @@
     <string name="MessageRecord_you_updated_group">Ενημέρωσες την ομάδα</string>
     <string name="MessageRecord_the_group_was_updated">Η ομάδα ανανεώθηκε.</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_voice_call">Εξερχόμενη βιντεοκλήση</string>
+    <string name="MessageRecord_outgoing_voice_call">Εξερχόμενη κλήση</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
     <string name="MessageRecord_outgoing_video_call">Εξερχόμενη βιντεοκλήση</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Αναπάντητη βιντεοκλήση</string>
+    <string name="MessageRecord_unanswered_voice_call">Αναπάντητη κλήση</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
     <string name="MessageRecord_unanswered_video_call">Αναπάντητη βιντεοκλήση</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
-    <string name="MessageRecord_incoming_voice_call">Εισερχόμενη βιντεοκλήση</string>
+    <string name="MessageRecord_incoming_voice_call">Εισερχόμενη κλήση</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
     <string name="MessageRecord_incoming_video_call">Εισερχόμενη βιντεοκλήση</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_missed_voice_call">Αναπάντητη βιντεοκλήση</string>
+    <string name="MessageRecord_missed_voice_call">Αναπάντητη κλήση</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Αναπάντητη βιντεοκλήση</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">Απέρριψες μια βιντεοκλήση</string>
+    <string name="MessageRecord_you_declined_a_voice_call">Απέρριψες μια κλήση</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_video_call">Απέρριψες μια βιντεοκλήση</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
@@ -2276,9 +2276,9 @@
     <string name="contact_selection_activity__invite_to_signal">Πρόσκληση στο Signal</string>
     <string name="contact_selection_activity__new_group">Νέα ομάδα</string>
     <!-- Row item title for refreshing contacts -->
-    <string name="contact_selection_activity__refresh_contacts">Refresh contacts</string>
+    <string name="contact_selection_activity__refresh_contacts">Ανανέωση επαφών</string>
     <!-- Row item description for refreshing contacts -->
-    <string name="contact_selection_activity__missing_someone">Missing someone? Try refreshing</string>
+    <string name="contact_selection_activity__missing_someone">Λείπει κάποια επαφή; Κάνε ανανέωση</string>
     <!-- Row header title for more section -->
     <string name="contact_selection_activity__more">Περισσότερα</string>
 
@@ -3086,6 +3086,8 @@
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Σημείωση</string>
+    <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
+    <string name="EditNoteFragment__content_description_save_note">Save note</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Επιβεβαίωση πληρωμής</string>
@@ -3127,7 +3129,7 @@
 
     <!-- contact_selection_list -->
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
-    <string name="contact_selection_list__new_call">New call to…</string>
+    <string name="contact_selection_list__new_call">Νέα κλήση σε…</string>
     <string name="contact_selection_list__unknown_contact">Νέο μήνυμα προς…</string>
     <string name="contact_selection_list__unknown_contact_block">Αποκλεισμός χρήστη</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Προσθήκη στην ομάδα</string>
@@ -3991,6 +3993,60 @@
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Θα στο ζητάμε όχι τόσο συχνά όσο περνάει ο καιρός</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Να απαιτείται το PIN Signal σου για να εγγράψεις ξανά τον αριθμό τηλεφώνου σου στο Signal</string>
     <string name="AccountSettingsFragment__change_phone_number">Αλλαγή αριθμού τηλεφώνου</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Request account data</string>
+
+    <!-- ExportAccountDataFragment -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Download and export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <!-- Button action to download the report data -->
+    <string name="ExportAccountDataFragment__download_report">Download report</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <!-- Button action to delete the requested account data -->
+    <string name="ExportAccountDataFragment__delete_report">Delete report</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <!-- Message shown when report download fails -->
+    <string name="ExportAccountDataFragment__report_download_failed">Your report could not be downloaded due to a network error. Check your connection and try again.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+
+    <!-- Action to delete report in confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_action">Delete</string>
+    <!-- Title for delete report confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_confirmation">Delete report?</string>
+    <!-- Message for delete report confirmation dialog -->
+    <string name="ExportAccountDataFragment__delete_report_confirmation_message">This will not delete any data from your account.</string>
+
+    <!-- Shown as a snackbar letting the user know the report was deleted -->
+    <string name="ExportAccountDataFragment__delete_report_snackbar">Report deleted</string>
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Downloading report…</string>
+    <!-- Explanation that the downloaded report will be available for 30 days before it is deleted -->
+    <string name="ExportAccountDataFragment__report_deletion_disclaimer">Your report will be available for export for 30 days and will then be automatically deleted.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Με αυτό μπορείς να αλλάξεις τον τωρινό αριθμό τηλεφώνου σου σε κάποιον καινούργιο. Δεν μπορείς να αναιρέσεις αυτή την αλλαγή.\n\nΠριν συνεχίσεις, επιβεβαίωσε πως μπορείς να λάβεις SMS ή κλήσεις στο νέο αριθμό.</string>
@@ -5680,12 +5736,20 @@
     <string name="TextFormatting_strikethrough">Strikethrough</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Monospace</string>
+    <!-- Popup menu label for applying spoiler style -->
+    <string name="TextFormatting_spoiler">Spoiler</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Συνέχεια</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">Ρύθμισε το όνομα χρήστη σου στο Signal</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Usernames are paired with a set of digits and aren\'t shared on your profile</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Each username has a unique QR code and link you can share with friends to start a chat with you</string>
+    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Turn off phone number discovery under Settings &gt; Privacy &gt; Phone number &gt; Who can find my number, to use your username as the primary way others can contact you</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5707,11 +5771,11 @@
     <!-- Displayed below the user\'s name in row items on the call log. First placeholder is the call status, second is when it occurred -->
     <string name="CallLogAdapter__s_dot_s">%1$s · %2$s</string>
     <!-- Displayed for incoming calls -->
-    <string name="CallLogAdapter__incoming">Incoming</string>
+    <string name="CallLogAdapter__incoming">Εισερχόμενη</string>
     <!-- Displayed for outgoing calls -->
-    <string name="CallLogAdapter__outgoing">Outgoing</string>
+    <string name="CallLogAdapter__outgoing">Εξερχόμενη</string>
     <!-- Displayed for missed calls -->
-    <string name="CallLogAdapter__missed">Missed</string>
+    <string name="CallLogAdapter__missed">Αναπάντητη</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5721,19 +5785,19 @@
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">Επιστροφή στην κλήση</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Ηχητική Κλήση</string>
+    <string name="CallContextMenu__audio_call">Ηχητική κλήση</string>
     <!-- Displayed as a context menu item to go to chat -->
     <string name="CallContextMenu__go_to_chat">Μετάβαση στη συνομιλία</string>
     <!-- Displayed as a context menu item to see call info -->
     <string name="CallContextMenu__info">Πληροφορίες</string>
     <!-- Displayed as a context menu item to select multiple calls -->
-    <string name="CallContextMenu__select">Επιλέχθηκε</string>
+    <string name="CallContextMenu__select">Επιλογή</string>
     <!-- Displayed as a context menu item to delete this call -->
     <string name="CallContextMenu__delete">Διαγραφή</string>
 
     <!-- Call Log Fragment -->
     <!-- Action bar menu item to only display missed calls -->
-    <string name="CallLogFragment__filter_missed_calls">Filter missed calls</string>
+    <string name="CallLogFragment__filter_missed_calls">Φιλτράρισμα αναπάντητων κλήσεων</string>
     <!-- Action bar menu item to clear missed call filter -->
     <string name="CallLogFragment__clear_filter">Διαγραφή φίλτρου</string>
     <!-- Action bar menu item to open settings -->
@@ -5741,11 +5805,11 @@
     <!-- Action bar menu item to open notification profile settings -->
     <string name="CallLogFragment__notification_profile">Προφίλ ειδοποιήσεων</string>
     <!-- Call log new call content description -->
-    <string name="CallLogFragment__start_a_new_call">Start a new call</string>
+    <string name="CallLogFragment__start_a_new_call">Έναρξη νέας κλήσης</string>
     <!-- Filter pull text when pulled -->
-    <string name="CallLogFragment__filtered_by_missed">Filtered by missed</string>
+    <string name="CallLogFragment__filtered_by_missed">Φιλτράρισμα ανά αναπάντητες</string>
     <!-- Bottom bar option to select all call entries -->
-    <string name="CallLogFragment__select_all">Επιλέχθηκαν όλα</string>
+    <string name="CallLogFragment__select_all">Επιλογή όλων</string>
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">Διαγραφή</string>
     <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
@@ -5757,31 +5821,36 @@
     <string name="CallLogFragment__delete_for_me">Διαγραφή για μένα</string>
     <!-- Snackbar label after deleting call logs -->
     <plurals name="CallLogFragment__d_calls_deleted">
-        <item quantity="one">%1$d call deleted</item>
-        <item quantity="other">%1$d calls deleted</item>
+        <item quantity="one">%1$d κλήση διαγράφηκε</item>
+        <item quantity="other">%1$d κλήσεις διαγράφηκαν</item>
     </plurals>
     <!-- Undo action for deletion snackbar -->
     <string name="CallLogFragment__undo">Αναίρεση</string>
     <!-- Shown during empty state -->
-    <string name="CallLogFragment__no_calls">No calls.</string>
+    <string name="CallLogFragment__no_calls">Καμία κλήση.</string>
     <!-- Shown during empty state -->
-    <string name="CallLogFragment__get_started_by_calling_a_friend">Get started by calling a friend.</string>
+    <string name="CallLogFragment__get_started_by_calling_a_friend">Ξεκίνα καλώντας κάποιο φίλο.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
-    <string name="NewCallActivity__new_call">New call</string>
+    <string name="NewCallActivity__new_call">Νέα κλήση</string>
 
     <!-- Call state update popups -->
     <!-- Displayed when the user enables group call ringing -->
-    <string name="CallStateUpdatePopupWindow__ringing_on">Ringing on</string>
+    <string name="CallStateUpdatePopupWindow__ringing_on">Κουδούνισμα ενεργό</string>
     <!-- Displayed when the user disables group call ringing -->
-    <string name="CallStateUpdatePopupWindow__ringing_off">Ringing off</string>
+    <string name="CallStateUpdatePopupWindow__ringing_off">Κουδούνισμα ανενεργό</string>
     <!-- Displayed when the user cannot enable group call ringing -->
-    <string name="CallStateUpdatePopupWindow__group_is_too_large">Group is too large to ring the participants</string>
+    <string name="CallStateUpdatePopupWindow__group_is_too_large">Η ομάδα είναι πολύ μεγάλη ώστε να καλέσουμε με κουδούνισμα τους συμμετέχοντες</string>
     <!-- Displayed when the user turns on their mic -->
-    <string name="CallStateUpdatePopupWindow__mic_on">Mic on</string>
+    <string name="CallStateUpdatePopupWindow__mic_on">Μικρόφωνο ενεργό</string>
     <!-- Displayed when the user turns off their mic -->
-    <string name="CallStateUpdatePopupWindow__mic_off">Mic off</string>
+    <string name="CallStateUpdatePopupWindow__mic_off">Μικρόφωνο ανενεργό</string>
+
+    <!-- Accessibility label describing the capture button on the camera screen -->
+    <string name="CameraControls_capture_button_accessibility_label">Capture Button</string>
+    <!-- Accessibility label describing the continue button on the camera screen -->
+    <string name="CameraControls_continue_button_accessibility_label">Continue Button</string>
 
     <!-- EOF -->
 </resources>
