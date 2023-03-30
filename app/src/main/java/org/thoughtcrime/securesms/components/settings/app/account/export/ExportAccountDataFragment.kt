@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -36,10 +37,19 @@ import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Rows
 import org.signal.core.ui.Scaffolds
+import org.signal.core.ui.Texts
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.SpanUtil
 
 class ExportAccountDataFragment : ComposeFragment() {
+
+  companion object {
+    val TAG = Log.tag(ExportAccountDataFragment::class.java)
+  }
+
   private val viewModel: ExportAccountDataViewModel by viewModels()
 
   private fun deleteReport() {
@@ -105,10 +115,15 @@ class ExportAccountDataFragment : ComposeFragment() {
           }
 
           item {
-            Text(
-              text = stringResource(id = R.string.ExportAccountDataFragment__export_explanation, stringResource(id = R.string.ExportAccountDataFragment__learn_more)),
-              textAlign = TextAlign.Center,
-              modifier = Modifier.padding(top = 12.dp, start = 32.dp, end = 32.dp, bottom = 20.dp)
+            val learnMore = stringResource(R.string.ExportAccountDataFragment__learn_more)
+            val explanation = stringResource(R.string.ExportAccountDataFragment__export_explanation, learnMore)
+            Texts.LinkifiedText(
+              textWithUrlSpans = SpanUtil.urlSubsequence(explanation, learnMore, stringResource(R.string.export_account_data_url)),
+              onUrlClick = { url ->
+                CommunicationActions.openBrowserLink(requireContext(), url)
+              },
+              modifier = Modifier.padding(top = 12.dp, start = 32.dp, end = 32.dp, bottom = 20.dp),
+              style = LocalTextStyle.current.copy(color = MaterialTheme.colorScheme.onSurface, textAlign = TextAlign.Center)
             )
           }
 
@@ -255,7 +270,7 @@ class ExportAccountDataFragment : ComposeFragment() {
     }
 
     Text(
-      text = stringResource(id = R.string.ExportAccountDataFragment__report_deletion_disclaimer, stringResource(id = R.string.ExportAccountDataFragment__learn_more)),
+      text = stringResource(id = R.string.ExportAccountDataFragment__report_deletion_disclaimer),
       style = MaterialTheme.typography.bodySmall,
       textAlign = TextAlign.Start,
       modifier = Modifier.padding(top = 16.dp, start = 24.dp, end = 28.dp, bottom = 20.dp)
