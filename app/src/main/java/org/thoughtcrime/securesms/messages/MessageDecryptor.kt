@@ -22,6 +22,8 @@ import org.signal.libsignal.metadata.ProtocolNoSessionException
 import org.signal.libsignal.metadata.ProtocolUntrustedIdentityException
 import org.signal.libsignal.metadata.SelfSendException
 import org.signal.libsignal.protocol.SignalProtocolAddress
+import org.signal.libsignal.protocol.groups.GroupSessionBuilder
+import org.signal.libsignal.protocol.groups.state.SenderKeyStore
 import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage
@@ -39,6 +41,7 @@ import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.jobs.SendRetryReceiptJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
+import org.thoughtcrime.securesms.messages.MessageDecryptor.FollowUpOperation
 import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
@@ -48,6 +51,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
+import org.whispersystems.signalservice.api.crypto.SignalGroupSessionBuilder
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipherResult
 import org.whispersystems.signalservice.api.messages.EnvelopeContentValidator
@@ -143,7 +147,8 @@ object MessageDecryptor {
           envelope,
           cipherResult.metadata.sourceServiceId,
           cipherResult.metadata.sourceDeviceId,
-          SenderKeyDistributionMessage(cipherResult.content.senderKeyDistributionMessage.toByteArray())
+          SenderKeyDistributionMessage(cipherResult.content.senderKeyDistributionMessage.toByteArray()),
+          bufferedProtocolStore.getAciStore()
         )
       }
 
@@ -278,10 +283,11 @@ object MessageDecryptor {
     }
   }
 
-  private fun handleSenderKeyDistributionMessage(envelope: Envelope, serviceId: ServiceId, deviceId: Int, message: SenderKeyDistributionMessage) {
-    Log.i(TAG, "${logPrefix(envelope, serviceId)} Processing SenderKeyDistributionMessage")
-    val sender = ApplicationDependencies.getSignalServiceMessageSender()
-    sender.processSenderKeyDistributionMessage(SignalProtocolAddress(serviceId.toString(), deviceId), message)
+  private fun handleSenderKeyDistributionMessage(envelope: Envelope, serviceId: ServiceId, deviceId: Int, message: SenderKeyDistributionMessage, senderKeyStore: SenderKeyStore) {
+    Log.i(TAG, "${logPrefix(envelope, serviceId)} Processing SenderKeyDistributionMessage for distributionId ${message.distributionId}")
+
+    val sender = SignalProtocolAddress(serviceId.toString(), deviceId)
+    SignalGroupSessionBuilder(ReentrantSessionLock.INSTANCE, GroupSessionBuilder(senderKeyStore)).process(sender, message)
   }
 
   private fun handlePniSignatureMessage(envelope: Envelope, serviceId: ServiceId, e164: String?, deviceId: Int, pniSignatureMessage: PniSignatureMessage) {

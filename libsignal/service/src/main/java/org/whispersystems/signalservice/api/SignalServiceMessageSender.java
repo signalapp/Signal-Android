@@ -466,13 +466,6 @@ public class SignalServiceMessageSender {
   }
 
   /**
-   * Processes an inbound {@link SenderKeyDistributionMessage}.
-   */
-  public void processSenderKeyDistributionMessage(SignalProtocolAddress sender, SenderKeyDistributionMessage senderKeyDistributionMessage) {
-    new SignalGroupSessionBuilder(sessionLock, new GroupSessionBuilder(aciStore)).process(sender, senderKeyDistributionMessage);
-  }
-
-  /**
    * Resend a previously-sent message.
    */
   public SendMessageResult resendContent(SignalServiceAddress address,

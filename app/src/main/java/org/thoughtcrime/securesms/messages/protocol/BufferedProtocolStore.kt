@@ -24,6 +24,10 @@ class BufferedProtocolStore private constructor(
     }
   }
 
+  fun getAciStore(): BufferedSignalServiceAccountDataStore {
+    return aciStore.second
+  }
+
   /**
    * Writes any buffered data to disk. You can continue to use the same buffered store afterwards.
    */
