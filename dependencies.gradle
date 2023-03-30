@@ -115,7 +115,7 @@ dependencyResolutionManagement {
             alias('jackson-core').to('com.fasterxml.jackson.core:jackson-databind:2.9.9.2')
             alias('jackson-module-kotlin').to('com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0')
             alias('square-okhttp3').to('com.squareup.okhttp3:okhttp:3.12.13')
-            alias('square-okio').to('com.squareup.okio:okio:2.2.2')
+            alias('square-okio').to('com.squareup.okio:okio:3.0.0')
             alias('square-leakcanary').to('com.squareup.leakcanary:leakcanary-android:2.7')
             alias('rxjava3-rxjava').to('io.reactivex.rxjava3:rxjava:3.0.13')
             alias('rxjava3-rxandroid').to('io.reactivex.rxjava3:rxandroid:3.0.0')

@@ -139,6 +139,7 @@ import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.isStory
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage
 import java.io.Closeable
 import java.io.IOException
 import java.util.LinkedList
@@ -4340,6 +4341,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     return unhandled
+  }
+
+  fun setTimestampReadFromSyncMessageProto(readMessages: List<SyncMessage.Read>, proposedExpireStarted: Long, threadToLatestRead: MutableMap<Long, Long>): Collection<SyncMessageId> {
+    val reads: List<ReadMessage> = readMessages.map { r -> ReadMessage(ServiceId.parseOrThrow(r.senderUuid), r.timestamp) }
+
+    return setTimestampReadFromSyncMessage(reads, proposedExpireStarted, threadToLatestRead)
   }
 
   /**

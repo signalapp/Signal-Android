@@ -1339,7 +1339,7 @@ import javax.annotation.Nullable;
     return new SignalServiceDataMessage.PaymentActivation(payment.getType());
   }
 
-  private static @Nullable List<SharedContact> createSharedContacts(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {
+  public static @Nullable List<SharedContact> createSharedContacts(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {
     if (content.getContactCount() <= 0) return null;
 
     List<SharedContact> results = new LinkedList<>();

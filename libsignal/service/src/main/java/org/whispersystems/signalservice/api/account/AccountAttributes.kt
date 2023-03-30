@@ -24,7 +24,7 @@ class AccountAttributes @JsonCreator constructor(
   @JsonProperty val capabilities: Capabilities?,
   @JsonProperty val name: String?,
   @JsonProperty val pniRegistrationId: Int,
-  @JsonProperty val recoveryPassword: String?,
+  @JsonProperty val recoveryPassword: String?
 ) {
   constructor(
     signalingKey: String?,

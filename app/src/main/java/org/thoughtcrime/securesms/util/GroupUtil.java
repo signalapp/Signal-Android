@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
@@ -16,12 +15,14 @@ import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 import java.util.List;
@@ -50,6 +51,23 @@ public final class GroupUtil {
       return content.getSyncMessage().get().getSent().get().getDataMessage().get().getGroupContext().get();
     } else if (content.getStoryMessage().isPresent() && content.getStoryMessage().get().getGroupContext().isPresent()) {
       return content.getStoryMessage().get().getGroupContext().get();
+    } else {
+      return null;
+    }
+  }
+
+
+  public static @Nullable SignalServiceProtos.GroupContextV2 getGroupContextIfPresent(@NonNull SignalServiceProtos.Content content) {
+    if (content.hasDataMessage() && SignalServiceProtoUtil.INSTANCE.getHasGroupContext(content.getDataMessage())) {
+      return content.getDataMessage().getGroupV2();
+    } else if (content.hasSyncMessage()                 &&
+               content.getSyncMessage().hasSent() &&
+               content.getSyncMessage().getSent().hasMessage() &&
+               SignalServiceProtoUtil.INSTANCE.getHasGroupContext(content.getSyncMessage().getSent().getMessage()))
+    {
+      return content.getSyncMessage().getSent().getMessage().getGroupV2();
+    } else if (content.hasStoryMessage() && SignalServiceProtoUtil.INSTANCE.isValid(content.getStoryMessage().getGroup())) {
+      return content.getStoryMessage().getGroup();
     } else {
       return null;
     }

@@ -1,14 +1,15 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.ServiceMessageId
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.messages.MessageContentProcessor
+import org.thoughtcrime.securesms.messages.MessageContentProcessorV2
+import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
-import java.lang.Exception
-import java.util.Optional
 
 /**
  * A job that should be enqueued whenever we process a message that we think has arrived "early" (see [org.thoughtcrime.securesms.util.EarlyMessageCache]).
@@ -42,12 +43,18 @@ class PushProcessEarlyMessagesJob private constructor(parameters: Parameters) : 
       Log.i(TAG, "There are ${earlyIds.size} items in the early message cache with matches.")
 
       for (id: ServiceMessageId in earlyIds) {
-        val contents: Optional<List<SignalServiceContent>> = ApplicationDependencies.getEarlyMessageCache().retrieve(id.sender, id.sentTimestamp)
+        val contents: List<SignalServiceContent>? = ApplicationDependencies.getEarlyMessageCache().retrieve(id.sender, id.sentTimestamp).orNull()
+        val earlyEntries: List<EarlyMessageCacheEntry>? = ApplicationDependencies.getEarlyMessageCache().retrieveV2(id.sender, id.sentTimestamp).orNull()
 
-        if (contents.isPresent) {
-          for (content: SignalServiceContent in contents.get()) {
+        if (contents != null) {
+          for (content: SignalServiceContent in contents) {
             Log.i(TAG, "[${id.sentTimestamp}] Processing early content for $id")
             MessageContentProcessor.create(context).processEarlyContent(MessageContentProcessor.MessageState.DECRYPTED_OK, content, null, id.sentTimestamp, -1)
+          }
+        } else if (earlyEntries != null) {
+          for (entry in earlyEntries) {
+            Log.i(TAG, "[${id.sentTimestamp}] Processing early V2 content for $id")
+            MessageContentProcessorV2.create(context).process(entry.envelope, entry.content, entry.metadata, entry.serverDeliveredTimestamp, processingEarlyContent = true)
           }
         } else {
           Log.w(TAG, "[${id.sentTimestamp}] Saw $id in the cache, but when we went to retrieve it, it was already gone.")

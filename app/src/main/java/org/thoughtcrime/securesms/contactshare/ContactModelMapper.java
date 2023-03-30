@@ -2,9 +2,14 @@ package org.thoughtcrime.securesms.contactshare;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
+import org.whispersystems.signalservice.api.InvalidMessageStructureException;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
+import org.whispersystems.signalservice.api.util.AttachmentPointerUtil;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -18,6 +23,8 @@ import static org.thoughtcrime.securesms.contactshare.Contact.Phone;
 import static org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
 
 public class ContactModelMapper {
+
+  private static final String TAG = Log.tag(ContactModelMapper.class);
 
   public static SharedContact.Builder localToRemoteBuilder(@NonNull Contact contact) {
     List<SharedContact.Phone>         phoneNumbers    = new ArrayList<>(contact.getPhoneNumbers().size());
@@ -118,7 +125,67 @@ public class ContactModelMapper {
     return new Contact(name, sharedContact.getOrganization().orElse(null), phoneNumbers, emails, postalAddresses, avatar);
   }
 
+  public static Contact remoteToLocal(@NonNull SignalServiceProtos.DataMessage.Contact contact) {
+    Name name = new Name(contact.getName().getDisplayName(),
+                         contact.getName().getGivenName(),
+                         contact.getName().getFamilyName(),
+                         contact.getName().getPrefix(),
+                         contact.getName().getSuffix(),
+                         contact.getName().getMiddleName());
+
+    List<Phone> phoneNumbers = new ArrayList<>(contact.getNumberCount());
+    for (SignalServiceProtos.DataMessage.Contact.Phone phone : contact.getNumberList()) {
+      phoneNumbers.add(new Phone(phone.getValue(),
+                                 remoteToLocalType(phone.getType()),
+                                 phone.getLabel()));
+    }
+
+    List<Email> emails = new ArrayList<>(contact.getEmailCount());
+    for (SignalServiceProtos.DataMessage.Contact.Email email : contact.getEmailList()) {
+      emails.add(new Email(email.getValue(),
+                           remoteToLocalType(email.getType()),
+                           email.getLabel()));
+    }
+
+    List<PostalAddress> postalAddresses = new ArrayList<>(contact.getAddressCount());
+    for (SignalServiceProtos.DataMessage.Contact.PostalAddress postalAddress : contact.getAddressList()) {
+      postalAddresses.add(new PostalAddress(remoteToLocalType(postalAddress.getType()),
+                                            postalAddress.getLabel(),
+                                            postalAddress.getStreet(),
+                                            postalAddress.getPobox(),
+                                            postalAddress.getNeighborhood(),
+                                            postalAddress.getCity(),
+                                            postalAddress.getRegion(),
+                                            postalAddress.getPostcode(),
+                                            postalAddress.getCountry()));
+    }
+
+    Avatar avatar = null;
+    if (contact.hasAvatar()) {
+      try {
+        SignalServiceAttachmentPointer attachmentPointer = AttachmentPointerUtil.createSignalAttachmentPointer(contact.getAvatar().getAvatar());
+        Attachment                     attachment        = PointerAttachment.forPointer(Optional.of(attachmentPointer.asPointer())).get();
+        boolean                        isProfile         = contact.getAvatar().getIsProfile();
+
+        avatar = new Avatar(null, attachment, isProfile);
+      } catch (InvalidMessageStructureException e) {
+        Log.w(TAG, "Unable to create avatar for contact", e);
+      }
+    }
+
+    return new Contact(name, contact.getOrganization(), phoneNumbers, emails, postalAddresses, avatar);
+  }
+
   private static Phone.Type remoteToLocalType(SharedContact.Phone.Type type) {
+    switch (type) {
+      case HOME:   return Phone.Type.HOME;
+      case MOBILE: return Phone.Type.MOBILE;
+      case WORK:   return Phone.Type.WORK;
+      default:     return Phone.Type.CUSTOM;
+    }
+  }
+
+  private static Phone.Type remoteToLocalType(SignalServiceProtos.DataMessage.Contact.Phone.Type type) {
     switch (type) {
       case HOME:   return Phone.Type.HOME;
       case MOBILE: return Phone.Type.MOBILE;
@@ -136,7 +203,24 @@ public class ContactModelMapper {
     }
   }
 
+  private static Email.Type remoteToLocalType(SignalServiceProtos.DataMessage.Contact.Email.Type type) {
+    switch (type) {
+      case HOME:   return Email.Type.HOME;
+      case MOBILE: return Email.Type.MOBILE;
+      case WORK:   return Email.Type.WORK;
+      default:     return Email.Type.CUSTOM;
+    }
+  }
+
   private static PostalAddress.Type remoteToLocalType(SharedContact.PostalAddress.Type type) {
+    switch (type) {
+      case HOME:   return PostalAddress.Type.HOME;
+      case WORK:   return PostalAddress.Type.WORK;
+      default:     return PostalAddress.Type.CUSTOM;
+    }
+  }
+
+  private static PostalAddress.Type remoteToLocalType(SignalServiceProtos.DataMessage.Contact.PostalAddress.Type type) {
     switch (type) {
       case HOME:   return PostalAddress.Type.HOME;
       case WORK:   return PostalAddress.Type.WORK;

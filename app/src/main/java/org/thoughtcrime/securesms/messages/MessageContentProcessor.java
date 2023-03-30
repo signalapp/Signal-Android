@@ -2879,7 +2879,7 @@ public class MessageContentProcessor {
       ApplicationDependencies.getTypingStatusRepository().onTypingStarted(context,threadId, senderRecipient, content.getSenderDevice());
     } else {
       Log.d(TAG, "Typing stopped on thread " + threadId);
-      ApplicationDependencies.getTypingStatusRepository().onTypingStopped(context, threadId, senderRecipient, content.getSenderDevice(), false);
+      ApplicationDependencies.getTypingStatusRepository().onTypingStopped(threadId, senderRecipient, content.getSenderDevice(), false);
     }
   }
 
@@ -3257,11 +3257,11 @@ public class MessageContentProcessor {
   }
 
   private void notifyTypingStoppedFromIncomingMessage(@NonNull Recipient senderRecipient, @NonNull Recipient conversationRecipient, int device) {
-    long threadId = SignalDatabase.threads().getOrCreateThreadIdFor(conversationRecipient);
+    long threadId = SignalDatabase.threads().getThreadIdIfExistsFor(conversationRecipient.getId());
 
     if (threadId > 0 && TextSecurePreferences.isTypingIndicatorsEnabled(context)) {
       Log.d(TAG, "Typing stopped on thread " + threadId + " due to an incoming message.");
-      ApplicationDependencies.getTypingStatusRepository().onTypingStopped(context, threadId, senderRecipient, device, true);
+      ApplicationDependencies.getTypingStatusRepository().onTypingStopped(threadId, senderRecipient, device, true);
     }
   }
 
@@ -3403,13 +3403,11 @@ public class MessageContentProcessor {
     }
   }
 
-
-  @SuppressWarnings("WeakerAccess")
-  private static class StorageFailedException extends Exception {
+  static class StorageFailedException extends Exception {
     private final String sender;
     private final int    senderDevice;
 
-    private StorageFailedException(Exception e, String sender, int senderDevice) {
+    StorageFailedException(Exception e, String sender, int senderDevice) {
       super(e);
       this.sender       = sender;
       this.senderDevice = senderDevice;

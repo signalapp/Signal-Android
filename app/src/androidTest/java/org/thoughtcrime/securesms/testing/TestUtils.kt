@@ -36,7 +36,7 @@ fun <T : Any?> T.assertIsNotNull() {
   assertThat(this, notNullValue())
 }
 
-infix fun <T : Any> T.assertIs(expected: T) {
+infix fun <T : Any?> T.assertIs(expected: T) {
   assertThat(this, `is`(expected))
 }
 

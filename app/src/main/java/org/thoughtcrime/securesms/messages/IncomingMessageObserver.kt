@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil.startWhenCapable
 import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
+import org.thoughtcrime.securesms.jobs.PushProcessMessageJobV2
 import org.thoughtcrime.securesms.jobs.UnableToStartException
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.MessageDecryptor.FollowUpOperation
@@ -36,17 +37,11 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AppForegroundObserver
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.api.messages.SignalServiceContent
-import org.whispersystems.signalservice.api.messages.SignalServiceMetadata
 import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
-import org.whispersystems.signalservice.internal.serialize.SignalServiceAddressProtobufSerializer
-import org.whispersystems.signalservice.internal.serialize.SignalServiceMetadataProtobufSerializer
-import org.whispersystems.signalservice.internal.serialize.protos.SignalServiceContentProto
 import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.TimeUnit
@@ -280,13 +275,7 @@ class IncomingMessageObserver(private val context: Application) {
 
     val extraJob: Job? = when (result) {
       is MessageDecryptor.Result.Success -> {
-        PushProcessMessageJob(
-          result.toMessageState(),
-          result.toSignalServiceContent(),
-          null,
-          -1,
-          result.envelope.timestamp
-        )
+        PushProcessMessageJobV2(result.envelope, result.content, result.metadata, result.serverDeliveredTimestamp)
       }
 
       is MessageDecryptor.Result.Error -> {
@@ -334,29 +323,6 @@ class IncomingMessageObserver(private val context: Application) {
       is MessageDecryptor.Result.Success -> MessageContentProcessor.MessageState.DECRYPTED_OK
       is MessageDecryptor.Result.UnsupportedDataMessage -> MessageContentProcessor.MessageState.UNSUPPORTED_DATA_MESSAGE
     }
-  }
-
-  private fun MessageDecryptor.Result.Success.toSignalServiceContent(): SignalServiceContent {
-    val localAddress = SignalServiceAddress(this.metadata.destinationServiceId, Optional.ofNullable(SignalStore.account().e164))
-    val metadata = SignalServiceMetadata(
-      SignalServiceAddress(this.metadata.sourceServiceId, Optional.ofNullable(this.metadata.sourceE164)),
-      this.metadata.sourceDeviceId,
-      this.envelope.timestamp,
-      this.envelope.serverTimestamp,
-      this.serverDeliveredTimestamp,
-      this.metadata.sealedSender,
-      this.envelope.serverGuid,
-      Optional.ofNullable(this.metadata.groupId),
-      this.metadata.destinationServiceId.toString()
-    )
-
-    val contentProto = SignalServiceContentProto.newBuilder()
-      .setLocalAddress(SignalServiceAddressProtobufSerializer.toProtobuf(localAddress))
-      .setMetadata(SignalServiceMetadataProtobufSerializer.toProtobuf(metadata))
-      .setContent(content)
-      .build()
-
-    return SignalServiceContent.createFromProto(contentProto)!!
   }
 
   private fun MessageDecryptor.ErrorMetadata.toExceptionMetadata(): MessageContentProcessor.ExceptionMetadata {

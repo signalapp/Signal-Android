@@ -11,6 +11,8 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import javax.annotation.Nullable;
+
 /**
  * A wrapper around a UUID that represents an identifier for an account. Today, that is either an {@link ACI} or a {@link PNI}.
  * However, that doesn't mean every {@link ServiceId} is an <em>instance</em> of one of those classes. In reality, we often
@@ -41,7 +43,7 @@ public class ServiceId {
     return from(UuidUtil.parseOrThrow(raw));
   }
 
-  public static ServiceId parseOrNull(String raw) {
+  public static @Nullable ServiceId parseOrNull(String raw) {
     UUID uuid = UuidUtil.parseOrNull(raw);
     return uuid != null ? from(uuid) : null;
   }

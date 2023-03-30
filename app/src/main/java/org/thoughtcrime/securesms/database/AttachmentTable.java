@@ -89,7 +89,7 @@ import java.util.stream.Collectors;
 
 public class AttachmentTable extends DatabaseTable {
 
-  private static final String TAG = Log.tag(AttachmentTable.class);
+  public  static final String TAG = Log.tag(AttachmentTable.class);
 
   public  static final String TABLE_NAME             = "part";
   public  static final String ROW_ID                 = "_id";
@@ -101,7 +101,7 @@ public class AttachmentTable extends DatabaseTable {
           static final String CONTENT_LOCATION       = "cl";
   public  static final String DATA                   = "_data";
           static final String TRANSFER_STATE         = "pending_push";
-  private static final String TRANSFER_FILE          = "transfer_file";
+  public  static final String TRANSFER_FILE          = "transfer_file";
   public  static final String SIZE                   = "data_size";
           static final String FILE_NAME              = "file_name";
   public  static final String UNIQUE_ID              = "unique_id";

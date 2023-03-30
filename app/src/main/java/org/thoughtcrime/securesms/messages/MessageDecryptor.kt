@@ -439,7 +439,7 @@ object MessageDecryptor {
     val followUpOperations: List<FollowUpOperation>
 
     /** Successfully decrypted the envelope content. The plaintext [Content] is available. */
-    class Success(
+    data class Success(
       override val envelope: Envelope,
       override val serverDeliveredTimestamp: Long,
       val content: Content,

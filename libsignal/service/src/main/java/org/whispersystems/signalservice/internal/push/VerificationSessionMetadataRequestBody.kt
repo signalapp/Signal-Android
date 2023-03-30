@@ -8,7 +8,7 @@ data class VerificationSessionMetadataRequestBody(
   @JsonProperty val number: String,
   @JsonProperty val pushToken: String?,
   @JsonProperty val mcc: String?,
-  @JsonProperty val mnc: String?,
+  @JsonProperty val mnc: String?
 ) {
   @JsonProperty
   val pushTokenType: String? = if (pushToken != null) "fcm" else null
