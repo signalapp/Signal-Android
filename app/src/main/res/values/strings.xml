@@ -4478,6 +4478,9 @@
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Toggle between marker and highlighter</string>
     <string name="ImageEditorHud__toggle_between_text_styles">Toggle between text styles</string>
 
+    <!-- Header for section of featured stickers (location/time stickers) -->
+    <string name="ScribbleStickersFragment__featured_stickers">Featured</string>
+
     <string name="MediaCountIndicatorButton__send">Send</string>
 
     <string name="MediaReviewSelectedItem__tap_to_remove">Tap to remove</string>

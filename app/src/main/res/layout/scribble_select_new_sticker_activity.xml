@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.components.emoji.MediaKeyboard xmlns:android="http://schemas.android.com/apk/res/android"
+<fragment
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:viewBindingIgnore="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/emoji_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:name="org.thoughtcrime.securesms.scribbles.stickers.ScribbleStickersFragment"
     android:background="@color/core_grey_90"
     app:tabs_gravity="top" />
