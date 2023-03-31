@@ -23,12 +23,12 @@ abstract class ComposeFragment : LoggingFragment() {
         SignalTheme(
           isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)
         ) {
-          SheetContent()
+          FragmentContent()
         }
       }
     }
   }
 
   @Composable
-  abstract fun SheetContent()
+  abstract fun FragmentContent()
 }

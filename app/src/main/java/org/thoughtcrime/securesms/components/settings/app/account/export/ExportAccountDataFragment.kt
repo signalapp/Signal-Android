@@ -83,7 +83,7 @@ class ExportAccountDataFragment : ComposeFragment() {
 
   @Preview
   @Composable
-  override fun SheetContent() {
+  override fun FragmentContent() {
     val state: ExportAccountDataState by viewModel.state
 
     val onNavigationClick: () -> Unit = remember {

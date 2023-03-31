@@ -44,7 +44,7 @@ class PhoneNumberPrivacySettingsFragment : ComposeFragment() {
   }
 
   @Composable
-  override fun SheetContent() {
+  override fun FragmentContent() {
     val state: PhoneNumberPrivacySettingsState by viewModel.state
     val onNavigationClick: () -> Unit = remember {
       { findNavController().popBackStack() }
