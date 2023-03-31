@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.account.export
 
+import android.os.Bundle
+import android.view.View
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement.Center
@@ -10,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LocalTextStyle
@@ -32,7 +33,7 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Rows
@@ -42,6 +43,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
 
 class ExportAccountDataFragment : ComposeFragment() {
@@ -52,25 +54,27 @@ class ExportAccountDataFragment : ComposeFragment() {
 
   private val viewModel: ExportAccountDataViewModel by viewModels()
 
-  private fun deleteReport() {
-    viewModel.deleteReport()
-    Snackbar.make(requireView(), R.string.ExportAccountDataFragment__delete_report_snackbar, Snackbar.LENGTH_SHORT).show()
+  private val disposables = LifecycleDisposable()
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    disposables.bindTo(viewLifecycleOwner)
   }
 
   private fun exportReport() {
-    val report = viewModel.onGenerateReport()
-    ShareCompat.IntentBuilder(requireContext())
-      .setStream(report.uri)
-      .setType(report.mimeType)
-      .startChooser()
+    disposables += viewModel.onGenerateReport()
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { report ->
+        ShareCompat.IntentBuilder(requireContext())
+          .setStream(report.uri)
+          .setType(report.mimeType)
+          .startChooser()
+      }
   }
 
   private fun dismissExportDialog() {
     viewModel.dismissExportConfirmationDialog()
-  }
-
-  private fun dismissDeleteDialog() {
-    viewModel.dismissDeleteConfirmationDialog()
   }
 
   private fun dismissDownloadErrorDialog() {
@@ -128,11 +132,7 @@ class ExportAccountDataFragment : ComposeFragment() {
           }
 
           item {
-            if (state.reportDownloaded) {
-              ExportReportOptions(exportAsJson = state.exportAsJson)
-            } else {
-              DownloadReportOptions()
-            }
+            ExportReportOptions(exportAsJson = state.exportAsJson)
           }
         }
         if (state.downloadInProgress) {
@@ -141,8 +141,6 @@ class ExportAccountDataFragment : ComposeFragment() {
           DownloadFailedDialog()
         } else if (state.showExportDialog) {
           ExportReportConfirmationDialog()
-        } else if (state.showDeleteDialog) {
-          DeleteReportConfirmationDialog()
         }
       }
     }
@@ -175,22 +173,10 @@ class ExportAccountDataFragment : ComposeFragment() {
   @Composable
   private fun DownloadFailedDialog() {
     Dialogs.SimpleMessageDialog(
-      message = stringResource(id = R.string.ExportAccountDataFragment__report_download_failed),
+      message = stringResource(id = R.string.ExportAccountDataFragment__check_network),
       dismiss = stringResource(id = R.string.ExportAccountDataFragment__ok_action),
+      title = stringResource(id = R.string.ExportAccountDataFragment__report_generation_failed),
       onDismiss = this::dismissDownloadErrorDialog
-    )
-  }
-
-  @Composable
-  private fun DeleteReportConfirmationDialog() {
-    Dialogs.SimpleAlertDialog(
-      title = stringResource(R.string.ExportAccountDataFragment__delete_report_confirmation),
-      body = stringResource(R.string.ExportAccountDataFragment__delete_report_confirmation_message),
-      confirm = stringResource(R.string.ExportAccountDataFragment__delete_report_action),
-      dismiss = stringResource(R.string.ExportAccountDataFragment__cancel_action),
-      onConfirm = this::deleteReport,
-      onDismiss = this::dismissDeleteDialog,
-      confirmColor = MaterialTheme.colorScheme.error
     )
   }
 
@@ -204,22 +190,6 @@ class ExportAccountDataFragment : ComposeFragment() {
       onConfirm = this::exportReport,
       onDismiss = this::dismissExportDialog
     )
-  }
-
-  @Composable
-  private fun DownloadReportOptions() {
-    Buttons.LargeTonal(
-      onClick = viewModel::onDownloadReport,
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(top = 52.dp, start = 32.dp, end = 32.dp)
-    ) {
-      Text(
-        text = stringResource(R.string.ExportAccountDataFragment__download_report),
-        style = MaterialTheme.typography.labelLarge,
-        color = MaterialTheme.colorScheme.onPrimaryContainer
-      )
-    }
   }
 
   @Composable
@@ -255,22 +225,8 @@ class ExportAccountDataFragment : ComposeFragment() {
       )
     }
 
-    Buttons.LargeTonal(
-      onClick = viewModel::showDeleteConfirmationDialog,
-      colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.error),
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(top = 14.dp, start = 32.dp, end = 32.dp)
-    ) {
-      Text(
-        text = stringResource(R.string.ExportAccountDataFragment__delete_report),
-        style = MaterialTheme.typography.labelLarge,
-        color = MaterialTheme.colorScheme.error
-      )
-    }
-
     Text(
-      text = stringResource(id = R.string.ExportAccountDataFragment__report_deletion_disclaimer),
+      text = stringResource(id = R.string.ExportAccountDataFragment__report_not_stored_disclaimer),
       style = MaterialTheme.typography.bodySmall,
       textAlign = TextAlign.Start,
       modifier = Modifier.padding(top = 16.dp, start = 24.dp, end = 28.dp, bottom = 20.dp)

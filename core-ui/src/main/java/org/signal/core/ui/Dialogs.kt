@@ -18,11 +18,13 @@ object Dialogs {
     dismiss: String,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
+    title: String? = null,
     dismissColor: Color = Color.Unspecified,
     properties: DialogProperties = DialogProperties()
   ) {
     androidx.compose.material3.AlertDialog(
       onDismissRequest = onDismiss,
+      title = if (title == null) null else { { Text(text = title) } },
       text = { Text(text = message) },
       confirmButton = {
         TextButton(onClick = {

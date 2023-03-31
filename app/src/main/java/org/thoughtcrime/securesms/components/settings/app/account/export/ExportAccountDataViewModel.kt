@@ -4,10 +4,11 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.subjects.MaybeSubject
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 class ExportAccountDataViewModel(
   private val repository: ExportAccountDataRepository = ExportAccountDataRepository()
@@ -20,26 +21,25 @@ class ExportAccountDataViewModel(
   private val disposables = CompositeDisposable()
 
   private val _state = mutableStateOf(
-    ExportAccountDataState(reportDownloaded = false, downloadInProgress = false, exportAsJson = false)
+    ExportAccountDataState(downloadInProgress = false, exportAsJson = false)
   )
 
   val state: State<ExportAccountDataState> = _state
 
-  init {
-    _state.value = _state.value.copy(reportDownloaded = SignalStore.account().hasAccountDataReport())
-  }
-
-  fun onGenerateReport(): ExportAccountDataRepository.ExportedReport = repository.generateAccountDataReport(state.value.exportAsJson)
-  fun onDownloadReport() {
+  fun onGenerateReport(): Maybe<ExportAccountDataRepository.ExportedReport> {
     _state.value = _state.value.copy(downloadInProgress = true)
-    disposables += repository.downloadAccountDataReport()
+    val maybe = MaybeSubject.create<ExportAccountDataRepository.ExportedReport>()
+    disposables += repository.downloadAccountDataReport(state.value.exportAsJson)
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe({
-        _state.value = _state.value.copy(downloadInProgress = false, reportDownloaded = true)
+      .subscribe({ report ->
+        _state.value = _state.value.copy(downloadInProgress = false)
+        maybe.onSuccess(report)
       }, { throwable ->
         Log.e(TAG, throwable)
         _state.value = _state.value.copy(downloadInProgress = false, showDownloadFailedDialog = true)
+        maybe.onComplete()
       })
+    return maybe
   }
 
   fun setExportAsJson() {
@@ -48,14 +48,6 @@ class ExportAccountDataViewModel(
 
   fun setExportAsTxt() {
     _state.value = _state.value.copy(exportAsJson = false)
-  }
-
-  fun showDeleteConfirmationDialog() {
-    _state.value = _state.value.copy(showDeleteDialog = true)
-  }
-
-  fun dismissDeleteConfirmationDialog() {
-    _state.value = _state.value.copy(showDeleteDialog = false)
   }
 
   fun dismissDownloadErrorDialog() {
@@ -68,11 +60,6 @@ class ExportAccountDataViewModel(
 
   fun dismissExportConfirmationDialog() {
     _state.value = _state.value.copy(showExportDialog = false)
-  }
-
-  fun deleteReport() {
-    SignalStore.account().deleteAccountDataReport()
-    _state.value = _state.value.copy(reportDownloaded = false)
   }
 
   override fun onCleared() {

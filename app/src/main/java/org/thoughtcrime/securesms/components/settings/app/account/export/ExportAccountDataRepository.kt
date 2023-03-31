@@ -3,10 +3,9 @@ package org.thoughtcrime.securesms.components.settings.app.account.export
 import android.net.Uri
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ObjectNode
-import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
@@ -16,18 +15,17 @@ class ExportAccountDataRepository(
   private val accountManager: SignalServiceAccountManager = ApplicationDependencies.getSignalServiceAccountManager()
 ) {
 
-  fun downloadAccountDataReport(): Completable {
-    return Completable.create {
+  fun downloadAccountDataReport(exportAsJson: Boolean): Single<ExportedReport> {
+    return Single.create {
       try {
-        SignalStore.account().setAccountDataReport(accountManager.accountDataReport, System.currentTimeMillis())
-        it.onComplete()
+        it.onSuccess(generateAccountDataReport(accountManager.accountDataReport, exportAsJson))
       } catch (e: IOException) {
         it.onError(e)
       }
     }.subscribeOn(Schedulers.io())
   }
 
-  fun generateAccountDataReport(exportAsJson: Boolean): ExportedReport {
+  private fun generateAccountDataReport(report: String, exportAsJson: Boolean): ExportedReport {
     val mimeType: String
     val fileName: String
     if (exportAsJson) {
@@ -38,7 +36,7 @@ class ExportAccountDataRepository(
       fileName = "account-data.txt"
     }
 
-    val tree: JsonNode = JsonUtils.getMapper().readTree(SignalStore.account().accountDataReport)
+    val tree: JsonNode = JsonUtils.getMapper().readTree(report)
     val dataStr = if (exportAsJson) {
       (tree as ObjectNode).remove("text")
       tree.toString()
@@ -50,7 +48,7 @@ class ExportAccountDataRepository(
       .forData(dataStr.encodeToByteArray())
       .withMimeType(mimeType)
       .withFileName(fileName)
-      .createForSingleSessionInMemory()
+      .createForSingleUseInMemory()
 
     return ExportedReport(mimeType = mimeType, uri = uri)
   }

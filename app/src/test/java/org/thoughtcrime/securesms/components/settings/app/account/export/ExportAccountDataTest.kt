@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.JsonParseException
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
-import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.TestScheduler
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -19,13 +19,9 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
-import org.thoughtcrime.securesms.keyvalue.AccountValues
-import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet
-import org.thoughtcrime.securesms.keyvalue.KeyValueStore
-import org.thoughtcrime.securesms.keyvalue.MockKeyValuePersistentStorage
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import java.io.IOException
 
 @RunWith(RobolectricTestRunner::class)
@@ -76,85 +72,56 @@ class ExportAccountDataTest {
   }
 
   @Test
-  fun `Successful download flow with progress states and delete flow`() {
-    val dataSet = KeyValueDataSet()
-    val scheduler = TestScheduler()
-    val mockRepository: ExportAccountDataRepository = mockk {
-      every { downloadAccountDataReport() } returns Completable.create {
-        dataSet.putString(AccountValues.KEY_ACCOUNT_DATA_REPORT, mockJson)
-        dataSet.putLong(AccountValues.KEY_ACCOUNT_DATA_REPORT_DOWNLOAD_TIME, 123456L)
-        it.onComplete()
-      }.subscribeOn(scheduler)
-    }
-
-    SignalStore.inject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
-    RxAndroidPlugins.setMainThreadSchedulerHandler {
-      scheduler
-    }
-
-    val viewModel = ExportAccountDataViewModel(mockRepository)
-    assertFalse(viewModel.state.value.reportDownloaded)
-    viewModel.onDownloadReport()
-    assertTrue(viewModel.state.value.downloadInProgress)
-    scheduler.triggerActions()
-    assertTrue(viewModel.state.value.reportDownloaded)
-    assertFalse(viewModel.state.value.downloadInProgress)
-
-    assertEquals(SignalStore.account().accountDataReport, mockJson)
-    viewModel.deleteReport()
-    assertEquals(SignalStore.account().accountDataReport, null)
-    assertFalse(viewModel.state.value.reportDownloaded)
-  }
-
-  @Test
   fun `Export json without text field`() {
-    val dataSet = KeyValueDataSet()
-    dataSet.putString(AccountValues.KEY_ACCOUNT_DATA_REPORT, mockJson)
-    SignalStore.inject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
-
-    val mockRepository: ExportAccountDataRepository = mockk {
-      every { generateAccountDataReport(any()) } answers { callOriginal() }
+    val scheduler = TestScheduler()
+    val accountManager: SignalServiceAccountManager = mockk {
+      every { accountDataReport } returns mockJson
     }
+    val mockRepository = ExportAccountDataRepository(accountManager)
     val viewModel = ExportAccountDataViewModel(mockRepository)
 
     viewModel.setExportAsTxt()
-    val txtReport = viewModel.onGenerateReport()
-    assertEquals(txtReport.mimeType, "text/plain")
-    assertThrows(JsonParseException::class.java) {
-      JsonUtils.getMapper().readTree(BlobProvider.getInstance().getMemoryBlob(txtReport.uri) as ByteArray)
-    }
-
+    viewModel.onGenerateReport()
+      .observeOn(scheduler)
+      .subscribe { txtReport ->
+        assertEquals(txtReport.mimeType, "text/plain")
+        assertThrows(JsonParseException::class.java) {
+          JsonUtils.getMapper().readTree(BlobProvider.getInstance().getMemoryBlob(txtReport.uri) as ByteArray)
+        }
+      }
+    scheduler.triggerActions()
     viewModel.setExportAsJson()
-    val jsonReport = viewModel.onGenerateReport()
-    assertEquals(jsonReport.mimeType, "application/json")
-    val json = JsonUtils.getMapper().readTree(BlobProvider.getInstance().getMemoryBlob(jsonReport.uri) as ByteArray)
-    assertFalse(json.has("text"))
-    assertTrue(json.has("data"))
-    assertTrue(json.has("reportId"))
-    assertTrue(json.has("reportTimestamp"))
+    viewModel.onGenerateReport()
+      .observeOn(scheduler)
+      .subscribe { jsonReport ->
+        assertEquals(jsonReport.mimeType, "application/json")
+        val json = JsonUtils.getMapper().readTree(BlobProvider.getInstance().getMemoryBlob(jsonReport.uri) as ByteArray)
+        assertFalse(json.has("text"))
+        assertTrue(json.has("data"))
+        assertTrue(json.has("reportId"))
+        assertTrue(json.has("reportTimestamp"))
+      }
+    scheduler.triggerActions()
   }
 
   @Test
   fun `Failed download error flow`() {
-    val dataSet = KeyValueDataSet()
     val scheduler = TestScheduler()
     val mockRepository: ExportAccountDataRepository = mockk {
-      every { downloadAccountDataReport() } returns Completable.create {
+      every { downloadAccountDataReport(any()) } returns Single.create<ExportAccountDataRepository.ExportedReport> {
         it.onError(IOException())
       }.subscribeOn(scheduler)
     }
 
-    SignalStore.inject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
     RxAndroidPlugins.setMainThreadSchedulerHandler {
       scheduler
     }
 
     val viewModel = ExportAccountDataViewModel(mockRepository)
-    assertEquals(viewModel.state.value.reportDownloaded, false)
-    viewModel.onDownloadReport()
+    assertEquals(viewModel.state.value.downloadInProgress, false)
+    viewModel.onGenerateReport()
     assertEquals(viewModel.state.value.downloadInProgress, true)
     scheduler.triggerActions()
-    assertEquals(viewModel.state.value.reportDownloaded, false)
     assertEquals(viewModel.state.value.downloadInProgress, false)
 
     assertEquals(viewModel.state.value.showDownloadFailedDialog, true)
