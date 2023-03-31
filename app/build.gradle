@@ -556,6 +556,7 @@ dependencies {
         exclude group: 'org.freemarker'
     }
     implementation libs.dnsjava
+    implementation libs.kotlinx.collections.immutable
 
     spinnerImplementation project(":spinner")
     spinnerImplementation libs.square.leakcanary

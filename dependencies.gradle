@@ -142,6 +142,7 @@ dependencyResolutionManagement {
 
             // Can't use the newest version because it hits some weird NoClassDefFoundException
             alias('jknack-handlebars').to('com.github.jknack:handlebars:4.0.7')
+            alias('kotlinx-collections-immutable').to('org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5')
 
             // Mp4Parser
             alias('mp4parser-isoparser').to('org.mp4parser', 'isoparser').versionRef('mp4parser')
