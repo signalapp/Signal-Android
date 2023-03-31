@@ -497,35 +497,14 @@
         <item quantity="one">Unread</item>
         <item quantity="other">Unread</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">Pin</item>
-        <item quantity="other">Pin</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">Unpin</item>
-        <item quantity="other">Unpin</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Mute</item>
-        <item quantity="other">Mute</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Unmute</item>
-        <item quantity="other">Unmute</item>
-    </plurals>
+    <string name="ConversationListFragment_pin">Pin</string>
+    <string name="ConversationListFragment_unpin">Unpin</string>
+    <string name="ConversationListFragment_mute">Mute</string>
+    <string name="ConversationListFragment_unmute">Unmute</string>
     <string name="ConversationListFragment_select">Select</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Archive</item>
-        <item quantity="other">Archive</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Unarchive</item>
-        <item quantity="other">Unarchive</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Delete</item>
-        <item quantity="other">Delete</item>
-    </plurals>
+    <string name="ConversationListFragment_archive">Archive</string>
+    <string name="ConversationListFragment_unarchive">Unarchive</string>
+    <string name="ConversationListFragment_delete">Delete</string>
     <string name="ConversationListFragment_select_all">Select all</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%d selected</item>
