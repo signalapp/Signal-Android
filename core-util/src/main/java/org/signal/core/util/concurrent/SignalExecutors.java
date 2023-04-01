@@ -18,10 +18,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public final class SignalExecutors {
 
-  public static final ExecutorService UNBOUNDED  = ThreadUtil.trace(Executors.newCachedThreadPool(new NumberedThreadFactory("signal-unbounded", ThreadUtil.PRIORITY_BACKGROUND_THREAD)));
-  public static final ExecutorService BOUNDED    = ThreadUtil.trace(Executors.newFixedThreadPool(4, new NumberedThreadFactory("signal-bounded", ThreadUtil.PRIORITY_BACKGROUND_THREAD)));
-  public static final ExecutorService SERIAL     = ThreadUtil.trace(Executors.newSingleThreadExecutor(new NumberedThreadFactory("signal-serial", ThreadUtil.PRIORITY_BACKGROUND_THREAD)));
-  public static final ExecutorService BOUNDED_IO = ThreadUtil.trace(newCachedBoundedExecutor("signal-io-bounded", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD, 1, 32, 30));
+  public static final ExecutorService UNBOUNDED  = Executors.newCachedThreadPool(new NumberedThreadFactory("signal-unbounded", ThreadUtil.PRIORITY_BACKGROUND_THREAD));
+  public static final ExecutorService BOUNDED    = Executors.newFixedThreadPool(4, new NumberedThreadFactory("signal-bounded", ThreadUtil.PRIORITY_BACKGROUND_THREAD));
+  public static final ExecutorService SERIAL     = Executors.newSingleThreadExecutor(new NumberedThreadFactory("signal-serial", ThreadUtil.PRIORITY_BACKGROUND_THREAD));
+  public static final ExecutorService BOUNDED_IO = newCachedBoundedExecutor("signal-io-bounded", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD, 1, 32, 30);
 
   private SignalExecutors() {}
 

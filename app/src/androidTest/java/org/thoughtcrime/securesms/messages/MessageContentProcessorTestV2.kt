@@ -38,10 +38,9 @@ import java.util.Optional
 class MessageContentProcessorTestV2 {
 
   companion object {
-    private val TAGS = listOf(MessageContentProcessor.TAG, MessageContentProcessorV2.TAG, AttachmentTable.TAG)
+    private val TAGS = listOf(MessageContentProcessorV2.TAG, AttachmentTable.TAG)
 
     private val GENERALIZE_TAG = mapOf(
-      MessageContentProcessor.TAG to "MCP",
       MessageContentProcessorV2.TAG to "MCP",
       AttachmentTable.TAG to AttachmentTable.TAG
     )

@@ -7,12 +7,7 @@ import android.os.Process;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
-import org.signal.core.util.concurrent.TracingExecutor;
-import org.signal.core.util.concurrent.TracingExecutorService;
-
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
 
 /**
  * Thread related utility functions.
@@ -116,13 +111,5 @@ public final class ThreadUtil {
     try {
       Thread.sleep(millis);
     } catch (InterruptedException ignored) { }
-  }
-
-  public static Executor trace(Executor executor) {
-    return new TracingExecutor(executor);
-  }
-
-  public static ExecutorService trace(ExecutorService executor) {
-    return new TracingExecutorService(executor);
   }
 }

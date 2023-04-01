@@ -1,9 +1,9 @@
 package org.signal.core.util.concurrent
 
 import android.os.Handler
-import org.signal.core.util.ExceptionUtil
 import org.signal.core.util.logging.Log
 import java.util.concurrent.ExecutorService
+import java.util.concurrent.ThreadPoolExecutor
 
 /**
  * A class that polls active threads at a set interval and logs when multiple threads are BLOCKED.
@@ -73,7 +73,8 @@ class DeadlockDetector(private val handler: Handler, private val pollingInterval
           .filter { it.key.name.startsWith(executorInfo.namePrefix) }
           .toMap()
 
-        val executor: TracingExecutorService = executorInfo.executor as TracingExecutorService
+        val executor: ThreadPoolExecutor = executorInfo.executor as ThreadPoolExecutor
+
         Log.w(TAG, buildLogString("Found a full executor! ${executor.activeCount}/${executor.maximumPoolSize} threads active with ${executor.queue.size} tasks queued.", fullMap))
       }
       lastThreadDump = threads
@@ -122,12 +123,7 @@ class DeadlockDetector(private val handler: Handler, private val pollingInterval
       for (entry in blocked) {
         stringBuilder.append("-- [${entry.key.id}] ${entry.key.name} | ${entry.key.state}\n")
 
-        val callerThrowable: Throwable? = TracedThreads.callerStackTraces[entry.key.id]
-        val stackTrace: Array<StackTraceElement> = if (callerThrowable != null) {
-          ExceptionUtil.joinStackTrace(entry.value, callerThrowable.stackTrace)
-        } else {
-          entry.value
-        }
+        val stackTrace: Array<StackTraceElement> = entry.value
 
         for (element in stackTrace) {
           stringBuilder.append("$element\n")
@@ -140,7 +136,7 @@ class DeadlockDetector(private val handler: Handler, private val pollingInterval
     }
 
     private fun isExecutorFull(executor: ExecutorService): Boolean {
-      return if (executor is TracingExecutorService) {
+      return if (executor is ThreadPoolExecutor) {
         executor.queue.size > CONCERNING_QUEUE_THRESHOLD
       } else {
         false

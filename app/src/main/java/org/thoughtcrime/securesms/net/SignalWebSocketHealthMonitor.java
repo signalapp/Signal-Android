@@ -38,7 +38,7 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
   private static final long KEEP_ALIVE_SEND_CADENCE              = TimeUnit.SECONDS.toMillis(WebSocketConnection.KEEPALIVE_TIMEOUT_SECONDS);
   private static final long MAX_TIME_SINCE_SUCCESSFUL_KEEP_ALIVE = KEEP_ALIVE_SEND_CADENCE * 3;
 
-  private final Executor executor = ThreadUtil.trace(Executors.newSingleThreadExecutor());
+  private final Executor executor = Executors.newSingleThreadExecutor();
 
   private final Application     context;
   private       SignalWebSocket signalWebSocket;
