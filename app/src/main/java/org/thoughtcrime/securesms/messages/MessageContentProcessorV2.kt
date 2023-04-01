@@ -47,7 +47,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelo
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.TypingMessage
 import java.io.IOException
 
-class MessageContentProcessorV2(private val context: Context) {
+open class MessageContentProcessorV2(private val context: Context) {
 
   companion object {
     const val TAG = "MessageProcessorV2"
@@ -277,7 +277,7 @@ class MessageContentProcessorV2(private val context: Context) {
    * store or enqueue early content jobs if we detect this as being early, to avoid recursive scenarios.
    */
   @JvmOverloads
-  fun process(envelope: Envelope, content: Content, metadata: EnvelopeMetadata, serverDeliveredTimestamp: Long, processingEarlyContent: Boolean = false) {
+  open fun process(envelope: Envelope, content: Content, metadata: EnvelopeMetadata, serverDeliveredTimestamp: Long, processingEarlyContent: Boolean = false) {
     val senderRecipient = Recipient.externalPush(metadata.sourceServiceId)
 
     handleMessage(senderRecipient, envelope, content, metadata, serverDeliveredTimestamp, processingEarlyContent)
