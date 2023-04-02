@@ -64,8 +64,8 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 801
-def canonicalVersionName = "Pigeon 1.2.0801 upon Signal 5.28.8"
+def canonicalVersionCode = 802
+def canonicalVersionName = "Pigeon 1.2.0802 upon Signal 5.28.8"
 
 def postFixSize = 100
 def abiPostFix = ['universal'  : 0,
