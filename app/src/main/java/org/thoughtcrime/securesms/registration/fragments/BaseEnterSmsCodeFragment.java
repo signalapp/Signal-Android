@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.components.registration.VerificationCodeView;
 import org.thoughtcrime.securesms.components.registration.VerificationPinKeyboard;
 import org.thoughtcrime.securesms.registration.ReceivedSmsEvent;
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository;
+import org.thoughtcrime.securesms.registration.VerifyResponseProcessor;
 import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewModel;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -163,7 +164,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
 
       Disposable verify = viewModel.verifyCodeWithoutRegistrationLock(code)
                                    .observeOn(AndroidSchedulers.mainThread())
-                                   .subscribe(processor -> {
+                                   .subscribe((VerifyResponseProcessor processor) -> {
                                      if (!processor.hasResult()) {
                                        Log.w(TAG, "post verify: ", processor.getError());
                                      }
