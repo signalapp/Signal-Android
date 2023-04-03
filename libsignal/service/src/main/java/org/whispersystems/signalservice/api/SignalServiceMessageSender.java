@@ -482,6 +482,10 @@ public class SignalServiceMessageSender {
     EnvelopeContent              envelopeContent = EnvelopeContent.encrypted(content, contentHint, groupId);
     Optional<UnidentifiedAccess> access          = unidentifiedAccess.isPresent() ? unidentifiedAccess.get().getTargetUnidentifiedAccess() : Optional.empty();
 
+    if (address.getServiceId().equals(localAddress.getServiceId())) {
+      access = Optional.empty();
+    }
+
     return sendMessage(address, access, timestamp, envelopeContent, false, null, urgent, false);
   }
 
