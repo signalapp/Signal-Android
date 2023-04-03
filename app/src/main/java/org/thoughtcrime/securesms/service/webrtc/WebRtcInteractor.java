@@ -84,8 +84,8 @@ public class WebRtcInteractor {
     signalCallManager.sendCallMessage(remotePeer, callMessage);
   }
 
-  void sendGroupCallMessage(@NonNull Recipient recipient, @Nullable String groupCallEraId) {
-    signalCallManager.sendGroupCallUpdateMessage(recipient, groupCallEraId);
+  void sendGroupCallMessage(@NonNull Recipient recipient, @Nullable String groupCallEraId, boolean isIncoming, boolean isJoinEvent) {
+    signalCallManager.sendGroupCallUpdateMessage(recipient, groupCallEraId, isIncoming, isJoinEvent);
   }
 
   void updateGroupCallUpdateMessage(@NonNull RecipientId groupId, @Nullable String groupCallEraId, @NonNull Collection<UUID> joinedMembers, boolean isCallFull) {

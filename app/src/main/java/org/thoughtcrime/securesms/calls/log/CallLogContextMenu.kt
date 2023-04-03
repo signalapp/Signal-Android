@@ -72,7 +72,7 @@ class CallLogContextMenu(
       iconRes = R.drawable.symbol_info_24,
       title = fragment.getString(R.string.CallContextMenu__info)
     ) {
-      val intent = ConversationSettingsActivity.forCall(fragment.requireContext(), call.peer, longArrayOf(call.call.messageId))
+      val intent = ConversationSettingsActivity.forCall(fragment.requireContext(), call.peer, longArrayOf(call.call.messageId!!))
       fragment.startActivity(intent)
     }
   }

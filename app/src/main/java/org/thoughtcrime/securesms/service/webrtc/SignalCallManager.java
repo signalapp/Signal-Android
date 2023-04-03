@@ -39,6 +39,8 @@ import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobs.CallSyncEventJob;
 import org.thoughtcrime.securesms.jobs.GroupCallUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -349,8 +351,8 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
           Long threadId = SignalDatabase.threads().getThreadIdFor(group.getId());
 
           if (threadId != null) {
-            SignalDatabase.messages()
-                          .updatePreviousGroupCall(threadId,
+            SignalDatabase.calls()
+                          .updateGroupCallFromPeek(threadId,
                                                    peekInfo.getEraId(),
                                                    peekInfo.getJoinedMembers(),
                                                    WebRtcUtil.isCallFull(peekInfo));
@@ -831,25 +833,25 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
 
   public void insertMissedCall(@NonNull RemotePeer remotePeer, long timestamp, boolean isVideoOffer) {
     CallTable.Call call = SignalDatabase.calls()
-                                        .updateCall(remotePeer.getCallId().longValue(), CallTable.Event.MISSED);
+                                        .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.MISSED);
 
     if (call == null) {
       CallTable.Type type = isVideoOffer ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL;
 
       SignalDatabase.calls()
-                    .insertCall(remotePeer.getCallId().longValue(), timestamp, remotePeer.getId(), type, CallTable.Direction.INCOMING, CallTable.Event.MISSED);
+                    .insertOneToOneCall(remotePeer.getCallId().longValue(), timestamp, remotePeer.getId(), type, CallTable.Direction.INCOMING, CallTable.Event.MISSED);
     }
   }
 
   public void insertReceivedCall(@NonNull RemotePeer remotePeer, boolean isVideoOffer) {
     CallTable.Call call = SignalDatabase.calls()
-                                        .updateCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
+                                        .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
 
     if (call == null) {
       CallTable.Type type = isVideoOffer ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL;
 
       SignalDatabase.calls()
-                    .insertCall(remotePeer.getCallId().longValue(), System.currentTimeMillis(), remotePeer.getId(), type, CallTable.Direction.INCOMING, CallTable.Event.ACCEPTED);
+                    .insertOneToOneCall(remotePeer.getCallId().longValue(), System.currentTimeMillis(), remotePeer.getId(), type, CallTable.Direction.INCOMING, CallTable.Event.ACCEPTED);
     }
   }
 
@@ -887,17 +889,32 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     });
   }
 
-  public void sendGroupCallUpdateMessage(@NonNull Recipient recipient, @Nullable String groupCallEraId) {
-    SignalExecutors.BOUNDED.execute(() -> ApplicationDependencies.getJobManager().add(GroupCallUpdateSendJob.create(recipient.getId(), groupCallEraId)));
+  public void sendGroupCallUpdateMessage(@NonNull Recipient recipient, @Nullable String groupCallEraId, boolean isIncoming, boolean isJoinEvent) {
+    SignalExecutors.BOUNDED.execute(() -> {
+      GroupCallUpdateSendJob updateSendJob = GroupCallUpdateSendJob.create(recipient.getId(), groupCallEraId);
+      JobManager.Chain       chain         = ApplicationDependencies.getJobManager().startChain(updateSendJob);
+
+      if (isJoinEvent && groupCallEraId != null) {
+        chain.then(CallSyncEventJob.createForJoin(
+            recipient.getId(),
+            CallId.fromEra(groupCallEraId).longValue(),
+            isIncoming
+        ));
+      } else if (isJoinEvent) {
+        Log.w(TAG, "Can't send join event sync message without an era id.");
+      }
+
+      chain.enqueue();
+    });
   }
 
   public void updateGroupCallUpdateMessage(@NonNull RecipientId groupId, @Nullable String groupCallEraId, @NonNull Collection<UUID> joinedMembers, boolean isCallFull) {
-    SignalExecutors.BOUNDED.execute(() -> SignalDatabase.messages().insertOrUpdateGroupCall(groupId,
-                                                                                       Recipient.self().getId(),
-                                                                                       System.currentTimeMillis(),
-                                                                                       groupCallEraId,
-                                                                                       joinedMembers,
-                                                                                       isCallFull));
+    SignalExecutors.BOUNDED.execute(() -> SignalDatabase.calls().insertOrUpdateGroupCallFromLocalEvent(groupId,
+                                                                                                       Recipient.self().getId(),
+                                                                                                       System.currentTimeMillis(),
+                                                                                                       groupCallEraId,
+                                                                                                       joinedMembers,
+                                                                                                       isCallFull));
   }
 
   public void sendCallMessage(@NonNull final RemotePeer remotePeer,
@@ -935,7 +952,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   public void sendAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing, boolean isVideoCall) {
     SignalDatabase
         .calls()
-        .updateCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
+        .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
 
     if (TextSecurePreferences.isMultiDevice(context)) {
       networkExecutor.execute(() -> {
@@ -952,7 +969,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   public void sendNotAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing, boolean isVideoCall) {
     SignalDatabase
         .calls()
-        .updateCall(remotePeer.getCallId().longValue(), CallTable.Event.NOT_ACCEPTED);
+        .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.NOT_ACCEPTED);
 
     if (TextSecurePreferences.isMultiDevice(context)) {
       networkExecutor.execute(() -> {

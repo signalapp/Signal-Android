@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.conversation.preferences
 
 import androidx.annotation.DrawableRes
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.databinding.ConversationSettingsCallPreferenceItemBinding
@@ -21,12 +22,14 @@ object CallPreference {
   }
 
   class Model(
+    val call: CallTable.Call,
     val record: MessageRecord
   ) : MappingModel<Model> {
     override fun areItemsTheSame(newItem: Model): Boolean = record.id == newItem.record.id
 
     override fun areContentsTheSame(newItem: Model): Boolean {
-      return record.type == newItem.record.type &&
+      return call == newItem.call &&
+        record.type == newItem.record.type &&
         record.isOutgoing == newItem.record.isOutgoing &&
         record.timestamp == newItem.record.timestamp &&
         record.id == newItem.record.id
@@ -35,30 +38,42 @@ object CallPreference {
 
   private class ViewHolder(binding: ConversationSettingsCallPreferenceItemBinding) : BindingViewHolder<Model, ConversationSettingsCallPreferenceItemBinding>(binding) {
     override fun bind(model: Model) {
-      binding.callIcon.setImageResource(getCallIcon(model.record))
-      binding.callType.text = getCallType(model.record)
+      binding.callIcon.setImageResource(getCallIcon(model.call))
+      binding.callType.text = getCallType(model.call)
       binding.callTime.text = getCallTime(model.record)
     }
 
     @DrawableRes
-    private fun getCallIcon(messageRecord: MessageRecord): Int {
-      return when (messageRecord.type) {
+    private fun getCallIcon(call: CallTable.Call): Int {
+      return when (call.messageType) {
         MessageTypes.MISSED_VIDEO_CALL_TYPE, MessageTypes.MISSED_AUDIO_CALL_TYPE -> R.drawable.symbol_missed_incoming_24
         MessageTypes.INCOMING_AUDIO_CALL_TYPE, MessageTypes.INCOMING_VIDEO_CALL_TYPE -> R.drawable.symbol_arrow_downleft_24
         MessageTypes.OUTGOING_AUDIO_CALL_TYPE, MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> R.drawable.symbol_arrow_upright_24
-        else -> error("Unexpected type ${messageRecord.type}")
+        MessageTypes.GROUP_CALL_TYPE -> when {
+          call.event == CallTable.Event.MISSED -> R.drawable.symbol_missed_incoming_24
+          call.direction == CallTable.Direction.INCOMING -> R.drawable.symbol_arrow_downleft_24
+          call.direction == CallTable.Direction.OUTGOING -> R.drawable.symbol_arrow_upright_24
+          else -> throw AssertionError()
+        }
+        else -> error("Unexpected type ${call.type}")
       }
     }
 
-    private fun getCallType(messageRecord: MessageRecord): String {
-      val id = when (messageRecord.type) {
+    private fun getCallType(call: CallTable.Call): String {
+      val id = when (call.messageType) {
         MessageTypes.MISSED_VIDEO_CALL_TYPE -> R.string.MessageRecord_missed_voice_call
         MessageTypes.MISSED_AUDIO_CALL_TYPE -> R.string.MessageRecord_missed_video_call
         MessageTypes.INCOMING_AUDIO_CALL_TYPE -> R.string.MessageRecord_incoming_voice_call
         MessageTypes.INCOMING_VIDEO_CALL_TYPE -> R.string.MessageRecord_incoming_video_call
         MessageTypes.OUTGOING_AUDIO_CALL_TYPE -> R.string.MessageRecord_outgoing_voice_call
         MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> R.string.MessageRecord_outgoing_video_call
-        else -> error("Unexpected type ${messageRecord.type}")
+        MessageTypes.GROUP_CALL_TYPE -> when {
+          call.event == CallTable.Event.MISSED -> R.string.CallPreference__missed_group_call
+          call.direction == CallTable.Direction.INCOMING -> R.string.CallPreference__incoming_group_call
+          call.direction == CallTable.Direction.OUTGOING -> R.string.CallPreference__outgoing_group_call
+          else -> throw AssertionError()
+        }
+        else -> error("Unexpected type ${call.messageType}")
       }
 
       return context.getString(id)

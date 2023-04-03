@@ -12,6 +12,7 @@ import org.signal.core.util.logging.Log
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
+import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
@@ -39,12 +40,16 @@ class ConversationSettingsRepository(
   private val groupManagementRepository: GroupManagementRepository = GroupManagementRepository(context)
 ) {
 
-  fun getCallEvents(callMessageIds: LongArray): Single<List<MessageRecord>> {
+  fun getCallEvents(callMessageIds: LongArray): Single<List<Pair<CallTable.Call, MessageRecord>>> {
     return if (callMessageIds.isEmpty()) {
       Single.just(emptyList())
     } else {
       Single.fromCallable {
-        SignalDatabase.messages.getMessages(callMessageIds.toList()).iterator().asSequence().toList()
+        val callMap = SignalDatabase.calls.getCalls(callMessageIds.toList())
+        SignalDatabase.messages.getMessages(callMessageIds.toList()).iterator().asSequence()
+          .filter { callMap.containsKey(it.id) }
+          .map { callMap[it.id]!! to it }
+          .toList()
       }
     }
   }

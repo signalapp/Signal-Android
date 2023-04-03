@@ -17,7 +17,7 @@ sealed class CallLogRow {
     val call: CallTable.Call,
     val peer: Recipient,
     val date: Long,
-    override val id: Id = Id.Call(call.messageId)
+    override val id: Id = Id.Call(call.callId)
   ) : CallLogRow()
 
   /**
@@ -28,7 +28,7 @@ sealed class CallLogRow {
   }
 
   sealed class Id {
-    data class Call(val messageId: Long) : Id()
+    data class Call(val callId: Long) : Id()
     object ClearFilter : Id()
   }
 }

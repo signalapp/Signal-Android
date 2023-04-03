@@ -109,6 +109,7 @@ public final class FeatureFlags {
   private static final String CALLS_TAB                         = "android.calls.tab";
   private static final String TEXT_FORMATTING_SPOILER_SEND      = "android.textFormatting.spoilerSend";
   private static final String EXPORT_ACCOUNT_DATA               = "android.exportAccountData";
+  private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -173,7 +174,8 @@ public final class FeatureFlags {
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
-      PHONE_NUMBER_PRIVACY
+      PHONE_NUMBER_PRIVACY,
+      AD_HOC_CALLING
   );
 
   /**
@@ -610,6 +612,13 @@ public final class FeatureFlags {
    */
   public static boolean exportAccountData() {
     return getBoolean(EXPORT_ACCOUNT_DATA, false);
+  }
+
+  /**
+   * Whether or not ad-hoc calling is enabled
+   */
+  public static boolean adHocCalling() {
+    return getBoolean(AD_HOC_CALLING, false);
   }
 
   /** Only for rendering debug info. */

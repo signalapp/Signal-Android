@@ -186,6 +186,10 @@ class CallLogAdapter(
           binding.callType.setImageResource(R.drawable.symbol_video_24)
           binding.callType.setOnClickListener { onStartVideoCallClicked(peer) }
         }
+
+        CallTable.Type.GROUP_CALL, CallTable.Type.AD_HOC_CALL -> {
+          // TODO [alex] -- Group call button
+        }
       }
 
       binding.callType.visible = true

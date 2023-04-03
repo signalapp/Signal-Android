@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFi
 import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterLerp
 import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterPullState
 import org.thoughtcrime.securesms.databinding.CallLogFragmentBinding
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.main.SearchBinder
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -167,6 +168,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   override fun onResume() {
     super.onResume()
     initializeSearchAction()
+    ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
   }
 
   private fun initializeTapToScrollToTop() {
@@ -270,7 +272,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     if (viewModel.selectionStateSnapshot.isNotEmpty(binding.recycler.adapter!!.itemCount)) {
       viewModel.toggleSelected(callLogRow.id)
     } else {
-      val intent = ConversationSettingsActivity.forCall(requireContext(), callLogRow.peer, longArrayOf(callLogRow.call.messageId))
+      val intent = ConversationSettingsActivity.forCall(requireContext(), callLogRow.peer, longArrayOf(callLogRow.call.messageId!!))
       startActivity(intent)
     }
   }

@@ -42,11 +42,14 @@ public class GroupCallUpdateSendJob extends BaseJob {
   private static final String KEY_ERA_ID                  = "era_id";
   private static final String KEY_RECIPIENTS              = "recipients";
   private static final String KEY_INITIAL_RECIPIENT_COUNT = "initial_recipient_count";
+  static final String KEY_SYNC_TIMESTAMP          = "sync_timestamp";
 
   private final RecipientId       recipientId;
   private final String            eraId;
   private final List<RecipientId> recipients;
   private final int               initialRecipientCount;
+
+  private long syncTimestamp;
 
   @WorkerThread
   public static @NonNull GroupCallUpdateSendJob create(@NonNull RecipientId recipientId, @Nullable String eraId) {
@@ -65,6 +68,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
                                       eraId,
                                       recipientIds,
                                       recipientIds.size(),
+                                      0L,
                                       new Parameters.Builder()
                                                     .setQueue(conversationRecipient.getId().toQueueKey())
                                                     .setLifespan(TimeUnit.MINUTES.toMillis(5))
@@ -76,6 +80,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
                                  @Nullable String eraId,
                                  @NonNull List<RecipientId> recipients,
                                  int initialRecipientCount,
+                                 long syncTimestamp,
                                  @NonNull Parameters parameters)
   {
     super(parameters);
@@ -84,6 +89,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
     this.eraId                 = eraId;
     this.recipients            = recipients;
     this.initialRecipientCount = initialRecipientCount;
+    this.syncTimestamp         = syncTimestamp;
   }
 
   @Override
@@ -92,6 +98,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
                                     .putString(KEY_ERA_ID, eraId)
                                     .putString(KEY_RECIPIENTS, RecipientId.toSerializedList(recipients))
                                     .putInt(KEY_INITIAL_RECIPIENT_COUNT, initialRecipientCount)
+                                    .putLong(KEY_SYNC_TIMESTAMP, syncTimestamp)
                                     .serialize();
   }
 
@@ -125,6 +132,10 @@ public class GroupCallUpdateSendJob extends BaseJob {
       Log.w(TAG, "Still need to send to " + recipients.size() + " recipients. Retrying.");
       throw new RetryLaterException();
     }
+
+    setOutputData(new JsonJobData.Builder()
+                      .putLong(KEY_SYNC_TIMESTAMP, syncTimestamp)
+                      .serialize());
   }
 
   @Override
@@ -166,6 +177,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
 
     if (includesSelf) {
       results.add(ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage));
+      syncTimestamp = dataMessage.getTimestamp();
     }
 
     return GroupSendJobHelper.getCompletedSends(destinations, results).completed;
@@ -182,8 +194,9 @@ public class GroupCallUpdateSendJob extends BaseJob {
       String            eraId                 = data.getString(KEY_ERA_ID);
       List<RecipientId> recipients            = RecipientId.fromSerializedList(data.getString(KEY_RECIPIENTS));
       int               initialRecipientCount = data.getInt(KEY_INITIAL_RECIPIENT_COUNT);
+      long              syncTimestamp         = data.getLongOrDefault(KEY_SYNC_TIMESTAMP, 0L);
 
-      return new GroupCallUpdateSendJob(recipientId, eraId, recipients, initialRecipientCount, parameters);
+      return new GroupCallUpdateSendJob(recipientId, eraId, recipients, initialRecipientCount, syncTimestamp, parameters);
     }
   }
 }

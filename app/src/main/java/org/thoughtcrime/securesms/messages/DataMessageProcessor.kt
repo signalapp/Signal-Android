@@ -934,7 +934,7 @@ object DataMessageProcessor {
 
     val groupRecipientId = SignalDatabase.recipients.getOrInsertFromPossiblyMigratedGroupId(groupId)
 
-    SignalDatabase.messages.insertOrUpdateGroupCall(
+    SignalDatabase.calls.insertOrUpdateGroupCallFromExternalEvent(
       groupRecipientId,
       senderRecipientId,
       envelope.serverTimestamp,

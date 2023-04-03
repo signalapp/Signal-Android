@@ -84,6 +84,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -980,22 +981,30 @@ object SyncMessageProcessor {
 
   private fun handleSynchronizeCallEvent(callEvent: SyncMessage.CallEvent, envelopeTimestamp: Long) {
     if (!callEvent.hasId()) {
-      log(envelopeTimestamp, "Synchronize call event missing call id, ignoring.")
+      log(envelopeTimestamp, "Synchronize call event missing call id, ignoring. type: ${callEvent.type}")
       return
     }
 
+    if (callEvent.type == SyncMessage.CallEvent.Type.GROUP_CALL || callEvent.type == SyncMessage.CallEvent.Type.AD_HOC_CALL) {
+      handleSynchronizeGroupOrAdHocCallEvent(callEvent, envelopeTimestamp)
+    } else {
+      handleSynchronizeOneToOneCallEvent(callEvent, envelopeTimestamp)
+    }
+  }
+
+  private fun handleSynchronizeOneToOneCallEvent(callEvent: SyncMessage.CallEvent, envelopeTimestamp: Long) {
     val callId: Long = callEvent.id
     val timestamp: Long = callEvent.timestamp
     val type: CallTable.Type? = CallTable.Type.from(callEvent.type)
     val direction: CallTable.Direction? = CallTable.Direction.from(callEvent.direction)
     val event: CallTable.Event? = CallTable.Event.from(callEvent.event)
 
-    if (timestamp == 0L || type == null || direction == null || event == null || !callEvent.hasPeerUuid()) {
-      warn(envelopeTimestamp, "Call event sync message is not valid, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasPeerUuid())
+    if (timestamp == 0L || type == null || direction == null || event == null || !callEvent.hasConversationId()) {
+      warn(envelopeTimestamp, "Call event sync message is not valid, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
       return
     }
 
-    val serviceId = ServiceId.fromByteString(callEvent.peerUuid)
+    val serviceId = ServiceId.fromByteString(callEvent.conversationId)
     val recipientId = RecipientId.from(serviceId)
 
     log(envelopeTimestamp, "Synchronize call event call: $callId")
@@ -1010,10 +1019,62 @@ object SyncMessageProcessor {
       if (typeMismatch || directionMismatch || eventDowngrade || peerMismatch) {
         warn(envelopeTimestamp, "Call event sync message is not valid for existing call record, ignoring. type: $type direction: $direction  event: $event peerMismatch: $peerMismatch")
       } else {
-        SignalDatabase.calls.updateCall(callId, event)
+        SignalDatabase.calls.updateOneToOneCall(callId, event)
       }
     } else {
-      SignalDatabase.calls.insertCall(callId, timestamp, recipientId, type, direction, event)
+      SignalDatabase.calls.insertOneToOneCall(callId, timestamp, recipientId, type, direction, event)
+    }
+  }
+
+  @Throws(BadGroupIdException::class)
+  private fun handleSynchronizeGroupOrAdHocCallEvent(callEvent: SyncMessage.CallEvent, envelopeTimestamp: Long) {
+    if (!FeatureFlags.adHocCalling() && callEvent.type == SyncMessage.CallEvent.Type.AD_HOC_CALL) {
+      log(envelopeTimestamp, "Ad-Hoc calling is not currently supported by this client, ignoring.")
+      return
+    }
+
+    val callId: Long = callEvent.id
+    val timestamp: Long = callEvent.timestamp
+    val type: CallTable.Type? = CallTable.Type.from(callEvent.type)
+    val direction: CallTable.Direction? = CallTable.Direction.from(callEvent.direction)
+    val event: CallTable.Event? = CallTable.Event.from(callEvent.event)
+
+    if (timestamp == 0L || type == null || direction == null || event == null || !callEvent.hasConversationId()) {
+      warn(envelopeTimestamp, "Group/Ad-hoc call event sync message is not valid, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
+      return
+    }
+
+    val call = SignalDatabase.calls.getCallById(callId)
+
+    if (call != null) {
+      if (call.type !== type) {
+        warn(envelopeTimestamp, "Group/Ad-hoc call event type mismatch, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
+        return
+      }
+      when (event) {
+        CallTable.Event.DELETE -> SignalDatabase.calls.deleteGroupCall(call)
+        CallTable.Event.ACCEPTED -> {
+          if (call.timestamp < callEvent.timestamp) {
+            SignalDatabase.calls.setTimestamp(call.callId, callEvent.timestamp)
+          }
+          if (callEvent.direction == SyncMessage.CallEvent.Direction.INCOMING) {
+            SignalDatabase.calls.acceptIncomingGroupCall(call)
+          } else {
+            warn(envelopeTimestamp, "Invalid direction OUTGOING for event ACCEPTED")
+          }
+        }
+        CallTable.Event.NOT_ACCEPTED -> warn("Unsupported event type " + event + ". Ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
+        else -> warn("Unsupported event type " + event + ". Ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
+      }
+    } else {
+      val groupId: GroupId = GroupId.push(callEvent.conversationId.toByteArray())
+      val recipientId = Recipient.externalGroupExact(groupId).id
+      when (event) {
+        CallTable.Event.DELETE -> SignalDatabase.calls.insertDeletedGroupCallFromSyncEvent(callEvent.id, recipientId, direction, timestamp)
+        CallTable.Event.ACCEPTED -> SignalDatabase.calls.insertAcceptedGroupCall(callEvent.id, recipientId, direction, timestamp)
+        CallTable.Event.NOT_ACCEPTED -> warn("Unsupported event type " + event + ". Ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
+        else -> warn("Unsupported event type " + event + ". Ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId())
+      }
     }
   }
 }

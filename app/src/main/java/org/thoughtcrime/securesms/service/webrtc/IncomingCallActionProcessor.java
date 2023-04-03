@@ -176,12 +176,12 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
 
     activePeer.localRinging();
 
-    SignalDatabase.calls().insertCall(remotePeer.getCallId().longValue(),
-                                      System.currentTimeMillis(),
-                                      remotePeer.getId(),
+    SignalDatabase.calls().insertOneToOneCall(remotePeer.getCallId().longValue(),
+                                              System.currentTimeMillis(),
+                                              remotePeer.getId(),
                                       currentState.getCallSetupState(activePeer).isRemoteVideoOffer() ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL,
-                                      CallTable.Direction.INCOMING,
-                                      CallTable.Event.ONGOING);
+                                              CallTable.Direction.INCOMING,
+                                              CallTable.Event.ONGOING);
 
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
 

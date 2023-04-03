@@ -67,7 +67,7 @@ sealed class ConversationSettingsViewModel(
     }
 
     store.update(repository.getCallEvents(callMessageIds).toObservable()) { callRecords, state ->
-      state.copy(calls = callRecords.map { CallPreference.Model(it) })
+      state.copy(calls = callRecords.map { (call, messageRecord) -> CallPreference.Model(call, messageRecord) })
     }
 
     store.update(sharedMedia) { cursor, state ->
