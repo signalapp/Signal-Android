@@ -106,9 +106,14 @@ public class IndividualSendJob extends PushSendJob {
         ApplicationDependencies.getScheduledMessageManager().scheduleIfNecessary();
         return;
       }
-      Set<String> attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
-      jobManager.add(IndividualSendJob.create(messageId, recipient, attachmentUploadIds.size() > 0, isScheduledSend), attachmentUploadIds, isScheduledSend ? null : recipient.getId().toQueueKey());
+      Set<String> attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
+      boolean     hasMedia            = attachmentUploadIds.size() > 0;
+      boolean     addHardDependencies = hasMedia && !isScheduledSend;
+
+      jobManager.add(IndividualSendJob.create(messageId, recipient, hasMedia, isScheduledSend),
+                     attachmentUploadIds,
+                     addHardDependencies ? recipient.getId().toQueueKey() : null);
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
       SignalDatabase.messages().markAsSentFailed(messageId);

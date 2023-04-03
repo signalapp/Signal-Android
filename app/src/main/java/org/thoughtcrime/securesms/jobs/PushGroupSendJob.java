@@ -136,7 +136,12 @@ public final class PushGroupSendJob extends PushSendJob {
         throw new MmsException("Inactive group!");
       }
 
-      jobManager.add(new PushGroupSendJob(messageId, destination, filterAddresses, !attachmentUploadIds.isEmpty(), isScheduledSend), attachmentUploadIds, attachmentUploadIds.isEmpty() || isScheduledSend ? null : destination.toQueueKey());
+      boolean hasMedia            = attachmentUploadIds.size() > 0;
+      boolean addHardDependencies = hasMedia && !isScheduledSend;
+
+      jobManager.add(new PushGroupSendJob(messageId, destination, filterAddresses, hasMedia, isScheduledSend),
+                     attachmentUploadIds,
+                     addHardDependencies ? destination.toQueueKey() : null);
 
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
