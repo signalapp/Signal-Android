@@ -16,6 +16,7 @@ dependencyResolutionManagement {
             version('libsignal-client', '0.25.0')
             version('mp4parser', '1.9.39')
             version('android-gradle-plugin', '7.4.1')
+            version('accompanist', '0.28.0')
 
             // Android Plugins
             alias('android-library').to('com.android.library', 'com.android.library.gradle.plugin').versionRef('android-gradle-plugin')
@@ -27,6 +28,9 @@ dependencyResolutionManagement {
             alias('androidx-compose-ui-tooling-preview').to('androidx.compose.ui', 'ui-tooling-preview').withoutVersion()
             alias('androidx-compose-ui-tooling-core').to('androidx.compose.ui', 'ui-tooling').withoutVersion()
             alias('ktlint-twitter-compose').to('com.twitter.compose.rules:ktlint:0.0.26')
+
+            // Accompanist
+            alias('accompanist-permissions').to('com.google.accompanist', 'accompanist-permissions').versionRef('accompanist')
 
             // Desugaring
             alias('android-tools-desugar').to('com.android.tools:desugar_jdk_libs:1.1.5')

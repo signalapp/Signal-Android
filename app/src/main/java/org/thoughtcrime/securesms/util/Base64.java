@@ -14,6 +14,10 @@ public final class Base64 {
     return org.whispersystems.util.Base64.decode(s);
   }
 
+  public static @NonNull byte[] decodeWithoutPadding(@NonNull String s) throws IOException {
+    return org.whispersystems.util.Base64.decodeWithoutPadding(s);
+  }
+
   public static @NonNull String encodeBytes(@NonNull byte[] source) {
     return org.whispersystems.util.Base64.encodeBytes(source);
   }
