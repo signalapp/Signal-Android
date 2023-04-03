@@ -40,6 +40,17 @@ public class FastJobStorageTest {
   }
 
   @Test
+  public void init_removesCircularDependencies() {
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSetCircularDependency.FULL_SPECS));
+
+    subject.init();
+
+    DataSetCircularDependency.assertJobsMatch(subject.getAllJobSpecs());
+    DataSetCircularDependency.assertConstraintsMatch(subject.getAllConstraintSpecs());
+    DataSetCircularDependency.assertDependenciesMatch(subject.getAllDependencySpecs());
+  }
+
+  @Test
   public void insertJobs_writesToDatabase() {
     JobDatabase    database = noopDatabase();
     FastJobStorage subject  = new FastJobStorage(database);
@@ -617,21 +628,21 @@ public class FastJobStorageTest {
 
     static void assertJobsMatch(@NonNull List<JobSpec> jobs) {
       assertEquals(jobs.size(), 3);
-      assertTrue(jobs.contains(DataSet1.JOB_1));
-      assertTrue(jobs.contains(DataSet1.JOB_1));
-      assertTrue(jobs.contains(DataSet1.JOB_3));
+      assertTrue(jobs.contains(JOB_1));
+      assertTrue(jobs.contains(JOB_2));
+      assertTrue(jobs.contains(JOB_3));
     }
 
     static void assertConstraintsMatch(@NonNull List<ConstraintSpec> constraints) {
       assertEquals(constraints.size(), 2);
-      assertTrue(constraints.contains(DataSet1.CONSTRAINT_1));
-      assertTrue(constraints.contains(DataSet1.CONSTRAINT_2));
+      assertTrue(constraints.contains(CONSTRAINT_1));
+      assertTrue(constraints.contains(CONSTRAINT_2));
     }
 
     static void assertDependenciesMatch(@NonNull List<DependencySpec> dependencies) {
       assertEquals(dependencies.size(), 2);
-      assertTrue(dependencies.contains(DataSet1.DEPENDENCY_2));
-      assertTrue(dependencies.contains(DataSet1.DEPENDENCY_3));
+      assertTrue(dependencies.contains(DEPENDENCY_2));
+      assertTrue(dependencies.contains(DEPENDENCY_3));
     }
   }
 
@@ -640,5 +651,34 @@ public class FastJobStorageTest {
     static final ConstraintSpec CONSTRAINT_1 = new ConstraintSpec("id1", "f1", true);
     static final FullSpec       FULL_SPEC_1  = new FullSpec(JOB_1, Collections.singletonList(CONSTRAINT_1), Collections.emptyList());
     static final List<FullSpec> FULL_SPECS   = Collections.singletonList(FULL_SPEC_1);
+  }
+
+  private static final class DataSetCircularDependency {
+    static final JobSpec        JOB_1        = new JobSpec("id1", "f1", "q1", 1, 2, 3, 4, 5, null, null, false, false);
+    static final JobSpec        JOB_2        = new JobSpec("id2", "f2", "q1", 2, 2, 3, 4, 5, null, null, false, false);
+    static final JobSpec        JOB_3        = new JobSpec("id3", "f3", "q3", 3, 2, 3, 4, 5, null, null, false, false);
+    static final DependencySpec DEPENDENCY_1 = new DependencySpec("id1", "id2", false);
+    static final DependencySpec DEPENDENCY_3 = new DependencySpec("id3", "id2", false);
+    static final FullSpec       FULL_SPEC_1  = new FullSpec(JOB_1, Collections.emptyList(), Collections.singletonList(DEPENDENCY_1));
+    static final FullSpec       FULL_SPEC_2  = new FullSpec(JOB_2, Collections.emptyList(), Collections.emptyList());
+    static final FullSpec       FULL_SPEC_3  = new FullSpec(JOB_3, Collections.emptyList(), Collections.singletonList(DEPENDENCY_3));
+    static final List<FullSpec> FULL_SPECS   = Arrays.asList(FULL_SPEC_1, FULL_SPEC_2, FULL_SPEC_3);
+
+    static void assertJobsMatch(@NonNull List<JobSpec> jobs) {
+      assertEquals(jobs.size(), 3);
+      assertTrue(jobs.contains(JOB_1));
+      assertTrue(jobs.contains(JOB_2));
+      assertTrue(jobs.contains(JOB_3));
+    }
+
+    static void assertConstraintsMatch(@NonNull List<ConstraintSpec> constraints) {
+      assertEquals(constraints.size(), 0);
+    }
+
+    static void assertDependenciesMatch(@NonNull List<DependencySpec> dependencies) {
+      assertEquals(dependencies.size(), 1);
+      assertFalse(dependencies.contains(DEPENDENCY_1));
+      assertTrue(dependencies.contains(DEPENDENCY_3));
+    }
   }
 }

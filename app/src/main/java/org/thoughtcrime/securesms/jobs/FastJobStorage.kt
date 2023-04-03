@@ -23,7 +23,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       jobConstraints += constraintSpec
     }
 
-    for (dependencySpec in jobDatabase.allDependencySpecs) {
+    for (dependencySpec in jobDatabase.allDependencySpecs.filterNot { it.hasCircularDependency() }) {
       val jobDependencies: MutableList<DependencySpec> = dependenciesByJobId.getOrPut(dependencySpec.jobId) { mutableListOf() }
       jobDependencies += dependencySpec
     }
@@ -274,5 +274,35 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   private fun getJobById(id: String): JobSpec? {
     return jobs.firstOrNull { it.id == id }
+  }
+
+  /**
+   * Note that this is currently only checking a specific kind of circular dependency -- ones that are
+   * created between dependencies and queues.
+   *
+   * More specifically, dependencies where one job depends on another job in the same queue that was
+   * scheduled *after* it. These dependencies will never resolve. Under normal circumstances these
+   * won't occur, but *could* occur if the user changed their clock (either purposefully or automatically).
+   *
+   * Rather than go through and delete them from the database, removing them from memory at load time
+   * serves the same effect and doesn't require new write methods. This should also be very rare.
+   */
+  private fun DependencySpec.hasCircularDependency(): Boolean {
+    val job = getJobById(this.jobId)
+    val dependsOnJob = getJobById(this.dependsOnJobId)
+
+    if (job == null || dependsOnJob == null) {
+      return false
+    }
+
+    if (job.queueKey == null || dependsOnJob.queueKey == null) {
+      return false
+    }
+
+    if (job.queueKey != dependsOnJob.queueKey) {
+      return false
+    }
+
+    return dependsOnJob.createTime > job.createTime
   }
 }
