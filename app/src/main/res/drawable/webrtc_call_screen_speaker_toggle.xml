@@ -19,10 +19,17 @@
             <item android:bottom="20dp" android:drawable="@drawable/symbol_dropdown_triangle_compat_bold_16" android:left="36dp" android:right="4dp" android:top="20dp" />
         </layer-list>
     </item>
-    <item app:state_headset_selected="true">
+    <item app:state_bt_headset_selected="true">
         <layer-list>
             <item android:drawable="@drawable/webrtc_call_screen_circle_checked" />
             <item android:bottom="14dp" android:drawable="@drawable/symbol_speaker_bluetooth_fill_white_24" android:left="8dp" android:right="20dp" android:top="14dp" />
+            <item android:bottom="20dp" android:drawable="@drawable/symbol_dropdown_triangle_compat_bold_16" android:left="36dp" android:right="4dp" android:top="20dp" />
+        </layer-list>
+    </item>
+    <item app:state_wired_headset_selected="true">
+        <layer-list>
+            <item android:drawable="@drawable/webrtc_call_screen_circle_checked" />
+            <item android:bottom="14dp" android:drawable="@drawable/symbol_headphones_filed_24" android:left="8dp" android:right="20dp" android:top="14dp" />
             <item android:bottom="20dp" android:drawable="@drawable/symbol_dropdown_triangle_compat_bold_16" android:left="36dp" android:right="4dp" android:top="20dp" />
         </layer-list>
     </item>

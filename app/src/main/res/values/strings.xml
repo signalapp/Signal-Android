@@ -1738,6 +1738,19 @@
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">End call</string>
 
+    <!-- Error message when the developer added a button in the wrong place. -->
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">A UI error occurred. Please report this error to the developers.</string>
+    <!-- Error message when the user is trying to change audio outputs but none are present. -->
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">No eligible audio I/O detected.</string>
+    <!-- A text description of the bluetooth icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">An icon representing a Bluetooth device.</string>
+    <!-- A text description of the headset icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">An icon representing a wired headset.</string>
+    <!-- A text description of the speaker icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">An icon representing a speakerphone.</string>
+    <!-- A text description of the earpiece icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">An icon representing a device\'s earpiece.</string>
+
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
         <item quantity="one">In this call · %1$d person</item>
@@ -2245,10 +2258,18 @@
     <string name="WebRtcCallScreen__answer_without_video">Answer without video</string>
 
     <!-- WebRtcAudioOutputToggle -->
+    <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Audio output</string>
+    <!-- Audio output option referring to the earpiece built into the phone -->
     <string name="WebRtcAudioOutputToggle__phone_earpiece">Phone earpiece</string>
+    <!-- Audio output option referring to the louder speaker built into the phone -->
     <string name="WebRtcAudioOutputToggle__speaker">Speaker</string>
+    <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
+    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headset">Wired Headset</string>
+    <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
+    <string name="WebRtcAudioOutputToggle__wired_headset_usb">Wired Headset (USB)</string>
 
     <string name="WebRtcCallControls_answer_call_description">Answer call</string>
     <string name="WebRtcCallControls_reject_call_description">Reject call</string>

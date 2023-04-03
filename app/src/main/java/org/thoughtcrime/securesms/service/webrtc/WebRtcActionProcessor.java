@@ -5,6 +5,7 @@ import android.os.ResultReceiver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.annimon.stream.Stream;
 
@@ -473,7 +474,7 @@ public abstract class WebRtcActionProcessor {
                        .build();
   }
 
-  protected @NonNull WebRtcServiceState handleSetUserAudioDevice(@NonNull WebRtcServiceState currentState, @NonNull SignalAudioManager.AudioDevice userDevice) {
+  protected @NonNull WebRtcServiceState handleSetUserAudioDevice(@NonNull WebRtcServiceState currentState, @NonNull SignalAudioManager.ChosenAudioDeviceIdentifier userDevice) {
     Log.i(tag, "handleSetUserAudioDevice not processed");
     return currentState;
   }

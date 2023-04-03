@@ -5,6 +5,7 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -237,9 +239,16 @@ public class WebRtcCallView extends ConstraintLayout {
     adjustableMarginsSet.add(videoToggle);
     adjustableMarginsSet.add(audioToggle);
 
-    audioToggle.setOnAudioOutputChangedListener(outputMode -> {
-      runIfNonNull(controlsListener, listener -> listener.onAudioOutputChanged(outputMode));
-    });
+
+    if (Build.VERSION.SDK_INT >= 31) {
+      audioToggle.setOnAudioOutputChangedListener31(deviceId -> {
+        runIfNonNull(controlsListener, listener -> listener.onAudioOutputChanged31(deviceId));
+      });
+    } else {
+      audioToggle.setOnAudioOutputChangedListenerLegacy(outputMode -> {
+        runIfNonNull(controlsListener, listener -> listener.onAudioOutputChanged(outputMode));
+      });
+    }
 
     videoToggle.setOnCheckedChangeListener((v, isOn) -> {
       runIfNonNull(controlsListener, listener -> listener.onVideoChanged(isOn));
@@ -639,8 +648,8 @@ public class WebRtcCallView extends ConstraintLayout {
     if (webRtcControls.displayAudioToggle()) {
       visibleViewSet.add(audioToggle);
 
-      audioToggle.setControlAvailability(webRtcControls.enableHandsetInAudioToggle(),
-                                         webRtcControls.enableHeadsetInAudioToggle());
+      audioToggle.setControlAvailability(webRtcControls.enableEarpieceInAudioToggle(),
+                                         webRtcControls.enableBluetoothHeadsetInAudioToggle());
 
       audioToggle.setAudioOutput(webRtcControls.getAudioOutput(), false);
     }
@@ -1049,6 +1058,8 @@ public class WebRtcCallView extends ConstraintLayout {
     void showSystemUI();
     void hideSystemUI();
     void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput);
+    @RequiresApi(31)
+    void onAudioOutputChanged31(@NonNull int audioOutputAddress);
     void onVideoChanged(boolean isVideoEnabled);
     void onMicChanged(boolean isMicEnabled);
     void onCameraDirectionChanged();

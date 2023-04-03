@@ -9,6 +9,7 @@ import android.os.ResultReceiver;
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.annimon.stream.Stream;
 
@@ -30,8 +31,8 @@ import org.signal.ringrtc.Remote;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.CallTable;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -319,7 +320,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     process((s, p) -> p.handleBluetoothPermissionDenied(s));
   }
 
-  public void selectAudioDevice(@NonNull SignalAudioManager.AudioDevice desiredDevice) {
+  public void selectAudioDevice(@NonNull SignalAudioManager.ChosenAudioDeviceIdentifier desiredDevice) {
     process((s, p) -> p.handleSetUserAudioDevice(s, desiredDevice));
   }
 

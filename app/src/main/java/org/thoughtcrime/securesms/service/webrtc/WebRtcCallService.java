@@ -184,7 +184,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
       case ACTION_SEND_AUDIO_COMMAND:
         setCallNotification();
         if (signalAudioManager == null) {
-          signalAudioManager = SignalAudioManager.create(this, this, isGroup);
+          signalAudioManager = SignalAudioManager.create(this, this);
         }
         AudioManagerCommand audioCommand = Objects.requireNonNull(intent.getParcelableExtra(EXTRA_AUDIO_COMMAND));
         Log.i(TAG, "Sending audio command [" + audioCommand.getClass().getSimpleName() + "] to " + signalAudioManager.getClass().getSimpleName());

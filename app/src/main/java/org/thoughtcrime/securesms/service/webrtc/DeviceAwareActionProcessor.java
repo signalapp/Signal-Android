@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
@@ -38,7 +39,7 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleSetUserAudioDevice(@NonNull WebRtcServiceState currentState, @NonNull SignalAudioManager.AudioDevice userDevice) {
+  protected @NonNull WebRtcServiceState handleSetUserAudioDevice(@NonNull WebRtcServiceState currentState, @NonNull SignalAudioManager.ChosenAudioDeviceIdentifier userDevice) {
     Log.i(tag, "handleSetUserAudioDevice(): userDevice: " + userDevice);
 
     RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();

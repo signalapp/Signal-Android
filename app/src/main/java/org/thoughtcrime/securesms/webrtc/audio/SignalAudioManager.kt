@@ -39,7 +39,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
 
   companion object {
     @JvmStatic
-    fun create(context: Context, eventListener: EventListener?, isGroup: Boolean): SignalAudioManager {
+    fun create(context: Context, eventListener: EventListener?): SignalAudioManager {
       return if (Build.VERSION.SDK_INT >= 31) {
         FullSignalAudioManagerApi31(context, eventListener)
       } else {
@@ -55,7 +55,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
         is AudioManagerCommand.Start -> start()
         is AudioManagerCommand.Stop -> stop(command.playDisconnect)
         is AudioManagerCommand.SetDefaultDevice -> setDefaultAudioDevice(command.recipientId, command.device, command.clearUserEarpieceSelection)
-        is AudioManagerCommand.SetUserDevice -> selectAudioDevice(command.recipientId, command.device)
+        is AudioManagerCommand.SetUserDevice -> selectAudioDevice(command.recipientId, command.device, command.isId)
         is AudioManagerCommand.StartIncomingRinger -> startIncomingRinger(command.ringtoneUri, command.vibrate)
         is AudioManagerCommand.SilenceIncomingRinger -> silenceIncomingRinger()
         is AudioManagerCommand.StartOutgoingRinger -> startOutgoingRinger()
@@ -78,7 +78,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
   protected abstract fun start()
   protected abstract fun stop(playDisconnect: Boolean)
   protected abstract fun setDefaultAudioDevice(recipientId: RecipientId?, newDefaultDevice: AudioDevice, clearUserEarpieceSelection: Boolean)
-  protected abstract fun selectAudioDevice(recipientId: RecipientId?, device: AudioDevice)
+  protected abstract fun selectAudioDevice(recipientId: RecipientId?, device: Int, isId: Boolean)
   protected abstract fun startIncomingRinger(ringtoneUri: Uri?, vibrate: Boolean)
   protected abstract fun startOutgoingRinger()
 
@@ -93,6 +93,28 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
 
   enum class State {
     UNINITIALIZED, PREINITIALIZED, RUNNING
+  }
+
+  /**
+   * This encapsulates the two ways to represent a chosen audio device.
+   * Use [desiredAudioDeviceLegacy] for API < 31
+   * Use [desiredAudioDevice31] for API 31+
+   */
+  class ChosenAudioDeviceIdentifier {
+    var desiredAudioDeviceLegacy: AudioDevice? = null
+    var desiredAudioDevice31: Int? = null
+
+    fun isLegacy(): Boolean {
+      return desiredAudioDeviceLegacy != null
+    }
+
+    constructor(device: AudioDevice) {
+      desiredAudioDeviceLegacy = device
+    }
+
+    constructor(device: Int) {
+      desiredAudioDevice31 = device
+    }
   }
 
   interface EventListener {
@@ -337,8 +359,12 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
     updateAudioDeviceState()
   }
 
-  override fun selectAudioDevice(recipientId: RecipientId?, device: AudioDevice) {
-    val actualDevice = if (device == AudioDevice.EARPIECE && audioDevices.contains(AudioDevice.WIRED_HEADSET)) AudioDevice.WIRED_HEADSET else device
+  override fun selectAudioDevice(recipientId: RecipientId?, device: Int, isId: Boolean) {
+    if (isId) {
+      throw IllegalArgumentException("Passing audio device address $device to legacy audio manager")
+    }
+    val mappedDevice = AudioDevice.values()[device]
+    val actualDevice: AudioDevice = if (mappedDevice == AudioDevice.EARPIECE && audioDevices.contains(AudioDevice.WIRED_HEADSET)) AudioDevice.WIRED_HEADSET else mappedDevice
 
     Log.d(TAG, "selectAudioDevice(): device: $device actualDevice: $actualDevice")
     if (!audioDevices.contains(actualDevice)) {
@@ -377,7 +403,7 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
     Log.i(TAG, "startIncomingRinger(): uri: ${if (ringtoneUri != null) "present" else "null"} vibrate: $vibrate")
     androidAudioManager.mode = AudioManager.MODE_RINGTONE
     setMicrophoneMute(false)
-    setDefaultAudioDevice(null, AudioDevice.SPEAKER_PHONE, false)
+    setDefaultAudioDevice(recipientId = null, newDefaultDevice = AudioDevice.SPEAKER_PHONE, clearUserEarpieceSelection = false)
 
     incomingRinger.start(ringtoneUri, vibrate)
   }

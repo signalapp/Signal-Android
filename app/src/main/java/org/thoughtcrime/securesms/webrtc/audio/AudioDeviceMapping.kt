@@ -6,6 +6,8 @@ import androidx.annotation.RequiresApi
 @RequiresApi(31)
 object AudioDeviceMapping {
 
+  val orderOfPreference: List<SignalAudioManager.AudioDevice> = listOf(SignalAudioManager.AudioDevice.BLUETOOTH, SignalAudioManager.AudioDevice.WIRED_HEADSET, SignalAudioManager.AudioDevice.EARPIECE, SignalAudioManager.AudioDevice.SPEAKER_PHONE, SignalAudioManager.AudioDevice.NONE)
+
   private val systemDeviceTypeMap: Map<SignalAudioManager.AudioDevice, List<Int>> = mapOf(
     SignalAudioManager.AudioDevice.BLUETOOTH to listOf(AudioDeviceInfo.TYPE_BLUETOOTH_SCO, AudioDeviceInfo.TYPE_BLUETOOTH_A2DP, AudioDeviceInfo.TYPE_BLE_HEADSET, AudioDeviceInfo.TYPE_HEARING_AID),
     SignalAudioManager.AudioDevice.EARPIECE to listOf(AudioDeviceInfo.TYPE_BUILTIN_EARPIECE),
