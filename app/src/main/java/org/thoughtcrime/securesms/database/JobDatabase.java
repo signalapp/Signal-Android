@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
@@ -194,7 +195,7 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabaseOpenH
     getWritableDatabase().update(Jobs.TABLE_NAME, contentValues, query, args);
   }
 
-  public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime, @NonNull byte[] serializedData) {
+  public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime, @Nullable byte[] serializedData) {
     ContentValues contentValues = new ContentValues();
     contentValues.put(Jobs.IS_RUNNING, isRunning ? 1 : 0);
     contentValues.put(Jobs.RUN_ATTEMPT, runAttempt);
