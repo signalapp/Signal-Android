@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.messages.MessageContentProcessor;
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.ExceptionMetadata;
@@ -91,7 +92,8 @@ public final class PushProcessMessageJob extends BaseJob {
     Context            context   = ApplicationDependencies.getApplication();
     String             queueName = QUEUE_PREFIX;
     Parameters.Builder builder   = new Parameters.Builder()
-                                                 .setMaxAttempts(Parameters.UNLIMITED);
+                                                 .setMaxAttempts(Parameters.UNLIMITED)
+                                                 .addConstraint(ChangeNumberConstraint.KEY);
 
     if (content != null) {
       SignalServiceGroupV2 signalServiceGroupContext = GroupUtil.getGroupContextIfPresent(content);

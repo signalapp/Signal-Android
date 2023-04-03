@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 import org.thoughtcrime.securesms.jobmanager.impl.AutoDownloadEmojiConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.CellServiceConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.ChargingConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.ChargingConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
@@ -277,13 +278,14 @@ public final class JobManagerFactories {
   public static Map<String, Constraint.Factory> getConstraintFactories(@NonNull Application application) {
     return new HashMap<String, Constraint.Factory>() {{
       put(AutoDownloadEmojiConstraint.KEY,           new AutoDownloadEmojiConstraint.Factory(application));
+      put(ChangeNumberConstraint.KEY,                new ChangeNumberConstraint.Factory());
       put(ChargingConstraint.KEY,                    new ChargingConstraint.Factory());
+      put(DecryptionsDrainedConstraint.KEY,          new DecryptionsDrainedConstraint.Factory());
       put(NetworkConstraint.KEY,                     new NetworkConstraint.Factory(application));
       put(NetworkOrCellServiceConstraint.KEY,        new NetworkOrCellServiceConstraint.Factory(application));
       put(NetworkOrCellServiceConstraint.LEGACY_KEY, new NetworkOrCellServiceConstraint.Factory(application));
-      put(SqlCipherMigrationConstraint.KEY,          new SqlCipherMigrationConstraint.Factory(application));
-      put(DecryptionsDrainedConstraint.KEY,          new DecryptionsDrainedConstraint.Factory());
       put(NotInCallConstraint.KEY,                   new NotInCallConstraint.Factory());
+      put(SqlCipherMigrationConstraint.KEY,          new SqlCipherMigrationConstraint.Factory(application));
     }};
   }
 

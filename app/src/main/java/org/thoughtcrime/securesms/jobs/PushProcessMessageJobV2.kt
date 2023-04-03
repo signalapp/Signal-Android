@@ -7,6 +7,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.messages.MessageContentProcessorV2
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
@@ -112,7 +113,10 @@ class PushProcessMessageJobV2 private constructor(
     @WorkerThread
     private fun createParameters(content: Content, metadata: EnvelopeMetadata): Parameters {
       val queueName: String
-      val builder = Parameters.Builder().setMaxAttempts(Parameters.UNLIMITED)
+      val builder = Parameters.Builder()
+        .setMaxAttempts(Parameters.UNLIMITED)
+        .addConstraint(ChangeNumberConstraint.KEY)
+
       val groupContext = GroupUtil.getGroupContextIfPresent(content)
       val groupId = groupContext?.groupId
 
