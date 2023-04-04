@@ -47,6 +47,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
+import org.whispersystems.signalservice.internal.push.http.PartialSendBatchCompleteListener;
 import org.whispersystems.signalservice.internal.push.http.PartialSendCompleteListener;
 
 import java.io.IOException;
@@ -315,16 +316,31 @@ public final class GroupSendUtil {
       try {
         List<SignalServiceAddress> targets = senderKeyTargets.stream().map(r -> recipients.getAddress(r.getId())).collect(Collectors.toList());
         List<UnidentifiedAccess>   access  = senderKeyTargets.stream().map(r -> recipients.requireAccess(r.getId())).collect(Collectors.toList());
-        List<SendMessageResult>    results = sendOperation.sendWithSenderKey(messageSender, distributionId, targets, access, isRecipientUpdate);
+
+        final MessageSendLogTables messageLogDatabase  = SignalDatabase.messageLog();
+        final AtomicLong           entryId             = new AtomicLong(-1);
+        final boolean              includeInMessageLog = sendOperation.shouldIncludeInMessageLog();
+
+        List<SendMessageResult> results = sendOperation.sendWithSenderKey(messageSender, distributionId, targets, access, isRecipientUpdate, partialResults -> {
+          if (!includeInMessageLog) {
+            return;
+          }
+
+          synchronized (entryId) {
+            if (entryId.get() == -1) {
+              entryId.set(messageLogDatabase.insertIfPossible(sendOperation.getSentTimestamp(), senderKeyTargets, partialResults, sendOperation.getContentHint(), sendOperation.getRelatedMessageId(), sendOperation.isUrgent()));
+            } else {
+              for (SendMessageResult result : partialResults) {
+                entryId.set(messageLogDatabase.addRecipientToExistingEntryIfPossible(entryId.get(), recipients.requireRecipientId(result.getAddress()), sendOperation.getSentTimestamp(), result, sendOperation.getContentHint(), sendOperation.getRelatedMessageId(), sendOperation.isUrgent()));
+              }
+            }
+          }
+        });
 
         allResults.addAll(results);
 
         int successCount = (int) results.stream().filter(SendMessageResult::isSuccess).count();
         Log.d(TAG, "Successfully sent using sender key to " + successCount + "/" + targets.size() + " sender key targets.");
-
-        if (sendOperation.shouldIncludeInMessageLog()) {
-          SignalDatabase.messageLog().insertIfPossible(sendOperation.getSentTimestamp(), senderKeyTargets, results, sendOperation.getContentHint(), sendOperation.getRelatedMessageId(), sendOperation.isUrgent());
-        }
 
         if (relatedMessageId != null) {
           SignalLocalMetrics.GroupMessageSend.onSenderKeyMslInserted(relatedMessageId.getId());
@@ -370,9 +386,9 @@ public final class GroupSendUtil {
       List<Optional<UnidentifiedAccessPair>> access          = legacyTargets.stream().map(r -> recipients.getAccessPair(r.getId())).collect(Collectors.toList());
       boolean                                recipientUpdate = isRecipientUpdate || allResults.size() > 0;
 
-      final MessageSendLogTables messageLogDatabase = SignalDatabase.messageLog();
-      final AtomicLong           entryId            = new AtomicLong(-1);
-      final boolean                includeInMessageLog = sendOperation.shouldIncludeInMessageLog();
+      final MessageSendLogTables messageLogDatabase  = SignalDatabase.messageLog();
+      final AtomicLong           entryId             = new AtomicLong(-1);
+      final boolean              includeInMessageLog = sendOperation.shouldIncludeInMessageLog();
 
       List<SendMessageResult> results = sendOperation.sendLegacy(messageSender, targets, legacyTargets, access, recipientUpdate, result -> {
         if (!includeInMessageLog) {
@@ -437,7 +453,8 @@ public final class GroupSendUtil {
                                                        @NonNull DistributionId distributionId,
                                                        @NonNull List<SignalServiceAddress> targets,
                                                        @NonNull List<UnidentifiedAccess> access,
-                                                       boolean isRecipientUpdate)
+                                                       boolean isRecipientUpdate,
+                                                       @Nullable PartialSendBatchCompleteListener partialListener)
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException;
 
     @NonNull List<SendMessageResult> sendLegacy(@NonNull SignalServiceMessageSender messageSender,
@@ -490,11 +507,12 @@ public final class GroupSendUtil {
                                                               @NonNull DistributionId distributionId,
                                                               @NonNull List<SignalServiceAddress> targets,
                                                               @NonNull List<UnidentifiedAccess> access,
-                                                              boolean isRecipientUpdate)
+                                                              boolean isRecipientUpdate,
+                                                              @Nullable PartialSendBatchCompleteListener partialListener)
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException
     {
       SenderKeyGroupEvents listener = relatedMessageId != null ? new SenderKeyMetricEventListener(relatedMessageId.getId()) : SenderKeyGroupEvents.EMPTY;
-      return messageSender.sendGroupDataMessage(distributionId, targets, access, isRecipientUpdate, contentHint, message, listener, urgent, isForStory);
+      return messageSender.sendGroupDataMessage(distributionId, targets, access, isRecipientUpdate, contentHint, message, listener, urgent, isForStory, partialListener);
     }
 
     @Override
@@ -566,11 +584,18 @@ public final class GroupSendUtil {
                                                               @NonNull DistributionId distributionId,
                                                               @NonNull List<SignalServiceAddress> targets,
                                                               @NonNull List<UnidentifiedAccess> access,
-                                                              boolean isRecipientUpdate)
+                                                              boolean isRecipientUpdate,
+                                                              @Nullable PartialSendBatchCompleteListener partialListener)
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException
     {
       messageSender.sendGroupTyping(distributionId, targets, access, message);
-      return targets.stream().map(a -> SendMessageResult.success(a, Collections.emptyList(), true, false, -1, Optional.empty())).collect(Collectors.toList());
+      List<SendMessageResult> results = targets.stream().map(a -> SendMessageResult.success(a, Collections.emptyList(), true, false, -1, Optional.empty())).collect(Collectors.toList());
+
+      if (partialListener != null) {
+        partialListener.onPartialSendComplete(results);
+      }
+
+      return results;
     }
 
     @Override
@@ -626,10 +651,11 @@ public final class GroupSendUtil {
                                                               @NonNull DistributionId distributionId,
                                                               @NonNull List<SignalServiceAddress> targets,
                                                               @NonNull List<UnidentifiedAccess> access,
-                                                              boolean isRecipientUpdate)
+                                                              boolean isRecipientUpdate,
+                                                              @Nullable PartialSendBatchCompleteListener partialSendListener)
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException
     {
-      return messageSender.sendCallMessage(distributionId, targets, access, message);
+      return messageSender.sendCallMessage(distributionId, targets, access, message, partialSendListener);
     }
 
     @Override
@@ -697,10 +723,11 @@ public final class GroupSendUtil {
                                                               @NonNull DistributionId distributionId,
                                                               @NonNull List<SignalServiceAddress> targets,
                                                               @NonNull List<UnidentifiedAccess> access,
-                                                              boolean isRecipientUpdate)
+                                                              boolean isRecipientUpdate,
+                                                              @Nullable PartialSendBatchCompleteListener partialListener)
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException
     {
-      return messageSender.sendGroupStory(distributionId, Optional.ofNullable(groupId).map(GroupId::getDecodedId), targets, access, isRecipientUpdate, message, getSentTimestamp(), manifest);
+      return messageSender.sendGroupStory(distributionId, Optional.ofNullable(groupId).map(GroupId::getDecodedId), targets, access, isRecipientUpdate, message, getSentTimestamp(), manifest, partialListener);
     }
 
     @Override
@@ -826,6 +853,10 @@ public final class GroupSendUtil {
 
     @NonNull RecipientId requireRecipientId(@NonNull SignalServiceAddress address) {
       return accessList.requireIdByAddress(address);
+    }
+
+    @NonNull List<RecipientId> requireRecipientIds(@NonNull List<SignalServiceAddress> addresses) {
+      return addresses.stream().map(accessList::requireIdByAddress).collect(Collectors.toList());
     }
 
     private static @NonNull Map<RecipientId, SignalServiceAddress> mapAddresses(@NonNull Context context, @NonNull List<Recipient> recipients) throws IOException {

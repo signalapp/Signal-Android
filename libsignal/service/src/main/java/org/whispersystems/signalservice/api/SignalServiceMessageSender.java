@@ -122,6 +122,7 @@ import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevic
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
 import org.whispersystems.signalservice.internal.push.http.AttachmentCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
+import org.whispersystems.signalservice.internal.push.http.PartialSendBatchCompleteListener;
 import org.whispersystems.signalservice.internal.push.http.PartialSendCompleteListener;
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -309,13 +310,18 @@ public class SignalServiceMessageSender {
                                                 boolean                                 isRecipientUpdate,
                                                 SignalServiceStoryMessage               message,
                                                 long                                    timestamp,
-                                                Set<SignalServiceStoryMessageRecipient> manifest)
+                                                Set<SignalServiceStoryMessageRecipient> manifest,
+                                                PartialSendBatchCompleteListener        partialListener)
       throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
   {
     Log.d(TAG, "[" + timestamp + "] Sending a story.");
 
     Content                  content            = createStoryContent(message);
     List<SendMessageResult>  sendMessageResults = sendGroupMessage(distributionId, recipients, unidentifiedAccess, timestamp, content, ContentHint.IMPLICIT, groupId, false, SenderKeyGroupEvents.EMPTY, false, true);
+
+    if (partialListener != null) {
+      partialListener.onPartialSendComplete(sendMessageResults);
+    }
 
     if (aciStore.isMultiDevice()) {
       sendStorySyncMessage(message, timestamp, isRecipientUpdate, manifest);
@@ -363,13 +369,21 @@ public class SignalServiceMessageSender {
   public List<SendMessageResult> sendCallMessage(DistributionId distributionId,
                                                  List<SignalServiceAddress> recipients,
                                                  List<UnidentifiedAccess> unidentifiedAccess,
-                                                 SignalServiceCallMessage message)
+                                                 SignalServiceCallMessage message,
+                                                 PartialSendBatchCompleteListener partialListener)
       throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
   {
     Log.d(TAG, "[" + message.getTimestamp().get() + "] Sending a call message (sender key).");
 
     Content content = createCallContent(message);
-    return sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp().get(), content, ContentHint.IMPLICIT, message.getGroupId(), false, SenderKeyGroupEvents.EMPTY, message.isUrgent(), false);
+
+    List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp().get(), content, ContentHint.IMPLICIT, message.getGroupId(), false, SenderKeyGroupEvents.EMPTY, message.isUrgent(), false);
+
+    if (partialListener != null) {
+      partialListener.onPartialSendComplete(results);
+    }
+
+    return results;
   }
 
   /**
@@ -492,15 +506,16 @@ public class SignalServiceMessageSender {
   /**
    * Sends a {@link SignalServiceDataMessage} to a group using sender keys.
    */
-  public List<SendMessageResult> sendGroupDataMessage(DistributionId             distributionId,
-                                                      List<SignalServiceAddress> recipients,
-                                                      List<UnidentifiedAccess>   unidentifiedAccess,
-                                                      boolean                    isRecipientUpdate,
-                                                      ContentHint                contentHint,
-                                                      SignalServiceDataMessage   message,
-                                                      SenderKeyGroupEvents       sendEvents,
-                                                      boolean                    urgent,
-                                                      boolean                    isForStory)
+  public List<SendMessageResult> sendGroupDataMessage(DistributionId                   distributionId,
+                                                      List<SignalServiceAddress>       recipients,
+                                                      List<UnidentifiedAccess>         unidentifiedAccess,
+                                                      boolean                          isRecipientUpdate,
+                                                      ContentHint                      contentHint,
+                                                      SignalServiceDataMessage         message,
+                                                      SenderKeyGroupEvents             sendEvents,
+                                                      boolean                          urgent,
+                                                      boolean                          isForStory,
+                                                      PartialSendBatchCompleteListener partialListener)
       throws IOException, UntrustedIdentityException, NoSessionException, InvalidKeyException, InvalidRegistrationIdException
   {
     Log.d(TAG, "[" + message.getTimestamp() + "] Sending a group data message to " + recipients.size() + " recipients using DistributionId " + distributionId);
@@ -508,6 +523,10 @@ public class SignalServiceMessageSender {
     Content                 content = createMessageContent(message);
     Optional<byte[]>        groupId = message.getGroupId();
     List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, contentHint, groupId, false, sendEvents, urgent, isForStory);
+
+    if (partialListener != null) {
+      partialListener.onPartialSendComplete(results);
+    }
 
     sendEvents.onMessageSent();
 
