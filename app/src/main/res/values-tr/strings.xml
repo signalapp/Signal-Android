@@ -494,38 +494,17 @@
         <item quantity="other">Okunmuş</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Okunmamış</item>
-        <item quantity="other">Okunmamış</item>
+        <item quantity="one">Oku -</item>
+        <item quantity="other">Oku -</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">Sabitle</item>
-        <item quantity="other">Sabitle</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">Sabitlenenlerden kaldır</item>
-        <item quantity="other">Sabitlenenlerden kaldır</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Sessize al</item>
-        <item quantity="other">Sessize al</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Sesi aç</item>
-        <item quantity="other">Sesi aç</item>
-    </plurals>
+    <string name="ConversationListFragment_pin">Sabitle</string>
+    <string name="ConversationListFragment_unpin">Kaldır</string>
+    <string name="ConversationListFragment_mute">Sessiz</string>
+    <string name="ConversationListFragment_unmute">Sesi aç</string>
     <string name="ConversationListFragment_select">Seç</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Arşivle</item>
-        <item quantity="other">Arşivle</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Arşivden çıkart</item>
-        <item quantity="other">Arşivden çıkart</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Sil</item>
-        <item quantity="other">Sil</item>
-    </plurals>
+    <string name="ConversationListFragment_archive">Arşivle</string>
+    <string name="ConversationListFragment_unarchive">Çıkart</string>
+    <string name="ConversationListFragment_delete">Sil</string>
     <string name="ConversationListFragment_select_all">Hepsini seç</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d seçili</item>
@@ -1745,15 +1724,15 @@
     </plurals>
 
     <!-- Toggle content description for toggling camera direction  -->
-    <string name="WebRtcCallView__toggle_camera_direction">Toggle camera direction</string>
+    <string name="WebRtcCallView__toggle_camera_direction">Kamera yönünü değiştir</string>
     <!-- Toggle content description for toggling audio output  -->
-    <string name="WebRtcCallView__toggle_speaker">Toggle speaker</string>
+    <string name="WebRtcCallView__toggle_speaker">Hoparlörü değiştir</string>
     <!-- Toggle content description for toggling camera state  -->
-    <string name="WebRtcCallView__toggle_camera">Toggle camera</string>
+    <string name="WebRtcCallView__toggle_camera">Kamerayı değiştir</string>
     <!-- Toggle content description for toggling mute state  -->
-    <string name="WebRtcCallView__toggle_mute">Toggle mute</string>
+    <string name="WebRtcCallView__toggle_mute">Sessizlik durumunu değiştir</string>
     <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">Toggle ring</string>
+    <string name="WebRtcCallView__toggle_ring">Zili değiştir</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Aramayı sonlandır</string>
 
@@ -1823,6 +1802,8 @@
         <item quantity="other">Artık bir hata ayıklama günlüğü göndermekten %1$d adım uzaktasınız.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">İnsan olduğunuzu doğrulamamız gerekiyor.</string>
+    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
+    <string name="RegistrationActivity_external_service_error">Signal was unable to send an SMS code due to an external failure.</string>
     <string name="RegistrationActivity_next">İleri</string>
     <string name="RegistrationActivity_continue">Devam Et</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Gizliliğinizi koruyun.\nHer iletide kendiniz olun.</string>
@@ -3087,7 +3068,7 @@
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Not</string>
     <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
-    <string name="EditNoteFragment__content_description_save_note">Save note</string>
+    <string name="EditNoteFragment__content_description_save_note">Notu kaydet</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Ödemeyi onayla</string>
@@ -3994,59 +3975,59 @@
     <string name="AccountSettingsFragment__require_your_signal_pin">Telefon numaranız Signal\'e tekrar kaydedilirken Signal PIN\'i istensin.</string>
     <string name="AccountSettingsFragment__change_phone_number">Telefon numarası değiştir</string>
     <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Request account data</string>
+    <string name="AccountSettingsFragment__request_account_data">Hesap verilerini iste</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <string name="ExportAccountDataFragment__your_account_data">Hesap verilerin</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Download and export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">Signal hesap verilerinin bir raporunu indir ve dışa aktar. Bu rapor herhangi bir mesaj veya medya içermemektedir. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <string name="ExportAccountDataFragment__learn_more">Daha fazlasını öğren</string>
     <!-- Button action to download the report data -->
-    <string name="ExportAccountDataFragment__download_report">Download report</string>
+    <string name="ExportAccountDataFragment__download_report">Raporu indir</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <string name="ExportAccountDataFragment__export_report">Raporu dışa aktar</string>
     <!-- Button action to delete the requested account data -->
-    <string name="ExportAccountDataFragment__delete_report">Delete report</string>
+    <string name="ExportAccountDataFragment__delete_report">Raporu sil</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">TXT olarak dışa aktar</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">Okunması kolay metin dosyası</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">JSON olarak dışa aktar</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">Makine tarafından okunabilir dosya</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+    <string name="ExportAccountDataFragment__cancel_action">İptal</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <string name="ExportAccountDataFragment__ok_action">TAMAM</string>
     <!-- Message shown when report download fails -->
-    <string name="ExportAccountDataFragment__report_download_failed">Your report could not be downloaded due to a network error. Check your connection and try again.</string>
+    <string name="ExportAccountDataFragment__report_download_failed">Bir ağ hatası nedeniyle raporun indirilemedi. Bağlantını kontrol edip tekrar dene.</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">Veriler dışa aktarılsın mı?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Signal hesap verilerini yalnızca güvendiğin kişilerle veya uygulamalarla paylaş.</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+    <string name="ExportAccountDataFragment__export_report_action">Dışa aktar</string>
 
     <!-- Action to delete report in confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_action">Delete</string>
+    <string name="ExportAccountDataFragment__delete_report_action">Sil</string>
     <!-- Title for delete report confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_confirmation">Delete report?</string>
+    <string name="ExportAccountDataFragment__delete_report_confirmation">Rapor silinsin mi?</string>
     <!-- Message for delete report confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_confirmation_message">This will not delete any data from your account.</string>
+    <string name="ExportAccountDataFragment__delete_report_confirmation_message">Bu işlem hesabından hiçbir veriyi silmez.</string>
 
     <!-- Shown as a snackbar letting the user know the report was deleted -->
-    <string name="ExportAccountDataFragment__delete_report_snackbar">Report deleted</string>
+    <string name="ExportAccountDataFragment__delete_report_snackbar">Rapor silindi</string>
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Downloading report…</string>
+    <string name="ExportAccountDataFragment__download_progress">Rapor indiriliyor…</string>
     <!-- Explanation that the downloaded report will be available for 30 days before it is deleted -->
-    <string name="ExportAccountDataFragment__report_deletion_disclaimer">Your report will be available for export for 30 days and will then be automatically deleted.</string>
+    <string name="ExportAccountDataFragment__report_deletion_disclaimer">Raporun 30 gün boyunca dışa aktarılabilir ve ardından otomatik olarak silinir.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Geçerli telefon numaranızı yeni bir telefon numarasına değiştirmek için bunu kullanın. Bu değişikliği geri alamazsınız.devam etmeden önce, yeni numaranızın SMS veya arama alabildiğinden emin olun.</string>
@@ -5745,11 +5726,11 @@
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">Signal kullanıcı adını ayarla</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Usernames are paired with a set of digits and aren\'t shared on your profile</string>
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Kullanıcı adları bir dizi basamak ile eşleştirilir ve profilinde paylaşılmaz</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Each username has a unique QR code and link you can share with friends to start a chat with you</string>
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Her kullanıcı adının benzersiz bir kare kodu ve seninle sohbete başlamaları için arkadaşlarınla paylaşabileceğin bir bağlantısı vardır</string>
     <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Turn off phone number discovery under Settings &gt; Privacy &gt; Phone number &gt; Who can find my number, to use your username as the primary way others can contact you</string>
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Kullanıcı adını başkalarının seninle iletişim kurmasının birincil yolu olarak kullanmak için Ayarlar &gt; Gizlilik &gt; Telefon numarası &gt; Numaramı kimler bulabilir bölümünden telefon numarası bulmayı kapat</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5848,9 +5829,9 @@
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofon kapalı</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
-    <string name="CameraControls_capture_button_accessibility_label">Capture Button</string>
+    <string name="CameraControls_capture_button_accessibility_label">Yakala Düğmesi</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
-    <string name="CameraControls_continue_button_accessibility_label">Continue Button</string>
+    <string name="CameraControls_continue_button_accessibility_label">Devam Düğmesi</string>
 
     <!-- EOF -->
 </resources>

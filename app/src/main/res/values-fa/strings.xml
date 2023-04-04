@@ -490,42 +490,21 @@
         <item quantity="other">%1$d مکالمه به صندوق ورودی انتقال یافت</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">خوانده شده است</item>
-        <item quantity="other">خوانده شده است</item>
+        <item quantity="one">خوانده</item>
+        <item quantity="other">خوانده</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">خوانده نشده است</item>
-        <item quantity="other">خوانده نشده است</item>
+        <item quantity="one">نخوانده</item>
+        <item quantity="other">نخوانده</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">سنجاق شود</item>
-        <item quantity="other">سنجاق شود</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">سنجاق برداشته شود</item>
-        <item quantity="other">سنجاق برداشته شود</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">بی‌صدا شود</item>
-        <item quantity="other">بی‌صدا شود</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">صدادار شود</item>
-        <item quantity="other">صدادار شود</item>
-    </plurals>
+    <string name="ConversationListFragment_pin">سنجاق کردن</string>
+    <string name="ConversationListFragment_unpin">برداشتن سنجاق</string>
+    <string name="ConversationListFragment_mute">بی‌صدا</string>
+    <string name="ConversationListFragment_unmute">صدادار کردن</string>
     <string name="ConversationListFragment_select">انتخاب</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">بایگانی شود</item>
-        <item quantity="other">بایگانی شود</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">از بایگانی خارج شود</item>
-        <item quantity="other">از بایگانی خارج شود</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">حذف شود</item>
-        <item quantity="other">حذف شود</item>
-    </plurals>
+    <string name="ConversationListFragment_archive">بایگانی کردن</string>
+    <string name="ConversationListFragment_unarchive">لغو بایگانی</string>
+    <string name="ConversationListFragment_delete">پاک کردن</string>
     <string name="ConversationListFragment_select_all">انتخاب همه</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d انتخاب شد</item>
@@ -1745,15 +1724,15 @@
     </plurals>
 
     <!-- Toggle content description for toggling camera direction  -->
-    <string name="WebRtcCallView__toggle_camera_direction">Toggle camera direction</string>
+    <string name="WebRtcCallView__toggle_camera_direction">تغییر جهت دوربین</string>
     <!-- Toggle content description for toggling audio output  -->
-    <string name="WebRtcCallView__toggle_speaker">Toggle speaker</string>
+    <string name="WebRtcCallView__toggle_speaker">تغییر بلندگو</string>
     <!-- Toggle content description for toggling camera state  -->
-    <string name="WebRtcCallView__toggle_camera">Toggle camera</string>
+    <string name="WebRtcCallView__toggle_camera">تغییر دوربین</string>
     <!-- Toggle content description for toggling mute state  -->
-    <string name="WebRtcCallView__toggle_mute">Toggle mute</string>
+    <string name="WebRtcCallView__toggle_mute">تغییر حالت صدادار</string>
     <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">Toggle ring</string>
+    <string name="WebRtcCallView__toggle_ring">تغییر حالت زنگ</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">پایان دادن به تماس</string>
 
@@ -1823,6 +1802,8 @@
         <item quantity="other">شما%1$d قدم با ارسال گزارش عیب‌یابی فاصله دارید.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">ما باید وارسی کنیم که شما یک انسان هستید.</string>
+    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
+    <string name="RegistrationActivity_external_service_error">Signal was unable to send an SMS code due to an external failure.</string>
     <string name="RegistrationActivity_next">بعدی</string>
     <string name="RegistrationActivity_continue">ادامه</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حریم خصوصی را همراه داشته باشید.\nدر هر پیام خودتان باشید.</string>
@@ -3087,7 +3068,7 @@
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">یادداشت</string>
     <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
-    <string name="EditNoteFragment__content_description_save_note">Save note</string>
+    <string name="EditNoteFragment__content_description_save_note">ذخیره‌سازی یادداشت</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">پرداخت را تأیید کنید</string>
@@ -3994,59 +3975,59 @@
     <string name="AccountSettingsFragment__require_your_signal_pin">درخواست پین سیگنال شما برای ثبت‌نام دوباره با شماره‌تلفن شما در سیگنال</string>
     <string name="AccountSettingsFragment__change_phone_number">تغییر شماره‌تلفن</string>
     <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Request account data</string>
+    <string name="AccountSettingsFragment__request_account_data">درخواست اطلاعات حساب</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <string name="ExportAccountDataFragment__your_account_data">اطلاعات حساب شما</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Download and export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">گزارشی از اطلاعات حساب سیگنال خود را بارگیری کنید و خروجی بگیرید. این گزارش شامل هیچ‌گونه پیام یا فایل رسانه‌ای نیست. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <string name="ExportAccountDataFragment__learn_more">اطلاعات بیشتر</string>
     <!-- Button action to download the report data -->
-    <string name="ExportAccountDataFragment__download_report">Download report</string>
+    <string name="ExportAccountDataFragment__download_report">بارگیری گزارش</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <string name="ExportAccountDataFragment__export_report">خروجی گرفتن گزارش</string>
     <!-- Button action to delete the requested account data -->
-    <string name="ExportAccountDataFragment__delete_report">Delete report</string>
+    <string name="ExportAccountDataFragment__delete_report">پاک کردن گزارش</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">خروجی گرفتن در قالب TXT</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">فایل متنی آسان‌خوان</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">خروجی گرفتن در قالب JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">فایل قابل‌خواندن برای ماشین</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+    <string name="ExportAccountDataFragment__cancel_action">لغو</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <string name="ExportAccountDataFragment__ok_action">تأیید</string>
     <!-- Message shown when report download fails -->
-    <string name="ExportAccountDataFragment__report_download_failed">Your report could not be downloaded due to a network error. Check your connection and try again.</string>
+    <string name="ExportAccountDataFragment__report_download_failed">به‌دلیل خطایی در شبکه، گزارش شما قابل بارگیری نبود. اتصال خود را بررسی و دوباره تلاش کنید.</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">از اطلاعات خروجی گرفته شود؟</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">اطلاعات حساب سیگنال خود را فقط با افراد یا برنامه‌های مورد اعتمادتان هم‌رسانی کنید.</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+    <string name="ExportAccountDataFragment__export_report_action">خروجی گرفتن</string>
 
     <!-- Action to delete report in confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_action">Delete</string>
+    <string name="ExportAccountDataFragment__delete_report_action">پاک کردن</string>
     <!-- Title for delete report confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_confirmation">Delete report?</string>
+    <string name="ExportAccountDataFragment__delete_report_confirmation">گزارش حذف شود؟</string>
     <!-- Message for delete report confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_confirmation_message">This will not delete any data from your account.</string>
+    <string name="ExportAccountDataFragment__delete_report_confirmation_message">این کار اطلاعات حساب شما را پاک نخواهد کرد.</string>
 
     <!-- Shown as a snackbar letting the user know the report was deleted -->
-    <string name="ExportAccountDataFragment__delete_report_snackbar">Report deleted</string>
+    <string name="ExportAccountDataFragment__delete_report_snackbar">گزارش پاک شد</string>
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Downloading report…</string>
+    <string name="ExportAccountDataFragment__download_progress">در حال بارگیری گزارش…</string>
     <!-- Explanation that the downloaded report will be available for 30 days before it is deleted -->
-    <string name="ExportAccountDataFragment__report_deletion_disclaimer">Your report will be available for export for 30 days and will then be automatically deleted.</string>
+    <string name="ExportAccountDataFragment__report_deletion_disclaimer">گزارش شما به مدت ۳۰ روز برای خروجی گرفتن در دسترس خواهد بود و سپس به‌طور خودکار پاک می‌شود.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">از این گزینه برای تغییر شماره‌تلفن فعلی خود به یک شماره‌تلفن جدید استفاده کنید. شما نمی‌توانید این تغییر را بازگردانی کنید.\n\n قبل از ادامه، مطمئن شوید که شمارهٔ جدید شما می‌تواند پیامک یا تماس دریافت کند.</string>
@@ -5737,7 +5718,7 @@
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">تک‌فاصله</string>
     <!-- Popup menu label for applying spoiler style -->
-    <string name="TextFormatting_spoiler">Spoiler</string>
+    <string name="TextFormatting_spoiler">پنهان‌نوشته</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5745,11 +5726,11 @@
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">تنظیم نام کاربری سیگنال</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Usernames are paired with a set of digits and aren\'t shared on your profile</string>
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">نام‌های کاربری با مجموعه‌ای از ارقام جفت می‌شوند و در نمایه‌تان به اشتراک گذاشته نمی‌شوند</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Each username has a unique QR code and link you can share with friends to start a chat with you</string>
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">هر نام کاربری یک کد QR و پیوند منحصربه‌فرد دارد که می‌توانید با دوستانتان به اشتراک بگذارید تا از آن برای شروع گفتگو با شما استفاده کنند</string>
     <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Turn off phone number discovery under Settings &gt; Privacy &gt; Phone number &gt; Who can find my number, to use your username as the primary way others can contact you</string>
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">برای استفاده از نام کاربری‌تان به‌عنوان راه اصلی تماس افراد با شما، در «تنظیمات» &gt; «حریم خصوصی» &gt; «شماره تلفن» &gt; «چه‌کسی می‌تواند من را با شماره تلفنم پیدا کند»، کشف شماره تلفن را خاموش کنید</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5848,9 +5829,9 @@
     <string name="CallStateUpdatePopupWindow__mic_off">میکروفون خاموش</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
-    <string name="CameraControls_capture_button_accessibility_label">Capture Button</string>
+    <string name="CameraControls_capture_button_accessibility_label">دکمه ضبط</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
-    <string name="CameraControls_continue_button_accessibility_label">Continue Button</string>
+    <string name="CameraControls_continue_button_accessibility_label">دکمه ادامه</string>
 
     <!-- EOF -->
 </resources>

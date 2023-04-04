@@ -538,70 +538,21 @@
         <item quantity="other">مقروءة</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="zero">غير مقروءة</item>
-        <item quantity="one">غير مقروء</item>
-        <item quantity="two">غير مقروءة</item>
-        <item quantity="few">غير مقروءة</item>
-        <item quantity="many">غير مقروءة</item>
-        <item quantity="other">غير مقروءة</item>
+        <item quantity="zero">لا مقروء</item>
+        <item quantity="one">لا مقروء</item>
+        <item quantity="two">لا مقروء</item>
+        <item quantity="few">لا مقروء</item>
+        <item quantity="many">لا مقروء</item>
+        <item quantity="other">لا مقروء</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="zero">تثبيت</item>
-        <item quantity="one">تثبيت</item>
-        <item quantity="two">تثبيت</item>
-        <item quantity="few">تثبيت</item>
-        <item quantity="many">تثبيت</item>
-        <item quantity="other">تثبيت</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="zero">إلغاء التثبيت</item>
-        <item quantity="one">إلغاء التثبيت</item>
-        <item quantity="two">إلغاء التثبيت</item>
-        <item quantity="few">إلغاء التثبيت</item>
-        <item quantity="many">إلغاء التثبيت</item>
-        <item quantity="other">إلغاء التثبيت</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="zero">كتم الدردشات</item>
-        <item quantity="one">كتم الدردشة</item>
-        <item quantity="two">كتم الدردشات</item>
-        <item quantity="few">كتم الدردشات</item>
-        <item quantity="many">كتم الدردشات</item>
-        <item quantity="other">كتم الدردشات</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="zero">إلغاء كتم الدردشات</item>
-        <item quantity="one">إلغاء كتم الدردشة</item>
-        <item quantity="two">إلغاء كتم الدردشات</item>
-        <item quantity="few">إلغاء كتم الدردشات</item>
-        <item quantity="many">إلغاء كتم الدردشات</item>
-        <item quantity="other">إلغاء كتم الدردشات</item>
-    </plurals>
+    <string name="ConversationListFragment_pin">تثبيت</string>
+    <string name="ConversationListFragment_unpin">فَكّ التَّثبيت</string>
+    <string name="ConversationListFragment_mute">كتم</string>
+    <string name="ConversationListFragment_unmute">إلغاء الكتم</string>
     <string name="ConversationListFragment_select">تحديد</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="zero">أرشفة</item>
-        <item quantity="one">أرشفة</item>
-        <item quantity="two">أرشفة</item>
-        <item quantity="few">أرشفة</item>
-        <item quantity="many">أرشفة</item>
-        <item quantity="other">أرشفة</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="zero">إخراج من الأرشيف</item>
-        <item quantity="one">إخراج من الأرشيف</item>
-        <item quantity="two">إخراج من الأرشيف</item>
-        <item quantity="few">إخراج من الأرشيف</item>
-        <item quantity="many">إخراج من الأرشيف</item>
-        <item quantity="other">إخراج من الأرشيف</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="zero">حذف</item>
-        <item quantity="one">حذف</item>
-        <item quantity="two">حذف</item>
-        <item quantity="few">حذف</item>
-        <item quantity="many">حذف</item>
-        <item quantity="other">حذف</item>
-    </plurals>
+    <string name="ConversationListFragment_archive">أرشفة المحادثة</string>
+    <string name="ConversationListFragment_unarchive">إلغاء الأرشفة</string>
+    <string name="ConversationListFragment_delete">حذف</string>
     <string name="ConversationListFragment_select_all">تحديد الكل</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="zero">تم تحديد %1$d</item>
@@ -2021,15 +1972,15 @@
     </plurals>
 
     <!-- Toggle content description for toggling camera direction  -->
-    <string name="WebRtcCallView__toggle_camera_direction">Toggle camera direction</string>
+    <string name="WebRtcCallView__toggle_camera_direction">تبديل اتجاه الكاميرا</string>
     <!-- Toggle content description for toggling audio output  -->
-    <string name="WebRtcCallView__toggle_speaker">Toggle speaker</string>
+    <string name="WebRtcCallView__toggle_speaker">تبديل مكبر الصوت</string>
     <!-- Toggle content description for toggling camera state  -->
-    <string name="WebRtcCallView__toggle_camera">Toggle camera</string>
+    <string name="WebRtcCallView__toggle_camera">تبديل الكاميرا</string>
     <!-- Toggle content description for toggling mute state  -->
-    <string name="WebRtcCallView__toggle_mute">Toggle mute</string>
+    <string name="WebRtcCallView__toggle_mute">تبديل الكتم</string>
     <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">Toggle ring</string>
+    <string name="WebRtcCallView__toggle_ring">تبديل الرنين</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">إنهاء المُكالمة</string>
 
@@ -2107,6 +2058,8 @@
         <item quantity="other">أنت الآن على بعد %1$d خطوة من إرسال سجل التصحيح.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">علينا التحقق من أنك إنسان.</string>
+    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
+    <string name="RegistrationActivity_external_service_error">Signal was unable to send an SMS code due to an external failure.</string>
     <string name="RegistrationActivity_next">التالي</string>
     <string name="RegistrationActivity_continue">استمرار</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حافظ على خصوصيتك اينما كنت. كن على طبيعتك في كل رسالة.</string>
@@ -3423,7 +3376,7 @@
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">مُلاحظة</string>
     <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
-    <string name="EditNoteFragment__content_description_save_note">Save note</string>
+    <string name="EditNoteFragment__content_description_save_note">حفظ الملحوظة</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">تأكيد الدفع</string>
@@ -4382,59 +4335,59 @@
     <string name="AccountSettingsFragment__require_your_signal_pin">إنه يتطلب ‫رقم Signal التعريفي الشخصي‬ لتسجيل رقم هاتفك في Signal مرة أخرى</string>
     <string name="AccountSettingsFragment__change_phone_number">تغيير رقم الهاتف</string>
     <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Request account data</string>
+    <string name="AccountSettingsFragment__request_account_data">طلب بيانات الحساب</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <string name="ExportAccountDataFragment__your_account_data">بيانات حسابك</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Download and export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">تنزيل وتصدير تقرير عن بيانات حساب Signal الخاص بك. لا يتضمن هذا التقرير أي رسائل أو وسائط. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <string name="ExportAccountDataFragment__learn_more">معرفة المزيد</string>
     <!-- Button action to download the report data -->
-    <string name="ExportAccountDataFragment__download_report">Download report</string>
+    <string name="ExportAccountDataFragment__download_report">تنزيل التقرير</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <string name="ExportAccountDataFragment__export_report">تصدير التقرير</string>
     <!-- Button action to delete the requested account data -->
-    <string name="ExportAccountDataFragment__delete_report">Delete report</string>
+    <string name="ExportAccountDataFragment__delete_report">حذف التقرير</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">تصدير بصيغة TXT</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">ملف نصي سهل القراءة</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">تصدير بصيغة JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">ملف قابل للقراءة آليًا</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+    <string name="ExportAccountDataFragment__cancel_action">إلغاء</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <string name="ExportAccountDataFragment__ok_action">موافق</string>
     <!-- Message shown when report download fails -->
-    <string name="ExportAccountDataFragment__report_download_failed">Your report could not be downloaded due to a network error. Check your connection and try again.</string>
+    <string name="ExportAccountDataFragment__report_download_failed">تعذّر تنزيل تقريرك بسبب خطأ في الشبكة. تحقّق من اتصالك بالشبكة ثم حاول مُجددًا.</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">تصدير البيانات؟</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">لا تُشارك بيانات حساب Signal الخاص بك إلا مع الأشخاص أو التطبيقات التي تثق بها.</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+    <string name="ExportAccountDataFragment__export_report_action">تصدير</string>
 
     <!-- Action to delete report in confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_action">Delete</string>
+    <string name="ExportAccountDataFragment__delete_report_action">حذف</string>
     <!-- Title for delete report confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_confirmation">Delete report?</string>
+    <string name="ExportAccountDataFragment__delete_report_confirmation">حذف التقرير؟</string>
     <!-- Message for delete report confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_confirmation_message">This will not delete any data from your account.</string>
+    <string name="ExportAccountDataFragment__delete_report_confirmation_message">لن يؤدي هذا إلى حذف أي بيانات من حسابك.</string>
 
     <!-- Shown as a snackbar letting the user know the report was deleted -->
-    <string name="ExportAccountDataFragment__delete_report_snackbar">Report deleted</string>
+    <string name="ExportAccountDataFragment__delete_report_snackbar">تم حذف التقرير</string>
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Downloading report…</string>
+    <string name="ExportAccountDataFragment__download_progress">يجري تنزيل التقرير…</string>
     <!-- Explanation that the downloaded report will be available for 30 days before it is deleted -->
-    <string name="ExportAccountDataFragment__report_deletion_disclaimer">Your report will be available for export for 30 days and will then be automatically deleted.</string>
+    <string name="ExportAccountDataFragment__report_deletion_disclaimer">سيكون تقريرك جاهزًا للتصدير خلال 30 يومًا وسيتم حذفه تلقائيًا بعد ذلك.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">يُرجى استخدام هذا لاستبدال رقم هاتفك الحالي بالجديد. لن يكون بإمكانك التراجع عن هذا اﻷمر.\n\nلذا، يجب عليك، قبل الاستمرار، التأكد من أن رقم هاتفك الجديد يستطيع تلقي المكالمات والرسائل القصيرة.</string>
@@ -6237,7 +6190,7 @@
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">خط Monospace</string>
     <!-- Popup menu label for applying spoiler style -->
-    <string name="TextFormatting_spoiler">Spoiler</string>
+    <string name="TextFormatting_spoiler">تنسيق نص سبويلر</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -6245,11 +6198,11 @@
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">إعداد اِسمُ المُستخدِم الخاص بك على Signal</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Usernames are paired with a set of digits and aren\'t shared on your profile</string>
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">يتم إقران أسماء المُستخدمين بمجموعة من الأرقام ولا تتم مُشاركتها في حسابك الشخصي</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Each username has a unique QR code and link you can share with friends to start a chat with you</string>
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">لِكل اسم مستخدم رمز مربع ورابط فريدين يُمكنك مُشاركتُهما مع أصدقائك لكي يبدؤوا الدردشة معك</string>
     <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Turn off phone number discovery under Settings &gt; Privacy &gt; Phone number &gt; Who can find my number, to use your username as the primary way others can contact you</string>
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">عطّل اكتشاف رقم الهاتف ضمن الإعدادات &gt; الخصوصية &gt; رقم الهاتف &gt; من يُمكنه العثور على رقمي، لاستخدام اسم المُستخدم الخاص بك كالطريقة الأساسية التي يُمكن للآخرين استخدامُها للاتصال بك</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -6352,9 +6305,9 @@
     <string name="CallStateUpdatePopupWindow__mic_off">الميكروفون غير مفعل</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
-    <string name="CameraControls_capture_button_accessibility_label">Capture Button</string>
+    <string name="CameraControls_capture_button_accessibility_label">زر الالتقاط</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
-    <string name="CameraControls_continue_button_accessibility_label">Continue Button</string>
+    <string name="CameraControls_continue_button_accessibility_label">زر المواصلة</string>
 
     <!-- EOF -->
 </resources>

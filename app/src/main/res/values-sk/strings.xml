@@ -521,49 +521,14 @@
         <item quantity="many">Neprečítané</item>
         <item quantity="other">Neprečítané</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">Pripnúť</item>
-        <item quantity="few">Pripnúť</item>
-        <item quantity="many">Pripnúť</item>
-        <item quantity="other">Pripnúť</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">Odopnúť</item>
-        <item quantity="few">Odopnúť</item>
-        <item quantity="many">Odopnúť</item>
-        <item quantity="other">Odopnúť</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Stlmiť</item>
-        <item quantity="few">Stlmiť</item>
-        <item quantity="many">Stlmiť</item>
-        <item quantity="other">Stlmiť</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Zrušiť stlmenie</item>
-        <item quantity="few">Zrušiť stlmenie</item>
-        <item quantity="many">Zrušiť stlmenie</item>
-        <item quantity="other">Zrušiť stlmenie</item>
-    </plurals>
+    <string name="ConversationListFragment_pin">Pripnúť</string>
+    <string name="ConversationListFragment_unpin">Odopnúť</string>
+    <string name="ConversationListFragment_mute">Stlmiť</string>
+    <string name="ConversationListFragment_unmute">Zapnúť zvuky</string>
     <string name="ConversationListFragment_select">Vybrať</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Archivovať</item>
-        <item quantity="few">Archivovať</item>
-        <item quantity="many">Archivovať</item>
-        <item quantity="other">Archivovať</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Odarchivovať</item>
-        <item quantity="few">Odarchivovať</item>
-        <item quantity="many">Odarchivovať</item>
-        <item quantity="other">Odarchivovať</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Vymazať</item>
-        <item quantity="few">Vymazať</item>
-        <item quantity="many">Vymazať</item>
-        <item quantity="other">Vymazať</item>
-    </plurals>
+    <string name="ConversationListFragment_archive">Archív</string>
+    <string name="ConversationListFragment_unarchive">Odarchivovať</string>
+    <string name="ConversationListFragment_delete">Vymazať</string>
     <string name="ConversationListFragment_select_all">Označiť všetko</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d vybrané</item>
@@ -1965,6 +1930,8 @@
         <item quantity="other">Ste %1$d krokov od odoslania ladiaceho záznamu.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Potrebujeme si overiť, že ste človek.</string>
+    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
+    <string name="RegistrationActivity_external_service_error">Signal was unable to send an SMS code due to an external failure.</string>
     <string name="RegistrationActivity_next">Ďalší</string>
     <string name="RegistrationActivity_continue">Pokračovať</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Vezmite si súkromie so sebou.\nBuďte sami sebou v každej správe.</string>
@@ -4196,7 +4163,7 @@
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
     <string name="ExportAccountDataFragment__export_explanation">Download and export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <string name="ExportAccountDataFragment__learn_more">Zistiť viac</string>
     <!-- Button action to download the report data -->
     <string name="ExportAccountDataFragment__download_report">Download report</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
@@ -4214,7 +4181,7 @@
     <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+    <string name="ExportAccountDataFragment__cancel_action">Zrušiť</string>
 
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">OK</string>
@@ -4229,7 +4196,7 @@
     <string name="ExportAccountDataFragment__export_report_action">Export</string>
 
     <!-- Action to delete report in confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_action">Delete</string>
+    <string name="ExportAccountDataFragment__delete_report_action">Vymazať</string>
     <!-- Title for delete report confirmation dialog -->
     <string name="ExportAccountDataFragment__delete_report_confirmation">Delete report?</string>
     <!-- Message for delete report confirmation dialog -->

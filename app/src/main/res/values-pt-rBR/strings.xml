@@ -497,36 +497,15 @@
         <item quantity="one">Não lida</item>
         <item quantity="other">Não lidas</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">Fixar</item>
-        <item quantity="other">Fixar</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">Desafixar</item>
-        <item quantity="other">Desafixar</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Silenciar</item>
-        <item quantity="other">Silenciar</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Reativar</item>
-        <item quantity="other">Reativar</item>
-    </plurals>
-    <string name="ConversationListFragment_select">Selecionar</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Arquivar</item>
-        <item quantity="other">Arquivar</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Desarquivar</item>
-        <item quantity="other">Desarquivar</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Apagar</item>
-        <item quantity="other">Apagar</item>
-    </plurals>
-    <string name="ConversationListFragment_select_all">Selecionar todas</string>
+    <string name="ConversationListFragment_pin">Fixar</string>
+    <string name="ConversationListFragment_unpin">Desafixar</string>
+    <string name="ConversationListFragment_mute">Silenciar</string>
+    <string name="ConversationListFragment_unmute">Reativar</string>
+    <string name="ConversationListFragment_select">Marcar</string>
+    <string name="ConversationListFragment_archive">Arquivar</string>
+    <string name="ConversationListFragment_unarchive">Desarquivar</string>
+    <string name="ConversationListFragment_delete">Excluir</string>
+    <string name="ConversationListFragment_select_all">Marcar todas</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d selecionada</item>
         <item quantity="other">%1$d selecionadas</item>
@@ -1745,15 +1724,15 @@
     </plurals>
 
     <!-- Toggle content description for toggling camera direction  -->
-    <string name="WebRtcCallView__toggle_camera_direction">Toggle camera direction</string>
+    <string name="WebRtcCallView__toggle_camera_direction">Mudar a direção da câmera</string>
     <!-- Toggle content description for toggling audio output  -->
-    <string name="WebRtcCallView__toggle_speaker">Toggle speaker</string>
+    <string name="WebRtcCallView__toggle_speaker">Ativar/desativar alto-falante</string>
     <!-- Toggle content description for toggling camera state  -->
-    <string name="WebRtcCallView__toggle_camera">Toggle camera</string>
+    <string name="WebRtcCallView__toggle_camera">Ativar/desativar câmera</string>
     <!-- Toggle content description for toggling mute state  -->
-    <string name="WebRtcCallView__toggle_mute">Toggle mute</string>
+    <string name="WebRtcCallView__toggle_mute">Ativar/desativar som</string>
     <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">Toggle ring</string>
+    <string name="WebRtcCallView__toggle_ring">Ativar/desativar toque</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Encerrar</string>
 
@@ -1823,6 +1802,8 @@
         <item quantity="other">Agora você está a %1$d passos de enviar um registro de depuração.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Precisamos verificar que você é um ser humano.</string>
+    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
+    <string name="RegistrationActivity_external_service_error">Signal was unable to send an SMS code due to an external failure.</string>
     <string name="RegistrationActivity_next">Avançar</string>
     <string name="RegistrationActivity_continue">Continuar</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leve a privacidade com você.\nSeja você em cada mensagem.</string>
@@ -3087,7 +3068,7 @@
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Nota</string>
     <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
-    <string name="EditNoteFragment__content_description_save_note">Save note</string>
+    <string name="EditNoteFragment__content_description_save_note">Salvar nota</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Confirmar pagamento</string>
@@ -3994,59 +3975,59 @@
     <string name="AccountSettingsFragment__require_your_signal_pin">Exigir o seu PIN do Signal ao registrar o seu número de telefone novamente no Signal</string>
     <string name="AccountSettingsFragment__change_phone_number">Mudar número de telefone</string>
     <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Request account data</string>
+    <string name="AccountSettingsFragment__request_account_data">Solicitar dados da conta</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <string name="ExportAccountDataFragment__your_account_data">Seus dados da conta</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Download and export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">Baixar e exportar um relatório dos seus dados da conta. Este relatório não inclui mensagens ou mídia. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <string name="ExportAccountDataFragment__learn_more">Saiba mais</string>
     <!-- Button action to download the report data -->
-    <string name="ExportAccountDataFragment__download_report">Download report</string>
+    <string name="ExportAccountDataFragment__download_report">Baixar relatório</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <string name="ExportAccountDataFragment__export_report">Exportar relatório</string>
     <!-- Button action to delete the requested account data -->
-    <string name="ExportAccountDataFragment__delete_report">Delete report</string>
+    <string name="ExportAccountDataFragment__delete_report">Excluir relatório</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">Exportar como TXT</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">Arquivo de texto fácil de ler</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">Exportar como JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">Arquivo legível por máquina</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+    <string name="ExportAccountDataFragment__cancel_action">Cancelar</string>
 
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">OK</string>
     <!-- Message shown when report download fails -->
-    <string name="ExportAccountDataFragment__report_download_failed">Your report could not be downloaded due to a network error. Check your connection and try again.</string>
+    <string name="ExportAccountDataFragment__report_download_failed">Não foi possível baixar seu relatório devido a um problema de rede. Verifique a sua conexão e tente novamente.</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">Exportar dados?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Compartilhe os dados da sua conta do Signal com pessoas ou apps que você conhece.</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+    <string name="ExportAccountDataFragment__export_report_action">Exportar</string>
 
     <!-- Action to delete report in confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_action">Delete</string>
+    <string name="ExportAccountDataFragment__delete_report_action">Excluir</string>
     <!-- Title for delete report confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_confirmation">Delete report?</string>
+    <string name="ExportAccountDataFragment__delete_report_confirmation">Excluir relatório?</string>
     <!-- Message for delete report confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_confirmation_message">This will not delete any data from your account.</string>
+    <string name="ExportAccountDataFragment__delete_report_confirmation_message">Isso não excluirá os dados da sua conta.</string>
 
     <!-- Shown as a snackbar letting the user know the report was deleted -->
-    <string name="ExportAccountDataFragment__delete_report_snackbar">Report deleted</string>
+    <string name="ExportAccountDataFragment__delete_report_snackbar">Relatório excluído</string>
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Downloading report…</string>
+    <string name="ExportAccountDataFragment__download_progress">Baixando relatório…</string>
     <!-- Explanation that the downloaded report will be available for 30 days before it is deleted -->
-    <string name="ExportAccountDataFragment__report_deletion_disclaimer">Your report will be available for export for 30 days and will then be automatically deleted.</string>
+    <string name="ExportAccountDataFragment__report_deletion_disclaimer">Seu relatório ficará disponível para exportar por 30 dias e será excluído automaticamente.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Proceda para mudar o seu número de telefone atual para um novo número de telefone. Você não poderá desfazer esta mudança.\n\nAntes de continuar, certifique-se que o seu novo número está recebendo SMS ou ligações.</string>
@@ -5745,11 +5726,11 @@
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">Configure seu nome de usuário do Signal</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Usernames are paired with a set of digits and aren\'t shared on your profile</string>
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Os nomes de usuário são associados a um conjunto de dígitos e não são compartilhados no seu perfil</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Each username has a unique QR code and link you can share with friends to start a chat with you</string>
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Cada nome de usuário tem um QR code único e link que você pode compartilhar com amigos para começar um chat</string>
     <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Turn off phone number discovery under Settings &gt; Privacy &gt; Phone number &gt; Who can find my number, to use your username as the primary way others can contact you</string>
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Desative a descoberta de número de telefone em Configurações &gt; Privacidade &gt; Número de telefone &gt; Quem pode encontrar meu número, para usar seu nome de usuário como a principal forma de outras pessoas entrarem em contato com você</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5848,9 +5829,9 @@
     <string name="CallStateUpdatePopupWindow__mic_off">Microfone desligado</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
-    <string name="CameraControls_capture_button_accessibility_label">Capture Button</string>
+    <string name="CameraControls_capture_button_accessibility_label">Botão Capturar</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
-    <string name="CameraControls_continue_button_accessibility_label">Continue Button</string>
+    <string name="CameraControls_continue_button_accessibility_label">Botão Continuar</string>
 
     <!-- EOF -->
 </resources>

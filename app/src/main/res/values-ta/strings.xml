@@ -490,43 +490,22 @@
         <item quantity="other">%1$d உரையாடல்கள் இன்பாக்ஸுக்கு நகர்த்தப்பட்டது</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">படித்ததாகக் குறி</item>
-        <item quantity="other">படித்ததாகக் குறி</item>
+        <item quantity="one">படித்தவை</item>
+        <item quantity="other">படித்தவை</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">படிக்காததாகக் குறி</item>
-        <item quantity="other">படிக்காததாகக் குறி</item>
+        <item quantity="one">படிக்காதவை</item>
+        <item quantity="other">படிக்காதவை</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">பின்செய்</item>
-        <item quantity="other">பின்கள்</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">பின்னை அகற்று</item>
-        <item quantity="other">பின்களை அகற்று</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">ஒலியடக்கு</item>
-        <item quantity="other">ஒலியடக்கு</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">ஒலி இயக்கு</item>
-        <item quantity="other">ஒலி இயக்கு</item>
-    </plurals>
+    <string name="ConversationListFragment_pin">பின்செய்</string>
+    <string name="ConversationListFragment_unpin">பின்னை அகற்று</string>
+    <string name="ConversationListFragment_mute">ஒலியடக்கு</string>
+    <string name="ConversationListFragment_unmute">ஒலி இயக்கு</string>
     <string name="ConversationListFragment_select">தேர்ந்தெடு</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">காப்பகப்படுத்து</item>
-        <item quantity="other">காப்பகப்படுத்து</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">காப்பகத்தில் இருந்து எடு</item>
-        <item quantity="other">காப்பகத்தில் இருந்து எடு</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">நீக்கு</item>
-        <item quantity="other">நீக்கு</item>
-    </plurals>
-    <string name="ConversationListFragment_select_all">அனைத்தையும் தேர்ந்தெடு</string>
+    <string name="ConversationListFragment_archive">காப்பகம் சேர்</string>
+    <string name="ConversationListFragment_unarchive">வெளிப்படுத்து</string>
+    <string name="ConversationListFragment_delete">நீக்கு</string>
+    <string name="ConversationListFragment_select_all">எல்லாம்</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d தேர்ந்தெடுக்கப்பட்டது</item>
         <item quantity="other">%1$d தேர்ந்தெடுக்கப்பட்டது</item>
@@ -1745,15 +1724,15 @@
     </plurals>
 
     <!-- Toggle content description for toggling camera direction  -->
-    <string name="WebRtcCallView__toggle_camera_direction">Toggle camera direction</string>
+    <string name="WebRtcCallView__toggle_camera_direction">கேமரா கோணத்தை மாற்றவும்</string>
     <!-- Toggle content description for toggling audio output  -->
-    <string name="WebRtcCallView__toggle_speaker">Toggle speaker</string>
+    <string name="WebRtcCallView__toggle_speaker">ஸ்பீக்கரை நிலைமாற்று</string>
     <!-- Toggle content description for toggling camera state  -->
-    <string name="WebRtcCallView__toggle_camera">Toggle camera</string>
+    <string name="WebRtcCallView__toggle_camera">கேமராவை நிலைமாற்று</string>
     <!-- Toggle content description for toggling mute state  -->
-    <string name="WebRtcCallView__toggle_mute">Toggle mute</string>
+    <string name="WebRtcCallView__toggle_mute">ஒலியடக்கியை நிலைமாற்று</string>
     <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">Toggle ring</string>
+    <string name="WebRtcCallView__toggle_ring">ரிங்கை நிலைமாற்று</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">அழைப்பை முடி</string>
 
@@ -1823,6 +1802,8 @@
         <item quantity="other">பிழைத்திருத்த பதிவைச் சமர்ப்பிப்பதில் இருந்து இப்போது நீங்கள் %1$d படிகள் தொலைவில் உள்ளீர்கள்.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">நீங்கள் மனிதர் என்பதை நாங்கள் சரிபார்க்க வேண்டும்.</string>
+    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
+    <string name="RegistrationActivity_external_service_error">Signal was unable to send an SMS code due to an external failure.</string>
     <string name="RegistrationActivity_next">அடுத்தது</string>
     <string name="RegistrationActivity_continue">தொடர்</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">உங்களுடன் தனியுரிமையைப் பெறுங்கள். ஒவ்வொரு செய்தியிலும் நீங்கள் நீங்கலாய் இருங்கள் .</string>
@@ -3087,7 +3068,7 @@
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">குறிப்பு</string>
     <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
-    <string name="EditNoteFragment__content_description_save_note">Save note</string>
+    <string name="EditNoteFragment__content_description_save_note">குறிப்பைச் சேமிக்கும்</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">கட்டணத்தை உறுதிப்படுத்தவும்</string>
@@ -3994,59 +3975,59 @@
     <string name="AccountSettingsFragment__require_your_signal_pin">உங்கள் தேவை Signal பின் பதிவு செய்ய தொலைபேசி உடன் எண் Signal மீண்டும்</string>
     <string name="AccountSettingsFragment__change_phone_number">தொலைபேசி எண்ணை மாற்றவும்</string>
     <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Request account data</string>
+    <string name="AccountSettingsFragment__request_account_data">கணக்குத் தரவைக் கோரவும்</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <string name="ExportAccountDataFragment__your_account_data">உங்கள் கணக்குத் தரவு</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Download and export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">உங்கள் Signal கணக்குத் தரவின் அறிக்கையைப் பதிவிறக்கி ஏற்றுமதி செய்யவும். இந்த அறிக்கையில் செய்திகள் அல்லது மீடியா எதுவும் இல்லை. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <string name="ExportAccountDataFragment__learn_more">மேலும் அறிக</string>
     <!-- Button action to download the report data -->
-    <string name="ExportAccountDataFragment__download_report">Download report</string>
+    <string name="ExportAccountDataFragment__download_report">அறிக்கையைப் பதிவிறக்கு</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <string name="ExportAccountDataFragment__export_report">அறிக்கையை ஏற்றுமதி செய்</string>
     <!-- Button action to delete the requested account data -->
-    <string name="ExportAccountDataFragment__delete_report">Delete report</string>
+    <string name="ExportAccountDataFragment__delete_report">அறிக்கையை நீக்கு</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">TXT ஆக ஏற்றுமதி செய்க</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">எளிதாக படிக்கக்கூடிய உரை கோப்பு</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">JSON ஆக ஏற்றுமதி செய்</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">இயந்திரம் படிக்கக்கூடிய கோப்பு</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+    <string name="ExportAccountDataFragment__cancel_action">ரத்துசெய்</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <string name="ExportAccountDataFragment__ok_action">சரி</string>
     <!-- Message shown when report download fails -->
-    <string name="ExportAccountDataFragment__report_download_failed">Your report could not be downloaded due to a network error. Check your connection and try again.</string>
+    <string name="ExportAccountDataFragment__report_download_failed">நெட்வொர்க் பிழையின் காரணமாக உங்கள் அறிக்கையைப் பதிவிறக்க முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">தரவை ஏற்றுமதி செய்யவா?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">உங்கள் Signal கணக்குத் தரவை நீங்கள் நம்பும் நபர்கள் அல்லது செயலிகளுடன் மட்டும் பகிரவும்.</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+    <string name="ExportAccountDataFragment__export_report_action">ஏற்றுமதி செய்க</string>
 
     <!-- Action to delete report in confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_action">Delete</string>
+    <string name="ExportAccountDataFragment__delete_report_action">நீக்கு</string>
     <!-- Title for delete report confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_confirmation">Delete report?</string>
+    <string name="ExportAccountDataFragment__delete_report_confirmation">அறிக்கையை நீக்க வேண்டுமா?</string>
     <!-- Message for delete report confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_confirmation_message">This will not delete any data from your account.</string>
+    <string name="ExportAccountDataFragment__delete_report_confirmation_message">இது உங்கள் கணக்கிலிருந்து எந்தத் தரவையும் நீக்காது.</string>
 
     <!-- Shown as a snackbar letting the user know the report was deleted -->
-    <string name="ExportAccountDataFragment__delete_report_snackbar">Report deleted</string>
+    <string name="ExportAccountDataFragment__delete_report_snackbar">அறிக்கை நீக்கப்பட்டது</string>
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Downloading report…</string>
+    <string name="ExportAccountDataFragment__download_progress">அறிக்கையைப் பதிவிறக்குகிறது…</string>
     <!-- Explanation that the downloaded report will be available for 30 days before it is deleted -->
-    <string name="ExportAccountDataFragment__report_deletion_disclaimer">Your report will be available for export for 30 days and will then be automatically deleted.</string>
+    <string name="ExportAccountDataFragment__report_deletion_disclaimer">உங்கள் அறிக்கை 30 நாட்களுக்கு ஏற்றுமதி செய்யக் கிடைக்கும், பின்னர் தானாகவே நீக்கப்படும்.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">உங்கள் தற்போதைய தொலைபேசி எண்ணை புதிய தொலைபேசி எண்ணாக மாற்ற இதைப் பயன்படுத்தவும். இந்த மாற்றத்தை உங்களால் செயல்தவிர்க்க முடியாது.\n\nதொடர்வதற்கு முன், உங்கள் புதிய எண்ணுக்கு எஸ்.எம்.எஸ் அல்லது அழைப்புகள் வருகிறதா என்பதை உறுதிசெய்து கொள்ளுங்கள்.</string>
@@ -5737,7 +5718,7 @@
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">மோனோஸ்பேஸ்</string>
     <!-- Popup menu label for applying spoiler style -->
-    <string name="TextFormatting_spoiler">Spoiler</string>
+    <string name="TextFormatting_spoiler">ஸ்பாய்லர்</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5745,11 +5726,11 @@
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">உங்கள் Signal பயனர் பெயரை அமைக்கவும்</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Usernames are paired with a set of digits and aren\'t shared on your profile</string>
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">பயனர்பெயர்கள் இலக்கங்களின் தொகுப்புடன் இணைக்கப்பட்டு உங்கள் சுயவிவரத்தில் பகிரப்படாது</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Each username has a unique QR code and link you can share with friends to start a chat with you</string>
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">ஒவ்வொரு பயனர்பெயருக்கும் தனிப்பட்ட QR குறியீடு உள்ளது மற்றும் உங்களுடன் சாட் செய்ய நண்பர்களுடன் பகிர்ந்து கொள்ளலாம்</string>
     <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Turn off phone number discovery under Settings &gt; Privacy &gt; Phone number &gt; Who can find my number, to use your username as the primary way others can contact you</string>
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">மற்றவர்கள் உங்களைத் தொடர்புகொள்வதற்கு உங்கள் பயனர்பெயரை முதன்மையாகப் பயன்படுத்த, அமைப்புகள் &gt; தனியுரிமை &gt; கைபேசி எண் &gt; எனது எண்ணை யார் கண்டறியலாம், என்பதன் கீழ் கைபேசி எண் கண்டுபிடிப்பை முடக்கவும்</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5848,9 +5829,9 @@
     <string name="CallStateUpdatePopupWindow__mic_off">மைக் ஆஃப்</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
-    <string name="CameraControls_capture_button_accessibility_label">Capture Button</string>
+    <string name="CameraControls_capture_button_accessibility_label">பிடிப்பு பட்டன்</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
-    <string name="CameraControls_continue_button_accessibility_label">Continue Button</string>
+    <string name="CameraControls_continue_button_accessibility_label">தொடர்க பட்டன்</string>
 
     <!-- EOF -->
 </resources>

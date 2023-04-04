@@ -494,39 +494,18 @@
         <item quantity="other">ਪੜ੍ਹੇ ਗਏ</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">ਨਹੀਂ-ਪੜ੍ਹਿਆ ਗਿਆ</item>
-        <item quantity="other">ਨਹੀਂ-ਪੜ੍ਹੇ ਗਏ</item>
+        <item quantity="one">ਨਹੀਂ ਪੜ੍ਹਿਆ</item>
+        <item quantity="other">ਨਹੀਂ ਪੜ੍ਹੇ</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">ਪਿੰਨ ਕਰੋ</item>
-        <item quantity="other">ਪਿੰਨ ਕਰੋ</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">ਅਣਪਿੰਨ ਕਰੋ</item>
-        <item quantity="other">ਅਣਪਿੰਨ ਕਰੋ</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">ਮਿਊਟ ਕਰੋ</item>
-        <item quantity="other">ਮਿਊਟ ਕਰੋ</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">ਅਣਮਿਊਟ ਕਰੋ</item>
-        <item quantity="other">ਅਣਮਿਊਟ ਕਰੋ</item>
-    </plurals>
+    <string name="ConversationListFragment_pin">ਪਿੰਨ ਕਰੋ</string>
+    <string name="ConversationListFragment_unpin">ਅਨਪਿੰਨ ਕਰੋ</string>
+    <string name="ConversationListFragment_mute">ਮਿਊਟ ਕਰੋ</string>
+    <string name="ConversationListFragment_unmute">ਅਨਮਿਊਟ ਕਰੋ</string>
     <string name="ConversationListFragment_select">ਚੁਣੋ</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">ਆਰਕਾਈਵ ਕਰੋ</item>
-        <item quantity="other">ਆਰਕਾਈਵ ਕਰੋ</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">ਆਰਕਾਈਵ ਤੋਂ ਹਟਾਓ</item>
-        <item quantity="other">ਆਰਕਾਈਵ ਤੋਂ ਹਟਾਓ</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">ਮਿਟਾਓ</item>
-        <item quantity="other">ਮਿਟਾਓ</item>
-    </plurals>
-    <string name="ConversationListFragment_select_all">ਸਾਰਿਆਂ ਨੂੰ ਚੁਣੋ</string>
+    <string name="ConversationListFragment_archive">ਆਰਕਾਈਵ ਕਰੋ</string>
+    <string name="ConversationListFragment_unarchive">ਅਨਆਰਕਾਈਵ ਕਰੋ</string>
+    <string name="ConversationListFragment_delete">ਮਿਟਾਓ</string>
+    <string name="ConversationListFragment_select_all">ਸਭ ਚੁਣੋ</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$dਚੁਣਿਆ</item>
         <item quantity="other">%1$dਚੁਣੇ</item>
@@ -1745,15 +1724,15 @@
     </plurals>
 
     <!-- Toggle content description for toggling camera direction  -->
-    <string name="WebRtcCallView__toggle_camera_direction">Toggle camera direction</string>
+    <string name="WebRtcCallView__toggle_camera_direction">ਕੈਮਰਾ ਦੀ ਦਿਸ਼ਾ ਬਦਲੋ</string>
     <!-- Toggle content description for toggling audio output  -->
-    <string name="WebRtcCallView__toggle_speaker">Toggle speaker</string>
+    <string name="WebRtcCallView__toggle_speaker">ਸਪੀਕਰ ਬਦਲੋ</string>
     <!-- Toggle content description for toggling camera state  -->
-    <string name="WebRtcCallView__toggle_camera">Toggle camera</string>
+    <string name="WebRtcCallView__toggle_camera">ਕੈਮਰਾ ਬਦਲੋ</string>
     <!-- Toggle content description for toggling mute state  -->
-    <string name="WebRtcCallView__toggle_mute">Toggle mute</string>
+    <string name="WebRtcCallView__toggle_mute">ਮਿਊਟ ਨੂੰ ਬਦਲੋ</string>
     <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">Toggle ring</string>
+    <string name="WebRtcCallView__toggle_ring">ਰਿੰਗ ਨੂੰ ਬਦਲੋ</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">ਕਾਲ ਖਤਮ ਕਰੋ</string>
 
@@ -1823,6 +1802,8 @@
         <item quantity="other">ਹੁਣ ਤੁਸੀਂ ਡੀਬੱਗ ਲੌਗ ਨੂੰ ਦਰਜ ਕਰਨ ਤੋਂ %1$d ਕਦਮ ਦੂਰ ਹੋ।</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">ਸਾਨੂੰ ਇਹ ਤਸਦੀਕ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ ਕਿ ਤੁਸੀਂ ਮਨੁੱਖ ਹੋ।</string>
+    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
+    <string name="RegistrationActivity_external_service_error">Signal was unable to send an SMS code due to an external failure.</string>
     <string name="RegistrationActivity_next">ਅੱਗੇ</string>
     <string name="RegistrationActivity_continue">ਜਾਰੀ ਰੱਖੋ</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ਪਰਦੇਦਾਰੀ ਆਪਣੇ ਤੱਕ ਰੱਖੋ।\nਹਰੇਕ ਸੁਨੇਹਾ ਬੇਝਿਜਕ ਹੋ ਕੇ ਲਿਖੋ।</string>
@@ -3087,7 +3068,7 @@
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">ਨੋਟ</string>
     <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
-    <string name="EditNoteFragment__content_description_save_note">Save note</string>
+    <string name="EditNoteFragment__content_description_save_note">ਨੋਟ ਸੇਵ ਕਰੋ</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">ਭੁਗਤਾਨ ਨੂੰ ਤਸਦੀਕ ਕਰੋ</string>
@@ -3994,59 +3975,59 @@
     <string name="AccountSettingsFragment__require_your_signal_pin">Signal ਨਾਲ ਤੁਹਾਡੇ ਫ਼ੋਨ ਨੰਬਰ ਨੂੰ ਮੁੜ ਰਜਿਸਟਰ ਕਰਨ ਲਈ Signal PIN ਦੀ ਲੋੜ ਹੈ</string>
     <string name="AccountSettingsFragment__change_phone_number">ਫ਼ੋਨ ਨੰਬਰ ਬਦਲੋ</string>
     <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Request account data</string>
+    <string name="AccountSettingsFragment__request_account_data">ਖਾਤੇ ਦੇ ਡਾਟਾ ਲਈ ਬੇਨਤੀ ਕਰੋ</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <string name="ExportAccountDataFragment__your_account_data">ਤੁਹਾਡੇ ਖਾਤੇ ਦਾ ਡਾਟਾ</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Download and export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">ਆਪਣੇ Signal ਖਾਤੇ ਦੇ ਡਾਟਾ ਦੀ ਇੱਕ ਰਿਪੋਰਟ ਡਾਊਨਲੋਡ ਅਤੇ ਐਕਸਪੋਰਟ ਕਰੋ। ਇਸ ਰਿਪੋਰਟ ਵਿੱਚ ਕੋਈ ਵੀ ਸੁਨੇਹੇ ਜਾਂ ਮੀਡੀਆ ਸ਼ਾਮਲ ਨਹੀਂ ਹੈ। %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <string name="ExportAccountDataFragment__learn_more">ਹੋਰ ਜਾਣੋ</string>
     <!-- Button action to download the report data -->
-    <string name="ExportAccountDataFragment__download_report">Download report</string>
+    <string name="ExportAccountDataFragment__download_report">ਰਿਪੋਰਟ ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <string name="ExportAccountDataFragment__export_report">ਰਿਪੋਰਟ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <!-- Button action to delete the requested account data -->
-    <string name="ExportAccountDataFragment__delete_report">Delete report</string>
+    <string name="ExportAccountDataFragment__delete_report">ਰਿਪੋਰਟ ਮਿਟਾਓ</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">TXT ਵਜੋਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">ਪੜ੍ਹਨ ਲਈ ਆਸਾਨ ਟੈਕਸਟ ਫਾਈਲ</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">JSON ਵਜੋਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">ਮਸ਼ੀਨ ਲਈ ਪੜ੍ਹਨਯੋਗ ਫਾਈਲ</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+    <string name="ExportAccountDataFragment__cancel_action">ਰੱਦ ਕਰੋ</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <string name="ExportAccountDataFragment__ok_action">ਠੀਕ ਹੈ</string>
     <!-- Message shown when report download fails -->
-    <string name="ExportAccountDataFragment__report_download_failed">Your report could not be downloaded due to a network error. Check your connection and try again.</string>
+    <string name="ExportAccountDataFragment__report_download_failed">ਨੈੱਟਵਰਕ ਗੜਬੜੀ ਦੇ ਕਾਰਨ ਤੁਹਾਡੀ ਰਿਪੋਰਟ ਨੂੰ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕਰ ਸਕੇ। ਆਪਣੇ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">ਕੀ ਡਾਟਾ ਐਕਸਪੋਰਟ ਕਰਨਾ ਹੈ?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">ਆਪਣੇ Signal ਖਾਤੇ ਦਾ ਡਾਟਾ ਸਿਰਫ਼ ਉਹਨਾਂ ਲੋਕਾਂ ਜਾਂ ਐਪਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ ਜਿਨ੍ਹਾਂ \'ਤੇ ਤੁਸੀਂ ਭਰੋਸਾ ਕਰਦੇ ਹੋ।</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+    <string name="ExportAccountDataFragment__export_report_action">ਐਕਸਪੋਰਟ ਕਰੋ</string>
 
     <!-- Action to delete report in confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_action">Delete</string>
+    <string name="ExportAccountDataFragment__delete_report_action">ਮਿਟਾਓ</string>
     <!-- Title for delete report confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_confirmation">Delete report?</string>
+    <string name="ExportAccountDataFragment__delete_report_confirmation">ਕੀ ਰਿਪੋਰਟ ਮਿਟਾਉਣੀ ਹੈ?</string>
     <!-- Message for delete report confirmation dialog -->
-    <string name="ExportAccountDataFragment__delete_report_confirmation_message">This will not delete any data from your account.</string>
+    <string name="ExportAccountDataFragment__delete_report_confirmation_message">ਇਸ ਨਾਲ ਤੁਹਾਡੇ ਖਾਤੇ ਵਿੱਚੋਂ ਕੋਈ ਡਾਟਾ ਮਿਟਾਏਗਾ ਨਹੀਂ ਜਾਵੇਗਾ।</string>
 
     <!-- Shown as a snackbar letting the user know the report was deleted -->
-    <string name="ExportAccountDataFragment__delete_report_snackbar">Report deleted</string>
+    <string name="ExportAccountDataFragment__delete_report_snackbar">ਰਿਪੋਰਟ ਮਿਟਾਈ ਗਈ</string>
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Downloading report…</string>
+    <string name="ExportAccountDataFragment__download_progress">ਰਿਪੋਰਟ ਡਾਊਨਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
     <!-- Explanation that the downloaded report will be available for 30 days before it is deleted -->
-    <string name="ExportAccountDataFragment__report_deletion_disclaimer">Your report will be available for export for 30 days and will then be automatically deleted.</string>
+    <string name="ExportAccountDataFragment__report_deletion_disclaimer">ਤੁਹਾਡੀ ਰਿਪੋਰਟ 30 ਦਿਨਾਂ ਵਾਸਤੇ ਐਕਸਪੋਰਟ ਕਰਨ ਲਈ ਉਪਲਬਧ ਹੋਵੇਗੀ ਅਤੇ ਫਿਰ ਆਪਣੇ-ਆਪ ਮਿਟਾ ਦਿੱਤੀ ਜਾਵੇਗੀ।</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">ਆਪਣੇ ਮੌਜੂਦਾ ਫ਼ੋਨ ਨੰਬਰ ਨੂੰ ਇੱਕ ਨਵੇਂ ਫ਼ੋਨ ਨੰਬਰ ਵਿੱਚ ਬਦਲਣ ਲਈ ਇਸ ਦੀ ਵਰਤੋਂ ਕਰੋ। ਤੁਸੀਂ ਇਸ ਤਬਦੀਲੀ ਨੂੰ ਅਣਕੀਤਾ ਨਹੀਂ ਕਰ ਸਕਦੇ।\n\nਅੱਗੇ ਜਾਰੀ ਰੱਖਣ ਤੋਂ ਪਹਿਲਾਂ, ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡਾ ਨਵਾਂ ਨੰਬਰ SMS ਜਾਂ ਕਾਲਾਂ ਪ੍ਰਾਪਤ ਕਰ ਸਕਦਾ ਹੋਵੇ।</string>
@@ -5737,7 +5718,7 @@
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">ਮੋਨੋਸਪੇਸ</string>
     <!-- Popup menu label for applying spoiler style -->
-    <string name="TextFormatting_spoiler">Spoiler</string>
+    <string name="TextFormatting_spoiler">ਸਪਾਇਲਰ</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5745,11 +5726,11 @@
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">ਆਪਣਾ Signal ਵਰਤੋਂਕਾਰ ਨਾਂ ਸੈਟ ਅੱਪ ਕਰੋ</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Usernames are paired with a set of digits and aren\'t shared on your profile</string>
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">ਵਰਤੋਂਕਾਰ ਨਾਂ ਨੂੰ ਅੰਕਾਂ ਦੇ ਸੈੱਟ ਨਾਲ ਪੇਅਰ ਕੀਤਾ ਜਾਂਦਾ ਹੈ ਅਤੇ ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ \'ਤੇ ਸਾਂਝਾ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Each username has a unique QR code and link you can share with friends to start a chat with you</string>
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">ਹਰੇਕ ਵਰਤੋਂਕਾਰ ਨਾਂ ਦਾ ਇੱਕ ਵਿਲੱਖਣ QR ਕੋਡ ਅਤੇ ਲਿੰਕ ਹੁੰਦਾ ਹੈ, ਜਿਸ ਨੂੰ ਤੁਸੀਂ ਦੋਸਤਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰਕੇ ਚੈਟ ਸ਼ੁਰੂ ਕਰ ਸਕਦੇ ਹੋ</string>
     <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Turn off phone number discovery under Settings &gt; Privacy &gt; Phone number &gt; Who can find my number, to use your username as the primary way others can contact you</string>
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">ਹੋਰ ਲੋਕ ਤੁਹਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰ ਸਕਣ, ਇਸਦੇ ਲਈ ਆਪਣੇ ਵਰਤੋਂਕਾਰ ਨਾਂ ਦੀ ਵਰਤੋਂ ਮੁੱਖ ਤਰੀਕੇ ਵਜੋਂ ਕਰਨ ਲਈ, ਸੈਟਿੰਗਾਂ &gt; ਪਰਦੇਦਾਰੀ &gt; ਫ਼ੋਨ ਨੰਬਰ &gt; ਮੇਰਾ ਨੰਬਰ ਕੌਣ ਲੱਭ ਸਕਦਾ ਹੈ, ਵਿੱਚ ਜਾ ਕੇ ਫ਼ੋਨ ਨੰਬਰ ਖੋਜ ਨੂੰ ਬੰਦ ਕਰੋ</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5848,9 +5829,9 @@
     <string name="CallStateUpdatePopupWindow__mic_off">ਮਾਈਕ ਬੰਦ ਹੈ</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
-    <string name="CameraControls_capture_button_accessibility_label">Capture Button</string>
+    <string name="CameraControls_capture_button_accessibility_label">ਕੈਪਚਰ ਬਟਨ</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
-    <string name="CameraControls_continue_button_accessibility_label">Continue Button</string>
+    <string name="CameraControls_continue_button_accessibility_label">ਜਾਰੀ ਰੱਖੋ ਬਟਨ</string>
 
     <!-- EOF -->
 </resources>
