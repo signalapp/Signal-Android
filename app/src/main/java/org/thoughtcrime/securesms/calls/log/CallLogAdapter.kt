@@ -9,6 +9,7 @@ import androidx.core.widget.TextViewCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.databinding.CallLogAdapterItemBinding
+import org.thoughtcrime.securesms.databinding.CallLogCreateCallLinkItemBinding
 import org.thoughtcrime.securesms.databinding.ConversationListItemClearFilterBinding
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -51,6 +52,13 @@ class CallLogAdapter(
         inflater = ConversationListItemClearFilterBinding::inflate
       )
     )
+    registerFactory(
+      CreateCallLinkModel::class.java,
+      BindingFactory(
+        creator = { CreateCallLinkViewHolder(it, callbacks::onCreateACallLinkClicked) },
+        inflater = CallLogCreateCallLinkItemBinding::inflate
+      )
+    )
   }
 
   fun submitCallRows(
@@ -65,6 +73,7 @@ class CallLogAdapter(
         when (it) {
           is CallLogRow.Call -> CallModel(it, selectionState, itemCount)
           is CallLogRow.ClearFilter -> ClearFilterModel()
+          is CallLogRow.CreateCallLink -> CreateCallLinkModel()
         }
       }
 
@@ -110,6 +119,12 @@ class CallLogAdapter(
   private class ClearFilterModel : MappingModel<ClearFilterModel> {
     override fun areItemsTheSame(newItem: ClearFilterModel): Boolean = true
     override fun areContentsTheSame(newItem: ClearFilterModel): Boolean = true
+  }
+
+  private class CreateCallLinkModel : MappingModel<CreateCallLinkModel> {
+    override fun areItemsTheSame(newItem: CreateCallLinkModel): Boolean = true
+
+    override fun areContentsTheSame(newItem: CreateCallLinkModel): Boolean = true
   }
 
   private class CallModelViewHolder(
@@ -234,7 +249,23 @@ class CallLogAdapter(
     override fun bind(model: ClearFilterModel) = Unit
   }
 
+  private class CreateCallLinkViewHolder(
+    binding: CallLogCreateCallLinkItemBinding,
+    onClick: () -> Unit
+  ) : BindingViewHolder<CreateCallLinkModel, CallLogCreateCallLinkItemBinding>(binding) {
+    init {
+      binding.root.setOnClickListener { onClick() }
+    }
+
+    override fun bind(model: CreateCallLinkModel) = Unit
+  }
+
   interface Callbacks {
+    /**
+     * Invoked when 'Create a call link' is clicked
+     */
+    fun onCreateACallLinkClicked()
+
     /**
      * Invoked when a call row is clicked
      */

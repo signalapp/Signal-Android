@@ -14,6 +14,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -266,6 +267,10 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       val progress = 1 - verticalOffset.toFloat() / -layout.height
       binding.pullView.onUserDrag(progress)
     }
+  }
+
+  override fun onCreateACallLinkClicked() {
+    findNavController().navigate(R.id.createCallLinkBottomSheet)
   }
 
   override fun onCallClicked(callLogRow: CallLogRow.Call) {

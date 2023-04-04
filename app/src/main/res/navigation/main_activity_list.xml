@@ -44,6 +44,14 @@
         <action
             android:id="@+id/action_callLogFragment_to_storiesLandingFragment"
             app:destination="@id/storiesLandingFragment" />
+        <action
+            android:id="@+id/action_callLogFragment_to_createCallLinkBottomSheet"
+            app:destination="@id/createCallLinkBottomSheet" />
     </fragment>
+
+    <dialog
+        android:id="@+id/createCallLinkBottomSheet"
+        android:name="org.thoughtcrime.securesms.calls.links.CreateCallLinkBottomSheetDialogFragment"
+        android:label="create_call_link_bottom_sheet" />
 
 </navigation>
