@@ -34,7 +34,6 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
@@ -573,7 +572,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   private void handleNoSuchUser(final @NonNull WebRtcViewModel event) {
     if (isFinishing()) return; // XXX Stuart added this check above, not sure why, so I'm repeating in ignorance. - moxie
-    new AlertDialog.Builder(this)
+    new MaterialAlertDialogBuilder(this)
         .setTitle(R.string.RedPhone_number_not_registered)
         .setIcon(R.drawable.ic_warning)
         .setMessage(R.string.RedPhone_the_number_you_dialed_does_not_support_secure_voice)
