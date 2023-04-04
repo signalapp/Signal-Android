@@ -153,13 +153,12 @@ class CallLogAdapter(
 
       val event = model.call.call.event
       val direction = model.call.call.direction
-      val type = model.call.call.type
 
       binding.callRecipientAvatar.setAvatar(GlideApp.with(binding.callRecipientAvatar), model.call.peer, true)
       binding.callRecipientBadge.setBadgeFromRecipient(model.call.peer)
       binding.callRecipientName.text = model.call.peer.getDisplayName(context)
       presentCallInfo(event, direction, model.call.date)
-      presentCallType(type, model.call.peer)
+      presentCallType(model)
     }
 
     private fun presentCallInfo(event: CallTable.Event, direction: CallTable.Direction, date: Long) {
@@ -190,24 +189,47 @@ class CallLogAdapter(
       binding.callInfo.setTextColor(color)
     }
 
-    private fun presentCallType(callType: CallTable.Type, peer: Recipient) {
-      when (callType) {
+    private fun presentCallType(model: CallModel) {
+      when (model.call.call.type) {
         CallTable.Type.AUDIO_CALL -> {
           binding.callType.setImageResource(R.drawable.symbol_phone_24)
-          binding.callType.setOnClickListener { onStartAudioCallClicked(peer) }
+          binding.callType.setOnClickListener { onStartAudioCallClicked(model.call.peer) }
+          binding.callType.visible = true
+          binding.groupCallButton.visible = false
         }
 
         CallTable.Type.VIDEO_CALL -> {
           binding.callType.setImageResource(R.drawable.symbol_video_24)
-          binding.callType.setOnClickListener { onStartVideoCallClicked(peer) }
+          binding.callType.setOnClickListener { onStartVideoCallClicked(model.call.peer) }
+          binding.callType.visible = true
+          binding.groupCallButton.visible = false
         }
 
         CallTable.Type.GROUP_CALL, CallTable.Type.AD_HOC_CALL -> {
-          // TODO [alex] -- Group call button
+          binding.callType.setImageResource(R.drawable.symbol_video_24)
+          binding.callType.setOnClickListener { onStartVideoCallClicked(model.call.peer) }
+          binding.groupCallButton.setOnClickListener { onStartVideoCallClicked(model.call.peer) }
+
+          when (model.call.groupCallState) {
+            CallLogRow.GroupCallState.NONE, CallLogRow.GroupCallState.FULL -> {
+              binding.callType.visible = true
+              binding.groupCallButton.visible = false
+            }
+            CallLogRow.GroupCallState.ACTIVE, CallLogRow.GroupCallState.LOCAL_USER_JOINED -> {
+              binding.callType.visible = false
+              binding.groupCallButton.visible = true
+
+              binding.groupCallButton.setText(
+                if (model.call.groupCallState == CallLogRow.GroupCallState.LOCAL_USER_JOINED) {
+                  R.string.CallLogAdapter__return
+                } else {
+                  R.string.CallLogAdapter__join
+                }
+              )
+            }
+          }
         }
       }
-
-      binding.callType.visible = true
     }
 
     @DrawableRes

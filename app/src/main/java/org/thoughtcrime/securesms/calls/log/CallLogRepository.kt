@@ -26,16 +26,11 @@ class CallLogRepository : CallLogPagedDataSource.CallRepository {
         refresh()
       }
 
-      val messageObserver = DatabaseObserver.MessageObserver {
-        refresh()
-      }
-
       ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(databaseObserver)
-      ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(messageObserver)
+      ApplicationDependencies.getDatabaseObserver().registerCallUpdateObserver(databaseObserver)
 
       emitter.setCancellable {
         ApplicationDependencies.getDatabaseObserver().unregisterObserver(databaseObserver)
-        ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageObserver)
       }
     }
   }

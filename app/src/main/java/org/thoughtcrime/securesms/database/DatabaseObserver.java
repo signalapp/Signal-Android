@@ -45,6 +45,8 @@ public class DatabaseObserver {
   private static final String KEY_SCHEDULED_MESSAGES    = "ScheduledMessages";
   private static final String KEY_CONVERSATION_DELETES  = "ConversationDeletes";
 
+  private static final String KEY_CALL_UPDATES          = "CallUpdates";
+
   private final Application application;
   private final Executor    executor;
 
@@ -64,6 +66,8 @@ public class DatabaseObserver {
   private final Set<Observer>                   notificationProfileObservers;
   private final Map<RecipientId, Set<Observer>> storyObservers;
 
+  private final Set<Observer>                   callUpdateObservers;
+
   public DatabaseObserver(Application application) {
     this.application                  = application;
     this.executor                     = new SerialExecutor(SignalExecutors.BOUNDED);
@@ -82,6 +86,7 @@ public class DatabaseObserver {
     this.notificationProfileObservers = new HashSet<>();
     this.storyObservers               = new HashMap<>();
     this.scheduledMessageObservers    = new HashMap<>();
+    this.callUpdateObservers          = new HashSet<>();
   }
 
   public void registerConversationListObserver(@NonNull Observer listener) {
@@ -177,6 +182,10 @@ public class DatabaseObserver {
     });
   }
 
+  public void registerCallUpdateObserver(@NonNull Observer observer) {
+    executor.execute(() -> callUpdateObservers.add(observer));
+  }
+
   public void unregisterObserver(@NonNull Observer listener) {
     executor.execute(() -> {
       conversationListObservers.remove(listener);
@@ -191,6 +200,7 @@ public class DatabaseObserver {
       unregisterMapped(storyObservers, listener);
       unregisterMapped(scheduledMessageObservers, listener);
       unregisterMapped(conversationDeleteObservers, listener);
+      callUpdateObservers.remove(listener);
     });
   }
 
@@ -326,6 +336,10 @@ public class DatabaseObserver {
     runPostSuccessfulTransaction(KEY_SCHEDULED_MESSAGES + threadId, () -> {
       notifyMapped(scheduledMessageObservers, threadId);
     });
+  }
+
+  public void notifyCallUpdateObservers() {
+    runPostSuccessfulTransaction(KEY_CALL_UPDATES, () -> notifySet(callUpdateObservers));
   }
 
   private void runPostSuccessfulTransaction(@NonNull String dedupeKey, @NonNull Runnable runnable) {

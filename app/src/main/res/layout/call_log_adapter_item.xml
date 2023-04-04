@@ -126,4 +126,23 @@
         app:tint="@color/signal_colorOnSurface"
         tools:visibility="visible" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/group_call_button"
+        style="@style/Signal.Widget.Button.Small.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/signal_colorPrimary"
+        android:textColor="@color/signal_colorOnPrimary"
+        android:visibility="gone"
+        app:icon="@drawable/symbol_video_fill_24"
+        app:iconPadding="4dp"
+        app:iconSize="20dp"
+        app:iconTint="@color/signal_colorOnPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp"
+        tools:text="Return"
+        tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

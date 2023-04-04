@@ -5775,6 +5775,10 @@
     <string name="CallLogAdapter__outgoing">Outgoing</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Missed</string>
+    <!-- Displayed on Group Call button if user is not in the call -->
+    <string name="CallLogAdapter__join">Join</string>
+    <!-- Displayed on Group Call button if user is in the call -->
+    <string name="CallLogAdapter__return">Return</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->

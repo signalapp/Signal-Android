@@ -15,6 +15,7 @@ import org.signal.core.util.readToSingleLong
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireObject
+import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
@@ -22,6 +23,7 @@ import org.signal.ringrtc.CallId
 import org.signal.ringrtc.CallManager.RingUpdate
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
 import org.thoughtcrime.securesms.calls.log.CallLogRow
+import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.CallSyncEventJob
@@ -93,6 +95,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     }
 
     ApplicationDependencies.getMessageNotifier().updateNotification(context)
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
 
     Log.i(TAG, "Inserted call: $callId type: $type direction: $direction event:$event")
   }
@@ -117,6 +120,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
         SignalDatabase.messages.updateCallLog(call.messageId!!, call.messageType)
         ApplicationDependencies.getMessageNotifier().updateNotification(context)
+        ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
       }
 
       call
@@ -205,6 +209,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
     CallSyncEventJob.enqueueDeleteSyncEvents(toSync)
     ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
 
   // region Group / Ad-Hoc Calling
@@ -228,6 +233,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     }
 
     ApplicationDependencies.getMessageNotifier().updateNotification(context)
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
     Log.d(TAG, "Marked group call event for deletion: ${call.callId}")
   }
 
@@ -275,6 +281,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .run()
 
     ApplicationDependencies.getMessageNotifier().updateNotification(context)
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
     Log.d(TAG, "Transitioned group call ${call.callId} from ${call.event} to $newEvent")
   }
 
@@ -316,6 +323,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         )
         .run()
     }
+
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
 
   fun insertOrUpdateGroupCallFromExternalEvent(
@@ -434,6 +443,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     } else {
       Log.d(TAG, "Skipping call event processing for null era id.")
     }
+
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
 
   /**
@@ -445,7 +456,9 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     peekJoinedUuids: Collection<UUID>,
     isCallFull: Boolean
   ): Boolean {
-    return SignalDatabase.messages.updatePreviousGroupCall(threadId, peekGroupCallEraId, peekJoinedUuids, isCallFull)
+    val sameEraId = SignalDatabase.messages.updatePreviousGroupCall(threadId, peekGroupCallEraId, peekJoinedUuids, isCallFull)
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
+    return sameEraId
   }
 
   fun insertOrUpdateGroupCallFromRingState(
@@ -545,6 +558,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
       createEventFromRingState(ringId, groupRecipientId, ringerRecipient, event, dateReceived)
     }
+
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
 
   private fun updateEventFromRingState(
@@ -634,6 +649,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         SignalDatabase.messages.updateCallTimestamps(call.messageId, timestamp)
       }
     }
+
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
 
   private fun setMessageId(callId: Long, messageId: MessageId) {
@@ -723,7 +740,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     //language=sql
     val statement = """
       SELECT
-      ${if (isCount) "COUNT(*)," else "$TABLE_NAME.*, ${MessageTable.DATE_RECEIVED},"}
+      ${if (isCount) "COUNT(*)," else "$TABLE_NAME.*, ${MessageTable.DATE_RECEIVED}, ${MessageTable.BODY},"}
       LOWER(
         COALESCE(
           NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.SYSTEM_JOINED_NAME}, ''),
@@ -756,10 +773,13 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       val call = Call.deserialize(it)
       val recipient = Recipient.resolved(call.peer)
       val date = it.requireLong(MessageTable.DATE_RECEIVED)
+      val groupCallDetails = GroupCallUpdateDetailsUtil.parse(it.requireString(MessageTable.BODY))
+
       CallLogRow.Call(
         call = call,
         peer = recipient,
-        date = date
+        date = date,
+        groupCallState = CallLogRow.GroupCallState.fromDetails(groupCallDetails)
       )
     }
   }
