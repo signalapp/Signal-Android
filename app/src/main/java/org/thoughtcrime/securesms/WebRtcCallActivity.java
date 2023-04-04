@@ -852,11 +852,6 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     }
 
     @Override
-    public void onShowParticipantsList() {
-      CallParticipantsListDialog.show(getSupportFragmentManager());
-    }
-
-    @Override
     public void onPageChanged(@NonNull CallParticipantsState.SelectedPage page) {
       viewModel.setIsViewingFocusedParticipant(page);
     }
@@ -876,6 +871,16 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
         ApplicationDependencies.getSignalCallManager().setRingGroup(false);
         callStateUpdatePopupWindow.onCallStateUpdate(CallStateUpdatePopupWindow.CallStateUpdate.RINGING_DISABLED);
       }
+    }
+
+    @Override
+    public void onCallInfoClicked() {
+      CallParticipantsListDialog.show(getSupportFragmentManager());
+    }
+
+    @Override
+    public void onNavigateUpClicked() {
+      onBackPressed();
     }
   }
 
