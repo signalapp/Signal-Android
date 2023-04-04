@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import java.util.concurrent.TimeUnit
 
 /**
  * Landing fragment for sending gifts.
@@ -78,8 +79,9 @@ class GiftFlowStartFragment : DSLSettingsFragment(
 
       space(DimensionUnit.DP.toPixels(16f).toInt())
 
+      val days = state.giftBadge?.duration?.let { TimeUnit.MILLISECONDS.toDays(it) } ?: 60L
       noPadTextPref(
-        title = DSLSettingsText.from(resources.getQuantityString(R.plurals.GiftFlowStartFragment__support_signal_by, 30, 30), DSLSettingsText.CenterModifier)
+        title = DSLSettingsText.from(resources.getQuantityString(R.plurals.GiftFlowStartFragment__support_signal_by, days.toInt(), days), DSLSettingsText.CenterModifier)
       )
 
       space(DimensionUnit.DP.toPixels(16f).toInt())
