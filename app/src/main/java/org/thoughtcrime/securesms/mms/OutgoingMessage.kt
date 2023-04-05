@@ -120,7 +120,8 @@ data class OutgoingMessage(
     linkPreviews: List<LinkPreview> = emptyList(),
     mentions: List<Mention> = emptyList(),
     isSecure: Boolean = false,
-    bodyRanges: BodyRangeList? = null
+    bodyRanges: BodyRangeList? = null,
+    contacts: List<Contact> = emptyList()
   ) : this(
     recipient = recipient,
     body = buildMessage(slideDeck, body ?: ""),
@@ -133,7 +134,8 @@ data class OutgoingMessage(
     linkPreviews = linkPreviews,
     mentions = mentions,
     isSecure = isSecure,
-    bodyRanges = bodyRanges
+    bodyRanges = bodyRanges,
+    sharedContacts = contacts
   )
 
   fun withExpiry(expiresIn: Long): OutgoingMessage {

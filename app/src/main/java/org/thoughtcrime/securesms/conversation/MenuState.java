@@ -135,7 +135,6 @@ final class MenuState {
     }
 
     boolean shouldShowForwardAction = !actionMessage   &&
-                                      !sharedContact   &&
                                       !viewOnce        &&
                                       !remoteDelete    &&
                                       !hasPendingMedia &&

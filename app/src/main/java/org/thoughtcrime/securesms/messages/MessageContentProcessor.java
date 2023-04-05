@@ -2647,7 +2647,8 @@ public class MessageContentProcessor {
                                                             Collections.emptyList(),
                                                             Collections.emptyList(),
                                                             true,
-                                                            bodyRanges);
+                                                            bodyRanges,
+                                                            Collections.emptyList());
 
       messageId = SignalDatabase.messages().insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null);
       database  = SignalDatabase.messages();
