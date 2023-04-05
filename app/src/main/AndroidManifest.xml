@@ -514,6 +514,13 @@
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity
+              android:name=".avatar.photo.PhotoEditorActivity"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
+              android:label="@string/AndroidManifest__media_preview"
+              android:theme="@style/TextSecure.DarkNoActionBar"
+              android:windowSoftInputMode="stateHidden" />
+
     <activity android:name=".mediaoverview.MediaOverviewActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:windowSoftInputMode="stateHidden"

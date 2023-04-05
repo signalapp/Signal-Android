@@ -293,6 +293,10 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       imageEditorHud.enterMode(ImageEditorHudV2.Mode.CROP);
     }
 
+    if (mode == Mode.AVATAR_EDIT) {
+      imageEditorHud.enterMode(ImageEditorHudV2.Mode.DRAW);
+    }
+
     imageEditorView.setModel(editorModel);
 
     if (!SignalStore.tooltips().hasSeenBlurHudIconTooltip()) {

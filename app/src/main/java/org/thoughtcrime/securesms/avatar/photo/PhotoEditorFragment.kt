@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.setFragmentResult
-import androidx.navigation.Navigation
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.R
@@ -18,7 +17,7 @@ import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 class PhotoEditorFragment : Fragment(R.layout.avatar_photo_editor_fragment), ImageEditorFragment.Controller {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    val args = PhotoEditorFragmentArgs.fromBundle(requireArguments())
+    val args = PhotoEditorActivityArgs.fromBundle(requireArguments())
     val photo = AvatarBundler.extractPhoto(args.photoAvatar)
     val imageEditorFragment = ImageEditorFragment.newInstanceForAvatarEdit(photo.uri)
 
@@ -34,7 +33,7 @@ class PhotoEditorFragment : Fragment(R.layout.avatar_photo_editor_fragment), Ima
   }
 
   override fun onDoneEditing() {
-    val args = PhotoEditorFragmentArgs.fromBundle(requireArguments())
+    val args = PhotoEditorActivityArgs.fromBundle(requireArguments())
     val applicationContext = requireContext().applicationContext
     val imageEditorFragment: ImageEditorFragment = childFragmentManager.findFragmentByTag(IMAGE_EDITOR) as ImageEditorFragment
 
@@ -52,13 +51,12 @@ class PhotoEditorFragment : Fragment(R.layout.avatar_photo_editor_fragment), Ima
 
       ThreadUtil.runOnMain {
         setFragmentResult(REQUEST_KEY_EDIT, AvatarBundler.bundlePhoto(newPhoto))
-        Navigation.findNavController(requireView()).popBackStack()
       }
     }
   }
 
   override fun onCancelEditing() {
-    Navigation.findNavController(requireView()).popBackStack()
+    requireActivity().finishAfterTransition()
   }
 
   override fun restoreState() {
