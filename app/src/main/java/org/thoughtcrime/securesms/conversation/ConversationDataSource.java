@@ -71,6 +71,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     long startTime = System.currentTimeMillis();
     int  size      = getSizeInternal() +
                      (messageRequestData.includeWarningUpdateMessage() ? 1 : 0) +
+                     (messageRequestData.isHidden() ? 1 : 0) +
                      (showUniversalExpireTimerUpdate ? 1 : 0);
 
     Log.d(TAG, "[size(), thread " + threadId + "] " + (System.currentTimeMillis() - startTime) + " ms");
@@ -122,6 +123,10 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
     if (messageRequestData.includeWarningUpdateMessage() && (start + length >= size())) {
       records.add(new InMemoryMessageRecord.NoGroupsInCommon(threadId, messageRequestData.isGroup()));
+    }
+
+    if (messageRequestData.isHidden() && (start + length >= size())) {
+      records.add(new InMemoryMessageRecord.RemovedContactHidden(threadId));
     }
 
     if (showUniversalExpireTimerUpdate) {

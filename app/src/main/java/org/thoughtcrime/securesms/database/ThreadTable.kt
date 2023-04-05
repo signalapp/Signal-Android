@@ -1583,6 +1583,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   private fun getExtrasFor(record: MessageRecord, body: ThreadBody): Extra? {
     val threadRecipient = if (record.isOutgoing) record.recipient else getRecipientForThreadId(record.threadId)
     val messageRequestAccepted = RecipientUtil.isMessageRequestAccepted(record.threadId, threadRecipient)
+    val isHidden = threadRecipient?.isHidden ?: false
     val individualRecipientId = record.individualRecipient.id
 
     if (!messageRequestAccepted && threadRecipient != null) {
@@ -1609,7 +1610,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           }
         }
       } else {
-        return Extra.forMessageRequest(individualRecipientId)
+        return Extra.forMessageRequest(individualRecipientId, isHidden)
       }
     }
 
@@ -1772,7 +1773,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             groupAddedBy = jsonObject.getString("groupAddedBy"),
             individualRecipientId = jsonObject.getString("individualRecipientId")!!,
             bodyRanges = jsonObject.getString("bodyRanges"),
-            isScheduled = jsonObject.getBoolean("isScheduled")
+            isScheduled = jsonObject.getBoolean("isScheduled"),
+            isRecipientHidden = jsonObject.getBoolean("isRecipientHidden")
           )
         } catch (exception: Exception) {
           null
@@ -1855,7 +1857,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val bodyRanges: String? = null,
     @field:JsonProperty
     @param:JsonProperty("isScheduled")
-    val isScheduled: Boolean = false
+    val isScheduled: Boolean = false,
+    @field:JsonProperty
+    @param:JsonProperty("isRecipientHidden")
+    val isRecipientHidden: Boolean = false
   ) {
 
     fun getIndividualRecipientId(): String {
@@ -1879,8 +1884,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         return Extra(isRemoteDelete = true, individualRecipientId = individualRecipient.serialize())
       }
 
-      fun forMessageRequest(individualRecipient: RecipientId): Extra {
-        return Extra(isMessageRequestAccepted = false, individualRecipientId = individualRecipient.serialize())
+      fun forMessageRequest(individualRecipient: RecipientId, isHidden: Boolean = false): Extra {
+        return Extra(isMessageRequestAccepted = false, individualRecipientId = individualRecipient.serialize(), isRecipientHidden = isHidden)
       }
 
       fun forGroupMessageRequest(recipientId: RecipientId, individualRecipient: RecipientId): Extra {

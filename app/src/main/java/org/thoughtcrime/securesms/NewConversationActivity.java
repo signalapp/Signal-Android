@@ -93,7 +93,7 @@ public class NewConversationActivity extends ContactSelectionActivity
     ContactsManagementViewModel.Factory factory    = new ContactsManagementViewModel.Factory(repository);
 
     contactLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult -> {
-      if (activityResult.getResultCode() == RESULT_OK) {
+      if (activityResult.getResultCode() != RESULT_CANCELED) {
         handleManualRefresh();
       }
     });
