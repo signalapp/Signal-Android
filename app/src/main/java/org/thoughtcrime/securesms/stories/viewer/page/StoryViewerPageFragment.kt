@@ -765,21 +765,25 @@ class StoryViewerPageFragment :
         markViewedIfAble()
       }
       AttachmentTable.TRANSFER_PROGRESS_PENDING -> {
+        Log.d(TAG, "Story content download is pending.")
         storySlate.moveToState(StorySlateView.State.LOADING, post.id)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
       AttachmentTable.TRANSFER_PROGRESS_STARTED -> {
+        Log.d(TAG, "Story content download is in progress.")
         storySlate.moveToState(StorySlateView.State.LOADING, post.id)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
       AttachmentTable.TRANSFER_PROGRESS_FAILED -> {
+        Log.d(TAG, "Story content download has failed temporarily.")
         storySlate.moveToState(StorySlateView.State.ERROR, post.id)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
       AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE -> {
+        Log.d(TAG, "Story content download has failed permanently.")
         storySlate.moveToState(StorySlateView.State.FAILED, post.id, post.sender)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
@@ -1320,10 +1324,12 @@ class StoryViewerPageFragment :
   }
 
   override fun onContentReady() {
+    Log.d(TAG, "Story content is ready.")
     sharedViewModel.setContentIsReady()
   }
 
   override fun onContentNotAvailable() {
+    Log.d(TAG, "Story content is not available.")
     sharedViewModel.setContentIsReady()
   }
 
