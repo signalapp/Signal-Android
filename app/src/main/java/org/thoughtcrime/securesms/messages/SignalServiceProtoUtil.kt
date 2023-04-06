@@ -71,7 +71,7 @@ object SignalServiceProtoUtil {
     get() = hasGroupContext && groupV2.hasSignedGroupChange
 
   val DataMessage.isMediaMessage: Boolean
-    get() = attachmentsList.isNotEmpty() || hasQuote() || contactList.isNotEmpty() || hasSticker() || bodyRangesList.isNotEmpty()
+    get() = attachmentsList.isNotEmpty() || hasQuote() || contactList.isNotEmpty() || hasSticker() || bodyRangesList.isNotEmpty() || previewList.isNotEmpty()
 
   val DataMessage.isEndSession: Boolean
     get() = flags and DataMessage.Flags.END_SESSION_VALUE != 0
