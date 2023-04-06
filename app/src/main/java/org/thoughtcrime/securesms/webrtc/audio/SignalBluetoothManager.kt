@@ -337,10 +337,12 @@ class SignalBluetoothManager(
             scoConnectionAttempts = 0
             updateDevice()
           }
-        } else if (state != State.UNINITIALIZED) {
+        } else {
           handler.post {
-            val connectionState: Int = intent.getIntExtra(BluetoothHeadset.EXTRA_STATE, BluetoothHeadset.STATE_AUDIO_DISCONNECTED)
-            onAudioStateChanged(connectionState, isInitialStickyBroadcast)
+            if (state != State.UNINITIALIZED) {
+              val connectionState: Int = intent.getIntExtra(BluetoothHeadset.EXTRA_STATE, BluetoothHeadset.STATE_AUDIO_DISCONNECTED)
+              onAudioStateChanged(connectionState, isInitialStickyBroadcast)
+            }
           }
         }
       } else if (intent.action == AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED) {
