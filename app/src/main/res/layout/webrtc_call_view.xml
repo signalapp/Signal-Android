@@ -214,7 +214,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/signal_m3_toolbar_height"
             android:minHeight="@dimen/signal_m3_toolbar_height"
-            android:visibility="gone"
             app:layout_constraintTop_toTopOf="@id/call_screen_status_bar_guideline"
             app:menu="@menu/webrtc_toolbar_menu"
             app:navigationIcon="@drawable/ic_arrow_left_24"

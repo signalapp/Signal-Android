@@ -185,9 +185,9 @@ public class WebRtcCallView extends ConstraintLayout {
     footerGradient                = findViewById(R.id.call_screen_footer_gradient);
     startCallControls             = findViewById(R.id.call_screen_start_call_controls);
     callParticipantsPager         = findViewById(R.id.call_screen_participants_pager);
-    callParticipantsRecycler = findViewById(R.id.call_screen_participants_recycler);
-    largeHeader              = findViewById(R.id.call_screen_header);
-    startCall                = findViewById(R.id.call_screen_start_call_start_call);
+    callParticipantsRecycler      = findViewById(R.id.call_screen_participants_recycler);
+    largeHeader                   = findViewById(R.id.call_screen_header);
+    startCall                     = findViewById(R.id.call_screen_start_call_start_call);
     errorButton                   = findViewById(R.id.call_screen_error_cancel);
     groupCallSpeakerHint          = new Stub<>(findViewById(R.id.call_screen_group_call_speaker_hint));
     groupCallFullStub             = new Stub<>(findViewById(R.id.group_call_call_full_view));
@@ -224,6 +224,8 @@ public class WebRtcCallView extends ConstraintLayout {
       }
     });
 
+    topViews.add(collapsedToolbar);
+    topViews.add(headerToolbar);
     topViews.add(largeHeader);
     topViews.add(topGradient);
 
@@ -997,13 +999,19 @@ public class WebRtcCallView extends ConstraintLayout {
     constraintSet.applyTo(parent);
 
     if (showSmallHeader) {
-      collapsedToolbar.setVisibility(View.VISIBLE);
-      headerToolbar.setVisibility(View.GONE);
-      largeHeader.setVisibility(View.GONE);
+      collapsedToolbar.setEnabled(true);
+      collapsedToolbar.setAlpha(1);
+      headerToolbar.setEnabled(false);
+      headerToolbar.setAlpha(0);
+      largeHeader.setEnabled(false);
+      largeHeader.setAlpha(0);
     } else {
-      collapsedToolbar.setVisibility(View.GONE);
-      headerToolbar.setVisibility(View.VISIBLE);
-      largeHeader.setVisibility(View.VISIBLE);
+      collapsedToolbar.setEnabled(false);
+      collapsedToolbar.setAlpha(0);
+      headerToolbar.setEnabled(true);
+      headerToolbar.setAlpha(1);
+      largeHeader.setEnabled(true);
+      largeHeader.setAlpha(1);
     }
   }
 
