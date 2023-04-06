@@ -494,6 +494,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     dateReceived: Long,
     ringState: RingUpdate
   ) {
+    Log.d(TAG, "Processing group ring state update for $ringId in state $ringState")
+
     val call = getCallById(ringId)
     if (call != null) {
       if (call.event == Event.DELETE) {
@@ -628,7 +630,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         .run()
     }
 
-    Log.d(TAG, "Inserted a new call event for $callId with event $event")
+    Log.d(TAG, "Inserted a new group ring event for $callId with event $event")
   }
 
   fun setTimestamp(callId: Long, timestamp: Long) {
