@@ -159,6 +159,7 @@ dependencyResolutionManagement {
             alias('espresso-core').to('androidx.test.espresso:espresso-core:3.4.0')
             alias('uiautomator').to('androidx.test.uiautomator:uiautomator:2.2.0')
             alias('androidx-benchmark-macro').to('androidx.benchmark:benchmark-macro-junit4:1.1.1')
+            alias('androidx-benchmark-micro').to('androidx.benchmark:benchmark-junit4:1.1.0-beta04')
         }
 
         testLibs {
