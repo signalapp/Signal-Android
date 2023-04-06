@@ -168,6 +168,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
     val availableCommunicationDevices: List<AudioDeviceInfo> = androidAudioManager.availableCommunicationDevices
     if (userSelectedAudioDevice != null) {
       androidAudioManager.communicationDevice = userSelectedAudioDevice
+      eventListener?.onAudioDeviceChanged(AudioDeviceMapping.fromPlatformType(userSelectedAudioDevice!!.type), availableCommunicationDevices.map { AudioDeviceMapping.fromPlatformType(it.type) }.toSet())
     } else {
       val excludedDevices = emptyList<String>() // TODO: pull this from somewhere. Preferences?
       val autoSelectableDevices = availableCommunicationDevices.filterNot { excludedDevices.contains(it.address) }
