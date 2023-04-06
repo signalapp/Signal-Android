@@ -5111,7 +5111,7 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Apagar story do grupo?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" será apagadp.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" será apagado.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Apagar</string>
     <!-- Dialog title for deleting a custom story -->
