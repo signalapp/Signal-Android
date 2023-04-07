@@ -669,8 +669,8 @@ public class WebRtcCallView extends ConstraintLayout {
     if (webRtcControls.displayAudioToggle()) {
       visibleViewSet.add(audioToggle);
 
-      audioToggle.setControlAvailability(webRtcControls.enableEarpieceInAudioToggle(),
-                                         webRtcControls.enableBluetoothHeadsetInAudioToggle());
+      audioToggle.setControlAvailability(webRtcControls.isEarpieceAvailableForAudioToggle(),
+                                         webRtcControls.isBluetoothHeadsetAvailableForAudioToggle());
 
       audioToggle.setAudioOutput(webRtcControls.getAudioOutput(), false);
     }

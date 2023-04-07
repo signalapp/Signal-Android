@@ -153,7 +153,7 @@ public final class WebRtcControls {
   }
 
   boolean displayAudioToggle() {
-    return (isPreJoin() || isAtLeastOutgoing()) && (!isLocalVideoEnabled || enableBluetoothHeadsetInAudioToggle());
+    return (isPreJoin() || isAtLeastOutgoing()) && (!isLocalVideoEnabled || isBluetoothHeadsetAvailableForAudioToggle());
   }
 
   boolean displayCameraToggle() {
@@ -172,11 +172,11 @@ public final class WebRtcControls {
     return isIncoming();
   }
 
-  boolean enableEarpieceInAudioToggle() {
+  boolean isEarpieceAvailableForAudioToggle() {
     return !isLocalVideoEnabled;
   }
 
-  boolean enableBluetoothHeadsetInAudioToggle() {
+  boolean isBluetoothHeadsetAvailableForAudioToggle() {
     return availableDevices.contains(SignalAudioManager.AudioDevice.BLUETOOTH);
   }
 

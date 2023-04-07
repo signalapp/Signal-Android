@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.webrtc.audio.AudioDeviceMapping
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
+import kotlin.math.min
 
 /**
  * A UI button that triggers a picker dialog/bottom sheet allowing the user to select the audio output for the ongoing call.
@@ -218,6 +219,12 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
   inner class OutputState {
     private val availableOutputs: LinkedHashSet<WebRtcAudioOutput> = linkedSetOf(WebRtcAudioOutput.SPEAKER)
     private var selectedDevice = 0
+      set(value) {
+        if (value >= availableOutputs.size) {
+          throw IndexOutOfBoundsException("Index: $value, size: ${availableOutputs.size}")
+        }
+        field = value
+      }
 
     @Deprecated("Used only for onSaveInstanceState.")
     fun getBackingIndexForBackup(): Int {
@@ -259,6 +266,7 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
           availableOutputs.add(WebRtcAudioOutput.HANDSET)
         } else {
           availableOutputs.remove(WebRtcAudioOutput.HANDSET)
+          selectedDevice = min(selectedDevice, availableOutputs.size - 1)
         }
       }
 
@@ -269,6 +277,7 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
           availableOutputs.add(WebRtcAudioOutput.BLUETOOTH_HEADSET)
         } else {
           availableOutputs.remove(WebRtcAudioOutput.BLUETOOTH_HEADSET)
+          selectedDevice = min(selectedDevice, availableOutputs.size - 1)
         }
       }
     var isWiredHeadsetAvailable: Boolean
@@ -278,6 +287,7 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
           availableOutputs.add(WebRtcAudioOutput.WIRED_HEADSET)
         } else {
           availableOutputs.remove(WebRtcAudioOutput.WIRED_HEADSET)
+          selectedDevice = min(selectedDevice, availableOutputs.size - 1)
         }
       }
   }

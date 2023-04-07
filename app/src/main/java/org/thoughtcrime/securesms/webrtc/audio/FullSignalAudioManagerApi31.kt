@@ -173,7 +173,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
       val excludedDevices = emptyList<String>() // TODO: pull this from somewhere. Preferences?
       val autoSelectableDevices = availableCommunicationDevices.filterNot { excludedDevices.contains(it.address) }
       var candidate: AudioDeviceInfo? = null
-      val searchOrder: List<AudioDevice> = listOf(defaultAudioDevice) + AudioDeviceMapping.orderOfPreference.filterNot { it == defaultAudioDevice }
+      val searchOrder: List<AudioDevice> = listOf(AudioDevice.BLUETOOTH, defaultAudioDevice, AudioDevice.WIRED_HEADSET, AudioDevice.EARPIECE, AudioDevice.SPEAKER_PHONE, AudioDevice.NONE).distinct()
       for (deviceType in searchOrder) {
         candidate = autoSelectableDevices.find { AudioDeviceMapping.fromPlatformType(it.type) == deviceType }
         if (candidate != null) {
