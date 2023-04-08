@@ -67,11 +67,13 @@ def selectableVariants = [
         'nightlyPnpRelease',
         'playProdDebug',
         'playProdSpinner',
+        'playProdCanary',
         'playProdPerf',
         'playProdBenchmark',
         'playProdInstrumentation',
         'playProdRelease',
         'playStagingDebug',
+        'playStagingCanary',
         'playStagingSpinner',
         'playStagingPerf',
         'playStagingInstrumentation',
@@ -318,6 +320,14 @@ android {
             buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Benchmark\""
             buildConfigField "boolean", "TRACING_ENABLED", "true"
         }
+
+        canary {
+            initWith debug
+            isDefault false
+            minifyEnabled false
+            matchingFallbacks = ['debug']
+            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Canary\""
+        }
     }
 
     productFlavors {
@@ -559,7 +569,8 @@ dependencies {
     implementation libs.kotlinx.collections.immutable
 
     spinnerImplementation project(":spinner")
-    spinnerImplementation libs.square.leakcanary
+
+    canaryImplementation libs.square.leakcanary
 
     testImplementation testLibs.junit.junit
     testImplementation testLibs.assertj.core
