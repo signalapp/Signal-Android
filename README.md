@@ -1,5 +1,7 @@
 # Signal-BA
 
+> For the Signal readme and legal/license information, see here [README](/README.old.md)
+
 Signal-BA is a fork of the popular encrypted messaging app Signal Android.
 
 The main difference's between Signal-BA and the original Signal Android app are, Signal BA:
