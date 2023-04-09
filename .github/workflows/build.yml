@@ -54,7 +54,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "v${{ steps.get-version.outputs.VERSION }}"
+          tag_name: "${{ steps.get-version.outputs.VERSION }}"
           release_name: "Signal-BA"
           draft: false
           prerelease: false
