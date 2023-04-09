@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.SignalTrace;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -66,6 +67,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
 
   @Override
   public @NonNull List<Conversation> load(int start, int length, @NonNull CancellationSignal cancellationSignal) {
+    SignalTrace.beginSection("ConversationListDataSource#load");
     Stopwatch stopwatch = new Stopwatch("load(" + start + ", " + length + "), " + getClass().getSimpleName() + ", " + conversationFilter);
 
     List<Conversation> conversations = new ArrayList<>(length);
@@ -97,6 +99,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
     stopwatch.split("recipient-resolve");
 
     stopwatch.stop(TAG);
+    SignalTrace.endSection();
 
     if (conversations.isEmpty() && start == 0 && length == 1) {
       if (conversationFilter == ConversationFilter.OFF) {

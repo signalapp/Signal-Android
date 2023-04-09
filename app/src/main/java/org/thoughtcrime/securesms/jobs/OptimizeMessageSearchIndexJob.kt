@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.transport.RetryLaterException
@@ -34,7 +33,7 @@ class OptimizeMessageSearchIndexJob private constructor(parameters: Parameters) 
       .build()
   )
 
-  override fun serialize(): Data = Data.EMPTY
+  override fun serialize(): ByteArray? = null
   override fun getFactoryKey() = KEY
   override fun onFailure() = Unit
   override fun onShouldRetry(e: Exception) = e is RetryLaterException
@@ -54,6 +53,6 @@ class OptimizeMessageSearchIndexJob private constructor(parameters: Parameters) 
   }
 
   class Factory : Job.Factory<OptimizeMessageSearchIndexJob> {
-    override fun create(parameters: Parameters, data: Data) = OptimizeMessageSearchIndexJob(parameters)
+    override fun create(parameters: Parameters, serializedData: ByteArray?) = OptimizeMessageSearchIndexJob(parameters)
   }
 }

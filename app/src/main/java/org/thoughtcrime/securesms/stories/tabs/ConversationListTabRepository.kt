@@ -34,7 +34,7 @@ class ConversationListTabRepository {
   fun getNumberOfUnseenStories(): Observable<Long> {
     return Observable.create<Long> { emitter ->
       fun refresh() {
-        emitter.onNext(SignalDatabase.messages.unreadStoryThreadRecipientIds.map { Recipient.resolved(it) }.filterNot { it.shouldHideStory() }.size.toLong())
+        emitter.onNext(SignalDatabase.messages.getUnreadStoryThreadRecipientIds().map { Recipient.resolved(it) }.filterNot { it.shouldHideStory() }.size.toLong())
       }
 
       val listener = DatabaseObserver.Observer {
@@ -45,5 +45,37 @@ class ConversationListTabRepository {
       emitter.setCancellable { ApplicationDependencies.getDatabaseObserver().unregisterObserver(listener) }
       refresh()
     }.subscribeOn(Schedulers.io())
+  }
+
+  fun getHasFailedOutgoingStories(): Observable<Boolean> {
+    return Observable.create<Boolean> { emitter ->
+      fun refresh() {
+        emitter.onNext(SignalDatabase.messages.hasFailedOutgoingStory())
+      }
+
+      val listener = DatabaseObserver.Observer {
+        refresh()
+      }
+
+      ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(listener)
+      emitter.setCancellable { ApplicationDependencies.getDatabaseObserver().unregisterObserver(listener) }
+      refresh()
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun getNumberOfUnseenCalls(): Observable<Long> {
+    return Observable.create { emitter ->
+      fun refresh() {
+        emitter.onNext(SignalDatabase.messages.getUnreadMisedCallCount())
+      }
+
+      val listener = DatabaseObserver.Observer {
+        refresh()
+      }
+
+      ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(listener)
+      emitter.setCancellable { ApplicationDependencies.getDatabaseObserver().unregisterObserver(listener) }
+      refresh()
+    }
   }
 }

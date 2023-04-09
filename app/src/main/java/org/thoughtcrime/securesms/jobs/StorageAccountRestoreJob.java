@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
@@ -53,8 +54,8 @@ public class StorageAccountRestoreJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return Data.EMPTY;
+  public @Nullable byte[] serialize() {
+    return null;
   }
 
   @Override
@@ -148,7 +149,7 @@ public class StorageAccountRestoreJob extends BaseJob {
   public static class Factory implements Job.Factory<StorageAccountRestoreJob> {
     @Override
     public @NonNull
-    StorageAccountRestoreJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    StorageAccountRestoreJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new StorageAccountRestoreJob(parameters);
     }
   }

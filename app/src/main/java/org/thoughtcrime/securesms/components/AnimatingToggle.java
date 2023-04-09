@@ -64,8 +64,10 @@ public class AnimatingToggle extends FrameLayout {
   public void displayQuick(@Nullable View view) {
     if (view == current && current.getVisibility() == View.VISIBLE) return;
     if (current != null) current.setVisibility(View.GONE);
-    if (view != null)    view.setVisibility(View.VISIBLE);
-
+    if (view != null) {
+      view.setVisibility(View.VISIBLE);
+      view.clearAnimation();
+    }
     current = view;
   }
 }

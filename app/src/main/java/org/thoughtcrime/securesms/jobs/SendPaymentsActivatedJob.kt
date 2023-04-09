@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.OutgoingMessage
@@ -23,7 +22,7 @@ class SendPaymentsActivatedJob(parameters: Parameters) : BaseJob(parameters) {
 
   constructor() : this(parameters = Parameters.Builder().build())
 
-  override fun serialize(): Data = Data.Builder().build()
+  override fun serialize(): ByteArray? = null
 
   override fun getFactoryKey(): String = KEY
 
@@ -66,7 +65,7 @@ class SendPaymentsActivatedJob(parameters: Parameters) : BaseJob(parameters) {
   }
 
   class Factory : Job.Factory<SendPaymentsActivatedJob> {
-    override fun create(parameters: Parameters, data: Data): SendPaymentsActivatedJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): SendPaymentsActivatedJob {
       return SendPaymentsActivatedJob(parameters)
     }
   }

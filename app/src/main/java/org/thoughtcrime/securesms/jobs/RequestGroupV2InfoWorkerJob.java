@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
@@ -11,7 +12,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -57,10 +58,10 @@ final class RequestGroupV2InfoWorkerJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_GROUP_ID, groupId.toString())
-                             .putInt(KEY_TO_REVISION, toRevision)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_GROUP_ID, groupId.toString())
+                                    .putInt(KEY_TO_REVISION, toRevision)
+                                    .serialize();
   }
 
   @Override
@@ -105,7 +106,9 @@ final class RequestGroupV2InfoWorkerJob extends BaseJob {
   public static final class Factory implements Job.Factory<RequestGroupV2InfoWorkerJob> {
 
     @Override
-    public @NonNull RequestGroupV2InfoWorkerJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull RequestGroupV2InfoWorkerJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       return new RequestGroupV2InfoWorkerJob(parameters,
                                              GroupId.parseOrThrow(data.getString(KEY_GROUP_ID)).requireV2(),
                                              data.getInt(KEY_TO_REVISION));

@@ -39,6 +39,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.registration.RegistrationSessionProcessor;
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository.Mode;
 import org.thoughtcrime.securesms.registration.util.RegistrationNumberInputController;
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState;
@@ -279,7 +280,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
     Disposable request = viewModel.requestVerificationCode(mode, mccMncProducer.getMcc(), mccMncProducer.getMnc())
                                   .doOnSubscribe(unused -> SignalStore.account().setRegistered(false))
                                   .observeOn(AndroidSchedulers.mainThread())
-                                  .subscribe(processor -> {
+                                  .subscribe((RegistrationSessionProcessor processor) -> {
                                     if (processor.verificationCodeRequestSuccess()) {
                                       disposables.add(updateFcmTokenValue());
                                       SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
@@ -302,6 +303,10 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                     } else if (processor.isTokenRejected()) {
                                       Log.i(TAG, "The server did not accept the information.", processor.getError());
                                       showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human));
+                                    } else if (processor instanceof RegistrationSessionProcessor.RegistrationSessionProcessorForVerification
+                                               && ((RegistrationSessionProcessor.RegistrationSessionProcessorForVerification) processor).externalServiceFailure()) {
+                                      Log.w(TAG, "The server reported a failure with an external service.", processor.getError());
+                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_external_service_error));
                                     } else {
                                       Log.i(TAG, "Unknown error during verification code request", processor.getError());
                                       showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_unable_to_connect_to_service));

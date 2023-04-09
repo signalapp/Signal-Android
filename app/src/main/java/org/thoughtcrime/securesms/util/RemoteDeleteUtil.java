@@ -6,6 +6,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
@@ -18,18 +19,23 @@ public final class RemoteDeleteUtil {
   private RemoteDeleteUtil() {}
 
   public static boolean isValidReceive(@NonNull MessageRecord targetMessage, @NonNull Recipient deleteSender, long deleteServerTimestamp) {
-    boolean isValidIncomingOutgoing = (deleteSender.isSelf() && targetMessage.isOutgoing()) ||
-                                      (!deleteSender.isSelf() && !targetMessage.isOutgoing());
+    return isValidReceive(targetMessage, deleteSender.getId(), deleteServerTimestamp);
+  }
 
-    boolean isValidSender = targetMessage.getIndividualRecipient().equals(deleteSender) ||
-                            deleteSender.isSelf() && targetMessage.isOutgoing();
+  public static boolean isValidReceive(@NonNull MessageRecord targetMessage, @NonNull RecipientId deleteSenderId, long deleteServerTimestamp) {
+    boolean selfIsDeleteSender = isSelf(deleteSenderId);
 
-    long messageTimestamp = deleteSender.isSelf() && targetMessage.isOutgoing() ? targetMessage.getDateSent()
-                                                                                : targetMessage.getServerTimestamp();
+    boolean isValidIncomingOutgoing = (selfIsDeleteSender && targetMessage.isOutgoing()) ||
+                                      (!selfIsDeleteSender && !targetMessage.isOutgoing());
+
+    boolean isValidSender = targetMessage.getIndividualRecipient().getId().equals(deleteSenderId) || selfIsDeleteSender && targetMessage.isOutgoing();
+
+    long messageTimestamp = selfIsDeleteSender && targetMessage.isOutgoing() ? targetMessage.getDateSent()
+                                                                                 : targetMessage.getServerTimestamp();
 
     return isValidIncomingOutgoing &&
-           isValidSender           &&
-           (((deleteServerTimestamp - messageTimestamp) < RECEIVE_THRESHOLD) || (deleteSender.isSelf() && targetMessage.isOutgoing()));
+           isValidSender &&
+           (((deleteServerTimestamp - messageTimestamp) < RECEIVE_THRESHOLD) || (selfIsDeleteSender && targetMessage.isOutgoing()));
   }
 
   public static boolean isValidSend(@NonNull Collection<MessageRecord> targetMessages, long currentTime) {
@@ -38,13 +44,17 @@ public final class RemoteDeleteUtil {
   }
 
   private static boolean isValidSend(MessageRecord message, long currentTime) {
-    return !message.isUpdate()                                                           &&
-           message.isOutgoing()                                                          &&
-           message.isPush()                                                              &&
+    return !message.isUpdate() &&
+           message.isOutgoing() &&
+           message.isPush() &&
            (!message.getRecipient().isGroup() || message.getRecipient().isActiveGroup()) &&
-           !message.isRemoteDelete()                                                     &&
-           !MessageRecordUtil.hasGiftBadge(message)                                      &&
-           !message.isPaymentNotification()                                              &&
+           !message.isRemoteDelete() &&
+           !MessageRecordUtil.hasGiftBadge(message) &&
+           !message.isPaymentNotification() &&
            (((currentTime - message.getDateSent()) < SEND_THRESHOLD) || message.getRecipient().isSelf());
+  }
+
+  private static boolean isSelf(@NonNull RecipientId recipientId) {
+    return Recipient.isSelfSet() && Recipient.self().getId().equals(recipientId);
   }
 }

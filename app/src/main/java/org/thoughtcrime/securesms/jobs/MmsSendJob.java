@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.android.mms.dom.smil.parser.SmilXmlSerializer;
@@ -33,7 +34,7 @@ import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -106,8 +107,8 @@ public final class MmsSendJob extends SendJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId).build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId).serialize();
   }
 
   @Override
@@ -362,7 +363,8 @@ public final class MmsSendJob extends SendJob {
 
   public static class Factory implements Job.Factory<MmsSendJob> {
     @Override
-    public @NonNull MmsSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull MmsSendJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
       return new MmsSendJob(parameters, data.getLong(KEY_MESSAGE_ID));
     }
   }

@@ -32,8 +32,8 @@ public final class MentionUtil {
   private MentionUtil() { }
 
   @WorkerThread
-  public static @Nullable CharSequence updateBodyWithDisplayNames(@NonNull Context context, @NonNull MessageRecord messageRecord) {
-    return updateBodyWithDisplayNames(context, messageRecord, messageRecord.getDisplayBody(context)).getBody();
+  public static @NonNull UpdatedBodyAndMentions updateBodyWithDisplayNames(@NonNull Context context, @NonNull MessageRecord messageRecord) {
+    return updateBodyWithDisplayNames(context, messageRecord, messageRecord.getDisplayBody(context));
   }
 
   @WorkerThread

@@ -5,14 +5,12 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 
 import java.io.IOException;
@@ -47,7 +45,7 @@ public class PushProcessMessageQueueJobMigration extends JobMigration {
   }
 
   private static @NonNull JobData migratePushProcessMessageJob(@NonNull Context context, @NonNull JobData jobData) throws IOException {
-    Data data = jobData.getData();
+    JsonJobData data = JsonJobData.deserialize(jobData.getData());
 
     String suffix = "";
 

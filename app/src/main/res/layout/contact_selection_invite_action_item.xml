@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/rounded_inset_ripple_background"
     android:minHeight="@dimen/contact_selection_item_height"
     android:paddingStart="@dimen/dsl_settings_gutter"
     android:paddingEnd="@dimen/dsl_settings_gutter"
-    android:background="@drawable/rounded_inset_ripple_background">
+    tools:viewBindingIgnore="true">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/invite_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:background="@color/signal_colorSurfaceVariant"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_invite_circle"
+        android:scaleType="centerInside"
+        android:src="@drawable/symbol_invite_24"
+        app:tint="@color/signal_colorOnSurfaceVariant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle" />
 
     <TextView
         android:id="@+id/invite_text"

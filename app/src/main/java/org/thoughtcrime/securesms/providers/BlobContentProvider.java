@@ -64,8 +64,6 @@ public final class BlobContentProvider extends BaseContentProvider {
   public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
     Log.i(TAG, "query() called: " + uri);
 
-    if (projection == null || projection.length <= 0) return null;
-
     String mimeType = BlobProvider.getMimeType(uri);
     String fileName = BlobProvider.getFileName(uri);
     Long   fileSize = BlobProvider.getFileSize(uri);

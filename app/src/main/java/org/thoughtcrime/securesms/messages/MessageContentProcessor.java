@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.messages;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -316,7 +315,7 @@ public class MessageContentProcessor {
         else if (message.getGiftBadge().isPresent())                                         messageId = handleGiftMessage(content, message, senderRecipient, threadRecipient, receivedTime);
         else if (isMediaMessage)                                                             messageId = handleMediaMessage(content, message, smsMessageId, senderRecipient, threadRecipient, receivedTime);
         else if (message.getBody().isPresent())                                              messageId = handleTextMessage(content, message, smsMessageId, groupId, senderRecipient, threadRecipient, receivedTime);
-        else if (Build.VERSION.SDK_INT > 19 && message.getGroupCallUpdate().isPresent())     handleGroupCallUpdateMessage(content, message, groupId, senderRecipient);
+        else if (message.getGroupCallUpdate().isPresent())                                   handleGroupCallUpdateMessage(content, message, groupId, senderRecipient);
 
         if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
           handleUnknownGroupMessage(content, message.getGroupContext().get(), senderRecipient);
@@ -369,7 +368,14 @@ public class MessageContentProcessor {
         else if (syncMessage.getOutgoingPaymentMessage().isPresent()) handleSynchronizeOutgoingPayment(content, syncMessage.getOutgoingPaymentMessage().get());
         else if (syncMessage.getKeys().isPresent())                   handleSynchronizeKeys(syncMessage.getKeys().get(), content.getTimestamp());
         else if (syncMessage.getContacts().isPresent())               handleSynchronizeContacts(syncMessage.getContacts().get(), content.getTimestamp());
-        else if (syncMessage.getCallEvent().isPresent())              handleSynchronizeCallEvent(syncMessage.getCallEvent().get(), content.getTimestamp());
+        else if (syncMessage.getCallEvent().isPresent()) {
+          SyncMessage.CallEvent.Type type = syncMessage.getCallEvent().get().getType();
+          if (type == SyncMessage.CallEvent.Type.GROUP_CALL || type == SyncMessage.CallEvent.Type.AD_HOC_CALL) {
+            handleSynchronizeGroupOrAdHocCallEvent(syncMessage.getCallEvent().get(), content.getTimestamp());
+          } else {
+            handleSynchronizeCallEvent(syncMessage.getCallEvent().get(), content.getTimestamp());
+          }
+        }
         else                                                          warn(String.valueOf(content.getTimestamp()), "Contains no known sync types...");
       } else if (content.getCallMessage().isPresent()) {
         log(String.valueOf(content.getTimestamp()), "Got call message...");
@@ -753,7 +759,7 @@ public class MessageContentProcessor {
 
     RecipientId groupRecipientId = SignalDatabase.recipients().getOrInsertFromPossiblyMigratedGroupId(groupId.get());
 
-    SignalDatabase.messages().insertOrUpdateGroupCall(groupRecipientId,
+    SignalDatabase.calls().insertOrUpdateGroupCallFromExternalEvent(groupRecipientId,
                                                                     senderRecipient.getId(),
                                                                     content.getServerReceivedTimestamp(),
                                                                     message.getGroupCallUpdate().get().getEraId());
@@ -1274,12 +1280,12 @@ public class MessageContentProcessor {
     CallTable.Direction direction = CallTable.Direction.from(callEvent.getDirection());
     CallTable.Event     event     = CallTable.Event.from(callEvent.getEvent());
 
-    if (timestamp == 0 || type == null || direction == null || event == null || !callEvent.hasPeerUuid()) {
-      warn(envelopeTimestamp, "Call event sync message is not valid, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasPeerUuid());
+    if (timestamp == 0 || type == null || direction == null || event == null || !callEvent.hasConversationId()) {
+      warn(envelopeTimestamp, "Call event sync message is not valid, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId());
       return;
     }
 
-    ServiceId   serviceId   = ServiceId.fromByteString(callEvent.getPeerUuid());
+    ServiceId   serviceId   = ServiceId.fromByteString(callEvent.getConversationId());
     RecipientId recipientId = RecipientId.from(serviceId);
 
     log(envelopeTimestamp, "Synchronize call event call: " + callId);
@@ -1294,10 +1300,79 @@ public class MessageContentProcessor {
       if (typeMismatch || directionMismatch || eventDowngrade || peerMismatch) {
         warn(envelopeTimestamp, "Call event sync message is not valid for existing call record, ignoring. type: " + type + " direction: " + direction + "  event: " + event + " peerMismatch: " + peerMismatch);
       } else {
-        SignalDatabase.calls().updateCall(callId, event);
+        SignalDatabase.calls().updateOneToOneCall(callId, event);
       }
     } else {
-      SignalDatabase.calls().insertCall(callId, timestamp, recipientId, type, direction, event);
+      SignalDatabase.calls().insertOneToOneCall(callId, timestamp, recipientId, type, direction, event);
+    }
+  }
+
+  private void handleSynchronizeGroupOrAdHocCallEvent(@NonNull SyncMessage.CallEvent callEvent, long envelopeTimestamp)
+      throws BadGroupIdException
+  {
+    if (!callEvent.hasId()) {
+      log(envelopeTimestamp, "Synchronize group/ad-hoc call event missing call id, ignoring.");
+      return;
+    }
+
+    if (!FeatureFlags.adHocCalling() && callEvent.getType() == SyncMessage.CallEvent.Type.AD_HOC_CALL) {
+      log(envelopeTimestamp, "Ad-Hoc calling is not currently supported by this client, ignoring.");
+      return;
+    }
+
+    long                callId    = callEvent.getId();
+    long                timestamp = callEvent.getTimestamp();
+    CallTable.Type      type      = CallTable.Type.from(callEvent.getType());
+    CallTable.Direction direction = CallTable.Direction.from(callEvent.getDirection());
+    CallTable.Event     event     = CallTable.Event.from(callEvent.getEvent());
+
+    if (timestamp == 0 || type == null || direction == null || event == null || !callEvent.hasConversationId()) {
+      warn(envelopeTimestamp, "Group/Ad-hoc call event sync message is not valid, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId());
+      return;
+    }
+
+    CallTable.Call call = SignalDatabase.calls().getCallById(callId);
+    if (call != null) {
+      if (call.getType() != type) {
+        warn(envelopeTimestamp, "Group/Ad-hoc call event type mismatch, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId());
+        return;
+      }
+
+      switch (event) {
+        case DELETE:
+          SignalDatabase.calls().deleteGroupCall(call);
+          break;
+        case ACCEPTED:
+          if (call.getTimestamp() < callEvent.getTimestamp()) {
+            SignalDatabase.calls().setTimestamp(call.getCallId(), callEvent.getTimestamp());
+          }
+
+          if (callEvent.getDirection() == SyncMessage.CallEvent.Direction.INCOMING) {
+            SignalDatabase.calls().acceptIncomingGroupCall(call);
+          } else {
+            warn(envelopeTimestamp, "Invalid direction OUTGOING for event ACCEPTED");
+          }
+
+          break;
+        case NOT_ACCEPTED:
+        default:
+          warn("Unsupported event type " + event + ". Ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId());
+      }
+    } else {
+      GroupId     groupId     = GroupId.push(callEvent.getConversationId().toByteArray());
+      RecipientId recipientId = Recipient.externalGroupExact(groupId).getId();
+
+      switch (event) {
+        case DELETE:
+          SignalDatabase.calls().insertDeletedGroupCallFromSyncEvent(callEvent.getId(), recipientId, direction, timestamp);
+          break;
+        case ACCEPTED:
+          SignalDatabase.calls().insertAcceptedGroupCall(callEvent.getId(), recipientId, direction, timestamp);
+          break;
+        case NOT_ACCEPTED:
+        default:
+          warn("Unsupported event type " + event + ". Ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasConversationId());
+      }
     }
   }
 
@@ -1334,7 +1409,7 @@ public class MessageContentProcessor {
       } else if (dataMessage.isGroupV2Update()) {
         handleSynchronizeSentGv2Update(content, message);
         threadId = SignalDatabase.threads().getOrCreateThreadIdFor(getSyncMessageDestination(message));
-      } else if (Build.VERSION.SDK_INT > 19 && dataMessage.getGroupCallUpdate().isPresent()) {
+      } else if (dataMessage.getGroupCallUpdate().isPresent()) {
         handleGroupCallUpdateMessage(content, dataMessage, GroupUtil.idFromGroupContext(dataMessage.getGroupContext()), senderRecipient);
       } else if (dataMessage.isEmptyGroupV2Message()) {
         warn(content.getTimestamp(), "Empty GV2 message! Doing nothing.");
@@ -1347,7 +1422,7 @@ public class MessageContentProcessor {
         threadId = SignalDatabase.threads().getOrCreateThreadIdFor(getSyncMessageDestination(message));
       } else if (dataMessage.getRemoteDelete().isPresent()) {
         handleRemoteDelete(content, dataMessage, senderRecipient, processingEarlyContent);
-      } else if (dataMessage.getAttachments().isPresent() || dataMessage.getQuote().isPresent() || dataMessage.getPreviews().isPresent() || dataMessage.getSticker().isPresent() || dataMessage.isViewOnce() || dataMessage.getMentions().isPresent()) {
+      } else if (dataMessage.getAttachments().isPresent() || dataMessage.getQuote().isPresent() || dataMessage.getPreviews().isPresent() || dataMessage.getSticker().isPresent() || dataMessage.isViewOnce() || dataMessage.getMentions().isPresent() || dataMessage.getBodyRanges().isPresent()) {
         threadId = handleSynchronizeSentMediaMessage(message, content.getTimestamp());
       } else {
         threadId = handleSynchronizeSentTextMessage(message, content.getTimestamp());
@@ -2094,12 +2169,14 @@ public class MessageContentProcessor {
       MmsMessageRecord                            story                = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
       Recipient                                   threadRecipient      = SignalDatabase.threads().getRecipientForThreadId(story.getThreadId());
       boolean                                     groupStory           = threadRecipient != null && threadRecipient.isActiveGroup();
+      BodyRangeList                               bodyRanges           = null;
       String                                      body;
 
       if (reaction.isPresent() && EmojiUtil.isEmoji(reaction.get().getEmoji())) {
         body = reaction.get().getEmoji();
       } else {
-        body = message.getDataMessage().get().getBody().orElse(null);
+        body       = message.getDataMessage().get().getBody().orElse(null);
+        bodyRanges = getBodyRangeList(message.getDataMessage().get().getBodyRanges());
       }
 
       if (message.getDataMessage().get().getGroupContext().isPresent()) {
@@ -2107,15 +2184,15 @@ public class MessageContentProcessor {
       } else if (groupStory || story.getStoryType().isStoryWithReplies()) {
         parentStoryId   = new ParentStoryId.DirectReply(storyMessageId.getId());
 
-        String        quoteBody  = "";
-        BodyRangeList bodyRanges = null;
+        String        quoteBody        = "";
+        BodyRangeList quotedBodyRanges = null;
 
         if (story.getStoryType().isTextStory()) {
-          quoteBody  = story.getBody();
-          bodyRanges = story.getMessageRanges();
+          quoteBody        = story.getBody();
+          quotedBodyRanges = story.getMessageRanges();
         }
 
-        quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, quoteBody, false, story.getSlideDeck().asAttachments(), Collections.emptyList(), QuoteModel.Type.NORMAL, bodyRanges);
+        quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, quoteBody, false, story.getSlideDeck().asAttachments(), Collections.emptyList(), QuoteModel.Type.NORMAL, quotedBodyRanges);
         expiresInMillis = TimeUnit.SECONDS.toMillis(message.getDataMessage().get().getExpiresInSeconds());
       } else {
         warn(envelopeTimestamp, "Story has replies disabled. Dropping reply.");
@@ -2141,7 +2218,7 @@ public class MessageContentProcessor {
                                                          Collections.emptySet(),
                                                          null,
                                                          true,
-                                                         null,
+                                                         bodyRanges,
                                                          -1);
 
       if (recipient.getExpiresInSeconds() != message.getDataMessage().get().getExpiresInSeconds()) {
@@ -2205,6 +2282,7 @@ public class MessageContentProcessor {
     Set<DistributionId>       distributionIds = manifest.getDistributionIdSet();
     Optional<GroupId>         groupId         = storyMessage.getGroupContext().map(it -> GroupId.v2(it.getMasterKey()));
     String                    textStoryBody   = storyMessage.getTextAttachment().map(this::serializeTextAttachment).orElse(null);
+    BodyRangeList             bodyRanges      = getBodyRangeList(storyMessage.getBodyRanges());
     StoryType                 storyType       = getStoryType(storyMessage);
     List<LinkPreview>         linkPreviews    = getLinkPreviews(storyMessage.getTextAttachment().flatMap(t -> t.getPreview().map(Collections::singletonList)),
                                                                 "",
@@ -2216,13 +2294,13 @@ public class MessageContentProcessor {
     for (final DistributionId distributionId : distributionIds) {
       RecipientId distributionRecipientId   = SignalDatabase.distributionLists().getOrCreateByDistributionId(distributionId, manifest);
       Recipient   distributionListRecipient = Recipient.resolved(distributionRecipientId);
-      insertSentStoryMessage(message, distributionListRecipient, textStoryBody, attachments, message.getTimestamp(), storyType, linkPreviews);
+      insertSentStoryMessage(message, distributionListRecipient, textStoryBody, attachments, message.getTimestamp(), storyType, linkPreviews, bodyRanges);
     }
 
     if (groupId.isPresent()) {
       Optional<RecipientId> groupRecipient = SignalDatabase.recipients().getByGroupId(groupId.get());
       if (groupRecipient.isPresent()) {
-        insertSentStoryMessage(message, Recipient.resolved(groupRecipient.get()), textStoryBody, attachments, message.getTimestamp(), storyType, linkPreviews);
+        insertSentStoryMessage(message, Recipient.resolved(groupRecipient.get()), textStoryBody, attachments, message.getTimestamp(), storyType, linkPreviews, bodyRanges);
       }
     }
 
@@ -2235,7 +2313,8 @@ public class MessageContentProcessor {
                                       @NonNull List<Attachment> pendingAttachments,
                                       long sentAtTimestamp,
                                       @NonNull StoryType storyType,
-                                      @NonNull List<LinkPreview> linkPreviews)
+                                      @NonNull List<LinkPreview> linkPreviews,
+                                      @Nullable BodyRangeList bodyRanges)
       throws MmsException
   {
     if (SignalDatabase.messages().isOutgoingStoryAlreadyInDatabase(recipient.getId(), sentAtTimestamp)) {
@@ -2262,7 +2341,7 @@ public class MessageContentProcessor {
                                                        Collections.emptySet(),
                                                        null,
                                                        true,
-                                                       null,
+                                                       bodyRanges,
                                                        -1);
 
     MessageTable messageTable = SignalDatabase.messages();
@@ -2335,6 +2414,7 @@ public class MessageContentProcessor {
     Optional<List<Mention>>     mentions        = getMentions(message.getDataMessage().get().getMentions());
     Optional<GiftBadge>         giftBadge       = getGiftBadge(message.getDataMessage().get().getGiftBadge());
     boolean                     viewOnce        = message.getDataMessage().get().isViewOnce();
+    BodyRangeList               bodyRanges      = getBodyRangeList(message.getDataMessage().get().getBodyRanges());
     List<Attachment>            syncAttachments = viewOnce ? Collections.singletonList(new TombstoneAttachment(MediaUtil.VIEW_ONCE, false))
                                                            : PointerAttachment.forPointers(message.getDataMessage().get().getAttachments());
 
@@ -2361,7 +2441,7 @@ public class MessageContentProcessor {
                                                        Collections.emptySet(),
                                                        giftBadge.orElse(null),
                                                        true,
-                                                       null,
+                                                       bodyRanges,
                                                        -1);
 
     if (recipients.getExpiresInSeconds() != message.getDataMessage().get().getExpiresInSeconds()) {
@@ -2567,7 +2647,8 @@ public class MessageContentProcessor {
                                                             Collections.emptyList(),
                                                             Collections.emptyList(),
                                                             true,
-                                                            bodyRanges);
+                                                            bodyRanges,
+                                                            Collections.emptyList());
 
       messageId = SignalDatabase.messages().insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null);
       database  = SignalDatabase.messages();
@@ -2874,7 +2955,7 @@ public class MessageContentProcessor {
       ApplicationDependencies.getTypingStatusRepository().onTypingStarted(context,threadId, senderRecipient, content.getSenderDevice());
     } else {
       Log.d(TAG, "Typing stopped on thread " + threadId);
-      ApplicationDependencies.getTypingStatusRepository().onTypingStopped(context, threadId, senderRecipient, content.getSenderDevice(), false);
+      ApplicationDependencies.getTypingStatusRepository().onTypingStopped(threadId, senderRecipient, content.getSenderDevice(), false);
     }
   }
 
@@ -3182,7 +3263,7 @@ public class MessageContentProcessor {
   }
 
   private @Nullable BodyRangeList getBodyRangeList(Optional<List<SignalServiceProtos.BodyRange>> bodyRanges) {
-    if (!bodyRanges.isPresent()) {
+    if (bodyRanges.isEmpty()) {
       return null;
     }
 
@@ -3252,11 +3333,11 @@ public class MessageContentProcessor {
   }
 
   private void notifyTypingStoppedFromIncomingMessage(@NonNull Recipient senderRecipient, @NonNull Recipient conversationRecipient, int device) {
-    long threadId = SignalDatabase.threads().getOrCreateThreadIdFor(conversationRecipient);
+    long threadId = SignalDatabase.threads().getThreadIdIfExistsFor(conversationRecipient.getId());
 
     if (threadId > 0 && TextSecurePreferences.isTypingIndicatorsEnabled(context)) {
       Log.d(TAG, "Typing stopped on thread " + threadId + " due to an incoming message.");
-      ApplicationDependencies.getTypingStatusRepository().onTypingStopped(context, threadId, senderRecipient, device, true);
+      ApplicationDependencies.getTypingStatusRepository().onTypingStopped(threadId, senderRecipient, device, true);
     }
   }
 
@@ -3398,13 +3479,11 @@ public class MessageContentProcessor {
     }
   }
 
-
-  @SuppressWarnings("WeakerAccess")
-  private static class StorageFailedException extends Exception {
+  static class StorageFailedException extends Exception {
     private final String sender;
     private final int    senderDevice;
 
-    private StorageFailedException(Exception e, String sender, int senderDevice) {
+    StorageFailedException(Exception e, String sender, int senderDevice) {
       super(e);
       this.sender       = sender;
       this.senderDevice = senderDevice;

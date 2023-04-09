@@ -607,6 +607,8 @@ message SyncMessage {
       UNKNOWN_TYPE = 0;
       AUDIO_CALL   = 1;
       VIDEO_CALL   = 2;
+      GROUP_CALL   = 3;
+      AD_HOC_CALL  = 4;
     }
 
     enum Direction {
@@ -619,14 +621,15 @@ message SyncMessage {
       UNKNOWN_ACTION = 0;
       ACCEPTED       = 1;
       NOT_ACCEPTED   = 2;
+      DELETE         = 3;
     }
 
-    optional bytes     peerUuid  = 1;
-    optional uint64    id        = 2;
-    optional uint64    timestamp = 3;
-    optional Type      type      = 4;
-    optional Direction direction = 5;
-    optional Event     event     = 6;
+    optional bytes     conversationId = 1;
+    optional uint64    id             = 2;
+    optional uint64    timestamp      = 3;
+    optional Type      type           = 4;
+    optional Direction direction      = 5;
+    optional Event     event          = 6;
   }
 
   optional Sent                   sent                   = 1;

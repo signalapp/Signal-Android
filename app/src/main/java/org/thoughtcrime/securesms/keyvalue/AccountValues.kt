@@ -25,7 +25,6 @@ import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceIds
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import java.lang.IllegalStateException
 import java.security.SecureRandom
 
 internal class AccountValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {

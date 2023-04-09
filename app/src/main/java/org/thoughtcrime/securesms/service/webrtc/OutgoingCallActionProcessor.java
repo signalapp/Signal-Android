@@ -85,12 +85,12 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
     RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, Recipient.resolved(remotePeer.getId()), SignalDatabase.threads().getThreadIdIfExistsFor(remotePeer.getId()));
 
-    SignalDatabase.calls().insertCall(remotePeer.getCallId().longValue(),
-                                      System.currentTimeMillis(),
-                                      remotePeer.getId(),
+    SignalDatabase.calls().insertOneToOneCall(remotePeer.getCallId().longValue(),
+                                              System.currentTimeMillis(),
+                                              remotePeer.getId(),
                                       isVideoCall ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL,
-                                      CallTable.Direction.OUTGOING,
-                                      CallTable.Event.ONGOING);
+                                              CallTable.Direction.OUTGOING,
+                                              CallTable.Event.ONGOING);
 
     EglBaseWrapper.replaceHolder(EglBaseWrapper.OUTGOING_PLACEHOLDER, remotePeer.getCallId().longValue());
 

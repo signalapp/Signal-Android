@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util
 
+import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
@@ -29,7 +30,7 @@ object LocalMetrics {
   private val eventsById: MutableMap<String, LocalMetricsEvent> = LRUCache(200)
   private val lastSplitTimeById: MutableMap<String, Long> = LRUCache(200)
 
-  private val executor: Executor = SignalExecutors.newCachedSingleThreadExecutor("signal-LocalMetrics")
+  private val executor: Executor = SignalExecutors.newCachedSingleThreadExecutor("signal-LocalMetrics", ThreadUtil.PRIORITY_BACKGROUND_THREAD)
   private val db: LocalMetricsDatabase by lazy { LocalMetricsDatabase.getInstance(ApplicationDependencies.getApplication()) }
 
   @JvmStatic

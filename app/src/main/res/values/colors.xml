@@ -8,6 +8,8 @@
     <color name="story_gradient_start">#99000000</color>
     <color name="story_caption_gradient_start">#CC000000</color>
 
+    <color name="webrtc_hangup_background">#F07168</color>
+
     <color name="transparent_black_05">#0D000000</color>
     <color name="transparent_black_08">#14000000</color>
     <color name="transparent_black_10">#18000000</color>

@@ -10,6 +10,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.asynclayoutinflater.appcompat.AsyncAppCompatFactory;
 import androidx.asynclayoutinflater.view.AsyncLayoutInflater;
 
 import org.signal.core.util.ThreadUtil;
@@ -116,7 +117,7 @@ public class CachedInflater {
         layoutDirection        = currentLayoutDirection;
       }
 
-      AsyncLayoutInflater inflater = new AsyncLayoutInflater(context);
+      AsyncLayoutInflater inflater = new AsyncLayoutInflater(context, new AsyncAppCompatFactory());
 
       int  existingCount = Util.getOrDefault(cache, layoutRes, Collections.emptyList()).size();
       int  inflateCount  = Math.max(limit - existingCount, 0);

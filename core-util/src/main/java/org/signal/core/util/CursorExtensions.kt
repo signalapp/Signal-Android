@@ -162,4 +162,12 @@ inline fun <T> Cursor.firstOrNull(predicate: (T) -> Boolean = { true }, mapper: 
   return null
 }
 
+inline fun Cursor.forEach(operation: (Cursor) -> Unit) {
+  use {
+    while (moveToNext()) {
+      operation(this)
+    }
+  }
+}
+
 fun Boolean.toInt(): Int = if (this) 1 else 0

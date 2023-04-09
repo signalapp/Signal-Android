@@ -1,13 +1,10 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob;
-import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 
 /**
@@ -49,7 +46,7 @@ public final class StorageServiceSystemNameMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<StorageServiceSystemNameMigrationJob> {
     @Override
-    public @NonNull StorageServiceSystemNameMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull StorageServiceSystemNameMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new StorageServiceSystemNameMigrationJob(parameters);
     }
   }

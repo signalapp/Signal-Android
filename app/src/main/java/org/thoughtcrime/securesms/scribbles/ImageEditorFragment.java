@@ -59,6 +59,10 @@ import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.scribbles.stickers.AnalogClockStickerRenderer;
+import org.thoughtcrime.securesms.scribbles.stickers.DigitalClockStickerRenderer;
+import org.thoughtcrime.securesms.scribbles.stickers.FeatureSticker;
+import org.thoughtcrime.securesms.scribbles.stickers.TappableRenderer;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -289,6 +293,10 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       imageEditorHud.enterMode(ImageEditorHudV2.Mode.CROP);
     }
 
+    if (mode == Mode.AVATAR_EDIT) {
+      imageEditorHud.enterMode(ImageEditorHudV2.Mode.DRAW);
+    }
+
     imageEditorView.setModel(editorModel);
 
     if (!SignalStore.tooltips().hasSeenBlurHudIconTooltip()) {
@@ -413,10 +421,25 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (resultCode == RESULT_OK && requestCode == SELECT_STICKER_REQUEST_CODE && data != null) {
-      final Uri uri = data.getData();
-      if (uri != null) {
-        UriGlideRenderer renderer = new UriGlideRenderer(uri, true, imageMaxWidth, imageMaxHeight);
-        EditorElement    element  = new EditorElement(renderer, EditorModel.Z_STICKERS);
+      Renderer renderer = null;
+      if (data.hasExtra(ImageEditorStickerSelectActivity.EXTRA_FEATURE_STICKER)) {
+        FeatureSticker sticker = FeatureSticker.fromType(data.getStringExtra(ImageEditorStickerSelectActivity.EXTRA_FEATURE_STICKER));
+        switch (sticker) {
+          case DIGITAL_CLOCK:
+            renderer = new DigitalClockStickerRenderer(System.currentTimeMillis());
+            break;
+          case ANALOG_CLOCK:
+            renderer = new AnalogClockStickerRenderer(System.currentTimeMillis());
+            break;
+        }
+      } else {
+        final Uri uri = data.getData();
+        if (uri != null) {
+          renderer = new UriGlideRenderer(uri, true, imageMaxWidth, imageMaxHeight);
+        }
+      }
+      if (renderer != null) {
+        EditorElement element = new EditorElement(renderer, EditorModel.Z_STICKERS);
         imageEditorView.getModel().addElementCentered(element, 0.4f);
         setCurrentSelection(element);
         hasMadeAnEditThisSession = true;
@@ -1002,6 +1025,9 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
         if (editorElement.getRenderer() instanceof MultiLineTextRenderer) {
           setTextElement(editorElement, (ColorableRenderer) editorElement.getRenderer(), imageEditorView.isTextEditing());
         } else {
+          if (editorElement.getRenderer() instanceof TappableRenderer) {
+            ((TappableRenderer) editorElement.getRenderer()).onTapped();
+          }
           imageEditorHud.setMode(ImageEditorHudV2.Mode.MOVE_STICKER);
         }
       } else {

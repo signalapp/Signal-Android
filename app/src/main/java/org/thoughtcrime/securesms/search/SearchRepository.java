@@ -256,11 +256,11 @@ public class SearchRepository {
 
         if (ranges != null) {
           updatedBody = SpannableString.valueOf(updatedBody);
-          MessageStyler.style(BodyRangeUtil.adjustBodyRanges(ranges, bodyAdjustments), (Spannable) updatedBody);
+          MessageStyler.style(result.getReceivedTimestampMs(), BodyRangeUtil.adjustBodyRanges(ranges, bodyAdjustments), (Spannable) updatedBody);
 
           updatedSnippet = SpannableString.valueOf(updatedSnippet);
           //noinspection ConstantConditions
-          updateSnippetWithStyles(updatedBody, (SpannableString) updatedSnippet, BodyRangeUtil.adjustBodyRanges(ranges, snippetAdjustments));
+          updateSnippetWithStyles(result.getReceivedTimestampMs(), updatedBody, (SpannableString) updatedSnippet, BodyRangeUtil.adjustBodyRanges(ranges, snippetAdjustments));
         }
 
         updatedResults.add(new MessageResult(result.getConversationRecipient(), result.getMessageRecipient(), updatedBody, updatedSnippet, result.getThreadId(), result.getMessageId(), result.getReceivedTimestampMs(), result.isMms()));
@@ -302,7 +302,7 @@ public class SearchRepository {
     }
   }
 
-  private void updateSnippetWithStyles(@NonNull CharSequence body, @NonNull SpannableString bodySnippet, @NonNull BodyRangeList bodyRanges) {
+  private void updateSnippetWithStyles(long id, @NonNull CharSequence body, @NonNull SpannableString bodySnippet, @NonNull BodyRangeList bodyRanges) {
     CharSequence cleanSnippet = bodySnippet;
     int          startOffset  = 0;
 
@@ -321,12 +321,12 @@ public class SearchRepository {
       BodyRangeList.Builder builder = BodyRangeList.newBuilder();
       for (BodyRangeList.BodyRange range : bodyRanges.getRangesList()) {
         int adjustedStart = range.getStart() - startIndex + startOffset;
-        if (adjustedStart >= 0 && adjustedStart + range.getLength() <= cleanSnippet.length()) {
+        if (adjustedStart >= 0 && adjustedStart + range.getLength() <= bodySnippet.length()) {
           builder.addRanges(range.toBuilder().setStart(adjustedStart).build());
         }
       }
 
-      MessageStyler.style(builder.build(), bodySnippet);
+      MessageStyler.style(id, builder.build(), bodySnippet);
     }
   }
 
@@ -361,7 +361,7 @@ public class SearchRepository {
           SpannableString body = new SpannableString(record.getBody());
 
           if (bodyRanges != null) {
-            MessageStyler.style(bodyRanges, body);
+            MessageStyler.style(record.getDateSent(), bodyRanges, body);
           }
 
           CharSequence updatedBody    = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, body, mentions).getBody();
@@ -411,9 +411,9 @@ public class SearchRepository {
     for (String query : queries) {
       int foundIndex = lowerBody.indexOf(query.toLowerCase());
       if (foundIndex != -1) {
-        int snippetStart = Math.max(0, Math.max(lowerBody.lastIndexOf(' ', foundIndex - 5) + 1, foundIndex - 15));
-        int lastSpace    = lowerBody.indexOf(' ', foundIndex + 30);
-        int snippetEnd   = Math.min(lowerBody.length(), lastSpace > 0 ? Math.min(lastSpace, foundIndex + 40) : foundIndex + 40);
+        int snippetStart = Math.max(0, Math.max(TextUtils.lastIndexOf(styledBody,' ', foundIndex - 5) + 1, foundIndex - 15));
+        int lastSpace    = TextUtils.indexOf(styledBody, ' ', foundIndex + 30);
+        int snippetEnd   = Math.min(styledBody.length(), lastSpace > 0 ? Math.min(lastSpace, foundIndex + 40) : foundIndex + 40);
 
         return new SpannableStringBuilder().append(snippetStart > 0 ? SNIPPET_WRAP : "")
                                            .append(styledBody.subSequence(snippetStart, snippetEnd))

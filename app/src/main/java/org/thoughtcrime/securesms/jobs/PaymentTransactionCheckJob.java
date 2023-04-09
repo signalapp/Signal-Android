@@ -1,12 +1,13 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -134,12 +135,11 @@ public final class PaymentTransactionCheckJob extends BaseJob {
            e instanceof IOException;
   }
 
-  @NonNull
   @Override
-  public Data serialize() {
-    return new Data.Builder()
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder()
                    .putString(KEY_UUID, uuid.toString())
-                   .build();
+                   .serialize();
   }
 
   @NonNull
@@ -158,7 +158,9 @@ public final class PaymentTransactionCheckJob extends BaseJob {
   public static class Factory implements Job.Factory<PaymentTransactionCheckJob> {
 
     @Override
-    public @NonNull PaymentTransactionCheckJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull PaymentTransactionCheckJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       return new PaymentTransactionCheckJob(parameters,
                                             UUID.fromString(data.getString(KEY_UUID)));
     }

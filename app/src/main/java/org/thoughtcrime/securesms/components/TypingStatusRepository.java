@@ -62,12 +62,12 @@ public class TypingStatusRepository {
       ThreadUtil.cancelRunnableOnMain(timer);
     }
 
-    timer = () -> onTypingStopped(context, threadId, author, device, false);
+    timer = () -> onTypingStopped(threadId, author, device, false);
     ThreadUtil.runOnMainDelayed(timer, RECIPIENT_TYPING_TIMEOUT);
     timers.put(typist, timer);
   }
 
-  public synchronized void onTypingStopped(@NonNull Context context, long threadId, @NonNull Recipient author, int device, boolean isReplacedByIncomingMessage) {
+  public synchronized void onTypingStopped(long threadId, @NonNull Recipient author, int device, boolean isReplacedByIncomingMessage) {
     if (author.isSelf()) {
       return;
     }

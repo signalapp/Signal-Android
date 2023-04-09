@@ -67,10 +67,10 @@
             android:layout_marginEnd="32dp"
             android:textAppearance="@style/Signal.Text.BodyLarge"
             android:textColor="@color/signal_colorOnSurfaceVariant"
+            android:text="@string/UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/username_education_icon_1"
-            app:layout_constraintTop_toTopOf="@id/username_education_icon_1"
-            tools:text="Usernames are paired with a set of digits and aren’t shared on your profile" />
+            app:layout_constraintTop_toTopOf="@id/username_education_icon_1" />
 
         <ImageView
             android:id="@+id/username_education_icon_2"
@@ -91,10 +91,10 @@
             android:layout_marginEnd="32dp"
             android:textAppearance="@style/Signal.Text.BodyLarge"
             android:textColor="@color/signal_colorOnSurfaceVariant"
+            android:text="@string/UsernameEducationFragment__each_username_has_a_unique_qr_code"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/username_education_icon_2"
-            app:layout_constraintTop_toTopOf="@id/username_education_icon_2"
-            tools:text="Each username has a unique link you can share with your friends to start a chat with you" />
+            app:layout_constraintTop_toTopOf="@id/username_education_icon_2" />
 
         <ImageView
             android:id="@+id/username_education_icon_3"
@@ -115,11 +115,10 @@
             android:layout_marginEnd="32dp"
             android:textAppearance="@style/Signal.Text.BodyLarge"
             android:textColor="@color/signal_colorOnSurfaceVariant"
+            android:text="@string/UsernameEducationFragment__turn_off_phone_number_discovery"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/username_education_icon_3"
-            app:layout_constraintTop_toTopOf="@id/username_education_icon_3"
-            tools:text="Turn off phone number discovery under Settings > Phone Number > Who can find my number, to use your username as the primary way
-others can contact you." />
+            app:layout_constraintTop_toTopOf="@id/username_education_icon_3" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/username_education_row_3_barrier"

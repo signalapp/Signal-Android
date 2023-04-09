@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -39,8 +40,8 @@ public final class SubmitRateLimitPushChallengeJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_CHALLENGE, challenge).build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_CHALLENGE, challenge).serialize();
   }
 
   @Override
@@ -70,7 +71,8 @@ public final class SubmitRateLimitPushChallengeJob extends BaseJob {
 
   public static class Factory implements Job.Factory<SubmitRateLimitPushChallengeJob> {
     @Override
-    public @NonNull SubmitRateLimitPushChallengeJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull SubmitRateLimitPushChallengeJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
       return new SubmitRateLimitPushChallengeJob(parameters, data.getString(KEY_CHALLENGE));
     }
   }

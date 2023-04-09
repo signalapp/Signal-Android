@@ -8,7 +8,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 import org.thoughtcrime.securesms.jobs.FailingJob;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
@@ -39,16 +39,15 @@ public class PushDecryptMessageJobEnvelopeMigration extends JobMigration {
   }
 
   private static @NonNull JobData migratePushDecryptMessageJob(@NonNull PushTable pushDatabase, @NonNull JobData jobData) {
-    Data data = jobData.getData();
+    JsonJobData data = JsonJobData.deserialize(jobData.getData());
 
     if (data.hasLong("message_id")) {
       long messageId = data.getLong("message_id");
       try {
         SignalServiceEnvelope envelope = pushDatabase.get(messageId);
-        return jobData.withData(jobData.getData()
-                                       .buildUpon()
-                                       .putBlobAsString("envelope", envelope.serialize())
-                                       .build());
+        return jobData.withData(data.buildUpon()
+                                    .putBlobAsString("envelope", envelope.serialize())
+                                    .serialize());
       } catch (NoSuchMessageException e) {
         Log.w(TAG, "Failed to find envelope in DB! Failing.");
         return jobData.withFactoryKey(FailingJob.KEY);

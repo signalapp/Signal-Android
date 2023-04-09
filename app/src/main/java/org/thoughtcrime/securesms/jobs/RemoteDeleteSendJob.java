@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
@@ -109,11 +109,11 @@ public class RemoteDeleteSendJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
-                             .putString(KEY_RECIPIENTS, RecipientId.toSerializedList(recipients))
-                             .putInt(KEY_INITIAL_RECIPIENT_COUNT, initialRecipientCount)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId)
+                                    .putString(KEY_RECIPIENTS, RecipientId.toSerializedList(recipients))
+                                    .putInt(KEY_INITIAL_RECIPIENT_COUNT, initialRecipientCount)
+                                    .serialize();
   }
 
   @Override
@@ -225,7 +225,9 @@ public class RemoteDeleteSendJob extends BaseJob {
   public static class Factory implements Job.Factory<RemoteDeleteSendJob> {
 
     @Override
-    public @NonNull RemoteDeleteSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull RemoteDeleteSendJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       long              messageId             = data.getLong(KEY_MESSAGE_ID);
       List<RecipientId> recipients            = RecipientId.fromSerializedList(data.getString(KEY_RECIPIENTS));
       int               initialRecipientCount = data.getInt(KEY_INITIAL_RECIPIENT_COUNT);

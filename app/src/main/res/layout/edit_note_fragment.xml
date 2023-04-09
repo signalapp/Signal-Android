@@ -29,6 +29,16 @@
         android:maxLength="40"
         android:singleLine="true" />
 
+    <TextView
+        android:id="@+id/character_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:paddingHorizontal="16dp"
+        android:textColor="@color/signal_text_secondary"
+        tools:text="40/40"
+        tools:visibility="visible" />
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -41,6 +51,7 @@
         android:layout_gravity="end"
         android:layout_margin="16dp"
         android:tint="@color/core_white"
-        app:srcCompat="@drawable/ic_check_24" />
+        app:srcCompat="@drawable/ic_check_24"
+        android:contentDescription="@string/EditNoteFragment__content_description_save_note" />
 
 </LinearLayout>

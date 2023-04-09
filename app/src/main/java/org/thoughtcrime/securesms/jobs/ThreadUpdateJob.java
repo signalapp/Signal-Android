@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 
 public final class ThreadUpdateJob extends BaseJob {
@@ -34,8 +35,8 @@ public final class ThreadUpdateJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_THREAD_ID, threadId).build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_THREAD_ID, threadId).serialize();
   }
 
   @Override
@@ -60,7 +61,8 @@ public final class ThreadUpdateJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<ThreadUpdateJob> {
     @Override
-    public @NonNull ThreadUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull ThreadUpdateJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
       return new ThreadUpdateJob(parameters, data.getLong(KEY_THREAD_ID));
     }
   }

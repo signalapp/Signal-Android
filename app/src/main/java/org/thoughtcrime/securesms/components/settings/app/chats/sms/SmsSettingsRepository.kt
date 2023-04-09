@@ -18,7 +18,7 @@ class SmsSettingsRepository(
 
   @WorkerThread
   private fun checkInsecureMessageCount(): SmsExportState? {
-    val totalSmsMmsCount = smsDatabase.insecureMessageCount + mmsDatabase.insecureMessageCount
+    val totalSmsMmsCount = smsDatabase.getInsecureMessageCount() + mmsDatabase.getInsecureMessageCount()
 
     return if (totalSmsMmsCount == 0) {
       SmsExportState.NO_SMS_MESSAGES_IN_DATABASE
@@ -29,7 +29,7 @@ class SmsSettingsRepository(
 
   @WorkerThread
   private fun checkUnexportedInsecureMessageCount(): SmsExportState {
-    val totalUnexportedCount = smsDatabase.unexportedInsecureMessagesCount + mmsDatabase.unexportedInsecureMessagesCount
+    val totalUnexportedCount = smsDatabase.getUnexportedInsecureMessagesCount() + mmsDatabase.getUnexportedInsecureMessagesCount()
 
     return if (totalUnexportedCount > 0) {
       SmsExportState.HAS_UNEXPORTED_MESSAGES

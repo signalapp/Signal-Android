@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager
+import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
@@ -211,8 +212,8 @@ class UploadDependencyGraphTest {
     if (expectedCopyDestinationCount > 0) {
       assertTrue(steps[3][0] is AttachmentCopyJob)
 
-      val uploadData = steps[2][0].serialize()
-      val copyData = steps[3][0].serialize()
+      val uploadData = JsonJobData.deserialize(steps[2][0].serialize())
+      val copyData = JsonJobData.deserialize(steps[3][0].serialize())
 
       val uploadAttachmentId = AttachmentId(uploadData.getLong("row_id"), uploadData.getLong("unique_id"))
       val copySourceAttachmentId = JsonUtils.fromJson(copyData.getString("source_id"), AttachmentId::class.java)

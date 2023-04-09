@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 
 /**
@@ -44,7 +44,7 @@ public class DatabaseMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<DatabaseMigrationJob> {
     @Override
-    public @NonNull DatabaseMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull DatabaseMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new DatabaseMigrationJob(parameters);
     }
   }

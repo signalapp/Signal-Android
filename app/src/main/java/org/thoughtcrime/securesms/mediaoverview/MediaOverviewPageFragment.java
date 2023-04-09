@@ -261,7 +261,8 @@ public final class MediaOverviewPageFragment extends Fragment
               DimensionUnit.DP.toDp(12),
               DimensionUnit.DP.toDp(12),
               DimensionUnit.DP.toDp(12)
-          ));
+          ),
+          false);
       view.setTransitionName(MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME);
       ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), view, MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME);
       context.startActivity(MediaIntentFactory.create(context, args), options.toBundle());

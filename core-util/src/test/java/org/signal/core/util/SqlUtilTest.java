@@ -18,6 +18,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
@@ -164,9 +165,9 @@ public final class SqlUtilTest {
     assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.get(0).getWhereArgs());
   }
 
-  @Test(expected = IllegalArgumentException.class)
   public void buildCollectionQuery_none() {
-    SqlUtil.buildCollectionQuery("a", Collections.emptyList());
+    List<SqlUtil.Query> results = SqlUtil.buildCollectionQuery("a", Collections.emptyList());
+    assertTrue(results.isEmpty());
   }
 
   @Test
@@ -279,6 +280,16 @@ public final class SqlUtilTest {
 
     assertEquals("INSERT INTO mytable (a, b) VALUES (?, ?)", output.get(1).getWhere());
     assertArrayEquals(new String[] { "5", "6" }, output.get(1).getWhereArgs());
+  }
+
+  @Test
+  public void aggregateQueries() {
+    SqlUtil.Query q1 = SqlUtil.buildQuery("a = ?", 1);
+    SqlUtil.Query q2 = SqlUtil.buildQuery("b = ?", 2);
+    SqlUtil.Query q3 = q1.and(q2);
+
+    assertEquals("(a = ?) AND (b = ?)", q3.getWhere());
+    assertArrayEquals(new String[]{"1", "2"}, q3.getWhereArgs());
   }
 
   private static byte[] hexToBytes(String hex) {

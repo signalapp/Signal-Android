@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference;
 /**
  * Maintains a weak reference to the an invalidate callback allowing future invalidation without memory leak risk.
  */
-abstract class InvalidateableRenderer implements Renderer {
+public abstract class InvalidateableRenderer implements Renderer {
 
   private WeakReference<RendererContext.Invalidate> invalidate = new WeakReference<>(null);
 

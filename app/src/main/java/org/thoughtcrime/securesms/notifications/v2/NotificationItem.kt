@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.notifications.v2
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
+import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.TextUtils
 import androidx.annotation.StringRes
@@ -13,9 +14,11 @@ import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.database.MentionUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadBodyUtil
+import org.thoughtcrime.securesms.database.adjustBodyRanges
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
@@ -156,6 +159,29 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
       record.isRemoteDelete == other.record.isRemoteDelete
   }
 
+  protected fun getBodyWithMentionsAndStyles(context: Context, record: MessageRecord): CharSequence {
+    val updated = MentionUtil.updateBodyWithDisplayNames(context, record)
+    var updatedText: CharSequence = SpannableString(updated.body ?: "")
+
+    val spoilerRanges: List<BodyRangeList.BodyRange>? = record
+      .messageRanges
+      .adjustBodyRanges(updated.bodyAdjustments)
+      ?.run {
+        rangesList
+          .filter { it.style == BodyRangeList.BodyRange.Style.SPOILER }
+          .sortedBy { it.start }
+          .reversed()
+      }
+
+    if (spoilerRanges?.isNotEmpty() == true) {
+      for (spoiler in spoilerRanges) {
+        updatedText = updatedText.replaceRange(spoiler.start.coerceAtMost(updatedText.length - 1), (spoiler.start + spoiler.length).coerceAtMost(updatedText.length), "■■■■")
+      }
+    }
+
+    return updatedText
+  }
+
   private fun CharSequence?.trimToDisplayLength(): CharSequence {
     val text: CharSequence = this ?: ""
     return if (text.length <= MAX_DISPLAY_LENGTH) {
@@ -203,7 +229,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
     } else if (record.isPaymentNotification) {
       ThreadBodyUtil.getFormattedBodyFor(context, record).body
     } else {
-      MentionUtil.updateBodyWithDisplayNames(context, record) ?: ""
+      getBodyWithMentionsAndStyles(context, record)
     }
   }
 
@@ -299,7 +325,7 @@ class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, va
   }
 
   private fun getReactionMessageBody(context: Context): CharSequence {
-    val body: CharSequence = MentionUtil.updateBodyWithDisplayNames(context, record) ?: ""
+    val body: CharSequence = getBodyWithMentionsAndStyles(context, record)
     val bodyIsEmpty: Boolean = TextUtils.isEmpty(body)
 
     return if (record.hasSharedContact()) {

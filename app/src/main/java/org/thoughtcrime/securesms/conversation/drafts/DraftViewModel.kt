@@ -3,8 +3,11 @@ package org.thoughtcrime.securesms.conversation.drafts
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.components.location.SignalPlace
+import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.DraftTable.Draft
 import org.thoughtcrime.securesms.database.MentionUtil
 import org.thoughtcrime.securesms.database.model.Mention
@@ -120,6 +123,12 @@ class DraftViewModel @JvmOverloads constructor(
       .doOnSuccess { drafts ->
         store.update { saveDrafts(it.copyAndSetDrafts(threadId, drafts.drafts)) }
       }
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun loadDraftQuote(serialized: String): Maybe<ConversationMessage> {
+    return repository.loadDraftQuote(serialized)
+      .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
   }
 }

@@ -104,7 +104,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_subhead" />
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
+            <com.google.android.material.materialswitch.MaterialSwitch
+                style="@style/Widget.Signal.CompoundButton.MaterialSwitch"
                 android:id="@+id/thanks_bottom_sheet_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="48sp"

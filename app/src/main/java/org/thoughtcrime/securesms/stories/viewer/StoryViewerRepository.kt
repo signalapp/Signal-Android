@@ -38,7 +38,7 @@ open class StoryViewerRepository {
   }
 
   fun getStories(hiddenStories: Boolean, isOutgoingOnly: Boolean): Single<List<RecipientId>> {
-    return Single.create<List<RecipientId>> { emitter ->
+    return Single.create { emitter ->
       val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
       val myStories = Recipient.resolved(myStoriesId)
       val releaseChannelId = SignalStore.releaseChannelValues().releaseChannelRecipientId

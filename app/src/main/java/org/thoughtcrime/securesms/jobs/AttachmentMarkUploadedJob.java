@@ -1,13 +1,14 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 
 import java.io.IOException;
@@ -46,11 +47,11 @@ public final class AttachmentMarkUploadedJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_ROW_ID, attachmentId.getRowId())
-                             .putLong(KEY_UNIQUE_ID, attachmentId.getUniqueId())
-                             .putLong(KEY_MESSAGE_ID, messageId)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_ROW_ID, attachmentId.getRowId())
+                                    .putLong(KEY_UNIQUE_ID, attachmentId.getUniqueId())
+                                    .putLong(KEY_MESSAGE_ID, messageId)
+                                    .serialize();
   }
 
   @Override
@@ -87,7 +88,9 @@ public final class AttachmentMarkUploadedJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<AttachmentMarkUploadedJob> {
     @Override
-    public @NonNull AttachmentMarkUploadedJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull AttachmentMarkUploadedJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       return new AttachmentMarkUploadedJob(parameters,
                                            data.getLong(KEY_MESSAGE_ID),
                                            new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)));

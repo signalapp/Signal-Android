@@ -60,6 +60,7 @@ public class MediaUtil {
   public static final String IMAGE_WEBP        = "image/webp";
   public static final String IMAGE_GIF         = "image/gif";
   public static final String AUDIO_AAC         = "audio/aac";
+  public static final String AUDIO_MP4         = "audio/mp4";
   public static final String AUDIO_UNSPECIFIED = "audio/*";
   public static final String VIDEO_MP4         = "video/mp4";
   public static final String VIDEO_UNSPECIFIED = "video/*";
@@ -108,6 +109,10 @@ public class MediaUtil {
   }
 
   public static @Nullable String getMimeType(@NonNull Context context, @Nullable Uri uri) {
+    return getMimeType(context, uri, null);
+  }
+
+  public static @Nullable String getMimeType(@NonNull Context context, @Nullable Uri uri, @Nullable String fileExtension) {
     if (uri == null) return null;
 
     if (PartAuthority.isLocalUri(uri)) {
@@ -116,8 +121,12 @@ public class MediaUtil {
 
     String type = context.getContentResolver().getType(uri);
     if (type == null || isOctetStream(type)) {
-      final String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
+      String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
+      if (TextUtils.isEmpty(extension) && fileExtension != null) {
+        extension = fileExtension;
+      }
       type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase());
+      return getCorrectedMimeType(type, fileExtension);
     }
 
     return getCorrectedMimeType(type);
@@ -128,14 +137,37 @@ public class MediaUtil {
                       .getExtensionFromMimeType(getMimeType(context, uri));
   }
 
+  private static String safeMimeTypeOverride(String originalType, String overrideType) {
+    if (MimeTypeMap.getSingleton().hasMimeType(overrideType)) {
+      return overrideType;
+    }
+    return originalType;
+  }
+
+  public static @Nullable String overrideMimeTypeWithExtension(@Nullable String mimeType, @Nullable String fileExtension) {
+    if (fileExtension == null) {
+      return mimeType;
+    }
+    switch (fileExtension.toLowerCase()) {
+      case "m4a":
+        return safeMimeTypeOverride(mimeType, AUDIO_MP4);
+      default:
+        return mimeType;
+    }
+  }
+
   public static @Nullable String getCorrectedMimeType(@Nullable String mimeType) {
+    return getCorrectedMimeType(mimeType, null);
+  }
+
+  public static @Nullable String getCorrectedMimeType(@Nullable String mimeType, @Nullable String fileExtension) {
     if (mimeType == null) return null;
 
     switch(mimeType) {
     case "image/jpg":
-      return MimeTypeMap.getSingleton().hasMimeType(IMAGE_JPEG)
-             ? IMAGE_JPEG
-             : mimeType;
+      return safeMimeTypeOverride(mimeType, IMAGE_JPEG);
+    case "audio/mpeg":
+      return overrideMimeTypeWithExtension(mimeType, fileExtension);
     default:
       return mimeType;
     }

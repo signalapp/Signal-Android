@@ -158,7 +158,7 @@ public final class SignalProxyUtil {
   private static boolean testWebsocketConnectionUnregistered(long timeout) {
     CountDownLatch              latch          = new CountDownLatch(1);
     AtomicBoolean               success        = new AtomicBoolean(false);
-    SignalServiceAccountManager accountManager = AccountManagerFactory.createUnauthenticated(ApplicationDependencies.getApplication(), "", SignalServiceAddress.DEFAULT_DEVICE_ID, "");
+    SignalServiceAccountManager accountManager = AccountManagerFactory.getInstance().createUnauthenticated(ApplicationDependencies.getApplication(), "", SignalServiceAddress.DEFAULT_DEVICE_ID, "");
 
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {

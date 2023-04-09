@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.migrations;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.backup.BackupFileIOError;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.BackupUtil;
@@ -61,7 +61,7 @@ public final class BackupNotificationMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<BackupNotificationMigrationJob> {
     @Override
-    public @NonNull BackupNotificationMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull BackupNotificationMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new BackupNotificationMigrationJob(parameters);
     }
   }

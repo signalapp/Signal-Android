@@ -134,7 +134,7 @@ class StoryTextPostView @JvmOverloads constructor(
     } else {
       val body = SpannableString(storyTextPost.body)
       if (font == TextFont.REGULAR && bodyRanges != null) {
-        MessageStyler.style(bodyRanges, body)
+        MessageStyler.style(System.currentTimeMillis(), bodyRanges, body)
       }
       setText(body, false)
     }

@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_conversationListFragment_to_storiesLandingFragment"
             app:destination="@id/storiesLandingFragment" />
+        <action
+            android:id="@+id/action_conversationListFragment_to_callLogFragment"
+            app:destination="@id/callLogFragment" />
     </fragment>
 
     <fragment
@@ -28,6 +31,27 @@
     <fragment
         android:id="@+id/storiesLandingFragment"
         android:name="org.thoughtcrime.securesms.stories.landing.StoriesLandingFragment"
-        android:label="stories_landing_fragment" />
+        android:label="stories_landing_fragment" >
+        <action
+            android:id="@+id/action_storiesLandingFragment_to_callLogFragment"
+            app:destination="@id/callLogFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/callLogFragment"
+        android:name="org.thoughtcrime.securesms.calls.log.CallLogFragment"
+        android:label="call_log_fragment" >
+        <action
+            android:id="@+id/action_callLogFragment_to_storiesLandingFragment"
+            app:destination="@id/storiesLandingFragment" />
+        <action
+            android:id="@+id/action_callLogFragment_to_createCallLinkBottomSheet"
+            app:destination="@id/createCallLinkBottomSheet" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/createCallLinkBottomSheet"
+        android:name="org.thoughtcrime.securesms.calls.links.CreateCallLinkBottomSheetDialogFragment"
+        android:label="create_call_link_bottom_sheet" />
 
 </navigation>

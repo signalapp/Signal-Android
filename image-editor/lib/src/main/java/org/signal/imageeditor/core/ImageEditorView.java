@@ -16,8 +16,6 @@ import android.widget.FrameLayout;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.TypedArrayUtils;
 import androidx.core.view.GestureDetectorCompat;
 
 import org.signal.imageeditor.R;
@@ -50,6 +48,9 @@ import java.util.List;
 public final class ImageEditorView extends FrameLayout {
 
   private static final int DEFAULT_BLACKOUT_COLOR = 0xFF000000;
+
+  /** Maximum distance squared a user can move the pointer before we consider a drag starting */
+  private static final int MAX_MOVE_SQUARED_BEFORE_DRAG = 10;
 
   private HiddenEditText editText;
 
@@ -94,6 +95,9 @@ public final class ImageEditorView extends FrameLayout {
   @Nullable
   private EditSession editSession;
   private boolean     moreThanOnePointerUsedInSession;
+  private PointF      touchDownStart;
+
+  private boolean inDrag;
 
   public ImageEditorView(Context context) {
     super(context);
@@ -268,13 +272,14 @@ public final class ImageEditorView extends FrameLayout {
         PointF        point    = getPoint(event);
         EditorElement selected = model.findElementAtPoint(point, viewMatrix, inverse);
 
+        inDrag = false;
         moreThanOnePointerUsedInSession = false;
+        touchDownStart = point;
         model.pushUndoPoint();
         editSession = startEdit(inverse, point, selected);
 
         if (editSession != null) {
           checkTrashIntersect(point);
-          notifyDragStart(editSession.getSelected());
         }
 
         if (tapListener != null && allowTaps()) {
@@ -303,7 +308,11 @@ public final class ImageEditorView extends FrameLayout {
           }
           model.moving(editSession.getSelected());
           invalidate();
-          notifyDragMove(editSession.getSelected(), checkTrashIntersect(getPoint(event)));
+          if (inDrag) {
+            notifyDragMove(editSession.getSelected(), checkTrashIntersect(getPoint(event)));
+          } else if (pointerCount == 1) {
+            checkDragStart(event);
+          }
           return true;
         }
         break;
@@ -353,7 +362,10 @@ public final class ImageEditorView extends FrameLayout {
                                  checkTrashIntersect(point)   &&
                                  model.findElementAtPoint(point, viewMatrix, new Matrix()) == editSession.getSelected();
 
-          notifyDragEnd(editSession.getSelected(), hittingTrash);
+          if (inDrag) {
+            notifyDragEnd(editSession.getSelected(), hittingTrash);
+            inDrag = false;
+          }
 
           editSession = null;
           model.postEdit(moreThanOnePointerUsedInSession);
@@ -384,6 +396,20 @@ public final class ImageEditorView extends FrameLayout {
         ((TrashRenderer) model.getTrash().getRenderer()).shrink();
       }
       return false;
+    }
+  }
+
+  private void checkDragStart(MotionEvent moveEvent) {
+    if (inDrag || editSession == null) {
+      return;
+    }
+    float dX = touchDownStart.x - moveEvent.getX();
+    float dY = touchDownStart.y - moveEvent.getY();
+
+    float distSquared = dX * dX + dY * dY;
+    if (distSquared > MAX_MOVE_SQUARED_BEFORE_DRAG) {
+      inDrag = true;
+      notifyDragStart(editSession.getSelected());
     }
   }
 

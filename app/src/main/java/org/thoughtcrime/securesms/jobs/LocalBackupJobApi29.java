@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.backup.BackupVerifier;
 import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -68,8 +68,8 @@ public final class LocalBackupJobApi29 extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return Data.EMPTY;
+  public @Nullable byte[] serialize() {
+    return null;
   }
 
   @Override
@@ -294,7 +294,7 @@ public final class LocalBackupJobApi29 extends BaseJob {
   public static class Factory implements Job.Factory<LocalBackupJobApi29> {
     @Override
     public @NonNull
-    LocalBackupJobApi29 create(@NonNull Parameters parameters, @NonNull Data data) {
+    LocalBackupJobApi29 create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new LocalBackupJobApi29(parameters);
     }
   }

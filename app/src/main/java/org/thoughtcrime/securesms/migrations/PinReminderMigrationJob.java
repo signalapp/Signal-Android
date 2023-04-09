@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
@@ -43,7 +43,7 @@ public class PinReminderMigrationJob extends MigrationJob {
   public static class Factory implements Job.Factory<PinReminderMigrationJob> {
 
     @Override
-    public @NonNull PinReminderMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull PinReminderMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new PinReminderMigrationJob(parameters);
     }
   }

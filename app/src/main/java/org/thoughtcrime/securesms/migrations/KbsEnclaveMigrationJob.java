@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.KbsEnclaveMigrationWorkerJob;
 
@@ -46,7 +46,7 @@ public class KbsEnclaveMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<KbsEnclaveMigrationJob> {
     @Override
-    public @NonNull KbsEnclaveMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull KbsEnclaveMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new KbsEnclaveMigrationJob(parameters);
     }
   }

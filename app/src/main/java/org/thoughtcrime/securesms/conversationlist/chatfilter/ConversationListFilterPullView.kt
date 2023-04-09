@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import androidx.annotation.StringRes
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
@@ -77,6 +78,10 @@ class ConversationListFilterPullView @JvmOverloads constructor(
 
   private val pillDefaultBackgroundTint = ContextCompat.getColor(context, R.color.signal_colorSecondaryContainer)
   private val pillWillCloseBackgroundTint = ContextCompat.getColor(context, R.color.signal_colorSurface1)
+
+  fun setPillText(@StringRes textId: Int) {
+    binding.filterText.setText(textId)
+  }
 
   override fun onSaveInstanceState(): Parcelable {
     val root = super.onSaveInstanceState()
@@ -275,11 +280,11 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     }
   }
 
-  interface OnFilterStateChanged {
+  fun interface OnFilterStateChanged {
     fun newState(state: FilterPullState, source: ConversationFilterSource)
   }
 
-  interface OnCloseClicked {
+  fun interface OnCloseClicked {
     fun onCloseClicked()
   }
 }

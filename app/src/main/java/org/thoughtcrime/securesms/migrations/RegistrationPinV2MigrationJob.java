@@ -3,10 +3,11 @@ package org.thoughtcrime.securesms.migrations;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidKeyException;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobs.BaseJob;
@@ -44,8 +45,8 @@ public final class RegistrationPinV2MigrationJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return Data.EMPTY;
+  public @Nullable byte[] serialize() {
+    return null;
   }
 
   @Override
@@ -84,7 +85,7 @@ public final class RegistrationPinV2MigrationJob extends BaseJob {
 
   public static class Factory implements Job.Factory<RegistrationPinV2MigrationJob> {
     @Override
-    public @NonNull RegistrationPinV2MigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull RegistrationPinV2MigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new RegistrationPinV2MigrationJob(parameters);
     }
   }

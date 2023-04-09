@@ -9,6 +9,7 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
@@ -17,7 +18,7 @@ import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -57,10 +58,10 @@ public class SmsSendJob extends SendJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
-                             .putInt(KEY_RUN_ATTEMPT, runAttempt)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId)
+                                    .putInt(KEY_RUN_ATTEMPT, runAttempt)
+                                    .serialize();
   }
 
   @Override
@@ -250,7 +251,8 @@ public class SmsSendJob extends SendJob {
 
   public static class Factory implements Job.Factory<SmsSendJob> {
     @Override
-    public @NonNull SmsSendJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
+    public @NonNull SmsSendJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
       return new SmsSendJob(parameters, data.getLong(KEY_MESSAGE_ID), data.getInt(KEY_RUN_ATTEMPT));
     }
   }

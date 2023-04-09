@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
@@ -51,7 +51,7 @@ public final class AttributesMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<AttributesMigrationJob> {
     @Override
-    public @NonNull AttributesMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull AttributesMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new AttributesMigrationJob(parameters);
     }
   }

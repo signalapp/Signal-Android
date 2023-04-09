@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob;
@@ -72,7 +72,7 @@ public class StorageCapabilityMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<StorageCapabilityMigrationJob> {
     @Override
-    public @NonNull StorageCapabilityMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull StorageCapabilityMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new StorageCapabilityMigrationJob(parameters);
     }
   }

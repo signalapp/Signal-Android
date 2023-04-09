@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.FileUtils;
@@ -54,7 +54,7 @@ public class CachedAttachmentsMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<CachedAttachmentsMigrationJob> {
     @Override
-    public @NonNull CachedAttachmentsMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull CachedAttachmentsMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new CachedAttachmentsMigrationJob(parameters);
     }
   }

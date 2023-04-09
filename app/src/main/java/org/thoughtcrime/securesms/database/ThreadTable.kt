@@ -31,8 +31,8 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.attachments
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.calls
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.drafts
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groupCallRings
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groupReceipts
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.mentions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messageLog
@@ -380,6 +380,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         setLastScrolled(threadId, 0)
         update(threadId, false)
         notifyConversationListeners(threadId)
+        SignalDatabase.calls.updateCallEventDeletionTimestamps()
       } else {
         Log.i(TAG, "Trimming deleted no messages thread: $threadId")
       }
@@ -1059,29 +1060,36 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun deleteConversations(selectedConversations: Set<Long>) {
-    val recipientIdsForThreadIds = getRecipientIdsForThreadIds(selectedConversations)
+    val recipientIds = getRecipientIdsForThreadIds(selectedConversations)
 
+    val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(ID, selectedConversations)
     writableDatabase.withinTransaction { db ->
-      messages.deleteThreads(selectedConversations)
-      drafts.clearDrafts(selectedConversations)
+      for (query in queries) {
+        db.delete(TABLE_NAME, query.where, query.whereArgs)
+      }
 
-      SqlUtil.buildCollectionQuery(ID, selectedConversations)
-        .forEach { db.delete(TABLE_NAME, it.where, it.whereArgs) }
+      messages.deleteAbandonedMessages()
+      attachments.trimAllAbandonedAttachments()
+      groupReceipts.deleteAbandonedRows()
+      mentions.deleteAbandonedMentions()
+      drafts.clearDrafts(selectedConversations)
+      attachments.deleteAbandonedAttachmentFiles()
     }
 
     notifyConversationListListeners()
     notifyConversationListeners(selectedConversations)
     ApplicationDependencies.getDatabaseObserver().notifyConversationDeleteListeners(selectedConversations)
-    ConversationUtil.clearShortcuts(context, recipientIdsForThreadIds)
+    ConversationUtil.clearShortcuts(context, recipientIds)
   }
 
+  @SuppressLint("DiscouragedApi")
   fun deleteAllConversations() {
     writableDatabase.withinTransaction { db ->
       messageLog.deleteAll()
       messages.deleteAllThreads()
       drafts.clearAllDrafts()
-      groupCallRings.deleteAll()
       db.delete(TABLE_NAME, null, null)
+      calls.deleteAllCalls()
     }
 
     notifyConversationListListeners()

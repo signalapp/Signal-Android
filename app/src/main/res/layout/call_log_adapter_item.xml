@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="2dp"
+    android:background="@drawable/selectable_list_item_background"
+    android:minHeight="60dp">
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/call_selected"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/contact_selection_checkbox"
+        android:button="@null"
+        android:clickable="false"
+        android:focusable="false"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:checked="true"
+        tools:visibility="visible" />
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/call_recipient_avatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/call_selected"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginStart="12dp"
+        tools:src="@tools:sample/avatars" />
+
+    <org.thoughtcrime.securesms.badges.BadgeImageView
+        android:id="@+id/call_recipient_badge"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="22dp"
+        android:contentDescription="@string/ImageView__badge"
+        app:badge_size="medium"
+        app:layout_constraintStart_toStartOf="@id/call_recipient_avatar"
+        app:layout_constraintTop_toTopOf="@id/call_recipient_avatar" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/call_recipient_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="start|center_vertical"
+        android:maxLines="2"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        app:layout_constraintBottom_toTopOf="@+id/call_info"
+        app:layout_constraintEnd_toStartOf="@id/call_status_barrier"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/call_recipient_avatar"
+        app:layout_constraintTop_toTopOf="@+id/call_recipient_avatar"
+        tools:text="Miles Morales" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/call_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawablePadding="6dp"
+        android:ellipsize="end"
+        android:gravity="start|center_vertical"
+        android:maxLines="1"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintBottom_toBottomOf="@+id/call_recipient_avatar"
+        app:layout_constraintEnd_toStartOf="@id/call_status_barrier"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/call_recipient_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/call_recipient_name"
+        tools:drawableStartCompat="@drawable/ic_update_audio_call_incoming_16"
+        tools:text="Incoming &#183; 40m" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/call_status_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="call_type,call_join_button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/call_join_button"
+        style="@style/Signal.Widget.Button.Small.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/signal_colorOnPrimary"
+        android:visibility="gone"
+        app:backgroundTint="@color/signal_colorPrimary"
+        app:icon="@drawable/ic_video_call_24"
+        app:iconPadding="4dp"
+        app:iconSize="20dp"
+        app:iconTint="@color/signal_colorOnPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp"
+        tools:text="Join"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/call_type"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="8dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_video_call_24"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/signal_colorOnSurface"
+        tools:visibility="visible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/group_call_button"
+        style="@style/Signal.Widget.Button.Small.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/signal_colorPrimary"
+        android:textColor="@color/signal_colorOnPrimary"
+        android:visibility="gone"
+        app:icon="@drawable/symbol_video_fill_24"
+        app:iconPadding="4dp"
+        app:iconSize="20dp"
+        app:iconTint="@color/signal_colorOnPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp"
+        tools:text="Return"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

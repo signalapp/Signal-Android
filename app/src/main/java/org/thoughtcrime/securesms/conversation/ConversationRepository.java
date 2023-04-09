@@ -105,7 +105,7 @@ class ConversationRepository {
         conversationRecipient.getExpiresInSeconds() == 0 &&
         !conversationRecipient.isGroup() &&
         conversationRecipient.isRegistered() &&
-        (threadId == -1 || !SignalDatabase.messages().hasMeaningfulMessage(threadId)))
+        (threadId == -1 || SignalDatabase.messages().canSetUniversalTimer(threadId)))
     {
       showUniversalExpireTimerUpdate = true;
     }
@@ -211,5 +211,13 @@ class ConversationRepository {
         SignalDatabase.messages().insertSmsExportMessage(recipient.getId(), threadId);
       }
     });
+  }
+
+  public void setConversationMuted(@NonNull RecipientId recipientId, long until) {
+    SignalExecutors.BOUNDED.execute(() -> SignalDatabase.recipients().setMuted(recipientId, until));
+  }
+
+  public void setConversationDistributionType(long threadId, int distributionType) {
+    SignalExecutors.BOUNDED.execute(() -> SignalDatabase.threads().setDistributionType(threadId, distributionType));
   }
 }

@@ -89,10 +89,12 @@ object Stories {
   }
 
   @JvmStatic
-  fun getRecipientsToSendTo(messageId: Long, sentTimestamp: Long, allowsReplies: Boolean): List<Recipient> {
+  fun getRecipientsToSendTo(messageId: Long, sentTimestamp: Long, allowsReplies: Boolean): SendData {
     val recipientIds: List<RecipientId> = SignalDatabase.storySends.getRecipientsToSendTo(messageId, sentTimestamp, allowsReplies)
+    val targets: List<Recipient> = RecipientUtil.getEligibleForSending(recipientIds.map(Recipient::resolved)).distinctBy { it.id }
+    val skipped: List<RecipientId> = (recipientIds.toSet() - targets.map { it.id }.toSet()).toList()
 
-    return RecipientUtil.getEligibleForSending(recipientIds.map(Recipient::resolved))
+    return SendData(targets, skipped)
   }
 
   @WorkerThread
@@ -398,4 +400,9 @@ object Stories {
       )
     }
   }
+
+  data class SendData(
+    val targets: List<Recipient>,
+    val skipped: List<RecipientId>
+  )
 }

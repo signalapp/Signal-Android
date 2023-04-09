@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
@@ -19,7 +20,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -105,9 +106,14 @@ public class IndividualSendJob extends PushSendJob {
         ApplicationDependencies.getScheduledMessageManager().scheduleIfNecessary();
         return;
       }
-      Set<String> attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
-      jobManager.add(IndividualSendJob.create(messageId, recipient, attachmentUploadIds.size() > 0, isScheduledSend), attachmentUploadIds, isScheduledSend ? null : recipient.getId().toQueueKey());
+      Set<String> attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
+      boolean     hasMedia            = attachmentUploadIds.size() > 0;
+      boolean     addHardDependencies = hasMedia && !isScheduledSend;
+
+      jobManager.add(IndividualSendJob.create(messageId, recipient, hasMedia, isScheduledSend),
+                     attachmentUploadIds,
+                     addHardDependencies ? recipient.getId().toQueueKey() : null);
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
       SignalDatabase.messages().markAsSentFailed(messageId);
@@ -116,8 +122,8 @@ public class IndividualSendJob extends PushSendJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId).build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId).serialize();
   }
 
   @Override
@@ -339,13 +345,15 @@ public class IndividualSendJob extends PushSendJob {
     }
   }
 
-  public static long getMessageId(@NonNull Data data) {
+  public static long getMessageId(@Nullable byte[] serializedData) {
+    JsonJobData data = JsonJobData.deserialize(serializedData);
     return data.getLong(KEY_MESSAGE_ID);
   }
 
   public static final class Factory implements Job.Factory<IndividualSendJob> {
     @Override
-    public @NonNull IndividualSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull IndividualSendJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
       return new IndividualSendJob(parameters, data.getLong(KEY_MESSAGE_ID));
     }
   }

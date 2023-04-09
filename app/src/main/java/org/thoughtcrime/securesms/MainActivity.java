@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SplashScreenUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
@@ -147,7 +148,7 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
   }
 
   private void updateTabVisibility() {
-    if (Stories.isFeatureEnabled()) {
+    if (Stories.isFeatureEnabled() || FeatureFlags.callsTab()) {
       findViewById(R.id.conversation_list_tabs).setVisibility(View.VISIBLE);
       WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_colorSurface2));
     } else {

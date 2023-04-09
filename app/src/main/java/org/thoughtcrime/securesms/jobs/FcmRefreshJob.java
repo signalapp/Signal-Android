@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -34,7 +35,7 @@ import org.thoughtcrime.securesms.PlayServicesProblemActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.gcm.FcmUtil;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -68,8 +69,8 @@ public class FcmRefreshJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return Data.EMPTY;
+  public @Nullable byte[] serialize() {
+    return null;
   }
 
   @Override
@@ -139,7 +140,7 @@ public class FcmRefreshJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<FcmRefreshJob> {
     @Override
-    public @NonNull FcmRefreshJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull FcmRefreshJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new FcmRefreshJob(parameters);
     }
   }

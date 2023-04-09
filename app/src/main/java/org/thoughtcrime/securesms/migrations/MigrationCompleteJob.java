@@ -1,9 +1,10 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.BaseJob;
 
@@ -38,8 +39,8 @@ public class MigrationCompleteJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putInt(KEY_VERSION, version).build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putInt(KEY_VERSION, version).serialize();
   }
 
   @Override
@@ -64,7 +65,8 @@ public class MigrationCompleteJob extends BaseJob {
 
   public static class Factory implements Job.Factory<MigrationCompleteJob> {
     @Override
-    public @NonNull MigrationCompleteJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull MigrationCompleteJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
       return new MigrationCompleteJob(parameters, data.getInt(KEY_VERSION));
     }
   }

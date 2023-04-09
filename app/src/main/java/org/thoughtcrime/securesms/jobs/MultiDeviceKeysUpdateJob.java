@@ -2,11 +2,12 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -45,8 +46,8 @@ public class MultiDeviceKeysUpdateJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return Data.EMPTY;
+  public @Nullable byte[] serialize() {
+    return null;
   }
 
   @Override
@@ -89,7 +90,7 @@ public class MultiDeviceKeysUpdateJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<MultiDeviceKeysUpdateJob> {
     @Override
-    public @NonNull MultiDeviceKeysUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull MultiDeviceKeysUpdateJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new MultiDeviceKeysUpdateJob(parameters);
     }
   }

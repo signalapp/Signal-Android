@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import org.greenrobot.eventbus.EventBus;
@@ -18,7 +19,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -88,12 +89,12 @@ public final class AttachmentDownloadJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
-                             .putLong(KEY_PART_ROW_ID, partRowId)
-                             .putLong(KEY_PAR_UNIQUE_ID, partUniqueId)
-                             .putBoolean(KEY_MANUAL, manual)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId)
+                                    .putLong(KEY_PART_ROW_ID, partRowId)
+                                    .putLong(KEY_PAR_UNIQUE_ID, partUniqueId)
+                                    .putBoolean(KEY_MANUAL, manual)
+                                    .serialize();
   }
 
   @Override
@@ -293,7 +294,9 @@ public final class AttachmentDownloadJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<AttachmentDownloadJob> {
     @Override
-    public @NonNull AttachmentDownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull AttachmentDownloadJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       return new AttachmentDownloadJob(parameters,
                                        data.getLong(KEY_MESSAGE_ID),
                                        new AttachmentId(data.getLong(KEY_PART_ROW_ID), data.getLong(KEY_PAR_UNIQUE_ID)),

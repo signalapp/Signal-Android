@@ -44,12 +44,7 @@ public class UnidentifiedAccessUtil {
   private static final byte[] UNRESTRICTED_KEY = new byte[16];
 
   public static CertificateValidator getCertificateValidator() {
-    try {
-      ECPublicKey unidentifiedSenderTrustRoot = Curve.decodePoint(Base64.decode(BuildConfig.UNIDENTIFIED_SENDER_TRUST_ROOT), 0);
-      return new CertificateValidator(unidentifiedSenderTrustRoot);
-    } catch (InvalidKeyException | IOException e) {
-      throw new AssertionError(e);
-    }
+    return CertificateValidatorHolder.INSTANCE.certificateValidator;
   }
 
   @WorkerThread
@@ -208,5 +203,20 @@ public class UnidentifiedAccessUtil {
     }
 
     return accessKey;
+  }
+
+  private enum CertificateValidatorHolder {
+    INSTANCE;
+
+    final CertificateValidator certificateValidator = buildCertificateValidator();
+
+    private static CertificateValidator buildCertificateValidator() {
+      try {
+        ECPublicKey unidentifiedSenderTrustRoot = Curve.decodePoint(Base64.decode(BuildConfig.UNIDENTIFIED_SENDER_TRUST_ROOT), 0);
+        return new CertificateValidator(unidentifiedSenderTrustRoot);
+      } catch (InvalidKeyException | IOException e) {
+        throw new AssertionError(e);
+      }
+    }
   }
 }

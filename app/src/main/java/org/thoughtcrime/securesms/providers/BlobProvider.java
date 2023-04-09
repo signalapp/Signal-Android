@@ -11,6 +11,7 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.StreamUtil;
@@ -233,6 +234,11 @@ public class BlobProvider {
         notifyAll();
       }
     });
+  }
+
+  @VisibleForTesting
+  public synchronized byte[] getMemoryBlob(@NonNull Uri uri) {
+    return memoryBlobs.get(uri);
   }
 
   private static void deleteOrphanedDraftFiles(@NonNull Context context) {

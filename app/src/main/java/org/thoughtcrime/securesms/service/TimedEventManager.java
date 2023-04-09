@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.PendingIntentFlags;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
@@ -30,7 +31,7 @@ public abstract class TimedEventManager<E> {
   private final Handler     handler;
 
   public TimedEventManager(@NonNull Application application, @NonNull String threadName) {
-    HandlerThread handlerThread = new HandlerThread(threadName);
+    HandlerThread handlerThread = new HandlerThread(threadName, ThreadUtil.PRIORITY_BACKGROUND_THREAD);
     handlerThread.start();
 
     this.application = application;

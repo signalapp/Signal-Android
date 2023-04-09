@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -136,7 +136,12 @@ public final class PushGroupSendJob extends PushSendJob {
         throw new MmsException("Inactive group!");
       }
 
-      jobManager.add(new PushGroupSendJob(messageId, destination, filterAddresses, !attachmentUploadIds.isEmpty(), isScheduledSend), attachmentUploadIds, attachmentUploadIds.isEmpty() || isScheduledSend ? null : destination.toQueueKey());
+      boolean hasMedia            = attachmentUploadIds.size() > 0;
+      boolean addHardDependencies = hasMedia && !isScheduledSend;
+
+      jobManager.add(new PushGroupSendJob(messageId, destination, filterAddresses, hasMedia, isScheduledSend),
+                     attachmentUploadIds,
+                     addHardDependencies ? destination.toQueueKey() : null);
 
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
@@ -146,10 +151,10 @@ public final class PushGroupSendJob extends PushSendJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
-                             .putString(KEY_FILTER_RECIPIENTS, RecipientId.toSerializedList(filterRecipients))
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId)
+                                    .putString(KEY_FILTER_RECIPIENTS, RecipientId.toSerializedList(filterRecipients))
+                                    .serialize();
   }
 
   private static boolean isGv2UpdateMessage(@NonNull OutgoingMessage message) {
@@ -382,7 +387,8 @@ public final class PushGroupSendJob extends PushSendJob {
     }
   }
 
-  public static long getMessageId(@NonNull Data data) {
+  public static long getMessageId(@Nullable byte[] serializedData) {
+    JsonJobData data = JsonJobData.deserialize(serializedData);
     return data.getLong(KEY_MESSAGE_ID);
   }
 
@@ -520,7 +526,9 @@ public final class PushGroupSendJob extends PushSendJob {
 
   public static class Factory implements Job.Factory<PushGroupSendJob> {
     @Override
-    public @NonNull PushGroupSendJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
+    public @NonNull PushGroupSendJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       String           raw     = data.getStringOrDefault(KEY_FILTER_RECIPIENTS, "");
       Set<RecipientId> filters = raw != null ? new HashSet<>(RecipientId.fromSerializedList(raw)) : Collections.emptySet();
 

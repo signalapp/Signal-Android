@@ -44,13 +44,17 @@
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingHorizontal="8dp"
+            android:textAlignment="center"
             android:textAppearance="@style/Signal.Text.LabelMedium"
             android:textColor="@color/signal_light_colorOnSurface"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/icon"
-            tools:text="New Group" />
+            tools:text="Set some profile picture so folks know who you are." />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

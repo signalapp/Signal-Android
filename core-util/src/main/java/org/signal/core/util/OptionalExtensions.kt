@@ -17,3 +17,7 @@ fun <E> Optional<E>.isAbsent(): Boolean {
 fun <E : Any> E?.toOptional(): Optional<E> {
   return Optional.ofNullable(this)
 }
+
+fun <E> Optional<E>.orNull(): E? {
+  return orElse(null)
+}

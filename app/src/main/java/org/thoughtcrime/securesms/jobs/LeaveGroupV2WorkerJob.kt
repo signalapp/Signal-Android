@@ -7,8 +7,8 @@ import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupChangeFailedException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.io.IOException
@@ -28,10 +28,10 @@ class LeaveGroupV2WorkerJob(parameters: Parameters, private val groupId: GroupId
     groupId = groupId
   )
 
-  override fun serialize(): Data {
-    return Data.Builder()
+  override fun serialize(): ByteArray? {
+    return JsonJobData.Builder()
       .putString(KEY_GROUP_ID, groupId.toString())
-      .build()
+      .serialize()
   }
 
   override fun getFactoryKey(): String {
@@ -61,7 +61,8 @@ class LeaveGroupV2WorkerJob(parameters: Parameters, private val groupId: GroupId
   override fun onFailure() = Unit
 
   class Factory : Job.Factory<LeaveGroupV2WorkerJob> {
-    override fun create(parameters: Parameters, data: Data): LeaveGroupV2WorkerJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): LeaveGroupV2WorkerJob {
+      val data = JsonJobData.deserialize(serializedData)
       return LeaveGroupV2WorkerJob(parameters, GroupId.parseOrThrow(data.getString(KEY_GROUP_ID)).requireV2())
     }
   }

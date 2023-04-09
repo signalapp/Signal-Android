@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.profiles.edit;
 import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -44,6 +42,7 @@ import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
@@ -324,6 +323,7 @@ public class EditProfileFragment extends LoggingFragment {
   }
 
   private void handleFinishedLegacy() {
+    ViewUtil.hideKeyboard(requireContext(), binding.finishButton);
     binding.finishButton.cancelSpinning();
     if (nextIntent != null) startActivity(nextIntent);
 
@@ -351,6 +351,7 @@ public class EditProfileFragment extends LoggingFragment {
 
       @Override
       public void onAnimationEnd(Animator animation) {
+        ViewUtil.hideKeyboard(requireContext(), binding.finishButton);
         binding.finishButton.cancelSpinning();
         if (nextIntent != null && getActivity() != null) {
           startActivity(nextIntent);

@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.util.JsonUtils;
 
@@ -46,7 +47,7 @@ public class AttachmentCopyJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @Nullable byte[] serialize() {
     try {
       String   sourceIdString       = JsonUtils.toJson(sourceId);
       String[] destinationIdStrings = new String[destinationIds.size()];
@@ -55,9 +56,9 @@ public class AttachmentCopyJob extends BaseJob {
         destinationIdStrings[i] = JsonUtils.toJson(destinationIds.get(i));
       }
 
-      return new Data.Builder().putString(KEY_SOURCE_ID, sourceIdString)
-                               .putStringArray(KEY_DESTINATION_IDS, destinationIdStrings)
-                               .build();
+      return new JsonJobData.Builder().putString(KEY_SOURCE_ID, sourceIdString)
+                                      .putStringArray(KEY_DESTINATION_IDS, destinationIdStrings)
+                                      .serialize();
     } catch (IOException e) {
       throw new AssertionError(e);
     }
@@ -92,7 +93,9 @@ public class AttachmentCopyJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<AttachmentCopyJob> {
     @Override
-    public @NonNull AttachmentCopyJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull AttachmentCopyJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       try {
         String   sourceIdStrings      = data.getString(KEY_SOURCE_ID);
         String[] destinationIdStrings = data.getStringArray(KEY_DESTINATION_IDS);

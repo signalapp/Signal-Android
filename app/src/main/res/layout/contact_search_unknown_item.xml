@@ -23,6 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
         app:srcCompat="@drawable/ic_search_24"
+        app:tint="@color/signal_colorOnSecondaryContainer"
         tools:ignore="UnusedAttribute" />
 
     <androidx.appcompat.widget.AppCompatCheckBox

@@ -10,22 +10,25 @@
     android:gravity="center_vertical"
     tools:layout_height="@dimen/signal_m3_toolbar_height">
 
-    <RelativeLayout
+    <FrameLayout
         android:transitionName="avatar"
         android:id="@+id/contact_photo_container"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="16dp">
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <org.thoughtcrime.securesms.avatar.view.AvatarView
             android:id="@+id/contact_photo_image"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
             android:clickable="true"
             android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
             android:cropToPadding="true"
+            android:layout_gravity="start|top"
             android:foreground="@drawable/contact_photo_background"
             app:fallbackImageSize="small"
             tools:src="@drawable/ic_contact_picture" />
@@ -34,83 +37,86 @@
             android:id="@+id/badge"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_alignStart="@id/contact_photo_image"
-            android:layout_alignTop="@id/contact_photo_image"
+            android:layout_gravity="start|top"
             android:layout_marginStart="20dp"
             android:layout_marginTop="23dp"
             android:contentDescription="@string/ImageView__badge"
             app:badge_size="small" />
-    </RelativeLayout>
+    </FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/content"
+    <org.thoughtcrime.securesms.components.FromTextView
+        android:id="@+id/title"
+        style="@style/Signal.Text.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/contact_photo_container"
-        android:orientation="vertical">
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toEndOf="@id/contact_photo_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/subtitle_container"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintHorizontal_bias="0"
+        android:layout_marginStart="16dp"
+        android:drawablePadding="3dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:transitionName="recipient_name"
+        tools:ignore="UnusedAttribute"
+        tools:text="J. Jonah Jameson" />
 
-        <org.thoughtcrime.securesms.components.FromTextView
-            android:id="@+id/title"
-            style="@style/Signal.Text.TitleMedium"
+    <LinearLayout
+        android:id="@+id/subtitle_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <include layout="@layout/expiration_timer_badge" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/verified_indicator"
+            android:layout_width="12dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="3dp"
+            android:tint="@color/signal_inverse_transparent_80"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_check_24"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/verified_subtitle"
+            style="@style/Signal.Text.BodySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|start"
-            android:drawablePadding="3dp"
+            android:layout_marginEnd="3dp"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
-            android:transitionName="recipient_name"
-            tools:ignore="UnusedAttribute"
-            tools:text="J. Jonah Jameson" />
+            android:text="@string/ConversationTitleView_verified"
+            android:textColor="@color/signal_inverse_transparent_80"
+            android:textDirection="ltr" />
 
-        <LinearLayout
-            android:id="@+id/subtitle_container"
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/subtitle"
+            style="@style/Signal.Text.BodySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <include layout="@layout/expiration_timer_badge" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/verified_indicator"
-                android:layout_width="12dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="3dp"
-                android:tint="@color/signal_inverse_transparent_80"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_check_24"
-                tools:visibility="visible" />
-
-            <TextView
-                android:id="@+id/verified_subtitle"
-                style="@style/Signal.Text.BodySmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|start"
-                android:layout_marginEnd="3dp"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:text="@string/ConversationTitleView_verified"
-                android:textColor="@color/signal_inverse_transparent_80"
-                android:textDirection="ltr" />
-
-            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-                android:id="@+id/subtitle"
-                style="@style/Signal.Text.BodySmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|start"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:textColor="@color/signal_inverse_transparent_80"
-                android:textDirection="ltr"
-                tools:text="(123) 123-1234" />
+            android:layout_gravity="center_vertical|start"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/signal_inverse_transparent_80"
+            android:textDirection="ltr"
+            tools:text="(123) 123-1234" />
 
         </LinearLayout>
-
-    </LinearLayout>
 
 </org.thoughtcrime.securesms.conversation.ConversationTitleView>

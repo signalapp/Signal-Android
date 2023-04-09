@@ -185,4 +185,13 @@ class StoriesLandingRepository(context: Context) {
       }
     }
   }
+
+  /**
+   * Marks all failed stories as "notified" by the user (marking them as notified in the database)
+   */
+  fun markFailedStoriesNotified() {
+    SignalExecutors.BOUNDED_IO.execute {
+      SignalDatabase.messages.markAllFailedStoriesNotified()
+    }
+  }
 }

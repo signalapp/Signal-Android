@@ -148,6 +148,14 @@ class ContactSearchPagedDataSourceTest {
         "two",
         "three"
       )
+
+      withEmptyState {
+        arbitrary(
+          "one",
+          "two",
+          "three"
+        )
+      }
     }
 
     return ContactSearchPagedDataSource(configuration, repository, ArbitraryRepoFake())

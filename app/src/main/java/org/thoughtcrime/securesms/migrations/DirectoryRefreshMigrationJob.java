@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
@@ -57,7 +57,7 @@ public final class DirectoryRefreshMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<DirectoryRefreshMigrationJob> {
     @Override
-    public @NonNull DirectoryRefreshMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull DirectoryRefreshMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new DirectoryRefreshMigrationJob(parameters);
     }
   }

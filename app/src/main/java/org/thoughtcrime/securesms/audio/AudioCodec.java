@@ -7,6 +7,7 @@ import android.media.MediaCodecInfo;
 import android.media.MediaFormat;
 import android.media.MediaRecorder;
 import android.os.ParcelFileDescriptor;
+import android.os.Process;
 
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
@@ -65,6 +66,7 @@ public class AudioCodec implements Recorder {
     new Thread(new Runnable() {
       @Override
       public void run() {
+        Process.setThreadPriority(Process.THREAD_PRIORITY_AUDIO);
         MediaCodec.BufferInfo bufferInfo         = new MediaCodec.BufferInfo();
         byte[]                audioRecordData    = new byte[bufferSize];
         ByteBuffer[]          codecInputBuffers  = mediaCodec.getInputBuffers();

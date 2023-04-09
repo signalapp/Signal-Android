@@ -7,8 +7,8 @@ import org.thoughtcrime.securesms.contacts.HeaderAction
  */
 class ContactSearchConfiguration private constructor(
   val query: String?,
-  val hasEmptyState: Boolean,
-  val sections: List<Section>
+  val sections: List<Section>,
+  val emptyStateSections: List<Section>
 ) {
 
   /**
@@ -19,6 +19,14 @@ class ContactSearchConfiguration private constructor(
     abstract val includeHeader: Boolean
     open val headerAction: HeaderAction? = null
     abstract val expandConfig: ExpandConfig?
+
+    /**
+     * Section representing the "extra" item.
+     */
+    object Empty : Section(SectionKey.EMPTY) {
+      override val includeHeader: Boolean = false
+      override val expandConfig: ExpandConfig? = null
+    }
 
     /**
      * Distribution lists and group stories.
@@ -189,6 +197,11 @@ class ContactSearchConfiguration private constructor(
    */
   enum class SectionKey {
     /**
+     * A generic empty item
+     */
+    EMPTY,
+
+    /**
      * Lists My Stories, distribution lists, as well as group stories.
      */
     STORIES,
@@ -271,6 +284,7 @@ class ContactSearchConfiguration private constructor(
    * Describes the mode for 'Username' or 'PhoneNumber'
    */
   enum class NewRowMode {
+    NEW_CALL,
     NEW_CONVERSATION,
     BLOCK,
     ADD_TO_GROUP
@@ -296,21 +310,47 @@ class ContactSearchConfiguration private constructor(
     }
   }
 
-  /**
-   * Internal builder class with build method.
-   */
-  private class ConfigurationBuilder : Builder {
+  private class EmptyStateBuilder : Builder {
     private val sections: MutableList<Section> = mutableListOf()
 
     override var query: String? = null
-    override var hasEmptyState: Boolean = false
 
     override fun addSection(section: Section) {
       sections.add(section)
     }
 
+    override fun withEmptyState(emptyStateBuilderFn: Builder.() -> Unit) {
+      error("Unsupported operation: Already in empty state.")
+    }
+
+    fun build(): List<Section> {
+      return sections
+    }
+  }
+
+  /**
+   * Internal builder class with build method.
+   */
+  private class ConfigurationBuilder : Builder {
+    private val sections: MutableList<Section> = mutableListOf()
+    private val emptyState = EmptyStateBuilder()
+
+    override var query: String? = null
+
+    override fun addSection(section: Section) {
+      sections.add(section)
+    }
+
+    override fun withEmptyState(emptyStateBuilderFn: Builder.() -> Unit) {
+      emptyState.emptyStateBuilderFn()
+    }
+
     fun build(): ContactSearchConfiguration {
-      return ContactSearchConfiguration(query, hasEmptyState, sections)
+      return ContactSearchConfiguration(
+        query = query,
+        sections = sections,
+        emptyStateSections = emptyState.build()
+      )
     }
   }
 
@@ -319,7 +359,6 @@ class ContactSearchConfiguration private constructor(
    */
   interface Builder {
     var query: String?
-    var hasEmptyState: Boolean
 
     fun arbitrary(first: String, vararg rest: String) {
       addSection(Section.Arbitrary(setOf(first) + rest.toSet()))
@@ -332,6 +371,8 @@ class ContactSearchConfiguration private constructor(
     fun phone(newRowMode: NewRowMode) {
       addSection(Section.PhoneNumber(newRowMode))
     }
+
+    fun withEmptyState(emptyStateBuilderFn: Builder.() -> Unit)
 
     fun addSection(section: Section)
   }

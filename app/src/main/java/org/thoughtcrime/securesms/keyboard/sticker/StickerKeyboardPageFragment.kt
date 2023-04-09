@@ -31,7 +31,7 @@ import java.util.Optional
 import kotlin.math.abs
 import kotlin.math.max
 
-class StickerKeyboardPageFragment :
+open class StickerKeyboardPageFragment :
   LoggingFragment(R.layout.keyboard_pager_sticker_page_fragment),
   KeyboardStickerListAdapter.EventListener,
   StickerRolloverTouchListener.RolloverEventListener,
@@ -39,9 +39,9 @@ class StickerKeyboardPageFragment :
   DatabaseObserver.Observer,
   View.OnLayoutChangeListener {
 
-  private lateinit var stickerList: RecyclerView
-  private lateinit var stickerListAdapter: KeyboardStickerListAdapter
-  private lateinit var layoutManager: GridLayoutManager
+  protected lateinit var stickerList: RecyclerView
+  protected lateinit var stickerListAdapter: KeyboardStickerListAdapter
+  protected lateinit var layoutManager: GridLayoutManager
   private lateinit var listTouchListener: StickerRolloverTouchListener
   private lateinit var stickerPacksRecycler: RecyclerView
   private lateinit var appBarLayout: AppBarLayout
@@ -63,7 +63,7 @@ class StickerKeyboardPageFragment :
       spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
         override fun getSpanSize(position: Int): Int {
           val model: Optional<MappingModel<*>> = stickerListAdapter.getModel(position)
-          if (model.isPresent && model.get() is KeyboardStickerListAdapter.StickerHeader) {
+          if (model.isPresent && model.get() is KeyboardStickerListAdapter.Header) {
             return spanCount
           }
           return 1
@@ -124,13 +124,17 @@ class StickerKeyboardPageFragment :
     viewModel.refreshStickers()
   }
 
-  private fun updateStickerList(stickers: MappingModelList) {
+  open fun updateStickerList(stickers: MappingModelList) {
     if (firstLoad) {
-      stickerListAdapter.submitList(stickers) { layoutManager.scrollToPositionWithOffset(1, 0) }
+      stickerListAdapter.submitList(stickers, this::scrollOnLoad)
       firstLoad = false
     } else {
       stickerListAdapter.submitList(stickers)
     }
+  }
+
+  open fun scrollOnLoad() {
+    layoutManager.scrollToPositionWithOffset(1, 0)
   }
 
   private fun onTabSelected(stickerPack: KeyboardStickerPackListAdapter.StickerPack) {

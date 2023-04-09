@@ -1,14 +1,15 @@
 package org.thoughtcrime.securesms.conversation
 
 import android.graphics.Typeface
+import android.text.Annotation
 import android.text.Spannable
 import android.text.Spanned
 import android.text.style.CharacterStyle
 import android.text.style.StrikethroughSpan
 import android.text.style.StyleSpan
 import android.text.style.TypefaceSpan
+import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.PlaceholderURLSpan
 
 /**
@@ -17,6 +18,10 @@ import org.thoughtcrime.securesms.util.PlaceholderURLSpan
 object MessageStyler {
 
   const val MONOSPACE = "monospace"
+  const val SPAN_FLAGS = Spanned.SPAN_EXCLUSIVE_INCLUSIVE
+  const val DRAFT_ID = "DRAFT"
+  const val COMPOSE_ID = "COMPOSE"
+  const val QUOTE_ID = "QUOTE"
 
   @JvmStatic
   fun boldStyle(): CharacterStyle {
@@ -39,7 +44,13 @@ object MessageStyler {
   }
 
   @JvmStatic
-  fun style(messageRanges: BodyRangeList?, span: Spannable): Result {
+  fun spoilerStyle(id: Any, start: Int, length: Int): Annotation {
+    return SpoilerAnnotation.spoilerAnnotation(arrayOf(id, start, length).contentHashCode())
+  }
+
+  @JvmStatic
+  @JvmOverloads
+  fun style(id: Any, messageRanges: BodyRangeList?, span: Spannable, hideSpoilerText: Boolean = true): Result {
     if (messageRanges == null) {
       return Result.none()
     }
@@ -50,23 +61,33 @@ object MessageStyler {
 
     messageRanges
       .rangesList
-      .filter { r -> r.start >= 0 && r.start < span.length && r.start + r.length >= 0 && r.start + r.length <= span.length }
+      .filter { r -> r.start >= 0 && r.start < span.length && r.start + r.length >= 0 }
       .forEach { range ->
+        val start = range.start
+        val end = (range.start + range.length).coerceAtMost(span.length)
+
         if (range.hasStyle()) {
-          val styleSpan: CharacterStyle? = when (range.style) {
+          val styleSpan: Any? = when (range.style) {
             BodyRangeList.BodyRange.Style.BOLD -> boldStyle()
             BodyRangeList.BodyRange.Style.ITALIC -> italicStyle()
             BodyRangeList.BodyRange.Style.STRIKETHROUGH -> strikethroughStyle()
             BodyRangeList.BodyRange.Style.MONOSPACE -> monoStyle()
+            BodyRangeList.BodyRange.Style.SPOILER -> {
+              val spoiler = spoilerStyle(id, range.start, range.length)
+              if (hideSpoilerText) {
+                span.setSpan(SpoilerAnnotation.SpoilerClickableSpan(spoiler), start, end, SPAN_FLAGS)
+              }
+              spoiler
+            }
             else -> null
           }
 
           if (styleSpan != null) {
-            span.setSpan(styleSpan, range.start, range.start + range.length, Spanned.SPAN_EXCLUSIVE_INCLUSIVE)
+            span.setSpan(styleSpan, start, end, SPAN_FLAGS)
             appliedStyle = true
           }
         } else if (range.hasLink() && range.link != null) {
-          span.setSpan(PlaceholderURLSpan(range.link), range.start, range.start + range.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+          span.setSpan(PlaceholderURLSpan(range.link), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
           hasLinks = true
         } else if (range.hasButton() && range.button != null) {
           bottomButton = range.button
@@ -82,38 +103,47 @@ object MessageStyler {
 
   @JvmStatic
   fun hasStyling(text: Spanned): Boolean {
-    return if (FeatureFlags.textFormatting()) {
-      text.getSpans(0, text.length, CharacterStyle::class.java)
-        .any { s -> isSupportedCharacterStyle(s) && text.getSpanEnd(s) - text.getSpanStart(s) > 0 }
-    } else {
-      false
-    }
+    return text
+      .getSpans(0, text.length, Object::class.java)
+      .any { s -> s.isSupportedStyle() && text.getSpanEnd(s) - text.getSpanStart(s) > 0 }
   }
 
   @JvmStatic
   fun getStyling(text: CharSequence?): BodyRangeList? {
-    val bodyRanges = if (text is Spanned && FeatureFlags.textFormatting()) {
+    val bodyRanges = if (text is Spanned) {
       text
-        .getSpans(0, text.length, CharacterStyle::class.java)
-        .filter { s -> isSupportedCharacterStyle(s) }
-        .mapNotNull { span: CharacterStyle ->
+        .getSpans(0, text.length, Object::class.java)
+        .filter { s -> s.isSupportedStyle() }
+        .mapNotNull { span ->
           val spanStart = text.getSpanStart(span)
           val spanLength = text.getSpanEnd(span) - spanStart
 
-          val style = when (span) {
-            is StyleSpan -> if (span.style == Typeface.BOLD) BodyRangeList.BodyRange.Style.BOLD else BodyRangeList.BodyRange.Style.ITALIC
+          val style: BodyRangeList.BodyRange.Style? = when (span) {
+            is StyleSpan -> {
+              when (span.style) {
+                Typeface.BOLD -> BodyRangeList.BodyRange.Style.BOLD
+                Typeface.ITALIC -> BodyRangeList.BodyRange.Style.ITALIC
+                else -> null
+              }
+            }
             is StrikethroughSpan -> BodyRangeList.BodyRange.Style.STRIKETHROUGH
             is TypefaceSpan -> BodyRangeList.BodyRange.Style.MONOSPACE
+            is Annotation -> {
+              if (SpoilerAnnotation.isSpoilerAnnotation(span)) {
+                BodyRangeList.BodyRange.Style.SPOILER
+              } else {
+                null
+              }
+            }
             else -> throw IllegalArgumentException("Provided text contains unsupported spans")
           }
 
-          if (spanLength > 0) {
+          if (spanLength > 0 && style != null) {
             BodyRangeList.BodyRange.newBuilder().setStart(spanStart).setLength(spanLength).setStyle(style).build()
           } else {
             null
           }
         }
-        .toList()
     } else {
       emptyList()
     }
@@ -122,6 +152,14 @@ object MessageStyler {
       BodyRangeList.newBuilder().addAllRanges(bodyRanges).build()
     } else {
       null
+    }
+  }
+
+  fun Any.isSupportedStyle(): Boolean {
+    return when (this) {
+      is CharacterStyle -> isSupportedCharacterStyle(this)
+      is Annotation -> SpoilerAnnotation.isSpoilerAnnotation(this)
+      else -> false
     }
   }
 

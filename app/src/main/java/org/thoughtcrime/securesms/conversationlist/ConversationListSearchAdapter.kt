@@ -26,15 +26,14 @@ import java.util.Locale
 class ConversationListSearchAdapter(
   context: Context,
   fixedContacts: Set<ContactSearchKey>,
-  displayCheckBox: Boolean,
-  displaySmsTag: DisplaySmsTag,
-  displaySecondaryInformation: DisplaySecondaryInformation,
+  displayOptions: DisplayOptions,
   onClickedCallbacks: ConversationListSearchClickCallbacks,
   longClickCallbacks: LongClickCallbacks,
   storyContextMenuCallbacks: StoryContextMenuCallbacks,
+  callButtonClickCallbacks: CallButtonClickCallbacks,
   lifecycleOwner: LifecycleOwner,
   glideRequests: GlideRequests
-) : ContactSearchAdapter(context, fixedContacts, displayCheckBox, displaySmsTag, displaySecondaryInformation, onClickedCallbacks, longClickCallbacks, storyContextMenuCallbacks) {
+) : ContactSearchAdapter(context, fixedContacts, displayOptions, onClickedCallbacks, longClickCallbacks, storyContextMenuCallbacks, callButtonClickCallbacks) {
 
   init {
     registerFactory(
@@ -70,7 +69,6 @@ class ConversationListSearchAdapter(
     private val noResults = itemView.findViewById<TextView>(R.id.search_no_results)
 
     override fun bind(model: EmptyModel) {
-      println("BIND")
       noResults.text = context.getString(R.string.SearchFragment_no_results, model.empty.query ?: "")
     }
   }

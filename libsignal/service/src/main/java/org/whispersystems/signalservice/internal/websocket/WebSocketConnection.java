@@ -193,6 +193,14 @@ public class WebSocketConnection extends WebSocketListener {
     notifyAll();
   }
 
+  public synchronized Optional<WebSocketRequestMessage> readRequestIfAvailable() {
+    if (incomingRequests.size() > 0) {
+      return Optional.of(incomingRequests.removeFirst());
+    } else {
+      return Optional.empty();
+    }
+  }
+
   public synchronized WebSocketRequestMessage readRequest(long timeoutMillis)
       throws TimeoutException, IOException
   {

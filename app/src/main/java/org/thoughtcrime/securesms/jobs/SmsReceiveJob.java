@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -71,15 +71,15 @@ public class SmsReceiveJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @Nullable byte[] serialize() {
     String[] encoded = new String[pdus.length];
     for (int i = 0; i < pdus.length; i++) {
       encoded[i] = Base64.encodeBytes((byte[]) pdus[i]);
     }
 
-    return new Data.Builder().putStringArray(KEY_PDUS, encoded)
-                             .putInt(KEY_SUBSCRIPTION_ID, subscriptionId)
-                             .build();
+    return new JsonJobData.Builder().putStringArray(KEY_PDUS, encoded)
+                                    .putInt(KEY_SUBSCRIPTION_ID, subscriptionId)
+                                    .serialize();
   }
 
   @Override
@@ -219,7 +219,9 @@ public class SmsReceiveJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<SmsReceiveJob> {
     @Override
-    public @NonNull SmsReceiveJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull SmsReceiveJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       try {
         int subscriptionId = data.getInt(KEY_SUBSCRIPTION_ID);
         String[] encoded   = data.getStringArray(KEY_PDUS);

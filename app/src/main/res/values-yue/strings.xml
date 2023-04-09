@@ -15,6 +15,7 @@
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
     <string name="yes">係</string>
     <string name="no">唔係</string>
@@ -384,6 +385,15 @@
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">我哋稍後會再提醒你。</string>
 
+    <!-- Title for dialog shown when first sending formatted text -->
+    <string name="SendingFormattingTextDialog_title">傳送緊格式化文字</string>
+    <!-- Message for dialog shown when first sending formatted text -->
+    <string name="SendingFormattingTextDialog_message">有啲人用緊嘅 Signal 版本可能唔支援格式化文字，佢地會睇唔到你喺訊息度改咗邊啲格式。</string>
+    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
+    <string name="SendingFormattingTextDialog_send_anyway_button">照樣傳送</string>
+    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
+    <string name="SendingFormattingTextDialog_cancel_send_button">取消</string>
+
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="other">%1$d 個未讀訊息</item>
@@ -476,28 +486,14 @@
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="other">未睇</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="other">置頂</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="other">取消置頂</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="other">靜音</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="other">取消靜音</item>
-    </plurals>
+    <string name="ConversationListFragment_pin">置頂</string>
+    <string name="ConversationListFragment_unpin">取消置頂</string>
+    <string name="ConversationListFragment_mute">靜音</string>
+    <string name="ConversationListFragment_unmute">取消靜音</string>
     <string name="ConversationListFragment_select">揀選</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="other">封存</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="other">取消封存</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="other">刪除</item>
-    </plurals>
+    <string name="ConversationListFragment_archive">封存</string>
+    <string name="ConversationListFragment_unarchive">取消封存</string>
+    <string name="ConversationListFragment_delete">刪除</string>
     <string name="ConversationListFragment_select_all">全部揀晒</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="other">揀選咗 %1$d 個</item>
@@ -1666,20 +1662,31 @@
         <item quantity="other">%1$s、%2$s 同其餘 %3$d 人嚟到呢次通話</item>
     </plurals>
 
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__flip">前後轉換</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__speaker">喇叭</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__camera">相機</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">取消靜音</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">靜音</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__ring">喺人哋度唥鐘</string>
-    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <!-- Toggle content description for toggling camera direction  -->
+    <string name="WebRtcCallView__toggle_camera_direction">切換鏡頭方向</string>
+    <!-- Toggle content description for toggling audio output  -->
+    <string name="WebRtcCallView__toggle_speaker">切換揚聲器</string>
+    <!-- Toggle content description for toggling camera state  -->
+    <string name="WebRtcCallView__toggle_camera">切換相機狀態</string>
+    <!-- Toggle content description for toggling mute state  -->
+    <string name="WebRtcCallView__toggle_mute">切換靜音狀態</string>
+    <!-- Toggle content description for toggling group ring state  -->
+    <string name="WebRtcCallView__toggle_ring">切換鈴聲狀態</string>
+    <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">收線</string>
+
+    <!-- Error message when the developer added a button in the wrong place. -->
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">A UI error occurred. Please report this error to the developers.</string>
+    <!-- Error message when the user is trying to change audio outputs but none are present. -->
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">No eligible audio I/O detected.</string>
+    <!-- A text description of the bluetooth icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">An icon representing a Bluetooth device.</string>
+    <!-- A text description of the headset icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">An icon representing a wired headset.</string>
+    <!-- A text description of the speaker icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">An icon representing a speakerphone.</string>
+    <!-- A text description of the earpiece icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">An icon representing a device\'s earpiece.</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1745,6 +1752,8 @@
         <item quantity="other">仲差 %1$d 步，就可以提交除錯記錄檔喇。</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">我哋需要驗證下您係真有其人。</string>
+    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
+    <string name="RegistrationActivity_external_service_error">Signal was unable to send an SMS code due to an external failure.</string>
     <string name="RegistrationActivity_next">下一步</string>
     <string name="RegistrationActivity_continue">繼續</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">讓私隱與您同在。\n每封訊息都做返自己、講人話。</string>
@@ -2053,6 +2062,10 @@
     <string name="MessageNotifier_most_recent_from_s">最新來自：%1$s</string>
     <string name="MessageNotifier_locked_message">訊息已上鎖</string>
     <string name="MessageNotifier_message_delivery_failed">訊息送遞唔到。</string>
+    <!-- Shown in a notification when a story the user tries to send fails to be sent -->
+    <string name="MessageNotifier_story_delivery_failed">限時動態發送失敗</string>
+    <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
+    <string name="MessageNotifier_group_story_title">你發送俾 %1$s</string>
     <string name="MessageNotifier_failed_to_deliver_message">送遞唔到訊息。</string>
     <string name="MessageNotifier_error_delivering_message">送遞訊息嘅時候發生錯誤。</string>
     <string name="MessageNotifier_message_delivery_paused">訊息送遞已暫止。</string>
@@ -2175,10 +2188,18 @@
     <string name="WebRtcCallScreen__answer_without_video">接聽，但唔騷我個樣</string>
 
     <!-- WebRtcAudioOutputToggle -->
+    <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">音訊輸出</string>
+    <!-- Audio output option referring to the earpiece built into the phone -->
     <string name="WebRtcAudioOutputToggle__phone_earpiece">耳機</string>
+    <!-- Audio output option referring to the louder speaker built into the phone -->
     <string name="WebRtcAudioOutputToggle__speaker">喇叭</string>
+    <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">藍牙</string>
+    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headset">Wired Headset</string>
+    <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
+    <string name="WebRtcAudioOutputToggle__wired_headset_usb">Wired Headset (USB)</string>
 
     <string name="WebRtcCallControls_answer_call_description">接聽通話</string>
     <string name="WebRtcCallControls_reject_call_description">拒接通話</string>
@@ -2191,6 +2212,12 @@
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__invite_to_signal">拉隊嚟 Signal</string>
     <string name="contact_selection_activity__new_group">開個新谷</string>
+    <!-- Row item title for refreshing contacts -->
+    <string name="contact_selection_activity__refresh_contacts">重新整理聯絡人</string>
+    <!-- Row item description for refreshing contacts -->
+    <string name="contact_selection_activity__missing_someone">揾唔到某個人？試下重新整理</string>
+    <!-- Row header title for more section -->
+    <string name="contact_selection_activity__more">更多</string>
 
     <!-- contact_filter_toolbar -->
     <string name="contact_filter_toolbar__clear_entered_text_description">清除輸入咗嘅文字</string>
@@ -2985,6 +3012,8 @@
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">備註</string>
+    <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
+    <string name="EditNoteFragment__content_description_save_note">儲存筆記</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">確認付款</string>
@@ -3025,6 +3054,8 @@
     <!-- **************************************** -->
 
     <!-- contact_selection_list -->
+    <!-- Displayed in a row on the new call screen when searching by phone number. -->
+    <string name="contact_selection_list__new_call">打俾…</string>
     <string name="contact_selection_list__unknown_contact">寫個新訊息畀…</string>
     <string name="contact_selection_list__unknown_contact_block">封鎖用戶</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">加入去個谷度</string>
@@ -3875,6 +3906,49 @@
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">慢慢就唔會問得您咁密㗎喇</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">要求講得啱您個 Signal PIN 碼先可以喺 Signal 重新註冊您個電話冧把</string>
     <string name="AccountSettingsFragment__change_phone_number">轉電話冧把</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Your account data</string>
+
+    <!-- ExportAccountDataFragment -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">你嘅帳戶資料</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">了解詳情</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">匯出報告</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">匯出為 TXT 格式</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">簡單易睇嘅文字檔案</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">匯出為 JSON 格式</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">機器可讀檔案</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">取消</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">確定</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">Couldn\'t generate report</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">Check your connection and try again.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">係咪要匯出資料？</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">記得淨係好同你信任嘅人或者應用程式分享你嘅 Signal 帳戶資料呀。</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">匯出</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Generating report…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Your report is generated only at the time of export and is not stored by Signal on your device.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">您可以喺度將您而家用緊嗰個電話冧把，轉做一個新嘅電話冧把。喺度一轉咗就冇得返轉頭㗎喇。\n\n喺繼續之前，請先確定您個新冧把，而家可以收到短訊或者接到電話。</string>
@@ -4315,6 +4389,9 @@
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">換箱頭筆或螢光筆</string>
     <string name="ImageEditorHud__toggle_between_text_styles">換另一種字樣</string>
 
+    <!-- Header for section of featured stickers (location/time stickers) -->
+    <string name="ScribbleStickersFragment__featured_stickers">Featured</string>
+
     <string name="MediaCountIndicatorButton__send">傳送</string>
 
     <string name="MediaReviewSelectedItem__tap_to_remove">㩒一下嚟移除</string>
@@ -4715,6 +4792,8 @@
 
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">傾偈</string>
+    <!-- Label for Calls tab in home app screen -->
+    <string name="ConversationListTabs__calls">通話</string>
     <!-- Label for Stories tab in home app screen -->
     <string name="ConversationListTabs__stories">是日花生</string>
     <!-- String for counts above 99 in conversation list tabs -->
@@ -5534,12 +5613,20 @@
     <string name="TextFormatting_strikethrough">刪除線</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">等寬</string>
+    <!-- Popup menu label for applying spoiler style -->
+    <string name="TextFormatting_spoiler">劇透文字</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">繼續</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">設定你嘅 Signal 用戶名稱</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">用戶名稱會配對一組數字，而且唔會喺你嘅個人檔案度公開</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">每個用戶名稱都有一個獨一無二嘅 QR code 同埋一條連結，方便你同好友分享然後開始傾計</string>
+    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">如果要用你嘅用戶名稱嚟做其他人聯絡你嘅主要方式，請你去「設定」&gt;「私隱」&gt;「手機號碼」&gt;「邊個可以搵到我嘅手機號碼」度關閉手機號碼搜尋功能</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5556,6 +5643,140 @@
     <string name="TimeDurationPickerDialog_positive_button">設定</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
     <string name="TimeDurationPickerDialog_minimum_duration_warning">等待螢幕鎖定啟用嘅最短時間係 1 分鐘。</string>
+
+    <!-- Call Log -->
+    <!-- Displayed below the user\'s name in row items on the call log. First placeholder is the call status, second is when it occurred -->
+    <string name="CallLogAdapter__s_dot_s">%1$s · %2$s</string>
+    <!-- Displayed for incoming calls -->
+    <string name="CallLogAdapter__incoming">來電</string>
+    <!-- Displayed for outgoing calls -->
+    <string name="CallLogAdapter__outgoing">打出</string>
+    <!-- Displayed for missed calls -->
+    <string name="CallLogAdapter__missed">未接來電</string>
+    <!-- Displayed on Group Call button if user is not in the call -->
+    <string name="CallLogAdapter__join">Join</string>
+    <!-- Displayed on Group Call button if user is in the call -->
+    <string name="CallLogAdapter__return">Return</string>
+
+    <!-- Call Log context menu -->
+    <!-- Displayed as a context menu item to start a video call -->
+    <string name="CallContextMenu__video_call">視像通話</string>
+    <!-- Displayed as a context menu item to join an ongoing group call -->
+    <string name="CallContextMenu__join_call">加入通話</string>
+    <!-- Displayed as a context menu item to return to active call -->
+    <string name="CallContextMenu__return_to_call">返回通話</string>
+    <!-- Displayed as a context menu item to start an audio call -->
+    <string name="CallContextMenu__audio_call">語音通話</string>
+    <!-- Displayed as a context menu item to go to chat -->
+    <string name="CallContextMenu__go_to_chat">跳去聊天</string>
+    <!-- Displayed as a context menu item to see call info -->
+    <string name="CallContextMenu__info">資訊</string>
+    <!-- Displayed as a context menu item to select multiple calls -->
+    <string name="CallContextMenu__select">揀選</string>
+    <!-- Displayed as a context menu item to delete this call -->
+    <string name="CallContextMenu__delete">刪除</string>
+
+    <!-- Call Log Fragment -->
+    <!-- Action bar menu item to only display missed calls -->
+    <string name="CallLogFragment__filter_missed_calls">篩選未接來電</string>
+    <!-- Action bar menu item to clear missed call filter -->
+    <string name="CallLogFragment__clear_filter">清除篩選條件</string>
+    <!-- Action bar menu item to open settings -->
+    <string name="CallLogFragment__settings">設定</string>
+    <!-- Action bar menu item to open notification profile settings -->
+    <string name="CallLogFragment__notification_profile">通知設定</string>
+    <!-- Call log new call content description -->
+    <string name="CallLogFragment__start_a_new_call">開始新通話</string>
+    <!-- Filter pull text when pulled -->
+    <string name="CallLogFragment__filtered_by_missed">根據未接來電篩選</string>
+    <!-- Bottom bar option to select all call entries -->
+    <string name="CallLogFragment__select_all">全部揀晒</string>
+    <!-- Bottom bar option to delete all selected call entries -->
+    <string name="CallLogFragment__delete">刪除</string>
+    <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
+  <!-- Removed by excludeNonTranslatables <plurals name="CallLogFragment__delete_d_calls" translatable="false">
+        <item quantity="one">Delete %1$d call?</item>
+        <item quantity="other">Delete %1$d calls?</item>
+    </plurals> -->
+    <!-- Positive action on multi-delete protection dialog -->
+    <string name="CallLogFragment__delete_for_me">喺我自己部機度刪除</string>
+    <!-- Snackbar label after deleting call logs -->
+    <plurals name="CallLogFragment__d_calls_deleted">
+        <item quantity="other">刪除咗 %1$d 個通話</item>
+    </plurals>
+    <!-- Undo action for deletion snackbar -->
+    <string name="CallLogFragment__undo">復原</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__no_calls">冇任何通話。</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__get_started_by_calling_a_friend">隨時打俾朋友傾吓偈啦。</string>
+
+    <!-- New call activity -->
+    <!-- Activity title in title bar -->
+    <string name="NewCallActivity__new_call">新通話</string>
+
+    <!-- Call state update popups -->
+    <!-- Displayed when the user enables group call ringing -->
+    <string name="CallStateUpdatePopupWindow__ringing_on">鈴聲開咗</string>
+    <!-- Displayed when the user disables group call ringing -->
+    <string name="CallStateUpdatePopupWindow__ringing_off">鈴聲閂咗</string>
+    <!-- Displayed when the user cannot enable group call ringing -->
+    <string name="CallStateUpdatePopupWindow__group_is_too_large">群組人數太多，所以打唔到電話</string>
+    <!-- Displayed when the user turns on their mic -->
+    <string name="CallStateUpdatePopupWindow__mic_on">開咗咪</string>
+    <!-- Displayed when the user turns off their mic -->
+    <string name="CallStateUpdatePopupWindow__mic_off">閂咗咪</string>
+
+    <!-- Accessibility label describing the capture button on the camera screen -->
+    <string name="CameraControls_capture_button_accessibility_label">影相掣</string>
+    <!-- Accessibility label describing the continue button on the camera screen -->
+    <string name="CameraControls_continue_button_accessibility_label">繼續掣</string>
+
+    <!-- CallPreference -->
+    <!-- Missed group call in call info -->
+    <string name="CallPreference__missed_group_call">Missed group call</string>
+    <!-- Incoming group call in call info -->
+    <string name="CallPreference__incoming_group_call">Incoming group call</string>
+    <!-- Outgoing group call in call info -->
+    <string name="CallPreference__outgoing_group_call">Outgoing group call</string>
+
+    <!-- CreateCallLink -->
+    <!-- Call link creation item title on calls tab -->
+    <string name="CreateCallLink__create_a_call_link">Create a Call Link</string>
+    <!-- Call link creation item description on calls tab -->
+    <string name="CreateCallLink__share_a_link_for">Share a link for a Signal call</string>
+
+    <!-- CreateCallLinkBottomSheetDialogFragment -->
+    <!-- Fragment title -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Create call link</string>
+    <!-- Displayed as a default name for the signal call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal call</string>
+    <!-- Displayed on a small button to allow user to instantly join call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__join">Join</string>
+    <!-- Option to open a full screen dialog to enter a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Add call name</string>
+    <!-- Toggle to require approval for all members before joining -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Approve all members</string>
+    <!-- Row label to share the link via Signal -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Share link via Signal</string>
+    <!-- Row label to copy the link to the clipboard -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">Copy link</string>
+    <!-- Row label to share the link with the external share sheet -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link">Share link</string>
+    <!-- Button text to dismiss the sheet and add it as an upcoming call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__done">Done</string>
+    <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Failed to open share sheet.</string>
+    <!-- Displayed when we copy the call link to the clipboard -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Copied to clipboard</string>
+
+    <!-- EditCallLinkNameDialogFragment -->
+    <!-- App bar title for editing a call name -->
+    <string name="EditCallLinkNameDialogFragment__edit_call_name">Edit call name</string>
+    <!-- Text on button to confirm edit -->
+    <string name="EditCallLinkNameDialogFragment__save">Save</string>
+    <!-- Placeholder text on input field when editing call name -->
+    <string name="EditCallLinkNameDialogFragment__call_name">Call name</string>
 
     <!-- EOF -->
 </resources>

@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -88,7 +88,7 @@ public class AvatarMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<AvatarMigrationJob> {
     @Override
-    public @NonNull AvatarMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull AvatarMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new AvatarMigrationJob(parameters);
     }
   }

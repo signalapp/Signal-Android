@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.hasSharedContact
 import java.util.Optional
 import java.util.function.Consumer
 
@@ -134,6 +135,10 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
         val linkPreview = mediaMessage?.linkPreviews?.firstOrNull()
         builder.withLinkPreview(linkPreview)
         builder.asTextStory(mediaMessage?.storyType?.isTextStory ?: false)
+      }
+
+      if (conversationMessage.messageRecord.hasSharedContact() && conversationMessage.multiselectCollection.isMediaSelected(selectedParts)) {
+        builder.withSharedContacts((conversationMessage.messageRecord as MmsMessageRecord).sharedContacts)
       }
 
       if (conversationMessage.messageRecord.isMms && conversationMessage.multiselectCollection.isMediaSelected(selectedParts)) {
