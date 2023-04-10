@@ -1684,6 +1684,13 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return updated
   }
 
+  fun containsId(id: RecipientId): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$ID = ?", id.serialize())
+      .run()
+  }
+
   fun setReportingToken(id: RecipientId, reportingToken: ByteArray) {
     val values = ContentValues(1).apply {
       put(REPORTING_TOKEN, reportingToken)
