@@ -196,6 +196,7 @@ import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndR
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInitiationBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
+import org.thoughtcrime.securesms.invites.InviteActions;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
 import org.thoughtcrime.securesms.invites.InviteReminderRepository;
 import org.thoughtcrime.securesms.jobs.ForceUpdateGroupV2Job;
@@ -1142,27 +1143,18 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void handleInviteLink() {
-    String inviteText = getString(R.string.ConversationActivity_lets_switch_to_signal, getString(R.string.install_url));
-
-    if (viewModel.isDefaultSmsApplication() && SignalStore.misc().getSmsExportPhase().isSmsSupported()) {
-      composeText.appendInvite(inviteText);
-    } else if (recipient.get().hasSmsAddress()) {
-      Intent intent = new Intent(Intent.ACTION_SENDTO);
-      intent.setData(Uri.parse("smsto:" + recipient.get().requireSmsAddress()));
-      intent.putExtra("sms_body", inviteText);
-      intent.putExtra(Intent.EXTRA_TEXT, inviteText);
-      startActivity(intent);
-    } else {
-      Intent sendIntent = new Intent();
-      sendIntent.setAction(Intent.ACTION_SEND);
-      sendIntent.putExtra(Intent.EXTRA_TEXT, inviteText);
-      sendIntent.setType("text/plain");
-      if (sendIntent.resolveActivity(requireContext().getPackageManager()) != null) {
-        startActivity(Intent.createChooser(sendIntent, getString(R.string.InviteActivity_invite_to_signal)));
-      } else {
-        Toast.makeText(requireContext(), R.string.InviteActivity_no_app_to_share_to, Toast.LENGTH_LONG).show();
-      }
-    }
+    InviteActions.INSTANCE.inviteUserToSignal(
+        requireContext(),
+        recipient.get(),
+        text -> {
+          composeText.appendInvite(text);
+          return Unit.INSTANCE;
+        },
+        intent -> {
+          startActivity(intent);
+          return Unit.INSTANCE;
+        }
+    );
   }
 
   @Override

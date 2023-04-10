@@ -178,11 +178,25 @@ public class CommunicationActions {
                    .show();
   }
 
-  public static void composeSmsThroughDefaultApp(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
+  public static @NonNull Intent createIntentToShareTextViaShareSheet(@NonNull String text) {
+    Intent intent = new Intent(Intent.ACTION_SEND);
+    intent.setType("text/plain");
+    intent.putExtra(Intent.EXTRA_TEXT, text);
+
+    return intent;
+  }
+
+  public static @NonNull Intent createIntentToComposeSmsThroughDefaultApp(@NonNull Recipient recipient, @Nullable String text) {
     Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + recipient.requireSmsAddress()));
     if (text != null) {
       intent.putExtra("sms_body", text);
     }
+
+    return intent;
+  }
+
+  public static void composeSmsThroughDefaultApp(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
+    Intent intent = createIntentToComposeSmsThroughDefaultApp(recipient, text);
     context.startActivity(intent);
   }
 
