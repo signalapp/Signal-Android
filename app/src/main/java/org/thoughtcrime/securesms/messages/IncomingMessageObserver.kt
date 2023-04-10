@@ -63,7 +63,7 @@ class IncomingMessageObserver(private val context: Application) {
     private val TAG = Log.tag(IncomingMessageObserver::class.java)
     private val WEBSOCKET_READ_TIMEOUT = TimeUnit.MINUTES.toMillis(1)
     private val KEEP_ALIVE_TOKEN_MAX_AGE = TimeUnit.MINUTES.toMillis(5)
-    private val MAX_BACKGROUND_TIME = TimeUnit.MINUTES.toMillis(5)
+    private val MAX_BACKGROUND_TIME = TimeUnit.MINUTES.toMillis(2)
     private val INSTANCE_COUNT = AtomicInteger(0)
 
     const val FOREGROUND_ID = 313399
