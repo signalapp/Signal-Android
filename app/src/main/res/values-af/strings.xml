@@ -3997,7 +3997,7 @@
     <string name="AccountSettingsFragment__require_your_signal_pin">Jou Signal-PIN is nodig om weer jou telefoonnommer met Signal te registreer.</string>
     <string name="AccountSettingsFragment__change_phone_number">Verander telefoonnommer</string>
     <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Your account data</string>
+    <string name="AccountSettingsFragment__request_account_data">Jou rekeningdata</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
@@ -4026,7 +4026,7 @@
     <!-- Title of dialog shown when report fails to generate -->
     <string name="ExportAccountDataFragment__report_generation_failed">Couldn\'t generate report</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Check your connection and try again.</string>
+    <string name="ExportAccountDataFragment__check_network">Gaan jou verbinding na en probeer weer.</string>
 
     <!-- Title for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation">Voer data uit?</string>
@@ -4486,7 +4486,7 @@
     <string name="ImageEditorHud__toggle_between_text_styles">Wissel tussen teksstyle</string>
 
     <!-- Header for section of featured stickers (location/time stickers) -->
-    <string name="ScribbleStickersFragment__featured_stickers">Featured</string>
+    <string name="ScribbleStickersFragment__featured_stickers">Beskikbaar</string>
 
     <string name="MediaCountIndicatorButton__send">Stuur</string>
 
@@ -5772,9 +5772,9 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Gemis</string>
     <!-- Displayed on Group Call button if user is not in the call -->
-    <string name="CallLogAdapter__join">Join</string>
+    <string name="CallLogAdapter__join">Sluit aan</string>
     <!-- Displayed on Group Call button if user is in the call -->
-    <string name="CallLogAdapter__return">Return</string>
+    <string name="CallLogAdapter__return">Keer terug</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5869,9 +5869,9 @@
     <!-- Fragment title -->
     <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Create call link</string>
     <!-- Displayed as a default name for the signal call -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal call</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal oproep</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__join">Join</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__join">Sluit aan</string>
     <!-- Option to open a full screen dialog to enter a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Add call name</string>
     <!-- Toggle to require approval for all members before joining -->
@@ -5879,21 +5879,21 @@
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Share link via Signal</string>
     <!-- Row label to copy the link to the clipboard -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">Copy link</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">Kopieer skakel</string>
     <!-- Row label to share the link with the external share sheet -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__share_link">Share link</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link">Deel skakel</string>
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__done">Done</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__done">Klaar</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Failed to open share sheet.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Copied to clipboard</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Na knipbord gekopieer</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
     <string name="EditCallLinkNameDialogFragment__edit_call_name">Edit call name</string>
     <!-- Text on button to confirm edit -->
-    <string name="EditCallLinkNameDialogFragment__save">Save</string>
+    <string name="EditCallLinkNameDialogFragment__save">Stoor</string>
     <!-- Placeholder text on input field when editing call name -->
     <string name="EditCallLinkNameDialogFragment__call_name">Call name</string>
 
