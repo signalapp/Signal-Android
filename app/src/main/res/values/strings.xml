@@ -5861,6 +5861,8 @@
     <string name="CameraControls_continue_button_accessibility_label">Continue Button</string>
 
     <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">Group call</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Missed group call</string>
     <!-- Incoming group call in call info -->

@@ -51,6 +51,7 @@ object CallPreference {
         MessageTypes.OUTGOING_AUDIO_CALL_TYPE, MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> R.drawable.symbol_arrow_upright_24
         MessageTypes.GROUP_CALL_TYPE -> when {
           call.event == CallTable.Event.MISSED -> R.drawable.symbol_missed_incoming_24
+          call.event == CallTable.Event.GENERIC_GROUP_CALL || call.event == CallTable.Event.JOINED -> R.drawable.symbol_group_24
           call.direction == CallTable.Direction.INCOMING -> R.drawable.symbol_arrow_downleft_24
           call.direction == CallTable.Direction.OUTGOING -> R.drawable.symbol_arrow_upright_24
           else -> throw AssertionError()
@@ -69,6 +70,7 @@ object CallPreference {
         MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> R.string.MessageRecord_outgoing_video_call
         MessageTypes.GROUP_CALL_TYPE -> when {
           call.event == CallTable.Event.MISSED -> R.string.CallPreference__missed_group_call
+          call.event == CallTable.Event.GENERIC_GROUP_CALL || call.event == CallTable.Event.JOINED -> R.string.CallPreference__group_call
           call.direction == CallTable.Direction.INCOMING -> R.string.CallPreference__incoming_group_call
           call.direction == CallTable.Direction.OUTGOING -> R.string.CallPreference__outgoing_group_call
           else -> throw AssertionError()

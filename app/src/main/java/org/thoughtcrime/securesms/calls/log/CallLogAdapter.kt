@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.CallTable
+import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.databinding.CallLogAdapterItemBinding
 import org.thoughtcrime.securesms.databinding.CallLogCreateCallLinkItemBinding
 import org.thoughtcrime.securesms.databinding.ConversationListItemClearFilterBinding
@@ -151,30 +152,27 @@ class CallLogAdapter(
         return
       }
 
-      val event = model.call.call.event
-      val direction = model.call.call.direction
-
       binding.callRecipientAvatar.setAvatar(GlideApp.with(binding.callRecipientAvatar), model.call.peer, true)
       binding.callRecipientBadge.setBadgeFromRecipient(model.call.peer)
       binding.callRecipientName.text = model.call.peer.getDisplayName(context)
-      presentCallInfo(event, direction, model.call.date)
+      presentCallInfo(model.call.call, model.call.date)
       presentCallType(model)
     }
 
-    private fun presentCallInfo(event: CallTable.Event, direction: CallTable.Direction, date: Long) {
+    private fun presentCallInfo(call: CallTable.Call, date: Long) {
       binding.callInfo.text = context.getString(
         R.string.CallLogAdapter__s_dot_s,
-        context.getString(getCallStateStringRes(event, direction)),
+        context.getString(getCallStateStringRes(call)),
         DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), date)
       )
 
       binding.callInfo.setRelativeDrawables(
-        start = getCallStateDrawableRes(event, direction)
+        start = getCallStateDrawableRes(call)
       )
 
       val color = ContextCompat.getColor(
         context,
-        if (event == CallTable.Event.MISSED) {
+        if (call.event == CallTable.Event.MISSED) {
           R.color.signal_colorError
         } else {
           R.color.signal_colorOnSurface
@@ -233,28 +231,39 @@ class CallLogAdapter(
     }
 
     @DrawableRes
-    private fun getCallStateDrawableRes(callEvent: CallTable.Event, callDirection: CallTable.Direction): Int {
-      if (callEvent == CallTable.Event.MISSED) {
-        return R.drawable.symbol_missed_incoming_compact_16
-      }
-
-      return if (callDirection == CallTable.Direction.INCOMING) {
-        R.drawable.symbol_arrow_downleft_compact_16
-      } else {
-        R.drawable.symbol_arrow_upright_compact_16
+    private fun getCallStateDrawableRes(call: CallTable.Call): Int {
+      return when (call.messageType) {
+        MessageTypes.MISSED_VIDEO_CALL_TYPE, MessageTypes.MISSED_AUDIO_CALL_TYPE -> R.drawable.symbol_missed_incoming_compact_16
+        MessageTypes.INCOMING_AUDIO_CALL_TYPE, MessageTypes.INCOMING_VIDEO_CALL_TYPE -> R.drawable.symbol_arrow_downleft_compact_16
+        MessageTypes.OUTGOING_AUDIO_CALL_TYPE, MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> R.drawable.symbol_arrow_upright_compact_16
+        MessageTypes.GROUP_CALL_TYPE -> when {
+          call.event == CallTable.Event.MISSED -> R.drawable.symbol_missed_incoming_24
+          call.event == CallTable.Event.GENERIC_GROUP_CALL || call.event == CallTable.Event.JOINED -> R.drawable.symbol_group_compact_16
+          call.direction == CallTable.Direction.INCOMING -> R.drawable.symbol_arrow_downleft_compact_16
+          call.direction == CallTable.Direction.OUTGOING -> R.drawable.symbol_arrow_upright_compact_16
+          else -> throw AssertionError()
+        }
+        else -> error("Unexpected type ${call.type}")
       }
     }
 
     @StringRes
-    private fun getCallStateStringRes(callEvent: CallTable.Event, callDirection: CallTable.Direction): Int {
-      if (callEvent == CallTable.Event.MISSED) {
-        return R.string.CallLogAdapter__missed
-      }
-
-      return if (callDirection == CallTable.Direction.INCOMING) {
-        R.string.CallLogAdapter__incoming
-      } else {
-        R.string.CallLogAdapter__outgoing
+    private fun getCallStateStringRes(call: CallTable.Call): Int {
+      return when (call.messageType) {
+        MessageTypes.MISSED_VIDEO_CALL_TYPE -> R.string.CallLogAdapter__missed
+        MessageTypes.MISSED_AUDIO_CALL_TYPE -> R.string.CallLogAdapter__missed
+        MessageTypes.INCOMING_AUDIO_CALL_TYPE -> R.string.CallLogAdapter__incoming
+        MessageTypes.INCOMING_VIDEO_CALL_TYPE -> R.string.CallLogAdapter__incoming
+        MessageTypes.OUTGOING_AUDIO_CALL_TYPE -> R.string.CallLogAdapter__outgoing
+        MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> R.string.CallLogAdapter__outgoing
+        MessageTypes.GROUP_CALL_TYPE -> when {
+          call.event == CallTable.Event.MISSED -> R.string.CallPreference__missed_group_call
+          call.event == CallTable.Event.GENERIC_GROUP_CALL || call.event == CallTable.Event.JOINED -> R.string.CallPreference__group_call
+          call.direction == CallTable.Direction.INCOMING -> R.string.CallLogAdapter__incoming
+          call.direction == CallTable.Direction.OUTGOING -> R.string.CallLogAdapter__outgoing
+          else -> throw AssertionError()
+        }
+        else -> error("Unexpected type ${call.messageType}")
       }
     }
   }
