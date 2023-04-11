@@ -22,7 +22,6 @@
         style="@style/Signal.Text.Body"
         android:textColor="@color/conversation_item_sent_text_primary_color"
         android:textColorLink="@color/conversation_item_sent_text_primary_color"
-        android:textIsSelectable="true"
         app:scaleEmojis="true"
         tools:text="With great power comes great responsibility."/>
 

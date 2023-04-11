@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.components.spoiler
 
 import android.graphics.Canvas
 import android.graphics.ColorFilter
+import android.graphics.Paint
+import android.graphics.PixelFormat
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.Drawable
@@ -12,27 +14,32 @@ import androidx.annotation.ColorInt
  */
 class SpoilerDrawable(@ColorInt color: Int) : Drawable() {
 
+  private val paint = Paint()
+
   init {
     alpha = 255
-    colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN)
+    setTintColor(color)
+  }
+
+  fun setTintColor(@ColorInt color: Int) {
+    paint.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN)
   }
 
   override fun draw(canvas: Canvas) {
-    canvas.drawRect(bounds, SpoilerPaint.paint)
-    SpoilerPaint.update()
-    invalidateSelf()
+    paint.shader = SpoilerPaint.shader
+    canvas.drawRect(bounds, paint)
   }
 
   override fun setAlpha(alpha: Int) {
-    SpoilerPaint.applyAlpha(alpha)
+    paint.alpha = alpha
   }
 
   @Deprecated("Deprecated in Java", ReplaceWith("PixelFormat.TRANSPARENT", "android.graphics.PixelFormat"))
   override fun getOpacity(): Int {
-    return SpoilerPaint.paint.alpha
+    return PixelFormat.TRANSPARENT
   }
 
   override fun setColorFilter(colorFilter: ColorFilter?) {
-    SpoilerPaint.applyColorFilter(colorFilter)
+    throw UnsupportedOperationException("Call setTintColor")
   }
 }
