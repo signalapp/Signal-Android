@@ -1738,17 +1738,17 @@
     <string name="WebRtcCallView__end_call">Avslutt samtale</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
-    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">A UI error occurred. Please report this error to the developers.</string>
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Det oppstod en feil med grensesnittet. Si gjerne ifra til utviklerne våre om denne feilen.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
-    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">No eligible audio I/O detected.</string>
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Ingen inn-/utgang for lyd funnet.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">An icon representing a Bluetooth device.</string>
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">Et ikon som viser en Bluetooth-enhet.</string>
     <!-- A text description of the headset icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">An icon representing a wired headset.</string>
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">Et ikon som viser hodetelefoner.</string>
     <!-- A text description of the speaker icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">An icon representing a speakerphone.</string>
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">Et ikon som viser en høyttaler.</string>
     <!-- A text description of the earpiece icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">An icon representing a device\'s earpiece.</string>
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Et ikon som viser øretelefoner.</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1817,7 +1817,7 @@
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Vi må verifisere at du er et menneske.</string>
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
-    <string name="RegistrationActivity_external_service_error">Signal was unable to send an SMS code due to an external failure.</string>
+    <string name="RegistrationActivity_external_service_error">Signal kunne ikke sende SMS-koden på grunn av en ekstern feil.</string>
     <string name="RegistrationActivity_next">Neste</string>
     <string name="RegistrationActivity_continue">Fortsett</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta personvernet med deg.\nVær deg selv i hver melding.</string>
@@ -2263,9 +2263,9 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headset">Wired Headset</string>
+    <string name="WebRtcAudioOutputToggle__wired_headset">Hodetelefoner</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
-    <string name="WebRtcAudioOutputToggle__wired_headset_usb">Wired Headset (USB)</string>
+    <string name="WebRtcAudioOutputToggle__wired_headset_usb">Hodetelefoner (USB-C)</string>
 
     <string name="WebRtcCallControls_answer_call_description">Svar på anrop</string>
     <string name="WebRtcCallControls_reject_call_description">Avvis samtale</string>
@@ -4003,7 +4003,7 @@
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Dine brukerdata</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">Eksporter en rapport med brukerdataene dine fra Signal. Rapporten inneholder ikke meldinger og medier. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
     <string name="ExportAccountDataFragment__learn_more">Les mer</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
@@ -4024,7 +4024,7 @@
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">OK</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Couldn\'t generate report</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">Kunne ikke opprette rapport</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
     <string name="ExportAccountDataFragment__check_network">Sjekk internettilkoblingen og prøv igjen.</string>
 
@@ -4036,9 +4036,9 @@
     <string name="ExportAccountDataFragment__export_report_action">Eksporter</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Generating report…</string>
+    <string name="ExportAccountDataFragment__download_progress">Oppretter rapport …</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Your report is generated only at the time of export and is not stored by Signal on your device.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Rapporten opprettes kun når den eksporteres, og den lagres ikke i Signal-appen eller på enheten din.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Velg dette for å bytte ut det nåværende telefonnummeret ditt. Denne endringen kan ikke angres senere. Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du fortsetter.</string>
@@ -5853,49 +5853,49 @@
 
     <!-- CallPreference -->
     <!-- Missed group call in call info -->
-    <string name="CallPreference__missed_group_call">Missed group call</string>
+    <string name="CallPreference__missed_group_call">Ubesvart gruppeanrop</string>
     <!-- Incoming group call in call info -->
-    <string name="CallPreference__incoming_group_call">Incoming group call</string>
+    <string name="CallPreference__incoming_group_call">Innkommende gruppeanrop</string>
     <!-- Outgoing group call in call info -->
-    <string name="CallPreference__outgoing_group_call">Outgoing group call</string>
+    <string name="CallPreference__outgoing_group_call">Utgående gruppeanrop</string>
 
     <!-- CreateCallLink -->
     <!-- Call link creation item title on calls tab -->
-    <string name="CreateCallLink__create_a_call_link">Create a Call Link</string>
+    <string name="CreateCallLink__create_a_call_link">Opprett en samtalelenke</string>
     <!-- Call link creation item description on calls tab -->
-    <string name="CreateCallLink__share_a_link_for">Share a link for a Signal call</string>
+    <string name="CreateCallLink__share_a_link_for">Del en lenke til en samtale på Signal</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Create call link</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Opprett samtalelenke</string>
     <!-- Displayed as a default name for the signal call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal-samtale</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">Bli med</string>
     <!-- Option to open a full screen dialog to enter a call name -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Add call name</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Gi samtalen et navn</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Approve all members</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Godkjenn alle medlemmene</string>
     <!-- Row label to share the link via Signal -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Share link via Signal</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Del lenken via Signal</string>
     <!-- Row label to copy the link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">Kopier lenken</string>
     <!-- Row label to share the link with the external share sheet -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__share_link">Del link</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link">Del lenken</string>
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">Ferdig</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Failed to open share sheet.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Kunne ikke åpne delingssiden.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Kopiert til utklippstavle</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Kopiert til utklippstavlen</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
-    <string name="EditCallLinkNameDialogFragment__edit_call_name">Edit call name</string>
+    <string name="EditCallLinkNameDialogFragment__edit_call_name">Endre navnet på samtalen</string>
     <!-- Text on button to confirm edit -->
     <string name="EditCallLinkNameDialogFragment__save">Lagre</string>
     <!-- Placeholder text on input field when editing call name -->
-    <string name="EditCallLinkNameDialogFragment__call_name">Call name</string>
+    <string name="EditCallLinkNameDialogFragment__call_name">Samtalenavn</string>
 
     <!-- EOF -->
 </resources>

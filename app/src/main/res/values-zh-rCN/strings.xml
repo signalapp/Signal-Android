@@ -1676,17 +1676,17 @@
     <string name="WebRtcCallView__end_call">结束呼叫</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
-    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">A UI error occurred. Please report this error to the developers.</string>
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">出现了一个 UI 错误。请向开发人员报告该错误。</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
-    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">No eligible audio I/O detected.</string>
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">未检测到符合条件的音频输入/输出。</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">An icon representing a Bluetooth device.</string>
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">蓝牙设备图标。</string>
     <!-- A text description of the headset icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">An icon representing a wired headset.</string>
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">有线耳机图标。</string>
     <!-- A text description of the speaker icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">An icon representing a speakerphone.</string>
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">扬声器图标。</string>
     <!-- A text description of the earpiece icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">An icon representing a device\'s earpiece.</string>
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">设备耳机图标。</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1753,7 +1753,7 @@
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">我们需要验证您是真正的用户。</string>
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
-    <string name="RegistrationActivity_external_service_error">Signal was unable to send an SMS code due to an external failure.</string>
+    <string name="RegistrationActivity_external_service_error">由于外部故障，Signal 无法发送短信验证码。</string>
     <string name="RegistrationActivity_next">下一步</string>
     <string name="RegistrationActivity_continue">继续</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">让隐私与您形影不离。\n在每一条消息中展现真正的自己。</string>
@@ -2197,9 +2197,9 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">蓝牙</string>
     <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headset">Wired Headset</string>
+    <string name="WebRtcAudioOutputToggle__wired_headset">有线耳机</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
-    <string name="WebRtcAudioOutputToggle__wired_headset_usb">Wired Headset (USB)</string>
+    <string name="WebRtcAudioOutputToggle__wired_headset_usb">有线耳机（USB）</string>
 
     <string name="WebRtcCallControls_answer_call_description">接听来电</string>
     <string name="WebRtcCallControls_reject_call_description">拒接来电</string>
@@ -3913,7 +3913,7 @@
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">您的账户数据</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">导出您的 Signal 账户数据报告。该报告不包含任何消息或媒体。%1$s</string>
     <!-- Learn more link to more information about requesting account data -->
     <string name="ExportAccountDataFragment__learn_more">了解详情</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
@@ -3934,7 +3934,7 @@
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">好</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Couldn\'t generate report</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">无法生成报告</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
     <string name="ExportAccountDataFragment__check_network">请检查您的网络连接并重试。</string>
 
@@ -3946,9 +3946,9 @@
     <string name="ExportAccountDataFragment__export_report_action">导出</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Generating report…</string>
+    <string name="ExportAccountDataFragment__download_progress">正在生成报告…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Your report is generated only at the time of export and is not stored by Signal on your device.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">您的报告只在导出时生成，不会由 Signal 保存在您的设备上。</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">您可以以此将当前的电话号码更改为新号码。变更将无法撤消。\n\n在继续操作之前，请确保您的新号码能接收短信或接听电话。</string>
@@ -5734,31 +5734,31 @@
 
     <!-- CallPreference -->
     <!-- Missed group call in call info -->
-    <string name="CallPreference__missed_group_call">Missed group call</string>
+    <string name="CallPreference__missed_group_call">未接群组通话</string>
     <!-- Incoming group call in call info -->
-    <string name="CallPreference__incoming_group_call">Incoming group call</string>
+    <string name="CallPreference__incoming_group_call">拨入群组通话</string>
     <!-- Outgoing group call in call info -->
-    <string name="CallPreference__outgoing_group_call">Outgoing group call</string>
+    <string name="CallPreference__outgoing_group_call">拨出群组通话</string>
 
     <!-- CreateCallLink -->
     <!-- Call link creation item title on calls tab -->
-    <string name="CreateCallLink__create_a_call_link">Create a Call Link</string>
+    <string name="CreateCallLink__create_a_call_link">创建通话链接</string>
     <!-- Call link creation item description on calls tab -->
-    <string name="CreateCallLink__share_a_link_for">Share a link for a Signal call</string>
+    <string name="CreateCallLink__share_a_link_for">分享 Signal 通话链接</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Create call link</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">创建通话链接</string>
     <!-- Displayed as a default name for the signal call -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal 呼叫</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal 通话</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">加入</string>
     <!-- Option to open a full screen dialog to enter a call name -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Add call name</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">添加通话名称</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Approve all members</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">批准所有成员</string>
     <!-- Row label to share the link via Signal -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Share link via Signal</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">通过 Signal 分享链接</string>
     <!-- Row label to copy the link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">复制链接</string>
     <!-- Row label to share the link with the external share sheet -->
@@ -5766,17 +5766,17 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">完成</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Failed to open share sheet.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">无法打开分享页面。</string>
     <!-- Displayed when we copy the call link to the clipboard -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">已复制到剪切板</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">已复制到剪贴板</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
-    <string name="EditCallLinkNameDialogFragment__edit_call_name">Edit call name</string>
+    <string name="EditCallLinkNameDialogFragment__edit_call_name">编辑通话名称</string>
     <!-- Text on button to confirm edit -->
     <string name="EditCallLinkNameDialogFragment__save">保存</string>
     <!-- Placeholder text on input field when editing call name -->
-    <string name="EditCallLinkNameDialogFragment__call_name">Call name</string>
+    <string name="EditCallLinkNameDialogFragment__call_name">通话名称</string>
 
     <!-- EOF -->
 </resources>
