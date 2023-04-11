@@ -8,7 +8,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.ThreadUtil
-import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.select
 import org.signal.core.util.toSingleLine
