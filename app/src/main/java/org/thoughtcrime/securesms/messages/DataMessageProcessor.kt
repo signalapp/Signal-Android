@@ -819,7 +819,7 @@ object DataMessageProcessor {
       val mentions: List<Mention> = getMentions(message.bodyRangesList)
       val sticker: Attachment? = getStickerAttachment(envelope.timestamp, message)
       val attachments: List<Attachment> = message.attachmentsList.toPointers()
-      val messageRanges: BodyRangeList? = message.bodyRangesList.filter { it.hasStyle() }.toList().toBodyRangeList()
+      val messageRanges: BodyRangeList? = if (message.bodyRangesCount > 0) message.bodyRangesList.filter { it.hasStyle() }.toList().toBodyRangeList() else null
 
       handlePossibleExpirationUpdate(envelope, metadata, senderRecipient.id, threadRecipientId, groupId, message.expireTimer.seconds, receivedTime)
 
