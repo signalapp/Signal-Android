@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.getParcelableCompat
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -115,8 +116,11 @@ class StoryViewerFragment :
       if (state.skipCrossfade) {
         viewModel.setCrossfaderIsReady(true)
       }
+    }
 
-      if (state.loadState.isReady()) {
+    lifecycleDisposable += viewModel.loadState.subscribe {
+      if (it.isReady()) {
+        Log.d(TAG, "Content is ready, clearing crossfader.")
         storyCrossfader.alpha = 0f
       }
     }
@@ -203,6 +207,8 @@ class StoryViewerFragment :
   }
 
   companion object {
+    private val TAG = Log.tag(StoryViewerFragment::class.java)
+
     private const val ARGS = "args"
     private const val HIDDEN = "hidden"
 
