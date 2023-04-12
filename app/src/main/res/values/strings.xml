@@ -1479,7 +1479,7 @@
     <string name="MessageRequestBottomView_delete">Delete</string>
     <string name="MessageRequestBottomView_block">Block</string>
     <string name="MessageRequestBottomView_unblock">Unblock</string>
-    <!-- Text explaining a message request from someone you've removed before -->
+    <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let %1$s message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->

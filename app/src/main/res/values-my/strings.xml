@@ -1428,6 +1428,8 @@
     <string name="MessageRequestBottomView_delete">ဖျက်ရန်</string>
     <string name="MessageRequestBottomView_block">ဘလော့ခ်ရန်</string>
     <string name="MessageRequestBottomView_unblock">ဘလော့ခ်ဖြေရန်</string>
+    <!-- Text explaining a message request from someone you\'ve removed before -->
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s မှ သင့်ကို မက်ဆေ့ချ်ပို့ရန် ခွင့်ပြုပြီး သင်၏ အမည်နှင့် ရုပ်ပုံတို့ကို ၎င်းနှင့် မျှဝေမည်လား? ၎င်းသည် သင်မှ ၎င်းတို့၏ မက်ဆေ့ချ်များကို ဖတ်ရှုခဲ့သည်ကို သင်လက်ခံသည်အထိ မတွေ့ရပါ။</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s အား သင့်ထံ မက်ဆေ့ချ်ပို့ခွင့်ပြုပြီး သင်၏ အမည်နှင့် ပုံကို ၎င်းထံ မျှဝေမည်လား။ ၎င်းတို့အား ဘလော့ခ် မဖြေမချင်း မက်ဆေ့ချ်များ ရရှိမည် မဟုတ်ပါ။</string>
@@ -1924,6 +1926,8 @@
     <string name="ThreadRecord_message_could_not_be_processed">မက်ဆေ့ခ်ျကို လုပ်ဆောင်၍မရပါ</string>
     <string name="ThreadRecord_delivery_issue">ပေးပို့မှု ပြဿနာ</string>
     <string name="ThreadRecord_message_request">မက်ဆေ့ပို့ရန် တောင်းခံချက်</string>
+    <!-- Thread preview for a recipient that has been hidden -->
+    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
     <string name="ThreadRecord_photo">ရုပ်ပုံ</string>
     <string name="ThreadRecord_gif">လှုပ်ရှားနေသောရုပ်ပုံ</string>
     <string name="ThreadRecord_voice_message">အသံမက်ဆေ့ချ်</string>
@@ -2314,7 +2318,8 @@
     <string name="ConversationUpdateItem_send_payment">ငွေပေးချေမှု ပေးပို့မယ်</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">ငွေပေးချေမှုများ ဖွင့်မယ်</string>
-
+    <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">ဖွင့်မယ် … ခေတ္တရပ်မယ်</string>
@@ -5657,6 +5662,8 @@
     <string name="CallLogAdapter__join">ပါဝင်ရန်</string>
     <!-- Displayed on Group Call button if user is in the call -->
     <string name="CallLogAdapter__return">နောက်ပြန်သွားရန်</string>
+    <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
+    <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5733,6 +5740,8 @@
     <string name="CameraControls_continue_button_accessibility_label">ဆက်လုပ်ရန် ခလုတ်</string>
 
     <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">Group call</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">လွတ်သွားသော အဖွဲ့ကောလ်</string>
     <!-- Incoming group call in call info -->

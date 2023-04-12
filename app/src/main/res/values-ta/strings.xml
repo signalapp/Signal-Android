@@ -1479,6 +1479,8 @@
     <string name="MessageRequestBottomView_delete">நீக்கு</string>
     <string name="MessageRequestBottomView_block">தடைசெய்</string>
     <string name="MessageRequestBottomView_unblock">தடைநீக்கு</string>
+    <!-- Text explaining a message request from someone you\'ve removed before -->
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s உங்களுக்கு செய்தி அனுப்ப அனுமதித்து, உங்கள் பெயரையும் புகைப்படத்தையும் அவர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா? நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்தியை நீங்கள் பார்த்திருப்பதை அவர்கள் அறிய மாட்டார்கள்.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s உங்களுக்கு மெசேஜ் அனுப்ப அனுமதித்து, உங்கள் பெயரையும் புகைப்படத்தையும் அவர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா? நீங்கள் அவரை தடை நீக்கம் செய்யும் வரை எந்த மெசேஜ்களையும் பெற மாட்டீர்கள்.</string>
@@ -1988,6 +1990,8 @@
     <string name="ThreadRecord_message_could_not_be_processed">செய்தியை செயலாக்க முடியவில்லை</string>
     <string name="ThreadRecord_delivery_issue">டெலிவரி பிரச்சினை</string>
     <string name="ThreadRecord_message_request">செய்தி கோரிக்கை</string>
+    <!-- Thread preview for a recipient that has been hidden -->
+    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
     <string name="ThreadRecord_photo">புகைப்படம்</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">குரல் செய்தி</string>
@@ -2383,7 +2387,8 @@
     <string name="ConversationUpdateItem_send_payment">அனுப்பு கட்டணம்</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">கொடுப்பனவுகளைச் செயல்படுத்தவும்</string>
-
+    <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">விளையாடு … இடைநிறுத்து</string>
@@ -5775,6 +5780,8 @@
     <string name="CallLogAdapter__join">சேரவும்</string>
     <!-- Displayed on Group Call button if user is in the call -->
     <string name="CallLogAdapter__return">இணைக</string>
+    <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
+    <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5852,6 +5859,8 @@
     <string name="CameraControls_continue_button_accessibility_label">தொடர்க பட்டன்</string>
 
     <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">Group call</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">தவறிய குழு அழைப்பு</string>
     <!-- Incoming group call in call info -->

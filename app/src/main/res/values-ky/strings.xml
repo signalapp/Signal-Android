@@ -1428,6 +1428,8 @@
     <string name="MessageRequestBottomView_delete">Өчүрүү</string>
     <string name="MessageRequestBottomView_block">Бөгөттөө</string>
     <string name="MessageRequestBottomView_unblock">Бөгөттөн чыгаруу</string>
+    <!-- Text explaining a message request from someone you\'ve removed before -->
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s сиз менен жазышып, атыңыз менен сүрөтүңүз ага көрүнө берсинби? Анын топко кошулуу өтүнүчү кабыл алынмайынча, билдирүүсүнүн көрүлүп, көрүлбөгөнүн билбейт.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s сиз менен жазышып, атыңыз менен сүрөтүңүз ага көрүнө берсинби? Аны бөгөттөн чыгармайынча, билдирүүлөрдү албайсыз.</string>
@@ -1924,6 +1926,8 @@
     <string name="ThreadRecord_message_could_not_be_processed">Билдирүү иштелген жок</string>
     <string name="ThreadRecord_delivery_issue">Билдирүү жеткен жок</string>
     <string name="ThreadRecord_message_request">Жазышуу өтүнүчү</string>
+    <!-- Thread preview for a recipient that has been hidden -->
+    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
     <string name="ThreadRecord_photo">Сүрөт</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Үн билдирүүсү</string>
@@ -2314,7 +2318,8 @@
     <string name="ConversationUpdateItem_send_payment">Төлөмдү жөнөтүү</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">Төлөмдөрдү активдештирүү</string>
-
+    <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Ойнотуу … Тындыруу</string>
@@ -5657,6 +5662,8 @@
     <string name="CallLogAdapter__join">Кошулуу</string>
     <!-- Displayed on Group Call button if user is in the call -->
     <string name="CallLogAdapter__return">Кайтуу</string>
+    <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
+    <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5733,6 +5740,8 @@
     <string name="CameraControls_continue_button_accessibility_label">Улантуу баскычы</string>
 
     <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">Group call</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Жооп берилбеген топтук чалуу</string>
     <!-- Incoming group call in call info -->

@@ -1479,6 +1479,8 @@
     <string name="MessageRequestBottomView_delete">ਮਿਟਾਓ</string>
     <string name="MessageRequestBottomView_block">ਪਾਬੰਦੀ ਲਗਾਓ</string>
     <string name="MessageRequestBottomView_unblock">ਪਾਬੰਦੀ ਹਟਾਓ</string>
+    <!-- Text explaining a message request from someone you\'ve removed before -->
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s ਨੂੰ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਅਤੇ ਉਹਨਾਂ ਨਾਲ ਤੁਹਾਡਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨ ਦੀ ਆਗਿਆ ਦੇਣੀ ਹੈ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰ ਲੈਂਦੇ ਉਦੋਂ ਤੱਕ ਉਹਨਾਂ ਨੂੰ ਇਹ ਪਤਾ ਨਹੀਂ ਲੱਗੇਗਾ ਕਿ ਤੁਸੀਂ ਉਹਨਾਂ ਦਾ ਸੁਨੇਹਾ ਦੇਖ ਲਿਆ ਹੈ।</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">ਕੀ ਤੁਸੀਂ %1$s ਨੂੰ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਦੀ ਇਜਾਜ਼ਤ ਦੇਣਾ ਚਾਹੁੰਦੇ ਹੋ ਅਤੇ ਉਹਨਾਂ ਨਾਲ ਆਪਣਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਉਹਨਾਂ ਉੱਤੋਂ ਪਾਬੰਦੀ ਨਹੀਂ ਹਟਾਉਂਦੇ, ਉਦੋਂ ਤੱਕ ਤੁਹਾਨੂੰ ਕੋਈ ਵੀ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</string>
@@ -1988,6 +1990,8 @@
     <string name="ThreadRecord_message_could_not_be_processed">ਸੁਨੇਹਾ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਨਹੀਂ ਪਾਇਆ ਜਾ ਸਕਿਆ</string>
     <string name="ThreadRecord_delivery_issue">ਡਿਲਿਵਰੀ ਮਸਲਾ</string>
     <string name="ThreadRecord_message_request">ਸੁਨੇਹਾ ਬੇਨਤੀ</string>
+    <!-- Thread preview for a recipient that has been hidden -->
+    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
     <string name="ThreadRecord_photo">ਫ਼ੋਟੋ</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">ਆਵਾਜ਼ ਸੁਨੇਹਾ</string>
@@ -2383,7 +2387,8 @@
     <string name="ConversationUpdateItem_send_payment">ਭੁਗਤਾਨ ਭੇਜੋ</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">ਭੁਗਤਾਨ ਨੂੰ ਸਰਗਰਮ ਕਰੋ</string>
-
+    <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">ਚਲਾਓ … ਰੋਕੋ</string>
@@ -5775,6 +5780,8 @@
     <string name="CallLogAdapter__join">ਸ਼ਾਮਲ ਹੋਵੋ</string>
     <!-- Displayed on Group Call button if user is in the call -->
     <string name="CallLogAdapter__return">ਵਾਪਸ ਜਾਓ</string>
+    <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
+    <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5852,6 +5859,8 @@
     <string name="CameraControls_continue_button_accessibility_label">ਜਾਰੀ ਰੱਖੋ ਬਟਨ</string>
 
     <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">Group call</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">ਮਿਸ ਹੋਈਆਂ ਗਰੁੱਪ ਕਾਲ</string>
     <!-- Incoming group call in call info -->

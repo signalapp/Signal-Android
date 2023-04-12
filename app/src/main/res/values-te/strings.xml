@@ -1479,6 +1479,8 @@
     <string name="MessageRequestBottomView_delete">తొలగించండి</string>
     <string name="MessageRequestBottomView_block">బ్లాక్ చేయండి</string>
     <string name="MessageRequestBottomView_unblock">అన్‌బ్లాక్ చేయండి</string>
+    <!-- Text explaining a message request from someone you\'ve removed before -->
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s మీకు సందేశం ఇవ్వనివ్వండి మరియు మీ పేరు మరియు ఫోటోను వారితో పంచుకోవాలా? మీరు అంగీకరించే వరకు మీరు వారి సందేశాన్ని చూశారని వారికి తెలియదు.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s మీకు సందేశం పంపనివ్వండి మరియు మీ పేరు మరియు ఫోటోను వారితో పంచుకునేదా? మీరు వారిని అన్‌బ్లాక్ చేసేంతవరకు మీరు ఎటువంటి సందేశాలు అందుకోరు.</string>
@@ -1988,6 +1990,8 @@
     <string name="ThreadRecord_message_could_not_be_processed">సందేశాన్ని ప్రాసెస్ చేయడం సాధ్యం కాలేదు</string>
     <string name="ThreadRecord_delivery_issue">నిర్వహణ సమస్య</string>
     <string name="ThreadRecord_message_request">సందేశ అభ్యర్థన</string>
+    <!-- Thread preview for a recipient that has been hidden -->
+    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
     <string name="ThreadRecord_photo">చిత్రం</string>
     <string name="ThreadRecord_gif">గిఫ్</string>
     <string name="ThreadRecord_voice_message">వాయిస్ సందేశం</string>
@@ -2383,7 +2387,8 @@
     <string name="ConversationUpdateItem_send_payment">చెల్లింపు పంపండి</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">చెల్లింపులను సక్రియం చేయండి</string>
-
+    <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">నడుపు … నిలుపు</string>
@@ -5775,6 +5780,8 @@
     <string name="CallLogAdapter__join">చేరండి</string>
     <!-- Displayed on Group Call button if user is in the call -->
     <string name="CallLogAdapter__return">తిరిగి వెళ్ళండి</string>
+    <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
+    <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5852,6 +5859,8 @@
     <string name="CameraControls_continue_button_accessibility_label">కొనసాగింపు బటన్</string>
 
     <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">Group call</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">మిస్ అయిన గ్రూప్ కాల్</string>
     <!-- Incoming group call in call info -->

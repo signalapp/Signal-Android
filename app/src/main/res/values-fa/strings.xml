@@ -1479,6 +1479,8 @@
     <string name="MessageRequestBottomView_delete">پاک کردن</string>
     <string name="MessageRequestBottomView_block">مسدود کردن</string>
     <string name="MessageRequestBottomView_unblock">رفع مسدودیت</string>
+    <!-- Text explaining a message request from someone you\'ve removed before -->
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که نپذیرید او متوجه نمی‌شود که پیامش را خوانده‌اید.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">می‌خواهید به %1$s اجازه دهید به شما پیام دهد و نام و عکستان را با او به اشتراک بگذارید؟ تا وقتی او را رفع مسدودیت نکنید هیچ پیامی دریافت نخواهید کرد.</string>
@@ -1738,17 +1740,17 @@
     <string name="WebRtcCallView__end_call">پایان دادن به تماس</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
-    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">A UI error occurred. Please report this error to the developers.</string>
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">خطای رابط کاربری رخ داد. لطفاً این خطا را به توسعه‌دهندگان گزارش کنید.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
-    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">No eligible audio I/O detected.</string>
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">هیچ ورودی/خروجی صدای واجدشرایطی شناسایی نشد.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">An icon representing a Bluetooth device.</string>
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">نماد نشان‌دهنده یک دستگاه بلوتوث.</string>
     <!-- A text description of the headset icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">An icon representing a wired headset.</string>
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">نماد نشان‌دهنده یک هدست سیمی.</string>
     <!-- A text description of the speaker icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">An icon representing a speakerphone.</string>
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">نماد نشان‌دهنده یک بلندگو.</string>
     <!-- A text description of the earpiece icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">An icon representing a device\'s earpiece.</string>
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">نماد نشان‌دهنده یک گوشی دستگاه.</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1817,7 +1819,7 @@
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">ما باید وارسی کنیم که شما یک انسان هستید.</string>
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
-    <string name="RegistrationActivity_external_service_error">Signal was unable to send an SMS code due to an external failure.</string>
+    <string name="RegistrationActivity_external_service_error">به‌دلیل نقص خارجی، سیگنال قادر به ارسال کد پیامکی نبود.</string>
     <string name="RegistrationActivity_next">بعدی</string>
     <string name="RegistrationActivity_continue">ادامه</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حریم خصوصی را همراه داشته باشید.\nدر هر پیام خودتان باشید.</string>
@@ -1988,6 +1990,8 @@
     <string name="ThreadRecord_message_could_not_be_processed">پیام قابل پردازش نیست</string>
     <string name="ThreadRecord_delivery_issue">اشکال تحویل</string>
     <string name="ThreadRecord_message_request">درخواست تبادل پیام</string>
+    <!-- Thread preview for a recipient that has been hidden -->
+    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
     <string name="ThreadRecord_photo">عکس</string>
     <string name="ThreadRecord_gif">گیف</string>
     <string name="ThreadRecord_voice_message">پیام صوتی</string>
@@ -2263,9 +2267,9 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
     <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headset">Wired Headset</string>
+    <string name="WebRtcAudioOutputToggle__wired_headset">هدست سیمی</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
-    <string name="WebRtcAudioOutputToggle__wired_headset_usb">Wired Headset (USB)</string>
+    <string name="WebRtcAudioOutputToggle__wired_headset_usb">هدست سیمی (USB)</string>
 
     <string name="WebRtcCallControls_answer_call_description">پاسخ به تماس</string>
     <string name="WebRtcCallControls_reject_call_description">رد تماس</string>
@@ -2383,7 +2387,8 @@
     <string name="ConversationUpdateItem_send_payment">ارسال پرداخت</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">فعال کردن پرداخت‌ها</string>
-
+    <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">پخش … توقف</string>
@@ -4003,7 +4008,7 @@
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">اطلاعات حساب شما</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">یگ گزارش از اطلاعات حساب سیگنال خود خروجی بگیرید. این گزارش هیچ‌گونه پیام یا فایل رسانه‌ای ندارد. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
     <string name="ExportAccountDataFragment__learn_more">اطلاعات بیشتر</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
@@ -4024,7 +4029,7 @@
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">تأیید</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Couldn\'t generate report</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">امکان تولید گزارش وجود نداشت</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
     <string name="ExportAccountDataFragment__check_network">اتصال خود را بررسی و دوباره تلاش کنید.</string>
 
@@ -4036,9 +4041,9 @@
     <string name="ExportAccountDataFragment__export_report_action">خروجی گرفتن</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Generating report…</string>
+    <string name="ExportAccountDataFragment__download_progress">در حال تولید گزارش…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Your report is generated only at the time of export and is not stored by Signal on your device.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">گزارش شما فقط هنگام خروجی گرفتن تولید می‌شود و سیگنال آن را در دستگاهتان ذخیره نمی‌کند.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">از این گزینه برای تغییر شماره‌تلفن فعلی خود به یک شماره‌تلفن جدید استفاده کنید. شما نمی‌توانید این تغییر را بازگردانی کنید.\n\n قبل از ادامه، مطمئن شوید که شمارهٔ جدید شما می‌تواند پیامک یا تماس دریافت کند.</string>
@@ -5775,6 +5780,8 @@
     <string name="CallLogAdapter__join">پیوستن</string>
     <!-- Displayed on Group Call button if user is in the call -->
     <string name="CallLogAdapter__return">بازگشت</string>
+    <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
+    <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5852,50 +5859,52 @@
     <string name="CameraControls_continue_button_accessibility_label">دکمه ادامه</string>
 
     <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">Group call</string>
     <!-- Missed group call in call info -->
-    <string name="CallPreference__missed_group_call">Missed group call</string>
+    <string name="CallPreference__missed_group_call">تماس گروهی ازدست‌رفته</string>
     <!-- Incoming group call in call info -->
-    <string name="CallPreference__incoming_group_call">Incoming group call</string>
+    <string name="CallPreference__incoming_group_call">تماس گروهی ورودی</string>
     <!-- Outgoing group call in call info -->
-    <string name="CallPreference__outgoing_group_call">Outgoing group call</string>
+    <string name="CallPreference__outgoing_group_call">تماس گروهی خروجی</string>
 
     <!-- CreateCallLink -->
     <!-- Call link creation item title on calls tab -->
-    <string name="CreateCallLink__create_a_call_link">Create a Call Link</string>
+    <string name="CreateCallLink__create_a_call_link">ایجاد یک پیوند تماس</string>
     <!-- Call link creation item description on calls tab -->
-    <string name="CreateCallLink__share_a_link_for">Share a link for a Signal call</string>
+    <string name="CreateCallLink__share_a_link_for">اشتراک‌گذاری یک پیوند برای تماس سیگنال</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Create call link</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">ایجاد پیوند تماس</string>
     <!-- Displayed as a default name for the signal call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">تماس سیگنال</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__join">پیوستن</string>
     <!-- Option to open a full screen dialog to enter a call name -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Add call name</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">افزودن نام تماس</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Approve all members</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">تأیید همه اعضا</string>
     <!-- Row label to share the link via Signal -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Share link via Signal</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">اشتراک‌گذاری پیوند از طریق سیگنال</string>
     <!-- Row label to copy the link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">کپی کردن پیوند</string>
     <!-- Row label to share the link with the external share sheet -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link">اشتراک‌گذاری پیوند</string>
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__done">تمام</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__done">انجام شد</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Failed to open share sheet.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">باز کردن برگه اشتراک‌گذاری انجام نشد.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">روی کلیپ‌بورد کپی شد</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">در کلیپ‌بورد کپی شد</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
-    <string name="EditCallLinkNameDialogFragment__edit_call_name">Edit call name</string>
+    <string name="EditCallLinkNameDialogFragment__edit_call_name">ویرایش نام تماس</string>
     <!-- Text on button to confirm edit -->
     <string name="EditCallLinkNameDialogFragment__save">ذخیره</string>
     <!-- Placeholder text on input field when editing call name -->
-    <string name="EditCallLinkNameDialogFragment__call_name">Call name</string>
+    <string name="EditCallLinkNameDialogFragment__call_name">نام تماس</string>
 
     <!-- EOF -->
 </resources>

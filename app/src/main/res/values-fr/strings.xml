@@ -1479,6 +1479,8 @@
     <string name="MessageRequestBottomView_delete">Supprimer</string>
     <string name="MessageRequestBottomView_block">Bloquer</string>
     <string name="MessageRequestBottomView_unblock">Débloquer</string>
+    <!-- Text explaining a message request from someone you\'ve removed before -->
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Ce contact ne saura pas que vous avez vu ses messages tant que vous n’aurez pas accepté.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Autoriser %1$s à vous envoyer des messages et partager vos nom et photo avec ce contact ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
@@ -1738,17 +1740,17 @@
     <string name="WebRtcCallView__end_call">Raccrocher</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
-    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">A UI error occurred. Please report this error to the developers.</string>
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Erreur d’interface utilisateur. Veuillez signaler cette erreur aux développeurs.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
-    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">No eligible audio I/O detected.</string>
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Aucun audio éligible I/O n’a été détecté.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">An icon representing a Bluetooth device.</string>
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">L’icône d’un appareil Bluetooth.</string>
     <!-- A text description of the headset icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">An icon representing a wired headset.</string>
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">L’icône d’un casque filaire.</string>
     <!-- A text description of the speaker icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">An icon representing a speakerphone.</string>
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">L’icône d’un haut-parleur.</string>
     <!-- A text description of the earpiece icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">An icon representing a device\'s earpiece.</string>
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">L’icône de l’écouteur d’un appareil.</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1817,7 +1819,7 @@
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Nous devons confirmer que vous êtes un être humain.</string>
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
-    <string name="RegistrationActivity_external_service_error">Signal was unable to send an SMS code due to an external failure.</string>
+    <string name="RegistrationActivity_external_service_error">Signal n’a pas pu envoyer le code SMS en raison d’une défaillance externe.</string>
     <string name="RegistrationActivity_next">Suivant</string>
     <string name="RegistrationActivity_continue">Poursuivre</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">La confidentialité dans votre poche.\nPour que chaque message reflète qui vous êtes.</string>
@@ -1988,6 +1990,8 @@
     <string name="ThreadRecord_message_could_not_be_processed">Le message n’a pas pu être traité</string>
     <string name="ThreadRecord_delivery_issue">Problème de remise</string>
     <string name="ThreadRecord_message_request">Demande de message</string>
+    <!-- Thread preview for a recipient that has been hidden -->
+    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
     <string name="ThreadRecord_photo">Photo</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Message vocal</string>
@@ -2263,9 +2267,9 @@
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
     <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
-    <string name="WebRtcAudioOutputToggle__wired_headset">Wired Headset</string>
+    <string name="WebRtcAudioOutputToggle__wired_headset">Casque filaire</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
-    <string name="WebRtcAudioOutputToggle__wired_headset_usb">Wired Headset (USB)</string>
+    <string name="WebRtcAudioOutputToggle__wired_headset_usb">Casque filaire (USB)</string>
 
     <string name="WebRtcCallControls_answer_call_description">Répondre à l’appel</string>
     <string name="WebRtcCallControls_reject_call_description">Refuser l’appel</string>
@@ -2383,7 +2387,8 @@
     <string name="ConversationUpdateItem_send_payment">Envoyer le paiement</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">Activer les paiements</string>
-
+    <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Lecture … Mettre en pause</string>
@@ -3997,13 +4002,13 @@
     <string name="AccountSettingsFragment__require_your_signal_pin">Exige votre NIP Signal pour réinscrire votre numéro de téléphone avec Signal</string>
     <string name="AccountSettingsFragment__change_phone_number">Changer de numéro de téléphone</string>
     <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Les données de votre compte</string>
+    <string name="AccountSettingsFragment__request_account_data">Données de compte</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Les données de votre compte</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">Exporter un rapport contenant les données de votre compte Signal. Ce rapport ne contient aucun message ou contenu multimédia. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
     <string name="ExportAccountDataFragment__learn_more">En savoir plus</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
@@ -4024,7 +4029,7 @@
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">OK</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Couldn\'t generate report</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">Impossible de générer un rapport</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
     <string name="ExportAccountDataFragment__check_network">Vérifiez votre connexion et réessayez.</string>
 
@@ -4036,9 +4041,9 @@
     <string name="ExportAccountDataFragment__export_report_action">Exporter</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Generating report…</string>
+    <string name="ExportAccountDataFragment__download_progress">Génération du rapport…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Your report is generated only at the time of export and is not stored by Signal on your device.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Le rapport est généré uniquement lors de l’exportation et n’est pas stocké par Signal sur votre appareil.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Utilisez cette fonction pour changer votre numéro de téléphone actuel pour un nouveau. Vous ne pouvez pas annuler ce changement.\nAvant de continuer, assurez-vous que votre nouveau numéro puisse recevoir des SMS ou des appels.</string>
@@ -5772,9 +5777,11 @@
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Manqué</string>
     <!-- Displayed on Group Call button if user is not in the call -->
-    <string name="CallLogAdapter__join">Me joindre</string>
+    <string name="CallLogAdapter__join">Rejoindre</string>
     <!-- Displayed on Group Call button if user is in the call -->
     <string name="CallLogAdapter__return">Revenir</string>
+    <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
+    <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5852,32 +5859,34 @@
     <string name="CameraControls_continue_button_accessibility_label">Bouton Poursuivre</string>
 
     <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">Group call</string>
     <!-- Missed group call in call info -->
-    <string name="CallPreference__missed_group_call">Missed group call</string>
+    <string name="CallPreference__missed_group_call">Appel de groupe manqué</string>
     <!-- Incoming group call in call info -->
-    <string name="CallPreference__incoming_group_call">Incoming group call</string>
+    <string name="CallPreference__incoming_group_call">Appel de groupe entrant</string>
     <!-- Outgoing group call in call info -->
-    <string name="CallPreference__outgoing_group_call">Outgoing group call</string>
+    <string name="CallPreference__outgoing_group_call">Appel de groupe sortant</string>
 
     <!-- CreateCallLink -->
     <!-- Call link creation item title on calls tab -->
-    <string name="CreateCallLink__create_a_call_link">Create a Call Link</string>
+    <string name="CreateCallLink__create_a_call_link">Créer un lien d’appel</string>
     <!-- Call link creation item description on calls tab -->
-    <string name="CreateCallLink__share_a_link_for">Share a link for a Signal call</string>
+    <string name="CreateCallLink__share_a_link_for">Partager le lien d’un appel Signal</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Create call link</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Créer un lien d’appel</string>
     <!-- Displayed as a default name for the signal call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Appel Signal</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__join">Me joindre</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__join">Rejoindre</string>
     <!-- Option to open a full screen dialog to enter a call name -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Add call name</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Ajouter un libellé d’appel</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Approve all members</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Approuver tous les membres</string>
     <!-- Row label to share the link via Signal -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Share link via Signal</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Partager le lien via Signal</string>
     <!-- Row label to copy the link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">Copier le lien</string>
     <!-- Row label to share the link with the external share sheet -->
@@ -5885,17 +5894,17 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">Terminé</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Failed to open share sheet.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Échec de l’ouverture de la page de partage.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">A été copié dans le presse-papiers</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Copié dans le presse-papiers</string>
 
     <!-- EditCallLinkNameDialogFragment -->
     <!-- App bar title for editing a call name -->
-    <string name="EditCallLinkNameDialogFragment__edit_call_name">Edit call name</string>
+    <string name="EditCallLinkNameDialogFragment__edit_call_name">Modifier le libellé de l’appel</string>
     <!-- Text on button to confirm edit -->
     <string name="EditCallLinkNameDialogFragment__save">Enregistrer</string>
     <!-- Placeholder text on input field when editing call name -->
-    <string name="EditCallLinkNameDialogFragment__call_name">Call name</string>
+    <string name="EditCallLinkNameDialogFragment__call_name">Libellé de l’appel</string>
 
     <!-- EOF -->
 </resources>

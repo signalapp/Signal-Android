@@ -1581,6 +1581,8 @@
     <string name="MessageRequestBottomView_delete">Видалити</string>
     <string name="MessageRequestBottomView_block">Заблокувати</string>
     <string name="MessageRequestBottomView_unblock">Розблокувати</string>
+    <!-- Text explaining a message request from someone you\'ve removed before -->
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Дозволити %1$s писати вам та ділитись з ним своїм ім\'ям та фото? Користувач не знатиме, що ви бачили його повідомлення, допоки ви не схвалите запит.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Дозволити користувачу %1$s надсилати вам повідомлення та ділитись ім\'ям і фото з цим користувачем? Ви не отримаєте повідомлень, поки не розблокуєте цього користувача.</string>
@@ -2116,6 +2118,8 @@
     <string name="ThreadRecord_message_could_not_be_processed">Не вдалось опрацювати повідомлення</string>
     <string name="ThreadRecord_delivery_issue">Проблема з доставленням</string>
     <string name="ThreadRecord_message_request">Запит спілкування</string>
+    <!-- Thread preview for a recipient that has been hidden -->
+    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
     <string name="ThreadRecord_photo">Світлини</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Голосове Повідомлення</string>
@@ -2521,7 +2525,8 @@
     <string name="ConversationUpdateItem_send_payment">Надіслати платіж</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">Увімкнути платежі</string>
-
+    <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Відтворення … Пауза</string>
@@ -6011,6 +6016,8 @@
     <string name="CallLogAdapter__join">Приєднатись</string>
     <!-- Displayed on Group Call button if user is in the call -->
     <string name="CallLogAdapter__return">Повернутись</string>
+    <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
+    <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6090,6 +6097,8 @@
     <string name="CameraControls_continue_button_accessibility_label">Кнопка «Продовжити»</string>
 
     <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">Group call</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Пропущений груповий дзвінок</string>
     <!-- Incoming group call in call info -->
