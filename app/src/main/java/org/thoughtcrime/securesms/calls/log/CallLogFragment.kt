@@ -277,7 +277,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     if (viewModel.selectionStateSnapshot.isNotEmpty(binding.recycler.adapter!!.itemCount)) {
       viewModel.toggleSelected(callLogRow.id)
     } else {
-      val intent = ConversationSettingsActivity.forCall(requireContext(), callLogRow.peer, longArrayOf(callLogRow.call.messageId!!))
+      val intent = ConversationSettingsActivity.forCall(requireContext(), callLogRow.peer, (callLogRow.id as CallLogRow.Id.Call).children.toLongArray())
       startActivity(intent)
     }
   }

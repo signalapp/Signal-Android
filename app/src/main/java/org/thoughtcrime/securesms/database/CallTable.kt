@@ -8,12 +8,15 @@ import org.signal.core.util.IntSerializer
 import org.signal.core.util.Serializer
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
+import org.signal.core.util.flatten
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
+import org.signal.core.util.readToMap
 import org.signal.core.util.readToSingleLong
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireLong
+import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
 import org.signal.core.util.requireString
 import org.signal.core.util.select
@@ -32,6 +35,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallEvent
 import java.util.UUID
+import java.util.concurrent.TimeUnit
 
 /**
  * Contains details for each 1:1 call.
@@ -40,6 +44,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
   companion object {
     private val TAG = Log.tag(CallTable::class.java)
+    private val TIME_WINDOW = TimeUnit.HOURS.toMillis(4)
 
     private const val TABLE_NAME = "call"
     private const val ID = "_id"
@@ -152,19 +157,37 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   }
 
   fun getCalls(messageIds: Collection<Long>): Map<Long, Call> {
-    val calls = mutableMapOf<Long, Call>()
     val queries = SqlUtil.buildCollectionQuery(MESSAGE_ID, messageIds)
-
-    queries.forEach { query ->
-      val cursor = readableDatabase
+    val maps = queries.map { query ->
+      readableDatabase
         .select()
         .from(TABLE_NAME)
         .where("$EVENT != ${Event.serialize(Event.DELETE)} AND ${query.where}", query.whereArgs)
         .run()
-
-      calls.putAll(cursor.readToList { c -> c.requireLong(MESSAGE_ID) to Call.deserialize(c) })
+        .readToMap { c -> c.requireLong(MESSAGE_ID) to Call.deserialize(c) }
     }
-    return calls
+
+    return maps.flatten()
+  }
+
+  /**
+   * @param callRowIds The CallTable.ID collection to query
+   *
+   * @return a map of raw MessageId -> Call
+   */
+  fun getCallsByRowIds(callRowIds: Collection<Long>): Map<Long, Call> {
+    val queries = SqlUtil.buildCollectionQuery(ID, callRowIds)
+
+    val maps = queries.map { query ->
+      readableDatabase
+        .select()
+        .from(TABLE_NAME)
+        .where("$EVENT != ${Event.serialize(Event.DELETE)} AND ${query.where}", query.whereArgs)
+        .run()
+        .readToMap { c -> c.requireLong(MESSAGE_ID) to Call.deserialize(c) }
+    }
+
+    return maps.flatten()
   }
 
   fun getOldestDeletionTimestamp(): Long {
@@ -670,14 +693,14 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .run()
   }
 
-  fun deleteCallEvents(callIds: Set<Long>) {
-    val messageIds = getMessageIds(callIds)
+  fun deleteCallEvents(callRowIds: Set<Long>) {
+    val messageIds = getMessageIds(callRowIds)
     SignalDatabase.messages.deleteCallUpdates(messageIds)
     updateCallEventDeletionTimestamps()
   }
 
-  fun deleteAllCallEventsExcept(callIds: Set<Long>) {
-    val messageIds = getMessageIds(callIds)
+  fun deleteAllCallEventsExcept(callRowIds: Set<Long>) {
+    val messageIds = getMessageIds(callRowIds)
     SignalDatabase.messages.deleteAllCallUpdatesExcept(messageIds)
     updateCallEventDeletionTimestamps()
   }
@@ -697,10 +720,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     }
   }
 
-  private fun getMessageIds(callIds: Set<Long>): Set<Long> {
+  private fun getMessageIds(callRowIds: Set<Long>): Set<Long> {
     val queries = SqlUtil.buildCollectionQuery(
-      CALL_ID,
-      callIds,
+      ID,
+      callRowIds,
       "$MESSAGE_ID NOT NULL AND"
     )
 
@@ -718,12 +741,12 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   // endregion
 
   private fun getCallsCursor(isCount: Boolean, offset: Int, limit: Int, searchTerm: String?, filter: CallLogFilter): Cursor {
-    val filterClause = when (filter) {
+    val filterClause: SqlUtil.Query = when (filter) {
       CallLogFilter.ALL -> SqlUtil.buildQuery("$EVENT != ${Event.serialize(Event.DELETE)}")
       CallLogFilter.MISSED -> SqlUtil.buildQuery("$EVENT == ${Event.serialize(Event.MISSED)}")
     }
 
-    val queryClause = if (!searchTerm.isNullOrEmpty()) {
+    val queryClause: SqlUtil.Query = if (!searchTerm.isNullOrEmpty()) {
       val glob = SqlUtil.buildCaseInsensitiveGlobPattern(searchTerm)
       val selection =
         """
@@ -740,41 +763,86 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       SqlUtil.buildQuery("")
     }
 
-    val whereClause = filterClause and queryClause
-    val where = if (whereClause.where.isNotEmpty()) {
-      "WHERE ${whereClause.where}"
-    } else {
-      ""
-    }
-
     val offsetLimit = if (limit > 0) {
       "LIMIT $offset,$limit"
     } else {
       ""
     }
 
+    val projection = if (isCount) {
+      "COUNT(*),"
+    } else {
+      "p.$ID, $TIMESTAMP, $EVENT, $DIRECTION, $PEER, p.$TYPE, $CALL_ID, $MESSAGE_ID, $RINGER, children, ${MessageTable.DATE_RECEIVED}, ${MessageTable.BODY},"
+    }
+
     //language=sql
     val statement = """
-      SELECT
-      ${if (isCount) "COUNT(*)," else "$TABLE_NAME.*, ${MessageTable.DATE_RECEIVED}, ${MessageTable.BODY},"}
-      LOWER(
-        COALESCE(
-          NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.SYSTEM_JOINED_NAME}, ''),
-          NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.SYSTEM_GIVEN_NAME}, ''),
-          NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_JOINED_NAME}, ''),
-          NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_GIVEN_NAME}, ''),
-          NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.USERNAME}, '')
+      SELECT $projection
+        LOWER(
+          COALESCE(
+            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.SYSTEM_JOINED_NAME}, ''),
+            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.SYSTEM_GIVEN_NAME}, ''),
+            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_JOINED_NAME}, ''),
+            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_GIVEN_NAME}, ''),
+            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.USERNAME}, '')
+          )
+        ) AS sort_name
+      FROM (
+        WITH cte AS (
+          SELECT
+            $ID, $TIMESTAMP, $EVENT, $DIRECTION, $PEER, $TYPE, $CALL_ID, $MESSAGE_ID, $RINGER,
+            (
+              SELECT
+                $ID
+              FROM
+                $TABLE_NAME
+              WHERE
+                $TABLE_NAME.$DIRECTION = c.$DIRECTION
+                AND $TABLE_NAME.$PEER = c.$PEER
+                AND $TABLE_NAME.$TIMESTAMP - $TIME_WINDOW <= c.$TIMESTAMP
+                AND $TABLE_NAME.$TIMESTAMP >= c.$TIMESTAMP
+              ORDER BY
+                $TIMESTAMP DESC
+            ) as parent,
+            (
+              SELECT
+                group_concat($ID)
+              FROM
+                $TABLE_NAME
+              WHERE
+                $TABLE_NAME.$DIRECTION = c.$DIRECTION
+                AND $TABLE_NAME.$PEER = c.$PEER
+                AND c.$TIMESTAMP - $TIME_WINDOW <= $TABLE_NAME.$TIMESTAMP
+                AND c.$TIMESTAMP >= $TABLE_NAME.$TIMESTAMP
+            ) as children
+          FROM
+            $TABLE_NAME c
+          WHERE ${filterClause.where}
+          ORDER BY
+            $TIMESTAMP DESC
         )
-      ) AS sort_name
-      FROM $TABLE_NAME
-      INNER JOIN ${RecipientTable.TABLE_NAME} ON ${RecipientTable.TABLE_NAME}.${RecipientTable.ID} = $TABLE_NAME.$PEER
-      INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID
-      $where
-      ORDER BY ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} DESC
+        SELECT
+          *,
+          CASE
+            WHEN LAG (parent, 1, 0) OVER (
+              ORDER BY
+                $TIMESTAMP DESC
+            ) != parent THEN $ID
+            ELSE parent
+          END true_parent
+        FROM
+          cte
+      ) p
+      INNER JOIN ${RecipientTable.TABLE_NAME} ON ${RecipientTable.TABLE_NAME}.${RecipientTable.ID} = $PEER
+      INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $MESSAGE_ID
+      WHERE true_parent = p.$ID ${if (queryClause.where.isNotEmpty()) "AND ${queryClause.where}" else ""}
       $offsetLimit
     """.trimIndent()
 
-    return readableDatabase.query(statement, whereClause.whereArgs)
+    return readableDatabase.query(
+      statement,
+      queryClause.whereArgs
+    )
   }
 
   fun getCallsCount(searchTerm: String?, filter: CallLogFilter): Int {
@@ -785,17 +853,21 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   }
 
   fun getCalls(offset: Int, limit: Int, searchTerm: String?, filter: CallLogFilter): List<CallLogRow.Call> {
-    return getCallsCursor(false, offset, limit, searchTerm, filter).readToList {
-      val call = Call.deserialize(it)
+    return getCallsCursor(false, offset, limit, searchTerm, filter).readToList { cursor ->
+      val call = Call.deserialize(cursor)
       val recipient = Recipient.resolved(call.peer)
-      val date = it.requireLong(MessageTable.DATE_RECEIVED)
-      val groupCallDetails = GroupCallUpdateDetailsUtil.parse(it.requireString(MessageTable.BODY))
+      val date = cursor.requireLong(MessageTable.DATE_RECEIVED)
+      val groupCallDetails = GroupCallUpdateDetailsUtil.parse(cursor.requireString(MessageTable.BODY))
 
       CallLogRow.Call(
-        call = call,
+        record = call,
         peer = recipient,
         date = date,
-        groupCallState = CallLogRow.GroupCallState.fromDetails(groupCallDetails)
+        groupCallState = CallLogRow.GroupCallState.fromDetails(groupCallDetails),
+        children = cursor.requireNonNullString("children")
+          .split(',')
+          .map { it.toLong() }
+          .toSet()
       )
     }
   }

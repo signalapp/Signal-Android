@@ -36,18 +36,18 @@ class CallLogRepository : CallLogPagedDataSource.CallRepository {
   }
 
   fun deleteSelectedCallLogs(
-    selectedCallIds: Set<Long>
+    selectedCallRowIds: Set<Long>
   ): Completable {
     return Completable.fromAction {
-      SignalDatabase.calls.deleteCallEvents(selectedCallIds)
+      SignalDatabase.calls.deleteCallEvents(selectedCallRowIds)
     }.observeOn(Schedulers.io())
   }
 
   fun deleteAllCallLogsExcept(
-    selectedCallIds: Set<Long>
+    selectedCallRowIds: Set<Long>
   ): Completable {
     return Completable.fromAction {
-      SignalDatabase.calls.deleteAllCallEventsExcept(selectedCallIds)
+      SignalDatabase.calls.deleteAllCallEventsExcept(selectedCallRowIds)
     }.observeOn(Schedulers.io())
   }
 }
