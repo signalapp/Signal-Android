@@ -300,6 +300,7 @@ class StoryViewerPageFragment :
     progressBar.listener = object : SegmentedProgressBarListener {
       override fun onPage(oldPageIndex: Int, newPageIndex: Int) {
         if (oldPageIndex != newPageIndex && context != null) {
+          Log.d(TAG, "onPage: Moving from $oldPageIndex to $newPageIndex")
           viewModel.setSelectedPostIndex(newPageIndex)
         }
       }

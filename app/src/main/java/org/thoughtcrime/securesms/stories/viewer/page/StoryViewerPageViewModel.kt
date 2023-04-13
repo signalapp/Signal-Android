@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -30,6 +31,10 @@ class StoryViewerPageViewModel(
   private val repository: StoryViewerPageRepository,
   val storyCache: StoryCache
 ) : ViewModel() {
+
+  companion object {
+    private val TAG = Log.tag(StoryViewerPageViewModel::class.java)
+  }
 
   private val store = RxStore(StoryViewerPageState(isReceiptsEnabled = repository.isReadReceiptsEnabled()))
   private val disposables = CompositeDisposable()
@@ -136,6 +141,8 @@ class StoryViewerPageViewModel(
       return
     }
 
+    Log.d(TAG, "goToNextPost: Moving to the next post.")
+
     val postIndex = store.state.selectedPostIndex
 
     val nextUnreadPost: StoryPost? = getNextUnreadPost(store.state.posts.drop(postIndex + 1))
@@ -150,6 +157,8 @@ class StoryViewerPageViewModel(
     if (store.state.posts.isEmpty()) {
       return
     }
+
+    Log.d(TAG, "goToPreviousPost: Moving to the previous post")
 
     val postIndex = store.state.selectedPostIndex
     val minIndex = if (store.state.isFirstPage) 0 else -1
