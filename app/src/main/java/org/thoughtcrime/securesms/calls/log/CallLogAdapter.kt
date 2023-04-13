@@ -262,7 +262,7 @@ class CallLogAdapter(
         MessageTypes.OUTGOING_AUDIO_CALL_TYPE -> R.string.CallLogAdapter__outgoing
         MessageTypes.OUTGOING_VIDEO_CALL_TYPE -> R.string.CallLogAdapter__outgoing
         MessageTypes.GROUP_CALL_TYPE -> when {
-          call.event == CallTable.Event.MISSED -> R.string.CallPreference__missed_group_call
+          call.event == CallTable.Event.MISSED -> R.string.CallLogAdapter__missed
           call.event == CallTable.Event.GENERIC_GROUP_CALL || call.event == CallTable.Event.JOINED -> R.string.CallPreference__group_call
           call.direction == CallTable.Direction.INCOMING -> R.string.CallLogAdapter__incoming
           call.direction == CallTable.Direction.OUTGOING -> R.string.CallLogAdapter__outgoing
