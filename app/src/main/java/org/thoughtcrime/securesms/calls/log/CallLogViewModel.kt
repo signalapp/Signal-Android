@@ -77,6 +77,10 @@ class CallLogViewModel(
     disposables.dispose()
   }
 
+  fun markAllCallEventsRead() {
+    callLogRepository.markAllCallEventsRead()
+  }
+
   fun selectAll() {
     callLogStore.update {
       val selectionState = CallLogSelectionState.selectAll()

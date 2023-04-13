@@ -10,7 +10,6 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
-import androidx.compose.animation.core.snap
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -193,6 +192,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     super.onResume()
     initializeSearchAction()
     ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
+    viewModel.markAllCallEventsRead()
   }
 
   private fun initializeTapToScrollToTop(snapToTopDataObserver: SnapToTopDataObserver) {
