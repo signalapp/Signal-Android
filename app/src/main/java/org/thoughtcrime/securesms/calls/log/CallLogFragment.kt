@@ -10,6 +10,7 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
+import androidx.compose.animation.core.snap
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -47,6 +48,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.SnapToTopDataObserver
+import org.thoughtcrime.securesms.util.SnapToTopDataObserver.ScrollRequestValidator
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.visible
@@ -102,6 +105,26 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     disposables.bindTo(viewLifecycleOwner)
     adapter.setPagingController(viewModel.controller)
 
+    val snapToTopDataObserver = SnapToTopDataObserver(
+      binding.recycler,
+      object : ScrollRequestValidator {
+        override fun isPositionStillValid(position: Int): Boolean {
+          return position < adapter.itemCount && position >= 0
+        }
+
+        override fun isItemAtPositionLoaded(position: Int): Boolean {
+          return adapter.getItem(position) != null
+        }
+      }
+    ) {
+      val layoutManager = binding.recycler.layoutManager as? LinearLayoutManager ?: return@SnapToTopDataObserver
+      if (layoutManager.findFirstVisibleItemPosition() <= LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD) {
+        binding.recycler.smoothScrollToPosition(0)
+      } else {
+        binding.recycler.scrollToPosition(0)
+      }
+    }
+
     disposables += Flowables.combineLatest(viewModel.data, viewModel.selectedAndStagedDeletion)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { (data, selected) ->
@@ -146,7 +169,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     )
 
     initializePullToFilter()
-    initializeTapToScrollToTop()
+    initializeTapToScrollToTop(snapToTopDataObserver)
 
     requireActivity().onBackPressedDispatcher.addCallback(
       viewLifecycleOwner,
@@ -172,16 +195,11 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
   }
 
-  private fun initializeTapToScrollToTop() {
+  private fun initializeTapToScrollToTop(snapToTopDataObserver: SnapToTopDataObserver) {
     disposables += tabsViewModel.tabClickEvents
       .filter { it == ConversationListTab.CALLS }
       .subscribeBy(onNext = {
-        val layoutManager = binding.recycler.layoutManager as? LinearLayoutManager ?: return@subscribeBy
-        if (layoutManager.findFirstVisibleItemPosition() <= LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD) {
-          binding.recycler.smoothScrollToPosition(0)
-        } else {
-          binding.recycler.scrollToPosition(0)
-        }
+        snapToTopDataObserver.requestScrollPosition(0)
       })
   }
 
