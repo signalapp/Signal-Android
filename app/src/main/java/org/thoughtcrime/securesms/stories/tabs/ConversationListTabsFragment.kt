@@ -6,6 +6,7 @@ import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.fragment.app.Fragment
@@ -14,9 +15,11 @@ import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.model.KeyPath
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.ConversationListTabsBinding
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.visible
@@ -32,8 +35,14 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
   private var shouldBeImmediate = true
   private var pillAnimator: Animator? = null
 
+  private val largeConstraintSet: ConstraintSet = ConstraintSet()
+  private val smallConstraintSet: ConstraintSet = ConstraintSet()
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val iconTint = ContextCompat.getColor(requireContext(), R.color.signal_colorOnSecondaryContainer)
+
+    largeConstraintSet.clone(binding.root)
+    smallConstraintSet.clone(requireContext(), R.layout.conversation_list_tabs_small)
 
     binding.chatsTabIcon.addValueCallback(
       KeyPath("**"),
@@ -76,6 +85,14 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
   }
 
   private fun updateTabsVisibility() {
+    if (SignalStore.settings().useCompactNavigationBar) {
+      smallConstraintSet.applyTo(binding.root)
+      binding.root.minHeight = 48.dp
+    } else {
+      largeConstraintSet.applyTo(binding.root)
+      binding.root.minHeight = 80.dp
+    }
+
     listOf(
       binding.callsPill,
       binding.callsTabIcon,
@@ -96,6 +113,16 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
       binding.storiesTabTouchPoint
     ).forEach {
       it.visible = Stories.isFeatureEnabled()
+    }
+
+    if (SignalStore.settings().useCompactNavigationBar) {
+      listOf(
+        binding.callsTabLabel,
+        binding.chatsTabLabel,
+        binding.storiesTabLabel
+      ).forEach {
+        it.visible = false
+      }
     }
 
     update(viewModel.stateSnapshot, true)
