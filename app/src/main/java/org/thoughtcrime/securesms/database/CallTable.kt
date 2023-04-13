@@ -253,7 +253,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           EVENT to Event.serialize(Event.DELETE),
           DELETION_TIMESTAMP to System.currentTimeMillis()
         )
-        .where("$CALL_ID = ?", call.callId)
+        .where("$CALL_ID = ? AND $PEER = ?", call.callId, call.peer)
         .run()
 
       if (call.messageId != null) {
@@ -742,8 +742,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
   private fun getCallsCursor(isCount: Boolean, offset: Int, limit: Int, searchTerm: String?, filter: CallLogFilter): Cursor {
     val filterClause: SqlUtil.Query = when (filter) {
-      CallLogFilter.ALL -> SqlUtil.buildQuery("$EVENT != ${Event.serialize(Event.DELETE)}")
-      CallLogFilter.MISSED -> SqlUtil.buildQuery("$EVENT == ${Event.serialize(Event.MISSED)}")
+      CallLogFilter.ALL -> SqlUtil.buildQuery("$DELETION_TIMESTAMP = 0")
+      CallLogFilter.MISSED -> SqlUtil.buildQuery("$EVENT = ${Event.serialize(Event.MISSED)} AND $DELETION_TIMESTAMP = 0")
     }
 
     val queryClause: SqlUtil.Query = if (!searchTerm.isNullOrEmpty()) {
@@ -772,7 +772,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     val projection = if (isCount) {
       "COUNT(*),"
     } else {
-      "p.$ID, $TIMESTAMP, $EVENT, $DIRECTION, $PEER, p.$TYPE, $CALL_ID, $MESSAGE_ID, $RINGER, children, ${MessageTable.DATE_RECEIVED}, ${MessageTable.BODY},"
+      "p.$ID, $TIMESTAMP, $EVENT, $DIRECTION, $PEER, p.$TYPE, $CALL_ID, $MESSAGE_ID, $RINGER, children, in_period, ${MessageTable.DATE_RECEIVED}, ${MessageTable.BODY},"
     }
 
     //language=sql
@@ -801,6 +801,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
                 AND $TABLE_NAME.$PEER = c.$PEER
                 AND $TABLE_NAME.$TIMESTAMP - $TIME_WINDOW <= c.$TIMESTAMP
                 AND $TABLE_NAME.$TIMESTAMP >= c.$TIMESTAMP
+                AND ${filterClause.where}
               ORDER BY
                 $TIMESTAMP DESC
             ) as parent,
@@ -814,7 +815,18 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
                 AND $TABLE_NAME.$PEER = c.$PEER
                 AND c.$TIMESTAMP - $TIME_WINDOW <= $TABLE_NAME.$TIMESTAMP
                 AND c.$TIMESTAMP >= $TABLE_NAME.$TIMESTAMP
-            ) as children
+                AND ${filterClause.where}
+            ) as children,
+            (
+              SELECT
+                group_concat($ID)
+              FROM
+                $TABLE_NAME
+              WHERE
+                c.$TIMESTAMP - $TIME_WINDOW <= $TABLE_NAME.$TIMESTAMP
+                AND c.$TIMESTAMP >= $TABLE_NAME.$TIMESTAMP
+                AND ${filterClause.where}
+            ) as in_period
           FROM
             $TABLE_NAME c
           WHERE ${filterClause.where}
@@ -859,15 +871,27 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       val date = cursor.requireLong(MessageTable.DATE_RECEIVED)
       val groupCallDetails = GroupCallUpdateDetailsUtil.parse(cursor.requireString(MessageTable.BODY))
 
+      Log.d(TAG, "${cursor.requireNonNullString("in_period")}")
+
+      val children = cursor.requireNonNullString("children")
+        .split(',')
+        .map { it.toLong() }
+        .toSet()
+
+      val inPeriod = cursor.requireNonNullString("in_period")
+        .split(',')
+        .map { it.toLong() }
+        .sortedDescending()
+        .toSet()
+
+      val actualChildren = inPeriod.takeWhile { children.contains(it) }
+
       CallLogRow.Call(
         record = call,
         peer = recipient,
         date = date,
         groupCallState = CallLogRow.GroupCallState.fromDetails(groupCallDetails),
-        children = cursor.requireNonNullString("children")
-          .split(',')
-          .map { it.toLong() }
-          .toSet()
+        children = actualChildren.toSet()
       )
     }
   }
