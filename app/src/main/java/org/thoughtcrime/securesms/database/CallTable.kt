@@ -229,7 +229,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
       db
         .update(TABLE_NAME)
-        .values(DELETION_TIMESTAMP to System.currentTimeMillis())
+        .values(
+          EVENT to Event.serialize(Event.DELETE),
+          DELETION_TIMESTAMP to System.currentTimeMillis()
+        )
         .where(where, type)
         .run()
 
