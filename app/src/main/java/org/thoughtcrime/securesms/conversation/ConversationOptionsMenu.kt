@@ -7,11 +7,11 @@ import androidx.annotation.IdRes
 import androidx.core.view.MenuProvider
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 
 /**
  * Delegate object for managing the conversation options menu

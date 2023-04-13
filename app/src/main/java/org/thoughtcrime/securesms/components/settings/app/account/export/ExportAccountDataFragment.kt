@@ -39,11 +39,11 @@ import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Rows
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.Texts
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
 
 class ExportAccountDataFragment : ComposeFragment() {
