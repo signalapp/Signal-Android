@@ -201,10 +201,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .readToSingleLong(0L)
   }
 
-  fun deleteCallEventsDeletedBefore(threshold: Long) {
-    writableDatabase
+  fun deleteCallEventsDeletedBefore(threshold: Long): Int {
+    return writableDatabase
       .delete(TABLE_NAME)
-      .where("$DELETION_TIMESTAMP <= ?", threshold)
+      .where("$DELETION_TIMESTAMP > 0 AND $DELETION_TIMESTAMP <= ?", threshold)
       .run()
   }
 
