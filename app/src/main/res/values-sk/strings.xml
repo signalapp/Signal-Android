@@ -1864,9 +1864,9 @@
     <string name="WebRtcCallView__end_call">Ukončiť hovor</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
-    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Vyskytla sa chyba používateľského rozhrania. Nahláste chybu vývojárom.</string>
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Vyskytla sa chyba používateľského rozhrania. Nahláste túto chybu vývojárom.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
-    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Nezistil sa žiadny vhodný vstup/výstup zvuku.</string>
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Nenašiel sa žiadny vhodný vstup/výstup zvuku.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
     <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">Ikona predstavujúca zariadenie Bluetooth.</string>
     <!-- A text description of the headset icon, used for accessibility. -->
@@ -4223,7 +4223,7 @@
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">Generuje sa prehľad…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Váš prehľad sa generuje iba v čase exportu a Signal ho vo vašom zariadení neukladá.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Váš prehľad sa vygeneruje iba v čase exportu a Signal ho neukladá vo vašom zariadení.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Toto použite na zmenu aktuálneho telefónneho čísla na nové telefónne číslo. Túto zmenu nemôžete vrátiť späť. \n\nPred pokračovaním sa uistite, že vaše nové číslo môže prijímať SMS alebo hovory.</string>
@@ -6132,7 +6132,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">Hotovo</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Nepodarilo sa otvoriť zdieľanú obrazovku.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Nepodarilo sa otvoriť obrazovku na zdieľanie.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Skopírované do schránky</string>
 

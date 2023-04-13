@@ -495,8 +495,8 @@
         <item quantity="other">Gelezen</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Onglz.</item>
-        <item quantity="other">Onglz.</item>
+        <item quantity="one">Ongelezen</item>
+        <item quantity="other">Ongelezen</item>
     </plurals>
     <string name="ConversationListFragment_pin">Vastprikken</string>
     <string name="ConversationListFragment_unpin">Losmaken</string>
@@ -992,7 +992,7 @@
 
     <!-- ShareableGroupLinkDialogFragment -->
     <string name="ShareableGroupLinkDialogFragment__group_link">Groepslink</string>
-    <string name="ShareableGroupLinkDialogFragment__share">Met anderen delen</string>
+    <string name="ShareableGroupLinkDialogFragment__share">Delen</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Link vernieuwen</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">Beheerderstoestemming vereisen</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vereis voor iedere persoon die via de groepslink lid wil worden eerst toestemming van een beheerder.</string>
@@ -1073,7 +1073,7 @@
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Sms-berichten worden niet langer ondersteund in Signal.</string>
 
     <!-- InviteActivity -->
-    <string name="InviteActivity_share">Doorsturen via andere app</string>
+    <string name="InviteActivity_share">Delen via andere app</string>
     <string name="InviteActivity_share_with_contacts">Contactpersonen kiezen (sms)</string>
     <string name="InviteActivity_share_via">Delen via …</string>
 
@@ -1947,7 +1947,7 @@
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Uploaden van foutopsporingslogs is mislukt</string>
     <string name="SubmitDebugLogActivity_success">Succesvol geüpload!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze verwijzing (door deze aan te tikken en vast te houden) en voeg die toe aan je foutrapport op GitHub of aan een e-mail naar ondersteuning:\n\n<b>%1$s</b></string>
-    <string name="SubmitDebugLogActivity_share">Doorsturen via andere app</string>
+    <string name="SubmitDebugLogActivity_share">Delen via andere app</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dit log bevat geen persoonlijke details zoals telefoonnummers. Als je op uploaden klikt dan wordt dit log 30 dagen lang online beschikbaar gesteld op een unieke nergens onthulde verwijzing. Die verwijzing kun je zelf naar de ontwikkelaars sturen.</string>
 
     <!-- SupportEmailUtil -->
@@ -2066,9 +2066,9 @@
     <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Deze contactpersoon gebruikt een oude versie van Signal. Vraag hem om eerst Signal bij te werken, alvorens je het veiligheidsnummer verifieert.</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Je contact gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">De gescande QR-code is geen goed geformatteerd veiligheidsnummer-verificatiecode. Probeer de QR-code opnieuw te scannen.</string>
-    <string name="VerifyIdentityActivity_share_safety_number_via">Veiligheidsnummer doorsturen via …</string>
+    <string name="VerifyIdentityActivity_share_safety_number_via">Veiligheidsnummer delen via …</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">Ons Signal-veiligheidsnummer:</string>
-    <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt waarmee je je veiligheidsnummer kunt doorsturen.</string>
+    <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt waarmee je je veiligheidsnummer kunt delen.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Geen veiligheidsnummer gevonden op het klembord</string>
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal heeft toegang tot de camera nodig om een QR-code te scannen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Camera’ in.</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan QR-codes niet scannen zonder toegang tot de camera</string>
@@ -2616,7 +2616,7 @@
     <string name="verify_display_fragment__clear_verification">Verificatie ongedaan maken</string>
 
     <!-- verify_identity -->
-    <string name="verify_identity__share_safety_number">Veiligheidsnummer doorsturen</string>
+    <string name="verify_identity__share_safety_number">Veiligheidsnummer delen</string>
 
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scan de QR-code op het apparaat van je gesprekspartner.</string>
@@ -3699,10 +3699,10 @@
     <!-- GroupLinkBottomSheetDialogFragment -->
     <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Ieder die over deze link beschikt kan de naam, afbeelding en het aantal leden van deze groep zien en kan ook een verzoek indienen om lid te mogen worden. Deel deze link alleen met personen die je vertrouwt.</string>
     <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Ieder die over deze link beschikt kan de naam, afbeelding en het aantal leden van deze groep zien en kan direct lid worden. Deel deze link alleen met personen die je vertrouwt.</string>
-    <string name="GroupLinkBottomSheet_share_via_signal">Verzenden via Signal</string>
+    <string name="GroupLinkBottomSheet_share_via_signal">Delen via Signal</string>
     <string name="GroupLinkBottomSheet_copy">Kopiëren</string>
     <string name="GroupLinkBottomSheet_qr_code">QR-code</string>
-    <string name="GroupLinkBottomSheet_share">Verzenden via andere app</string>
+    <string name="GroupLinkBottomSheet_share">Delen via andere app</string>
     <string name="GroupLinkBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
     <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">De link is momenteel niet actief</string>
 
@@ -3814,7 +3814,7 @@
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">Het verzenden is naar sommige personen mislukt</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Je kunt dit niet naar meer dan %1$d gesprekken tegelijk doorsturen</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Je kunt dit niet naar meer dan %1$d gesprekken tegelijk delen</string>
 
     <!-- ChatWallpaperActivity -->
 
@@ -4432,13 +4432,13 @@
     <string name="ContactSelectionListItem__dot_s">· %1$s</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
-    <string name="ShareInterstitialActivity__share">Naar gesprekken doorsturen</string>
+    <string name="ShareInterstitialActivity__share">Naar gesprekken delen</string>
 
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Omhoog navigeren</string>
     <string name="MultiselectForwardFragment__forward_to">Doorsturen naar</string>
     <!-- Displayed when sharing content via the fragment -->
-    <string name="MultiselectForwardFragment__share_with">Doorsturen naar</string>
+    <string name="MultiselectForwardFragment__share_with">Delen naar</string>
     <string name="MultiselectForwardFragment__add_a_message">Berichttekst toevoegen</string>
     <string name="MultiselectForwardFragment__faster_forwards">Sneller doorsturen</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
@@ -4875,7 +4875,7 @@
     <!-- Donation receipts date paid heading -->
     <string name="DonationReceiptDetailsFragment__date_paid">Datum van overschrijving</string>
     <!-- Donation receipts share PNG -->
-    <string name="DonationReceiptDetailsFragment__share_receipt">Afschrift doorsturen</string>
+    <string name="DonationReceiptDetailsFragment__share_receipt">Afschrift delen</string>
     <!-- Donation receipts list end note -->
     <string name="DonationReceiptListFragment__if_you_have">Als je de Signal-app opnieuw hebt geïnstalleerd, zijn afschriften van eerdere donaties niet beschikbaar.</string>
     <!-- Donation receipts document title -->
@@ -4914,7 +4914,7 @@
     <!-- Context menu option to forward a story -->
     <string name="StoriesLandingItem__forward">Doorsturen</string>
     <!-- Context menu option to share a story -->
-    <string name="StoriesLandingItem__share">Doorsturen …</string>
+    <string name="StoriesLandingItem__share">Delen …</string>
     <!-- Context menu option to go to story chat -->
     <string name="StoriesLandingItem__go_to_chat">Gesprek openen</string>
     <!-- Context menu option to go to story info -->
@@ -5173,7 +5173,7 @@
     <!-- Choose story type bottom sheet group story title -->
     <string name="ChooseStoryTypeBottomSheet__group_story">Groepsverhaal</string>
     <!-- Choose story type bottom sheet group story summary -->
-    <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Doorsturen naar een bestaande Signal-groep</string>
+    <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Delen naar een bestaande Signal-groep</string>
     <!-- Choose groups bottom sheet title -->
     <string name="ChooseGroupStoryBottomSheet__choose_groups">Groepen kiezen</string>
     <!-- Displayed when copying group story reply text to clipboard -->
