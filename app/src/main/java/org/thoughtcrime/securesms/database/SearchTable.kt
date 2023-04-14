@@ -77,7 +77,9 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       WHERE 
         $FTS_TABLE_NAME MATCH ? AND 
         ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.GROUP_V2_BIT} = 0 AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.SCHEDULED_DATE} < 0 AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL
       ORDER BY ${MessageTable.DATE_RECEIVED} DESC 
       LIMIT 500
     """
@@ -99,7 +101,11 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           INNER JOIN ${ThreadTable.TABLE_NAME} ON $FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} 
       WHERE 
         $FTS_TABLE_NAME MATCH ? AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = ? 
+        ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = ? AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.GROUP_V2_BIT} = 0 AND 
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.SCHEDULED_DATE} < 0 AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL
       ORDER BY ${MessageTable.DATE_RECEIVED} DESC 
       LIMIT 500
     """

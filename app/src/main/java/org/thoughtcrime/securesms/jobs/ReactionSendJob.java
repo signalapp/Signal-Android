@@ -236,7 +236,8 @@ public class ReactionSendJob extends BaseJob {
                                                                                            messageId,
                                                                                            dataMessage,
                                                                                            true,
-                                                                                           false);
+                                                                                           false,
+                                                                                           null);
 
     if (includesSelf) {
       results.add(ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage));

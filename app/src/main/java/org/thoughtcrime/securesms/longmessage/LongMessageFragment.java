@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
+import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode;
 import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -138,7 +139,7 @@ public class LongMessageFragment extends FullScreenDialogFragment {
       } else {
         text.setMentionBackgroundTint(ContextCompat.getColor(requireContext(), R.color.transparent_black_40));
       }
-      footer.setMessageRecord(message.get().getMessageRecord(), Locale.getDefault());
+      footer.setMessageRecord(message.get().getMessageRecord(), Locale.getDefault(), ConversationItemDisplayMode.STANDARD);
     });
   }
 

@@ -51,6 +51,7 @@ message Content {
   optional bytes               decryptionErrorMessage       = 8;
   optional StoryMessage        storyMessage                 = 9;
   optional PniSignatureMessage pniSignatureMessage          = 10;
+  optional EditMessage         editMessage                  = 11;
 }
 
 message CallMessage {
@@ -772,4 +773,9 @@ message DecryptionErrorMessage {
 message PniSignatureMessage {
   optional bytes pni       = 1;
   optional bytes signature = 2;
+}
+
+message EditMessage {
+  optional uint64      targetSentTimestamp = 1;
+  optional DataMessage dataMessage         = 2;
 }

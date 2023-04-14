@@ -60,7 +60,7 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
           dateSent, dateReceived, -1, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
           new HashSet<>(), new HashSet<>(), subscriptionId,
           0, 0, false, slideDeck, readReceiptCount, null, Collections.emptyList(), Collections.emptyList(), false,
-          Collections.emptyList(), false, 0, viewedReceiptCount, receiptTimestamp, storyType, parentStoryId, giftBadge);
+          Collections.emptyList(), false, 0, viewedReceiptCount, receiptTimestamp, storyType, parentStoryId, giftBadge, null, 0);
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;

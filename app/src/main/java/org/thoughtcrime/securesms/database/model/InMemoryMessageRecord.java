@@ -54,7 +54,9 @@ public class InMemoryMessageRecord extends MessageRecord {
           false,
           0,
           0,
-          -1);
+          -1,
+          null,
+          0);
   }
 
   @Override

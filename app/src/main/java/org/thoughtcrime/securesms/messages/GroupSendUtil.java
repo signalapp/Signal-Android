@@ -37,6 +37,7 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceEditMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessageRecipient;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
@@ -94,29 +95,15 @@ public final class GroupSendUtil {
                                                                   @NonNull MessageId messageId,
                                                                   @NonNull SignalServiceDataMessage message,
                                                                   boolean urgent,
-                                                                  boolean isForStory)
+                                                                  boolean isForStory,
+                                                                  @Nullable SignalServiceEditMessage editMessage)
       throws IOException, UntrustedIdentityException
   {
     Preconditions.checkArgument(groupId == null || distributionListId == null, "Cannot supply both a groupId and a distributionListId!");
 
     DistributionId distributionId = groupId != null ? getDistributionId(groupId) : getDistributionId(distributionListId);
 
-    return sendMessage(context, groupId, distributionId, messageId, allTargets, isRecipientUpdate, isForStory, DataSendOperation.resendable(message, contentHint, messageId, urgent, isForStory), null);
-  }
-
-  @WorkerThread
-  public static List<SendMessageResult> sendResendableStoryRelatedMessage(@NonNull Context context,
-                                                                          @Nullable GroupId.V2 groupId,
-                                                                          @NonNull DistributionListId distributionListId,
-                                                                          @NonNull List<Recipient> allTargets,
-                                                                          boolean isRecipientUpdate,
-                                                                          ContentHint contentHint,
-                                                                          @NonNull MessageId messageId,
-                                                                          @NonNull SignalServiceDataMessage message,
-                                                                          boolean urgent)
-      throws IOException, UntrustedIdentityException
-  {
-    return sendMessage(context, groupId, getDistributionId(distributionListId), messageId, allTargets, isRecipientUpdate, true, DataSendOperation.resendable(message, contentHint, messageId, urgent, true), null);
+    return sendMessage(context, groupId, distributionId, messageId, allTargets, isRecipientUpdate, isForStory, DataSendOperation.resendable(message, contentHint, messageId, urgent, isForStory, editMessage), null);
   }
 
   /**
@@ -480,22 +467,24 @@ public final class GroupSendUtil {
     private final boolean                  resendable;
     private final boolean                  urgent;
     private final boolean                  isForStory;
+    private final SignalServiceEditMessage editMessage;
 
-    public static DataSendOperation resendable(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint, @NonNull MessageId relatedMessageId, boolean urgent, boolean isForStory) {
-      return new DataSendOperation(message, contentHint, true, relatedMessageId, urgent, isForStory);
+    public static DataSendOperation resendable(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint, @NonNull MessageId relatedMessageId, boolean urgent, boolean isForStory, @Nullable SignalServiceEditMessage editMessage) {
+      return new DataSendOperation(editMessage != null ? editMessage.getDataMessage() : message, contentHint, true, relatedMessageId, urgent, isForStory, editMessage);
     }
 
     public static DataSendOperation unresendable(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint, boolean urgent) {
-      return new DataSendOperation(message, contentHint, false, null, urgent, false);
+      return new DataSendOperation(message, contentHint, false, null, urgent, false, null);
     }
 
-    private DataSendOperation(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint, boolean resendable, @Nullable MessageId relatedMessageId, boolean urgent, boolean isForStory) {
+    private DataSendOperation(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint, boolean resendable, @Nullable MessageId relatedMessageId, boolean urgent, boolean isForStory, @Nullable SignalServiceEditMessage editMessage) {
       this.message          = message;
       this.contentHint      = contentHint;
       this.resendable       = resendable;
       this.relatedMessageId = relatedMessageId;
       this.urgent           = urgent;
       this.isForStory       = isForStory;
+      this.editMessage      = editMessage;
 
       if (resendable && relatedMessageId == null) {
         throw new IllegalArgumentException("If a message is resendable, it must have a related message ID!");
@@ -512,7 +501,7 @@ public final class GroupSendUtil {
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException
     {
       SenderKeyGroupEvents listener = relatedMessageId != null ? new SenderKeyMetricEventListener(relatedMessageId.getId()) : SenderKeyGroupEvents.EMPTY;
-      return messageSender.sendGroupDataMessage(distributionId, targets, access, isRecipientUpdate, contentHint, message, listener, urgent, isForStory, partialListener);
+      return messageSender.sendGroupDataMessage(distributionId, targets, access, isRecipientUpdate, contentHint, message, listener, urgent, isForStory, editMessage, partialListener);
     }
 
     @Override
@@ -527,8 +516,14 @@ public final class GroupSendUtil {
     {
       // PniSignatures are only needed for 1:1 messages, but some message jobs use the GroupSendUtil methods to send 1:1
       if (targets.size() == 1 && relatedMessageId == null) {
-        Recipient            targetRecipient = targetRecipients.get(0);
-        SendMessageResult    result          = messageSender.sendDataMessage(targets.get(0), access.get(0), contentHint, message, SignalServiceMessageSender.IndividualSendEvents.EMPTY, urgent, targetRecipient.needsPniSignature());
+        Recipient         targetRecipient = targetRecipients.get(0);
+        SendMessageResult result;
+
+        if (editMessage != null) {
+          result = messageSender.sendEditMessage(targets.get(0), access.get(0), contentHint, message, SignalServiceMessageSender.IndividualSendEvents.EMPTY, urgent, editMessage.getTargetSentTimestamp());
+        } else {
+          result = messageSender.sendDataMessage(targets.get(0), access.get(0), contentHint, message, SignalServiceMessageSender.IndividualSendEvents.EMPTY, urgent, targetRecipient.needsPniSignature());
+        }
 
         if (targetRecipient.needsPniSignature()) {
           SignalDatabase.pendingPniSignatureMessages().insertIfNecessary(targetRecipients.get(0).getId(), getSentTimestamp(), result);

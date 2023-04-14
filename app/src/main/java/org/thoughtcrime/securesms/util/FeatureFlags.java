@@ -109,6 +109,8 @@ public final class FeatureFlags {
   private static final String CALLS_TAB                         = "android.calls.tab";
   private static final String TEXT_FORMATTING_SPOILER_SEND      = "android.textFormatting.spoilerSend";
   private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc";
+  private static final String EDIT_MESSAGE_RECEIVE              = "android.editMessage.receive";
+  private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -167,7 +169,9 @@ public final class FeatureFlags {
       TEXT_FORMATTING,
       ANY_ADDRESS_PORTS_KILL_SWITCH,
       CALLS_TAB,
-      TEXT_FORMATTING_SPOILER_SEND
+      TEXT_FORMATTING_SPOILER_SEND,
+      EDIT_MESSAGE_RECEIVE,
+      EDIT_MESSAGE_SEND
   );
 
   @VisibleForTesting
@@ -232,7 +236,9 @@ public final class FeatureFlags {
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       CDS_HARD_LIMIT,
       TEXT_FORMATTING,
-      TEXT_FORMATTING_SPOILER_SEND
+      TEXT_FORMATTING_SPOILER_SEND,
+      EDIT_MESSAGE_RECEIVE,
+      EDIT_MESSAGE_SEND
   );
 
   /**
@@ -596,6 +602,14 @@ public final class FeatureFlags {
    */
   public static boolean callingFieldTrialAnyAddressPortsKillSwitch() {
     return getBoolean(ANY_ADDRESS_PORTS_KILL_SWITCH, false);
+  }
+
+  public static boolean editMessageReceiving() {
+    return getBoolean(EDIT_MESSAGE_RECEIVE, false);
+  }
+
+  public static boolean editMessageSending() {
+    return getBoolean(EDIT_MESSAGE_SEND, false);
   }
 
   /**

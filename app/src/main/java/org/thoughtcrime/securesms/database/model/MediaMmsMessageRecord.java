@@ -70,6 +70,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
   private final Payment        payment;
   private final CallTable.Call call;
   private final long           scheduledDate;
+  private final MessageId      latestRevisionId;
 
   public MediaMmsMessageRecord(long id,
                                Recipient fromRecipient,
@@ -106,18 +107,22 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                @Nullable GiftBadge giftBadge,
                                @Nullable Payment payment,
                                @Nullable CallTable.Call call,
-                               long scheduledDate)
+                               long scheduledDate,
+                               @Nullable MessageId latestRevisionId,
+                               @Nullable MessageId originalMessageId,
+                               int revisionNumber)
   {
     super(id, body, fromRecipient, fromDeviceId, toRecipient, dateSent,
           dateReceived, dateServer, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox, mismatches, failures,
           subscriptionId, expiresIn, expireStarted, viewOnce, slideDeck,
           readReceiptCount, quote, contacts, linkPreviews, unidentified, reactions, remoteDelete, notifiedTimestamp, viewedReceiptCount, receiptTimestamp,
-          storyType, parentStoryId, giftBadge);
-    this.mentionsSelf  = mentionsSelf;
-    this.messageRanges = messageRanges;
-    this.payment       = payment;
-    this.call          = call;
-    this.scheduledDate = scheduledDate;
+          storyType, parentStoryId, giftBadge, originalMessageId, revisionNumber);
+    this.mentionsSelf      = mentionsSelf;
+    this.messageRanges     = messageRanges;
+    this.payment           = payment;
+    this.call              = call;
+    this.scheduledDate     = scheduledDate;
+    this.latestRevisionId  = latestRevisionId;
   }
 
   @Override
@@ -204,18 +209,24 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
     return scheduledDate;
   }
 
+  public @Nullable MessageId getLatestRevisionId() {
+    return latestRevisionId;
+  }
+
   public @NonNull MediaMmsMessageRecord withReactions(@NonNull List<ReactionRecord> reactions) {
     return new MediaMmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), getSlideDeck(),
                                      getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                      getReadReceiptCount(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), reactions, isRemoteDelete(), mentionsSelf,
-                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getScheduledDate());
+                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getScheduledDate(), getLatestRevisionId(),
+                                     getOriginalMessageId(), getRevisionNumber());
   }
 
   public @NonNull MediaMmsMessageRecord withoutQuote() {
     return new MediaMmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), getSlideDeck(),
                                      getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                      getReadReceiptCount(), null, getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
-                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getScheduledDate());
+                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getScheduledDate(), getLatestRevisionId(),
+                                     getOriginalMessageId(), getRevisionNumber());
   }
 
   public @NonNull MediaMmsMessageRecord withAttachments(@NonNull Context context, @NonNull List<DatabaseAttachment> attachments) {
@@ -236,14 +247,16 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
     return new MediaMmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), slideDeck,
                                      getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                      getReadReceiptCount(), quote, contacts, linkPreviews, isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
-                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getScheduledDate());
+                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), getCall(), getScheduledDate(), getLatestRevisionId(),
+                                     getOriginalMessageId(), getRevisionNumber());
   }
 
   public @NonNull MediaMmsMessageRecord withPayment(@NonNull Payment payment) {
     return new MediaMmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), getSlideDeck(),
                                      getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                      getReadReceiptCount(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
-                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), payment, getCall(), getScheduledDate());
+                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), payment, getCall(), getScheduledDate(), getLatestRevisionId(),
+                                     getOriginalMessageId(), getRevisionNumber());
   }
 
 
@@ -251,7 +264,8 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
     return new MediaMmsMessageRecord(getId(), getFromRecipient(), getFromDeviceId(), getToRecipient(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), getSlideDeck(),
                                      getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                      getReadReceiptCount(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
-                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), call, getScheduledDate());
+                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment(), call, getScheduledDate(), getLatestRevisionId(),
+                                     getOriginalMessageId(), getRevisionNumber());
   }
 
   private static @NonNull List<Contact> updateContacts(@NonNull List<Contact> contacts, @NonNull Map<AttachmentId, DatabaseAttachment> attachmentIdMap) {

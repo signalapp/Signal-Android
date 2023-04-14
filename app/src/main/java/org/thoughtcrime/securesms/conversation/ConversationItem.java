@@ -419,7 +419,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   @Override
   public void updateTimestamps() {
-    getActiveFooter(messageRecord).setMessageRecord(messageRecord, locale);
+    getActiveFooter(messageRecord).setMessageRecord(messageRecord, locale, displayMode);
   }
 
   @Override
@@ -526,10 +526,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         !messageRecord.isRemoteDelete() &&
         bodyText.getLastLineWidth() > 0)
     {
-      TextView dateView           = footer.getDateView();
-      int      footerWidth        = footer.getMeasuredWidth();
-      int      availableWidth     = getAvailableMessageBubbleWidth(bodyText);
-      int      collapsedTopMargin = -1 * (dateView.getMeasuredHeight() + ViewUtil.dpToPx(4));
+      View dateView           = footer.getDateView();
+      int  footerWidth        = footer.getMeasuredWidth();
+      int  availableWidth     = getAvailableMessageBubbleWidth(bodyText);
+      int  collapsedTopMargin = -1 * (dateView.getMeasuredHeight() + ViewUtil.dpToPx(4));
 
       if (bodyText.isSingleLine() && !messageRecord.isFailed()) {
         int maxBubbleWidth  = hasBigImageLinkPreview(messageRecord) || hasThumbnail(messageRecord) ? readDimen(R.dimen.media_bubble_max_width) : getMaxBubbleWidth();
@@ -1666,7 +1666,18 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (isFooterVisible(current, next, isGroupThread)) {
       ConversationItemFooter activeFooter = getActiveFooter(current);
       activeFooter.setVisibility(VISIBLE);
-      activeFooter.setMessageRecord(current, locale);
+      activeFooter.setMessageRecord(current, locale, displayMode);
+
+      if (MessageRecordUtil.isEditMessage(current)) {
+        activeFooter.getDateView().setOnClickListener(v -> {
+          if (eventListener != null) {
+            eventListener.onEditedIndicatorClicked(current);
+          }
+        });
+      } else {
+        activeFooter.getDateView().setOnClickListener(null);
+        activeFooter.getDateView().setClickable(false);
+      }
 
       if (hasWallpaper && hasNoBubble((messageRecord))) {
         if (messageRecord.isOutgoing()) {
@@ -1714,7 +1725,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setHasBeenQuoted(@NonNull ConversationMessage message) {
-    if (message.hasBeenQuoted() && !isCondensedMode() && quotedIndicator != null && batchSelected.isEmpty()) {
+    if (message.hasBeenQuoted() && !isCondensedMode() && quotedIndicator != null && batchSelected.isEmpty() && displayMode != ConversationItemDisplayMode.EXTRA_CONDENSED) {
       quotedIndicator.setVisibility(VISIBLE);
       quotedIndicator.setOnClickListener(quotedIndicatorClickListener);
     } else if (quotedIndicator != null) {
@@ -1737,7 +1748,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean forceFooter(@NonNull MessageRecord messageRecord) {
-    return hasAudio(messageRecord);
+    return hasAudio(messageRecord) || MessageRecordUtil.isEditMessage(messageRecord);
   }
 
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
@@ -1841,7 +1852,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     int background;
 
-    if (isSingularMessage(current, previous, next, isGroupThread)) {
+    if (isSingularMessage(current, previous, next, isGroupThread) || displayMode == ConversationItemDisplayMode.EXTRA_CONDENSED) {
       if (current.isOutgoing()) {
         background = R.drawable.message_bubble_background_sent_alone;
         outliner.setRadius(bigRadius);
@@ -1922,6 +1933,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean isFooterVisible(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
+    if (displayMode == ConversationItemDisplayMode.EXTRA_CONDENSED) {
+      return false;
+    }
+
     boolean differentTimestamps = next.isPresent() && !DateUtils.isSameExtendedRelativeTimestamp(next.get().getTimestamp(), current.getTimestamp());
 
     return forceFooter(messageRecord) || current.getExpiresIn() > 0 || !current.isSecure() || current.isPending() || current.isPendingInsecureSmsFallback() ||
@@ -1937,11 +1952,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     int spacingTop    = readDimen(context, R.dimen.conversation_vertical_message_spacing_collapse);
     int spacingBottom = spacingTop;
 
-    if (isStartOfMessageCluster(current, previous, isGroupThread)) {
+    if (isStartOfMessageCluster(current, previous, isGroupThread) && (displayMode != ConversationItemDisplayMode.EXTRA_CONDENSED || next.isEmpty())) {
       spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
     }
 
-    if (isEndOfMessageCluster(current, next, isGroupThread)) {
+    if (isEndOfMessageCluster(current, next, isGroupThread) || displayMode == ConversationItemDisplayMode.EXTRA_CONDENSED) {
       spacingBottom = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
     }
 

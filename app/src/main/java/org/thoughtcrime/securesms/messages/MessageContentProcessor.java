@@ -134,7 +134,7 @@ import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.LinkUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
-import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
+import org.thoughtcrime.securesms.util.MessageConstraintsUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -1064,7 +1064,7 @@ public class MessageContentProcessor {
 
     MessageRecord targetMessage = SignalDatabase.messages().getMessageFor(delete.getTargetSentTimestamp(), senderRecipient.getId());
 
-    if (targetMessage != null && RemoteDeleteUtil.isValidReceive(targetMessage, senderRecipient, content.getServerReceivedTimestamp())) {
+    if (targetMessage != null && MessageConstraintsUtil.isValidRemoteDeleteReceive(targetMessage, senderRecipient.getId(), content.getServerReceivedTimestamp())) {
       MessageTable db = targetMessage.isMms() ? SignalDatabase.messages() : SignalDatabase.messages();
       db.markAsRemoteDelete(targetMessage.getId());
       if (MessageRecordUtil.isStory(targetMessage)) {
@@ -2220,7 +2220,8 @@ public class MessageContentProcessor {
                                                          null,
                                                          true,
                                                          bodyRanges,
-                                                         -1);
+                                                         -1,
+                                                         0);
 
       if (recipient.getExpiresInSeconds() != message.getDataMessage().get().getExpiresInSeconds()) {
         handleSynchronizeSentExpirationUpdate(message);
@@ -2342,7 +2343,8 @@ public class MessageContentProcessor {
                                                        null,
                                                        true,
                                                        bodyRanges,
-                                                       -1);
+                                                       -1,
+                                                       0);
 
     MessageTable messageTable = SignalDatabase.messages();
     long         threadId     = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
@@ -2441,7 +2443,8 @@ public class MessageContentProcessor {
                                                        giftBadge.orElse(null),
                                                        true,
                                                        bodyRanges,
-                                                       -1);
+                                                       -1,
+                                                       0);
 
     if (recipient.getExpiresInSeconds() != message.getDataMessage().get().getExpiresInSeconds()) {
       handleSynchronizeSentExpirationUpdate(message);

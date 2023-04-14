@@ -93,7 +93,7 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
     val colorizer = Colorizer()
 
     messageAdapter = ConversationAdapter(requireContext(), viewLifecycleOwner, GlideApp.with(this), Locale.getDefault(), ConversationAdapterListener(), conversationRecipient, colorizer).apply {
-      setCondensedMode(true)
+      setCondensedMode(ConversationItemDisplayMode.CONDENSED)
       setScheduledMessagesMode(true)
     }
 
@@ -276,6 +276,7 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
     override fun onViewGiftBadgeClicked(messageRecord: MessageRecord) = Unit
     override fun onActivatePaymentsClicked() = Unit
     override fun onSendPaymentClicked(recipientId: RecipientId) = Unit
+    override fun onEditedIndicatorClicked(messageRecord: MessageRecord) = Unit
   }
 
   companion object {

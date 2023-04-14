@@ -603,6 +603,10 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       requireActivity().startActivity(create(requireActivity(), args), options.toBundle())
     }
 
+    override fun onEditedIndicatorClicked(messageRecord: MessageRecord) {
+      // TODO [alex] -- ("Not yet implemented")
+    }
+
     override fun onItemClick(item: MultiselectPart?) {
       // TODO [alex] -- ("Not yet implemented")
     }

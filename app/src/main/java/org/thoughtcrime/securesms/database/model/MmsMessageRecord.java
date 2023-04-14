@@ -39,12 +39,13 @@ public abstract class MmsMessageRecord extends MessageRecord {
                    @NonNull List<LinkPreview> linkPreviews, boolean unidentified,
                    @NonNull List<ReactionRecord> reactions, boolean remoteDelete, long notifiedTimestamp,
                    int viewedReceiptCount, long receiptTimestamp, @NonNull StoryType storyType,
-                   @Nullable ParentStoryId parentStoryId, @Nullable GiftBadge giftBadge)
+                   @Nullable ParentStoryId parentStoryId, @Nullable GiftBadge giftBadge, @Nullable MessageId originalMessageId,
+                   int revisionNumber)
   {
     super(id, body, fromRecipient, fromDeviceId, toRecipient,
           dateSent, dateReceived, dateServer, threadId, deliveryStatus, deliveryReceiptCount,
           type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted, readReceiptCount,
-          unidentified, reactions, remoteDelete, notifiedTimestamp, viewedReceiptCount, receiptTimestamp);
+          unidentified, reactions, remoteDelete, notifiedTimestamp, viewedReceiptCount, receiptTimestamp, originalMessageId, revisionNumber);
 
     this.slideDeck     = slideDeck;
     this.quote         = quote;

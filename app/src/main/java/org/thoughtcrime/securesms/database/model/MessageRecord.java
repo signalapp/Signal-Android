@@ -102,6 +102,8 @@ public abstract class MessageRecord extends DisplayRecord {
   private final boolean                  remoteDelete;
   private final long                     notifiedTimestamp;
   private final long                     receiptTimestamp;
+  private final MessageId                originalMessageId;
+  private final int                      revisionNumber;
 
   protected Boolean isJumboji = null;
 
@@ -110,10 +112,18 @@ public abstract class MessageRecord extends DisplayRecord {
                 int deliveryStatus, int deliveryReceiptCount, long type,
                 Set<IdentityKeyMismatch> mismatches,
                 Set<NetworkFailure> networkFailures,
-                int subscriptionId, long expiresIn, long expireStarted,
-                int readReceiptCount, boolean unidentified,
-                @NonNull List<ReactionRecord> reactions, boolean remoteDelete, long notifiedTimestamp,
-                int viewedReceiptCount, long receiptTimestamp)
+                int subscriptionId,
+                long expiresIn,
+                long expireStarted,
+                int readReceiptCount,
+                boolean unidentified,
+                @NonNull List<ReactionRecord> reactions,
+                boolean remoteDelete,
+                long notifiedTimestamp,
+                int viewedReceiptCount,
+                long receiptTimestamp,
+                @Nullable MessageId originalMessageId,
+                int revisionNumber)
   {
     super(body, fromRecipient, toRecipient, dateSent, dateReceived,
           threadId, deliveryStatus, deliveryReceiptCount, type,
@@ -131,6 +141,8 @@ public abstract class MessageRecord extends DisplayRecord {
     this.remoteDelete        = remoteDelete;
     this.notifiedTimestamp   = notifiedTimestamp;
     this.receiptTimestamp    = receiptTimestamp;
+    this.originalMessageId   = originalMessageId;
+    this.revisionNumber      = revisionNumber;
   }
 
   public abstract boolean isMms();
@@ -719,6 +731,18 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public @NonNull BodyRangeList requireMessageRanges() {
     throw new NullPointerException();
+  }
+
+  public boolean isEditMessage() {
+    return originalMessageId != null;
+  }
+
+  public @Nullable MessageId getOriginalMessageId() {
+    return originalMessageId;
+  }
+
+  public int getRevisionNumber() {
+    return revisionNumber;
   }
 
   public static final class InviteAddState {

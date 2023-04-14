@@ -50,11 +50,13 @@ data class OutgoingMessage(
   val isEndSession: Boolean = false,
   val isIdentityVerified: Boolean = false,
   val isIdentityDefault: Boolean = false,
-  val scheduledDate: Long = -1
+  val scheduledDate: Long = -1,
+  val messageToEdit: Long = 0
 ) {
 
   val isV2Group: Boolean = messageGroupContext != null && GroupV2UpdateMessageUtil.isGroupV2(messageGroupContext)
   val isJustAGroupLeave: Boolean = messageGroupContext != null && GroupV2UpdateMessageUtil.isJustAGroupLeave(messageGroupContext)
+  val isMessageEdit: Boolean = messageToEdit != 0L
 
   /**
    * Smaller constructor for calling from Java and legacy code using the original interface.
@@ -80,7 +82,8 @@ data class OutgoingMessage(
     giftBadge: GiftBadge? = null,
     isSecure: Boolean = false,
     bodyRanges: BodyRangeList? = null,
-    scheduledDate: Long = -1
+    scheduledDate: Long = -1,
+    messageToEdit: Long = 0
   ) : this(
     threadRecipient = recipient,
     body = body ?: "",
@@ -102,7 +105,8 @@ data class OutgoingMessage(
     giftBadge = giftBadge,
     isSecure = isSecure,
     bodyRanges = bodyRanges,
-    scheduledDate = scheduledDate
+    scheduledDate = scheduledDate,
+    messageToEdit = messageToEdit
   )
 
   /**
@@ -197,6 +201,28 @@ data class OutgoingMessage(
         isUrgent = true,
         isSecure = true,
         bodyRanges = bodyRanges
+      )
+    }
+
+    /**
+     * Edit a secure message that only contains text.
+     */
+    @JvmStatic
+    fun editText(
+      recipient: Recipient,
+      body: String,
+      sentTimeMillis: Long,
+      bodyRanges: BodyRangeList?,
+      messageToEdit: Long
+    ): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = recipient,
+        sentTimeMillis = sentTimeMillis,
+        body = body,
+        isUrgent = true,
+        isSecure = true,
+        bodyRanges = bodyRanges,
+        messageToEdit = messageToEdit
       )
     }
 

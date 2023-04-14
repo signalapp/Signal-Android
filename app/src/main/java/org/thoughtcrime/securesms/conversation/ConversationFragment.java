@@ -112,6 +112,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs;
 import org.thoughtcrime.securesms.conversation.quotes.MessageQuotesBottomSheet;
+import org.thoughtcrime.securesms.conversation.ui.edit.EditMessageHistoryDialog;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
 import org.thoughtcrime.securesms.conversation.v2.AddToContactsContract;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
@@ -180,8 +181,8 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
+import org.thoughtcrime.securesms.util.MessageConstraintsUtil;
 import org.thoughtcrime.securesms.util.Projection;
-import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
@@ -836,6 +837,15 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       }));
     }
 
+    if (menuState.shouldShowEditAction()) {
+      items.add(new ActionItem(R.drawable.symbol_edit_24, getResources().getString(R.string.conversation_selection__menu_edit), () -> {
+        handleEditMessage(getSelectedConversationMessage());
+        if (actionMode != null) {
+          actionMode.finish();
+        }
+      }));
+    }
+
     if (menuState.shouldShowForwardAction()) {
       items.add(new ActionItem(R.drawable.symbol_forward_24, getResources().getString(R.string.conversation_selection__menu_forward), () -> handleForwardMessageParts(selectedParts)));
     }
@@ -1078,7 +1088,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     int deleteForEveryoneResId = isNoteToSelfDelete ? R.string.ConversationFragment_delete_everywhere : R.string.ConversationFragment_delete_for_everyone;
 
-    if (RemoteDeleteUtil.isValidSend(messageRecords, System.currentTimeMillis()) && (!isNoteToSelfDelete || TextSecurePreferences.isMultiDevice(requireContext()))) {
+    if (MessageConstraintsUtil.isValidRemoteDeleteSend(messageRecords, System.currentTimeMillis()) && (!isNoteToSelfDelete || TextSecurePreferences.isMultiDevice(requireContext()))) {
       builder.setNeutralButton(deleteForEveryoneResId, (dialog, which) -> handleDeleteForEveryone(messageRecords));
     }
 
@@ -1146,6 +1156,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   private void handleReplyMessage(final ConversationMessage message) {
     listener.handleReplyMessage(message);
+  }
+
+  private void handleEditMessage(@NonNull ConversationMessage selectedConversationMessage) {
+    listener.handleEditMessage(selectedConversationMessage);
   }
 
   private void handleSaveAttachment(final MediaMmsMessageRecord message) {
@@ -1455,6 +1469,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     void    openAttachmentKeyboard();
     void    setThreadId(long threadId);
     void    handleReplyMessage(ConversationMessage conversationMessage);
+    void    handleEditMessage(@NonNull ConversationMessage conversationMessage);
     void    onMessageActionToolbarOpened();
     void    onMessageActionToolbarClosed();
     void    onBottomActionBarVisibilityChanged(int visibility);
@@ -2111,6 +2126,15 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     }
 
     @Override
+    public void onEditedIndicatorClicked(@NonNull MessageRecord messageRecord) {
+      if (messageRecord.isOutgoing()) {
+        EditMessageHistoryDialog.show(getChildFragmentManager(), messageRecord.getToRecipient().getId(), messageRecord.getId());
+      } else {
+        EditMessageHistoryDialog.show(getChildFragmentManager(), messageRecord.getFromRecipient().getId(), messageRecord.getId());
+      }
+    }
+
+    @Override
     public void onActivatePaymentsClicked() {
       Intent intent = new Intent(requireContext(), PaymentsActivity.class);
       startActivity(intent);
@@ -2267,6 +2291,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       switch (action) {
         case REPLY:
           handleReplyMessage(conversationMessage);
+          break;
+        case EDIT:
+          handleEditMessage(conversationMessage);
           break;
         case FORWARD:
           handleForwardMessageParts(conversationMessage.getMultiselectCollection().toSet());

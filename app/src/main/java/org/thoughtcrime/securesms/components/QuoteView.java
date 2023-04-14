@@ -202,6 +202,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     params.width = thumbWidth;
 
     thumbnailView.setLayoutParams(params);
+    dismissView.setVisibility(messageType == MessageType.PREVIEW ? View.VISIBLE : View.GONE);
   }
 
   public void setQuote(GlideRequests glideRequests,

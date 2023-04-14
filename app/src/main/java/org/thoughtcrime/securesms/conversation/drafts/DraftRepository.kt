@@ -7,7 +7,9 @@ import android.text.SpannableString
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.StreamUtil
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory
@@ -21,14 +23,19 @@ import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.adjustBodyRanges
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.QuoteId
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
+import org.thoughtcrime.securesms.util.hasTextSlide
+import org.thoughtcrime.securesms.util.requireTextSlide
+import java.io.IOException
 import java.util.concurrent.Executor
 
 class DraftRepository(
@@ -37,6 +44,10 @@ class DraftRepository(
   private val draftTable: DraftTable = SignalDatabase.drafts,
   private val saveDraftsExecutor: Executor = SerialMonoLifoExecutor(SignalExecutors.BOUNDED)
 ) {
+
+  companion object {
+    val TAG = Log.tag(DraftRepository::class.java)
+  }
 
   fun deleteVoiceNoteDraftData(draft: DraftTable.Draft?) {
     if (draft != null) {
@@ -56,7 +67,11 @@ class DraftRepository(
         }
 
         draftTable.replaceDrafts(actualThreadId, drafts)
-        threadTable.updateSnippet(actualThreadId, drafts.getSnippet(context), drafts.getUriSnippet(), System.currentTimeMillis(), MessageTypes.BASE_DRAFT_TYPE, true)
+        if (drafts.shouldUpdateSnippet()) {
+          threadTable.updateSnippet(actualThreadId, drafts.getSnippet(context), drafts.getUriSnippet(), System.currentTimeMillis(), MessageTypes.BASE_DRAFT_TYPE, true)
+        } else {
+          threadTable.update(actualThreadId, unarchive = false, allowDeletion = false)
+        }
       } else if (threadId > 0) {
         draftTable.clearDrafts(threadId)
         threadTable.update(threadId, unarchive = false, allowDeletion = false)
@@ -97,6 +112,27 @@ class DraftRepository(
         }
       } ?: return@fromCallable null
 
+      ConversationMessageFactory.createWithUnresolvedData(context, messageRecord)
+    }
+  }
+
+  fun loadDraftMessageEdit(serialized: String): Maybe<ConversationMessage> {
+    return Maybe.fromCallable {
+      val messageId = MessageId.deserialize(serialized)
+      val messageRecord: MessageRecord = SignalDatabase.messages.getMessageRecordOrNull(messageId.id) ?: return@fromCallable null
+      if (messageRecord.hasTextSlide()) {
+        val textSlide = messageRecord.requireTextSlide()
+        if (textSlide.uri != null) {
+          try {
+            PartAuthority.getAttachmentStream(context, textSlide.uri!!).use { stream ->
+              val body = StreamUtil.readFullyAsString(stream)
+              return@fromCallable ConversationMessageFactory.createWithUnresolvedData(context, messageRecord, body)
+            }
+          } catch (e: IOException) {
+            Log.e(TAG, "Failed to load text slide", e)
+          }
+        }
+      }
       ConversationMessageFactory.createWithUnresolvedData(context, messageRecord)
     }
   }

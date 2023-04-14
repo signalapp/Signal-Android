@@ -67,6 +67,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemo
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServicePreview;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
@@ -313,6 +314,9 @@ public abstract class PushSendJob extends SendJob {
 
   protected Optional<SignalServiceDataMessage.Quote> getQuoteFor(OutgoingMessage message) throws IOException {
     if (message.getOutgoingQuote() == null) return Optional.empty();
+    if (message.isMessageEdit()) {
+      return Optional.of(new SignalServiceDataMessage.Quote(0, ServiceId.UNKNOWN, "", null, null, SignalServiceDataMessage.Quote.Type.NORMAL, null));
+    }
 
     long                                                  quoteId              = message.getOutgoingQuote().getId();
     String                                                quoteBody            = message.getOutgoingQuote().getText();
