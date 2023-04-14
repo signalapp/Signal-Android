@@ -398,6 +398,11 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
         Log.w(TAG, "Video capture is not supported on this device.", e);
       }
     } else {
+      captureButton.setOnLongClickListener(unused -> {
+        CameraFragment.toastVideoRecordingNotAvailable(requireContext());
+        return true;
+      });
+
       Log.i(TAG, "Video capture not supported. " +
                  "API: " + Build.VERSION.SDK_INT + ", " +
                  "MFD: " + MemoryFileDescriptor.supported() + ", " +
