@@ -48,6 +48,11 @@ import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.invites.InviteActions
@@ -178,6 +183,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     adapter.setPagingController(viewModel.pagingController)
     viewLifecycleOwner.lifecycle.addObserver(LastSeenPositionUpdater(adapter, layoutManager, viewModel))
     binding.conversationItemRecycler.adapter = adapter
+    initializeGiphyMp4()
 
     binding.conversationItemRecycler.addItemDecoration(
       MultiselectItemDecoration(
@@ -291,6 +297,24 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   }
 
   private fun getVoiceNoteMediaController() = requireListener<VoiceNoteMediaControllerOwner>().voiceNoteMediaController
+
+  private fun initializeGiphyMp4(): GiphyMp4ProjectionRecycler {
+    val maxPlayback = GiphyMp4PlaybackPolicy.maxSimultaneousPlaybackInConversation()
+    val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(
+      requireContext(),
+      viewLifecycleOwner.lifecycle,
+      binding.conversationVideoContainer,
+      maxPlayback
+    )
+
+    val callback = GiphyMp4ProjectionRecycler(holders)
+    GiphyMp4PlaybackController.attach(binding.conversationItemRecycler, callback, maxPlayback)
+    binding.conversationItemRecycler.addItemDecoration(GiphyMp4ItemDecoration(callback) { translationY: Float ->
+      // TODO [alex] reactionsShade.setTranslationY(translationY + list.getHeight())
+    }, 0)
+    return callback
+  }
+
 
   private inner class ConversationItemClickListener : ConversationAdapter.ItemClickListener {
     override fun onQuoteClicked(messageRecord: MmsMessageRecord?) {
