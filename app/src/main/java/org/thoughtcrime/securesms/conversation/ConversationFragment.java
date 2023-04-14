@@ -46,6 +46,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -111,6 +113,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs;
 import org.thoughtcrime.securesms.conversation.quotes.MessageQuotesBottomSheet;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
+import org.thoughtcrime.securesms.conversation.v2.AddToContactsContract;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -216,7 +219,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private static final String TAG = Log.tag(ConversationFragment.class);
 
   private static final int SCROLL_ANIMATION_THRESHOLD = 50;
-  private static final int CODE_ADD_EDIT_CONTACT      = 77;
   private static final int MAX_SCROLL_DELAY_COUNT     = 5;
 
   private final ActionModeCallback  actionModeCallback     = new ActionModeCallback();
@@ -271,6 +273,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   private final DatabaseObserver.Observer threadDeletedObserver = this::onThreadDelete;
 
+  private ActivityResultLauncher<Intent> addToContactsLauncher;
+
   public static void prepare(@NonNull Context context) {
     FrameLayout parent = new FrameLayout(context);
     parent.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
@@ -294,6 +298,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle bundle) {
+    addToContactsLauncher = registerForActivityResult(new AddToContactsContract(), result -> {});
+
     disposables.bindTo(getViewLifecycleOwner());
     lastSeenDisposable.bindTo(getViewLifecycleOwner());
 
@@ -1819,24 +1825,15 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     @Override
     public void onAddToContactsClicked(@NonNull Contact contactWithAvatar) {
-      if (getContext() != null) {
-        new AsyncTask<Void, Void, Intent>() {
-          @Override
-          protected Intent doInBackground(Void... voids) {
-            return ContactUtil.buildAddToContactsIntent(getContext(), contactWithAvatar);
-          }
-
-          @Override
-          protected void onPostExecute(Intent intent) {
-            try {
-              startActivityForResult(intent, CODE_ADD_EDIT_CONTACT);
-            } catch (ActivityNotFoundException e) {
-              Log.w(TAG, "Could not locate contacts activity", e);
-              Toast.makeText(requireContext(), R.string.ConversationFragment__contacts_app_not_found, Toast.LENGTH_SHORT).show();
-            }
-          }
-        }.execute();
+      if (getContext() == null) {
+        return;
       }
+
+      disposables.add(AddToContactsContract.createIntentAndLaunch(
+          ConversationFragment.this,
+          addToContactsLauncher,
+          contactWithAvatar
+      ));
     }
 
     @Override
@@ -2146,15 +2143,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     ConversationAdapter listAdapter = getListAdapter();
     if (listAdapter != null) {
       listAdapter.notifyDataSetChanged();
-    }
-  }
-
-  @Override
-  public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-
-    if (requestCode == CODE_ADD_EDIT_CONTACT && getContext() != null) {
-      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     }
   }
 

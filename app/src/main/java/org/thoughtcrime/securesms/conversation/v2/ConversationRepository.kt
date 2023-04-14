@@ -124,4 +124,8 @@ class ConversationRepository(context: Context) {
   fun setLastVisibleMessageTimestamp(threadId: Long, lastVisibleMessageTimestamp: Long) {
     SignalExecutors.BOUNDED.submit { threads.setLastScrolled(threadId, lastVisibleMessageTimestamp) }
   }
+
+  fun markGiftBadgeRevealed(messageId: Long) {
+    oldConversationRepository.markGiftBadgeRevealed(messageId)
+  }
 }

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.v2.groups
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -14,6 +15,8 @@ import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil
+import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
+import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -22,7 +25,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  * Manages group state and actions for conversations.
  */
 class ConversationGroupViewModel(
-  private val threadId: Long
+  private val threadId: Long,
+  private val groupManagementRepository: GroupManagementRepository = GroupManagementRepository()
 ) : ViewModel() {
 
   private val disposables = CompositeDisposable()
@@ -81,6 +85,12 @@ class ConversationGroupViewModel(
   fun isNonAdminInAnnouncementGroup(): Boolean {
     val memberLevel = _memberLevel.value ?: return false
     return memberLevel.groupTableMemberLevel != GroupTable.MemberLevel.ADMINISTRATOR && memberLevel.isAnnouncementGroup
+  }
+
+  fun blockJoinRequests(recipient: Recipient): Single<GroupBlockJoinRequestResult> {
+    return _recipient.firstOrError().flatMap {
+      groupManagementRepository.blockJoinRequests(it.requireGroupId().requireV2(), recipient)
+    }.observeOn(AndroidSchedulers.mainThread())
   }
 
   private fun getActionableRequestingMembersCount(groupRecord: GroupRecord): Int {

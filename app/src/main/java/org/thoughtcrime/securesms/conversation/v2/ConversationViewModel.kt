@@ -13,8 +13,10 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents.Args
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 
 /**
@@ -65,6 +67,12 @@ class ConversationViewModel(
       threadId,
       lastScrolledTimestamp
     )
+  }
+
+  fun markGiftBadgeRevealed(messageRecord: MessageRecord) {
+    if (messageRecord.isOutgoing && messageRecord.hasGiftBadge()) {
+      repository.markGiftBadgeRevealed(messageRecord.id)
+    }
   }
 
   class Factory(

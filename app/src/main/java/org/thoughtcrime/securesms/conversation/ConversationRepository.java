@@ -114,7 +114,7 @@ public class ConversationRepository {
     return new ConversationData(threadId, lastSeen, lastSeenPosition, lastScrolledPosition, jumpToPosition, threadSize, messageRequestData, showUniversalExpireTimerUpdate);
   }
 
-  void markGiftBadgeRevealed(long messageId) {
+  public void markGiftBadgeRevealed(long messageId) {
     SignalExecutors.BOUNDED_IO.execute(() -> {
       List<MessageTable.MarkedMessageInfo> markedMessageInfo = SignalDatabase.messages().setOutgoingGiftsRevealed(Collections.singletonList(messageId));
       if (!markedMessageInfo.isEmpty()) {

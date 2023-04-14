@@ -1,10 +1,14 @@
 package org.thoughtcrime.securesms.conversation.v2
 
+import android.app.ActivityOptions
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
@@ -14,6 +18,8 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
@@ -24,6 +30,8 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.badges.gifts.viewgift.received.ViewReceivedGiftBottomSheet
+import org.thoughtcrime.securesms.badges.gifts.viewgift.sent.ViewSentGiftBottomSheet
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
@@ -55,12 +63,18 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
+import org.thoughtcrime.securesms.groups.ui.GroupErrors
+import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.longmessage.LongMessageFragment
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
+import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory.create
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity
+import org.thoughtcrime.securesms.mms.AttachmentManager
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
+import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment
 import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -69,12 +83,14 @@ import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheet
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity
+import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
+import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
@@ -117,8 +133,12 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   private lateinit var conversationOptionsMenuProvider: ConversationOptionsMenu.Provider
   private lateinit var layoutManager: SmoothScrollingLinearLayoutManager
   private lateinit var markReadHelper: MarkReadHelper
+  private lateinit var giphyMp4ProjectionRecycler: GiphyMp4ProjectionRecycler
+  private lateinit var addToContactsLauncher: ActivityResultLauncher<Intent>
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    registerForResults()
+
     conversationOptionsMenuProvider = ConversationOptionsMenu.Provider(ConversationOptionsMenuCallback(), disposables)
     markReadHelper = MarkReadHelper(ConversationId.forConversation(args.threadId), requireContext(), viewLifecycleOwner)
 
@@ -166,6 +186,10 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     groupCallViewModel.peekGroupCall()
   }
 
+  private fun registerForResults() {
+    addToContactsLauncher = registerForActivityResult(AddToContactsContract()) {}
+  }
+
   private fun onFirstRecipientLoad(recipient: Recipient) {
     Log.d(TAG, "onFirstRecipientLoad")
 
@@ -183,7 +207,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     adapter.setPagingController(viewModel.pagingController)
     viewLifecycleOwner.lifecycle.addObserver(LastSeenPositionUpdater(adapter, layoutManager, viewModel))
     binding.conversationItemRecycler.adapter = adapter
-    initializeGiphyMp4()
+    giphyMp4ProjectionRecycler = initializeGiphyMp4()
 
     binding.conversationItemRecycler.addItemDecoration(
       MultiselectItemDecoration(
@@ -266,7 +290,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     disposables += groupCallViewModel.hasActiveGroupCall.subscribeBy(onNext = {
-      // invalidateOptionsMenu
+      invalidateOptionsMenu()
       binding.conversationGroupCallJoin.visible = it
     })
 
@@ -296,6 +320,17 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       }
   }
 
+  private fun handleBlockJoinRequest(recipient: Recipient) {
+    disposables += conversationGroupViewModel.blockJoinRequests(recipient).subscribeBy { result ->
+      if (result.isFailure()) {
+        val failureReason = GroupErrors.getUserDisplayMessage((result as GroupBlockJoinRequestResult.Failure).reason)
+        Toast.makeText(requireContext(), failureReason, Toast.LENGTH_SHORT).show()
+      } else {
+        Toast.makeText(requireContext(), R.string.ConversationFragment__blocked, Toast.LENGTH_SHORT).show()
+      }
+    }
+  }
+
   private fun getVoiceNoteMediaController() = requireListener<VoiceNoteMediaControllerOwner>().voiceNoteMediaController
 
   private fun initializeGiphyMp4(): GiphyMp4ProjectionRecycler {
@@ -309,12 +344,14 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
     val callback = GiphyMp4ProjectionRecycler(holders)
     GiphyMp4PlaybackController.attach(binding.conversationItemRecycler, callback, maxPlayback)
-    binding.conversationItemRecycler.addItemDecoration(GiphyMp4ItemDecoration(callback) { translationY: Float ->
-      // TODO [alex] reactionsShade.setTranslationY(translationY + list.getHeight())
-    }, 0)
+    binding.conversationItemRecycler.addItemDecoration(
+      GiphyMp4ItemDecoration(callback) { translationY: Float ->
+        // TODO [alex] reactionsShade.setTranslationY(translationY + list.getHeight())
+      },
+      0
+    )
     return callback
   }
-
 
   private inner class ConversationItemClickListener : ConversationAdapter.ItemClickListener {
     override fun onQuoteClicked(messageRecord: MmsMessageRecord?) {
@@ -352,7 +389,11 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onAddToContactsClicked(contact: Contact) {
-      // TODO [alex] - ("Not yet implemented")
+      disposables += AddToContactsContract.createIntentAndLaunch(
+        this@ConversationFragment,
+        addToContactsLauncher,
+        contact
+      )
     }
 
     override fun onMessageSharedContactClicked(choices: MutableList<Recipient>) {
@@ -374,12 +415,12 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onReactionClicked(multiselectPart: MultiselectPart, messageId: Long, isMms: Boolean) {
-      parentFragment ?: return
+      context ?: return
       ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(parentFragmentManager, null)
     }
 
     override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) {
-      parentFragment ?: return
+      context ?: return
       RecipientBottomSheetDialogFragment.create(recipientId, groupId).show(parentFragmentManager, "BOTTOM")
     }
 
@@ -476,11 +517,21 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onBlockJoinRequest(recipient: Recipient) {
-      // TODO [alex] - ("Not yet implemented")
+      MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.ConversationFragment__block_request)
+        .setMessage(getString(R.string.ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link, recipient.getDisplayName(requireContext())))
+        .setNegativeButton(R.string.ConversationFragment__cancel, null)
+        .setPositiveButton(R.string.ConversationFragment__block_request_button) { _, _ -> handleBlockJoinRequest(recipient) }
+        .show()
     }
 
     override fun onRecipientNameClicked(target: RecipientId) {
-      // TODO [alex] ("Not yet implemented")
+      context ?: return
+      disposables += viewModel.recipient.firstOrError().observeOn(AndroidSchedulers.mainThread()).subscribeBy {
+        RecipientBottomSheetDialogFragment.create(
+          target,
+          it.groupId.orElse(null)
+        ).show(parentFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+      }
     }
 
     override fun onInviteToSignalClicked() {
@@ -494,11 +545,16 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onActivatePaymentsClicked() {
-      // TODO [alex] -- ("Not yet implemented")
+      startActivity(Intent(requireContext(), PaymentsActivity::class.java))
     }
 
     override fun onSendPaymentClicked(recipientId: RecipientId) {
-      // TODO [alex] -- ("Not yet implemented")
+      disposables += viewModel.recipient
+        .firstOrError()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeBy {
+          AttachmentManager.selectPayment(this@ConversationFragment, it)
+        }
     }
 
     override fun onScheduledIndicatorClicked(view: View, messageRecord: MessageRecord) {
@@ -511,15 +567,40 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onViewGiftBadgeClicked(messageRecord: MessageRecord) {
-      // TODO [alex] -- ("Not yet implemented")
+      if (!messageRecord.hasGiftBadge()) {
+        return
+      }
+
+      if (messageRecord.isOutgoing) {
+        ViewSentGiftBottomSheet.show(childFragmentManager, (messageRecord as MmsMessageRecord))
+      } else {
+        ViewReceivedGiftBottomSheet.show(childFragmentManager, (messageRecord as MmsMessageRecord))
+      }
     }
 
     override fun onGiftBadgeRevealed(messageRecord: MessageRecord) {
-      // TODO [alex] -- ("Not yet implemented")
+      viewModel.markGiftBadgeRevealed(messageRecord)
     }
 
-    override fun goToMediaPreview(parent: ConversationItem?, sharedElement: View?, args: MediaIntentFactory.MediaPreviewArgs?) {
-      // TODO [alex] -- ("Not yet implemented")
+    override fun goToMediaPreview(parent: ConversationItem, sharedElement: View, args: MediaIntentFactory.MediaPreviewArgs) {
+      if (this@ConversationFragment.args.conversationScreenType.isInBubble) {
+        requireActivity().startActivity(create(requireActivity(), args.skipSharedElementTransition(true)))
+        return
+      }
+
+      if (args.isVideoGif) {
+        val adapterPosition: Int = binding.conversationItemRecycler.getChildAdapterPosition(parent)
+        val holder: GiphyMp4ProjectionPlayerHolder? = giphyMp4ProjectionRecycler.getCurrentHolder(adapterPosition)
+        if (holder != null) {
+          parent.showProjectionArea()
+          holder.hide()
+        }
+      }
+
+      sharedElement.transitionName = MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME
+      requireActivity().setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+      val options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), sharedElement, MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME)
+      requireActivity().startActivity(create(requireActivity(), args), options.toBundle())
     }
 
     override fun onItemClick(item: MultiselectPart?) {
