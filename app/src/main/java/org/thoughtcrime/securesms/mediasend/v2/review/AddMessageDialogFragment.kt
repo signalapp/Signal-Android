@@ -136,7 +136,9 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
 
   override fun onDismiss(dialog: DialogInterface) {
     super.onDismiss(dialog)
-    viewModel.setMessage(binding.content.addAMessageInput.text)
+    if (isResumed) {
+      viewModel.setMessage(binding.content.addAMessageInput.text)
+    }
   }
 
   override fun onKeyboardHidden() {
