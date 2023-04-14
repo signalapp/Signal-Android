@@ -1531,7 +1531,7 @@
     <string name="MessageRequestBottomView_block">Bloķēt</string>
     <string name="MessageRequestBottomView_unblock">Atbloķēt</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Vai atļaut %1$s jums nosūtīt ziņojumu un kopīgot ar viņu savu vārdu un fotoattēlu? Jūs iepriekš esat noņēmis šo personu.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vai atļaut %1$s ar jums sazināties un kopīgot jūsu vārdu un fotoattēlu? Viņi nezinās, vai jūs izlasījāt ziņas, kamēr neapstiprināsiet.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Vai atļaut lietotājam %1$s ar jums sazināties un kopīgot jūsu vārdu un fotoattēlu? Jūs nesaņemsiet ziņas līdz viņu neatbloķēsiet.</string>
@@ -2457,7 +2457,7 @@
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">Aktivizēt maksājumus</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
-    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Jūs esat noņēmis šo personu. Vēlreiz nosūtot ziņojumu, tā tiks pievienota atpakaļ jūsu sarakstam.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Atskaņot … Pauzēt</string>
@@ -5979,7 +5979,7 @@
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
-    <string name="CallPreference__group_call">Group call</string>
+    <string name="CallPreference__group_call">Grupas zvans</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Neatbildēts grupas zvans</string>
     <!-- Incoming group call in call info -->

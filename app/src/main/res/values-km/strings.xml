@@ -1429,7 +1429,7 @@
     <string name="MessageRequestBottomView_block">ទប់ស្កាត់</string>
     <string name="MessageRequestBottomView_unblock">ឈប់ទប់ស្កាត់</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">អាចឲ្យ %1$s ផ្ញើសារមកអ្នកបាន និងចែករំលែកឈ្មោះ និងរូបថតរបស់អ្នកជាមួយគេ? អ្នកបានដកបុគ្គលនេះចេញកាលពីមុន។</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">អនុញ្ញាត %1$s ផ្ញើសារមកអ្នក និងចែករំលែកឈ្មោះ និងរូបភាពរបស់អ្នកជាមួយពួកគេ? ពួកគេនឹងមិនដឹងថា អ្នកបានមើលឃើញសាររបស់គេ រហូតដល់អ្នកយល់ព្រម។</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">អាចឲ្យ %1$s ផ្ញើសារមកអ្នកបាន និងចែករំលែកឈ្មោះ និងរូបថតរបស់អ្នកជាមួយពួកគេ? អ្នកនឹងមិនទទួលបានសារណាមួយឡើយ រហូតទាល់តែអ្នកឈប់ទប់ស្កាត់ពួកគេ។</string>
@@ -2319,7 +2319,7 @@
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">បើកដំណើរការការទូទាត់</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
-    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">អ្នកបានដកបុគ្គលនេះចេញហើយ។ ការផ្ញើសារទៅគេម្តងទៀតនឹងបញ្ចូលគេទៅក្នុងបញ្ជីរបស់អ្នកវិញ។</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">លេង … ផ្អាក</string>
@@ -5741,7 +5741,7 @@
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
-    <string name="CallPreference__group_call">Group call</string>
+    <string name="CallPreference__group_call">ការហៅជាក្រុម</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">ខកមិនបានទទួលការហៅជាក្រុម</string>
     <!-- Incoming group call in call info -->

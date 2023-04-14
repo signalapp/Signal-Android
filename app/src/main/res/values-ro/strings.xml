@@ -1531,7 +1531,7 @@
     <string name="MessageRequestBottomView_block">Blochează</string>
     <string name="MessageRequestBottomView_unblock">Deblochează</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Îi permiți utilizatorului %1$s să-ți dea mesaj și îi trimiți numele și fotografia ta? Ai eliminat această persoan în trecut.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permiți lui %1$s să îți trimită mesaje și îți împărtășești numele și fotografia cu ei? Nu vor ști că le-ai văzut mesajul până nu accepți.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permiți lui %1$s să îți trimită mesaje și îți împărtășești numele și fotografia cu ei? Nu vei primi niciun mesaj până când nu îi deblochezi.</string>
@@ -2457,7 +2457,7 @@
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">Activare Plăți</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
-    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Ai eliminat această persoană, să îi dai mesaj din nou va reveni din nou în lista ta.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Redare … Pauză</string>
@@ -5979,7 +5979,7 @@
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
-    <string name="CallPreference__group_call">Group call</string>
+    <string name="CallPreference__group_call">Apel de grup</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Apel de grup ratat</string>
     <!-- Incoming group call in call info -->

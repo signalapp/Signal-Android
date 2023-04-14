@@ -1480,7 +1480,7 @@
     <string name="MessageRequestBottomView_block">Blokeatu</string>
     <string name="MessageRequestBottomView_unblock">Desblokeatu</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s erabiltzaileari mezua bidaltzen utzi eta zure izena eta argazkia haiekin partekatu nahi dituzu? Pertsona hau iraganean kendu duzu.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s erabiltzaileari baimena eman nahi diozu zuri mezuak bidaltzeko eta zure izena eta argazkia beraiekin partekatzeko. Zuk onartu arte ez dute jakingo beraien mezua ikusi duzunik.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Zuri mezuak bidaltzeko baimena eman nahi diozu %1$s erabiltzaileari, eta zure izena eta argazkia harekin partzekatu? Desblokeatu arte, ez duzu jasoko haren mezurik.</string>
@@ -2388,7 +2388,7 @@
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">Aktibatu ordainketak</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
-    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Pertsona hau kendu duzu, berriro mezuak bidaliz gero, zure zerrendara gehituko da.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Erreproduzitu … Pausatu</string>
@@ -5860,7 +5860,7 @@
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
-    <string name="CallPreference__group_call">Group call</string>
+    <string name="CallPreference__group_call">Talde-deia</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Talde-deia galdua</string>
     <!-- Incoming group call in call info -->

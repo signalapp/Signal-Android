@@ -1480,7 +1480,7 @@
     <string name="MessageRequestBottomView_block">Блокирај</string>
     <string name="MessageRequestBottomView_unblock">Деблокирај</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Сакате да дозволите %1$s да може да ви пишува и да ви ги гледа името и сликата? Ја имате отстрането оваа личност претходно.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Дали дозволувате %1$s да Ви испраќа пораки и да го гледа Вашето име и слика? Контактот нема да знае дека ја имате видено оваа порака додека не прифатите.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Сакате да дозволите %1$s да може да ви пишува и да ви ги гледа името и сликата? Нема да добивате пораки додека не го дебклокирате овој контакт.</string>
@@ -2388,7 +2388,7 @@
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">Активираj плаќања</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
-    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Ја имате отстрането оваа личност, испраќањето порака го враќа контактот во вашата листа.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Пушти … Пауза</string>
@@ -5860,7 +5860,7 @@
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
-    <string name="CallPreference__group_call">Group call</string>
+    <string name="CallPreference__group_call">Групен повик</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Пропуштен групен повик</string>
     <!-- Incoming group call in call info -->

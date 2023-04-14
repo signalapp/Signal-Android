@@ -1582,7 +1582,7 @@
     <string name="MessageRequestBottomView_block">Užblokuoti</string>
     <string name="MessageRequestBottomView_unblock">Atblokuoti</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Let %1$s message you and share your name and photo with them? You have removed this person in the past.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Leisti, kad %1$s siųstų tau žinutes, ir bendrinti su šiuo žmogumi savo vardą bei nuotrauką? Anksčiau tu pašalinai šį asmenį.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Naudotojas nežinos, kad matėte jo žinutę tol, kol nesutiksite.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ar nori leisti, kad %1$s rašytų tau žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo žmogumi? Negausi žinučių, kol neatblokuosi.</string>
@@ -2526,7 +2526,7 @@
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">Aktyvuoti mokėjimus</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
-    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">You have removed this person, messaging them again will add them back to your list.</string>
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Tu pašalinai šį asmenį. Jei vėl išsiųsi šiam žmogui žinutę, jis bus vėl įtrauktas į tavo sąrašą.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Atkurti … Pristabdyti</string>
@@ -6098,7 +6098,7 @@
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
-    <string name="CallPreference__group_call">Group call</string>
+    <string name="CallPreference__group_call">Grupės skambutis</string>
     <!-- Missed group call in call info -->
     <string name="CallPreference__missed_group_call">Praleistas grupės skambutis</string>
     <!-- Incoming group call in call info -->
