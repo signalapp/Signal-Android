@@ -118,7 +118,7 @@ public class SmsReceiveJob extends BaseJob {
       }
     }
 
-    if (message.isPresent() && SignalStore.account().getE164() != null && message.get().getSender().equals(Recipient.self().getId())) {
+    if (message.isPresent() && SignalStore.account().getE164() != null && message.get().getAuthorId().equals(Recipient.self().getId())) {
       Log.w(TAG, "Received an SMS from ourselves! Ignoring.");
     } else if (message.isPresent() && !isBlocked(message.get())) {
       Optional<InsertResult> insertResult = storeMessage(message.get());
@@ -145,8 +145,8 @@ public class SmsReceiveJob extends BaseJob {
   }
 
   private boolean isBlocked(IncomingTextMessage message) {
-    if (message.getSender() != null) {
-      Recipient recipient = Recipient.resolved(message.getSender());
+    if (message.getAuthorId() != null) {
+      Recipient recipient = Recipient.resolved(message.getAuthorId());
       return recipient.isBlocked();
     }
 
@@ -193,7 +193,7 @@ public class SmsReceiveJob extends BaseJob {
   }
 
   private static Notification buildPreRegistrationNotification(@NonNull Context context, @NonNull IncomingTextMessage message) {
-    Recipient sender = Recipient.resolved(message.getSender());
+    Recipient sender = Recipient.resolved(message.getAuthorId());
 
     return new NotificationCompat.Builder(context, NotificationChannels.getInstance().getMessagesChannel())
                                  .setStyle(new NotificationCompat.MessagingStyle(new Person.Builder()

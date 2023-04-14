@@ -110,7 +110,7 @@ class StoryDirectReplyDialogFragment :
       if (state.groupDirectReplyRecipient != null) {
         composer.displayReplyHint(state.groupDirectReplyRecipient)
       } else if (state.storyRecord != null) {
-        composer.displayReplyHint(state.storyRecord.recipient)
+        composer.displayReplyHint(state.storyRecord.fromRecipient)
       }
     }
   }

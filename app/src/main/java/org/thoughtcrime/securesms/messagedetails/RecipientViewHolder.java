@@ -51,7 +51,7 @@ final class RecipientViewHolder extends RecyclerView.ViewHolder {
       conflictButton.setVisibility(View.VISIBLE);
       error.setText(itemView.getContext().getString(R.string.message_details_recipient__new_safety_number));
       conflictButton.setOnClickListener(unused -> callbacks.onErrorClicked(data.getMessageRecord()));
-    } else if ((data.getNetworkFailure() != null && !data.getMessageRecord().isPending()) || (!data.getMessageRecord().getRecipient().isPushGroup() && data.getMessageRecord().isFailed())) {
+    } else if ((data.getNetworkFailure() != null && !data.getMessageRecord().isPending()) || (!data.getMessageRecord().getToRecipient().isPushGroup() && data.getMessageRecord().isFailed())) {
       timestamp.setVisibility(View.GONE);
       error.setVisibility(View.VISIBLE);
       conflictButton.setVisibility(View.GONE);

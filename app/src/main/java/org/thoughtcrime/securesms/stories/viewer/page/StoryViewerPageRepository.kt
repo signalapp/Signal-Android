@@ -54,7 +54,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
         }
 
         val results = stories.filterNot {
-          recipient.isMyStory && it.recipient.isGroup
+          recipient.isMyStory && it.toRecipient.isGroup
         }
 
         emitter.onNext(results)
@@ -79,9 +79,9 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
         val recipient = Recipient.resolved(recipientId)
         val story = StoryPost(
           id = record.id,
-          sender = if (record.isOutgoing) Recipient.self() else record.individualRecipient,
+          sender = record.fromRecipient,
           group = if (recipient.isGroup) recipient else null,
-          distributionList = if (record.recipient.isDistributionList) record.recipient else null,
+          distributionList = if (record.toRecipient.isDistributionList) record.toRecipient else null,
           viewCount = record.viewedReceiptCount,
           replyCount = SignalDatabase.messages.getNumberOfStoryReplies(record.id),
           dateInMilliseconds = record.dateSent,

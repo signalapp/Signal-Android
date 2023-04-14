@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo
-import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId
 import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.PaymentMetaDataUtil
 import org.thoughtcrime.securesms.database.SentStorySyncManifest
@@ -323,9 +322,8 @@ object SyncMessageProcessor {
       attachments = allAttachments.filterNot { it.isSticker }
 
       if (recipient.isSelf) {
-        val id = SyncMessageId(recipient.id, sent.timestamp)
-        SignalDatabase.messages.incrementDeliveryReceiptCount(id, System.currentTimeMillis())
-        SignalDatabase.messages.incrementReadReceiptCount(id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
       }
 
       SignalDatabase.messages.setTransactionSuccessful()
@@ -536,9 +534,8 @@ object SyncMessageProcessor {
             .scheduleDeletion(messageId, true, sent.expirationStartTimestamp, sent.message.expireTimer.seconds.inWholeMilliseconds)
         }
         if (recipient.isSelf) {
-          val id = SyncMessageId(recipient.id, sent.timestamp)
-          SignalDatabase.messages.incrementDeliveryReceiptCount(id, System.currentTimeMillis())
-          SignalDatabase.messages.incrementReadReceiptCount(id, System.currentTimeMillis())
+          SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
+          SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
         }
         SignalDatabase.messages.setTransactionSuccessful()
       } finally {
@@ -614,9 +611,8 @@ object SyncMessageProcessor {
         ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageId, true, sent.expirationStartTimestamp, sent.message.expireTimer.seconds.inWholeMilliseconds)
       }
       if (recipient.isSelf) {
-        val id = SyncMessageId(recipient.id, sent.timestamp)
-        SignalDatabase.messages.incrementDeliveryReceiptCount(id, System.currentTimeMillis())
-        SignalDatabase.messages.incrementReadReceiptCount(id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
       }
       SignalDatabase.messages.setTransactionSuccessful()
     } finally {
@@ -662,7 +658,7 @@ object SyncMessageProcessor {
       messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
       updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
     } else {
-      val outgoingTextMessage = text(recipient = recipient, body = body, expiresIn = expiresInMillis, sentTimeMillis = sent.timestamp, bodyRanges = bodyRanges)
+      val outgoingTextMessage = text(threadRecipient = recipient, body = body, expiresIn = expiresInMillis, sentTimeMillis = sent.timestamp, bodyRanges = bodyRanges)
       messageId = SignalDatabase.messages.insertMessageOutbox(outgoingTextMessage, threadId, false, null)
       SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(recipient.serviceId.orNull()))
     }
@@ -674,9 +670,8 @@ object SyncMessageProcessor {
     }
 
     if (recipient.isSelf) {
-      val id = SyncMessageId(recipient.id, sent.timestamp)
-      SignalDatabase.messages.incrementDeliveryReceiptCount(id, System.currentTimeMillis())
-      SignalDatabase.messages.incrementReadReceiptCount(id, System.currentTimeMillis())
+      SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
+      SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
     }
 
     return threadId

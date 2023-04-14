@@ -18,7 +18,6 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
-import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -318,7 +317,7 @@ class IncomingMessageObserver(private val context: Application) {
     val senderId = RecipientId.from(ServiceId.parseOrThrow(envelope.sourceUuid))
 
     Log.i(TAG, "Received server receipt. Sender: $senderId, Device: ${envelope.sourceDevice}, Timestamp: ${envelope.timestamp}")
-    SignalDatabase.messages.incrementDeliveryReceiptCount(MessageTable.SyncMessageId(senderId, envelope.timestamp), System.currentTimeMillis())
+    SignalDatabase.messages.incrementDeliveryReceiptCount(envelope.timestamp, senderId, System.currentTimeMillis())
     SignalDatabase.messageLog.deleteEntryForRecipient(envelope.timestamp, senderId, envelope.sourceDevice)
   }
 

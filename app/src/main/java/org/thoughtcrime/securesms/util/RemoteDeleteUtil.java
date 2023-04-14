@@ -28,7 +28,7 @@ public final class RemoteDeleteUtil {
     boolean isValidIncomingOutgoing = (selfIsDeleteSender && targetMessage.isOutgoing()) ||
                                       (!selfIsDeleteSender && !targetMessage.isOutgoing());
 
-    boolean isValidSender = targetMessage.getIndividualRecipient().getId().equals(deleteSenderId) || selfIsDeleteSender && targetMessage.isOutgoing();
+    boolean isValidSender = targetMessage.getFromRecipient().getId().equals(deleteSenderId) || selfIsDeleteSender && targetMessage.isOutgoing();
 
     long messageTimestamp = selfIsDeleteSender && targetMessage.isOutgoing() ? targetMessage.getDateSent()
                                                                                  : targetMessage.getServerTimestamp();
@@ -47,11 +47,11 @@ public final class RemoteDeleteUtil {
     return !message.isUpdate() &&
            message.isOutgoing() &&
            message.isPush() &&
-           (!message.getRecipient().isGroup() || message.getRecipient().isActiveGroup()) &&
+           (!message.getToRecipient().isGroup() || message.getToRecipient().isActiveGroup()) &&
            !message.isRemoteDelete() &&
            !MessageRecordUtil.hasGiftBadge(message) &&
            !message.isPaymentNotification() &&
-           (((currentTime - message.getDateSent()) < SEND_THRESHOLD) || message.getRecipient().isSelf());
+           (((currentTime - message.getDateSent()) < SEND_THRESHOLD) || message.getToRecipient().isSelf());
   }
 
   private static boolean isSelf(@NonNull RecipientId recipientId) {

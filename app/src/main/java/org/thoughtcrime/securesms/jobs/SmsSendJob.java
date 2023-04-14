@@ -89,8 +89,8 @@ public class SmsSendJob extends SendJob {
       return;
     }
 
-    if (!record.getRecipient().hasSmsAddress()) {
-      throw new UndeliverableMessageException("Recipient didn't have an SMS address! " + record.getRecipient().getId());
+    if (!record.getToRecipient().hasSmsAddress()) {
+      throw new UndeliverableMessageException("Recipient didn't have an SMS address! " + record.getToRecipient().getId());
     }
 
     try {
@@ -100,7 +100,7 @@ public class SmsSendJob extends SendJob {
     } catch (UndeliverableMessageException ude) {
       warn(TAG, ude);
       SignalDatabase.messages().markAsSentFailed(record.getId());
-      ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getRecipient(), ConversationId.fromMessageRecord(record));
+      ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getToRecipient(), ConversationId.fromMessageRecord(record));
     }
   }
 
@@ -131,7 +131,7 @@ public class SmsSendJob extends SendJob {
       throw new UndeliverableMessageException("Trying to send a secure SMS?");
     }
 
-    String recipient = message.getIndividualRecipient().requireSmsAddress();
+    String recipient = message.getToRecipient().requireSmsAddress();
 
     // See issue #1516 for bug report, and discussion on commits related to #4833 for problems
     // related to the original fix to #1516. This still may not be a correct fix if networks allow

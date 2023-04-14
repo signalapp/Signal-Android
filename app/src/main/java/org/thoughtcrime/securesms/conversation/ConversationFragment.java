@@ -1088,7 +1088,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   private static boolean isNoteToSelfDelete(Set<MessageRecord> messageRecords) {
-    return messageRecords.stream().allMatch(messageRecord -> messageRecord.isOutgoing() && messageRecord.getRecipient().isSelf());
+    return messageRecords.stream().allMatch(messageRecord -> messageRecord.isOutgoing() && messageRecord.getToRecipient().isSelf());
   }
 
   private void handleDeleteForEveryone(Set<MessageRecord> messageRecords) {
@@ -1436,7 +1436,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     SimpleTask.run(getLifecycle(), () -> {
       return SignalDatabase.messages().getMessagePositionInConversation(threadId,
                                                                       messageRecord.getDateReceived(),
-                                                                      messageRecord.isOutgoing() ? Recipient.self().getId() : messageRecord.getRecipient().getId());
+                                                                      messageRecord.getFromRecipient().getId());
     }, p -> moveToPosition(p + (isTypingIndicatorShowing() ? 1 : 0), () -> {
       Toast.makeText(getContext(), R.string.ConversationFragment_failed_to_open_message, Toast.LENGTH_SHORT).show();
     }));
@@ -1791,7 +1791,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
           ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
 
-          ApplicationDependencies.getJobManager().add(new MultiDeviceViewOnceOpenJob(new MessageTable.SyncMessageId(messageRecord.getIndividualRecipient().getId(), messageRecord.getDateSent())));
+          ApplicationDependencies.getJobManager().add(new MultiDeviceViewOnceOpenJob(new MessageTable.SyncMessageId(messageRecord.getToRecipient().getId(), messageRecord.getDateSent())));
 
           return tempUri;
         } catch (IOException e) {

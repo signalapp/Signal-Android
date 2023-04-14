@@ -54,7 +54,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_SERVER}, 
         ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID}, 
-        ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID}, 
+        ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID}, 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} as $THREAD_RECIPIENT_ID 
       FROM 
         ${AttachmentTable.TABLE_NAME} 
@@ -78,7 +78,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
           )
         ) AND 
         ${AttachmentTable.STICKER_PACK_ID} IS NULL AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID} > 0 AND 
+        ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} > 0 AND 
         $THREAD_RECIPIENT_ID > 0
       """.toSingleLine()
 
@@ -204,7 +204,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
         return MediaRecord(
           attachment = if (attachments.isNotEmpty()) attachments[0] else null,
-          recipientId = RecipientId.from(cursor.requireLong(MessageTable.RECIPIENT_ID)),
+          recipientId = RecipientId.from(cursor.requireLong(MessageTable.FROM_RECIPIENT_ID)),
           threadId = cursor.requireLong(MessageTable.THREAD_ID),
           threadRecipientId = RecipientId.from(cursor.requireLong(THREAD_RECIPIENT_ID)),
           date = if (MessageTypes.isPushType(cursor.requireLong(MessageTable.TYPE))) {

@@ -31,7 +31,7 @@ public class IncomingTextMessage implements Parcelable {
   private static final String TAG = Log.tag(IncomingTextMessage.class);
 
             private final String      message;
-            private final RecipientId sender;
+            private final RecipientId authorId;
             private final int         senderDeviceId;
             private final int         protocol;
             private final String      serviceCenterAddress;
@@ -47,9 +47,9 @@ public class IncomingTextMessage implements Parcelable {
             private final boolean     unidentified;
   @Nullable private final String      serverGuid;
 
-  public IncomingTextMessage(@NonNull RecipientId sender, @NonNull SmsMessage message, int subscriptionId) {
+  public IncomingTextMessage(@NonNull RecipientId authorId, @NonNull SmsMessage message, int subscriptionId) {
     this.message                 = message.getDisplayMessageBody();
-    this.sender                  = sender;
+    this.authorId                = authorId;
     this.senderDeviceId          = SignalServiceAddress.DEFAULT_DEVICE_ID;
     this.protocol                = message.getProtocolIdentifier();
     this.serviceCenterAddress    = message.getServiceCenterAddress();
@@ -66,7 +66,7 @@ public class IncomingTextMessage implements Parcelable {
     this.serverGuid              = null;
   }
 
-  public IncomingTextMessage(@NonNull RecipientId sender,
+  public IncomingTextMessage(@NonNull RecipientId authorId,
                              int senderDeviceId,
                              long sentTimestampMillis,
                              long serverTimestampMillis,
@@ -78,7 +78,7 @@ public class IncomingTextMessage implements Parcelable {
                              String serverGuid)
   {
     this.message                 = encodedBody;
-    this.sender                  = sender;
+    this.authorId                = authorId;
     this.senderDeviceId          = senderDeviceId;
     this.protocol                = 31337;
     this.serviceCenterAddress    = "GCM";
@@ -97,7 +97,7 @@ public class IncomingTextMessage implements Parcelable {
 
   public IncomingTextMessage(Parcel in) {
     this.message                 = in.readString();
-    this.sender                  = in.readParcelable(IncomingTextMessage.class.getClassLoader());
+    this.authorId                = in.readParcelable(IncomingTextMessage.class.getClassLoader());
     this.senderDeviceId          = in.readInt();
     this.protocol                = in.readInt();
     this.serviceCenterAddress    = in.readString();
@@ -116,8 +116,8 @@ public class IncomingTextMessage implements Parcelable {
 
   public IncomingTextMessage(IncomingTextMessage base, String newBody) {
     this.message                 = newBody;
-    this.sender                  = base.getSender();
-    this.senderDeviceId          = base.getSenderDeviceId();
+    this.authorId                = base.getAuthorId();
+    this.senderDeviceId          = base.getAuthorDeviceId();
     this.protocol                = base.getProtocol();
     this.serviceCenterAddress    = base.getServiceCenterAddress();
     this.replyPathPresent        = base.isReplyPathPresent();
@@ -141,8 +141,8 @@ public class IncomingTextMessage implements Parcelable {
     }
 
     this.message                 = body.toString();
-    this.sender                  = fragments.get(0).getSender();
-    this.senderDeviceId          = fragments.get(0).getSenderDeviceId();
+    this.authorId                = fragments.get(0).getAuthorId();
+    this.senderDeviceId          = fragments.get(0).getAuthorDeviceId();
     this.protocol                = fragments.get(0).getProtocol();
     this.serviceCenterAddress    = fragments.get(0).getServiceCenterAddress();
     this.replyPathPresent        = fragments.get(0).isReplyPathPresent();
@@ -186,11 +186,11 @@ public class IncomingTextMessage implements Parcelable {
     return message;
   }
 
-  public RecipientId getSender() {
-    return sender;
+  public RecipientId getAuthorId() {
+    return authorId;
   }
 
-  public int getSenderDeviceId() {
+  public int getAuthorDeviceId() {
     return senderDeviceId;
   }
 
@@ -277,7 +277,7 @@ public class IncomingTextMessage implements Parcelable {
   @Override
   public void writeToParcel(Parcel out, int flags) {
     out.writeString(message);
-    out.writeParcelable(sender, flags);
+    out.writeParcelable(authorId, flags);
     out.writeInt(senderDeviceId);
     out.writeInt(protocol);
     out.writeString(serviceCenterAddress);

@@ -12,7 +12,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode;
@@ -151,11 +150,11 @@ public class IndividualSendJob extends PushSendJob {
     }
 
     try {
-      log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getRecipient().getId() + ", Thread: " + threadId + ", Attachments: " + buildAttachmentString(message.getAttachments()));
+      log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getThreadRecipient().getId() + ", Thread: " + threadId + ", Attachments: " + buildAttachmentString(message.getAttachments()));
 
-      RecipientUtil.shareProfileIfFirstSecureMessage(message.getRecipient());
+      RecipientUtil.shareProfileIfFirstSecureMessage(message.getThreadRecipient());
 
-      Recipient              recipient  = message.getRecipient().fresh();
+      Recipient              recipient  = message.getThreadRecipient().fresh();
       byte[]                 profileKey = recipient.getProfileKey();
       UnidentifiedAccessMode accessMode = recipient.getUnidentifiedAccessMode();
 
@@ -166,10 +165,9 @@ public class IndividualSendJob extends PushSendJob {
       database.markUnidentified(messageId, unidentified);
 
       if (recipient.isSelf()) {
-        SyncMessageId id = new SyncMessageId(recipient.getId(), message.getSentTimeMillis());
-        SignalDatabase.messages().incrementDeliveryReceiptCount(id, System.currentTimeMillis());
-        SignalDatabase.messages().incrementReadReceiptCount(id, System.currentTimeMillis());
-        SignalDatabase.messages().incrementViewedReceiptCount(id, System.currentTimeMillis());
+        SignalDatabase.messages().incrementDeliveryReceiptCount(message.getSentTimeMillis(), recipient.getId(), System.currentTimeMillis());
+        SignalDatabase.messages().incrementReadReceiptCount(message.getSentTimeMillis(), recipient.getId(), System.currentTimeMillis());
+        SignalDatabase.messages().incrementViewedReceiptCount(message.getSentTimeMillis(), recipient.getId(), System.currentTimeMillis());
       }
 
       if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN && profileKey == null) {
@@ -219,14 +217,14 @@ public class IndividualSendJob extends PushSendJob {
   private boolean deliver(OutgoingMessage message)
       throws IOException, InsecureFallbackApprovalException, UntrustedIdentityException, UndeliverableMessageException
   {
-    if (message.getRecipient() == null) {
+    if (message.getThreadRecipient() == null) {
       throw new UndeliverableMessageException("No destination address.");
     }
 
     try {
       rotateSenderCertificateIfNecessary();
 
-      Recipient messageRecipient = message.getRecipient().fresh();
+      Recipient messageRecipient = message.getThreadRecipient().fresh();
 
       if (messageRecipient.isUnregistered()) {
         throw new UndeliverableMessageException(messageRecipient.getId() + " not registered!");
@@ -262,7 +260,7 @@ public class IndividualSendJob extends PushSendJob {
       if (message.getParentStoryId() != null) {
         try {
           MessageRecord storyRecord    = SignalDatabase.messages().getMessageRecord(message.getParentStoryId().asMessageId().getId());
-          Recipient     storyRecipient = storyRecord.isOutgoing() ? Recipient.self() : storyRecord.getRecipient();
+          Recipient     storyRecipient = storyRecord.getFromRecipient();
 
           SignalServiceDataMessage.StoryContext storyContext = new SignalServiceDataMessage.StoryContext(storyRecipient.requireServiceId(), storyRecord.getDateSent());
           mediaMessageBuilder.withStoryContext(storyContext);

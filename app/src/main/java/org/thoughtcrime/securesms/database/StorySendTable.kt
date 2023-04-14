@@ -171,14 +171,14 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
     }
   }
 
-  fun getStoryMessagesFor(syncMessageId: MessageTable.SyncMessageId): Set<MessageId> {
+  fun getStoryMessagesFor(recipientId: RecipientId, sentTimestamp: Long): Set<MessageId> {
     val messageIds = mutableSetOf<MessageId>()
 
     readableDatabase.query(
       TABLE_NAME,
       arrayOf(MESSAGE_ID),
       "$RECIPIENT_ID = ? AND $SENT_TIMESTAMP = ?",
-      SqlUtil.buildArgs(syncMessageId.recipientId, syncMessageId.timetamp),
+      SqlUtil.buildArgs(recipientId, sentTimestamp),
       null,
       null,
       null
@@ -270,7 +270,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
       val query = """
         SELECT ${MessageTable.TABLE_NAME}.${MessageTable.ID} as $MESSAGE_ID, ${DistributionListTables.DISTRIBUTION_ID}
         FROM ${MessageTable.TABLE_NAME}
-        INNER JOIN ${DistributionListTables.LIST_TABLE_NAME} ON ${DistributionListTables.LIST_TABLE_NAME}.${DistributionListTables.RECIPIENT_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID}
+        INNER JOIN ${DistributionListTables.LIST_TABLE_NAME} ON ${DistributionListTables.LIST_TABLE_NAME}.${DistributionListTables.RECIPIENT_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.TO_RECIPIENT_ID}
         WHERE ${MessageTable.DATE_SENT} = $sentTimestamp AND ${DistributionListTables.DISTRIBUTION_ID} IS NOT NULL
       """.trimIndent()
 

@@ -191,15 +191,15 @@ final class MenuState {
                                    boolean isDisplayingMessageRequest,
                                    boolean isNonAdminInAnnouncementGroup)
   {
-    return !actionMessage                                                              &&
-           !isNonAdminInAnnouncementGroup                                              &&
-           !messageRecord.isRemoteDelete()                                             &&
-           !messageRecord.isPending()                                                  &&
-           !messageRecord.isFailed()                                                   &&
-           !isDisplayingMessageRequest                                                 &&
-           messageRecord.isSecure()                                                    &&
+    return !actionMessage &&
+           !isNonAdminInAnnouncementGroup &&
+           !messageRecord.isRemoteDelete() &&
+           !messageRecord.isPending() &&
+           !messageRecord.isFailed() &&
+           !isDisplayingMessageRequest &&
+           messageRecord.isSecure() &&
            (!conversationRecipient.isGroup() || conversationRecipient.isActiveGroup()) &&
-           !messageRecord.getRecipient().isBlocked()                                   &&
+           !messageRecord.getFromRecipient().isBlocked() &&
            !conversationRecipient.isReleaseNotes();
   }
 

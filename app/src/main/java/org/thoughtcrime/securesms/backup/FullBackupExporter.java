@@ -611,7 +611,7 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
   private static boolean isForNonExpiringMmsMessage(@NonNull SQLiteDatabase db, long mmsId) {
-    String[] columns = new String[] { MessageTable.RECIPIENT_ID, MessageTable.EXPIRES_IN, MessageTable.VIEW_ONCE };
+    String[] columns = new String[] { MessageTable.EXPIRES_IN, MessageTable.VIEW_ONCE };
     String   where   = MessageTable.ID + " = ?";
     String[] args    = new String[] { String.valueOf(mmsId) };
 

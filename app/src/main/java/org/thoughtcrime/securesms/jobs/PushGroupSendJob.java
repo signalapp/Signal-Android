@@ -190,7 +190,7 @@ public final class PushGroupSendJob extends PushSendJob {
       return;
     }
 
-    Recipient groupRecipient = message.getRecipient().resolve();
+    Recipient groupRecipient = message.getThreadRecipient().resolve();
 
     if (!groupRecipient.isPushGroup()) {
       throw new MmsException("Message recipient isn't a group!");
@@ -205,7 +205,7 @@ public final class PushGroupSendJob extends PushSendJob {
     }
 
     try {
-      log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getRecipient().getId() + ", Thread: " + threadId + ", Attachments: " + buildAttachmentString(message.getAttachments()));
+      log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getThreadRecipient().getId() + ", Thread: " + threadId + ", Attachments: " + buildAttachmentString(message.getAttachments()));
 
       if (!groupRecipient.resolve().isProfileSharing() && !database.isGroupQuitMessage(messageId)) {
         RecipientUtil.shareProfileIfFirstSecureMessage(groupRecipient);
@@ -348,13 +348,13 @@ public final class PushGroupSendJob extends PushSendJob {
         if (message.getParentStoryId() != null) {
           try {
             MessageRecord storyRecord = SignalDatabase.messages().getMessageRecord(message.getParentStoryId().asMessageId().getId());
-            Recipient     recipient   = storyRecord.isOutgoing() ? Recipient.self() : storyRecord.getIndividualRecipient();
+            Recipient     storyAuthor = storyRecord.getFromRecipient();
 
             destinations = destinations.stream()
                                        .filter(r -> r.getStoriesCapability() == Recipient.Capability.SUPPORTED)
                                        .collect(java.util.stream.Collectors.toList());
 
-            SignalServiceDataMessage.StoryContext storyContext = new SignalServiceDataMessage.StoryContext(recipient.requireServiceId(), storyRecord.getDateSent());
+            SignalServiceDataMessage.StoryContext storyContext = new SignalServiceDataMessage.StoryContext(storyAuthor.requireServiceId(), storyRecord.getDateSent());
             groupMessageBuilder.withStoryContext(storyContext);
 
             Optional<SignalServiceDataMessage.Reaction> reaction = getStoryReactionFor(message, storyContext);

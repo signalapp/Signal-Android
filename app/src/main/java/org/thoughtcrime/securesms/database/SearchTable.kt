@@ -63,7 +63,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     private const val MESSAGES_QUERY = """
       SELECT 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
-        ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
+        ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
         snippet($FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET, 
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
         $FTS_TABLE_NAME.$THREAD_ID, 
@@ -86,7 +86,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     private const val MESSAGES_FOR_THREAD_QUERY = """
       SELECT 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
-        ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID} AS $MESSAGE_RECIPIENT,
+        ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} AS $MESSAGE_RECIPIENT,
         snippet($FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET,
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
         $FTS_TABLE_NAME.$THREAD_ID, 

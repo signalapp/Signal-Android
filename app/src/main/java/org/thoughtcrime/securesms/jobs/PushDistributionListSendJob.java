@@ -154,14 +154,14 @@ public final class PushDistributionListSendJob extends PushSendJob {
       return;
     }
 
-    Recipient listRecipient = message.getRecipient().resolve();
+    Recipient listRecipient = message.getThreadRecipient().resolve();
 
     if (!listRecipient.isDistributionList()) {
       throw new MmsException("Message recipient isn't a distribution list!");
     }
 
     try {
-      log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getRecipient().getId() + ", Attachments: " + buildAttachmentString(message.getAttachments()));
+      log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getThreadRecipient().getId() + ", Attachments: " + buildAttachmentString(message.getAttachments()));
 
       List<Recipient> targets;
       List<RecipientId> skipped = Collections.emptyList();
@@ -221,7 +221,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
       Log.d(TAG, "[" + messageId + "] Sending a story message with a manifest of size " + manifestCollection.size());
 
-      return GroupSendUtil.sendStoryMessage(context, message.getRecipient().requireDistributionListId(), destinations, isRecipientUpdate, new MessageId(messageId), message.getSentTimeMillis(), storyMessage, manifestCollection);
+      return GroupSendUtil.sendStoryMessage(context, message.getThreadRecipient().requireDistributionListId(), destinations, isRecipientUpdate, new MessageId(messageId), message.getSentTimeMillis(), storyMessage, manifestCollection);
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);
     }

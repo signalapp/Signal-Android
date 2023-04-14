@@ -84,7 +84,7 @@ class DatabaseConsistencyTest {
       .joinToString(separator = " ")
       .replace(Regex.fromLiteral("( "), "(")
       .replace(Regex.fromLiteral(" )"), ")")
-      .replace(Regex.fromLiteral("CREATE TABLE \"call\""), "CREATE TABLE call") // solves a specific weirdness with inconsequential quotes
+      .replace(Regex("CREATE TABLE \"([a-z]+)\""), "CREATE TABLE $1") // for some reason SQLite will wrap table names in quotes for upgraded tables. This unwraps them.
   }
 
   private class InMemoryTestHelper(private val application: Application) : SQLiteOpenHelper(application, null, null, 1) {

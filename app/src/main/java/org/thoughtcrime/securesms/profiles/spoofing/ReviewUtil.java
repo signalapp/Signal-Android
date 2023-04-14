@@ -64,8 +64,8 @@ public final class ReviewUtil {
                                              .getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_INCLUDING_SELF);
 
     List<ReviewRecipient> changed = Stream.of(profileChangeRecords)
-                                          .distinctBy(record -> record.getRecipient().getId())
-                                          .map(record -> new ReviewRecipient(record.getRecipient().resolve(), getProfileChangeDetails(record)))
+                                          .distinctBy(record -> record.getFromRecipient().getId())
+                                          .map(record -> new ReviewRecipient(record.getFromRecipient().resolve(), getProfileChangeDetails(record)))
                                           .filter(recipient -> !recipient.getRecipient().isSystemContact())
                                           .toList();
 

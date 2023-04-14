@@ -48,8 +48,7 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
   private final int    status;
   private final byte[] transactionId;
 
-  public NotificationMmsMessageRecord(long id, Recipient conversationRecipient,
-                                      Recipient individualRecipient, int recipientDeviceId,
+  public NotificationMmsMessageRecord(long id, Recipient fromRecipient, int fromDeviceId, Recipient toRecipient,
                                       long dateSent, long dateReceived, int deliveryReceiptCount,
                                       long threadId, byte[] contentLocation, long messageSize,
                                       long expiry, int status, byte[] transactionId, long mailbox,
@@ -57,7 +56,7 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
                                       int viewedReceiptCount, long receiptTimestamp, @NonNull StoryType storyType,
                                       @Nullable ParentStoryId parentStoryId, @Nullable GiftBadge giftBadge)
   {
-    super(id, "", conversationRecipient, individualRecipient, recipientDeviceId,
+    super(id, "", fromRecipient, fromDeviceId, toRecipient,
           dateSent, dateReceived, -1, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
           new HashSet<>(), new HashSet<>(), subscriptionId,
           0, 0, false, slideDeck, readReceiptCount, null, Collections.emptyList(), Collections.emptyList(), false,

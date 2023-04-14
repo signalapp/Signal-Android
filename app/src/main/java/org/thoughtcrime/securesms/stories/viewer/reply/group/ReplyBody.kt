@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 sealed class ReplyBody(val messageRecord: MessageRecord) {
 
   val key: MessageId = MessageId(messageRecord.id)
-  val sender: Recipient = if (messageRecord.isOutgoing) Recipient.self() else messageRecord.individualRecipient.resolve()
+  val sender: Recipient = messageRecord.fromRecipient.resolve()
   val sentAtMillis: Long = messageRecord.dateSent
 
   open fun hasSameContent(other: ReplyBody): Boolean {

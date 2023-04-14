@@ -56,7 +56,7 @@ object StoryGroupReplySender {
             MessageSender.send(
               context,
               OutgoingMessage(
-                recipient = recipient,
+                threadRecipient = recipient,
                 body = body.toString(),
                 sentTimeMillis = System.currentTimeMillis(),
                 parentStoryId = ParentStoryId.GroupReply(message.id),

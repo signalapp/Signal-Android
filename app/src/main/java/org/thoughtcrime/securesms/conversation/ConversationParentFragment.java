@@ -3997,13 +3997,7 @@ public class ConversationParentFragment extends Fragment
 
     MessageRecord messageRecord = conversationMessage.getMessageRecord();
 
-    Recipient author;
-
-    if (messageRecord.isOutgoing()) {
-      author = Recipient.self();
-    } else {
-      author = messageRecord.getIndividualRecipient();
-    }
+    Recipient author = messageRecord.getFromRecipient();
 
     if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {
       Contact   contact     = ((MmsMessageRecord) messageRecord).getSharedContacts().get(0);

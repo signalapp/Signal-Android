@@ -91,11 +91,11 @@ public final class ThreadBodyUtil {
 
   private static @NonNull String getGiftSummary(@NonNull Context context, @NonNull MessageRecord messageRecord) {
     if (messageRecord.isOutgoing()) {
-      return context.getString(R.string.ThreadRecord__you_donated_for_s, messageRecord.getRecipient().getShortDisplayName(context));
+      return context.getString(R.string.ThreadRecord__you_donated_for_s, messageRecord.getToRecipient().getShortDisplayName(context));
     } else if (messageRecord.getViewedReceiptCount() > 0) {
       return context.getString(R.string.ThreadRecord__you_redeemed_a_badge);
     } else {
-      return context.getString(R.string.ThreadRecord__s_donated_for_you, messageRecord.getRecipient().getShortDisplayName(context));
+      return context.getString(R.string.ThreadRecord__s_donated_for_you, messageRecord.getFromRecipient().getShortDisplayName(context));
     }
   }
 
@@ -111,7 +111,7 @@ public final class ThreadBodyUtil {
     if (messageRecord.isOutgoing()) {
       return context.getString(R.string.ThreadRecord_you_sent_request);
     } else {
-      return context.getString(R.string.ThreadRecord_wants_you_to_activate_payments, messageRecord.getRecipient().getShortDisplayName(context));
+      return context.getString(R.string.ThreadRecord_wants_you_to_activate_payments, messageRecord.getFromRecipient().getShortDisplayName(context));
     }
   }
 
@@ -119,7 +119,7 @@ public final class ThreadBodyUtil {
     if (messageRecord.isOutgoing()) {
       return context.getString(R.string.ThreadRecord_you_activated_payments);
     } else {
-      return context.getString(R.string.ThreadRecord_can_accept_payments, messageRecord.getRecipient().getShortDisplayName(context));
+      return context.getString(R.string.ThreadRecord_can_accept_payments, messageRecord.getFromRecipient().getShortDisplayName(context));
     }
   }
 

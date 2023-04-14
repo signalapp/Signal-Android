@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.messages
 
 import android.annotation.SuppressLint
 import android.content.Context
-import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
@@ -39,15 +38,14 @@ object ReceiptMessageProcessor {
   ) {
     log(envelope.timestamp, "Processing delivery receipts. Sender: $senderRecipientId, Device: ${metadata.sourceDeviceId}, Timestamps: ${deliveryReceipt.timestampList.joinToString(", ")}")
 
-    val ids = deliveryReceipt.timestampList.map { SyncMessageId(senderRecipientId, it) }
-    val unhandled = SignalDatabase.messages.incrementDeliveryReceiptCounts(ids, envelope.timestamp)
+    val missingTargetTimestamps: Set<Long> = SignalDatabase.messages.incrementDeliveryReceiptCounts(deliveryReceipt.timestampList, senderRecipientId, envelope.timestamp)
 
-    for (id in unhandled) {
-      warn(envelope.timestamp, "[handleDeliveryReceipt] Could not find matching message! timestamp: ${id.timetamp}  author: ${id.recipientId}")
+    for (targetTimestamp in missingTargetTimestamps) {
+      warn(envelope.timestamp, "[handleDeliveryReceipt] Could not find matching message! targetTimestamp: $targetTimestamp, receiptAuthor: $senderRecipientId")
       // Early delivery receipts are special-cased in the database methods
     }
 
-    if (unhandled.isNotEmpty()) {
+    if (missingTargetTimestamps.isNotEmpty()) {
       PushProcessEarlyMessagesJob.enqueue()
     }
 
@@ -71,21 +69,20 @@ object ReceiptMessageProcessor {
 
     log(envelope.timestamp, "Processing read receipts. Sender: $senderRecipientId, Device: ${metadata.sourceDeviceId}, Timestamps: ${readReceipt.timestampList.joinToString(", ")}")
 
-    val ids = readReceipt.timestampList.map { SyncMessageId(senderRecipientId, it) }
-    val unhandled = SignalDatabase.messages.incrementReadReceiptCounts(ids, envelope.timestamp)
+    val missingTargetTimestamps: Set<Long> = SignalDatabase.messages.incrementReadReceiptCounts(readReceipt.timestampList, senderRecipientId, envelope.timestamp)
 
-    if (unhandled.isNotEmpty()) {
+    if (missingTargetTimestamps.isNotEmpty()) {
       val selfId = Recipient.self().id
 
-      for (id in unhandled) {
-        warn(envelope.timestamp, "[handleReadReceipt] Could not find matching message! timestamp: ${id.timetamp}, author: ${id.recipientId} | Receipt, so associating with message from self ($selfId)")
+      for (targetTimestamp in missingTargetTimestamps) {
+        warn(envelope.timestamp, "[handleReadReceipt] Could not find matching message! targetTimestamp: $targetTimestamp, receiptAuthor: $senderRecipientId | Receipt, so associating with message from self ($selfId)")
         if (earlyMessageCacheEntry != null) {
-          ApplicationDependencies.getEarlyMessageCache().store(selfId, id.timetamp, earlyMessageCacheEntry)
+          ApplicationDependencies.getEarlyMessageCache().store(selfId, targetTimestamp, earlyMessageCacheEntry)
         }
       }
     }
 
-    if (unhandled.isNotEmpty() && earlyMessageCacheEntry != null) {
+    if (missingTargetTimestamps.isNotEmpty() && earlyMessageCacheEntry != null) {
       PushProcessEarlyMessagesJob.enqueue()
     }
   }
@@ -108,30 +105,29 @@ object ReceiptMessageProcessor {
 
     log(envelope.timestamp, "Processing viewed receipts. Sender: $senderRecipientId, Device: ${metadata.sourceDeviceId}, Only Stories: ${!readReceipts}, Timestamps: ${viewedReceipt.timestampList.joinToString(", ")}")
 
-    val ids = viewedReceipt.timestampList.map { SyncMessageId(senderRecipientId, it) }
-
-    val unhandled: Collection<SyncMessageId> = if (readReceipts && storyViewedReceipts) {
-      SignalDatabase.messages.incrementViewedReceiptCounts(ids, envelope.timestamp)
+    val missingTargetTimestamps: Set<Long> = if (readReceipts && storyViewedReceipts) {
+      SignalDatabase.messages.incrementViewedReceiptCounts(viewedReceipt.timestampList, senderRecipientId, envelope.timestamp)
     } else if (readReceipts) {
-      SignalDatabase.messages.incrementViewedNonStoryReceiptCounts(ids, envelope.timestamp)
+      SignalDatabase.messages.incrementViewedNonStoryReceiptCounts(viewedReceipt.timestampList, senderRecipientId, envelope.timestamp)
     } else {
-      SignalDatabase.messages.incrementViewedStoryReceiptCounts(ids, envelope.timestamp)
+      SignalDatabase.messages.incrementViewedStoryReceiptCounts(viewedReceipt.timestampList, senderRecipientId, envelope.timestamp)
     }
 
-    val handled: Set<SyncMessageId> = ids.toSet() - unhandled.toSet()
-    SignalDatabase.messages.updateViewedStories(handled)
+    val foundTargetTimestamps: Set<Long> = viewedReceipt.timestampList.toSet() - missingTargetTimestamps.toSet()
+    SignalDatabase.messages.updateViewedStories(foundTargetTimestamps)
 
-    if (unhandled.isNotEmpty()) {
+    if (missingTargetTimestamps.isNotEmpty()) {
       val selfId = Recipient.self().id
-      for (id in unhandled) {
-        warn(envelope.timestamp, "[handleViewedReceipt] Could not find matching message! timestamp: ${id.timetamp}, author: ${id.recipientId} | Receipt so associating with message from self ($selfId)")
+
+      for (targetTimestamp in missingTargetTimestamps) {
+        warn(envelope.timestamp, "[handleViewedReceipt] Could not find matching message! targetTimestamp: $targetTimestamp, receiptAuthor: $senderRecipientId | Receipt so associating with message from self ($selfId)")
         if (earlyMessageCacheEntry != null) {
-          ApplicationDependencies.getEarlyMessageCache().store(selfId, id.timetamp, earlyMessageCacheEntry)
+          ApplicationDependencies.getEarlyMessageCache().store(selfId, targetTimestamp, earlyMessageCacheEntry)
         }
       }
     }
 
-    if (unhandled.isNotEmpty() && earlyMessageCacheEntry != null) {
+    if (missingTargetTimestamps.isNotEmpty() && earlyMessageCacheEntry != null) {
       PushProcessEarlyMessagesJob.enqueue()
     }
   }

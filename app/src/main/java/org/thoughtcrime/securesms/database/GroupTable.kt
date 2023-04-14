@@ -1275,7 +1275,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
           SELECT ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} 
           FROM ${MessageTable.TABLE_NAME} 
           WHERE 
-           ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID} = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AND 
+           ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AND 
            ${MessageTable.STORY_TYPE} > 1 
           ORDER BY ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} DESC 
           LIMIT 1

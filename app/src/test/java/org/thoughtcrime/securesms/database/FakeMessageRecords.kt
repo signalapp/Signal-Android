@@ -143,8 +143,8 @@ object FakeMessageRecords {
     return MediaMmsMessageRecord(
       id,
       conversationRecipient,
-      individualRecipient,
       recipientDeviceId,
+      individualRecipient,
       dateSent,
       dateReceived,
       dateServer,

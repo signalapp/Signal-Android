@@ -1290,7 +1290,7 @@ final class GroupManagerV2 {
           long threadId = MessageSender.send(context, outgoingMessage, -1, MessageSender.SendType.SIGNAL, null, null);
           return new RecipientAndThread(groupRecipient, threadId);
         } else {
-          long threadId = SignalDatabase.threads().getOrCreateValidThreadId(outgoingMessage.getRecipient(), -1, outgoingMessage.getDistributionType());
+          long threadId = SignalDatabase.threads().getOrCreateValidThreadId(outgoingMessage.getThreadRecipient(), -1, outgoingMessage.getDistributionType());
           try {
             long messageId = SignalDatabase.messages().insertMessageOutbox(outgoingMessage, threadId, false, null);
             SignalDatabase.messages().markAsSent(messageId, true);

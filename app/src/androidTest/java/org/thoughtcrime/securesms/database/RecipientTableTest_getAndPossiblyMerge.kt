@@ -693,9 +693,9 @@ class RecipientTableTest_getAndPossiblyMerge {
     val sms2: MessageRecord = SignalDatabase.messages.getMessageRecord(smsId2)!!
     val sms3: MessageRecord = SignalDatabase.messages.getMessageRecord(smsId3)!!
 
-    assertEquals(retrievedId, sms1.recipient.id)
-    assertEquals(retrievedId, sms2.recipient.id)
-    assertEquals(retrievedId, sms3.recipient.id)
+    assertEquals(retrievedId, sms1.fromRecipient.id)
+    assertEquals(retrievedId, sms2.fromRecipient.id)
+    assertEquals(retrievedId, sms3.fromRecipient.id)
 
     assertEquals(retrievedThreadId, sms1.threadId)
     assertEquals(retrievedThreadId, sms2.threadId)
@@ -706,9 +706,9 @@ class RecipientTableTest_getAndPossiblyMerge {
     val mms2: MessageRecord = SignalDatabase.messages.getMessageRecord(mmsId2)!!
     val mms3: MessageRecord = SignalDatabase.messages.getMessageRecord(mmsId3)!!
 
-    assertEquals(retrievedId, mms1.recipient.id)
-    assertEquals(retrievedId, mms2.recipient.id)
-    assertEquals(retrievedId, mms3.recipient.id)
+    assertEquals(retrievedId, mms1.fromRecipient.id)
+    assertEquals(retrievedId, mms2.fromRecipient.id)
+    assertEquals(retrievedId, mms3.fromRecipient.id)
 
     assertEquals(retrievedThreadId, mms1.threadId)
     assertEquals(retrievedThreadId, mms2.threadId)
@@ -1035,7 +1035,7 @@ class RecipientTableTest_getAndPossiblyMerge {
     return SignalDatabase.rawDatabase
       .select(MessageTable.BODY)
       .from(MessageTable.TABLE_NAME)
-      .where("${MessageTable.RECIPIENT_ID} = ? AND ${MessageTable.TYPE} = ?", recipientId, MessageTypes.THREAD_MERGE_TYPE)
+      .where("${MessageTable.FROM_RECIPIENT_ID} = ? AND ${MessageTable.TYPE} = ?", recipientId, MessageTypes.THREAD_MERGE_TYPE)
       .orderBy("${MessageTable.DATE_RECEIVED} DESC")
       .limit(1)
       .run()
@@ -1053,7 +1053,7 @@ class RecipientTableTest_getAndPossiblyMerge {
     return SignalDatabase.rawDatabase
       .select(MessageTable.BODY)
       .from(MessageTable.TABLE_NAME)
-      .where("${MessageTable.RECIPIENT_ID} = ? AND ${MessageTable.TYPE} = ?", recipientId, MessageTypes.SESSION_SWITCHOVER_TYPE)
+      .where("${MessageTable.FROM_RECIPIENT_ID} = ? AND ${MessageTable.TYPE} = ?", recipientId, MessageTypes.SESSION_SWITCHOVER_TYPE)
       .orderBy("${MessageTable.DATE_RECEIVED} DESC")
       .limit(1)
       .run()

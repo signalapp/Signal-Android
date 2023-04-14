@@ -9,35 +9,30 @@ import org.thoughtcrime.securesms.util.LRUCache;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EarlyReceiptCache {
+public class EarlyDeliveryReceiptCache {
 
-  private static final String TAG = Log.tag(EarlyReceiptCache.class);
+  private static final String TAG = Log.tag(EarlyDeliveryReceiptCache.class);
 
   private final LRUCache<Long, Map<RecipientId, Receipt>> cache = new LRUCache<>(100);
-  private final String name;
 
-  public EarlyReceiptCache(@NonNull String name) {
-    this.name = name;
-  }
-
-  public synchronized void increment(long timestamp, @NonNull RecipientId origin, long receiptTimestamp) {
-    Map<RecipientId, Receipt> receipts = cache.get(timestamp);
+  public synchronized void increment(long targetTimestamp, @NonNull RecipientId receiptAuthor, long receiptSentTimestamp) {
+    Map<RecipientId, Receipt> receipts = cache.get(targetTimestamp);
 
     if (receipts == null) {
       receipts = new HashMap<>();
     }
 
-    Receipt receipt = receipts.get(origin);
+    Receipt receipt = receipts.get(receiptAuthor);
 
     if (receipt != null) {
       receipt.count++;
-      receipt.timestamp = receiptTimestamp;
+      receipt.timestamp = receiptSentTimestamp;
     } else {
-      receipt = new Receipt(1, receiptTimestamp);
+      receipt = new Receipt(1, receiptSentTimestamp);
     }
-    receipts.put(origin, receipt);
+    receipts.put(receiptAuthor, receipt);
 
-    cache.put(timestamp, receipts);
+    cache.put(targetTimestamp, receipts);
   }
 
   public synchronized Map<RecipientId, Receipt> remove(long timestamp) {
@@ -45,7 +40,7 @@ public class EarlyReceiptCache {
     return receipts != null ? receipts : new HashMap<>();
   }
 
-  public class Receipt {
+  public static class Receipt {
     private long count;
     private long timestamp;
 

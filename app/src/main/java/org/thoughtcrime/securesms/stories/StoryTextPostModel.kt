@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.fonts.TextToScript
 import org.thoughtcrime.securesms.fonts.TypefaceCache
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.GlideApp
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.ParcelUtil
@@ -94,7 +93,7 @@ data class StoryTextPostModel(
       return parseFrom(
         body = messageRecord.body,
         storySentAtMillis = messageRecord.timestamp,
-        storyAuthor = if (messageRecord.isOutgoing) Recipient.self().id else messageRecord.individualRecipient.id,
+        storyAuthor = messageRecord.fromRecipient.id,
         bodyRanges = messageRecord.messageRanges
       )
     }

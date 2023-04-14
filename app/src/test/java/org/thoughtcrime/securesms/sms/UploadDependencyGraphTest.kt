@@ -167,8 +167,8 @@ class UploadDependencyGraphTest {
     // GIVEN
     val attachment1 = UriAttachmentBuilder.build(uniqueLong.getAndIncrement(), contentType = MediaUtil.IMAGE_JPEG)
     val attachment2 = UriAttachmentBuilder.build(uniqueLong.getAndIncrement(), contentType = MediaUtil.IMAGE_JPEG)
-    val message1 = OutgoingMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = listOf(attachment1))
-    val message2 = OutgoingMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis() + 1, attachments = listOf(attachment2))
+    val message1 = OutgoingMessage(threadRecipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = listOf(attachment1))
+    val message2 = OutgoingMessage(threadRecipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis() + 1, attachments = listOf(attachment2))
     val testSubject = UploadDependencyGraph.create(listOf(message1, message2), jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
 
     // WHEN
@@ -191,7 +191,7 @@ class UploadDependencyGraphTest {
       )
     }
 
-    val message = OutgoingMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = uriAttachments)
+    val message = OutgoingMessage(threadRecipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = uriAttachments)
     val testSubject = UploadDependencyGraph.create(listOf(message), jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
     val result = testSubject.consumeDeferredQueue()
 
@@ -262,7 +262,7 @@ class UploadDependencyGraphTest {
   private fun Iterable<Int>.createMessages(uriAttachments: List<Attachment>): List<OutgoingMessage> {
     return mapIndexed { index, _ ->
       OutgoingMessage(
-        recipient = Recipient.UNKNOWN,
+        threadRecipient = Recipient.UNKNOWN,
         sentTimeMillis = System.currentTimeMillis() + index,
         attachments = uriAttachments,
         isSecure = true

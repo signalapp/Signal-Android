@@ -306,7 +306,7 @@ public class ConversationItemFooter extends ConstraintLayout {
       int errorMsg;
       if (messageRecord.hasFailedWithNetworkFailures()) {
         errorMsg = R.string.ConversationItem_error_network_not_delivered;
-      } else if (messageRecord.getRecipient().isPushGroup() && messageRecord.isIdentityMismatchFailure()) {
+      } else if (messageRecord.getToRecipient().isPushGroup() && messageRecord.isIdentityMismatchFailure()) {
         errorMsg = R.string.ConversationItem_error_partially_not_delivered;
       } else {
         errorMsg = R.string.ConversationItem_error_not_sent_tap_for_details;
@@ -386,7 +386,7 @@ public class ConversationItemFooter extends ConstraintLayout {
     long newMessageId = buildMessageId(messageRecord);
 
     if (previousMessageId == newMessageId && deliveryStatusView.isPending() && !messageRecord.isPending()) {
-      if (messageRecord.getRecipient().isGroup()) {
+      if (messageRecord.getToRecipient().isGroup()) {
         SignalLocalMetrics.GroupMessageSend.onUiUpdated(messageRecord.getId());
       } else {
         SignalLocalMetrics.IndividualMessageSend.onUiUpdated(messageRecord.getId());
@@ -429,7 +429,7 @@ public class ConversationItemFooter extends ConstraintLayout {
       if (mmsMessageRecord.getSlideDeck().getAudioSlide() != null) {
         showAudioDurationViews();
 
-        if (messageRecord.getViewedReceiptCount() > 0 || (messageRecord.isOutgoing() && Objects.equals(messageRecord.getRecipient(), Recipient.self()))) {
+        if (messageRecord.getViewedReceiptCount() > 0 || (messageRecord.isOutgoing() && Objects.equals(messageRecord.getToRecipient(), Recipient.self()))) {
           revealDot.setProgress(1f);
         } else {
           revealDot.setProgress(0f);

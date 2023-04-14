@@ -88,7 +88,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     val messageType: Long = Call.getMessageType(type, direction, event)
 
     writableDatabase.withinTransaction {
-      val result = SignalDatabase.messages.insertCallLog(peer, messageType, timestamp)
+      val result = SignalDatabase.messages.insertCallLog(peer, messageType, timestamp, direction == Direction.OUTGOING)
 
       val values = contentValuesOf(
         CALL_ID to callId,

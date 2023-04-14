@@ -1359,6 +1359,11 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   private fun update(threadId: Long, unarchive: Boolean, allowDeletion: Boolean, notifyListeners: Boolean): Boolean {
+    if (threadId == -1L) {
+      Log.d(TAG, "Skipping update for threadId -1")
+      return false
+    }
+
     val meaningfulMessages = messages.hasMeaningfulMessage(threadId)
 
     val isPinned = getPinnedThreadIds().contains(threadId)
@@ -1581,10 +1586,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   private fun getExtrasFor(record: MessageRecord, body: ThreadBody): Extra? {
-    val threadRecipient = if (record.isOutgoing) record.recipient else getRecipientForThreadId(record.threadId)
+    val threadRecipient = getRecipientForThreadId(record.threadId)
     val messageRequestAccepted = RecipientUtil.isMessageRequestAccepted(record.threadId, threadRecipient)
     val isHidden = threadRecipient?.isHidden ?: false
-    val individualRecipientId = record.individualRecipient.id
+    val authorId = record.fromRecipient.id
 
     if (!messageRequestAccepted && threadRecipient != null) {
       if (threadRecipient.isPushGroup) {
@@ -1594,46 +1599,46 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             val from = RecipientId.from(ServiceId.from(inviteAddState.addedOrInvitedBy))
             return if (inviteAddState.isInvited) {
               Log.i(TAG, "GV2 invite message request from $from")
-              Extra.forGroupV2invite(from, individualRecipientId)
+              Extra.forGroupV2invite(from, authorId)
             } else {
               Log.i(TAG, "GV2 message request from $from")
-              Extra.forGroupMessageRequest(from, individualRecipientId)
+              Extra.forGroupMessageRequest(from, authorId)
             }
           }
 
           Log.w(TAG, "Falling back to unknown message request state for GV2 message")
-          return Extra.forMessageRequest(individualRecipientId)
+          return Extra.forMessageRequest(authorId)
         } else {
           val recipientId = messages.getGroupAddedBy(record.threadId)
           if (recipientId != null) {
-            return Extra.forGroupMessageRequest(recipientId, individualRecipientId)
+            return Extra.forGroupMessageRequest(recipientId, authorId)
           }
         }
       } else {
-        return Extra.forMessageRequest(individualRecipientId, isHidden)
+        return Extra.forMessageRequest(authorId, isHidden)
       }
     }
 
     val extras: Extra? = if (record.isScheduled()) {
-      Extra.forScheduledMessage(individualRecipientId)
+      Extra.forScheduledMessage(authorId)
     } else if (record.isRemoteDelete) {
-      Extra.forRemoteDelete(individualRecipientId)
+      Extra.forRemoteDelete(authorId)
     } else if (record.isViewOnce) {
-      Extra.forViewOnce(individualRecipientId)
+      Extra.forViewOnce(authorId)
     } else if (record.isMms && (record as MmsMessageRecord).slideDeck.stickerSlide != null) {
       val slide: StickerSlide = record.slideDeck.stickerSlide!!
-      Extra.forSticker(slide.emoji, individualRecipientId)
+      Extra.forSticker(slide.emoji, authorId)
     } else if (record.isMms && (record as MmsMessageRecord).slideDeck.slides.size > 1) {
-      Extra.forAlbum(individualRecipientId)
+      Extra.forAlbum(authorId)
     } else if (threadRecipient != null && threadRecipient.isGroup) {
-      Extra.forDefault(individualRecipientId)
+      Extra.forDefault(authorId)
     } else {
       null
     }
 
     return if (record.messageRanges != null) {
       val bodyRanges = record.requireMessageRanges().adjustBodyRanges(body.bodyAdjustments)!!
-      extras?.copy(bodyRanges = bodyRanges.serialize()) ?: Extra.forBodyRanges(bodyRanges, individualRecipientId)
+      extras?.copy(bodyRanges = bodyRanges.serialize()) ?: Extra.forBodyRanges(bodyRanges, authorId)
     } else {
       extras
     }

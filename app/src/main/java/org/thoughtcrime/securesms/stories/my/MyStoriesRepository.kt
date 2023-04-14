@@ -28,8 +28,8 @@ class MyStoriesRepository(context: Context) {
         val storiesMap = mutableMapOf<Recipient, List<MessageRecord>>()
         SignalDatabase.messages.getAllOutgoingStories(true, -1).use {
           for (messageRecord in it) {
-            val currentList = storiesMap[messageRecord.recipient] ?: emptyList()
-            storiesMap[messageRecord.recipient] = (currentList + messageRecord)
+            val currentList = storiesMap[messageRecord.toRecipient] ?: emptyList()
+            storiesMap[messageRecord.toRecipient] = (currentList + messageRecord)
           }
         }
 

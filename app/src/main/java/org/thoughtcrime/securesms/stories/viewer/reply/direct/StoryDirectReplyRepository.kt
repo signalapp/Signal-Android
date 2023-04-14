@@ -30,21 +30,18 @@ class StoryDirectReplyRepository(context: Context) {
     return Completable.create { emitter ->
       val message = SignalDatabase.messages.getMessageRecord(storyId) as MediaMmsMessageRecord
       val (recipient, threadId) = if (groupDirectReplyRecipientId == null) {
-        message.recipient to message.threadId
+        message.fromRecipient to message.threadId
       } else {
         val resolved = Recipient.resolved(groupDirectReplyRecipientId)
         resolved to SignalDatabase.threads.getOrCreateThreadIdFor(resolved)
       }
 
-      val quoteAuthor: Recipient = when {
-        message.isOutgoing -> Recipient.self()
-        else -> message.individualRecipient
-      }
+      val quoteAuthor: Recipient = message.fromRecipient
 
       MessageSender.send(
         context,
         OutgoingMessage(
-          recipient = recipient,
+          threadRecipient = recipient,
           body = body.toString(),
           sentTimeMillis = System.currentTimeMillis(),
           expiresIn = TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong()),

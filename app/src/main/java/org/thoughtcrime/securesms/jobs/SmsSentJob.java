@@ -110,15 +110,15 @@ public class SmsSentJob extends BaseJob {
           if (isMultipart) {
             Log.w(TAG, "Service connectivity problem, but not retrying due to multipart");
             database.markAsSentFailed(messageId);
-            ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getRecipient(), ConversationId.forConversation(record.getThreadId()));
+            ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getToRecipient(), ConversationId.forConversation(record.getThreadId()));
           } else {
             Log.w(TAG, "Service connectivity problem, requeuing...");
-            ApplicationDependencies.getJobManager().add(new SmsSendJob(messageId, record.getIndividualRecipient(), runAttempt + 1));
+            ApplicationDependencies.getJobManager().add(new SmsSendJob(messageId, record.getToRecipient(), runAttempt + 1));
           }
           break;
         default:
           database.markAsSentFailed(messageId);
-          ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getRecipient(), ConversationId.forConversation(record.getThreadId()));
+          ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getToRecipient(), ConversationId.forConversation(record.getThreadId()));
       }
     } catch (NoSuchMessageException e) {
       Log.w(TAG, e);
