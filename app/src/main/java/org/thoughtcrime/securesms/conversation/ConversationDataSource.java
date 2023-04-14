@@ -58,7 +58,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
   /** Used once for the initial fetch, then cleared. */
   private int baseSize;
 
-  ConversationDataSource(@NonNull Context context, long threadId, @NonNull MessageRequestData messageRequestData, boolean showUniversalExpireTimerUpdate, int baseSize) {
+  public ConversationDataSource(@NonNull Context context, long threadId, @NonNull MessageRequestData messageRequestData, boolean showUniversalExpireTimerUpdate, int baseSize) {
     this.context                        = context;
     this.threadId                       = threadId;
     this.messageRequestData             = messageRequestData;

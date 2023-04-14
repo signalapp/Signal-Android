@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversation;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -8,9 +9,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivity;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -23,6 +28,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class ConversationIntents {
+  private static final String TAG = Log.tag(ConversationIntents.class);
 
   private static final String BUBBLE_AUTHORITY                       = "bubble";
   private static final String NOTIFICATION_CUSTOM_SCHEME             = "custom";
@@ -38,6 +44,7 @@ public class ConversationIntents {
   private static final String EXTRA_WITH_SEARCH_OPEN                 = "with_search_open";
   private static final String EXTRA_GIFT_BADGE                       = "gift_badge";
   private static final String EXTRA_SHARE_DATA_TIMESTAMP             = "share_data_timestamp";
+  private static final String EXTRA_CONVERSATION_TYPE                = "conversation_type";
   private static final String INTENT_DATA                            = "intent_data";
   private static final String INTENT_TYPE                            = "intent_type";
 
@@ -94,21 +101,22 @@ public class ConversationIntents {
     return uri != null && Objects.equals(uri.getScheme(), NOTIFICATION_CUSTOM_SCHEME);
   }
 
-  final static class Args {
-    private final RecipientId      recipientId;
-    private final long             threadId;
-    private final String           draftText;
-    private final ArrayList<Media> media;
-    private final StickerLocator   stickerLocator;
-    private final boolean          isBorderless;
-    private final int              distributionType;
-    private final int              startingPosition;
-    private final boolean          firstTimeInSelfCreatedGroup;
-    private final boolean          withSearchOpen;
-    private final Badge giftBadge;
-    private final long  shareDataTimestamp;
+  public final static class Args {
+    private final RecipientId            recipientId;
+    private final long                   threadId;
+    private final String                 draftText;
+    private final ArrayList<Media>       media;
+    private final StickerLocator         stickerLocator;
+    private final boolean                isBorderless;
+    private final int                    distributionType;
+    private final int                    startingPosition;
+    private final boolean                firstTimeInSelfCreatedGroup;
+    private final boolean                withSearchOpen;
+    private final Badge                  giftBadge;
+    private final long                   shareDataTimestamp;
+    private final ConversationScreenType conversationScreenType;
 
-    static Args from(@NonNull Bundle arguments) {
+    public static Args from(@NonNull Bundle arguments) {
       Uri intentDataUri = getIntentData(arguments);
       if (isBubbleIntentUri(intentDataUri)) {
         return new Args(RecipientId.from(intentDataUri.getQueryParameter(EXTRA_RECIPIENT)),
@@ -122,7 +130,8 @@ public class ConversationIntents {
                         false,
                         false,
                         null,
-                        -1L);
+                        -1L,
+                        ConversationScreenType.BUBBLE);
       }
 
       return new Args(RecipientId.from(Objects.requireNonNull(arguments.getString(EXTRA_RECIPIENT))),
@@ -136,7 +145,8 @@ public class ConversationIntents {
                       arguments.getBoolean(EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP, false),
                       arguments.getBoolean(EXTRA_WITH_SEARCH_OPEN, false),
                       arguments.getParcelable(EXTRA_GIFT_BADGE),
-                      arguments.getLong(EXTRA_SHARE_DATA_TIMESTAMP, -1L));
+                      arguments.getLong(EXTRA_SHARE_DATA_TIMESTAMP, -1L),
+                      ConversationScreenType.from(arguments.getInt(EXTRA_CONVERSATION_TYPE, 0)));
     }
 
     private Args(@NonNull RecipientId recipientId,
@@ -150,7 +160,8 @@ public class ConversationIntents {
                  boolean firstTimeInSelfCreatedGroup,
                  boolean withSearchOpen,
                  @Nullable Badge giftBadge,
-                 long shareDataTimestamp)
+                 long shareDataTimestamp,
+                 @NonNull ConversationScreenType conversationScreenType)
     {
       this.recipientId                 = recipientId;
       this.threadId                    = threadId;
@@ -162,8 +173,9 @@ public class ConversationIntents {
       this.startingPosition            = startingPosition;
       this.firstTimeInSelfCreatedGroup = firstTimeInSelfCreatedGroup;
       this.withSearchOpen              = withSearchOpen;
-      this.giftBadge          = giftBadge;
-      this.shareDataTimestamp = shareDataTimestamp;
+      this.giftBadge                   = giftBadge;
+      this.shareDataTimestamp          = shareDataTimestamp;
+      this.conversationScreenType      = conversationScreenType;
     }
 
     public @NonNull RecipientId getRecipientId() {
@@ -221,43 +233,54 @@ public class ConversationIntents {
     public long getShareDataTimestamp() {
       return shareDataTimestamp;
     }
+
+    public @NonNull ConversationScreenType getConversationScreenType() {
+      return conversationScreenType;
+    }
   }
 
   public final static class Builder {
-    private final Context                               context;
-    private final Class<? extends ConversationActivity> conversationActivityClass;
-    private final RecipientId                           recipientId;
-    private final long                                  threadId;
+    private final Context                   context;
+    private final Class<? extends Activity> conversationActivityClass;
+    private final RecipientId               recipientId;
+    private final long                      threadId;
 
-    private String         draftText;
-    private List<Media>    media;
-    private StickerLocator stickerLocator;
-    private boolean        isBorderless;
-    private int            distributionType = ThreadTable.DistributionTypes.DEFAULT;
-    private int            startingPosition = -1;
-    private Uri            dataUri;
-    private String         dataType;
-    private boolean        firstTimeInSelfCreatedGroup;
-    private boolean        withSearchOpen;
-    private Badge          giftBadge;
-    private long           shareDataTimestamp = -1L;
+    private String                 draftText;
+    private List<Media>            media;
+    private StickerLocator         stickerLocator;
+    private boolean                isBorderless;
+    private int                    distributionType   = ThreadTable.DistributionTypes.DEFAULT;
+    private int                    startingPosition   = -1;
+    private Uri                    dataUri;
+    private String                 dataType;
+    private boolean                firstTimeInSelfCreatedGroup;
+    private boolean                withSearchOpen;
+    private Badge                  giftBadge;
+    private long                   shareDataTimestamp = -1L;
+    private ConversationScreenType conversationScreenType;
 
     private Builder(@NonNull Context context,
                     @NonNull RecipientId recipientId,
                     long threadId)
     {
-      this(context, ConversationActivity.class, recipientId, threadId);
+      this(
+          context,
+          getBaseConversationActivity(),
+          recipientId,
+          threadId
+      );
     }
 
     private Builder(@NonNull Context context,
-                    @NonNull Class<? extends ConversationActivity> conversationActivityClass,
+                    @NonNull Class<? extends Activity> conversationActivityClass,
                     @NonNull RecipientId recipientId,
                     long threadId)
     {
       this.context                   = context;
       this.conversationActivityClass = conversationActivityClass;
       this.recipientId               = recipientId;
-      this.threadId                  = threadId;
+      this.threadId                  = resolveThreadId(recipientId, threadId);
+      this.conversationScreenType    = ConversationScreenType.fromActivityClass(conversationActivityClass);
     }
 
     public @NonNull Builder withDraftText(@Nullable String draftText) {
@@ -309,7 +332,7 @@ public class ConversationIntents {
       this.firstTimeInSelfCreatedGroup = true;
       return this;
     }
-    
+
     public Builder withGiftBadge(@NonNull Badge badge) {
       this.giftBadge = badge;
       return this;
@@ -319,7 +342,7 @@ public class ConversationIntents {
       this.shareDataTimestamp = timestamp;
       return this;
     }
-    
+
     public @NonNull Intent build() {
       if (stickerLocator != null && media != null) {
         throw new IllegalStateException("Cannot have both sticker and media array");
@@ -347,6 +370,7 @@ public class ConversationIntents {
       intent.putExtra(EXTRA_WITH_SEARCH_OPEN, withSearchOpen);
       intent.putExtra(EXTRA_GIFT_BADGE, giftBadge);
       intent.putExtra(EXTRA_SHARE_DATA_TIMESTAMP, shareDataTimestamp);
+      intent.putExtra(EXTRA_CONVERSATION_TYPE, conversationScreenType.code);
 
       if (draftText != null) {
         intent.putExtra(EXTRA_TEXT, draftText);
@@ -369,6 +393,64 @@ public class ConversationIntents {
       }
 
       return intent;
+    }
+  }
+
+  public enum ConversationScreenType {
+    NORMAL(0),
+    BUBBLE(1),
+    POPUP(2);
+
+    private final int code;
+
+    ConversationScreenType(int code) {
+      this.code = code;
+    }
+
+    public boolean isInBubble() {
+      return Objects.equals(this, BUBBLE);
+    }
+
+    public boolean isNormal() {
+      return Objects.equals(this, NORMAL);
+    }
+
+    private static @NonNull ConversationScreenType from(int code) {
+      for (ConversationScreenType type : values()) {
+        if (type.code == code) {
+          return type;
+        }
+      }
+
+      return NORMAL;
+    }
+
+    private static @NonNull ConversationScreenType fromActivityClass(Class<? extends Activity> activityClass) {
+      if (Objects.equals(activityClass, ConversationPopupActivity.class)) {
+        return POPUP;
+      } else if (Objects.equals(activityClass, BubbleConversationActivity.class)) {
+        return BUBBLE;
+      } else {
+        return NORMAL;
+      }
+    }
+  }
+
+  private static long resolveThreadId(@NonNull RecipientId recipientId, long threadId) {
+    if (threadId >= 0 && SignalStore.internalValues().useConversationFragmentV2()) {
+      Log.w(TAG, "Getting thread id from database...");
+      // TODO [alex] -- Yes, this hits the database. No, we shouldn't be doing this.
+      return SignalDatabase.threads().getOrCreateThreadIdFor(Recipient.resolved(recipientId));
+    } else {
+      return threadId;
+    }
+  }
+
+  private static Class<? extends Activity> getBaseConversationActivity() {
+    if (SignalStore.internalValues().useConversationFragmentV2()) {
+      return ConversationActivity.class;
+    } else {
+      return org.thoughtcrime.securesms.conversation.ConversationActivity.class;
     }
   }
 }

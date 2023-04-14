@@ -300,6 +300,16 @@
         </intent-filter>
     </activity>
 
+    <activity android:name=".conversation.v2.ConversationActivity"
+              android:windowSoftInputMode="stateUnchanged"
+              android:launchMode="singleTask"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:parentActivityName=".MainActivity">
+        <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.thoughtcrime.securesms.MainActivity" />
+    </activity>
+
     <activity android:name=".conversation.ConversationActivity"
               android:windowSoftInputMode="stateUnchanged"
               android:launchMode="singleTask"

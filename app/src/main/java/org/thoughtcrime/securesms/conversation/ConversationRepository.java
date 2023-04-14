@@ -35,13 +35,13 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-class ConversationRepository {
+public class ConversationRepository {
 
   private static final String TAG = Log.tag(ConversationRepository.class);
 
   private final Context  context;
 
-  ConversationRepository() {
+  public ConversationRepository() {
     this.context = ApplicationDependencies.getApplication();
   }
 
