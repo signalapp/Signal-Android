@@ -37,7 +37,7 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
         $DATE_RECEIVED INTEGER NOT NULL,
         UNIQUE($MESSAGE_ID, $AUTHOR_ID) ON CONFLICT REPLACE
       )
-    """.trimIndent()
+    """
 
     private fun readReaction(cursor: Cursor): ReactionRecord {
       return ReactionRecord(

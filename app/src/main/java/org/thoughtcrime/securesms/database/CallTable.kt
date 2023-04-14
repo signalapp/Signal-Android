@@ -76,7 +76,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         UNIQUE ($CALL_ID, $PEER, $CALL_LINK) ON CONFLICT FAIL,
         CHECK (($PEER IS NULL AND $CALL_LINK IS NOT NULL) OR ($PEER IS NOT NULL AND $CALL_LINK IS NULL))
       )
-    """.trimIndent()
+    """
 
     val CREATE_INDEXES = arrayOf(
       "CREATE INDEX call_call_id_index ON $TABLE_NAME ($CALL_ID)",
@@ -760,7 +760,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           ${RecipientTable.TABLE_NAME}.${RecipientTable.PHONE} GLOB ? OR 
           ${RecipientTable.TABLE_NAME}.${RecipientTable.EMAIL} GLOB ?
         )
-        """.trimIndent()
+        """
       SqlUtil.buildQuery(selection, 0, 0, glob, glob, glob, glob)
     } else {
       SqlUtil.buildQuery("")
@@ -854,7 +854,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       LEFT JOIN ${GroupTable.TABLE_NAME} ON ${GroupTable.TABLE_NAME}.${GroupTable.RECIPIENT_ID} = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
       WHERE true_parent = p.$ID ${if (queryClause.where.isNotEmpty()) "AND ${queryClause.where}" else ""}
       $offsetLimit
-    """.trimIndent()
+    """
 
     return readableDatabase.query(
       statement,

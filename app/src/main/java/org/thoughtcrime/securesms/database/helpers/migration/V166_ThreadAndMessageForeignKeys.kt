@@ -8,7 +8,6 @@ import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
-import org.signal.core.util.toSingleLine
 import org.signal.core.util.update
 
 /**
@@ -58,7 +57,7 @@ object V166_ThreadAndMessageForeignKeys : SignalDatabaseMigration {
         COUNT(*) AS thread_count 
       FROM thread 
       GROUP BY thread_recipient_id HAVING thread_count > 1
-    """.toSingleLine()
+    """
     ).use { cursor ->
       while (cursor.moveToNext()) {
         val recipientId = cursor.requireLong("thread_recipient_id")

@@ -55,7 +55,6 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.toOptional
-import org.signal.core.util.toSingleLine
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.IdentityKey
@@ -363,7 +362,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             '${AttachmentTable.UPLOAD_TIMESTAMP}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.UPLOAD_TIMESTAMP}
           )
         ) AS ${AttachmentTable.ATTACHMENT_JSON_ALIAS}
-      """.toSingleLine()
+      """
 
     private const val IS_STORY_CLAUSE = "$STORY_TYPE > 0 AND $REMOTE_DELETED = 0"
     private const val RAW_ID_WHERE = "$TABLE_NAME.$ID = ?"
@@ -390,7 +389,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
              ${MessageTypes.SMS_EXPORT_TYPE}
            ) 
          ORDER BY $DATE_RECEIVED DESC LIMIT 1
-       """.toSingleLine()
+       """
 
     private val IS_CALL_TYPE_CLAUSE = """(
       ($TYPE = ${MessageTypes.INCOMING_AUDIO_CALL_TYPE})
@@ -406,7 +405,13 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       ($TYPE = ${MessageTypes.MISSED_VIDEO_CALL_TYPE})
       OR
       ($TYPE = ${MessageTypes.GROUP_CALL_TYPE})
-    )""".toSingleLine()
+    )"""
+
+    private val outgoingTypeClause: String by lazy {
+      MessageTypes.OUTGOING_MESSAGE_TYPES
+        .map { "($TABLE_NAME.$TYPE & ${MessageTypes.BASE_TYPE_MASK} = $it)" }
+        .joinToString(" OR ")
+    }
 
     @JvmStatic
     fun mmsReaderFor(cursor: Cursor): MmsReader {
@@ -620,7 +625,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           UPDATE $TABLE_NAME 
           SET $TYPE = ($TYPE & ${MessageTypes.TOTAL_MASK - maskOff} | $maskOn ) 
           WHERE $ID = ?
-        """.toSingleLine(),
+        """,
         buildArgs(id)
       )
 
@@ -640,7 +645,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           $BODY = ?,
           $TYPE = ($TYPE & ${MessageTypes.TOTAL_MASK - maskOff} | $maskOn) 
         WHERE $ID = ?
-      """.toSingleLine(),
+      """,
       arrayOf(body, messageId.toString() + "")
     )
 
@@ -729,7 +734,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val results: List<MarkedMessageInfo> = readableDatabase
       .select(ID, TO_RECIPIENT_ID, DATE_SENT, THREAD_ID, STORY_TYPE)
       .from(TABLE_NAME)
-      .where("""$ID IN (${Util.join(messageIds, ",")}) AND (${getOutgoingTypeClause()}) AND ($TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} = ${MessageTypes.SPECIAL_TYPE_GIFT_BADGE}) AND $VIEWED_RECEIPT_COUNT = 0""")
+      .where("""$ID IN (${Util.join(messageIds, ",")}) AND ($outgoingTypeClause) AND ($TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} = ${MessageTypes.SPECIAL_TYPE_GIFT_BADGE}) AND $VIEWED_RECEIPT_COUNT = 0""")
       .run()
       .readToList { it.toMarkedMessageInfo(outgoing = true) }
 
@@ -1294,7 +1299,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       null
     }
 
-    var where = "$IS_STORY_CLAUSE AND (${getOutgoingTypeClause()})"
+    var where = "$IS_STORY_CLAUSE AND ($outgoingTypeClause)"
     val whereArgs: Array<String>
 
     if (threadId == null) {
@@ -1309,12 +1314,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun getAllOutgoingStories(reverse: Boolean, limit: Int): Reader {
-    val where = "$IS_STORY_CLAUSE AND (${getOutgoingTypeClause()})"
+    val where = "$IS_STORY_CLAUSE AND ($outgoingTypeClause)"
     return MmsReader(rawQueryWithAttachments(where, null, reverse, limit.toLong()))
   }
 
   fun markAllIncomingStoriesRead(): List<MarkedMessageInfo> {
-    val where = "$IS_STORY_CLAUSE AND NOT (${getOutgoingTypeClause()}) AND $READ = 0"
+    val where = "$IS_STORY_CLAUSE AND NOT ($outgoingTypeClause) AND $READ = 0"
     val markedMessageInfos = setMessagesRead(where, null)
     notifyConversationListListeners()
     return markedMessageInfos
@@ -1328,7 +1333,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun markAllFailedStoriesNotified() {
-    val where = "$IS_STORY_CLAUSE AND (${getOutgoingTypeClause()}) AND $NOTIFIED = 0 AND ($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_SENT_FAILED_TYPE}"
+    val where = "$IS_STORY_CLAUSE AND ($outgoingTypeClause) AND $NOTIFIED = 0 AND ($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_SENT_FAILED_TYPE}"
 
     writableDatabase
       .update("$TABLE_NAME INDEXED BY $INDEX_THREAD_DATE")
@@ -1340,7 +1345,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   fun markOnboardingStoryRead() {
     val recipientId = SignalStore.releaseChannelValues().releaseChannelRecipientId ?: return
-    val where = "$IS_STORY_CLAUSE AND NOT (${getOutgoingTypeClause()}) AND $READ = 0 AND $FROM_RECIPIENT_ID = ?"
+    val where = "$IS_STORY_CLAUSE AND NOT ($outgoingTypeClause) AND $READ = 0 AND $FROM_RECIPIENT_ID = ?"
     val markedMessageInfos = setMessagesRead(where, buildArgs(recipientId))
 
     if (markedMessageInfos.isNotEmpty()) {
@@ -1358,7 +1363,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   fun getUnreadStories(recipientId: RecipientId, limit: Int): Reader {
     val threadId = threads.getThreadIdIfExistsFor(recipientId)
-    val query = "$IS_STORY_CLAUSE AND NOT (${getOutgoingTypeClause()}) AND $THREAD_ID = ? AND $VIEWED_RECEIPT_COUNT = ?"
+    val query = "$IS_STORY_CLAUSE AND NOT ($outgoingTypeClause) AND $THREAD_ID = ? AND $VIEWED_RECEIPT_COUNT = ?"
     val args = buildArgs(threadId, 0)
     return MmsReader(rawQueryWithAttachments(query, args, false, limit.toLong()))
   }
@@ -1411,7 +1416,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     writableDatabase.withinTransaction { db ->
       db.select(FROM_RECIPIENT_ID)
         .from(TABLE_NAME)
-        .where("$IS_STORY_CLAUSE AND $DATE_SENT IN ($timestamps) AND NOT (${getOutgoingTypeClause()}) AND $VIEWED_RECEIPT_COUNT > 0")
+        .where("$IS_STORY_CLAUSE AND $DATE_SENT IN ($timestamps) AND NOT ($outgoingTypeClause) AND $VIEWED_RECEIPT_COUNT > 0")
         .run()
         .readToList { cursor -> RecipientId.from(cursor.requireLong(FROM_RECIPIENT_ID)) }
         .forEach { id -> recipients.updateLastStoryViewTimestamp(id) }
@@ -1431,7 +1436,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     val hasUnviewedStories = readableDatabase
       .exists(TABLE_NAME)
-      .where("$IS_STORY_CLAUSE AND $THREAD_ID = ? AND $VIEWED_RECEIPT_COUNT = ? AND NOT (${getOutgoingTypeClause()})", threadId, 0)
+      .where("$IS_STORY_CLAUSE AND $THREAD_ID = ? AND $VIEWED_RECEIPT_COUNT = ? AND NOT ($outgoingTypeClause)", threadId, 0)
       .run()
 
     return if (hasUnviewedStories) {
@@ -1444,7 +1449,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun isOutgoingStoryAlreadyInDatabase(recipientId: RecipientId, sentTimestamp: Long): Boolean {
     return readableDatabase
       .exists(TABLE_NAME)
-      .where("$TO_RECIPIENT_ID = ? AND $STORY_TYPE > 0 AND $DATE_SENT = ? AND (${getOutgoingTypeClause()})", recipientId, sentTimestamp)
+      .where("$TO_RECIPIENT_ID = ? AND $STORY_TYPE > 0 AND $DATE_SENT = ? AND ($outgoingTypeClause)", recipientId, sentTimestamp)
       .run()
   }
 
@@ -1467,10 +1472,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID}
       WHERE 
         $IS_STORY_CLAUSE AND 
-        (${getOutgoingTypeClause()}) = 0 AND 
+        ($outgoingTypeClause) = 0 AND 
         $VIEWED_RECEIPT_COUNT = 0 AND 
         $TABLE_NAME.$READ = 0
-      """.toSingleLine()
+      """
 
     return readableDatabase
       .rawQuery(query, null)
@@ -1478,7 +1483,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun hasFailedOutgoingStory(): Boolean {
-    val where = "$IS_STORY_CLAUSE AND (${getOutgoingTypeClause()}) AND $NOTIFIED = 0 AND ($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_SENT_FAILED_TYPE}"
+    val where = "$IS_STORY_CLAUSE AND ($outgoingTypeClause) AND $NOTIFIED = 0 AND ($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_SENT_FAILED_TYPE}"
     return readableDatabase.exists(TABLE_NAME).where(where).run()
   }
 
@@ -1488,11 +1493,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $TABLE_NAME.$DATE_SENT AS sent_timestamp,
         $TABLE_NAME.$ID AS mms_id,
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID},
-        (${getOutgoingTypeClause()}) AS is_outgoing,
+        ($outgoingTypeClause) AS is_outgoing,
         $VIEWED_RECEIPT_COUNT,
         $TABLE_NAME.$DATE_SENT,
         $RECEIPT_TIMESTAMP,
-        (${getOutgoingTypeClause()}) = 0 AND $VIEWED_RECEIPT_COUNT = 0 AS is_unread
+        ($outgoingTypeClause) = 0 AND $VIEWED_RECEIPT_COUNT = 0 AS is_unread
         FROM $TABLE_NAME 
           JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID}
         WHERE
@@ -1506,7 +1511,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             WHEN is_outgoing = 0 AND viewed_receipt_count > 0 THEN $RECEIPT_TIMESTAMP
             WHEN is_outgoing = 1 THEN $TABLE_NAME.$DATE_SENT
           END DESC
-      """.toSingleLine()
+      """
 
     return readableDatabase
       .rawQuery(query, null)
@@ -1545,7 +1550,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun hasSelfReplyInStory(parentStoryId: Long): Boolean {
     return readableDatabase
       .exists(TABLE_NAME)
-      .where("$PARENT_STORY_ID = ? AND (${getOutgoingTypeClause()})", -parentStoryId)
+      .where("$PARENT_STORY_ID = ? AND ($outgoingTypeClause)", -parentStoryId)
       .run()
   }
 
@@ -1589,7 +1594,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             FROM $TABLE_NAME 
             WHERE $storiesBeforeTimestampWhere
           )
-        """.toSingleLine()
+        """
 
       val disassociateQuoteQuery = """
         UPDATE $TABLE_NAME 
@@ -1603,7 +1608,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             FROM $TABLE_NAME 
             WHERE $storiesBeforeTimestampWhere
           )
-        """.toSingleLine()
+        """
 
       db.execSQL(deleteStoryRepliesQuery, sharedArgs)
       db.execSQL(disassociateQuoteQuery, sharedArgs)
@@ -1726,7 +1731,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   fun getIncomingMeaningfulMessageCountSince(threadId: Long, afterTime: Long): Int {
     val meaningfulMessagesQuery = buildMeaningfulMessagesQuery(threadId)
-    val where = "${meaningfulMessagesQuery.where} AND $DATE_RECEIVED >= ? AND NOT (${getOutgoingTypeClause()})"
+    val where = "${meaningfulMessagesQuery.where} AND $DATE_RECEIVED >= ? AND NOT ($outgoingTypeClause)"
     val whereArgs = appendArg(meaningfulMessagesQuery.whereArgs, afterTime.toString())
 
     return readableDatabase
@@ -1750,7 +1755,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $TYPE != ${MessageTypes.BOOST_REQUEST_TYPE} AND
         $TYPE & ${MessageTypes.GROUP_V2_LEAVE_BITS} != ${MessageTypes.GROUP_V2_LEAVE_BITS}
       )
-    """.toSingleLine()
+    """
 
     return SqlUtil.buildQuery(query, threadId)
   }
@@ -1809,7 +1814,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $where 
       GROUP BY 
         $TABLE_NAME.$ID
-    """.toSingleLine()
+    """
 
     if (reverse) {
       rawQueryString += " ORDER BY $TABLE_NAME.$ID DESC"
@@ -1851,7 +1856,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           UPDATE $TABLE_NAME 
           SET $TYPE = ($TYPE & ${MessageTypes.TOTAL_MASK - maskOff} | $maskOn ) 
           WHERE $ID = ?
-        """.toSingleLine(),
+        """,
         buildArgs(id)
       )
 
@@ -2059,10 +2064,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $READ = 0 OR 
         (
           $REACTIONS_UNREAD = 1 AND 
-          (${getOutgoingTypeClause()})
+          ($outgoingTypeClause)
         )
       )
-      """.toSingleLine()
+      """
 
     val args = mutableListOf(threadId.toString())
 
@@ -2083,10 +2088,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $READ = 0 OR 
         (
           $REACTIONS_UNREAD = 1 AND 
-          (${getOutgoingTypeClause()})
+          ($outgoingTypeClause)
         )
       )
-      """.toSingleLine()
+      """
 
     val args = mutableListOf(threadId.toString(), groupStoryId.toString())
 
@@ -2133,7 +2138,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun setAllMessagesRead(): List<MarkedMessageInfo> {
-    return setMessagesRead("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND ($READ = 0 OR ($REACTIONS_UNREAD = 1 AND (${getOutgoingTypeClause()})))", null)
+    return setMessagesRead("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND ($READ = 0 OR ($REACTIONS_UNREAD = 1 AND ($outgoingTypeClause)))", null)
   }
 
   private fun setMessagesRead(where: String, arguments: Array<String>?): List<MarkedMessageInfo> {
@@ -3306,7 +3311,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $TABLE_NAME INNER JOIN ${AttachmentTable.TABLE_NAME} ON $TABLE_NAME.$ID = ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID}
       WHERE
         ${getInsecureMessageClause()} AND $EXPORTED < ${MessageExportStatus.EXPORTED.serialize()}
-      """.toSingleLine(),
+      """,
       null
     ).readToSingleLong()
 
@@ -3415,7 +3420,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       WHERE 
         $VIEW_ONCE > 0 AND 
         (${AttachmentTable.DATA} NOT NULL OR ${AttachmentTable.TRANSFER_STATE} != ?)
-      """.toSingleLine()
+      """
 
     val args = buildArgs(AttachmentTable.TRANSFER_PROGRESS_DONE)
 
@@ -3501,16 +3506,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     return result.toOptional()
-  }
-
-  private fun getOutgoingTypeClause(): String {
-    val segments: MutableList<String> = ArrayList(MessageTypes.OUTGOING_MESSAGE_TYPES.size)
-
-    for (outgoingMessageType in MessageTypes.OUTGOING_MESSAGE_TYPES) {
-      segments.add("($TABLE_NAME.$TYPE & ${MessageTypes.BASE_TYPE_MASK} = $outgoingMessageType)")
-    }
-
-    return segments.joinToString(" OR ")
   }
 
   fun getInsecureMessageCount(): Int {
@@ -4247,7 +4242,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           ($TO_RECIPIENT_ID = ? OR EXISTS (SELECT 1 FROM ${GroupTable.TABLE_NAME} WHERE ${GroupTable.TABLE_NAME}.${GroupTable.RECIPIENT_ID} = $TO_RECIPIENT_ID)) 
           $qualifierWhere
         RETURNING $ID, $THREAD_ID, $STORY_TYPE
-      """.toSingleLine(),
+      """,
       buildArgs(receiptSentTimestamp, targetTimestamp, Recipient.self().id, receiptAuthor)
     ).forEach { cursor ->
       val messageId = cursor.requireLong(ID)
@@ -4336,7 +4331,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     readableDatabase
       .select(ID, THREAD_ID, EXPIRES_IN, EXPIRE_STARTED)
       .from(TABLE_NAME)
-      .where("$DATE_SENT = ? AND ($FROM_RECIPIENT_ID = ? OR ($FROM_RECIPIENT_ID = ? AND ${getOutgoingTypeClause()}))", messageId.timetamp, messageId.recipientId, Recipient.self().id)
+      .where("$DATE_SENT = ? AND ($FROM_RECIPIENT_ID = ? OR ($FROM_RECIPIENT_ID = ? AND $outgoingTypeClause))", messageId.timetamp, messageId.recipientId, Recipient.self().id)
       .run()
       .forEach { cursor ->
         val id = cursor.requireLong(ID)

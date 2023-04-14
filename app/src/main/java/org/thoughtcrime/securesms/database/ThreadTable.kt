@@ -23,7 +23,6 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.signal.core.util.select
-import org.signal.core.util.toSingleLine
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.InvalidInputException
@@ -135,7 +134,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         $PINNED INTEGER DEFAULT 0, 
         $UNREAD_SELF_MENTION_COUNT INTEGER DEFAULT 0
       )
-    """.trimIndent()
+    """
 
     @JvmField
     val CREATE_INDEXS = arrayOf(
@@ -607,7 +606,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           $UNREAD_SELF_MENTION_COUNT = $UNREAD_SELF_MENTION_COUNT + ?, 
           $LAST_SCROLLED = ? 
       WHERE $ID = ?
-      """.toSingleLine(),
+      """,
       SqlUtil.buildArgs(unreadAmount, unreadSelfMentionAmount, 0, threadId)
     )
   }
@@ -1683,7 +1682,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         ) as MembershipAlias ON MembershipAlias.${GroupTable.MembershipTable.GROUP_ID} = ${GroupTable.TABLE_NAME}.${GroupTable.GROUP_ID}
       WHERE $where
       ORDER BY $orderBy
-    """.trimIndent()
+    """
 
     if (limit > 0) {
       query += " LIMIT $limit"
@@ -1693,7 +1692,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       query += " OFFSET $offset"
     }
 
-    return query.toSingleLine()
+    return query
   }
 
   private fun isSilentType(type: Long): Boolean {

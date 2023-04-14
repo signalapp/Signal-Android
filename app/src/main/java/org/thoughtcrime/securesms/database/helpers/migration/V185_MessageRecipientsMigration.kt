@@ -12,7 +12,6 @@ import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
-import org.signal.core.util.toSingleLine
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -182,7 +181,7 @@ object V185_MessageRecipientsMigration : SignalDatabaseMigration {
           from_recipient_id = ${selfId.toLong()},
           from_device_id = 1
         WHERE $outgoingClause 
-        """.toSingleLine()
+        """
       )
     }
     stopwatch.split("update-data")

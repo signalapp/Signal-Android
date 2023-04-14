@@ -6,7 +6,6 @@ import android.database.Cursor
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.toSingleLine
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -80,7 +79,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.STICKER_PACK_ID} IS NULL AND 
         ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} > 0 AND 
         $THREAD_RECIPIENT_ID > 0
-      """.toSingleLine()
+      """
 
     private val UNIQUE_MEDIA_QUERY = """
         SELECT 
@@ -92,14 +91,14 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
           ${AttachmentTable.STICKER_PACK_ID} IS NULL AND 
           ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_PROGRESS_DONE} 
         GROUP BY ${AttachmentTable.DATA}
-      """.toSingleLine()
+      """
 
     private val GALLERY_MEDIA_QUERY = String.format(
       BASE_MEDIA_QUERY,
       """
         ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/svg%' AND 
         (${AttachmentTable.CONTENT_TYPE} LIKE 'image/%' OR ${AttachmentTable.CONTENT_TYPE} LIKE 'video/%')
-      """.toSingleLine()
+      """
     )
 
     private val AUDIO_MEDIA_QUERY = String.format(BASE_MEDIA_QUERY, "${AttachmentTable.CONTENT_TYPE} LIKE 'audio/%'")
@@ -113,7 +112,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
           ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'video/%' AND 
           ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'audio/%' AND 
           ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain'
-        )""".toSingleLine()
+        )"""
     )
 
     private fun applyEqualityOperator(threadId: Long, query: String): String {
@@ -224,20 +223,20 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID} DESC, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DISPLAY_ORDER} DESC, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ROW_ID} DESC
-      """.toSingleLine()
+      """
     ),
     Oldest(
       """
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID} ASC, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DISPLAY_ORDER} DESC, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ROW_ID} ASC
-      """.toSingleLine()
+      """
     ),
     Largest(
       """
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.SIZE} DESC, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DISPLAY_ORDER} DESC
-      """.toSingleLine()
+      """
     );
 
     private val postFix: String

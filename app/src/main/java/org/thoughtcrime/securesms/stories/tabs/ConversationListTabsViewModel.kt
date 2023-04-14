@@ -1,44 +1,44 @@
 package org.thoughtcrime.securesms.stories.tabs
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.livedata.Store
+import org.thoughtcrime.securesms.util.rx.RxStore
 
 class ConversationListTabsViewModel(repository: ConversationListTabRepository) : ViewModel() {
-  private val store = Store(ConversationListTabsState())
+  private val store = RxStore(ConversationListTabsState())
 
   val stateSnapshot: ConversationListTabsState
     get() = store.state
 
-  val state: LiveData<ConversationListTabsState> = Transformations.distinctUntilChanged(store.stateLiveData)
+  val state: Flowable<ConversationListTabsState> = store.stateFlowable.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread())
   val disposables = CompositeDisposable()
 
   private val internalTabClickEvents: Subject<ConversationListTab> = PublishSubject.create()
   val tabClickEvents: Observable<ConversationListTab> = internalTabClickEvents.filter { Stories.isFeatureEnabled() }
 
   init {
-    disposables += repository.getNumberOfUnreadMessages().subscribe { unreadChats ->
-      store.update { it.copy(unreadMessagesCount = unreadChats) }
+    disposables += store.update(repository.getNumberOfUnreadMessages()) { unreadChats, state ->
+      state.copy(unreadMessagesCount = unreadChats)
     }
 
-    disposables += repository.getNumberOfUnseenCalls().subscribe { unseenCalls ->
-      store.update { it.copy(unreadCallsCount = unseenCalls) }
+    disposables += store.update(repository.getNumberOfUnseenCalls()) { unseenCalls, state ->
+      state.copy(unreadCallsCount = unseenCalls)
     }
 
-    disposables += repository.getNumberOfUnseenStories().subscribe { unseenStories ->
-      store.update { it.copy(unreadStoriesCount = unseenStories) }
+    disposables += store.update(repository.getNumberOfUnseenStories()) { unseenStories, state ->
+      state.copy(unreadStoriesCount = unseenStories)
     }
 
-    disposables += repository.getHasFailedOutgoingStories().subscribe { hasFailedStories ->
-      store.update { it.copy(hasFailedStory = hasFailedStories) }
+    disposables += store.update(repository.getHasFailedOutgoingStories()) { hasFailedStories, state ->
+      state.copy(hasFailedStory = hasFailedStories)
     }
   }
 

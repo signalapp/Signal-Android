@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.util.rx
 
 import androidx.annotation.CheckResult
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -41,6 +42,18 @@ class RxStore<T : Any>(
     return flowable.subscribe {
       actionSubject.onNext { t -> transformer(it, t) }
     }
+  }
+
+  fun addTo(disposable: CompositeDisposable): RxStore<T> {
+    disposable.add(this)
+    return this
+  }
+
+  fun <R : Any> mapDistinctForUi(map: (T) -> R): Flowable<R> {
+    return stateFlowable
+      .map(map)
+      .distinctUntilChanged()
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   /**

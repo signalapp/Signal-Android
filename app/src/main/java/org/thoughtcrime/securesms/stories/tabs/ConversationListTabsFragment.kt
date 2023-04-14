@@ -14,7 +14,9 @@ import androidx.fragment.app.viewModels
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.model.KeyPath
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
@@ -23,7 +25,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.visible
-import java.text.NumberFormat
 
 /**
  * Displays the "Chats" and "Stories" tab to a user.
@@ -31,6 +32,7 @@ import java.text.NumberFormat
 class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
 
   private val viewModel: ConversationListTabsViewModel by viewModels(ownerProducer = { requireActivity() })
+  private val disposables: LifecycleDisposable = LifecycleDisposable()
   private val binding by ViewBinderDelegate(ConversationListTabsBinding::bind)
   private var shouldBeImmediate = true
   private var pillAnimator: Animator? = null
@@ -39,6 +41,8 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
   private val smallConstraintSet: ConstraintSet = ConstraintSet()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    disposables.bindTo(viewLifecycleOwner)
+
     val iconTint = ContextCompat.getColor(requireContext(), R.color.signal_colorOnSecondaryContainer)
 
     largeConstraintSet.clone(binding.root)
@@ -73,7 +77,7 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
 
     updateTabsVisibility()
 
-    viewModel.state.observe(viewLifecycleOwner) {
+    disposables += viewModel.state.subscribeBy {
       update(it, shouldBeImmediate)
       shouldBeImmediate = false
     }
@@ -245,6 +249,6 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
     if (count > 99L) {
       return getString(R.string.ConversationListTabs__99p)
     }
-    return NumberFormat.getInstance().format(count)
+    return count.toString()
   }
 }

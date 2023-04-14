@@ -10,7 +10,6 @@ import org.junit.runner.RunWith
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.readToList
 import org.signal.core.util.select
-import org.signal.core.util.toSingleLine
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.MessageTable
@@ -370,6 +369,6 @@ class MessageContentProcessorTestV2 {
       isPaymentsNotificaiton:${type and MessageTypes.SPECIAL_TYPES_MASK == MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION}
       isRequestToActivatePayments:${type and MessageTypes.SPECIAL_TYPES_MASK == MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST}
       isPaymentsActivated:${type and MessageTypes.SPECIAL_TYPES_MASK == MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED}
-    """.trimIndent().replace(Regex("is[A-Z][A-Za-z0-9]*:false\n?"), "").toSingleLine()
+    """.trimIndent().replace(Regex("is[A-Z][A-Za-z0-9]*:false\n?"), "").replace("\n", "")
   }
 }

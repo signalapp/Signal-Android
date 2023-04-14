@@ -94,7 +94,6 @@ import org.thoughtcrime.securesms.badges.self.expired.ExpiredBadgeBottomSheetDia
 import org.thoughtcrime.securesms.components.Material3SearchToolbar;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SignalProgressDialog;
-import org.thoughtcrime.securesms.components.UnreadPaymentsView;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
@@ -130,7 +129,6 @@ import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFi
 import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterLerp;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter;
-import org.thoughtcrime.securesms.conversationlist.model.UnreadPayments;
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
@@ -154,7 +152,6 @@ import org.thoughtcrime.securesms.megaphone.SmsExportMegaphoneActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
-import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
@@ -199,7 +196,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import kotlin.Unit;
@@ -224,29 +220,28 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private static final int MAX_CONTACTS_ABOVE_FOLD = 5;
   private static final int MAX_GROUP_MEMBERSHIPS_ABOVE_FOLD = 5;
 
-  private ActionMode                     actionMode;
-  private View                           coordinator;
-  private RecyclerView                   list;
-  private Stub<ReminderView>             reminderView;
-  private Stub<UnreadPaymentsView>       paymentNotificationView;
-  private PulsingFloatingActionButton    fab;
-  private PulsingFloatingActionButton    cameraFab;
-  private ConversationListFilterPullView pullView;
-  private AppBarLayout                   pullViewAppBarLayout;
-  private ConversationListViewModel      viewModel;
-  private RecyclerView.Adapter           activeAdapter;
+  private ActionMode                             actionMode;
+  private View                                   coordinator;
+  private RecyclerView                           list;
+  private Stub<ReminderView>                     reminderView;
+  private PulsingFloatingActionButton            fab;
+  private PulsingFloatingActionButton            cameraFab;
+  private ConversationListFilterPullView         pullView;
+  private AppBarLayout                           pullViewAppBarLayout;
+  private ConversationListViewModel              viewModel;
+  private RecyclerView.Adapter                   activeAdapter;
   private ConversationListAdapter                defaultAdapter;
   private PagingMappingAdapter<ContactSearchKey> searchAdapter;
-  private Stub<ViewGroup>                megaphoneContainer;
-  private SnapToTopDataObserver          snapToTopDataObserver;
-  private Drawable                       archiveDrawable;
-  private AppForegroundObserver.Listener appForegroundObserver;
-  private VoiceNoteMediaControllerOwner  mediaControllerOwner;
-  private Stub<FrameLayout>              voiceNotePlayerViewStub;
-  private VoiceNotePlayerView            voiceNotePlayerView;
-  private SignalBottomActionBar          bottomActionBar;
-  private SignalContextMenu              activeContextMenu;
-  private LifecycleDisposable            lifecycleDisposable;
+  private Stub<ViewGroup>                        megaphoneContainer;
+  private SnapToTopDataObserver                  snapToTopDataObserver;
+  private Drawable                               archiveDrawable;
+  private AppForegroundObserver.Listener         appForegroundObserver;
+  private VoiceNoteMediaControllerOwner          mediaControllerOwner;
+  private Stub<FrameLayout>                      voiceNotePlayerViewStub;
+  private VoiceNotePlayerView                    voiceNotePlayerView;
+  private SignalBottomActionBar                  bottomActionBar;
+  private SignalContextMenu                      activeContextMenu;
+  private LifecycleDisposable                    lifecycleDisposable;
 
   protected ConversationListArchiveItemDecoration archiveDecoration;
   protected ConversationListItemAnimator          itemAnimator;
@@ -283,12 +278,14 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    lifecycleDisposable = new LifecycleDisposable();
+    lifecycleDisposable.bindTo(getViewLifecycleOwner());
+
     coordinator             = view.findViewById(R.id.coordinator);
     list                    = view.findViewById(R.id.list);
     bottomActionBar         = view.findViewById(R.id.conversation_list_bottom_action_bar);
     reminderView            = new Stub<>(view.findViewById(R.id.reminder));
     megaphoneContainer      = new Stub<>(view.findViewById(R.id.megaphone_container));
-    paymentNotificationView = new Stub<>(view.findViewById(R.id.payments_notification));
     voiceNotePlayerViewStub = new Stub<>(view.findViewById(R.id.voice_note_player));
     fab                     = view.findViewById(R.id.fab);
     cameraFab               = view.findViewById(R.id.camera_fab);
@@ -428,7 +425,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       }
     });
 
-    lifecycleDisposable           = new LifecycleDisposable();
     conversationListTabsViewModel = new ViewModelProvider(requireActivity()).get(ConversationListTabsViewModel.class);
 
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
@@ -453,7 +449,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     bottomActionBar         = null;
     reminderView            = null;
     megaphoneContainer      = null;
-    paymentNotificationView = null;
     voiceNotePlayerViewStub = null;
     fab                     = null;
     cameraFab               = null;
@@ -569,7 +564,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     menu.findItem(R.id.menu_insights).setVisible(Util.isDefaultSmsProvider(requireContext()));
     menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(requireContext()));
 
-    ConversationFilterRequest request             = viewModel.getConversationFilterRequest().getValue();
+    ConversationFilterRequest request             = viewModel.getConversationFilterRequest();
     boolean                   isChatFilterEnabled = request != null && request.getFilter() == ConversationFilter.UNREAD;
 
     menu.findItem(R.id.menu_filter_unread_chats).setVisible(FeatureFlags.chatFilters() && !isChatFilterEnabled);
@@ -617,7 +612,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   @Override
   public void onConfigurationChanged(@NonNull Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
-    onMegaphoneChanged(viewModel.getMegaphone().getValue());
+    onMegaphoneChanged(viewModel.getMegaphone());
   }
 
   private ContactSearchConfiguration mapSearchStateToConfiguration(@NonNull ContactSearchState state) {
@@ -817,8 +812,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void initializeSearchListener() {
-    viewModel.getConversationFilterRequest().observe(getViewLifecycleOwner(), this::updateSearchToolbarHint);
-    viewModel.getConversationFilterRequest().observe(getViewLifecycleOwner(), contactSearchMediator::onConversationFilterRequestChanged);
+    lifecycleDisposable.add(
+        viewModel.getFilterRequestState().subscribe(request -> {
+          updateSearchToolbarHint(request);
+          contactSearchMediator.onConversationFilterRequestChanged(request);
+        })
+    );
 
     requireCallback().getSearchAction().setOnClickListener(v -> {
       fadeOutButtonsAndMegaphone(250);
@@ -853,7 +852,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           fadeInButtonsAndMegaphone(250);
         }
       });
-      updateSearchToolbarHint(Objects.requireNonNull(viewModel.getConversationFilterRequest().getValue()));
+      updateSearchToolbarHint(Objects.requireNonNull(viewModel.getConversationFilterRequest()));
     });
   }
 
@@ -924,9 +923,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
 
     if (adapter instanceof ConversationListAdapter) {
-      viewModel.getPagingController()
-               .observe(getViewLifecycleOwner(),
-                        controller -> ((ConversationListAdapter) adapter).setPagingController(controller));
+      ((ConversationListAdapter) adapter).setPagingController(viewModel.getController());
     }
 
     list.setAdapter(adapter);
@@ -953,15 +950,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void initializeViewModel() {
-    ConversationListViewModel.Factory viewModelFactory = new ConversationListViewModel.Factory(isArchived());
+    viewModel = new ViewModelProvider(this, new ConversationListViewModel.Factory(isArchived())).get(ConversationListViewModel.class);
 
-    viewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) viewModelFactory).get(ConversationListViewModel.class);
-
-    viewModel.getMegaphone().observe(getViewLifecycleOwner(), this::onMegaphoneChanged);
-    viewModel.getConversationList().observe(getViewLifecycleOwner(), this::onConversationListChanged);
-    viewModel.hasNoConversations().observe(getViewLifecycleOwner(), this::updateEmptyState);
-    viewModel.getNotificationProfiles().observe(getViewLifecycleOwner(), profiles -> requireCallback().updateNotificationProfileStatus(profiles));
-    viewModel.getPipeState().observe(getViewLifecycleOwner(), pipeState -> requireCallback().updateProxyStatus(pipeState));
+    lifecycleDisposable.add(viewModel.getMegaphoneState().subscribe(this::onMegaphoneChanged));
+    lifecycleDisposable.add(viewModel.getConversationsState().subscribe(this::onConversationListChanged));
+    lifecycleDisposable.add(viewModel.getHasNoConversations().subscribe(this::updateEmptyState));
+    lifecycleDisposable.add(viewModel.getNotificationProfiles().subscribe(profiles -> requireCallback().updateNotificationProfileStatus(profiles)));
+    lifecycleDisposable.add(viewModel.getWebSocketState().subscribe(pipeState -> requireCallback().updateProxyStatus(pipeState)));
 
     appForegroundObserver = new AppForegroundObserver.Listener() {
       @Override
@@ -973,12 +968,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       public void onBackground() {}
     };
 
-    viewModel.getUnreadPaymentsLiveData().observe(getViewLifecycleOwner(), this::onUnreadPaymentsChanged);
-
-    viewModel.getSelectedConversations().observe(getViewLifecycleOwner(), conversations -> {
-      defaultAdapter.setSelectedConversations(conversations);
-      updateMultiSelectState();
-    });
+    lifecycleDisposable.add(
+        viewModel.getSelectedState().subscribe(conversations -> {
+          defaultAdapter.setSelectedConversations(conversations);
+          updateMultiSelectState();
+        })
+    );
   }
 
   private void onFirstRender() {
@@ -1012,31 +1007,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     });
   }
 
-  private void onUnreadPaymentsChanged(@NonNull Optional<UnreadPayments> unreadPayments) {
-    if (unreadPayments.isPresent()) {
-      paymentNotificationView.get().setListener(new PaymentNotificationListener(unreadPayments.get()));
-      paymentNotificationView.get().setUnreadPayments(unreadPayments.get());
-      animatePaymentUnreadStatusIn();
-    } else {
-      animatePaymentUnreadStatusOut();
-    }
-  }
-
-  private void animatePaymentUnreadStatusIn() {
-    paymentNotificationView.get().setVisibility(View.VISIBLE);
-    requireCallback().getUnreadPaymentsDot().animate().alpha(1);
-  }
-
-  private void animatePaymentUnreadStatusOut() {
-    if (paymentNotificationView.resolved()) {
-      paymentNotificationView.get().setVisibility(View.GONE);
-    }
-
-    requireCallback().getUnreadPaymentsDot().animate().alpha(0);
-  }
-
-  private void onMegaphoneChanged(@Nullable Megaphone megaphone) {
-    if (megaphone == null || isArchived() || getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+  private void onMegaphoneChanged(@NonNull Megaphone megaphone) {
+    if (megaphone == Megaphone.NONE || isArchived() || getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
       if (megaphoneContainer.resolved()) {
         megaphoneContainer.get().setVisibility(View.GONE);
         megaphoneContainer.get().removeAllViews();
@@ -1676,39 +1648,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public void onClearFilterClick() {
     pullView.toggle();
     pullViewAppBarLayout.setExpanded(false, true);
-  }
-
-  private class PaymentNotificationListener implements UnreadPaymentsView.Listener {
-
-    private final UnreadPayments unreadPayments;
-
-    private PaymentNotificationListener(@NonNull UnreadPayments unreadPayments) {
-      this.unreadPayments = unreadPayments;
-    }
-
-    @Override
-    public void onOpenPaymentsNotificationClicked() {
-      UUID paymentId = unreadPayments.getPaymentUuid();
-
-      if (paymentId == null) {
-        goToPaymentsHome();
-      } else {
-        goToSinglePayment(paymentId);
-      }
-    }
-
-    @Override
-    public void onClosePaymentsNotificationClicked() {
-      viewModel.onUnreadPaymentsClosed();
-    }
-
-    private void goToPaymentsHome() {
-      startActivity(new Intent(requireContext(), PaymentsActivity.class));
-    }
-
-    private void goToSinglePayment(@NonNull UUID paymentId) {
-      startActivity(PaymentsActivity.navigateToPaymentDetails(requireContext(), paymentId));
-    }
   }
 
   private class ArchiveListenerCallback extends ItemTouchHelper.SimpleCallback {
