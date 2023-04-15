@@ -82,6 +82,7 @@ class DatabaseConsistencyTest {
       .split("\n")
       .map { it.trim() }
       .joinToString(separator = " ")
+      .replace(Regex("\\s+"), " ")
       .replace(Regex.fromLiteral("( "), "(")
       .replace(Regex.fromLiteral(" )"), ")")
       .replace(Regex("CREATE TABLE \"([a-z]+)\""), "CREATE TABLE $1") // for some reason SQLite will wrap table names in quotes for upgraded tables. This unwraps them.
