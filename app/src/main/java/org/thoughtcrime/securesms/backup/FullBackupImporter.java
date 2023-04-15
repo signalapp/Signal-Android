@@ -324,7 +324,10 @@ public class FullBackupImporter extends FullBackupBase {
 
     Map<String, Set<String>> dependsOn = new LinkedHashMap<>();
     for (String table : tables) {
-      dependsOn.put(table, SqlUtil.getForeignKeyDependencies(input, table));
+      Set<String> dependencies = SqlUtil.getForeignKeyDependencies(input, table);
+      dependencies.remove(table);
+
+      dependsOn.put(table, dependencies);
     }
 
     for (String table : tables) {
