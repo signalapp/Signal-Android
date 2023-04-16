@@ -55,8 +55,8 @@
             style="@style/Signal.Text.BodyMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
+            android:ellipsize="marquee"
+            android:singleLine="true"
             android:textAlignment="viewStart"
             android:textColor="@color/signal_colorOnSurfaceVariant"
             tools:text="Crusin' the web" />
