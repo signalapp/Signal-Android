@@ -4372,17 +4372,26 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         SET
           ${receiptType.columnName} = ${receiptType.columnName} + 1,
           $RECEIPT_TIMESTAMP = CASE 
-            WHEN ${receiptType.columnName} = 0 THEN MAX($RECEIPT_TIMESTAMP, ?) 
+            WHEN ${receiptType.columnName} = 0 THEN MAX($RECEIPT_TIMESTAMP, $receiptSentTimestamp) 
             ELSE $RECEIPT_TIMESTAMP 
           END 
         WHERE
-          $DATE_SENT = ? AND
+          $DATE_SENT = $targetTimestamp AND
           $FROM_RECIPIENT_ID = ? AND
-          ($TO_RECIPIENT_ID = ? OR EXISTS (SELECT 1 FROM ${GroupTable.TABLE_NAME} WHERE ${GroupTable.TABLE_NAME}.${GroupTable.RECIPIENT_ID} = $TO_RECIPIENT_ID)) 
+          (
+            $TO_RECIPIENT_ID = ? OR 
+            EXISTS (
+              SELECT 1 
+              FROM ${RecipientTable.TABLE_NAME} 
+              WHERE 
+                ${RecipientTable.TABLE_NAME}.${RecipientTable.ID} = $TO_RECIPIENT_ID AND 
+                ${RecipientTable.TABLE_NAME}.${RecipientTable.GROUP_TYPE} != ${RecipientTable.GroupType.NONE.id}
+            )
+          )
           $qualifierWhere
         RETURNING $ID, $THREAD_ID, $STORY_TYPE
       """,
-      buildArgs(receiptSentTimestamp, targetTimestamp, Recipient.self().id, receiptAuthor)
+      buildArgs(Recipient.self().id, receiptAuthor)
     ).forEach { cursor ->
       val messageId = cursor.requireLong(ID)
       val threadId = cursor.requireLong(THREAD_ID)
