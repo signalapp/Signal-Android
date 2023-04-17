@@ -413,8 +413,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     initializeTypingObserver();
     initializeVoiceNotePlayer();
 
-    RatingManager.showRatingDialogIfNecessary(requireContext());
-
     TooltipCompat.setTooltipText(requireCallback().getSearchAction(), getText(R.string.SearchToolbar_search_for_conversations_contacts_and_messages));
 
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
