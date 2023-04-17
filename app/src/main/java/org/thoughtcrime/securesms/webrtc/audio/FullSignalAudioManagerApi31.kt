@@ -170,12 +170,10 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
       androidAudioManager.communicationDevice = userSelectedAudioDevice
       eventListener?.onAudioDeviceChanged(AudioDeviceMapping.fromPlatformType(userSelectedAudioDevice!!.type), availableCommunicationDevices.map { AudioDeviceMapping.fromPlatformType(it.type) }.toSet())
     } else {
-      val excludedDevices = emptyList<String>() // TODO: pull this from somewhere. Preferences?
-      val autoSelectableDevices = availableCommunicationDevices.filterNot { excludedDevices.contains(it.address) }
       var candidate: AudioDeviceInfo? = null
-      val searchOrder: List<AudioDevice> = listOf(AudioDevice.BLUETOOTH, defaultAudioDevice, AudioDevice.WIRED_HEADSET, AudioDevice.EARPIECE, AudioDevice.SPEAKER_PHONE, AudioDevice.NONE).distinct()
+      val searchOrder: List<AudioDevice> = listOf(AudioDevice.BLUETOOTH, AudioDevice.WIRED_HEADSET, defaultAudioDevice, AudioDevice.EARPIECE, AudioDevice.SPEAKER_PHONE, AudioDevice.NONE).distinct()
       for (deviceType in searchOrder) {
-        candidate = autoSelectableDevices.find { AudioDeviceMapping.fromPlatformType(it.type) == deviceType }
+        candidate = availableCommunicationDevices.find { AudioDeviceMapping.fromPlatformType(it.type) == deviceType }
         if (candidate != null) {
           break
         }
@@ -183,10 +181,9 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
 
       when (candidate) {
         null -> {
-          Log.e(TAG, "Tried to switch audio devices but could not find suitable device in list of types: ${autoSelectableDevices.map { it.type }.joinToString()}")
+          Log.e(TAG, "Tried to switch audio devices but could not find suitable device in list of types: ${availableCommunicationDevices.map { it.type }.joinToString()}")
           androidAudioManager.clearCommunicationDevice()
         }
-        currentAudioDevice -> Log.d(TAG, "Request to switch to existing audio device ignored.")
         else -> {
           Log.d(TAG, "Switching to new device of type ${candidate.type} from ${currentAudioDevice?.type}")
           androidAudioManager.communicationDevice = candidate
