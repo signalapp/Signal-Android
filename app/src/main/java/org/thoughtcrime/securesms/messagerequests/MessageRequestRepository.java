@@ -116,6 +116,8 @@ final class MessageRequestRepository {
     } else {
       if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {
         return MessageRequestState.NONE;
+      } else if (RecipientUtil.isRecipientHidden(threadId)) {
+        return MessageRequestState.INDIVIDUAL_HIDDEN;
       } else {
         return MessageRequestState.INDIVIDUAL;
       }

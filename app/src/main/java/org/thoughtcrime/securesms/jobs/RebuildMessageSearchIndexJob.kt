@@ -5,6 +5,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import java.lang.Exception
+import java.lang.IllegalStateException
+import kotlin.time.Duration.Companion.seconds
 
 class RebuildMessageSearchIndexJob private constructor(params: Parameters) : BaseJob(params) {
 
@@ -21,6 +23,7 @@ class RebuildMessageSearchIndexJob private constructor(params: Parameters) : Bas
   private constructor() : this(
     Parameters.Builder()
       .setQueue("RebuildMessageSearchIndex")
+      .setMaxAttempts(3)
       .build()
   )
 
@@ -34,7 +37,11 @@ class RebuildMessageSearchIndexJob private constructor(params: Parameters) : Bas
     SignalDatabase.messageSearch.rebuildIndex()
   }
 
-  override fun onShouldRetry(e: Exception): Boolean = false
+  override fun getNextRunAttemptBackoff(pastAttemptCount: Int, exception: Exception): Long {
+    return 10.seconds.inWholeMilliseconds
+  }
+
+  override fun onShouldRetry(e: Exception): Boolean = e is IllegalStateException
 
   class Factory : Job.Factory<RebuildMessageSearchIndexJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): RebuildMessageSearchIndexJob {

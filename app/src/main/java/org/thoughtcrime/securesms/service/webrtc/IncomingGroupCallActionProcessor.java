@@ -58,7 +58,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
     boolean   updateForCurrentRingId = ringId == currentState.getCallSetupState(RemotePeer.GROUP_CALL_ID).getRingId();
     boolean   isCurrentlyRinging     = currentState.getCallInfoState().getGroupCallState().isRinging();
 
-    if (SignalDatabase.calls().isRingCancelled(ringId)) {
+    if (SignalDatabase.calls().isRingCancelled(ringId, remotePeerGroup.getId())) {
       try {
         Log.i(TAG, "Ignoring incoming ring request for already cancelled ring: " + ringId);
         webRtcInteractor.getCallManager().cancelGroupRing(groupId.getDecodedId(), ringId, null);

@@ -72,7 +72,7 @@ class CallLogContextMenu(
       iconRes = R.drawable.symbol_info_24,
       title = fragment.getString(R.string.CallContextMenu__info)
     ) {
-      val intent = ConversationSettingsActivity.forCall(fragment.requireContext(), call.peer, longArrayOf(call.call.messageId!!))
+      val intent = ConversationSettingsActivity.forCall(fragment.requireContext(), call.peer, longArrayOf(call.record.messageId!!))
       fragment.startActivity(intent)
     }
   }
@@ -87,7 +87,7 @@ class CallLogContextMenu(
   }
 
   private fun getDeleteActionItem(call: CallLogRow.Call): ActionItem? {
-    if (call.call.event == CallTable.Event.ONGOING) {
+    if (call.record.event == CallTable.Event.ONGOING) {
       return null
     }
 

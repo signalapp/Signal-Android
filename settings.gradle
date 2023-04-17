@@ -88,3 +88,4 @@ project(':qr-app').projectDir = file('qr/app')
 rootProject.name='Signal'
 
 apply from: 'dependencies.gradle'
+include ':microbenchmark'

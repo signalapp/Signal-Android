@@ -31,6 +31,7 @@ buildscript {
             exclude group: 'com.squareup.wire', module: 'wire-grpc-server-generator'
             exclude group: 'io.outfoxx', module: 'swiftpoet'
         }
+        classpath 'androidx.benchmark:benchmark-gradle-plugin:1.1.0-beta04'
     }
 }
 

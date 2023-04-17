@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.util.LifecycleDisposable;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 public final class ImageMediaPreviewFragment extends MediaPreviewFragment {

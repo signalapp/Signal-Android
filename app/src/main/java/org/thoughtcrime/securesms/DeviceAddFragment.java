@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms;
 
 import android.animation.Animator;
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -19,7 +17,7 @@ import androidx.core.view.ViewCompat;
 import org.signal.qr.QrScannerView;
 import org.signal.qr.kitkat.ScanListener;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist;
-import org.thoughtcrime.securesms.util.LifecycleDisposable;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;

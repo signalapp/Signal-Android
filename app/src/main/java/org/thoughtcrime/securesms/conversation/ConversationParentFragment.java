@@ -196,6 +196,7 @@ import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndR
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInitiationBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
+import org.thoughtcrime.securesms.invites.InviteActions;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
 import org.thoughtcrime.securesms.invites.InviteReminderRepository;
 import org.thoughtcrime.securesms.jobs.ForceUpdateGroupV2Job;
@@ -283,7 +284,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.IdentityUtil;
-import org.thoughtcrime.securesms.util.LifecycleDisposable;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
@@ -363,8 +364,7 @@ public class ConversationParentFragment extends Fragment
                ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
                ConversationBottomSheetCallback,
                ScheduleMessageDialogCallback,
-               ConversationOptionsMenu.Callback,
-               ConversationOptionsMenu.Dependencies
+               ConversationOptionsMenu.Callback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
@@ -493,7 +493,7 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     disposables.bindTo(getViewLifecycleOwner());
-    menuProvider = new ConversationOptionsMenu.Provider(this, this, disposables);
+    menuProvider = new ConversationOptionsMenu.Provider(this, disposables);
     SpoilerAnnotation.resetRevealedSpoilers();
 
     if (requireActivity() instanceof Callback) {
@@ -1143,27 +1143,18 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void handleInviteLink() {
-    String inviteText = getString(R.string.ConversationActivity_lets_switch_to_signal, getString(R.string.install_url));
-
-    if (viewModel.isDefaultSmsApplication() && SignalStore.misc().getSmsExportPhase().isSmsSupported()) {
-      composeText.appendInvite(inviteText);
-    } else if (recipient.get().hasSmsAddress()) {
-      Intent intent = new Intent(Intent.ACTION_SENDTO);
-      intent.setData(Uri.parse("smsto:" + recipient.get().requireSmsAddress()));
-      intent.putExtra("sms_body", inviteText);
-      intent.putExtra(Intent.EXTRA_TEXT, inviteText);
-      startActivity(intent);
-    } else {
-      Intent sendIntent = new Intent();
-      sendIntent.setAction(Intent.ACTION_SEND);
-      sendIntent.putExtra(Intent.EXTRA_TEXT, inviteText);
-      sendIntent.setType("text/plain");
-      if (sendIntent.resolveActivity(requireContext().getPackageManager()) != null) {
-        startActivity(Intent.createChooser(sendIntent, getString(R.string.InviteActivity_invite_to_signal)));
-      } else {
-        Toast.makeText(requireContext(), R.string.InviteActivity_no_app_to_share_to, Toast.LENGTH_LONG).show();
-      }
-    }
+    InviteActions.INSTANCE.inviteUserToSignal(
+        requireContext(),
+        recipient.get(),
+        text -> {
+          composeText.appendInvite(text);
+          return Unit.INSTANCE;
+        },
+        intent -> {
+          startActivity(intent);
+          return Unit.INSTANCE;
+        }
+    );
   }
 
   @Override
@@ -1288,8 +1279,8 @@ public class ConversationParentFragment extends Fragment
   }
 
   @Override
-  public void handleDial(final Recipient recipient, boolean isSecure) {
-    if (recipient == null) return;
+  public void handleDial(boolean isSecure) {
+    Recipient recipient = getRecipient();
 
     if (isSecure) {
       CommunicationActions.startVoiceCall(this, recipient);
@@ -1299,8 +1290,8 @@ public class ConversationParentFragment extends Fragment
   }
 
   @Override
-  public void handleVideo(final Recipient recipient) {
-    if (recipient == null) return;
+  public void handleVideo() {
+    Recipient recipient = getRecipient();
 
     if (recipient.isPushV2Group() && groupCallViewModel.hasActiveGroupCall().getValue() == Boolean.FALSE && groupViewModel.isNonAdminInAnnouncementGroup()) {
       new MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.ConversationActivity_cant_start_group_call)
@@ -1971,7 +1962,7 @@ public class ConversationParentFragment extends Fragment
 
     reactionDelegate.setOnReactionSelectedListener(this);
 
-    joinGroupCallButton.setOnClickListener(v -> handleVideo(getRecipient()));
+    joinGroupCallButton.setOnClickListener(v -> handleVideo());
 
     voiceNoteMediaController.getVoiceNotePlayerViewState().observe(getViewLifecycleOwner(), state -> {
       if (state.isPresent()) {
@@ -2689,13 +2680,8 @@ public class ConversationParentFragment extends Fragment
     }
   }
 
-  @Override
   public boolean isInMessageRequest() {
     return messageRequestBottomView.getVisibility() == View.VISIBLE;
-  }
-
-  private boolean isSingleConversation() {
-    return getRecipient() != null && !getRecipient().isGroup();
   }
 
   private boolean isActiveGroup() {
@@ -2721,18 +2707,8 @@ public class ConversationParentFragment extends Fragment
     return sendButton.isManualSelection() && sendButton.getSelectedSendType().usesSmsTransport();
   }
 
-  @Override
-  public @Nullable LiveRecipient getLiveRecipient() {
-    return recipient;
-  }
-
   protected Recipient getRecipient() {
     return this.recipient.get();
-  }
-
-  @Override
-  public long getThreadId() {
-    return this.threadId;
   }
 
   private String getMessage() throws InvalidMessageException {
@@ -3551,28 +3527,32 @@ public class ConversationParentFragment extends Fragment
   }
 
   @Override
-  public @NonNull  ConversationViewModel getViewModel() {
-    return viewModel;
+  public @NonNull ConversationOptionsMenu.Snapshot getSnapshot() {
+    ConversationGroupViewModel.GroupActiveState groupActiveState = groupViewModel.getGroupActiveState().getValue();
+
+    return new ConversationOptionsMenu.Snapshot(
+        recipient != null ? recipient.get() : null,
+        viewModel.isPushAvailable(),
+        viewModel.canShowAsBubble(),
+        groupActiveState != null && groupActiveState.isActiveGroup(),
+        groupActiveState != null && groupActiveState.isActiveV2Group(),
+        groupActiveState != null && !groupActiveState.isActiveGroup(),
+        groupCallViewModel != null && groupCallViewModel.hasActiveGroupCall().getValue() == Boolean.TRUE,
+        distributionType,
+        threadId,
+        isInMessageRequest(),
+        isInBubble()
+    );
   }
 
   @Override
-  public @NonNull ConversationGroupViewModel getGroupViewModel() {
-    return groupViewModel;
+  public void showExpiring(@NonNull Recipient recipient) {
+    titleView.showExpiring(recipient);
   }
 
   @Override
-  public @Nullable GroupCallViewModel getGroupCallViewModel() {
-    return groupCallViewModel;
-  }
-
-  @Override
-  public @NonNull ConversationTitleView getTitleView() {
-    return titleView;
-  }
-
-  @Override
-  public int getDistributionType() {
-    return distributionType;
+  public void clearExpiring() {
+    titleView.clearExpiring();
   }
 
   // Listeners

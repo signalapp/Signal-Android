@@ -123,9 +123,10 @@ public class ApplicationMigrations {
     static final int SYSTEM_NAME_RESYNC            = 78;
     static final int RECOVERY_PASSWORD_SYNC        = 79;
     static final int DECRYPTIONS_DRAINED           = 80;
+    static final int REBUILD_MESSAGE_FTS_INDEX_3   = 81;
   }
 
-  public static final int CURRENT_VERSION = 80;
+  public static final int CURRENT_VERSION = 81;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -545,6 +546,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.DECRYPTIONS_DRAINED) {
       jobs.put(Version.DECRYPTIONS_DRAINED, new DecryptionsDrainedMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.REBUILD_MESSAGE_FTS_INDEX_3) {
+      jobs.put(Version.REBUILD_MESSAGE_FTS_INDEX_3, new RebuildMessageSearchIndexMigrationJob());
     }
 
     return jobs;

@@ -88,10 +88,6 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
             break;
           }
         case FAILED:
-          if (SignalStore.proxy().isProxyEnabled()) {
-            Log.w(TAG, "Encountered an error while we had a proxy set! Terminating the connection to prevent retry spam.");
-            ApplicationDependencies.closeConnections();
-          }
           break;
       }
 

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util
+package org.signal.core.util.concurrent
 
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle

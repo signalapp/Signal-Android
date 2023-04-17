@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import app.cash.exhaustive.Exhaustive
 import io.reactivex.rxjava3.core.Flowable
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.CameraFragment
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.io.FileDescriptor
 import java.util.Optional

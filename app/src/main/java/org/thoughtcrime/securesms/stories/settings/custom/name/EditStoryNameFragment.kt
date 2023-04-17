@@ -13,9 +13,9 @@ import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.SimpleColorFilter
 import com.google.android.material.textfield.TextInputLayout
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.model.DistributionListId
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
 

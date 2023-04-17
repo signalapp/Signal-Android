@@ -7,6 +7,7 @@ import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
+import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -104,7 +105,7 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
     if (ringUpdate != CallManager.RingUpdate.REQUESTED) {
       SignalDatabase.calls().insertOrUpdateGroupCallFromRingState(ringId, remotePeerGroup.getId(), sender, System.currentTimeMillis(), ringUpdate);
       return currentState;
-    } else if (SignalDatabase.calls().isRingCancelled(ringId)) {
+    } else if (SignalDatabase.calls().isRingCancelled(ringId, remotePeerGroup.getId())) {
       try {
         Log.i(TAG, "Incoming ring request for already cancelled ring: " + ringId);
         webRtcInteractor.getCallManager().cancelGroupRing(groupId.getDecodedId(), ringId, null);
@@ -135,7 +136,7 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleReceivedGroupCallPeekForRingingCheck(@NonNull WebRtcServiceState currentState, @NonNull GroupCallRingCheckInfo info, @NonNull PeekInfo peekInfo) {
     Log.i(tag, "handleReceivedGroupCallPeekForRingingCheck(): recipient: " + info.getRecipientId() + " ring: " + info.getRingId());
 
-    if (SignalDatabase.calls().isRingCancelled(info.getRingId())) {
+    if (SignalDatabase.calls().isRingCancelled(info.getRingId(), info.getRecipientId())) {
       try {
         Log.i(TAG, "Ring was cancelled while getting peek info ring: " + info.getRingId());
         webRtcInteractor.getCallManager().cancelGroupRing(info.getGroupId().getDecodedId(), info.getRingId(), null);

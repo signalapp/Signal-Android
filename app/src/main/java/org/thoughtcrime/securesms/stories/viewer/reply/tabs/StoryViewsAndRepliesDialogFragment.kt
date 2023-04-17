@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPager
 import org.thoughtcrime.securesms.stories.viewer.reply.group.StoryGroupReplyFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.reaction.OnReactionSentView
 import org.thoughtcrime.securesms.util.BottomSheetUtil.requireCoordinatorLayout
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 import kotlin.math.min
 import kotlin.math.roundToInt
 
