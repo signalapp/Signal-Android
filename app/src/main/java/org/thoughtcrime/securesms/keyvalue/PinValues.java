@@ -95,7 +95,7 @@ public final class PinValues extends SignalStoreValues {
   }
 
   public boolean arePinRemindersEnabled() {
-    return getBoolean(PIN_REMINDERS_ENABLED, true);
+    return getBoolean(PIN_REMINDERS_ENABLED, false);
   }
 
   public @NonNull PinKeyboardType getKeyboardType() {
