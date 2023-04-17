@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">ડિલિવરી મુદ્દો</string>
     <string name="ThreadRecord_message_request">મેસેજ રિક્વેસ્ટ</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">તમે આ વ્યક્તિને છુપાવી છે, તેમને તમારી સૂચિમાં પાછી ઉમેરવા માટે તેમને ફરીથી મેસેજ મોકલો.</string>
     <string name="ThreadRecord_photo">ફોટો</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">વૉઈસ મેસેજ</string>
@@ -4006,7 +4006,7 @@
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">તમારા એકાઉન્ટ ડેટા</string>
+    <string name="ExportAccountDataFragment__your_account_data">તમારા એકાઉન્ટના ડેટા</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
     <string name="ExportAccountDataFragment__export_explanation">તમારા Signal એકાઉન્ટના ડેટાનો રિપોર્ટ એક્સપોર્ટ કરો. આ રિપોર્ટમાં કોઈ મેસેજ કે મીડિયા સામેલ નથી. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->

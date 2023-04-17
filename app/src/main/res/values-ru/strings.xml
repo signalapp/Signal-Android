@@ -2119,7 +2119,7 @@
     <string name="ThreadRecord_delivery_issue">Ошибка доставки</string>
     <string name="ThreadRecord_message_request">Запрос на общение</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Вы скрыли этого человека, повторное сообщение снова добавит его в ваш список.</string>
     <string name="ThreadRecord_photo">Фото</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Голосовое сообщение</string>

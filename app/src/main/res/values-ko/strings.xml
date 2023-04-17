@@ -1927,7 +1927,7 @@
     <string name="ThreadRecord_delivery_issue">이슈 전송하기</string>
     <string name="ThreadRecord_message_request">메시지 요청</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">이전에 숨겼던 사용자입니다. 해당 사용자에게 메시지를 보내면 사용자가 목록에 다시 추가됩니다.</string>
     <string name="ThreadRecord_photo">사진</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">음성 메시지</string>

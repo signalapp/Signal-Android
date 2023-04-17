@@ -1927,7 +1927,7 @@
     <string name="ThreadRecord_delivery_issue">Isu penghantaran</string>
     <string name="ThreadRecord_message_request">Permintaan Mesej</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Anda telah menyembunyikan orang ini, hantar mesej kepada mereka sekali lagi akan menambahkan mereka kembali ke senarai anda.</string>
     <string name="ThreadRecord_photo">Foto</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Mesej Suara</string>

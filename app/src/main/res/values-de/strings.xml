@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Zustellungsproblem</string>
     <string name="ThreadRecord_message_request">Unterhaltungsanfrage</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Dieser Person wurde ausgeblendet, schreibe ihr erneut, um sie deiner Liste wieder hinzuzufügen.</string>
     <string name="ThreadRecord_photo">Foto</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Sprachnachricht</string>
@@ -4041,7 +4041,7 @@
     <string name="ExportAccountDataFragment__export_report_action">Exportieren</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Bericht wird erstellt…</string>
+    <string name="ExportAccountDataFragment__download_progress">Bericht wird erstellt …</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Dein Bericht wird nur zum Zeitpunkt des Exports generiert und nicht von Signal auf deinem Gerät gespeichert.</string>
 

@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">डिलिवरी का मामला</string>
     <string name="ThreadRecord_message_request">बाच-चीत का निवेदन</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">आपने इस व्यक्ति को छिपा दिया है, उन्हें अपनी सूची में वापस जोड़ने के लिए उन्हें फिर से संदेश भेजें।</string>
     <string name="ThreadRecord_photo">तस्वीर</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">ऑडियो मेसेज</string>

@@ -2119,7 +2119,7 @@
     <string name="ThreadRecord_delivery_issue">Pristatymo problema</string>
     <string name="ThreadRecord_message_request">Žinutės užklausa</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Tu pašalinai šį asmenį. Jei nori grąžinti į savo sąrašą, vėl išsiųsk šiam žmogui žinutę.</string>
     <string name="ThreadRecord_photo">Nuotrauka</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Balso žinutė</string>

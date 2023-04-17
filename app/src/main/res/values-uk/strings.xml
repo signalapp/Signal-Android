@@ -2119,7 +2119,7 @@
     <string name="ThreadRecord_delivery_issue">Проблема з доставленням</string>
     <string name="ThreadRecord_message_request">Запит спілкування</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Ви приховали цей контакт. Щоби знову додати контакт до списку, надішліть йому повідомлення.</string>
     <string name="ThreadRecord_photo">Світлини</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Голосове Повідомлення</string>
@@ -4195,11 +4195,11 @@
     <string name="ExportAccountDataFragment__export_report">Експортувати звіт</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Експорт як TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">Експорт у форматі TXT</string>
     <!-- Label for the text file option -->
     <string name="ExportAccountDataFragment__export_as_txt_label">Зручний для читання текстовий файл</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Експорт як JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">Експорт у форматі JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
     <string name="ExportAccountDataFragment__export_as_json_label">Машиночитаний файл</string>
 

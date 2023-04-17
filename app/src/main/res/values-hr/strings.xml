@@ -2119,7 +2119,7 @@
     <string name="ThreadRecord_delivery_issue">Problem s isporukom</string>
     <string name="ThreadRecord_message_request">Zahtjev za razgovorom</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Sakrili ste ovu osobu, ponovnim slanjem poruke vratit ćete je na svoj popis.</string>
     <string name="ThreadRecord_photo">Fotografija</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Glasovna poruka</string>
@@ -4218,7 +4218,7 @@
     <!-- Message for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation_message">Dijelite podatke o vašem Signal računu samo s osobama ili aplikacijama kojima vjerujete.</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Izvoz</string>
+    <string name="ExportAccountDataFragment__export_report_action">Izvezi</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">Generiranje izvješća…</string>

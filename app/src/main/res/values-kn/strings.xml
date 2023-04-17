@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">ಡೆಲಿವರಿ ಸಮಸ್ಯೆ</string>
     <string name="ThreadRecord_message_request">ಸಂದೇಶ ವಿನಂತಿ</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">ಈ ವ್ಯಕ್ತಿಯನ್ನು ನೀವು ಮರೆ ಮಾಡಿದ್ದೀರಿ, ನಿಮ್ಮ ಪಟ್ಟಿಗೆ ಅವರನ್ನು ಮರಳಿ ಸೇರಿಸಲು ಅವರಿಗೆ ಮತ್ತೊಮ್ಮೆ ಮೆಸೇಜ್ ಮಾಡಿ.</string>
     <string name="ThreadRecord_photo">ಫೋಟೋ</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">ಧ್ವನಿ ಸಂದೇಶ</string>
@@ -4012,7 +4012,7 @@
     <!-- Learn more link to more information about requesting account data -->
     <string name="ExportAccountDataFragment__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">ವರದಿ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
+    <string name="ExportAccountDataFragment__export_report">ವರದಿಯನ್ನು ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
 
     <!-- Radio option to export the data as a text file .txt -->
     <string name="ExportAccountDataFragment__export_as_txt">TXT ರೂಪದಲ್ಲಿ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>

@@ -1927,7 +1927,7 @@
     <string name="ThreadRecord_delivery_issue">Masalah pengiriman</string>
     <string name="ThreadRecord_message_request">Permintaan Pesan</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Anda telah menyembunyikan orang ini, kirimi dia pesan lagi untuk menambahkannya kembali ke daftar Anda.</string>
     <string name="ThreadRecord_photo">Foto</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Pesan Suara</string>
@@ -3920,18 +3920,18 @@
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
     <string name="ExportAccountDataFragment__export_explanation">Ekspor laporan data akun Signal Anda. Laporan ini tidak menyertakan pesan atau media apa pun. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Selengkapnya</string>
+    <string name="ExportAccountDataFragment__learn_more">Pelajari selengkapnya</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
     <string name="ExportAccountDataFragment__export_report">Ekspor laporan</string>
 
     <!-- Radio option to export the data as a text file .txt -->
     <string name="ExportAccountDataFragment__export_as_txt">Ekspor sebagai TXT</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">File teks mudah-dibaca</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">File teks mudah dibaca</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
     <string name="ExportAccountDataFragment__export_as_json">Ekspor sebagai JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">File dapat-dibaca-mesin</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">File dapat dibaca mesin</string>
 
     <!-- Action to cancel (in a dialog) -->
     <string name="ExportAccountDataFragment__cancel_action">Batal</string>

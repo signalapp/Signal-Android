@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Problème de remise</string>
     <string name="ThreadRecord_message_request">Demande de message</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Vous avez masqué ce contact. Écrivez-lui de nouveau pour l’ajouter à votre liste.</string>
     <string name="ThreadRecord_photo">Photo</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Message vocal</string>
@@ -4002,11 +4002,11 @@
     <string name="AccountSettingsFragment__require_your_signal_pin">Exige votre NIP Signal pour réinscrire votre numéro de téléphone avec Signal</string>
     <string name="AccountSettingsFragment__change_phone_number">Changer de numéro de téléphone</string>
     <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Données de compte</string>
+    <string name="AccountSettingsFragment__request_account_data">Données de votre compte</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Les données de votre compte</string>
+    <string name="ExportAccountDataFragment__your_account_data">Données de votre compte</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
     <string name="ExportAccountDataFragment__export_explanation">Exporter un rapport contenant les données de votre compte Signal. Ce rapport ne contient aucun message ou contenu multimédia. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
@@ -4041,7 +4041,7 @@
     <string name="ExportAccountDataFragment__export_report_action">Exporter</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Génération du rapport…</string>
+    <string name="ExportAccountDataFragment__download_progress">Création du rapport…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Le rapport est généré uniquement lors de l’exportation et n’est pas stocké par Signal sur votre appareil.</string>
 

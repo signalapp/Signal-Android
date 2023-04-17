@@ -1927,7 +1927,7 @@
     <string name="ThreadRecord_delivery_issue">ပေးပို့မှု ပြဿနာ</string>
     <string name="ThreadRecord_message_request">မက်ဆေ့ပို့ရန် တောင်းခံချက်</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">ဤလူကို သင် ဖျောက်ထားပါသည်၊ ၎င်းကို သင့်စာရင်းတွင် ပြန်၍ပေါင်းထည့်ရန် ၎င်းထံသို့ မက်ဆေ့ချ်ထပ်ပို့ပါ။</string>
     <string name="ThreadRecord_photo">ရုပ်ပုံ</string>
     <string name="ThreadRecord_gif">လှုပ်ရှားနေသောရုပ်ပုံ</string>
     <string name="ThreadRecord_voice_message">အသံမက်ဆေ့ချ်</string>
@@ -3946,7 +3946,7 @@
     <!-- Title for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation">ဒေတာ ထုတ်ယူမည်လား။</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">သင့် Signal အကောင့်ဒေတာကို သင် ယုံကြည်သော လူများ သို့မဟုတ် အက်ပ်များနှင့်သာ မျှဝေပါ။</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">သင့် Signal အကောင့်ဒေတာကို သင် ယုံကြည်သော လူများ သို့မဟုတ် အက်ပ်များနှင့်သာ ဝေမျှပါ။</string>
     <!-- Action to export in for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_action">ထုတ်ယူရန်</string>
 

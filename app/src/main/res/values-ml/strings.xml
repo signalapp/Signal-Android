@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">ഡെലിവറി പ്രശ്നം</string>
     <string name="ThreadRecord_message_request">സന്ദേശത്തിനുള്ള അപേക്ഷ</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">നിങ്ങൾ ഈ വ്യക്തിയെ മറച്ചു, അവരെ നിങ്ങളുടെ ലിസ്റ്റിലേക്ക് വീണ്ടും ചേർക്കാൻ അവർക്ക് വീണ്ടും സന്ദേശം അയയ്ക്കുക.</string>
     <string name="ThreadRecord_photo">ഫോട്ടോ</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">ശബ്ദ സന്ദേശം</string>
@@ -4027,7 +4027,7 @@
     <string name="ExportAccountDataFragment__cancel_action">റദ്ദാക്കുക</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">ഓകെ</string>
+    <string name="ExportAccountDataFragment__ok_action">ശരി</string>
     <!-- Title of dialog shown when report fails to generate -->
     <string name="ExportAccountDataFragment__report_generation_failed">റിപ്പോർട്ട് ജനറേറ്റ് ചെയ്യാനായില്ല</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->

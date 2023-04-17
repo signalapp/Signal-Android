@@ -1927,7 +1927,7 @@
     <string name="ThreadRecord_delivery_issue">បញ្ហាការបញ្ជូន</string>
     <string name="ThreadRecord_message_request">សារស្នើសុំ</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">អ្នកបានលាក់បុគ្គលនេះ។ សូមផ្ញើសារទៅគេម្តងទៀតដើម្បីបញ្ចូលគេទៅក្នុងបញ្ជីរបស់អ្នកវិញ។</string>
     <string name="ThreadRecord_photo">រូបភាព</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">សារជាសំឡេង</string>

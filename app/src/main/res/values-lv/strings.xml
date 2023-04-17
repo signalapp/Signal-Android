@@ -2055,7 +2055,7 @@
     <string name="ThreadRecord_delivery_issue">Piegādes problēma</string>
     <string name="ThreadRecord_message_request">Ziņas pieprasījums</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Jūs paslēpāt šo personu. Vēlreiz nosūtot ziņu, šī persona tiks pievienota atpakaļ jūsu sarakstam.</string>
     <string name="ThreadRecord_photo">Attēls</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Balss ziņa</string>

@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Entrega-arazoa</string>
     <string name="ThreadRecord_message_request">Mezuaren Eskaera</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Pertsona hau ezkutatu egin duzu. Zure zerrendan berriro gehitzeko, bidal iezaiozu beste mezu bat.</string>
     <string name="ThreadRecord_photo">Argazkia</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Ahots-mezua</string>
@@ -4008,7 +4008,7 @@
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Zure kontuaren datuak</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Esportatu Signal kontuaren datuen txostena. Txosten honek ez du mezurik edo artxiborik jasotzen. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">Esportatu Signal-eko kontuaren datuen txostena. Txosten horrek ez du mezurik edo multimedia-edukirik. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
     <string name="ExportAccountDataFragment__learn_more">Informazio gehiago</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
@@ -4029,21 +4029,21 @@
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">Ados</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Ezin izan da txostena sortu</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">Ezin izan da sortu txostena</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
     <string name="ExportAccountDataFragment__check_network">Egiaztatu zure konexioa eta saiatu berriro.</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Datuak esportatu?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">Datuak esportatu nahi dituzu?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Partekatu zure Signal kontuaren datuak fidagarriak diren pertsonekin edo aplikazioekin soilik.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Partekatu Signal-eko kontuaren datuak fidagarriak diren pertsonekin edo aplikazioekin soilik.</string>
     <!-- Action to export in for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_action">Esportatu</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">Txostena sortzen…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Zure txostena esportatzeko unean soilik sortzen da eta Signal-ek ez du gordetzen zure gailuan.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Esportatzeko unean soilik sortzen da txostena, eta Signal-ek ez du gordetzen zure gailuan.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Erabili hau zure oraingo telefono-zenbakia telefono-zenbaki berri batera aldatzeko. Ezin duzu aldaketa hau desegin.\n\nJarraitu aurretik, ziurtatu zure zenbaki berriak SMSak edo deiak jaso ditzakeela.</string>

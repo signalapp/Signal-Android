@@ -1798,7 +1798,7 @@
     <string name="RegistrationActivity_play_services_error">Play ਸੇਵਾਵਾਂ ਚ ਤਰੁੱਟੀ</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play ਸੇਵਾਵਾਂ ਅਪਡੇਟ ਹੋ ਰਹੀਆਂ ਹਨ ਜਾਂ ਅਸਥਾਈ ਤੌਰ ’ਤੇ ਉਪਲਬਧ ਨਹੀਂ ਹਨ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ ਕਰੋ।</string>
     <string name="RegistrationActivity_terms_and_privacy">ਸ਼ਰਤਾਂ &amp; ਪਰਦੇਦਾਰੀ ਨੀਤੀ</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">ਤੁਹਾਨੂੰ ਦੋਸਤਾਂ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਤੇ ਸੁਨੇਹੇ ਭੇਜਣ ਵਾਸਤੇ Signal ਨੂੰ ਸੰਪਰਕ ਤੇ ਮੀਡੀਏ ਵਾਸਤੇ ਇਜਾਜ਼ਤਾਂ ਦੀ ਲੋੜ ਹੈ। ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਨੂੰ Signal ਦੇ ਪ੍ਰਾਈਵੇਟ ਸੰਪਰਕ ਡਿਸਕਵਰੀ ਵਰਤ ਕੇ ਅੱਪਲੋਡ ਕੀਤੇ ਜਾਂਦੇ ਹਨ, ਜਿਸ ਦਾ ਅਰਥ ਹੈ ਕਿ ਉਹ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇੰਕ੍ਰਿਪਟ ਹਨ ਅਤੇ Signal ਸੇਵਾ ਨੂੰ ਕਦੇ ਦਿਖਾਈ ਨਹੀਂ ਦਿੰਦੇ ਹਨ।</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ ਦੋਸਤਾਂ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਅਤੇ ਸੁਨੇਹੇ ਭੇਜਣ ਦੀ ਸਹੂਲਤ ਦੇਣ ਲਈ Signal ਨੂੰ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਅਤੇ ਮੀਡੀਆ ਤੱਕ ਪਹੁੰਚ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ। ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਨੂੰ Signal ਦੇ ਪ੍ਰਾਈਵੇਟ ਸੰਪਰਕ ਡਿਸਕਵਰੀ ਫੀਚਰ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਅੱਪਲੋਡ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਜਿਸ ਦਾ ਅਰਥ ਹੈ ਕਿ ਉਹ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟਡ ਹਨ ਅਤੇ Signal ਕਦੇ ਵੀ ਉਹਨਾਂ ਨੂੰ ਦੇਖ ਨਹੀਂ ਸਕਦਾ ਹੈ।</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">ਤੁਹਾਨੂੰ ਦੋਸਤਾਂ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਵਾਸਤੇ Signal ਨੂੰ ਸੰਪਰਕ ਵਾਸਤੇ ਇਜਾਜ਼ਤਾਂ ਦੀ ਲੋੜ ਹੈ। ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਨੂੰ Signal ਦੇ ਪ੍ਰਾਈਵੇਟ ਸੰਪਰਕ ਡਿਸਕਵਰੀ ਵਰਤ ਕੇ ਅੱਪਲੋਡ ਕੀਤੇ ਜਾਂਦੇ ਹਨ, ਜਿਸ ਦਾ ਅਰਥ ਹੈ ਕਿ ਉਹ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇੰਕ੍ਰਿਪਟ ਹਨ ਅਤੇ Signal ਸੇਵਾ ਨੂੰ ਕਦੇ ਦਿਖਾਈ ਨਹੀਂ ਦਿੰਦੇ ਹਨ।</string>
     <string name="RegistrationActivity_rate_limited_to_service">ਤੁਸੀਂ ਇਸ ਨੰਬਰ ਨੂੰ ਰਜਿਸਟਰ ਕਰਨ ਦੀਆਂ ਬਹੁਤ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਕਰ ਲਈਆਂ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">ਡਿਲਿਵਰੀ ਮਸਲਾ</string>
     <string name="ThreadRecord_message_request">ਸੁਨੇਹਾ ਬੇਨਤੀ</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">ਤੁਸੀਂ ਇਸ ਵਿਅਕਤੀ ਨੂੰ ਲੁਕਾ ਦਿੱਤਾ ਹੈ, ਉਹਨਾਂ ਨੂੰ ਆਪਣੀ ਸੂਚੀ ਵਿੱਚ ਵਾਪਸ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਉਹਨਾਂ ਨੂੰ ਦੁਬਾਰਾ ਸੁਨੇਹਾ ਭੇਜੋ।</string>
     <string name="ThreadRecord_photo">ਫ਼ੋਟੋ</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">ਆਵਾਜ਼ ਸੁਨੇਹਾ</string>
@@ -2607,7 +2607,7 @@
     <!-- recipients_panel -->
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%1$s ਦੇ ਨਾਲ ਆਪਣੀ ਐਂਡ-ਟੂ-ਐਂਡ ਐਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਸੁਰੱਖਿਆ ਦੀ ਤਸਦੀਕ ਕਰਨ ਲਈ, ਉੱਪਰ ਦਿੱਤੇ ਨੰਬਰਾਂ ਦੀ ਤੁਲਨਾ ਉਹਨਾਂ ਦੇ ਡਿਵਾਈਸ ਵਿੱਚ ਦਿਖਾਏ ਨੰਬਰਾਂ ਦੇ ਨਾਲ ਕਰੋ। ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਫ਼ੋਨ ਵਿੱਚ ਦਿੱਤਾ ਕੋਡ ਵੀ ਸਕੈਨ ਕਰ ਸਕਦੇ ਹੋ। <a href=\"https://signal.org/redirect/safety-numbers\">ਹੋਰ ਜਾਣੋ।</a>]]></string>
+    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%1$s ਦੇ ਨਾਲ ਆਪਣੀ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਤਸਦੀਕ ਕਰਨ ਲਈ, ਉੱਪਰ ਦਿੱਤੇ ਨੰਬਰਾਂ ਦੀ ਤੁਲਨਾ ਉਹਨਾਂ ਦੇ ਡਿਵਾਈਸ ਵਿੱਚ ਦਿਖਾਏ ਨੰਬਰਾਂ ਦੇ ਨਾਲ ਕਰੋ। ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਫ਼ੋਨ ਵਿੱਚ ਦਿਖਾਏ ਕੋਡ ਨੂੰ ਵੀ ਸਕੈਨ ਕਰ ਸਕਦੇ ਹੋ। <a href=\"https://signal.org/redirect/safety-numbers\">ਹੋਰ ਜਾਣੋ।</a>]]></string>
     <string name="verify_display_fragment__tap_to_scan">ਸਕੈਨ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
     <string name="verify_display_fragment__successful_match">ਸਫਲਤਾਪੂਰਵਕ ਮੇਲ ਖਾਂਦਾ ਹੈ</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਤਸਦੀਕ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ</string>
@@ -3293,7 +3293,7 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">ਇਨਸਾਈਟਸ</string>
     <string name="InsightsDashboardFragment__title">ਇਨਸਾਈਟਸ</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal ਪ੍ਰੋਟੋਕੋਲ ਨੇ ਬੀਤੇ %2$d ਦਿਨਾਂ ਵਿੱਚ ਤੁਹਾਡੇ ਭੇਜੇ ਗਏ ਸੁਨੇਹਿਆਂ ਦੇ %1$d%%ਨੂੰ ਆਪਣੇ-ਆਪ ਸੁਰੱਖਿਅਤ ਕੀਤਾ। Signal ਵਰਤੋਂਕਾਰਾਂ ਵਿਚਕਾਰ ਗੱਲਬਾਤ ਹਮੇਸ਼ਾਂ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟ ਕੀਤੀ ਜਾਂਦੀ ਹੈ।</string>
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal ਪ੍ਰੋਟੋਕੋਲ ਨੇ ਬੀਤੇ %2$d ਦਿਨਾਂ ਵਿੱਚ ਤੁਹਾਡੇ ਵੱਲੋਂ ਭੇਜੇ ਗਏ ਸੁਨੇਹਿਆਂ ਵਿੱਚੋਂ %1$d%% ਦੀ ਆਪਣੇ-ਆਪ ਸੁਰੱਖਿਆ ਕੀਤੀ ਹੈ। Signal ਵਰਤੋਂਕਾਰਾਂ ਵਿਚਕਾਰ ਹੋਣ ਵਾਲੀ ਗੱਲਬਾਤ ਹਮੇਸ਼ਾਂ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟਡ ਹੁੰਦੀ ਹੈ।</string>
     <string name="InsightsDashboardFragment__spread_the_word">ਸੰਸਾਰ ਭਰ ਵਿੱਚ ਫੈਲਾਓ</string>
     <string name="InsightsDashboardFragment__not_enough_data">ਲੋੜੀਂਦਾ ਡੇਟਾ ਨਹੀਂ</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ਤੁਹਾਡੀ ਇਨਸਾਈਟਸ ਪ੍ਰਤੀਸ਼ਤ ਦਾ ਹਿਸਾਬ ਬੀਤੇ %1$d ਦਿਨਾਂ ਦੇ ਅੰਦਰ ਭੇਜੇ ਜਾਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਦੇ ਅਧਾਰ ’ਤੇ ਲਾਇਆ ਜਾਂਦਾ ਹੈ ਜੋ ਗਾਇਬ ਨਹੀਂ ਹੋਏ ਹਨ ਜਾਂ ਮਿਟਾਏ ਨਹੀਂ ਗਏ ਹਨ।</string>
@@ -3612,7 +3612,7 @@
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">ਡਾਟਾ ਟਰਾਂਸਫਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
-    <string name="DeviceTransfer__keep_both_devices_near_each_other">ਦੋਵੇਂ ਡਿਵਾਈਸਾਂ ਨੂੰ ਇੱਕ ਦੂਜੇ ਦੇ ਨੇੜੇ ਰੱਖੋ। ਡਿਵਾਈਸਾਂ ਨੂੰ ਬੰਦ ਨਾ ਕਰੋ ਅਤੇ Signal ਨੂੰ ਖੋਲ੍ਹੀ ਰੱਖੋ। ਟ੍ਰਾਂਸਫ਼ਰਾਂ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟ ਹਨ।</string>
+    <string name="DeviceTransfer__keep_both_devices_near_each_other">ਦੋਵੇਂ ਡਿਵਾਈਸਾਂ ਨੂੰ ਇੱਕ ਦੂਜੇ ਦੇ ਨੇੜੇ ਰੱਖੋ। ਡਿਵਾਈਸਾਂ ਨੂੰ ਬੰਦ ਨਾ ਕਰੋ ਅਤੇ Signal ਨੂੰ ਖੋਲ੍ਹ ਕੇ ਰੱਖੋ। ਟ੍ਰਾਂਸਫਰ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟਡ ਹੁੰਦੀ ਹੈ।</string>
     <string name="DeviceTransfer__d_messages_so_far">…ਹੁਣ ਤੱਕ %1$d ਸੁਨੇਹੇ</string>
     <!-- Filled in with total percentage of messages transferred -->
     <string name="DeviceTransfer__s_of_messages_so_far">ਹੁਣ ਤੱਕ %1$s %% ਸੁਨੇਹੇ…</string>
@@ -4017,11 +4017,11 @@
     <!-- Radio option to export the data as a text file .txt -->
     <string name="ExportAccountDataFragment__export_as_txt">TXT ਵਜੋਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">ਪੜ੍ਹਨ ਲਈ ਆਸਾਨ ਟੈਕਸਟ ਫਾਈਲ</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">ਪੜ੍ਹਨ ਲਈ ਆਸਾਨ ਟੈਕਸਟ ਫ਼ਾਈਲ</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
     <string name="ExportAccountDataFragment__export_as_json">JSON ਵਜੋਂ ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">ਮਸ਼ੀਨ ਲਈ ਪੜ੍ਹਨਯੋਗ ਫਾਈਲ</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">ਮਸ਼ੀਨ ਲਈ ਪੜ੍ਹਨਯੋਗ ਫ਼ਾਈਲ</string>
 
     <!-- Action to cancel (in a dialog) -->
     <string name="ExportAccountDataFragment__cancel_action">ਰੱਦ ਕਰੋ</string>
@@ -4036,7 +4036,7 @@
     <!-- Title for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation">ਕੀ ਡਾਟਾ ਐਕਸਪੋਰਟ ਕਰਨਾ ਹੈ?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">ਆਪਣੇ Signal ਖਾਤੇ ਦਾ ਡਾਟਾ ਸਿਰਫ਼ ਉਹਨਾਂ ਲੋਕਾਂ ਜਾਂ ਐਪਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ ਜਿਨ੍ਹਾਂ \'ਤੇ ਤੁਸੀਂ ਭਰੋਸਾ ਕਰਦੇ ਹੋ।</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">ਆਪਣੇ Signal ਖਾਤੇ ਦਾ ਡਾਟਾ ਸਿਰਫ਼ ਉਹਨਾਂ ਲੋਕਾਂ ਜਾਂ ਐਪਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ ਜਿਹਨਾਂ ਉੱਤੇ ਤੁਸੀਂ ਭਰੋਸਾ ਕਰਦੇ ਹੋ।</string>
     <!-- Action to export in for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_action">ਐਕਸਪੋਰਟ ਕਰੋ</string>
 
@@ -5565,9 +5565,9 @@
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
     <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal ਹੁਣ SMS ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ ਹੈ</string>
     <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal ਜਲਦੀ ਹੀ SMS ਸੁਨੇਹੇ ਭੇਜਣ ਦੀ ਸਹੂਲਤ ਹਟਾ ਦੇਵੇਗਾ ਕਿਉਂਕਿ Signal ਵਿੱਚ ਸੁਨੇਹੇ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਸ਼ਨ ਅਤੇ ਮਜ਼ਬੂਤ ਪਰਦੇਦਾਰੀ ਪ੍ਰਦਾਨ ਕਰਦੇ ਹਨ, ਜੋ SMS ਸੁਨੇਹਿਆਂ ਵਿੱਚ ਨਹੀਂ ਮਿਲ ਸਕਦੀ ਹੈ। ਇਸ ਨਾਲ ਸਾਨੂੰ Signal ਰਾਹੀਂ ਸੁਨੇਹੇ ਭੇਜਣ ਦੇ ਅਨੁਭਵ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਮਿਲੇਗੀ।</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal ਜਲਦੀ ਹੀ SMS ਸੁਨੇਹੇ ਭੇਜਣ ਦੀ ਸਹੂਲਤ ਹਟਾ ਦੇਵੇਗਾ ਕਿਉਂਕਿ Signal ਵਿੱਚ ਸੁਨੇਹਿਆਂ ਨੂੰ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਸ਼ਨ ਅਤੇ ਮਜ਼ਬੂਤ ਪਰਦੇਦਾਰੀ ਪ੍ਰਦਾਨ ਕੀਤੀ ਜਾਂਦੀ ਹੈ, ਅਤੇ ਇਹ ਸਹੂਲਤ SMS ਸੁਨੇਹਿਆਂ ਵਿੱਚ ਨਹੀਂ ਮਿਲ ਸਕਦੀ ਹੈ। ਇਸ ਨਾਲ ਸਾਨੂੰ Signal ਰਾਹੀਂ ਸੁਨੇਹੇ ਭੇਜਣ ਦੇ ਅਨੁਭਵ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਮਿਲੇਗੀ।</string>
     <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal ਨੇ SMS ਸੁਨੇਹੇ ਭੇਜਣ ਦੀ ਸਹੂਲਤ ਹਟਾ ਦਿੱਤੀ ਹੈ ਕਿਉਂਕਿ Signal ਵਿੱਚ ਸੁਨੇਹੇ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਸ਼ਨ ਅਤੇ ਮਜ਼ਬੂਤ ਪਰਦੇਦਾਰੀ ਪ੍ਰਦਾਨ ਕਰਦੇ ਹਨ, ਜੋ SMS ਸੁਨੇਹਿਆਂ ਵਿੱਚ ਨਹੀਂ ਮਿਲ ਸਕਦੀ ਹੈ। ਇਸ ਨਾਲ ਸਾਨੂੰ Signal ਰਾਹੀਂ ਸੁਨੇਹੇ ਭੇਜਣ ਦੇ ਅਨੁਭਵ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਮਿਲੇਗੀ।</string>
+    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal ਨੇ SMS ਸੁਨੇਹੇ ਭੇਜਣ ਦੀ ਸਹੂਲਤ ਹਟਾ ਦਿੱਤੀ ਹੈ ਕਿਉਂਕਿ Signal ਵਿੱਚ ਸੁਨੇਹਿਆਂ ਨੂੰ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਸ਼ਨ ਅਤੇ ਮਜ਼ਬੂਤ ਪਰਦੇਦਾਰੀ ਪ੍ਰਦਾਨ ਕੀਤੀ ਜਾਂਦੀ ਹੈ, ਅਤੇ ਇਹ ਸਹੂਲਤ SMS ਸੁਨੇਹਿਆਂ ਵਿੱਚ ਨਹੀਂ ਮਿਲ ਸਕਦੀ ਹੈ। ਇਸ ਨਾਲ ਸਾਨੂੰ Signal ਰਾਹੀਂ ਸੁਨੇਹੇ ਭੇਜਣ ਦੇ ਅਨੁਭਵ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਮਿਲੇਗੀ।</string>
     <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
     <string name="SmsExportMegaphoneActivity__export_sms">SMS ਐਕਸਪੋਰਟ ਕਰੋ</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->

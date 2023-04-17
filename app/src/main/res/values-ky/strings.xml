@@ -1927,7 +1927,7 @@
     <string name="ThreadRecord_delivery_issue">Билдирүү жеткен жок</string>
     <string name="ThreadRecord_message_request">Жазышуу өтүнүчү</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Бул адамды жашырдыңыз, аны кайра тизмеңизге кошуу үчүн ага жазыңыз.</string>
     <string name="ThreadRecord_photo">Сүрөт</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Үн билдирүүсү</string>

@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Hitilafu ya uwasilishaji</string>
     <string name="ThreadRecord_message_request">Ombi la Ujumbe</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Umemficha mtu huyu, watumie ujumbe tena ili kuwaongeza tena kwenye orodha yako.</string>
     <string name="ThreadRecord_photo">Picha</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Ujumbe wa Sauti</string>
@@ -4017,11 +4017,11 @@
     <!-- Radio option to export the data as a text file .txt -->
     <string name="ExportAccountDataFragment__export_as_txt">Hamisha kama TXT</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Faili la Easy-to-read</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">Faili la maandishi yaliyo rahisi-kusoma</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
     <string name="ExportAccountDataFragment__export_as_json">Hamisha kama JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Faili la Kusomwa na Mashini</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">Faili linaloweza kusomwa na mashine</string>
 
     <!-- Action to cancel (in a dialog) -->
     <string name="ExportAccountDataFragment__cancel_action">Ghairi</string>
@@ -4031,19 +4031,19 @@
     <!-- Title of dialog shown when report fails to generate -->
     <string name="ExportAccountDataFragment__report_generation_failed">Imeshindwa kutengeneza ripoti</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Angalia muunganisho wa mtandao wako kisha ujaribu tena.</string>
+    <string name="ExportAccountDataFragment__check_network">Angalia muunganisho wako wa mtandao kisha ujaribu tena.</string>
 
     <!-- Title for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation">Hamisha data?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Sambaza data za akaunti yako ya Signal kwa watu au programu unazoziamini.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Shiriki data za akaunti yako ya Signal na watu au programu unazoziamini.</string>
     <!-- Action to export in for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_action">Hamisha</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">Inatengeneza ripoti…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Ripoti yako inatengenezwa muda ule wa kuhama tu na hauhifadhiwi na Signal kwenye kifaa chako.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Ripoti yako inatengenezwa muda tu inapohamishwa na haihifadhiwi na Signal kwenye kifaa chako.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Tumia hii kubadili nambari yako ya simu ya sasa hivi hadi nambari mpya. Huwezi kubatilisha mabadiliko haya.\n\\Kabla ya kuendelea, hakikisha nambari yako mpya inaweza kupokea ujumbe mfupi au simu.</string>

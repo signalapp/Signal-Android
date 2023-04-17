@@ -2119,7 +2119,7 @@
     <string name="ThreadRecord_delivery_issue">Potíže s doručením</string>
     <string name="ThreadRecord_message_request">Požadavek na zprávu</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Tuto osobu jste skryli. Když jí znovu napíšete, bude přidána zpět do vašeho seznamu.</string>
     <string name="ThreadRecord_photo">Fotografie</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Hlasová zpráva</string>
@@ -4209,21 +4209,21 @@
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">OK</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Přehled se nepovedlo vygenerovat</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">Přehled se nepodařilo vygenerovat</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
     <string name="ExportAccountDataFragment__check_network">Zkontrolujte připojení a zkuste to znovu.</string>
 
     <!-- Title for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation">Exportovat údaje?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Údaje o svém účtu Signalu sdílejte jen s lidmi nebo aplikacemi, kterým důvěřujete.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Údaje o svém účtu Signal sdílejte jen s lidmi nebo aplikacemi, kterým důvěřujete.</string>
     <!-- Action to export in for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_action">Exportovat</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">Generování přehledu…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Váš přehled se generuje v okamžiku exportu a služba Signal jej neukládá do vašeho zařízení.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Váš přehled se generuje v okamžiku exportu a služba Signal jej neukládá do vašeho zařízení.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Pomocí této funkce můžete změnit své aktuální telefonní číslo na nové. Tuto změnu nelze vrátit zpět.\n\nPřed pokračováním se ujistěte, že nové číslo může přijímat SMS nebo hovory.</string>

@@ -2119,7 +2119,7 @@
     <string name="ThreadRecord_delivery_issue">Problem z dostarczeniem wiadomości</string>
     <string name="ThreadRecord_message_request">Prośba o kontakt</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Ta osoba została ukryta. Wyślij do niej wiadomość, by znów znalazła się na Twojej liście.</string>
     <string name="ThreadRecord_photo">Zdjęcie</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Wiadomość głosowa</string>
@@ -4182,11 +4182,11 @@
     <string name="AccountSettingsFragment__require_your_signal_pin">Wymagaj Twojego PIN-u Signal, aby ponownie zarejestrować Twór numer telefonu w Signal</string>
     <string name="AccountSettingsFragment__change_phone_number">Zmień numer telefonu</string>
     <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Twoje dane konta</string>
+    <string name="AccountSettingsFragment__request_account_data">Dane Twojego konta</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Twoje dane konta</string>
+    <string name="ExportAccountDataFragment__your_account_data">Dane Twojego konta</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
     <string name="ExportAccountDataFragment__export_explanation">Wyeksportuj raport o danych Twojego konta Signal. Ten raport nie zawiera treści wiadomości ani przesłanych multimediów. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->

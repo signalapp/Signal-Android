@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Problem dërgimi</string>
     <string name="ThreadRecord_message_request">Kërkesë Mesazhi</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Ti e ke hequr këtë person, dërgoji mesazh për ta shtuar sërish në listën tënde.</string>
     <string name="ThreadRecord_photo">Foto</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Mesazh Zanor</string>
@@ -4010,7 +4010,7 @@
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
     <string name="ExportAccountDataFragment__export_explanation">Eksporto një raport të të dhënave të llogarisë tënde Signal. Ky raport nuk përfshin asnjë mesazh apo media. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Mëso më tepër</string>
+    <string name="ExportAccountDataFragment__learn_more">Mëso më shumë</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
     <string name="ExportAccountDataFragment__export_report">Eksporto raportin</string>
 
@@ -4021,10 +4021,10 @@
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
     <string name="ExportAccountDataFragment__export_as_json">Eksporto si JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Skedar i lexueshëm nga makineri</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">Skedar i lexueshëm nga pajisje</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Anuloje</string>
+    <string name="ExportAccountDataFragment__cancel_action">Anulo</string>
 
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">OK</string>
@@ -4036,7 +4036,7 @@
     <!-- Title for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation">Do t\'i eksportosh të dhënat?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Ndaji të dhënat e llogarisë Signal vetëm me njerëzit apo aplikacionet që beson.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Ndaji të dhënat e llogarisë Signal vetëm me njerëzit apo aplikacionet, të cilave u beson.</string>
     <!-- Action to export in for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_action">Eksporto</string>
 

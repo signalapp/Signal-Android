@@ -1927,7 +1927,7 @@
     <string name="ThreadRecord_delivery_issue">送遞有問題</string>
     <string name="ThreadRecord_message_request">訊息請求</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">你已經隠藏咗呢個人。如果宜家傳送訊息俾佢嘅話，佢就會重新加返入你嘅聯絡人清單。</string>
     <string name="ThreadRecord_photo">相</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">語音訊息</string>

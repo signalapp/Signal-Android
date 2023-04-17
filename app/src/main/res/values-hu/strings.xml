@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Kézbesítési probléma</string>
     <string name="ThreadRecord_message_request">Kezdeményezett beszélgetés</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Korábban elrejtetted ezt a személyt. Küldj neki ismét üzenetet a listára való újbóli felvételhez.</string>
     <string name="ThreadRecord_photo">Kép</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Hangüzenet</string>

@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">डिलिव्हरी समस्या</string>
     <string name="ThreadRecord_message_request">संदेश विनंती</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">आपण या व्यक्तीला लपवलेले आहे, त्यांना पुन्हा आपल्या यादीमध्ये जोडण्यासाठी संदेश पाठवा.</string>
     <string name="ThreadRecord_photo">फोटो</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">व्हॉईस संदेश</string>
@@ -4017,7 +4017,7 @@
     <!-- Radio option to export the data as a text file .txt -->
     <string name="ExportAccountDataFragment__export_as_txt">TXT म्हणून एक्सपोर्ट करा</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">वाचण्यास सोपी मजकूर फाईल</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">वाचण्यास-सोपी-मजकूर फाईल</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
     <string name="ExportAccountDataFragment__export_as_json">JSON म्हणून एक्सपोर्ट करा</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
@@ -4036,14 +4036,14 @@
     <!-- Title for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation">डेटा एक्सपोर्ट करायचा?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">आपण विश्वास करत असलेल्या लोकांसह फक्त आपला Signal डेटा अकाऊंट शेअर करा.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">आपण विश्वास करत असलेल्या लोकांसह फक्त आपले Signal डेटा अकाऊंट शेअर करा.</string>
     <!-- Action to export in for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_action">एक्सपोर्ट करा</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">रिपोर्ट तयार करत आहे…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">आपला रिपोर्ट फक्त एक्स्पोर्ट करण्याच्या वेळी तयार केला जाईल आणि तो Signal आपल्या डिव्हाईसवर स्टोअर केला जाणार नाही.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">आपला रिपोर्ट फक्त एक्स्पोर्ट करण्याच्या वेळी तयार केला जाईल आणि तो Signal द्वारे आपल्या डिव्हाईसवर स्टोअर केला जाणार नाही.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">तुमचा वर्तमान फोन नंबर नवीन फोन नंबरवर बदलण्यासाठी याचा वापर करा.आपण हा बदल पूर्ववत करु शकत नाही.\n\nपुढे जाण्यापूर्वी, तुमच्या नवीन नंबरवर SMS किंवा कॉल मिळू शकतील याची खात्री करा.</string>

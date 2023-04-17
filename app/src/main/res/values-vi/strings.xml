@@ -1927,7 +1927,7 @@
     <string name="ThreadRecord_delivery_issue">Lỗi chuyển tin nhắn</string>
     <string name="ThreadRecord_message_request">Yêu cầu gửi Tin nhắn</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Bạn đã ẩn người này, nhắn tin lại để thêm lại người này vào danh sách của bạn.</string>
     <string name="ThreadRecord_photo">Ảnh</string>
     <string name="ThreadRecord_gif">Ảnh GIF</string>
     <string name="ThreadRecord_voice_message">Tin nhắn Thoại</string>

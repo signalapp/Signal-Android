@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Грешка при изпращането</string>
     <string name="ThreadRecord_message_request">Заявка за съобщение</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Вие сте скрили този човек, ако отново му изпратите съобщение, ще го добавите обратно към списъка си.</string>
     <string name="ThreadRecord_photo">Снимка</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Гласово съобщение</string>
@@ -4008,7 +4008,7 @@
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Данните за вашия акаунт</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Експорт на доклад за данните от акаунта ви в Signal. Този доклад не включва никакви съобщения или мултимедия. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">Експортиране на доклад за данните от акаунта ви в Signal. Този доклад не включва никакви съобщения или мултимедия. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
     <string name="ExportAccountDataFragment__learn_more">Научете повече</string>
     <!-- Button action to export the report data to another app (e.g. email) -->

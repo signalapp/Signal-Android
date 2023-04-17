@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Leveransproblem</string>
     <string name="ThreadRecord_message_request">Meddelandeförfrågan</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Du har gömt den här personen. Meddela hen igen för att lägga tillbaka personen till din lista.</string>
     <string name="ThreadRecord_photo">Foto</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Röstmeddelande</string>
@@ -4029,7 +4029,7 @@
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">OK</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Kunde inte generera rapport</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">Det gick inte att generera rapport</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
     <string name="ExportAccountDataFragment__check_network">Kontrollera din anslutning och försök igen.</string>
 

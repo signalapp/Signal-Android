@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Çatdırılma problemi</string>
     <string name="ThreadRecord_message_request">Mesaj tələbi</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Siz bu şəxsi gizlətmisiniz, siyahınıza əlavə etmək üçün ona yenidən mesaj göndərin.</string>
     <string name="ThreadRecord_photo">Foto</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Səsyazmalı Mesaj</string>
@@ -4034,7 +4034,7 @@
     <string name="ExportAccountDataFragment__check_network">Bağlantınızı yoxlayıb yenidən cəhd edin.</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Məlumat ixrac olunsun?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">Məlumatlar ixrac olunsun?</string>
     <!-- Message for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation_message">Signal hesabı məlumatlarınızı yalnız inandığınız insanlarla və tətbiqlərlə paylaşın.</string>
     <!-- Action to export in for export confirmation dialog -->
