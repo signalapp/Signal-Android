@@ -1,24 +1,60 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
+import android.preference.PreferenceManager
 import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
+import org.signal.core.util.readToSingleInt
+import org.signal.core.util.readToSingleObject
+import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
+import org.signal.core.util.requireString
+import org.thoughtcrime.securesms.database.KeyValueDatabase
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.whispersystems.signalservice.api.push.ACI
 
 /**
+ * This is a combination of the edit message and message recipient migrations (would have been V185 and v186), but as they
+ * both require recreating the message table, they are merged into one.
+ *
+ * Original V185:
+ * Our current column setup for knowing is the the sender/receiver of a message is both confusing and non-optimal from a performance perspective.
+ * This moves to a world where instead of tracking a single recipient, we track two: a sender and receiver.
+ *
+ * Original V186:
  * Changes needed for edit message. New foreign keys require recreating the table.
+ *
  */
-@Suppress("ClassName")
-object V186_AddEditMessageColumnsMigration : SignalDatabaseMigration {
+object V185_MessageRecipientsAndEditMessageMigration : SignalDatabaseMigration {
 
-  private val TAG = Log.tag(V186_AddEditMessageColumnsMigration::class.java)
+  private val TAG = Log.tag(V185_MessageRecipientsAndEditMessageMigration::class.java)
+
+  private val outgoingClause = "(" + listOf(21, 23, 22, 24, 25, 26, 2, 11)
+    .map { "type & ${0x1F} = $it" }
+    .joinToString(separator = " OR ") + ")"
 
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     val stopwatch = Stopwatch("migration")
 
+    val selfId: RecipientId? = getSelfId(db)
+
+    if (selfId == null) {
+      val messageCount = db.rawQuery("SELECT COUNT(*) FROM message").readToSingleInt()
+      if (messageCount == 0) {
+        Log.i(TAG, "Could not find ourselves in the DB! Assuming this is an install that hasn't been registered yet.")
+      } else {
+        throw IllegalStateException("Could not find ourselves in the recipient table, but messages exist in the message table!")
+      }
+    }
+
+    stopwatch.split("get-self")
+
     val dependentItems: List<SqlItem> = getAllDependentItems(db, "message")
+
     dependentItems.forEach { item ->
       val sql = "DROP ${item.type} IF EXISTS ${item.name}"
       Log.d(TAG, "Executing: $sql")
@@ -96,9 +132,9 @@ object V186_AddEditMessageColumnsMigration : SignalDatabaseMigration {
             date_received,
             date_server,
             thread_id,
-            from_recipient_id,
-            from_device_id,
-            to_recipient_id,
+            recipient_id,
+            recipient_device_id,
+            recipient_id,
             type,
             body,
             read,
@@ -148,17 +184,34 @@ object V186_AddEditMessageColumnsMigration : SignalDatabaseMigration {
     )
     stopwatch.split("copy-data")
 
+    // Previously, the recipient_id on an outgoing message represented who it was going to (an individual or group).
+    // So if a message is outgoing, we'll set to = from, then from = self
+    if (selfId != null) {
+      db.execSQL(
+        """
+        UPDATE message_tmp
+        SET 
+          to_recipient_id = from_recipient_id,
+          from_recipient_id = ${selfId.toLong()},
+          from_device_id = 1
+        WHERE $outgoingClause 
+        """
+      )
+    }
+    stopwatch.split("update-data")
+
     db.execSQL("DROP TABLE message")
-    stopwatch.split("drop-old")
+    stopwatch.split("drop-old-table")
 
     db.execSQL("ALTER TABLE message_tmp RENAME TO message")
     stopwatch.split("rename-table")
 
     dependentItems.forEach { item ->
       val sql = when (item.name) {
-        "message_thread_story_parent_story_scheduled_date_index" -> "CREATE INDEX message_thread_story_parent_story_scheduled_date_latest_revision_id_index ON message (thread_id, date_received, story_type, parent_story_id, scheduled_date, latest_revision_id)"
-        "message_quote_id_quote_author_scheduled_date_index" -> "CREATE INDEX message_quote_id_quote_author_scheduled_date_latest_revision_id_index ON message (quote_id, quote_author, scheduled_date, latest_revision_id)"
-        else -> item.createStatement
+        "mms_thread_story_parent_story_scheduled_date_index" -> "CREATE INDEX message_thread_story_parent_story_scheduled_date_latest_revision_id_index ON message (thread_id, date_received, story_type, parent_story_id, scheduled_date, latest_revision_id)"
+        "mms_quote_id_quote_author_scheduled_date_index" -> "CREATE INDEX message_quote_id_quote_author_scheduled_date_latest_revision_id_index ON message (quote_id, quote_author, scheduled_date, latest_revision_id)"
+        "mms_date_sent_index" -> "CREATE INDEX message_date_sent_from_to_thread_index ON message (date_sent, from_recipient_id, to_recipient_id, thread_id)"
+        else -> item.createStatement.replace(Regex.fromLiteral("CREATE INDEX mms_"), "CREATE INDEX message_")
       }
       Log.d(TAG, "Executing: $sql")
       db.execSQL(sql)
@@ -169,6 +222,64 @@ object V186_AddEditMessageColumnsMigration : SignalDatabaseMigration {
     stopwatch.split("fk-check")
 
     stopwatch.stop(TAG)
+  }
+
+  private fun getSelfId(db: SQLiteDatabase): RecipientId? {
+    val idByAci: RecipientId? = getLocalAci(ApplicationDependencies.getApplication())?.let { aci ->
+      db.rawQuery("SELECT _id FROM recipient WHERE uuid = ?", SqlUtil.buildArgs(aci))
+        .readToSingleObject { RecipientId.from(it.requireLong("_id")) }
+    }
+
+    if (idByAci != null) {
+      return idByAci
+    }
+
+    Log.w(TAG, "Failed to find by ACI! Will try by E164.")
+
+    val idByE164: RecipientId? = getLocalE164(ApplicationDependencies.getApplication())?.let { e164 ->
+      db.rawQuery("SELECT _id FROM recipient WHERE phone = ?", SqlUtil.buildArgs(e164))
+        .readToSingleObject { RecipientId.from(it.requireLong("_id")) }
+    }
+
+    if (idByE164 == null) {
+      Log.w(TAG, "Also failed to find by E164!")
+    }
+
+    return idByE164
+  }
+
+  private fun getLocalAci(context: Application): ACI? {
+    if (KeyValueDatabase.exists(context)) {
+      val keyValueDatabase = KeyValueDatabase.getInstance(context).readableDatabase
+      keyValueDatabase.query("key_value", arrayOf("value"), "key = ?", SqlUtil.buildArgs("account.aci"), null, null, null).use { cursor ->
+        return if (cursor.moveToFirst()) {
+          ACI.parseOrNull(cursor.requireString("value"))
+        } else {
+          Log.w(TAG, "ACI not present in KV database!")
+          null
+        }
+      }
+    } else {
+      Log.w(TAG, "Pre-KV database -- searching for ACI in shared prefs.")
+      return ACI.parseOrNull(PreferenceManager.getDefaultSharedPreferences(context).getString("pref_local_uuid", null))
+    }
+  }
+
+  private fun getLocalE164(context: Application): String? {
+    if (KeyValueDatabase.exists(context)) {
+      val keyValueDatabase = KeyValueDatabase.getInstance(context).readableDatabase
+      keyValueDatabase.query("key_value", arrayOf("value"), "key = ?", SqlUtil.buildArgs("account.e164"), null, null, null).use { cursor ->
+        return if (cursor.moveToFirst()) {
+          cursor.requireString("value")
+        } else {
+          Log.w(TAG, "E164 not present in KV database!")
+          null
+        }
+      }
+    } else {
+      Log.w(TAG, "Pre-KV database -- searching for E164 in shared prefs.")
+      return PreferenceManager.getDefaultSharedPreferences(context).getString("pref_local_number", null)
+    }
   }
 
   private fun getAllDependentItems(db: SQLiteDatabase, tableName: String): List<SqlItem> {
