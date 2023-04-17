@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.util.adapter.StableIdGenerator
 class MediaPreviewV2Adapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
   private var items: List<Attachment> = listOf()
   private val stableIdGenerator = StableIdGenerator<Attachment>()
+  private val currentIdSet: HashSet<Long> = HashSet()
 
   override fun getItemCount(): Int {
     return items.count()
@@ -44,6 +45,10 @@ class MediaPreviewV2Adapter(fragment: Fragment) : FragmentStateAdapter(fragment)
     return fragment
   }
 
+  override fun containsItem(itemId: Long): Boolean {
+    return currentIdSet.contains(itemId)
+  }
+
   fun getFragmentTag(position: Int): String? {
     if (items.isEmpty() || position < 0 || position > itemCount) {
       return null
@@ -59,6 +64,10 @@ class MediaPreviewV2Adapter(fragment: Fragment) : FragmentStateAdapter(fragment)
   fun updateBackingItems(newItems: Collection<Attachment>) {
     if (newItems != items) {
       items = newItems.toList()
+      currentIdSet.clear()
+      items.forEach {
+        currentIdSet.add(stableIdGenerator.getId(it))
+      }
       notifyDataSetChanged()
     }
   }

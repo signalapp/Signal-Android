@@ -38,9 +38,10 @@ import java.util.Optional
 class MessageContentProcessorTestV2 {
 
   companion object {
-    private val TAGS = listOf(MessageContentProcessorV2.TAG, AttachmentTable.TAG)
+    private val TAGS = listOf(MessageContentProcessor.TAG, MessageContentProcessorV2.TAG, AttachmentTable.TAG)
 
     private val GENERALIZE_TAG = mapOf(
+      MessageContentProcessor.TAG to "MCP",
       MessageContentProcessorV2.TAG to "MCP",
       AttachmentTable.TAG to AttachmentTable.TAG
     )
@@ -78,12 +79,12 @@ class MessageContentProcessorTestV2 {
   fun textMessage() {
     var start = envelopeTimestamp
 
-    val messages: List<TestMessage> = (0 until 1).map {
+    val messages: List<TestMessage> = (0 until 100).map {
       start += 200
       TestMessage(
         envelope = MessageContentFuzzer.envelope(start),
         content = MessageContentFuzzer.fuzzTextMessage(),
-        metadata = MessageContentFuzzer.fuzzMetadata(harness.others[0], harness.self.id),
+        metadata = MessageContentFuzzer.envelopeMetadata(harness.others[0], harness.self.id),
         serverDeliveredTimestamp = MessageContentFuzzer.fuzzServerDeliveredTimestamp(start)
       )
     }
@@ -98,58 +99,51 @@ class MessageContentProcessorTestV2 {
   fun mediaMessage() {
     var start = envelopeTimestamp
 
-    val messages: List<TestMessage> = (0 until 10).map {
+    val textMessages: List<TestMessage> = (0 until 10).map {
       start += 200
       TestMessage(
         envelope = MessageContentFuzzer.envelope(start),
         content = MessageContentFuzzer.fuzzTextMessage(),
-        metadata = MessageContentFuzzer.fuzzMetadata(harness.others[0], harness.self.id),
+        metadata = MessageContentFuzzer.envelopeMetadata(harness.others[0], harness.self.id),
         serverDeliveredTimestamp = MessageContentFuzzer.fuzzServerDeliveredTimestamp(start)
       )
     }
 
-    val moreMessages: List<TestMessage> = (0 until 10).map {
+    val firstBatchMediaMessages: List<TestMessage> = (0 until 10).map {
       start += 200
       TestMessage(
         envelope = MessageContentFuzzer.envelope(start),
-        content = MessageContentFuzzer.fuzzMediaMessageWithBody(messages),
-        metadata = MessageContentFuzzer.fuzzMetadata(harness.others[0], harness.self.id),
+        content = MessageContentFuzzer.fuzzMediaMessageWithBody(textMessages),
+        metadata = MessageContentFuzzer.envelopeMetadata(harness.others[0], harness.self.id),
         serverDeliveredTimestamp = MessageContentFuzzer.fuzzServerDeliveredTimestamp(start)
       )
     }
 
-    val evenMoreMessages: List<TestMessage> = (0 until 10).map {
+    val secondBatchNoContentMediaMessages: List<TestMessage> = (0 until 10).map {
       start += 200
       TestMessage(
         envelope = MessageContentFuzzer.envelope(start),
-        content = MessageContentFuzzer.fuzzMediaMessageNoContent(messages + moreMessages),
-        metadata = MessageContentFuzzer.fuzzMetadata(harness.others[0], harness.self.id),
+        content = MessageContentFuzzer.fuzzMediaMessageNoContent(textMessages + firstBatchMediaMessages),
+        metadata = MessageContentFuzzer.envelopeMetadata(harness.others[0], harness.self.id),
         serverDeliveredTimestamp = MessageContentFuzzer.fuzzServerDeliveredTimestamp(start)
       )
     }
 
-    val evenMoreMoreMessages: List<TestMessage> = (0 until 10).map {
+    val thirdBatchNoTextMediaMessagesMessages: List<TestMessage> = (0 until 10).map {
       start += 200
       TestMessage(
         envelope = MessageContentFuzzer.envelope(start),
-        content = MessageContentFuzzer.fuzzMediaMessageNoText(messages + moreMessages),
-        metadata = MessageContentFuzzer.fuzzMetadata(harness.others[0], harness.self.id),
+        content = MessageContentFuzzer.fuzzMediaMessageNoText(textMessages + firstBatchMediaMessages),
+        metadata = MessageContentFuzzer.envelopeMetadata(harness.others[0], harness.self.id),
         serverDeliveredTimestamp = MessageContentFuzzer.fuzzServerDeliveredTimestamp(start)
       )
     }
 
-    testResult.runV2(messages + moreMessages + evenMoreMessages + evenMoreMoreMessages)
-    testResult.runV1(messages + moreMessages + evenMoreMessages + evenMoreMoreMessages)
+    testResult.runV2(textMessages + firstBatchMediaMessages + secondBatchNoContentMediaMessages + thirdBatchNoTextMediaMessagesMessages)
+    testResult.runV1(textMessages + firstBatchMediaMessages + secondBatchNoContentMediaMessages + thirdBatchNoTextMediaMessagesMessages)
 
     testResult.assert()
   }
-
-//  @Test
-//  fun fuzzIt() {
-//    MessageContentFuzzer.fuzzProto(SignalServiceProtos.DataMessage.Contact.Name::class)
-//    MessageContentFuzzer.fuzzProto(SignalServiceProtos.DataMessage.Contact.Avatar::class)
-//    MessageContentFuzzer.fuzzProto(SignalServiceProtos.DataMessage.Contact.Email::class)
-//  }
 
   private inner class TestResults {
 
@@ -285,8 +279,8 @@ class MessageContentProcessorTestV2 {
               Cursor.FIELD_TYPE_BLOB -> Base64.encodeToString(cursor.getBlob(index), 0)
               else -> cursor.getString(index)
             }
-            if (table == MessageTable.TABLE_NAME && column == "type") {
-              data = thing(cursor.getLong(index))
+            if (table == MessageTable.TABLE_NAME && column == MessageTable.TYPE) {
+              data = typeColumnToString(cursor.getLong(index))
             }
 
             column to data
@@ -319,7 +313,7 @@ class MessageContentProcessorTestV2 {
     return SignalServiceContent.createFromProto(contentProto)!!
   }
 
-  fun thing(type: Long): String {
+  fun typeColumnToString(type: Long): String {
     return """
       isOutgoingMessageType:${isOutgoingMessageType(type)}
       isForcedSms:${type and MessageTypes.MESSAGE_FORCE_SMS_BIT != 0L}

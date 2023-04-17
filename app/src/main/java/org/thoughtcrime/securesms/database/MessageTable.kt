@@ -113,6 +113,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.insights.InsightsConstants
 import org.thoughtcrime.securesms.jobs.OptimizeMessageSearchIndexJob
+import org.thoughtcrime.securesms.jobs.ThreadUpdateJob
 import org.thoughtcrime.securesms.jobs.TrimThreadJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -1058,7 +1059,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
 
       if (!silent) {
-        threads.update(threadId, true)
+        ThreadUpdateJob.enqueue(threadId)
         TrimThreadJob.enqueueAsync(threadId)
       }
 
@@ -1301,6 +1302,13 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   fun markAllIncomingStoriesRead(): List<MarkedMessageInfo> {
     val where = "$IS_STORY_CLAUSE AND NOT (${getOutgoingTypeClause()}) AND $READ = 0"
+    val markedMessageInfos = setMessagesRead(where, null)
+    notifyConversationListListeners()
+    return markedMessageInfos
+  }
+
+  fun markAllCallEventsRead(): List<MarkedMessageInfo> {
+    val where = "$IS_CALL_TYPE_CLAUSE AND $READ = 0"
     val markedMessageInfos = setMessagesRead(where, null)
     notifyConversationListListeners()
     return markedMessageInfos
@@ -2467,7 +2475,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     if (!MessageTypes.isPaymentsActivated(mailbox) && !MessageTypes.isPaymentsRequestToActivate(mailbox) && !MessageTypes.isExpirationTimerUpdate(mailbox) && !retrieved.storyType.isStory && isNotStoryGroupReply) {
       val incrementUnreadMentions = retrieved.mentions.isNotEmpty() && retrieved.mentions.any { it.recipientId == Recipient.self().id }
       threads.incrementUnread(threadId, 1, if (incrementUnreadMentions) 1 else 0)
-      threads.update(threadId, true)
+      ThreadUpdateJob.enqueue(threadId)
     }
 
     notifyConversationListeners(threadId)

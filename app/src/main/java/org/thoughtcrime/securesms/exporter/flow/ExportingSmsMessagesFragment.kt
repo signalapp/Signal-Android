@@ -13,13 +13,13 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.smsexporter.SmsExportProgress
 import org.signal.smsexporter.SmsExportService
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.ExportingSmsMessagesFragmentBinding
 import org.thoughtcrime.securesms.exporter.SignalSmsExportService
 import org.thoughtcrime.securesms.permissions.Permissions
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.mb
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 

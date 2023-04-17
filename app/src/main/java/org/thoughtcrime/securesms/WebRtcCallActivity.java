@@ -35,6 +35,7 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
 import androidx.lifecycle.ViewModelProvider;
@@ -125,6 +126,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private WindowLayoutInfoConsumer         windowLayoutInfoConsumer;
   private WindowInfoTrackerCallbackAdapter windowInfoTrackerCallbackAdapter;
   private ThrottledDebouncer               requestNewSizesThrottle;
+  private PictureInPictureParams.Builder   pipBuilderParams;
 
   private Disposable ephemeralStateDisposable = Disposable.empty();
 
@@ -156,6 +158,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     initializeResources();
     initializeViewModel(isLandscapeEnabled);
+    initializePictureInPictureParams();
 
     processIntent(getIntent());
 
@@ -275,14 +278,22 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   private boolean enterPipModeIfPossible() {
-    if (viewModel.canEnterPipMode() && isSystemPipEnabledAndAvailable()) {
-      PictureInPictureParams params = new PictureInPictureParams.Builder()
-          .setAspectRatio(new Rational(9, 16))
-          .build();
-      enterPictureInPictureMode(params);
-      CallParticipantsListDialog.dismiss(getSupportFragmentManager());
+    if (isSystemPipEnabledAndAvailable()) {
+      if (viewModel.canEnterPipMode()) {
+        try {
+          enterPictureInPictureMode(pipBuilderParams.build());
+        } catch (IllegalStateException e) {
+          Log.w(TAG, "Device lied to us about supporting PiP.", e);
+          return false;
+        }
 
-      return true;
+        CallParticipantsListDialog.dismiss(getSupportFragmentManager());
+
+        return true;
+      }
+      if (Build.VERSION.SDK_INT >= 31) {
+        pipBuilderParams.setAutoEnterEnabled(false);
+      }
     }
     return false;
   }
@@ -360,6 +371,19 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       participantUpdateWindow.setEnabled(!info.isInPictureInPictureMode());
       callStateUpdatePopupWindow.setEnabled(!info.isInPictureInPictureMode());
     });
+  }
+
+  private void initializePictureInPictureParams() {
+    if (isSystemPipEnabledAndAvailable()) {
+      pipBuilderParams = new PictureInPictureParams.Builder();
+      pipBuilderParams.setAspectRatio(new Rational(9, 16));
+      if (Build.VERSION.SDK_INT >= 31) {
+        pipBuilderParams.setAutoEnterEnabled(true);
+      }
+      if (Build.VERSION.SDK_INT >= 26) {
+        setPictureInPictureParams(pipBuilderParams.build());
+      }
+    }
   }
 
   private void handleViewModelEvent(@NonNull WebRtcCallViewModel.Event event) {

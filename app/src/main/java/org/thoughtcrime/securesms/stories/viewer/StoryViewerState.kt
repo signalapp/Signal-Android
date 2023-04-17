@@ -12,7 +12,6 @@ data class StoryViewerState(
   val page: Int = -1,
   val crossfadeSource: CrossfadeSource,
   val crossfadeTarget: CrossfadeTarget? = null,
-  val loadState: LoadState = LoadState(),
   val skipCrossfade: Boolean = false,
   val noPosts: Boolean = false
 ) {
@@ -25,12 +24,5 @@ data class StoryViewerState(
   sealed class CrossfadeTarget {
     object None : CrossfadeTarget()
     data class Record(val messageRecord: MmsMessageRecord) : CrossfadeTarget()
-  }
-
-  data class LoadState(
-    val isContentReady: Boolean = false,
-    val isCrossfaderReady: Boolean = false
-  ) {
-    fun isReady(): Boolean = isContentReady && isCrossfaderReady
   }
 }

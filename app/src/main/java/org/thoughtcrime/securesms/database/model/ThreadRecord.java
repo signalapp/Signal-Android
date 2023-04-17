@@ -222,6 +222,11 @@ public final class ThreadRecord {
     else               return true;
   }
 
+  public boolean isRecipientHidden() {
+    if (extra != null) return extra.isRecipientHidden();
+    else               return true;
+  }
+
   public boolean isPinned() {
     return isPinned;
   }

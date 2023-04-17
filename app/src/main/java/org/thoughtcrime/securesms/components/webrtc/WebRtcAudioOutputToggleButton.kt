@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.webrtc.audio.AudioDeviceMapping
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
+import kotlin.math.min
 
 /**
  * A UI button that triggers a picker dialog/bottom sheet allowing the user to select the audio output for the ongoing call.
@@ -71,21 +72,27 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
   }
 
   /**
-   * DO NOT REMOVE THE ELVIS OPERATOR IN THE FIRST LINE
+   * DO NOT REMOVE senseless comparison suppression.
    * Somehow, through XML inflation (reflection?), [outputState] can actually be null,
    * even though the compiler disagrees.
    * */
   override fun onCreateDrawableState(extraSpace: Int): IntArray {
-    val currentState = outputState ?: return super.onCreateDrawableState(extraSpace) // DO NOT REMOVE
-    val currentOutput = currentState.getCurrentOutput()
+    @Suppress("SENSELESS_COMPARISON")
+    if (outputState == null) {
+      return super.onCreateDrawableState(extraSpace)
+    }
+
+    val currentOutput = outputState.getCurrentOutput()
     val extra = when (currentOutput) {
       WebRtcAudioOutput.HANDSET -> intArrayOf(R.attr.state_handset_selected)
       WebRtcAudioOutput.SPEAKER -> intArrayOf(R.attr.state_speaker_selected)
       WebRtcAudioOutput.BLUETOOTH_HEADSET -> intArrayOf(R.attr.state_bt_headset_selected)
       WebRtcAudioOutput.WIRED_HEADSET -> intArrayOf(R.attr.state_wired_headset_selected)
     }
-    val oldLabel = context.getString(currentOutput.labelRes)
-    Log.i(TAG, "Switching drawable to $oldLabel")
+
+    val label = context.getString(currentOutput.labelRes)
+    Log.i(TAG, "Switching to $label")
+
     val drawableState = super.onCreateDrawableState(extraSpace + extra.size)
     mergeDrawableStates(drawableState, extra)
     return drawableState
@@ -95,9 +102,10 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
     throw UnsupportedOperationException("This View does not support custom click listeners.")
   }
 
-  fun setControlAvailability(isEarpieceAvailable: Boolean, isBluetoothHeadsetAvailable: Boolean) {
+  fun setControlAvailability(isEarpieceAvailable: Boolean, isBluetoothHeadsetAvailable: Boolean, isHeadsetAvailable: Boolean) {
     outputState.isEarpieceAvailable = isEarpieceAvailable
     outputState.isBluetoothHeadsetAvailable = isBluetoothHeadsetAvailable
+    outputState.isWiredHeadsetAvailable = isHeadsetAvailable
   }
 
   fun setAudioOutput(audioOutput: WebRtcAudioOutput, notifyListener: Boolean) {
@@ -218,6 +226,12 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
   inner class OutputState {
     private val availableOutputs: LinkedHashSet<WebRtcAudioOutput> = linkedSetOf(WebRtcAudioOutput.SPEAKER)
     private var selectedDevice = 0
+      set(value) {
+        if (value >= availableOutputs.size) {
+          throw IndexOutOfBoundsException("Index: $value, size: ${availableOutputs.size}")
+        }
+        field = value
+      }
 
     @Deprecated("Used only for onSaveInstanceState.")
     fun getBackingIndexForBackup(): Int {
@@ -259,6 +273,7 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
           availableOutputs.add(WebRtcAudioOutput.HANDSET)
         } else {
           availableOutputs.remove(WebRtcAudioOutput.HANDSET)
+          selectedDevice = min(selectedDevice, availableOutputs.size - 1)
         }
       }
 
@@ -269,6 +284,7 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
           availableOutputs.add(WebRtcAudioOutput.BLUETOOTH_HEADSET)
         } else {
           availableOutputs.remove(WebRtcAudioOutput.BLUETOOTH_HEADSET)
+          selectedDevice = min(selectedDevice, availableOutputs.size - 1)
         }
       }
     var isWiredHeadsetAvailable: Boolean
@@ -278,6 +294,7 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
           availableOutputs.add(WebRtcAudioOutput.WIRED_HEADSET)
         } else {
           availableOutputs.remove(WebRtcAudioOutput.WIRED_HEADSET)
+          selectedDevice = min(selectedDevice, availableOutputs.size - 1)
         }
       }
   }

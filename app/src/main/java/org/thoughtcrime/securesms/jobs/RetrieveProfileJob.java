@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -462,17 +463,24 @@ public class RetrieveProfileJob extends BaseJob {
         String remoteDisplayName = remoteProfileName.toString();
         String localDisplayName  = localProfileName.toString();
 
-        if (!recipient.isBlocked() &&
-            !recipient.isGroup() &&
-            !recipient.isSelf() &&
-            !localDisplayName.isEmpty() &&
-            !remoteDisplayName.equals(localDisplayName))
-        {
+        boolean writeChangeEvent = !recipient.isBlocked() &&
+                                   !recipient.isGroup() &&
+                                   !recipient.isSelf() &&
+                                   !localDisplayName.isEmpty() &&
+                                   !remoteDisplayName.equals(localDisplayName);
+        if (writeChangeEvent) {
           Log.i(TAG, "Writing a profile name change event for " + recipient.getId());
           SignalDatabase.messages().insertProfileNameChangeMessages(recipient, remoteDisplayName, localDisplayName);
         } else {
           Log.i(TAG, String.format(Locale.US, "Name changed, but wasn't relevant to write an event. blocked: %s, group: %s, self: %s, firstSet: %s, displayChange: %s",
                                    recipient.isBlocked(), recipient.isGroup(), recipient.isSelf(), localDisplayName.isEmpty(), !remoteDisplayName.equals(localDisplayName)));
+        }
+
+        if (writeChangeEvent || localDisplayName.isEmpty()) {
+          Long threadId = SignalDatabase.threads().getThreadIdFor(recipient.getId());
+          if (threadId != null) {
+            ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(threadId));
+          }
         }
 
         return true;

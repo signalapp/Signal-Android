@@ -55,8 +55,13 @@ public final class PendingRetryReceiptManager extends TimedEventManager<PendingR
   @WorkerThread
   @Override
   protected void executeEvent(@NonNull PendingRetryReceiptModel event) {
-    Log.w(TAG, "It's been " + (System.currentTimeMillis() - event.getReceivedTimestamp()) + " ms since this retry receipt was received. Showing an error.");
-    messageDatabase.insertBadDecryptMessage(event.getAuthor(), event.getAuthorDevice(), event.getSentTimestamp(), event.getReceivedTimestamp(), event.getThreadId());
+    if (SignalDatabase.threads().containsId(event.getThreadId()) && SignalDatabase.recipients().containsId(event.getAuthor())) {
+      Log.w(TAG, "It's been " + (System.currentTimeMillis() - event.getReceivedTimestamp()) + " ms since this retry receipt was received. Showing an error.");
+      messageDatabase.insertBadDecryptMessage(event.getAuthor(), event.getAuthorDevice(), event.getSentTimestamp(), event.getReceivedTimestamp(), event.getThreadId());
+    } else {
+      Log.w(TAG, "Would normally show an error, but the thread or recipient has since been deleted! ThreadId: " + event.getThreadId() + ", RecipientId: " + event.getAuthor());
+    }
+    
     pendingCache.delete(event);
   }
 

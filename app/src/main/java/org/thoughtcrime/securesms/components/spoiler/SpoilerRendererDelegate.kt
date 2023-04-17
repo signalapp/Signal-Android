@@ -2,11 +2,11 @@ package org.thoughtcrime.securesms.components.spoiler
 
 import android.animation.ValueAnimator
 import android.graphics.Canvas
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
 import android.text.Annotation
 import android.text.Layout
 import android.text.Spanned
+import android.view.View
+import android.view.View.OnAttachStateChangeListener
 import android.view.animation.LinearInterpolator
 import android.widget.TextView
 import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation.SpoilerClickableSpan
@@ -21,11 +21,9 @@ class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextVi
 
   private val single: SpoilerRenderer
   private val multi: SpoilerRenderer
+  private val spoilerDrawable: SpoilerDrawable
   private var animatorRunning = false
   private var textColor: Int
-
-  private var spoilerDrawablePool = mutableMapOf<Annotation, List<SpoilerDrawable>>()
-  private var nextSpoilerDrawablePool = mutableMapOf<Annotation, List<SpoilerDrawable>>()
 
   private val cachedAnnotations = HashMap<Int, Map<Annotation, SpoilerClickableSpan?>>()
   private val cachedMeasurements = HashMap<Int, SpanMeasurements>()
@@ -33,24 +31,30 @@ class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextVi
   private val animator = ValueAnimator.ofInt(0, 100).apply {
     duration = 1000
     interpolator = LinearInterpolator()
-    addUpdateListener { view.invalidate() }
+    addUpdateListener {
+      SpoilerPaint.update()
+      view.invalidate()
+    }
     repeatCount = ValueAnimator.INFINITE
     repeatMode = ValueAnimator.REVERSE
   }
 
   init {
-    single = SingleLineSpoilerRenderer()
-    multi = MultiLineSpoilerRenderer()
     textColor = view.textColors.defaultColor
+    spoilerDrawable = SpoilerDrawable(textColor)
+    single = SingleLineSpoilerRenderer(spoilerDrawable)
+    multi = MultiLineSpoilerRenderer(spoilerDrawable)
+
+    view.addOnAttachStateChangeListener(object : OnAttachStateChangeListener {
+      override fun onViewDetachedFromWindow(v: View) = stopAnimating()
+      override fun onViewAttachedToWindow(v: View) = Unit
+    })
   }
 
   fun updateFromTextColor() {
     val color = view.textColors.defaultColor
     if (color != textColor) {
-      spoilerDrawablePool
-        .values
-        .flatten()
-        .forEach { it.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN) }
+      spoilerDrawable.setTintColor(color)
       textColor = color
     }
   }
@@ -59,7 +63,6 @@ class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextVi
     var hasSpoilersToRender = false
     val annotations: Map<Annotation, SpoilerClickableSpan?> = cachedAnnotations.getFromCache(text) { SpoilerAnnotation.getSpoilerAndClickAnnotations(text) }
 
-    nextSpoilerDrawablePool.clear()
     for ((annotation, clickSpan) in annotations.entries) {
       if (clickSpan?.spoilerRevealed == true) {
         continue
@@ -83,16 +86,10 @@ class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextVi
       }
 
       val renderer: SpoilerRenderer = if (measurements.startLine == measurements.endLine) single else multi
-      val drawables: List<SpoilerDrawable> = spoilerDrawablePool[annotation] ?: listOf(SpoilerDrawable(textColor), SpoilerDrawable(textColor), SpoilerDrawable(textColor))
 
-      renderer.draw(canvas, layout, measurements.startLine, measurements.endLine, measurements.startOffset, measurements.endOffset, drawables)
-      nextSpoilerDrawablePool[annotation] = drawables
+      renderer.draw(canvas, layout, measurements.startLine, measurements.endLine, measurements.startOffset, measurements.endOffset)
       hasSpoilersToRender = true
     }
-
-    val temporaryPool = spoilerDrawablePool
-    spoilerDrawablePool = nextSpoilerDrawablePool
-    nextSpoilerDrawablePool = temporaryPool
 
     if (hasSpoilersToRender) {
       if (!animatorRunning) {
@@ -100,9 +97,13 @@ class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextVi
         animatorRunning = true
       }
     } else {
-      animator.pause()
-      animatorRunning = false
+      stopAnimating()
     }
+  }
+
+  private fun stopAnimating() {
+    animator.pause()
+    animatorRunning = false
   }
 
   private inline fun <V> MutableMap<Int, V>.getFromCache(vararg keys: Any, default: () -> V): V {

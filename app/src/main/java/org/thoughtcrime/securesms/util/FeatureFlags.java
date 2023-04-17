@@ -108,7 +108,6 @@ public final class FeatureFlags {
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
   private static final String CALLS_TAB                         = "android.calls.tab";
   private static final String TEXT_FORMATTING_SPOILER_SEND      = "android.textFormatting.spoilerSend";
-  private static final String EXPORT_ACCOUNT_DATA               = "android.exportAccountData";
   private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc";
 
   /**
@@ -168,8 +167,7 @@ public final class FeatureFlags {
       TEXT_FORMATTING,
       ANY_ADDRESS_PORTS_KILL_SWITCH,
       CALLS_TAB,
-      TEXT_FORMATTING_SPOILER_SEND,
-      EXPORT_ACCOUNT_DATA
+      TEXT_FORMATTING_SPOILER_SEND
   );
 
   @VisibleForTesting
@@ -605,13 +603,6 @@ public final class FeatureFlags {
    */
   public static boolean callsTab() {
     return getBoolean(CALLS_TAB, false);
-  }
-
-  /**
-   * Whether or not the ability to export account data is enabled
-   */
-  public static boolean exportAccountData() {
-    return getBoolean(EXPORT_ACCOUNT_DATA, false);
   }
 
   /**

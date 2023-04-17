@@ -171,7 +171,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
 
   fun markViewed(storyPost: StoryPost) {
     if (!storyPost.conversationMessage.messageRecord.isOutgoing) {
-      SignalExecutors.BOUNDED.execute {
+      SignalExecutors.SERIAL.execute {
         val markedMessageInfo = SignalDatabase.messages.setIncomingMessageViewed(storyPost.id)
         if (markedMessageInfo != null) {
           ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners()

@@ -40,15 +40,17 @@ class ConversationSettingsRepository(
   private val groupManagementRepository: GroupManagementRepository = GroupManagementRepository(context)
 ) {
 
-  fun getCallEvents(callMessageIds: LongArray): Single<List<Pair<CallTable.Call, MessageRecord>>> {
-    return if (callMessageIds.isEmpty()) {
+  fun getCallEvents(callRowIds: LongArray): Single<List<Pair<CallTable.Call, MessageRecord>>> {
+    return if (callRowIds.isEmpty()) {
       Single.just(emptyList())
     } else {
       Single.fromCallable {
-        val callMap = SignalDatabase.calls.getCalls(callMessageIds.toList())
-        SignalDatabase.messages.getMessages(callMessageIds.toList()).iterator().asSequence()
+        val callMap = SignalDatabase.calls.getCallsByRowIds(callRowIds.toList())
+        val messageIds = callMap.values.mapNotNull { it.messageId }
+        SignalDatabase.messages.getMessages(messageIds).iterator().asSequence()
           .filter { callMap.containsKey(it.id) }
           .map { callMap[it.id]!! to it }
+          .sortedByDescending { it.first.timestamp }
           .toList()
       }
     }

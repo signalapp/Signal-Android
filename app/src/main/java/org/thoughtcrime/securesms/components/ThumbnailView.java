@@ -290,12 +290,20 @@ public class ThumbnailView extends FrameLayout {
   }
 
   public void setBounds(int minWidth, int maxWidth, int minHeight, int maxHeight) {
+    final int oldMinWidth  = bounds[MIN_WIDTH];
+    final int oldMaxWidth  = bounds[MAX_WIDTH];
+    final int oldMinHeight = bounds[MIN_HEIGHT];
+    final int oldMaxHeight = bounds[MAX_HEIGHT];
+
     bounds[MIN_WIDTH]  = minWidth;
     bounds[MAX_WIDTH]  = maxWidth;
     bounds[MIN_HEIGHT] = minHeight;
     bounds[MAX_HEIGHT] = maxHeight;
 
-    forceLayout();
+    if (oldMinWidth != minWidth || oldMaxWidth != maxWidth || oldMinHeight != minHeight || oldMaxHeight != maxHeight) {
+      Log.d(TAG, "setBounds: update {minW" + minWidth + ",maxW" + maxWidth + ",minH" + minHeight + ",maxH" + maxHeight + "}");
+      forceLayout();
+    }
   }
 
   public void setImageDrawable(@NonNull GlideRequests glideRequests, @Nullable Drawable drawable) {
@@ -452,9 +460,7 @@ public class ThumbnailView extends FrameLayout {
       request = request.transition(withCrossFade());
     }
 
-    if (width > 0 && height > 0) {
-      request = request.override(width, height);
-    }
+    request = override(request, width, height);
 
     GlideDrawableListeningTarget target                 = new GlideDrawableListeningTarget(image, future);
     Request                      previousRequest        = target.getRequest();
@@ -482,14 +488,22 @@ public class ThumbnailView extends FrameLayout {
                                                   .placeholder(model.getPlaceholder())
                                                   .transition(withCrossFade());
 
-    if (width > 0 && height > 0) {
-      request = request.override(width, height);
-    }
+    request = override(request, width, height);
 
     request.into(new GlideDrawableListeningTarget(image, future));
     blurHash.setImageDrawable(null);
 
     return future;
+  }
+
+  private <T> GlideRequest<T> override(@NonNull GlideRequest<T> request, int width, int height) {
+    if (width > 0 && height > 0) {
+      Log.d(TAG, "override: apply w" + width + "xh" + height);
+      return request.override(width, height);
+    } else {
+      Log.d(TAG, "override: skip w" + width + "xh" + height);
+      return request;
+    }
   }
 
   public void setThumbnailClickListener(SlideClickListener listener) {
@@ -572,7 +586,7 @@ public class ThumbnailView extends FrameLayout {
       size[HEIGHT] = getDefaultHeight();
     }
 
-    return request.override(size[WIDTH], size[HEIGHT]);
+    return override(request, size[WIDTH], size[HEIGHT]);
   }
 
   private int getDefaultWidth() {

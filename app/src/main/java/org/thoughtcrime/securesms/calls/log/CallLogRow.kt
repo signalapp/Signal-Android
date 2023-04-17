@@ -15,11 +15,12 @@ sealed class CallLogRow {
    * An incoming, outgoing, or missed call.
    */
   data class Call(
-    val call: CallTable.Call,
+    val record: CallTable.Call,
     val peer: Recipient,
     val date: Long,
     val groupCallState: GroupCallState,
-    override val id: Id = Id.Call(call.callId)
+    val children: Set<Long>,
+    override val id: Id = Id.Call(children)
   ) : CallLogRow()
 
   /**
@@ -34,7 +35,7 @@ sealed class CallLogRow {
   }
 
   sealed class Id {
-    data class Call(val callId: Long) : Id()
+    data class Call(val children: Set<Long>) : Id()
     object ClearFilter : Id()
     object CreateCallLink : Id()
   }

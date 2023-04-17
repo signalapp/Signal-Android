@@ -23,6 +23,7 @@ public class InMemoryMessageRecord extends MessageRecord {
   private static final int NO_GROUPS_IN_COMMON_ID    = -1;
   private static final int UNIVERSAL_EXPIRE_TIMER_ID = -2;
   private static final int FORCE_BUBBLE_ID           = -3;
+  private static final int HIDDEN_CONTACT_WARNING_ID = -4;
 
   private InMemoryMessageRecord(long id,
                                 String body,
@@ -115,6 +116,29 @@ public class InMemoryMessageRecord extends MessageRecord {
     @Override
     public @StringRes int getActionButtonText() {
       return R.string.ConversationUpdateItem_learn_more;
+    }
+  }
+
+  public static final class RemovedContactHidden extends InMemoryMessageRecord {
+
+    public RemovedContactHidden(long threadId) {
+      super(HIDDEN_CONTACT_WARNING_ID, "", Recipient.UNKNOWN, threadId, 0);
+    }
+
+    @Override
+    public @Nullable UpdateDescription getUpdateDisplayBody(@NonNull Context context, @Nullable Consumer<RecipientId> recipientClickHandler) {
+      return UpdateDescription.staticDescription(context.getString(R.string.ConversationUpdateItem_hidden_contact_message_to_add_back),
+                                                 R.drawable.symbol_info_compact_16);
+    }
+
+    @Override
+    public boolean isUpdate() {
+      return true;
+    }
+
+    @Override
+    public boolean showActionButton() {
+      return false;
     }
   }
 
