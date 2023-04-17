@@ -1550,7 +1550,7 @@ public class AttachmentTable extends DatabaseTable {
 
   public static final class TransformProperties {
 
-    private static final int DEFAULT_MEDIA_QUALITY = SentMediaQuality.STANDARD.getCode();
+    private static final int DEFAULT_MEDIA_QUALITY = SentMediaQuality.HIGH.getCode();
 
     @JsonProperty private final boolean skipTransform;
     @JsonProperty private final boolean videoTrim;
