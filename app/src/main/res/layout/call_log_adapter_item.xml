@@ -90,27 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="start"
-        app:constraint_referenced_ids="call_type,call_join_button" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/call_join_button"
-        style="@style/Signal.Widget.Button.Small.Primary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:textColor="@color/signal_colorOnPrimary"
-        android:visibility="gone"
-        app:backgroundTint="@color/signal_colorPrimary"
-        app:icon="@drawable/ic_video_call_24"
-        app:iconPadding="4dp"
-        app:iconSize="20dp"
-        app:iconTint="@color/signal_colorOnPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeWidth="0dp"
-        tools:text="Join"
-        tools:visibility="gone" />
+        app:constraint_referenced_ids="call_type,group_call_button" />
 
     <ImageView
         android:id="@+id/call_type"
