@@ -51,6 +51,7 @@ import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
+import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
@@ -4009,52 +4010,53 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun getQuotedMessagePosition(threadId: Long, quoteId: Long, authorId: RecipientId): Int {
-    var position = 0
-    readableDatabase
-      .select(DATE_SENT, FROM_RECIPIENT_ID, REMOTE_DELETED, LATEST_REVISION_ID)
+    val targetMessageDateReceived: Long = readableDatabase
+      .select(DATE_RECEIVED, LATEST_REVISION_ID)
       .from(TABLE_NAME)
-      .where("$THREAD_ID = $threadId AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1")
-      .orderBy("$DATE_RECEIVED DESC")
+      .where("$DATE_SENT = $quoteId AND $FROM_RECIPIENT_ID = ? AND $REMOTE_DELETED = 0 AND $SCHEDULED_DATE = -1", authorId)
       .run()
-      .forEach { cursor ->
-        val quoteIdMatches = cursor.requireLong(DATE_SENT) == quoteId
-        val recipientIdMatches = authorId == RecipientId.from(cursor.requireLong(FROM_RECIPIENT_ID))
-
-        if (quoteIdMatches && recipientIdMatches) {
-          return if (cursor.requireBoolean(REMOTE_DELETED)) {
-            -1
-          } else {
-            position
-          }
-        } else if (cursor.requireLong(LATEST_REVISION_ID) == 0L) {
-          position++
+      .readToSingleObject { cursor ->
+        val latestRevisionId = cursor.requireLongOrNull(LATEST_REVISION_ID)
+        if (latestRevisionId != null) {
+          readableDatabase
+            .select(DATE_RECEIVED)
+            .from(TABLE_NAME)
+            .where("$ID = ?", latestRevisionId)
+            .run()
+            .readToSingleLong(-1L)
+        } else {
+          cursor.requireLong(DATE_RECEIVED)
         }
-      }
+      } ?: -1L
 
-    return -1
+    if (targetMessageDateReceived == -1L) {
+      return -1
+    }
+
+    return readableDatabase
+      .select("COUNT(*)")
+      .from(TABLE_NAME)
+      .where("$THREAD_ID = $threadId AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL AND $DATE_RECEIVED > $targetMessageDateReceived")
+      .run()
+      .readToSingleInt()
   }
 
   fun getMessagePositionInConversation(threadId: Long, receivedTimestamp: Long, authorId: RecipientId): Int {
-    readableDatabase
-      .select(DATE_RECEIVED, FROM_RECIPIENT_ID, REMOTE_DELETED)
-      .from(TABLE_NAME)
-      .where("$THREAD_ID = $threadId AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL")
-      .orderBy("$DATE_RECEIVED DESC")
+    val validMessageExists: Boolean = readableDatabase
+      .exists(TABLE_NAME)
+      .where("$DATE_RECEIVED = $receivedTimestamp AND $FROM_RECIPIENT_ID = ? AND $REMOTE_DELETED = 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL", authorId)
       .run()
-      .forEach { cursor ->
-        val timestampMatches = cursor.requireLong(DATE_RECEIVED) == receivedTimestamp
-        val authorIdMatches = authorId == RecipientId.from(cursor.requireLong(FROM_RECIPIENT_ID))
 
-        if (timestampMatches && authorIdMatches) {
-          return if (cursor.requireBoolean(REMOTE_DELETED)) {
-            -1
-          } else {
-            cursor.position
-          }
-        }
-      }
+    if (!validMessageExists) {
+      return -1
+    }
 
-    return -1
+    return readableDatabase
+      .select("COUNT(*)")
+      .from(TABLE_NAME)
+      .where("$THREAD_ID = $threadId AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL AND $DATE_RECEIVED > $receivedTimestamp")
+      .run()
+      .readToSingleInt(-1)
   }
 
   fun getMessagePositionInConversation(threadId: Long, receivedTimestamp: Long): Int {

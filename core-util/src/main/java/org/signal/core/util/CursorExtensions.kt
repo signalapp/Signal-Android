@@ -1,6 +1,7 @@
 package org.signal.core.util
 
 import android.database.Cursor
+import androidx.core.database.getLongOrNull
 import java.util.Optional
 
 fun Cursor.requireString(column: String): String? {
@@ -29,6 +30,10 @@ fun Cursor.requireFloat(column: String): Float {
 
 fun Cursor.requireLong(column: String): Long {
   return CursorUtil.requireLong(this, column)
+}
+
+fun Cursor.requireLongOrNull(column: String): Long? {
+  return this.getLongOrNull(this.getColumnIndexOrThrow(column))
 }
 
 fun Cursor.optionalLong(column: String): Optional<Long> {
