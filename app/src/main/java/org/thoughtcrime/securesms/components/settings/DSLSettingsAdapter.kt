@@ -208,15 +208,21 @@ class SwitchPreferenceViewHolder(itemView: View) : PreferenceViewHolder<SwitchPr
   private val switchWidget: MaterialSwitch = itemView.findViewById(R.id.switch_widget)
 
   override fun bind(model: SwitchPreference) {
-    super.bind(model)
     switchWidget.setOnCheckedChangeListener(null)
 
-    switchWidget.isEnabled = model.isEnabled
     switchWidget.isChecked = model.isChecked
 
     switchWidget.setOnCheckedChangeListener { _, _ ->
       model.onClick()
     }
+
+    if (payload.contains(SwitchPreference.PAYLOAD_CHECKED)) {
+      return
+    }
+
+    super.bind(model)
+
+    switchWidget.isEnabled = model.isEnabled
 
     itemView.setOnClickListener {
       model.onClick()

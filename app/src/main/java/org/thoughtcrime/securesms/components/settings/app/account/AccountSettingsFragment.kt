@@ -152,6 +152,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
 
       val dialog: AlertDialog = MaterialAlertDialogBuilder(context)
         .setView(R.layout.pin_disable_reminders_dialog)
+        .setOnDismissListener { viewModel.refreshState() }
         .create()
 
       dialog.show()
