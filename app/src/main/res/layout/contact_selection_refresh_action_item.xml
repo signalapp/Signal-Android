@@ -46,7 +46,7 @@
         android:layout_marginStart="16dp"
         android:ellipsize="marquee"
         android:labelFor="@id/action_icon"
-        android:singleLine="true"
+        android:maxLines="2"
         android:text="@string/contact_selection_activity__missing_someone"
         android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_colorOnSurfaceVariant"
