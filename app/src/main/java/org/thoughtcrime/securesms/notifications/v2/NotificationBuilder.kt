@@ -265,7 +265,7 @@ sealed class NotificationBuilder(protected val context: Context) {
             NotificationCompat.BigPictureStyle()
               .bigPicture(bigPictureUri.toBitmap(context, BIG_PICTURE_DIMEN))
               .setSummaryText(conversation.getContentText(context))
-              .bigLargeIcon(null)
+              .bigLargeIcon(null as Bitmap?)
           )
           return
         }
