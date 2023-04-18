@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.doOnNextLayout
 
 var View.visible: Boolean
   get() {
@@ -29,6 +30,17 @@ inline fun View.doOnEachLayout(crossinline action: (view: View) -> Unit): View.O
   val listener = View.OnLayoutChangeListener { view, _, _, _, _, _, _, _, _ -> action(view) }
   addOnLayoutChangeListener(listener)
   return listener
+}
+
+/**
+ * OnLayout gets called prior to the view *actually* being laid out. This
+ * method will wait until the next layout and then post the action to happen
+ * afterwards.
+ */
+inline fun View.doAfterNextLayout(crossinline action: () -> Unit) {
+  doOnNextLayout {
+    post { action() }
+  }
 }
 
 fun TextView.setRelativeDrawables(
