@@ -179,7 +179,7 @@ public final class MultiShareArgs implements Parcelable {
   }
 
   public boolean isValidForStories() {
-    if (isViewOnce()) {
+    if (isViewOnce() || stickerLocator != null) {
       return false;
     }
 

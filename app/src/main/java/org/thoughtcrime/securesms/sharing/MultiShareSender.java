@@ -270,6 +270,8 @@ public final class MultiShareSender {
                                                         return expandToClips(context, (VideoSlide) slide).stream();
                                                       } else if (slide instanceof ImageSlide) {
                                                         return java.util.stream.Stream.of(ensureDefaultQuality(context, (ImageSlide) slide));
+                                                      } else if (slide instanceof StickerSlide) {
+                                                        return java.util.stream.Stream.empty();
                                                       } else {
                                                         return java.util.stream.Stream.of(slide);
                                                       }
