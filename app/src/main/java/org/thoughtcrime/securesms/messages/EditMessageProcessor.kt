@@ -49,7 +49,7 @@ object EditMessageProcessor {
 
     log(envelope.timestamp, "[handleEditMessage] Edit message for " + editMessage.targetSentTimestamp)
 
-    var targetMessage: MediaMmsMessageRecord? = SignalDatabase.messages.getMessageFor(editMessage.targetSentTimestamp, senderRecipient.id) as MediaMmsMessageRecord
+    var targetMessage: MediaMmsMessageRecord? = SignalDatabase.messages.getMessageFor(editMessage.targetSentTimestamp, senderRecipient.id) as? MediaMmsMessageRecord
     val targetThreadRecipient: Recipient? = if (targetMessage != null) SignalDatabase.threads.getRecipientForThreadId(targetMessage.threadId) else null
 
     if (targetMessage == null || targetThreadRecipient == null) {

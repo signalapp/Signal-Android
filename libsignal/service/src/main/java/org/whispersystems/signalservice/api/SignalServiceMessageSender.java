@@ -1332,6 +1332,7 @@ public class SignalServiceMessageSender {
     SyncMessage.Sent.Builder sentMessage  = SyncMessage.Sent.newBuilder();
     DataMessage              dataMessage  = content != null && content.hasDataMessage() ? content.getDataMessage() : null;
     StoryMessage             storyMessage = content != null && content.hasStoryMessage() ? content.getStoryMessage() : null;
+    EditMessage              editMessage  = content != null && content.hasEditMessage() ? content.getEditMessage() : null;
 
     sentMessage.setTimestamp(timestamp);
 
@@ -1366,6 +1367,10 @@ public class SignalServiceMessageSender {
 
     if (storyMessage != null) {
       sentMessage.setStoryMessage(storyMessage);
+    }
+
+    if (editMessage != null) {
+      sentMessage.setEditMessage(editMessage);
     }
 
     sentMessage.addAllStoryMessageRecipients(storyMessageRecipients.stream()

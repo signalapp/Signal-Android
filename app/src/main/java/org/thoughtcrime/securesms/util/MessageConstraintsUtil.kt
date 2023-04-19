@@ -52,7 +52,7 @@ object MessageConstraintsUtil {
   @JvmStatic
   fun isValidEditMessageSend(targetMessage: MessageRecord, currentTime: Long): Boolean {
     return isValidRemoteDeleteSend(targetMessage, currentTime) &&
-      targetMessage.revisionNumber < 10 &&
+      targetMessage.revisionNumber < MAX_EDIT_COUNT &&
       !targetMessage.isViewOnceMessage() &&
       !targetMessage.hasAudio() &&
       !targetMessage.hasSharedContact()

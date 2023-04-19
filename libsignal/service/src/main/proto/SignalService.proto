@@ -471,6 +471,7 @@ message SyncMessage {
     optional bool                       isRecipientUpdate        = 6 [default = false];
     optional StoryMessage               storyMessage             = 8;
     repeated StoryMessageRecipient      storyMessageRecipients   = 9;
+    optional EditMessage                editMessage              = 10;
   }
 
   message Contacts {
