@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -95,6 +96,10 @@ class ConversationViewModel(
 
   override fun onCleared() {
     disposables.clear()
+  }
+
+  fun getQuotedMessagePosition(quote: Quote): Single<Int> {
+    return repository.getQuotedMessagePosition(threadId, quote)
   }
 
   fun setLastScrolled(lastScrolledTimestamp: Long) {

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components
 
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -11,6 +12,7 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.util.doAfterNextLayout
+import kotlin.math.abs
 import kotlin.math.max
 
 /**
@@ -29,8 +31,14 @@ class ScrollToPositionDelegate private constructor(
   companion object {
     private val TAG = Log.tag(ScrollToPositionDelegate::class.java)
     const val NO_POSITION = -1
-    private val EMPTY = ScrollToPositionRequest(NO_POSITION, true)
     private const val SMOOTH_SCROLL_THRESHOLD = 25
+    private const val SCROLL_ANIMATION_THRESHOLD = 50
+    private val EMPTY = ScrollToPositionRequest(
+      position = NO_POSITION,
+      smooth = true,
+      awaitLayout = true,
+      scrollStrategy = DefaultScrollStrategy
+    )
   }
 
   private val listCommitted = BehaviorSubject.create<Unit>()
@@ -49,8 +57,14 @@ class ScrollToPositionDelegate private constructor(
       .filter { it.position >= 0 && canJumpToPosition(it.position) }
       .map { it.copy(position = mapToTruePosition(it.position)) }
       .subscribeBy(onNext = { position ->
-        recyclerView.doAfterNextLayout {
-          handleScrollPositionRequest(position, recyclerView)
+        if (position.awaitLayout) {
+          recyclerView.doAfterNextLayout {
+            handleScrollPositionRequest(position, recyclerView)
+          }
+        } else {
+          recyclerView.post {
+            handleScrollPositionRequest(position, recyclerView)
+          }
         }
 
         if (!(recyclerView.isLayoutRequested || recyclerView.isInLayout)) {
@@ -61,9 +75,19 @@ class ScrollToPositionDelegate private constructor(
 
   /**
    * Entry point for requesting a specific scroll position.
+   *
+   * @param position The desired position to jump to. -1 to clear the current request.
+   * @param smooth Whether a smooth scroll will be attempted. Only done if we are within a certain distance.
+   * @param awaitLayout Whether this scroll should await for the next layout to complete before being attempted.
+   * @param scrollStrategy See [ScrollStrategy]
    */
-  fun requestScrollPosition(position: Int, smooth: Boolean = true) {
-    scrollPositionRequested.onNext(ScrollToPositionRequest(position, smooth))
+  fun requestScrollPosition(
+    position: Int,
+    smooth: Boolean = true,
+    awaitLayout: Boolean = true,
+    scrollStrategy: ScrollStrategy = DefaultScrollStrategy
+  ) {
+    scrollPositionRequested.onNext(ScrollToPositionRequest(position, smooth, awaitLayout, scrollStrategy))
   }
 
   /**
@@ -98,24 +122,80 @@ class ScrollToPositionDelegate private constructor(
       return
     }
 
-    val position = max(0, request.position - 1)
-    val offset = when {
-      position == 0 -> 0
-      layoutManager.reverseLayout -> recyclerView.height
-      else -> 0
-    }
+    val position = max(0, request.position)
 
-    Log.d(TAG, "Scrolling to position $position with offset $offset.")
-
-    if (request.smooth && position == 0 && layoutManager.findFirstVisibleItemPosition() < SMOOTH_SCROLL_THRESHOLD) {
-      recyclerView.smoothScrollToPosition(position)
-    } else {
-      layoutManager.scrollToPositionWithOffset(position, offset)
-    }
+    request.scrollStrategy.performScroll(
+      recyclerView,
+      layoutManager,
+      position,
+      request.smooth
+    )
   }
 
   private data class ScrollToPositionRequest(
     val position: Int,
-    val smooth: Boolean
+    val smooth: Boolean,
+    val awaitLayout: Boolean,
+    val scrollStrategy: ScrollStrategy
   )
+
+  /**
+   * Jumps to the desired position, pinning it to the "top" of the recycler.
+   */
+  object DefaultScrollStrategy : ScrollStrategy {
+    override fun performScroll(
+      recyclerView: RecyclerView,
+      layoutManager: LinearLayoutManager,
+      position: Int,
+      smooth: Boolean
+    ) {
+      val offset = when {
+        position == 0 -> 0
+        layoutManager.reverseLayout -> recyclerView.height
+        else -> 0
+      }
+
+      Log.d(TAG, "Scrolling to $position")
+
+      if (smooth && position == 0 && layoutManager.findFirstVisibleItemPosition() < SMOOTH_SCROLL_THRESHOLD) {
+        recyclerView.smoothScrollToPosition(position)
+      } else {
+        layoutManager.scrollToPositionWithOffset(position, offset)
+      }
+    }
+  }
+
+  /**
+   * Jumps to the given position but tries to ensure that the contents are completely visible on screen.
+   */
+  object JumpToPositionStrategy : ScrollStrategy {
+    override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
+      if (abs(layoutManager.findFirstVisibleItemPosition() - position) < SCROLL_ANIMATION_THRESHOLD) {
+        val child: View? = layoutManager.findViewByPosition(position)
+        if (child == null || !layoutManager.isViewPartiallyVisible(child, true, false)) {
+          layoutManager.scrollToPositionWithOffset(position, recyclerView.height / 4)
+        }
+      } else {
+        layoutManager.scrollToPositionWithOffset(position, recyclerView.height / 4)
+      }
+    }
+  }
+
+  /**
+   * Performs the actual scrolling for a given request.
+   */
+  interface ScrollStrategy {
+    /**
+     * @param recyclerView The recycler view which is to be scrolled
+     * @param layoutManager The typed layout manager attached to the recycler view
+     * @param position The position we should scroll to.
+     * @param smooth Whether or not a smooth scroll should be attempted
+     */
+    fun performScroll(
+      recyclerView: RecyclerView,
+      layoutManager: LinearLayoutManager,
+      position: Int,
+      smooth: Boolean
+    )
+  }
 }

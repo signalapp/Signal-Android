@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
+import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import kotlin.math.max
@@ -96,5 +97,11 @@ class ConversationRepository(context: Context) {
 
   fun markGiftBadgeRevealed(messageId: Long) {
     oldConversationRepository.markGiftBadgeRevealed(messageId)
+  }
+
+  fun getQuotedMessagePosition(threadId: Long, quote: Quote): Single<Int> {
+    return Single.fromCallable {
+      SignalDatabase.messages.getQuotedMessagePosition(threadId, quote.id, quote.author)
+    }.subscribeOn(Schedulers.io())
   }
 }

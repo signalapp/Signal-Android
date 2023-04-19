@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import androidx.annotation.StringRes
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
@@ -17,6 +18,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
@@ -25,6 +27,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
@@ -57,6 +60,7 @@ import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewMo
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
@@ -86,13 +90,14 @@ import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheet
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity
+import org.thoughtcrime.securesms.stories.StoryViewerArgs
+import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.WindowUtil
-import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.visible
@@ -139,6 +144,15 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   private lateinit var markReadHelper: MarkReadHelper
   private lateinit var giphyMp4ProjectionRecycler: GiphyMp4ProjectionRecycler
   private lateinit var addToContactsLauncher: ActivityResultLauncher<Intent>
+  private lateinit var scrollToPositionDelegate: ScrollToPositionDelegate
+  private lateinit var adapter: ConversationAdapter
+
+  private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
+    override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
+      ScrollToPositionDelegate.JumpToPositionStrategy.performScroll(recyclerView, layoutManager, position, smooth)
+      adapter.pulseAtPosition(position)
+    }
+  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     registerForResults()
@@ -215,7 +229,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     Log.d(TAG, "onFirstRecipientLoad")
 
     val colorizer = Colorizer()
-    val adapter = ConversationAdapter(
+    adapter = ConversationAdapter(
       requireContext(),
       viewLifecycleOwner,
       GlideApp.with(this),
@@ -225,7 +239,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       colorizer
     )
 
-    val scrollToPositionDelegate = ScrollToPositionDelegate(
+    scrollToPositionDelegate = ScrollToPositionDelegate(
       binding.conversationItemRecycler,
       adapter::canJumpToPosition,
       adapter::getAdapterPositionForMessagePosition
@@ -255,19 +269,20 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     binding.conversationItemRecycler.addItemDecoration(multiselectItemDecoration)
     viewLifecycleOwner.lifecycle.addObserver(multiselectItemDecoration)
 
-    disposables += viewModel.conversationThreadState.subscribeBy {
-      scrollToPositionDelegate.requestScrollPosition(it.meta.getStartPosition(), false)
-    }
-
     disposables += viewModel
       .conversationThreadState
+      .doOnSuccess {
+        scrollToPositionDelegate.requestScrollPosition(
+          position = it.meta.getStartPosition(),
+          smooth = false,
+          awaitLayout = false
+        )
+      }
       .flatMapObservable { it.items.data }
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(onNext = {
         adapter.submitList(it) {
-          binding.conversationItemRecycler.doAfterNextLayout {
-            scrollToPositionDelegate.notifyListCommitted()
-          }
+          scrollToPositionDelegate.notifyListCommitted()
         }
       })
 
@@ -408,6 +423,27 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     return callback
   }
 
+  private fun toast(@StringRes toastTextId: Int, toastDuration: Int) {
+    ThreadUtil.runOnMain {
+      if (context != null) {
+        Toast.makeText(context, toastTextId, toastDuration).show()
+      } else {
+        Log.w(TAG, "Dropping toast without context.")
+      }
+    }
+  }
+
+  /**
+   * Requests a jump to the desired position, and ensures that the position desired will be visible on the screen.
+   */
+  private fun moveToPosition(position: Int) {
+    scrollToPositionDelegate.requestScrollPosition(
+      position = position,
+      smooth = true,
+      scrollStrategy = jumpAndPulseScrollStrategy
+    )
+  }
+
   private inner class DataObserver(
     private val scrollToPositionDelegate: ScrollToPositionDelegate
   ) : RecyclerView.AdapterDataObserver() {
@@ -421,8 +457,42 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   }
 
   private inner class ConversationItemClickListener : ConversationAdapter.ItemClickListener {
-    override fun onQuoteClicked(messageRecord: MmsMessageRecord?) {
-      // TODO [alex] - ("Not yet implemented")
+    override fun onQuoteClicked(messageRecord: MmsMessageRecord) {
+      val quote: Quote? = messageRecord.quote
+      if (quote == null) {
+        Log.w(TAG, "onQuoteClicked: Received an event but there is no quote.")
+        return
+      }
+
+      if (quote.isOriginalMissing) {
+        Log.i(TAG, "onQuoteClicked: Original message is missing.")
+        toast(R.string.ConversationFragment_quoted_message_not_found, Toast.LENGTH_SHORT)
+        return
+      }
+
+      val parentStoryId = messageRecord.parentStoryId
+      if (parentStoryId != null) {
+        startActivity(
+          StoryViewerActivity.createIntent(
+            requireContext(),
+            StoryViewerArgs.Builder(quote.author, Recipient.resolved(quote.author).shouldHideStory())
+              .withStoryId(parentStoryId.asMessageId().id)
+              .isFromQuote(true)
+              .build()
+          )
+        )
+
+        return
+      }
+
+      disposables += viewModel.getQuotedMessagePosition(quote)
+        .subscribeBy {
+          if (it >= 0) {
+            moveToPosition(it)
+          } else {
+            toast(R.string.ConversationFragment_quoted_message_no_longer_available, Toast.LENGTH_SHORT)
+          }
+        }
     }
 
     override fun onLinkPreviewClicked(linkPreview: LinkPreview) {
