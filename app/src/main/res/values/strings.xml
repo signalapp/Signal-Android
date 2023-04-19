@@ -1808,7 +1808,13 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">The number you
         specified (%s) is invalid.
     </string>
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to">A verification code will be sent to:</string>
+
+    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
+    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">You\'ll receive a call to verify this number.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Is your phone number above correct?</string>
     <string name="RegistrationActivity_edit_number">Edit number</string>
@@ -1843,8 +1849,10 @@
     <string name="RegistrationActivity_next">Next</string>
     <string name="RegistrationActivity_continue">Continue</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
-    <string name="RegistrationActivity_enter_your_phone_number">Enter your phone number</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">Phone number</string>
+    <!-- Subtitle of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Enter the code we sent to %s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Make sure your phone has a cellular signal to receive your SMS or call</string>
 
