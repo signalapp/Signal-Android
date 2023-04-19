@@ -52,8 +52,35 @@ class ScrollToPositionDelegate private constructor(
         recyclerView.doAfterNextLayout {
           handleScrollPositionRequest(position, recyclerView)
         }
+
+        if (!(recyclerView.isLayoutRequested || recyclerView.isInLayout)) {
+          recyclerView.requestLayout()
+        }
       })
   }
+
+  /**
+   * Entry point for requesting a specific scroll position.
+   */
+  fun requestScrollPosition(position: Int, smooth: Boolean = true) {
+    scrollPositionRequested.onNext(ScrollToPositionRequest(position, smooth))
+  }
+
+  /**
+   * Reset the scroll position to 0
+   */
+  fun resetScrollPosition() {
+    requestScrollPosition(0, true)
+  }
+
+  /**
+   * This should be called every time a list is submitted to the RecyclerView's adapter.
+   */
+  fun notifyListCommitted() {
+    listCommitted.onNext(Unit)
+  }
+
+  fun isListCommitted(): Boolean = listCommitted.value != null
 
   private fun handleScrollPositionRequest(
     request: ScrollToPositionRequest,
@@ -85,28 +112,6 @@ class ScrollToPositionDelegate private constructor(
     } else {
       layoutManager.scrollToPositionWithOffset(position, offset)
     }
-  }
-
-  /**
-   * Entry point for requesting a specific scroll position.
-   */
-  fun requestScrollPosition(position: Int, smooth: Boolean = true) {
-    scrollPositionRequested.onNext(ScrollToPositionRequest(position, smooth))
-  }
-
-  /**
-   * Reset the scroll position to 0
-   */
-  fun resetScrollPosition() {
-    requestScrollPosition(0, true)
-    recyclerView.requestLayout()
-  }
-
-  /**
-   * This should be called every time a list is submitted to the RecyclerView's adapter.
-   */
-  fun notifyListCommitted() {
-    listCommitted.onNext(Unit)
   }
 
   private data class ScrollToPositionRequest(

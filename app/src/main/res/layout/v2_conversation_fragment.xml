@@ -37,9 +37,14 @@
     <org.thoughtcrime.securesms.conversation.mutiselect.MultiselectRecyclerView
         android:id="@+id/conversation_item_recycler"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/conversation_bottom_panel_barrier"
+        android:layout_height="0dip"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:overScrollMode="ifContentScrolls"
+        android:scrollbars="vertical"
+        android:splitMotionEvents="false"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
         tools:itemCount="20"
         tools:listitem="@layout/conversation_item_sent_text_only" />
 
@@ -94,10 +99,10 @@
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/conversation_bottom_panel_barrier"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="conversation_input_panel"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="conversation_input_panel" />
 
     <include
         android:id="@+id/conversation_input_panel"

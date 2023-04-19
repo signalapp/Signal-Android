@@ -115,6 +115,7 @@ import org.thoughtcrime.securesms.conversation.quotes.MessageQuotesBottomSheet;
 import org.thoughtcrime.securesms.conversation.ui.edit.EditMessageHistoryDialog;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
 import org.thoughtcrime.securesms.conversation.v2.AddToContactsContract;
+import org.thoughtcrime.securesms.conversation.v2.BubbleLayoutTransitionListener;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -258,8 +259,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private OnScrollListener            conversationScrollListener;
   private int                         lastSeenScrollOffset;
   private Stopwatch                   startupStopwatch;
-  private LayoutTransition            layoutTransition;
-  private TransitionListener          transitionListener;
   private View                        reactionsShade;
   private SignalBottomActionBar       bottomActionBar;
   private OpenableGiftItemDecoration  openableGiftItemDecoration;
@@ -309,8 +308,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     list           = view.findViewById(android.R.id.list);
     composeDivider = view.findViewById(R.id.compose_divider);
 
-    layoutTransition   = new LayoutTransition();
-    transitionListener = new TransitionListener(list);
+    BubbleLayoutTransitionListener bubbleLayoutTransitionListener = new BubbleLayoutTransitionListener(list);
+    getViewLifecycleOwner().getLifecycle().addObserver(bubbleLayoutTransitionListener);
 
     scrollToBottomButton  = view.findViewById(R.id.scroll_to_bottom);
     scrollToMentionButton = view.findViewById(R.id.scroll_to_mention);
@@ -514,7 +513,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     super.onStart();
     initializeTypingObserver();
     SignalProxyUtil.startListeningToWebsocket();
-    layoutTransition.getAnimator(LayoutTransition.CHANGE_DISAPPEARING).addListener(transitionListener);
   }
 
   @Override
@@ -538,7 +536,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   public void onStop() {
     super.onStop();
     ApplicationDependencies.getTypingStatusRepository().getTypists(threadId).removeObservers(getViewLifecycleOwner());
-    layoutTransition.getAnimator(LayoutTransition.CHANGE_DISAPPEARING).removeListener(transitionListener);
   }
 
   @Override
@@ -2394,36 +2391,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
           }
         }
       }, 400);
-    }
-  }
-
-  private static final class TransitionListener implements Animator.AnimatorListener {
-
-    private final ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
-
-    TransitionListener(RecyclerView recyclerView) {
-      animator.addUpdateListener(unused -> recyclerView.invalidate());
-      animator.setDuration(100L);
-    }
-
-    @Override
-    public void onAnimationStart(Animator animation) {
-      animator.start();
-    }
-
-    @Override
-    public void onAnimationEnd(Animator animation) {
-      animator.end();
-    }
-
-    @Override
-    public void onAnimationCancel(Animator animation) {
-      // Do Nothing
-    }
-
-    @Override
-    public void onAnimationRepeat(Animator animation) {
-      // Do Nothing
     }
   }
 }

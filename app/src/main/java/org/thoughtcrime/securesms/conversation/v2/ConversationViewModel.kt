@@ -2,18 +2,23 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.conversation.ConversationIntents.Args
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
+import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.hasGiftBadge
@@ -35,7 +40,12 @@ class ConversationViewModel(
   val recipient: Observable<Recipient> = _recipient
 
   private val _conversationThreadState: Subject<ConversationThreadState> = BehaviorSubject.create()
-  val conversationThreadState: Observable<ConversationThreadState> = _conversationThreadState
+  val conversationThreadState: Single<ConversationThreadState> = _conversationThreadState.firstOrError()
+
+  private val _markReadProcessor: PublishProcessor<Long> = PublishProcessor.create()
+  val markReadRequests: Flowable<Long> = _markReadProcessor
+    .onBackpressureBuffer()
+    .distinct()
 
   val pagingController = ProxyPagingController<MessageId>()
 
@@ -56,6 +66,31 @@ class ConversationViewModel(
         pagingController.set(it.items.controller)
         _conversationThreadState.onNext(it)
       })
+
+    disposables += _conversationThreadState.firstOrError().flatMapObservable { threadState ->
+      Observable.create<Unit> { emitter ->
+        val controller = threadState.items.controller
+        val messageUpdateObserver = DatabaseObserver.MessageObserver {
+          controller.onDataItemChanged(it)
+        }
+        val messageInsertObserver = DatabaseObserver.MessageObserver {
+          controller.onDataItemInserted(it, 0)
+        }
+        val conversationObserver = DatabaseObserver.Observer {
+          controller.onDataInvalidated()
+        }
+
+        ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(messageUpdateObserver)
+        ApplicationDependencies.getDatabaseObserver().registerMessageInsertObserver(threadId, messageInsertObserver)
+        ApplicationDependencies.getDatabaseObserver().registerConversationObserver(threadId, conversationObserver)
+
+        emitter.setCancellable {
+          ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageUpdateObserver)
+          ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageInsertObserver)
+          ApplicationDependencies.getDatabaseObserver().unregisterObserver(conversationObserver)
+        }
+      }
+    }.subscribe()
   }
 
   override fun onCleared() {
@@ -73,6 +108,9 @@ class ConversationViewModel(
     if (messageRecord.isOutgoing && messageRecord.hasGiftBadge()) {
       repository.markGiftBadgeRevealed(messageRecord.id)
     }
+  }
+
+  fun requestMarkRead(timestamp: Long) {
   }
 
   class Factory(

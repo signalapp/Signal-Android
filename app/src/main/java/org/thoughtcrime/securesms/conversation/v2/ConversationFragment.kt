@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.gifts.viewgift.received.ViewReceivedGiftBottomSheet
 import org.thoughtcrime.securesms.badges.gifts.viewgift.sent.ViewSentGiftBottomSheet
+import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
@@ -48,6 +49,7 @@ import org.thoughtcrime.securesms.conversation.ConversationOptionsMenu
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
+import org.thoughtcrime.securesms.conversation.mutiselect.ConversationItemAnimator
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectItemDecoration
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupCallViewModel
@@ -56,6 +58,7 @@ import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
@@ -89,6 +92,7 @@ import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.WindowUtil
+import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.visible
@@ -145,7 +149,11 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     FullscreenHelper(requireActivity()).showSystemUI()
 
     layoutManager = SmoothScrollingLinearLayoutManager(requireContext(), true)
+    binding.conversationItemRecycler.setHasFixedSize(false)
     binding.conversationItemRecycler.layoutManager = layoutManager
+
+    val layoutTransitionListener = BubbleLayoutTransitionListener(binding.conversationItemRecycler)
+    viewLifecycleOwner.lifecycle.addObserver(layoutTransitionListener)
 
     val recyclerViewColorizer = RecyclerViewColorizer(binding.conversationItemRecycler)
     recyclerViewColorizer.setChatColors(args.chatColors)
@@ -174,6 +182,10 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
         presentConversationTitle(it)
       })
 
+    disposables += viewModel.markReadRequests
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy(onNext = markReadHelper::onViewsRevealed)
+
     EventBus.getDefault().registerForLifecycle(groupCallViewModel, viewLifecycleOwner)
     presentGroupCallJoinButton()
   }
@@ -184,6 +196,15 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     WindowUtil.setLightNavigationBarFromTheme(requireActivity())
     WindowUtil.setLightStatusBarFromTheme(requireActivity())
     groupCallViewModel.peekGroupCall()
+
+    if (!args.conversationScreenType.isInBubble) {
+      ApplicationDependencies.getMessageNotifier().setVisibleThread(ConversationId.forConversation(args.threadId))
+    }
+  }
+
+  override fun onPause() {
+    super.onPause()
+    ApplicationDependencies.getMessageNotifier().clearVisibleThread()
   }
 
   private fun registerForResults() {
@@ -204,23 +225,50 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       colorizer
     )
 
+    val scrollToPositionDelegate = ScrollToPositionDelegate(
+      binding.conversationItemRecycler,
+      adapter::canJumpToPosition,
+      adapter::getAdapterPositionForMessagePosition
+    )
+
+    binding.conversationItemRecycler.itemAnimator = ConversationItemAnimator(
+      isInMultiSelectMode = adapter.selectedItems::isNotEmpty,
+      shouldPlayMessageAnimations = {
+        scrollToPositionDelegate.isListCommitted() && binding.conversationItemRecycler.scrollState == RecyclerView.SCROLL_STATE_IDLE
+      },
+      isParentFilled = {
+        binding.conversationItemRecycler.canScrollVertically(1) || binding.conversationItemRecycler.canScrollVertically(-1)
+      }
+    )
+
+    ConversationAdapter.initializePool(binding.conversationItemRecycler.recycledViewPool)
     adapter.setPagingController(viewModel.pagingController)
+    adapter.registerAdapterDataObserver(DataObserver(scrollToPositionDelegate))
     viewLifecycleOwner.lifecycle.addObserver(LastSeenPositionUpdater(adapter, layoutManager, viewModel))
     binding.conversationItemRecycler.adapter = adapter
     giphyMp4ProjectionRecycler = initializeGiphyMp4()
 
-    binding.conversationItemRecycler.addItemDecoration(
-      MultiselectItemDecoration(
-        requireContext()
-      ) { viewModel.wallpaperSnapshot }
-    )
+    val multiselectItemDecoration = MultiselectItemDecoration(
+      requireContext()
+    ) { viewModel.wallpaperSnapshot }
+
+    binding.conversationItemRecycler.addItemDecoration(multiselectItemDecoration)
+    viewLifecycleOwner.lifecycle.addObserver(multiselectItemDecoration)
+
+    disposables += viewModel.conversationThreadState.subscribeBy {
+      scrollToPositionDelegate.requestScrollPosition(it.meta.getStartPosition(), false)
+    }
 
     disposables += viewModel
       .conversationThreadState
-      .flatMap { it.items.data }
+      .flatMapObservable { it.items.data }
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(onNext = {
-        adapter.submitList(it)
+        adapter.submitList(it) {
+          binding.conversationItemRecycler.doAfterNextLayout {
+            scrollToPositionDelegate.notifyListCommitted()
+          }
+        }
       })
 
     disposables += viewModel
@@ -230,6 +278,13 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
         colorizer.onNameColorsChanged(it)
         adapter.notifyItemRangeChanged(0, adapter.itemCount)
       })
+
+    binding.conversationItemRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+      override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+        val timestamp = MarkReadHelper.getLatestTimestamp(adapter, layoutManager)
+        timestamp.ifPresent(viewModel::requestMarkRead)
+      }
+    })
 
     presentActionBarMenu()
   }
@@ -351,6 +406,18 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       0
     )
     return callback
+  }
+
+  private inner class DataObserver(
+    private val scrollToPositionDelegate: ScrollToPositionDelegate
+  ) : RecyclerView.AdapterDataObserver() {
+    override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+      Log.d(TAG, "onItemRangeInserted $positionStart $itemCount")
+      if (positionStart == 0 && itemCount == 1 && !binding.conversationItemRecycler.canScrollVertically(1)) {
+        Log.d(TAG, "Requesting scroll to bottom.")
+        scrollToPositionDelegate.resetScrollPosition()
+      }
+    }
   }
 
   private inner class ConversationItemClickListener : ConversationAdapter.ItemClickListener {

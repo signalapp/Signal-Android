@@ -11,10 +11,8 @@ import org.signal.paging.PagingConfig
 import org.thoughtcrime.securesms.conversation.ConversationDataSource
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
-import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import kotlin.math.max
@@ -50,16 +48,10 @@ class ConversationRepository(context: Context) {
    * Loads the details necessary to display the conversation thread.
    */
   fun getConversationThreadState(threadId: Long, requestedStartPosition: Int): Single<ConversationThreadState> {
-    return Single.create { emitter ->
-      val recipient = SignalDatabase.threads.getRecipientForThreadId(threadId)!!
+    return Single.fromCallable {
+      val recipient = threads.getRecipientForThreadId(threadId)!!
       val metadata = oldConversationRepository.getConversationData(threadId, recipient, requestedStartPosition)
       val messageRequestData = metadata.messageRequestData
-      val startPosition = when {
-        metadata.shouldJumpToMessage() -> metadata.jumpToPosition
-        messageRequestData.isMessageRequestAccepted && metadata.shouldScrollToLastSeen() -> metadata.lastSeenPosition
-        messageRequestData.isMessageRequestAccepted -> metadata.lastScrolledPosition
-        else -> metadata.threadSize
-      }
       val dataSource = ConversationDataSource(
         applicationContext,
         threadId,
@@ -69,36 +61,13 @@ class ConversationRepository(context: Context) {
       )
       val config = PagingConfig.Builder().setPageSize(25)
         .setBufferPages(2)
-        .setStartIndex(max(startPosition, 0))
+        .setStartIndex(max(metadata.getStartPosition(), 0))
         .build()
 
-      val threadState = ConversationThreadState(
+      ConversationThreadState(
         items = PagedData.createForObservable(dataSource, config),
         meta = metadata
       )
-
-      val controller = threadState.items.controller
-      val messageUpdateObserver = DatabaseObserver.MessageObserver {
-        controller.onDataItemChanged(it)
-      }
-      val messageInsertObserver = DatabaseObserver.MessageObserver {
-        controller.onDataItemInserted(it, 0)
-      }
-      val conversationObserver = DatabaseObserver.Observer {
-        controller.onDataInvalidated()
-      }
-
-      ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(messageUpdateObserver)
-      ApplicationDependencies.getDatabaseObserver().registerMessageInsertObserver(threadId, messageInsertObserver)
-      ApplicationDependencies.getDatabaseObserver().registerConversationObserver(threadId, conversationObserver)
-
-      emitter.setCancellable {
-        ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageUpdateObserver)
-        ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageInsertObserver)
-        ApplicationDependencies.getDatabaseObserver().unregisterObserver(conversationObserver)
-      }
-
-      emitter.onSuccess(threadState)
     }
   }
 
