@@ -977,7 +977,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   @JvmOverloads
-  fun insertMessageInbox(message: IncomingTextMessage, editedMessage: MediaMmsMessageRecord? = null): Optional<InsertResult> {
+  fun insertMessageInbox(message: IncomingTextMessage, editedMessage: MediaMmsMessageRecord? = null, notifyObservers: Boolean = true): Optional<InsertResult> {
     var type = MessageTypes.BASE_INBOX_TYPE
     var tryToCollapseJoinRequestEvents = false
 
@@ -1096,14 +1096,16 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         recipients.setDefaultSubscriptionId(recipient.id, message.subscriptionId)
       }
 
-      notifyConversationListeners(threadId)
+      if (notifyObservers) {
+        notifyConversationListeners(threadId)
+      }
 
       Optional.of(InsertResult(messageId, threadId))
     }
   }
 
   fun insertEditMessageInbox(threadId: Long, mediaMessage: IncomingMediaMessage, targetMessage: MediaMmsMessageRecord): Optional<InsertResult> {
-    val insertResult = insertSecureDecryptedMessageInbox(mediaMessage, threadId, targetMessage)
+    val insertResult = insertSecureDecryptedMessageInbox(retrieved = mediaMessage, threadId = threadId, edittedMediaMessage = targetMessage, notifyObservers = false)
 
     if (insertResult.isPresent) {
       val (messageId) = insertResult.get()
@@ -1118,13 +1120,15 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .run()
 
       reactions.moveReactionsToNewMessage(newMessageId = messageId, previousId = targetMessage.id)
+
+      notifyConversationListeners(targetMessage.threadId)
     }
 
     return insertResult
   }
 
   fun insertEditMessageInbox(textMessage: IncomingTextMessage, targetMessage: MediaMmsMessageRecord): Optional<InsertResult> {
-    val insertResult = insertMessageInbox(textMessage, targetMessage)
+    val insertResult = insertMessageInbox(message = textMessage, editedMessage = targetMessage, notifyObservers = false)
 
     if (insertResult.isPresent) {
       val (messageId) = insertResult.get()
@@ -1139,6 +1143,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .run()
 
       reactions.moveReactionsToNewMessage(newMessageId = messageId, previousId = targetMessage.id)
+
+      notifyConversationListeners(targetMessage.threadId)
     }
 
     return insertResult
@@ -2495,7 +2501,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     contentLocation: String,
     candidateThreadId: Long,
     mailbox: Long,
-    editedMessage: MediaMmsMessageRecord?
+    editedMessage: MediaMmsMessageRecord?,
+    notifyObservers: Boolean
   ): Optional<InsertResult> {
     val threadId = if (candidateThreadId == -1L || retrieved.isGroupMessage) {
       getThreadIdFor(retrieved)
@@ -2597,7 +2604,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       ThreadUpdateJob.enqueue(threadId)
     }
 
-    notifyConversationListeners(threadId)
+    if (notifyObservers) {
+      notifyConversationListeners(threadId)
+    }
 
     if (retrieved.storyType.isStory) {
       ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(threads.getRecipientIdForThreadId(threadId)!!)
@@ -2634,12 +2643,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       type = type or MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
     }
 
-    return insertMessageInbox(retrieved, contentLocation, threadId, type, editedMessage = null)
+    return insertMessageInbox(retrieved, contentLocation, threadId, type, editedMessage = null, notifyObservers = true)
   }
 
   @JvmOverloads
   @Throws(MmsException::class)
-  fun insertSecureDecryptedMessageInbox(retrieved: IncomingMediaMessage, threadId: Long, edittedMediaMessage: MediaMmsMessageRecord? = null): Optional<InsertResult> {
+  fun insertSecureDecryptedMessageInbox(retrieved: IncomingMediaMessage, threadId: Long, edittedMediaMessage: MediaMmsMessageRecord? = null, notifyObservers: Boolean = true): Optional<InsertResult> {
     var type = MessageTypes.BASE_INBOX_TYPE or MessageTypes.SECURE_MESSAGE_BIT
     var hasSpecialType = false
 
@@ -2688,7 +2697,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       hasSpecialType = true
     }
 
-    return insertMessageInbox(retrieved, "", threadId, type, edittedMediaMessage)
+    return insertMessageInbox(retrieved, "", threadId, type, edittedMediaMessage, notifyObservers)
   }
 
   fun insertMessageInbox(notification: NotificationInd, subscriptionId: Int): Pair<Long, Long> {
