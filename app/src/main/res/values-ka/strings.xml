@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">გაგზავნის პრობლემა</string>
     <string name="ThreadRecord_message_request">შეტყობინების მოთხოვნა</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">შენ ეს ადამიანი დამალე, შენს სიაში მის თავიდან დასამატებლად მისწერე მას.</string>
     <string name="ThreadRecord_photo">ფოტო</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Voice Message</string>
@@ -4012,7 +4012,7 @@
     <!-- Learn more link to more information about requesting account data -->
     <string name="ExportAccountDataFragment__learn_more">გაიგე მეტი</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">ანგარიშის დაექსპორტირება</string>
+    <string name="ExportAccountDataFragment__export_report">ანგარიშის ექსპორტირება</string>
 
     <!-- Radio option to export the data as a text file .txt -->
     <string name="ExportAccountDataFragment__export_as_txt">დააექსპორტირე TXT-ად</string>
@@ -4036,12 +4036,12 @@
     <!-- Title for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation">დავაექსპორტიროთ მონაცემები?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">შენი Signal-ის პროფილის მონაცემები გაუზიარე მხოლოდ სანდო ადამიანებს და აპებს.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">შენი Signal-ის პროფილის მონაცემები მხოლოდ სანდო ადამიანებსა და აპებს გაუზიარე.</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">ექსპორტი</string>
+    <string name="ExportAccountDataFragment__export_report_action">ექსპორტირება</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">მიმდინარეობს ანგარიშის ექსპორტირება…</string>
+    <string name="ExportAccountDataFragment__download_progress">მიმდინარეობს ანგარიშის გენერირება…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">შენი ანგარიში მხოლოდ ექსპორტირების დროს იქმნება და შენს მოწყობილობაზე Signal-ის მიერ არ ინახება.</string>
 

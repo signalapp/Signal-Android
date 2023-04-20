@@ -1927,7 +1927,7 @@
     <string name="ThreadRecord_delivery_issue">配送エラー</string>
     <string name="ThreadRecord_message_request">メッセージ申請</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">過去に非表示にしたメンバーです。メッセージを送ると、このメンバーはリストに再度追加されます。</string>
     <string name="ThreadRecord_photo">写真</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">音声メッセージ</string>
@@ -3912,11 +3912,11 @@
     <string name="AccountSettingsFragment__require_your_signal_pin">あなたの電話番号をSignalに再登録する際に、Signal PINを要求します。</string>
     <string name="AccountSettingsFragment__change_phone_number">電話番号を変更</string>
     <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">お客様のアカウントデータ</string>
+    <string name="AccountSettingsFragment__request_account_data">あなたのアカウントデータ</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">お客様のアカウントデータ</string>
+    <string name="ExportAccountDataFragment__your_account_data">あなたのアカウントデータ</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
     <string name="ExportAccountDataFragment__export_explanation">Signal アカウントデータのレポートをエクスポートします。このレポートには、メッセージやメディアは一切含まれません。%1$s</string>
     <!-- Learn more link to more information about requesting account data -->

@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Teslim sıkıntısı</string>
     <string name="ThreadRecord_message_request">İleti İsteği</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Bu kişiyi gizledin, tekrar listene eklemek için yeniden mesaj at.</string>
     <string name="ThreadRecord_photo">Fotoğraf</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Sesli İleti</string>

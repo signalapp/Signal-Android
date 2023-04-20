@@ -2119,7 +2119,7 @@
     <string name="ThreadRecord_delivery_issue">סוגיית מסירה</string>
     <string name="ThreadRecord_message_request">בקשת התכתבות</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">הסרת את האדם הזה, שליחת הודעה תוסיף אותו או אותה מחדש לרשימה שלך.</string>
     <string name="ThreadRecord_photo">תמונה</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">הודעה קולית</string>

@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Afleverings­probleem</string>
     <string name="ThreadRecord_message_request">Gespreks­verzoek</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Je hebt deze persoon verborgen. Stuur je bericht opnieuw om ze weer aan je lijst toe te voegen.</string>
     <string name="ThreadRecord_photo">Afbeelding</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Audiobericht</string>
@@ -2526,7 +2526,7 @@
     <string name="giphy_fragment__nothing_found">Niets gevonden</string>
 
     <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je je sms- en mms-berichten importeren naar de versleutelde databank van Signal?</string>
+    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je je berichten importeren naar de versleutelde database van Signal?</string>
     <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De systeemdatabank zal op geen enkele wijze worden gewijzigd of aangepast.</string>
     <string name="database_migration_activity__skip">Overslaan</string>
     <string name="database_migration_activity__import">Importeren</string>

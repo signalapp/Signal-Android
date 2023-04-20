@@ -2451,7 +2451,7 @@
     <string name="giphy_fragment__nothing_found">검색 결과 없음</string>
 
     <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">시스템 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오시겠습니까?</string>
+    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">기존 메시지를 Signal의 암호화된 데이터베이스로 가져올까요?</string>
     <string name="database_migration_activity__the_default_system_database_will_not_be_modified">기본 시스템 SMS 데이터베이스가 변경되지 않습니다.</string>
     <string name="database_migration_activity__skip">건너뛰기</string>
     <string name="database_migration_activity__import">가져오기</string>

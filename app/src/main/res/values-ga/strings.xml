@@ -2183,7 +2183,7 @@
     <string name="ThreadRecord_delivery_issue">Delivery Issue</string>
     <string name="ThreadRecord_message_request">Iarratas Teachtaireachta</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Tá an duine sin folaithe agat, seol teachtaireacht arís le cur ar ais ar do liosta é/í.</string>
     <string name="ThreadRecord_photo">Grianghraf</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Teachtaireacht Ghutha</string>
@@ -4285,11 +4285,11 @@
     <string name="ExportAccountDataFragment__export_report">Easpórtáil an tuairisc</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Easpórtáil leagan TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">Easpórtáil mar TXT</string>
     <!-- Label for the text file option -->
     <string name="ExportAccountDataFragment__export_as_txt_label">Comhad téacs soléite</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Easpórtáil leagan JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">Easpórtáil mar JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
     <string name="ExportAccountDataFragment__export_as_json_label">Comhad atá inléite ag meaisín</string>
 
@@ -4306,7 +4306,7 @@
     <!-- Title for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation">Easpórtáil sonraí?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Ná comhroinn sonraí do chuntais Signal ach le daoine nó aipeanna a bhfuil muinín agat iontu.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Ná comhroinn sonraí do chuntas Signal ach le daoine nó aipeanna a bhfuil muinín agat iontu.</string>
     <!-- Action to export in for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_action">Easpórtáil</string>
 

@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Θέμα κατά τη παράδοση</string>
     <string name="ThreadRecord_message_request">Αίτημα μηνύματος</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Έχεις κρύψει αυτό το άτομο. Στείλε πάλι μήνυμα για να το προσθέσεις στη λίστα σου.</string>
     <string name="ThreadRecord_photo">Φωτογραφία</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Μήνυμα φωνής</string>
@@ -4029,7 +4029,7 @@
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">OK</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Αδυναμία δημιουργίας αναφοράς</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">Δεν ήταν δυνατή η δημιουργία αναφοράς</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
     <string name="ExportAccountDataFragment__check_network">Έλεγξε τη σύνδεσή σου και δοκίμασε πάλι.</string>
 

@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">டெலிவரி பிரச்சினை</string>
     <string name="ThreadRecord_message_request">செய்தி கோரிக்கை</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">நீங்கள் இந்த நபரை மறைத்துவிட்டீர்கள், உங்கள் பட்டியலில் அவரை மீண்டும் சேர்க்க மீண்டும் செய்தி அனுப்பவும்.</string>
     <string name="ThreadRecord_photo">புகைப்படம்</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">குரல் செய்தி</string>
@@ -4008,18 +4008,18 @@
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">உங்கள் கணக்குத் தரவு</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">உங்கள் Signal கணக்குத் தரவின் அறிக்கையை ஏற்றுமதி செய்யவும். இந்த அறிக்கையில் செய்திகள் அல்லது மீடியா எதுவும் இல்லை. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">உங்கள் Signal கணக்குத் தரவின் அறிக்கையை ஏற்றுமதி செய்க. இந்த அறிக்கையில் செய்திகள் அல்லது ஊடகம் எதுவும் இல்லை. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
     <string name="ExportAccountDataFragment__learn_more">மேலும் அறிக</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">அறிக்கையை ஏற்றுமதி செய்</string>
+    <string name="ExportAccountDataFragment__export_report">அறிக்கையை ஏற்றுமதி செய்க</string>
 
     <!-- Radio option to export the data as a text file .txt -->
     <string name="ExportAccountDataFragment__export_as_txt">TXT ஆக ஏற்றுமதி செய்க</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">எளிதாக படிக்கக்கூடிய உரை கோப்பு</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">எளிதாகப் படிக்கக்கூடிய உரை கோப்பு</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">JSON ஆக ஏற்றுமதி செய்</string>
+    <string name="ExportAccountDataFragment__export_as_json">JSON ஆக ஏற்றுமதி செய்க</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
     <string name="ExportAccountDataFragment__export_as_json_label">இயந்திரம் படிக்கக்கூடிய கோப்பு</string>
 
@@ -4034,9 +4034,9 @@
     <string name="ExportAccountDataFragment__check_network">உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">தரவை ஏற்றுமதி செய்யவா?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">தரவை ஏற்றுமதி செய்ய வேண்டுமா?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">உங்கள் Signal கணக்குத் தரவை நீங்கள் நம்பும் நபர்கள் அல்லது செயலிகளுடன் மட்டும் பகிரவும்.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">உங்கள் Signal கணக்குத் தரவை நீங்கள் நம்பும் நபர்கள் அல்லது ஆப்ஸ்களுடன் மட்டும் பகிரவும்.</string>
     <!-- Action to export in for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_action">ஏற்றுமதி செய்க</string>
 

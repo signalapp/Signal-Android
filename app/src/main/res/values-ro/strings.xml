@@ -2055,7 +2055,7 @@
     <string name="ThreadRecord_delivery_issue">Problemă de livrare</string>
     <string name="ThreadRecord_message_request">Solicitare mesaj</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Ai ascuns această persoană, dacă îi dai mesaj, va reveni din nou în lista ta.</string>
     <string name="ThreadRecord_photo">Poză</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Mesaj vocal</string>

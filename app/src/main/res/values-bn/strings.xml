@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">পাঠানোর ক্ষেত্রে সমস্যা</string>
     <string name="ThreadRecord_message_request">বার্তার অনুরোধ</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">আপনি এই ব্যক্তিকে লুকিয়ে রেখেছেন, তাদের আবার আপনার তালিকায় যোগ করতে আবার তাদেরকে মেসেজ পাঠান।</string>
     <string name="ThreadRecord_photo">ছবি</string>
     <string name="ThreadRecord_gif">জিফ</string>
     <string name="ThreadRecord_voice_message">ভয়েস বার্তা</string>
@@ -4015,11 +4015,11 @@
     <string name="ExportAccountDataFragment__export_report">রিপোর্ট এক্সপোর্ট করুন</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">TXT হিসাবে এক্সপোর্ট করুন</string>
+    <string name="ExportAccountDataFragment__export_as_txt">TXT হিসেবে এক্সপোর্ট করুন</string>
     <!-- Label for the text file option -->
     <string name="ExportAccountDataFragment__export_as_txt_label">সহজে পড়া যায় এমন টেক্সট ফাইল</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">JSON হিসাবে এক্সপোর্ট করুন</string>
+    <string name="ExportAccountDataFragment__export_as_json">JSON হিসেবে এক্সপোর্ট করুন</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
     <string name="ExportAccountDataFragment__export_as_json_label">মেশিন-পাঠযোগ্য ফাইল</string>
 

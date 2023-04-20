@@ -2092,7 +2092,7 @@
 
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Invoer aan die gang</string>
-    <string name="ApplicationMigrationService_importing_text_messages">Besig om SMS\'e in te voer</string>
+    <string name="ApplicationMigrationService_importing_text_messages">Besig om teksboodskappe in te voer</string>
     <string name="ApplicationMigrationService_import_complete">Invoer voltooi</string>
     <string name="ApplicationMigrationService_system_database_import_is_complete">Invoer van stelseldatabasis is voltooi.</string>
 

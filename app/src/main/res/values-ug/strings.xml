@@ -1927,7 +1927,7 @@
     <string name="ThreadRecord_delivery_issue">يەتكۈزۈش مەسىلىسى</string>
     <string name="ThreadRecord_message_request">ئۇچۇر ئىلتىماسى</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">سىز بۇ كىشىنى كۆرۈنمەيدىغان قىلىپ قويغان، ئۇلارنى تىزىملىكىڭىزگە قايتۇرۇپ كېلىش ئۈچۈن ئۇلارغا قايتا ئۇچۇر يوللاڭ.</string>
     <string name="ThreadRecord_photo">سۈرەت</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">ئاۋازلىق ئۇچۇر</string>

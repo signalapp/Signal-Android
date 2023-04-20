@@ -2676,7 +2676,7 @@
     <string name="giphy_fragment__nothing_found">Нічого не знайдено</string>
 
     <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Імпорутвати ваші SMS повідомлення у зашифровану базу даних Signal?</string>
+    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Імпортувати наявні текстові повідомлення в зашифровану базу даних Signal?</string>
     <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Системна база даних не буде порушена.</string>
     <string name="database_migration_activity__skip">Пропустити</string>
     <string name="database_migration_activity__import">Імпорт</string>

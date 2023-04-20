@@ -1480,7 +1480,7 @@
     <string name="MessageRequestBottomView_block">I-block</string>
     <string name="MessageRequestBottomView_unblock">I-unblock</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Gusto mo bang mag-message si %1$s sa \'yo at i-share ang pangalan at photo mo sa kanya? Tinanggal mo na ang taong ito dati.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Payagan si %1$s na mag-message sa \'yo at i-share ang pangalan at photo mo sa kanya? Tinanggal mo na dati ang taong ito.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Hayaang mag-message si %1$s sa\'yo at i-share sa kanya ang pangalan at photo mo? Hindi niya malalaman na nakita mo ang kanyang message hanggang sa i-accept mo ito.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Hayaang mag-message si %1$s sa \'yo at i-share sa kanya ang pangalan at photo mo? Hindi ka makakatanggap ng anumang message hanggang sa i-unblock mo siya.</string>
@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Delivery issue</string>
     <string name="ThreadRecord_message_request">Pangmensaheng hiling</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Naka-hide sa \'yo ang taong ito, mag-message ulit sa kanya para malagay ulit siya sa list mo.</string>
     <string name="ThreadRecord_photo">Larawan</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Voice na Mensahe</string>
@@ -2388,7 +2388,7 @@
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">I-activate ang Payments</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
-    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Tinangga; mo na ang taong ito, mababalik siya sa list mo kapag nag-message ka ulit sa kanya.</string>
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Tinanggal mo na ang taong ito, mababalik s\'ya sa list mo kapag nag-message ka ulit sa kanya.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">I-play … I-pause</string>
@@ -4015,11 +4015,11 @@
     <string name="ExportAccountDataFragment__export_report">I-export ang report</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">I-export as TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">I-export bilang TXT</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">Madaling basahing text file</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">I-export as JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">I-export bilang JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
     <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
 
@@ -4029,7 +4029,7 @@
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">OK</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Hindi makapag-generate ng report</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">Hindi ma-generate ang report</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
     <string name="ExportAccountDataFragment__check_network">I-check ang iyong connection at subukan ulit.</string>
 
@@ -4041,7 +4041,7 @@
     <string name="ExportAccountDataFragment__export_report_action">I-export</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Generating report…</string>
+    <string name="ExportAccountDataFragment__download_progress">Gine-generate ang report…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Ang iyong report ay ginagawa lamang sa oras ng pag-export at hindi ito nilalagay ng Signal sa device mo.</string>
 

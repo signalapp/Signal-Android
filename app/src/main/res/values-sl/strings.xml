@@ -2676,7 +2676,7 @@
     <string name="giphy_fragment__nothing_found">Nič ni bilo najdeno</string>
 
     <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Želite uvoziti obstoječa sporočila SMS v šifrirano zbirko aplikacije Signal?</string>
+    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Želite uvoziti obstoječa SMS sporočila v šifrirano zbirko podatkov Signala?</string>
     <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Osnovna SMS podatkovna zbirka bo ostala nespremenjena.</string>
     <string name="database_migration_activity__skip">Preskoči</string>
     <string name="database_migration_activity__import">Uvoz</string>

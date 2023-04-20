@@ -1991,7 +1991,7 @@
     <string name="ThreadRecord_delivery_issue">Problema na entrega</string>
     <string name="ThreadRecord_message_request">Solicitação de conversa</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Você ocultou esta pessoa. Mande uma mensagem de novo para adicioná-la à sua lista.</string>
     <string name="ThreadRecord_photo">Foto</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Mensagem de voz</string>

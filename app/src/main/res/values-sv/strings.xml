@@ -2092,7 +2092,7 @@
 
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Import pågår</string>
-    <string name="ApplicationMigrationService_importing_text_messages">Importerar SMS</string>
+    <string name="ApplicationMigrationService_importing_text_messages">Importerar textmeddelanden</string>
     <string name="ApplicationMigrationService_import_complete">Importen slutförd</string>
     <string name="ApplicationMigrationService_system_database_import_is_complete">Systemdatabasimporten är slutförd.</string>
 
@@ -2526,7 +2526,7 @@
     <string name="giphy_fragment__nothing_found">Inget hittat</string>
 
     <!-- database_migration_activity -->
-    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vill du importera dina existerande SMS-meddelanden till Signals krypterade databas?</string>
+    <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vill du importera dina existerande textmeddelanden till Signals krypterade databas?</string>
     <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Standard systemdatabasen kommer inte att modifieras eller ändras på något sätt.</string>
     <string name="database_migration_activity__skip">Hoppa över</string>
     <string name="database_migration_activity__import">Importera</string>
