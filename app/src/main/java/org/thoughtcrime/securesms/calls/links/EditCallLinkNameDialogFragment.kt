@@ -32,6 +32,7 @@ import androidx.fragment.app.viewModels
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Scaffolds
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.links.create.CreateCallLinkViewModel
 import org.thoughtcrime.securesms.compose.ComposeDialogFragment
 
 class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
