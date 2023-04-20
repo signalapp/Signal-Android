@@ -169,6 +169,10 @@
     <string name="BucketedThreadMedia_Medium">Mesatarë</string>
     <string name="BucketedThreadMedia_Small">Vogël</string>
 
+    <!-- CameraFragment -->
+    <!-- Toasted when user device does not support video recording -->
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Prekni për foto, mbajeni shtypur për video</string>
     <string name="CameraXFragment_capture_description">Shkrep</string>
@@ -297,9 +301,13 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Imazhi nuk mund të shkarkohet. Duhet ta dërgosh përsëri.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Videoja nuk mund të shkarkohet. Duhet ta dërgosh përsëri.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
+    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Shtoni bashkëngjitjen</string>
+    <!-- Accessibility text associated with image button to send an edited message. -->
+    <string name="ConversationActivity_send_edit">Send edit</string>
     <string name="ConversationActivity_select_contact_info">Zgjidhni informacionin e kontaktit</string>
     <string name="ConversationActivity_compose_message">Shkruaj mesazhin</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Na vjen keq, ka ndodhur një gabim në vendosjen e bashkëngjitjes tuaj.</string>
@@ -307,6 +315,13 @@
     <string name="ConversationActivity_message_is_empty_exclamation">Mesazhi është bosh!</string>
     <string name="ConversationActivity_group_members">Anëtarët e grupit</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">Kliko këtu për të nisur një telefonatë në grup</string>
+    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
+    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
+    <plurals name="ConversationActivity_edit_message_too_old">
+        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
+        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Marrës i pavlefshëm!</string>
     <string name="ConversationActivity_added_to_home_screen">U shtua në ekranin kryesor</string>
@@ -1071,6 +1086,8 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Që të incizoni një mesazh zanor, prekeni dhe mbajeni të prekur, për ta dërguar, lëshojeni</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Mesazhet SMS nuk mbështeten më në Signal.</string>
+    <!-- When editing a message, label shown above the text input field in the composer -->
+    <string name="InputPanel_edit_message">Edit message</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Ndaje</string>
@@ -1788,7 +1805,13 @@
     <string name="RegistrationActivity_invalid_number">Numër i pavlefshëm</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numri që specifikuat (%1$s) është i pavlefshëm.
     </string>
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Do të dërgohet një kod verifikimi te:</string>
+
+    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
+    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Do t\\’ju vijë një thirrje për të verifikuar këtë numër.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">A është i saktë numri juaj i telefonit më sipër?</string>
     <string name="RegistrationActivity_edit_number">Modifiko numrin</string>
@@ -1823,8 +1846,10 @@
     <string name="RegistrationActivity_next">Pasuesi</string>
     <string name="RegistrationActivity_continue">Vazhdo</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Merreni privatësinë me vete.\nJini ju vetë, në çdo mesazh.</string>
-    <string name="RegistrationActivity_enter_your_phone_number">Jepni numrin e telefonit tuaj</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të marrësh një kod verifikimi. \n Mund të aplikohen tarifat e operatorit.</string>
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">Phone number</string>
+    <!-- Subtitle of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Jepni kodin që dërguam te %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Sigurohuni se telefoni juaj ka sinjal celulari për të marrë SMS-në ose thirrjen tuaj</string>
 
@@ -2645,6 +2670,8 @@
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Dështoi dërgimi</string>
     <string name="message_details_recipient__new_safety_number">Numër i ri sigurie</string>
+    <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
+    <string name="MessageDetails__view_edit_history">View edit history</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Krijo frazëkalim</string>
@@ -2925,6 +2952,12 @@
     <string name="preferences_success">Sukses</string>
     <string name="preferences_failed_to_connect">S\\’u arrit të lidhej</string>
     <string name="preferences_enter_proxy_address">Jepni adresë ndërmjetësi</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">Normal</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">Compact</string>
 
 
     <string name="configurable_single_select__customize_option">Përshtatë një mundësi</string>
@@ -3174,6 +3207,8 @@
     <string name="conversation_selection__menu_forward">Përcjellje</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Përgjigju</string>
+    <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <string name="conversation_selection__menu_edit">Edit</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Ruaji</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -5894,7 +5929,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">U bë</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Hapja e faqes së përbashkët dështoi.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">U kopjua në kujtesën e fragmenteve</string>
 
@@ -5905,6 +5940,17 @@
     <string name="EditCallLinkNameDialogFragment__save">Ruaj</string>
     <!-- Placeholder text on input field when editing call name -->
     <string name="EditCallLinkNameDialogFragment__call_name">Emri i telefonuesit</string>
+
+    <!-- ChooseNavigationBarStyleFragment -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+
+    <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
+    <string name="EditMessageHistoryDialog_title">Edit history</string>
 
     <!-- EOF -->
 </resources>
