@@ -106,7 +106,7 @@ public final class FeatureFlags {
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
   private static final String TEXT_FORMATTING                   = "android.textFormatting";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
-  private static final String CALLS_TAB                         = "android.calls.tab";
+  private static final String CALLS_TAB                         = "android.calls.tab.2";
   private static final String TEXT_FORMATTING_SPOILER_SEND      = "android.textFormatting.spoilerSend";
   private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc";
   private static final String EDIT_MESSAGE_RECEIVE              = "android.editMessage.receive";
