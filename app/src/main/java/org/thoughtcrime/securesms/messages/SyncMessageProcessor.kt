@@ -226,7 +226,7 @@ object SyncMessageProcessor {
     return if (message.message.hasGroupContext) {
       Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.message.groupV2.groupMasterKey))
     } else {
-      Recipient.externalPush(ServiceId.parseOrThrow(message.destinationUuid))
+      Recipient.externalPush(SignalServiceAddress(ServiceId.parseOrThrow(message.destinationUuid), message.destinationE164))
     }
   }
 
