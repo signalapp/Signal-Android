@@ -203,7 +203,7 @@ public class ConversationRepository {
 
                      try (InputStream stream = PartAuthority.getAttachmentStream(context, textSlide.getUri())) {
                        String body = StreamUtil.readFullyAsString(stream);
-                       return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, messageRecord, body);
+                       return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, messageRecord, body, message.getThreadRecipient());
                      } catch (IOException e) {
                        Log.w(TAG, "Failed to read text slide data.");
                      }

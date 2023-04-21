@@ -39,6 +39,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -57,6 +58,8 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
   /** Used once for the initial fetch, then cleared. */
   private int baseSize;
+
+  private Recipient threadRecipient;
 
   public ConversationDataSource(@NonNull Context context, long threadId, @NonNull MessageRequestData messageRequestData, boolean showUniversalExpireTimerUpdate, int baseSize) {
     this.context                        = context;
@@ -165,13 +168,15 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     records = callHelper.buildUpdatedModels(records);
     stopwatch.split("call-models");
 
+    ensureThreadRecipient();
+
     for (ServiceId serviceId : referencedIds) {
       Recipient.resolved(RecipientId.from(serviceId));
     }
     stopwatch.split("recipient-resolves");
 
     List<ConversationMessage> messages = Stream.of(records)
-                                               .map(m -> ConversationMessageFactory.createWithUnresolvedData(context, m, m.getDisplayBody(context), mentionHelper.getMentions(m.getId()), quotedHelper.isQuoted(m.getId())))
+                                               .map(m -> ConversationMessageFactory.createWithUnresolvedData(context, m, m.getDisplayBody(context), mentionHelper.getMentions(m.getId()), quotedHelper.isQuoted(m.getId()), threadRecipient))
                                                .toList();
 
     stopwatch.split("conversion");
@@ -229,11 +234,13 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
         stopwatch.split("calls");
 
+        ensureThreadRecipient();
         return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(),
                                                                                        record,
                                                                                        record.getDisplayBody(ApplicationDependencies.getApplication()),
                                                                                        mentions,
-                                                                                       isQuoted);
+                                                                                       isQuoted,
+                                                                                       threadRecipient);
       } else {
         return null;
       }
@@ -264,6 +271,12 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
     @Nullable List<Mention> getMentions(long id) {
       return messageIdToMentions.get(id);
+    }
+  }
+
+  private void ensureThreadRecipient() {
+    if (threadRecipient == null) {
+      threadRecipient = Objects.requireNonNull(SignalDatabase.threads().getRecipientForThreadId(threadId));
     }
   }
 

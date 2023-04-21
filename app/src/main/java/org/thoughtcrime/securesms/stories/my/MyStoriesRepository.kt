@@ -42,7 +42,7 @@ class MyStoriesRepository(context: Context) {
     return MyStoriesState.DistributionSet(
       label = recipient.getDisplayName(context),
       stories = messageRecords.map {
-        ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, it)
+        ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, it, recipient)
       }
     )
   }

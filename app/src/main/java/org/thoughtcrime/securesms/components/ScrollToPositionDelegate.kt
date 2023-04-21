@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components
 
 import android.view.View
+import androidx.annotation.AnyThread
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -36,7 +37,6 @@ class ScrollToPositionDelegate private constructor(
     private val EMPTY = ScrollToPositionRequest(
       position = NO_POSITION,
       smooth = true,
-      awaitLayout = true,
       scrollStrategy = DefaultScrollStrategy
     )
   }
@@ -57,14 +57,8 @@ class ScrollToPositionDelegate private constructor(
       .filter { it.position >= 0 && canJumpToPosition(it.position) }
       .map { it.copy(position = mapToTruePosition(it.position)) }
       .subscribeBy(onNext = { position ->
-        if (position.awaitLayout) {
-          recyclerView.doAfterNextLayout {
-            handleScrollPositionRequest(position, recyclerView)
-          }
-        } else {
-          recyclerView.post {
-            handleScrollPositionRequest(position, recyclerView)
-          }
+        recyclerView.doAfterNextLayout {
+          handleScrollPositionRequest(position, recyclerView)
         }
 
         if (!(recyclerView.isLayoutRequested || recyclerView.isInLayout)) {
@@ -78,21 +72,21 @@ class ScrollToPositionDelegate private constructor(
    *
    * @param position The desired position to jump to. -1 to clear the current request.
    * @param smooth Whether a smooth scroll will be attempted. Only done if we are within a certain distance.
-   * @param awaitLayout Whether this scroll should await for the next layout to complete before being attempted.
    * @param scrollStrategy See [ScrollStrategy]
    */
+  @AnyThread
   fun requestScrollPosition(
     position: Int,
     smooth: Boolean = true,
-    awaitLayout: Boolean = true,
     scrollStrategy: ScrollStrategy = DefaultScrollStrategy
   ) {
-    scrollPositionRequested.onNext(ScrollToPositionRequest(position, smooth, awaitLayout, scrollStrategy))
+    scrollPositionRequested.onNext(ScrollToPositionRequest(position, smooth, scrollStrategy))
   }
 
   /**
    * Reset the scroll position to 0
    */
+  @AnyThread
   fun resetScrollPosition() {
     requestScrollPosition(0, true)
   }
@@ -100,6 +94,7 @@ class ScrollToPositionDelegate private constructor(
   /**
    * This should be called every time a list is submitted to the RecyclerView's adapter.
    */
+  @AnyThread
   fun notifyListCommitted() {
     listCommitted.onNext(Unit)
   }
@@ -135,7 +130,6 @@ class ScrollToPositionDelegate private constructor(
   private data class ScrollToPositionRequest(
     val position: Int,
     val smooth: Boolean,
-    val awaitLayout: Boolean,
     val scrollStrategy: ScrollStrategy
   )
 

@@ -105,8 +105,6 @@ public class ConversationAdapter
   private final LifecycleOwner    lifecycleOwner;
   private final GlideRequests     glideRequests;
   private final Locale            locale;
-  private final Recipient         recipient;
-
   private final Set<MultiselectPart>         selected;
   private final Calendar                     calendar;
 
@@ -129,7 +127,7 @@ public class ConversationAdapter
                       @NonNull GlideRequests glideRequests,
                       @NonNull Locale locale,
                       @Nullable ItemClickListener clickListener,
-                      @NonNull Recipient recipient,
+                      boolean hasWallpaper,
                       @NonNull Colorizer colorizer)
   {
     super(new DiffUtil.ItemCallback<ConversationMessage>() {
@@ -150,10 +148,9 @@ public class ConversationAdapter
     this.glideRequests                = glideRequests;
     this.locale                       = locale;
     this.clickListener                = clickListener;
-    this.recipient                    = recipient;
     this.selected                     = new HashSet<>();
     this.calendar                     = Calendar.getInstance();
-    this.hasWallpaper                 = recipient.hasWallpaper();
+    this.hasWallpaper                 = hasWallpaper;
     this.isMessageRequestAccepted     = true;
     this.colorizer                    = colorizer;
   }
@@ -292,7 +289,7 @@ public class ConversationAdapter
                                                   glideRequests,
                                                   locale,
                                                   selected,
-                                                  recipient,
+                                                  conversationMessage.getThreadRecipient(),
                                                   searchQuery,
                                                   conversationMessage == recordToPulse,
                                                   hasWallpaper && displayMode.displayWallpaper(),
@@ -440,7 +437,8 @@ public class ConversationAdapter
   }
 
   public boolean isForRecipientId(@NonNull RecipientId recipientId) {
-    return recipient.getId().equals(recipientId);
+    // TODO [alex] -- This should be fine, since we now have a 1:1 relationship between fragment and recipient.
+    return true;
   }
 
   void onBindLastSeenViewHolder(StickyHeaderViewHolder viewHolder, long unreadCount) {
@@ -562,7 +560,7 @@ public class ConversationAdapter
    * Lets the adapter know that the wallpaper state has changed.
    * @return True if the internal wallpaper state changed, otherwise false.
    */
-  boolean onHasWallpaperChanged(boolean hasWallpaper) {
+  public boolean onHasWallpaperChanged(boolean hasWallpaper) {
     if (this.hasWallpaper != hasWallpaper) {
       Log.d(TAG, "Resetting adapter due to wallpaper change.");
       this.hasWallpaper = hasWallpaper;

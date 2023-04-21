@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.recipients.Recipient
 
 object EditMessageHistoryRepository {
 
@@ -41,8 +42,14 @@ object EditMessageHistoryRepository {
         fetchAttachments()
       }
 
+    if (records.isEmpty()) {
+      return emptyList()
+    }
+
+    val threadRecipient: Recipient = requireNotNull(SignalDatabase.threads.getRecipientForThreadId(records[0].threadId))
+
     return attachmentHelper
       .buildUpdatedModels(context, records)
-      .map { ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, it) }
+      .map { ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, it, threadRecipient) }
   }
 }

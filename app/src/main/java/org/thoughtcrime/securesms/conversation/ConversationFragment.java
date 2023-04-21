@@ -112,6 +112,7 @@ import org.thoughtcrime.securesms.conversation.ui.edit.EditMessageHistoryDialog;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
 import org.thoughtcrime.securesms.conversation.v2.AddToContactsContract;
 import org.thoughtcrime.securesms.conversation.v2.BubbleLayoutTransitionListener;
+import org.thoughtcrime.securesms.conversation.v2.ConversationDialogs;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -712,7 +713,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       }
 
       Log.d(TAG, "Initializing adapter for " + recipient.getId());
-      ConversationAdapter adapter = new ConversationAdapter(requireContext(), this, GlideApp.with(this), locale, selectionClickListener, this.recipient.get(), colorizer);
+      ConversationAdapter adapter = new ConversationAdapter(requireContext(), this, GlideApp.with(this), locale, selectionClickListener, this.recipient.get().hasWallpaper(), colorizer);
       adapter.setPagingController(conversationViewModel.getPagingController());
       list.setAdapter(adapter);
       setInlineDateDecoration(adapter);
@@ -1016,7 +1017,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
                      try (InputStream stream = PartAuthority.getAttachmentStream(requireContext(), textSlide.getUri())) {
                        String body = StreamUtil.readFullyAsString(stream);
-                       return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(requireContext(), message.getMessageRecord(), body)
+                       return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(requireContext(), message.getMessageRecord(), body, message.getThreadRecipient())
                                                                             .getDisplayBody(requireContext());
                      } catch (IOException e) {
                        Log.w(TAG, "Failed to read text slide data.");
@@ -1911,16 +1912,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     @Override
     public void onChatSessionRefreshLearnMoreClicked() {
-      new AlertDialog.Builder(requireContext())
-          .setView(R.layout.decryption_failed_dialog)
-          .setPositiveButton(android.R.string.ok, (d, w) -> {
-            d.dismiss();
-          })
-          .setNeutralButton(R.string.ConversationFragment_contact_us, (d, w) -> {
-            startActivity(AppSettingsActivity.help(requireContext(), 0));
-            d.dismiss();
-          })
-          .show();
+      ConversationDialogs.INSTANCE.displayChatSessionRefreshLearnMoreDialog(requireContext());
     }
 
     @Override
@@ -1932,34 +1924,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     @Override
     public void onSafetyNumberLearnMoreClicked(@NonNull Recipient recipient) {
-      if (recipient.isGroup()) {
-        throw new AssertionError("Must be individual");
-      }
-
-      AlertDialog dialog = new AlertDialog.Builder(requireContext())
-                                          .setView(R.layout.safety_number_changed_learn_more_dialog)
-                                          .setPositiveButton(R.string.ConversationFragment_verify, (d, w) -> {
-                                            SimpleTask.run(getLifecycle(), () -> {
-                                              return ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient.getId());
-                                            }, identityRecord -> {
-                                              if (identityRecord.isPresent()) {
-                                                startActivity(VerifyIdentityActivity.newIntent(requireContext(), identityRecord.get()));
-                                              }});
-                                            d.dismiss();
-                                          })
-                                          .setNegativeButton(R.string.ConversationFragment_not_now, (d, w) -> {
-                                            d.dismiss();
-                                          })
-                                          .create();
-      dialog.setOnShowListener(d -> {
-        TextView title = Objects.requireNonNull(dialog.findViewById(R.id.safety_number_learn_more_title));
-        TextView body  = Objects.requireNonNull(dialog.findViewById(R.id.safety_number_learn_more_body));
-
-        title.setText(getString(R.string.ConversationFragment_your_safety_number_with_s_changed, recipient.getDisplayName(requireContext())));
-        body.setText(getString(R.string.ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal, recipient.getDisplayName(requireContext())));
-      });
-
-      dialog.show();
+      ConversationDialogs.INSTANCE.displaySafetyNumberLearnMoreDialog(ConversationFragment.this, recipient);
     }
     @Override
     public void onJoinGroupCallClicked() {
@@ -1988,15 +1953,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     @Override
     public void onInMemoryMessageClicked(@NonNull InMemoryMessageRecord messageRecord) {
-      if (messageRecord instanceof InMemoryMessageRecord.NoGroupsInCommon) {
-        boolean isGroup = ((InMemoryMessageRecord.NoGroupsInCommon) messageRecord).isGroup();
-        new MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Signal_MaterialAlertDialog)
-            .setMessage(isGroup ? R.string.GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group
-                                : R.string.GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person)
-            .setNeutralButton(R.string.GroupsInCommonMessageRequest__about_message_requests, (d, w) -> CommunicationActions.openBrowserLink(requireContext(), getString(R.string.GroupsInCommonMessageRequest__support_article)))
-            .setPositiveButton(R.string.GroupsInCommonMessageRequest__okay, null)
-            .show();
-      }
+      ConversationDialogs.INSTANCE.displayInMemoryMessageDialog(requireContext(), messageRecord);
     }
 
     @Override
@@ -2111,7 +2068,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     }
 
     @Override
-    public void onScheduledIndicatorClicked(@NonNull View view, @NonNull MessageRecord messageRecord) {
+    public void onScheduledIndicatorClicked(@NonNull View view, @NonNull ConversationMessage conversationMessage) {
 
     }
   }

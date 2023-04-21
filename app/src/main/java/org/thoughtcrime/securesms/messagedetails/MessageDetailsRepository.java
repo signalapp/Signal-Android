@@ -131,7 +131,8 @@ public final class MessageDetailsRepository {
       }
     }
 
-    return new MessageDetails(ConversationMessageFactory.createWithUnresolvedData(context, messageRecord), recipients);
+    Recipient threadRecipient = Objects.requireNonNull(SignalDatabase.threads().getRecipientForThreadId(messageRecord.getThreadId()));
+    return new MessageDetails(ConversationMessageFactory.createWithUnresolvedData(context, messageRecord, threadRecipient), recipients);
   }
 
   private @Nullable NetworkFailure getNetworkFailure(MessageRecord messageRecord, Recipient recipient) {

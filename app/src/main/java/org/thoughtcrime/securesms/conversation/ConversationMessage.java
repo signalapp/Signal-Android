@@ -17,11 +17,13 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 
 import java.security.MessageDigest;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A view level model used to pass arbitrary message related information needed
@@ -33,18 +35,21 @@ public class ConversationMessage {
   @Nullable private final SpannableString        body;
   @NonNull  private final MultiselectCollection  multiselectCollection;
   @NonNull  private final MessageStyler.Result   styleResult;
+  @NonNull  private final Recipient              threadRecipient;
             private final boolean                hasBeenQuoted;
 
   private ConversationMessage(@NonNull MessageRecord messageRecord,
                               @Nullable CharSequence body,
                               @Nullable List<Mention> mentions,
                               boolean hasBeenQuoted,
-                              @Nullable MessageStyler.Result styleResult)
+                              @Nullable MessageStyler.Result styleResult,
+                              @NonNull Recipient threadRecipient)
   {
-    this.messageRecord = messageRecord;
-    this.hasBeenQuoted = hasBeenQuoted;
-    this.mentions      = mentions != null ? mentions : Collections.emptyList();
-    this.styleResult   = styleResult != null ? styleResult : MessageStyler.Result.none();
+    this.messageRecord   = messageRecord;
+    this.hasBeenQuoted   = hasBeenQuoted;
+    this.mentions        = mentions != null ? mentions : Collections.emptyList();
+    this.styleResult     = styleResult != null ? styleResult : MessageStyler.Result.none();
+    this.threadRecipient = threadRecipient;
 
     if (body != null) {
       this.body = SpannableString.valueOf(body);
@@ -119,6 +124,10 @@ public class ConversationMessage {
     return MessageRecordUtil.isScheduled(messageRecord);
   }
 
+  @NonNull public Recipient getThreadRecipient() {
+    return threadRecipient;
+  }
+
   /**
    * Factory providing multiple ways of creating {@link ConversationMessage}s.
    */
@@ -135,7 +144,8 @@ public class ConversationMessage {
                                                                         @NonNull MessageRecord messageRecord,
                                                                         @NonNull CharSequence body,
                                                                         @Nullable List<Mention> mentions,
-                                                                        boolean hasBeenQuoted)
+                                                                        boolean hasBeenQuoted,
+                                                                        @NonNull Recipient threadRecipient)
     {
       SpannableString      styledAndMentionBody = null;
       MessageStyler.Result styleResult          = MessageStyler.Result.none();
@@ -157,7 +167,8 @@ public class ConversationMessage {
                                      styledAndMentionBody != null ? styledAndMentionBody : mentionsUpdate != null ? mentionsUpdate.getBody() : body,
                                      mentionsUpdate != null ? mentionsUpdate.getMentions() : null,
                                      hasBeenQuoted,
-                                     styleResult);
+                                     styleResult,
+                                     threadRecipient);
     }
 
     /**
@@ -166,8 +177,8 @@ public class ConversationMessage {
      * database operations to query for mentions and then to resolve mentions to display names.
      */
     @WorkerThread
-    public static @NonNull ConversationMessage createWithUnresolvedData(@NonNull Context context, @NonNull MessageRecord messageRecord) {
-      return createWithUnresolvedData(context, messageRecord, messageRecord.getDisplayBody(context));
+    public static @NonNull ConversationMessage createWithUnresolvedData(@NonNull Context context, @NonNull MessageRecord messageRecord, @NonNull Recipient threadRecipient) {
+      return createWithUnresolvedData(context, messageRecord, messageRecord.getDisplayBody(context), threadRecipient);
     }
 
     /**
@@ -176,10 +187,10 @@ public class ConversationMessage {
      * database operations to query for mentions and then to resolve mentions to display names.
      */
     @WorkerThread
-    public static @NonNull ConversationMessage createWithUnresolvedData(@NonNull Context context, @NonNull MessageRecord messageRecord, boolean hasBeenQuoted) {
+    public static @NonNull ConversationMessage createWithUnresolvedData(@NonNull Context context, @NonNull MessageRecord messageRecord, boolean hasBeenQuoted, @NonNull Recipient threadRecipient) {
       List<Mention> mentions = messageRecord.isMms() ? SignalDatabase.mentions().getMentionsForMessage(messageRecord.getId())
                                                      : null;
-      return createWithUnresolvedData(context, messageRecord, messageRecord.getDisplayBody(context), mentions, hasBeenQuoted);
+      return createWithUnresolvedData(context, messageRecord, messageRecord.getDisplayBody(context), mentions, hasBeenQuoted, threadRecipient);
     }
 
     /**
@@ -188,11 +199,11 @@ public class ConversationMessage {
      * database operations to query for mentions and then to resolve mentions to display names.
      */
     @WorkerThread
-    public static @NonNull ConversationMessage createWithUnresolvedData(@NonNull Context context, @NonNull MessageRecord messageRecord, @NonNull CharSequence body) {
+    public static @NonNull ConversationMessage createWithUnresolvedData(@NonNull Context context, @NonNull MessageRecord messageRecord, @NonNull CharSequence body, @NonNull Recipient threadRecipient) {
       boolean       hasBeenQuoted = SignalDatabase.messages().isQuoted(messageRecord);
       List<Mention> mentions      = SignalDatabase.mentions().getMentionsForMessage(messageRecord.getId());
 
-      return createWithUnresolvedData(context, messageRecord, body, mentions, hasBeenQuoted);
+      return createWithUnresolvedData(context, messageRecord, body, mentions, hasBeenQuoted, threadRecipient);
     }
   }
 }

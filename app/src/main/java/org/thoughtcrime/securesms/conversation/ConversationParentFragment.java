@@ -163,6 +163,7 @@ import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryChanged
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResultsController;
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewModel;
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel;
+import org.thoughtcrime.securesms.conversation.v2.ConversationDialogs;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.DraftTable.Draft;
@@ -3948,15 +3949,7 @@ public class ConversationParentFragment extends Fragment
           .forMessageRecord(requireContext(), messageRecord)
           .show(getChildFragmentManager());
     } else if (messageRecord.hasFailedWithNetworkFailures()) {
-      new MaterialAlertDialogBuilder(requireContext())
-          .setMessage(R.string.conversation_activity__message_could_not_be_sent)
-          .setNegativeButton(android.R.string.cancel, null)
-          .setPositiveButton(R.string.conversation_activity__send, (dialog, which) -> {
-            SignalExecutors.BOUNDED.execute(() -> {
-              MessageSender.resend(requireContext(), messageRecord);
-            });
-          })
-          .show();
+      ConversationDialogs.INSTANCE.displayMessageCouldNotBeSentDialog(requireContext(), messageRecord);
     } else {
       MessageDetailsFragment.create(messageRecord, recipient.getId()).show(getChildFragmentManager(), null);
     }

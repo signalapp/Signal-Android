@@ -125,7 +125,7 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
         if (textSlideUri != null) {
           PartAuthority.getAttachmentStream(context, textSlideUri).use {
             val body = StreamUtil.readFullyAsString(it)
-            val msg = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, mediaMessage, body)
+            val msg = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, mediaMessage, body, conversationMessage.threadRecipient)
             builder.withDraftText(msg.getDisplayBody(context).toString())
           }
         } else {

@@ -58,6 +58,7 @@ class MessageQuotesRepository {
 
     val reactionHelper = ConversationDataSource.ReactionHelper()
     val attachmentHelper = ConversationDataSource.AttachmentHelper()
+    val threadRecipient = requireNotNull(SignalDatabase.threads.getRecipientForThreadId(originalRecord.threadId))
 
     reactionHelper.addAll(replyRecords)
     attachmentHelper.addAll(replyRecords)
@@ -77,7 +78,7 @@ class MessageQuotesRepository {
           replyRecord
         }
       }
-      .map { ConversationMessageFactory.createWithUnresolvedData(application, it) }
+      .map { ConversationMessageFactory.createWithUnresolvedData(application, it, threadRecipient) }
 
     if (originalRecord.isPaymentNotification) {
       originalRecord = SignalDatabase.payments.updateMessageWithPayment(originalRecord)
@@ -99,7 +100,7 @@ class MessageQuotesRepository {
       .buildUpdatedModels(ApplicationDependencies.getApplication(), listOf(originalRecord))
       .get(0)
 
-    val originalMessage: ConversationMessage = ConversationMessageFactory.createWithUnresolvedData(application, originalRecord, false)
+    val originalMessage: ConversationMessage = ConversationMessageFactory.createWithUnresolvedData(application, originalRecord, false, threadRecipient)
 
     return replies + originalMessage
   }

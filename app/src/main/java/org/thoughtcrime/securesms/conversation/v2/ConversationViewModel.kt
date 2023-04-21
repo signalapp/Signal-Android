@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.processors.PublishProcessor
+import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.paging.ProxyPagingController
@@ -67,7 +68,9 @@ class ConversationViewModel(
 
   init {
     disposables += repository.observeRecipientForThread(threadId)
-      .subscribeBy(onNext = _recipient::onNext)
+      .subscribeBy(onNext = {
+        _recipient.onNext(it)
+      })
 
     disposables += repository.getConversationThreadState(threadId, requestedStartingPosition)
       .subscribeBy(onSuccess = {
@@ -75,7 +78,7 @@ class ConversationViewModel(
         _conversationThreadState.onNext(it)
       })
 
-    disposables += _conversationThreadState.firstOrError().flatMapObservable { threadState ->
+    disposables += conversationThreadState.flatMapObservable { threadState ->
       Observable.create<Unit> { emitter ->
         val controller = threadState.items.controller
         val messageUpdateObserver = DatabaseObserver.MessageObserver {
@@ -98,7 +101,7 @@ class ConversationViewModel(
           ApplicationDependencies.getDatabaseObserver().unregisterObserver(conversationObserver)
         }
       }
-    }.subscribe()
+    }.subscribeOn(Schedulers.io()).subscribe()
 
     disposables += scrollButtonStateStore.update(
       repository.getMessageCounts(threadId)

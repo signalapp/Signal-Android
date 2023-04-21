@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import kotlin.math.max
 
 class ConversationRepository(context: Context) {
@@ -52,6 +53,7 @@ class ConversationRepository(context: Context) {
    */
   fun getConversationThreadState(threadId: Long, requestedStartPosition: Int): Single<ConversationThreadState> {
     return Single.fromCallable {
+      SignalLocalMetrics.ConversationOpen.onMetadataLoadStarted()
       val recipient = threads.getRecipientForThreadId(threadId)!!
       val metadata = oldConversationRepository.getConversationData(threadId, recipient, requestedStartPosition)
       val messageRequestData = metadata.messageRequestData
@@ -70,8 +72,10 @@ class ConversationRepository(context: Context) {
       ConversationThreadState(
         items = PagedData.createForObservable(dataSource, config),
         meta = metadata
-      )
-    }
+      ).apply {
+        SignalLocalMetrics.ConversationOpen.onMetadataLoaded()
+      }
+    }.subscribeOn(Schedulers.io())
   }
 
   /**
