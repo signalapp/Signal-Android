@@ -11,8 +11,8 @@ import kotlin.time.Duration.Companion.hours
  * have strict time limits.
  */
 object MessageConstraintsUtil {
-  private val RECEIVE_THRESHOLD = TimeUnit.DAYS.toMillis(1)
-  private val SEND_THRESHOLD = TimeUnit.HOURS.toMillis(3)
+  private val RECEIVE_THRESHOLD = TimeUnit.DAYS.toMillis(0)
+  private val SEND_THRESHOLD = TimeUnit.DAYS.toMillis(1)
 
   private val MAX_EDIT_COUNT = 10
 
