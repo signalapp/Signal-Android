@@ -51,7 +51,7 @@
 
     <dialog
         android:id="@+id/createCallLinkBottomSheet"
-        android:name="org.thoughtcrime.securesms.calls.links.CreateCallLinkBottomSheetDialogFragment"
+        android:name="org.thoughtcrime.securesms.calls.links.create.CreateCallLinkBottomSheetDialogFragment"
         android:label="create_call_link_bottom_sheet" />
 
 </navigation>

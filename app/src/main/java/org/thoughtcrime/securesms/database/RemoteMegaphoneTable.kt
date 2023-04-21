@@ -80,7 +80,7 @@ class RemoteMegaphoneTable(context: Context, databaseHelper: SignalDatabase) : D
         $SNOOZED_AT INTEGER DEFAULT 0,
         $SEEN_COUNT INTEGER DEFAULT 0
       )
-    """.trimIndent()
+    """
 
     const val VERSION_FINISHED = Int.MAX_VALUE
   }

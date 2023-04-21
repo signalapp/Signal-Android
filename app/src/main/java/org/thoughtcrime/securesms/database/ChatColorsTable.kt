@@ -23,7 +23,7 @@ class ChatColorsTable(context: Context, databaseHelper: SignalDatabase) : Databa
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
         $CHAT_COLORS BLOB
       )
-    """.trimIndent()
+    """
   }
 
   fun getById(chatColorsId: ChatColors.Id): ChatColors {

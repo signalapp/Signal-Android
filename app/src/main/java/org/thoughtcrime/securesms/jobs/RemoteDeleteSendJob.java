@@ -151,7 +151,7 @@ public class RemoteDeleteSendJob extends BaseJob {
     List<RecipientId> skipped  = Stream.of(SetUtil.difference(possible, eligible)).map(Recipient::getId).toList();
 
     boolean            isForStory         = message.isMms() && (((MmsMessageRecord) message).getStoryType().isStory() || ((MmsMessageRecord) message).getParentStoryId() != null);
-    DistributionListId distributionListId = isForStory ? message.getRecipient().getDistributionListId().orElse(null) : null;
+    DistributionListId distributionListId = isForStory ? message.getToRecipient().getDistributionListId().orElse(null) : null;
 
     GroupSendJobHelper.SendResult sendResult = deliver(conversationRecipient, eligible, targetSentTimestamp, isForStory, distributionListId);
 
@@ -167,7 +167,7 @@ public class RemoteDeleteSendJob extends BaseJob {
 
     Log.i(TAG, "Completed now: " + sendResult.completed.size() + ", Skipped: " + totalSkips.size() + ", Remaining: " + recipients.size());
 
-    if (totalSkips.size() > 0 && message.getRecipient().isGroup()) {
+    if (totalSkips.size() > 0 && message.getToRecipient().isGroup()) {
       SignalDatabase.groupReceipts().setSkipped(totalSkips, messageId);
     }
 
@@ -217,7 +217,8 @@ public class RemoteDeleteSendJob extends BaseJob {
                                                                                    new MessageId(messageId),
                                                                                    dataMessage,
                                                                                    true,
-                                                                                   isForStory);
+                                                                                   isForStory,
+                                                                                   null);
 
     return GroupSendJobHelper.getCompletedSends(destinations, results);
   }

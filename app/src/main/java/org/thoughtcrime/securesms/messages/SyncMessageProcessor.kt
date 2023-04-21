@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo
-import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId
 import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.PaymentMetaDataUtil
 import org.thoughtcrime.securesms.database.SentStorySyncManifest
@@ -87,6 +86,7 @@ import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
@@ -165,6 +165,11 @@ object SyncMessageProcessor {
         return
       }
 
+      if (sent.hasEditMessage()) {
+        handleSynchronizeSentEditMessage(context, envelope, sent, senderRecipient, earlyMessageCacheEntry)
+        return
+      }
+
       val dataMessage = sent.message
       val groupId: GroupId.V2? = if (dataMessage.hasGroupContext) GroupId.v2(dataMessage.groupV2.groupMasterKey) else null
 
@@ -226,7 +231,171 @@ object SyncMessageProcessor {
     return if (message.message.hasGroupContext) {
       Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.message.groupV2.groupMasterKey))
     } else {
-      Recipient.externalPush(ServiceId.parseOrThrow(message.destinationUuid))
+      Recipient.externalPush(SignalServiceAddress(ServiceId.parseOrThrow(message.destinationUuid), message.destinationE164))
+    }
+  }
+
+  @Throws(MmsException::class)
+  private fun handleSynchronizeSentEditMessage(
+    context: Context,
+    envelope: Envelope,
+    sent: Sent,
+    senderRecipient: Recipient,
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?
+  ) {
+    val targetSentTimestamp: Long = sent.editMessage.targetSentTimestamp
+    val targetMessage: MessageRecord? = SignalDatabase.messages.getMessageFor(targetSentTimestamp, senderRecipient.id)
+    val senderRecipientId = senderRecipient.id
+
+    if (targetMessage == null) {
+      warn(envelope.timestamp, "[handleSynchronizeSentEditMessage] Could not find matching message! targetTimestamp: $targetSentTimestamp  author: $senderRecipientId")
+      if (earlyMessageCacheEntry != null) {
+        ApplicationDependencies.getEarlyMessageCache().store(senderRecipientId, targetSentTimestamp, earlyMessageCacheEntry)
+        PushProcessEarlyMessagesJob.enqueue()
+      }
+    } else if (MessageConstraintsUtil.isValidEditMessageReceive(targetMessage, senderRecipient, envelope.serverTimestamp)) {
+      val message = sent.editMessage.dataMessage
+      val toRecipient: Recipient = if (message.hasGroupContext) {
+        Recipient.externalPossiblyMigratedGroup(GroupId.v2(message.groupV2.groupMasterKey))
+      } else {
+        Recipient.externalPush(ServiceId.parseOrThrow(sent.destinationUuid))
+      }
+      if (message.isMediaMessage) {
+        handleSynchronizeSentEditMediaMessage(context, targetMessage, toRecipient, sent, message, envelope.timestamp)
+      } else {
+        handleSynchronizeSentEditTextMessage(targetMessage, toRecipient, sent, message, envelope.timestamp)
+      }
+    } else {
+      warn(envelope.timestamp, "[handleSynchronizeSentEditMessage] Invalid message edit! editTime: ${envelope.serverTimestamp}, targetTime: ${targetMessage.serverTimestamp}, sendAuthor: $senderRecipientId, targetAuthor: ${targetMessage.fromRecipient.id}")
+    }
+  }
+
+  private fun handleSynchronizeSentEditTextMessage(
+    targetMessage: MessageRecord,
+    toRecipient: Recipient,
+    sent: Sent,
+    message: DataMessage,
+    envelopeTimestamp: Long
+  ) {
+    log(envelopeTimestamp, "Synchronize sent edit text message for message: ${targetMessage.id}")
+
+    val body = message.body ?: ""
+    val bodyRanges = message.bodyRangesList.filterNot { it.hasMentionUuid() }.toBodyRangeList()
+
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(toRecipient)
+    val isGroup = toRecipient.isGroup
+    val messageId: Long
+
+    if (isGroup) {
+      val outgoingMessage = OutgoingMessage(
+        recipient = toRecipient,
+        body = body,
+        timestamp = sent.timestamp,
+        expiresIn = targetMessage.expiresIn,
+        isSecure = true,
+        bodyRanges = bodyRanges,
+        messageToEdit = targetMessage.id
+      )
+
+      messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
+      updateGroupReceiptStatus(sent, messageId, toRecipient.requireGroupId())
+    } else {
+      val outgoingTextMessage = OutgoingMessage(
+        threadRecipient = toRecipient,
+        sentTimeMillis = sent.timestamp,
+        body = body,
+        expiresIn = targetMessage.expiresIn,
+        isUrgent = true,
+        isSecure = true,
+        bodyRanges = bodyRanges,
+        messageToEdit = targetMessage.id
+      )
+      messageId = SignalDatabase.messages.insertMessageOutbox(outgoingTextMessage, threadId, false, null)
+      SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(toRecipient.serviceId.orNull()))
+    }
+    SignalDatabase.threads.update(threadId, true)
+    SignalDatabase.messages.markAsSent(messageId, true)
+    if (targetMessage.expireStarted > 0) {
+      SignalDatabase.messages.markExpireStarted(messageId, targetMessage.expireStarted)
+      ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageId, true, targetMessage.expireStarted, targetMessage.expireStarted)
+    }
+
+    if (toRecipient.isSelf) {
+      SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, toRecipient.id, System.currentTimeMillis())
+      SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, toRecipient.id, System.currentTimeMillis())
+    }
+  }
+
+  private fun handleSynchronizeSentEditMediaMessage(
+    context: Context,
+    targetMessage: MessageRecord,
+    toRecipient: Recipient,
+    sent: Sent,
+    message: DataMessage,
+    envelopeTimestamp: Long
+  ) {
+    log(envelopeTimestamp, "Synchronize sent edit media message for: ${targetMessage.id}")
+
+    val quote: QuoteModel? = DataMessageProcessor.getValidatedQuote(context, envelopeTimestamp, message)
+    val sharedContacts: List<Contact> = DataMessageProcessor.getContacts(message)
+    val previews: List<LinkPreview> = DataMessageProcessor.getLinkPreviews(message.previewList, message.body ?: "", false)
+    val mentions: List<Mention> = DataMessageProcessor.getMentions(message.bodyRangesList)
+    val viewOnce: Boolean = message.isViewOnce
+    val bodyRanges: BodyRangeList? = message.bodyRangesList.toBodyRangeList()
+
+    val syncAttachments = message.attachmentsList.toPointers().filter {
+      MediaUtil.SlideType.LONG_TEXT == MediaUtil.getSlideTypeFromContentType(it.contentType)
+    }
+
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(toRecipient)
+    val messageId: Long
+    val attachments: List<DatabaseAttachment>
+    val mediaMessage = OutgoingMessage(
+      recipient = toRecipient,
+      body = message.body ?: "",
+      attachments = syncAttachments.ifEmpty { (targetMessage as? MediaMmsMessageRecord)?.slideDeck?.asAttachments() ?: emptyList() },
+      timestamp = sent.timestamp,
+      expiresIn = targetMessage.expiresIn,
+      viewOnce = viewOnce,
+      quote = quote,
+      contacts = sharedContacts,
+      previews = previews,
+      mentions = mentions,
+      bodyRanges = bodyRanges,
+      isSecure = true,
+      messageToEdit = targetMessage.id
+    )
+
+    SignalDatabase.messages.beginTransaction()
+    try {
+      messageId = SignalDatabase.messages.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
+
+      if (toRecipient.isGroup) {
+        updateGroupReceiptStatus(sent, messageId, toRecipient.requireGroupId())
+      } else {
+        SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(toRecipient.serviceId.orNull()))
+      }
+
+      SignalDatabase.messages.markAsSent(messageId, true)
+
+      attachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
+
+      if (targetMessage.expireStarted > 0) {
+        SignalDatabase.messages.markExpireStarted(messageId, targetMessage.expireStarted)
+        ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageId, true, targetMessage.expireStarted, targetMessage.expireStarted)
+      }
+      if (toRecipient.isSelf) {
+        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, toRecipient.id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, toRecipient.id, System.currentTimeMillis())
+      }
+      SignalDatabase.messages.setTransactionSuccessful()
+    } finally {
+      SignalDatabase.messages.endTransaction()
+    }
+    if (syncAttachments.isNotEmpty()) {
+      for (attachment in attachments) {
+        ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(messageId, attachment.attachmentId, false))
+      }
     }
   }
 
@@ -323,9 +492,8 @@ object SyncMessageProcessor {
       attachments = allAttachments.filterNot { it.isSticker }
 
       if (recipient.isSelf) {
-        val id = SyncMessageId(recipient.id, sent.timestamp)
-        SignalDatabase.messages.incrementDeliveryReceiptCount(id, System.currentTimeMillis())
-        SignalDatabase.messages.incrementReadReceiptCount(id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
       }
 
       SignalDatabase.messages.setTransactionSuccessful()
@@ -536,9 +704,8 @@ object SyncMessageProcessor {
             .scheduleDeletion(messageId, true, sent.expirationStartTimestamp, sent.message.expireTimer.seconds.inWholeMilliseconds)
         }
         if (recipient.isSelf) {
-          val id = SyncMessageId(recipient.id, sent.timestamp)
-          SignalDatabase.messages.incrementDeliveryReceiptCount(id, System.currentTimeMillis())
-          SignalDatabase.messages.incrementReadReceiptCount(id, System.currentTimeMillis())
+          SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
+          SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
         }
         SignalDatabase.messages.setTransactionSuccessful()
       } finally {
@@ -614,9 +781,8 @@ object SyncMessageProcessor {
         ApplicationDependencies.getExpiringMessageManager().scheduleDeletion(messageId, true, sent.expirationStartTimestamp, sent.message.expireTimer.seconds.inWholeMilliseconds)
       }
       if (recipient.isSelf) {
-        val id = SyncMessageId(recipient.id, sent.timestamp)
-        SignalDatabase.messages.incrementDeliveryReceiptCount(id, System.currentTimeMillis())
-        SignalDatabase.messages.incrementReadReceiptCount(id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
+        SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
       }
       SignalDatabase.messages.setTransactionSuccessful()
     } finally {
@@ -662,7 +828,7 @@ object SyncMessageProcessor {
       messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
       updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
     } else {
-      val outgoingTextMessage = text(recipient = recipient, body = body, expiresIn = expiresInMillis, sentTimeMillis = sent.timestamp, bodyRanges = bodyRanges)
+      val outgoingTextMessage = text(threadRecipient = recipient, body = body, expiresIn = expiresInMillis, sentTimeMillis = sent.timestamp, bodyRanges = bodyRanges)
       messageId = SignalDatabase.messages.insertMessageOutbox(outgoingTextMessage, threadId, false, null)
       SignalDatabase.messages.markUnidentified(messageId, sent.isUnidentified(recipient.serviceId.orNull()))
     }
@@ -674,9 +840,8 @@ object SyncMessageProcessor {
     }
 
     if (recipient.isSelf) {
-      val id = SyncMessageId(recipient.id, sent.timestamp)
-      SignalDatabase.messages.incrementDeliveryReceiptCount(id, System.currentTimeMillis())
-      SignalDatabase.messages.incrementReadReceiptCount(id, System.currentTimeMillis())
+      SignalDatabase.messages.incrementDeliveryReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
+      SignalDatabase.messages.incrementReadReceiptCount(sent.timestamp, recipient.id, System.currentTimeMillis())
     }
 
     return threadId

@@ -23,7 +23,6 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.signal.core.util.select
-import org.signal.core.util.toSingleLine
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.InvalidInputException
@@ -135,7 +134,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         $PINNED INTEGER DEFAULT 0, 
         $UNREAD_SELF_MENTION_COUNT INTEGER DEFAULT 0
       )
-    """.trimIndent()
+    """
 
     @JvmField
     val CREATE_INDEXS = arrayOf(
@@ -607,7 +606,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           $UNREAD_SELF_MENTION_COUNT = $UNREAD_SELF_MENTION_COUNT + ?, 
           $LAST_SCROLLED = ? 
       WHERE $ID = ?
-      """.toSingleLine(),
+      """,
       SqlUtil.buildArgs(unreadAmount, unreadSelfMentionAmount, 0, threadId)
     )
   }
@@ -1359,6 +1358,11 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   private fun update(threadId: Long, unarchive: Boolean, allowDeletion: Boolean, notifyListeners: Boolean): Boolean {
+    if (threadId == -1L) {
+      Log.d(TAG, "Skipping update for threadId -1")
+      return false
+    }
+
     val meaningfulMessages = messages.hasMeaningfulMessage(threadId)
 
     val isPinned = getPinnedThreadIds().contains(threadId)
@@ -1581,10 +1585,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   private fun getExtrasFor(record: MessageRecord, body: ThreadBody): Extra? {
-    val threadRecipient = if (record.isOutgoing) record.recipient else getRecipientForThreadId(record.threadId)
+    val threadRecipient = getRecipientForThreadId(record.threadId)
     val messageRequestAccepted = RecipientUtil.isMessageRequestAccepted(record.threadId, threadRecipient)
     val isHidden = threadRecipient?.isHidden ?: false
-    val individualRecipientId = record.individualRecipient.id
+    val authorId = record.fromRecipient.id
 
     if (!messageRequestAccepted && threadRecipient != null) {
       if (threadRecipient.isPushGroup) {
@@ -1594,46 +1598,46 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             val from = RecipientId.from(ServiceId.from(inviteAddState.addedOrInvitedBy))
             return if (inviteAddState.isInvited) {
               Log.i(TAG, "GV2 invite message request from $from")
-              Extra.forGroupV2invite(from, individualRecipientId)
+              Extra.forGroupV2invite(from, authorId)
             } else {
               Log.i(TAG, "GV2 message request from $from")
-              Extra.forGroupMessageRequest(from, individualRecipientId)
+              Extra.forGroupMessageRequest(from, authorId)
             }
           }
 
           Log.w(TAG, "Falling back to unknown message request state for GV2 message")
-          return Extra.forMessageRequest(individualRecipientId)
+          return Extra.forMessageRequest(authorId)
         } else {
           val recipientId = messages.getGroupAddedBy(record.threadId)
           if (recipientId != null) {
-            return Extra.forGroupMessageRequest(recipientId, individualRecipientId)
+            return Extra.forGroupMessageRequest(recipientId, authorId)
           }
         }
       } else {
-        return Extra.forMessageRequest(individualRecipientId, isHidden)
+        return Extra.forMessageRequest(authorId, isHidden)
       }
     }
 
     val extras: Extra? = if (record.isScheduled()) {
-      Extra.forScheduledMessage(individualRecipientId)
+      Extra.forScheduledMessage(authorId)
     } else if (record.isRemoteDelete) {
-      Extra.forRemoteDelete(individualRecipientId)
+      Extra.forRemoteDelete(authorId)
     } else if (record.isViewOnce) {
-      Extra.forViewOnce(individualRecipientId)
+      Extra.forViewOnce(authorId)
     } else if (record.isMms && (record as MmsMessageRecord).slideDeck.stickerSlide != null) {
       val slide: StickerSlide = record.slideDeck.stickerSlide!!
-      Extra.forSticker(slide.emoji, individualRecipientId)
+      Extra.forSticker(slide.emoji, authorId)
     } else if (record.isMms && (record as MmsMessageRecord).slideDeck.slides.size > 1) {
-      Extra.forAlbum(individualRecipientId)
+      Extra.forAlbum(authorId)
     } else if (threadRecipient != null && threadRecipient.isGroup) {
-      Extra.forDefault(individualRecipientId)
+      Extra.forDefault(authorId)
     } else {
       null
     }
 
     return if (record.messageRanges != null) {
       val bodyRanges = record.requireMessageRanges().adjustBodyRanges(body.bodyAdjustments)!!
-      extras?.copy(bodyRanges = bodyRanges.serialize()) ?: Extra.forBodyRanges(bodyRanges, individualRecipientId)
+      extras?.copy(bodyRanges = bodyRanges.serialize()) ?: Extra.forBodyRanges(bodyRanges, authorId)
     } else {
       extras
     }
@@ -1678,7 +1682,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         ) as MembershipAlias ON MembershipAlias.${GroupTable.MembershipTable.GROUP_ID} = ${GroupTable.TABLE_NAME}.${GroupTable.GROUP_ID}
       WHERE $where
       ORDER BY $orderBy
-    """.trimIndent()
+    """
 
     if (limit > 0) {
       query += " LIMIT $limit"
@@ -1688,7 +1692,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       query += " OFFSET $offset"
     }
 
-    return query.toSingleLine()
+    return query
   }
 
   private fun isSilentType(type: Long): Boolean {

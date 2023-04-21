@@ -189,7 +189,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private Optional<MessageRecord>     nextMessageRecord;
   private Locale                      locale;
   private boolean                     groupThread;
-  private LiveRecipient               recipient;
+  private LiveRecipient               author;
   private GlideRequests               glideRequests;
   private Optional<MessageRecord>     previousMessage;
   private ConversationItemDisplayMode displayMode;
@@ -363,7 +363,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                    @NonNull Colorizer colorizer,
                    @NonNull ConversationItemDisplayMode displayMode)
   {
-    if (this.recipient != null) this.recipient.removeForeverObserver(this);
+    if (this.author != null) this.author.removeForeverObserver(this);
     if (this.conversationRecipient != null) this.conversationRecipient.removeForeverObserver(this);
 
     lastYDownRelativeToThis = 0;
@@ -378,28 +378,28 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.batchSelected         = batchSelected;
     this.conversationRecipient = conversationRecipient.live();
     this.groupThread           = conversationRecipient.isGroup();
-    this.recipient             = messageRecord.getIndividualRecipient().live();
+    this.author                = messageRecord.getFromRecipient().live();
     this.canPlayContent        = false;
     this.mediaItem             = null;
     this.colorizer             = colorizer;
     this.displayMode           = displayMode;
     this.previousMessage       = previousMessageRecord;
 
-    this.recipient.observeForever(this);
+    this.author.observeForever(this);
     this.conversationRecipient.observeForever(this);
 
     setGutterSizes(messageRecord, groupThread);
     setMessageShape(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, hasWallpaper, isMessageRequestAccepted, allowedToPlayInline);
     setBodyText(messageRecord, searchQuery, isMessageRequestAccepted);
-    setBubbleState(messageRecord, messageRecord.getRecipient(), hasWallpaper, colorizer);
+    setBubbleState(messageRecord, messageRecord.getFromRecipient(), hasWallpaper, colorizer);
     setInteractionState(conversationMessage, pulse);
     setStatusIcons(messageRecord, hasWallpaper);
-    setContactPhoto(recipient.get());
-    setGroupMessageStatus(messageRecord, recipient.get());
+    setContactPhoto(author.get());
+    setGroupMessageStatus(messageRecord, author.get());
     setGroupAuthorColor(messageRecord, hasWallpaper, colorizer);
     setAuthor(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, hasWallpaper);
-    setQuote(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, messageRecord.getRecipient().getChatColors());
+    setQuote(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setReactions(messageRecord);
     setFooter(messageRecord, nextMessageRecord, locale, groupThread, hasWallpaper);
@@ -419,7 +419,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   @Override
   public void updateTimestamps() {
-    getActiveFooter(messageRecord).setMessageRecord(messageRecord, locale);
+    getActiveFooter(messageRecord).setMessageRecord(messageRecord, locale, displayMode);
   }
 
   @Override
@@ -526,10 +526,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         !messageRecord.isRemoteDelete() &&
         bodyText.getLastLineWidth() > 0)
     {
-      TextView dateView           = footer.getDateView();
-      int      footerWidth        = footer.getMeasuredWidth();
-      int      availableWidth     = getAvailableMessageBubbleWidth(bodyText);
-      int      collapsedTopMargin = -1 * (dateView.getMeasuredHeight() + ViewUtil.dpToPx(4));
+      View dateView           = footer.getDateView();
+      int  footerWidth        = footer.getMeasuredWidth();
+      int  availableWidth     = getAvailableMessageBubbleWidth(bodyText);
+      int  collapsedTopMargin = -1 * (dateView.getMeasuredHeight() + ViewUtil.dpToPx(4));
 
       if (bodyText.isSingleLine() && !messageRecord.isFailed()) {
         int maxBubbleWidth  = hasBigImageLinkPreview(messageRecord) || hasThumbnail(messageRecord) ? readDimen(R.dimen.media_bubble_max_width) : getMaxBubbleWidth();
@@ -627,7 +627,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
     }
 
-    if (recipient.getId().equals(modified.getId())) {
+    if (author.getId().equals(modified.getId())) {
       setContactPhoto(modified);
       setGroupMessageStatus(messageRecord, modified);
     }
@@ -669,8 +669,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   @Override
   public void unbind() {
-    if (recipient != null) {
-      recipient.removeForeverObserver(this);
+    if (author != null) {
+      author.removeForeverObserver(this);
     }
     if (conversationRecipient != null) {
       conversationRecipient.removeForeverObserver(this);
@@ -1299,7 +1299,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       paymentViewStub.setVisibility(View.GONE);
 
       MmsMessageRecord mmsMessageRecord = (MmsMessageRecord) messageRecord;
-      giftViewStub.get().setGiftBadge(glideRequests, Objects.requireNonNull(mmsMessageRecord.getGiftBadge()), messageRecord.isOutgoing(), giftMessageViewCallback, messageRecord.getRecipient());
+      giftViewStub.get().setGiftBadge(glideRequests, Objects.requireNonNull(mmsMessageRecord.getGiftBadge()), messageRecord.isOutgoing(), giftMessageViewCallback, messageRecord.getFromRecipient(), messageRecord.getToRecipient());
       giftViewStub.get().setVisibility(VISIBLE);
 
       footer.setVisibility(VISIBLE);
@@ -1316,7 +1316,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       MediaMmsMessageRecord mediaMmsMessageRecord = (MediaMmsMessageRecord) messageRecord;
 
       paymentViewStub.setVisibility(View.VISIBLE);
-      paymentViewStub.get().bindPayment(messageRecord.getIndividualRecipient(), Objects.requireNonNull(mediaMmsMessageRecord.getPayment()), colorizer);
+      paymentViewStub.get().bindPayment(messageRecord.getFromRecipient(), Objects.requireNonNull(mediaMmsMessageRecord.getPayment()), colorizer);
 
       footer.setVisibility(VISIBLE);
     } else {
@@ -1538,7 +1538,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
-  private void setQuote(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread, @NonNull ChatColors chatColors) {
+  private void setQuote(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
     boolean startOfCluster = isStartOfMessageCluster(current, previous, isGroupThread);
     if (hasQuote(messageRecord)) {
       if (quoteView == null) {
@@ -1666,7 +1666,18 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (isFooterVisible(current, next, isGroupThread)) {
       ConversationItemFooter activeFooter = getActiveFooter(current);
       activeFooter.setVisibility(VISIBLE);
-      activeFooter.setMessageRecord(current, locale);
+      activeFooter.setMessageRecord(current, locale, displayMode);
+
+      if (MessageRecordUtil.isEditMessage(current)) {
+        activeFooter.getDateView().setOnClickListener(v -> {
+          if (eventListener != null) {
+            eventListener.onEditedIndicatorClicked(current);
+          }
+        });
+      } else {
+        activeFooter.getDateView().setOnClickListener(null);
+        activeFooter.getDateView().setClickable(false);
+      }
 
       if (hasWallpaper && hasNoBubble((messageRecord))) {
         if (messageRecord.isOutgoing()) {
@@ -1714,7 +1725,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setHasBeenQuoted(@NonNull ConversationMessage message) {
-    if (message.hasBeenQuoted() && !isCondensedMode() && quotedIndicator != null && batchSelected.isEmpty()) {
+    if (message.hasBeenQuoted() && !isCondensedMode() && quotedIndicator != null && batchSelected.isEmpty() && displayMode != ConversationItemDisplayMode.EXTRA_CONDENSED) {
       quotedIndicator.setVisibility(VISIBLE);
       quotedIndicator.setOnClickListener(quotedIndicatorClickListener);
     } else if (quotedIndicator != null) {
@@ -1737,7 +1748,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean forceFooter(@NonNull MessageRecord messageRecord) {
-    return hasAudio(messageRecord);
+    return hasAudio(messageRecord) || MessageRecordUtil.isEditMessage(messageRecord);
   }
 
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
@@ -1773,7 +1784,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private void setGroupAuthorColor(@NonNull MessageRecord messageRecord, boolean hasWallpaper, @NonNull Colorizer colorizer) {
     if (groupSender != null) {
-      groupSender.setTextColor(colorizer.getIncomingGroupSenderColor(getContext(), messageRecord.getIndividualRecipient()));
+      groupSender.setTextColor(colorizer.getIncomingGroupSenderColor(getContext(), messageRecord.getFromRecipient()));
     }
   }
 
@@ -1782,7 +1793,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (isGroupThread && !current.isOutgoing()) {
       contactPhotoHolder.setVisibility(VISIBLE);
 
-      if (!previous.isPresent() || previous.get().isUpdate() || !current.getRecipient().equals(previous.get().getRecipient()) ||
+      if (!previous.isPresent() || previous.get().isUpdate() || !current.getFromRecipient().equals(previous.get().getFromRecipient()) ||
           !DateUtils.isSameDay(previous.get().getTimestamp(), current.getTimestamp()) || !isWithinClusteringTime(current, previous.get()))
       {
         groupSenderHolder.setVisibility(VISIBLE);
@@ -1797,7 +1808,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         groupSenderHolder.setVisibility(GONE);
       }
 
-      if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().equals(next.get().getRecipient()) || !isWithinClusteringTime(current, next.get())) {
+      if (!next.isPresent() || next.get().isUpdate() || !current.getFromRecipient().equals(next.get().getFromRecipient()) || !isWithinClusteringTime(current, next.get())) {
         contactPhoto.setVisibility(VISIBLE);
         badgeImageView.setVisibility(VISIBLE);
       } else {
@@ -1841,7 +1852,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     int background;
 
-    if (isSingularMessage(current, previous, next, isGroupThread)) {
+    if (isSingularMessage(current, previous, next, isGroupThread) || displayMode == ConversationItemDisplayMode.EXTRA_CONDENSED) {
       if (current.isOutgoing()) {
         background = R.drawable.message_bubble_background_sent_alone;
         outliner.setRadius(bigRadius);
@@ -1897,7 +1908,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private boolean isStartOfMessageCluster(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, boolean isGroupThread) {
     if (isGroupThread) {
       return !previous.isPresent() || previous.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), previous.get().getTimestamp()) ||
-             !current.getRecipient().equals(previous.get().getRecipient()) || !isWithinClusteringTime(current, previous.get()) || MessageRecordUtil.isScheduled(current);
+             !current.getFromRecipient().equals(previous.get().getFromRecipient()) || !isWithinClusteringTime(current, previous.get()) || MessageRecordUtil.isScheduled(current);
     } else {
       return !previous.isPresent() || previous.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), previous.get().getTimestamp()) ||
              current.isOutgoing() != previous.get().isOutgoing() || previous.get().isSecure() != current.isSecure() || !isWithinClusteringTime(current, previous.get()) ||
@@ -1908,7 +1919,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private boolean isEndOfMessageCluster(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
     if (isGroupThread) {
       return !next.isPresent() || next.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), next.get().getTimestamp()) ||
-             !current.getRecipient().equals(next.get().getRecipient()) || !current.getReactions().isEmpty() || !isWithinClusteringTime(current, next.get()) ||
+             !current.getFromRecipient().equals(next.get().getFromRecipient()) || !current.getReactions().isEmpty() || !isWithinClusteringTime(current, next.get()) ||
              MessageRecordUtil.isScheduled(current);
     } else {
       return !next.isPresent() || next.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), next.get().getTimestamp()) ||
@@ -1922,6 +1933,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean isFooterVisible(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
+    if (displayMode == ConversationItemDisplayMode.EXTRA_CONDENSED) {
+      return false;
+    }
+
     boolean differentTimestamps = next.isPresent() && !DateUtils.isSameExtendedRelativeTimestamp(next.get().getTimestamp(), current.getTimestamp());
 
     return forceFooter(messageRecord) || current.getExpiresIn() > 0 || !current.isSecure() || current.isPending() || current.isPendingInsecureSmsFallback() ||
@@ -1937,11 +1952,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     int spacingTop    = readDimen(context, R.dimen.conversation_vertical_message_spacing_collapse);
     int spacingBottom = spacingTop;
 
-    if (isStartOfMessageCluster(current, previous, isGroupThread)) {
+    if (isStartOfMessageCluster(current, previous, isGroupThread) && (displayMode != ConversationItemDisplayMode.EXTRA_CONDENSED || next.isEmpty())) {
       spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
     }
 
-    if (isEndOfMessageCluster(current, next, isGroupThread)) {
+    if (isEndOfMessageCluster(current, next, isGroupThread) || displayMode == ConversationItemDisplayMode.EXTRA_CONDENSED) {
       spacingBottom = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
     }
 
@@ -2416,13 +2431,13 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
         if (slide instanceof ImageSlide) {
           failedMessage = messageRecord.isOutgoing() ? context.getString(R.string.ConversationItem_cant_download_image_you_will_need_to_send_it_again)
-                                                     : context.getString(R.string.ConversationItem_cant_download_image_s_will_need_to_send_it_again, messageRecord.getIndividualRecipient().getShortDisplayName(context));
+                                                     : context.getString(R.string.ConversationItem_cant_download_image_s_will_need_to_send_it_again, messageRecord.getFromRecipient().getShortDisplayName(context));
         } else if (slide instanceof VideoSlide) {
           failedMessage = messageRecord.isOutgoing() ? context.getString(R.string.ConversationItem_cant_download_video_you_will_need_to_send_it_again)
-                                                     : context.getString(R.string.ConversationItem_cant_download_video_s_will_need_to_send_it_again, messageRecord.getIndividualRecipient().getShortDisplayName(context));
+                                                     : context.getString(R.string.ConversationItem_cant_download_video_s_will_need_to_send_it_again, messageRecord.getFromRecipient().getShortDisplayName(context));
         } else {
           failedMessage = messageRecord.isOutgoing() ? context.getString(R.string.ConversationItem_cant_download_message_you_will_need_to_send_it_again)
-                                                     : context.getString(R.string.ConversationItem_cant_download_message_s_will_need_to_send_it_again, messageRecord.getIndividualRecipient().getShortDisplayName(context));
+                                                     : context.getString(R.string.ConversationItem_cant_download_message_s_will_need_to_send_it_again, messageRecord.getFromRecipient().getShortDisplayName(context));
         }
 
         new MaterialAlertDialogBuilder(getContext())
@@ -2479,7 +2494,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         }
       } else if (!messageRecord.isOutgoing() && messageRecord.isIdentityMismatchFailure()) {
         if (eventListener != null) {
-          eventListener.onIncomingIdentityMismatchClicked(messageRecord.getIndividualRecipient().getId());
+          eventListener.onIncomingIdentityMismatchClicked(messageRecord.getFromRecipient().getId());
         }
       } else if (messageRecord.isPendingInsecureSmsFallback()) {
         handleMessageApproval();
@@ -2605,7 +2620,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                            messageRecord.getId());
       } else {
         ApplicationDependencies.getJobManager().add(new SmsSendJob(messageRecord.getId(),
-                                                                   messageRecord.getIndividualRecipient()));
+                                                                   messageRecord.getToRecipient()));
       }
     });
 

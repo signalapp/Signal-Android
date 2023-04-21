@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.signal.core.util.TranslationDetection
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
@@ -38,33 +37,27 @@ object RegistrationViewDelegate {
   @JvmStatic
   fun showConfirmNumberDialogIfTranslated(
     context: Context,
-    @StringRes firstMessageLine: Int,
+    @StringRes title: Int?,
+    @StringRes firstMessageLine: Int?,
     e164number: String,
     onConfirmed: Runnable,
     onEditNumber: Runnable
   ) {
-    val translationDetection = TranslationDetection(context)
-
-    if (translationDetection.textExistsInUsersLanguage(
-        firstMessageLine,
-        R.string.RegistrationActivity_is_your_phone_number_above_correct,
-        R.string.RegistrationActivity_edit_number
-      )
-    ) {
-      val message: CharSequence = SpannableStringBuilder()
-        .append(context.getString(firstMessageLine))
-        .append("\n\n")
-        .append(SpanUtil.bold(PhoneNumberFormatter.prettyPrint(e164number)))
-        .append("\n\n")
-        .append(context.getString(R.string.RegistrationActivity_is_your_phone_number_above_correct))
-
-      MaterialAlertDialogBuilder(context)
-        .setMessage(message)
-        .setPositiveButton(android.R.string.ok) { _, _ -> onConfirmed.run() }
-        .setNegativeButton(R.string.RegistrationActivity_edit_number) { _, _ -> onEditNumber.run() }
-        .show()
-    } else {
-      onConfirmed.run()
+    val message: CharSequence = SpannableStringBuilder().apply {
+      append(SpanUtil.bold(PhoneNumberFormatter.prettyPrint(e164number)))
+      if (firstMessageLine != null) {
+        append("\n\n")
+        append(context.getString(firstMessageLine))
+      }
     }
+
+    MaterialAlertDialogBuilder(context).apply {
+      if (title != null) {
+        setTitle(title)
+      }
+      setMessage(message)
+      setPositiveButton(android.R.string.ok) { _, _ -> onConfirmed.run() }
+      setNegativeButton(R.string.RegistrationActivity_edit_number) { _, _ -> onEditNumber.run() }
+    }.show()
   }
 }

@@ -93,13 +93,13 @@ public class AttachmentUtil {
     try {
       MessageRecord message = SignalDatabase.messages().getMessageRecord(attachment.getMmsId());
 
-      Recipient individualRecipient = message.getRecipient();
-      Recipient threadRecipient     = SignalDatabase.threads().getRecipientForThreadId(message.getThreadId());
+      Recipient fromRecipient = message.getFromRecipient();
+      Recipient toRecipient   = message.getToRecipient();
 
-      if (threadRecipient != null && threadRecipient.isGroup()) {
-        return threadRecipient.isProfileSharing() || isTrustedIndividual(individualRecipient, message);
+      if (toRecipient != null && toRecipient.isGroup()) {
+        return toRecipient.isProfileSharing() || isTrustedIndividual(fromRecipient, message);
       } else {
-        return isTrustedIndividual(individualRecipient, message);
+        return isTrustedIndividual(fromRecipient, message);
       }
     } catch (NoSuchMessageException e) {
       Log.w(TAG, "Message could not be found! Assuming not a trusted contact.");

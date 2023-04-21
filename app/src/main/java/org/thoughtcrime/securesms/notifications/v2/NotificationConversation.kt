@@ -74,7 +74,7 @@ data class NotificationConversation(
     val stringBuilder = SpannableStringBuilder()
 
     if (privacy.isDisplayContact && recipient.isGroup) {
-      stringBuilder.append(Util.getBoldedString(mostRecentNotification.individualRecipient.getDisplayName(context) + ": "))
+      stringBuilder.append(Util.getBoldedString(mostRecentNotification.authorRecipient.getDisplayName(context) + ": "))
     }
 
     return if (privacy.isDisplayMessage) {

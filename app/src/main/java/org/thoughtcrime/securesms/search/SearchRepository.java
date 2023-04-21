@@ -367,8 +367,7 @@ public class SearchRepository {
           CharSequence updatedBody    = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, body, mentions).getBody();
           CharSequence updatedSnippet = makeSnippet(cleanQueries, Objects.requireNonNull(updatedBody));
 
-          //noinspection ConstantConditions
-          results.add(new MessageResult(threadTable.getRecipientForThreadId(record.getThreadId()), record.getRecipient(), updatedBody, updatedSnippet, record.getThreadId(), record.getId(), record.getDateReceived(), true));
+          results.add(new MessageResult(record.getToRecipient(), record.getFromRecipient(), updatedBody, updatedSnippet, record.getThreadId(), record.getId(), record.getDateReceived(), true));
         }
       }
     }
@@ -394,8 +393,7 @@ public class SearchRepository {
 
     try (MessageTable.Reader reader = messageTable.getMessages(mentionQueryResults.keySet())) {
       for (MessageRecord record : reader) {
-        //noinspection ConstantConditions
-        results.add(new MessageResult(threadTable.getRecipientForThreadId(record.getThreadId()), record.getRecipient(), record.getBody(), record.getBody(), record.getThreadId(), record.getId(), record.getDateReceived(), true));
+        results.add(new MessageResult(record.getToRecipient(), record.getFromRecipient(), record.getBody(), record.getBody(), record.getThreadId(), record.getId(), record.getDateReceived(), true));
       }
     }
 

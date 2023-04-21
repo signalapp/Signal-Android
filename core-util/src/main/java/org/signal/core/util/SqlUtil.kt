@@ -342,6 +342,11 @@ object SqlUtil {
   }
 
   @JvmStatic
+  fun appendArgs(args: Array<String>, vararg objects: Any?): Array<String> {
+    return args + buildArgs(objects)
+  }
+
+  @JvmStatic
   fun buildBulkInsert(tableName: String, columns: Array<String>, contentValues: List<ContentValues>): List<Query> {
     return buildBulkInsert(tableName, columns, contentValues, MAX_QUERY_ARGS)
   }

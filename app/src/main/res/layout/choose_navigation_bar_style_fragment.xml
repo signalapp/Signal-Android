@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/signal_colorSurface2"
+    app:cardCornerRadius="28dp"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/signal_colorBackground"
+            android:importantForAccessibility="no"
+            android:paddingHorizontal="@dimen/core_ui__gutter"
+            android:paddingBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/navbar_normal" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/core_ui__gutter"
+            android:layout_marginTop="24dp"
+            android:text="@string/ChooseNavigationBarStyleFragment__navigation_bar_size"
+            android:textAppearance="@style/Signal.Text.HeadlineSmall"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@id/toggle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/core_ui__gutter"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/core_ui__gutter"
+            app:layout_constraintBottom_toTopOf="@id/ok"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:singleSelection="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/normal"
+                style="@style/Signal.Widget.Button.Medium.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/ChooseNavigationBarStyleFragment__normal"
+                android:textAllCaps="false"
+                android:textColor="@color/signal_colorOnSecondaryContainer"
+                app:cornerRadius="12dp"
+                app:iconGravity="textStart"
+                app:iconTint="@color/signal_colorOnSecondaryContainer"
+                app:strokeWidth="1dp"
+                tools:icon="@drawable/ic_check_20" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/compact"
+                style="@style/Signal.Widget.Button.Medium.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/ChooseNavigationBarStyleFragment__compact"
+                android:textAllCaps="false"
+                android:textColor="@color/signal_colorOnSecondaryContainer"
+                app:cornerRadius="12dp"
+                app:iconGravity="textStart"
+                app:iconTint="@color/signal_colorOnSecondaryContainer"
+                app:strokeWidth="1dp" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ok"
+            style="@style/Signal.Widget.Button.Large.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="28dp"
+            android:text="@android:string/ok"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toggle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

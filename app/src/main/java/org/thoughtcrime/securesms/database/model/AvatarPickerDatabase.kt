@@ -33,7 +33,7 @@ class AvatarPickerDatabase(context: Context, databaseHelper: SignalDatabase) : D
         $GROUP_ID TEXT DEFAULT NULL,
         $AVATAR BLOB NOT NULL
       )
-    """.trimIndent()
+    """
   }
 
   fun saveAvatarForSelf(avatar: Avatar): Avatar {

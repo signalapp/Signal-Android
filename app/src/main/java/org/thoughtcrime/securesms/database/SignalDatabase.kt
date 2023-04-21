@@ -161,7 +161,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     Log.i(TAG, "Upgrading database: $oldVersion, $newVersion")
     val startTime = System.currentTimeMillis()
-    db.setForeignKeyConstraintsEnabled(false)
     db.beginTransaction()
     try {
       migrate(context, db, oldVersion, newVersion)
@@ -169,7 +168,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       db.setTransactionSuccessful()
     } finally {
       db.endTransaction()
-      db.setForeignKeyConstraintsEnabled(true)
 
       // We have to re-begin the transaction for the calling code (see comment at start of method)
       db.beginTransaction()

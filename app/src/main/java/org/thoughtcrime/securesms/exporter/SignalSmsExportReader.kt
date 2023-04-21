@@ -115,7 +115,7 @@ class SignalSmsExportReader(
       } else if (threadRecipient != null) {
         setOf(threadRecipient.smsExportAddress())
       } else {
-        setOf(record.individualRecipient.smsExportAddress())
+        setOf(record.toRecipient.smsExportAddress())
       }
 
       val parts: MutableList<ExportableMessage.Mms.Part> = mutableListOf()
@@ -138,7 +138,7 @@ class SignalSmsExportReader(
           }
       }
 
-      val sender: String = if (record.isOutgoing) Recipient.self().smsExportAddress() else record.individualRecipient.smsExportAddress()
+      val sender: String = if (record.isOutgoing) Recipient.self().smsExportAddress() else record.fromRecipient.smsExportAddress()
 
       return ExportableMessage.Mms(
         id = MessageId(record.id),

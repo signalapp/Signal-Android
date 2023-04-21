@@ -65,7 +65,8 @@ class CallLogAdapter(
   fun submitCallRows(
     rows: List<CallLogRow?>,
     selectionState: CallLogSelectionState,
-    stagedDeletion: CallLogStagedDeletion?
+    stagedDeletion: CallLogStagedDeletion?,
+    onCommit: () -> Unit
   ): Int {
     val filteredRows = rows
       .filterNotNull()
@@ -78,7 +79,7 @@ class CallLogAdapter(
         }
       }
 
-    submitList(filteredRows)
+    submitList(filteredRows, onCommit)
 
     return filteredRows.size
   }

@@ -139,7 +139,7 @@ public class ReactionSendJob extends BaseJob {
     ReactionTable reactionTable = SignalDatabase.reactions();
     MessageRecord message       = SignalDatabase.messages().getMessageRecord(messageId.getId());
 
-    Recipient targetAuthor        = message.isOutgoing() ? Recipient.self() : message.getIndividualRecipient();
+    Recipient targetAuthor        = message.getFromRecipient();
     long      targetSentTimestamp = message.getDateSent();
 
     if (targetAuthor.getId().equals(SignalStore.releaseChannelValues().getReleaseChannelRecipientId())) {
@@ -236,7 +236,8 @@ public class ReactionSendJob extends BaseJob {
                                                                                            messageId,
                                                                                            dataMessage,
                                                                                            true,
-                                                                                           false);
+                                                                                           false,
+                                                                                           null);
 
     if (includesSelf) {
       results.add(ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage));

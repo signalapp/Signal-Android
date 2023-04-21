@@ -53,7 +53,7 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
         $ALLOW_ALL_CALLS INTEGER NOT NULL DEFAULT 0,
         $ALLOW_ALL_MENTIONS INTEGER NOT NULL DEFAULT 0
       )
-    """.trimIndent()
+    """
   }
 
   private object NotificationProfileScheduleTable {
@@ -77,7 +77,7 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
         $END INTEGER NOT NULL,
         $DAYS_ENABLED TEXT NOT NULL
       )
-    """.trimIndent()
+    """
 
     const val CREATE_INDEX = "CREATE INDEX notification_profile_schedule_profile_index ON $TABLE_NAME ($NOTIFICATION_PROFILE_ID)"
   }
@@ -96,7 +96,7 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
         $RECIPIENT_ID INTEGER NOT NULL,
         UNIQUE($NOTIFICATION_PROFILE_ID, $RECIPIENT_ID) ON CONFLICT REPLACE
       )
-    """.trimIndent()
+    """
 
     const val CREATE_INDEX = "CREATE INDEX notification_profile_allowed_members_profile_index ON $TABLE_NAME ($NOTIFICATION_PROFILE_ID)"
   }

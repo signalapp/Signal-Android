@@ -58,6 +58,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.processors.PublishProcessor;
@@ -439,6 +440,11 @@ public class ConversationViewModel extends ViewModel {
                                                                               .map(profiles -> Optional.ofNullable(NotificationProfiles.getActiveProfile(profiles)));
 
     return LiveDataReactiveStreams.fromPublisher(activeProfile.toFlowable(BackpressureStrategy.LATEST));
+  }
+
+  @NonNull
+  public Single<ConversationMessage> resolveMessageToEdit(@NonNull ConversationMessage message) {
+    return conversationRepository.resolveMessageToEdit(message);
   }
 
   void setArgs(@NonNull ConversationIntents.Args args) {

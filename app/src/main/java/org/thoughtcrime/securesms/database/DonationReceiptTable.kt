@@ -31,7 +31,7 @@ class DonationReceiptTable(context: Context, databaseHelper: SignalDatabase) : D
         $CURRENCY TEXT NOT NULL,
         $SUBSCRIPTION_LEVEL INTEGER NOT NULL
       )
-    """.trimIndent()
+    """
 
     val CREATE_INDEXS = arrayOf(
       "CREATE INDEX IF NOT EXISTS donation_receipt_type_index ON $TABLE_NAME ($TYPE)",

@@ -17,6 +17,9 @@ import org.thoughtcrime.securesms.mms.GlideRequest;
  */
 public class Megaphone {
 
+  @SuppressWarnings("ConstantConditions")
+  public static final Megaphone NONE = new Megaphone.Builder(null, null).build();
+
   private final Event                  event;
   private final Style                  style;
   private final boolean                canSnooze;

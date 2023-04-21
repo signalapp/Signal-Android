@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
+import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode;
 import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -102,7 +103,7 @@ public class LongMessageFragment extends FullScreenDialogFragment {
       if (message.get().getMessageRecord().isOutgoing()) {
         toolbar.setTitle(getString(R.string.LongMessageActivity_your_message));
       } else {
-        Recipient recipient = message.get().getMessageRecord().getRecipient();
+        Recipient recipient = message.get().getMessageRecord().getFromRecipient();
         String    name      = recipient.getDisplayName(requireContext());
 
         toolbar.setTitle(getString(R.string.LongMessageActivity_message_from_s, name));
@@ -113,8 +114,8 @@ public class LongMessageFragment extends FullScreenDialogFragment {
       if (message.get().getMessageRecord().isOutgoing()) {
         bubble = sentBubble.get();
         colorizerView.setVisibility(View.VISIBLE);
-        colorizerView.setBackground(message.get().getMessageRecord().getRecipient().getChatColors().getChatBubbleMask());
-        bubble.getBackground().setColorFilter(message.get().getMessageRecord().getRecipient().getChatColors().getChatBubbleColorFilter());
+        colorizerView.setBackground(message.get().getMessageRecord().getToRecipient().getChatColors().getChatBubbleMask());
+        bubble.getBackground().setColorFilter(message.get().getMessageRecord().getToRecipient().getChatColors().getChatBubbleColorFilter());
         bubble.addOnLayoutChangeListener(bubbleLayoutListener);
         bubbleLayoutListener.onLayoutChange(bubble, 0, 0, 0, 0, 0, 0, 0, 0);
       } else {
@@ -138,7 +139,7 @@ public class LongMessageFragment extends FullScreenDialogFragment {
       } else {
         text.setMentionBackgroundTint(ContextCompat.getColor(requireContext(), R.color.transparent_black_40));
       }
-      footer.setMessageRecord(message.get().getMessageRecord(), Locale.getDefault());
+      footer.setMessageRecord(message.get().getMessageRecord(), Locale.getDefault(), ConversationItemDisplayMode.STANDARD);
     });
   }
 

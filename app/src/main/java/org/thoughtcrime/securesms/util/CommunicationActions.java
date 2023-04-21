@@ -142,6 +142,7 @@ public class CommunicationActions {
 
       @Override
       protected void onPostExecute(@Nullable Long threadId) {
+        // TODO [alex] -- ThreadID should *always* exist
         ConversationIntents.Builder builder = ConversationIntents.createBuilder(context, recipient.getId(), threadId != null ? threadId : -1);
         if (!TextUtils.isEmpty(text)) {
           builder.withDraftText(text);

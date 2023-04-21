@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.DraftTable.Draft
 import org.thoughtcrime.securesms.database.MentionUtil
 import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.mms.QuoteId
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -65,6 +66,22 @@ class DraftViewModel @JvmOverloads constructor(
 
   fun onRecipientChanged(recipient: Recipient) {
     store.update { it.copy(recipientId = recipient.id) }
+  }
+
+  fun setMessageEditDraft(messageId: MessageId, text: String, mentions: List<Mention>, styleBodyRanges: BodyRangeList?) {
+    store.update {
+      val mentionRanges: BodyRangeList? = MentionUtil.mentionsToBodyRangeList(mentions)
+
+      val bodyRanges: BodyRangeList? = if (styleBodyRanges == null) {
+        mentionRanges
+      } else if (mentionRanges == null) {
+        styleBodyRanges
+      } else {
+        styleBodyRanges.toBuilder().addAllRanges(mentionRanges.rangesList).build()
+      }
+
+      saveDrafts(it.copy(textDraft = text.toTextDraft(), bodyRangesDraft = bodyRanges?.toDraft(), messageEditDraft = Draft(Draft.MESSAGE_EDIT, messageId.serialize())))
+    }
   }
 
   fun setTextDraft(text: String, mentions: List<Mention>, styleBodyRanges: BodyRangeList?) {
@@ -128,6 +145,12 @@ class DraftViewModel @JvmOverloads constructor(
 
   fun loadDraftQuote(serialized: String): Maybe<ConversationMessage> {
     return repository.loadDraftQuote(serialized)
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun loadDraftEditMessage(serialized: String): Maybe<ConversationMessage> {
+    return repository.loadDraftMessageEdit(serialized)
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
   }

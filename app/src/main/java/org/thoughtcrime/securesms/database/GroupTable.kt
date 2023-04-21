@@ -28,7 +28,6 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
-import org.signal.core.util.toSingleLine
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
@@ -171,7 +170,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
             WHERE ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
         ) as $MEMBER_GROUP_CONCAT
       FROM $TABLE_NAME          
-    """.toSingleLine()
+    """
 
     val CREATE_TABLES = arrayOf(CREATE_TABLE, MembershipTable.CREATE_TABLE)
   }
@@ -193,7 +192,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
             $RECIPIENT_ID INTEGER NOT NULL,
             UNIQUE($GROUP_ID, $RECIPIENT_ID)
         )
-      """.toSingleLine()
+      """
     }
   }
 
@@ -371,7 +370,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       WHERE $ACTIVE = 1 AND ${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} IN (${subquery.where})
       GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}
       ORDER BY $TITLE COLLATE NOCASE ASC
-    """.toSingleLine()
+    """
 
     return databaseHelper.signalReadableDatabase.query(statement, subquery.whereArgs)
   }
@@ -383,7 +382,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       $JOINED_GROUP_SELECT
       WHERE ${query.where}
       ORDER BY $TITLE COLLATE NOCASE ASC
-    """.trimIndent()
+    """
 
     val cursor = databaseHelper.signalReadableDatabase.query(statement, query.whereArgs)
     return Reader(cursor)
@@ -432,7 +431,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       FROM ${MembershipTable.TABLE_NAME}
       INNER JOIN $TABLE_NAME ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
       WHERE $query
-    """.trimIndent()
+    """
 
     return Reader(readableDatabase.query(selection, queryArgs))
   }
@@ -444,7 +443,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       INNER JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$RECIPIENT_ID
       WHERE ${query.where} 
       ORDER BY ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC
-    """.toSingleLine()
+    """
 
     return Reader(databaseHelper.signalReadableDatabase.rawQuery(sql, query.whereArgs))
   }
@@ -534,7 +533,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         ) as $MEMBER_GROUP_CONCAT
         FROM $TABLE_NAME
         WHERE $MEMBER_GROUP_CONCAT = ?
-    """.toSingleLine()
+    """
 
     return readableDatabase.rawQuery(statement, buildArgs(joinedTestMembers)).use { cursor ->
       if (cursor.moveToNext()) {
@@ -577,7 +576,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       FROM ${MembershipTable.TABLE_NAME}
       INNER JOIN $TABLE_NAME ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
       LEFT JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
-    """.toSingleLine()
+    """
 
     var query = "${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} = ?"
     var args = buildArgs(recipientId)
@@ -1275,7 +1274,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
           SELECT ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} 
           FROM ${MessageTable.TABLE_NAME} 
           WHERE 
-           ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID} = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AND 
+           ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AND 
            ${MessageTable.STORY_TYPE} > 1 
           ORDER BY ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} DESC 
           LIMIT 1
@@ -1291,7 +1290,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
           )
         ) 
       ORDER BY active_timestamp DESC
-    """.toSingleLine()
+    """
 
     return readableDatabase
       .query(query)

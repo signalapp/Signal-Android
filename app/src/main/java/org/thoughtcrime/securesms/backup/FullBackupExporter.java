@@ -332,7 +332,10 @@ public class FullBackupExporter extends FullBackupBase {
 
     Map<String, Set<String>> dependsOn = new LinkedHashMap<>();
     for (String table : tables) {
-      dependsOn.put(table, SqlUtil.getForeignKeyDependencies(input, table));
+      Set<String> dependencies = SqlUtil.getForeignKeyDependencies(input, table);
+      dependencies.remove(table);
+
+      dependsOn.put(table, dependencies);
     }
 
     for (String table : tables) {
@@ -611,7 +614,7 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
   private static boolean isForNonExpiringMmsMessage(@NonNull SQLiteDatabase db, long mmsId) {
-    String[] columns = new String[] { MessageTable.RECIPIENT_ID, MessageTable.EXPIRES_IN, MessageTable.VIEW_ONCE };
+    String[] columns = new String[] { MessageTable.EXPIRES_IN, MessageTable.VIEW_ONCE };
     String   where   = MessageTable.ID + " = ?";
     String[] args    = new String[] { String.valueOf(mmsId) };
 

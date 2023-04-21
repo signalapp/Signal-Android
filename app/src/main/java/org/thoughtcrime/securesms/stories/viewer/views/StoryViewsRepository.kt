@@ -25,17 +25,15 @@ class StoryViewsRepository {
 
   fun getStoryRecipient(storyId: Long): Single<Recipient> {
     return Single.fromCallable {
-      val record = SignalDatabase.messages.getMessageRecord(storyId)
-
-      record.recipient
+      SignalDatabase.messages.getMessageRecord(storyId).toRecipient
     }.subscribeOn(Schedulers.io())
   }
 
   fun getViews(storyId: Long): Observable<List<StoryViewItemData>> {
     return Observable.create<List<StoryViewItemData>> { emitter ->
       val record: MessageRecord = SignalDatabase.messages.getMessageRecord(storyId)
-      val filterIds: Set<RecipientId> = if (record.recipient.isDistributionList) {
-        val distributionId: DistributionId = SignalDatabase.distributionLists.getDistributionId(record.recipient.requireDistributionListId())!!
+      val filterIds: Set<RecipientId> = if (record.toRecipient.isDistributionList) {
+        val distributionId: DistributionId = SignalDatabase.distributionLists.getDistributionId(record.toRecipient.requireDistributionListId())!!
         SignalDatabase.storySends.getRecipientsForDistributionId(storyId, distributionId)
       } else {
         emptySet()

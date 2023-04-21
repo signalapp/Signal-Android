@@ -13,6 +13,9 @@
         <item name="android:lineSpacingExtra">6sp</item>
     </style>
 
+    <style name="Signal.Text.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
+    </style>
+
     <style name="Signal.Text.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:lineSpacingExtra">6sp</item>
     </style>

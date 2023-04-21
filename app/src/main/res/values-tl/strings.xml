@@ -169,6 +169,10 @@
     <string name="BucketedThreadMedia_Medium">Katamtaman</string>
     <string name="BucketedThreadMedia_Small">Maliit</string>
 
+    <!-- CameraFragment -->
+    <!-- Toasted when user device does not support video recording -->
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">I-tap para sa larawan, huwag bitiwan para video</string>
     <string name="CameraXFragment_capture_description">Kunan</string>
@@ -297,9 +301,13 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Hindi ma-download ang image. Kailangan mo itong i-send ulit.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Hindi ma-download ang video Kailangan mo itong i-send ulit.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
+    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Magdagdag ng kalakip</string>
+    <!-- Accessibility text associated with image button to send an edited message. -->
+    <string name="ConversationActivity_send_edit">Send edit</string>
     <string name="ConversationActivity_select_contact_info">Pumili ng impormasyon ng kontak</string>
     <string name="ConversationActivity_compose_message">Magsulat ng mensahe</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Paumanhin, nagka-error sa pagsasaayos ng iyong kalakip.</string>
@@ -307,6 +315,13 @@
     <string name="ConversationActivity_message_is_empty_exclamation">Walang laman ang mensahe!</string>
     <string name="ConversationActivity_group_members">Mga kasapi ng grupo</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">I-tap dito para mag-start ng group call</string>
+    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
+    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
+    <plurals name="ConversationActivity_edit_message_too_old">
+        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
+        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Hindi valid ang tatanggap!</string>
     <string name="ConversationActivity_added_to_home_screen">Naidagdag sa home screen</string>
@@ -1071,6 +1086,8 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pindutin at huwag bitawan upang mag-record ng voice message, bitawan upang ipadala</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Hindi na suportado sa Signal ang SMS messaging.</string>
+    <!-- When editing a message, label shown above the text input field in the composer -->
+    <string name="InputPanel_edit_message">Edit message</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Ibahagi</string>
@@ -1480,7 +1497,7 @@
     <string name="MessageRequestBottomView_block">I-block</string>
     <string name="MessageRequestBottomView_unblock">I-unblock</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Gusto mo bang mag-message si %1$s sa \'yo at i-share ang pangalan at photo mo sa kanya? Tinanggal mo na ang taong ito dati.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Payagan si %1$s na mag-message sa \'yo at i-share ang pangalan at photo mo sa kanya? Tinanggal mo na dati ang taong ito.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Hayaang mag-message si %1$s sa\'yo at i-share sa kanya ang pangalan at photo mo? Hindi niya malalaman na nakita mo ang kanyang message hanggang sa i-accept mo ito.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Hayaang mag-message si %1$s sa \'yo at i-share sa kanya ang pangalan at photo mo? Hindi ka makakatanggap ng anumang message hanggang sa i-unblock mo siya.</string>
@@ -1788,7 +1805,13 @@
     <string name="RegistrationActivity_invalid_number">Hindi valid ang numero</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ang numerong iyong tinukoy (%1$s) ay hindi valid.
     </string>
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Ang kodang pang-beripikasyon ay ipapadala sa:</string>
+
+    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
+    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Makakatanggap ka ng tawag upang beripikahin ang numerong ito.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Tama ba ang numero mo sa itaas?</string>
     <string name="RegistrationActivity_edit_number">I-edit ang numero</string>
@@ -1823,8 +1846,10 @@
     <string name="RegistrationActivity_next">Susunod</string>
     <string name="RegistrationActivity_continue">Magpatuloy</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Dalhin ang privacy kahit saan.\nMaging ikaw sa bawat mensahe.</string>
-    <string name="RegistrationActivity_enter_your_phone_number">Ilagay ang numero ng iyong telepono</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Makakatanggap ka ng verification code.\nMaaari kang singilin ng telco provider mo.</string>
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">Phone number</string>
+    <!-- Subtitle of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ilagay ang code na ipinadala namin sa %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Siguraduhing may cellular signal ang iyong telepono para matanggap ang iyong mga tawag at SMS</string>
 
@@ -1991,7 +2016,7 @@
     <string name="ThreadRecord_delivery_issue">Delivery issue</string>
     <string name="ThreadRecord_message_request">Pangmensaheng hiling</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">You have hidden this person, message them again to add them back to your list.</string>
+    <string name="ThreadRecord_hidden_recipient">Naka-hide sa \'yo ang taong ito, mag-message ulit sa kanya para malagay ulit siya sa list mo.</string>
     <string name="ThreadRecord_photo">Larawan</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Voice na Mensahe</string>
@@ -2388,7 +2413,7 @@
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">I-activate ang Payments</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
-    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Tinangga; mo na ang taong ito, mababalik siya sa list mo kapag nag-message ka ulit sa kanya.</string>
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Tinanggal mo na ang taong ito, mababalik s\'ya sa list mo kapag nag-message ka ulit sa kanya.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">I-play … I-pause</string>
@@ -2645,6 +2670,8 @@
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Nabigong ipadala</string>
     <string name="message_details_recipient__new_safety_number">Bagong numerong pangkaligtasan</string>
+    <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
+    <string name="MessageDetails__view_edit_history">View edit history</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Lumikha ng passphrase</string>
@@ -2925,6 +2952,12 @@
     <string name="preferences_success">Success</string>
     <string name="preferences_failed_to_connect">Failed to connect</string>
     <string name="preferences_enter_proxy_address">I-enter ang proxy address</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">Normal</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">Compact</string>
 
 
     <string name="configurable_single_select__customize_option">I-customize ang option</string>
@@ -3174,6 +3207,8 @@
     <string name="conversation_selection__menu_forward">Ipasa</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Tugon</string>
+    <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <string name="conversation_selection__menu_edit">Edit</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">I-save</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -4015,11 +4050,11 @@
     <string name="ExportAccountDataFragment__export_report">I-export ang report</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">I-export as TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">I-export bilang TXT</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">Madaling basahing text file</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">I-export as JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">I-export bilang JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
     <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
 
@@ -4029,7 +4064,7 @@
     <!-- Acknowledgement for download failure -->
     <string name="ExportAccountDataFragment__ok_action">OK</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Hindi makapag-generate ng report</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">Hindi ma-generate ang report</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
     <string name="ExportAccountDataFragment__check_network">I-check ang iyong connection at subukan ulit.</string>
 
@@ -4041,7 +4076,7 @@
     <string name="ExportAccountDataFragment__export_report_action">I-export</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Generating report…</string>
+    <string name="ExportAccountDataFragment__download_progress">Gine-generate ang report…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Ang iyong report ay ginagawa lamang sa oras ng pag-export at hindi ito nilalagay ng Signal sa device mo.</string>
 
@@ -5894,7 +5929,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">Done</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Hindi mabuksan ang share sheet.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Kinopya sa clipboard</string>
 
@@ -5905,6 +5940,17 @@
     <string name="EditCallLinkNameDialogFragment__save">I-save</string>
     <!-- Placeholder text on input field when editing call name -->
     <string name="EditCallLinkNameDialogFragment__call_name">Pangalan ng call</string>
+
+    <!-- ChooseNavigationBarStyleFragment -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+
+    <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
+    <string name="EditMessageHistoryDialog_title">Edit history</string>
 
     <!-- EOF -->
 </resources>

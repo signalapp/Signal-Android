@@ -76,19 +76,19 @@ public final class MessageDetailsRepository {
   private @NonNull MessageDetails getRecipientDeliveryStatusesInternal(@NonNull MessageRecord messageRecord) {
     List<RecipientDeliveryStatus> recipients = new LinkedList<>();
 
-    if (!messageRecord.getRecipient().isGroup() && !messageRecord.getRecipient().isDistributionList()) {
+    if (!messageRecord.getToRecipient().isGroup() && !messageRecord.getToRecipient().isDistributionList()) {
       recipients.add(new RecipientDeliveryStatus(messageRecord,
-                                                 messageRecord.getRecipient(),
+                                                 messageRecord.getToRecipient(),
                                                  getStatusFor(messageRecord),
                                                  messageRecord.isUnidentified(),
                                                  messageRecord.getReceiptTimestamp(),
-                                                 getNetworkFailure(messageRecord, messageRecord.getRecipient()),
-                                                 getKeyMismatchFailure(messageRecord, messageRecord.getRecipient())));
+                                                 getNetworkFailure(messageRecord, messageRecord.getToRecipient()),
+                                                 getKeyMismatchFailure(messageRecord, messageRecord.getToRecipient())));
     } else {
       List<GroupReceiptTable.GroupReceiptInfo> receiptInfoList = SignalDatabase.groupReceipts().getGroupReceiptInfo(messageRecord.getId());
 
-      if (receiptInfoList.isEmpty() && messageRecord.getRecipient().isGroup()) {
-        List<Recipient> group = SignalDatabase.groups().getGroupMembers(messageRecord.getRecipient().requireGroupId(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+      if (receiptInfoList.isEmpty() && messageRecord.getToRecipient().isGroup()) {
+        List<Recipient> group = SignalDatabase.groups().getGroupMembers(messageRecord.getToRecipient().requireGroupId(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
         for (Recipient recipient : group) {
           recipients.add(new RecipientDeliveryStatus(messageRecord,
@@ -99,8 +99,8 @@ public final class MessageDetailsRepository {
                                                      getNetworkFailure(messageRecord, recipient),
                                                      getKeyMismatchFailure(messageRecord, recipient)));
         }
-      } else if (receiptInfoList.isEmpty() && messageRecord.getRecipient().isDistributionList()) {
-        DistributionId   distributionId = SignalDatabase.distributionLists().getDistributionId(messageRecord.getRecipient().requireDistributionListId());
+      } else if (receiptInfoList.isEmpty() && messageRecord.getToRecipient().isDistributionList()) {
+        DistributionId   distributionId = SignalDatabase.distributionLists().getDistributionId(messageRecord.getToRecipient().requireDistributionListId());
         Set<RecipientId> recipientIds   = SignalDatabase.storySends().getRecipientsForDistributionId(messageRecord.getId(), Objects.requireNonNull(distributionId));
         List<Recipient>  resolved       = Recipient.resolvedList(recipientIds);
 

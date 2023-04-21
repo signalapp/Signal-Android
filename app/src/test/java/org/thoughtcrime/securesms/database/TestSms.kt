@@ -59,8 +59,9 @@ object TestSms {
     threadId: Long = 1
   ): Long {
     val values = ContentValues().apply {
-      put(MessageTable.RECIPIENT_ID, message.sender.serialize())
-      put(MessageTable.RECIPIENT_DEVICE_ID, message.senderDeviceId)
+      put(MessageTable.FROM_RECIPIENT_ID, message.authorId.serialize())
+      put(MessageTable.FROM_DEVICE_ID, message.authorDeviceId)
+      put(MessageTable.TO_RECIPIENT_ID, message.authorId.serialize())
       put(MessageTable.DATE_RECEIVED, message.receivedTimestampMillis)
       put(MessageTable.DATE_SENT, message.sentTimestampMillis)
       put(MessageTable.DATE_SERVER, message.serverTimestampMillis)

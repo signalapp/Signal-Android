@@ -63,7 +63,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     private const val MESSAGES_QUERY = """
       SELECT 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
-        ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
+        ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
         snippet($FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET, 
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
         $FTS_TABLE_NAME.$THREAD_ID, 
@@ -77,7 +77,9 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       WHERE 
         $FTS_TABLE_NAME MATCH ? AND 
         ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.GROUP_V2_BIT} = 0 AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.SCHEDULED_DATE} < 0 AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL
       ORDER BY ${MessageTable.DATE_RECEIVED} DESC 
       LIMIT 500
     """
@@ -86,7 +88,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     private const val MESSAGES_FOR_THREAD_QUERY = """
       SELECT 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
-        ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID} AS $MESSAGE_RECIPIENT,
+        ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} AS $MESSAGE_RECIPIENT,
         snippet($FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET,
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
         $FTS_TABLE_NAME.$THREAD_ID, 
@@ -99,7 +101,11 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           INNER JOIN ${ThreadTable.TABLE_NAME} ON $FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} 
       WHERE 
         $FTS_TABLE_NAME MATCH ? AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = ? 
+        ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = ? AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.GROUP_V2_BIT} = 0 AND 
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.SCHEDULED_DATE} < 0 AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL
       ORDER BY ${MessageTable.DATE_RECEIVED} DESC 
       LIMIT 500
     """
@@ -150,7 +156,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             WHERE 
               ${MessageTable.ID} >= $i AND
               ${MessageTable.ID} < ${i + batchSize}
-        """.trimIndent()
+        """
       )
     }
   }

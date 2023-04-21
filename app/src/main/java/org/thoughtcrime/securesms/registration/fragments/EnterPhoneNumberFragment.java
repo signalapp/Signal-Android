@@ -202,8 +202,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   private void onE164EnteredSuccessfully(@NonNull Context context, boolean fcmSupported) {
-    register.setSpinning();
-    disableAllEntries();
+    enterInProgressUiState();
 
     Disposable disposable = viewModel.canEnterSkipSmsFlow()
                                      .observeOn(AndroidSchedulers.mainThread())
@@ -259,13 +258,15 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
     }
   }
 
-  private void disableAllEntries() {
+  private void enterInProgressUiState() {
+    register.setSpinning();
     countryCode.setEnabled(false);
     number.setEnabled(false);
     cancel.setVisibility(View.GONE);
   }
 
-  private void enableAllEntries() {
+  private void exitInProgressUiState() {
+    register.cancelSpinning();
     countryCode.setEnabled(true);
     number.setEnabled(true);
     if (viewModel.isReregister()) {
@@ -303,7 +304,8 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                       Log.i(TAG, "The server did not accept the information.", processor.getError());
                                       showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human));
                                     } else if (processor instanceof RegistrationSessionProcessor.RegistrationSessionProcessorForVerification
-                                               && ((RegistrationSessionProcessor.RegistrationSessionProcessorForVerification) processor).externalServiceFailure()) {
+                                               && ((RegistrationSessionProcessor.RegistrationSessionProcessorForVerification) processor).externalServiceFailure())
+                                    {
                                       Log.w(TAG, "The server reported a failure with an external service.", processor.getError());
                                       showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_external_service_error));
                                     } else {
@@ -311,8 +313,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                       showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_unable_to_connect_to_service));
                                     }
 
-                                    register.cancelSpinning();
-                                    enableAllEntries();
+                                    exitInProgressUiState();
                                   });
 
     disposables.add(request);
@@ -324,9 +325,9 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
 
   private String formatMillisecondsToString(long milliseconds) {
     long totalSeconds = milliseconds / 1000;
-    long HH = totalSeconds / 3600;
-    long MM = (totalSeconds % 3600) / 60;
-    long SS = totalSeconds % 60;
+    long HH           = totalSeconds / 3600;
+    long MM           = (totalSeconds % 3600) / 60;
+    long SS           = totalSeconds % 60;
     return String.format(Locale.getDefault(), "%02d:%02d:%02d", HH, MM, SS);
   }
 
@@ -365,7 +366,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   private void checkIfSessionIsInProgressAndAdvance(@NonNull String sessionE164) {
-    NavController  navController  = NavHostFragment.findNavController(this);
+    NavController navController = NavHostFragment.findNavController(this);
     Disposable request = viewModel.validateSession(sessionE164)
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .subscribe(processor -> {
@@ -428,13 +429,26 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                    @NonNull String e164number,
                                    @NonNull Runnable onConfirmed)
   {
-    showConfirmNumberDialogIfTranslated(context,
-                                        R.string.RegistrationActivity_a_verification_code_will_be_sent_to,
-                                        e164number,
-                                        () -> {
-                                          ViewUtil.hideKeyboard(context, number.getEditText());
-                                          onConfirmed.run();
-                                        },
-                                        () -> ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(this.number.getEditText()));
+    enterInProgressUiState();
+
+    disposables.add(
+        viewModel.canEnterSkipSmsFlow()
+                 .observeOn(AndroidSchedulers.mainThread())
+                 .subscribe(canSkipSms -> showConfirmNumberDialogIfTranslated(context,
+                                                                              viewModel.hasUserSkippedReRegisterFlow() ? R.string.RegistrationActivity_additional_verification_required
+                                                                                                                       : R.string.RegistrationActivity_phone_number_verification_dialog_title,
+                                                                              canSkipSms ? null
+                                                                                         : R.string.RegistrationActivity_a_verification_code_will_be_sent_to_this_number,
+                                                                              e164number,
+                                                                              () -> {
+                                                                                exitInProgressUiState();
+                                                                                ViewUtil.hideKeyboard(context, number.getEditText());
+                                                                                onConfirmed.run();
+                                                                              },
+                                                                              () -> {
+                                                                                exitInProgressUiState();
+                                                                                ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(this.number.getEditText());
+                                                                              }))
+    );
   }
 }

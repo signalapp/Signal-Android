@@ -31,7 +31,7 @@ object Gifts {
     expiresIn: Long
   ): OutgoingMessage {
     return OutgoingMessage(
-      recipient = recipient,
+      threadRecipient = recipient,
       body = Base64.encodeBytes(giftBadge.toByteArray()),
       isSecure = true,
       sentTimeMillis = sentTimestamp,

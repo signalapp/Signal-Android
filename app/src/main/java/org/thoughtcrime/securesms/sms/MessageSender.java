@@ -120,13 +120,13 @@ public class MessageSender {
       database.beginTransaction();
 
       for (OutgoingMessage message : messages) {
-        long allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getRecipient(), -1L, message.getDistributionType());
+        long allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getThreadRecipient(), -1L, message.getDistributionType());
         long messageId         = database.insertMessageOutbox(message.stripAttachments(), allocatedThreadId, false, insertListener);
 
         messageIds.add(messageId);
         threads.add(allocatedThreadId);
 
-        if (message.getRecipient().isGroup() && message.getAttachments().isEmpty() && message.getLinkPreviews().isEmpty() && message.getSharedContacts().isEmpty()) {
+        if (message.getThreadRecipient().isGroup() && message.getAttachments().isEmpty() && message.getLinkPreviews().isEmpty() && message.getSharedContacts().isEmpty()) {
           SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
         } else {
           SignalLocalMetrics.GroupMessageSend.cancel(metricId);
@@ -136,7 +136,7 @@ public class MessageSender {
       for (int i = 0; i < messageIds.size(); i++) {
         long            messageId = messageIds.get(i);
         OutgoingMessage message   = messages.get(i);
-        Recipient       recipient = message.getRecipient();
+        Recipient       recipient = message.getThreadRecipient();
 
         if (recipient.isDistributionList()) {
           DistributionId    distributionId = Objects.requireNonNull(SignalDatabase.distributionLists().getDistributionId(recipient.requireDistributionListId()));
@@ -196,7 +196,7 @@ public class MessageSender {
     for (int i = 0; i < messageIds.size(); i++) {
       long            messageId = messageIds.get(i);
       OutgoingMessage message   = messages.get(i);
-      Recipient       recipient = message.getRecipient();
+      Recipient       recipient = message.getThreadRecipient();
       List<UploadDependencyGraph.Node> dependencies = dependencyGraph.getDependencyMap().get(message);
 
       List<String> jobDependencyIds = (dependencies != null) ? dependencies.stream().map(UploadDependencyGraph.Node::getJobId).collect(Collectors.toList())
@@ -224,16 +224,16 @@ public class MessageSender {
                           @Nullable final String metricId,
                           @Nullable final MessageTable.InsertListener insertListener)
   {
-    Log.i(TAG, "Sending media message to " + message.getRecipient().getId() + ", thread: " + threadId);
+    Log.i(TAG, "Sending media message to " + message.getThreadRecipient().getId() + ", thread: " + threadId);
     try {
       ThreadTable  threadTable = SignalDatabase.threads();
       MessageTable database    = SignalDatabase.messages();
 
-      long      allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getRecipient(), threadId, message.getDistributionType());
-      Recipient recipient         = message.getRecipient();
+      long      allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getThreadRecipient(), threadId, message.getDistributionType());
+      Recipient recipient         = message.getThreadRecipient();
       long      messageId         = database.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId), allocatedThreadId, sendType != SendType.SIGNAL, insertListener);
 
-      if (message.getRecipient().isGroup() && message.getAttachments().isEmpty() && message.getLinkPreviews().isEmpty() && message.getSharedContacts().isEmpty()) {
+      if (message.getThreadRecipient().isGroup() && message.getAttachments().isEmpty() && message.getLinkPreviews().isEmpty() && message.getSharedContacts().isEmpty()) {
         SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
       } else {
         SignalLocalMetrics.GroupMessageSend.cancel(metricId);
@@ -256,7 +256,7 @@ public class MessageSender {
                                                   final long threadId,
                                                   final MessageTable.InsertListener insertListener)
   {
-    Log.i(TAG, "Sending media message with pre-uploads to " + message.getRecipient().getId() + ", thread: " + threadId + ", pre-uploads: " +  preUploadResults);
+    Log.i(TAG, "Sending media message with pre-uploads to " + message.getThreadRecipient().getId() + ", thread: " + threadId + ", pre-uploads: " + preUploadResults);
     Preconditions.checkArgument(message.getAttachments().isEmpty(), "If the media is pre-uploaded, there should be no attachments on the message.");
 
     try {
@@ -264,8 +264,8 @@ public class MessageSender {
       MessageTable    mmsDatabase        = SignalDatabase.messages();
       AttachmentTable attachmentDatabase = SignalDatabase.attachments();
 
-      Recipient recipient         = message.getRecipient();
-      long      allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getRecipient(), threadId);
+      Recipient recipient         = message.getThreadRecipient();
+      long      allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getThreadRecipient(), threadId);
       long      messageId         = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId),
                                                                     allocatedThreadId,
                                                                     false,
@@ -292,7 +292,7 @@ public class MessageSender {
                                         @NonNull Collection<PreUploadResult> preUploadResults,
                                         boolean overwritePreUploadMessageIds)
   {
-    Log.i(TAG, "Sending media broadcast (overwrite: " + overwritePreUploadMessageIds + ") to " + Stream.of(messages).map(m -> m.getRecipient().getId()).toList());
+    Log.i(TAG, "Sending media broadcast (overwrite: " + overwritePreUploadMessageIds + ") to " + Stream.of(messages).map(m -> m.getThreadRecipient().getId()).toList());
     Preconditions.checkArgument(messages.size() > 0, "No messages!");
     Preconditions.checkArgument(Stream.of(messages).allMatch(m -> m.getAttachments().isEmpty()), "Messages can't have attachments! They should be pre-uploaded.");
 
@@ -309,8 +309,8 @@ public class MessageSender {
     mmsDatabase.beginTransaction();
     try {
       if (overwritePreUploadMessageIds) {
-        long primaryThreadId  = threadTable.getOrCreateThreadIdFor(primaryMessage.getRecipient(), primaryMessage.getDistributionType());
-        long primaryMessageId = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, primaryMessage.getRecipient(), primaryMessage, primaryThreadId),
+        long primaryThreadId  = threadTable.getOrCreateThreadIdFor(primaryMessage.getThreadRecipient(), primaryMessage.getDistributionType());
+        long primaryMessageId = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, primaryMessage.getThreadRecipient(), primaryMessage, primaryThreadId),
                                                                 primaryThreadId,
                                                                 false,
                                                                 null);
@@ -337,8 +337,8 @@ public class MessageSender {
         }
 
         for (OutgoingMessage secondaryMessage : secondaryMessages) {
-          long               allocatedThreadId = threadTable.getOrCreateThreadIdFor(secondaryMessage.getRecipient(), secondaryMessage.getDistributionType());
-          long               messageId         = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, secondaryMessage.getRecipient(), secondaryMessage, allocatedThreadId),
+          long               allocatedThreadId = threadTable.getOrCreateThreadIdFor(secondaryMessage.getThreadRecipient(), secondaryMessage.getDistributionType());
+          long               messageId         = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, secondaryMessage.getThreadRecipient(), secondaryMessage, allocatedThreadId),
                                                                                  allocatedThreadId,
                                                                                  false,
                                                                                  null);
@@ -370,7 +370,7 @@ public class MessageSender {
       for (int i = 0; i < messageIds.size(); i++) {
         long            messageId = messageIds.get(i);
         OutgoingMessage message   = messages.get(i);
-        Recipient       recipient = message.getRecipient();
+        Recipient       recipient = message.getThreadRecipient();
 
         if (recipient.isDistributionList()) {
           List<RecipientId> members        = SignalDatabase.distributionLists().getMembers(recipient.requireDistributionListId());
@@ -390,7 +390,7 @@ public class MessageSender {
 
     for (int i = 0; i < messageIds.size(); i++) {
       long      messageId = messageIds.get(i);
-      Recipient recipient = messages.get(i).getRecipient();
+      Recipient recipient = messages.get(i).getThreadRecipient();
 
       if (isLocalSelfSend(context, recipient, SendType.SIGNAL)) {
         sendLocalMediaSelf(context, messageId);
@@ -473,7 +473,7 @@ public class MessageSender {
 
   public static void resendGroupMessage(@NonNull Context context, @NonNull MessageRecord messageRecord, @NonNull Set<RecipientId> filterRecipientIds) {
     if (!messageRecord.isMms()) throw new AssertionError("Not Group");
-    sendGroupPush(context, messageRecord.getRecipient(), messageRecord.getId(), filterRecipientIds, Collections.emptyList());
+    sendGroupPush(context, messageRecord.getToRecipient(), messageRecord.getId(), filterRecipientIds, Collections.emptyList());
     onMessageSent();
   }
 
@@ -481,14 +481,14 @@ public class MessageSender {
     if (!messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getStoryType().isStory()) {
       throw new AssertionError("Not a story");
     }
-    sendDistributionList(context, messageRecord.getRecipient(), messageRecord.getId(), filterRecipientIds, Collections.emptyList());
+    sendDistributionList(context, messageRecord.getToRecipient(), messageRecord.getId(), filterRecipientIds, Collections.emptyList());
     onMessageSent();
   }
 
   public static void resend(Context context, MessageRecord messageRecord) {
     long       messageId   = messageRecord.getId();
     boolean    forceSms    = messageRecord.isForcedSms();
-    Recipient  recipient   = messageRecord.getRecipient();
+    Recipient  recipient   = messageRecord.getToRecipient();
 
     SendType sendType;
 
@@ -658,9 +658,9 @@ public class MessageSender {
       mmsDatabase.markAsSent(messageId, true);
       mmsDatabase.markUnidentified(messageId, true);
 
-      mmsDatabase.incrementDeliveryReceiptCount(syncId, System.currentTimeMillis());
-      mmsDatabase.incrementReadReceiptCount(syncId, System.currentTimeMillis());
-      mmsDatabase.incrementViewedReceiptCount(syncId, System.currentTimeMillis());
+      mmsDatabase.incrementDeliveryReceiptCount(message.getSentTimeMillis(), Recipient.self().getId(), System.currentTimeMillis());
+      mmsDatabase.incrementReadReceiptCount(message.getSentTimeMillis(), Recipient.self().getId(), System.currentTimeMillis());
+      mmsDatabase.incrementViewedReceiptCount(message.getSentTimeMillis(), Recipient.self().getId(), System.currentTimeMillis());
 
       if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
         mmsDatabase.markExpireStarted(messageId);

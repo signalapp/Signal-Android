@@ -45,6 +45,35 @@ public class PagingMappingAdapter<Key> extends MappingAdapter {
     }
   }
 
+  public boolean isAvailableAround(int position) {
+    int start = position - 10;
+    int end   = position + 10;
+
+    if (isRangeAvailable(start, end)) {
+      return true;
+    } else {
+      getItem(position);
+      return false;
+    }
+  }
+
+  protected final boolean isRangeAvailable(int start, int end) {
+    if (end <= start || start >= getItemCount() || end <= 0) {
+      return false;
+    }
+
+    int clampedStart = Math.max(0, start);
+    int clampedEnd   = Math.min(getItemCount(), end);
+
+    for (int i = clampedStart; i < clampedEnd; i++) {
+      if (super.getItem(i) == null) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   @Override
   public int getItemViewType(int position) {
     MappingModel<?> item = getItem(position);

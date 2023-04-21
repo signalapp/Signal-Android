@@ -12,7 +12,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode;
@@ -141,9 +140,10 @@ public class IndividualSendJob extends PushSendJob {
       throws IOException, MmsException, NoSuchMessageException, UndeliverableMessageException, RetryLaterException
   {
     ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
-    MessageTable    database = SignalDatabase.messages();
-    OutgoingMessage message  = database.getOutgoingMessage(messageId);
-    long            threadId = database.getMessageRecord(messageId).getThreadId();
+    MessageTable    database              = SignalDatabase.messages();
+    OutgoingMessage message               = database.getOutgoingMessage(messageId);
+    long            threadId              = database.getMessageRecord(messageId).getThreadId();
+    MessageRecord   originalEditedMessage = message.getMessageToEdit() > 0 ? SignalDatabase.messages().getMessageRecordOrNull(message.getMessageToEdit()) : null;
 
     if (database.isSent(messageId)) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), "Message " + messageId + " was already sent. Ignoring.");
@@ -151,25 +151,24 @@ public class IndividualSendJob extends PushSendJob {
     }
 
     try {
-      log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getRecipient().getId() + ", Thread: " + threadId + ", Attachments: " + buildAttachmentString(message.getAttachments()));
+      log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getThreadRecipient().getId() + ", Thread: " + threadId + ", Attachments: " + buildAttachmentString(message.getAttachments()));
 
-      RecipientUtil.shareProfileIfFirstSecureMessage(message.getRecipient());
+      RecipientUtil.shareProfileIfFirstSecureMessage(message.getThreadRecipient());
 
-      Recipient              recipient  = message.getRecipient().fresh();
+      Recipient              recipient  = message.getThreadRecipient().fresh();
       byte[]                 profileKey = recipient.getProfileKey();
       UnidentifiedAccessMode accessMode = recipient.getUnidentifiedAccessMode();
 
-      boolean unidentified = deliver(message);
+      boolean unidentified = deliver(message, originalEditedMessage);
 
       database.markAsSent(messageId, true);
       markAttachmentsUploaded(messageId, message);
       database.markUnidentified(messageId, unidentified);
 
       if (recipient.isSelf()) {
-        SyncMessageId id = new SyncMessageId(recipient.getId(), message.getSentTimeMillis());
-        SignalDatabase.messages().incrementDeliveryReceiptCount(id, System.currentTimeMillis());
-        SignalDatabase.messages().incrementReadReceiptCount(id, System.currentTimeMillis());
-        SignalDatabase.messages().incrementViewedReceiptCount(id, System.currentTimeMillis());
+        SignalDatabase.messages().incrementDeliveryReceiptCount(message.getSentTimeMillis(), recipient.getId(), System.currentTimeMillis());
+        SignalDatabase.messages().incrementReadReceiptCount(message.getSentTimeMillis(), recipient.getId(), System.currentTimeMillis());
+        SignalDatabase.messages().incrementViewedReceiptCount(message.getSentTimeMillis(), recipient.getId(), System.currentTimeMillis());
       }
 
       if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN && profileKey == null) {
@@ -183,7 +182,10 @@ public class IndividualSendJob extends PushSendJob {
         SignalDatabase.recipients().setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.DISABLED);
       }
 
-      if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
+      if (originalEditedMessage != null && originalEditedMessage.getExpireStarted() > 0) {
+        database.markExpireStarted(messageId, originalEditedMessage.getExpireStarted());
+        expirationManager.scheduleDeletion(messageId, true, originalEditedMessage.getExpireStarted(), originalEditedMessage.getExpiresIn());
+      } else if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
         database.markExpireStarted(messageId);
         expirationManager.scheduleDeletion(messageId, true, message.getExpiresIn());
       }
@@ -216,17 +218,17 @@ public class IndividualSendJob extends PushSendJob {
     notifyMediaMessageDeliveryFailed(context, messageId);
   }
 
-  private boolean deliver(OutgoingMessage message)
+  private boolean deliver(OutgoingMessage message, MessageRecord originalEditedMessage)
       throws IOException, InsecureFallbackApprovalException, UntrustedIdentityException, UndeliverableMessageException
   {
-    if (message.getRecipient() == null) {
+    if (message.getThreadRecipient() == null) {
       throw new UndeliverableMessageException("No destination address.");
     }
 
     try {
       rotateSenderCertificateIfNecessary();
 
-      Recipient messageRecipient = message.getRecipient().fresh();
+      Recipient messageRecipient = message.getThreadRecipient().fresh();
 
       if (messageRecipient.isUnregistered()) {
         throw new UndeliverableMessageException(messageRecipient.getId() + " not registered!");
@@ -262,7 +264,7 @@ public class IndividualSendJob extends PushSendJob {
       if (message.getParentStoryId() != null) {
         try {
           MessageRecord storyRecord    = SignalDatabase.messages().getMessageRecord(message.getParentStoryId().asMessageId().getId());
-          Recipient     storyRecipient = storyRecord.isOutgoing() ? Recipient.self() : storyRecord.getRecipient();
+          Recipient     storyRecipient = storyRecord.getFromRecipient();
 
           SignalServiceDataMessage.StoryContext storyContext = new SignalServiceDataMessage.StoryContext(storyRecipient.requireServiceId(), storyRecord.getDateSent());
           mediaMessageBuilder.withStoryContext(storyContext);
@@ -285,7 +287,12 @@ public class IndividualSendJob extends PushSendJob {
 
       SignalServiceDataMessage mediaMessage = mediaMessageBuilder.build();
 
-      if (Util.equals(SignalStore.account().getAci(), address.getServiceId())) {
+      if (originalEditedMessage != null) {
+        SendMessageResult result = messageSender.sendEditMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage, IndividualSendEvents.EMPTY, message.isUrgent(), originalEditedMessage.getDateSent());
+        SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId), false);
+
+        return result.getSuccess().isUnidentified();
+      } else if (Util.equals(SignalStore.account().getAci(), address.getServiceId())) {
         Optional<UnidentifiedAccessPair> syncAccess = UnidentifiedAccessUtil.getAccessForSync(context);
         SendMessageResult                result     = messageSender.sendSyncMessage(mediaMessage);
         SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId), false);

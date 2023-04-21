@@ -337,6 +337,11 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
       onCaptureClicked();
     });
 
+    captureButton.setOnLongClickListener(unused -> {
+      CameraFragment.toastVideoRecordingNotAvailable(requireContext());
+      return true;
+    });
+
     orderEnforcer.run(Stage.CAMERA_PROPERTIES_AVAILABLE, () -> {
       if (properties.getCameraCount() > 1) {
         flipButton.setVisibility(properties.getCameraCount() > 1 ? View.VISIBLE : View.GONE);

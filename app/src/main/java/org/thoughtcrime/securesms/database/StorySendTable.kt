@@ -42,7 +42,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
         $ALLOWS_REPLIES INTEGER NOT NULL,
         $DISTRIBUTION_ID TEXT NOT NULL REFERENCES ${DistributionListTables.LIST_TABLE_NAME} (${DistributionListTables.DISTRIBUTION_ID}) ON DELETE CASCADE
       )
-    """.trimIndent()
+    """
 
     val CREATE_INDEXS = arrayOf(
       "CREATE INDEX story_sends_recipient_id_sent_timestamp_allows_replies_index ON $TABLE_NAME ($RECIPIENT_ID, $SENT_TIMESTAMP, $ALLOWS_REPLIES)",
@@ -110,7 +110,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
             AND $MESSAGE_ID > $messageId
             AND $ALLOWS_REPLIES > ${allowsReplies.toInt()}
         )
-    """.trimIndent()
+    """
 
     readableDatabase.rawQuery(query, null).use { cursor ->
       while (cursor.moveToNext()) {
@@ -146,7 +146,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
             WHERE ${MessageTable.REMOTE_DELETED} = 0
           )
         )
-    """.trimIndent()
+    """
 
     readableDatabase.rawQuery(query, null).use { cursor ->
       while (cursor.moveToNext()) {
@@ -171,14 +171,14 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
     }
   }
 
-  fun getStoryMessagesFor(syncMessageId: MessageTable.SyncMessageId): Set<MessageId> {
+  fun getStoryMessagesFor(recipientId: RecipientId, sentTimestamp: Long): Set<MessageId> {
     val messageIds = mutableSetOf<MessageId>()
 
     readableDatabase.query(
       TABLE_NAME,
       arrayOf(MESSAGE_ID),
       "$RECIPIENT_ID = ? AND $SENT_TIMESTAMP = ?",
-      SqlUtil.buildArgs(syncMessageId.recipientId, syncMessageId.timetamp),
+      SqlUtil.buildArgs(recipientId, sentTimestamp),
       null,
       null,
       null
@@ -227,7 +227,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
         """
         $SENT_TIMESTAMP = ? AND
         (SELECT ${MessageTable.REMOTE_DELETED} FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.ID} = $MESSAGE_ID) = 0
-        """.trimIndent(),
+        """,
         sentTimestamp
       )
       .orderBy(MESSAGE_ID)
@@ -270,9 +270,9 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
       val query = """
         SELECT ${MessageTable.TABLE_NAME}.${MessageTable.ID} as $MESSAGE_ID, ${DistributionListTables.DISTRIBUTION_ID}
         FROM ${MessageTable.TABLE_NAME}
-        INNER JOIN ${DistributionListTables.LIST_TABLE_NAME} ON ${DistributionListTables.LIST_TABLE_NAME}.${DistributionListTables.RECIPIENT_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID}
+        INNER JOIN ${DistributionListTables.LIST_TABLE_NAME} ON ${DistributionListTables.LIST_TABLE_NAME}.${DistributionListTables.RECIPIENT_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.TO_RECIPIENT_ID}
         WHERE ${MessageTable.DATE_SENT} = $sentTimestamp AND ${DistributionListTables.DISTRIBUTION_ID} IS NOT NULL
-      """.trimIndent()
+      """
 
       val distributionIdToMessageId = readableDatabase.query(query).use { cursor ->
         val results: MutableMap<DistributionId, Long> = mutableMapOf()
@@ -351,7 +351,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
         FROM $TABLE_NAME
         INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID
         WHERE $TABLE_NAME.$SENT_TIMESTAMP = ?
-      """.trimIndent(),
+      """,
       arrayOf(sentTimestamp)
     ).use { cursor ->
       val results: MutableMap<RecipientId, SentStorySyncManifest.Entry> = mutableMapOf()

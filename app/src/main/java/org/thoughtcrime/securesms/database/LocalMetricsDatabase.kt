@@ -65,7 +65,7 @@ class LocalMetricsDatabase private constructor(
         $SPLIT_NAME TEXT NOT NULL,
         $DURATION INTEGER NOT NULL
       )
-    """.trimIndent()
+    """
 
     private val CREATE_INDEXES = arrayOf(
       "CREATE INDEX events_create_at_index ON $TABLE_NAME ($CREATED_AT)",
@@ -99,7 +99,7 @@ class LocalMetricsDatabase private constructor(
         SELECT $EVENT_ID, $EVENT_NAME, SUM($DURATION) AS $DURATION
         FROM $TABLE_NAME
         GROUP BY $EVENT_ID
-    """.trimIndent()
+    """
   }
 
   override fun onCreate(db: SQLiteDatabase) {
@@ -231,7 +231,7 @@ class LocalMetricsDatabase private constructor(
       OFFSET (SELECT COUNT(*)
               FROM $table
               WHERE $where) * $percent / 100 - 1
-    """.trimIndent()
+    """
 
     readableDatabase.rawQuery(query, null).use { cursor ->
       return if (cursor.moveToFirst()) {

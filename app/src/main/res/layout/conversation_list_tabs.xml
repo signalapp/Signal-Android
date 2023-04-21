@@ -100,8 +100,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/chats_tab_icon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:importantForAccessibility="no"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@id/chats_tab_label"
@@ -109,7 +109,7 @@
         app:layout_constraintStart_toStartOf="@id/chats_tab_touch_point"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:lottie_rawRes="@raw/chats_32" />
+        app:lottie_rawRes="@raw/chats_28" />
 
     <TextView
         android:id="@+id/chats_tab_label"
@@ -126,8 +126,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/calls_tab_icon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:importantForAccessibility="no"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@id/calls_tab_label"
@@ -135,7 +135,7 @@
         app:layout_constraintStart_toStartOf="@id/calls_tab_touch_point"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:lottie_rawRes="@raw/chats_32" />
+        app:lottie_rawRes="@raw/calls_28" />
 
     <TextView
         android:id="@+id/calls_tab_label"
@@ -152,8 +152,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/stories_tab_icon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:importantForAccessibility="no"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@id/stories_tab_label"
@@ -161,7 +161,7 @@
         app:layout_constraintStart_toStartOf="@id/stories_tab_touch_point"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:lottie_rawRes="@raw/stories_32" />
+        app:lottie_rawRes="@raw/stories_28" />
 
     <TextView
         android:id="@+id/stories_tab_label"

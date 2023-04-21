@@ -240,8 +240,8 @@ public final class MmsSendJob extends SendJob {
       req.setFrom(new EncodedStringValue(SignalStore.account().getE164()));
     }
 
-    if (message.getRecipient().isMmsGroup()) {
-      List<Recipient> members = SignalDatabase.groups().getGroupMembers(message.getRecipient().requireGroupId(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+    if (message.getThreadRecipient().isMmsGroup()) {
+      List<Recipient> members = SignalDatabase.groups().getGroupMembers(message.getThreadRecipient().requireGroupId(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
       for (Recipient member : members) {
         if (!member.hasSmsAddress()) {
@@ -255,11 +255,11 @@ public final class MmsSendJob extends SendJob {
         }
       }
     } else {
-      if (!message.getRecipient().hasSmsAddress()) {
-        throw new UndeliverableMessageException("Recipient did not have an SMS address! " + message.getRecipient().getId());
+      if (!message.getThreadRecipient().hasSmsAddress()) {
+        throw new UndeliverableMessageException("Recipient did not have an SMS address! " + message.getThreadRecipient().getId());
       }
 
-      req.addTo(new EncodedStringValue(message.getRecipient().requireSmsAddress()));
+      req.addTo(new EncodedStringValue(message.getThreadRecipient().requireSmsAddress()));
     }
 
     req.setDate(System.currentTimeMillis() / 1000);

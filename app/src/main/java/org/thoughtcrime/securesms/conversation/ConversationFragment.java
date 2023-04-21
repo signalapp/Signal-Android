@@ -46,6 +46,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -110,7 +112,10 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs;
 import org.thoughtcrime.securesms.conversation.quotes.MessageQuotesBottomSheet;
+import org.thoughtcrime.securesms.conversation.ui.edit.EditMessageHistoryDialog;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
+import org.thoughtcrime.securesms.conversation.v2.AddToContactsContract;
+import org.thoughtcrime.securesms.conversation.v2.BubbleLayoutTransitionListener;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -177,8 +182,8 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
+import org.thoughtcrime.securesms.util.MessageConstraintsUtil;
 import org.thoughtcrime.securesms.util.Projection;
-import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
@@ -216,7 +221,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private static final String TAG = Log.tag(ConversationFragment.class);
 
   private static final int SCROLL_ANIMATION_THRESHOLD = 50;
-  private static final int CODE_ADD_EDIT_CONTACT      = 77;
   private static final int MAX_SCROLL_DELAY_COUNT     = 5;
 
   private final ActionModeCallback  actionModeCallback     = new ActionModeCallback();
@@ -255,8 +259,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private OnScrollListener            conversationScrollListener;
   private int                         lastSeenScrollOffset;
   private Stopwatch                   startupStopwatch;
-  private LayoutTransition            layoutTransition;
-  private TransitionListener          transitionListener;
   private View                        reactionsShade;
   private SignalBottomActionBar       bottomActionBar;
   private OpenableGiftItemDecoration  openableGiftItemDecoration;
@@ -270,6 +272,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private @Nullable ChatWallpaper    chatWallpaper;
 
   private final DatabaseObserver.Observer threadDeletedObserver = this::onThreadDelete;
+
+  private ActivityResultLauncher<Intent> addToContactsLauncher;
 
   public static void prepare(@NonNull Context context) {
     FrameLayout parent = new FrameLayout(context);
@@ -294,6 +298,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle bundle) {
+    addToContactsLauncher = registerForActivityResult(new AddToContactsContract(), result -> {});
+
     disposables.bindTo(getViewLifecycleOwner());
     lastSeenDisposable.bindTo(getViewLifecycleOwner());
 
@@ -302,8 +308,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     list           = view.findViewById(android.R.id.list);
     composeDivider = view.findViewById(R.id.compose_divider);
 
-    layoutTransition   = new LayoutTransition();
-    transitionListener = new TransitionListener(list);
+    BubbleLayoutTransitionListener bubbleLayoutTransitionListener = new BubbleLayoutTransitionListener(list);
+    getViewLifecycleOwner().getLifecycle().addObserver(bubbleLayoutTransitionListener);
 
     scrollToBottomButton  = view.findViewById(R.id.scroll_to_bottom);
     scrollToMentionButton = view.findViewById(R.id.scroll_to_mention);
@@ -507,7 +513,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     super.onStart();
     initializeTypingObserver();
     SignalProxyUtil.startListeningToWebsocket();
-    layoutTransition.getAnimator(LayoutTransition.CHANGE_DISAPPEARING).addListener(transitionListener);
   }
 
   @Override
@@ -531,7 +536,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   public void onStop() {
     super.onStop();
     ApplicationDependencies.getTypingStatusRepository().getTypists(threadId).removeObservers(getViewLifecycleOwner());
-    layoutTransition.getAnimator(LayoutTransition.CHANGE_DISAPPEARING).removeListener(transitionListener);
   }
 
   @Override
@@ -830,6 +834,15 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       }));
     }
 
+    if (menuState.shouldShowEditAction()) {
+      items.add(new ActionItem(R.drawable.symbol_edit_24, getResources().getString(R.string.conversation_selection__menu_edit), () -> {
+        handleEditMessage(getSelectedConversationMessage());
+        if (actionMode != null) {
+          actionMode.finish();
+        }
+      }));
+    }
+
     if (menuState.shouldShowForwardAction()) {
       items.add(new ActionItem(R.drawable.symbol_forward_24, getResources().getString(R.string.conversation_selection__menu_forward), () -> handleForwardMessageParts(selectedParts)));
     }
@@ -1072,7 +1085,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     int deleteForEveryoneResId = isNoteToSelfDelete ? R.string.ConversationFragment_delete_everywhere : R.string.ConversationFragment_delete_for_everyone;
 
-    if (RemoteDeleteUtil.isValidSend(messageRecords, System.currentTimeMillis()) && (!isNoteToSelfDelete || TextSecurePreferences.isMultiDevice(requireContext()))) {
+    if (MessageConstraintsUtil.isValidRemoteDeleteSend(messageRecords, System.currentTimeMillis()) && (!isNoteToSelfDelete || TextSecurePreferences.isMultiDevice(requireContext()))) {
       builder.setNeutralButton(deleteForEveryoneResId, (dialog, which) -> handleDeleteForEveryone(messageRecords));
     }
 
@@ -1088,7 +1101,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   private static boolean isNoteToSelfDelete(Set<MessageRecord> messageRecords) {
-    return messageRecords.stream().allMatch(messageRecord -> messageRecord.isOutgoing() && messageRecord.getRecipient().isSelf());
+    return messageRecords.stream().allMatch(messageRecord -> messageRecord.isOutgoing() && messageRecord.getToRecipient().isSelf());
   }
 
   private void handleDeleteForEveryone(Set<MessageRecord> messageRecords) {
@@ -1140,6 +1153,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   private void handleReplyMessage(final ConversationMessage message) {
     listener.handleReplyMessage(message);
+  }
+
+  private void handleEditMessage(@NonNull ConversationMessage selectedConversationMessage) {
+    listener.handleEditMessage(selectedConversationMessage);
   }
 
   private void handleSaveAttachment(final MediaMmsMessageRecord message) {
@@ -1436,7 +1453,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     SimpleTask.run(getLifecycle(), () -> {
       return SignalDatabase.messages().getMessagePositionInConversation(threadId,
                                                                       messageRecord.getDateReceived(),
-                                                                      messageRecord.isOutgoing() ? Recipient.self().getId() : messageRecord.getRecipient().getId());
+                                                                      messageRecord.getFromRecipient().getId());
     }, p -> moveToPosition(p + (isTypingIndicatorShowing() ? 1 : 0), () -> {
       Toast.makeText(getContext(), R.string.ConversationFragment_failed_to_open_message, Toast.LENGTH_SHORT).show();
     }));
@@ -1449,6 +1466,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     void    openAttachmentKeyboard();
     void    setThreadId(long threadId);
     void    handleReplyMessage(ConversationMessage conversationMessage);
+    void    handleEditMessage(@NonNull ConversationMessage conversationMessage);
     void    onMessageActionToolbarOpened();
     void    onMessageActionToolbarClosed();
     void    onBottomActionBarVisibilityChanged(int visibility);
@@ -1791,7 +1809,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
           ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
 
-          ApplicationDependencies.getJobManager().add(new MultiDeviceViewOnceOpenJob(new MessageTable.SyncMessageId(messageRecord.getIndividualRecipient().getId(), messageRecord.getDateSent())));
+          ApplicationDependencies.getJobManager().add(new MultiDeviceViewOnceOpenJob(new MessageTable.SyncMessageId(messageRecord.getToRecipient().getId(), messageRecord.getDateSent())));
 
           return tempUri;
         } catch (IOException e) {
@@ -1819,24 +1837,15 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     @Override
     public void onAddToContactsClicked(@NonNull Contact contactWithAvatar) {
-      if (getContext() != null) {
-        new AsyncTask<Void, Void, Intent>() {
-          @Override
-          protected Intent doInBackground(Void... voids) {
-            return ContactUtil.buildAddToContactsIntent(getContext(), contactWithAvatar);
-          }
-
-          @Override
-          protected void onPostExecute(Intent intent) {
-            try {
-              startActivityForResult(intent, CODE_ADD_EDIT_CONTACT);
-            } catch (ActivityNotFoundException e) {
-              Log.w(TAG, "Could not locate contacts activity", e);
-              Toast.makeText(requireContext(), R.string.ConversationFragment__contacts_app_not_found, Toast.LENGTH_SHORT).show();
-            }
-          }
-        }.execute();
+      if (getContext() == null) {
+        return;
       }
+
+      disposables.add(AddToContactsContract.createIntentAndLaunch(
+          ConversationFragment.this,
+          addToContactsLauncher,
+          contactWithAvatar
+      ));
     }
 
     @Override
@@ -2114,6 +2123,15 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     }
 
     @Override
+    public void onEditedIndicatorClicked(@NonNull MessageRecord messageRecord) {
+      if (messageRecord.isOutgoing()) {
+        EditMessageHistoryDialog.show(getChildFragmentManager(), messageRecord.getToRecipient().getId(), messageRecord.getId());
+      } else {
+        EditMessageHistoryDialog.show(getChildFragmentManager(), messageRecord.getFromRecipient().getId(), messageRecord.getId());
+      }
+    }
+
+    @Override
     public void onActivatePaymentsClicked() {
       Intent intent = new Intent(requireContext(), PaymentsActivity.class);
       startActivity(intent);
@@ -2146,15 +2164,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     ConversationAdapter listAdapter = getListAdapter();
     if (listAdapter != null) {
       listAdapter.notifyDataSetChanged();
-    }
-  }
-
-  @Override
-  public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-
-    if (requestCode == CODE_ADD_EDIT_CONTACT && getContext() != null) {
-      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     }
   }
 
@@ -2280,6 +2289,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         case REPLY:
           handleReplyMessage(conversationMessage);
           break;
+        case EDIT:
+          handleEditMessage(conversationMessage);
+          break;
         case FORWARD:
           handleForwardMessageParts(conversationMessage.getMultiselectCollection().toSet());
           break;
@@ -2379,36 +2391,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
           }
         }
       }, 400);
-    }
-  }
-
-  private static final class TransitionListener implements Animator.AnimatorListener {
-
-    private final ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
-
-    TransitionListener(RecyclerView recyclerView) {
-      animator.addUpdateListener(unused -> recyclerView.invalidate());
-      animator.setDuration(100L);
-    }
-
-    @Override
-    public void onAnimationStart(Animator animation) {
-      animator.start();
-    }
-
-    @Override
-    public void onAnimationEnd(Animator animation) {
-      animator.end();
-    }
-
-    @Override
-    public void onAnimationCancel(Animator animation) {
-      // Do Nothing
-    }
-
-    @Override
-    public void onAnimationRepeat(Animator animation) {
-      // Do Nothing
     }
   }
 }

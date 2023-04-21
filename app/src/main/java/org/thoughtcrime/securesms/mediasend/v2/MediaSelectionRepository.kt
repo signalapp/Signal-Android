@@ -324,7 +324,7 @@ class MediaSelectionRepository(context: Context) {
       val thread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
 
       val outgoingMessage = OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = recipient,
         body = splitBody,
         attachments = slideDeck.asAttachments(),
         sentTimeMillis = System.currentTimeMillis(),
@@ -370,7 +370,7 @@ class MediaSelectionRepository(context: Context) {
       }
 
       val message = OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = recipient,
         body = body,
         sentTimeMillis = if (recipient.isDistributionList) distributionListPreUploadSentTimestamps.getOrPut(preUploadResults.first()) { System.currentTimeMillis() } else System.currentTimeMillis(),
         expiresIn = if (isStory) 0 else TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong()),
@@ -401,7 +401,7 @@ class MediaSelectionRepository(context: Context) {
         storyClips.forEach {
           storyClipMessages.add(
             OutgoingMessage(
-              recipient = recipient,
+              threadRecipient = recipient,
               body = body,
               attachments = listOf(MediaUploadRepository.asAttachment(context, it)),
               sentTimeMillis = if (recipient.isDistributionList) distributionListStoryClipsSentTimestamps.getOrPut(it.asKey()) { System.currentTimeMillis() } else System.currentTimeMillis(),

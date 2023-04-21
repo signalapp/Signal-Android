@@ -76,7 +76,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         UNIQUE ($CALL_ID, $PEER, $CALL_LINK) ON CONFLICT FAIL,
         CHECK (($PEER IS NULL AND $CALL_LINK IS NOT NULL) OR ($PEER IS NOT NULL AND $CALL_LINK IS NULL))
       )
-    """.trimIndent()
+    """
 
     val CREATE_INDEXES = arrayOf(
       "CREATE INDEX call_call_id_index ON $TABLE_NAME ($CALL_ID)",
@@ -88,7 +88,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     val messageType: Long = Call.getMessageType(type, direction, event)
 
     writableDatabase.withinTransaction {
-      val result = SignalDatabase.messages.insertCallLog(peer, messageType, timestamp)
+      val result = SignalDatabase.messages.insertCallLog(peer, messageType, timestamp, direction == Direction.OUTGOING)
 
       val values = contentValuesOf(
         CALL_ID to callId,
@@ -760,7 +760,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           ${RecipientTable.TABLE_NAME}.${RecipientTable.PHONE} GLOB ? OR 
           ${RecipientTable.TABLE_NAME}.${RecipientTable.EMAIL} GLOB ?
         )
-        """.trimIndent()
+        """
       SqlUtil.buildQuery(selection, 0, 0, glob, glob, glob, glob)
     } else {
       SqlUtil.buildQuery("")
@@ -775,7 +775,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     val projection = if (isCount) {
       "COUNT(*),"
     } else {
-      "p.$ID, $TIMESTAMP, $EVENT, $DIRECTION, $PEER, p.$TYPE, $CALL_ID, $MESSAGE_ID, $RINGER, children, in_period, ${MessageTable.DATE_RECEIVED}, ${MessageTable.BODY},"
+      "p.$ID, p.$TIMESTAMP, $EVENT, $DIRECTION, $PEER, p.$TYPE, $CALL_ID, $MESSAGE_ID, $RINGER, children, in_period, ${MessageTable.DATE_RECEIVED}, ${MessageTable.BODY},"
     }
 
     //language=sql
@@ -783,6 +783,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       SELECT $projection
         LOWER(
           COALESCE(
+            NULLIF(${GroupTable.TABLE_NAME}.${GroupTable.TITLE}, ''),
             NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.SYSTEM_JOINED_NAME}, ''),
             NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.SYSTEM_GIVEN_NAME}, ''),
             NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_JOINED_NAME}, ''),
@@ -850,9 +851,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       ) p
       INNER JOIN ${RecipientTable.TABLE_NAME} ON ${RecipientTable.TABLE_NAME}.${RecipientTable.ID} = $PEER
       INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $MESSAGE_ID
+      LEFT JOIN ${GroupTable.TABLE_NAME} ON ${GroupTable.TABLE_NAME}.${GroupTable.RECIPIENT_ID} = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
       WHERE true_parent = p.$ID ${if (queryClause.where.isNotEmpty()) "AND ${queryClause.where}" else ""}
       $offsetLimit
-    """.trimIndent()
+    """
 
     return readableDatabase.query(
       statement,

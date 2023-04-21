@@ -219,6 +219,10 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   private int getDeviceRotation() {
+    if (isInEditMode()) {
+      return Surface.ROTATION_0;
+    }
+
     if (Build.VERSION.SDK_INT >= 30) {
       getContext().getDisplay().getRealMetrics(displayMetrics);
     } else {

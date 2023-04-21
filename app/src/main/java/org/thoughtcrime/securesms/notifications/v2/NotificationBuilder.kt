@@ -265,7 +265,7 @@ sealed class NotificationBuilder(protected val context: Context) {
             NotificationCompat.BigPictureStyle()
               .bigPicture(bigPictureUri.toBitmap(context, BIG_PICTURE_DIMEN))
               .setSummaryText(conversation.getContentText(context))
-              .bigLargeIcon(null)
+              .bigLargeIcon(null as Bitmap?)
           )
           return
         }
@@ -293,7 +293,7 @@ sealed class NotificationBuilder(protected val context: Context) {
             .setIcon(notificationItem.getPersonIcon(context).toIconCompat())
 
           if (includeShortcut) {
-            personBuilder.setKey(ConversationUtil.getShortcutId(notificationItem.individualRecipient))
+            personBuilder.setKey(ConversationUtil.getShortcutId(notificationItem.authorRecipient))
           }
 
           person = personBuilder.build()
@@ -319,7 +319,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         if (line != null) {
           style.addLine(line)
         }
-        addPerson(notificationItem.individualRecipient)
+        addPerson(notificationItem.authorRecipient)
       }
 
       builder.setStyle(style)

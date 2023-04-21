@@ -500,7 +500,7 @@
     </style>
 
     <style name="Widget.Signal.TextInputLayout.Registration.Dropdown" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
-        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingStart">0dp</item>
         <item name="android:paddingEnd">6dp</item>
         <item name="boxCornerRadiusTopEnd">2dp</item>
         <item name="boxCornerRadiusTopStart">2dp</item>

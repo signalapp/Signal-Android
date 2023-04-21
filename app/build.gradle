@@ -46,8 +46,8 @@ ktlint {
     version = "0.47.1"
 }
 
-def canonicalVersionCode = 1246
-def canonicalVersionName = "6.18.3"
+def canonicalVersionCode = 1248
+def canonicalVersionName = "6.19.0"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -447,7 +447,6 @@ android {
 }
 
 dependencies {
-    implementation libs.androidx.core.ktx
     implementation libs.androidx.fragment.ktx
     lintChecks project(':lintchecks')
 

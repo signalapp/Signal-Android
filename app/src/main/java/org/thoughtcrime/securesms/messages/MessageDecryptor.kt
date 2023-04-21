@@ -127,7 +127,7 @@ object MessageDecryptor {
         return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
       }
 
-      Log.d(TAG, "${logPrefix(envelope, cipherResult)} Successfully decrypted the envelope.")
+      Log.d(TAG, "${logPrefix(envelope, cipherResult)} Successfully decrypted the envelope (GUID ${envelope.serverGuid}).")
 
       val validationResult: EnvelopeContentValidator.Result = EnvelopeContentValidator.validate(envelope, cipherResult.content)
 

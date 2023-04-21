@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.calls.links
+package org.thoughtcrime.securesms.calls.links.create
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State

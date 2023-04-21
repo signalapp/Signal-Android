@@ -1,10 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Insets;
-import android.graphics.Rect;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.WindowInsets;
 
@@ -12,11 +8,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
+import androidx.core.graphics.Insets;
+import androidx.core.view.WindowInsetsCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class InsetAwareConstraintLayout extends ConstraintLayout {
+
+  private WindowInsetsTypeProvider windowInsetsTypeProvider = WindowInsetsTypeProvider.ALL;
+  private Insets                   insets;
 
   public InsetAwareConstraintLayout(@NonNull Context context) {
     super(context);
@@ -30,30 +31,21 @@ public class InsetAwareConstraintLayout extends ConstraintLayout {
     super(context, attrs, defStyleAttr);
   }
 
+  public void setWindowInsetsTypeProvider(@NonNull WindowInsetsTypeProvider windowInsetsTypeProvider) {
+    this.windowInsetsTypeProvider = windowInsetsTypeProvider;
+    requestLayout();
+  }
+
   @Override
   public WindowInsets onApplyWindowInsets(WindowInsets insets) {
-    if (Build.VERSION.SDK_INT < 30) {
-      return super.onApplyWindowInsets(insets);
-    }
+    WindowInsetsCompat windowInsetsCompat = WindowInsetsCompat.toWindowInsetsCompat(insets);
+    Insets             newInsets          = windowInsetsCompat.getInsets(windowInsetsTypeProvider.getInsetsType());
 
-    Insets windowInsets = insets.getInsets(WindowInsets.Type.systemBars() | WindowInsets.Type.ime() | WindowInsets.Type.displayCutout());
-    applyInsets(new Rect(windowInsets.left, windowInsets.top, windowInsets.right, windowInsets.bottom));
-
+    applyInsets(newInsets);
     return super.onApplyWindowInsets(insets);
   }
 
-  @Override
-  protected boolean fitSystemWindows(Rect insets) {
-    if (Build.VERSION.SDK_INT >= 30) {
-      return true;
-    }
-
-    applyInsets(insets);
-
-    return true;
-  }
-
-  private void applyInsets(@NonNull Rect insets) {
+  public void applyInsets(@NonNull Insets insets) {
     Guideline statusBarGuideline     = findViewById(R.id.status_bar_guideline);
     Guideline navigationBarGuideline = findViewById(R.id.navigation_bar_guideline);
     Guideline parentStartGuideline   = findViewById(R.id.parent_start_guideline);
@@ -82,5 +74,16 @@ public class InsetAwareConstraintLayout extends ConstraintLayout {
         parentEndGuideline.setGuidelineEnd(insets.left);
       }
     }
+  }
+
+  public interface WindowInsetsTypeProvider {
+
+    WindowInsetsTypeProvider ALL = () ->
+      WindowInsetsCompat.Type.ime() |
+      WindowInsetsCompat.Type.systemBars() |
+      WindowInsetsCompat.Type.displayCutout();
+
+    @WindowInsetsCompat.Type.InsetsType
+    int getInsetsType();
   }
 }

@@ -33,7 +33,7 @@ class ViewSentGiftBottomSheet : DSLSettingsBottomSheetFragment() {
     fun show(fragmentManager: FragmentManager, messageRecord: MmsMessageRecord) {
       ViewSentGiftBottomSheet().apply {
         arguments = Bundle().apply {
-          putParcelable(ARG_SENT_TO, messageRecord.recipient.id)
+          putParcelable(ARG_SENT_TO, messageRecord.toRecipient.id)
           putByteArray(ARG_GIFT_BADGE, messageRecord.giftBadge!!.toByteArray())
         }
         show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)

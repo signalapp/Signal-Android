@@ -112,8 +112,8 @@ object NotificationStateProvider {
         }
 
         notificationItems.sort()
-        if (notificationItems.isNotEmpty() && stickyThreads.containsKey(thread) && !notificationItems.last().individualRecipient.isSelf) {
-          val indexOfOldestNonSelfMessage: Int = notificationItems.indexOfLast { it.individualRecipient.isSelf } + 1
+        if (notificationItems.isNotEmpty() && stickyThreads.containsKey(thread) && !notificationItems.last().authorRecipient.isSelf) {
+          val indexOfOldestNonSelfMessage: Int = notificationItems.indexOfLast { it.authorRecipient.isSelf } + 1
           notificationItems = notificationItems.slice(indexOfOldestNonSelfMessage..notificationItems.lastIndex).toMutableList()
         }
 

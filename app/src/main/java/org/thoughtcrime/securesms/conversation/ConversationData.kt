@@ -22,6 +22,15 @@ data class ConversationData(
     return lastSeenPosition > 0
   }
 
+  fun getStartPosition(): Int {
+    return when {
+      shouldJumpToMessage() -> jumpToPosition
+      messageRequestData.isMessageRequestAccepted && shouldScrollToLastSeen() -> lastSeenPosition
+      messageRequestData.isMessageRequestAccepted -> lastScrolledPosition
+      else -> threadSize
+    }
+  }
+
   data class MessageRequestData @JvmOverloads constructor(
     val isMessageRequestAccepted: Boolean,
     val isHidden: Boolean,

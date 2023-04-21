@@ -186,11 +186,6 @@ public class CameraButtonView extends View {
     canvas.drawArc(progressRect, 270f, 360f * progressPercent, false, progressPaint);
   }
 
-  @Override
-  public void setOnLongClickListener(@Nullable OnLongClickListener listener) {
-    throw new IllegalStateException("Use setVideoCaptureListener instead");
-  }
-
   public void setVideoCaptureListener(@Nullable VideoCaptureListener videoCaptureListener) {
     if (isRecordingVideo) throw new IllegalStateException("Cannot set video capture listener while recording");
 

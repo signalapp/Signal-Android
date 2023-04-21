@@ -111,6 +111,8 @@ open class MessageContentProcessorV2(private val context: Context) {
         getGroupRecipient(content.storyMessage.group, sender)
       } else if (content.dataMessage.hasGroupContext) {
         getGroupRecipient(content.dataMessage.groupV2, sender)
+      } else if (content.editMessage.dataMessage.hasGroupContext) {
+        getGroupRecipient(content.editMessage.dataMessage.groupV2, sender)
       } else {
         sender
       }
@@ -378,6 +380,21 @@ open class MessageContentProcessorV2(private val context: Context) {
       }
       content.hasDecryptionErrorMessage() -> {
         handleRetryReceipt(envelope, metadata, content.decryptionErrorMessage!!.toDecryptionErrorMessage(metadata), senderRecipient)
+      }
+      content.hasEditMessage() -> {
+        if (FeatureFlags.editMessageReceiving()) {
+          EditMessageProcessor.process(
+            context,
+            senderRecipient,
+            threadRecipient,
+            envelope,
+            content,
+            metadata,
+            if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
+          )
+        } else {
+          warn(envelope.timestamp, "Got message edit, but processing is disabled")
+        }
       }
       content.hasSenderKeyDistributionMessage() || content.hasPniSignatureMessage() -> {
         // Already handled, here in order to prevent unrecognized message log

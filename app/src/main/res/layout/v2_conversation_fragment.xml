@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.InsetAwareConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/conversation_video_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/conversation_item_recycler"
+        app:layout_constraintEnd_toEndOf="@+id/conversation_item_recycler"
+        app:layout_constraintStart_toStartOf="@+id/conversation_item_recycler"
+        app:layout_constraintTop_toTopOf="@+id/conversation_item_recycler" />
+
+    <include layout="@layout/system_ui_guidelines" />
+
+    <ImageView
+        android:id="@+id/conversation_wallpaper"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
+
+    <View
+        android:id="@+id/conversation_wallpaper_dim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:visibility="gone"
+        tools:alpha="0.2f"
+        tools:visibility="visible" />
+
+    <org.thoughtcrime.securesms.conversation.mutiselect.MultiselectRecyclerView
+        android:id="@+id/conversation_item_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:overScrollMode="ifContentScrolls"
+        android:scrollbars="vertical"
+        android:splitMotionEvents="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
+        tools:itemCount="20"
+        tools:listitem="@layout/conversation_item_sent_text_only" />
+
+    <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:background="@color/transparent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:minHeight="@dimen/signal_m3_toolbar_height"
+        android:theme="?attr/actionBarStyle"
+        app:contentInsetStart="46dp"
+        app:contentInsetStartWithNavigation="0dp"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintTop_toTopOf="@id/status_bar_guideline">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/conversation_title_view"
+                layout="@layout/conversation_title_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/conversation_group_call_join"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/ConversationActivity_join"
+                android:textAllCaps="false"
+                android:textColor="@color/core_white"
+                android:visibility="gone"
+                app:backgroundTint="@color/core_ultramarine"
+                app:cornerRadius="@dimen/material_button_full_round_corner_radius"
+                app:icon="@drawable/ic_video_solid_18"
+                app:iconGravity="textStart"
+                app:iconTint="@color/core_white"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+    </org.thoughtcrime.securesms.util.views.DarkOverflowToolbar>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/conversation_bottom_panel_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="conversation_input_panel" />
+
+    <include
+        android:id="@+id/conversation_input_panel"
+        layout="@layout/conversation_input_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/navigation_bar_guideline" />
+
+</org.thoughtcrime.securesms.components.InsetAwareConstraintLayout>

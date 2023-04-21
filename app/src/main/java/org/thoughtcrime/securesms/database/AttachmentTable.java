@@ -37,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.signal.core.util.CursorUtil;
+import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.SqlUtil;
 import org.signal.core.util.StreamUtil;
@@ -1482,6 +1483,16 @@ public class AttachmentTable extends DatabaseTable {
     }
 
     return EncryptedMediaDataSource.createFor(attachmentSecret, dataInfo.file, dataInfo.random, dataInfo.length);
+  }
+
+  public void duplicateAttachmentsForMessage(long destinationMessageId, long sourceMessageId) {
+    SQLiteDatabaseExtensionsKt.withinTransaction(getWritableDatabase(), db -> {
+      db.execSQL("CREATE TEMPORARY TABLE tmp_part AS SELECT * FROM " + TABLE_NAME + " WHERE " + MMS_ID + " = ?", SqlUtil.buildArgs(sourceMessageId));
+      db.execSQL("UPDATE tmp_part SET " + ROW_ID + " = NULL, " + MMS_ID + " = ?", SqlUtil.buildArgs(destinationMessageId));
+      db.execSQL("INSERT INTO " + TABLE_NAME + " SELECT * FROM tmp_part");
+      db.execSQL("DROP TABLE tmp_part");
+      return 0;
+    });
   }
 
   @VisibleForTesting

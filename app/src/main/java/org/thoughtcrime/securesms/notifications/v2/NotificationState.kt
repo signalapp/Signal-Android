@@ -38,7 +38,7 @@ data class NotificationState(val conversations: List<NotificationConversation>, 
     get() = notificationItems.lastOrNull()
 
   val mostRecentSender: Recipient?
-    get() = mostRecentNotification?.individualRecipient
+    get() = mostRecentNotification?.authorRecipient
 
   fun getNonVisibleConversation(visibleThread: ConversationId?): List<NotificationConversation> {
     return conversations.filterNot { it.thread == visibleThread }
@@ -81,7 +81,7 @@ data class NotificationState(val conversations: List<NotificationConversation>, 
   }
 
   fun getThreadsWithMostRecentNotificationFromSelf(): Set<ConversationId> {
-    return conversations.filter { it.mostRecentNotification.individualRecipient.isSelf }
+    return conversations.filter { it.mostRecentNotification.authorRecipient.isSelf }
       .map { it.thread }
       .toSet()
   }
