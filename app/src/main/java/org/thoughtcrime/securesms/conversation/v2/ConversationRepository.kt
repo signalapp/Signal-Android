@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -11,6 +12,7 @@ import org.signal.paging.PagingConfig
 import org.thoughtcrime.securesms.conversation.ConversationDataSource
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
+import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.Quote
@@ -104,4 +106,36 @@ class ConversationRepository(context: Context) {
       SignalDatabase.messages.getQuotedMessagePosition(threadId, quote.id, quote.author)
     }.subscribeOn(Schedulers.io())
   }
+
+  fun getNextMentionPosition(threadId: Long): Single<Int> {
+    return Single.fromCallable {
+      val details = SignalDatabase.messages.getOldestUnreadMentionDetails(threadId)
+      if (details == null) {
+        -1
+      } else {
+        SignalDatabase.messages.getMessagePositionInConversation(threadId, details.second(), details.first())
+      }
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun getMessageCounts(threadId: Long): Flowable<MessageCounts> {
+    return RxDatabaseObserver.conversationList
+      .map { getUnreadCount(threadId) }
+      .distinctUntilChanged()
+      .map { MessageCounts(it, getUnreadMentionsCount(threadId)) }
+  }
+
+  private fun getUnreadCount(threadId: Long): Int {
+    val threadRecord = threads.getThreadRecord(threadId)
+    return threadRecord?.unreadCount ?: 0
+  }
+
+  private fun getUnreadMentionsCount(threadId: Long): Int {
+    return SignalDatabase.messages.getUnreadMentionCount(threadId)
+  }
+
+  data class MessageCounts(
+    val unread: Int,
+    val mentions: Int
+  )
 }

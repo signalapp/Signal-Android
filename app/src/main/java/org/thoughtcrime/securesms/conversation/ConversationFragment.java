@@ -17,12 +17,8 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.Manifest;
-import android.animation.Animator;
-import android.animation.LayoutTransition;
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -46,7 +42,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -77,6 +72,7 @@ import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.StreamUtil;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
@@ -138,7 +134,6 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescription
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult;
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil;
-import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -181,9 +176,8 @@ import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.HtmlUtil;
-import org.signal.core.util.concurrent.LifecycleDisposable;
-import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -253,10 +247,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private ConversationGroupViewModel  groupViewModel;
   private SnapToTopDataObserver       snapToTopDataObserver;
   private MarkReadHelper              markReadHelper;
-  private Animation                   scrollButtonInAnimation;
-  private Animation                   mentionButtonInAnimation;
-  private Animation                   scrollButtonOutAnimation;
-  private Animation                   mentionButtonOutAnimation;
   private OnScrollListener            conversationScrollListener;
   private int                         lastSeenScrollOffset;
   private Stopwatch                   startupStopwatch;
@@ -404,19 +394,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     }));
 
     conversationViewModel.getShowMentionsButton().observe(getViewLifecycleOwner(), shouldShow -> {
-      if (shouldShow) {
-        ViewUtil.animateIn(scrollToMentionButton, mentionButtonInAnimation);
-      } else {
-        ViewUtil.animateOut(scrollToMentionButton, mentionButtonOutAnimation, View.INVISIBLE);
-      }
+      scrollToMentionButton.setShown(shouldShow);
     });
 
     conversationViewModel.getShowScrollToBottom().observe(getViewLifecycleOwner(), shouldShow -> {
-      if (shouldShow) {
-        ViewUtil.animateIn(scrollToBottomButton, scrollButtonInAnimation);
-      } else {
-        ViewUtil.animateOut(scrollToBottomButton, scrollButtonOutAnimation, View.INVISIBLE);
-      }
+      scrollToBottomButton.setShown(shouldShow);
     });
 
     scrollToBottomButton.setOnClickListener(v -> scrollToBottom());
@@ -445,7 +427,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     conversationViewModel.getActiveNotificationProfile().observe(getViewLifecycleOwner(), this::updateNotificationProfileStatus);
 
-    initializeScrollButtonAnimations();
     initializeResources();
     initializeMessageRequestViewModel();
     initializeListAdapter();
@@ -1368,20 +1349,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
       TextSecurePreferences.setHasSeenSwipeToReplyTooltip(requireContext(), true);
     }
-  }
-
-  private void initializeScrollButtonAnimations() {
-    scrollButtonInAnimation  = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_scale_in);
-    scrollButtonOutAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_scale_out);
-
-    mentionButtonInAnimation  = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_scale_in);
-    mentionButtonOutAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_scale_out);
-
-    scrollButtonInAnimation.setDuration(100);
-    scrollButtonOutAnimation.setDuration(50);
-
-    mentionButtonInAnimation.setDuration(100);
-    mentionButtonOutAnimation.setDuration(50);
   }
 
   private void scrollToNextMention() {

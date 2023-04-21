@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.conversation.ConversationItem
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationOptionsMenu
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
+import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.ConversationItemAnimator
@@ -139,6 +140,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   )
 
   private val conversationTooltips = ConversationTooltips(this)
+
   private lateinit var conversationOptionsMenuProvider: ConversationOptionsMenu.Provider
   private lateinit var layoutManager: SmoothScrollingLinearLayoutManager
   private lateinit var markReadHelper: MarkReadHelper
@@ -146,6 +148,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   private lateinit var addToContactsLauncher: ActivityResultLauncher<Intent>
   private lateinit var scrollToPositionDelegate: ScrollToPositionDelegate
   private lateinit var adapter: ConversationAdapter
+  private lateinit var recyclerViewColorizer: RecyclerViewColorizer
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
     override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
@@ -165,11 +168,20 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     layoutManager = SmoothScrollingLinearLayoutManager(requireContext(), true)
     binding.conversationItemRecycler.setHasFixedSize(false)
     binding.conversationItemRecycler.layoutManager = layoutManager
+    binding.conversationItemRecycler.addOnScrollListener(ScrollListener())
+
+    binding.scrollToBottom.setOnClickListener {
+      scrollToPositionDelegate.resetScrollPosition()
+    }
+
+    binding.scrollToMention.setOnClickListener {
+      scrollToNextMention()
+    }
 
     val layoutTransitionListener = BubbleLayoutTransitionListener(binding.conversationItemRecycler)
     viewLifecycleOwner.lifecycle.addObserver(layoutTransitionListener)
 
-    val recyclerViewColorizer = RecyclerViewColorizer(binding.conversationItemRecycler)
+    recyclerViewColorizer = RecyclerViewColorizer(binding.conversationItemRecycler)
     recyclerViewColorizer.setChatColors(args.chatColors)
 
     val conversationToolbarOnScrollHelper = ConversationToolbarOnScrollHelper(
@@ -190,15 +202,14 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     presentWallpaper(args.wallpaper)
     disposables += viewModel.recipient
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy(onNext = {
-        recyclerViewColorizer.setChatColors(it.chatColors)
-        presentWallpaper(it.wallpaper)
-        presentConversationTitle(it)
-      })
+      .subscribeBy(onNext = this::onRecipientChanged)
 
     disposables += viewModel.markReadRequests
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(onNext = markReadHelper::onViewsRevealed)
+
+    disposables += viewModel.scrollButtonState
+      .subscribeBy(onNext = this::presentScrollButtons)
 
     EventBus.getDefault().registerForLifecycle(groupCallViewModel, viewLifecycleOwner)
     presentGroupCallJoinButton()
@@ -294,14 +305,13 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
         adapter.notifyItemRangeChanged(0, adapter.itemCount)
       })
 
-    binding.conversationItemRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-      override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-        val timestamp = MarkReadHelper.getLatestTimestamp(adapter, layoutManager)
-        timestamp.ifPresent(viewModel::requestMarkRead)
-      }
-    })
-
     presentActionBarMenu()
+  }
+
+  private fun onRecipientChanged(recipient: Recipient) {
+    presentWallpaper(recipient.wallpaper)
+    presentConversationTitle(recipient)
+    presentChatColors(recipient.chatColors)
   }
 
   private fun invalidateOptionsMenu() {
@@ -352,6 +362,21 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     binding.conversationWallpaper.visible = chatWallpaper != null
+    binding.scrollToBottom.setWallpaperEnabled(chatWallpaper != null)
+    binding.scrollToMention.setWallpaperEnabled(chatWallpaper != null)
+  }
+
+  private fun presentChatColors(chatColors: ChatColors) {
+    recyclerViewColorizer.setChatColors(chatColors)
+    binding.scrollToMention.setUnreadCountBackgroundTint(chatColors.asSingleColor())
+    binding.scrollToBottom.setUnreadCountBackgroundTint(chatColors.asSingleColor())
+  }
+
+  private fun presentScrollButtons(scrollButtonState: ConversationScrollButtonState) {
+    Log.d(TAG, "Update scroll state $scrollButtonState")
+    binding.scrollToBottom.setUnreadCount(scrollButtonState.unreadCount)
+    binding.scrollToMention.isShown = scrollButtonState.hasMentions && scrollButtonState.showScrollButtons
+    binding.scrollToBottom.isShown = scrollButtonState.showScrollButtons
   }
 
   private fun presentGroupCallJoinButton() {
@@ -442,6 +467,33 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       smooth = true,
       scrollStrategy = jumpAndPulseScrollStrategy
     )
+  }
+
+  private fun scrollToNextMention() {
+    disposables += viewModel.getNextMentionPosition().subscribeBy {
+      moveToPosition(it)
+    }
+  }
+
+  private fun isScrolledToBottom(): Boolean {
+    return !binding.conversationItemRecycler.canScrollVertically(1)
+  }
+
+  private fun isScrolledPastButtonThreshold(): Boolean {
+    return layoutManager.findFirstCompletelyVisibleItemPosition() > 4
+  }
+
+  private inner class ScrollListener : RecyclerView.OnScrollListener() {
+    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+      if (isScrolledToBottom()) {
+        viewModel.setShowScrollButtons(false)
+      } else if (isScrolledPastButtonThreshold()) {
+        viewModel.setShowScrollButtons(true)
+      }
+
+      val timestamp = MarkReadHelper.getLatestTimestamp(adapter, layoutManager)
+      timestamp.ifPresent(viewModel::requestMarkRead)
+    }
   }
 
   private inner class DataObserver(
