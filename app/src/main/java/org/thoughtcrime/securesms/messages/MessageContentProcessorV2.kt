@@ -253,8 +253,9 @@ open class MessageContentProcessorV2(private val context: Context) {
       groupV2: SignalServiceProtos.GroupContextV2
     ): Boolean {
       return try {
-        val updatedTimestamp = if (groupV2.hasSignedGroupChange) timestamp else timestamp - 1
-        GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, groupV2.revision, updatedTimestamp, groupV2.signedGroupChange)
+        val signedGroupChange: ByteArray? = if (groupV2.hasSignedGroupChange) groupV2.signedGroupChange else null
+        val updatedTimestamp = if (signedGroupChange != null) timestamp else timestamp - 1
+        GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, groupV2.revision, updatedTimestamp, signedGroupChange)
         true
       } catch (e: GroupNotAMemberException) {
         warn(timestamp, "Ignoring message for a group we're not in")
