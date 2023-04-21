@@ -5,6 +5,7 @@ import io.reactivex.rxjava3.core.Emitter
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import java.util.concurrent.TimeUnit
 
 /**
  * Provide a shared Rx interface to listen to database updates and ensure listeners
@@ -13,13 +14,28 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 object RxDatabaseObserver {
 
   val conversationList: Flowable<Unit> by lazy { conversationListFlowable() }
+  val notificationProfiles: Flowable<Unit> by lazy { notificationProfilesFlowable() }
 
   private fun conversationListFlowable(): Flowable<Unit> {
+    return databaseFlowable { listener ->
+      ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(listener)
+    }
+  }
+
+  @Suppress("RedundantUnitExpression")
+  private fun notificationProfilesFlowable(): Flowable<Unit> {
+    return Flowable.combineLatest(
+      Flowable.interval(0, 30, TimeUnit.SECONDS),
+      databaseFlowable { ApplicationDependencies.getDatabaseObserver().registerNotificationProfileObserver(it) }
+    ) { _, _ -> Unit }
+  }
+
+  private fun databaseFlowable(registerObserver: (RxObserver) -> Unit): Flowable<Unit> {
     val flowable = Flowable.create(
       {
         val listener = RxObserver(it)
 
-        ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(listener)
+        registerObserver(listener)
         it.setCancellable { ApplicationDependencies.getDatabaseObserver().unregisterObserver(listener) }
 
         listener.prime()
