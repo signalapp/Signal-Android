@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.calls.links.create
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -25,15 +27,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Rows
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
 import org.thoughtcrime.securesms.calls.links.SignalCallRow
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
+import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.util.Util
 
@@ -46,6 +51,14 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
 
   override val peekHeightPercentage: Float = 1f
 
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    parentFragmentManager.setFragmentResultListener(EditCallLinkNameDialogFragment.RESULT_KEY, viewLifecycleOwner) { resultKey, bundle ->
+      if (bundle.containsKey(resultKey)) {
+        viewModel.setCallName(bundle.getString(resultKey)!!)
+      }
+    }
+  }
+
   @Composable
   override fun SheetContent() {
     Column(
@@ -53,9 +66,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
         .fillMaxWidth()
         .wrapContentSize(Alignment.Center)
     ) {
-      val callName: String by viewModel.callName
-      val callLink: String by viewModel.callLink
-      val approveAllMembers: Boolean by viewModel.approveAllMembers
+      val callLink: CallLinkTable.CallLink by viewModel.callLink
 
       Handle(modifier = Modifier.align(Alignment.CenterHorizontally))
 
@@ -71,7 +82,6 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
       Spacer(modifier = Modifier.height(24.dp))
 
       SignalCallRow(
-        callName = callName,
         callLink = callLink,
         onJoinClicked = this@CreateCallLinkBottomSheetDialogFragment::onJoinClicked
       )
@@ -84,7 +94,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
       )
 
       Rows.ToggleRow(
-        checked = approveAllMembers,
+        checked = callLink.isApprovalRequired,
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__approve_all_members),
         onCheckChanged = viewModel::setApproveAllMembers,
         modifier = Modifier.clickable(onClick = viewModel::toggleApproveAllMembers)
@@ -124,7 +134,10 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
   }
 
   private fun onAddACallNameClicked() {
-    EditCallLinkNameDialogFragment().show(childFragmentManager, null)
+    val snapshot = viewModel.callLink.value
+    findNavController().navigate(
+      CreateCallLinkBottomSheetDialogFragmentDirections.actionCreateCallLinkBottomSheetToEditCallLinkNameDialogFragment(snapshot.name)
+    )
   }
 
   private fun onJoinClicked() {
@@ -142,7 +155,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
         canSendToNonPush = false,
         multiShareArgs = listOf(
           MultiShareArgs.Builder()
-            .withDraftText(snapshot)
+            .withDraftText(snapshot.identifier)
             .build()
         )
       )
@@ -151,7 +164,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
 
   private fun onCopyLinkClicked() {
     val snapshot = viewModel.callLink.value
-    Util.copyToClipboard(requireContext(), snapshot)
+    Util.copyToClipboard(requireContext(), CallLinks.url(snapshot.identifier))
     Toast.makeText(requireContext(), R.string.CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard, Toast.LENGTH_LONG).show()
   }
 
@@ -159,7 +172,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
     val snapshot = viewModel.callLink.value
     val mimeType = Intent.normalizeMimeType("text/plain")
     val shareIntent = ShareCompat.IntentBuilder(requireContext())
-      .setText(snapshot)
+      .setText(CallLinks.url(snapshot.identifier))
       .setType(mimeType)
       .createChooserIntent()
       .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)

@@ -4,29 +4,24 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor
+import org.thoughtcrime.securesms.database.CallLinkTable
 
 class CreateCallLinkViewModel : ViewModel() {
-  private val _callName: MutableState<String> = mutableStateOf("")
-  private val _callLink: MutableState<String> = mutableStateOf("")
-  private val _approveAllMembers: MutableState<Boolean> = mutableStateOf(false)
-
-  val callName: State<String> = _callName
-  val callLink: State<String> = _callLink
-  val approveAllMembers: State<Boolean> = _approveAllMembers
+  private val _callLink: MutableState<CallLinkTable.CallLink> = mutableStateOf(
+    CallLinkTable.CallLink("", "", AvatarColor.random(), false)
+  )
+  val callLink: State<CallLinkTable.CallLink> = _callLink
 
   fun setApproveAllMembers(approveAllMembers: Boolean) {
-    _approveAllMembers.value = approveAllMembers
+    _callLink.value = _callLink.value.copy(isApprovalRequired = approveAllMembers)
   }
 
   fun toggleApproveAllMembers() {
-    _approveAllMembers.value = !_approveAllMembers.value
+    _callLink.value = _callLink.value.copy(isApprovalRequired = _callLink.value.isApprovalRequired)
   }
 
   fun setCallName(callName: String) {
-    _callName.value = callName
-  }
-
-  fun setCallLink(callLink: String) {
-    _callLink.value = callLink
+    _callLink.value = _callLink.value.copy(name = callName)
   }
 }
