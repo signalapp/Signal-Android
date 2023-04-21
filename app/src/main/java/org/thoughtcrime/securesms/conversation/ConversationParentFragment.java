@@ -199,6 +199,7 @@ import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.invites.InviteActions;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
 import org.thoughtcrime.securesms.invites.InviteReminderRepository;
+import org.thoughtcrime.securesms.jobs.ConversationShortcutPushJob;
 import org.thoughtcrime.securesms.jobs.ForceUpdateGroupV2Job;
 import org.thoughtcrime.securesms.jobs.GroupV1MigrationJob;
 import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
@@ -2906,6 +2907,7 @@ public class ConversationParentFragment extends Fragment
     attachmentManager.clear(glideRequests, false);
     silentlySetComposeText("");
 
+    ConversationShortcutPushJob.enqueue(recipient.get(), ConversationUtil.REPORTED_SIGNAL_OUTGOING);
     fragment.stageOutgoingMessage(message);
 
     SimpleTask.run(() -> {
@@ -3050,6 +3052,7 @@ public class ConversationParentFragment extends Fragment
                    silentlySetComposeText("");
                  }
 
+                 ConversationShortcutPushJob.enqueue(recipient.get(), ConversationUtil.REPORTED_SIGNAL_OUTGOING);
                  fragment.stageOutgoingMessage(outgoingMessage);
 
                  SimpleTask.run(() -> {
@@ -3114,6 +3117,7 @@ public class ConversationParentFragment extends Fragment
                  }, this::sendComplete);
 
                  silentlySetComposeText("");
+                 ConversationShortcutPushJob.enqueue(recipient.get(), ConversationUtil.REPORTED_SIGNAL_OUTGOING);
                  fragment.stageOutgoingMessage(message);
                })
                .execute();

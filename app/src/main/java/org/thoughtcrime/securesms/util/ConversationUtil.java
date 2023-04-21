@@ -12,6 +12,7 @@ import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
 
 import com.annimon.stream.Stream;
+import com.google.common.collect.Sets;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -26,10 +27,9 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -42,6 +42,9 @@ public final class ConversationUtil {
   private static final String TAG = Log.tag(ConversationUtil.class);
 
   private static final String CATEGORY_SHARE_TARGET = "org.thoughtcrime.securesms.sharing.CATEGORY_SHARE_TARGET";
+
+  public static final int REPORTED_SIGNAL_OUTGOING = 1;
+  public static final int REPORTED_SIGNAL_INCOMING = 2;
 
   private ConversationUtil() {}
 
@@ -64,23 +67,16 @@ public final class ConversationUtil {
   }
 
   /**
-   * Synchronously pushes a new dynamic shortcut for the given recipient if one does not already exist.
+   * Synchronously pushes a dynamic shortcut for the given recipient.
    * <p>
-   * If added, this recipient is given a high ranking with the intention of not appearing immediately in results.
+   * The recipient is given a high ranking with the intention of not appearing immediately in results.
+   * @param reportedSignal {@link #REPORTED_SIGNAL_OUTGOING} if this is called due to an outgoing message. {@link #REPORTED_SIGNAL_INCOMING} if this is called
+   *                       due to an incoming message. {@code 0} otherwise.
    */
   @WorkerThread
-  public static void pushShortcutForRecipientIfNeededSync(@NonNull Context context, @NonNull Recipient recipient) {
-    String                   shortcutId = getShortcutId(recipient);
+  public static void pushShortcutForRecipientSync(@NonNull Context context, @NonNull Recipient recipient, int reportedSignal) {
     List<ShortcutInfoCompat> shortcuts  = ShortcutManagerCompat.getDynamicShortcuts(context);
-
-    boolean hasPushedRecipientShortcut = Stream.of(shortcuts)
-                                               .filter(info -> Objects.equals(shortcutId, info.getId()))
-                                               .findFirst()
-                                               .isPresent();
-
-    if (!hasPushedRecipientShortcut) {
-      pushShortcutForRecipientInternal(context, recipient, shortcuts.size());
-    }
+    pushShortcutForRecipientInternal(context, recipient, shortcuts.size(), reportedSignal);
   }
 
   /**
@@ -173,7 +169,7 @@ public final class ConversationUtil {
     List<ShortcutInfoCompat> shortcuts = new ArrayList<>(rankedRecipients.size());
 
     for (int i = 0; i < rankedRecipients.size(); i++) {
-      ShortcutInfoCompat info = buildShortcutInfo(context, rankedRecipients.get(i), i);
+      ShortcutInfoCompat info = buildShortcutInfo(context, rankedRecipients.get(i), i, 0);
       shortcuts.add(info);
     }
 
@@ -184,8 +180,8 @@ public final class ConversationUtil {
    * Pushes a dynamic shortcut for a given recipient to the shortcut manager
    */
   @WorkerThread
-  private static void pushShortcutForRecipientInternal(@NonNull Context context, @NonNull Recipient recipient, int rank) {
-    ShortcutInfoCompat shortcutInfo = buildShortcutInfo(context, recipient, rank);
+  private static void pushShortcutForRecipientInternal(@NonNull Context context, @NonNull Recipient recipient, int rank, int reportedSignal) {
+    ShortcutInfoCompat shortcutInfo = buildShortcutInfo(context, recipient, rank, reportedSignal);
 
     ShortcutManagerCompat.pushDynamicShortcut(context, shortcutInfo);
   }
@@ -201,7 +197,8 @@ public final class ConversationUtil {
   @WorkerThread
   private static @NonNull ShortcutInfoCompat buildShortcutInfo(@NonNull Context context,
                                                                @NonNull Recipient recipient,
-                                                               int rank)
+                                                               int rank,
+                                                               int reportedSignal)
   {
     Recipient resolved   = recipient.resolve();
     Person[]  persons    = buildPersons(context, resolved);
@@ -209,19 +206,32 @@ public final class ConversationUtil {
     String    shortName  = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getShortDisplayName(context);
     String    longName   = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getDisplayName(context);
     String    shortcutId = getShortcutId(resolved);
-    
-    return new ShortcutInfoCompat.Builder(context, shortcutId)
+
+    ShortcutInfoCompat.Builder builder = new ShortcutInfoCompat.Builder(context, shortcutId)
                                  .setLongLived(true)
                                  .setIntent(ConversationIntents.createBuilder(context, resolved.getId(), threadId != null ? threadId : -1).build())
                                  .setShortLabel(shortName)
                                  .setLongLabel(longName)
                                  .setIcon(AvatarUtil.getIconCompatForShortcut(context, resolved))
                                  .setPersons(persons)
-                                 .setCategories(Collections.singleton(CATEGORY_SHARE_TARGET))
+                                 .setCategories(Sets.newHashSet(CATEGORY_SHARE_TARGET))
                                  .setActivity(new ComponentName(context, "org.thoughtcrime.securesms.RoutingActivity"))
                                  .setRank(rank)
-                                 .setLocusId(new LocusIdCompat(shortcutId))
-                                 .build();
+                                 .setLocusId(new LocusIdCompat(shortcutId));
+    if (reportedSignal == REPORTED_SIGNAL_OUTGOING) {
+      if (recipient.isGroup()) {
+        builder.addCapabilityBinding("actions.intent.SEND_MESSAGE", "message.recipient.@type", Arrays.asList("Audience"));
+      } else {
+        builder.addCapabilityBinding("actions.intent.SEND_MESSAGE");
+      }
+    } else if (reportedSignal == REPORTED_SIGNAL_INCOMING) {
+      if (recipient.isGroup()) {
+        builder.addCapabilityBinding("actions.intent.RECEIVE_MESSAGE", "message.sender.@type", Arrays.asList("Audience"));
+      } else {
+        builder.addCapabilityBinding("actions.intent.RECEIVE_MESSAGE");
+      }
+    }
+    return builder.build();
   }
 
   /**
