@@ -1782,9 +1782,9 @@
     <string name="RegistrationActivity_continue">繼續</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">讓私隱與您同在。\n每封訊息都做返自己、講人話。</string>
     <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Phone number</string>
+    <string name="RegistrationActivity_phone_number">手機號碼</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">想開始，就輸入你嘅手機號碼。</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">請輸入剛才發送到 %1$s 嘅代碼</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">請確認您部電話有流動網絡訊號，收到短訊或電話</string>
 
@@ -2877,7 +2877,7 @@
     <!-- Preference title for changing navigation (bottom) bar size -->
     <string name="preferences_navigation_bar_size">Navigation bar size</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Normal</string>
+    <string name="preferences_normal">正常</string>
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Compact</string>
 
@@ -3129,7 +3129,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">回覆</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">Edit</string>
+    <string name="conversation_selection__menu_edit">有嘢改</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">儲存</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -5825,12 +5825,12 @@
     <!-- Dialog title, displayed below the header image -->
     <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
     <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
+    <string name="ChooseNavigationBarStyleFragment__normal">正常</string>
     <!-- Toggle button label for compact size -->
     <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
-    <string name="EditMessageHistoryDialog_title">Edit history</string>
+    <string name="EditMessageHistoryDialog_title">編輯嘅記錄</string>
 
     <!-- EOF -->
 </resources>

@@ -2042,9 +2042,9 @@
     <string name="RegistrationActivity_continue">Lean ar aghaidh</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Beir an príobháideachas leat.\nBíodh cead cainte agat i ngach teachtaireacht.</string>
     <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Phone number</string>
+    <string name="RegistrationActivity_phone_number">Uimhir ghutháin</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Cuir d\'uimhir ghutháin isteach le tosú air.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Cuir isteach an cód a sheolamar chuig %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Deimhnigh go bhfuil comhartha ceallach ar fáil chun glacadh leis an SMS nó leis an nglao</string>
 
@@ -3189,7 +3189,7 @@
     <!-- Preference title for changing navigation (bottom) bar size -->
     <string name="preferences_navigation_bar_size">Navigation bar size</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Normal</string>
+    <string name="preferences_normal">Gnáthluas</string>
     <!-- Preference summary for compact navigation bar size -->
     <string name="preferences_compact">Compact</string>
 
@@ -3445,7 +3445,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Freagair</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">Edit</string>
+    <string name="conversation_selection__menu_edit">Eagar</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Sábháil</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -6305,12 +6305,12 @@
     <!-- Dialog title, displayed below the header image -->
     <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
     <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
+    <string name="ChooseNavigationBarStyleFragment__normal">Gnáthluas</string>
     <!-- Toggle button label for compact size -->
     <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
-    <string name="EditMessageHistoryDialog_title">Edit history</string>
+    <string name="EditMessageHistoryDialog_title">Stair eagarthóireachta</string>
 
     <!-- EOF -->
 </resources>
