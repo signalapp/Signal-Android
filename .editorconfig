@@ -1,5 +1,11 @@
 root = true
 
+[*]
+end_of_line = lf
+
+[*.bat]
+end_of_line = crlf
+
 [*.kt]
 indent_style = space
 indent_size = 2
