@@ -74,7 +74,7 @@ public final class StringUtil {
           break;
         }
       }
-      return stream.toString();
+      return stream.toString(StandardCharsets.UTF_8.name());
     } catch (IOException e) {
       throw new AssertionError(e);
     }

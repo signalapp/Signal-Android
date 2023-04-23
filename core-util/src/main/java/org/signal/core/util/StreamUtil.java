@@ -10,6 +10,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Utility methods for input and output streams.
@@ -74,7 +75,7 @@ public final class StreamUtil {
   }
 
   public static String readFullyAsString(InputStream in) throws IOException {
-    return new String(readFully(in));
+    return new String(readFully(in), StandardCharsets.UTF_8);
   }
 
   public static long copy(InputStream in, OutputStream out) throws IOException {
