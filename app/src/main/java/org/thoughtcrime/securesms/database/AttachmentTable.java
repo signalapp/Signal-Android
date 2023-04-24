@@ -1488,8 +1488,9 @@ public class AttachmentTable extends DatabaseTable {
   public void duplicateAttachmentsForMessage(long destinationMessageId, long sourceMessageId, Collection<Long> excludedIds) {
     SQLiteDatabaseExtensionsKt.withinTransaction(getWritableDatabase(), db -> {
       db.execSQL("CREATE TEMPORARY TABLE tmp_part AS SELECT * FROM " + TABLE_NAME + " WHERE " + MMS_ID + " = ?", SqlUtil.buildArgs(sourceMessageId));
-      for (Long id : excludedIds) {
-        db.execSQL("DELETE FROM tmp_part WHERE " + ROW_ID + " = ?", SqlUtil.buildArgs(id));
+      List<SqlUtil.Query> queries = SqlUtil.buildCollectionQuery(ROW_ID, excludedIds);
+      for (SqlUtil.Query query : queries) {
+        db.delete("tmp_part", query.getWhere(), query.getWhereArgs());
       }
       db.execSQL("UPDATE tmp_part SET " + ROW_ID + " = NULL, " + MMS_ID + " = ?", SqlUtil.buildArgs(destinationMessageId));
       db.execSQL("INSERT INTO " + TABLE_NAME + " SELECT * FROM tmp_part");

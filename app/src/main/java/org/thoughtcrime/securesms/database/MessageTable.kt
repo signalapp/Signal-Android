@@ -2593,13 +2593,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     if (retrieved.attachments.isEmpty() && editedMessage?.id != null && attachments.getAttachmentsForMessage(editedMessage.id).isNotEmpty()) {
-      val linkPreviewAttachmentIds = HashSet<Long>()
-      for (linkPreview in editedMessage.linkPreviews) {
-        val attachmentId = linkPreview.attachmentId
-        if (attachmentId != null) {
-          linkPreviewAttachmentIds.add(attachmentId.rowId)
-        }
-      }
+      val linkPreviewAttachmentIds = editedMessage.linkPreviews.mapNotNull { it.attachmentId?.rowId }.toSet()
       attachments.duplicateAttachmentsForMessage(messageId, editedMessage.id, linkPreviewAttachmentIds)
     }
 
@@ -3029,7 +3023,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         contentValues.put(QUOTE_BODY_RANGES, quoteBodyRanges.build().toByteArray())
       }
 
-      quoteAttachments += message.outgoingQuote.attachments
+      if (editedMessage == null) {
+        quoteAttachments += message.outgoingQuote.attachments
+      }
     }
 
     val updatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithPlaceholders(message.body, message.mentions)
@@ -3083,6 +3079,13 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .values(LATEST_REVISION_ID to messageId)
         .where("$ID_WHERE OR $LATEST_REVISION_ID = ?", message.messageToEdit, message.messageToEdit)
         .run()
+
+      val textAttachments = (editedMessage as? MediaMmsMessageRecord)?.slideDeck?.asAttachments()?.filter { it.contentType == MediaUtil.LONG_TEXT }?.mapNotNull { (it as? DatabaseAttachment)?.attachmentId?.rowId } ?: emptyList()
+      val linkPreviewAttachments = (editedMessage as? MediaMmsMessageRecord)?.linkPreviews?.mapNotNull { it.attachmentId?.rowId } ?: emptyList()
+      val excludeIds = HashSet<Long>()
+      excludeIds += textAttachments
+      excludeIds += linkPreviewAttachments
+      attachments.duplicateAttachmentsForMessage(messageId, message.messageToEdit, excludeIds)
 
       reactions.moveReactionsToNewMessage(messageId, message.messageToEdit)
     }
