@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
 import org.thoughtcrime.securesms.components.spoiler.SpoilerRendererDelegate;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.SpoilerFilteringSpannable;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Arrays;
@@ -110,7 +109,7 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   public void enableSpoilerFiltering() {
-    spoilerFilteringSpannableFactory = new SpoilerFilteringSpannableFactory();
+    spoilerFilteringSpannableFactory = new SpoilerFilteringSpannableFactory(() -> isInOnDraw);
     setSpannableFactory(spoilerFilteringSpannableFactory);
   }
 
@@ -452,17 +451,6 @@ public class EmojiTextView extends AppCompatTextView {
   public void setMentionBackgroundTint(@ColorInt int mentionBackgroundTint) {
     if (renderMentions) {
       mentionRendererDelegate.setTint(mentionBackgroundTint);
-    }
-  }
-
-  private class SpoilerFilteringSpannableFactory extends Spannable.Factory {
-    @Override
-    public @NonNull Spannable newSpannable(CharSequence source) {
-      return wrap(super.newSpannable(source));
-    }
-
-    @NonNull SpoilerFilteringSpannable wrap(Spannable source) {
-      return new SpoilerFilteringSpannable(source, () -> isInOnDraw);
     }
   }
 }
