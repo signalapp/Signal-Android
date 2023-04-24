@@ -825,6 +825,7 @@ public final class SignalServiceContent {
       SignalServiceProtos.SyncMessage.Sent    sentContent          = content.getSent();
       Optional<SignalServiceDataMessage>      dataMessage          = sentContent.hasMessage() ? Optional.of(createSignalServiceDataMessage(metadata, sentContent.getMessage())) : Optional.empty();
       Optional<SignalServiceStoryMessage>     storyMessage         = sentContent.hasStoryMessage() ? Optional.of(createStoryMessage(sentContent.getStoryMessage())) : Optional.empty();
+      Optional<SignalServiceEditMessage>      editMessage          = sentContent.hasEditMessage() ? Optional.of(createEditMessage(metadata, sentContent.getEditMessage())) : Optional.empty();
       Optional<SignalServiceAddress>          address              = SignalServiceAddress.isValidAddress(sentContent.getDestinationUuid())
                                                                      ? Optional.of(new SignalServiceAddress(ServiceId.parseOrThrow(sentContent.getDestinationUuid()), sentContent.getDestinationE164()))
                                                                      : Optional.empty();
@@ -856,7 +857,8 @@ public final class SignalServiceContent {
                                                                                   unidentifiedStatuses,
                                                                                   sentContent.getIsRecipientUpdate(),
                                                                                   storyMessage,
-                                                                                  recipientManifest));
+                                                                                  recipientManifest,
+                                                                                  editMessage));
     }
 
     if (content.hasRequest()) {
