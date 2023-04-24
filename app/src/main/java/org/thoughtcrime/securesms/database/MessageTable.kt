@@ -5282,7 +5282,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           val updated: UpdatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, quoteText, quoteMentions)
           val styledText = SpannableString(updated.body)
 
-          MessageStyler.style(id = quoteId, messageRanges = bodyRanges.adjustBodyRanges(updated.bodyAdjustments), span = styledText)
+          MessageStyler.style(id = "${MessageStyler.QUOTE_ID}$quoteId", messageRanges = bodyRanges.adjustBodyRanges(updated.bodyAdjustments), span = styledText)
 
           quoteText = styledText
           quoteMentions = updated.mentions
