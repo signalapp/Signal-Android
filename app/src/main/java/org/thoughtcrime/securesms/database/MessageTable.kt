@@ -2593,7 +2593,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     if (retrieved.attachments.isEmpty() && editedMessage?.id != null && attachments.getAttachmentsForMessage(editedMessage.id).isNotEmpty()) {
-      attachments.duplicateAttachmentsForMessage(messageId, editedMessage.id)
+      val linkPreviewAttachmentIds = HashSet<Long>()
+      for (linkPreview in editedMessage.linkPreviews) {
+        val attachmentId = linkPreview.attachmentId
+        if (attachmentId != null) {
+          linkPreviewAttachmentIds.add(attachmentId.rowId)
+        }
+      }
+      attachments.duplicateAttachmentsForMessage(messageId, editedMessage.id, linkPreviewAttachmentIds)
     }
 
     val isNotStoryGroupReply = retrieved.parentStoryId == null || !retrieved.parentStoryId.isGroupReply()
