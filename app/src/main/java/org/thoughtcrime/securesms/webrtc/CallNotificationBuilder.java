@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import org.signal.core.util.PendingIntentFlags;
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
@@ -18,6 +17,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcCallService;
 import org.thoughtcrime.securesms.util.ConversationUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
@@ -73,19 +73,24 @@ public class CallNotificationBuilder {
       builder.setPriority(NotificationCompat.PRIORITY_HIGH);
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
 
-      return Single.fromCallable(() -> ConversationUtil.buildPerson(context, recipient))
-                   .subscribeOn(Schedulers.io())
-                   .observeOn(AndroidSchedulers.mainThread())
-                   .map(person -> {
-                     builder.setStyle(NotificationCompat.CallStyle.forIncomingCall(
-                         person,
-                         getServicePendingIntent(context, WebRtcCallService.denyCallIntent(context)),
-                         getActivityPendingIntent(context, WebRtcCallActivity.ANSWER_ACTION)
-                     ));
-                     return builder.build();
-                   });
-
-
+      if (deviceVersionSupportsIncomingCallStyle() &&
+          ServiceUtil.getPowerManager(context).isInteractive() &&
+          !ServiceUtil.getKeyguardManager(context).isDeviceLocked())
+      {
+        return Single.fromCallable(() -> ConversationUtil.buildPerson(context, recipient))
+                     .subscribeOn(Schedulers.io())
+                     .observeOn(AndroidSchedulers.mainThread())
+                     .map(person -> {
+                       builder.setStyle(NotificationCompat.CallStyle.forIncomingCall(
+                           person,
+                           getServicePendingIntent(context, WebRtcCallService.denyCallIntent(context)),
+                           getActivityPendingIntent(context, WebRtcCallActivity.ANSWER_ACTION)
+                       ));
+                       return builder.build();
+                     });
+      } else {
+        return Single.just(builder.setFullScreenIntent(pendingIntent, true).build());
+      }
     } else if (type == TYPE_OUTGOING_RINGING) {
       builder.setContentText(context.getString(R.string.NotificationBarManager__establishing_signal_call));
       builder.addAction(getServiceNotificationAction(context, WebRtcCallService.hangupIntent(context), R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__cancel_call));
@@ -110,7 +115,7 @@ public class CallNotificationBuilder {
   }
 
   public static int getNotificationId(int type) {
-    if (callActivityRestricted() && type == TYPE_INCOMING_RINGING) {
+    if (deviceVersionSupportsIncomingCallStyle() && type == TYPE_INCOMING_RINGING) {
       return WEBRTC_NOTIFICATION_RINGING;
     } else {
       return WEBRTC_NOTIFICATION;
@@ -141,7 +146,7 @@ public class CallNotificationBuilder {
   }
 
   private static @NonNull String getNotificationChannel(int type) {
-    if ((callActivityRestricted() && type == TYPE_INCOMING_RINGING) || type == TYPE_ESTABLISHED) {
+    if ((deviceVersionSupportsIncomingCallStyle() && type == TYPE_INCOMING_RINGING) || type == TYPE_ESTABLISHED) {
       return NotificationChannels.getInstance().CALLS;
     } else {
       return NotificationChannels.getInstance().CALL_STATUS;
@@ -164,7 +169,7 @@ public class CallNotificationBuilder {
     return PendingIntent.getActivity(context, 0, intent, PendingIntentFlags.mutable());
   }
 
-  private static boolean callActivityRestricted() {
+  private static boolean deviceVersionSupportsIncomingCallStyle() {
     return Build.VERSION.SDK_INT >= API_LEVEL_CALL_STYLE;
   }
 }
