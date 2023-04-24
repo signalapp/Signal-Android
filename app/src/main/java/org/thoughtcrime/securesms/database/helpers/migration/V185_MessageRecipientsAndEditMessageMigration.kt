@@ -43,8 +43,8 @@ object V185_MessageRecipientsAndEditMessageMigration : SignalDatabaseMigration {
     val selfId: RecipientId? = getSelfId(db)
 
     if (selfId == null) {
-      val messageCount = db.rawQuery("SELECT COUNT(*) FROM message").readToSingleInt()
-      if (messageCount == 0) {
+      val outgoingMessageCount = db.rawQuery("SELECT COUNT(*) FROM message WHERE $outgoingClause").readToSingleInt()
+      if (outgoingMessageCount == 0) {
         Log.i(TAG, "Could not find ourselves in the DB! Assuming this is an install that hasn't been registered yet.")
       } else {
         throw IllegalStateException("Could not find ourselves in the recipient table, but messages exist in the message table!")
