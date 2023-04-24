@@ -832,7 +832,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     @RequiresApi(31)
     @Override
-    public void onAudioOutputChanged31(@NonNull int audioDeviceInfo) {
+    public void onAudioOutputChanged31(@NonNull Integer audioDeviceInfo) {
       ApplicationDependencies.getSignalCallManager().selectAudioDevice(new SignalAudioManager.ChosenAudioDeviceIdentifier(audioDeviceInfo));
     }
 

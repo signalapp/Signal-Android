@@ -57,7 +57,7 @@ final class AudioOutputAdapter extends RecyclerView.Adapter<AudioOutputAdapter.V
 
     if (mode != selected) {
       setSelectedOutput(mode);
-      onAudioOutputChangedListener.audioOutputChanged(selected);
+      onAudioOutputChangedListener.audioOutputChanged(new WebRtcAudioDevice(selected, null));
     }
   }
 

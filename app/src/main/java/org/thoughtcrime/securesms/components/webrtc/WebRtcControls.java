@@ -181,7 +181,7 @@ public final class WebRtcControls {
   }
 
   boolean isWiredHeadsetAvailableForAudioToggle() {
-    return availableDevices.contains(SignalAudioManager.AudioDevice.BLUETOOTH);
+    return availableDevices.contains(SignalAudioManager.AudioDevice.WIRED_HEADSET);
   }
 
   boolean isFadeOutEnabled() {
