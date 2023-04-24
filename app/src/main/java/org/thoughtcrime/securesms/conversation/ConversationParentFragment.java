@@ -4170,6 +4170,7 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onExitEditMode() {
     updateToggleButtonState();
+    draftViewModel.deleteMessageEditDraft();
   }
 
   @Override

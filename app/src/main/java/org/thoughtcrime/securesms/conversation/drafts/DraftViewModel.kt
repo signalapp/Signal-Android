@@ -84,6 +84,12 @@ class DraftViewModel @JvmOverloads constructor(
     }
   }
 
+  fun deleteMessageEditDraft() {
+    store.update {
+      saveDrafts(it.copy(textDraft = null, bodyRangesDraft = null, messageEditDraft = null))
+    }
+  }
+
   fun setTextDraft(text: String, mentions: List<Mention>, styleBodyRanges: BodyRangeList?) {
     store.update {
       val mentionRanges: BodyRangeList? = MentionUtil.mentionsToBodyRangeList(mentions)
