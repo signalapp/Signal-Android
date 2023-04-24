@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">آپ کی ڈیوائس پر ویڈیو ریکارڈنگ سپورٹ کردہ نہیں ہے</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">تصویر کے لیے ٹیپ کریں، ویڈیو کے لیے پکڑ کر رکھیں</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">ویڈیو ڈاؤن لوڈ نہیں کر سکتے۔ آپ کو اسے دوبارہ بھیجنے کی ضرورت ہو گی۔</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">ترمیم شدہ %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">اٹیچمنٹ شامل کریں</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">ترمیم بھیجیں</string>
     <string name="ConversationActivity_select_contact_info">رابطے کی معلومات منتخب کریں</string>
     <string name="ConversationActivity_compose_message">پیغام تحریر کریں</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">معذرت، آپ کی اٹیچمنٹ ترتیب میں کوئی خرابی تھی۔</string>
@@ -316,11 +316,11 @@
     <string name="ConversationActivity_group_members">گروپ کے اراکین</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">گروپ کال شروع کرنے کے لئے یہاں ٹیپ کریں</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">SMS میسجز میں ترمیم کرنے سے قاصر</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">آپ کی طرف سے اس میسج کو بھیجنے کے بعد محض %1$d گھنٹے کے اندر ترامیم کی جا سکتی ہیں۔</item>
+        <item quantity="other">آپ کی طرف سے اس میسج کو بھیجنے کے بعد محض %1$d گھنٹوں کے اندر ترامیم کی جا سکتی ہیں۔</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">غلط وصول کنندo</string>
@@ -459,7 +459,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">آپ کسی پیغام کا جلدی سے جواب دینے کیلئے دائیں سوائپ کر سکتے ہیں</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">آپ کسی پیغام کا جلدی سے جواب دینے کیلئے بائیں سوائپ کر سکتے ہیں</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">باہر جانے والے ملاحظہ ایک بار میڈیا فائلیں بھیجے جانے کے بعد خود بخود حذف ہوجاتی ہیں</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">آپ یہ پیغام پہلے ہی دیکھ چکے ہیں</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">آپ یہ میسج پہلے ہی دیکھ چکے ہیں</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">آپ اس گفتگو میں اپنے لئے نوٹس شامل کرسکتے ہیں۔ \\ n اگر آپ کے اکاؤنٹ میں کوئی لنکڈ ڈیوائسز ہیں تو ، نئے نوٹوں کی ہم آہنگی ہوگی۔</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d گروپ ممبروں کا ایک ہی نام ہے۔</string>
     <string name="ConversationFragment__tap_to_review">جائزہ لینے کے لئے ٹیپ کریں</string>
@@ -1087,7 +1087,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS میسیجنگ Signal میں مزید سپورٹ نہیں کیا جاتا۔</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">میسج میں ترمیم کریں</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">اشتراک کریں</string>
@@ -1807,11 +1807,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">کیا درج ذیل فون نمبر درست ہے؟</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">اضافی تصدیق چاہیے</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">اس نمبر پر ایک تصدیقی کوڈ بھیجا جائے گا۔ کیریئر ریٹس کا اطلاق ہو سکتا ہے۔</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">اس نمبر کی تصدیق کے لیئے آپ کو کال موصول ہوگی۔</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">کیا آپ کا فون نمبر اوپر سہی ہے ؟</string>
     <string name="RegistrationActivity_edit_number">نمبر ترتیب کرے</string>
@@ -2671,7 +2671,7 @@
     <string name="message_details_recipient__failed_to_send">بھیجنے میں ناکام</string>
     <string name="message_details_recipient__new_safety_number">نیا حفاظتی نمبر</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">ترمیم کی ہسٹری دیکھیں</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">خفیہ جملہ بنائیں</string>
@@ -2953,11 +2953,11 @@
     <string name="preferences_failed_to_connect">رابطہ ناکام ہوگیا</string>
     <string name="preferences_enter_proxy_address">پراکسی ایڈریس درج کریں</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">نیویگیشن بار سائز</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">عام</string>
+    <string name="preferences_normal">عمومی</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">کمپیکٹ</string>
 
 
     <string name="configurable_single_select__customize_option">آپشن کو کسٹمائز کریں</string>
@@ -3208,7 +3208,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">جواب دیں</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">ترتیب دیں</string>
+    <string name="conversation_selection__menu_edit">ترمیم کریں</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">محفوظ کریں</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3483,7 +3483,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">اکاؤنٹ کو کسی نئے Android ڈیوائس میں منتقل کریں</string>
     <string name="RegistrationActivity_enter_backup_passphrase">بیک اپ فاسفریز داخل کریں</string>
     <string name="RegistrationActivity_restore">بحال کریں</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Signal کے نئے ورژن سے بیک اپ درآمد نہیں ہو سکتا</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Signal کے تازہ ترین ورژنز سے بیک اپس درآمد کرنے سے قاصر</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">بیک اپ پاسفریز غلط ہے</string>
     <string name="RegistrationActivity_checking">جانچ پڑتال ہو رہی ہے۔۔۔</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$dپیغامات بہت دور ہیں۔۔۔</string>
@@ -5929,7 +5929,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">ہو گیا</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">کال لنک شیئر کرنے سے قاصر۔</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
 
@@ -5943,11 +5943,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">نیویگیشن بار سائز</string>
     <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">عام</string>
+    <string name="ChooseNavigationBarStyleFragment__normal">عمومی</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">کمپیکٹ</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">ترمیم کی ہسٹری</string>

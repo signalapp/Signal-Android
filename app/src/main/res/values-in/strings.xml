@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Perekaman video tidak didukung di perangkat Anda</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Ketuk untuk foto, tahan untuk video</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Tidak dapat mengunduh video. Anda harus mengirimnya lagi.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">diedit %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Tambahkan lampiran</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">Kirim editan</string>
     <string name="ConversationActivity_select_contact_info">Pilih info kontak</string>
     <string name="ConversationActivity_compose_message">Tulis pesan</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Maaf, terjadi kesalahan pada pengaturan lampiran anda.</string>
@@ -316,10 +316,10 @@
     <string name="ConversationActivity_group_members">Anggota grup</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">Ketuk di sini untuk memulai panggilan grup</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">Tidak dapat mengedit pesan SMS</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="other">Pengeditan hanya dapat diterapkan dalam %1$d jam sejak Anda mengirimkan pesan ini.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Penerima tidak valid!</string>
@@ -1051,7 +1051,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Pengiriman pesan SMS tidak lagi didukung di Signal.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">Edit pesan</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Berbagi</string>
@@ -1743,11 +1743,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Apakah nomor telepon di bawah ini benar?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">Diperlukan verifikasi tambahan</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Kode verifikasi akan dikirim ke nomor ini. Tarif operator mungkin berlaku.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Anda akan menerima panggilan untuk memverifikasi nomor ini.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Apakah nomor telepon Anda benar?</string>
     <string name="RegistrationActivity_edit_number">Sunting nomor</string>
@@ -2594,7 +2594,7 @@
     <string name="message_details_recipient__failed_to_send">Gagal mengirim</string>
     <string name="message_details_recipient__new_safety_number">Nomor keamanan baru</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">Lihat riwayat pengeditan</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Buat frasa sandi</string>
@@ -2875,11 +2875,11 @@
     <string name="preferences_failed_to_connect">Gagal menyambungkan</string>
     <string name="preferences_enter_proxy_address">Masukkan alamat proxy</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">Ukuran bilah navigasi</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">Normal</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">Ringkas</string>
 
 
     <string name="configurable_single_select__customize_option">Sesuaikan opsi</string>
@@ -3129,7 +3129,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Balas</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">Sunting</string>
+    <string name="conversation_selection__menu_edit">Edit</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Simpan</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3396,7 +3396,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Transfer akun ke perangkat Android baru</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Masukkan frasa sandi cadangan</string>
     <string name="RegistrationActivity_restore">Pulihkan</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Tidak bisa mengimpor cadangan dari versi Signal yang lebih baru</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Tidak bisa impor cadangan dari versi lebih baru Signal</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Frasa sandi cadangan tidak benar</string>
     <string name="RegistrationActivity_checking">Memeriksa…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d pesan sejauh ini…</string>
@@ -5809,7 +5809,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">Selesai</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Tidak dapat membagikan tautan panggilan.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Disalin ke papan klip</string>
 
@@ -5823,11 +5823,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Ukuran bilah navigasi</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">Ringkas</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Riwayat pengeditan</string>

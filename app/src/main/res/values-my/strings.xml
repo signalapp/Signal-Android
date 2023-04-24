@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">သင့်စက်တွင် ဗီဒီယိုရိုက်ကူးခြင်းကို မပံ့ပိုးပေးပါ</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">ဓါတ်ပုံအတွက် နှိပ်ပါ။ ဗီဒီယိုအတွက် ဖိထားပါ</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">ဗီဒီယို ဒေါင်းလုဒ်လုပ်၍ မရပါ။ ၎င်းကို ထပ်ပို့ရန် လိုအပ်ပါသည်။</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">တည်းဖြတ်ထား %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">ပူးတွဲဖိုင် ထည့်ရန်</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">တည်းဖြတ်မှု ပေးပို့ရန်</string>
     <string name="ConversationActivity_select_contact_info">ဆက်သွယ်မည့်သူအချက်အလက်ရွေးချယ်ပါ</string>
     <string name="ConversationActivity_compose_message">စာရေးသားမည်</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ပူးတွဲဖိုင်ကို ထည့်ရာတွင် အမှားအယွင်းရှိသည်။</string>
@@ -316,10 +316,10 @@
     <string name="ConversationActivity_group_members">အဖွဲ့ဝင်များ</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">အုပ်စုဖွဲ့ဖုန်းခေါ်ဆိုမှုတစ်ခုစတင်ရန် ဤနေရာကိုနှိပ်ပါ။</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">SMS မက်ဆေ့ချ်များကို တည်းဖြတ်၍မရပါ</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="other">ထိုမက်ဆေ့ချ်ကို ပေးပို့ခဲ့ချိန်မှ %1$d နာရီအတွင်း၌သာ တည်းဖြတ်မှု လုပ်နိုင်ပါသည်။</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">လက်ခံမည့်သူမရှိပါ</string>
@@ -452,7 +452,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">သင်သည်လျှင်မြန်စွာပြန်လည်ဖြေဆိုရန်မည်သည့်မက်ဆေ့ခ်ျကိုအပေါ်ညာဘက်ပွတ်ဆွဲနိုင်ပါတယ်</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">သင်သည်လျင်မြန်စွာပြန်လည်ဖြေဆိုရန်မည်သည့်မက်ဆေ့ခ်ျကိုအပေါ်ဘယ်ဘက်အပေါ်ကိုပွတ်ဆွဲနိုင်ပါတယ်</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">အထွက်ကြည့်ရှုခြင်း - မီဒီယာဖိုင်များကို ပေးပို့ပြီးသည်နှင့်တစ်ပြိုင်နက် အလိုအလျောက် ဖယ်ရှားသွားမည်</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">သင်ဤမက်ဆေ့ခ်ျကိုကြည့်ပြီးပါပြီ</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">သင် ဤမက်ဆေ့ခ်ျကို ကြည့်ပြီးပါပြီ</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ဤစကားပြောဆိုမှုတွင် သင်ကိုယ်တိုင် မှတ်စုများကို ထည့်နိုင်သည်။ \\ n သင့်အကောင့်တွင် ချိတ်ဆက်ထားသော ကိရိယာများရှိပါက မှတ်စုအသစ်များ တစ်ပြိုင်တည်း ချိန်ကိုက်လိမ့်မည်။</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dအဖွဲ့ဝင်များသည်တူညီသောနာမည်ရှိသည်။</string>
     <string name="ConversationFragment__tap_to_review">ပြန်လည်သုံးသပ်ရန်ကိုအသာပုတ်ပါ</string>
@@ -1051,7 +1051,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS မက်ဆေ့ချ်လုပ်ဆောင်ချက်ကို Signal တွင် မပံ့ပိုးပေးတော့ပါ။</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">မက်ဆေ့ချ် တည်းဖြတ်ရန်</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">မျှဝေရန်</string>
@@ -1743,11 +1743,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">အောက်ပါဖုန်းနံပါတ် မှန်ကန်ပါသလား။</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">ထပ်ဆောင်း အတည်ပြုချက် လိုအပ်ပါသည်</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">အတည်ပြုကုဒ်ကို ဤနံပါတ်သို့ ပေးပို့ပါမည်။ ဆက်သွယ်ရေးကယ်ရီယာနှုန်းထားများ ကျသင့်နိုင်ပါသည်။</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">၎င်းနံပတ်ကို အတည်ပြုရန်အတွက် အဝင်ဖုန်းတစ်ခု လက်ခံရရှိပါမည်</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">သင်၏ အထက်ပါဖုန်းနံပါတ် မှန်ကန်ပါသလား?</string>
     <string name="RegistrationActivity_edit_number">နံပါတ်ကို ပြင်မယ်</string>
@@ -1784,7 +1784,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">ဖုန်းနံပါတ်</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">စတင်ရန် သင့်ဖုန်းနံပါတ်ကို ထည့်သွင်းပါ။</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s ကို ပို့လိုက်သည့် အတည်ပြုကုဒ်ကို ထည့်ပါ။</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">မက်ဆေ့ချ် သို့မဟုတ် အဝင်ဖုန်း လက်ခံရရှိရန်အတွက် သင့်ဖုန်းလိုင်းမိနေရန် လိုအပ်သည်</string>
 
@@ -2594,7 +2594,7 @@
     <string name="message_details_recipient__failed_to_send">ပို့၍ မရပါ</string>
     <string name="message_details_recipient__new_safety_number">လုံခြုံရေးနံပါတ် အသစ်</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">တည်းဖြတ်မှုမှတ်တမ်းကို ကြည့်ရှုရန်</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">စကားဝှက်ကို ဖန်တီးပါ</string>
@@ -2875,11 +2875,11 @@
     <string name="preferences_failed_to_connect">ချိတ်ဆက်ရန်မအောင်မြင်ပါ</string>
     <string name="preferences_enter_proxy_address">ကြားခံလိပ်စာကို ထည့်ပါ</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">လမ်းညွှန် ဘား အရွယ်အစား</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">ပုံမှန်</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">ကျစ်လျစ်</string>
 
 
     <string name="configurable_single_select__customize_option">ရွေးချယ်မှုကို စိတ်ကြိုက်ပြင်ဆင်မယ်</string>
@@ -3129,7 +3129,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">စာပြန်မည်</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">ပြင်မယ်</string>
+    <string name="conversation_selection__menu_edit">တည်းဖြတ်ရန်</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">သိမ်းမယ်</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3396,7 +3396,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">သင့် Android စက်အသစ်ပေါ်သို့ အကောင့်လွှဲပြောင်းမယ်</string>
     <string name="RegistrationActivity_enter_backup_passphrase">အရန်သိမ်းဆည်းမှုအတွက် စကားဝှက် ထည့်ပါ</string>
     <string name="RegistrationActivity_restore">ပြန်ရယူမယ်</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Signal ဗားရှင်းအသစ်များတွင် အရန်သိမ်းဆည်းထားသော ဖိုင်များဖွင့်၍ မရပါ</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Signal ဗားရှင်းအသစ်များမှ အရန်သိမ်းဆည်းမှုများထည့်၍မရပါ</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">အရန်သိမ်းဆည်းမှုအတွက်စကားဝှက် မမှန်ကန်ပါ</string>
     <string name="RegistrationActivity_checking">စစ်ဆေးနေသည်…</string>
     <string name="RegistrationActivity_d_messages_so_far">လက်ရှိအချိန်အထိ %1$d စာတိုများရှိပါသည်…</string>
@@ -5809,7 +5809,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">ပြီးပါပြီ</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">ကောလ် လင့်ခ်ကို ဝေမျှ၍ မရပါ။</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">ကလစ်ဘုတ်သို့ ကူးယူပြီး</string>
 
@@ -5823,11 +5823,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">လမ်းညွှန် ဘား အရွယ်အစား</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">ပုံမှန်</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">ကျစ်လျစ်</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">တည်းဖြတ်မှု မှတ်တမ်း</string>

@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Vaša naprava ne podpira snemanja videa</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Tapnite za fotografijo, zadržite za video</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Videoposnetka ni mogoče prenesti. Ponovno ga boste morali poslati.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">urejeno pred %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Dodaj priponko</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">Pošlji urejeno</string>
     <string name="ConversationActivity_select_contact_info">Izberi podatke o uporabniku_ci</string>
     <string name="ConversationActivity_compose_message">Sestavi sporočilo</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Oprostite, pri nastavljanju priponke je prišlo do napake.</string>
@@ -316,13 +316,13 @@
     <string name="ConversationActivity_group_members">Člani_ce skupine</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">Za začetek skupinskega klica tapnite tukaj</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">Ni mogoče urejati SMS sporočil</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="two">Edits can only be applied within %1$d hours from the time you sent this message.</item>
-        <item quantity="few">Edits can only be applied within %1$d hours from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">Urejanje je mogoče uporabiti samo v %1$d uri od trenutka, ko ste poslali to sporočilo.</item>
+        <item quantity="two">Urejanje je mogoče uporabiti samo v %1$d urah od trenutka, ko ste poslali to sporočilo.</item>
+        <item quantity="few">Urejanje je mogoče uporabiti samo v %1$d urah od trenutka, ko ste poslali to sporočilo.</item>
+        <item quantity="other">Urejanje je mogoče uporabiti samo v %1$d urah od trenutka, ko ste poslali to sporočilo.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Neveljaven prejemnik!</string>
@@ -1159,7 +1159,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS sporočila niso več podprta v Signalu.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">Uredi sporočilo</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Deli</string>
@@ -1935,11 +1935,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Je spodnja telefonska številka pravilna?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">Potrebno je dodatno preverjanje</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Potrditvena koda bo poslana na to številko. Pošiljanje je lahko zaračunano po tarifi operaterja.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Prejeli boste klic za potrditev te številke.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Je gornja telefonska številka prava?</string>
     <string name="RegistrationActivity_edit_number">Uredi številko</string>
@@ -1979,7 +1979,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Telefonska številka</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Za začetek vpišite svojo telefonsko številko.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Vpišite kodo poslano na %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Prepričajte se, če ima vaš telefon dostop do mobilnega signala, da lahko prejmete naš SMS ali klic</string>
 
@@ -2825,7 +2825,7 @@
     <string name="message_details_recipient__failed_to_send">Pošiljanje ni uspelo</string>
     <string name="message_details_recipient__new_safety_number">Novo varnostno število</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">Ogled zgodovine urejanja</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Ustvari geslo</string>
@@ -3109,11 +3109,11 @@
     <string name="preferences_failed_to_connect">Povezovanje ni uspelo</string>
     <string name="preferences_enter_proxy_address">Vnesite naslov proksi</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">Velikost navigacijske vrstice</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Običajne</string>
+    <string name="preferences_normal">Običajna</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">Kompaktna</string>
 
 
     <string name="configurable_single_select__customize_option">Nastavitve po meri</string>
@@ -3657,7 +3657,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Prenos računa na novo androidno napravo</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Vnesite geslo varnostne kopije</string>
     <string name="RegistrationActivity_restore">Obnovi</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Uvoz varnostnih kopij iz novejših različic aplikacije Signal ni mogoč</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Uvoz varnostnih kopij iz novejših različic Signala ni mogoč</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Napačno geslo varnostne kopije</string>
     <string name="RegistrationActivity_checking">Preverjanje …</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d sporočil zaenkrat …</string>
@@ -6169,7 +6169,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">OK</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Povezave za klic ni mogoče deliti.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Kopirano v odložišče</string>
 
@@ -6183,14 +6183,14 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Velikost navigacijske vrstice</string>
     <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">Običajne</string>
+    <string name="ChooseNavigationBarStyleFragment__normal">Običajna</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">Kompaktna</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
-    <string name="EditMessageHistoryDialog_title">Zgodovina popravkov</string>
+    <string name="EditMessageHistoryDialog_title">Zgodovina urejanja</string>
 
     <!-- EOF -->
 </resources>

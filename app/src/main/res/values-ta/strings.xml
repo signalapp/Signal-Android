@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">உங்கள் டிவைஸில் வீடியோ பதிவு ஆதரிக்கப்படவில்லை</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">புகைப்படத்திற்கு தட்டவும், காணொளிக்கு தொடர்ந்து அழுத்தவும்</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">வீடியோவைப் பதிவிறக்க முடியவில்லை. நீங்கள் மீண்டும் அதை அனுப்ப வேண்டும்.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">%1$s திருத்தப்பட்டது</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">இணைப்பு சேர்க்க</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">அனுப்பியதை திருத்து</string>
     <string name="ConversationActivity_select_contact_info">தொடர்பு தகவலை தேர்ந்தெடுக்கவும்</string>
     <string name="ConversationActivity_compose_message">செய்தியை இயற்று</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">மன்னிக்கவும், உங்கள் இணைப்பை அமைப்பதில் பிழை ஏற்ப்பட்டது.</string>
@@ -316,11 +316,11 @@
     <string name="ConversationActivity_group_members">குழு உறுப்பினர்கள்</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">குழு அழைப்பை தொடங்க இங்கே தட்டவும்</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">SMS மெசேஜ்களைத் திருத்த முடியவில்லை</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">நீங்கள் இந்த மெசேஜை அனுப்பியதிலிருந்து %1$d மணிநேரத்திற்குள் மட்டுமே திருத்தங்களைப் பயன்படுத்த முடியும்.</item>
+        <item quantity="other">நீங்கள் இந்த மெசேஜை அனுப்பியதிலிருந்து %1$d மணிநேரத்திற்குள் மட்டுமே திருத்தங்களைப் பயன்படுத்த முடியும்.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">செல்லாத பெறுநர்!</string>
@@ -459,7 +459,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">விரைவாக பதிலளிக்க எந்த செய்தியிலும் வலதுபுறமாக ஸ்வைப் செய்யலாம்</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">விரைவாக பதிலளிக்க, எந்த செய்தியிலும் இடதுபுறமாக ஸ்வைப் செய்யலாம்</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">வெளிச்செல்லும் காண்க-ஒருமுறை கோப்புகள் அனுப்பப்பட்ட பின் தானாகவே அகற்றப்படும்</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">நீங்கள் ஏற்கனவே இந்த செய்தியைப் பார்த்தீர்கள்</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">ஏற்கனவே இந்த மெசேஜைப் பார்த்தீர்கள்</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">இந்த உரையாடலில் உங்களுக்காக குறிப்புகளைச் சேர்க்கலாம். உங்கள் கணக்கில் இணைக்கப்பட்ட பிற சாதனங்கள் இருந்தால், புதிய குறிப்புகள் ஒத்திசைக்கப்படும்.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dகுழு உறுப்பினர்களுக்கு ஒரே பெயர் உண்டு.</string>
     <string name="ConversationFragment__tap_to_review">மதிப்பாய்வு செய்ய தட்டவும்</string>
@@ -1087,7 +1087,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">சிக்னலில் இனி எஸ்.எம்.எஸ் செய்தியிடல் ஆதரிக்கப்படாது.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">மெசேஜைத் திருத்தவும்</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">பகிர்</string>
@@ -1807,11 +1807,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">கீழே உள்ள மொபைல் எண் சரியானதா?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">கூடுதல் சரிபார்ப்பு தேவை</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">இந்த எண்ணுக்கு சரிபார்ப்புக் குறியீடு அனுப்பப்படும். கேரியர் கட்டணங்கள் விதிக்கப்படலாம்.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">இந்த எண்ணை சரிபார்க்க உங்களுக்கு அழைப்பு வரும்.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">மேலே உங்கள் தொலைபேசி எண் சரியானதா?</string>
     <string name="RegistrationActivity_edit_number">எண்ணை தொகுக்க</string>
@@ -1849,7 +1849,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">ஃபோன் எண்</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">தொடங்குவதற்கு உங்கள் மொபைல் எண்ணை உள்ளிடவும்.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">நாங்கள் அனுப்பிய குறியீட்டை %1$s க்கு உள்ளிடவும்</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">உங்கள் எஸ்எம்எஸ் அல்லது அழைப்பைப் பெற உங்கள் தொலைபேசியில் செல்லுலார் சிக்னல் இருப்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்</string>
 
@@ -2671,7 +2671,7 @@
     <string name="message_details_recipient__failed_to_send">அனுப்ப முடியவில்லை</string>
     <string name="message_details_recipient__new_safety_number">புதிய பாதுகாப்பு எண்</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">திருத்தப்பட்ட வரலாற்றைக் காண்க</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">கடவுச்சொல்லை உருவாக்கு</string>
@@ -2953,11 +2953,11 @@
     <string name="preferences_failed_to_connect">இணைப்பது இயலவில்லை.</string>
     <string name="preferences_enter_proxy_address">பதிலி முகவரியைப் பதியவும்</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">வழிசெலுத்தல் பார் அளவு</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">சாதாரணமாக</string>
+    <string name="preferences_normal">சாதாரண அளவு</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">பொருந்திய அளவு</string>
 
 
     <string name="configurable_single_select__customize_option">விருப்ப அமைப்பைத் தனிப்பயனாக்கவும்</string>
@@ -3208,7 +3208,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">பதில்</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">தொகு</string>
+    <string name="conversation_selection__menu_edit">திருத்துக</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">சேமி</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3483,7 +3483,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">கணக்கை புதிய சாதனத்திற்கு நகர்த்தவும்</string>
     <string name="RegistrationActivity_enter_backup_passphrase">காப்புப்பதிவு பயனர் தரவு கடவுச்சொற்றொடரை உள்ளிடவும்</string>
     <string name="RegistrationActivity_restore">மீட்க</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Signal லின் புதிய பதிப்புகளிலிருந்து காப்புப்பிரதிகளை இறக்குமதி செய்ய முடியாது</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Signal இன் புதிய பதிப்புகளில் பேக்அப்களை இறக்க முடியாது</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">தவறான காப்புப்பதிவு பயனர் தரவு கடவுச்சொல்</string>
     <string name="RegistrationActivity_checking">சரிபார்க்கிறது…</string>
     <string name="RegistrationActivity_d_messages_so_far">இதுவரை %1$d செய்திகள் …</string>
@@ -5929,7 +5929,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">முடிந்தது</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">அழைப்பு இணைப்பைப் பகிர முடியவில்லை.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
 
@@ -5943,11 +5943,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">வழிசெலுத்தல் பார் அளவு</string>
     <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">சாதாரணமாக</string>
+    <string name="ChooseNavigationBarStyleFragment__normal">சாதாரண அளவு</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">பொருந்திய அளவு</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">திருத்தங்களின் வரலாறு</string>

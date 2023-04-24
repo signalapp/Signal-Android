@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">你部機唔支援錄影功能</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">撳一下影相，撳住就拍片</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">下載唔到影片。你要再傳送多次。</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">編輯咗 (%1$s前)</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">加附件</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">傳送編輯</string>
     <string name="ConversationActivity_select_contact_info">揀選聯絡人資訊</string>
     <string name="ConversationActivity_compose_message">寫訊息</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">唔好意思，您份附件搞唔掂。</string>
@@ -316,10 +316,10 @@
     <string name="ConversationActivity_group_members">個谷嘅成員</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">撳一下呢度開始成谷嘅通話</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">編輯唔到短訊</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="other">你只可以喺傳送訊息後 %1$d 小時內套用編輯。</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">收件人唔啱噃！</string>
@@ -452,7 +452,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">您可以將任何訊息滑向右去快速回覆</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">您可以將任何訊息滑向左去快速回覆</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">自動銷毀媒體檔案會喺送出之後自動移除</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">呢個訊息您已經睇過</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">你已經睇咗呢個訊息</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">喺呢度，您可以札低一啲提示畀自己。\n如果您嘅帳戶有其他連結咗嘅機，新嘅筆記會自動同步處理。</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">個谷有 %1$d 位成員撞名。</string>
     <string name="ConversationFragment__tap_to_review">撳一下細閱</string>
@@ -1051,7 +1051,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal 唔會再支援短訊功能。</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">編輯訊息</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">分享</string>
@@ -1743,11 +1743,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">以下嘅手機號碼係咪正確？</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">需要額外驗證</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">驗證碼會傳送到呢個號碼。電訊商可能會收取費用。</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">有個電話會打畀您，去驗證呢個冧把。</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">上高係您嘅電話冧把，啱唔啱？</string>
     <string name="RegistrationActivity_edit_number">改過個冧把</string>
@@ -1784,7 +1784,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">手機號碼</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">想開始，就輸入你嘅手機號碼。</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">請輸入你嘅手機號碼嚟開始使用。</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">請輸入剛才發送到 %1$s 嘅代碼</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">請確認您部電話有流動網絡訊號，收到短訊或電話</string>
 
@@ -2594,7 +2594,7 @@
     <string name="message_details_recipient__failed_to_send">傳送唔到</string>
     <string name="message_details_recipient__new_safety_number">新嘅安全嗎</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">睇下編輯紀錄</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">建立密碼</string>
@@ -2875,11 +2875,11 @@
     <string name="preferences_failed_to_connect">連唔到線</string>
     <string name="preferences_enter_proxy_address">輸入代理伺服器位址</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">導航欄大小</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">正常</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">細</string>
 
 
     <string name="configurable_single_select__customize_option">自訂選項</string>
@@ -3129,7 +3129,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">回覆</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">有嘢改</string>
+    <string name="conversation_selection__menu_edit">編輯</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">儲存</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3396,7 +3396,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">將帳戶轉移去一部新嘅 Android 機度</string>
     <string name="RegistrationActivity_enter_backup_passphrase">輸入備份密碼</string>
     <string name="RegistrationActivity_restore">還原</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">冇得匯入較新版本嘅 Signal 整嘅備份</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">冇辦法由較新嘅 Signal 版本匯入備份</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">備份密碼唔啱</string>
     <string name="RegistrationActivity_checking">檢查緊…</string>
     <string name="RegistrationActivity_d_messages_so_far">目前為止 %1$d 個訊息…</string>
@@ -5809,7 +5809,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">完成</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">分享唔到通話連結。</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">複製咗去剪貼簿</string>
 
@@ -5823,14 +5823,14 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">導航欄大小</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">正常</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">細</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
-    <string name="EditMessageHistoryDialog_title">編輯嘅記錄</string>
+    <string name="EditMessageHistoryDialog_title">編輯紀錄</string>
 
     <!-- EOF -->
 </resources>

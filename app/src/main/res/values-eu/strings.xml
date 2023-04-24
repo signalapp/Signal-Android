@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Bideo-grabaketa ez da onartzen zure gailuan</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Sakatu argazki bat ateratzeko; eduki sakatuta bideo bat grabatzeko</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Ezin da deskargatu bideoa. Berriro bidali beharko duzu.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">duela %1$s editatu da</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Eranskina gehitu</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">Bidali editatutako mezua</string>
     <string name="ConversationActivity_select_contact_info">Kontaktuaren informazioa aukeratu</string>
     <string name="ConversationActivity_compose_message">Mezua idatzi</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Barkatu, zure eranskina ezartzean errore bat izan da</string>
@@ -316,11 +316,11 @@
     <string name="ConversationActivity_group_members">Taldeko kideak</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">Sakatu hau talde-dei bat hasteko</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">Ezin dira editatu SMS mezuak</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">Mezu hau bidali eta %1$d orduko epean soilik aplika daitezke aldaketak.</item>
+        <item quantity="other">Mezu hau bidali eta %1$d orduko epean soilik aplika daitezke aldaketak.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Hartzaile baliogabea!</string>
@@ -459,7 +459,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Azkar erantzuteko, irristatu hatza eskuinetara edozein mezuren gainean</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Azkar erantzuteko, irristatu hatza ezkerretara edozein mezuren gainean</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Behin bakarrik ikustekoak diren multimedia-fitxategiak bidali ondoren, automatikoki kenduko dira</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">Mezu hau ikusia duzu</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">Dagoeneko ikusi duzu mezu hau</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Zuretzako oharrak gehitu ditzakezu solasaldi honetan.\nZure kontuak lotutako gailurik badauka, ohar berriak sinkronizatuko dira.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d taldeko kide izen bera dute.</string>
     <string name="ConversationFragment__tap_to_review">Sakatu berrikusteko</string>
@@ -506,22 +506,22 @@
         <item quantity="other">%1$d elkarrizketa eraman dira sarrera-ontzira</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Irakurria</item>
-        <item quantity="other">Irakurriak</item>
+        <item quantity="one">Irakurrita</item>
+        <item quantity="other">Irakurrita</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="one">Irakurri gabe</item>
         <item quantity="other">Irakurri gabe</item>
     </plurals>
-    <string name="ConversationListFragment_pin">Finkatu</string>
-    <string name="ConversationListFragment_unpin">Utzi finkapena</string>
-    <string name="ConversationListFragment_mute">Isildu</string>
-    <string name="ConversationListFragment_unmute">Aktibatu</string>
+    <string name="ConversationListFragment_pin">Ainguratu</string>
+    <string name="ConversationListFragment_unpin">Kendu aingura</string>
+    <string name="ConversationListFragment_mute">Desakt. jakin.</string>
+    <string name="ConversationListFragment_unmute">Akt. jakinar.</string>
     <string name="ConversationListFragment_select">Aukeratu</string>
     <string name="ConversationListFragment_archive">Artxibatu</string>
     <string name="ConversationListFragment_unarchive">Desartxibatu</string>
     <string name="ConversationListFragment_delete">Ezabatu</string>
-    <string name="ConversationListFragment_select_all">Dena hautatu</string>
+    <string name="ConversationListFragment_select_all">Hautatu dena</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d hautatua</item>
         <item quantity="other">%1$d hautatua</item>
@@ -1087,7 +1087,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal-en jada ez dira onartzen SMS mezuak.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">Editatu mezua</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Partekatu</string>
@@ -1744,15 +1744,15 @@
     </plurals>
 
     <!-- Toggle content description for toggling camera direction  -->
-    <string name="WebRtcCallView__toggle_camera_direction">Aktibatu kameraren norabidea</string>
+    <string name="WebRtcCallView__toggle_camera_direction">Aktibatu/Desaktibatu kameraren norabidea</string>
     <!-- Toggle content description for toggling audio output  -->
-    <string name="WebRtcCallView__toggle_speaker">Aktibatu bozgorailua</string>
+    <string name="WebRtcCallView__toggle_speaker">Aktibatu/Desaktibatu bozgorailua</string>
     <!-- Toggle content description for toggling camera state  -->
-    <string name="WebRtcCallView__toggle_camera">Aktibatu kamera</string>
+    <string name="WebRtcCallView__toggle_camera">Aktibatu/Desaktibatu kamera</string>
     <!-- Toggle content description for toggling mute state  -->
-    <string name="WebRtcCallView__toggle_mute">Aktibatu \"isildu\"</string>
+    <string name="WebRtcCallView__toggle_mute">Aktibatu/Desaktibatu jakinarazpenak</string>
     <!-- Toggle content description for toggling group ring state  -->
-    <string name="WebRtcCallView__toggle_ring">Aktibatu jakinarazpenak</string>
+    <string name="WebRtcCallView__toggle_ring">Aktibatu/Desaktibatu tonua</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Amaitu deia</string>
 
@@ -1807,11 +1807,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Zuzena al da beheko telefono-zenbakia?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">Egiaztapen osagarria behar da</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Zenbaki honetara egiaztapen-kode bat bidaliko da. Baliteke operadorearen tarifak aplikatzea.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Zenbaki hau egiaztatzeko deia jasoko duzu.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Zure telefono zenbaki hori zuzena da?</string>
     <string name="RegistrationActivity_edit_number">Zenbakia editatu</string>
@@ -1849,7 +1849,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Telefono-zenbakia</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Hasteko, idatzi zure telefono-zenbakia.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sartu %1$s telefonora bidali dugun kodea.</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Ziurtatu zure telefonoa lineara konektatuta dagoela eta SMSak eta dei arruntak jasotzeko gai dela</string>
 
@@ -2671,7 +2671,7 @@
     <string name="message_details_recipient__failed_to_send">Bidalketak huts egin du</string>
     <string name="message_details_recipient__new_safety_number">Segurtasun zenbaki berria</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">Ikusi edizio-historia</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Sortu pasaesaldia</string>
@@ -2953,11 +2953,11 @@
     <string name="preferences_failed_to_connect">Konexioak huts egin du</string>
     <string name="preferences_enter_proxy_address">Idatzi proxyaren helbidea</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">Nabigazio-barraren tamaina</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">Normala</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">Trinkoa</string>
 
 
     <string name="configurable_single_select__customize_option">Pertsonalizatu aukera</string>
@@ -3483,7 +3483,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Transferitu kontua Android gailu berri batera</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Idatzi babeskopiaren pasaesaldia</string>
     <string name="RegistrationActivity_restore">Berreskuratu</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Ezin dira babeskopiak inportatu Signal-en bertsio berriagoetatik</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Ezin dira inportatu Signal bertsio berrien babeskopiak</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Babeskopiaren pasaesaldia okerra da</string>
     <string name="RegistrationActivity_checking">Egiaztatzen…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d mezu orain arte…</string>
@@ -5772,7 +5772,7 @@
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Tarte bakarrekoa</string>
     <!-- Popup menu label for applying spoiler style -->
-    <string name="TextFormatting_spoiler">Spoiler</string>
+    <string name="TextFormatting_spoiler">Spoiler-a</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
@@ -5782,9 +5782,9 @@
     <!-- Displayed as body text in the username education screen -->
     <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Erabiltzaile-izenak zifra multzo batekin parekatzen dira eta ez dira zure profilean partekatzen</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Erabiltzaile-izen bakoitzak QR kode eta esteka berdingabea ditu, lagunekin parteka dezakezuna txateatzen hasteko</string>
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Erabiltzaile-izen bakoitzak QR kode eta esteka esklusiboak ditu. Lagunekin parteka ditzakezu haiekin txateatzen hasteko.</string>
     <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
-    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Desaktibatu telefono-zenbakia aurkitzea Ezarpenak &gt; Pribatutasuna &gt; Telefono-zenbakia &gt; Nork aurki dezake nire zenbakia, zure erabiltzaile-izena besteek zurekin harremanetan jartzeko modu nagusi gisa erabiltzeko</string>
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Besteek zurekin harremanetan jartzeko modu nagusi gisa erabiltzaile-izena erabiltzeko, desaktibatu telefono-zenbakiaren bidez aurkitzeko aukera Ezarpenak &gt; Pribatutasuna &gt; Telefono-zenbakia &gt; Nork aurki dezake nire zenbakia atalean.</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5889,9 +5889,9 @@
     <string name="CallStateUpdatePopupWindow__mic_off">Mikrofonoa itzalita</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
-    <string name="CameraControls_capture_button_accessibility_label">Pantaila-irudi botoia</string>
+    <string name="CameraControls_capture_button_accessibility_label">Pantaila-argazkia ateratzeko botoia</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
-    <string name="CameraControls_continue_button_accessibility_label">Jarraitu botoia</string>
+    <string name="CameraControls_continue_button_accessibility_label">Aurrera egiteko botoia</string>
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
@@ -5929,7 +5929,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">Eginda</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Ezin da partekatu deiaren esteka.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Arbelera kopiatuta</string>
 
@@ -5943,11 +5943,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Nabigazio-barraren tamaina</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">Normala</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">Trinkoa</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Edizio-historia</string>

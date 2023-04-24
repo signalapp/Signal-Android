@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ വീഡിയോ റെക്കോർഡിംഗ് പിന്തുണയില്ല</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">ഫോട്ടോയ്‌ക്കായി അമർത്തുക, വീഡിയോയ്‌ക്കായി പിടിക്കുക</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">വീഡിയോ ഡൗൺലോഡ് ചെയ്യാൻ കഴിയുന്നില്ല. നിങ്ങൾ അത് വീണ്ടും അയയ്‌ക്കേണ്ടതുണ്ട്.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">എഡിറ്റ് ചെയ്തത് %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">അറ്റാച്ച്മെന്റ് ചേർക്കുക</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">എഡിറ്റ് ചെയ്തത് അയയ്ക്കുക</string>
     <string name="ConversationActivity_select_contact_info">കോൺ‌ടാക്റ്റ് വിവരം തിരഞ്ഞെടുക്കുക</string>
     <string name="ConversationActivity_compose_message">സന്ദേശം രചിക്കുക</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ക്ഷമിക്കണം, നിങ്ങളുടെ അറ്റാച്ചുമെന്റ് ക്രമീകരിക്കുന്നതിൽ ഒരു പിശക് ഉണ്ടായിരുന്നു.</string>
@@ -316,11 +316,11 @@
     <string name="ConversationActivity_group_members">ഗ്രൂപ്പിലെ അംഗങ്ങൾ</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ ഇവിടെ ടാപ്പ് ചെയ്യുക</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">SMS സന്ദേശങ്ങൾ എഡിറ്റ് ചെയ്യാനായില്ല</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">നിങ്ങൾ ഈ സന്ദേശം അയച്ച് %1$d മണിക്കൂറിനകം മാത്രമെ എഡിറ്റുകൾ ബാധകമാക്കാനാകൂ.</item>
+        <item quantity="other">നിങ്ങൾ ഈ സന്ദേശം അയച്ച് %1$d മണിക്കൂറിനകം മാത്രമെ എഡിറ്റുകൾ ബാധകമാക്കാനാകൂ.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">അസാധുവായ സ്വീകർത്താവ്!</string>
@@ -1087,7 +1087,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS സന്ദേശമയയ്‌ക്കൽ ഇനിമുതൽ Signal-ൽ പിന്തുണയ്‌ക്കുന്നില്ല.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">സന്ദേശം എഡിറ്റ് ചെയ്യുക</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">പങ്കിടുക</string>
@@ -1807,11 +1807,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">ചുവടെയുള്ള ഫോൺ നമ്പർ ശരിയാണോ?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">അധിക പരിശോധിച്ചുറപ്പിക്കൽ ആവശ്യമാണ്</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് ഈ നമ്പറിലേക്ക് അയയ്ക്കും. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ഈ നമ്പർ പരിശോധിക്കാൻ വേണ്ടി നിങ്ങൾക്ക് ഒരു കോൾ വരും.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">മുകളിലുള്ള നിങ്ങളുടെ ഫോൺ നമ്പർ ശരിയാണോ?</string>
     <string name="RegistrationActivity_edit_number">നമ്പർ തിരുത്തുക</string>
@@ -1849,7 +1849,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">ഫോൺ നമ്പർ</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ആരംഭിക്കാൻ നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ഞങ്ങൾ %1$s-ലേക്ക് അയച്ച കോഡ് നൽകുക</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">നിങ്ങളുടെ SMS അല്ലെങ്കിൽ കോൾ സ്വീകരിക്കുന്നതിന് നിങ്ങളുടെ ഫോണിന് സെല്ലുലാർ സിഗ്നൽ ഉണ്ടെന്ന് ഉറപ്പാക്കുക</string>
 
@@ -2671,7 +2671,7 @@
     <string name="message_details_recipient__failed_to_send">അയയ്‌ക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
     <string name="message_details_recipient__new_safety_number">പുതിയ സുരക്ഷാ നമ്പർ</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">എഡിറ്റ് ചരിത്രം കാണുക</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">രഹസ്യവാചകം സൃഷ്‌ടിക്കുക</string>
@@ -2953,11 +2953,11 @@
     <string name="preferences_failed_to_connect">ബന്ധിപ്പിക്കാനായില്ല</string>
     <string name="preferences_enter_proxy_address">പ്രോക്സി വിലാസം നൽകുക</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">നാവിഗേഷൻ ബാർ വലുപ്പം</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">സാധാരണ</string>
+    <string name="preferences_normal">സാധാരണം</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">കോമ്പാക്റ്റ്</string>
 
 
     <string name="configurable_single_select__customize_option">ഓപ്ഷൻ ഇച്ഛാനുസൃതമാക്കുക</string>
@@ -3208,7 +3208,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">മറുപടി</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">തിരുത്തുക</string>
+    <string name="conversation_selection__menu_edit">എഡിറ്റ് ചെയ്യുക</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">സംരക്ഷിക്കൂ</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3483,7 +3483,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">അക്കൌണ്ട് ഒരു പുതിയ ആൻഡ്രോയിഡ് ഉപകരണത്തിലേക്ക് മാറ്റിസ്ഥാപിക്കുക</string>
     <string name="RegistrationActivity_enter_backup_passphrase">ബാക്കപ്പിന്റെ രഹസ്യവാചകം നൽകുക</string>
     <string name="RegistrationActivity_restore">വീണ്ടെടുക്കൂ</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Signal-ന്റെ പുതിയ പതിപ്പുകളിൽ നിന്ന് ബാക്കപ്പുകൾ ഇറക്കുമതി ചെയ്യാൻ കഴിയില്ല</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">പുതിയ Signal പതിപ്പിൽ നിന്ന് ബാക്കപ്പ് ഇമ്പോർട്ട് ഇല്ല</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">ബാക്കപ്പ് രഹസ്യവാചകം തെറ്റാണ്</string>
     <string name="RegistrationActivity_checking">പരിശോധിക്കുന്നു…</string>
     <string name="RegistrationActivity_d_messages_so_far">ഇതുവരെ %1$d സന്ദേശങ്ങൾ…</string>
@@ -5929,7 +5929,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">പൂർത്തിയായി</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">കോൾ ലിങ്ക് പങ്കിടാനാകുന്നില്ല.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
 
@@ -5943,11 +5943,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">നാവിഗേഷൻ ബാർ വലുപ്പം</string>
     <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">സാധാരണ</string>
+    <string name="ChooseNavigationBarStyleFragment__normal">സാധാരണം</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">കോമ്പാക്റ്റ്</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">എഡിറ്റ് ചെയ്യൽ ചരിത്രം</string>

@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">您的设备不支持视频录制</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">点击拍照，长按录像</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">无法下载视频。您需要重发一遍。</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">%1$s前编辑</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">添加附件</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">发送已编辑消息</string>
     <string name="ConversationActivity_select_contact_info">选择联系人信息</string>
     <string name="ConversationActivity_compose_message">撰写消息</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">抱歉，设置附件时出现错误。</string>
@@ -316,10 +316,10 @@
     <string name="ConversationActivity_group_members">群组成员</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">点这里发起群语音通话</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">无法编辑消息</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="other">您只能在发送此消息的 %1$d以内进行编辑。</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">无效收件人！</string>
@@ -452,7 +452,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">右滑任何消息可快速回复</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">左滑任何消息可快速回复</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">一次性媒体文件在发送之后将自动删除</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">已查看该消息</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">您已查看该消息</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">您可在此对话中为自己做笔记。\n若您的账户有关联设备，新笔记将同步到各设备上。</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d 位群组成员的名字相同。</string>
     <string name="ConversationFragment__tap_to_review">点击开始审查</string>
@@ -1051,7 +1051,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal 不再支持短信消息服务。</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">编辑消息</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">分享</string>
@@ -1743,11 +1743,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">下方的电话号码是否正确？</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">需要进行额外验证</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">此电话号码将会收到一个验证码。发送验证码可能会收取短信费。</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">您将收到来电以验证该数字。</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">上方的电话号码是否正确？</string>
     <string name="RegistrationActivity_edit_number">编辑号码</string>
@@ -2594,7 +2594,7 @@
     <string name="message_details_recipient__failed_to_send">发送失败</string>
     <string name="message_details_recipient__new_safety_number">新的安全码</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">查看编辑历史</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">创建密码</string>
@@ -2875,11 +2875,11 @@
     <string name="preferences_failed_to_connect">无法连接</string>
     <string name="preferences_enter_proxy_address">请输入代理地址</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">导航栏大小</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">正常尺寸</string>
+    <string name="preferences_normal">正常</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">紧凑</string>
 
 
     <string name="configurable_single_select__customize_option">自定义选项</string>
@@ -5809,7 +5809,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">完成</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">无法分享通话链接。</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">已复制到剪贴板</string>
 
@@ -5823,11 +5823,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">导航栏大小</string>
     <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">正常尺寸</string>
+    <string name="ChooseNavigationBarStyleFragment__normal">正常</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">紧凑</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">编辑历史</string>

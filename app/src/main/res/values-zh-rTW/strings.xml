@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">你的裝置不支援錄製影片</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">輕觸一下拍照，長按錄製影片</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">無法下載影片。你需要再次傳送。</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">%1$s前已編輯</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">新增附檔</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">發送已編輯訊息</string>
     <string name="ConversationActivity_select_contact_info">選擇聯絡人資訊</string>
     <string name="ConversationActivity_compose_message">撰寫訊息</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">抱歉，無法成功設定你指定的附檔。</string>
@@ -316,10 +316,10 @@
     <string name="ConversationActivity_group_members">群組成員</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">輕觸此處開始群組通話</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">無法編輯 SMS 短訊</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="other">編輯只能在你傳送此訊息後的 %1$d 小時內應用。</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">無效的收件人！</string>
@@ -1051,7 +1051,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal 不再支援短訊功能。</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">編輯訊息</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">分享</string>
@@ -1743,11 +1743,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">以下電話號碼是否正確？</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">需要額外驗證</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">驗證碼將傳送至此號碼。電訊商可能收取費用。</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">你會接到電話驗證此號碼。</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">你的電話號碼正確嗎？</string>
     <string name="RegistrationActivity_edit_number">輸入號碼</string>
@@ -2594,7 +2594,7 @@
     <string name="message_details_recipient__failed_to_send">傳送失敗</string>
     <string name="message_details_recipient__new_safety_number">新的安全碼</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">瀏覽編輯歷史紀錄</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">新增自訂密碼</string>
@@ -2875,11 +2875,11 @@
     <string name="preferences_failed_to_connect">連接失敗</string>
     <string name="preferences_enter_proxy_address">輸入代理伺服器位址</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">導航欄大小</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">正常</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">簡潔</string>
 
 
     <string name="configurable_single_select__customize_option">自定義選項</string>
@@ -5809,7 +5809,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">完成</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">無法分享通話連結。</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">已複製到剪貼簿</string>
 
@@ -5823,11 +5823,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">導航欄大小</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">正常</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">簡潔</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">編輯歷史記錄</string>

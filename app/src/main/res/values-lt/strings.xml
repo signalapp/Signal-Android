@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Tavo įrenginyje vaizdo įrašymas nepalaikomas</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Bakstelėkite norėdami fotografuoti, laikykite norėdami filmuoti</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Nepavyksta atsisiųsti vaizdo įrašo. Turėsi dar kartą ją išsiųsti.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">redaguota %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Pridėti priedą</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">Siųsti redaguotą</string>
     <string name="ConversationActivity_select_contact_info">Pasirinkti adresato informaciją</string>
     <string name="ConversationActivity_compose_message">Rašyti žinutę</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Apgailestaujame, pridedant priedą, įvyko klaida.</string>
@@ -316,13 +316,13 @@
     <string name="ConversationActivity_group_members">Grupės nariai</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">Bakstelėkite čia norėdami pradėti grupės skambutį</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">Negalima redaguoti SMS žinučių</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="few">Edits can only be applied within %1$d hours from the time you sent this message.</item>
-        <item quantity="many">Edits can only be applied within %1$d hours from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">Redaguoti galima ne vėliau kaip per %1$d val. nuo tada, kai išsiuntei šią žinutę.</item>
+        <item quantity="few">Redaguoti galima ne vėliau kaip per %1$d val. nuo tada, kai išsiuntei šią žinutę.</item>
+        <item quantity="many">Redaguoti galima ne vėliau kaip per %1$d val. nuo tada, kai išsiuntei šią žinutę.</item>
+        <item quantity="other">Redaguoti galima ne vėliau kaip per %1$d val. nuo tada, kai išsiuntei šią žinutę.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Neteisingas gavėjas!</string>
@@ -473,7 +473,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Norėdami greitai atsakyti į žinutę, galite perbraukti ją į dešinę</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Norėdami greitai atsakyti į žinutę, galite perbraukti ją į kairę</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Išsiunčiami vienkartinės peržiūros medijos failai, juos išsiuntus, yra automatiškai pašalinami</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">Jūs jau žiūrėjote šią žinutę</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">Tu jau peržiūrėjai šią žinutę</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Šiame pokalbyje galite rašyti sau pastabas.\nJeigu yra su paskyra susietų įrenginių, naujos pastabos bus sinchronizuotos.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupės nariai(-ių) turi tokį patį vardą.</string>
     <string name="ConversationFragment__tap_to_review">Bakstelėkite norėdami peržiūrėti</string>
@@ -1159,7 +1159,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS žinutės programėlėje „Signal“ nebepalaikomos.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">Redaguoti žinutę</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Bendrinti</string>
@@ -1935,11 +1935,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Ar toliau nurodytas tel. numeris teisingas?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">Reikalingas papildomas patvirtinimas</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Patvirtinimo kodas bus išsiųstas šiuo numeriu. Gali būti taikomi operatoriaus mokesčiai.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Sulauksite skambučio, kad patvirtintumėte šį numerį.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Ar jūsų telefono numeris aukščiau yra teisingas?</string>
     <string name="RegistrationActivity_edit_number">Taisyti numerį</string>
@@ -1979,7 +1979,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Telefono numeris</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Pirmiausia įvesk savo telefono numerį.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Įveskite kodą, kurį išsiuntėme į %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Įsitikinkite, kad jūsų telefone yra mobiliojo ryšio signalas, kad gautumėte SMS ar sulauktumėte skambučio</string>
 
@@ -2825,7 +2825,7 @@
     <string name="message_details_recipient__failed_to_send">Nepavyko išsiųsti</string>
     <string name="message_details_recipient__new_safety_number">Naujas saugumo numeris</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">Peržiūrėti redagavimo istoriją</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Sukurti slaptafrazę</string>
@@ -3109,11 +3109,11 @@
     <string name="preferences_failed_to_connect">Nepavyko prisijungti</string>
     <string name="preferences_enter_proxy_address">Įveskite įgaliotojo serverio adresą</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">Naršymo juostos dydis</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">Normalus</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">Suspaustas</string>
 
 
     <string name="configurable_single_select__customize_option">Tinkinti parinktį</string>
@@ -3366,7 +3366,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Atsakyti</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">Taisyti</string>
+    <string name="conversation_selection__menu_edit">Redaguoti</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Įrašyti</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3657,7 +3657,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Perkelti paskyrą į naująjį „Android“ įrenginį</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Įveskite atsarginės kopijos slaptafrazę</string>
     <string name="RegistrationActivity_restore">Atkurti</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Nepavyksta importuoti atsarginių kopijų iš naujesnių Signal versijų</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Negalima importuoti atsarg. kopijų iš naujesnių versijų</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Neteisinga atsarginės kopijos slaptafrazė</string>
     <string name="RegistrationActivity_checking">Tikrinama…</string>
     <string name="RegistrationActivity_d_messages_so_far">Jau %1$d žinučių…</string>
@@ -6169,7 +6169,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">Atlikta</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Nepavyksta bendrinti skambučio nuorodos.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Nukopijuota į iškarpinę</string>
 
@@ -6183,11 +6183,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Naršymo juostos dydis</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">Normalus</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">Suspaustas</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Redagavimo istorija</string>

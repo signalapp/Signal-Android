@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Түзмөгүңүздө видео тарта албайсыз</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Сүрөт тартуу үчүн басыңыз, видео тартуу үчүн кое бербей басып туруңуз</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Видео жүктөлүп алынган жок. {0} кайра жөнөтүшү керек.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">качан оңдолду: %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Тиркеме кошуу</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">Оңдолгонду жөнөтүү</string>
     <string name="ConversationActivity_select_contact_info">Байланыш маалыматын тандоо</string>
     <string name="ConversationActivity_compose_message">Билдирүү жазуу</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Кечиресиз, тиркеме иштелип жатканда ката кетти.</string>
@@ -316,10 +316,10 @@
     <string name="ConversationActivity_group_members">Топтун мүчөлөрү</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">Топтошуп чалып баштоо үчүн бул жерди басыңыз</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">SMS билдирүүлөрү оңдолбой жатат</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="other">Оңдоолор бул билдирүү жөнөтүлгөндөн кийин %1$d сааттын ичинде күчүнө кирет.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Жараксыз алуучу!</string>
@@ -452,7 +452,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Тез жооп берүү үчүн билдирүүнү оңго сүрүп коюңуз</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Тез жооп берүү үчүн билдирүүнү солго сүрүп коюңуз</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Бир жолу көрүлүүчү чыгуучу медиафайлдар жөнөтүлөрү менен дароо өчүп калат</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">Бул билдирүүнү көргөнсүз</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">Бул билдирүүнү карагансыз</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Ушул сүйлөшүүдө өзүңүзгө бир нерселерди белгилеп жазып алсаңыз болот.\nЭгер аккаунтуңузга бир нече түзмөгүңүз байланган болсо, жаңы жазууларыңыз бардык түзмөктөрдө шайкештирилет.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Топтун %1$d катышуучусунун ысымдары бирдей.</string>
     <string name="ConversationFragment__tap_to_review">Басып карап көрүңүз</string>
@@ -1051,7 +1051,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal кызматында мындан ары SMS менен жазыша албайсыз.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">Билдирүүнү оңдоо</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Бөлүшүү</string>
@@ -1743,11 +1743,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Төмөнкү телефон номери туурабы?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">Дагы бир жолу ырастоо керек</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Бул номерге ырастоо коду жөнөтүлөт. Байланыш операторуңуз акы алышы мүмкүн.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Номерди текшерүү үчүн сизге чалуу келет.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Сиздин жогорудагы номериңиз туурабы?</string>
     <string name="RegistrationActivity_edit_number">Номерди алмаштыруу</string>
@@ -1784,7 +1784,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Телефон номериңиз</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Баштоо үчүн телефон номериңизди киргизиңиз.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$sномерине жиберилген кодду киргизиңиз</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">SMS катты же чалууну кабыл алуу үчүн сиздин телефонунундагы уюлдук байланышта болуусун текшериңиз</string>
 
@@ -2594,7 +2594,7 @@
     <string name="message_details_recipient__failed_to_send">Жөнөтүлгөн жок</string>
     <string name="message_details_recipient__new_safety_number">Жаңы коопсуздук коду</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">Оңдолгондорду көрүү</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Сыр сөз айкашын түзүү</string>
@@ -2875,11 +2875,11 @@
     <string name="preferences_failed_to_connect">Туташуу ишке ашкан жок</string>
     <string name="preferences_enter_proxy_address">Прокси дарегин киргизүү</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">Чабыттоо тилкесинин өлчөмү</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">Кадимки</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">Чакан</string>
 
 
     <string name="configurable_single_select__customize_option">Ыңгайлаштыруу опциясы</string>
@@ -3396,7 +3396,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Аккаунтту жаңы Android түзмөгүнө өткөрүү</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Кошумча сыр сөз айкашы киргизиңиз</string>
     <string name="RegistrationActivity_restore">Калыбына келтирүү</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Signal\'дын акыркы версияларында резервдик көчүрмөлөрдү импорттоо мүмкүн эмес</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Signal\'дын жаңы версияларынан көчүрмөлөрдү ала албайсыз</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Резервдик көчүрмөлөрдү аткаруу үчүн туура эмес купуя сөз айкашы киргизилди</string>
     <string name="RegistrationActivity_checking">Текшерилүүдө…</string>
     <string name="RegistrationActivity_d_messages_so_far">азырынча %1$dбилдирүү бар…</string>
@@ -5809,7 +5809,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">Бүттү</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Чалуу шилтемеси бөлүшүлбөй жатат.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Буферге көчүрүлдү</string>
 
@@ -5823,11 +5823,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Чабыттоо тилкесинин өлчөмү</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">Кадимки</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">Чакан</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Оңдолгондор</string>

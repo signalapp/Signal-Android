@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">మీ పరికరంపై వీడియో రికార్డింగుకు మద్దతు లేదు</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">ఫోటో కోసం నొక్కండి, వీడియో కోసం పట్టుకోండి</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">వీడియోను డౌన్‌లోడ్ చేసుకోలేరు. దానిని మీరు మళ్ళీ పంపాలి.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">సవరించబడింది %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">అటాచ్మెంట్ జోడించండి</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">సవరణను పంపండి</string>
     <string name="ConversationActivity_select_contact_info">సంప్రదింపు సమాచారం ఎంచుకొండి</string>
     <string name="ConversationActivity_compose_message">సందేశాన్ని కంపోజ్చెయ్</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">క్షమించండి, మీ అటాచ్మెంట్ అమర్చడంలో లోపం ఉంది.</string>
@@ -316,11 +316,11 @@
     <string name="ConversationActivity_group_members">సమూహ సభ్యులు</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">గ్రూప్ కాల్ ప్రారంభించడానికి ఇక్కడ నొక్కండి</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">SMS సందేశాలను సవరించడం సాధ్యం కాలేదు</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">మీరు ఈ సందేశం పంపిన సమయం నుంచి %1$d గంటలోపు మాత్రమే సవరణలు వర్తింపజేయబడతాయి.</item>
+        <item quantity="other">మీరు ఈ సందేశం పంపిన సమయం నుంచి %1$d గంటలలోపు మాత్రమే సవరణలు వర్తింపజేయబడతాయి.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">చెల్లని గ్రహీత!</string>
@@ -459,7 +459,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">త్వరగా సమాధానం ఇవ్వడానికి మీరు ఏదైనా సందేశంలో కుడివైపు స్వైప్ చేయవచ్చు</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">త్వరగా సమాధానం ఇవ్వడానికి మీరు ఏదైనా సందేశంలో ఎడమ వైపుకు స్వైప్ చేయవచ్చు</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">అవుట్‌గోయింగ్ ఒకసారి-వీక్షించండి మీడియా ఫైల్స్ పంపబడిన తర్వాత అవి స్వయంచాలకంగా తొలగించబడతాయి</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">మీరు ఇప్పటికే ఈ సందేశాన్ని చూశారు</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">ఈ సందేశాన్ని మీరు ఇదివరకే వీక్షించారు</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ఈ సంభాషణలో మీరు మీ కోసం గమనికలను జోడించవచ్చు. మీ ఖాతాకు ఏదైనా లింక్ చేసిన పరికరాలు ఉంటే, క్రొత్త గమనికలు సమకాలీకరించబడతాయి.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d సమూహ సభ్యులకు అదే పేరు ఉంది.</string>
     <string name="ConversationFragment__tap_to_review">సమీక్షించడానికి నొక్కండి</string>
@@ -1087,7 +1087,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal లో SMS సందేశాలు పంపేందుకు ఇక ఏమాత్రం మద్దతు ఇవ్వబడదు.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">సందేశాన్ని సవరించండి</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">పంచుకోండి</string>
@@ -1807,11 +1807,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">దిగువ ఫోన్ నంబర్ సరైనదేనా?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">అదనపు ధృవీకరణ అవసరం</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">ఈ నంబర్‌కు ఒక ధృవీకరణ కోడ్ పంపబడుతుంది. క్యారియర్ రేట్లు వర్తించవచ్చు.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ఈ సంఖ్యను ధృవీకరించడానికి మీకు కాల్ వస్తుంది.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">పైన ఉన్న మీ చరవాణి నంబర్ సరైనదేనా?</string>
     <string name="RegistrationActivity_edit_number">సంఖ్య మార్చు</string>
@@ -1849,7 +1849,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">ఫోన్ నంబర్</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ప్రారంభించడానికి మీ ఫోన్ నంబర్‌ను ఎంటర్ చేయండి.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">మేము పంపిన కోడ్‌ను నమోదు చేయండి %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">మీ SMS లేదా కాల్‌ను స్వీకరించడానికి మీ ఫోన్‌కు సెల్యులార్ సంకేతం ఉందని నిర్ధారించుకోండి</string>
 
@@ -2671,7 +2671,7 @@
     <string name="message_details_recipient__failed_to_send">పంపించడం విఫలమైనది</string>
     <string name="message_details_recipient__new_safety_number">నూతన భద్రతా సంఖ్య</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">సవరణ చరిత్రను వీక్షించండి</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">సంకేతపదమును తయారు చేయు</string>
@@ -2953,11 +2953,11 @@
     <string name="preferences_failed_to_connect">కలవడం కుదరట్లేదు</string>
     <string name="preferences_enter_proxy_address">ప్రాక్సీ చిరునామాను నమోదు చేయండి</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">నావిగేషన్ బార్ పరిమాణం</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">సాధారణంగా</string>
+    <string name="preferences_normal">సాధారణం</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">సంక్షిప్తము</string>
 
 
     <string name="configurable_single_select__customize_option">అనుకూలీకరించు ఎంపిక</string>
@@ -3208,7 +3208,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">స్పంధించు</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">సరిచేయు</string>
+    <string name="conversation_selection__menu_edit">సవరించండి</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">భద్రపరుచు</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3483,7 +3483,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">ఖాతాను కొత్త Android పరికరానికి బదిలీ చేయండి</string>
     <string name="RegistrationActivity_enter_backup_passphrase">ప్రత్యామ్నాయ పాస్ఫ్రేజ్ని నమోదు చేయండి</string>
     <string name="RegistrationActivity_restore">పునరుద్ధరించు</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Signal యొక్క నూతన సంస్కరణల నుండి ప్రత్యామ్నాయను దిగుమతి చేయలేరు</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Signal నూతన వెర్షన్ల నుండి బ్యాకప్స్ దిగుమతి చేయలేరు</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">సరికాని ప్రత్యామ్నాయ పాస్ఫ్రేజ్</string>
     <string name="RegistrationActivity_checking">తనిఖీ చేస్తోంది…</string>
     <string name="RegistrationActivity_d_messages_so_far">ఇప్పటివరకు %1$d సందేశాలు</string>
@@ -5929,7 +5929,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">పూర్తయింది</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">కాల్ లింక్ పంచుకోవడం సాధ్యం కాలేదు.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది</string>
 
@@ -5943,11 +5943,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">నావిగేషన్ బార్ పరిమాణం</string>
     <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">సాధారణంగా</string>
+    <string name="ChooseNavigationBarStyleFragment__normal">సాధారణం</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">సంక్షిప్తము</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">సవరణ చరిత్ర</string>

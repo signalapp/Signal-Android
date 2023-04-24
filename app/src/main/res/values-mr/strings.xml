@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">आपल्या डिव्हाइसवर व्हिडीओ रेकॉर्डिंग समर्थित नाही</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">फोटो करिता टॅप करा, व्हिडिओ करिता धरून ठेवा</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">व्हिडिओ डाउनलोड करु शकत नाही. आपणाला तो पुन्हा पाठवण्याची गरज आहे.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">संपादित केलेले %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">संलग्न जोडा</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">संपादन पाठवा</string>
     <string name="ConversationActivity_select_contact_info">संपर्क माहिती जोडा</string>
     <string name="ConversationActivity_compose_message">संदेश लिहा</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">क्षमस्व, आपल्या संलग्न मध्ये एक त्रुटी होती.</string>
@@ -316,11 +316,11 @@
     <string name="ConversationActivity_group_members">गट सदस्य</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">गट कॉल प्रारंभ करण्यासाठी येथे टॅप करा</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">SMS संदेश संपादित करू शकत नाही</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">आपण हा संदेश पाठवल्यापासून फक्त %1$d तासाच्या आत संपादन करणे लागू केले जाऊ शकते.</item>
+        <item quantity="other">आपण हा संदेश पाठवल्यापासून फक्त %1$d तासांच्या आत संपादन करणे लागू केले जाऊ शकते.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">अवैध प्राप्तकर्ता!</string>
@@ -1087,7 +1087,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS संदेशन यापुढे Signal मध्ये समर्थित नाही.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">संदेश संपादित करा</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">सामायिक करा</string>
@@ -1807,11 +1807,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">खाली दिलेला फोन नंबर बरोबर आहे काय?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">अतिरिक्त सत्यापन आवश्यक आहे</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">या नंबरला सत्यापन कोड पाठवला जाईल. कॅरियर दर लागू शकतात.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">हा नंबर सत्यापित करण्यासाठी आपल्याला कॉल येईल.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">आपला वरील फोन नंबर बरोबर आहे?</string>
     <string name="RegistrationActivity_edit_number">नंबर संपादित करा</string>
@@ -2671,7 +2671,7 @@
     <string name="message_details_recipient__failed_to_send">पाठविण्यात अयशस्वी</string>
     <string name="message_details_recipient__new_safety_number">नवीन सुरक्षितता नंबर</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">संपादन इतिहास पहा</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">पासफ्रेझ तयार करा</string>
@@ -2953,11 +2953,11 @@
     <string name="preferences_failed_to_connect">कनेक्ट करण्यात अयशस्वी</string>
     <string name="preferences_enter_proxy_address">प्रॉक्सी पत्ता प्रविष्ट करा</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">नॅव्हिगेशन बार आकार</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">सामान्य</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">संक्षिप्त</string>
 
 
     <string name="configurable_single_select__customize_option">पर्याय सानुकूलित करा</string>
@@ -5929,7 +5929,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">झाले</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">कॉल लिंक शेअर करू शकत नाही.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">क्लिपबोर्ड वर कॉपी केले</string>
 
@@ -5943,11 +5943,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">नॅव्हिगेशन बार आकार</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">सामान्य</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">संक्षिप्त</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">संपादनाचा इतिहास</string>

@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ವೀಡಿಯೋ ರೆಕಾರ್ಡಿಂಗ್‍‌ಗೆ ಬೆಂಬಲವಿಲ್ಲ</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">ಫೋಟೋಕ್ಕಾಗಿ ಟ್ಯಾಪ್ ಮಾಡಿ, ವೀಡಿಯೊಗಾಗಿ ಹಿಡಿದುಕೊಳ್ಳಿ</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">ವೀಡಿಯೋವನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ. ನೀವು ಇದನ್ನು ಮತ್ತೆ ಕಳುಹಿಸಬೇಕಾಗಿದೆ.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">ಎಡಿಟ್ ಮಾಡಲಾದ ಸಮಯ %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">ಎಡಿಟ್ ಮಾಡಿದ್ದನ್ನು ಕಳುಹಿಸಿ</string>
     <string name="ConversationActivity_select_contact_info">ಸಂಪರ್ಕದ ಮಾಹಿತಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="ConversationActivity_compose_message">ಸಂದೇಶ ರಚಿಸಿ</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ಕ್ಷಮಿಸಿ, ನಿಮ್ಮ ಲಗತ್ತನ್ನು ಹೊಂದಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ.</string>
@@ -316,11 +316,11 @@
     <string name="ConversationActivity_group_members">ಗುಂಪಿನ ಸದಸ್ಯರು</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">ಕರೆ ಮಾಡುವುದಕ್ಕೆ ಇಲ್ಲಿ ಒತ್ತಿ</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">SMS ಮೆಸೇಜ್‌ಗಳನ್ನು ಎಡಿಟ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">ನೀವು ಈ ಮೆಸೇಜ್ ಕಳುಹಿಸಿದ %1$d ಗಂಟೆಯ ಒಳಗೆ ಮಾತ್ರ ಎಡಿಟ್‌ಗಳನ್ನು ನೀವು ಅನ್ವಯಿಸಬಹುದು.</item>
+        <item quantity="other">ನೀವು ಈ ಮೆಸೇಜ್ ಕಳುಹಿಸಿದ %1$d ಗಂಟೆಗಳ ಒಳಗೆ ಮಾತ್ರ ಎಡಿಟ್‌ಗಳನ್ನು ನೀವು ಅನ್ವಯಿಸಬಹುದು.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">ಅಮಾನ್ಯವಾದ ಸ್ವೀಕೃತಿದಾರರು!</string>
@@ -459,7 +459,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">ತ್ವರಿತವಾಗಿ ಪ್ರತ್ಯುತ್ತರಿಸುವುದಕ್ಕೆ ನೀವು ಯಾವುದೇ ಸಂದೇಶದ ಮೇಲೆ ಬಲಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಬಹುದು</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">ತ್ವರಿತವಾಗಿ ಪ್ರತ್ಯುತ್ತರಿಸುವುದಕ್ಕೆ ನೀವು ಯಾವುದೇ ಸಂದೇಶದ ಮೇಲೆ ಎಡಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಬಹುದು</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ಹೊರಹೋಗುವ ವ್ಯೂ-ಒನ್ಸ್ ಮೀಡಿಯಾ ಫೈಲ್‌ಗಳನ್ನು ಕಳುಹಿಸಿದ ನಂತರ ಅವುಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">ನೀವು ಈಗಾಗಲೇ ಈ ಸಂದೇಶವನ್ನು ವೀಕ್ಷಿಸಿದ್ದೀರಿ</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">ನೀವು ಈಗಾಗಲೇ ಈ ಮೆಸೇಜ್ ವೀಕ್ಷಿಸಿದ್ದೀರಿ</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ಈ ಸಂವಾದದಲ್ಲಿ ನೀವು ನಿಮಗಾಗಿ ಟಿಪ್ಪಣಿಗಳನ್ನು ಸೇರಿಸಬಹುದು. ನಿಮ್ಮ ಖಾತೆಯು ಯಾವುದೇ ಲಿಂಕ್ ಮಾಡಿದ ಸಾಧನಗಳನ್ನು ಹೊಂದಿದ್ದರೆ, ಹೊಸ ಟಿಪ್ಪಣಿಗಳನ್ನು ಸಿಂಕ್ ಮಾಡಲಾಗುತ್ತದೆ.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ಗುಂಪು ಸದಸ್ಯರು ಒಂದೇ ಹೆಸರನ್ನು ಹೊಂದಿದ್ದಾರೆ.</string>
     <string name="ConversationFragment__tap_to_review">ಪರೀಕ್ಷಿಸಲು ಇಲ್ಲಿ ಒತ್ತಿ</string>
@@ -1087,7 +1087,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS ಮೆಸೇಜಿಂಗ್ ಅನ್ನು Signal ಇನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">ಮೆಸೇಜ್ ಎಡಿಟ್ ಮಾಡಿ</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">ಹಂಚಿಕೊಳ್ಳಿ</string>
@@ -1807,11 +1807,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">ಈ ಕೆಳಗಿನ ಫೋನ್ ನಂಬರ್ ಸರಿಯಾಗಿದೆಯೇ?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">ಹೆಚ್ಚುವರಿ ದೃಢೀಕರಣ ಬೇಕಾಗಿದೆ</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">ದೃಢೀಕರಣ ಕೋಡ್ ಅನ್ನು ಈ ಸಂಖ್ಯೆಗೆ ಕಳುಹಿಸಲಾಗುತ್ತದೆ. ವಾಹಕ ದರಗಳು ಅನ್ವಯವಾಗಬಹುದು.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ಈ ಸಂಖ್ಯೆಯನ್ನು ಪರಿಶೀಲನೆ ಮಾಡಲು ನಿಮಗೆ ಒಂದು ಕರೆ ಬರುತ್ತದೆ.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">ಈ ಮೇಲಿನ ನಿಮ್ಮ ಫೋನ್‌ ನಂಬರ್‌ ಸರಿಯಾಗಿದೆಯೇ?</string>
     <string name="RegistrationActivity_edit_number">ನಂಬರ್ ಎಡಿಟ್ ಮಾಡಿ</string>
@@ -1849,7 +1849,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ಪ್ರಾರಂಭಿಸಲು ನಿಮ್ಮ ಫೋನ್ ನಂಬರ್ ನಮೂದಿಸಿ.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s ಗೆ ನಾವು ಕಳುಹಿಸಿದ ಕೋಡ್ ನಮೂದಿಸಿ</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ನಿಮ್ಮ ಎಸ್‌ಎಂಎಸ್ ಅಥಬಾ ಕರೆಯನ್ನು ಸ್ವೀಕರಿಸಲು ನಿಮ್ಮ ಫೋನ್‌ ಮೊಬೈಲ್ ಸಿಗ್ನಲ್ ಅನ್ನು ನಿಮ್ಮ ಫೋನ್‌ ಹೊಂದಿದೆ ಎಂಬುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳ</string>
 
@@ -2671,7 +2671,7 @@
     <string name="message_details_recipient__failed_to_send">ಕಳುಹಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
     <string name="message_details_recipient__new_safety_number">ಹೊಸ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">ಎಡಿಟ್ ಇತಿಹಾಸ ವೀಕ್ಷಿಸಿ</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">ಪಾಸ್‌ಫ್ರೇಸ್ ರಚಿಸಿ</string>
@@ -2953,11 +2953,11 @@
     <string name="preferences_failed_to_connect">ಸಂಪರ್ಕಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
     <string name="preferences_enter_proxy_address">ಪ್ರಾಕ್ಸಿ ವಿಳಾಸ ನಮೂದಿಸಿ</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">ನ್ಯಾವಿಗೇಶನ್ ಬಾರ್ ಗಾತ್ರ</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">ಸಾಧಾರಣ</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">ಚಿಕ್ಕ</string>
 
 
     <string name="configurable_single_select__customize_option">ಆಯ್ಕೆಯನ್ನು ಅಗತ್ಯಾನುಗುಣಗೊಳಿಸಿರಿ</string>
@@ -3208,7 +3208,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">ಉತ್ತರಿಸಿ</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">ತಿದ್ದಿ</string>
+    <string name="conversation_selection__menu_edit">ಎಡಿಟ್ ಮಾಡಿ</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">ಉಳಿಸಿ</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -5929,7 +5929,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">ಮುಗಿದಿದೆ</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">ಕರೆ ಲಿಂಕ್ ಹಂಚಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಿಲ್ಲ.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
 
@@ -5943,11 +5943,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">ನ್ಯಾವಿಗೇಶನ್ ಬಾರ್ ಗಾತ್ರ</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">ಸಾಧಾರಣ</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">ಚಿಕ್ಕ</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">ಎಡಿಟ್‌ನ ಇತಿಹಾಸ</string>

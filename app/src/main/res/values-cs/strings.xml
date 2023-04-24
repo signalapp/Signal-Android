@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Nahrávání videa není na vašem zařízení podporováno</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Klepnout pro fotografii, přidržet pro video</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Video nelze stáhnout. Budete ho muset poslat znovu.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">upraveno %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Přidat přílohu</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">Publikovat úpravu</string>
     <string name="ConversationActivity_select_contact_info">Vybrat informace o kontaktu</string>
     <string name="ConversationActivity_compose_message">Napište zprávu</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Omlouváme se, ale došlo k chybě při zpracování přílohy.</string>
@@ -316,13 +316,13 @@
     <string name="ConversationActivity_group_members">Členové skupiny</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">Ťukněte sem pro zahájení skupinového hovoru</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">SMS zprávy nelze upravovat</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="few">Edits can only be applied within %1$d hours from the time you sent this message.</item>
-        <item quantity="many">Edits can only be applied within %1$d hours from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">Úpravy lze provádět pouze během %1$d hodiny od odeslání zprávy.</item>
+        <item quantity="few">Úpravy lze provádět pouze během %1$d hodin od odeslání zprávy.</item>
+        <item quantity="many">Úpravy lze provádět pouze během %1$d hodin od odeslání zprávy.</item>
+        <item quantity="other">Úpravy lze provádět pouze během %1$d hodin od odeslání zprávy.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Chybný příjemce!</string>
@@ -473,7 +473,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Chcete-li rychle odpovědět, přejeďte prstem na zprávě doprava</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Chcete-li rychle odpovědět, přejeďte prstem na zprávě doleva</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odchozí multimediální soubory se po odeslání automaticky odstraní</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">Tuto zprávu jste už zobrazili</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">Tuto zprávu jste si už zobrazili</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Do této konverzace si můžete přidat své poznámky.\nPokud má váš účet nějaká propojená zařízení, budou nové poznámky synchronizovány.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d členů skupiny má stejné jméno.</string>
     <string name="ConversationFragment__tap_to_review">Klepněte pro prověření</string>
@@ -1159,7 +1159,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Zasílání SMS zpráv již není aplikací Signal podporováno.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">Upravit zprávu</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Sdílet</string>
@@ -1935,11 +1935,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Je níže uvedené telefonní číslo správné?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">Je vyžadováno další ověření</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Na toto číslo bude zaslán ověřovací kód. Zaslání může být zpoplatněno.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Zavoláme vám pro ověření tohoto čísla</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Je vaše telefonní číslo výše správně?</string>
     <string name="RegistrationActivity_edit_number">Upravit číslo</string>
@@ -2825,7 +2825,7 @@
     <string name="message_details_recipient__failed_to_send">Nepodařilo se odeslat</string>
     <string name="message_details_recipient__new_safety_number">Nové bezpečnostní číslo</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">Zobrazit historii úprav</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Vytvořit heslo</string>
@@ -3109,11 +3109,11 @@
     <string name="preferences_failed_to_connect">Připojení selhalo</string>
     <string name="preferences_enter_proxy_address">Zadat adresu proxy</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">Velikost lišty navigace</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">Normální</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">Kompaktní</string>
 
 
     <string name="configurable_single_select__customize_option">Nastavit předvolbu</string>
@@ -3657,7 +3657,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Přenést účet na nové Android zařízení</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Zadejte heslo pro zálohu</string>
     <string name="RegistrationActivity_restore">Obnovení</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Nemohu naimportovat zálohy z novější verze aplikace Signal</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Nelze importovat zálohy z novějších verzí Signal</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Chybné heslo k záloze</string>
     <string name="RegistrationActivity_checking">Kontroluji…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d zpráv zatím…</string>
@@ -6169,7 +6169,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">Hotovo</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Nelze sdílet odkaz na hovor.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Zkopírováno do schránky</string>
 
@@ -6183,11 +6183,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Velikost lišty navigace</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">Normální</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">Kompaktní</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Historie úprav</string>

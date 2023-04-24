@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">A videorögzítés nem támogatott az eszközön</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Koppints fotóhoz, tartsd nyomva videóhoz</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">A videó nem tölthető le. Újra el kell küldened.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">szerkesztve %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Melléklet csatolása</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">Szerkesztés küldése</string>
     <string name="ConversationActivity_select_contact_info">Válassz kontakt infót</string>
     <string name="ConversationActivity_compose_message">Üzenetírás</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sajnos hiba történt a melléklet csatolása során.</string>
@@ -316,11 +316,11 @@
     <string name="ConversationActivity_group_members">Csoporttagok</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">Koppints ide csoporthívás indításához</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">Nem lehet szerkeszteni az üzeneteket</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">A módosításokat csak az üzenet elküldésétől számított %1$d órán belül lehet alkalmazni.</item>
+        <item quantity="other">A módosításokat csak az üzenet elküldésétől számított %1$d órán belül lehet alkalmazni.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Érvénytelen címzett!</string>
@@ -459,7 +459,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Az üzenetet jobbra húzva gyorsan válaszolhatsz rá</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Az üzenetet balra húzva gyorsan válaszolhatsz rá</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">A kimenő egyszer megjelenő médiafájlokat automatikusan eltávolítjuk feladásukat követően</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">Ezt az üzenetet egyszer már megtekintetted</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">Ezt az üzenetet már megtekintetted</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Ehhez a beszélgetéshez privát jegyzeteket fűzhetsz.\nHa társítottál más eszközöket is fiókodhoz, akkor az új jegyzetek a szinkronizálás révén ott is elérhetőek lesznek.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">A csoport %1$d tagjának megegyezik a neve.</string>
     <string name="ConversationFragment__tap_to_review">Koppints az áttekintéshez</string>
@@ -1087,7 +1087,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">A Signal már nem támogatja az SMS-ek küldését.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">Üzenet szerkesztése</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Megosztás</string>
@@ -1807,11 +1807,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Helyes az alábbi telefonszám?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">További ellenőrzés szükséges</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Az ellenőrző kódot erre a számra küldjük. Szolgáltatói díjak lehetnek érvényben.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">A számod megerősítése érdekében hamarosan egy hívást indítunk a megadott számra.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Helyes a megadott telefonszám?</string>
     <string name="RegistrationActivity_edit_number">Szám szerkesztése</string>
@@ -2671,7 +2671,7 @@
     <string name="message_details_recipient__failed_to_send">Nem sikerült elküldeni</string>
     <string name="message_details_recipient__new_safety_number">Új biztonsági szám</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">Szerkesztési előzmények megtekintése</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Jelmondat létrehozása</string>
@@ -2953,11 +2953,11 @@
     <string name="preferences_failed_to_connect">Sikertelen kapcsolódás</string>
     <string name="preferences_enter_proxy_address">Proxy cím megadása</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">Navigációs sáv mérete</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">Normál</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">Kompakt</string>
 
 
     <string name="configurable_single_select__customize_option">Beállítás testreszabása</string>
@@ -3483,7 +3483,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Fiók átvitele egy másik Android eszközre</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Biztonsági mentés jelmondatának megadása</string>
     <string name="RegistrationActivity_restore">Visszaállítás</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Nem sikerült beolvasni a Signal újabb verziójából származó biztonsági mentést</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Nem lehet biztonsági mentéseket importálni a Signal újabb verzióiból</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Hibás a biztonsági mentéshez tartozó jelmondat</string>
     <string name="RegistrationActivity_checking">Ellenőrzés…</string>
     <string name="RegistrationActivity_d_messages_so_far">Eddig %1$d db üzenet…</string>
@@ -5929,7 +5929,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">Kész</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">A híváshoz tartozó hivatkozás nem osztható meg.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Vágólapra másolva</string>
 
@@ -5943,11 +5943,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigációs sáv mérete</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">Normál</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">Kompakt</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Szerkesztési előzmények</string>

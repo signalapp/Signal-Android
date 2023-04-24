@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">ضبط تصویر روی دستگاه شما پشتیبانی نمی‌شود</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">برای عکس ضربه بزنید، برای ویدئو نگه دارید</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">ویدیو بارگیری نمی‌شود. باید دوباره آن را ارسال کنید.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">ویرایش‌شده %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">افزودن پیوست</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">ارسال ویرایش</string>
     <string name="ConversationActivity_select_contact_info">انتخاب اطلاعات مخاطب</string>
     <string name="ConversationActivity_compose_message">نگارش پیام</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">پوزش، در تنظیم پیوست شما خطایی رخ داد.</string>
@@ -316,11 +316,11 @@
     <string name="ConversationActivity_group_members">اعضا‌ی گروه</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">برای شروع تماس گروهی اینجا ضربه بزنید</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">امکان ویرایش پیامک‌ها وجود ندارد</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">ویرایش‌ها فقط %1$d ساعت بعد از ارسال این پیام قابل اعمال هستند.</item>
+        <item quantity="other">ویرایش‌ها فقط %1$d ساعت بعد از ارسال این پیام قابل اعمال هستند.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">گیرنده نامعتبر!</string>
@@ -459,7 +459,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">برای پاسخ‌دهی سریع روی هر پیام به سمت راست بکشید</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">برای پاسخ‌دهی سریع روی هر پیام به سمت چپ بکشید</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">فایل‌های رسانه‌ٔ یکبار مصرف خروجی، پس از ارسال به صورت خودکار حذف می‌شوند</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">شما قبلاً این پیام را مشاهده کردید</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">قبلاً این پیام را مشاهده کرده‌اید</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">در این مکالمه می‌توانید برای خودتان یادداشت اضافه کنید. اگر حساب کاربری شما به دستگاه‌‌های دیگری پیوند داده شده باشد، یادداشت‌های جدید همگام‌سازی خواهند شد.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d عضو گروه نام یکسانی دارند.</string>
     <string name="ConversationFragment__tap_to_review">برای بازنگری ضربه بزنید</string>
@@ -1087,7 +1087,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">پیامک دیگر در سیگنال پشتیبانی نمی‌شود.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">ویرایش پیام</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">اشتراک‌گذاری</string>
@@ -1807,11 +1807,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">آیا شماره تلفن زیر درست است؟</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">تأیید تکمیلی لازم است</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">کد تأییدی به این شماره ارسال خواهد شد. ممکن است شرکت مخابراتی هزینه‌هایی اعمال کند.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">شما تماسی برای وارسی این شماره دریافت خواهید کرد.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">آیا شماره‌تلفن شما در بالا صحیح است؟</string>
     <string name="RegistrationActivity_edit_number">ویرایش شماره</string>
@@ -2671,7 +2671,7 @@
     <string name="message_details_recipient__failed_to_send">ارسال ناموفق بود</string>
     <string name="message_details_recipient__new_safety_number">شمارهٔ ایمنی جدید</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">مشاهده تاریخچه ویرایش</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">ایجاد گذرواژه</string>
@@ -2953,11 +2953,11 @@
     <string name="preferences_failed_to_connect">اتصال موفق نبود</string>
     <string name="preferences_enter_proxy_address">نشانی پروکسی را وارد کنید</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">اندازه نوار پیمایش</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">عادی</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">فشرده</string>
 
 
     <string name="configurable_single_select__customize_option">گزینهٔ سفارشی‌سازی</string>
@@ -3483,7 +3483,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">انتقال حساب کاربری به یک دستگاه اندروید‌ی جدید</string>
     <string name="RegistrationActivity_enter_backup_passphrase">وارد کردن گذرواژهٔ پشتیبان</string>
     <string name="RegistrationActivity_restore">بازگردانی</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">عدم توانایی در وارد کردن پشتیبان‌ها از نسخه‌های جدیدتر سیگنال</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">امکان وارد کردن پشتیبان از نسخه‌های جدیدتر سیگنال نیست</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">گذرواژهٔ پشتیبان ناصحیح</string>
     <string name="RegistrationActivity_checking">در حال بررسی…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d پیام تا به الان…</string>
@@ -5929,7 +5929,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">انجام شد</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">امکان به اشتراک گذاشتن پیوند تماس وجود ندارد.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">در کلیپ‌بورد کپی شد</string>
 
@@ -5943,14 +5943,14 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">اندازه نوار پیمایش</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">عادی</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">فشرده</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
-    <string name="EditMessageHistoryDialog_title">تاریخچه ویرایش‌ها</string>
+    <string name="EditMessageHistoryDialog_title">تاریخچه ویرایش</string>
 
     <!-- EOF -->
 </resources>

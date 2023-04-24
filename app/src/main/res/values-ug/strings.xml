@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">ئۈسكۈنىڭىز سىن خاتىرىلەشنى قوللىمايدۇ</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">چېكىلسە رەسىم، بېسىپ تۇرۇلسا سىن</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">ۋىدېيو چۈشۈرۈلمىدى. {0} ئۇنى قايتا يوللىشى كېرەك.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">تەھرىرلەنگەن ۋاقىت %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">قوشۇمچە قوش</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">تەھرىرلەنگەننى يوللاش</string>
     <string name="ConversationActivity_select_contact_info">ئالاقەداش ئۇچۇرىنى تاللا</string>
     <string name="ConversationActivity_compose_message">ئۇچۇر ياز</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">كەچۈرۈڭ، قوشۇمچە ھۆججىتىڭىزنى تەڭشەشتە خاتالىق كۆرۈلدى.</string>
@@ -316,10 +316,10 @@
     <string name="ConversationActivity_group_members">گۇرۇپپا ئەزالىرى</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">بۇ يەر چېكىلسە گۇرۇپپا چاقىرىش باشلىنىدۇ</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">SMS ئۇچۇرنى تەھرىرلىيەلمىدى</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="other">بۇ ئۇچۇرنى يوللاپ پەقەت %1$d سائەت ئىچىدىلا تەھرىرلەشكە بولىدۇ.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">ئىناۋەتسىز تاپشۇرۇۋالغۇچى!</string>
@@ -1051,7 +1051,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal ئەمدى SMS ئۇچۇرلىشىشنى قوللىمايدۇ.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">ئۇچۇر تەھرىرلەش</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">ھەمبەھىرلە</string>
@@ -1743,11 +1743,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">تۆۋەندىكى تېلېفون نومۇرى توغرىمۇ؟</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">قوشۇمچە دەلىللەش تەلەپ قىلىنىدۇ</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">دەلىللەش كودى بۇ نومۇرغا يوللىنىدۇ. ئۇچۇر ھەققى چىقىشى مۇمكىن.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">بۇ نومۇرنى دەلىللەش ئۈچۈن بىر تېلېفون تاپشۇرۇۋالىسىز.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">ئۈستىدىكى تېلېفون نومۇرىڭىز توغرىمۇ؟</string>
     <string name="RegistrationActivity_edit_number">نومۇرنى تەھرىرلەش</string>
@@ -2594,7 +2594,7 @@
     <string name="message_details_recipient__failed_to_send">يوللانمىدى</string>
     <string name="message_details_recipient__new_safety_number">يېڭى بىخەتەرلىك نومۇرى</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">تەھرىرلەش تارىخىنى كۆرۈش</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">ئىم ئىبارىسى قۇر</string>
@@ -2875,11 +2875,11 @@
     <string name="preferences_failed_to_connect">باغلىنالمىدى</string>
     <string name="preferences_enter_proxy_address">ۋاكالەتچى ئادرېسنى كىرگۈزۈڭ</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">يول باشلاش بالدىقى چوڭلۇقى</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">نورمال</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">ئىخچام</string>
 
 
     <string name="configurable_single_select__customize_option">ئىختىيارىچە تاللاش</string>
@@ -3129,7 +3129,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">جاۋاب</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">تەھرىر</string>
+    <string name="conversation_selection__menu_edit">تەھرىرلەش</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">ساقلا</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3396,7 +3396,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">يېڭى بىر Android ئۈسكىنىسگە ھېساباتنى يۆتكە</string>
     <string name="RegistrationActivity_enter_backup_passphrase">زاپاسلاش ئىم ئىبارىسىنى كىرگۈزۈڭ</string>
     <string name="RegistrationActivity_restore">ئەسلىگە كەلتۈرۈش</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Signal نىڭ يېڭى نەشرىدىن كەلگەن زاپاسلارنى ئەكىرگىلى بولمايدۇ</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Signal نىڭ يېڭى نەشرىدىكى زاپاسلارنى ئەكىرگىلى بولمايدۇ</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">زاپاسلاش ئىم ئىبارىسى خاتا</string>
     <string name="RegistrationActivity_checking">تەكشۈرۈۋاتىدۇ…</string>
     <string name="RegistrationActivity_d_messages_so_far">ھازىرچە %1$d ئۇچۇر…</string>
@@ -5809,7 +5809,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">تامام</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">چاقىرىق ئۇلانمىسىنى ئورتاقلاشقىلى بولمىدى.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">چاپلاش تاختىسىغا كۆچۈرۈلدى</string>
 
@@ -5823,11 +5823,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">يول باشلاش بالدىقى چوڭلۇقى</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">نورمال</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">ئىخچام</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">تەھرىرلەش تارىخى</string>
