@@ -367,12 +367,14 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       val actionMode = (requireActivity() as AppCompatActivity).startSupportActionMode(callback)
       requireListener<Callback>().onMultiSelectStarted()
       signalBottomActionBarController.setVisibility(true)
+      binding.fab.visible = false
       return actionMode
     }
 
     override fun onActionModeWillEnd() {
       requireListener<Callback>().onMultiSelectFinished()
       signalBottomActionBarController.setVisibility(false)
+      binding.fab.visible = true
     }
 
     override fun getResources(): Resources = resources
