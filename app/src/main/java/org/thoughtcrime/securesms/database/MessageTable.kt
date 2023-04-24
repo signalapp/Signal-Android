@@ -56,6 +56,7 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.toOptional
+import org.signal.core.util.toSingleLine
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.IdentityKey
@@ -373,7 +374,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             '${AttachmentTable.UPLOAD_TIMESTAMP}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.UPLOAD_TIMESTAMP}
           )
         ) AS ${AttachmentTable.ATTACHMENT_JSON_ALIAS}
-      """
+      """.toSingleLine()
 
     private const val IS_STORY_CLAUSE = "$STORY_TYPE > 0 AND $REMOTE_DELETED = 0"
     private const val RAW_ID_WHERE = "$TABLE_NAME.$ID = ?"
@@ -1881,7 +1882,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $where 
       GROUP BY 
         $TABLE_NAME.$ID
-    """
+    """.toSingleLine()
 
     if (reverse) {
       rawQueryString += " ORDER BY $TABLE_NAME.$ID DESC"

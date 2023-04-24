@@ -25,3 +25,20 @@ fun String.asListContains(item: String): Boolean {
 fun String?.emptyIfNull(): String {
   return this ?: ""
 }
+
+/**
+ * Turns a multi-line string into a single-line string stripped of indentation, separated by spaces instead of newlines.
+ *
+ * e.g.
+ *
+ * a
+ *   b
+ * c
+ *
+ * turns into
+ *
+ * a b c
+ */
+fun String.toSingleLine(): String {
+  return this.trimIndent().split("\n").joinToString(separator = " ")
+}
