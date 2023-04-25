@@ -268,7 +268,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       }
 
       override fun canStartNestedScroll(): Boolean {
-        return !callLogActionMode.isInActionMode() || !isSearchOpen() || binding.pullView.isCloseable()
+        return !callLogActionMode.isInActionMode() && !isSearchOpen()
       }
     }
 
