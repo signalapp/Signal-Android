@@ -5218,7 +5218,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Copied to clipboard</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">… See More</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Sending reply…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

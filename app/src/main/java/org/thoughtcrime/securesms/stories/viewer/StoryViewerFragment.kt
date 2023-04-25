@@ -16,6 +16,7 @@ import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -57,6 +58,8 @@ class StoryViewerFragment :
 
     ViewCompat.setTransitionName(storyCrossfader, "story")
     storyCrossfader.callback = this
+
+    SpoilerAnnotation.resetRevealedSpoilers()
 
     val adapter = StoryViewerPagerAdapter(
       this,

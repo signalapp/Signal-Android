@@ -320,23 +320,7 @@ public class EmojiTextView extends AppCompatTextView {
     if (maxLength > 0 && getText().length() > maxLength + 1) {
       SpannableStringBuilder newContent = new SpannableStringBuilder();
 
-      SpannableString shortenedText = new SpannableString(getText().subSequence(0, maxLength));
-      List<Annotation> mentionAnnotations = MentionAnnotation.getMentionAnnotations(shortenedText, maxLength - 1, maxLength);
-      if (!mentionAnnotations.isEmpty()) {
-        shortenedText = new SpannableString(shortenedText.subSequence(0, shortenedText.getSpanStart(mentionAnnotations.get(0))));
-      }
-
-      Object[] endSpans = shortenedText.getSpans(shortenedText.length() - 1, shortenedText.length(), Object.class);
-      for (Object span : endSpans) {
-        if (shortenedText.getSpanFlags(span) == Spanned.SPAN_EXCLUSIVE_INCLUSIVE) {
-          int start = shortenedText.getSpanStart(span);
-          int end   = shortenedText.getSpanEnd(span);
-          shortenedText.removeSpan(span);
-          shortenedText.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-      }
-
-      newContent.append(shortenedText)
+      newContent.append(getText(maxLength))
                 .append(ELLIPSIS)
                 .append(Util.emptyIfNull(overflowText));
 
@@ -379,9 +363,12 @@ public class EmojiTextView extends AppCompatTextView {
         CharSequence ellipsized  = StringUtil.trim(TextUtils.ellipsize(overflow, getPaint(), getWidth() - adjust, TextUtils.TruncateAt.END));
 
         SpannableStringBuilder newContent = new SpannableStringBuilder();
-        newContent.append(getText().subSequence(0, overflowStart))
-                  .append(ellipsized.subSequence(0, ellipsized.length()))
-                  .append(Optional.ofNullable(overflowText).orElse(""));
+        newContent.append(getText().subSequence(0, overflowStart).toString())
+                  .append(ellipsized.subSequence(0, ellipsized.length()).toString());
+
+        TextUtils.copySpansFrom(getText(newContent.length() - 1), 0, newContent.length() - 1, Object.class, newContent, 0);
+
+        newContent.append(Optional.ofNullable(overflowText).orElse(""));
 
         EmojiParser.CandidateList newCandidates = isInEditMode() ? null : EmojiProvider.getCandidates(newContent);
 
@@ -404,6 +391,27 @@ public class EmojiTextView extends AppCompatTextView {
         return Unit.INSTANCE;
       });
     }
+  }
+
+  /** Get text but truncated to maxLength, adjusts for end mentions and converts style spans to be exclusive on start and end. */
+  private SpannableString getText(int maxLength) {
+    SpannableString shortenedText = new SpannableString(getText().subSequence(0, maxLength));
+    List<Annotation> mentionAnnotations = MentionAnnotation.getMentionAnnotations(shortenedText, maxLength - 1, maxLength);
+    if (!mentionAnnotations.isEmpty()) {
+      shortenedText = new SpannableString(shortenedText.subSequence(0, shortenedText.getSpanStart(mentionAnnotations.get(0))));
+    }
+
+    Object[] endSpans = shortenedText.getSpans(shortenedText.length() - 1, shortenedText.length(), Object.class);
+    for (Object span : endSpans) {
+      if (shortenedText.getSpanFlags(span) == Spanned.SPAN_EXCLUSIVE_INCLUSIVE) {
+        int start = shortenedText.getSpanStart(span);
+        int end   = shortenedText.getSpanEnd(span);
+        shortenedText.removeSpan(span);
+        shortenedText.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      }
+    }
+
+    return shortenedText;
   }
 
   private boolean unchanged(CharSequence text, CharSequence overflowText, BufferType bufferType) {
