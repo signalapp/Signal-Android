@@ -108,6 +108,11 @@ public class EmojiTextView extends AppCompatTextView {
     setEmojiCompatEnabled(useSystemEmoji());
   }
 
+  public void setMaxLength(int maxLength) {
+    this.maxLength = maxLength;
+    setText(getText());
+  }
+
   public void enableSpoilerFiltering() {
     spoilerFilteringSpannableFactory = new SpoilerFilteringSpannableFactory(() -> isInOnDraw);
     setSpannableFactory(spoilerFilteringSpannableFactory);
