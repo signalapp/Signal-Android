@@ -3193,14 +3193,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return deleteCallUpdatesInternal(messageIds, SqlUtil.CollectionOperator.IN)
   }
 
-  /**
-   * Deletes all call updates except for those specified in the parameter.
-   */
-  fun deleteAllCallUpdatesExcept(excludedMessageIds: Set<Long>): Int {
-    return deleteCallUpdatesInternal(excludedMessageIds, SqlUtil.CollectionOperator.NOT_IN)
-  }
-
-  private fun deleteCallUpdatesInternal(messageIds: Set<Long>, collectionOperator: SqlUtil.CollectionOperator): Int {
+  private fun deleteCallUpdatesInternal(
+    messageIds: Set<Long>,
+    collectionOperator: SqlUtil.CollectionOperator
+  ): Int {
     var rowsDeleted = 0
     val threadIds: Set<Long> = writableDatabase.withinTransaction {
       SqlUtil.buildCollectionQuery(
