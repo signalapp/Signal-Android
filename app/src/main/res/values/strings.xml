@@ -3488,6 +3488,8 @@
     <string name="RegistrationActivity_enter_backup_passphrase">Enter backup passphrase</string>
     <string name="RegistrationActivity_restore">Restore</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Cannot import backups from newer versions of Signal</string>
+    <!-- Error message indicating that we could not restore the user's backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Incorrect backup passphrase</string>
     <string name="RegistrationActivity_checking">Checking…</string>
     <string name="RegistrationActivity_d_messages_so_far">%d messages so far…</string>
@@ -3648,6 +3650,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Cannot transfer from a newer versions of Signal</string>
+    <!-- Error message indicating that we could not finish the user's device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Transferring data</string>

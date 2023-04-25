@@ -218,7 +218,11 @@ object V185_MessageRecipientsAndEditMessageMigration : SignalDatabaseMigration {
     }
     stopwatch.split("recreate-dependents")
 
-    db.execSQL("PRAGMA foreign_key_check")
+    val foreignKeyViolations: List<SqlUtil.ForeignKeyViolation> = SqlUtil.getForeignKeyViolations(db, "message")
+    if (foreignKeyViolations.isNotEmpty()) {
+      Log.w(TAG, "Foreign key violations!\n${foreignKeyViolations.joinToString(separator = "\n")}")
+      throw IllegalStateException("Foreign key violations!")
+    }
     stopwatch.split("fk-check")
 
     stopwatch.stop(TAG)
