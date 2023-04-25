@@ -9,12 +9,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
-import org.thoughtcrime.securesms.conversation.ConversationDataSource
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
+import org.thoughtcrime.securesms.conversation.v2.data.ConversationDataSource
 import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -54,7 +53,7 @@ class ConversationRepository(context: Context) {
   fun getConversationThreadState(threadId: Long, requestedStartPosition: Int): Single<ConversationThreadState> {
     return Single.fromCallable {
       SignalLocalMetrics.ConversationOpen.onMetadataLoadStarted()
-      val recipient = threads.getRecipientForThreadId(threadId)!!
+      val recipient = SignalDatabase.threads.getRecipientForThreadId(threadId)!!
       val metadata = oldConversationRepository.getConversationData(threadId, recipient, requestedStartPosition)
       val messageRequestData = metadata.messageRequestData
       val dataSource = ConversationDataSource(
@@ -98,7 +97,7 @@ class ConversationRepository(context: Context) {
   }
 
   fun setLastVisibleMessageTimestamp(threadId: Long, lastVisibleMessageTimestamp: Long) {
-    SignalExecutors.BOUNDED.submit { threads.setLastScrolled(threadId, lastVisibleMessageTimestamp) }
+    SignalExecutors.BOUNDED.submit { SignalDatabase.threads.setLastScrolled(threadId, lastVisibleMessageTimestamp) }
   }
 
   fun markGiftBadgeRevealed(messageId: Long) {
@@ -130,7 +129,7 @@ class ConversationRepository(context: Context) {
   }
 
   private fun getUnreadCount(threadId: Long): Int {
-    val threadRecord = threads.getThreadRecord(threadId)
+    val threadRecord = SignalDatabase.threads.getThreadRecord(threadId)
     return threadRecord?.unreadCount ?: 0
   }
 

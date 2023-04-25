@@ -4,9 +4,10 @@ import android.app.Application
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Observable
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.conversation.ConversationDataSource
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory
+import org.thoughtcrime.securesms.conversation.v2.data.AttachmentHelper
+import org.thoughtcrime.securesms.conversation.v2.data.ReactionHelper
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
@@ -56,8 +57,8 @@ class MessageQuotesRepository {
 
     var replyRecords: List<MessageRecord> = SignalDatabase.messages.getAllMessagesThatQuote(rootMessageId)
 
-    val reactionHelper = ConversationDataSource.ReactionHelper()
-    val attachmentHelper = ConversationDataSource.AttachmentHelper()
+    val reactionHelper = ReactionHelper()
+    val attachmentHelper = AttachmentHelper()
     val threadRecipient = requireNotNull(SignalDatabase.threads.getRecipientForThreadId(originalRecord.threadId))
 
     reactionHelper.addAll(replyRecords)
@@ -84,7 +85,7 @@ class MessageQuotesRepository {
       originalRecord = SignalDatabase.payments.updateMessageWithPayment(originalRecord)
     }
 
-    originalRecord = ConversationDataSource.ReactionHelper()
+    originalRecord = ReactionHelper()
       .apply {
         add(originalRecord)
         fetchReactions()
@@ -92,7 +93,7 @@ class MessageQuotesRepository {
       .buildUpdatedModels(listOf(originalRecord))
       .get(0)
 
-    originalRecord = ConversationDataSource.AttachmentHelper()
+    originalRecord = AttachmentHelper()
       .apply {
         add(originalRecord)
         fetchAttachments()

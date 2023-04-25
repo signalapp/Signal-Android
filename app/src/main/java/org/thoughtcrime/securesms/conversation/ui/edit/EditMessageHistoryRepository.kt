@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.conversation.ui.edit
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.thoughtcrime.securesms.conversation.ConversationDataSource
 import org.thoughtcrime.securesms.conversation.ConversationMessage
+import org.thoughtcrime.securesms.conversation.v2.data.AttachmentHelper
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -36,7 +36,7 @@ object EditMessageHistoryRepository {
       .getMessageEditHistory(messageId)
       .toList()
 
-    val attachmentHelper = ConversationDataSource.AttachmentHelper()
+    val attachmentHelper = AttachmentHelper()
       .apply {
         addAll(records)
         fetchAttachments()

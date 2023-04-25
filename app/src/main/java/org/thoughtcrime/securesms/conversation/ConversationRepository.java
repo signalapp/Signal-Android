@@ -65,8 +65,8 @@ public class ConversationRepository {
 
   @WorkerThread
   public @NonNull ConversationData getConversationData(long threadId, @NonNull Recipient conversationRecipient, int jumpToPosition) {
-    ThreadTable.ConversationMetadata metadata   = SignalDatabase.threads().getConversationMetadata(threadId);
-    int                              threadSize = SignalDatabase.messages().getMessageCountForThread(threadId);
+    ThreadTable.ConversationMetadata    metadata                       = SignalDatabase.threads().getConversationMetadata(threadId);
+    int                                 threadSize                     = SignalDatabase.messages().getMessageCountForThread(threadId);
     long                                lastSeen                       = metadata.getLastSeen();
     int                                 lastSeenPosition               = 0;
     long                                lastScrolled                   = metadata.getLastScrolled();
@@ -118,7 +118,7 @@ public class ConversationRepository {
       showUniversalExpireTimerUpdate = true;
     }
 
-    return new ConversationData(threadId, lastSeen, lastSeenPosition, lastScrolledPosition, jumpToPosition, threadSize, messageRequestData, showUniversalExpireTimerUpdate);
+    return new ConversationData(conversationRecipient, threadId, lastSeen, lastSeenPosition, lastScrolledPosition, jumpToPosition, threadSize, messageRequestData, showUniversalExpireTimerUpdate);
   }
 
   public void markGiftBadgeRevealed(long messageId) {
