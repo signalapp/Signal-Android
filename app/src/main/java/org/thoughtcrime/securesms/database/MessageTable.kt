@@ -3231,6 +3231,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }.flatten().toSet()
     }
 
+    threadIds.forEach {
+      threads.update(
+        threadId = it,
+        unarchive = false,
+        allowDeletion = true
+      )
+    }
+
     notifyConversationListeners(threadIds)
     notifyConversationListListeners()
     return rowsDeleted
