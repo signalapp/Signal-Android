@@ -4,6 +4,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.transport.RetryLaterException
 import java.lang.Exception
 import java.lang.IllegalStateException
 import kotlin.time.Duration.Companion.seconds
@@ -34,14 +35,18 @@ class RebuildMessageSearchIndexJob private constructor(params: Parameters) : Bas
   override fun onFailure() = Unit
 
   override fun onRun() {
-    SignalDatabase.messageSearch.rebuildIndex()
+    try {
+      SignalDatabase.messageSearch.rebuildIndex()
+    } catch (e: IllegalStateException) {
+      throw RetryLaterException(e)
+    }
   }
 
   override fun getNextRunAttemptBackoff(pastAttemptCount: Int, exception: Exception): Long {
     return 10.seconds.inWholeMilliseconds
   }
 
-  override fun onShouldRetry(e: Exception): Boolean = e is IllegalStateException
+  override fun onShouldRetry(e: Exception): Boolean = e is RetryLaterException
 
   class Factory : Job.Factory<RebuildMessageSearchIndexJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): RebuildMessageSearchIndexJob {
