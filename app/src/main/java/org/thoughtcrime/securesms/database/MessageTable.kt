@@ -2231,42 +2231,32 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   private fun setMessagesRead(where: String, arguments: Array<String>?): List<MarkedMessageInfo> {
     val releaseChannelId = SignalStore.releaseChannelValues().releaseChannelRecipientId
-    return writableDatabase.withinTransaction { db ->
-      val infos = db
-        .select(ID, FROM_RECIPIENT_ID, DATE_SENT, TYPE, EXPIRES_IN, EXPIRE_STARTED, THREAD_ID, STORY_TYPE)
-        .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_DATE")
-        .where(where, arguments ?: emptyArray())
-        .run()
-        .readToList { cursor ->
-          val threadId = cursor.requireLong(THREAD_ID)
-          val recipientId = RecipientId.from(cursor.requireLong(FROM_RECIPIENT_ID))
-          val dateSent = cursor.requireLong(DATE_SENT)
-          val messageId = cursor.requireLong(ID)
-          val expiresIn = cursor.requireLong(EXPIRES_IN)
-          val expireStarted = cursor.requireLong(EXPIRE_STARTED)
-          val syncMessageId = SyncMessageId(recipientId, dateSent)
-          val expirationInfo = ExpirationInfo(messageId, expiresIn, expireStarted, true)
-          val storyType = fromCode(CursorUtil.requireInt(cursor, STORY_TYPE))
+    return writableDatabase.rawQuery(
+      """
+          UPDATE $TABLE_NAME INDEXED BY $INDEX_THREAD_DATE
+          SET $READ = 1, $REACTIONS_UNREAD = 0, $REACTIONS_LAST_SEEN = ${System.currentTimeMillis()}
+          WHERE $where
+          RETURNING $ID, $FROM_RECIPIENT_ID, $DATE_SENT, $TYPE, $EXPIRES_IN, $EXPIRE_STARTED, $THREAD_ID, $STORY_TYPE
+        """,
+      arguments ?: emptyArray()
+    ).readToList { cursor ->
+      val threadId = cursor.requireLong(THREAD_ID)
+      val recipientId = RecipientId.from(cursor.requireLong(FROM_RECIPIENT_ID))
+      val dateSent = cursor.requireLong(DATE_SENT)
+      val messageId = cursor.requireLong(ID)
+      val expiresIn = cursor.requireLong(EXPIRES_IN)
+      val expireStarted = cursor.requireLong(EXPIRE_STARTED)
+      val syncMessageId = SyncMessageId(recipientId, dateSent)
+      val expirationInfo = ExpirationInfo(messageId, expiresIn, expireStarted, true)
+      val storyType = fromCode(CursorUtil.requireInt(cursor, STORY_TYPE))
 
-          if (recipientId != releaseChannelId) {
-            MarkedMessageInfo(threadId, syncMessageId, MessageId(messageId), expirationInfo, storyType)
-          } else {
-            null
-          }
-        }
-        .filterNotNull()
-
-      db.update("$TABLE_NAME INDEXED BY $INDEX_THREAD_DATE")
-        .values(
-          READ to 1,
-          REACTIONS_UNREAD to 0,
-          REACTIONS_LAST_SEEN to System.currentTimeMillis()
-        )
-        .where(where, arguments ?: emptyArray())
-        .run()
-
-      infos
+      if (recipientId != releaseChannelId) {
+        MarkedMessageInfo(threadId, syncMessageId, MessageId(messageId), expirationInfo, storyType)
+      } else {
+        null
+      }
     }
+      .filterNotNull()
   }
 
   fun getOldestUnreadMentionDetails(threadId: Long): Pair<RecipientId, Long>? {
