@@ -292,7 +292,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   }
 
   override fun onCallLongClicked(itemView: View, callLogRow: CallLogRow.Call): Boolean {
-    callLogContextMenu.show(itemView, callLogRow)
+    callLogContextMenu.show(binding.recycler, itemView, callLogRow)
     return true
   }
 
