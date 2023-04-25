@@ -219,10 +219,6 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     Log.i(TAG, "onPause");
     super.onPause();
 
-    if (!isInPipMode() || isFinishing()) {
-      EventBus.getDefault().unregister(this);
-    }
-
     if (!viewModel.isCallStarting()) {
       CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
       if (state != null && state.getCallState().isPreJoinOrNetworkUnavailable()) {
@@ -369,6 +365,9 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       viewModel.setIsInPipMode(info.isInPictureInPictureMode());
       participantUpdateWindow.setEnabled(!info.isInPictureInPictureMode());
       callStateUpdatePopupWindow.setEnabled(!info.isInPictureInPictureMode());
+      if (info.isInPictureInPictureMode()) {
+        callScreen.maybeDismissAudioPicker();
+      }
     });
   }
 

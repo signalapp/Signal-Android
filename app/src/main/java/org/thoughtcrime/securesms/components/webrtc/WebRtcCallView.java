@@ -419,6 +419,10 @@ public class WebRtcCallView extends ConstraintLayout {
     this.controlsListener = controlsListener;
   }
 
+  public void maybeDismissAudioPicker() {
+    audioToggle.hidePicker();
+  }
+
   public void setMicEnabled(boolean isMicEnabled) {
     micToggle.setChecked(isMicEnabled, false);
   }
