@@ -2083,7 +2083,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Eror Saat Menghapus Pesan, Pesan Mungkin Masih Ada</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Baca Selengkapnya</b></string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d pesan baru dalam %2$d percakapan</string>
@@ -3397,6 +3397,8 @@
     <string name="RegistrationActivity_enter_backup_passphrase">Masukkan frasa sandi cadangan</string>
     <string name="RegistrationActivity_restore">Pulihkan</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Tidak bisa impor cadangan dari versi lebih baru Signal</string>
+    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Frasa sandi cadangan tidak benar</string>
     <string name="RegistrationActivity_checking">Memeriksa…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d pesan sejauh ini…</string>
@@ -3557,6 +3559,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Tidak dapat mentransfer dari versi baru Signal</string>
+    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Mentransfer data</string>
@@ -5110,7 +5114,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Disalin ke papan klip</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">… Lihat lebih banyak</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Mengirim balasan…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

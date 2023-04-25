@@ -2083,7 +2083,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Có lỗi khi xóa tin nhắn, tin nhắn có thể vẫn còn</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Đọc Thêm</b></string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d tin nhắn mới trong %2$d cuộc trò chuyện</string>
@@ -3396,7 +3396,9 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Chuyển tài khoản sang một thiết bị Android mới</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Điền mật khẩu sao lưu</string>
     <string name="RegistrationActivity_restore">Khôi phục</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Không thể khôi phục bản sao lưu tạo từ phiên bản Signal mới hơn</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Không thể nhập bản sao lưu tạo từ bản Signal mới hơn</string>
+    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Mật khẩu sao lưu không đúng</string>
     <string name="RegistrationActivity_checking">Đang kiểm tra…</string>
     <string name="RegistrationActivity_d_messages_so_far">Đã được %1$d tin nhắn…</string>
@@ -3557,6 +3559,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Không thể truyền tải từ các phiên bản mới hơn của Signal</string>
+    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Đang truyền tải dữ liệu</string>
@@ -5110,7 +5114,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Đã sao chép vào clipboard</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">… Xem Thêm</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Đang gửi câu trả lời…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

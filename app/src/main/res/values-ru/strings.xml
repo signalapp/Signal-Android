@@ -2281,7 +2281,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Ошибка при удалении сообщения, сообщение может всё ещё существовать</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Читать далее</b></string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новых сообщений в %2$d разговорах</string>
@@ -3657,7 +3657,9 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Перенести учётную запись на новое Android-устройство</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Введите парольную фразу резервной копии</string>
     <string name="RegistrationActivity_restore">Восстановить</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Невозможно импортировать резервную копию из более новых версий Signal</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Невозможно импортировать более новые резервные копии</string>
+    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Неверная парольная фраза резервной копии</string>
     <string name="RegistrationActivity_checking">Проверяем…</string>
     <string name="RegistrationActivity_d_messages_so_far">уже %1$d сообщений…</string>
@@ -3818,6 +3820,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Невозможно перенести с более новых версий Signal</string>
+    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Перенос данных</string>
@@ -5422,7 +5426,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Скопировано в буфер обмена</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">… Увидеть больше</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Отправляем ответ…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

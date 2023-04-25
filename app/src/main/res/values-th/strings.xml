@@ -2083,7 +2083,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">เกิดข้อผิดพลาดในการลบข้อความ ข้อความอาจยังไม่ถูกลบ</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>อ่านเพิ่มเติม</b></string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">มี %1$d ข้อความใหม่ใน %2$d การสนทนา</string>
@@ -3397,6 +3397,8 @@
     <string name="RegistrationActivity_enter_backup_passphrase">ใส่วลีรหัสผ่านสำหรับข้อมูลสำรอง</string>
     <string name="RegistrationActivity_restore">กู้คืน</string>
     <string name="RegistrationActivity_backup_failure_downgrade">ไม่สามารถนำเข้าข้อมูลสำรองจาก Signal รุ่นที่ใหม่กว่า</string>
+    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">วลีรหัสผ่านสำหรับข้อมูลสำรองไม่ถูกต้อง</string>
     <string name="RegistrationActivity_checking">กำลังตรวจสอบ…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d ข้อความจนถึงตอนนี้…</string>
@@ -3557,6 +3559,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">ไม่สามารถถ่ายโอนจาก Signal รุ่นที่ใหม่กว่า</string>
+    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">กำลังถ่ายโอนข้อมูล</string>
@@ -5110,7 +5114,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">ดูเพิ่มเติม</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">กำลังส่งการตอบกลับ</string>
     <!-- Displayed in the viewer when a story is no longer available -->

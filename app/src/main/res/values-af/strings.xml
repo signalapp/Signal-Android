@@ -2149,7 +2149,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Fout met skrap van boodskap, boodskap mag dalk nog bestaan</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Lees Meer</b></string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nuwe boodskappe in %2$d gesprekke</string>
@@ -3484,6 +3484,8 @@
     <string name="RegistrationActivity_enter_backup_passphrase">Voer rugsteun-wagwoordfrase in</string>
     <string name="RegistrationActivity_restore">Herstel</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Kan nie rugsteun uit nuwer Signal-weergawes invoer nie</string>
+    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Verkeerde rugsteun-wagwoordfrase</string>
     <string name="RegistrationActivity_checking">Kontroleer tans…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d boodskappe tot dusver…</string>
@@ -3644,6 +3646,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Kan nie van \'n nuwer weergawe van Signal af oordra nie</string>
+    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Besig om data oor te dra</string>
@@ -5214,7 +5218,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Na knipbord gekopieer</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">… Sien Meer</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Besig om antwoord te stuur…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

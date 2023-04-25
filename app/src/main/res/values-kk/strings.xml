@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Құрылғыңызда видео жазу мүмкін емес</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Фотосуретке түсіру үшін түртіңіз, ал видео түсіргіңіз келсе басып тұрыңыз</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Видеоны жүктеп алу мүмкін емес. Сіз оны қайта жіберуіңіз керек.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">%1$s өзгертілді</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Тіркеме қосу</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">Өзгерісті жіберу</string>
     <string name="ConversationActivity_select_contact_info">Контакт ақпаратын таңдау</string>
     <string name="ConversationActivity_compose_message">Хат жазу</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Кешіріңіз, тіркемені орнату кезінде қате пайда болды.</string>
@@ -316,11 +316,11 @@
     <string name="ConversationActivity_group_members">Group members</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">Топтық қоңырау шалу үшін осы жерді басыңыз</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">SMS хаттарды өңдеу мүмкін емес</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">Бұл хатты жіберген соң, %1$d сағат ішінде өзгерістерді қолдануға болады.</item>
+        <item quantity="other">Бұл хатты жіберген соң, %1$d сағат ішінде өзгерістерді қолдануға болады.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Алушы дұрыс емес!</string>
@@ -459,7 +459,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Жылдам жауап беру үшін кез келген хатты оңға қарай свайп жасасаңыз болғаны</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Жылдам жауап беру үшін кез келген хатты солға қарай свайп жасасаңыз болғаны</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Бір рет көруге арналған мультимедиа файлдары жіберілген соң, автоматты түрде жойылады</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">Бұл хатты көріп қойғансыз</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">Бұл хатты көргенсіз</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Осы әңгімеде өзіңізге ескертпелер қосып қоюыңызға болады.\nЕгер аккаунтыңызбен қандай да құрылғылар байланыстырылса, жаңа ескертпелер синхрондалады.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d топ мүшесінің аты бірдей.</string>
     <string name="ConversationFragment__tap_to_review">Көру үшін түртіңіз</string>
@@ -1087,7 +1087,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Енді Signal-да SMS-пен алмасу мүмкін емес.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">Хатты өзгерту</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Бөлісу</string>
@@ -1807,11 +1807,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Төмендегі телефон нөмірі дұрыс па?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">Қосымша верификация қажет</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Верификация коды осы нөмірге жіберіледі. Оператор ақы алуы мүмкін.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Осы нөмірді растау үшін сізге қоңырау соғылады.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Сіздің жоғарыдағы телефон нөміріңіз дұрыс па?</string>
     <string name="RegistrationActivity_edit_number">Нөмірді өзгерту</string>
@@ -1849,7 +1849,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Телефон нөмірі</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Бастау үшін телефон нөмірін енгізіңіз.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Біз %1$s нөміріне жіберген кодты енгізіңіз</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Телефоныңызда SMS хабарын немесе қоңырау қабылдайтын ұялы сигнал бар екеніне көз жеткізіңіз</string>
 
@@ -2149,7 +2149,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Хатты жойып жатқанда қате шықты, хат жойылмаған болуы мүмкін</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Толығырақ</b></string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d әңгімеде %1$d жаңа хат бар</string>
@@ -2671,7 +2671,7 @@
     <string name="message_details_recipient__failed_to_send">Жіберілмеді</string>
     <string name="message_details_recipient__new_safety_number">New safety number</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">Өзгертулер тарихын көру</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Құпия сөйлем құру</string>
@@ -2953,11 +2953,11 @@
     <string name="preferences_failed_to_connect">Қосылмады</string>
     <string name="preferences_enter_proxy_address">Прокси мекенжайын енгізіңіз</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">Навигация жолағының өлшемі</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">Қалыпты</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">Шағын</string>
 
 
     <string name="configurable_single_select__customize_option">Бейімдеу опциясы</string>
@@ -3208,7 +3208,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Жауап қату</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">Өңдеу</string>
+    <string name="conversation_selection__menu_edit">Өзгерту</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Сақтау</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3483,7 +3483,9 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Аккаунтты жаңа Android құрылғысына тасымалдау</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Сақтық көшірме құпия сөйлемін енгізу</string>
     <string name="RegistrationActivity_restore">Қалпына келтіру</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Сақтық көшірмелерді жаңарақ Signal нұсқаларынан импорттау мүмкін емес</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Сақтық көшірмелер жаңа нұсқалардан импортталмайды</string>
+    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Сақтық көшірме құпия сөйлемі қате</string>
     <string name="RegistrationActivity_checking">Тексеруде…</string>
     <string name="RegistrationActivity_d_messages_so_far">Қазіргі сәтте %1$d хабар…</string>
@@ -3644,6 +3646,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal-дың жаңа нұсқаларынан тасымалдау мүмкін емес</string>
+    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Деректер тасымалдануда</string>
@@ -5214,7 +5218,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Буферге көшірілді</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">….Толығырақ</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Жауап жіберілуде…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -5929,7 +5933,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">Дайын</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Қоңырау сілтемесін бөлісу мүмкін болмады.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Буферге көшірілді</string>
 
@@ -5943,11 +5947,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Навигация жолағының өлшемі</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">Қалыпты</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">Шағын</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Өзгертулер тарихы</string>

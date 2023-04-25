@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">შენს მოწყობილობას ვიდეო გადაღების მხარდაჭერა არ აქვს</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">დააჭირე სურათისთვის, შეაკავე ვიდეოსთვის</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">ვიდეოს გადმოწერა ვერ მოხერხდა. მისი თავიდან გაგზავნა მოგიწევს.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">რედაქტირებულია %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">მიმაგრება</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">რედაქტირების გაგზავნა</string>
     <string name="ConversationActivity_select_contact_info">აირჩიე საკონტაქტო ინფორმაცია</string>
     <string name="ConversationActivity_compose_message">შეტყობინების შექმნა</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">სამწუხაროდ მიმაგრების დროს დაფიქსირდა შეცდომა.</string>
@@ -316,11 +316,11 @@
     <string name="ConversationActivity_group_members">ჯგუფის წევრები</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">ჯგუფური ზარის დასაწყებად დააჭირე აქ</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">SMS შეტყობინებების რედაქტირება ვერ მოხერხდა</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">შეტყობინების რედაქტირება მისი გაგზავნიდან მხოლოდ %1$d საათის განმავლობაში შეგიძლია.</item>
+        <item quantity="other">შეტყობინების რედაქტირება მისი გაგზავნიდან მხოლოდ %1$d საათის განმავლობაში შეგიძლია.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">არასწორი მიმღები!</string>
@@ -459,7 +459,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">შეგიძლია ნებისმიერ შეტყობინებაზე მარჯვნივ გადაწიო, რათა სწრაფად უპასუხო</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">შეგიძლია ნებისმიერ შეტყობინებაზე მარცხნივ გადაწიოო, რათა სწრაფად უპასუხო</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">გამავალი ერთხელ სანახავი მედია ფაილები ავტომატურად წაიშლება მათი გაგზავნის შემდეგ</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">უკვე ნახე ეს შეტყობინება</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">ეს შეტყობინება უკვე ნანახი გაქვს</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">შეგიძლია ამ მიმოწერაში ჩანიშვნები დაამატო. \nთუ შენს პროფილთან დაკავშირებულია რაიმე მოწყობილობები, ახალი ჩანიშვნები დასინქრონიზდება.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">ჯგუფში %1$d სეხნიაა.</string>
     <string name="ConversationFragment__tap_to_review">დააჭირე, რათა გადახედო</string>
@@ -1087,7 +1087,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS მიმოწერები Signal-ში აღარ არის ხელმისაწვდომი.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">შეტყობინების რედაქტირება</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">გაზიარება</string>
@@ -1807,11 +1807,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">ქვემოთ მოცემული ნომერი სწორია?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">საჭიროა დამატებითი ვერიფიკაცია</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">ვერიფიკაციის კოდი ამ ნომერზე გაიგზავნება. შეიძლება საფასური დაგეკისროს.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">თქვენ მიიღებთ ზარს ამ ნომრის დასამოწმებლად.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">სწორია თუ არა თქვენი ზემოთ მოცემული ტელეფონის ნომერი?</string>
     <string name="RegistrationActivity_edit_number">ნომრის რედაქტირება</string>
@@ -1849,7 +1849,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">ტელეფონის ნომერი</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">დასაწყებად შეიყვანე შენი ტელეფონის ნომერი.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">შეიყვანეთ კოდი, რომელიც გამოვგზავნეთ %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">დარწმუნდით, რომ თქვენს ტელეფონს აქვს მობილური სიგნალი SMS-ის ან ზარის მისაღებად</string>
 
@@ -2149,7 +2149,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">წერილის წაშლა ვერ მოხერხდა, ის შესაძლოა ისევ არსებობდეს</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>მეტის წაკითხვა</b></string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d ახალი შეტყობინება %2$d მიმოწერაში</string>
@@ -2671,7 +2671,7 @@
     <string name="message_details_recipient__failed_to_send">ვერ გაიგზავნა</string>
     <string name="message_details_recipient__new_safety_number">New safety number</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">რედაქტირების ისტორიის ნახვა</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">პაროლ-ფრაზის შექმნა</string>
@@ -2953,11 +2953,11 @@
     <string name="preferences_failed_to_connect">დაკავშირება ვერ მოხერხდა</string>
     <string name="preferences_enter_proxy_address">შეიყვანე პროქსის მისამართი</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">სანავიგაციო პანელის ზომა</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">ნორმალური</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">კომპაქტური</string>
 
 
     <string name="configurable_single_select__customize_option">ვარიანტის მორგება</string>
@@ -3483,7 +3483,9 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">გადაიტანე მონაცემები Android-ის ახალ მოწყობილობაში</string>
     <string name="RegistrationActivity_enter_backup_passphrase">შეიყვანე სარეზერვო კოპიების პაროლ-ფრაზა</string>
     <string name="RegistrationActivity_restore">აღდგენა</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">შეუძლებელია სარეზერვო კოპიების გადმოტანა Signal-ის უფრო ახალი ვერსიებიდან</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Signal-ის ახალი ვერსიიდან ასლების გადმოტანა შეუძლებელია</string>
+    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">სარეზერვო კოპიების პაროლ-ფრაზა არასწორია</string>
     <string name="RegistrationActivity_checking">მიმდინარეობს შემოწმება…</string>
     <string name="RegistrationActivity_d_messages_so_far">აქამდე მიღებულია %1$dშეტყობინება…</string>
@@ -3644,6 +3646,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal-ის უფრო ახალი ვერსიებიდან გადატანა შეუძლებელია</string>
+    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">მონაცემთა გადატანა</string>
@@ -5214,7 +5218,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">დაკოპირებულია ბუფერში</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">… მეტის ნახვა</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">პასუხი იგზავნება …</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -5929,7 +5933,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">შესრულებულია</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">ზარის ბმულის გაზიარება ვერ მოხერხდა.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">დაკოპირებულია ბუფერში</string>
 
@@ -5943,11 +5947,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">სანავიგაციო პანელის ზომა</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">ნორმალური</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">კომპაქტური</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">რედაქტირების ისტორია</string>

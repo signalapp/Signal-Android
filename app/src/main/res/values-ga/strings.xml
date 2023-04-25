@@ -171,7 +171,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video recording is not supported on your device</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Ní thacaítear le fístaifeadadh ar do ghléas</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Cnag air do ghrianghraf, coinnigh síos é d\'fhíseán</string>
@@ -302,12 +302,12 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Ní féidir an físeán a íoslódáil. Beidh ort é a sheoladh arís.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">curtha in eagar %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Cuir ceangaltán leis</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Send edit</string>
+    <string name="ConversationActivity_send_edit">Seol a bhfuil curtha in eagar</string>
     <string name="ConversationActivity_select_contact_info">Roghnaigh eolas teagmhála</string>
     <string name="ConversationActivity_compose_message">Cum teachtaireacht</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Faraor, tharla botún nuair a bhí do cheangaltán á chur leis.</string>
@@ -316,14 +316,14 @@
     <string name="ConversationActivity_group_members">Comhaltaí na baicle</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">Cnag anseo chun tús a chur le grúpghlao</string>
     <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
-    <string name="ConversationActivity_edit_sms_message_error">Unable to edit SMS messages</string>
+    <string name="ConversationActivity_edit_sms_message_error">Ní féidir teachtaireachtaí SMS a chur in eagar</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Edits can only be applied within %1$d hour from the time you sent this message.</item>
-        <item quantity="two">Edits can only be applied within %1$d hours from the time you sent this message.</item>
-        <item quantity="few">Edits can only be applied within %1$d hours from the time you sent this message.</item>
-        <item quantity="many">Edits can only be applied within %1$d hours from the time you sent this message.</item>
-        <item quantity="other">Edits can only be applied within %1$d hours from the time you sent this message.</item>
+        <item quantity="one">Ní féidir eagarthóireacht a chur i bhfeidhm ach amháin laistigh de %1$d uair an chloig ón uair a sheol tú an teachtaireacht seo.</item>
+        <item quantity="two">Ní féidir eagarthóireacht a chur i bhfeidhm ach amháin laistigh de %1$d uair an chloig ón uair a sheol tú an teachtaireacht seo.</item>
+        <item quantity="few">Ní féidir eagarthóireacht a chur i bhfeidhm ach amháin laistigh de %1$d uair an chloig ón uair a sheol tú an teachtaireacht seo.</item>
+        <item quantity="many">Ní féidir eagarthóireacht a chur i bhfeidhm ach amháin laistigh de %1$d n-uair an chloig ón uair a sheol tú an teachtaireacht seo.</item>
+        <item quantity="other">Ní féidir eagarthóireacht a chur i bhfeidhm ach amháin laistigh de %1$d uair an chloig ón uair a sheol tú an teachtaireacht seo.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Faighteoir neamhbhailí!</string>
@@ -480,7 +480,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Tig leat teachtaireacht a shleamhnú ar dheis chun í a fhreagairt go tapa</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Tig leat teachtaireacht a shleamhnú ar chlé chun í a fhreagairt go tapa</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Baintear comhaid mheán amhairc aonuaire go huathoibríoch tar éis a seolta</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">D\'fhéach tú ar an teachtaireacht seo cheana</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">D\'fhéach tú ar an teachtaireacht seo</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Is féidir leat nótaí a bhreacadh síos ar do shon féin sa chomhrá seo. Má tá gléasanna eile nasctha le do chuntas, déanfar sioncronú ar nótaí nua.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Tá an t-ainm céanna ag an líon seo ball: %1$d.</string>
     <string name="ConversationFragment__tap_to_review">Cnag air chun é a athbhreithniú</string>
@@ -1195,7 +1195,7 @@
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Ní thacaítear le cur teachtaireachtaí SMS in Signal a thuilleadh.</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
-    <string name="InputPanel_edit_message">Edit message</string>
+    <string name="InputPanel_edit_message">Cuir teachtaireacht in eagar</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Comhroinn</string>
@@ -1999,11 +1999,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Is the phone number below correct?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">An bhfuil an uimhir ghutháin thíos ceart?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
-    <string name="RegistrationActivity_additional_verification_required">Additional verification required</string>
+    <string name="RegistrationActivity_additional_verification_required">Fíorú breise ag teastáil</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">A verification code will be sent to this number. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Seolfar cód fíoraithe chuig an uimhir seo. Féadfaidh rátaí iompróra a bheith i bhfeidhm.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Cuirfear glao ort chun an uimhir seo a dheimhniú.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">An bhfuil an uimhir ghutháin thuas ceart?</string>
     <string name="RegistrationActivity_edit_number">Edit Number</string>
@@ -2347,7 +2347,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Earráid leis an Teachtaireacht a Scriosadh, Seans go mBeidh an Teachtaireacht Ann Fós.</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Léigh Tuilleadh</b></string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d dteachtaireacht nua i %2$d gcomhrá</string>
@@ -2902,7 +2902,7 @@
     <string name="message_details_recipient__failed_to_send">Theip air seoladh</string>
     <string name="message_details_recipient__new_safety_number">Uimhir shábhála nua</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">View edit history</string>
+    <string name="MessageDetails__view_edit_history">Féach ar an stair eagarthóireachta</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Cruthaigh nath faire</string>
@@ -3187,11 +3187,11 @@
     <string name="preferences_failed_to_connect">Theip air nascadh leis</string>
     <string name="preferences_enter_proxy_address">Iontráil Seoladh Seachfhreastalaí</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">Méid an bharra nascleanúna</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Gnáthluas</string>
+    <string name="preferences_normal">Normálta</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">Dlúth</string>
 
 
     <string name="configurable_single_select__customize_option">Saincheap rogha</string>
@@ -3445,7 +3445,7 @@
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Freagair</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_edit">Eagar</string>
+    <string name="conversation_selection__menu_edit">Cuir in eagar</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Sábháil</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3744,7 +3744,9 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Aistrigh cuntas chuig gléas nua Android</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Cuir isteach frása faire an chúltaca</string>
     <string name="RegistrationActivity_restore">Cuir ar ais</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Ní féidir cúltacaí ó leagan níos nua de Signal a iompórtáil</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Ní féidir cúltaca a iompórtáil ó leaganacha níos nuaí</string>
+    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Frása faire mícheart</string>
     <string name="RegistrationActivity_checking">Ag dearbháil…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d teachtaireachtaí go nuige seo…</string>
@@ -3905,6 +3907,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Ní féidir aistriú ó leaganacha níos nua de Signal</string>
+    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Sonraí á nAistriú</string>
@@ -5526,7 +5530,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Macasamhlaithe chuig an ngearrthaisce</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">… Féach Tuilleadh</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Freagra á sheoladh…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -6289,7 +6293,7 @@
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__done">Déanta</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Unable to share call link.</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Ní féidir nasc an ghlao a chomhroinnt.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Cóipeáilte chuig an ngearrthaisce</string>
 
@@ -6303,11 +6307,11 @@
 
     <!-- ChooseNavigationBarStyleFragment -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Méid an bharra nascleanúna</string>
     <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">Gnáthluas</string>
+    <string name="ChooseNavigationBarStyleFragment__normal">Normálta</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">Dlúth</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Stair eagarthóireachta</string>
