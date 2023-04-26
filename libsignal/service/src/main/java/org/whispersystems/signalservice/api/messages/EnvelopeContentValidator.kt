@@ -6,6 +6,7 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
 import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage
@@ -36,6 +37,7 @@ object EnvelopeContentValidator {
       content.hasStoryMessage() -> validateStoryMessage(content.storyMessage)
       content.hasPniSignatureMessage() -> Result.Valid
       content.hasSenderKeyDistributionMessage() -> Result.Valid
+      content.hasEditMessage() -> validateEditMessage(content.editMessage)
       else -> Result.Invalid("Content is empty!")
     }
   }
@@ -142,6 +144,8 @@ object EnvelopeContentValidator {
         validateDataMessage(envelope, syncMessage.sent.message)
       } else if (syncMessage.sent.hasStoryMessage()) {
         validateStoryMessage(syncMessage.sent.storyMessage)
+      } else if (syncMessage.sent.hasEditMessage()) {
+        validateEditMessage(syncMessage.sent.editMessage)
       } else {
         Result.Invalid("[SyncMessage] Empty SyncMessage.sent!")
       }
@@ -210,6 +214,43 @@ object EnvelopeContentValidator {
   private fun validateStoryMessage(storyMessage: StoryMessage): Result {
     if (storyMessage.hasGroup()) {
       validateGroupContextV2(storyMessage.group, "[StoryMessage]")?.let { return it }
+    }
+
+    return Result.Valid
+  }
+
+  private fun validateEditMessage(editMessage: SignalServiceProtos.EditMessage): Result {
+    if (!editMessage.hasDataMessage()) {
+      return Result.Invalid("[EditMessage] No data message present")
+    }
+
+    if (!editMessage.hasTargetSentTimestamp()) {
+      return Result.Invalid("[EditMessage] No targetSentTimestamp specified")
+    }
+
+    val dataMessage: DataMessage = editMessage.dataMessage
+
+    if (dataMessage.requiredProtocolVersion > DataMessage.ProtocolVersion.CURRENT_VALUE) {
+      return Result.UnsupportedDataMessage(
+        ourVersion = DataMessage.ProtocolVersion.CURRENT_VALUE,
+        theirVersion = dataMessage.requiredProtocolVersion
+      )
+    }
+
+    if (dataMessage.previewList.any { it.hasImage() && it.image.isPresentAndInvalid() }) {
+      return Result.Invalid("[EditMessage] Invalid AttachmentPointer on DataMessage.previewList.image!")
+    }
+
+    if (dataMessage.bodyRangesList.any { it.hasMentionUuid() && it.mentionUuid.isNullOrInvalidUuid() }) {
+      return Result.Invalid("[EditMessage] Invalid UUID on body range!")
+    }
+
+    if (dataMessage.attachmentsList.any { it.isNullOrInvalid() }) {
+      return Result.Invalid("[EditMessage] Invalid attachments!")
+    }
+
+    if (dataMessage.hasGroupV2()) {
+      validateGroupContextV2(dataMessage.groupV2, "[EditMessage]")?.let { return it }
     }
 
     return Result.Valid

@@ -61,7 +61,7 @@
         android:textAppearance="@style/TextAppearance.Signal.Body1"
         android:textColor="@color/signal_text_primary"
         app:layout_constraintBottom_toTopOf="@id/number"
-        app:layout_constraintEnd_toStartOf="@id/sms_tag"
+        app:layout_constraintEnd_toStartOf="@id/start_audio"
         app:layout_constraintStart_toEndOf="@id/contact_photo_image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
@@ -118,6 +118,35 @@
         app:layout_constraintEnd_toStartOf="@id/check_box"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginEnd="0dp"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/start_video"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_video_call_24"
+        android:visibility="gone"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/sms_tag"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/signal_colorOnSurface"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/start_audio"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/symbol_phone_24"
+        android:visibility="gone"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/start_video"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/signal_colorOnSurface"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
@@ -9,7 +10,6 @@ import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -93,7 +93,7 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<PniAccountInitializationMigrationJob> {
     @Override
-    public @NonNull PniAccountInitializationMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull PniAccountInitializationMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new PniAccountInitializationMigrationJob(parameters);
     }
   }

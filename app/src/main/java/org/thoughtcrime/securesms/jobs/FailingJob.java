@@ -1,8 +1,9 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 
 /**
@@ -18,8 +19,8 @@ public final class FailingJob extends Job {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return Data.EMPTY;
+  public @Nullable byte[] serialize() {
+    return null;
   }
 
   @NonNull
@@ -39,7 +40,7 @@ public final class FailingJob extends Job {
 
   public static final class Factory implements Job.Factory<FailingJob> {
     @Override
-    public @NonNull FailingJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull FailingJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new FailingJob(parameters);
     }
   }

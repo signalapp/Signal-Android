@@ -23,18 +23,19 @@ public class InMemoryMessageRecord extends MessageRecord {
   private static final int NO_GROUPS_IN_COMMON_ID    = -1;
   private static final int UNIVERSAL_EXPIRE_TIMER_ID = -2;
   private static final int FORCE_BUBBLE_ID           = -3;
+  private static final int HIDDEN_CONTACT_WARNING_ID = -4;
 
   private InMemoryMessageRecord(long id,
                                 String body,
-                                Recipient conversationRecipient,
+                                Recipient author,
                                 long threadId,
                                 long type)
   {
     super(id,
           body,
-          conversationRecipient,
-          conversationRecipient,
+          author,
           1,
+          author,
           System.currentTimeMillis(),
           System.currentTimeMillis(),
           System.currentTimeMillis(),
@@ -53,7 +54,9 @@ public class InMemoryMessageRecord extends MessageRecord {
           false,
           0,
           0,
-          -1);
+          -1,
+          null,
+          0);
   }
 
   @Override
@@ -118,6 +121,29 @@ public class InMemoryMessageRecord extends MessageRecord {
     }
   }
 
+  public static final class RemovedContactHidden extends InMemoryMessageRecord {
+
+    public RemovedContactHidden(long threadId) {
+      super(HIDDEN_CONTACT_WARNING_ID, "", Recipient.UNKNOWN, threadId, 0);
+    }
+
+    @Override
+    public @Nullable UpdateDescription getUpdateDisplayBody(@NonNull Context context, @Nullable Consumer<RecipientId> recipientClickHandler) {
+      return UpdateDescription.staticDescription(context.getString(R.string.ConversationUpdateItem_hidden_contact_message_to_add_back),
+                                                 R.drawable.symbol_info_compact_16);
+    }
+
+    @Override
+    public boolean isUpdate() {
+      return true;
+    }
+
+    @Override
+    public boolean showActionButton() {
+      return false;
+    }
+  }
+
   /**
    * Show temporary update message about setting the disappearing messages timer upon first message
    * send.
@@ -146,8 +172,8 @@ public class InMemoryMessageRecord extends MessageRecord {
    * Useful for create an empty message record when one is needed.
    */
   public static final class ForceConversationBubble extends InMemoryMessageRecord {
-    public ForceConversationBubble(Recipient conversationRecipient, long threadId) {
-      super(FORCE_BUBBLE_ID, "", conversationRecipient, threadId, 0);
+    public ForceConversationBubble(Recipient author, long threadId) {
+      super(FORCE_BUBBLE_ID, "", author, threadId, 0);
     }
   }
 }

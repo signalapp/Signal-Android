@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
@@ -45,7 +45,7 @@ public class ProfileSharingUpdateMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<ProfileSharingUpdateMigrationJob> {
     @Override
-    public @NonNull ProfileSharingUpdateMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull ProfileSharingUpdateMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new ProfileSharingUpdateMigrationJob(parameters);
     }
   }

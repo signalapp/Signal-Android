@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.groups;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.protobuf.ByteString;
+
 import org.signal.core.util.DatabaseId;
 import org.signal.core.util.Hex;
 import org.signal.libsignal.protocol.kdf.HKDFv3;
@@ -81,6 +83,10 @@ public abstract class GroupId implements DatabaseId {
     return v2(GroupSecretParams.deriveFromMasterKey(masterKey)
                                .getPublicParams()
                                .getGroupIdentifier());
+  }
+
+  public static GroupId.Push push(ByteString bytes) throws BadGroupIdException {
+    return push(bytes.toByteArray());
   }
 
   public static GroupId.Push push(byte[] bytes) throws BadGroupIdException {

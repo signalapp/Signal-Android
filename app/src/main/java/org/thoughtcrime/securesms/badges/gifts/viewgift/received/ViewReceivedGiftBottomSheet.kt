@@ -11,6 +11,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.InvalidInputException
@@ -38,7 +39,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.BottomSheetUtil
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 import java.util.concurrent.TimeUnit
 
 /**
@@ -62,7 +62,7 @@ class ViewReceivedGiftBottomSheet : DSLSettingsBottomSheetFragment() {
     fun show(fragmentManager: FragmentManager, messageRecord: MmsMessageRecord) {
       ViewReceivedGiftBottomSheet().apply {
         arguments = Bundle().apply {
-          putParcelable(ARG_SENT_FROM, messageRecord.recipient.id)
+          putParcelable(ARG_SENT_FROM, messageRecord.fromRecipient.id)
           putByteArray(ARG_GIFT_BADGE, messageRecord.giftBadge!!.toByteArray())
           putLong(ARG_MESSAGE_ID, messageRecord.id)
         }

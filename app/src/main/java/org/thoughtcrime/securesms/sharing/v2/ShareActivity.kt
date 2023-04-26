@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.Result
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableExtraCompat
@@ -35,7 +36,6 @@ import org.thoughtcrime.securesms.sharing.MultiShareSender.MultiShareSendResultC
 import org.thoughtcrime.securesms.sharing.interstitial.ShareInterstitialActivity
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 import java.util.Optional
 
 class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.Callback {
@@ -87,6 +87,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
       }
     }
 
+    lifecycleDisposable.bindTo(this)
     lifecycleDisposable += viewModel.events.subscribe { shareEvent ->
       when (shareEvent) {
         is ShareEvent.OpenConversation -> openConversation(shareEvent)

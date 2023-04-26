@@ -106,6 +106,12 @@ public final class FeatureFlags {
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
   private static final String TEXT_FORMATTING                   = "android.textFormatting";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
+  private static final String CALLS_TAB                         = "android.calls.tab.2";
+  private static final String TEXT_FORMATTING_SPOILER_SEND      = "android.textFormatting.spoilerSend";
+  private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc";
+  private static final String EDIT_MESSAGE_RECEIVE              = "android.editMessage.receive";
+  private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send";
+  private static final String CALL_DELETE_SYNC                  = "android.calling.deleteSync";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -162,12 +168,18 @@ public final class FeatureFlags {
       PAYPAL_ONE_TIME_DONATIONS,
       PAYPAL_RECURRING_DONATIONS,
       TEXT_FORMATTING,
-      ANY_ADDRESS_PORTS_KILL_SWITCH
+      ANY_ADDRESS_PORTS_KILL_SWITCH,
+      CALLS_TAB,
+      TEXT_FORMATTING_SPOILER_SEND,
+      EDIT_MESSAGE_RECEIVE,
+      EDIT_MESSAGE_SEND
   );
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
-      PHONE_NUMBER_PRIVACY
+      PHONE_NUMBER_PRIVACY,
+      AD_HOC_CALLING,
+      CALL_DELETE_SYNC
   );
 
   /**
@@ -225,7 +237,10 @@ public final class FeatureFlags {
       CREDIT_CARD_PAYMENTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       CDS_HARD_LIMIT,
-      TEXT_FORMATTING
+      TEXT_FORMATTING,
+      TEXT_FORMATTING_SPOILER_SEND,
+      EDIT_MESSAGE_RECEIVE,
+      EDIT_MESSAGE_SEND
   );
 
   /**
@@ -578,10 +593,46 @@ public final class FeatureFlags {
   }
 
   /**
+   * Whether or not we should show spoiler text formatting option.
+   */
+  public static boolean textFormattingSpoilerSend() {
+    return getBoolean(TEXT_FORMATTING_SPOILER_SEND, false);
+  }
+
+  /**
    * Enable/disable RingRTC field trial for "AnyAddressPortsKillSwitch"
    */
   public static boolean callingFieldTrialAnyAddressPortsKillSwitch() {
     return getBoolean(ANY_ADDRESS_PORTS_KILL_SWITCH, false);
+  }
+
+  public static boolean editMessageReceiving() {
+    return getBoolean(EDIT_MESSAGE_RECEIVE, false);
+  }
+
+  public static boolean editMessageSending() {
+    return getBoolean(EDIT_MESSAGE_SEND, false);
+  }
+
+  /**
+   * Whether or not the calls tab is enabled
+   */
+  public static boolean callsTab() {
+    return getBoolean(CALLS_TAB, false);
+  }
+
+  /**
+   * Whether or not ad-hoc calling is enabled
+   */
+  public static boolean adHocCalling() {
+    return getBoolean(AD_HOC_CALLING, false);
+  }
+
+  /**
+   * Whether sending deletion sync events is supported
+   */
+  public static boolean callDeleteSync() {
+    return getBoolean(CALL_DELETE_SYNC, false);
   }
 
   /** Only for rendering debug info. */

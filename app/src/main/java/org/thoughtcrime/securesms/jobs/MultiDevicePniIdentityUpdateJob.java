@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.protobuf.ByteString;
 
@@ -9,7 +10,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -50,8 +51,8 @@ public class MultiDevicePniIdentityUpdateJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return Data.EMPTY;
+  public @Nullable byte[] serialize() {
+    return null;
   }
 
   @Override
@@ -96,7 +97,7 @@ public class MultiDevicePniIdentityUpdateJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<MultiDevicePniIdentityUpdateJob> {
     @Override
-    public @NonNull MultiDevicePniIdentityUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull MultiDevicePniIdentityUpdateJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new MultiDevicePniIdentityUpdateJob(parameters);
     }
   }

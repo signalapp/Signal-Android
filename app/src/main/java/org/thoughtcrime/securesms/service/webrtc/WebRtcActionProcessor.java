@@ -5,6 +5,7 @@ import android.os.ResultReceiver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.annimon.stream.Stream;
 
@@ -54,6 +55,7 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
+import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.Collection;
 import java.util.List;
@@ -472,7 +474,7 @@ public abstract class WebRtcActionProcessor {
                        .build();
   }
 
-  protected @NonNull WebRtcServiceState handleSetUserAudioDevice(@NonNull WebRtcServiceState currentState, @NonNull SignalAudioManager.AudioDevice userDevice) {
+  protected @NonNull WebRtcServiceState handleSetUserAudioDevice(@NonNull WebRtcServiceState currentState, @NonNull SignalAudioManager.ChosenAudioDeviceIdentifier userDevice) {
     Log.i(tag, "handleSetUserAudioDevice not processed");
     return currentState;
   }
@@ -798,9 +800,11 @@ public abstract class WebRtcActionProcessor {
       if (ringUpdate != RingUpdate.BUSY_LOCALLY && ringUpdate != RingUpdate.BUSY_ON_ANOTHER_DEVICE) {
         webRtcInteractor.getCallManager().cancelGroupRing(groupId.getDecodedId(), ringId, CallManager.RingCancelReason.Busy);
       }
-      SignalDatabase.groupCallRings().insertOrUpdateGroupRing(ringId,
-                                                              System.currentTimeMillis(),
-                                                              ringUpdate == RingUpdate.REQUESTED ? RingUpdate.BUSY_LOCALLY : ringUpdate);
+      SignalDatabase.calls().insertOrUpdateGroupCallFromRingState(ringId,
+                                                                  remotePeerGroup.getId(),
+                                                                  sender,
+                                                                  System.currentTimeMillis(),
+                                                                  ringUpdate == RingUpdate.REQUESTED ? RingUpdate.BUSY_LOCALLY : ringUpdate);
     } catch (CallException e) {
       Log.w(tag, "Unable to cancel ring", e);
     }
@@ -826,7 +830,7 @@ public abstract class WebRtcActionProcessor {
     Recipient recipient = currentState.getCallInfoState().getCallRecipient();
 
     if (recipient != null && currentState.getCallInfoState().getGroupCallState().isConnected()) {
-      webRtcInteractor.sendGroupCallMessage(recipient, WebRtcUtil.getGroupCallEraId(groupCall));
+      webRtcInteractor.sendGroupCallMessage(recipient, WebRtcUtil.getGroupCallEraId(groupCall), false, false);
     }
 
     currentState = currentState.builder()

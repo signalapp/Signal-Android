@@ -86,7 +86,7 @@ class VoiceNoteMediaItemFactory {
 
     Recipient threadRecipient = Objects.requireNonNull(SignalDatabase.threads()
                                                                       .getRecipientForThreadId(messageRecord.getThreadId()));
-    Recipient  sender          = messageRecord.isOutgoing() ? Recipient.self() : messageRecord.getIndividualRecipient();
+    Recipient  sender          = messageRecord.getFromRecipient();
     Recipient  avatarRecipient = threadRecipient.isGroup() ? threadRecipient : sender;
     AudioSlide audioSlide      = ((MmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide();
 

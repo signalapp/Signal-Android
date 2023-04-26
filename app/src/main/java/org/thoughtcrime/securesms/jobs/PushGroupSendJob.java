@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -52,6 +52,7 @@ import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceEditMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
 import org.whispersystems.signalservice.api.messages.SignalServicePreview;
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
@@ -136,7 +137,12 @@ public final class PushGroupSendJob extends PushSendJob {
         throw new MmsException("Inactive group!");
       }
 
-      jobManager.add(new PushGroupSendJob(messageId, destination, filterAddresses, !attachmentUploadIds.isEmpty(), isScheduledSend), attachmentUploadIds, attachmentUploadIds.isEmpty() || isScheduledSend ? null : destination.toQueueKey());
+      boolean hasMedia            = attachmentUploadIds.size() > 0;
+      boolean addHardDependencies = hasMedia && !isScheduledSend;
+
+      jobManager.add(new PushGroupSendJob(messageId, destination, filterAddresses, hasMedia, isScheduledSend),
+                     attachmentUploadIds,
+                     addHardDependencies ? destination.toQueueKey() : null);
 
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
@@ -146,10 +152,10 @@ public final class PushGroupSendJob extends PushSendJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
-                             .putString(KEY_FILTER_RECIPIENTS, RecipientId.toSerializedList(filterRecipients))
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId)
+                                    .putString(KEY_FILTER_RECIPIENTS, RecipientId.toSerializedList(filterRecipients))
+                                    .serialize();
   }
 
   private static boolean isGv2UpdateMessage(@NonNull OutgoingMessage message) {
@@ -172,9 +178,10 @@ public final class PushGroupSendJob extends PushSendJob {
   {
     SignalLocalMetrics.GroupMessageSend.onJobStarted(messageId);
 
-    MessageTable    database = SignalDatabase.messages();
-    OutgoingMessage message  = database.getOutgoingMessage(messageId);
-    long            threadId = database.getMessageRecord(messageId).getThreadId();
+    MessageTable             database                   = SignalDatabase.messages();
+    OutgoingMessage          message                    = database.getOutgoingMessage(messageId);
+    long                     threadId                   = database.getMessageRecord(messageId).getThreadId();
+    MessageRecord            originalEditedMessage      = message.getMessageToEdit() > 0 ? SignalDatabase.messages().getMessageRecordOrNull(message.getMessageToEdit()) : null;
     Set<NetworkFailure>      existingNetworkFailures    = new HashSet<>(message.getNetworkFailures());
     Set<IdentityKeyMismatch> existingIdentityMismatches = new HashSet<>(message.getIdentityKeyMismatches());
 
@@ -185,7 +192,7 @@ public final class PushGroupSendJob extends PushSendJob {
       return;
     }
 
-    Recipient groupRecipient = message.getRecipient().resolve();
+    Recipient groupRecipient = message.getThreadRecipient().resolve();
 
     if (!groupRecipient.isPushGroup()) {
       throw new MmsException("Message recipient isn't a group!");
@@ -200,7 +207,7 @@ public final class PushGroupSendJob extends PushSendJob {
     }
 
     try {
-      log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getRecipient().getId() + ", Thread: " + threadId + ", Attachments: " + buildAttachmentString(message.getAttachments()));
+      log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getThreadRecipient().getId() + ", Thread: " + threadId + ", Attachments: " + buildAttachmentString(message.getAttachments()));
 
       if (!groupRecipient.resolve().isProfileSharing() && !database.isGroupQuitMessage(messageId)) {
         RecipientUtil.shareProfileIfFirstSecureMessage(groupRecipient);
@@ -222,7 +229,7 @@ public final class PushGroupSendJob extends PushSendJob {
         skipped = result.skipped;
       }
 
-      List<SendMessageResult> results = deliver(message, groupRecipient, target);
+      List<SendMessageResult> results = deliver(message, originalEditedMessage, groupRecipient, target);
       processGroupMessageResults(context, messageId, threadId, groupRecipient, message, results, target, skipped, existingNetworkFailures, existingIdentityMismatches);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
 
@@ -246,7 +253,7 @@ public final class PushGroupSendJob extends PushSendJob {
     SignalDatabase.messages().markAsSentFailed(messageId);
   }
 
-  private List<SendMessageResult> deliver(OutgoingMessage message, @NonNull Recipient groupRecipient, @NonNull List<Recipient> destinations)
+  private List<SendMessageResult> deliver(OutgoingMessage message, @Nullable MessageRecord originalEditedMessage, @NonNull Recipient groupRecipient, @NonNull List<Recipient> destinations)
       throws IOException, UntrustedIdentityException, UndeliverableMessageException
   {
     try {
@@ -312,7 +319,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                               .withExpiration(groupRecipient.getExpiresInSeconds())
                                                                               .asGroupMessage(group)
                                                                               .build();
-          return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), null, destinations, isRecipientUpdate, ContentHint.IMPLICIT, new MessageId(messageId), groupDataMessage, message.isUrgent(), false);
+          return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), null, destinations, isRecipientUpdate, ContentHint.IMPLICIT, new MessageId(messageId), groupDataMessage, message.isUrgent(), false, null);
         } else {
           throw new UndeliverableMessageException("Messages can no longer be sent to V1 groups!");
         }
@@ -343,13 +350,13 @@ public final class PushGroupSendJob extends PushSendJob {
         if (message.getParentStoryId() != null) {
           try {
             MessageRecord storyRecord = SignalDatabase.messages().getMessageRecord(message.getParentStoryId().asMessageId().getId());
-            Recipient     recipient   = storyRecord.isOutgoing() ? Recipient.self() : storyRecord.getIndividualRecipient();
+            Recipient     storyAuthor = storyRecord.getFromRecipient();
 
             destinations = destinations.stream()
                                        .filter(r -> r.getStoriesCapability() == Recipient.Capability.SUPPORTED)
                                        .collect(java.util.stream.Collectors.toList());
 
-            SignalServiceDataMessage.StoryContext storyContext = new SignalServiceDataMessage.StoryContext(recipient.requireServiceId(), storyRecord.getDateSent());
+            SignalServiceDataMessage.StoryContext storyContext = new SignalServiceDataMessage.StoryContext(storyAuthor.requireServiceId(), storyRecord.getDateSent());
             groupMessageBuilder.withStoryContext(storyContext);
 
             Optional<SignalServiceDataMessage.Reaction> reaction = getStoryReactionFor(message, storyContext);
@@ -364,6 +371,10 @@ public final class PushGroupSendJob extends PushSendJob {
           groupMessageBuilder.withQuote(getQuoteFor(message).orElse(null));
         }
 
+        SignalServiceDataMessage groupMessage = groupMessageBuilder.build();
+        SignalServiceEditMessage editMessage  = originalEditedMessage != null ? new SignalServiceEditMessage(originalEditedMessage.getDateSent(), groupMessage)
+                                                                              : null;
+
         Log.i(TAG, JobLogger.format(this, "Beginning message send."));
 
         return GroupSendUtil.sendResendableDataMessage(context,
@@ -373,16 +384,18 @@ public final class PushGroupSendJob extends PushSendJob {
                                                        isRecipientUpdate,
                                                        ContentHint.RESENDABLE,
                                                        new MessageId(messageId),
-                                                       groupMessageBuilder.build(),
+                                                       groupMessage,
                                                        message.isUrgent(),
-                                                       message.getStoryType().isStory() || message.getParentStoryId() != null);
+                                                       message.getStoryType().isStory() || message.getParentStoryId() != null,
+                                                       editMessage);
       }
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);
     }
   }
 
-  public static long getMessageId(@NonNull Data data) {
+  public static long getMessageId(@Nullable byte[] serializedData) {
+    JsonJobData data = JsonJobData.deserialize(serializedData);
     return data.getLong(KEY_MESSAGE_ID);
   }
 
@@ -520,7 +533,9 @@ public final class PushGroupSendJob extends PushSendJob {
 
   public static class Factory implements Job.Factory<PushGroupSendJob> {
     @Override
-    public @NonNull PushGroupSendJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
+    public @NonNull PushGroupSendJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       String           raw     = data.getStringOrDefault(KEY_FILTER_RECIPIENTS, "");
       Set<RecipientId> filters = raw != null ? new HashSet<>(RecipientId.fromSerializedList(raw)) : Collections.emptySet();
 

@@ -9,6 +9,7 @@ import android.os.ParcelFileDescriptor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft;
@@ -16,7 +17,9 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.subjects.SingleSubject;
@@ -25,14 +28,14 @@ public class AudioRecorder {
 
   private static final String TAG = Log.tag(AudioRecorder.class);
 
-  private static final ExecutorService executor = SignalExecutors.newCachedSingleThreadExecutor("signal-AudioRecorder");
+  private static final ExecutorService executor = SignalExecutors.newCachedSingleThreadExecutor("signal-AudioRecorder", ThreadUtil.PRIORITY_UI_BLOCKING_THREAD);
 
   private final Context                   context;
   private final AudioRecordingHandler     uiHandler;
   private final AudioRecorderFocusManager audioFocusManager;
 
-  private Recorder recorder;
-  private Uri      captureUri;
+  private Recorder    recorder;
+  private Future<Uri> recordingUriFuture;
 
   private SingleSubject<VoiceNoteDraft> recordingSubject;
 
@@ -68,16 +71,18 @@ public class AudioRecorder {
       Log.i(TAG, "Running startRecording() + " + Thread.currentThread().getId());
       try {
         if (recorder != null) {
-          throw new AssertionError("We can only record once at a time.");
+          recordingSingle.onError(new IllegalStateException("We can only do one recording at a time!"));
+          return;
         }
 
         ParcelFileDescriptor fds[] = ParcelFileDescriptor.createPipe();
 
-        captureUri = BlobProvider.getInstance()
-                                 .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
-                                 .withMimeType(MediaUtil.AUDIO_AAC)
-                                 .createForDraftAttachmentAsync(context, () -> Log.i(TAG, "Write successful."), e -> Log.w(TAG, "Error during recording", e));
-        recorder   = Build.VERSION.SDK_INT >= 26 ? new MediaRecorderWrapper() : new AudioCodec();
+        recordingUriFuture = BlobProvider.getInstance()
+                                       .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
+                                       .withMimeType(MediaUtil.AUDIO_AAC)
+                                       .createForDraftAttachmentAsync(context);
+
+        recorder = Build.VERSION.SDK_INT >= 26 ? new MediaRecorderWrapper() : new AudioCodec();
         int focusResult = audioFocusManager.requestAudioFocus();
         if (focusResult != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
           Log.w(TAG, "Could not gain audio focus. Received result code " + focusResult);
@@ -107,16 +112,17 @@ public class AudioRecorder {
       recorder.stop();
 
       try {
-        long size = MediaUtil.getMediaSize(context, captureUri);
-        recordingSubject.onSuccess(new VoiceNoteDraft(captureUri, size));
-      } catch (IOException ioe) {
+        Uri uri = recordingUriFuture.get();
+        long size = MediaUtil.getMediaSize(context, uri);
+        recordingSubject.onSuccess(new VoiceNoteDraft(uri, size));
+      } catch (IOException | ExecutionException | InterruptedException ioe) {
         Log.w(TAG, ioe);
         recordingSubject.onError(ioe);
       }
 
-      recordingSubject = null;
-      recorder         = null;
-      captureUri       = null;
+      recordingSubject   = null;
+      recorder           = null;
+      recordingUriFuture = null;
     });
   }
 }

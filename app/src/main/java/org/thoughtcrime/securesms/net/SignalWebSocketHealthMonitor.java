@@ -4,11 +4,8 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
-import org.greenrobot.eventbus.EventBus;
-import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalWebSocket;
@@ -38,7 +35,7 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
   private static final long KEEP_ALIVE_SEND_CADENCE              = TimeUnit.SECONDS.toMillis(WebSocketConnection.KEEPALIVE_TIMEOUT_SECONDS);
   private static final long MAX_TIME_SINCE_SUCCESSFUL_KEEP_ALIVE = KEEP_ALIVE_SEND_CADENCE * 3;
 
-  private final Executor executor = ThreadUtil.trace(Executors.newSingleThreadExecutor());
+  private final Executor executor = Executors.newSingleThreadExecutor();
 
   private final Application     context;
   private       SignalWebSocket signalWebSocket;
@@ -66,31 +63,31 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
                      .subscribeOn(Schedulers.computation())
                      .observeOn(Schedulers.computation())
                      .distinctUntilChanged()
-                     .subscribe(s -> onStateChange(s, identified));
+                     .subscribe(s -> onStateChange(s, identified, true));
 
       //noinspection ResultOfMethodCallIgnored
       signalWebSocket.getUnidentifiedWebSocketState()
                      .subscribeOn(Schedulers.computation())
                      .observeOn(Schedulers.computation())
                      .distinctUntilChanged()
-                     .subscribe(s -> onStateChange(s, unidentified));
+                     .subscribe(s -> onStateChange(s, unidentified, false));
     });
   }
 
-  private void onStateChange(WebSocketConnectionState connectionState, HealthState healthState) {
+  private void onStateChange(WebSocketConnectionState connectionState, HealthState healthState, boolean isIdentified) {
     executor.execute(() -> {
       switch (connectionState) {
         case CONNECTED:
-          TextSecurePreferences.setUnauthorizedReceived(context, false);
-          break;
-        case AUTHENTICATION_FAILED:
-          TextSecurePreferences.setUnauthorizedReceived(context, true);
-          break;
-        case FAILED:
-          if (SignalStore.proxy().isProxyEnabled()) {
-            Log.w(TAG, "Encountered an error while we had a proxy set! Terminating the connection to prevent retry spam.");
-            ApplicationDependencies.closeConnections();
+          if (isIdentified) {
+            TextSecurePreferences.setUnauthorizedReceived(context, false);
+            break;
           }
+        case AUTHENTICATION_FAILED:
+          if (isIdentified) {
+            TextSecurePreferences.setUnauthorizedReceived(context, true);
+            break;
+          }
+        case FAILED:
           break;
       }
 

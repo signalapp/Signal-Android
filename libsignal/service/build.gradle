@@ -6,6 +6,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'signing'
 apply plugin: 'idea'
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
+apply plugin: 'com.squareup.wire'
 
 archivesBaseName = "signal-service-java"
 version          = lib_signal_service_version_number
@@ -28,6 +29,17 @@ compileJava {
 
 configurations {
     ideaTestFixturesImplementation { extendsFrom testFixturesImplementation; canBeConsumed false; canBeResolved true }
+}
+
+ktlint {
+    // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
+    version.set("0.47.1")
+
+    filter {
+        exclude { entry ->
+            entry.file.toString().contains("build/generated/source/wire")
+        }
+    }
 }
 
 dependencies {
@@ -72,6 +84,16 @@ protobuf {
                 }
             }
         }
+    }
+}
+
+wire {
+    kotlin {
+        javaInterop = true
+    }
+
+    sourcePath {
+        srcDir 'src/main/protowire'
     }
 }
 

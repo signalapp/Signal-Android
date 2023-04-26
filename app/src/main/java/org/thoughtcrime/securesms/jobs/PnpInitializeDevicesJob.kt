@@ -4,7 +4,6 @@ import org.signal.core.util.concurrent.safeBlockingGet
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberRepository
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -38,8 +37,8 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
   constructor() : this(Parameters.Builder().addConstraint(NetworkConstraint.KEY).build())
 
-  override fun serialize(): Data {
-    return Data.EMPTY
+  override fun serialize(): ByteArray? {
+    return null
   }
 
   override fun getFactoryKey(): String {
@@ -110,7 +109,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
   }
 
   class Factory : Job.Factory<PnpInitializeDevicesJob?> {
-    override fun create(parameters: Parameters, data: Data): PnpInitializeDevicesJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): PnpInitializeDevicesJob {
       return PnpInitializeDevicesJob(parameters)
     }
   }

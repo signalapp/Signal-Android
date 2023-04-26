@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.pin.TokenData;
 import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewModel;
-import org.thoughtcrime.securesms.util.LifecycleDisposable;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 

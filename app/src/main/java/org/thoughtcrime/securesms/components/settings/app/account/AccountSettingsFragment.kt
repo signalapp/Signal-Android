@@ -122,6 +122,13 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
       )
 
       clickPref(
+        title = DSLSettingsText.from(R.string.AccountSettingsFragment__request_account_data),
+        onClick = {
+          Navigation.findNavController(requireView()).safeNavigate(R.id.action_accountSettingsFragment_to_exportAccountFragment)
+        }
+      )
+
+      clickPref(
         title = DSLSettingsText.from(R.string.preferences__delete_account, ContextCompat.getColor(requireContext(), R.color.signal_alert_primary)),
         onClick = {
           Navigation.findNavController(requireView()).safeNavigate(R.id.action_accountSettingsFragment_to_deleteAccountFragment)
@@ -145,6 +152,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
 
       val dialog: AlertDialog = MaterialAlertDialogBuilder(context)
         .setView(R.layout.pin_disable_reminders_dialog)
+        .setOnDismissListener { viewModel.refreshState() }
         .create()
 
       dialog.show()

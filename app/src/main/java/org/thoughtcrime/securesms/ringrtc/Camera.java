@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.ringrtc;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
@@ -318,6 +317,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
     @Override
     public void onCapturerStopped() {
       observer.onCapturerStopped();
+      cameraEventListener.onCameraStopped();
     }
 
     @Override

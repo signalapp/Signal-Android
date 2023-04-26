@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -41,7 +40,7 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
   public CallParticipantsListUpdatePopupWindow(@NonNull ViewGroup parent) {
     super(LayoutInflater.from(parent.getContext()).inflate(R.layout.call_participant_list_update, parent, false),
                                                            ViewGroup.LayoutParams.MATCH_PARENT,
-                                                           ViewUtil.dpToPx(94));
+                                                           ViewGroup.LayoutParams.WRAP_CONTENT);
 
     this.parent              = parent;
     this.avatarImageView     = getContentView().findViewById(R.id.avatar);

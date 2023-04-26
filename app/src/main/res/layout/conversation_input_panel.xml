@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.components.InputPanel xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_panel"
     android:layout_width="match_parent"
@@ -9,7 +8,8 @@
     android:background="@color/signal_background_primary"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/input_panel_sticker_suggestion"
@@ -26,17 +26,33 @@
         android:clipToPadding="false"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="16dp"
+        android:paddingStart="14dp"
         android:paddingTop="8dp"
         android:paddingEnd="16dp"
         android:paddingBottom="8dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/input_panel_exit_edit_mode"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="bottom"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/signal_colorOnSurfaceVariant"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="center"
+            android:visibility="gone"
+            app:srcCompat="@drawable/symbol_x_24"
+            app:tint="@color/signal_colorOnPrimary" />
 
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clipChildren="false"
-            android:clipToPadding="false">
+            android:clipToPadding="false"
+            android:paddingStart="2dp">
 
             <LinearLayout
                 android:id="@+id/compose_bubble"
@@ -46,6 +62,21 @@
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/edit_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:drawablePadding="6dp"
+                    android:text="@string/InputPanel_edit_message"
+                    android:textAppearance="@style/Signal.Text.LabelLarge"
+                    android:textColor="@color/signal_colorOnSurface"
+                    android:visibility="gone"
+                    app:drawableStartCompat="@drawable/symbol_edit_compact_16"
+                    app:drawableTint="@color/signal_colorOnSurface" />
 
                 <org.thoughtcrime.securesms.components.QuoteView
                     android:id="@+id/quote_view"
@@ -214,7 +245,20 @@
                 android:padding="9dp"
                 android:scaleType="fitCenter"
                 app:tint="@color/conversation_send_button_tint"
-                app:srcCompat="@drawable/ic_plus_24" />
+                app:srcCompat="@drawable/symbol_plus_24" />
+
+            <ImageButton
+                android:id="@+id/send_edit_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_touch_highlight_background"
+                android:contentDescription="@string/ConversationActivity_send_edit"
+                android:nextFocusLeft="@+id/embedded_text_editor"
+                android:padding="9dp"
+                android:scaleType="fitCenter"
+                app:tint="@color/conversation_send_button_tint"
+                app:srcCompat="@drawable/symbol_check_24" />
 
             <org.thoughtcrime.securesms.components.SendButton
                 android:id="@+id/send_button"

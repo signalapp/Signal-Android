@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_info"
+        android:icon="@drawable/symbol_info_24"
+        android:title="@string/CallContextMenu__info"
+        app:showAsAction="always" />
+</menu>

@@ -17,7 +17,8 @@ data class DraftState(
   val bodyRangesDraft: DraftTable.Draft? = null,
   val quoteDraft: DraftTable.Draft? = null,
   val locationDraft: DraftTable.Draft? = null,
-  val voiceNoteDraft: DraftTable.Draft? = null
+  val voiceNoteDraft: DraftTable.Draft? = null,
+  val messageEditDraft: DraftTable.Draft? = null
 ) {
 
   fun copyAndClearDrafts(threadId: Long = this.threadId): DraftState {
@@ -26,6 +27,7 @@ data class DraftState(
 
   fun toDrafts(): Drafts {
     return Drafts().apply {
+      addIfNotNull(messageEditDraft)
       addIfNotNull(textDraft)
       addIfNotNull(bodyRangesDraft)
       addIfNotNull(quoteDraft)
@@ -41,7 +43,8 @@ data class DraftState(
       bodyRangesDraft = drafts.getDraftOfType(DraftTable.Draft.BODY_RANGES),
       quoteDraft = drafts.getDraftOfType(DraftTable.Draft.QUOTE),
       locationDraft = drafts.getDraftOfType(DraftTable.Draft.LOCATION),
-      voiceNoteDraft = drafts.getDraftOfType(DraftTable.Draft.VOICE_NOTE)
+      voiceNoteDraft = drafts.getDraftOfType(DraftTable.Draft.VOICE_NOTE),
+      messageEditDraft = drafts.getDraftOfType(DraftTable.Draft.MESSAGE_EDIT)
     )
   }
 }

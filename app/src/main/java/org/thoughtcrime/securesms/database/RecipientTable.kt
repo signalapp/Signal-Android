@@ -32,7 +32,6 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
-import org.signal.core.util.toSingleLine
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.IdentityKey
@@ -131,7 +130,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val ID = "_id"
     const val SERVICE_ID = "uuid"
     const val PNI_COLUMN = "pni"
-    private const val USERNAME = "username"
+    const val USERNAME = "username"
     const val PHONE = "phone"
     const val EMAIL = "email"
     const val GROUP_ID = "group_id"
@@ -167,9 +166,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val FORCE_SMS_SELECTION = "force_sms_selection"
     private const val CAPABILITIES = "capabilities"
     const val STORAGE_SERVICE_ID = "storage_service_key"
-    private const val PROFILE_GIVEN_NAME = "signal_profile_name"
+    const val PROFILE_GIVEN_NAME = "signal_profile_name"
     private const val PROFILE_FAMILY_NAME = "profile_family_name"
-    private const val PROFILE_JOINED_NAME = "profile_joined_name"
+    const val PROFILE_JOINED_NAME = "profile_joined_name"
     private const val MENTION_SETTING = "mention_setting"
     private const val STORAGE_PROTO = "storage_proto"
     private const val LAST_SESSION_RESET = "last_session_reset"
@@ -183,12 +182,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     private const val CUSTOM_CHAT_COLORS_ID = "custom_chat_colors_id"
     private const val BADGES = "badges"
     const val SEARCH_PROFILE_NAME = "search_signal_profile"
-    private const val SORT_NAME = "sort_name"
+    const val SORT_NAME = "sort_name"
     private const val IDENTITY_STATUS = "identity_status"
     private const val IDENTITY_KEY = "identity_key"
     private const val NEEDS_PNI_SIGNATURE = "needs_pni_signature"
     private const val UNREGISTERED_TIMESTAMP = "unregistered_timestamp"
-    private const val HIDDEN = "hidden"
+    const val HIDDEN = "hidden"
     const val REPORTING_TOKEN = "reporting_token"
 
     @JvmField
@@ -254,7 +253,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $REPORTING_TOKEN BLOB DEFAULT NULL,
         $SYSTEM_NICKNAME TEXT DEFAULT NULL
       )
-      """.trimIndent()
+      """
 
     val CREATE_INDEXS = arrayOf(
       "CREATE INDEX IF NOT EXISTS recipient_group_type_index ON $TABLE_NAME ($GROUP_TYPE);",
@@ -343,7 +342,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           NULLIF($USERNAME, '')
         )
       ) AS $SORT_NAME
-      """.trimIndent()
+      """
     )
 
     @JvmField
@@ -385,7 +384,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         ' ',
         ''
       ) AS $SORT_NAME
-      """.trimIndent()
+      """
     )
 
     private val INSIGHTS_INVITEE_LIST =
@@ -981,6 +980,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
     }
 
+    if (update.new.username != null) {
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(USERNAME to null)
+        .where("$USERNAME = ?", update.new.username!!)
+        .run()
+    }
+
     val updateCount = writableDatabase.update(TABLE_NAME, values, "$STORAGE_SERVICE_ID = ?", arrayOf(Base64.encodeBytes(update.old.id.raw)))
     if (updateCount < 1) {
       throw AssertionError("Account update didn't match any rows!")
@@ -1071,7 +1078,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       $TABLE_NAME LEFT OUTER JOIN ${IdentityTable.TABLE_NAME} ON $TABLE_NAME.$SERVICE_ID = ${IdentityTable.TABLE_NAME}.${IdentityTable.ADDRESS} 
                   LEFT OUTER JOIN ${GroupTable.TABLE_NAME} ON $TABLE_NAME.$GROUP_ID = ${GroupTable.TABLE_NAME}.${GroupTable.GROUP_ID} 
                   LEFT OUTER JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
-      """.trimIndent()
+      """
     val out: MutableList<RecipientRecord> = ArrayList()
     val columns: Array<String> = TYPED_RECIPIENT_PROJECTION + arrayOf(
       SYSTEM_NICKNAME,
@@ -1121,7 +1128,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
               FROM ${DistributionListTables.ListTable.TABLE_NAME}
             )
         )
-        """.toSingleLine(),
+        """,
         GroupType.NONE.id,
         Recipient.self().id,
         GroupType.SIGNAL_V1.id
@@ -1674,6 +1681,13 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     return updated
+  }
+
+  fun containsId(id: RecipientId): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$ID = ?", id.serialize())
+      .run()
   }
 
   fun setReportingToken(id: RecipientId, reportingToken: ByteArray) {
@@ -3143,7 +3157,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           ORDER BY $SORT_NAME, $SYSTEM_JOINED_NAME, $SEARCH_PROFILE_NAME, $PHONE
         )
         GROUP BY letter_header
-      """.trimIndent(),
+      """,
       searchSelection.args
     ).use { cursor ->
       if (cursor.count == 0) {
@@ -3248,7 +3262,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           $PHONE GLOB ? OR 
           $EMAIL GLOB ?
         )
-      """.trimIndent()
+      """
     val args = SqlUtil.buildArgs(0, 0, query, query, query, query)
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, null)
   }
@@ -3269,7 +3283,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           $PHONE GLOB ? OR 
           $EMAIL GLOB ?
       ))
-    """.toSingleLine()
+    """
 
     return SqlUtil.Query(subquery, SqlUtil.buildArgs(0, 0, query, query, query, query))
   }
@@ -3287,7 +3301,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           $PHONE GLOB ? OR 
           $EMAIL GLOB ?
       )
-    """.toSingleLine()
+    """
 
     return readableDatabase.query(subquery, SqlUtil.buildArgs(0, 0, query, query, query, query))
   }
@@ -3464,7 +3478,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           r.$PROFILE_SHARING = 0 AND (
             EXISTS(SELECT 1 FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.THREAD_ID} = t.${ThreadTable.ID} AND ${MessageTable.DATE_RECEIVED} < ?)
           )
-      """.trimIndent()
+      """
 
     val idsToUpdate: MutableList<Long> = ArrayList()
     readableDatabase.rawQuery(select, whereArgs).use { cursor ->
@@ -3983,7 +3997,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         UPDATE $TABLE_NAME
         SET $SERVICE_ID = $PNI_COLUMN
         WHERE $ID = ? AND $PNI_COLUMN NOT NULL
-      """.toSingleLine(),
+      """,
       SqlUtil.buildArgs(recipientId)
     )
 
@@ -4451,7 +4465,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             INNER JOIN ${GroupTable.TABLE_NAME} ON ${GroupTable.TABLE_NAME}.${GroupTable.GROUP_ID} = ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.GROUP_ID}
             WHERE ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.RECIPIENT_ID} = $TABLE_NAME.$ID AND ${GroupTable.TABLE_NAME}.${GroupTable.ACTIVE} = 1 AND ${GroupTable.TABLE_NAME}.${GroupTable.MMS} = 0
         )
-      """.toSingleLine()
+      """
       const val FILTER_GROUPS = " AND $GROUP_ID IS NULL"
       const val FILTER_ID = " AND $ID != ?"
       const val FILTER_BLOCKED = " AND $BLOCKED = ?"

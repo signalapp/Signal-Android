@@ -47,6 +47,11 @@
             app:argType="android.os.Parcelable"
             app:nullable="true" />
 
+        <argument
+            android:name="call_message_ids"
+            app:argType="long[]"
+            app:nullable="true" />
+
         <action
             android:id="@+id/action_conversationSettingsFragment_to_soundsAndNotificationsSettingsFragment"
             app:destination="@id/soundsAndNotificationsSettingsFragment"

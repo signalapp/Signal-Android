@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,7 +31,9 @@ abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetD
         SignalTheme(
           isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)
         ) {
-          SheetContent()
+          Surface(shape = RoundedCornerShape(18.dp, 18.dp)) {
+            SheetContent()
+          }
         }
       }
     }
@@ -54,9 +57,9 @@ abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetD
    * ```
    */
   @Composable
-  protected fun Handle() {
+  protected fun Handle(modifier: Modifier = Modifier) {
     Box(
-      modifier = Modifier
+      modifier = modifier
         .size(width = 48.dp, height = 22.dp)
         .padding(vertical = 10.dp)
         .clip(RoundedCornerShape(1000.dp))

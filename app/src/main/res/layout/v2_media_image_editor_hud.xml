@@ -393,7 +393,8 @@
                 android:text="@string/ImageEditorHud_blur_faces"
                 android:textColor="@color/core_white" />
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
+            <com.google.android.material.materialswitch.MaterialSwitch
+                style="@style/Widget.Signal.CompoundButton.MaterialSwitch"
                 android:id="@+id/image_editor_hud_blur_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

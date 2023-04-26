@@ -15,7 +15,7 @@ data class StoriesLandingItemData(
   val primaryStory: ConversationMessage,
   val secondaryStory: ConversationMessage?,
   val storyRecipient: Recipient,
-  val individualRecipient: Recipient = primaryStory.messageRecord.individualRecipient,
+  val individualRecipient: Recipient = primaryStory.messageRecord.fromRecipient,
   val dateInMilliseconds: Long = primaryStory.messageRecord.dateSent,
   val sendingCount: Long = 0,
   val failureCount: Long = 0

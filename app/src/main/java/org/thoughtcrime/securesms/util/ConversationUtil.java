@@ -249,7 +249,6 @@ public final class ConversationUtil {
   /**
    * @return A Person object representing the given Recipient
    */
-  @WorkerThread
   public static @NonNull Person buildPersonWithoutIcon(@NonNull Context context, @NonNull Recipient recipient) {
     return new Person.Builder()
                      .setKey(getShortcutId(recipient.getId()))

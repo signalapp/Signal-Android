@@ -5,6 +5,7 @@ import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
 import androidx.sqlite.db.SupportSQLiteDatabase
 import org.signal.core.util.logging.Log
+import java.lang.Exception
 import java.util.LinkedList
 import java.util.Locale
 import java.util.stream.Collectors
@@ -85,6 +86,27 @@ object SqlUtil {
       .readToSet { cursor ->
         cursor.requireNonNullString("table")
       }
+  }
+
+  /**
+   * Provides a list of all foreign key violations present.
+   * If a [targetTable] is specified, results will be limited to that table specifically.
+   * Otherwise, the check will be performed across all tables.
+   */
+  @JvmStatic
+  @JvmOverloads
+  fun getForeignKeyViolations(db: SupportSQLiteDatabase, targetTable: String? = null): List<ForeignKeyViolation> {
+    val tableString = if (targetTable != null) "($targetTable)" else ""
+
+    return db.query("PRAGMA foreign_key_check$tableString").readToList { cursor ->
+      val table = cursor.requireNonNullString("table")
+      ForeignKeyViolation(
+        table = table,
+        violatingRowId = cursor.requireLongOrNull("rowid"),
+        dependsOnTable = cursor.requireNonNullString("parent"),
+        column = getForeignKeyViolationColumn(db, table, cursor.requireLong("fkid"))
+      )
+    }
   }
 
   @JvmStatic
@@ -243,12 +265,20 @@ object SqlUtil {
    */
   @JvmOverloads
   @JvmStatic
-  fun buildCollectionQuery(column: String, values: Collection<Any?>, prefix: String = "", maxSize: Int = MAX_QUERY_ARGS): List<Query> {
-    require(!values.isEmpty()) { "Must have values!" }
-
-    return values
-      .chunked(maxSize)
-      .map { batch -> buildSingleCollectionQuery(column, batch, prefix) }
+  fun buildCollectionQuery(
+    column: String,
+    values: Collection<Any?>,
+    prefix: String = "",
+    maxSize: Int = MAX_QUERY_ARGS,
+    collectionOperator: CollectionOperator = CollectionOperator.IN
+  ): List<Query> {
+    return if (values.isEmpty()) {
+      emptyList()
+    } else {
+      values
+        .chunked(maxSize)
+        .map { batch -> buildSingleCollectionQuery(column, batch, prefix, collectionOperator) }
+    }
   }
 
   /**
@@ -259,7 +289,12 @@ object SqlUtil {
    */
   @JvmOverloads
   @JvmStatic
-  fun buildSingleCollectionQuery(column: String, values: Collection<Any?>, prefix: String = ""): Query {
+  fun buildSingleCollectionQuery(
+    column: String,
+    values: Collection<Any?>,
+    prefix: String = "",
+    collectionOperator: CollectionOperator = CollectionOperator.IN
+  ): Query {
     require(!values.isEmpty()) { "Must have values!" }
 
     val query = StringBuilder()
@@ -274,7 +309,7 @@ object SqlUtil {
       }
       i++
     }
-    return Query("$prefix $column IN ($query)".trim(), buildArgs(*args))
+    return Query("$prefix $column ${collectionOperator.sql} ($query)".trim(), buildArgs(*args))
   }
 
   @JvmStatic
@@ -326,6 +361,11 @@ object SqlUtil {
     return args.toMutableList().apply {
       add(addition)
     }.toTypedArray()
+  }
+
+  @JvmStatic
+  fun appendArgs(args: Array<String>, vararg objects: Any?): Array<String> {
+    return args + buildArgs(objects)
   }
 
   @JvmStatic
@@ -392,5 +432,49 @@ object SqlUtil {
     return Query(query, args.toTypedArray())
   }
 
-  class Query(val where: String, val whereArgs: Array<String>)
+  /** Helper that gets the specific column for a foreign key violation */
+  private fun getForeignKeyViolationColumn(db: SupportSQLiteDatabase, table: String, id: Long): String? {
+    try {
+      db.query("PRAGMA foreign_key_list($table)").forEach { cursor ->
+        if (cursor.requireLong("id") == id) {
+          return cursor.requireString("from")
+        }
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to find violation details for id: $id")
+    }
+
+    return null
+  }
+
+  class Query(val where: String, val whereArgs: Array<String>) {
+    infix fun and(other: Query): Query {
+      return if (where.isNotEmpty() && other.where.isNotEmpty()) {
+        Query("($where) AND (${other.where})", whereArgs + other.whereArgs)
+      } else if (where.isNotEmpty()) {
+        this
+      } else {
+        other
+      }
+    }
+  }
+
+  data class ForeignKeyViolation(
+    /** The table that declared the REFERENCES clause. */
+    val table: String,
+
+    /** The rowId of the message in [table] that violates the constraint. Will not be present if the table has now rowId. */
+    val violatingRowId: Long?,
+
+    /** The table that [table] has a dependency on. */
+    val dependsOnTable: String,
+
+    /** The column from [table] that has the constraint. A separate query needs to be made to get this, so it's best-effor. */
+    val column: String?
+  )
+
+  enum class CollectionOperator(val sql: String) {
+    IN("IN"),
+    NOT_IN("NOT IN")
+  }
 }

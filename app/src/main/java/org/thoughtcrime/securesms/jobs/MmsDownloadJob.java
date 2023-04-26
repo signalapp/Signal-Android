@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.database.MessageTable.InsertResult;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -83,11 +82,11 @@ public class MmsDownloadJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
-                             .putLong(KEY_THREAD_ID, threadId)
-                             .putBoolean(KEY_AUTOMATIC, automatic)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId)
+                                    .putLong(KEY_THREAD_ID, threadId)
+                                    .putBoolean(KEY_AUTOMATIC, automatic)
+                                    .serialize();
   }
 
   @Override
@@ -271,7 +270,9 @@ public class MmsDownloadJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<MmsDownloadJob> {
     @Override
-    public @NonNull MmsDownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull MmsDownloadJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       return new MmsDownloadJob(parameters,
                                 data.getLong(KEY_MESSAGE_ID),
                                 data.getLong(KEY_THREAD_ID),

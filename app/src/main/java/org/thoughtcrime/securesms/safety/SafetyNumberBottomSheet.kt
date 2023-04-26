@@ -134,9 +134,9 @@ object SafetyNumberBottomSheet {
 
   private fun getDestinationFromRecord(messageRecord: MessageRecord): List<ContactSearchKey.RecipientSearchKey> {
     val key = if ((messageRecord as? MmsMessageRecord)?.storyType?.isStory == true) {
-      ContactSearchKey.RecipientSearchKey(messageRecord.recipient.id, true)
+      ContactSearchKey.RecipientSearchKey(messageRecord.toRecipient.id, true)
     } else {
-      ContactSearchKey.RecipientSearchKey(messageRecord.recipient.id, false)
+      ContactSearchKey.RecipientSearchKey(messageRecord.toRecipient.id, false)
     }
 
     return listOf(key)

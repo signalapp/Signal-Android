@@ -39,7 +39,8 @@ public abstract class DisplayRecord {
 
   protected final long type;
 
-  private final Recipient  recipient;
+  private final Recipient  fromRecipient;
+  private final Recipient  toRecipient;
   private final long       dateSent;
   private final long       dateReceived;
   private final long       threadId;
@@ -49,12 +50,13 @@ public abstract class DisplayRecord {
   private final int        readReceiptCount;
   private final int        viewReceiptCount;
 
-  DisplayRecord(String body, Recipient recipient, long dateSent,
+  DisplayRecord(String body, Recipient fromRecipient, Recipient toRecipient, long dateSent,
                 long dateReceived, long threadId, int deliveryStatus, int deliveryReceiptCount,
                 long type, int readReceiptCount, int viewReceiptCount)
   {
     this.threadId             = threadId;
-    this.recipient            = recipient;
+    this.fromRecipient        = fromRecipient;
+    this.toRecipient          = toRecipient;
     this.dateSent             = dateSent;
     this.dateReceived         = dateReceived;
     this.type                 = type;
@@ -97,8 +99,12 @@ public abstract class DisplayRecord {
 
   public abstract SpannableString getDisplayBody(@NonNull Context context);
 
-  public Recipient getRecipient() {
-    return recipient.live().get();
+  public Recipient getFromRecipient() {
+    return fromRecipient.live().get();
+  }
+
+  public Recipient getToRecipient() {
+    return toRecipient.live().get();
   }
 
   public long getDateSent() {

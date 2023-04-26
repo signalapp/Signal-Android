@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
@@ -92,7 +92,7 @@ public class MarkReadReceiverTest {
         return;
       }
 
-      Data data = job.serialize();
+      JsonJobData data = JsonJobData.deserialize(job.serialize());
 
       long   threadId    = data.getLong("thread");
       String recipientId = data.getString("recipient");

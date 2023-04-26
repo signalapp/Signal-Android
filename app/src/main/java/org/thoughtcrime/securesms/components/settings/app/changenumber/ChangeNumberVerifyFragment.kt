@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNum
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.getViewModel
 import org.thoughtcrime.securesms.registration.RegistrationSessionProcessor
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 

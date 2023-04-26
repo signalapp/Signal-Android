@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 import org.thoughtcrime.securesms.jobs.FailingJob;
 import org.thoughtcrime.securesms.jobs.SenderKeyDistributionSendJob;
@@ -30,10 +30,10 @@ public class SenderKeyDistributionSendJobRecipientMigrationTest {
     // GIVEN
     JobMigration.JobData jobData = new JobMigration.JobData(SenderKeyDistributionSendJob.KEY,
                                                             "asdf",
-                                                            new Data.Builder()
+                                                            new JsonJobData.Builder()
                                                                     .putString("recipient_id", RecipientId.from(1).serialize())
                                                                     .putBlobAsString("group_id", GROUP_ID.getDecodedId())
-                                                                    .build());
+                                                                    .serialize());
 
     GroupRecord mockGroup = mock(GroupRecord.class);
     when(mockGroup.getRecipientId()).thenReturn(RecipientId.from(2));
@@ -41,10 +41,11 @@ public class SenderKeyDistributionSendJobRecipientMigrationTest {
 
     // WHEN
     JobMigration.JobData result = testSubject.migrate(jobData);
+    JsonJobData          data   = JsonJobData.deserialize(result.getData());
 
     // THEN
-    assertEquals(RecipientId.from(1).serialize(), result.getData().getString("recipient_id"));
-    assertEquals(RecipientId.from(2).serialize(), result.getData().getString("thread_recipient_id"));
+    assertEquals(RecipientId.from(1).serialize(), data.getString("recipient_id"));
+    assertEquals(RecipientId.from(2).serialize(), data.getString("thread_recipient_id"));
   }
 
   @Test
@@ -52,10 +53,10 @@ public class SenderKeyDistributionSendJobRecipientMigrationTest {
     // GIVEN
     JobMigration.JobData jobData = new JobMigration.JobData(SenderKeyDistributionSendJob.KEY,
                                                             "asdf",
-                                                            new Data.Builder()
+                                                            new JsonJobData.Builder()
                                                                 .putString("recipient_id", RecipientId.from(1).serialize())
                                                                 .putBlobAsString("group_id", GROUP_ID.getDecodedId())
-                                                                .build());
+                                                                .serialize());
 
     // WHEN
     JobMigration.JobData result = testSubject.migrate(jobData);
@@ -69,9 +70,9 @@ public class SenderKeyDistributionSendJobRecipientMigrationTest {
     // GIVEN
     JobMigration.JobData jobData = new JobMigration.JobData(SenderKeyDistributionSendJob.KEY,
                                                             "asdf",
-                                                            new Data.Builder()
+                                                            new JsonJobData.Builder()
                                                                 .putString("recipient_id", RecipientId.from(1).serialize())
-                                                                .build());
+                                                                .serialize());
 
     // WHEN
     JobMigration.JobData result = testSubject.migrate(jobData);

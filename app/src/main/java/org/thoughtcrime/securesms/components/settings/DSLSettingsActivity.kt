@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components.settings
 
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
-import androidx.annotation.Discouraged
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
@@ -11,7 +10,10 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 
-@Discouraged("The DSL API can be completely replaced by compose. See ComposeFragment or ComposeBottomSheetFragment for an alternative to this API")
+/**
+ * The DSL API can be completely replaced by compose.
+ * See ComposeFragment or ComposeBottomSheetFragment for an alternative to this API"
+ */
 open class DSLSettingsActivity : PassphraseRequiredActivity() {
 
   protected open val dynamicTheme: DynamicTheme = DynamicNoActionBarTheme()

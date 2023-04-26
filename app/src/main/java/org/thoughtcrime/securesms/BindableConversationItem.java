@@ -109,13 +109,11 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onActivatePaymentsClicked();
     void onSendPaymentClicked(@NonNull RecipientId recipientId);
     void onScheduledIndicatorClicked(@NonNull View view, @NonNull MessageRecord messageRecord);
-
     /** @return true if handled, false if you want to let the normal url handling continue */
     boolean onUrlClicked(@NonNull String url);
-
     void onViewGiftBadgeClicked(@NonNull MessageRecord messageRecord);
     void onGiftBadgeRevealed(@NonNull MessageRecord messageRecord);
-
     void goToMediaPreview(ConversationItem parent, View sharedElement, MediaIntentFactory.MediaPreviewArgs args);
+    void onEditedIndicatorClicked(@NonNull MessageRecord messageRecord);
   }
 }

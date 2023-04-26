@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="2dp"
+    android:background="@drawable/selectable_list_item_background"
+    android:minHeight="60dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/call_link_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:background="@color/signal_colorSecondaryContainer"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
+        app:srcCompat="@drawable/symbol_link_24"
+        app:tint="@color/signal_colorOnPrimaryContainer" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/call_link_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="start|center_vertical"
+        android:maxLines="2"
+        android:text="@string/CreateCallLink__create_a_call_link"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        app:layout_constraintBottom_toTopOf="@+id/call_link_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/call_link_icon"
+        app:layout_constraintTop_toTopOf="@+id/call_link_icon" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/call_link_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawablePadding="6dp"
+        android:ellipsize="end"
+        android:gravity="start|center_vertical"
+        android:maxLines="1"
+        android:text="@string/CreateCallLink__share_a_link_for"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintBottom_toBottomOf="@+id/call_link_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/call_link_icon"
+        app:layout_constraintTop_toBottomOf="@+id/call_link_title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

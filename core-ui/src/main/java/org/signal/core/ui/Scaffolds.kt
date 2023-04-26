@@ -11,12 +11,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.theme.SignalTheme
@@ -32,6 +34,8 @@ object Scaffolds {
     navigationContentDescription: String? = null,
     content: @Composable (PaddingValues) -> Unit
   ) {
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+
     Scaffold(
       topBar = {
         TopAppBar(
@@ -51,10 +55,14 @@ object Scaffolds {
                 contentDescription = navigationContentDescription
               )
             }
-          }
+          },
+          scrollBehavior = scrollBehavior,
+          colors = TopAppBarDefaults.smallTopAppBarColors(
+            scrolledContainerColor = SignalTheme.colors.colorSurface2
+          )
         )
       },
-      modifier = modifier,
+      modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
       content = content
     )
   }
@@ -71,7 +79,9 @@ private fun SettingsScaffoldPreview() {
     ) { paddingValues ->
       Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier.padding(paddingValues).fillMaxSize()
+        modifier = Modifier
+          .padding(paddingValues)
+          .fillMaxSize()
       ) {
         Text("Content")
       }

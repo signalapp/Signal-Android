@@ -15,6 +15,7 @@
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
     <string name="yes">Kyllä</string>
     <string name="no">Ei</string>
@@ -168,6 +169,10 @@
     <string name="BucketedThreadMedia_Medium">Keskikokoinen</string>
     <string name="BucketedThreadMedia_Small">Pieni</string>
 
+    <!-- CameraFragment -->
+    <!-- Toasted when user device does not support video recording -->
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Laitteesi ei tue videon tallennusta</string>
+
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Ota kuva napauttamalla tai video painamalla pitkään</string>
     <string name="CameraXFragment_capture_description">Ota kuva</string>
@@ -296,9 +301,13 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Kuvaa ei voi ladata. Sinun on lähetettävä se uudelleen.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Videota ei voi ladata. Sinun on lähetettävä se uudelleen.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
+    <string name="ConversationItem_edited_timestamp_footer">muokattu %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Lisää liite</string>
+    <!-- Accessibility text associated with image button to send an edited message. -->
+    <string name="ConversationActivity_send_edit">Lähetä muokkaus</string>
     <string name="ConversationActivity_select_contact_info">Valitse yhteystieto</string>
     <string name="ConversationActivity_compose_message">Kirjoita viesti</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Virhe liitteen lisäämisessä</string>
@@ -306,6 +315,13 @@
     <string name="ConversationActivity_message_is_empty_exclamation">Viesti on tyhjä!</string>
     <string name="ConversationActivity_group_members">Ryhmän jäsenet</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">Aloita ryhmäpuhelu napauttamalla tästä</string>
+    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
+    <string name="ConversationActivity_edit_sms_message_error">Tekstiviestejä ei voi muokata</string>
+    <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
+    <plurals name="ConversationActivity_edit_message_too_old">
+        <item quantity="one">Muokkauksia voidaan tehdä vain %1$d tunnin kuluessa tämän viestin lähettämisestä.</item>
+        <item quantity="other">Muokkauksia voidaan tehdä vain %1$d tunnin kuluessa tämän viestin lähettämisestä.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Virheellinen vastaanottaja!</string>
     <string name="ConversationActivity_added_to_home_screen">Lisätty kotinäytölle</string>
@@ -383,6 +399,15 @@
     <string name="ConversationActivity__invite_to_signal">Kutsu Signaliin</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Saat pian uuden muistutuksen.</string>
+
+    <!-- Title for dialog shown when first sending formatted text -->
+    <string name="SendingFormattingTextDialog_title">Muotoillun tekstin lähettäminen</string>
+    <!-- Message for dialog shown when first sending formatted text -->
+    <string name="SendingFormattingTextDialog_message">Jotkut henkilöt saattavat käyttää Signal-versiota, joka ei tue muotoiltua tekstiä. He eivät voi nähdä viestiisi tekemiäsi muotoilumuutoksia.</string>
+    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
+    <string name="SendingFormattingTextDialog_send_anyway_button">Lähetä silti</string>
+    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
+    <string name="SendingFormattingTextDialog_cancel_send_button">Peruuta</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -481,42 +506,21 @@
         <item quantity="other">%1$d keskustelua siirretty Saapuneet-kansioon</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Luettu</item>
-        <item quantity="other">Luettu</item>
+        <item quantity="one">Luetuksi</item>
+        <item quantity="other">Luetuiksi</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Lukematon</item>
-        <item quantity="other">Lukematon</item>
+        <item quantity="one">Lukemattomaksi</item>
+        <item quantity="other">Lukemattomiksi</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">Kiinnitä</item>
-        <item quantity="other">Kiinnitä</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">Irrota</item>
-        <item quantity="other">Irrota</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Mykistä</item>
-        <item quantity="other">Mykistä</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Poista mykistys</item>
-        <item quantity="other">Poista mykistys</item>
-    </plurals>
+    <string name="ConversationListFragment_pin">Kiinnitä</string>
+    <string name="ConversationListFragment_unpin">Irrota</string>
+    <string name="ConversationListFragment_mute">Mykistä</string>
+    <string name="ConversationListFragment_unmute">Poista mykist.</string>
     <string name="ConversationListFragment_select">Valitse</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Arkistoi</item>
-        <item quantity="other">Arkistoi</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Pal. arkistosta</item>
-        <item quantity="other">Pal. arkistosta</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Poista</item>
-        <item quantity="other">Poista</item>
-    </plurals>
+    <string name="ConversationListFragment_archive">Arkistoi</string>
+    <string name="ConversationListFragment_unarchive">Kumoa arkist.</string>
+    <string name="ConversationListFragment_delete">Poista</string>
     <string name="ConversationListFragment_select_all">Valitse kaikki</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d valittu</item>
@@ -1082,6 +1086,8 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Nauhoita ääniviesti napauttamalla pitkään, lähetä päästämällä irti</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal ei enää tue tekstiviestejä.</string>
+    <!-- When editing a message, label shown above the text input field in the composer -->
+    <string name="InputPanel_edit_message">Muokkaa viestiä</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Jaa</string>
@@ -1490,6 +1496,8 @@
     <string name="MessageRequestBottomView_delete">Poista</string>
     <string name="MessageRequestBottomView_block">Estä</string>
     <string name="MessageRequestBottomView_unblock">Poista esto</string>
+    <!-- Text explaining a message request from someone you\'ve removed before -->
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Sallitaanko henkilön %1$s lähettää sinulle viestejä ja nähdä nimesi ja kuvasi? Olet aiemmin poistanut tämän henkilön.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Sallitaanko henkilön %1$s lähettää sinulle viestejä ja nähdä nimesi ja profiilikuvasi? Hän ei tiedä, että olet nähnyt hänen viestinsä ennen hyväksymistäsi.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Sallitaanko henkilön %1$s lähettää sinulle viestejä ja nähdä nimesi ja profiilikuvasi? Et saa viestejä, ennen kuin poistat eston.</string>
@@ -1735,20 +1743,31 @@
         <item quantity="other">%1$s, %2$s ja %3$d muuta ovat tässä puhelussa</item>
     </plurals>
 
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__flip">Käännä</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__speaker">Kaiutin</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__camera">Kamera</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Poista mykistys</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Mykistä</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__ring">Soita</string>
-    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <!-- Toggle content description for toggling camera direction  -->
+    <string name="WebRtcCallView__toggle_camera_direction">Kameran suunnan vaihto</string>
+    <!-- Toggle content description for toggling audio output  -->
+    <string name="WebRtcCallView__toggle_speaker">Kaiutin käyttöön / pois käytöstä</string>
+    <!-- Toggle content description for toggling camera state  -->
+    <string name="WebRtcCallView__toggle_camera">Kamera käyttöön / pois käytöstä</string>
+    <!-- Toggle content description for toggling mute state  -->
+    <string name="WebRtcCallView__toggle_mute">Mykistys käyttöön / pois käytöstä</string>
+    <!-- Toggle content description for toggling group ring state  -->
+    <string name="WebRtcCallView__toggle_ring">Soittoääni käyttöön / pois käytöstä</string>
+    <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Lopeta puhelu</string>
+
+    <!-- Error message when the developer added a button in the wrong place. -->
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Tapahtui käyttöliittymävirhe. Ilmoita tästä virheestä kehittäjille.</string>
+    <!-- Error message when the user is trying to change audio outputs but none are present. -->
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Kelvollista äänen sisään- ja ulostuloa ei löytynyt.</string>
+    <!-- A text description of the bluetooth icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">Bluetooth-laitetta esittävä kuvake.</string>
+    <!-- A text description of the headset icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">Langallisia kuulokkeita esittävä kuvake.</string>
+    <!-- A text description of the speaker icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">Kaiutinpuhelinta esittävä kuvake.</string>
+    <!-- A text description of the earpiece icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Laitteen kuuloketta esittävä kuvake.</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1786,7 +1805,13 @@
     <string name="RegistrationActivity_invalid_number">Virheellinen numero</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Antamasi puhelinnumero (%1$s) on virheellinen.
     </string>
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Vahvistuskoodin vastaanottaja:</string>
+
+    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Onko alla oleva puhelinnumero oikea?</string>
+    <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
+    <string name="RegistrationActivity_additional_verification_required">Lisävahvistus vaaditaan</string>
+    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Vahvistuskoodi lähetetään tähän numeroon. Operaattori saattaa veloittaa viestistä.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Saat puhelun, jolla voit vahvistaa tämän puhelinnumeron.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Onko yllä oleva puhelinnumero oikea?</string>
     <string name="RegistrationActivity_edit_number">Muokkaa numeroa</string>
@@ -1816,11 +1841,15 @@
         <item quantity="other">Vielä %1$d vaihetta virheenkorjauslokin lähettämiseen.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Meidän on varmistettava, että olet ihminen.</string>
+    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
+    <string name="RegistrationActivity_external_service_error">Signal ei voinut lähettää tekstiviestikoodia ulkoisen virheen takia.</string>
     <string name="RegistrationActivity_next">Seuraava</string>
     <string name="RegistrationActivity_continue">Jatka</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Yksityisyys aina mukana.\nOle itsesi jokaisessa viestissä.</string>
-    <string name="RegistrationActivity_enter_your_phone_number">Syötä puhelinnumerosi</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Saat vahvistuskoodin.\nMatkapuhelinoperaattorisi saattaa veloittaa palvelusta.</string>
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">Puhelinnumero</string>
+    <!-- Subtitle of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aloita syöttämällä puhelinnumerosi.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Syötä koodi, jonka lähetimme numeroon %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Varmista että puhelimesi on matkapuhelinverkossa, jotta tekstiviesti tai puhelu voidaan vastaanottaa.</string>
 
@@ -1986,6 +2015,8 @@
     <string name="ThreadRecord_message_could_not_be_processed">Viestin käsittely epäonnistui</string>
     <string name="ThreadRecord_delivery_issue">Ongelma viestin toimituksessa</string>
     <string name="ThreadRecord_message_request">Viestipyyntö</string>
+    <!-- Thread preview for a recipient that has been hidden -->
+    <string name="ThreadRecord_hidden_recipient">Olet piilottanut tämän henkilön. Lähetä hänelle uusi viesti, jos haluat lisätä hänet takaisin luetteloosi.</string>
     <string name="ThreadRecord_photo">Kuva</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Ääniviesti</string>
@@ -2118,13 +2149,17 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Virhe poistettaessa viestiä, viesti voi edelleen olla olemassa</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Lue lisää</b></string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uutta viestiä %2$d keskustelussa</string>
     <string name="MessageNotifier_most_recent_from_s">Uusin lähettäjältä: %1$s</string>
     <string name="MessageNotifier_locked_message">Lukittu viesti</string>
     <string name="MessageNotifier_message_delivery_failed">Viestin toimitus epäonnistui.</string>
+    <!-- Shown in a notification when a story the user tries to send fails to be sent -->
+    <string name="MessageNotifier_story_delivery_failed">Tarinan lähettäminen epäonnistui</string>
+    <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
+    <string name="MessageNotifier_group_story_title">Sinulta ryhmälle %1$s</string>
     <string name="MessageNotifier_failed_to_deliver_message">Viestin lähetys ei onnistunut.</string>
     <string name="MessageNotifier_error_delivering_message">Virhe viestiä toimitettaessa.</string>
     <string name="MessageNotifier_message_delivery_paused">Viestin toimitus keskeytetty.</string>
@@ -2147,7 +2182,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Lähetti reaktion %1$s ääniviestiisi.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Lähetti reaktion %1$s kerran katsottavaan mediaasi.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Lähetti reaktion %1$s maksuusi.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Lähetti reaktion %1$s tarraasi.</string>
     <string name="MessageNotifier_this_message_was_deleted">Viesti poistettiin.</string>
 
@@ -2248,10 +2283,18 @@
     <string name="WebRtcCallScreen__answer_without_video">Vastaa ilman videota</string>
 
     <!-- WebRtcAudioOutputToggle -->
+    <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Toistolaite</string>
+    <!-- Audio output option referring to the earpiece built into the phone -->
     <string name="WebRtcAudioOutputToggle__phone_earpiece">Puhelimen kuuloke</string>
+    <!-- Audio output option referring to the louder speaker built into the phone -->
     <string name="WebRtcAudioOutputToggle__speaker">Kaiutin</string>
+    <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
+    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headset">Langalliset kuulokkeet</string>
+    <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
+    <string name="WebRtcAudioOutputToggle__wired_headset_usb">Langalliset kuulokkeet (USB)</string>
 
     <string name="WebRtcCallControls_answer_call_description">Vastaa puheluun</string>
     <string name="WebRtcCallControls_reject_call_description">Hylkää puhelu</string>
@@ -2264,6 +2307,12 @@
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__invite_to_signal">Kutsu Signaliin</string>
     <string name="contact_selection_activity__new_group">Uusi ryhmä</string>
+    <!-- Row item title for refreshing contacts -->
+    <string name="contact_selection_activity__refresh_contacts">Päivitä yhteystiedot</string>
+    <!-- Row item description for refreshing contacts -->
+    <string name="contact_selection_activity__missing_someone">Puuttuuko joku? Kokeile päivittää</string>
+    <!-- Row header title for more section -->
+    <string name="contact_selection_activity__more">Lisää</string>
 
     <!-- contact_filter_toolbar -->
     <string name="contact_filter_toolbar__clear_entered_text_description">Tyhjennä syötetty teksti</string>
@@ -2363,7 +2412,8 @@
     <string name="ConversationUpdateItem_send_payment">Lähetä maksu</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">Aktivoi maksut</string>
-
+    <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Olet poistanut tämän henkilön. Jos lähetät hänelle viestin uudelleen, hänet lisätään takaisin luetteloosi.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Soita … keskeytä</string>
@@ -2620,6 +2670,8 @@
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Lähetys epäonnistui</string>
     <string name="message_details_recipient__new_safety_number">Uusi turvanumero</string>
+    <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
+    <string name="MessageDetails__view_edit_history">Näytä muokkaushistoria</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Luo salalause</string>
@@ -2900,6 +2952,12 @@
     <string name="preferences_success">Onnistui</string>
     <string name="preferences_failed_to_connect">Yhteyden muodostaminen epäonnistui</string>
     <string name="preferences_enter_proxy_address">Syötä välityspalvelimen osoite</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">Navigointipalkin koko</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">Normaali</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">Kompakti</string>
 
 
     <string name="configurable_single_select__customize_option">Mukautettu vaihtoehto</string>
@@ -3069,6 +3127,8 @@
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Huomautus</string>
+    <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
+    <string name="EditNoteFragment__content_description_save_note">Muistiinpanon tallentaminen</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Vahvista maksu</string>
@@ -3109,6 +3169,8 @@
     <!-- **************************************** -->
 
     <!-- contact_selection_list -->
+    <!-- Displayed in a row on the new call screen when searching by phone number. -->
+    <string name="contact_selection_list__new_call">Uusi puhelu numeroon…</string>
     <string name="contact_selection_list__unknown_contact">Uusi viesti henkilölle…</string>
     <string name="contact_selection_list__unknown_contact_block">Estä käyttäjä</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Lisää ryhmään</string>
@@ -3145,6 +3207,8 @@
     <string name="conversation_selection__menu_forward">Välitä</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Vastaa</string>
+    <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <string name="conversation_selection__menu_edit">Muokkaa</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Tallenna</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3419,7 +3483,9 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Siirrä tili uuteen Android-laitteeseen</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Syötä varmuuskopion salalause</string>
     <string name="RegistrationActivity_restore">Palauta</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Varmuuskopioita ei voida tuoda Signalin uudemmista versioista</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Varmuuskopiota ei voi tuoda uudemmasta Signal-versiosta</string>
+    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Virheellinen varmuuskopion salalause</string>
     <string name="RegistrationActivity_checking">Tarkistetaan…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d viestiä tähän mennessä…</string>
@@ -3580,6 +3646,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Siirto uudemmasta Signal-versiosta ei ole mahdollista</string>
+    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Siirretään tietoja</string>
@@ -3972,6 +4040,49 @@
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Kysymme harvemmin ajan kuluessa</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Vaadi Signal-tunnuslukua aina, kun tällä puhelinnumerolla rekisteröidytään Signaliin.</string>
     <string name="AccountSettingsFragment__change_phone_number">Vaihda puhelinnumero</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Tilitietosi</string>
+
+    <!-- ExportAccountDataFragment -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Tilitietosi</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Vie raportti Signal-tilisi tiedoista. Tämä raportti ei sisällä viestejä tai mediasisältöä. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Lue lisää</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Vie raportti</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Vie TXT-muodossa</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Helppolukuinen tekstitiedosto</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Vie JSON-muodossa</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Koneluettava tiedosto</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Peruuta</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">Raporttia ei voitu luoda</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">Tarkista verkkoyhteys ja yritä uudelleen.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Viedäänkö tiedot?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Jaa Signal-tilisi tiedot vain niiden henkilöiden ja sovellusten kanssa, joihin luotat.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Vie</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Luodaan raporttia…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Raportti luodaan vain viennin yhteydessä, eikä Signal tallenna sitä laitteellesi.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Voit vaihtaa Signaliin kytketyn puhelinnumeron toiseen. Toimintoa ei voi kumota.\n\nVarmista ensin, että uuteen numeroon voi vastaanottaa tekstiviestejä tai puheluja.</string>
@@ -4418,6 +4529,9 @@
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Vaihda kynän ja korostekynän välillä</string>
     <string name="ImageEditorHud__toggle_between_text_styles">Vaihda tekstityylien välillä</string>
 
+    <!-- Header for section of featured stickers (location/time stickers) -->
+    <string name="ScribbleStickersFragment__featured_stickers">Esittelyssä</string>
+
     <string name="MediaCountIndicatorButton__send">Lähetä</string>
 
     <string name="MediaReviewSelectedItem__tap_to_remove">Napauta poistaaksesi</string>
@@ -4818,6 +4932,8 @@
 
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">Keskustelut</string>
+    <!-- Label for Calls tab in home app screen -->
+    <string name="ConversationListTabs__calls">Puhelut</string>
     <!-- Label for Stories tab in home app screen -->
     <string name="ConversationListTabs__stories">Tarinat</string>
     <!-- String for counts above 99 in conversation list tabs -->
@@ -5102,7 +5218,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Kopioitu leikepöydälle</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">… Näytä lisää</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Lähetetään vastaus…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -5659,12 +5775,20 @@
     <string name="TextFormatting_strikethrough">Yliviivaus</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Suhteuttamaton</string>
+    <!-- Popup menu label for applying spoiler style -->
+    <string name="TextFormatting_spoiler">Sumennus</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Jatka</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">Määritä Signal-käyttäjänimesi</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Käyttäjänimi liitetään numerosarjaan, eikä sitä näytetä profiilissasi</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Jokaisella käyttäjänimellä on yksilöllinen QR-koodi ja linkki, jotka voit jakaa ystävillesi, jotta he voivat aloittaa keskustelun kanssasi</string>
+    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Poista puhelinnumerohaku käytöstä kohdassa Asetukset &gt; Yksityisyys &gt; Puhelinnumero &gt; Kuka voi löytää numeroni, jos haluat käyttää käyttäjänimeä ensisijaisena tapana, jonka avulla muut voivat ottaa sinuun yhteyttä</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5681,6 +5805,156 @@
     <string name="TimeDurationPickerDialog_positive_button">Aseta</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
     <string name="TimeDurationPickerDialog_minimum_duration_warning">Vähimmäisaika ennen näytön lukitusta on 1 minuutti.</string>
+
+    <!-- Call Log -->
+    <!-- Displayed below the user\'s name in row items on the call log. First placeholder is the call status, second is when it occurred -->
+    <string name="CallLogAdapter__s_dot_s">%1$s · %2$s</string>
+    <!-- Displayed for incoming calls -->
+    <string name="CallLogAdapter__incoming">Saapuva</string>
+    <!-- Displayed for outgoing calls -->
+    <string name="CallLogAdapter__outgoing">Lähtevä</string>
+    <!-- Displayed for missed calls -->
+    <string name="CallLogAdapter__missed">Vastaamaton</string>
+    <!-- Displayed on Group Call button if user is not in the call -->
+    <string name="CallLogAdapter__join">Liity</string>
+    <!-- Displayed on Group Call button if user is in the call -->
+    <string name="CallLogAdapter__return">Palaa</string>
+    <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
+    <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
+
+    <!-- Call Log context menu -->
+    <!-- Displayed as a context menu item to start a video call -->
+    <string name="CallContextMenu__video_call">Videopuhelu</string>
+    <!-- Displayed as a context menu item to join an ongoing group call -->
+    <string name="CallContextMenu__join_call">Liity puheluun</string>
+    <!-- Displayed as a context menu item to return to active call -->
+    <string name="CallContextMenu__return_to_call">Palaa puheluun</string>
+    <!-- Displayed as a context menu item to start an audio call -->
+    <string name="CallContextMenu__audio_call">Äänipuhelu</string>
+    <!-- Displayed as a context menu item to go to chat -->
+    <string name="CallContextMenu__go_to_chat">Siirry keskusteluun</string>
+    <!-- Displayed as a context menu item to see call info -->
+    <string name="CallContextMenu__info">Tietoja</string>
+    <!-- Displayed as a context menu item to select multiple calls -->
+    <string name="CallContextMenu__select">Valitse</string>
+    <!-- Displayed as a context menu item to delete this call -->
+    <string name="CallContextMenu__delete">Poista</string>
+
+    <!-- Call Log Fragment -->
+    <!-- Action bar menu item to only display missed calls -->
+    <string name="CallLogFragment__filter_missed_calls">Suodata vastaamattomat puhelut</string>
+    <!-- Action bar menu item to clear missed call filter -->
+    <string name="CallLogFragment__clear_filter">Tyhjennä suodatin</string>
+    <!-- Action bar menu item to open settings -->
+    <string name="CallLogFragment__settings">Asetukset</string>
+    <!-- Action bar menu item to open notification profile settings -->
+    <string name="CallLogFragment__notification_profile">Ilmoitusprofiili</string>
+    <!-- Call log new call content description -->
+    <string name="CallLogFragment__start_a_new_call">Aloita uusi puhelu</string>
+    <!-- Filter pull text when pulled -->
+    <string name="CallLogFragment__filtered_by_missed">Suodatusperuste: Vastaamattomat</string>
+    <!-- Bottom bar option to select all call entries -->
+    <string name="CallLogFragment__select_all">Valitse kaikki</string>
+    <!-- Bottom bar option to delete all selected call entries -->
+    <string name="CallLogFragment__delete">Poista</string>
+    <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
+  <!-- Removed by excludeNonTranslatables <plurals name="CallLogFragment__delete_d_calls" translatable="false">
+        <item quantity="one">Delete %1$d call?</item>
+        <item quantity="other">Delete %1$d calls?</item>
+    </plurals> -->
+    <!-- Positive action on multi-delete protection dialog -->
+    <string name="CallLogFragment__delete_for_me">Poista minulta</string>
+    <!-- Snackbar label after deleting call logs -->
+    <plurals name="CallLogFragment__d_calls_deleted">
+        <item quantity="one">%1$d puhelu poistettu</item>
+        <item quantity="other">%1$d puhelua poistettu</item>
+    </plurals>
+    <!-- Undo action for deletion snackbar -->
+    <string name="CallLogFragment__undo">Kumoa</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__no_calls">Ei puheluita.</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__get_started_by_calling_a_friend">Aloita soittamalla kaverillesi.</string>
+
+    <!-- New call activity -->
+    <!-- Activity title in title bar -->
+    <string name="NewCallActivity__new_call">Uusi puhelu</string>
+
+    <!-- Call state update popups -->
+    <!-- Displayed when the user enables group call ringing -->
+    <string name="CallStateUpdatePopupWindow__ringing_on">Soittoääni päällä</string>
+    <!-- Displayed when the user disables group call ringing -->
+    <string name="CallStateUpdatePopupWindow__ringing_off">Soittoääni pois päältä</string>
+    <!-- Displayed when the user cannot enable group call ringing -->
+    <string name="CallStateUpdatePopupWindow__group_is_too_large">Ryhmä on liian suuri soittaaksesi osallistujille</string>
+    <!-- Displayed when the user turns on their mic -->
+    <string name="CallStateUpdatePopupWindow__mic_on">Mikrofoni päällä</string>
+    <!-- Displayed when the user turns off their mic -->
+    <string name="CallStateUpdatePopupWindow__mic_off">Mikrofoni pois päältä</string>
+
+    <!-- Accessibility label describing the capture button on the camera screen -->
+    <string name="CameraControls_capture_button_accessibility_label">Ota kuva -painike</string>
+    <!-- Accessibility label describing the continue button on the camera screen -->
+    <string name="CameraControls_continue_button_accessibility_label">Jatka-painike</string>
+
+    <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">Ryhmäpuhelu</string>
+    <!-- Missed group call in call info -->
+    <string name="CallPreference__missed_group_call">Vastaamaton ryhmäpuhelu</string>
+    <!-- Incoming group call in call info -->
+    <string name="CallPreference__incoming_group_call">Saapuva ryhmäpuhelu</string>
+    <!-- Outgoing group call in call info -->
+    <string name="CallPreference__outgoing_group_call">Lähtevä ryhmäpuhelu</string>
+
+    <!-- CreateCallLink -->
+    <!-- Call link creation item title on calls tab -->
+    <string name="CreateCallLink__create_a_call_link">Luo puhelulinkki</string>
+    <!-- Call link creation item description on calls tab -->
+    <string name="CreateCallLink__share_a_link_for">Signal-puhelun linkin jakaminen</string>
+
+    <!-- CreateCallLinkBottomSheetDialogFragment -->
+    <!-- Fragment title -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Luo puhelulinkki</string>
+    <!-- Displayed as a default name for the signal call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal-puhelu</string>
+    <!-- Displayed on a small button to allow user to instantly join call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__join">Liity</string>
+    <!-- Option to open a full screen dialog to enter a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Lisää puhelun nimi</string>
+    <!-- Toggle to require approval for all members before joining -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Kaikkien jäsenten hyväksyntä</string>
+    <!-- Row label to share the link via Signal -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Jaa linkki Signalissa</string>
+    <!-- Row label to copy the link to the clipboard -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">Kopioi linkki</string>
+    <!-- Row label to share the link with the external share sheet -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link">Jaa linkki</string>
+    <!-- Button text to dismiss the sheet and add it as an upcoming call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__done">Valmis</string>
+    <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Puhelulinkin jakaminen ei onnistu.</string>
+    <!-- Displayed when we copy the call link to the clipboard -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Kopioitu leikepöydälle</string>
+
+    <!-- EditCallLinkNameDialogFragment -->
+    <!-- App bar title for editing a call name -->
+    <string name="EditCallLinkNameDialogFragment__edit_call_name">Muokkaa puhelun nimeä</string>
+    <!-- Text on button to confirm edit -->
+    <string name="EditCallLinkNameDialogFragment__save">Tallenna</string>
+    <!-- Placeholder text on input field when editing call name -->
+    <string name="EditCallLinkNameDialogFragment__call_name">Puhelun nimi</string>
+
+    <!-- ChooseNavigationBarStyleFragment -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigointipalkin koko</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">Normaali</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">Kompakti</string>
+
+    <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
+    <string name="EditMessageHistoryDialog_title">Muokkaushistoria</string>
 
     <!-- EOF -->
 </resources>

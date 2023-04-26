@@ -6,6 +6,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.visible
 
@@ -119,8 +119,8 @@ class MyStoriesFragment : DSLSettingsFragment(
         }
       }
     } else {
-      val recipient = if (it.distributionStory.messageRecord.recipient.isGroup) {
-        it.distributionStory.messageRecord.recipient
+      val recipient = if (it.distributionStory.messageRecord.toRecipient.isGroup) {
+        it.distributionStory.messageRecord.toRecipient
       } else {
         Recipient.self()
       }

@@ -24,13 +24,16 @@ public final class RegistrationLockV2Dialog {
 
   private RegistrationLockV2Dialog() {}
 
-  public static void showEnableDialog(@NonNull Context context, @NonNull Runnable onSuccess) {
+  public static void showEnableDialog(@NonNull Context context, @NonNull Runnable onDismiss) {
       AlertDialog dialog = new MaterialAlertDialogBuilder(context)
           .setTitle(R.string.RegistrationLockV2Dialog_turn_on_registration_lock)
           .setView(R.layout.registration_lock_v2_dialog)
           .setMessage(R.string.RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again)
           .setNegativeButton(android.R.string.cancel, null)
           .setPositiveButton(R.string.RegistrationLockV2Dialog_turn_on, null)
+          .setOnDismissListener(d -> {
+            onDismiss.run();
+          })
           .create();
       dialog.setOnShowListener(d -> {
         ProgressBar progress       = Objects.requireNonNull(dialog.findViewById(R.id.reglockv2_dialog_progress));
@@ -54,8 +57,6 @@ public final class RegistrationLockV2Dialog {
 
             if (!success) {
               Toast.makeText(context, R.string.preferences_app_protection__failed_to_enable_registration_lock, Toast.LENGTH_LONG).show();
-            } else {
-              onSuccess.run();
             }
 
             dialog.dismiss();
@@ -66,12 +67,15 @@ public final class RegistrationLockV2Dialog {
     dialog.show();
   }
 
-  public static void showDisableDialog(@NonNull Context context, @NonNull Runnable onSuccess) {
+  public static void showDisableDialog(@NonNull Context context, @NonNull Runnable onDismiss) {
     AlertDialog dialog = new MaterialAlertDialogBuilder(context)
         .setTitle(R.string.RegistrationLockV2Dialog_turn_off_registration_lock)
         .setView(R.layout.registration_lock_v2_dialog)
         .setNegativeButton(android.R.string.cancel, null)
         .setPositiveButton(R.string.RegistrationLockV2Dialog_turn_off, null)
+        .setOnDismissListener(d -> {
+          onDismiss.run();
+        })
         .create();
     dialog.setOnShowListener(d -> {
       ProgressBar progress       = Objects.requireNonNull(dialog.findViewById(R.id.reglockv2_dialog_progress));
@@ -95,8 +99,6 @@ public final class RegistrationLockV2Dialog {
 
           if (!success) {
             Toast.makeText(context, R.string.preferences_app_protection__failed_to_disable_registration_lock, Toast.LENGTH_LONG).show();
-          } else {
-            onSuccess.run();
           }
 
           dialog.dismiss();

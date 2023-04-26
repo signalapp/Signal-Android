@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.notifications.profile
 
 import android.view.View
 import com.airbnb.lottie.SimpleColorFilter
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.materialswitch.MaterialSwitch
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
@@ -34,15 +34,17 @@ object NotificationProfilePreference {
 
   private class ViewHolder(itemView: View) : PreferenceViewHolder<Model>(itemView) {
 
-    private val switchWidget: SwitchMaterial = itemView.findViewById(R.id.switch_widget)
+    private val switchWidget: MaterialSwitch = itemView.findViewById(R.id.switch_widget)
 
     override fun bind(model: Model) {
       super.bind(model)
       itemView.setOnClickListener { model.onClick() }
+      switchWidget.setOnCheckedChangeListener(null)
       switchWidget.visible = model.showSwitch
       switchWidget.isEnabled = model.isEnabled
       switchWidget.isChecked = model.isOn
       iconView.background.colorFilter = SimpleColorFilter(model.color.colorInt())
+      switchWidget.setOnCheckedChangeListener { _, _ -> model.onClick() }
     }
   }
 }

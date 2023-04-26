@@ -19,6 +19,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
+import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.AttachmentTable;
@@ -111,6 +112,7 @@ public final class MultiShareSender {
       boolean         forceSms       = recipient.isForceSmsSelection() && sendType.usesSmsTransport();
       int             subscriptionId = sendType.getSimSubscriptionIdOr(-1);
       long            expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
+      List<Contact>   contacts       = multiShareArgs.getSharedContacts();
       boolean needsSplit = !sendType.usesSmsTransport() &&
                            message != null &&
                            message.length() > sendType.calculateCharacters(message).maxPrimaryMessageSize;
@@ -122,7 +124,8 @@ public final class MultiShareSender {
       boolean hasPushMedia = hasMmsMedia ||
                              multiShareArgs.getLinkPreview() != null ||
                              !mentions.isEmpty() ||
-                             needsSplit;
+                             needsSplit ||
+                             !contacts.isEmpty();
 
       MultiShareTimestampProvider sentTimestamp      = recipient.isDistributionList() ? distributionListSentTimestamps : MultiShareTimestampProvider.create();
       boolean                     canSendAsTextStory = recipientSearchKey.isStory() && multiShareArgs.isValidForTextStoryGeneration();
@@ -145,7 +148,8 @@ public final class MultiShareSender {
                                               sentTimestamp,
                                               canSendAsTextStory,
                                               storiesBatch,
-                                              generatedTextStoryBackgroundColor);
+                                              generatedTextStoryBackgroundColor,
+                                              contacts);
         results.add(new MultiShareSendResult(recipientSearchKey, MultiShareSendResult.Type.SUCCESS));
       } else if (recipientSearchKey.isStory()) {
         results.add(new MultiShareSendResult(recipientSearchKey, MultiShareSendResult.Type.INVALID_SHARE_TO_STORY));
@@ -191,7 +195,7 @@ public final class MultiShareSender {
   }
 
   public static @NonNull MessageSendType resolveTransportOption(@NonNull Context context, boolean forceSms) {
-    if (forceSms) {
+    if (forceSms && SignalStore.misc().getSmsExportPhase().allowSmsFeatures()) {
       return MessageSendType.getFirstForTransport(context, false, MessageSendType.TransportType.SMS);
     } else {
       return MessageSendType.SignalMessageSendType.INSTANCE;
@@ -213,7 +217,8 @@ public final class MultiShareSender {
                                                             @NonNull MultiShareTimestampProvider sentTimestamps,
                                                             boolean canSendAsTextStory,
                                                             @NonNull List<OutgoingMessage> storiesToBatchSend,
-                                                            @NonNull ChatColors generatedTextStoryBackgroundColor)
+                                                            @NonNull ChatColors generatedTextStoryBackgroundColor,
+                                                            @NonNull List<Contact> contacts)
   {
     String body = multiShareArgs.getDraftText();
     if (sendType.usesSignalTransport() && !forceSms && body != null) {
@@ -251,7 +256,8 @@ public final class MultiShareSender {
                                                               buildLinkPreviews(context, multiShareArgs.getLinkPreview()),
                                                               Collections.emptyList(),
                                                               false,
-                                                              multiShareArgs.getBodyRanges());
+                                                              multiShareArgs.getBodyRanges(),
+                                                              contacts);
 
         outgoingMessages.add(outgoingMessage);
       } else if (canSendAsTextStory) {
@@ -264,6 +270,8 @@ public final class MultiShareSender {
                                                         return expandToClips(context, (VideoSlide) slide).stream();
                                                       } else if (slide instanceof ImageSlide) {
                                                         return java.util.stream.Stream.of(ensureDefaultQuality(context, (ImageSlide) slide));
+                                                      } else if (slide instanceof StickerSlide) {
+                                                        return java.util.stream.Stream.empty();
                                                       } else {
                                                         return java.util.stream.Stream.of(slide);
                                                       }
@@ -288,7 +296,8 @@ public final class MultiShareSender {
                                                                 Collections.emptyList(),
                                                                 validatedMentions,
                                                                 false,
-                                                                multiShareArgs.getBodyRanges());
+                                                                multiShareArgs.getBodyRanges(),
+                                                                contacts);
 
           outgoingMessages.add(outgoingMessage);
         }
@@ -305,7 +314,8 @@ public final class MultiShareSender {
                                                             buildLinkPreviews(context, multiShareArgs.getLinkPreview()),
                                                             validatedMentions,
                                                             false,
-                                                            multiShareArgs.getBodyRanges());
+                                                            multiShareArgs.getBodyRanges(),
+                                                            contacts);
 
       outgoingMessages.add(outgoingMessage);
     }
@@ -348,7 +358,9 @@ public final class MultiShareSender {
           linkPreview.getDate(),
           linkPreview.getThumbnail().map(thumbnail ->
                                              thumbnail instanceof UriAttachment ? thumbnail
-                                                                                : new ImageSlide(context,
+                                                                                : thumbnail.getUri() == null
+                                                                                  ? null
+                                                                                  : new ImageSlide(context,
                                                                                                  thumbnail.getUri(),
                                                                                                  thumbnail.getContentType(),
                                                                                                  thumbnail.getSize(),

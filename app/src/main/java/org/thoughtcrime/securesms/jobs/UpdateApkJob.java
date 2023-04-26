@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.service.UpdateApkReadyListener;
@@ -53,8 +53,8 @@ public class UpdateApkJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return Data.EMPTY;
+  public @Nullable byte[] serialize() {
+    return null;
   }
 
   @Override
@@ -285,7 +285,7 @@ public class UpdateApkJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<UpdateApkJob> {
     @Override
-    public @NonNull UpdateApkJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull UpdateApkJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new UpdateApkJob(parameters);
     }
   }

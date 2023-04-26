@@ -39,18 +39,6 @@
 
         </action>
 
-        <action
-            android:id="@+id/action_avatarPickerFragment_to_avatarPhotoEditorFragment"
-            app:destination="@id/avatarPhotoEditorFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit">
-            <argument
-                android:name="photo_avatar"
-                app:argType="android.os.Bundle" />
-        </action>
-
         <argument
             android:name="group_id"
             app:argType="org.thoughtcrime.securesms.groups.ParcelableGroupId"
@@ -86,13 +74,13 @@
             app:nullable="true" />
     </fragment>
 
-    <fragment
-        android:id="@+id/avatarPhotoEditorFragment"
-        android:name="org.thoughtcrime.securesms.avatar.photo.PhotoEditorFragment"
+    <activity
+        android:id="@+id/avatarPhotoEditorActivity"
+        android:name="org.thoughtcrime.securesms.avatar.photo.PhotoEditorActivity"
         android:label="fragment_avatar_photo_editor">
         <argument
             android:name="photo_avatar"
             app:argType="android.os.Bundle" />
-    </fragment>
+    </activity>
 
 </navigation>

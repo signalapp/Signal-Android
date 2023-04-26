@@ -47,19 +47,19 @@ class ScheduledMessageManager(
     val delay = (oldestMessage.scheduledDate - System.currentTimeMillis()).coerceAtLeast(0)
     Log.i(TAG, "The next scheduled message needs to be sent in $delay ms.")
 
-    return Event(delay, oldestMessage.recipient.id, oldestMessage.threadId)
+    return Event(delay, oldestMessage.toRecipient.id, oldestMessage.threadId)
   }
 
   @WorkerThread
   override fun executeEvent(event: Event) {
     val scheduledMessagesToSend = messagesTable.getScheduledMessagesBefore(System.currentTimeMillis())
     for (record in scheduledMessagesToSend) {
-      val expiresIn = SignalDatabase.recipients.getExpiresInSeconds(record.recipient.id)
+      val expiresIn = SignalDatabase.recipients.getExpiresInSeconds(record.toRecipient.id)
       if (messagesTable.clearScheduledStatus(record.threadId, record.id, expiresIn.seconds.inWholeMilliseconds)) {
-        if (record.recipient.isPushGroup) {
-          PushGroupSendJob.enqueue(application, ApplicationDependencies.getJobManager(), record.id, record.recipient.id, emptySet(), true)
+        if (record.toRecipient.isPushGroup) {
+          PushGroupSendJob.enqueue(application, ApplicationDependencies.getJobManager(), record.id, record.toRecipient.id, emptySet(), true)
         } else {
-          IndividualSendJob.enqueue(application, ApplicationDependencies.getJobManager(), record.id, record.recipient, true)
+          IndividualSendJob.enqueue(application, ApplicationDependencies.getJobManager(), record.id, record.toRecipient, true)
         }
       } else {
         Log.i(TAG, "messageId=${record.id} was not a scheduled message, ignoring")

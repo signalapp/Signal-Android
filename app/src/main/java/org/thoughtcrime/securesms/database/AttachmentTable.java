@@ -37,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.signal.core.util.CursorUtil;
+import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.SqlUtil;
 import org.signal.core.util.StreamUtil;
@@ -89,7 +90,7 @@ import java.util.stream.Collectors;
 
 public class AttachmentTable extends DatabaseTable {
 
-  private static final String TAG = Log.tag(AttachmentTable.class);
+  public  static final String TAG = Log.tag(AttachmentTable.class);
 
   public  static final String TABLE_NAME             = "part";
   public  static final String ROW_ID                 = "_id";
@@ -101,7 +102,7 @@ public class AttachmentTable extends DatabaseTable {
           static final String CONTENT_LOCATION       = "cl";
   public  static final String DATA                   = "_data";
           static final String TRANSFER_STATE         = "pending_push";
-  private static final String TRANSFER_FILE          = "transfer_file";
+  public  static final String TRANSFER_FILE          = "transfer_file";
   public  static final String SIZE                   = "data_size";
           static final String FILE_NAME              = "file_name";
   public  static final String UNIQUE_ID              = "unique_id";
@@ -1482,6 +1483,20 @@ public class AttachmentTable extends DatabaseTable {
     }
 
     return EncryptedMediaDataSource.createFor(attachmentSecret, dataInfo.file, dataInfo.random, dataInfo.length);
+  }
+
+  public void duplicateAttachmentsForMessage(long destinationMessageId, long sourceMessageId, Collection<Long> excludedIds) {
+    SQLiteDatabaseExtensionsKt.withinTransaction(getWritableDatabase(), db -> {
+      db.execSQL("CREATE TEMPORARY TABLE tmp_part AS SELECT * FROM " + TABLE_NAME + " WHERE " + MMS_ID + " = ?", SqlUtil.buildArgs(sourceMessageId));
+      List<SqlUtil.Query> queries = SqlUtil.buildCollectionQuery(ROW_ID, excludedIds);
+      for (SqlUtil.Query query : queries) {
+        db.delete("tmp_part", query.getWhere(), query.getWhereArgs());
+      }
+      db.execSQL("UPDATE tmp_part SET " + ROW_ID + " = NULL, " + MMS_ID + " = ?", SqlUtil.buildArgs(destinationMessageId));
+      db.execSQL("INSERT INTO " + TABLE_NAME + " SELECT * FROM tmp_part");
+      db.execSQL("DROP TABLE tmp_part");
+      return 0;
+    });
   }
 
   @VisibleForTesting

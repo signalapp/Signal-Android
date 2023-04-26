@@ -5,16 +5,19 @@ import android.database.Cursor
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
+import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.IdentityRecord
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
@@ -36,6 +39,22 @@ class ConversationSettingsRepository(
   private val context: Context,
   private val groupManagementRepository: GroupManagementRepository = GroupManagementRepository(context)
 ) {
+
+  fun getCallEvents(callRowIds: LongArray): Single<List<Pair<CallTable.Call, MessageRecord>>> {
+    return if (callRowIds.isEmpty()) {
+      Single.just(emptyList())
+    } else {
+      Single.fromCallable {
+        val callMap = SignalDatabase.calls.getCallsByRowIds(callRowIds.toList())
+        val messageIds = callMap.values.mapNotNull { it.messageId }
+        SignalDatabase.messages.getMessages(messageIds).iterator().asSequence()
+          .filter { callMap.containsKey(it.id) }
+          .map { callMap[it.id]!! to it }
+          .sortedByDescending { it.first.timestamp }
+          .toList()
+      }
+    }
+  }
 
   @WorkerThread
   fun getThreadMedia(threadId: Long): Optional<Cursor> {

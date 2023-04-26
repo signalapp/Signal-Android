@@ -14,6 +14,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import org.signal.core.util.BreakIteratorCompat;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
+import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,6 +52,7 @@ public final class MultiShareArgs implements Parcelable {
   private final long                  expiresAt;
   private final boolean               isTextStory;
   private final BodyRangeList         bodyRanges;
+  private final List<Contact>         sharedContacts;
 
   private MultiShareArgs(@NonNull Builder builder) {
     contactSearchKeys = builder.contactSearchKeys;
@@ -66,6 +69,7 @@ public final class MultiShareArgs implements Parcelable {
     expiresAt         = builder.expiresAt;
     isTextStory       = builder.isTextStory;
     bodyRanges        = builder.bodyRanges;
+    sharedContacts    = builder.sharedContacts == null ? new ArrayList<>() : new ArrayList<>(builder.sharedContacts);
   }
 
   protected MultiShareArgs(Parcel in) {
@@ -104,6 +108,7 @@ public final class MultiShareArgs implements Parcelable {
       Log.w(TAG, "Invalid body range", e);
     }
     this.bodyRanges = bodyRanges;
+    sharedContacts  = in.createTypedArrayList(Contact.CREATOR);
   }
 
   public Set<ContactSearchKey> getContactSearchKeys() {
@@ -169,8 +174,12 @@ public final class MultiShareArgs implements Parcelable {
     return bodyRanges;
   }
 
+  public @NonNull List<Contact> getSharedContacts() {
+    return sharedContacts;
+  }
+
   public boolean isValidForStories() {
-    if (isViewOnce()) {
+    if (isViewOnce() || stickerLocator != null) {
       return false;
     }
 
@@ -269,6 +278,8 @@ public final class MultiShareArgs implements Parcelable {
     } else {
       ParcelUtil.writeByteArray(dest, null);
     }
+
+    dest.writeTypedList(sharedContacts);
   }
 
   public Builder buildUpon() {
@@ -288,7 +299,8 @@ public final class MultiShareArgs implements Parcelable {
                                            .withTimestamp(timestamp)
                                            .withExpiration(expiresAt)
                                            .asTextStory(isTextStory)
-                                           .withBodyRanges(bodyRanges);
+                                           .withBodyRanges(bodyRanges)
+                                           .withSharedContacts(sharedContacts);
   }
 
   private boolean requiresInterstitial() {
@@ -303,19 +315,20 @@ public final class MultiShareArgs implements Parcelable {
 
     private final Set<ContactSearchKey> contactSearchKeys;
 
-    private List<Media>    media;
-    private String         draftText;
-    private StickerLocator stickerLocator;
-    private boolean        borderless;
-    private Uri            dataUri;
-    private String         dataType;
-    private LinkPreview    linkPreview;
-    private boolean        viewOnce;
-    private List<Mention>  mentions;
-    private long           timestamp;
-    private long           expiresAt;
-    private boolean        isTextStory;
-    private BodyRangeList  bodyRanges;
+    private List<Media>         media;
+    private String              draftText;
+    private StickerLocator      stickerLocator;
+    private boolean             borderless;
+    private Uri                 dataUri;
+    private String              dataType;
+    private LinkPreview         linkPreview;
+    private boolean             viewOnce;
+    private List<Mention>       mentions;
+    private long                timestamp;
+    private long                expiresAt;
+    private boolean             isTextStory;
+    private BodyRangeList       bodyRanges;
+    private List<Contact>       sharedContacts;
 
     public Builder() {
       this(Collections.emptySet());
@@ -387,6 +400,11 @@ public final class MultiShareArgs implements Parcelable {
 
     public @NonNull Builder withBodyRanges(@Nullable BodyRangeList bodyRanges) {
       this.bodyRanges = bodyRanges;
+      return this;
+    }
+
+    public @NonNull Builder withSharedContacts(List<Contact> sharedContacts) {
+      this.sharedContacts = new ArrayList<>(sharedContacts);
       return this;
     }
 

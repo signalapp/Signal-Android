@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="16dp"
+    android:height="16dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+    <path
+        android:fillColor="@color/signal_light_colorOnSecondaryContainer"
+        android:pathData="M4.6 7.25V7.07l3.57 3.58H8c-1.88 0-3.4-1.52-3.4-3.4Z"/>
+    <path
+        android:fillColor="@color/signal_light_colorOnSecondaryContainer"
+        android:pathData="M8.42 11.85C8.71 11.84 9 11.8 9.26 11.73l1.03 1.04c-0.51 0.2-1.06 0.33-1.64 0.37v0.96h2.1c0.36 0 0.65 0.3 0.65 0.65 0 0.36-0.3 0.65-0.65 0.65h-5.5c-0.36 0-0.65-0.3-0.65-0.65 0-0.36 0.3-0.65 0.65-0.65h2.1v-0.96c-2.86-0.2-5.13-2.53-5.25-5.42V7.27 6.75c0-0.36 0.3-0.65 0.65-0.65 0.36 0 0.65 0.3 0.65 0.65v0.5 0.42c0.1 2.27 1.91 4.09 4.18 4.18H8h0.42Z"/>
+    <path
+        android:fillColor="@color/signal_light_colorOnSecondaryContainer"
+        android:pathData="M12.07 9.6L13 10.53c0.53-0.82 0.85-1.78 0.89-2.82V7.27 6.75c0-0.36-0.3-0.65-0.65-0.65-0.36 0-0.65 0.3-0.65 0.65v0.5 0.42c-0.03 0.7-0.22 1.35-0.53 1.92Z"/>
+    <path
+        android:fillColor="@color/signal_light_colorOnSecondaryContainer"
+        android:pathData="M10.07 7.6l1.04 1.03c0.19-0.42 0.29-0.89 0.29-1.38v-3.5c0-1.88-1.52-3.4-3.4-3.4-1.4 0-2.6 0.85-3.12 2.05l1.04 1.05C6.07 2.43 6.94 1.65 8 1.65c1.16 0 2.1 0.94 2.1 2.1v3.5c0 0.12-0.01 0.23-0.03 0.35Z"/>
+    <path
+        android:fillColor="@color/signal_light_colorOnSecondaryContainer"
+        android:pathData="M2.46 1.54c-0.25-0.25-0.67-0.25-0.92 0s-0.25 0.67 0 0.92l12 12c0.25 0.25 0.67 0.25 0.92 0s0.25-0.67 0-0.92l-12-12Z"/>
+</vector>

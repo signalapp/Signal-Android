@@ -247,6 +247,12 @@ class RecipientTableTest_getAndPossiblyMerge {
       expectSessionSwitchoverEvent(E164_A)
     }
 
+    test("e164 matches, e164 + aci provided") {
+      given(E164_A, PNI_A, null)
+      process(E164_A, null, ACI_A)
+      expect(E164_A, PNI_A, ACI_A)
+    }
+
     test("pni matches, all provided, no pni session") {
       given(null, PNI_A, null)
       process(E164_A, PNI_A, ACI_A)
@@ -357,6 +363,18 @@ class RecipientTableTest_getAndPossiblyMerge {
 
       expectSessionSwitchoverEvent(id1, E164_A)
       expectSessionSwitchoverEvent(id2, E164_B)
+    }
+
+    test("steal, e164+pni+aci & e164+aci, no pni provided, change number") {
+      given(E164_A, PNI_A, ACI_A)
+      given(E164_B, null, ACI_B)
+
+      process(E164_A, null, ACI_B)
+
+      expect(null, PNI_A, ACI_A)
+      expect(E164_A, null, ACI_B)
+
+      expectChangeNumberEvent()
     }
 
     test("merge, e164 & pni & aci, all provided") {
@@ -675,9 +693,9 @@ class RecipientTableTest_getAndPossiblyMerge {
     val sms2: MessageRecord = SignalDatabase.messages.getMessageRecord(smsId2)!!
     val sms3: MessageRecord = SignalDatabase.messages.getMessageRecord(smsId3)!!
 
-    assertEquals(retrievedId, sms1.recipient.id)
-    assertEquals(retrievedId, sms2.recipient.id)
-    assertEquals(retrievedId, sms3.recipient.id)
+    assertEquals(retrievedId, sms1.fromRecipient.id)
+    assertEquals(retrievedId, sms2.fromRecipient.id)
+    assertEquals(retrievedId, sms3.fromRecipient.id)
 
     assertEquals(retrievedThreadId, sms1.threadId)
     assertEquals(retrievedThreadId, sms2.threadId)
@@ -688,9 +706,9 @@ class RecipientTableTest_getAndPossiblyMerge {
     val mms2: MessageRecord = SignalDatabase.messages.getMessageRecord(mmsId2)!!
     val mms3: MessageRecord = SignalDatabase.messages.getMessageRecord(mmsId3)!!
 
-    assertEquals(retrievedId, mms1.recipient.id)
-    assertEquals(retrievedId, mms2.recipient.id)
-    assertEquals(retrievedId, mms3.recipient.id)
+    assertEquals(retrievedId, mms1.fromRecipient.id)
+    assertEquals(retrievedId, mms2.fromRecipient.id)
+    assertEquals(retrievedId, mms3.fromRecipient.id)
 
     assertEquals(retrievedThreadId, mms1.threadId)
     assertEquals(retrievedThreadId, mms2.threadId)
@@ -1017,7 +1035,7 @@ class RecipientTableTest_getAndPossiblyMerge {
     return SignalDatabase.rawDatabase
       .select(MessageTable.BODY)
       .from(MessageTable.TABLE_NAME)
-      .where("${MessageTable.RECIPIENT_ID} = ? AND ${MessageTable.TYPE} = ?", recipientId, MessageTypes.THREAD_MERGE_TYPE)
+      .where("${MessageTable.FROM_RECIPIENT_ID} = ? AND ${MessageTable.TYPE} = ?", recipientId, MessageTypes.THREAD_MERGE_TYPE)
       .orderBy("${MessageTable.DATE_RECEIVED} DESC")
       .limit(1)
       .run()
@@ -1035,7 +1053,7 @@ class RecipientTableTest_getAndPossiblyMerge {
     return SignalDatabase.rawDatabase
       .select(MessageTable.BODY)
       .from(MessageTable.TABLE_NAME)
-      .where("${MessageTable.RECIPIENT_ID} = ? AND ${MessageTable.TYPE} = ?", recipientId, MessageTypes.SESSION_SWITCHOVER_TYPE)
+      .where("${MessageTable.FROM_RECIPIENT_ID} = ? AND ${MessageTable.TYPE} = ?", recipientId, MessageTypes.SESSION_SWITCHOVER_TYPE)
       .orderBy("${MessageTable.DATE_RECEIVED} DESC")
       .limit(1)
       .run()

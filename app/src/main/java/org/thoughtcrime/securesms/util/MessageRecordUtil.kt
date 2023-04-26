@@ -151,3 +151,7 @@ fun MessageRecord.isScheduled(): Boolean {
 fun MessageRecord.getRecordQuoteType(): QuoteModel.Type {
   return if (hasGiftBadge()) QuoteModel.Type.GIFT_BADGE else QuoteModel.Type.NORMAL
 }
+
+fun MessageRecord.isEditMessage(): Boolean {
+  return this is MediaMmsMessageRecord && isEditMessage
+}

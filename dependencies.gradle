@@ -5,14 +5,14 @@ dependencyResolutionManagement {
     versionCatalogs {
         libs {
             version('androidx-appcompat', '1.6.1')
-            version('androidx-camera', '1.2.1')
+            version('androidx-camera', '1.2.2')
             version('androidx-fragment', '1.5.5')
             version('androidx-lifecycle', '2.5.1')
             version('androidx-navigation', '2.5.3')
             version('androidx-window', '1.0.0')
             version('exoplayer', '2.18.1')
             version('glide', '4.13.2')
-            version('kotlin', '1.6.21')
+            version('kotlin', '1.8.10')
             version('libsignal-client', '0.22.0')
             version('mp4parser', '1.9.39')
             version('android-gradle-plugin', '7.4.1')
@@ -40,11 +40,11 @@ dependencyResolutionManagement {
             // Android X
             alias('androidx-activity-ktx').to('androidx.activity', 'activity-ktx').versionRef('androidx-appcompat')
             alias('androidx-appcompat').to('androidx.appcompat', 'appcompat').versionRef('androidx-appcompat')
-            alias('androidx-core-ktx').to('androidx.core:core-ktx:1.9.0')
+            alias('androidx-core-ktx').to('androidx.core:core-ktx:1.10.0')
             alias('androidx-fragment-ktx').to('androidx.fragment', 'fragment-ktx').versionRef('androidx-fragment')
             alias('androidx-fragment-testing').to('androidx.fragment', 'fragment-testing').versionRef('androidx-fragment')
             alias('androidx-annotation').to('androidx.annotation:annotation:1.4.0')
-            alias('androidx-constraintlayout').to('androidx.constraintlayout:constraintlayout:2.0.4')
+            alias('androidx-constraintlayout').to('androidx.constraintlayout:constraintlayout:2.1.4')
             alias('androidx-window-window').to('androidx.window', 'window').versionRef('androidx-window')
             alias('androidx-window-java').to('androidx.window', 'window-java').versionRef('androidx-window')
             alias('androidx-recyclerview').to('androidx.recyclerview:recyclerview:1.2.1')
@@ -73,6 +73,9 @@ dependencyResolutionManagement {
             alias('androidx-sharetarget').to('androidx.sharetarget:sharetarget:1.2.0-rc02')
             alias('androidx-sqlite').to('androidx.sqlite:sqlite:2.1.0')
             alias('androidx-core-role').to('androidx.core:core-role:1.0.0')
+            alias('androidx-profileinstaller').to('androidx.profileinstaller:profileinstaller:1.2.2')
+            alias('androidx-asynclayoutinflater').to('androidx.asynclayoutinflater:asynclayoutinflater:1.1.0-alpha01')
+            alias('androidx-asynclayoutinflater-appcompat').to('androidx.asynclayoutinflater:asynclayoutinflater-appcompat:1.1.0-alpha01')
 
             // Material
             alias('material-material').to('com.google.android.material:material:1.8.0')
@@ -104,22 +107,22 @@ dependencyResolutionManagement {
             alias('libsignal-android').to('org.signal', 'libsignal-android').versionRef('libsignal-client')
             alias('signal-aesgcmprovider').to('org.signal:aesgcmprovider:0.0.3')
             alias('signal-argon2').to('org.signal:argon2:13.1')
-            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.25.1')
-            alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.3-FTS-S2')
+            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.26.1')
+            alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.3-FTS-S3')
 
             // Third Party
             alias('greenrobot-eventbus').to('org.greenrobot:eventbus:3.0.0')
             alias('jackson-core').to('com.fasterxml.jackson.core:jackson-databind:2.9.9.2')
             alias('jackson-module-kotlin').to('com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0')
             alias('square-okhttp3').to('com.squareup.okhttp3:okhttp:3.12.13')
-            alias('square-okio').to('com.squareup.okio:okio:2.2.2')
+            alias('square-okio').to('com.squareup.okio:okio:3.0.0')
             alias('square-leakcanary').to('com.squareup.leakcanary:leakcanary-android:2.7')
             alias('rxjava3-rxjava').to('io.reactivex.rxjava3:rxjava:3.0.13')
             alias('rxjava3-rxandroid').to('io.reactivex.rxjava3:rxandroid:3.0.0')
             alias('rxjava3-rxkotlin').to('io.reactivex.rxjava3:rxkotlin:3.0.1')
             alias('rxdogtag').to('com.uber.rxdogtag2:rxdogtag:2.0.1')
             alias('conscrypt-android').to('org.conscrypt:conscrypt-android:2.0.0')
-            alias('mobilecoin').to('com.mobilecoin:android-sdk:4.0.0.1')
+            alias('mobilecoin').to('com.mobilecoin:android-sdk:4.1.0')
             alias('leolin-shortcutbadger').to('me.leolin:ShortcutBadger:1.1.22')
             alias('emilsjolander-stickylistheaders').to('se.emilsjolander:stickylistheaders:2.7.0')
             alias('jpardogo-materialtabstrip').to('com.jpardogo.materialtabstrip:library:1.0.9')
@@ -139,12 +142,24 @@ dependencyResolutionManagement {
 
             // Can't use the newest version because it hits some weird NoClassDefFoundException
             alias('jknack-handlebars').to('com.github.jknack:handlebars:4.0.7')
+            alias('kotlinx-collections-immutable').to('org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5')
 
             // Mp4Parser
             alias('mp4parser-isoparser').to('org.mp4parser', 'isoparser').versionRef('mp4parser')
             alias('mp4parser-streaming').to('org.mp4parser', 'streaming').versionRef('mp4parser')
             alias('mp4parser-muxer').to('org.mp4parser', 'muxer').versionRef('mp4parser')
             bundle('mp4parser', ['mp4parser-isoparser', 'mp4parser-streaming', 'mp4parser-muxer'])
+        }
+
+        benchmarkLibs {
+            version('androidx-test-ext-junit', '1.1.3')
+
+            // Macrobench/Baseline profiles
+            alias ('androidx-test-ext-junit').to('androidx.test.ext', 'junit').versionRef('androidx-test-ext-junit')
+            alias('espresso-core').to('androidx.test.espresso:espresso-core:3.4.0')
+            alias('uiautomator').to('androidx.test.uiautomator:uiautomator:2.2.0')
+            alias('androidx-benchmark-macro').to('androidx.benchmark:benchmark-macro-junit4:1.1.1')
+            alias('androidx-benchmark-micro').to('androidx.benchmark:benchmark-junit4:1.1.0-beta04')
         }
 
         testLibs {

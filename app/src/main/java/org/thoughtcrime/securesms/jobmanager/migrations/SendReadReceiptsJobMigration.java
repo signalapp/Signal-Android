@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobmanager.migrations;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 
 import java.util.SortedSet;
@@ -27,10 +27,10 @@ public class SendReadReceiptsJobMigration extends JobMigration {
   }
 
   private static @NonNull JobData migrateSendReadReceiptJob(@NonNull MessageTable messageTable, @NonNull JobData jobData) {
-    Data data = jobData.getData();
+    JsonJobData data = JsonJobData.deserialize(jobData.getData());
 
     if (!data.hasLong("thread")) {
-      long[]          messageIds = jobData.getData().getLongArray("message_ids");
+      long[]          messageIds = data.getLongArray("message_ids");
       SortedSet<Long> threadIds  = new TreeSet<>();
 
       for (long id : messageIds) {
@@ -41,9 +41,9 @@ public class SendReadReceiptsJobMigration extends JobMigration {
       }
 
       if (threadIds.size() != 1) {
-        return new JobData("FailingJob", null, new Data.Builder().build());
+        return new JobData("FailingJob", null, null);
       } else {
-        return jobData.withData(data.buildUpon().putLong("thread", threadIds.first()).build());
+        return jobData.withData(data.buildUpon().putLong("thread", threadIds.first()).serialize());
       }
 
     } else {

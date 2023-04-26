@@ -77,18 +77,20 @@ sealed class AudioManagerCommand : Parcelable {
     }
   }
 
-  class SetUserDevice(val recipientId: RecipientId?, val device: SignalAudioManager.AudioDevice) : AudioManagerCommand() {
+  class SetUserDevice(val recipientId: RecipientId?, val device: Int, val isId: Boolean) : AudioManagerCommand() {
     override fun writeToParcel(parcel: Parcel, flags: Int) {
       parcel.writeParcelable(recipientId, flags)
-      parcel.writeSerializable(device)
+      parcel.writeInt(device)
+      ParcelUtil.writeBoolean(parcel, isId)
     }
 
     companion object {
       @JvmField
       val CREATOR: Parcelable.Creator<SetUserDevice> = ParcelCheat {
         SetUserDevice(
-          it.readParcelableCompat(RecipientId::class.java),
-          it.readSerializableCompat(SignalAudioManager.AudioDevice::class.java)!!
+          recipientId = it.readParcelableCompat(RecipientId::class.java),
+          device = it.readInt(),
+          isId = ParcelUtil.readBoolean(it)
         )
       }
     }

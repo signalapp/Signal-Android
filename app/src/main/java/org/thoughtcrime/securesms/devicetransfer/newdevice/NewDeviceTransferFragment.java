@@ -66,6 +66,9 @@ public final class NewDeviceTransferFragment extends DeviceTransferFragment {
         case FAILURE_VERSION_DOWNGRADE:
           abort(R.string.NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal);
           break;
+        case FAILURE_FOREIGN_KEY:
+          abort(R.string.NewDeviceTransfer__failure_foreign_key);
+          break;
         case FAILURE_UNKNOWN:
           abort();
           break;

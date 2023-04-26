@@ -8,11 +8,11 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Collectors;
@@ -23,14 +23,13 @@ import org.thoughtcrime.securesms.avatar.view.AvatarView;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public class ConversationTitleView extends RelativeLayout {
+public class ConversationTitleView extends ConstraintLayout {
 
   private static final String STATE_ROOT = "root";
   private static final String STATE_IS_SELF = "is_self";
@@ -96,10 +95,10 @@ public class ConversationTitleView extends RelativeLayout {
   }
 
 
-  public void showExpiring(@NonNull LiveRecipient recipient) {
-    isSelf = recipient.get().isSelf();
+  public void showExpiring(@NonNull Recipient recipient) {
+    isSelf = recipient.isSelf();
 
-    expirationBadgeTime.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(getContext(), recipient.get().getExpiresInSeconds()));
+    expirationBadgeTime.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(getContext(), recipient.getExpiresInSeconds()));
     expirationBadgeContainer.setVisibility(View.VISIBLE);
     updateSubtitleVisibility();
   }

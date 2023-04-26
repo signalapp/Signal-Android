@@ -36,6 +36,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.signal.core.util.StreamUtil;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -201,7 +202,7 @@ public final class PartProvider extends BaseContentProvider {
   @RequiresApi(26)
   private ParcelFileDescriptor getParcelStreamProxyForAttachment(AttachmentId attachmentId) throws IOException {
     StorageManager storageManager = Objects.requireNonNull(getContext().getSystemService(StorageManager.class));
-    HandlerThread  thread         = SignalExecutors.getAndStartHandlerThread("storageservice-proxy");
+    HandlerThread  thread         = SignalExecutors.getAndStartHandlerThread("storageservice-proxy", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD);
     Handler        handler        = new Handler(thread.getLooper());
 
     ParcelFileDescriptor parcelFileDescriptor = storageManager.openProxyFileDescriptor(ParcelFileDescriptor.MODE_READ_ONLY,

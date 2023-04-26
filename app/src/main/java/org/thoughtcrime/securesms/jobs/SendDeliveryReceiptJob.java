@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
@@ -76,16 +76,16 @@ public class SendDeliveryReceiptJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    Data.Builder builder = new Data.Builder().putString(KEY_RECIPIENT, recipientId.serialize())
-                                             .putLong(KEY_MESSAGE_SENT_TIMESTAMP, messageSentTimestamp)
-                                             .putLong(KEY_TIMESTAMP, timestamp);
+  public @Nullable byte[] serialize() {
+    JsonJobData.Builder builder = new JsonJobData.Builder().putString(KEY_RECIPIENT, recipientId.serialize())
+                                                           .putLong(KEY_MESSAGE_SENT_TIMESTAMP, messageSentTimestamp)
+                                                           .putLong(KEY_TIMESTAMP, timestamp);
 
     if (messageId != null) {
       builder.putString(KEY_MESSAGE_ID, messageId.serialize());
     }
 
-    return builder.build();
+    return builder.serialize();
   }
 
   @Override
@@ -141,7 +141,9 @@ public class SendDeliveryReceiptJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<SendDeliveryReceiptJob> {
     @Override
-    public @NonNull SendDeliveryReceiptJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull SendDeliveryReceiptJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       MessageId messageId = null;
 
       if (data.hasString(KEY_MESSAGE_ID)) {

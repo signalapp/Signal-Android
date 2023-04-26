@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable
 import android.media.AudioManager
 import android.os.Bundle
 import android.text.SpannableString
+import android.text.method.LinkMovementMethod
 import android.text.method.ScrollingMovementMethod
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -24,7 +25,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.animation.PathInterpolatorCompat
-import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -35,12 +35,14 @@ import com.google.android.material.progressindicator.IndeterminateDrawable
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener
 import org.thoughtcrime.securesms.components.AvatarImageView
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgressBar
 import org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgressBarListener
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
@@ -81,7 +83,6 @@ import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Debouncer
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -177,7 +178,7 @@ class StoryViewerPageFragment :
     val distributionList: TextView = view.findViewById(R.id.distribution_list)
     val cardWrapper: TouchInterceptingFrameLayout = view.findViewById(R.id.story_content_card_touch_interceptor)
     val card: MaterialCardView = view.findViewById(R.id.story_content_card)
-    val caption: TextView = view.findViewById(R.id.story_caption)
+    val caption: EmojiTextView = view.findViewById(R.id.story_caption)
     val largeCaption: TextView = view.findViewById(R.id.story_large_caption)
     val largeCaptionOverlay: View = view.findViewById(R.id.story_large_caption_overlay)
     val reactionAnimationView: OnReactionSentView = view.findViewById(R.id.on_reaction_sent_view)
@@ -300,6 +301,7 @@ class StoryViewerPageFragment :
     progressBar.listener = object : SegmentedProgressBarListener {
       override fun onPage(oldPageIndex: Int, newPageIndex: Int) {
         if (oldPageIndex != newPageIndex && context != null) {
+          Log.d(TAG, "onPage: Moving from $oldPageIndex to $newPageIndex")
           viewModel.setSelectedPostIndex(newPageIndex)
         }
       }
@@ -370,10 +372,12 @@ class StoryViewerPageFragment :
       }
     }
 
-    lifecycleDisposable += sharedViewModel.state.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe { parentState ->
-      viewModel.setIsRunningSharedElementAnimation(!parentState.loadState.isCrossfaderReady)
-      storyContentContainer.visible = parentState.loadState.isCrossfaderReady
+    lifecycleDisposable += sharedViewModel.loadState.subscribe {
+      viewModel.setIsRunningSharedElementAnimation(!it.isCrossfaderReady)
+      storyContentContainer.visible = it.isCrossfaderReady
+    }
 
+    lifecycleDisposable += sharedViewModel.state.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe { parentState ->
       if (parentState.pages.size <= parentState.page) {
         viewModel.setIsSelectedPage(false)
       } else if (storyViewerPageArgs.recipientId == parentState.pages[parentState.page]) {
@@ -765,21 +769,25 @@ class StoryViewerPageFragment :
         markViewedIfAble()
       }
       AttachmentTable.TRANSFER_PROGRESS_PENDING -> {
+        Log.d(TAG, "Story content download is pending.")
         storySlate.moveToState(StorySlateView.State.LOADING, post.id)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
       AttachmentTable.TRANSFER_PROGRESS_STARTED -> {
+        Log.d(TAG, "Story content download is in progress.")
         storySlate.moveToState(StorySlateView.State.LOADING, post.id)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
       AttachmentTable.TRANSFER_PROGRESS_FAILED -> {
+        Log.d(TAG, "Story content download has failed temporarily.")
         storySlate.moveToState(StorySlateView.State.ERROR, post.id)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
       AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE -> {
+        Log.d(TAG, "Story content download has failed permanently.")
         storySlate.moveToState(StorySlateView.State.FAILED, post.id, post.sender)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
@@ -810,12 +818,12 @@ class StoryViewerPageFragment :
   }
 
   @SuppressLint("SetTextI18n")
-  private fun presentCaption(caption: TextView, largeCaption: TextView, largeCaptionOverlay: View, storyPost: StoryPost) {
+  private fun presentCaption(caption: EmojiTextView, largeCaption: TextView, largeCaptionOverlay: View, storyPost: StoryPost) {
     val displayBody: CharSequence = if (storyPost.content is StoryPost.Content.AttachmentContent) {
       val displayBodySpan = SpannableString(storyPost.content.attachment.caption ?: "")
       val ranges: BodyRangeList? = storyPost.conversationMessage.messageRecord.messageRanges
       if (ranges != null && displayBodySpan.isNotEmpty()) {
-        MessageStyler.style(ranges, displayBodySpan)
+        MessageStyler.style(storyPost.conversationMessage.messageRecord.dateSent, ranges, displayBodySpan)
       }
 
       displayBodySpan
@@ -823,48 +831,24 @@ class StoryViewerPageFragment :
       ""
     }
 
-    storyNormalBottomGradient.visible = !displayBody.isNotEmpty()
+    storyNormalBottomGradient.visible = displayBody.isEmpty()
     storyCaptionBottomGradient.visible = displayBody.isNotEmpty()
 
     caption.text = displayBody
     largeCaption.text = displayBody
     caption.visible = displayBody.isNotEmpty()
     caption.requestLayout()
+    caption.movementMethod = LinkMovementMethod.getInstance()
+    caption.setOverflowText(getString(R.string.StoryViewerPageFragment__see_more))
+    caption.maxLines = 5
+    caption.text = displayBody
 
-    caption.doOnNextLayout {
-      val maxLines = 5
-      if (displayBody.isNotEmpty() && caption.lineCount > maxLines) {
-        val lastCharShown = caption.layout.getLineVisibleEnd(maxLines - 1)
-        caption.maxLines = maxLines
-
-        val seeMore = (getString(R.string.StoryViewerPageFragment__see_more))
-
-        val seeMoreWidth = caption.paint.measureText(seeMore)
-        var offset = seeMore.length
-        while (true) {
-          val start = lastCharShown - offset
-          if (start < 0) {
-            break
-          }
-
-          val widthOfRemovedChunk = caption.paint.measureText(displayBody.subSequence(start, lastCharShown).toString())
-          if (widthOfRemovedChunk > seeMoreWidth) {
-            break
-          }
-
-          offset += 1
-        }
-
-        caption.text = displayBody.substring(0, lastCharShown - offset) + seeMore
-      }
-
-      if (caption.text.length == displayBody.length) {
-        caption.setOnClickListener(null)
-        caption.isClickable = false
-      } else {
-        caption.setOnClickListener {
-          onShowCaptionOverlay(caption, largeCaption, largeCaptionOverlay)
-        }
+    if (caption.text.length == displayBody.length) {
+      caption.setOnClickListener(null)
+      caption.isClickable = false
+    } else {
+      caption.setOnClickListener {
+        onShowCaptionOverlay(caption, largeCaption, largeCaptionOverlay)
       }
     }
   }
@@ -1320,10 +1304,12 @@ class StoryViewerPageFragment :
   }
 
   override fun onContentReady() {
+    Log.d(TAG, "Story content is ready.")
     sharedViewModel.setContentIsReady()
   }
 
   override fun onContentNotAvailable() {
+    Log.d(TAG, "Story content is not available.")
     sharedViewModel.setContentIsReady()
   }
 

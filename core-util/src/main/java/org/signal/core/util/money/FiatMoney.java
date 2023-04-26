@@ -5,10 +5,18 @@ import androidx.annotation.NonNull;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Currency;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Set;
 
 public class FiatMoney {
+
+  private static final Set<String> SPECIAL_CASE_MULTIPLICANDS = new HashSet<>() {{
+    add("UGX");
+    add("ISK");
+  }};
+
   private final BigDecimal amount;
   private final Currency   currency;
   private final long       timestamp;
@@ -54,7 +62,7 @@ public class FiatMoney {
   }
 
   /**
-   * Note: This special cases UGX to act as two decimal.
+   * Note: This special cases SPECIAL_CASE_MULTIPLICANDS members to act as two decimal.
    *
    * @return amount, in smallest possible units (cents, yen, etc.)
    */
@@ -63,7 +71,8 @@ public class FiatMoney {
     formatter.setMaximumFractionDigits(0);
     formatter.setGroupingUsed(false);
 
-    BigDecimal multiplicand = BigDecimal.TEN.pow(currency.getCurrencyCode().equals("UGX") ? 2 : currency.getDefaultFractionDigits());
+    String     currencyCode = currency.getCurrencyCode();
+    BigDecimal multiplicand = BigDecimal.TEN.pow(SPECIAL_CASE_MULTIPLICANDS.contains(currencyCode) ? 2 : currency.getDefaultFractionDigits());
 
     return formatter.format(amount.multiply(multiplicand));
   }

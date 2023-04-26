@@ -155,6 +155,13 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_accountSettingsFragment_to_exportAccountFragment"
+            app:destination="@id/exportAccountDataFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <include app:graph="@navigation/app_settings_change_number" />
@@ -169,6 +176,11 @@
         android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedDeleteAccountFragment"
         android:label="delete_account_fragment"
         tools:layout="@layout/delete_account_fragment" />
+
+    <fragment
+        android:id="@+id/exportAccountDataFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.account.export.ExportAccountDataFragment"
+        android:label="export_account_data_fragment" />
 
     <activity
         android:id="@+id/oldDeviceTransferActivity"

@@ -9,7 +9,7 @@ data class UpdateVerificationSessionRequestBody(
   @JsonProperty val pushToken: String?,
   @JsonProperty val pushChallenge: String?,
   @JsonProperty val mcc: String?,
-  @JsonProperty val mnc: String?,
+  @JsonProperty val mnc: String?
 ) {
   @JsonProperty
   val pushTokenType: String? = if (pushToken != null) "fcm" else null

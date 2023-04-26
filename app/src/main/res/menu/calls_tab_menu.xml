@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_filter_missed_calls" android:title="@string/CallLogFragment__filter_missed_calls" />
+    <item android:id="@+id/action_clear_missed_call_filter" android:title="@string/CallLogFragment__clear_filter" />
+    <item android:id="@+id/action_settings" android:title="@string/CallLogFragment__settings" />
+    <item android:id="@+id/action_notification_profile" android:title="@string/CallLogFragment__notification_profile" />
+</menu>

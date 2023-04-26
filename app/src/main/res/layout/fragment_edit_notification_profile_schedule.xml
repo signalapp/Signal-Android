@@ -66,7 +66,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/edit_notification_profile_schedule_description"
                 app:layout_goneMarginTop="0dp" />
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
+            <com.google.android.material.materialswitch.MaterialSwitch
+                style="@style/Widget.Signal.CompoundButton.MaterialSwitch"
                 android:id="@+id/edit_notification_profile_schedule_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

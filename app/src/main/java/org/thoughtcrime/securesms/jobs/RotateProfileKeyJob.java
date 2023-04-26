@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -25,8 +26,8 @@ public class RotateProfileKeyJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return Data.EMPTY;
+  public @Nullable byte[] serialize() {
+    return null;
   }
 
   @Override
@@ -53,7 +54,7 @@ public class RotateProfileKeyJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<RotateProfileKeyJob> {
     @Override
-    public @NonNull RotateProfileKeyJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull RotateProfileKeyJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new RotateProfileKeyJob(parameters);
     }
   }

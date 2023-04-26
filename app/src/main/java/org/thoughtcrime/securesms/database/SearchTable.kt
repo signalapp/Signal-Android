@@ -9,6 +9,7 @@ import org.signal.core.util.SqlUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
+import org.thoughtcrime.securesms.jobs.RebuildMessageSearchIndexJob
 
 /**
  * Contains all databases necessary for full-text search (FTS).
@@ -34,20 +35,24 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       "CREATE VIRTUAL TABLE $FTS_TABLE_NAME USING fts5($BODY, $THREAD_ID UNINDEXED, content=${MessageTable.TABLE_NAME}, content_rowid=${MessageTable.ID})"
     )
 
+    private const val TRIGGER_AFTER_INSERT = "message_ai"
+    private const val TRIGGER_AFTER_DELETE = "message_ad"
+    private const val TRIGGER_AFTER_UPDATE = "message_au"
+
     @Language("sql")
     val CREATE_TRIGGERS = arrayOf(
       """
-        CREATE TRIGGER message_ai AFTER INSERT ON ${MessageTable.TABLE_NAME} BEGIN
+        CREATE TRIGGER $TRIGGER_AFTER_INSERT AFTER INSERT ON ${MessageTable.TABLE_NAME} BEGIN
           INSERT INTO $FTS_TABLE_NAME($ID, $BODY, $THREAD_ID) VALUES (new.${MessageTable.ID}, new.${MessageTable.BODY}, new.${MessageTable.THREAD_ID});
         END;
       """,
       """
-        CREATE TRIGGER message_ad AFTER DELETE ON ${MessageTable.TABLE_NAME} BEGIN
+        CREATE TRIGGER $TRIGGER_AFTER_DELETE AFTER DELETE ON ${MessageTable.TABLE_NAME} BEGIN
           INSERT INTO $FTS_TABLE_NAME($FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${MessageTable.ID}, old.${MessageTable.BODY}, old.${MessageTable.THREAD_ID});
         END;
       """,
       """
-        CREATE TRIGGER message_au AFTER UPDATE ON ${MessageTable.TABLE_NAME} BEGIN
+        CREATE TRIGGER $TRIGGER_AFTER_UPDATE AFTER UPDATE ON ${MessageTable.TABLE_NAME} BEGIN
           INSERT INTO $FTS_TABLE_NAME($FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${MessageTable.ID}, old.${MessageTable.BODY}, old.${MessageTable.THREAD_ID});
           INSERT INTO $FTS_TABLE_NAME($ID, $BODY, $THREAD_ID) VALUES (new.${MessageTable.ID}, new.${MessageTable.BODY}, new.${MessageTable.THREAD_ID});
         END;
@@ -58,7 +63,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     private const val MESSAGES_QUERY = """
       SELECT 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
-        ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
+        ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
         snippet($FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET, 
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
         $FTS_TABLE_NAME.$THREAD_ID, 
@@ -72,7 +77,9 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       WHERE 
         $FTS_TABLE_NAME MATCH ? AND 
         ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.GROUP_V2_BIT} = 0 AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.SCHEDULED_DATE} < 0 AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL
       ORDER BY ${MessageTable.DATE_RECEIVED} DESC 
       LIMIT 500
     """
@@ -81,7 +88,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     private const val MESSAGES_FOR_THREAD_QUERY = """
       SELECT 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
-        ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID} AS $MESSAGE_RECIPIENT,
+        ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID} AS $MESSAGE_RECIPIENT,
         snippet($FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET,
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
         $FTS_TABLE_NAME.$THREAD_ID, 
@@ -94,7 +101,11 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           INNER JOIN ${ThreadTable.TABLE_NAME} ON $FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} 
       WHERE 
         $FTS_TABLE_NAME MATCH ? AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = ? 
+        ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = ? AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.GROUP_V2_BIT} = 0 AND 
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.SCHEDULED_DATE} < 0 AND
+        ${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL
       ORDER BY ${MessageTable.DATE_RECEIVED} DESC 
       LIMIT 500
     """
@@ -128,7 +139,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
    * Be smart about where you call this.
    */
   fun rebuildIndex(batchSize: Long = 10_000L) {
-    val maxId: Long = SignalDatabase.messages.nextId
+    val maxId: Long = SignalDatabase.messages.getNextId()
 
     Log.i(TAG, "Re-indexing. Operating on ID's 1-$maxId in steps of $batchSize.")
 
@@ -145,7 +156,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             WHERE 
               ${MessageTable.ID} >= $i AND
               ${MessageTable.ID} < ${i + batchSize}
-        """.trimIndent()
+        """
       )
     }
   }
@@ -215,6 +226,31 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     Log.d(TAG, "Took ${System.currentTimeMillis() - startTime} ms and $totalIterations iterations across $totalBatches batches to optimize. Of that time, $actualWorkTime ms were spent actually working (~${actualWorkTime / totalBatches} ms/batch). The rest was spent sleeping.")
     return true
+  }
+
+  /**
+   * Drops all tables and recreates them.
+   */
+  fun fullyResetTables() {
+    Log.w(TAG, "[fullyResetTables] Dropping tables and triggers...")
+    writableDatabase.execSQL("DROP TABLE IF EXISTS $FTS_TABLE_NAME")
+    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_config")
+    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_content")
+    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_data")
+    writableDatabase.execSQL("DROP TABLE IF EXISTS ${FTS_TABLE_NAME}_idx")
+    writableDatabase.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_INSERT")
+    writableDatabase.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_DELETE")
+    writableDatabase.execSQL("DROP TRIGGER IF EXISTS $TRIGGER_AFTER_UPDATE")
+
+    Log.w(TAG, "[fullyResetTables] Recreating table...")
+    CREATE_TABLE.forEach { writableDatabase.execSQL(it) }
+
+    Log.w(TAG, "[fullyResetTables] Recreating triggers...")
+    CREATE_TRIGGERS.forEach { writableDatabase.execSQL(it) }
+
+    RebuildMessageSearchIndexJob.enqueue()
+
+    Log.w(TAG, "[fullyResetTables] Done. Index will be rebuilt asynchronously)")
   }
 
   private fun createFullTextSearchQuery(query: String): String {

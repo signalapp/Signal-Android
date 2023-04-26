@@ -8,7 +8,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -130,11 +130,11 @@ public class ProfileKeySendJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder()
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder()
                    .putLong(KEY_THREAD, threadId)
                    .putString(KEY_RECIPIENTS, RecipientId.toSerializedList(recipients))
-                   .build();
+                   .serialize();
   }
 
   @Override
@@ -161,7 +161,9 @@ public class ProfileKeySendJob extends BaseJob {
   public static class Factory implements Job.Factory<ProfileKeySendJob> {
 
     @Override
-    public @NonNull ProfileKeySendJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull ProfileKeySendJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       long              threadId   = data.getLong(KEY_THREAD);
       List<RecipientId> recipients = RecipientId.fromSerializedList(data.getString(KEY_RECIPIENTS));
 

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="94dp">
+    android:layout_height="94dp"
+    tools:viewBindingIgnore="true">
 
     <TextView
         android:id="@+id/description"
@@ -18,6 +17,7 @@
         android:gravity="center"
         android:padding="12dp"
         android:text="@string/WifiToCellularPopupWindow__weak_wifi_switched_to_cellular"
-        android:textAppearance="@style/TextAppearance.Signal.Body2" />
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/signal_light_colorOnSurface" />
 
 </FrameLayout>

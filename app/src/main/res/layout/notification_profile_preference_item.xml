@@ -57,12 +57,12 @@
         tools:text="Some random text to get stuff onto more than one line but not absurdly long like lorem/random"
         tools:visibility="visible" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <com.google.android.material.materialswitch.MaterialSwitch
+        style="@style/Widget.Signal.CompoundButton.MaterialSwitch"
         android:id="@+id/switch_widget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
-        android:clickable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

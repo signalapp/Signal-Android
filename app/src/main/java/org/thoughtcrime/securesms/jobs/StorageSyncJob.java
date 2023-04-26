@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
@@ -16,7 +17,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.UnknownStorageIdTable;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -159,8 +160,8 @@ public class StorageSyncJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return Data.EMPTY;
+  public @Nullable byte[] serialize() {
+    return null;
   }
 
   @Override
@@ -245,7 +246,7 @@ public class StorageSyncJob extends BaseJob {
       self = freshSelf();
     }
 
-    Log.i(TAG, "Our version: " + localManifest.getVersion() + ", their version: " + remoteManifest.getVersion());
+    Log.i(TAG, "Our version: " + localManifest.getVersionString() + ", their version: " + remoteManifest.getVersionString());
 
     if (remoteManifest.getVersion() > localManifest.getVersion()) {
       Log.i(TAG, "[Remote Sync] Newer manifest version found!");
@@ -314,7 +315,7 @@ public class StorageSyncJob extends BaseJob {
     }
 
     if (remoteManifest != localManifest) {
-      Log.i(TAG, "[Remote Sync] Saved new manifest. Now at version: " + remoteManifest.getVersion());
+      Log.i(TAG, "[Remote Sync] Saved new manifest. Now at version: " + remoteManifest.getVersionString());
       SignalStore.storageService().setManifest(remoteManifest);
     }
 
@@ -338,7 +339,7 @@ public class StorageSyncJob extends BaseJob {
 
       Log.i(TAG, "ID Difference :: " + idDifference);
 
-      remoteWriteOperation = new WriteOperationResult(new SignalStorageManifest(remoteManifest.getVersion() + 1, localStorageIds),
+      remoteWriteOperation = new WriteOperationResult(new SignalStorageManifest(remoteManifest.getVersion() + 1, SignalStore.account().getDeviceId(), localStorageIds),
                                                       remoteInserts,
                                                       remoteDeletes);
 
@@ -361,14 +362,14 @@ public class StorageSyncJob extends BaseJob {
         throw new RetryLaterException();
       }
 
-      Log.i(TAG, "Saved new manifest. Now at version: " + remoteWriteOperation.getManifest().getVersion());
+      Log.i(TAG, "Saved new manifest. Now at version: " + remoteWriteOperation.getManifest().getVersionString());
       SignalStore.storageService().setManifest(remoteWriteOperation.getManifest());
 
       stopwatch.split("remote-write");
 
       needsMultiDeviceSync = true;
     } else {
-      Log.i(TAG, "No remote writes needed. Still at version: " + remoteManifest.getVersion());
+      Log.i(TAG, "No remote writes needed. Still at version: " + remoteManifest.getVersionString());
     }
 
     List<Integer>   knownTypes      = getKnownTypes();
@@ -539,7 +540,7 @@ public class StorageSyncJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<StorageSyncJob> {
     @Override
-    public @NonNull StorageSyncJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull StorageSyncJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new StorageSyncJob(parameters);
     }
   }

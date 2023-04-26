@@ -64,12 +64,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
+        <com.google.android.material.materialswitch.MaterialSwitch
+            style="@style/Widget.Signal.CompoundButton.MaterialSwitch"
             android:id="@+id/switch_widget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:clickable="false" />
+            android:layout_gravity="center" />
 
         <ProgressBar
             android:id="@+id/switch_progress"

@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
@@ -45,7 +45,7 @@ public class StickerMyDailyLifeMigrationJob extends MigrationJob {
 
   public static class Factory implements Job.Factory<StickerMyDailyLifeMigrationJob> {
     @Override
-    public @NonNull StickerMyDailyLifeMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull StickerMyDailyLifeMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new StickerMyDailyLifeMigrationJob(parameters);
     }
   }

@@ -15,6 +15,7 @@
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
     <string name="yes">Да</string>
     <string name="no">Не</string>
@@ -168,6 +169,10 @@
     <string name="BucketedThreadMedia_Medium">Средњи</string>
     <string name="BucketedThreadMedia_Small">Мали</string>
 
+    <!-- CameraFragment -->
+    <!-- Toasted when user device does not support video recording -->
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Снимање видео записа није подржано на вашем уређају</string>
+
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Додирни за фотографију, држи за видео запис</string>
     <string name="CameraXFragment_capture_description">Сними</string>
@@ -296,9 +301,13 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Преузимање слике није успело. Мораћете поново да је пошаљете.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Преузимање видео снимка није успело. Мораћете поново да га пошаљете.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
+    <string name="ConversationItem_edited_timestamp_footer">измењено %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Додај прилог</string>
+    <!-- Accessibility text associated with image button to send an edited message. -->
+    <string name="ConversationActivity_send_edit">Пошаљи измену</string>
     <string name="ConversationActivity_select_contact_info">Изаберите податке о контакту</string>
     <string name="ConversationActivity_compose_message">Састави поруку</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Дошло је до грешке при постављању вашег прилога.</string>
@@ -306,6 +315,13 @@
     <string name="ConversationActivity_message_is_empty_exclamation">Порука је празна!</string>
     <string name="ConversationActivity_group_members">Чланови групе</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">Додирните овде да бисте започели групни позив</string>
+    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
+    <string name="ConversationActivity_edit_sms_message_error">Није могуће мењати SMS поруке</string>
+    <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
+    <plurals name="ConversationActivity_edit_message_too_old">
+        <item quantity="one">Измене се могу применити само у року од %1$d h од тренутка када сте послали ову поруку.</item>
+        <item quantity="other">Измене се могу применити само у року од %1$d h од тренутка када сте послали ову поруку.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Неисправан прималац!</string>
     <string name="ConversationActivity_added_to_home_screen">Додато на почетни екран</string>
@@ -383,6 +399,15 @@
     <string name="ConversationActivity__invite_to_signal">Позивница за Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Ускоро ћемо вас поново подсетити.</string>
+
+    <!-- Title for dialog shown when first sending formatted text -->
+    <string name="SendingFormattingTextDialog_title">Шаљемо форматирани текст</string>
+    <!-- Message for dialog shown when first sending formatted text -->
+    <string name="SendingFormattingTextDialog_message">Неки људи можда користе верзију Signal-а која не подржава форматирани текст. Они неће моћи да виде промене форматирања које сте направили у својој поруци.</string>
+    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
+    <string name="SendingFormattingTextDialog_send_anyway_button">Свеједно пошаљи</string>
+    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
+    <string name="SendingFormattingTextDialog_cancel_send_button">Откажи</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -488,35 +513,14 @@
         <item quantity="one">Непрочитано</item>
         <item quantity="other">Непрочитано</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">Закачи</item>
-        <item quantity="other">Закачи</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">Откачи</item>
-        <item quantity="other">Откачи</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Искључи обавештења</item>
-        <item quantity="other">Искључи обавештења</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Укључи обавештења</item>
-        <item quantity="other">Укључи обавештења</item>
-    </plurals>
-    <string name="ConversationListFragment_select">Изабери више</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Архивирај</item>
-        <item quantity="other">Архивирај</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Опозови архивирање</item>
-        <item quantity="other">Опозови архивирање</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Обриши</item>
-        <item quantity="other">Обриши</item>
-    </plurals>
+    <string name="ConversationListFragment_pin">Закачи</string>
+    <string name="ConversationListFragment_unpin">Откачи</string>
+    <string name="ConversationListFragment_mute">Утишај</string>
+    <string name="ConversationListFragment_unmute">Укључи обавеш.</string>
+    <string name="ConversationListFragment_select">Изабери</string>
+    <string name="ConversationListFragment_archive">Архивирај</string>
+    <string name="ConversationListFragment_unarchive">Распакуј</string>
+    <string name="ConversationListFragment_delete">Избриши</string>
     <string name="ConversationListFragment_select_all">Изабери све</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">Изабрано: %1$d</item>
@@ -1082,6 +1086,8 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Тапните и држите за снимање гласовне поруке, пустите за слање</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Размена SMS порука више није подржана у Signal-у.</string>
+    <!-- When editing a message, label shown above the text input field in the composer -->
+    <string name="InputPanel_edit_message">Измените поруку</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Дели</string>
@@ -1490,6 +1496,8 @@
     <string name="MessageRequestBottomView_delete">Обриши</string>
     <string name="MessageRequestBottomView_block">Блокирај</string>
     <string name="MessageRequestBottomView_unblock">Одблокирај</string>
+    <!-- Text explaining a message request from someone you\'ve removed before -->
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Желите ли да дозволите да вам %1$s пише и да поделите своје име и фотографију са овом особом? Претходно сте уклонили ову особу.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Да ли дозвољавате да вам %1$s шаље поруке и да подели ваше име и слику са њима? Неће знати да сте прочитали њихове поруке док не прихватите.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Желите ли да дозволите да вам %1$s шаље поруке и види ваше име и слику? Нећете примати поруке док не одблокирате овог корисника.</string>
@@ -1735,20 +1743,31 @@
         <item quantity="other">У овом позиву су %1$s, %2$s и још њих %3$d</item>
     </plurals>
 
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__flip">Обрнути</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__speaker">Звучник</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__camera">Камера</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Укључи обавештења</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Искључи обавештења</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__ring">Звони</string>
-    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <!-- Toggle content description for toggling camera direction  -->
+    <string name="WebRtcCallView__toggle_camera_direction">Пребаци смер камере</string>
+    <!-- Toggle content description for toggling audio output  -->
+    <string name="WebRtcCallView__toggle_speaker">Укључи/искључи звучник</string>
+    <!-- Toggle content description for toggling camera state  -->
+    <string name="WebRtcCallView__toggle_camera">Укључи/искључи камеру</string>
+    <!-- Toggle content description for toggling mute state  -->
+    <string name="WebRtcCallView__toggle_mute">Укључи/искључи звук</string>
+    <!-- Toggle content description for toggling group ring state  -->
+    <string name="WebRtcCallView__toggle_ring">Укључи/искључи звоњаву</string>
+    <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Заврши позив</string>
+
+    <!-- Error message when the developer added a button in the wrong place. -->
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Десила се грешка у корсничком интерфејсу. Молимо да пријавите ову грешку програмерима.</string>
+    <!-- Error message when the user is trying to change audio outputs but none are present. -->
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Није откривен одговарајући аудио улаз/излаз.</string>
+    <!-- A text description of the bluetooth icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">Икона која представља Bluetooth уређај.</string>
+    <!-- A text description of the headset icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">Икона која представља жичане слушалице.</string>
+    <!-- A text description of the speaker icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">Икона која представља спикерфон.</string>
+    <!-- A text description of the earpiece icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Икона која представља слушалицу уређаја.</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1786,7 +1805,13 @@
     <string name="RegistrationActivity_invalid_number">Неисправан број</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Број који сте навели (%1$s) није исправан.
     </string>
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Верификациони кôд ће бити послат на:</string>
+
+    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Да ли је број телефона у наставку тачан?</string>
+    <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
+    <string name="RegistrationActivity_additional_verification_required">Потребна је додатна верификација</string>
+    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">На овај број ће бити послата шифра за верификацију. Могу се применити тарифе оператера.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Примићете позив за потврду овог броја.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Да ли је тачан ваш број телефона изнад?</string>
     <string name="RegistrationActivity_edit_number">Измени број</string>
@@ -1816,11 +1841,15 @@
         <item quantity="other">Преостаје вам још %1$d корака да бисте послали евиденцију отклањања грешака.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Морамо проверити да сте човек.</string>
+    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
+    <string name="RegistrationActivity_external_service_error">Signal није успео да пошаље шифру SMS-ом због спољне грешке.</string>
     <string name="RegistrationActivity_next">Даље</string>
     <string name="RegistrationActivity_continue">Настави</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Обезбедите приватност где год се налазите.\nБудите својствени у свакој поруци.</string>
-    <string name="RegistrationActivity_enter_your_phone_number">Унесите ваш број телефона</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Примићете шифру за верификацију.\nМогућа је наплата од стране оператера.</string>
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">Број телефона</string>
+    <!-- Subtitle of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">За почетак, унесите свој број телефона.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Унесите кôд послат на %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Проверите да ли је телефонска мрежа доступна и да ли имате могућност примања SMS порука и позива</string>
 
@@ -1986,6 +2015,8 @@
     <string name="ThreadRecord_message_could_not_be_processed">Порука се није могла обрадити</string>
     <string name="ThreadRecord_delivery_issue">Проблем у испоруци</string>
     <string name="ThreadRecord_message_request">Захтев за разговор</string>
+    <!-- Thread preview for a recipient that has been hidden -->
+    <string name="ThreadRecord_hidden_recipient">Сакрили сте ову особу. Поново јој пошаљете поруку да је вратите на листу.</string>
     <string name="ThreadRecord_photo">Фотографија</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Гласовна порука</string>
@@ -2118,13 +2149,17 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Грешка приликом брисања поруке – порука можда није избрисана</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Прочитајте више</b></string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нових порука у %2$d преписки</string>
     <string name="MessageNotifier_most_recent_from_s">Најскорија од: %1$s</string>
     <string name="MessageNotifier_locked_message">Закључана порука</string>
     <string name="MessageNotifier_message_delivery_failed">Испорука поруке није успела.</string>
+    <!-- Shown in a notification when a story the user tries to send fails to be sent -->
+    <string name="MessageNotifier_story_delivery_failed">Слање приче није успело</string>
+    <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
+    <string name="MessageNotifier_group_story_title">Ви у групи %1$s</string>
     <string name="MessageNotifier_failed_to_deliver_message">Не успех да испоручим поруку.</string>
     <string name="MessageNotifier_error_delivering_message">Грешка при испоруци поруке.</string>
     <string name="MessageNotifier_message_delivery_paused">Испорука поруке је паузирана.</string>
@@ -2147,7 +2182,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Реаговао/ла је %1$s на ваш аудио.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реаговао/ла је %1$s на ваш једнократни садржај.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Реаговао/ла је %1$s на вашу уплату.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Реаговао/ла је %1$s на вашу налепницу.</string>
     <string name="MessageNotifier_this_message_was_deleted">Ова порука је обрисана.</string>
 
@@ -2248,10 +2283,18 @@
     <string name="WebRtcCallScreen__answer_without_video">Одговорити без видеа</string>
 
     <!-- WebRtcAudioOutputToggle -->
+    <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Аудио излаз</string>
+    <!-- Audio output option referring to the earpiece built into the phone -->
     <string name="WebRtcAudioOutputToggle__phone_earpiece">Слушалица за телефон</string>
+    <!-- Audio output option referring to the louder speaker built into the phone -->
     <string name="WebRtcAudioOutputToggle__speaker">Звучник</string>
+    <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Блутут</string>
+    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headset">Жичане слушалице</string>
+    <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
+    <string name="WebRtcAudioOutputToggle__wired_headset_usb">Жичане слушалице (USB)</string>
 
     <string name="WebRtcCallControls_answer_call_description">Одговори на позив</string>
     <string name="WebRtcCallControls_reject_call_description">Одбиј позив</string>
@@ -2264,6 +2307,12 @@
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__invite_to_signal">Позивница за Signal</string>
     <string name="contact_selection_activity__new_group">Нова група</string>
+    <!-- Row item title for refreshing contacts -->
+    <string name="contact_selection_activity__refresh_contacts">Освежите контакте</string>
+    <!-- Row item description for refreshing contacts -->
+    <string name="contact_selection_activity__missing_someone">Неко вам недостаје? Пробајте да освежите</string>
+    <!-- Row header title for more section -->
+    <string name="contact_selection_activity__more">Још</string>
 
     <!-- contact_filter_toolbar -->
     <string name="contact_filter_toolbar__clear_entered_text_description">Обриши унесен текст</string>
@@ -2363,7 +2412,8 @@
     <string name="ConversationUpdateItem_send_payment">Послати уплату</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">Активирати уплате</string>
-
+    <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Уклонили сте ову особу. Ако јој поново пошаљете поруку, вратићете је на листу.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Пусти … Заустави</string>
@@ -2620,6 +2670,8 @@
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Неуспех слања</string>
     <string name="message_details_recipient__new_safety_number">Нова шифра преписке</string>
+    <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
+    <string name="MessageDetails__view_edit_history">Видите историју измена</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Направи лозинку</string>
@@ -2900,6 +2952,12 @@
     <string name="preferences_success">Успешно</string>
     <string name="preferences_failed_to_connect">Неуспешно повезивање</string>
     <string name="preferences_enter_proxy_address">Унети адресу проксија</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">Величина траке за навигацију</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">Нормално</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">Компактно</string>
 
 
     <string name="configurable_single_select__customize_option">Прилагодите опцију</string>
@@ -3069,6 +3127,8 @@
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Белешка</string>
+    <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
+    <string name="EditNoteFragment__content_description_save_note">Сачувај поруку</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Потврдити уплату</string>
@@ -3109,6 +3169,8 @@
     <!-- **************************************** -->
 
     <!-- contact_selection_list -->
+    <!-- Displayed in a row on the new call screen when searching by phone number. -->
+    <string name="contact_selection_list__new_call">Нови позив за…</string>
     <string name="contact_selection_list__unknown_contact">Нова порука за…</string>
     <string name="contact_selection_list__unknown_contact_block">Блокирај корисника</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Додај у групу</string>
@@ -3145,6 +3207,8 @@
     <string name="conversation_selection__menu_forward">Проследи</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Одговори</string>
+    <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <string name="conversation_selection__menu_edit">Измени</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Сачувај</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3419,7 +3483,9 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Пренос налога на новом Android уређају</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Унесите бекап лозинку</string>
     <string name="RegistrationActivity_restore">Врати</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Није могуће увести резервну копију из новије верзије Signal-а.</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Није могуће увести резервну копију из новије верзије.</string>
+    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Нетачна бекап лозинка</string>
     <string name="RegistrationActivity_checking">Провера…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d порука до сад…</string>
@@ -3580,6 +3646,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Није могуће да се пренесе из новије верзије Signal-а.</string>
+    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Подаци се преносе</string>
@@ -3972,6 +4040,49 @@
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Временом ће бити тражено све ређе</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Захтева Signal PIN да поново региструјете свој телефонски број Signal-ом</string>
     <string name="AccountSettingsFragment__change_phone_number">Промена броја телефона</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Подаци са налога</string>
+
+    <!-- ExportAccountDataFragment -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Подаци са налога</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Извезите извештај са подацима са вашег налога на Signal-у. Овај извештај не обухвата поруке нити медијске садржаје. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Сазнајте више</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Извези извештај</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Извези као TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Текстуални фајл који се лако чита</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Извези као JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Машински читљив фајл</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Откажи</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">У реду</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">Нисмо успели да генеришемо извештај</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">Проверите да ли сте повезани и пробајте поново.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Желите ли да извезете податке?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Делите податке са свог налога на Signal-у само са људима или апликацијама којима верујете.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Извези</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Генеришемо извештај…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Извештај се генерише само у тренутку извоза и Signal га не чува на вашем уређају.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Користите ово да промените свој тренутни телефонски број на нови телефонски број. Не можете поништити ову промену.\n\nПре него што наставите, проверите да ли ваш нови број може да прима СМС или позиве.</string>
@@ -4418,6 +4529,9 @@
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Пребаци маркер/најамнички</string>
     <string name="ImageEditorHud__toggle_between_text_styles">Пребацити стил текста</string>
 
+    <!-- Header for section of featured stickers (location/time stickers) -->
+    <string name="ScribbleStickersFragment__featured_stickers">Истакнуто</string>
+
     <string name="MediaCountIndicatorButton__send">Пошаљи</string>
 
     <string name="MediaReviewSelectedItem__tap_to_remove">Додирните да уклоните</string>
@@ -4818,6 +4932,8 @@
 
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">Ћаскања</string>
+    <!-- Label for Calls tab in home app screen -->
+    <string name="ConversationListTabs__calls">Позиви</string>
     <!-- Label for Stories tab in home app screen -->
     <string name="ConversationListTabs__stories">Приче</string>
     <!-- String for counts above 99 in conversation list tabs -->
@@ -5102,7 +5218,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Копирано у остави</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">… Видети још</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Слање одговора…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -5659,12 +5775,20 @@
     <string name="TextFormatting_strikethrough">Прецртано</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Једноразредно</string>
+    <!-- Popup menu label for applying spoiler style -->
+    <string name="TextFormatting_spoiler">Замаскирано</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Настави</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">Подесите корисничко име за Signal</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Корисничка имена су упарена са скупом цифара и не деле се на вашем профилу</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Свако корисничко име има јединствени QR код и линк које можете да поделите са пријатељима да би започели ћаскање са вама</string>
+    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Искључите откривање броја телефона у одељку Подешавања &gt; Приватност &gt; Број телефона &gt; Ко може да пронађе мој број, да бисте користили своје корисничко име као примарни начин на који други могу да вас контактирају</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5681,6 +5805,156 @@
     <string name="TimeDurationPickerDialog_positive_button">Подеси</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
     <string name="TimeDurationPickerDialog_minimum_duration_warning">Минимално време за активирање закључавања екрана је 1 минут.</string>
+
+    <!-- Call Log -->
+    <!-- Displayed below the user\'s name in row items on the call log. First placeholder is the call status, second is when it occurred -->
+    <string name="CallLogAdapter__s_dot_s">%1$s · %2$s</string>
+    <!-- Displayed for incoming calls -->
+    <string name="CallLogAdapter__incoming">Долазни позив</string>
+    <!-- Displayed for outgoing calls -->
+    <string name="CallLogAdapter__outgoing">Одлазни позив</string>
+    <!-- Displayed for missed calls -->
+    <string name="CallLogAdapter__missed">Пропуштен позив</string>
+    <!-- Displayed on Group Call button if user is not in the call -->
+    <string name="CallLogAdapter__join">Придружите се</string>
+    <!-- Displayed on Group Call button if user is in the call -->
+    <string name="CallLogAdapter__return">Повратак</string>
+    <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
+    <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
+
+    <!-- Call Log context menu -->
+    <!-- Displayed as a context menu item to start a video call -->
+    <string name="CallContextMenu__video_call">Видео позив</string>
+    <!-- Displayed as a context menu item to join an ongoing group call -->
+    <string name="CallContextMenu__join_call">Придружите се позиву</string>
+    <!-- Displayed as a context menu item to return to active call -->
+    <string name="CallContextMenu__return_to_call">Вратите се на позив</string>
+    <!-- Displayed as a context menu item to start an audio call -->
+    <string name="CallContextMenu__audio_call">Аудио позив</string>
+    <!-- Displayed as a context menu item to go to chat -->
+    <string name="CallContextMenu__go_to_chat">Идите на ћаскање</string>
+    <!-- Displayed as a context menu item to see call info -->
+    <string name="CallContextMenu__info">Информације</string>
+    <!-- Displayed as a context menu item to select multiple calls -->
+    <string name="CallContextMenu__select">Изабери</string>
+    <!-- Displayed as a context menu item to delete this call -->
+    <string name="CallContextMenu__delete">Избриши</string>
+
+    <!-- Call Log Fragment -->
+    <!-- Action bar menu item to only display missed calls -->
+    <string name="CallLogFragment__filter_missed_calls">Филтрирај пропуштене позиве</string>
+    <!-- Action bar menu item to clear missed call filter -->
+    <string name="CallLogFragment__clear_filter">Уклони филтер</string>
+    <!-- Action bar menu item to open settings -->
+    <string name="CallLogFragment__settings">Подешавања</string>
+    <!-- Action bar menu item to open notification profile settings -->
+    <string name="CallLogFragment__notification_profile">Профил за обавештења</string>
+    <!-- Call log new call content description -->
+    <string name="CallLogFragment__start_a_new_call">Започните нови позив</string>
+    <!-- Filter pull text when pulled -->
+    <string name="CallLogFragment__filtered_by_missed">Филтрирано према пропуштеним позивима</string>
+    <!-- Bottom bar option to select all call entries -->
+    <string name="CallLogFragment__select_all">Изабери све</string>
+    <!-- Bottom bar option to delete all selected call entries -->
+    <string name="CallLogFragment__delete">Избриши</string>
+    <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
+  <!-- Removed by excludeNonTranslatables <plurals name="CallLogFragment__delete_d_calls" translatable="false">
+        <item quantity="one">Delete %1$d call?</item>
+        <item quantity="other">Delete %1$d calls?</item>
+    </plurals> -->
+    <!-- Positive action on multi-delete protection dialog -->
+    <string name="CallLogFragment__delete_for_me">Избриши за мене</string>
+    <!-- Snackbar label after deleting call logs -->
+    <plurals name="CallLogFragment__d_calls_deleted">
+        <item quantity="one">Избрисаних позива: %1$d</item>
+        <item quantity="other">Избрисаних позива: %1$d</item>
+    </plurals>
+    <!-- Undo action for deletion snackbar -->
+    <string name="CallLogFragment__undo">Опозови</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__no_calls">Без позива.</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__get_started_by_calling_a_friend">Започните тако што ћете позвати пријатеља.</string>
+
+    <!-- New call activity -->
+    <!-- Activity title in title bar -->
+    <string name="NewCallActivity__new_call">Нови позив</string>
+
+    <!-- Call state update popups -->
+    <!-- Displayed when the user enables group call ringing -->
+    <string name="CallStateUpdatePopupWindow__ringing_on">Звоно је укључено</string>
+    <!-- Displayed when the user disables group call ringing -->
+    <string name="CallStateUpdatePopupWindow__ringing_off">Звоно је искључено</string>
+    <!-- Displayed when the user cannot enable group call ringing -->
+    <string name="CallStateUpdatePopupWindow__group_is_too_large">Група је превелика да би звонило учесницима.</string>
+    <!-- Displayed when the user turns on their mic -->
+    <string name="CallStateUpdatePopupWindow__mic_on">Микрофон је укључен</string>
+    <!-- Displayed when the user turns off their mic -->
+    <string name="CallStateUpdatePopupWindow__mic_off">Микрофон је искључен</string>
+
+    <!-- Accessibility label describing the capture button on the camera screen -->
+    <string name="CameraControls_capture_button_accessibility_label">Дугме за фотографисање</string>
+    <!-- Accessibility label describing the continue button on the camera screen -->
+    <string name="CameraControls_continue_button_accessibility_label">Дугме за наставак</string>
+
+    <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">Групни позив</string>
+    <!-- Missed group call in call info -->
+    <string name="CallPreference__missed_group_call">Пропуштен групни позив</string>
+    <!-- Incoming group call in call info -->
+    <string name="CallPreference__incoming_group_call">Долазни групни позив</string>
+    <!-- Outgoing group call in call info -->
+    <string name="CallPreference__outgoing_group_call">Одлазни групни позив</string>
+
+    <!-- CreateCallLink -->
+    <!-- Call link creation item title on calls tab -->
+    <string name="CreateCallLink__create_a_call_link">Креирајте линк за позив</string>
+    <!-- Call link creation item description on calls tab -->
+    <string name="CreateCallLink__share_a_link_for">Поделите линк за позив преко Signal-а</string>
+
+    <!-- CreateCallLinkBottomSheetDialogFragment -->
+    <!-- Fragment title -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Креирајте линк за позив</string>
+    <!-- Displayed as a default name for the signal call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Позив преко Signal-а</string>
+    <!-- Displayed on a small button to allow user to instantly join call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__join">Придружите се</string>
+    <!-- Option to open a full screen dialog to enter a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Унесите назив позива</string>
+    <!-- Toggle to require approval for all members before joining -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Обавезно одобрење за све чланове</string>
+    <!-- Row label to share the link via Signal -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Подели линк преко Signal-а</string>
+    <!-- Row label to copy the link to the clipboard -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">Копирај линк</string>
+    <!-- Row label to share the link with the external share sheet -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link">Подели линк</string>
+    <!-- Button text to dismiss the sheet and add it as an upcoming call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__done">Готово</string>
+    <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Линк за позив није подељен.</string>
+    <!-- Displayed when we copy the call link to the clipboard -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Копирано</string>
+
+    <!-- EditCallLinkNameDialogFragment -->
+    <!-- App bar title for editing a call name -->
+    <string name="EditCallLinkNameDialogFragment__edit_call_name">Измените назив позива</string>
+    <!-- Text on button to confirm edit -->
+    <string name="EditCallLinkNameDialogFragment__save">Сачувај</string>
+    <!-- Placeholder text on input field when editing call name -->
+    <string name="EditCallLinkNameDialogFragment__call_name">Назив позива</string>
+
+    <!-- ChooseNavigationBarStyleFragment -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Величина траке за навигацију</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">Нормално</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">Компактно</string>
+
+    <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
+    <string name="EditMessageHistoryDialog_title">Историја измена</string>
 
     <!-- EOF -->
 </resources>

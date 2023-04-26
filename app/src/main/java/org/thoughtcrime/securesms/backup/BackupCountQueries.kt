@@ -16,12 +16,12 @@ object BackupCountQueries {
       SELECT COUNT(*) FROM ${GroupReceiptTable.TABLE_NAME} 
       INNER JOIN ${MessageTable.TABLE_NAME} ON ${GroupReceiptTable.TABLE_NAME}.${GroupReceiptTable.MMS_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID} 
       WHERE ${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} <= 0 AND ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} <= 0
-  """.trimIndent()
+  """
 
   @get:JvmStatic
   val attachmentCount: String = """
       SELECT COUNT(*) FROM ${AttachmentTable.TABLE_NAME} 
       INNER JOIN ${MessageTable.TABLE_NAME} ON ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MMS_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID} 
       WHERE ${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} <= 0 AND ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} <= 0
-  """.trimIndent()
+  """
 }

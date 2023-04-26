@@ -1,12 +1,8 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.recipients.Recipient
 import java.io.IOException
 
 /**
@@ -29,20 +25,14 @@ class NewRegistrationUsernameSyncJob private constructor(parameters: Parameters)
       .build()
   )
 
-  override fun serialize(): Data = Data.EMPTY
+  override fun serialize(): ByteArray? = null
 
   override fun getFactoryKey(): String = KEY
 
   override fun onFailure() = Unit
 
   override fun onRun() {
-    if (SignalDatabase.recipients.getUsername(Recipient.self().id).isNullOrEmpty()) {
-      Log.i(TAG, "Clearing username from server.")
-      ApplicationDependencies.getSignalServiceAccountManager().deleteUsername()
-    } else {
-      Log.i(TAG, "Local user has a username, attempting username synchronization.")
-      RefreshOwnProfileJob.checkUsernameIsInSync()
-    }
+    RefreshOwnProfileJob.checkUsernameIsInSync()
   }
 
   override fun onShouldRetry(e: Exception): Boolean {
@@ -50,7 +40,7 @@ class NewRegistrationUsernameSyncJob private constructor(parameters: Parameters)
   }
 
   class Factory : Job.Factory<NewRegistrationUsernameSyncJob> {
-    override fun create(parameters: Parameters, data: Data): NewRegistrationUsernameSyncJob {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): NewRegistrationUsernameSyncJob {
       return NewRegistrationUsernameSyncJob(parameters)
     }
   }

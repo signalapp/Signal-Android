@@ -110,19 +110,19 @@ public class ConversationAdapter
   private final Set<MultiselectPart>         selected;
   private final Calendar                     calendar;
 
-  private String              searchQuery;
-  private ConversationMessage recordToPulse;
-  private View                typingView;
-  private View                footerView;
-  private PagingController    pagingController;
-  private boolean             hasWallpaper;
-  private boolean             isMessageRequestAccepted;
-  private ConversationMessage inlineContent;
-  private Colorizer           colorizer;
-  private boolean             isTypingViewEnabled;
-  private boolean             condensedMode;
-  private boolean             scheduledMessagesMode;
-  private PulseRequest        pulseRequest;
+  private String                      searchQuery;
+  private ConversationMessage         recordToPulse;
+  private View                        typingView;
+  private View                        footerView;
+  private PagingController            pagingController;
+  private boolean                     hasWallpaper;
+  private boolean                     isMessageRequestAccepted;
+  private ConversationMessage         inlineContent;
+  private Colorizer                   colorizer;
+  private boolean                     isTypingViewEnabled;
+  private ConversationItemDisplayMode condensedMode;
+  private boolean                     scheduledMessagesMode;
+  private PulseRequest                pulseRequest;
 
   public ConversationAdapter(@NonNull Context context,
                       @NonNull LifecycleOwner lifecycleOwner,
@@ -258,7 +258,7 @@ public class ConversationAdapter
     }
   }
 
-  public void setCondensedMode(boolean condensedMode) {
+  public void setCondensedMode(ConversationItemDisplayMode condensedMode) {
     this.condensedMode = condensedMode;
     notifyDataSetChanged();
   }
@@ -283,7 +283,7 @@ public class ConversationAdapter
         ConversationMessage previousMessage = adapterPosition < getItemCount() - 1  && !isFooterPosition(adapterPosition + 1) ? getItem(adapterPosition + 1) : null;
         ConversationMessage nextMessage     = adapterPosition > 0                   && !isHeaderPosition(adapterPosition - 1) ? getItem(adapterPosition - 1) : null;
 
-        ConversationItemDisplayMode displayMode = condensedMode ? ConversationItemDisplayMode.CONDENSED : ConversationItemDisplayMode.STANDARD;
+        ConversationItemDisplayMode displayMode = condensedMode != null ? condensedMode : ConversationItemDisplayMode.STANDARD;
 
         conversationViewHolder.getBindable().bind(lifecycleOwner,
                                                   conversationMessage,
@@ -295,7 +295,7 @@ public class ConversationAdapter
                                                   recipient,
                                                   searchQuery,
                                                   conversationMessage == recordToPulse,
-                                                  hasWallpaper && !condensedMode,
+                                                  hasWallpaper && displayMode.displayWallpaper(),
                                                   isMessageRequestAccepted,
                                                   conversationMessage == inlineContent,
                                                   colorizer,
@@ -402,6 +402,39 @@ public class ConversationAdapter
     }
   }
 
+  /**
+   * Checks a range around the given position for nulls.
+   *
+   * @param position The position we wish to jump to.
+   * @return true if we seem like we've paged in the right data, false if not so.
+   */
+  public boolean canJumpToPosition(int position) {
+    position = isTypingViewEnabled() ? position - 1 : position;
+    if (position < 0) {
+      return false;
+    }
+
+    if (position > super.getItemCount()) {
+      Log.d(TAG, "Could not access corrected position " + position + " as it is out of bounds.");
+      return false;
+    }
+
+    int start = Math.max(position - 10, 0);
+    int end = Math.min(position + 5, super.getItemCount());
+
+    for (int i = start; i < end; i++) {
+      if (super.getItem(i) == null) {
+        if (pagingController != null) {
+          pagingController.onDataNeededAroundIndex(position);
+        }
+
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   public void setPagingController(@Nullable PagingController pagingController) {
     this.pagingController = pagingController;
   }
@@ -431,7 +464,7 @@ public class ConversationAdapter
    * an adjusted message position based on adapter state.
    */
   @MainThread
-  int getAdapterPositionForMessagePosition(int messagePosition) {
+  public int getAdapterPositionForMessagePosition(int messagePosition) {
     return isTypingViewEnabled() ? messagePosition + 1 : messagePosition;
   }
 
@@ -580,7 +613,7 @@ public class ConversationAdapter
    * Provided a pool, this will initialize it with view counts that make sense.
    */
   @MainThread
-  static void initializePool(@NonNull RecyclerView.RecycledViewPool pool) {
+  public static void initializePool(@NonNull RecyclerView.RecycledViewPool pool) {
     pool.setMaxRecycledViews(MESSAGE_TYPE_INCOMING_TEXT, 25);
     pool.setMaxRecycledViews(MESSAGE_TYPE_INCOMING_MULTIMEDIA, 15);
     pool.setMaxRecycledViews(MESSAGE_TYPE_OUTGOING_TEXT, 25);

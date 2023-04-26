@@ -102,6 +102,8 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
     RegistrationUtil.maybeMarkRegistrationComplete()
     SignalDatabase.recipients.setProfileName(Recipient.self().id, ProfileName.fromParts("Tester", "McTesterson"))
 
+    SignalStore.settings().isMessageNotificationsEnabled = false
+
     return Recipient.self()
   }
 

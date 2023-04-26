@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.audio;
 
 import android.media.MediaRecorder;
+import android.os.Build;
 import android.os.ParcelFileDescriptor;
 
+import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 
 import java.io.IOException;
@@ -19,10 +21,14 @@ public class MediaRecorderWrapper implements Recorder {
   private static final int    BIT_RATE          = 32000;
 
   private MediaRecorder recorder = null;
+  
+  private ParcelFileDescriptor outputFileDescriptor;
 
   @Override
   public void start(ParcelFileDescriptor fileDescriptor) throws IOException {
     Log.i(TAG, "Recording voice note using MediaRecorderWrapper.");
+    this.outputFileDescriptor = fileDescriptor;
+
     recorder = new MediaRecorder();
 
     try {
@@ -30,7 +36,7 @@ public class MediaRecorderWrapper implements Recorder {
       recorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
       recorder.setOutputFile(fileDescriptor.getFileDescriptor());
       recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-      recorder.setAudioSamplingRate(SAMPLE_RATE);
+      recorder.setAudioSamplingRate(getSampleRate());
       recorder.setAudioEncodingBitRate(BIT_RATE);
       recorder.setAudioChannels(CHANNELS);
       recorder.prepare();
@@ -39,6 +45,8 @@ public class MediaRecorderWrapper implements Recorder {
       Log.w(TAG, "Unable to start recording", e);
       recorder.release();
       recorder = null;
+      StreamUtil.close(outputFileDescriptor);
+      outputFileDescriptor = null;
       throw new IOException(e);
     }
   }
@@ -60,6 +68,16 @@ public class MediaRecorderWrapper implements Recorder {
     } finally {
       recorder.release();
       recorder = null;
+      StreamUtil.close(outputFileDescriptor);
+      outputFileDescriptor = null;
     }
+  }
+
+  private static int getSampleRate() {
+    if ("Xiaomi".equals(Build.MANUFACTURER) && "Mi 9T".equals(Build.MODEL)) {
+      // Recordings sound robotic with the standard sample rate.
+      return 44000;
+    }
+    return SAMPLE_RATE;
   }
 }

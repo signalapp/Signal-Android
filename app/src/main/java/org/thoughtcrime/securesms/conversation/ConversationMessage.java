@@ -150,7 +150,7 @@ public class ConversationMessage {
                                                           : BodyRangeUtil.adjustBodyRanges(messageRecord.getMessageRanges(), mentionsUpdate.getBodyAdjustments());
 
         styledAndMentionBody = SpannableString.valueOf(mentionsUpdate != null ? mentionsUpdate.getBody() : body);
-        styleResult          = MessageStyler.style(bodyRanges, styledAndMentionBody);
+        styleResult          = MessageStyler.style(messageRecord.getDateSent(), bodyRanges, styledAndMentionBody);
       }
 
       return new ConversationMessage(messageRecord,

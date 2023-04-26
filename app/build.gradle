@@ -46,8 +46,8 @@ ktlint {
     version = "0.47.1"
 }
 
-def canonicalVersionCode = 1231
-def canonicalVersionName = "6.14.4"
+def canonicalVersionCode = 1251
+def canonicalVersionName = "6.19.3"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -67,10 +67,13 @@ def selectableVariants = [
         'nightlyPnpRelease',
         'playProdDebug',
         'playProdSpinner',
+        'playProdCanary',
         'playProdPerf',
+        'playProdBenchmark',
         'playProdInstrumentation',
         'playProdRelease',
         'playStagingDebug',
+        'playStagingCanary',
         'playStagingSpinner',
         'playStagingPerf',
         'playStagingInstrumentation',
@@ -219,6 +222,7 @@ android {
         buildConfigField "String", "BUILD_VARIANT_TYPE", "\"unset\""
         buildConfigField "String", "BADGE_STATIC_ROOT", "\"https://updates2.signal.org/static/badges/\""
         buildConfigField "String", "STRIPE_PUBLISHABLE_KEY", "\"pk_live_6cmGZopuTsV8novGgJJW9JpC00vLIgtQ1D\""
+        buildConfigField "boolean", "TRACING_ENABLED", "false"
 
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
@@ -228,7 +232,7 @@ android {
 
         splits {
             abi {
-                enable true
+                enable !project.hasProperty('generateBaselineProfile')
                 reset()
                 include 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
                 universalApk true
@@ -304,6 +308,25 @@ android {
             minifyEnabled true
             matchingFallbacks = ['debug']
             buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Perf\""
+            buildConfigField "boolean", "TRACING_ENABLED", "true"
+        }
+
+        benchmark {
+            initWith debug
+            isDefault false
+            debuggable false
+            minifyEnabled true
+            matchingFallbacks = ['debug']
+            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Benchmark\""
+            buildConfigField "boolean", "TRACING_ENABLED", "true"
+        }
+
+        canary {
+            initWith debug
+            isDefault false
+            minifyEnabled false
+            matchingFallbacks = ['debug']
+            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Canary\""
         }
     }
 
@@ -424,7 +447,6 @@ android {
 }
 
 dependencies {
-    implementation libs.androidx.core.ktx
     implementation libs.androidx.fragment.ktx
     lintChecks project(':lintchecks')
 
@@ -462,6 +484,9 @@ dependencies {
     implementation libs.androidx.autofill
     implementation libs.androidx.biometric
     implementation libs.androidx.sharetarget
+    implementation libs.androidx.profileinstaller
+    implementation libs.androidx.asynclayoutinflater
+    implementation libs.androidx.asynclayoutinflater.appcompat
 
     implementation (libs.firebase.messaging) {
         exclude group: 'com.google.firebase', module: 'firebase-core'
@@ -540,9 +565,11 @@ dependencies {
         exclude group: 'org.freemarker'
     }
     implementation libs.dnsjava
+    implementation libs.kotlinx.collections.immutable
 
     spinnerImplementation project(":spinner")
-    spinnerImplementation libs.square.leakcanary
+
+    canaryImplementation libs.square.leakcanary
 
     testImplementation testLibs.junit.junit
     testImplementation testLibs.assertj.core

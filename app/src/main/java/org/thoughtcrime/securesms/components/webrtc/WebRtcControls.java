@@ -153,7 +153,7 @@ public final class WebRtcControls {
   }
 
   boolean displayAudioToggle() {
-    return (isPreJoin() || isAtLeastOutgoing()) && (!isLocalVideoEnabled || enableHeadsetInAudioToggle());
+    return (isPreJoin() || isAtLeastOutgoing()) && (!isLocalVideoEnabled || isBluetoothHeadsetAvailableForAudioToggle() || isWiredHeadsetAvailableForAudioToggle());
   }
 
   boolean displayCameraToggle() {
@@ -172,11 +172,15 @@ public final class WebRtcControls {
     return isIncoming();
   }
 
-  boolean enableHandsetInAudioToggle() {
+  boolean isEarpieceAvailableForAudioToggle() {
     return !isLocalVideoEnabled;
   }
 
-  boolean enableHeadsetInAudioToggle() {
+  boolean isBluetoothHeadsetAvailableForAudioToggle() {
+    return availableDevices.contains(SignalAudioManager.AudioDevice.BLUETOOTH);
+  }
+
+  boolean isWiredHeadsetAvailableForAudioToggle() {
     return availableDevices.contains(SignalAudioManager.AudioDevice.BLUETOOTH);
   }
 
@@ -201,7 +205,9 @@ public final class WebRtcControls {
       case SPEAKER_PHONE:
         return WebRtcAudioOutput.SPEAKER;
       case BLUETOOTH:
-        return WebRtcAudioOutput.HEADSET;
+        return WebRtcAudioOutput.BLUETOOTH_HEADSET;
+      case WIRED_HEADSET:
+        return WebRtcAudioOutput.WIRED_HEADSET;
       default:
         return WebRtcAudioOutput.HANDSET;
     }

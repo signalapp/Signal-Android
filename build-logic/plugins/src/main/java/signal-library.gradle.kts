@@ -17,8 +17,8 @@ val signalJavaVersion: JavaVersion by extra
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("org.jlleitschuh.gradle.ktlint")
     id("android-constants")
+    id("ktlint")
 }
 
 android {
@@ -44,11 +44,6 @@ android {
     lint {
         disable += "InvalidVectorPath"
     }
-}
-
-ktlint {
-    // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
-    version.set("0.47.1")
 }
 
 dependencies {

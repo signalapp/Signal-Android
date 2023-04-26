@@ -52,7 +52,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.LifecycleDisposable;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;
@@ -69,7 +69,7 @@ import java.util.stream.Stream;
  * @author Moxie Marlinspike
  */
 public class NewConversationActivity extends ContactSelectionActivity
-    implements ContactSelectionListFragment.ListCallback, ContactSelectionListFragment.OnItemLongClickListener
+    implements ContactSelectionListFragment.NewConversationCallback, ContactSelectionListFragment.OnItemLongClickListener
 {
 
   @SuppressWarnings("unused")
@@ -93,7 +93,7 @@ public class NewConversationActivity extends ContactSelectionActivity
     ContactsManagementViewModel.Factory factory    = new ContactsManagementViewModel.Factory(repository);
 
     contactLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), activityResult -> {
-      if (activityResult.getResultCode() == RESULT_OK) {
+      if (activityResult.getResultCode() != RESULT_CANCELED) {
         handleManualRefresh();
       }
     });
@@ -102,7 +102,7 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   @Override
-  public void onBeforeContactSelected(@NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
+  public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
     boolean smsSupported = SignalStore.misc().getSmsExportPhase().allowSmsFeatures();
 
     if (recipientId.isPresent()) {

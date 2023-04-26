@@ -19,7 +19,7 @@ val signalJavaVersion: JavaVersion by extra
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("org.jlleitschuh.gradle.ktlint")
+    id("ktlint")
     id("android-constants")
 }
 
@@ -45,11 +45,6 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-}
-
-ktlint {
-    // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
-    version.set("0.47.1")
 }
 
 dependencies {

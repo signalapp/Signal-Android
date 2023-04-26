@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.signal.core.util.CursorUtil;
 
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -193,7 +195,7 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabaseOpenH
     getWritableDatabase().update(Jobs.TABLE_NAME, contentValues, query, args);
   }
 
-  public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime, @NonNull String serializedData) {
+  public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime, @Nullable byte[] serializedData) {
     ContentValues contentValues = new ContentValues();
     contentValues.put(Jobs.IS_RUNNING, isRunning ? 1 : 0);
     contentValues.put(Jobs.RUN_ATTEMPT, runAttempt);
@@ -348,8 +350,8 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabaseOpenH
                        cursor.getInt(cursor.getColumnIndexOrThrow(Jobs.RUN_ATTEMPT)),
                        cursor.getInt(cursor.getColumnIndexOrThrow(Jobs.MAX_ATTEMPTS)),
                        cursor.getLong(cursor.getColumnIndexOrThrow(Jobs.LIFESPAN)),
-                       cursor.getString(cursor.getColumnIndexOrThrow(Jobs.SERIALIZED_DATA)),
-                       cursor.getString(cursor.getColumnIndexOrThrow(Jobs.SERIALIZED_INPUT_DATA)),
+                       cursor.getBlob(cursor.getColumnIndexOrThrow(Jobs.SERIALIZED_DATA)),
+                       cursor.getBlob(cursor.getColumnIndexOrThrow(Jobs.SERIALIZED_INPUT_DATA)),
                        cursor.getInt(cursor.getColumnIndexOrThrow(Jobs.IS_RUNNING)) == 1,
                        false);
   }

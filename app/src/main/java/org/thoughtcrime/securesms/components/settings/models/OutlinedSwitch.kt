@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.components.settings.models
 
 import android.view.View
 import android.widget.TextView
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.materialswitch.MaterialSwitch
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -35,7 +35,7 @@ object OutlinedSwitch {
   class ViewHolder(itemView: View) : MappingViewHolder<Model>(itemView) {
 
     private val text: TextView = findViewById(R.id.outlined_switch_control_text)
-    private val switch: SwitchMaterial = findViewById(R.id.outlined_switch_switch)
+    private val switch: MaterialSwitch = findViewById(R.id.outlined_switch_switch)
 
     override fun bind(model: Model) {
       text.text = model.text.resolve(context)

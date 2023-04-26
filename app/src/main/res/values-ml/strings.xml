@@ -15,6 +15,7 @@
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
     <string name="yes">അതെ/ഉവ്വ്</string>
     <string name="no">അല്ല/ഇല്ല</string>
@@ -168,6 +169,10 @@
     <string name="BucketedThreadMedia_Medium">ഇടത്തരം</string>
     <string name="BucketedThreadMedia_Small">ചെറുത്</string>
 
+    <!-- CameraFragment -->
+    <!-- Toasted when user device does not support video recording -->
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ വീഡിയോ റെക്കോർഡിംഗ് പിന്തുണയില്ല</string>
+
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">ഫോട്ടോയ്‌ക്കായി അമർത്തുക, വീഡിയോയ്‌ക്കായി പിടിക്കുക</string>
     <string name="CameraXFragment_capture_description">ക്യാപ്‌ചർ ചെയ്യുക</string>
@@ -296,9 +301,13 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">ചിത്രം ഡൗൺലോഡ് ചെയ്യാൻ കഴിയുന്നില്ല. നിങ്ങൾ അത് വീണ്ടും അയയ്‌ക്കേണ്ടതുണ്ട്.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">വീഡിയോ ഡൗൺലോഡ് ചെയ്യാൻ കഴിയുന്നില്ല. നിങ്ങൾ അത് വീണ്ടും അയയ്‌ക്കേണ്ടതുണ്ട്.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
+    <string name="ConversationItem_edited_timestamp_footer">എഡിറ്റ് ചെയ്തത് %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">അറ്റാച്ച്മെന്റ് ചേർക്കുക</string>
+    <!-- Accessibility text associated with image button to send an edited message. -->
+    <string name="ConversationActivity_send_edit">എഡിറ്റ് ചെയ്തത് അയയ്ക്കുക</string>
     <string name="ConversationActivity_select_contact_info">കോൺ‌ടാക്റ്റ് വിവരം തിരഞ്ഞെടുക്കുക</string>
     <string name="ConversationActivity_compose_message">സന്ദേശം രചിക്കുക</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ക്ഷമിക്കണം, നിങ്ങളുടെ അറ്റാച്ചുമെന്റ് ക്രമീകരിക്കുന്നതിൽ ഒരു പിശക് ഉണ്ടായിരുന്നു.</string>
@@ -306,6 +315,13 @@
     <string name="ConversationActivity_message_is_empty_exclamation">സന്ദേശം ശൂന്യമാണ്!</string>
     <string name="ConversationActivity_group_members">ഗ്രൂപ്പിലെ അംഗങ്ങൾ</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ ഇവിടെ ടാപ്പ് ചെയ്യുക</string>
+    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
+    <string name="ConversationActivity_edit_sms_message_error">SMS സന്ദേശങ്ങൾ എഡിറ്റ് ചെയ്യാനായില്ല</string>
+    <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
+    <plurals name="ConversationActivity_edit_message_too_old">
+        <item quantity="one">നിങ്ങൾ ഈ സന്ദേശം അയച്ച് %1$d മണിക്കൂറിനകം മാത്രമെ എഡിറ്റുകൾ ബാധകമാക്കാനാകൂ.</item>
+        <item quantity="other">നിങ്ങൾ ഈ സന്ദേശം അയച്ച് %1$d മണിക്കൂറിനകം മാത്രമെ എഡിറ്റുകൾ ബാധകമാക്കാനാകൂ.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">അസാധുവായ സ്വീകർത്താവ്!</string>
     <string name="ConversationActivity_added_to_home_screen">ഹോം സ്‌ക്രീനിൽ ചേർത്തു</string>
@@ -383,6 +399,15 @@
     <string name="ConversationActivity__invite_to_signal">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">ഉടൻ തന്നെ നിങ്ങളെ വീണ്ടും ഓർമ്മിപ്പിക്കും.</string>
+
+    <!-- Title for dialog shown when first sending formatted text -->
+    <string name="SendingFormattingTextDialog_title">ഫോർമാറ്റ് ചെയ്ത ടെക്സ്റ്റ് അയയ്ക്കുന്നു</string>
+    <!-- Message for dialog shown when first sending formatted text -->
+    <string name="SendingFormattingTextDialog_message">ഫോർമാറ്റ് ചെയ്ത ടെക്സ്റ്റ് പിന്തുണയ്ക്കാത്ത Signal പതിപ്പാണ് ചിലർ ഉപയോഗിക്കുന്നത്. നിങ്ങളുടെ സന്ദേശത്തിൽ വരുത്തിയ ഫോർമാറ്റ് മാറ്റങ്ങൾ കാണാൻ അവർക്കാകില്ല.</string>
+    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
+    <string name="SendingFormattingTextDialog_send_anyway_button">എന്തായാലും അയയ്ക്കുക</string>
+    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
+    <string name="SendingFormattingTextDialog_cancel_send_button">റദ്ദാക്കുക</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -488,35 +513,14 @@
         <item quantity="one">വായിച്ചില്ല</item>
         <item quantity="other">വായിച്ചില്ല</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">പിൻ</item>
-        <item quantity="other">പിൻ ചെയ്യുക</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">അൺപിൻ ചെയ്യുക</item>
-        <item quantity="other">അൺപിൻ ചെയ്യുക</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">മ്യൂട്ട് ചെയ്യുക</item>
-        <item quantity="other">മ്യൂട്ട് ചെയ്യുക</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">അൺമ്യൂട്ട് ചെയ്യുക</item>
-        <item quantity="other">അൺമ്യൂട്ട് ചെയ്യുക</item>
-    </plurals>
+    <string name="ConversationListFragment_pin">പിൻ ചെയ്യുക</string>
+    <string name="ConversationListFragment_unpin">അൺപിൻ ചെയ്യുക</string>
+    <string name="ConversationListFragment_mute">നിശബ്ദമാക്കുക</string>
+    <string name="ConversationListFragment_unmute">അൺമ്യൂട്ട്</string>
     <string name="ConversationListFragment_select">തിരഞ്ഞെടുക്കൂ</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">ആർക്കൈവ്</item>
-        <item quantity="other">ആർക്കൈവ്</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">അൺആർക്കൈവ്</item>
-        <item quantity="other">അൺആർക്കൈവ്</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">ഇല്ലാതാക്കൂ</item>
-        <item quantity="other">ഇല്ലാതാക്കൂ</item>
-    </plurals>
+    <string name="ConversationListFragment_archive">ആർക്കൈവ്</string>
+    <string name="ConversationListFragment_unarchive">അൺആർക്കൈവ്</string>
+    <string name="ConversationListFragment_delete">ഇല്ലാതാക്കൂ</string>
     <string name="ConversationListFragment_select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d തിരഞ്ഞെടുത്തു</item>
@@ -1082,6 +1086,8 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ഒരു ശബ്‌ദ സന്ദേശം റെക്കോർഡുചെയ്യാൻ ടാപ്പുചെയ്‌ത് പിടിക്കുക, അയയ്‌ക്കാൻ റിലീസ് ചെയ്യുക</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS സന്ദേശമയയ്‌ക്കൽ ഇനിമുതൽ Signal-ൽ പിന്തുണയ്‌ക്കുന്നില്ല.</string>
+    <!-- When editing a message, label shown above the text input field in the composer -->
+    <string name="InputPanel_edit_message">സന്ദേശം എഡിറ്റ് ചെയ്യുക</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">പങ്കിടുക</string>
@@ -1490,6 +1496,8 @@
     <string name="MessageRequestBottomView_delete">ഇല്ലാതാക്കൂ</string>
     <string name="MessageRequestBottomView_block">ബ്ലോക്ക് ചെയ്യുക</string>
     <string name="MessageRequestBottomView_unblock">അൺബ്ലോക്ക് ചെയ്യുക</string>
+    <!-- Text explaining a message request from someone you\'ve removed before -->
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s എന്നയാളെ നിങ്ങൾക്ക് സന്ദേശം അയയ്ക്കാനും നിങ്ങളുടെ പേരും ഫോട്ടോയും അവരുമായി പങ്കിടാനും അനുവദിക്കണോ? നിങ്ങൾ മുമ്പ് ഈ വ്യക്തിയെ നീക്കം ചെയ്തിട്ടുള്ളതാണ്.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s നിങ്ങൾക്ക് സന്ദേശം അയയ്‌ക്കാനും നിങ്ങളുടെ പേരും ഫോട്ടോയും അവരുമായി പങ്കിടട്ടെ? നിങ്ങൾ അംഗീകരിക്കുന്നതുവരെ നിങ്ങൾ അവരുടെ സന്ദേശം കണ്ടതായി അവർക്ക് അറിയില്ല.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">നിങ്ങൾക്ക് മെസേജ് അയയ്ക്കാൻ %1$s എന്നയാളെ അനുവദിക്കണോ? നിങ്ങൾ അവരെ അൺബ്ലോക്ക് ചെയ്യുന്നത് വരെ നിങ്ങൾക്ക് മെസേജ് ഒന്നും ലഭിക്കില്ല.</string>
@@ -1735,20 +1743,31 @@
         <item quantity="other">%1$s - ഉം, %2$s - ഉം പിന്നെ %3$d ആളുകളും ഈ കോളിലുണ്ട്</item>
     </plurals>
 
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__flip">തിരിക്കൂ</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__speaker">സ്പീക്കർ</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__camera">ക്യാമറ</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">അൺമ്യൂട്ട് ചെയ്യുക</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">മ്യൂട്ട് ചെയ്യുക</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__ring">റിംഗ്</string>
-    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <!-- Toggle content description for toggling camera direction  -->
+    <string name="WebRtcCallView__toggle_camera_direction">ക്യാമറയുടെ ദിശ ടോഗിൾ ചെയ്യൽ</string>
+    <!-- Toggle content description for toggling audio output  -->
+    <string name="WebRtcCallView__toggle_speaker">സ്പീക്കർ ടോഗിൾ</string>
+    <!-- Toggle content description for toggling camera state  -->
+    <string name="WebRtcCallView__toggle_camera">ക്യാമറാ ടോഗിൾ</string>
+    <!-- Toggle content description for toggling mute state  -->
+    <string name="WebRtcCallView__toggle_mute">മ്യൂട്ട് ടോഗിൾ</string>
+    <!-- Toggle content description for toggling group ring state  -->
+    <string name="WebRtcCallView__toggle_ring">റിംഗ് ടോഗിൾ</string>
+    <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">കോൾ അവസാനിപ്പിക്കൂ</string>
+
+    <!-- Error message when the developer added a button in the wrong place. -->
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">UI പിശക് സംഭവിച്ചു. ഈ പിശക് ഡെവലപ്പർമാർക്ക് റിപ്പോർട്ട് ചെയ്യൂ.</string>
+    <!-- Error message when the user is trying to change audio outputs but none are present. -->
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">യോഗ്യതയുള്ള ഓഡിയോ I/O ഒന്നും കണ്ടെത്തിയില്ല.</string>
+    <!-- A text description of the bluetooth icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">ബ്ലൂടൂത്തിനെ പ്രതിനിധീകരിക്കുന്ന ഐക്കൺ.</string>
+    <!-- A text description of the headset icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">വയേർഡ് ഹെഡ്‌സെറ്റിനെ പ്രതിനിധീകരിക്കുന്ന ഐക്കൺ.</string>
+    <!-- A text description of the speaker icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">സ്‌പീക്കർഫോണിനെ പ്രതിനിധീകരിക്കുന്ന ഐക്കൺ.</string>
+    <!-- A text description of the earpiece icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">ഉപകരണത്തിന്‍റെ ഇയർപീസിനെ പ്രതിനിധീകരിക്കുന്ന ഐക്കൺ.</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1786,7 +1805,13 @@
     <string name="RegistrationActivity_invalid_number">അസാധുവായ നമ്പർ</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">നിങ്ങൾ വ്യക്തമാക്കിയ നമ്പർ (%1$s) അസാധുവാണ്.
     </string>
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to">പരിശോധന കോഡ് അയക്കുന്നത്:</string>
+
+    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">ചുവടെയുള്ള ഫോൺ നമ്പർ ശരിയാണോ?</string>
+    <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
+    <string name="RegistrationActivity_additional_verification_required">അധിക പരിശോധിച്ചുറപ്പിക്കൽ ആവശ്യമാണ്</string>
+    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് ഈ നമ്പറിലേക്ക് അയയ്ക്കും. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ഈ നമ്പർ പരിശോധിക്കാൻ വേണ്ടി നിങ്ങൾക്ക് ഒരു കോൾ വരും.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">മുകളിലുള്ള നിങ്ങളുടെ ഫോൺ നമ്പർ ശരിയാണോ?</string>
     <string name="RegistrationActivity_edit_number">നമ്പർ തിരുത്തുക</string>
@@ -1816,11 +1841,15 @@
         <item quantity="other">ഒരു ഡീബഗ് ലോഗ് സമർപ്പിക്കുന്നതിൽ നിന്ന് നിങ്ങൾ ഇപ്പോൾ %1$d ഘട്ടങ്ങൾ അകലെയാണ്.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">നിങ്ങൾ മനുഷ്യനാണെന്ന് ഞങ്ങൾ പരിശോധിക്കേണ്ടതുണ്ട്.</string>
+    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
+    <string name="RegistrationActivity_external_service_error">ബാഹ്യ പിശക് കാരണം Signal-ന് SMS കോഡ് അയയ്ക്കാനായില്ല.</string>
     <string name="RegistrationActivity_next">അടുത്തത്</string>
     <string name="RegistrationActivity_continue">തുടരുക</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">സ്വകാര്യത നിങ്ങൾക്കൊപ്പം കൊണ്ടുപോകുക.\nഎല്ലാ സന്ദേശത്തിലും നിങ്ങൾ നിങ്ങളെപ്പോലെ ആകുക.</string>
-    <string name="RegistrationActivity_enter_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">നിങ്ങൾക്ക് ഒരു സ്ഥിരീകരണ കോഡ് ലഭിക്കും.\nകാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">ഫോൺ നമ്പർ</string>
+    <!-- Subtitle of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ആരംഭിക്കാൻ നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ഞങ്ങൾ %1$s-ലേക്ക് അയച്ച കോഡ് നൽകുക</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">നിങ്ങളുടെ SMS അല്ലെങ്കിൽ കോൾ സ്വീകരിക്കുന്നതിന് നിങ്ങളുടെ ഫോണിന് സെല്ലുലാർ സിഗ്നൽ ഉണ്ടെന്ന് ഉറപ്പാക്കുക</string>
 
@@ -1986,6 +2015,8 @@
     <string name="ThreadRecord_message_could_not_be_processed">സന്ദേശം പ്രോസസ്സ് ചെയ്യാൻ കഴിഞ്ഞില്ല</string>
     <string name="ThreadRecord_delivery_issue">ഡെലിവറി പ്രശ്നം</string>
     <string name="ThreadRecord_message_request">സന്ദേശത്തിനുള്ള അപേക്ഷ</string>
+    <!-- Thread preview for a recipient that has been hidden -->
+    <string name="ThreadRecord_hidden_recipient">നിങ്ങൾ ഈ വ്യക്തിയെ മറച്ചു, അവരെ നിങ്ങളുടെ ലിസ്റ്റിലേക്ക് വീണ്ടും ചേർക്കാൻ അവർക്ക് വീണ്ടും സന്ദേശം അയയ്ക്കുക.</string>
     <string name="ThreadRecord_photo">ഫോട്ടോ</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">ശബ്ദ സന്ദേശം</string>
@@ -2118,13 +2149,17 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">സന്ദേശം ഇല്ലാതാക്കുന്നതിൽ പിശക്, എന്നിരുന്നാലും സന്ദേശം നിലനിന്നേക്കും</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>കൂടുതൽ വായിക്കുക</b></string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d സംഭാഷണങ്ങളിൽ %1$d പുതിയ സന്ദേശങ്ങൾ</string>
     <string name="MessageNotifier_most_recent_from_s">ഏറ്റവും പുതിയത്: %1$s നിന്ന്</string>
     <string name="MessageNotifier_locked_message">പൂട്ടിയ സന്ദേശം</string>
     <string name="MessageNotifier_message_delivery_failed">സന്ദേശ വിതരണം പരാജയപ്പെട്ടു.</string>
+    <!-- Shown in a notification when a story the user tries to send fails to be sent -->
+    <string name="MessageNotifier_story_delivery_failed">സ്റ്റോറി അയയ്ക്കാനായില്ല</string>
+    <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
+    <string name="MessageNotifier_group_story_title">നിങ്ങൾ %1$s എന്നയാൾക്ക് അയച്ചത്</string>
     <string name="MessageNotifier_failed_to_deliver_message">സന്ദേശം കൈമാറുന്നതിൽ പരാജയപ്പെട്ടു.</string>
     <string name="MessageNotifier_error_delivering_message">സന്ദേശം കൈമാറുന്നതിൽ പിശക്.</string>
     <string name="MessageNotifier_message_delivery_paused">സന്ദേശ ഡെലിവറി താൽക്കാലികമായി നിർത്തി.</string>
@@ -2147,7 +2182,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">നിങ്ങളുടെ ഓഡിയോയോട് %1$s നൽകി പ്രതികരിച്ചു.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">ഒരിക്കൽ മാത്രം കാണാവുന്ന മീഡിയയോട് %1$s നൽകി പ്രതികരിച്ചു.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">നിങ്ങളുടെ പേയ്മെന്‍റിനോട് %1$s എന്ന് പ്രതികരിച്ചു.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">നിങ്ങളുടെ സ്റ്റിക്കറിനോട് %1$s നൽകി പ്രതികരിച്ചു.</string>
     <string name="MessageNotifier_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
 
@@ -2248,10 +2283,18 @@
     <string name="WebRtcCallScreen__answer_without_video">വീഡിയോ ഇല്ലാതെ ഉത്തരം നൽകുക</string>
 
     <!-- WebRtcAudioOutputToggle -->
+    <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">ഓഡിയോ ഔട്ട്പുട്ട്</string>
+    <!-- Audio output option referring to the earpiece built into the phone -->
     <string name="WebRtcAudioOutputToggle__phone_earpiece">ഫോൺ ഇയർപീസ്</string>
+    <!-- Audio output option referring to the louder speaker built into the phone -->
     <string name="WebRtcAudioOutputToggle__speaker">സ്പീക്കർ</string>
+    <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">ബ്ലൂടൂത്ത്</string>
+    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headset">വയേർഡ് ഹെഡ്‌സെറ്റ്</string>
+    <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
+    <string name="WebRtcAudioOutputToggle__wired_headset_usb">വയേർഡ് ഹെഡ്‌സെറ്റ് (യുഎസ്ബി)</string>
 
     <string name="WebRtcCallControls_answer_call_description">കോൾ സ്വീകരിക്കുക</string>
     <string name="WebRtcCallControls_reject_call_description">കോൾ നിരസിക്കുക</string>
@@ -2264,6 +2307,12 @@
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__invite_to_signal">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
     <string name="contact_selection_activity__new_group">പുതിയ ഗ്രൂപ്പ്</string>
+    <!-- Row item title for refreshing contacts -->
+    <string name="contact_selection_activity__refresh_contacts">കോൺടാക്റ്റുകൾ പുതുക്കുക</string>
+    <!-- Row item description for refreshing contacts -->
+    <string name="contact_selection_activity__missing_someone">ആരെയെങ്കിലും മിസ് ചെയ്യുന്നുണ്ടോ? റീഫ്രഷ് ചെയ്ത് നോക്കൂ</string>
+    <!-- Row header title for more section -->
+    <string name="contact_selection_activity__more">കൂടുതൽ</string>
 
     <!-- contact_filter_toolbar -->
     <string name="contact_filter_toolbar__clear_entered_text_description">നൽകിയ വാചകം മായ്‌ക്കുക</string>
@@ -2363,7 +2412,8 @@
     <string name="ConversationUpdateItem_send_payment">പേയ്മെന്റ് അയയ്ക്കുക</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">പേയ്മെന്റുകൾ സജീവമാക്കുക</string>
-
+    <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">നിങ്ങൾ ഈ വ്യക്തിയെ നീക്കം ചെയ്തു, അവർക്ക് വീണ്ടും സന്ദേശം അയയ്ക്കുന്നതിലൂടെ വീണ്ടും അവരെ ലിസ്റ്റിലേക്ക് ചേർക്കും.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">പ്ലേ … പോസ്</string>
@@ -2620,6 +2670,8 @@
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">അയയ്‌ക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
     <string name="message_details_recipient__new_safety_number">പുതിയ സുരക്ഷാ നമ്പർ</string>
+    <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
+    <string name="MessageDetails__view_edit_history">എഡിറ്റ് ചരിത്രം കാണുക</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">രഹസ്യവാചകം സൃഷ്‌ടിക്കുക</string>
@@ -2900,6 +2952,12 @@
     <string name="preferences_success">വിജയകരം</string>
     <string name="preferences_failed_to_connect">ബന്ധിപ്പിക്കാനായില്ല</string>
     <string name="preferences_enter_proxy_address">പ്രോക്സി വിലാസം നൽകുക</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">നാവിഗേഷൻ ബാർ വലുപ്പം</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">സാധാരണം</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">കോമ്പാക്റ്റ്</string>
 
 
     <string name="configurable_single_select__customize_option">ഓപ്ഷൻ ഇച്ഛാനുസൃതമാക്കുക</string>
@@ -3069,6 +3127,8 @@
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">കുറിപ്പ്</string>
+    <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
+    <string name="EditNoteFragment__content_description_save_note">കുറിപ്പ് സംരക്ഷിക്കുക</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">പേയ്മെന്റ് സ്ഥിരീകരിക്കുക</string>
@@ -3109,6 +3169,8 @@
     <!-- **************************************** -->
 
     <!-- contact_selection_list -->
+    <!-- Displayed in a row on the new call screen when searching by phone number. -->
+    <string name="contact_selection_list__new_call">പുതിയ കോൾ…</string>
     <string name="contact_selection_list__unknown_contact">പുതിയ സന്ദേശം…</string>
     <string name="contact_selection_list__unknown_contact_block">ഉപയോക്താവിനെ ബ്ലോക്ക് ചെയ്യുക</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
@@ -3145,6 +3207,8 @@
     <string name="conversation_selection__menu_forward">ഫോർവേഡ് ചെയ്യുക</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">മറുപടി</string>
+    <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <string name="conversation_selection__menu_edit">എഡിറ്റ് ചെയ്യുക</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">സംരക്ഷിക്കൂ</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3419,7 +3483,9 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">അക്കൌണ്ട് ഒരു പുതിയ ആൻഡ്രോയിഡ് ഉപകരണത്തിലേക്ക് മാറ്റിസ്ഥാപിക്കുക</string>
     <string name="RegistrationActivity_enter_backup_passphrase">ബാക്കപ്പിന്റെ രഹസ്യവാചകം നൽകുക</string>
     <string name="RegistrationActivity_restore">വീണ്ടെടുക്കൂ</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Signal-ന്റെ പുതിയ പതിപ്പുകളിൽ നിന്ന് ബാക്കപ്പുകൾ ഇറക്കുമതി ചെയ്യാൻ കഴിയില്ല</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">പുതിയ Signal പതിപ്പിൽ നിന്ന് ബാക്കപ്പ് ഇമ്പോർട്ട് ഇല്ല</string>
+    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">ബാക്കപ്പ് രഹസ്യവാചകം തെറ്റാണ്</string>
     <string name="RegistrationActivity_checking">പരിശോധിക്കുന്നു…</string>
     <string name="RegistrationActivity_d_messages_so_far">ഇതുവരെ %1$d സന്ദേശങ്ങൾ…</string>
@@ -3580,6 +3646,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal-ന്റെ പുതിയ പതിപ്പുകളിൽ നിന്ന് ട്രാൻസ്ഫർ ചെയ്യാൻ സാധ്യമല്ല</string>
+    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">ഡാറ്റ കൈമാറുന്നു</string>
@@ -3972,6 +4040,49 @@
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">കാലക്രമേണ നിങ്ങളോട് കുറച്ച് തവണ ചോദിക്കും</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">നിങ്ങളുടെ ഫോൺ നമ്പർ വീണ്ടും Signal-ൽ രജിസ്റ്റർ ചെയ്യുന്നതിന് നിങ്ങളുടെ Signal പിൻ ആവശ്യമാണ്</string>
     <string name="AccountSettingsFragment__change_phone_number">ഫോൺ നമ്പർ മാറ്റുക</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">നിങ്ങളുടെ അക്കൗണ്ട് ഡാറ്റ</string>
+
+    <!-- ExportAccountDataFragment -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">നിങ്ങളുടെ അക്കൗണ്ട് ഡാറ്റ</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">നിങ്ങളുടെ Signal അക്കൗണ്ട് ഡാറ്റയുടെ റിപ്പോർട്ട് എക്സ്പോർട്ട് ചെയ്യുക. ഈ റിപ്പോർട്ടിൽ മെസേജുകളോ മീഡിയയോ ഉൾപ്പെടുന്നില്ല. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">കൂടുതലറിയുക</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">റിപ്പോർട്ട് എക്സ്പോർട്ട് ചെയ്യുക</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">TXT ആയി എക്സ്പോർട്ട് ചെയ്യുക</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">ഈസി ടു റീഡ് ടെക്സ്റ്റ് ഫയൽ</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">JSON ആയി എക്സ്പോർട്ട് ചെയ്യുക</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">മെഷീൻ-റീഡബിൾ ഫയൽ</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">റദ്ദാക്കുക</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">ശരി</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">റിപ്പോർട്ട് ജനറേറ്റ് ചെയ്യാനായില്ല</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">ഡാറ്റ എക്സ്പോർട്ട് ചെയ്യണോ?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">നിങ്ങൾ വിശ്വസിക്കുന്ന ആളുകൾക്കോ ആപ്പുകൾക്കോ മാത്രമെ നിങ്ങളുടെ Signal അക്കൗണ്ട് ഡാറ്റ പങ്കിടാവൂ.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">എക്സ്പോർട്ട് ചെയ്യുക</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">റിപ്പോർട്ട് ജനറേറ്റ് ചെയ്യുന്നു…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">എക്സ്പോർട്ട് ചെയ്യുമ്പോഴെ നിങ്ങളുടെ റിപ്പോർട്ട് ജനറേറ്റ് ചെയ്യൂ, Signal അത് നിങ്ങളുടെ ഉപകരണത്തിൽ സ്റ്റോർ ചെയ്യുന്നില്ല.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">നിങ്ങളുടെ നിലവിലെ ഫോൺ നമ്പർ ഒരു പുതിയ ഫോൺ നമ്പറിലേക്ക് മാറ്റാൻ ഇത് ഉപയോഗിക്കുക. നിങ്ങൾക്ക് ഈ മാറ്റം പഴയപടിയാക്കാനാകില്ല.\n\nതുടരുന്നതിന് മുമ്പ്, നിങ്ങളുടെ പുതിയ നമ്പറിന് SMS അല്ലെങ്കിൽ കോളുകൾ ലഭിക്കുമെന്ന് ഉറപ്പാക്കുക.</string>
@@ -4418,6 +4529,9 @@
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">മാർക്കറിനും ഹൈലൈറ്ററിനും ഇടയിൽ മാറ്റുക</string>
     <string name="ImageEditorHud__toggle_between_text_styles">ടെക്സ്റ്റ് ശൈലികൾക്കിടയിൽ മാറ്റുക</string>
 
+    <!-- Header for section of featured stickers (location/time stickers) -->
+    <string name="ScribbleStickersFragment__featured_stickers">ഫീച്ചർ ചെയ്തവ</string>
+
     <string name="MediaCountIndicatorButton__send">അയയ്‌ക്കുക</string>
 
     <string name="MediaReviewSelectedItem__tap_to_remove">നീക്കം ചെയ്യാൻ ടാപ്പ് ചെയ്യുക</string>
@@ -4818,6 +4932,8 @@
 
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">ചാറ്റുകൾ</string>
+    <!-- Label for Calls tab in home app screen -->
+    <string name="ConversationListTabs__calls">കോളുകൾ</string>
     <!-- Label for Stories tab in home app screen -->
     <string name="ConversationListTabs__stories">സ്റ്റോറികൾ</string>
     <!-- String for counts above 99 in conversation list tabs -->
@@ -5102,7 +5218,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">… കൂടുതൽ കാണുക</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">മറുപടി അയയ്ക്കുന്നു…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -5659,12 +5775,20 @@
     <string name="TextFormatting_strikethrough">സ്ട്രൈക്ക്ത്രൂ</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">മോണോസ്പേസ്</string>
+    <!-- Popup menu label for applying spoiler style -->
+    <string name="TextFormatting_spoiler">സ്പോയിലർ</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">തുടരുക</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">നിങ്ങളുടെ Signal ഉപയോക്തൃനാമം സജ്ജീകരിക്കുക</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">ഉപയോക്തൃനാമങ്ങൾ ചില അക്കങ്ങളുമായി ജോടിയാക്കുന്നു, അവ നിങ്ങളുടെ പ്രൊഫൈലിൽ പങ്കിടില്ല</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">ഓരോ ഉപയോക്തൃനാമത്തിനും തനതായൊരു QR കോഡ് ഉണ്ടാകും, നിങ്ങളുമായി ചാറ്റ് ചെയ്ത് തുടങ്ങാൻ ഇത് സുഹൃത്തുക്കളുമായി പങ്കിടാനാകും</string>
+    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">മറ്റുള്ളവർക്ക് നിങ്ങളെ കോൺടാക്റ്റ് ചെയ്യാനുള്ള പ്രാഥമിക മാർഗം ഉപയോക്തൃനാമമാക്കാൻ ക്രമീകരണം &gt; ഫോൺ നമ്പർ &gt; ആർക്കൊക്കെ എന്‍റെ നമ്പർ കണ്ടെത്താനാകും എന്നതിലേക്ക് പോയി ഫോൺ നമ്പർ ഡിസ്‌ക്കവറി ഓഫാക്കുക</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5681,6 +5805,156 @@
     <string name="TimeDurationPickerDialog_positive_button">സജ്ജമാക്കുക</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
     <string name="TimeDurationPickerDialog_minimum_duration_warning">സ്ക്രീൻ ലോക്ക് ബാധകമാക്കുന്നതിന് മുമ്പുള്ള ഏറ്റവും കുറഞ്ഞ സമയം 1 മിനിറ്റാണ്.</string>
+
+    <!-- Call Log -->
+    <!-- Displayed below the user\'s name in row items on the call log. First placeholder is the call status, second is when it occurred -->
+    <string name="CallLogAdapter__s_dot_s">%1$s · %2$s</string>
+    <!-- Displayed for incoming calls -->
+    <string name="CallLogAdapter__incoming">ഇൻകമിംഗ്</string>
+    <!-- Displayed for outgoing calls -->
+    <string name="CallLogAdapter__outgoing">ഔട്ട്ഗോയിംഗ്</string>
+    <!-- Displayed for missed calls -->
+    <string name="CallLogAdapter__missed">മിസ്‌ഡ്</string>
+    <!-- Displayed on Group Call button if user is not in the call -->
+    <string name="CallLogAdapter__join">ചേരുക</string>
+    <!-- Displayed on Group Call button if user is in the call -->
+    <string name="CallLogAdapter__return">റിട്ടേൺ</string>
+    <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
+    <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
+
+    <!-- Call Log context menu -->
+    <!-- Displayed as a context menu item to start a video call -->
+    <string name="CallContextMenu__video_call">വീഡിയോ കോൾ</string>
+    <!-- Displayed as a context menu item to join an ongoing group call -->
+    <string name="CallContextMenu__join_call">കോളിൽ ചേരുക</string>
+    <!-- Displayed as a context menu item to return to active call -->
+    <string name="CallContextMenu__return_to_call">കോളിലേക്ക് മടങ്ങുക</string>
+    <!-- Displayed as a context menu item to start an audio call -->
+    <string name="CallContextMenu__audio_call">ഓഡിയോ കോൾ</string>
+    <!-- Displayed as a context menu item to go to chat -->
+    <string name="CallContextMenu__go_to_chat">ചാറ്റിലേക്ക് പോകുക</string>
+    <!-- Displayed as a context menu item to see call info -->
+    <string name="CallContextMenu__info">വിവരങ്ങൾ</string>
+    <!-- Displayed as a context menu item to select multiple calls -->
+    <string name="CallContextMenu__select">തിരഞ്ഞെടുക്കൂ</string>
+    <!-- Displayed as a context menu item to delete this call -->
+    <string name="CallContextMenu__delete">ഇല്ലാതാക്കൂ</string>
+
+    <!-- Call Log Fragment -->
+    <!-- Action bar menu item to only display missed calls -->
+    <string name="CallLogFragment__filter_missed_calls">മിസ്‌ഡ് കോളുകൾ ഫിൽറ്റർ ചെയ്യൂ</string>
+    <!-- Action bar menu item to clear missed call filter -->
+    <string name="CallLogFragment__clear_filter">ഫിൽട്ടർ മായ്‌ക്കുക</string>
+    <!-- Action bar menu item to open settings -->
+    <string name="CallLogFragment__settings">ക്രമീകരണങ്ങൾ</string>
+    <!-- Action bar menu item to open notification profile settings -->
+    <string name="CallLogFragment__notification_profile">അറിയിപ്പ് പ്രൊഫൈൽ</string>
+    <!-- Call log new call content description -->
+    <string name="CallLogFragment__start_a_new_call">പുതിയൊരു കോൾ തുടങ്ങൂ</string>
+    <!-- Filter pull text when pulled -->
+    <string name="CallLogFragment__filtered_by_missed">മിസ്‌ഡ് അനുസരിച്ച് ഫിൽറ്റർ ചെയ്യൂ</string>
+    <!-- Bottom bar option to select all call entries -->
+    <string name="CallLogFragment__select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
+    <!-- Bottom bar option to delete all selected call entries -->
+    <string name="CallLogFragment__delete">ഇല്ലാതാക്കൂ</string>
+    <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
+  <!-- Removed by excludeNonTranslatables <plurals name="CallLogFragment__delete_d_calls" translatable="false">
+        <item quantity="one">Delete %1$d call?</item>
+        <item quantity="other">Delete %1$d calls?</item>
+    </plurals> -->
+    <!-- Positive action on multi-delete protection dialog -->
+    <string name="CallLogFragment__delete_for_me">എനിക്കായി ഇല്ലാതാക്കൂ</string>
+    <!-- Snackbar label after deleting call logs -->
+    <plurals name="CallLogFragment__d_calls_deleted">
+        <item quantity="one">%1$d കോൾ ഇല്ലാതാക്കി</item>
+        <item quantity="other">%1$d കോളുകൾ ഇല്ലാതാക്കി</item>
+    </plurals>
+    <!-- Undo action for deletion snackbar -->
+    <string name="CallLogFragment__undo">പഴയപടിയാക്കുക</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__no_calls">കോളുകളൊന്നുമില്ല.</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__get_started_by_calling_a_friend">ഒരു സുഹൃത്തിനെ വിളിച്ച് തുടങ്ങൂ.</string>
+
+    <!-- New call activity -->
+    <!-- Activity title in title bar -->
+    <string name="NewCallActivity__new_call">പുതിയ കോൾ</string>
+
+    <!-- Call state update popups -->
+    <!-- Displayed when the user enables group call ringing -->
+    <string name="CallStateUpdatePopupWindow__ringing_on">റിംഗിംഗ് ഓണാണ്</string>
+    <!-- Displayed when the user disables group call ringing -->
+    <string name="CallStateUpdatePopupWindow__ringing_off">റിംഗിംഗ് ഓഫാണ്</string>
+    <!-- Displayed when the user cannot enable group call ringing -->
+    <string name="CallStateUpdatePopupWindow__group_is_too_large">പങ്കെടുക്കുന്നവരെ വിളിക്കാൻ കഴിയാത്തത്ര വലുതാണ് ഗ്രൂപ്പ്</string>
+    <!-- Displayed when the user turns on their mic -->
+    <string name="CallStateUpdatePopupWindow__mic_on">മൈക്ക് ഓണാണ്</string>
+    <!-- Displayed when the user turns off their mic -->
+    <string name="CallStateUpdatePopupWindow__mic_off">മൈക്ക് ഓഫാണ്</string>
+
+    <!-- Accessibility label describing the capture button on the camera screen -->
+    <string name="CameraControls_capture_button_accessibility_label">ക്യാപ്ച്ചർ ബട്ടൺ</string>
+    <!-- Accessibility label describing the continue button on the camera screen -->
+    <string name="CameraControls_continue_button_accessibility_label">തുടരുക ബട്ടൺ</string>
+
+    <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">ഗ്രൂപ്പ് കോൾ</string>
+    <!-- Missed group call in call info -->
+    <string name="CallPreference__missed_group_call">മിസ്‌ഡ് ഗ്രൂപ്പ് കോൾ</string>
+    <!-- Incoming group call in call info -->
+    <string name="CallPreference__incoming_group_call">ഇൻകമിംഗ് ഗ്രൂപ്പ് കോൾ</string>
+    <!-- Outgoing group call in call info -->
+    <string name="CallPreference__outgoing_group_call">ഔട്ട്‌ഗോയിംഗ് ഗ്രൂപ്പ് കോൾ</string>
+
+    <!-- CreateCallLink -->
+    <!-- Call link creation item title on calls tab -->
+    <string name="CreateCallLink__create_a_call_link">കോൾ ലിങ്ക് സൃഷ്ടിക്കൂ</string>
+    <!-- Call link creation item description on calls tab -->
+    <string name="CreateCallLink__share_a_link_for">Signal കോളിനുള്ള ലിങ്ക് പങ്കിടൂ</string>
+
+    <!-- CreateCallLinkBottomSheetDialogFragment -->
+    <!-- Fragment title -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">കോൾ ലിങ്ക് സൃഷ്ടിക്കൂ</string>
+    <!-- Displayed as a default name for the signal call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Signal കോൾ</string>
+    <!-- Displayed on a small button to allow user to instantly join call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__join">ചേരുക</string>
+    <!-- Option to open a full screen dialog to enter a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">കോളിന്‍റെ പേര് ചേർക്കുക</string>
+    <!-- Toggle to require approval for all members before joining -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">എല്ലാ അംഗങ്ങളെയും അംഗീകരിക്കൂ</string>
+    <!-- Row label to share the link via Signal -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Signal-ലൂടെ ലിങ്ക് പങ്കിടൂ</string>
+    <!-- Row label to copy the link to the clipboard -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">ലിങ്ക് പകർത്തുക</string>
+    <!-- Row label to share the link with the external share sheet -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link">ലിങ്ക് പങ്കിടുക</string>
+    <!-- Button text to dismiss the sheet and add it as an upcoming call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__done">പൂർത്തിയായി</string>
+    <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">കോൾ ലിങ്ക് പങ്കിടാനാകുന്നില്ല.</string>
+    <!-- Displayed when we copy the call link to the clipboard -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
+
+    <!-- EditCallLinkNameDialogFragment -->
+    <!-- App bar title for editing a call name -->
+    <string name="EditCallLinkNameDialogFragment__edit_call_name">കോളിന്റെ പേര് എഡിറ്റ് ചെയ്യുക</string>
+    <!-- Text on button to confirm edit -->
+    <string name="EditCallLinkNameDialogFragment__save">സംരക്ഷിക്കൂ</string>
+    <!-- Placeholder text on input field when editing call name -->
+    <string name="EditCallLinkNameDialogFragment__call_name">കോളിന്റെ പേര്</string>
+
+    <!-- ChooseNavigationBarStyleFragment -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">നാവിഗേഷൻ ബാർ വലുപ്പം</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">സാധാരണം</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">കോമ്പാക്റ്റ്</string>
+
+    <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
+    <string name="EditMessageHistoryDialog_title">എഡിറ്റ് ചെയ്യൽ ചരിത്രം</string>
 
     <!-- EOF -->
 </resources>

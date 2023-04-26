@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
@@ -18,11 +19,12 @@ import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageViewModel
 import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReplyComposer
-import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.ViewUtil
 
 /**
@@ -71,13 +73,22 @@ class StoryDirectReplyDialogFragment :
     composer = view.findViewById(R.id.input)
     composer.callback = object : StoryReplyComposer.Callback {
       override fun onSendActionClicked() {
-        val (body, _, bodyRanges) = composer.consumeInput()
-        lifecycleDisposable += viewModel.sendReply(body, bodyRanges)
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe {
-            Toast.makeText(requireContext(), R.string.StoryDirectReplyDialogFragment__sending_reply, Toast.LENGTH_LONG).show()
-            dismissAllowingStateLoss()
-          }
+        val sendReply = Runnable {
+          val (body, _, bodyRanges) = composer.consumeInput()
+
+          lifecycleDisposable += viewModel.sendReply(body, bodyRanges)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+              Toast.makeText(requireContext(), R.string.StoryDirectReplyDialogFragment__sending_reply, Toast.LENGTH_LONG).show()
+              dismissAllowingStateLoss()
+            }
+        }
+
+        if (SignalStore.uiHints().hasNotSeenTextFormattingAlert() && composer.input.hasStyling()) {
+          Dialogs.showFormattedTextDialog(requireContext(), sendReply)
+        } else {
+          sendReply.run()
+        }
       }
 
       override fun onReactionClicked(emoji: String) {
@@ -99,7 +110,7 @@ class StoryDirectReplyDialogFragment :
       if (state.groupDirectReplyRecipient != null) {
         composer.displayReplyHint(state.groupDirectReplyRecipient)
       } else if (state.storyRecord != null) {
-        composer.displayReplyHint(state.storyRecord.recipient)
+        composer.displayReplyHint(state.storyRecord.fromRecipient)
       }
     }
   }

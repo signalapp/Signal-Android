@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -65,11 +66,11 @@ public class ClearFallbackKbsEnclaveJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_ENCLAVE_NAME, enclave.getEnclaveName())
-                             .putString(KEY_SERVICE_ID, enclave.getServiceId())
-                             .putString(KEY_MR_ENCLAVE, enclave.getMrEnclave())
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_ENCLAVE_NAME, enclave.getEnclaveName())
+                                    .putString(KEY_SERVICE_ID, enclave.getServiceId())
+                                    .putString(KEY_MR_ENCLAVE, enclave.getMrEnclave())
+                                    .serialize();
   }
 
   @Override
@@ -109,7 +110,9 @@ public class ClearFallbackKbsEnclaveJob extends BaseJob {
 
   public static class Factory implements Job.Factory<ClearFallbackKbsEnclaveJob> {
     @Override
-    public @NonNull ClearFallbackKbsEnclaveJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull ClearFallbackKbsEnclaveJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       KbsEnclave enclave = new KbsEnclave(data.getString(KEY_ENCLAVE_NAME),
                                           data.getString(KEY_SERVICE_ID),
                                           data.getString(KEY_MR_ENCLAVE));

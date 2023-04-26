@@ -104,7 +104,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
                           glideRequests,
                           Locale.getDefault(),
                           new HashSet<>(),
-                          conversationMessage.getMessageRecord().getRecipient(),
+                          conversationMessage.getMessageRecord().getToRecipient(),
                           null,
                           false,
                           false,

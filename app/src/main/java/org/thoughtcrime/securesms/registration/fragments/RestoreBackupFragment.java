@@ -291,7 +291,7 @@ public final class RestoreBackupFragment extends LoggingFragment {
                                         backup.getUri(),
                                         passphrase);
 
-          SignalDatabase.upgradeRestored(database);
+          SignalDatabase.runPostBackupRestoreTasks(database);
           NotificationChannels.getInstance().restoreContactNotificationChannels();
 
           enableBackups(context);
@@ -303,6 +303,9 @@ public final class RestoreBackupFragment extends LoggingFragment {
         } catch (FullBackupImporter.DatabaseDowngradeException e) {
           Log.w(TAG, "Failed due to the backup being from a newer version of Signal.", e);
           return BackupImportResult.FAILURE_VERSION_DOWNGRADE;
+        } catch (FullBackupImporter.ForeignKeyViolationException e) {
+          Log.w(TAG, "Failed due to foreign key constraint violations.", e);
+          return BackupImportResult.FAILURE_FOREIGN_KEY;
         } catch (IOException e) {
           Log.w(TAG, e);
           return BackupImportResult.FAILURE_UNKNOWN;
@@ -323,6 +326,9 @@ public final class RestoreBackupFragment extends LoggingFragment {
             break;
           case FAILURE_VERSION_DOWNGRADE:
             Toast.makeText(context, R.string.RegistrationActivity_backup_failure_downgrade, Toast.LENGTH_LONG).show();
+            break;
+          case FAILURE_FOREIGN_KEY:
+            Toast.makeText(context, R.string.RegistrationActivity_backup_failure_foreign_key, Toast.LENGTH_LONG).show();
             break;
           case FAILURE_UNKNOWN:
             Toast.makeText(context, R.string.RegistrationActivity_incorrect_backup_passphrase, Toast.LENGTH_LONG).show();
@@ -415,6 +421,7 @@ public final class RestoreBackupFragment extends LoggingFragment {
   private enum BackupImportResult {
     SUCCESS,
     FAILURE_VERSION_DOWNGRADE,
+    FAILURE_FOREIGN_KEY,
     FAILURE_UNKNOWN
   }
 

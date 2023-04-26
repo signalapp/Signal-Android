@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.notifications.v2
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
+import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.TextUtils
 import androidx.annotation.StringRes
@@ -13,9 +14,11 @@ import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.database.MentionUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadBodyUtil
+import org.thoughtcrime.securesms.database.adjustBodyRanges
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
@@ -46,12 +49,12 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
   val slideDeck: SlideDeck? = if (record.isViewOnce) null else (record as? MmsMessageRecord)?.slideDeck
   val isJoined: Boolean = record.isJoined
   val isPersonSelf: Boolean
-    get() = individualRecipient.isSelf
+    get() = authorRecipient.isSelf
 
   protected val notifiedTimestamp: Long = record.notifiedTimestamp
 
   abstract val timestamp: Long
-  abstract val individualRecipient: Recipient
+  abstract val authorRecipient: Recipient
   abstract val isNewNotification: Boolean
 
   protected abstract fun getPrimaryTextActual(context: Context): CharSequence
@@ -89,8 +92,8 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
       context.getString(R.string.SingleRecipientNotificationBuilder_new_message)
     } else {
       SpannableStringBuilder().apply {
-        append(Util.getBoldedString(individualRecipient.getShortDisplayNameIncludingUsername(context)))
-        if (threadRecipient != individualRecipient) {
+        append(Util.getBoldedString(authorRecipient.getShortDisplayNameIncludingUsername(context)))
+        if (threadRecipient != authorRecipient) {
           append(Util.getBoldedString("@${threadRecipient.getDisplayName(context)}"))
         }
         append(": ")
@@ -101,7 +104,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
 
   fun getPersonName(context: Context): CharSequence {
     return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
-      individualRecipient.getDisplayName(context)
+      authorRecipient.getDisplayName(context)
     } else {
       context.getString(R.string.SingleRecipientNotificationBuilder_signal)
     }
@@ -112,8 +115,8 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
   }
 
   fun getPersonUri(): String? {
-    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact && individualRecipient.isSystemContact) {
-      individualRecipient.contactUri.toString()
+    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact && authorRecipient.isSystemContact) {
+      authorRecipient.contactUri.toString()
     } else {
       null
     }
@@ -121,7 +124,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
 
   fun getPersonIcon(context: Context): Bitmap? {
     return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
-      individualRecipient.getContactDrawable(context).toLargeBitmap(context)
+      authorRecipient.getContactDrawable(context).toLargeBitmap(context)
     } else {
       null
     }
@@ -150,10 +153,33 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
     return timestamp == other.timestamp &&
       id == other.id &&
       isMms == other.isMms &&
-      individualRecipient == other.individualRecipient &&
-      individualRecipient.hasSameContent(other.individualRecipient) &&
+      authorRecipient == other.authorRecipient &&
+      authorRecipient.hasSameContent(other.authorRecipient) &&
       slideDeck?.thumbnailSlide?.isInProgress == other.slideDeck?.thumbnailSlide?.isInProgress &&
       record.isRemoteDelete == other.record.isRemoteDelete
+  }
+
+  protected fun getBodyWithMentionsAndStyles(context: Context, record: MessageRecord): CharSequence {
+    val updated = MentionUtil.updateBodyWithDisplayNames(context, record)
+    var updatedText: CharSequence = SpannableString(updated.body ?: "")
+
+    val spoilerRanges: List<BodyRangeList.BodyRange>? = record
+      .messageRanges
+      .adjustBodyRanges(updated.bodyAdjustments)
+      ?.run {
+        rangesList
+          .filter { it.style == BodyRangeList.BodyRange.Style.SPOILER }
+          .sortedBy { it.start }
+          .reversed()
+      }
+
+    if (spoilerRanges?.isNotEmpty() == true) {
+      for (spoiler in spoilerRanges) {
+        updatedText = updatedText.replaceRange(spoiler.start.coerceAtMost(updatedText.length - 1), (spoiler.start + spoiler.length).coerceAtMost(updatedText.length), "■■■■")
+      }
+    }
+
+    return updatedText
   }
 
   private fun CharSequence?.trimToDisplayLength(): CharSequence {
@@ -177,7 +203,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
  */
 class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : NotificationItem(threadRecipient, record) {
   override val timestamp: Long = record.timestamp
-  override val individualRecipient: Recipient = if (record.isOutgoing) Recipient.self() else record.individualRecipient.resolve()
+  override val authorRecipient: Recipient = record.fromRecipient.resolve()
   override val isNewNotification: Boolean = notifiedTimestamp == 0L
 
   private var thumbnailInfo: ThumbnailInfo? = null
@@ -203,7 +229,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
     } else if (record.isPaymentNotification) {
       ThreadBodyUtil.getFormattedBodyFor(context, record).body
     } else {
-      MentionUtil.updateBodyWithDisplayNames(context, record) ?: ""
+      getBodyWithMentionsAndStyles(context, record)
     }
   }
 
@@ -276,7 +302,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
  */
 class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, val reaction: ReactionRecord) : NotificationItem(threadRecipient, record) {
   override val timestamp: Long = reaction.dateReceived
-  override val individualRecipient: Recipient = Recipient.resolved(reaction.author)
+  override val authorRecipient: Recipient = Recipient.resolved(reaction.author)
   override val isNewNotification: Boolean = timestamp > notifiedTimestamp
 
   override fun getPrimaryTextActual(context: Context): CharSequence {
@@ -299,7 +325,7 @@ class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, va
   }
 
   private fun getReactionMessageBody(context: Context): CharSequence {
-    val body: CharSequence = MentionUtil.updateBodyWithDisplayNames(context, record) ?: ""
+    val body: CharSequence = getBodyWithMentionsAndStyles(context, record)
     val bodyIsEmpty: Boolean = TextUtils.isEmpty(body)
 
     return if (record.hasSharedContact()) {

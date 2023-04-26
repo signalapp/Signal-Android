@@ -18,18 +18,18 @@ import java.util.concurrent.atomic.AtomicReference
  */
 class SqlCipherErrorHandler(private val databaseName: String) : DatabaseErrorHandler {
 
-  override fun onCorruption(db: SQLiteDatabase) {
-    val output = StringBuilder()
-    output.append("Database '$databaseName' corrupted! Going to try to run some diagnostics.\n")
-
+  override fun onCorruption(db: SQLiteDatabase, message: String) {
     val result: DiagnosticResults = runDiagnostics(ApplicationDependencies.getApplication(), db)
     var lines: List<String> = result.logs.split("\n")
-    lines = listOf("Database '$databaseName' corrupted!. Diagnostics results:\n") + lines
+    lines = listOf("Database '$databaseName' corrupted!", "[sqlite] $message", "Diagnostics results:") + lines
 
-    Log.e(TAG, "Database '$databaseName' corrupted!. Diagnostics results:\n ${result.logs}")
+    Log.e(TAG, "Database '$databaseName' corrupted!")
+    Log.e(TAG, "[sqlite] $message")
+    Log.e(TAG, "Diagnostic results:\n ${result.logs}")
 
     if (result is DiagnosticResults.Success) {
       if (result.pragma1Passes && result.pragma2Passes) {
+        attemptToClearFullTextSearchIndex()
         throw DatabaseCorruptedError_BothChecksPass(lines)
       } else if (!result.pragma1Passes && result.pragma2Passes) {
         throw DatabaseCorruptedError_NormalCheckFailsCipherCheckPasses(lines)
@@ -135,6 +135,14 @@ class SqlCipherErrorHandler(private val databaseName: String) : DatabaseErrorHan
       }
 
       output.toString()
+    }
+  }
+
+  private fun attemptToClearFullTextSearchIndex() {
+    try {
+      SignalDatabase.messageSearch.fullyResetTables()
+    } catch (e: Throwable) {
+      Log.w(TAG, "Failed to clear full text search index.", e)
     }
   }
 

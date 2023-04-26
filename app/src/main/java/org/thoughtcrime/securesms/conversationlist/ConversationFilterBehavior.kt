@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
 import androidx.core.view.ViewCompat
 import com.google.android.material.appbar.AppBarLayout
 import org.thoughtcrime.securesms.util.FeatureFlags

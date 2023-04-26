@@ -3,7 +3,11 @@
 package org.signal.core.util.concurrent
 
 import android.annotation.SuppressLint
+import androidx.lifecycle.LifecycleOwner
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import java.lang.RuntimeException
 
 /**
@@ -25,4 +29,16 @@ fun <T : Any> Single<T>.safeBlockingGet(): T {
       throw e
     }
   }
+}
+
+fun <T : Any> Flowable<T>.observe(viewLifecycleOwner: LifecycleOwner, onNext: (T) -> Unit) {
+  val lifecycleDisposable = LifecycleDisposable()
+  lifecycleDisposable.bindTo(viewLifecycleOwner)
+  lifecycleDisposable += subscribeBy(onNext = onNext)
+}
+
+fun Completable.observe(viewLifecycleOwner: LifecycleOwner, onComplete: () -> Unit) {
+  val lifecycleDisposable = LifecycleDisposable()
+  lifecycleDisposable.bindTo(viewLifecycleOwner)
+  lifecycleDisposable += subscribeBy(onComplete = onComplete)
 }

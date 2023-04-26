@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager
+import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
@@ -166,8 +167,8 @@ class UploadDependencyGraphTest {
     // GIVEN
     val attachment1 = UriAttachmentBuilder.build(uniqueLong.getAndIncrement(), contentType = MediaUtil.IMAGE_JPEG)
     val attachment2 = UriAttachmentBuilder.build(uniqueLong.getAndIncrement(), contentType = MediaUtil.IMAGE_JPEG)
-    val message1 = OutgoingMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = listOf(attachment1))
-    val message2 = OutgoingMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis() + 1, attachments = listOf(attachment2))
+    val message1 = OutgoingMessage(threadRecipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = listOf(attachment1))
+    val message2 = OutgoingMessage(threadRecipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis() + 1, attachments = listOf(attachment2))
     val testSubject = UploadDependencyGraph.create(listOf(message1, message2), jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
 
     // WHEN
@@ -190,7 +191,7 @@ class UploadDependencyGraphTest {
       )
     }
 
-    val message = OutgoingMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = uriAttachments)
+    val message = OutgoingMessage(threadRecipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = uriAttachments)
     val testSubject = UploadDependencyGraph.create(listOf(message), jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
     val result = testSubject.consumeDeferredQueue()
 
@@ -211,8 +212,8 @@ class UploadDependencyGraphTest {
     if (expectedCopyDestinationCount > 0) {
       assertTrue(steps[3][0] is AttachmentCopyJob)
 
-      val uploadData = steps[2][0].serialize()
-      val copyData = steps[3][0].serialize()
+      val uploadData = JsonJobData.deserialize(steps[2][0].serialize())
+      val copyData = JsonJobData.deserialize(steps[3][0].serialize())
 
       val uploadAttachmentId = AttachmentId(uploadData.getLong("row_id"), uploadData.getLong("unique_id"))
       val copySourceAttachmentId = JsonUtils.fromJson(copyData.getString("source_id"), AttachmentId::class.java)
@@ -261,7 +262,7 @@ class UploadDependencyGraphTest {
   private fun Iterable<Int>.createMessages(uriAttachments: List<Attachment>): List<OutgoingMessage> {
     return mapIndexed { index, _ ->
       OutgoingMessage(
-        recipient = Recipient.UNKNOWN,
+        threadRecipient = Recipient.UNKNOWN,
         sentTimeMillis = System.currentTimeMillis() + index,
         attachments = uriAttachments,
         isSecure = true

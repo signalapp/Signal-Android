@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true">
+<ripple android:color="@color/transparent_white_30" xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
         <shape android:shape="oval">
-            <solid android:color="@color/transparent_white_30" />
+            <solid android:color="@color/signal_light_colorSecondaryContainer" />
         </shape>
     </item>
-    <item android:state_pressed="false">
-        <shape android:shape="oval">
-            <solid android:color="@color/transparent_white_40" />
-        </shape>
-    </item>
-</selector>
+</ripple>

@@ -15,6 +15,7 @@
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
     <string name="yes">Có</string>
     <string name="no">Không</string>
@@ -168,6 +169,10 @@
     <string name="BucketedThreadMedia_Medium">Vừa</string>
     <string name="BucketedThreadMedia_Small">Nhỏ</string>
 
+    <!-- CameraFragment -->
+    <!-- Toasted when user device does not support video recording -->
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Quay video không được hỗ trợ trên thiết bị của bạn</string>
+
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Nhấn để chụp ảnh, giữ để quay video</string>
     <string name="CameraXFragment_capture_description">Chụp</string>
@@ -296,9 +301,13 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Không thể tải ảnh xuống. Bạn cần gửi lại.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Không thể tải video xuống. Bạn cần gửi lại.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
+    <string name="ConversationItem_edited_timestamp_footer">đã chỉnh sửa %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Thêm tệp đính kèm</string>
+    <!-- Accessibility text associated with image button to send an edited message. -->
+    <string name="ConversationActivity_send_edit">Gửi chỉnh sửa</string>
     <string name="ConversationActivity_select_contact_info">Chọn thông tin liên lạc</string>
     <string name="ConversationActivity_compose_message">Soạn tin nhắn</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Xin lỗi, có lỗi thiết đặt tập tin đính kèm của bạn.</string>
@@ -306,6 +315,12 @@
     <string name="ConversationActivity_message_is_empty_exclamation">Tin nhắn trống!</string>
     <string name="ConversationActivity_group_members">Thành viên trong nhóm</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">Nhấn để bắt đầu cuộc gọi nhóm</string>
+    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
+    <string name="ConversationActivity_edit_sms_message_error">Không thể chỉnh sửa tin nhắn SMS</string>
+    <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
+    <plurals name="ConversationActivity_edit_message_too_old">
+        <item quantity="other">Các chỉnh sửa chỉ có thể được thực hiện trong vòng %1$d giờ kể từ lúc bạn gửi tin nhắn này.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Người nhận không hợp lệ!</string>
     <string name="ConversationActivity_added_to_home_screen">Thêm vào màn hình chính</string>
@@ -383,6 +398,15 @@
     <string name="ConversationActivity__invite_to_signal">Mời dùng Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Bạn sẽ được nhắc lại sớm.</string>
+
+    <!-- Title for dialog shown when first sending formatted text -->
+    <string name="SendingFormattingTextDialog_title">Đang gửi văn bản được định dạng</string>
+    <!-- Message for dialog shown when first sending formatted text -->
+    <string name="SendingFormattingTextDialog_message">Một số người có thể đang sử dụng phiên bản Signal không hỗ trợ văn bản được định dạng. Họ sẽ không thể thấy các thay đổi về định dạng bạn đã thực hiện trong tin nhắn.</string>
+    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
+    <string name="SendingFormattingTextDialog_send_anyway_button">Vẫn gửi</string>
+    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
+    <string name="SendingFormattingTextDialog_cancel_send_button">Hủy</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -471,33 +495,19 @@
         <item quantity="other">Đã chuyển %1$d cuộc trò chuyện vào hộp thư đến</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="other">Đọc</item>
+        <item quantity="other">Đã đọc</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
         <item quantity="other">Chưa đọc</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="other">Ghim</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="other">Bỏ ghim</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="other">Tắt tiếng</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="other">Bỏ tắt tiếng</item>
-    </plurals>
+    <string name="ConversationListFragment_pin">Ghim</string>
+    <string name="ConversationListFragment_unpin">Bỏ ghim</string>
+    <string name="ConversationListFragment_mute">Tắt tiếng</string>
+    <string name="ConversationListFragment_unmute">Bỏ tắt tiếng</string>
     <string name="ConversationListFragment_select">Chọn</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="other">Lưu trữ</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="other">Lấy ra</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="other">Xóa</item>
-    </plurals>
+    <string name="ConversationListFragment_archive">Lưu trữ</string>
+    <string name="ConversationListFragment_unarchive">Bỏ lưu trữ</string>
+    <string name="ConversationListFragment_delete">Xóa</string>
     <string name="ConversationListFragment_select_all">Chọn tất cả</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="other">%1$d đã chọn</item>
@@ -1040,6 +1050,8 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Nhấn và giữ để ghi âm tin nhắn thoại, thả ra để gửi</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Việc nhắn tin SMS không còn được hỗ trợ trên Signal.</string>
+    <!-- When editing a message, label shown above the text input field in the composer -->
+    <string name="InputPanel_edit_message">Chỉnh sửa tin nhắn</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Chia sẻ</string>
@@ -1432,6 +1444,8 @@
     <string name="MessageRequestBottomView_delete">Xóa</string>
     <string name="MessageRequestBottomView_block">Chặn</string>
     <string name="MessageRequestBottomView_unblock">Bỏ chặn</string>
+    <!-- Text explaining a message request from someone you\'ve removed before -->
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Cho phép %1$s nhắn tin cho bạn và chia sẻ tên và ảnh của bạn với họ? Bạn đã xóa người này trước đây.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Cho phép %1$s nhắn tin với bạn, đồng thời chia sẻ tên và ảnh đại diện của bạn với họ? Họ sẽ không biết là bạn đã đọc tin nhắn cho tới khi bạn chấp nhận.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Cho phép %1$s nhắn tin cho bạn và chia sẻ tên và ảnh của bạn với họ? Bạn sẽ không nhận được tin nhắn nào cho tới khi bạn ngưng chặn họ.</string>
@@ -1666,20 +1680,31 @@
         <item quantity="other">%1$s, %2$s, và %3$d người khác đang trong cuộc gọi này</item>
     </plurals>
 
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__flip">Ghim</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__speaker">Loa</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__camera">Máy ảnh</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">Bỏ tắt tiếng</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">Tắt tiếng</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__ring">Rung chuông</string>
-    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <!-- Toggle content description for toggling camera direction  -->
+    <string name="WebRtcCallView__toggle_camera_direction">Bật hướng camera</string>
+    <!-- Toggle content description for toggling audio output  -->
+    <string name="WebRtcCallView__toggle_speaker">Bật loa</string>
+    <!-- Toggle content description for toggling camera state  -->
+    <string name="WebRtcCallView__toggle_camera">Bật camera</string>
+    <!-- Toggle content description for toggling mute state  -->
+    <string name="WebRtcCallView__toggle_mute">Bật tắt tiếng</string>
+    <!-- Toggle content description for toggling group ring state  -->
+    <string name="WebRtcCallView__toggle_ring">Bật đổ chuông</string>
+    <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Kết thúc cuộc gọi</string>
+
+    <!-- Error message when the developer added a button in the wrong place. -->
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Đã xảy ra lỗi giao diện người dùng. Vui lòng báo cáo lỗi này với nhà phát triển.</string>
+    <!-- Error message when the user is trying to change audio outputs but none are present. -->
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Không có thiết bị âm thanh đầu ra/đầu vào phù hợp.</string>
+    <!-- A text description of the bluetooth icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">Biểu tượng thể hiện một thiết bị Bluetooth.</string>
+    <!-- A text description of the headset icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">Biểu tượng thể hiện một thiết bị tai nghe có dây.</string>
+    <!-- A text description of the speaker icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">Biểu tượng thể hiện một thiết bị speakerphone.</string>
+    <!-- A text description of the earpiece icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Biểu tượng thể hiện phần tai nghe của một thiết bị.</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1716,7 +1741,13 @@
     <string name="RegistrationActivity_invalid_number">Số không hợp lệ</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Số bạn cung cấp (%1$s) không hợp lệ.
     </string>
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Một mã xác nhận sẽ được gửi đến:</string>
+
+    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Số điện thoại dưới đây có chính xác không?</string>
+    <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
+    <string name="RegistrationActivity_additional_verification_required">Cần thêm bước xác minh</string>
+    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Mã xác minh sẽ được gửi đến số này. Có thể có cước của nhà mạng.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Bạn sẽ nhận được một cuộc gọi để xác nhận số điện thoại này.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">Số điện thoại của bạn ở trên đã chính xác chưa?</string>
     <string name="RegistrationActivity_edit_number">Sửa số</string>
@@ -1745,11 +1776,15 @@
         <item quantity="other">Còn %1$d bước nữa để bạn hoàn thành gửi báo cáo lỗi.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Chúng tôi cần kiểm tra bạn là người hay robot.</string>
+    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
+    <string name="RegistrationActivity_external_service_error">Signal không thể gửi mã SMS vì một lỗi từ bên ngoài.</string>
     <string name="RegistrationActivity_next">Tiếp</string>
     <string name="RegistrationActivity_continue">Tiếp tục</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Mang quyền riêng tư luôn bên bạn.\nHãy là chính mình trong từng tin nhắn.</string>
-    <string name="RegistrationActivity_enter_your_phone_number">Nhập số điện thoại của bạn</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Bạn sẽ nhận tin nhắn chứa mã xác minh.\nCó thể mất phí nhà mạng.</string>
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">Số điện thoại</string>
+    <!-- Subtitle of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Nhập số điện thoại của bạn để bắt đầu.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Điền mã xác minh được gửi đến %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Đảm bảo là điện thoại của bạn có tín hiệu di động để nhận tin nhắn SMS hoặc cuộc gọi</string>
 
@@ -1915,6 +1950,8 @@
     <string name="ThreadRecord_message_could_not_be_processed">Không thể xử lí tin nhắn</string>
     <string name="ThreadRecord_delivery_issue">Lỗi chuyển tin nhắn</string>
     <string name="ThreadRecord_message_request">Yêu cầu gửi Tin nhắn</string>
+    <!-- Thread preview for a recipient that has been hidden -->
+    <string name="ThreadRecord_hidden_recipient">Bạn đã ẩn người này, nhắn tin lại để thêm lại người này vào danh sách của bạn.</string>
     <string name="ThreadRecord_photo">Ảnh</string>
     <string name="ThreadRecord_gif">Ảnh GIF</string>
     <string name="ThreadRecord_voice_message">Tin nhắn Thoại</string>
@@ -2046,13 +2083,17 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Có lỗi khi xóa tin nhắn, tin nhắn có thể vẫn còn</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Đọc Thêm</b></string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d tin nhắn mới trong %2$d cuộc trò chuyện</string>
     <string name="MessageNotifier_most_recent_from_s">Gần đây nhất từ: %1$s</string>
     <string name="MessageNotifier_locked_message">Tin nhắn đã khoá</string>
     <string name="MessageNotifier_message_delivery_failed">Không thể gửi tin nhắn.</string>
+    <!-- Shown in a notification when a story the user tries to send fails to be sent -->
+    <string name="MessageNotifier_story_delivery_failed">Không gửi được story</string>
+    <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
+    <string name="MessageNotifier_group_story_title">Bạn gửi đến %1$s</string>
     <string name="MessageNotifier_failed_to_deliver_message">Không thể gửi tin nhắn.</string>
     <string name="MessageNotifier_error_delivering_message">Có lỗi khi gửi tin nhắn.</string>
     <string name="MessageNotifier_message_delivery_paused">Đang tạm dừng nhắn tin.</string>
@@ -2075,7 +2116,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">Đã bày tỏ cảm xúc %1$s với tệp âm thanh của bạn.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Đã bày tỏ cảm xúc %1$s với tệp đa phương tiện xem một lần của bạn.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Đã bày tỏ cảm xúc %1$s với khoản thanh toán của bạn.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Đã bày tỏ cảm xúc %1$s với nhãn dán của bạn.</string>
     <string name="MessageNotifier_this_message_was_deleted">Tin nhắn này đã bị xóa.</string>
 
@@ -2175,10 +2216,18 @@
     <string name="WebRtcCallScreen__answer_without_video">Trả lời thoại</string>
 
     <!-- WebRtcAudioOutputToggle -->
+    <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">Đầu ra âm thanh</string>
+    <!-- Audio output option referring to the earpiece built into the phone -->
     <string name="WebRtcAudioOutputToggle__phone_earpiece">Tai nghe điện thoại</string>
+    <!-- Audio output option referring to the louder speaker built into the phone -->
     <string name="WebRtcAudioOutputToggle__speaker">Loa</string>
+    <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
+    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headset">Tai nghe có dây</string>
+    <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
+    <string name="WebRtcAudioOutputToggle__wired_headset_usb">Tai nghe có dây (USB)</string>
 
     <string name="WebRtcCallControls_answer_call_description">Trả lời cuộc gọi</string>
     <string name="WebRtcCallControls_reject_call_description">Từ chối cuộc gọi</string>
@@ -2191,6 +2240,12 @@
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__invite_to_signal">Mời dùng Signal</string>
     <string name="contact_selection_activity__new_group">Tạo nhóm mới</string>
+    <!-- Row item title for refreshing contacts -->
+    <string name="contact_selection_activity__refresh_contacts">Làm mới danh bạ</string>
+    <!-- Row item description for refreshing contacts -->
+    <string name="contact_selection_activity__missing_someone">Thiếu ai đó? Hãy thử làm mới</string>
+    <!-- Row header title for more section -->
+    <string name="contact_selection_activity__more">Thêm</string>
 
     <!-- contact_filter_toolbar -->
     <string name="contact_filter_toolbar__clear_entered_text_description">Xóa văn bản đã nhập</string>
@@ -2287,7 +2342,8 @@
     <string name="ConversationUpdateItem_send_payment">Gửi Thanh toán</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">Kích hoạt Thanh toán</string>
-
+    <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Bạn đã xóa người này, nếu nhắn tin lại thì người này sẽ được thêm lại vào danh sách của bạn.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Phát … Tạm dừng</string>
@@ -2537,6 +2593,8 @@
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Không thể gửi</string>
     <string name="message_details_recipient__new_safety_number">Mã số an toàn mới</string>
+    <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
+    <string name="MessageDetails__view_edit_history">Xem lịch sử chỉnh sửa</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Tạo mật khẩu</string>
@@ -2816,6 +2874,12 @@
     <string name="preferences_success">Thành công</string>
     <string name="preferences_failed_to_connect">Không thể kết nối</string>
     <string name="preferences_enter_proxy_address">Nhập địa chỉ proxy</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">Kích cỡ thanh điều hướng</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">Bình thường</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">Gọn</string>
 
 
     <string name="configurable_single_select__customize_option">Sửa cài đặt</string>
@@ -2985,6 +3049,8 @@
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Ghi chú</string>
+    <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
+    <string name="EditNoteFragment__content_description_save_note">Lưu ghi chú</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Xác nhận thanh toán</string>
@@ -3025,6 +3091,8 @@
     <!-- **************************************** -->
 
     <!-- contact_selection_list -->
+    <!-- Displayed in a row on the new call screen when searching by phone number. -->
+    <string name="contact_selection_list__new_call">Cuộc gọi mới cho…</string>
     <string name="contact_selection_list__unknown_contact">Tin nhắn mới cho…</string>
     <string name="contact_selection_list__unknown_contact_block">Chặn người dùng</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Thêm vào nhóm</string>
@@ -3060,6 +3128,8 @@
     <string name="conversation_selection__menu_forward">Chuyển tiếp</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Trả lời</string>
+    <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <string name="conversation_selection__menu_edit">Sửa</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Lưu</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3326,7 +3396,9 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Chuyển tài khoản sang một thiết bị Android mới</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Điền mật khẩu sao lưu</string>
     <string name="RegistrationActivity_restore">Khôi phục</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Không thể khôi phục bản sao lưu tạo từ phiên bản Signal mới hơn</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Không thể nhập bản sao lưu tạo từ bản Signal mới hơn</string>
+    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Mật khẩu sao lưu không đúng</string>
     <string name="RegistrationActivity_checking">Đang kiểm tra…</string>
     <string name="RegistrationActivity_d_messages_so_far">Đã được %1$d tin nhắn…</string>
@@ -3487,6 +3559,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Không thể truyền tải từ các phiên bản mới hơn của Signal</string>
+    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Đang truyền tải dữ liệu</string>
@@ -3875,6 +3949,49 @@
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bạn sẽ dần được hỏi ít thường xuyên hơn qua thời gian</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Yêu cầu mã PIN Signal của bạn để đăng ký lại số điện thoại của bạn với Signal</string>
     <string name="AccountSettingsFragment__change_phone_number">Thay đổi số điện thoại</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Dữ liệu tài khoản của bạn</string>
+
+    <!-- ExportAccountDataFragment -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">Dữ liệu tài khoản của bạn</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">Xuất một báo cáo về dữ liệu tài khoản Signal của bạn. Báo cáo này không bao gồm nội dung tin nhắn hay tệp đa phương tiện nào. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">Tìm hiểu thêm</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">Xuất báo cáo</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">Xuất định dạng TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">Tệp văn bản dễ đọc</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">Xuất định dạng JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">Tệp dành cho thiết bị</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">Hủy</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">Không thể tạo báo cáo</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">Kiểm tra kết nối của bạn và thử lại.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">Bạn muốn xuất dữ liệu?</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Chỉ chia sẻ dữ liệu tài khoản Signal của bạn với người hoặc ứng dụng bạn tin tưởng.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">Xuất</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">Đang tạo báo cáo…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Báo cáo của bạn chỉ được tạo ra tại thời điểm bạn chọn xuất báo cáo và không được lưu bởi Signal trên thiết bị của bạn.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Dùng để thay đổi số điện thoại hiện tại của bạn sang một số khác. Bạn không thể khôi phục thay đổi này. /n/n Trước khi tiếp tục, hãy chắc chắn rằng số điện thoại mới của bạn đang hoạt động bình thường.</string>
@@ -4315,6 +4432,9 @@
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Chuyển đổi giửa đánh dấu và gạch chân</string>
     <string name="ImageEditorHud__toggle_between_text_styles">Chuyển đổi các kiểu chữ</string>
 
+    <!-- Header for section of featured stickers (location/time stickers) -->
+    <string name="ScribbleStickersFragment__featured_stickers">Nổi bật</string>
+
     <string name="MediaCountIndicatorButton__send">Gửi</string>
 
     <string name="MediaReviewSelectedItem__tap_to_remove">Nhấn để xóa</string>
@@ -4715,6 +4835,8 @@
 
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">Trò chuyện</string>
+    <!-- Label for Calls tab in home app screen -->
+    <string name="ConversationListTabs__calls">Cuộc gọi</string>
     <!-- Label for Stories tab in home app screen -->
     <string name="ConversationListTabs__stories">Các Story</string>
     <!-- String for counts above 99 in conversation list tabs -->
@@ -4992,7 +5114,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Đã sao chép vào clipboard</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">… Xem Thêm</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Đang gửi câu trả lời…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -5534,12 +5656,20 @@
     <string name="TextFormatting_strikethrough">Có gạch ngang</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Đơn cách</string>
+    <!-- Popup menu label for applying spoiler style -->
+    <string name="TextFormatting_spoiler">Spoiler</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">Tiếp tục</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">Đặt tên người dùng Signal của bạn</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">Tên người dùng được ghép với một dãy số và không được chia sẻ trên hồ sơ của bạn</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">Mỗi tên người dùng có một mã QR độc nhất cùng đường dẫn bạn có thể chia sẻ để bạn bè có thể bắt đầu trò chuyện với bạn</string>
+    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">Không để người khác tìm thấy bạn qua số điện thoại bằng cách vào Cài đặt &gt; Riêng tư &gt; Số điện thoại &gt; Ai có thể tìm số điện thoại của tôi, để sử dụng tên người dùng làm phương tiện để người khác liên hệ bạn</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5556,6 +5686,155 @@
     <string name="TimeDurationPickerDialog_positive_button">Đặt</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
     <string name="TimeDurationPickerDialog_minimum_duration_warning">Thời gian tối thiểu trước khi khóa màn hình có hiệu lực là 1 phút.</string>
+
+    <!-- Call Log -->
+    <!-- Displayed below the user\'s name in row items on the call log. First placeholder is the call status, second is when it occurred -->
+    <string name="CallLogAdapter__s_dot_s">%1$s · %2$s</string>
+    <!-- Displayed for incoming calls -->
+    <string name="CallLogAdapter__incoming">Cuộc gọi đến</string>
+    <!-- Displayed for outgoing calls -->
+    <string name="CallLogAdapter__outgoing">Cuộc gọi đi</string>
+    <!-- Displayed for missed calls -->
+    <string name="CallLogAdapter__missed">Cuộc gọi nhỡ</string>
+    <!-- Displayed on Group Call button if user is not in the call -->
+    <string name="CallLogAdapter__join">Tham gia</string>
+    <!-- Displayed on Group Call button if user is in the call -->
+    <string name="CallLogAdapter__return">Quay về</string>
+    <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
+    <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
+
+    <!-- Call Log context menu -->
+    <!-- Displayed as a context menu item to start a video call -->
+    <string name="CallContextMenu__video_call">Gọi video</string>
+    <!-- Displayed as a context menu item to join an ongoing group call -->
+    <string name="CallContextMenu__join_call">Tham gia cuộc gọi</string>
+    <!-- Displayed as a context menu item to return to active call -->
+    <string name="CallContextMenu__return_to_call">Quay trở lại cuộc gọi</string>
+    <!-- Displayed as a context menu item to start an audio call -->
+    <string name="CallContextMenu__audio_call">Cuộc gọi Âm thanh</string>
+    <!-- Displayed as a context menu item to go to chat -->
+    <string name="CallContextMenu__go_to_chat">Đến cuộc trò chuyện</string>
+    <!-- Displayed as a context menu item to see call info -->
+    <string name="CallContextMenu__info">Thông tin</string>
+    <!-- Displayed as a context menu item to select multiple calls -->
+    <string name="CallContextMenu__select">Chọn</string>
+    <!-- Displayed as a context menu item to delete this call -->
+    <string name="CallContextMenu__delete">Xóa</string>
+
+    <!-- Call Log Fragment -->
+    <!-- Action bar menu item to only display missed calls -->
+    <string name="CallLogFragment__filter_missed_calls">Lọc cuộc gọi nhỡ</string>
+    <!-- Action bar menu item to clear missed call filter -->
+    <string name="CallLogFragment__clear_filter">Bỏ lọc</string>
+    <!-- Action bar menu item to open settings -->
+    <string name="CallLogFragment__settings">Cài đặt</string>
+    <!-- Action bar menu item to open notification profile settings -->
+    <string name="CallLogFragment__notification_profile">Cấu hình Thông báo</string>
+    <!-- Call log new call content description -->
+    <string name="CallLogFragment__start_a_new_call">Bắt đầu cuộc gọi mới</string>
+    <!-- Filter pull text when pulled -->
+    <string name="CallLogFragment__filtered_by_missed">Đã lọc cuộc gọi nhỡ</string>
+    <!-- Bottom bar option to select all call entries -->
+    <string name="CallLogFragment__select_all">Chọn tất cả</string>
+    <!-- Bottom bar option to delete all selected call entries -->
+    <string name="CallLogFragment__delete">Xóa</string>
+    <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
+  <!-- Removed by excludeNonTranslatables <plurals name="CallLogFragment__delete_d_calls" translatable="false">
+        <item quantity="one">Delete %1$d call?</item>
+        <item quantity="other">Delete %1$d calls?</item>
+    </plurals> -->
+    <!-- Positive action on multi-delete protection dialog -->
+    <string name="CallLogFragment__delete_for_me">Xóa cho tôi</string>
+    <!-- Snackbar label after deleting call logs -->
+    <plurals name="CallLogFragment__d_calls_deleted">
+        <item quantity="other">Đã xóa %1$d cuộc gọi</item>
+    </plurals>
+    <!-- Undo action for deletion snackbar -->
+    <string name="CallLogFragment__undo">Hoàn tác</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__no_calls">Không có cuộc gọi.</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__get_started_by_calling_a_friend">Bắt đầu với việc gọi cho một người bạn.</string>
+
+    <!-- New call activity -->
+    <!-- Activity title in title bar -->
+    <string name="NewCallActivity__new_call">Cuộc gọi mới</string>
+
+    <!-- Call state update popups -->
+    <!-- Displayed when the user enables group call ringing -->
+    <string name="CallStateUpdatePopupWindow__ringing_on">Bật đổ chuông</string>
+    <!-- Displayed when the user disables group call ringing -->
+    <string name="CallStateUpdatePopupWindow__ringing_off">Tắt đổ chuông</string>
+    <!-- Displayed when the user cannot enable group call ringing -->
+    <string name="CallStateUpdatePopupWindow__group_is_too_large">Nhóm quá lớn để đổ chuông các thành viên</string>
+    <!-- Displayed when the user turns on their mic -->
+    <string name="CallStateUpdatePopupWindow__mic_on">Bật micro</string>
+    <!-- Displayed when the user turns off their mic -->
+    <string name="CallStateUpdatePopupWindow__mic_off">Tắt micro</string>
+
+    <!-- Accessibility label describing the capture button on the camera screen -->
+    <string name="CameraControls_capture_button_accessibility_label">Nút Chụp</string>
+    <!-- Accessibility label describing the continue button on the camera screen -->
+    <string name="CameraControls_continue_button_accessibility_label">Nút Tiếp tục</string>
+
+    <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">Cuộc gọi nhóm</string>
+    <!-- Missed group call in call info -->
+    <string name="CallPreference__missed_group_call">Cuộc gọi nhóm bị nhỡ</string>
+    <!-- Incoming group call in call info -->
+    <string name="CallPreference__incoming_group_call">Cuộc gọi nhóm đến</string>
+    <!-- Outgoing group call in call info -->
+    <string name="CallPreference__outgoing_group_call">Cuộc gọi nhóm đi</string>
+
+    <!-- CreateCallLink -->
+    <!-- Call link creation item title on calls tab -->
+    <string name="CreateCallLink__create_a_call_link">Tạo Đường dẫn Cuộc gọi</string>
+    <!-- Call link creation item description on calls tab -->
+    <string name="CreateCallLink__share_a_link_for">Chia sẻ một đường dẫn cho cuộc gọi Signal</string>
+
+    <!-- CreateCallLinkBottomSheetDialogFragment -->
+    <!-- Fragment title -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">Tạo đường dẫn cuộc gọi</string>
+    <!-- Displayed as a default name for the signal call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Cuộc gọi Signal</string>
+    <!-- Displayed on a small button to allow user to instantly join call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__join">Tham gia</string>
+    <!-- Option to open a full screen dialog to enter a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Thêm tên cuộc gọi</string>
+    <!-- Toggle to require approval for all members before joining -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Chấp nhận tất cả thành viên</string>
+    <!-- Row label to share the link via Signal -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Chia sẻ đường dẫn qua Signal</string>
+    <!-- Row label to copy the link to the clipboard -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">Sao chép đường dẫn</string>
+    <!-- Row label to share the link with the external share sheet -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link">Chia sẻ đường dẫn</string>
+    <!-- Button text to dismiss the sheet and add it as an upcoming call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__done">Xong</string>
+    <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">Không thể chia sẻ đường dẫn của cuộc gọi.</string>
+    <!-- Displayed when we copy the call link to the clipboard -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">Đã sao chép vào clipboard</string>
+
+    <!-- EditCallLinkNameDialogFragment -->
+    <!-- App bar title for editing a call name -->
+    <string name="EditCallLinkNameDialogFragment__edit_call_name">Sửa tên cuộc gọi</string>
+    <!-- Text on button to confirm edit -->
+    <string name="EditCallLinkNameDialogFragment__save">Lưu</string>
+    <!-- Placeholder text on input field when editing call name -->
+    <string name="EditCallLinkNameDialogFragment__call_name">Tên cuộc gọi</string>
+
+    <!-- ChooseNavigationBarStyleFragment -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Kích cỡ thanh điều hướng</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">Bình thường</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">Gọn</string>
+
+    <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
+    <string name="EditMessageHistoryDialog_title">Lịch sử chỉnh sửa</string>
 
     <!-- EOF -->
 </resources>

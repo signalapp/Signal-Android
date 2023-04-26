@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 
 import java.io.File;
@@ -65,7 +65,7 @@ public class DeleteDeprecatedLogsMigrationJob extends MigrationJob {
 
   public static final class Factory implements Job.Factory<DeleteDeprecatedLogsMigrationJob> {
     @Override
-    public @NonNull DeleteDeprecatedLogsMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull DeleteDeprecatedLogsMigrationJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
       return new DeleteDeprecatedLogsMigrationJob(parameters);
     }
   }

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import android.text.Annotation;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.StringUtil;
 import org.signal.libsignal.protocol.util.Pair;
+import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation;
 
 import java.security.InvalidParameterException;
 import java.util.Collections;
@@ -68,10 +70,13 @@ public class SearchUtil {
         throw new InvalidParameterException("match mode must be STRICT or MATCH_ALL: " + matchMode);
     }
 
-    CharacterStyle[] styles = styleFactory.createStyles();
     for (Pair<Integer, Integer> range : ranges) {
+      CharacterStyle[] styles = styleFactory.createStyles();
       for (CharacterStyle style : styles) {
-        spanned.setSpan(style, range.first(), range.second(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+        List<Annotation> annotations = SpoilerAnnotation.getSpoilerAnnotations(spanned, range.first(), range.second());
+        if (annotations.isEmpty()) {
+          spanned.setSpan(style, range.first(), range.second(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
       }
     }
 

@@ -139,6 +139,12 @@ public class MessageRequestsBottomView extends ConstraintLayout {
         setActiveInactiveGroups(normalButtons, blockedButtons, gv1MigrationButtons);
         accept.setText(R.string.MessageRequestBottomView_accept);
         break;
+      case INDIVIDUAL_HIDDEN:
+        question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before,
+                                                                    HtmlUtil.bold(recipient.getShortDisplayName(getContext()))), 0));
+        setActiveInactiveGroups(normalButtons, blockedButtons, gv1MigrationButtons);
+        accept.setText(R.string.MessageRequestBottomView_accept);
+        break;
     }
   }
 

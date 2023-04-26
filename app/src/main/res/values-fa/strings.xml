@@ -15,6 +15,7 @@
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
 
     <string name="yes">بله</string>
     <string name="no">خیر</string>
@@ -168,6 +169,10 @@
     <string name="BucketedThreadMedia_Medium">متوسط</string>
     <string name="BucketedThreadMedia_Small">کوچک</string>
 
+    <!-- CameraFragment -->
+    <!-- Toasted when user device does not support video recording -->
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">ضبط تصویر روی دستگاه شما پشتیبانی نمی‌شود</string>
+
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">برای عکس ضربه بزنید، برای ویدئو نگه دارید</string>
     <string name="CameraXFragment_capture_description">گرفتن تصویر</string>
@@ -296,9 +301,13 @@
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">تصویر بارگیری نمی‌شود. باید دوباره آن را ارسال کنید.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">ویدیو بارگیری نمی‌شود. باید دوباره آن را ارسال کنید.</string>
+    <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
+    <string name="ConversationItem_edited_timestamp_footer">ویرایش‌شده %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">افزودن پیوست</string>
+    <!-- Accessibility text associated with image button to send an edited message. -->
+    <string name="ConversationActivity_send_edit">ارسال ویرایش</string>
     <string name="ConversationActivity_select_contact_info">انتخاب اطلاعات مخاطب</string>
     <string name="ConversationActivity_compose_message">نگارش پیام</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">پوزش، در تنظیم پیوست شما خطایی رخ داد.</string>
@@ -306,6 +315,13 @@
     <string name="ConversationActivity_message_is_empty_exclamation">پیام خالی است!</string>
     <string name="ConversationActivity_group_members">اعضا‌ی گروه</string>
     <string name="ConversationActivity__tap_here_to_start_a_group_call">برای شروع تماس گروهی اینجا ضربه بزنید</string>
+    <!-- Warning toast shown to user if they somehow try to edit an sms/mms message -->
+    <string name="ConversationActivity_edit_sms_message_error">امکان ویرایش پیامک‌ها وجود ندارد</string>
+    <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
+    <plurals name="ConversationActivity_edit_message_too_old">
+        <item quantity="one">ویرایش‌ها فقط %1$d ساعت بعد از ارسال این پیام قابل اعمال هستند.</item>
+        <item quantity="other">ویرایش‌ها فقط %1$d ساعت بعد از ارسال این پیام قابل اعمال هستند.</item>
+    </plurals>
 
     <string name="ConversationActivity_invalid_recipient">گیرنده نامعتبر!</string>
     <string name="ConversationActivity_added_to_home_screen">به صفحهٔ اصلی افزوده شد</string>
@@ -384,6 +400,15 @@
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">به‌زودی دوباره به شما یادآوری خواهد شد.</string>
 
+    <!-- Title for dialog shown when first sending formatted text -->
+    <string name="SendingFormattingTextDialog_title">در حال ارسال متن قالب‌بندی‌شده</string>
+    <!-- Message for dialog shown when first sending formatted text -->
+    <string name="SendingFormattingTextDialog_message">شاید نسخه‌ سیگنال مورد استفاده برخی افراد، از متن قالب‌بندی‌شده پشتیبانی نمی‌کند. آن‌ها قادر به مشاهده تغییرات قالبی که در پیام‌تان اعمال کرده‌اید نخواهند بود.</string>
+    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
+    <string name="SendingFormattingTextDialog_send_anyway_button">در هر صورت ارسال شود</string>
+    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
+    <string name="SendingFormattingTextDialog_cancel_send_button">لغو</string>
+
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="one">%1$d پیام نخوانده</item>
@@ -434,7 +459,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">برای پاسخ‌دهی سریع روی هر پیام به سمت راست بکشید</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">برای پاسخ‌دهی سریع روی هر پیام به سمت چپ بکشید</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">فایل‌های رسانه‌ٔ یکبار مصرف خروجی، پس از ارسال به صورت خودکار حذف می‌شوند</string>
-    <string name="ConversationFragment_you_already_viewed_this_message">شما قبلاً این پیام را مشاهده کردید</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">قبلاً این پیام را مشاهده کرده‌اید</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">در این مکالمه می‌توانید برای خودتان یادداشت اضافه کنید. اگر حساب کاربری شما به دستگاه‌‌های دیگری پیوند داده شده باشد، یادداشت‌های جدید همگام‌سازی خواهند شد.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d عضو گروه نام یکسانی دارند.</string>
     <string name="ConversationFragment__tap_to_review">برای بازنگری ضربه بزنید</string>
@@ -488,35 +513,14 @@
         <item quantity="one">نخوانده</item>
         <item quantity="other">نخوانده</item>
     </plurals>
-    <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">سنجاق</item>
-        <item quantity="other">سنجاق</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">برداشتن سنجاق</item>
-        <item quantity="other">برداشتن سنجاق</item>
-    </plurals>
-    <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">بی‌صدا</item>
-        <item quantity="other">بی‌صدا</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">باصدا</item>
-        <item quantity="other">باصدا</item>
-    </plurals>
+    <string name="ConversationListFragment_pin">سنجاق کردن</string>
+    <string name="ConversationListFragment_unpin">برداشتن سنجاق</string>
+    <string name="ConversationListFragment_mute">بی‌صدا</string>
+    <string name="ConversationListFragment_unmute">صدادار کردن</string>
     <string name="ConversationListFragment_select">انتخاب</string>
-    <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">بایگانی</item>
-        <item quantity="other">بایگانی</item>
-    </plurals>
-    <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">خروج از بایگانی</item>
-        <item quantity="other">خروج از بایگانی</item>
-    </plurals>
-    <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">پاک کردن</item>
-        <item quantity="other">پاک کردن</item>
-    </plurals>
+    <string name="ConversationListFragment_archive">بایگانی کردن</string>
+    <string name="ConversationListFragment_unarchive">لغو بایگانی</string>
+    <string name="ConversationListFragment_delete">پاک کردن</string>
     <string name="ConversationListFragment_select_all">انتخاب همه</string>
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d انتخاب شد</item>
@@ -1082,6 +1086,8 @@
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">برای ضبط کردن پیام صوتی ضربه زده و نگه دارید، برای ارسال رها کنید</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">پیامک دیگر در سیگنال پشتیبانی نمی‌شود.</string>
+    <!-- When editing a message, label shown above the text input field in the composer -->
+    <string name="InputPanel_edit_message">ویرایش پیام</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">اشتراک‌گذاری</string>
@@ -1490,6 +1496,8 @@
     <string name="MessageRequestBottomView_delete">پاک کردن</string>
     <string name="MessageRequestBottomView_block">مسدود کردن</string>
     <string name="MessageRequestBottomView_unblock">رفع مسدودیت</string>
+    <!-- Text explaining a message request from someone you\'ve removed before -->
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">اجازه می‌دهید که %1$s به شما پیام بفرستد و نام و عکس‌تان با او به اشتراک گذاشته شود؟ این شخص را در گذشته حذف کرده‌اید.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که نپذیرید او متوجه نمی‌شود که پیامش را خوانده‌اید.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">می‌خواهید به %1$s اجازه دهید به شما پیام دهد و نام و عکستان را با او به اشتراک بگذارید؟ تا وقتی او را رفع مسدودیت نکنید هیچ پیامی دریافت نخواهید کرد.</string>
@@ -1735,20 +1743,31 @@
         <item quantity="other">%1$s، %2$s و %3$d نفر دیگر در این تماس حضور دارند</item>
     </plurals>
 
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__flip">برگرداندن</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__speaker">بلندگو</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__camera">دوربین</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__unmute">باصدا</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__mute">بی‌صدا</string>
-    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallView__ring">زنگ زدن</string>
-    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <!-- Toggle content description for toggling camera direction  -->
+    <string name="WebRtcCallView__toggle_camera_direction">تغییر جهت دوربین</string>
+    <!-- Toggle content description for toggling audio output  -->
+    <string name="WebRtcCallView__toggle_speaker">تغییر بلندگو</string>
+    <!-- Toggle content description for toggling camera state  -->
+    <string name="WebRtcCallView__toggle_camera">تغییر دوربین</string>
+    <!-- Toggle content description for toggling mute state  -->
+    <string name="WebRtcCallView__toggle_mute">تغییر حالت صدادار</string>
+    <!-- Toggle content description for toggling group ring state  -->
+    <string name="WebRtcCallView__toggle_ring">تغییر حالت زنگ</string>
+    <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">پایان دادن به تماس</string>
+
+    <!-- Error message when the developer added a button in the wrong place. -->
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">خطای رابط کاربری رخ داد. لطفاً این خطا را به توسعه‌دهندگان گزارش کنید.</string>
+    <!-- Error message when the user is trying to change audio outputs but none are present. -->
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">هیچ ورودی/خروجی صدای واجدشرایطی شناسایی نشد.</string>
+    <!-- A text description of the bluetooth icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">نماد نشان‌دهنده یک دستگاه بلوتوث.</string>
+    <!-- A text description of the headset icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">نماد نشان‌دهنده یک هدست سیمی.</string>
+    <!-- A text description of the speaker icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">نماد نشان‌دهنده یک بلندگو.</string>
+    <!-- A text description of the earpiece icon, used for accessibility. -->
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">نماد نشان‌دهنده یک گوشی دستگاه.</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1786,7 +1805,13 @@
     <string name="RegistrationActivity_invalid_number">شماره نامعتبر</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">شماره‌ای که شما مشخص کرده‌اید (%1$s) معتبر نیست.
     </string>
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to">یک کد وارسی ارسال خواهد شد به:</string>
+
+    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">آیا شماره تلفن زیر درست است؟</string>
+    <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
+    <string name="RegistrationActivity_additional_verification_required">تأیید تکمیلی لازم است</string>
+    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">کد تأییدی به این شماره ارسال خواهد شد. ممکن است شرکت مخابراتی هزینه‌هایی اعمال کند.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">شما تماسی برای وارسی این شماره دریافت خواهید کرد.</string>
     <string name="RegistrationActivity_is_your_phone_number_above_correct">آیا شماره‌تلفن شما در بالا صحیح است؟</string>
     <string name="RegistrationActivity_edit_number">ویرایش شماره</string>
@@ -1816,11 +1841,15 @@
         <item quantity="other">شما%1$d قدم با ارسال گزارش عیب‌یابی فاصله دارید.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">ما باید وارسی کنیم که شما یک انسان هستید.</string>
+    <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
+    <string name="RegistrationActivity_external_service_error">به‌دلیل نقص خارجی، سیگنال قادر به ارسال کد پیامکی نبود.</string>
     <string name="RegistrationActivity_next">بعدی</string>
     <string name="RegistrationActivity_continue">ادامه</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حریم خصوصی را همراه داشته باشید.\nدر هر پیام خودتان باشید.</string>
-    <string name="RegistrationActivity_enter_your_phone_number">شماره‌تلفن خود را وارد کنید</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">یک کد تأیید دریافت خواهید کرد.\nهزینه‌های اپراتور ممکن است اعمال شوند.</string>
+    <!-- Title of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_phone_number">شماره تلفن</string>
+    <!-- Subtitle of registration screen when asking for the users phone number -->
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">برای شروع، شماره‌تلفن خود را وارد کنید.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">کد‌ی را که به %1$s ارسال کردیم وارد کنید</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">مطمئن شوید تلفن شما برای دریافت پیامک یا تماس سیگنال شبکهٔ همراه دارد</string>
 
@@ -1986,6 +2015,8 @@
     <string name="ThreadRecord_message_could_not_be_processed">پیام قابل پردازش نیست</string>
     <string name="ThreadRecord_delivery_issue">اشکال تحویل</string>
     <string name="ThreadRecord_message_request">درخواست تبادل پیام</string>
+    <!-- Thread preview for a recipient that has been hidden -->
+    <string name="ThreadRecord_hidden_recipient">شما این فرد را پنهان کرده‌اید، برای افزودن دوباره او به فهرست‌تان دوباره به او پیامی بفرستید.</string>
     <string name="ThreadRecord_photo">عکس</string>
     <string name="ThreadRecord_gif">گیف</string>
     <string name="ThreadRecord_voice_message">پیام صوتی</string>
@@ -2118,13 +2149,17 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">خطا در حذف پیام، ممکن است پیام همچنان وجود داشته باشد</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>اطلاعات بیشتر</b></string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d پیام جدید در %2$d مکالمه</string>
     <string name="MessageNotifier_most_recent_from_s">جدیدترین از: %1$s</string>
     <string name="MessageNotifier_locked_message">پیام قفل شده</string>
     <string name="MessageNotifier_message_delivery_failed">تحویل پیام ناموفق بود.</string>
+    <!-- Shown in a notification when a story the user tries to send fails to be sent -->
+    <string name="MessageNotifier_story_delivery_failed">استوری ارسال نشد</string>
+    <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
+    <string name="MessageNotifier_group_story_title">شما به %1$s</string>
     <string name="MessageNotifier_failed_to_deliver_message">تحویل پیام ناموفق بود.</string>
     <string name="MessageNotifier_error_delivering_message">خطا در تحویل پیام.</string>
     <string name="MessageNotifier_message_delivery_paused">تحویل پیام متوقف شد.</string>
@@ -2147,7 +2182,7 @@
     <string name="MessageNotifier_reacted_s_to_your_audio">با %1$s به فایل صوتی شما واکنش نشان داد.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">با %1$s به رسانه یک‌بارمصرف شما واکنش نشان داد.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reacted %1$s to your payment.</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">با %1$s به پرداخت شما واکنش نشان داد.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">با %1$s به استیکر شما واکنش نشان داد.</string>
     <string name="MessageNotifier_this_message_was_deleted">این پیام پاک شده بود.</string>
 
@@ -2248,10 +2283,18 @@
     <string name="WebRtcCallScreen__answer_without_video">پاسخ دادن بدون تصویر</string>
 
     <!-- WebRtcAudioOutputToggle -->
+    <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">خروجی صدا</string>
+    <!-- Audio output option referring to the earpiece built into the phone -->
     <string name="WebRtcAudioOutputToggle__phone_earpiece">بلندگوی تلفن</string>
+    <!-- Audio output option referring to the louder speaker built into the phone -->
     <string name="WebRtcAudioOutputToggle__speaker">بلندگو</string>
+    <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
+    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headset">هدست سیمی</string>
+    <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
+    <string name="WebRtcAudioOutputToggle__wired_headset_usb">هدست سیمی (USB)</string>
 
     <string name="WebRtcCallControls_answer_call_description">پاسخ به تماس</string>
     <string name="WebRtcCallControls_reject_call_description">رد تماس</string>
@@ -2264,6 +2307,12 @@
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__invite_to_signal">دعوت به سیگنال</string>
     <string name="contact_selection_activity__new_group">گروه جدید</string>
+    <!-- Row item title for refreshing contacts -->
+    <string name="contact_selection_activity__refresh_contacts">تازه‌سازی مخاطبان</string>
+    <!-- Row item description for refreshing contacts -->
+    <string name="contact_selection_activity__missing_someone">کسی از قلم افتاده است؟ تازه‌سازی کنید</string>
+    <!-- Row header title for more section -->
+    <string name="contact_selection_activity__more">بیشتر</string>
 
     <!-- contact_filter_toolbar -->
     <string name="contact_filter_toolbar__clear_entered_text_description">پاک کردن متن وارد شده</string>
@@ -2363,7 +2412,8 @@
     <string name="ConversationUpdateItem_send_payment">ارسال پرداخت</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">فعال کردن پرداخت‌ها</string>
-
+    <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">این شخص را حذف کرده‌اید، ارسال مجدد پیام به او موجب افزودن دوباره او به لیست شما می‌شود.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">پخش … توقف</string>
@@ -2620,6 +2670,8 @@
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">ارسال ناموفق بود</string>
     <string name="message_details_recipient__new_safety_number">شمارهٔ ایمنی جدید</string>
+    <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
+    <string name="MessageDetails__view_edit_history">مشاهده تاریخچه ویرایش</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">ایجاد گذرواژه</string>
@@ -2900,6 +2952,12 @@
     <string name="preferences_success">موفقیت</string>
     <string name="preferences_failed_to_connect">اتصال موفق نبود</string>
     <string name="preferences_enter_proxy_address">نشانی پروکسی را وارد کنید</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">اندازه نوار پیمایش</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">عادی</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">فشرده</string>
 
 
     <string name="configurable_single_select__customize_option">گزینهٔ سفارشی‌سازی</string>
@@ -3069,6 +3127,8 @@
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">یادداشت</string>
+    <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
+    <string name="EditNoteFragment__content_description_save_note">ذخیره‌سازی یادداشت</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">پرداخت را تأیید کنید</string>
@@ -3109,6 +3169,8 @@
     <!-- **************************************** -->
 
     <!-- contact_selection_list -->
+    <!-- Displayed in a row on the new call screen when searching by phone number. -->
+    <string name="contact_selection_list__new_call">تماس جدید با…</string>
     <string name="contact_selection_list__unknown_contact">پیام جدید به …</string>
     <string name="contact_selection_list__unknown_contact_block">مسدود کردن کاربر</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">افزودن به گروه</string>
@@ -3145,6 +3207,8 @@
     <string name="conversation_selection__menu_forward">بازارسال</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">پاسخ</string>
+    <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
+    <string name="conversation_selection__menu_edit">ویرایش</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">ذخیره</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
@@ -3419,7 +3483,9 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">انتقال حساب کاربری به یک دستگاه اندروید‌ی جدید</string>
     <string name="RegistrationActivity_enter_backup_passphrase">وارد کردن گذرواژهٔ پشتیبان</string>
     <string name="RegistrationActivity_restore">بازگردانی</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">عدم توانایی در وارد کردن پشتیبان‌ها از نسخه‌های جدیدتر سیگنال</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">امکان وارد کردن پشتیبان از نسخه‌های جدیدتر سیگنال نیست</string>
+    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">گذرواژهٔ پشتیبان ناصحیح</string>
     <string name="RegistrationActivity_checking">در حال بررسی…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d پیام تا به الان…</string>
@@ -3580,6 +3646,8 @@
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">انتقال از نسخه‌ٔ جدیدتر سیگنال ممکن نیست</string>
+    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
+    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">در حال انتقال داده‌ها</string>
@@ -3972,6 +4040,49 @@
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">به مرور زمان از شما کمتر پرسیده خواهد شد</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">درخواست پین سیگنال شما برای ثبت‌نام دوباره با شماره‌تلفن شما در سیگنال</string>
     <string name="AccountSettingsFragment__change_phone_number">تغییر شماره‌تلفن</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">اطلاعات حساب شما</string>
+
+    <!-- ExportAccountDataFragment -->
+    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
+    <string name="ExportAccountDataFragment__your_account_data">اطلاعات حساب شما</string>
+    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
+    <string name="ExportAccountDataFragment__export_explanation">یگ گزارش از اطلاعات حساب سیگنال خود خروجی بگیرید. این گزارش هیچ پیام یا رسانه‌ای ندارد. %1$s</string>
+    <!-- Learn more link to more information about requesting account data -->
+    <string name="ExportAccountDataFragment__learn_more">اطلاعات بیشتر</string>
+    <!-- Button action to export the report data to another app (e.g. email) -->
+    <string name="ExportAccountDataFragment__export_report">خروجی گرفتن گزارش</string>
+
+    <!-- Radio option to export the data as a text file .txt -->
+    <string name="ExportAccountDataFragment__export_as_txt">خروجی گرفتن در قالب TXT</string>
+    <!-- Label for the text file option -->
+    <string name="ExportAccountDataFragment__export_as_txt_label">فایل متنی آسان‌خوان</string>
+    <!-- Radio option to export the data as a json (java script object notation) file .json -->
+    <string name="ExportAccountDataFragment__export_as_json">خروجی گرفتن در قالب JSON</string>
+    <!-- Label for the json file option, the account data in a machine readable file format -->
+    <string name="ExportAccountDataFragment__export_as_json_label">فایل قابل‌خواندن برای ماشین</string>
+
+    <!-- Action to cancel (in a dialog) -->
+    <string name="ExportAccountDataFragment__cancel_action">لغو</string>
+
+    <!-- Acknowledgement for download failure -->
+    <string name="ExportAccountDataFragment__ok_action">تأیید</string>
+    <!-- Title of dialog shown when report fails to generate -->
+    <string name="ExportAccountDataFragment__report_generation_failed">امکان تولید گزارش وجود نداشت</string>
+    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
+    <string name="ExportAccountDataFragment__check_network">اتصال خود را بررسی و دوباره تلاش کنید.</string>
+
+    <!-- Title for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation">از اطلاعات خروجی گرفته شود؟</string>
+    <!-- Message for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">اطلاعات حساب سیگنال خود را فقط با افراد یا برنامه‌های مورد اعتمادتان به اشتراک بگذارید.</string>
+    <!-- Action to export in for export confirmation dialog -->
+    <string name="ExportAccountDataFragment__export_report_action">خروجی گرفتن</string>
+
+    <!-- Shown in a dialog with a spinner while the report is downloading -->
+    <string name="ExportAccountDataFragment__download_progress">در حال تولید گزارش…</string>
+    <!-- Explanation that the report is only generated on export and is not saved on the device -->
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">گزارش شما فقط هنگام خروجی گرفتن تولید می‌شود و سیگنال آن را در دستگاهتان ذخیره نمی‌کند.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">از این گزینه برای تغییر شماره‌تلفن فعلی خود به یک شماره‌تلفن جدید استفاده کنید. شما نمی‌توانید این تغییر را بازگردانی کنید.\n\n قبل از ادامه، مطمئن شوید که شمارهٔ جدید شما می‌تواند پیامک یا تماس دریافت کند.</string>
@@ -4418,6 +4529,9 @@
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">تعویض میان ماژیک معمولی و هایلایت</string>
     <string name="ImageEditorHud__toggle_between_text_styles">تعویض میان سبک‌های متن</string>
 
+    <!-- Header for section of featured stickers (location/time stickers) -->
+    <string name="ScribbleStickersFragment__featured_stickers">ویژه</string>
+
     <string name="MediaCountIndicatorButton__send">ارسال</string>
 
     <string name="MediaReviewSelectedItem__tap_to_remove">برای حذف کردن ضربه بزنید</string>
@@ -4818,6 +4932,8 @@
 
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">گفتگوها</string>
+    <!-- Label for Calls tab in home app screen -->
+    <string name="ConversationListTabs__calls">تماس‌ها</string>
     <!-- Label for Stories tab in home app screen -->
     <string name="ConversationListTabs__stories">استوری‌ها</string>
     <!-- String for counts above 99 in conversation list tabs -->
@@ -5102,7 +5218,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">روی کلیپ‌بورد کپی شد</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">… مشاهده بیشتر</string>
+    <string name="StoryViewerPageFragment__see_more">See More</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">ارسال پاسخ…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -5659,12 +5775,20 @@
     <string name="TextFormatting_strikethrough">خط‌خورده</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">تک‌فاصله</string>
+    <!-- Popup menu label for applying spoiler style -->
+    <string name="TextFormatting_spoiler">پنهان‌نوشته</string>
 
     <!-- UsernameEducationFragment -->
     <!-- Continue button which takes the user to the add a username screen -->
     <string name="UsernameEducationFragment__continue">ادامه</string>
     <!-- Displayed as a title on the username education screen -->
     <string name="UsernameEducationFragment__set_up_your_signal_username">تنظیم نام کاربری سیگنال</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">نام‌های کاربری با مجموعه‌ای از ارقام جفت می‌شوند و در نمایه‌تان به اشتراک گذاشته نمی‌شوند</string>
+    <!-- Displayed as body text in the username education screen -->
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">هر نام کاربری یک کد QR و پیوند منحصربه‌فرد دارد که می‌توانید با دوستانتان به اشتراک بگذارید تا از آن برای شروع گفتگو با شما استفاده کنند</string>
+    <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
+    <string name="UsernameEducationFragment__turn_off_phone_number_discovery">برای استفاده از نام کاربری‌تان به‌عنوان راه اصلی تماس افراد با شما، در «تنظیمات» &gt; «حریم خصوصی» &gt; «شماره تلفن» &gt; «چه‌کسی می‌تواند من را با شماره تلفنم پیدا کند»، کشف شماره تلفن را خاموش کنید</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -5681,6 +5805,156 @@
     <string name="TimeDurationPickerDialog_positive_button">تنظیم</string>
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, helper text indicating minimum allowable duration -->
     <string name="TimeDurationPickerDialog_minimum_duration_warning">حداقل زمان قبل از اعمال شدن قفل صفحه‌نمایش ۱ دقیقه است.</string>
+
+    <!-- Call Log -->
+    <!-- Displayed below the user\'s name in row items on the call log. First placeholder is the call status, second is when it occurred -->
+    <string name="CallLogAdapter__s_dot_s">%1$s · %2$s</string>
+    <!-- Displayed for incoming calls -->
+    <string name="CallLogAdapter__incoming">ورودی</string>
+    <!-- Displayed for outgoing calls -->
+    <string name="CallLogAdapter__outgoing">خروجی</string>
+    <!-- Displayed for missed calls -->
+    <string name="CallLogAdapter__missed">ازدست‌رفته</string>
+    <!-- Displayed on Group Call button if user is not in the call -->
+    <string name="CallLogAdapter__join">پیوستن</string>
+    <!-- Displayed on Group Call button if user is in the call -->
+    <string name="CallLogAdapter__return">بازگشت</string>
+    <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
+    <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
+
+    <!-- Call Log context menu -->
+    <!-- Displayed as a context menu item to start a video call -->
+    <string name="CallContextMenu__video_call">تماس تصویری</string>
+    <!-- Displayed as a context menu item to join an ongoing group call -->
+    <string name="CallContextMenu__join_call">پیوستن به تماس</string>
+    <!-- Displayed as a context menu item to return to active call -->
+    <string name="CallContextMenu__return_to_call">بازگشت به تماس</string>
+    <!-- Displayed as a context menu item to start an audio call -->
+    <string name="CallContextMenu__audio_call">تماس صوتی</string>
+    <!-- Displayed as a context menu item to go to chat -->
+    <string name="CallContextMenu__go_to_chat">به گفتگو بروید</string>
+    <!-- Displayed as a context menu item to see call info -->
+    <string name="CallContextMenu__info">اطلاعات</string>
+    <!-- Displayed as a context menu item to select multiple calls -->
+    <string name="CallContextMenu__select">انتخاب</string>
+    <!-- Displayed as a context menu item to delete this call -->
+    <string name="CallContextMenu__delete">پاک کردن</string>
+
+    <!-- Call Log Fragment -->
+    <!-- Action bar menu item to only display missed calls -->
+    <string name="CallLogFragment__filter_missed_calls">فیلتر کردن تماس‌های ازدست‌رفته</string>
+    <!-- Action bar menu item to clear missed call filter -->
+    <string name="CallLogFragment__clear_filter">برداشتن فیلتر</string>
+    <!-- Action bar menu item to open settings -->
+    <string name="CallLogFragment__settings">تنظیمات</string>
+    <!-- Action bar menu item to open notification profile settings -->
+    <string name="CallLogFragment__notification_profile">نمایه اعلان‌ها</string>
+    <!-- Call log new call content description -->
+    <string name="CallLogFragment__start_a_new_call">شروع یک تماس جدید</string>
+    <!-- Filter pull text when pulled -->
+    <string name="CallLogFragment__filtered_by_missed">فیلترشده بر اساس ازدست‌رفته</string>
+    <!-- Bottom bar option to select all call entries -->
+    <string name="CallLogFragment__select_all">انتخاب همه</string>
+    <!-- Bottom bar option to delete all selected call entries -->
+    <string name="CallLogFragment__delete">پاک کردن</string>
+    <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
+  <!-- Removed by excludeNonTranslatables <plurals name="CallLogFragment__delete_d_calls" translatable="false">
+        <item quantity="one">Delete %1$d call?</item>
+        <item quantity="other">Delete %1$d calls?</item>
+    </plurals> -->
+    <!-- Positive action on multi-delete protection dialog -->
+    <string name="CallLogFragment__delete_for_me">پاک کردن برای من</string>
+    <!-- Snackbar label after deleting call logs -->
+    <plurals name="CallLogFragment__d_calls_deleted">
+        <item quantity="one">%1$d تماس پاک شد</item>
+        <item quantity="other">%1$d تماس پاک شد</item>
+    </plurals>
+    <!-- Undo action for deletion snackbar -->
+    <string name="CallLogFragment__undo">بازگردانی</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__no_calls">تماسی وجود ندارد.</string>
+    <!-- Shown during empty state -->
+    <string name="CallLogFragment__get_started_by_calling_a_friend">با تماس با یک دوست شروع کنید.</string>
+
+    <!-- New call activity -->
+    <!-- Activity title in title bar -->
+    <string name="NewCallActivity__new_call">تماس جدید</string>
+
+    <!-- Call state update popups -->
+    <!-- Displayed when the user enables group call ringing -->
+    <string name="CallStateUpdatePopupWindow__ringing_on">زنگ خوردن روشن است</string>
+    <!-- Displayed when the user disables group call ringing -->
+    <string name="CallStateUpdatePopupWindow__ringing_off">زنگ خوردن خاموش است</string>
+    <!-- Displayed when the user cannot enable group call ringing -->
+    <string name="CallStateUpdatePopupWindow__group_is_too_large">گروه برای زنگ خوردن همه شرکت‌کنندگان خیلی بزرگ است</string>
+    <!-- Displayed when the user turns on their mic -->
+    <string name="CallStateUpdatePopupWindow__mic_on">میکروفون روشن</string>
+    <!-- Displayed when the user turns off their mic -->
+    <string name="CallStateUpdatePopupWindow__mic_off">میکروفون خاموش</string>
+
+    <!-- Accessibility label describing the capture button on the camera screen -->
+    <string name="CameraControls_capture_button_accessibility_label">دکمه ضبط</string>
+    <!-- Accessibility label describing the continue button on the camera screen -->
+    <string name="CameraControls_continue_button_accessibility_label">دکمه ادامه</string>
+
+    <!-- CallPreference -->
+    <!-- Generic group call in call info -->
+    <string name="CallPreference__group_call">تماس گروهی</string>
+    <!-- Missed group call in call info -->
+    <string name="CallPreference__missed_group_call">تماس گروهی ازدست‌رفته</string>
+    <!-- Incoming group call in call info -->
+    <string name="CallPreference__incoming_group_call">تماس گروهی ورودی</string>
+    <!-- Outgoing group call in call info -->
+    <string name="CallPreference__outgoing_group_call">تماس گروهی خروجی</string>
+
+    <!-- CreateCallLink -->
+    <!-- Call link creation item title on calls tab -->
+    <string name="CreateCallLink__create_a_call_link">ایجاد یک پیوند تماس</string>
+    <!-- Call link creation item description on calls tab -->
+    <string name="CreateCallLink__share_a_link_for">اشتراک‌گذاری یک پیوند برای تماس سیگنال</string>
+
+    <!-- CreateCallLinkBottomSheetDialogFragment -->
+    <!-- Fragment title -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__create_call_link">ایجاد پیوند تماس</string>
+    <!-- Displayed as a default name for the signal call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">تماس سیگنال</string>
+    <!-- Displayed on a small button to allow user to instantly join call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__join">پیوستن</string>
+    <!-- Option to open a full screen dialog to enter a call name -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">افزودن نام تماس</string>
+    <!-- Toggle to require approval for all members before joining -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">تأیید همه اعضا</string>
+    <!-- Row label to share the link via Signal -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">اشتراک‌گذاری پیوند از طریق سیگنال</string>
+    <!-- Row label to copy the link to the clipboard -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">کپی کردن پیوند</string>
+    <!-- Row label to share the link with the external share sheet -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link">اشتراک‌گذاری پیوند</string>
+    <!-- Button text to dismiss the sheet and add it as an upcoming call -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__done">انجام شد</string>
+    <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">امکان به اشتراک گذاشتن پیوند تماس وجود ندارد.</string>
+    <!-- Displayed when we copy the call link to the clipboard -->
+    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">در کلیپ‌بورد کپی شد</string>
+
+    <!-- EditCallLinkNameDialogFragment -->
+    <!-- App bar title for editing a call name -->
+    <string name="EditCallLinkNameDialogFragment__edit_call_name">ویرایش نام تماس</string>
+    <!-- Text on button to confirm edit -->
+    <string name="EditCallLinkNameDialogFragment__save">ذخیره</string>
+    <!-- Placeholder text on input field when editing call name -->
+    <string name="EditCallLinkNameDialogFragment__call_name">نام تماس</string>
+
+    <!-- ChooseNavigationBarStyleFragment -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">اندازه نوار پیمایش</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">عادی</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">فشرده</string>
+
+    <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
+    <string name="EditMessageHistoryDialog_title">تاریخچه ویرایش</string>
 
     <!-- EOF -->
 </resources>

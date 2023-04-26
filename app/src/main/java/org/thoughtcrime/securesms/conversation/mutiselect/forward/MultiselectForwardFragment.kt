@@ -27,6 +27,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
@@ -58,7 +59,6 @@ import org.thoughtcrime.securesms.stories.settings.privacy.ChooseInitialMyStoryM
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
@@ -124,9 +124,12 @@ class MultiselectForwardFragment :
       this,
       emptySet(),
       FeatureFlags.shareSelectionLimit(),
-      !args.selectSingleRecipient,
-      ContactSearchAdapter.DisplaySmsTag.DEFAULT,
-      ContactSearchAdapter.DisplaySecondaryInformation.NEVER,
+      ContactSearchAdapter.DisplayOptions(
+        displayCheckBox = !args.selectSingleRecipient,
+        displaySmsTag = ContactSearchAdapter.DisplaySmsTag.DEFAULT,
+        displaySecondaryInformation = ContactSearchAdapter.DisplaySecondaryInformation.NEVER,
+        displayStoryRing = true
+      ),
       this::getConfiguration,
       object : ContactSearchMediator.SimpleCallbacks() {
         override fun onBeforeContactsSelected(view: View?, contactSearchKeys: Set<ContactSearchKey>): Set<ContactSearchKey> {
@@ -134,7 +137,6 @@ class MultiselectForwardFragment :
         }
       }
     )
-
     contactSearchRecycler.adapter = contactSearchMediator.adapter
 
     callback = findListener()!!

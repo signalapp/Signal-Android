@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.sms.GroupV2UpdateMessageUtil
  * Represents all the data needed for an outgoing message.
  */
 data class OutgoingMessage(
-  val recipient: Recipient,
+  val threadRecipient: Recipient,
   val sentTimeMillis: Long,
   val body: String = "",
   val distributionType: Int = ThreadTable.DistributionTypes.DEFAULT,
@@ -50,11 +50,13 @@ data class OutgoingMessage(
   val isEndSession: Boolean = false,
   val isIdentityVerified: Boolean = false,
   val isIdentityDefault: Boolean = false,
-  val scheduledDate: Long = -1
+  val scheduledDate: Long = -1,
+  val messageToEdit: Long = 0
 ) {
 
   val isV2Group: Boolean = messageGroupContext != null && GroupV2UpdateMessageUtil.isGroupV2(messageGroupContext)
   val isJustAGroupLeave: Boolean = messageGroupContext != null && GroupV2UpdateMessageUtil.isJustAGroupLeave(messageGroupContext)
+  val isMessageEdit: Boolean = messageToEdit != 0L
 
   /**
    * Smaller constructor for calling from Java and legacy code using the original interface.
@@ -80,9 +82,10 @@ data class OutgoingMessage(
     giftBadge: GiftBadge? = null,
     isSecure: Boolean = false,
     bodyRanges: BodyRangeList? = null,
-    scheduledDate: Long = -1
+    scheduledDate: Long = -1,
+    messageToEdit: Long = 0
   ) : this(
-    recipient = recipient,
+    threadRecipient = recipient,
     body = body ?: "",
     attachments = attachments,
     sentTimeMillis = timestamp,
@@ -102,7 +105,8 @@ data class OutgoingMessage(
     giftBadge = giftBadge,
     isSecure = isSecure,
     bodyRanges = bodyRanges,
-    scheduledDate = scheduledDate
+    scheduledDate = scheduledDate,
+    messageToEdit = messageToEdit
   )
 
   /**
@@ -120,9 +124,10 @@ data class OutgoingMessage(
     linkPreviews: List<LinkPreview> = emptyList(),
     mentions: List<Mention> = emptyList(),
     isSecure: Boolean = false,
-    bodyRanges: BodyRangeList? = null
+    bodyRanges: BodyRangeList? = null,
+    contacts: List<Contact> = emptyList()
   ) : this(
-    recipient = recipient,
+    threadRecipient = recipient,
     body = buildMessage(slideDeck, body ?: ""),
     attachments = slideDeck.asAttachments(),
     sentTimeMillis = timestamp,
@@ -133,7 +138,8 @@ data class OutgoingMessage(
     linkPreviews = linkPreviews,
     mentions = mentions,
     isSecure = isSecure,
-    bodyRanges = bodyRanges
+    bodyRanges = bodyRanges,
+    sharedContacts = contacts
   )
 
   fun withExpiry(expiresIn: Long): OutgoingMessage {
@@ -166,9 +172,9 @@ data class OutgoingMessage(
      * A literal, insecure SMS message.
      */
     @JvmStatic
-    fun sms(recipient: Recipient, body: String, subscriptionId: Int): OutgoingMessage {
+    fun sms(threadRecipient: Recipient, body: String, subscriptionId: Int): OutgoingMessage {
       return OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = threadRecipient,
         sentTimeMillis = System.currentTimeMillis(),
         body = body,
         subscriptionId = subscriptionId,
@@ -181,14 +187,14 @@ data class OutgoingMessage(
      */
     @JvmStatic
     fun text(
-      recipient: Recipient,
+      threadRecipient: Recipient,
       body: String,
       expiresIn: Long,
       sentTimeMillis: Long = System.currentTimeMillis(),
       bodyRanges: BodyRangeList? = null
     ): OutgoingMessage {
       return OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = threadRecipient,
         sentTimeMillis = sentTimeMillis,
         body = body,
         expiresIn = expiresIn,
@@ -199,14 +205,36 @@ data class OutgoingMessage(
     }
 
     /**
+     * Edit a secure message that only contains text.
+     */
+    @JvmStatic
+    fun editText(
+      recipient: Recipient,
+      body: String,
+      sentTimeMillis: Long,
+      bodyRanges: BodyRangeList?,
+      messageToEdit: Long
+    ): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = recipient,
+        sentTimeMillis = sentTimeMillis,
+        body = body,
+        isUrgent = true,
+        isSecure = true,
+        bodyRanges = bodyRanges,
+        messageToEdit = messageToEdit
+      )
+    }
+
+    /**
      * Helper for creating a group update message when a state change occurs and needs to be sent to others.
      */
     @JvmStatic
-    fun groupUpdateMessage(recipient: Recipient, group: DecryptedGroupV2Context, sentTimeMillis: Long): OutgoingMessage {
+    fun groupUpdateMessage(threadRecipient: Recipient, group: DecryptedGroupV2Context, sentTimeMillis: Long): OutgoingMessage {
       val groupContext = MessageGroupContext(group)
 
       return OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = threadRecipient,
         body = groupContext.encodedGroupContext,
         sentTimeMillis = sentTimeMillis,
         messageGroupContext = groupContext,
@@ -221,7 +249,7 @@ data class OutgoingMessage(
      */
     @JvmStatic
     fun groupUpdateMessage(
-      recipient: Recipient,
+      threadRecipient: Recipient,
       groupContext: MessageGroupContext,
       avatar: List<Attachment> = emptyList(),
       sentTimeMillis: Long,
@@ -233,7 +261,7 @@ data class OutgoingMessage(
       mentions: List<Mention> = emptyList()
     ): OutgoingMessage {
       return OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = threadRecipient,
         body = groupContext.encodedGroupContext,
         isGroup = true,
         isGroupUpdate = true,
@@ -255,7 +283,7 @@ data class OutgoingMessage(
      */
     @JvmStatic
     fun textStoryMessage(
-      recipient: Recipient,
+      threadRecipient: Recipient,
       body: String,
       sentTimeMillis: Long,
       storyType: StoryType,
@@ -263,7 +291,7 @@ data class OutgoingMessage(
       bodyRanges: BodyRangeList?
     ): OutgoingMessage {
       return OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = threadRecipient,
         body = body,
         sentTimeMillis = sentTimeMillis,
         storyType = storyType,
@@ -277,9 +305,9 @@ data class OutgoingMessage(
      * Specialized message sent to request someone activate payments.
      */
     @JvmStatic
-    fun requestToActivatePaymentsMessage(recipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+    fun requestToActivatePaymentsMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
       return OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = threadRecipient,
         sentTimeMillis = sentTimeMillis,
         expiresIn = expiresIn,
         isRequestToActivatePayments = true,
@@ -293,9 +321,9 @@ data class OutgoingMessage(
      * be sent to those that sent requests prior to activation.
      */
     @JvmStatic
-    fun paymentsActivatedMessage(recipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+    fun paymentsActivatedMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
       return OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = threadRecipient,
         sentTimeMillis = sentTimeMillis,
         expiresIn = expiresIn,
         isPaymentsActivated = true,
@@ -308,9 +336,9 @@ data class OutgoingMessage(
      * Type of message sent when sending a payment to another Signal contact.
      */
     @JvmStatic
-    fun paymentNotificationMessage(recipient: Recipient, paymentUuid: String, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+    fun paymentNotificationMessage(threadRecipient: Recipient, paymentUuid: String, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
       return OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = threadRecipient,
         body = paymentUuid,
         sentTimeMillis = sentTimeMillis,
         expiresIn = expiresIn,
@@ -323,9 +351,9 @@ data class OutgoingMessage(
      * Helper for creating expiration update messages.
      */
     @JvmStatic
-    fun expirationUpdateMessage(recipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+    fun expirationUpdateMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
       return OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = threadRecipient,
         sentTimeMillis = sentTimeMillis,
         expiresIn = expiresIn,
         isExpirationUpdate = true,
@@ -338,9 +366,9 @@ data class OutgoingMessage(
      * Message for when you have verified the identity of a contact.
      */
     @JvmStatic
-    fun identityVerifiedMessage(recipient: Recipient, sentTimeMillis: Long): OutgoingMessage {
+    fun identityVerifiedMessage(threadRecipient: Recipient, sentTimeMillis: Long): OutgoingMessage {
       return OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = threadRecipient,
         sentTimeMillis = sentTimeMillis,
         isIdentityVerified = true,
         isUrgent = false,
@@ -352,9 +380,9 @@ data class OutgoingMessage(
      * Message for when the verification status of an identity is getting set to the default.
      */
     @JvmStatic
-    fun identityDefaultMessage(recipient: Recipient, sentTimeMillis: Long): OutgoingMessage {
+    fun identityDefaultMessage(threadRecipient: Recipient, sentTimeMillis: Long): OutgoingMessage {
       return OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = threadRecipient,
         sentTimeMillis = sentTimeMillis,
         isIdentityDefault = true,
         isUrgent = false,
@@ -367,9 +395,9 @@ data class OutgoingMessage(
      * but it doesn't hurt to support receiving them in sync messages.
      */
     @JvmStatic
-    fun endSessionMessage(recipient: Recipient, sentTimeMillis: Long): OutgoingMessage {
+    fun endSessionMessage(threadRecipient: Recipient, sentTimeMillis: Long): OutgoingMessage {
       return OutgoingMessage(
-        recipient = recipient,
+        threadRecipient = threadRecipient,
         sentTimeMillis = sentTimeMillis,
         isEndSession = true,
         isUrgent = false,

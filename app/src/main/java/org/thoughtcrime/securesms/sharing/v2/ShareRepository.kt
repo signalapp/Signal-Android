@@ -15,6 +15,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.conversation.MessageSendType
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendConstants
 import org.thoughtcrime.securesms.mms.MediaConstraints
@@ -47,7 +48,9 @@ class ShareRepository(context: Context) {
     }
 
     val uri = multiShareExternal.uri
-    val mimeType = getMimeType(appContext, uri, multiShareExternal.mimeType)
+    val size = getSize(appContext, uri)
+    val name = getFileName(appContext, uri)
+    val mimeType = getMimeType(appContext, uri, multiShareExternal.mimeType, name?.substringAfterLast('.', ""))
 
     val stream: InputStream = try {
       appContext.contentResolver.openInputStream(uri)
@@ -56,14 +59,16 @@ class ShareRepository(context: Context) {
       null
     } ?: return ResolvedShareData.Failure
 
-    val size = getSize(appContext, uri)
-    val name = getFileName(appContext, uri)
-
-    val blobUri = BlobProvider.getInstance()
-      .forData(stream, size)
-      .withMimeType(mimeType)
-      .withFileName(name)
-      .createForSingleSessionOnDisk(appContext)
+    val blobUri: Uri = try {
+      BlobProvider.getInstance()
+        .forData(stream, size)
+        .withMimeType(mimeType)
+        .withFileName(name)
+        .createForSingleSessionOnDisk(appContext)
+    } catch (e: IOException) {
+      Log.e(TAG, "Failed to get blob uri")
+      return ResolvedShareData.Failure
+    }
 
     return ResolvedShareData.ExternalUri(
       uri = blobUri,
@@ -92,16 +97,21 @@ class ShareRepository(context: Context) {
           appContext.contentResolver.openInputStream(uri)
         } catch (e: IOException) {
           Log.w(TAG, "Failed to open: $uri")
-          return@map null
-        } ?: return ResolvedShareData.Failure
+          null
+        } ?: return@map null
 
         val size = getSize(appContext, uri)
         val dimens: Pair<Int, Int> = MediaUtil.getDimensions(appContext, mimeType, uri).toKotlinPair()
         val duration = 0L
-        val blobUri = BlobProvider.getInstance()
-          .forData(stream, size)
-          .withMimeType(mimeType)
-          .createForSingleSessionOnDisk(appContext)
+        val blobUri = try {
+          BlobProvider.getInstance()
+            .forData(stream, size)
+            .withMimeType(mimeType)
+            .createForSingleSessionOnDisk(appContext)
+        } catch (e: IOException) {
+          Log.w(TAG, "Failed create blob uri")
+          return@map null
+        }
 
         Media(
           blobUri,
@@ -131,8 +141,8 @@ class ShareRepository(context: Context) {
   companion object {
     private val TAG = Log.tag(ShareRepository::class.java)
 
-    private fun getMimeType(context: Context, uri: Uri, mimeType: String?): String {
-      var updatedMimeType = MediaUtil.getMimeType(context, uri)
+    private fun getMimeType(context: Context, uri: Uri, mimeType: String?, fileExtension: String? = null): String {
+      var updatedMimeType = MediaUtil.getMimeType(context, uri, fileExtension)
       if (updatedMimeType == null) {
         updatedMimeType = MediaUtil.getCorrectedMimeType(mimeType)
       }
@@ -176,7 +186,7 @@ class ShareRepository(context: Context) {
     private fun isMmsSupported(context: Context, attachment: Attachment): Boolean {
       val canReadPhoneState = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED
 
-      if (!Util.isDefaultSmsProvider(context) || !canReadPhoneState || !Util.isMmsCapable(context)) {
+      if (!Util.isDefaultSmsProvider(context) || !canReadPhoneState || !Util.isMmsCapable(context) || !SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
         return false
       }
 

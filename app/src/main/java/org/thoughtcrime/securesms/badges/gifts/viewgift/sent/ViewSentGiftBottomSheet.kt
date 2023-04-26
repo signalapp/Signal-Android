@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.gifts.viewgift.ViewGiftRepository
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.BottomSheetUtil
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 
 /**
  * Handles all interactions for received gift badges.
@@ -33,7 +33,7 @@ class ViewSentGiftBottomSheet : DSLSettingsBottomSheetFragment() {
     fun show(fragmentManager: FragmentManager, messageRecord: MmsMessageRecord) {
       ViewSentGiftBottomSheet().apply {
         arguments = Bundle().apply {
-          putParcelable(ARG_SENT_TO, messageRecord.recipient.id)
+          putParcelable(ARG_SENT_TO, messageRecord.toRecipient.id)
           putByteArray(ARG_GIFT_BADGE, messageRecord.giftBadge!!.toByteArray())
         }
         show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)

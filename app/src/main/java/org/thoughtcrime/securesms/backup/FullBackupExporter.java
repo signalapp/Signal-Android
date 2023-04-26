@@ -282,6 +282,8 @@ public class FullBackupExporter extends FullBackupBase {
   {
     List<String> tablesInOrder = getTablesToExportInOrder(input);
 
+    Log.i(TAG, "Exporting tables in the following order: " + tablesInOrder);
+
     Map<String, String> createStatementsByTable = new HashMap<>();
 
     try (Cursor cursor = input.rawQuery("SELECT sql, name, type FROM sqlite_master WHERE type = 'table' AND sql NOT NULL", null)) {
@@ -328,12 +330,19 @@ public class FullBackupExporter extends FullBackupBase {
                                  .sorted()
                                  .collect(Collectors.toList());
 
-    
     Map<String, Set<String>> dependsOn = new LinkedHashMap<>();
     for (String table : tables) {
-      dependsOn.put(table, SqlUtil.getForeignKeyDependencies(input, table));
+      Set<String> dependencies = SqlUtil.getForeignKeyDependencies(input, table);
+      dependencies.remove(table);
+
+      dependsOn.put(table, dependencies);
     }
-    
+
+    for (String table : tables) {
+      Set<String> dependsOnTable = dependsOn.keySet().stream().filter(t -> dependsOn.get(t).contains(table)).collect(Collectors.toSet());
+      Log.i(TAG, "Tables that depend on " + table + ": " + dependsOnTable);
+    }
+
     return computeTableOrder(dependsOn);
   }
 
@@ -396,6 +405,8 @@ public class FullBackupExporter extends FullBackupBase {
                                  @NonNull BackupCancellationSignal cancellationSignal)
       throws IOException
   {
+    Log.d(TAG, "Exporting table: " + table);
+
     String template = "INSERT INTO " + table + " VALUES ";
 
     try (Cursor cursor = input.rawQuery("SELECT * FROM " + table, null)) {
@@ -603,7 +614,7 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
   private static boolean isForNonExpiringMmsMessage(@NonNull SQLiteDatabase db, long mmsId) {
-    String[] columns = new String[] { MessageTable.RECIPIENT_ID, MessageTable.EXPIRES_IN, MessageTable.VIEW_ONCE };
+    String[] columns = new String[] { MessageTable.EXPIRES_IN, MessageTable.VIEW_ONCE };
     String   where   = MessageTable.ID + " = ?";
     String[] args    = new String[] { String.valueOf(mmsId) };
 

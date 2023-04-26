@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
@@ -8,7 +9,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
@@ -62,10 +63,10 @@ public class TypingSendJob extends BaseJob {
 
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_THREAD_ID, threadId)
-                             .putBoolean(KEY_TYPING, typing)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_THREAD_ID, threadId)
+                                    .putBoolean(KEY_TYPING, typing)
+                                    .serialize();
   }
 
   @Override
@@ -148,7 +149,8 @@ public class TypingSendJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<TypingSendJob> {
     @Override
-    public @NonNull TypingSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull TypingSendJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
       return new TypingSendJob(parameters, data.getLong(KEY_THREAD_ID), data.getBoolean(KEY_TYPING));
     }
   }

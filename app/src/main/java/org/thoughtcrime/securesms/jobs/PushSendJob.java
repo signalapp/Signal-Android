@@ -26,8 +26,11 @@ import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
@@ -41,6 +44,7 @@ import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.QuoteModel;
@@ -63,6 +67,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemo
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServicePreview;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
@@ -287,13 +292,31 @@ public abstract class PushSendJob extends SendJob {
     Recipient                recipient          = SignalDatabase.threads().getRecipientForThreadId(threadId);
     ParentStoryId.GroupReply groupReplyStoryId  = SignalDatabase.messages().getParentStoryIdForGroupReply(messageId);
 
+    boolean isStory = false;
+    try {
+      MessageRecord record = SignalDatabase.messages().getMessageRecord(messageId);
+      if (record instanceof MmsMessageRecord) {
+        isStory = (((MmsMessageRecord) record).getStoryType().isStory());
+      }
+    } catch (NoSuchMessageException e) {
+      Log.e(TAG, e);
+    }
+
     if (threadId != -1 && recipient != null) {
-      ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, recipient, ConversationId.fromThreadAndReply(threadId, groupReplyStoryId));
+      if (isStory) {
+        SignalDatabase.messages().markAsNotNotified(messageId);
+        ApplicationDependencies.getMessageNotifier().notifyStoryDeliveryFailed(context, recipient, ConversationId.forConversation(threadId));
+      } else {
+        ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, recipient, ConversationId.fromThreadAndReply(threadId, groupReplyStoryId));
+      }
     }
   }
 
   protected Optional<SignalServiceDataMessage.Quote> getQuoteFor(OutgoingMessage message) throws IOException {
     if (message.getOutgoingQuote() == null) return Optional.empty();
+    if (message.isMessageEdit()) {
+      return Optional.of(new SignalServiceDataMessage.Quote(0, ServiceId.UNKNOWN, "", null, null, SignalServiceDataMessage.Quote.Type.NORMAL, null));
+    }
 
     long                                                  quoteId              = message.getOutgoingQuote().getId();
     String                                                quoteBody            = message.getOutgoingQuote().getText();
@@ -463,7 +486,7 @@ public abstract class PushSendJob extends SendJob {
                 builder.setStyle(SignalServiceProtos.BodyRange.Style.ITALIC);
                 break;
               case SPOILER:
-                // Intentionally left blank
+                builder.setStyle(SignalServiceProtos.BodyRange.Style.SPOILER);
                 break;
               case STRIKETHROUGH:
                 builder.setStyle(SignalServiceProtos.BodyRange.Style.STRIKETHROUGH);

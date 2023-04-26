@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 
 import java.util.List;
@@ -30,7 +31,7 @@ class InAppScheduler implements Scheduler {
   private final Handler     handler;
 
   InAppScheduler(@NonNull JobManager jobManager) {
-    HandlerThread handlerThread = new HandlerThread("InAppScheduler");
+    HandlerThread handlerThread = new HandlerThread("InAppScheduler", ThreadUtil.PRIORITY_BACKGROUND_THREAD);
     handlerThread.start();
 
     this.jobManager = jobManager;

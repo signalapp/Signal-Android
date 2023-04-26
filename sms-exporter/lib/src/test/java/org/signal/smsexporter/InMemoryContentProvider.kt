@@ -61,7 +61,7 @@ class InMemoryContentProvider : ContentProvider() {
             ${Telephony.Sms.TYPE} INTEGER
         );
        
-        """.trimIndent()
+        """
       )
 
       db.execSQL(
@@ -83,7 +83,7 @@ class InMemoryContentProvider : ContentProvider() {
           ${Telephony.Mms.SEEN} INTEGER,
           ${Telephony.Mms.TEXT_ONLY} INTEGER
         );
-        """.trimIndent()
+        """
       )
 
       db.execSQL(
@@ -95,7 +95,7 @@ class InMemoryContentProvider : ContentProvider() {
           ${Telephony.Mms.Part.CONTENT_ID} INTEGER,
           ${Telephony.Mms.Part.TEXT} TEXT
         )
-        """.trimIndent()
+        """
       )
 
       db.execSQL(
@@ -106,7 +106,7 @@ class InMemoryContentProvider : ContentProvider() {
           ${Telephony.Mms.Addr.CHARSET} INTEGER,
           ${Telephony.Mms.Addr.TYPE} INTEGER
         )
-        """.trimIndent()
+        """
       )
     }
 

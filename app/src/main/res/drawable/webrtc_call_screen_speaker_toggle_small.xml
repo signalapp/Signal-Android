@@ -7,8 +7,8 @@
                 android:top="4dp"
                 android:left="4dp"
                 android:right="4dp"
-                android:drawable="@drawable/webrtc_call_screen_circle_grey" />
-            <item android:bottom="14dp" android:drawable="@drawable/ic_speaker_solid_white_28" android:left="14dp" android:right="14dp" android:top="14dp" />
+                android:drawable="@drawable/webrtc_call_screen_circle_unchecked" />
+            <item android:bottom="14dp" android:drawable="@drawable/symbol_speaker_fill_white_24" android:left="14dp" android:right="14dp" android:top="14dp" />
         </layer-list>
     </item>
     <item app:state_speaker_on="true">
@@ -18,8 +18,8 @@
                 android:top="4dp"
                 android:left="4dp"
                 android:right="4dp"
-                android:drawable="@drawable/circle_tintable" />
-            <item android:bottom="14dp" android:drawable="@drawable/ic_speaker_solid_28" android:left="14dp" android:right="14dp" android:top="14dp" />
+                android:drawable="@drawable/webrtc_call_screen_circle_checked" />
+            <item android:bottom="14dp" android:drawable="@drawable/symbol_speaker_fill_24" android:left="14dp" android:right="14dp" android:top="14dp" />
         </layer-list>
     </item>
     <item app:state_handset_selected="true">
@@ -29,21 +29,33 @@
                 android:top="4dp"
                 android:left="4dp"
                 android:right="4dp"
-                android:drawable="@drawable/webrtc_call_screen_circle_grey" />
-            <item android:bottom="14dp" android:drawable="@drawable/ic_handset_solid_28" android:left="11dp" android:right="17dp" android:top="14dp" />
-            <item android:bottom="25dp" android:drawable="@drawable/webrtc_triangle_white" android:left="43dp" android:right="7dp" android:top="27dp" />
+                android:drawable="@drawable/webrtc_call_screen_circle_checked" />
+            <item android:bottom="16dp" android:drawable="@drawable/ic_handset_solid_28" android:left="10.86dp" android:right="21.14dp" android:top="16dp" />
+            <item android:bottom="21.14dp" android:drawable="@drawable/symbol_dropdown_triangle_compat_bold_16" android:left="34.86dp" android:right="7.43dp" android:top="21.14dp" />
         </layer-list>
     </item>
-    <item app:state_headset_selected="true">
+    <item app:state_bt_headset_selected="true">
         <layer-list>
             <item
                 android:bottom="4dp"
                 android:top="4dp"
                 android:left="4dp"
                 android:right="4dp"
-                android:drawable="@drawable/circle_tintable" />
-            <item android:bottom="14dp" android:drawable="@drawable/ic_speaker_bt_solid_28" android:left="11dp" android:right="17dp" android:top="14dp" />
-            <item android:bottom="25dp" android:drawable="@drawable/webrtc_triangle_grey" android:left="43dp" android:right="7dp" android:top="27dp" />
+                android:drawable="@drawable/webrtc_call_screen_circle_checked" />
+            <item android:bottom="16dp" android:drawable="@drawable/symbol_speaker_bluetooth_fill_white_24" android:left="10.86dp" android:right="21.14dp" android:top="16dp" />
+            <item android:bottom="21.14dp" android:drawable="@drawable/symbol_dropdown_triangle_compat_bold_16" android:left="34.86dp" android:right="7.43dp" android:top="21.14dp" />
+        </layer-list>
+    </item>
+    <item app:state_wired_headset_selected="true">
+        <layer-list>
+            <item
+                android:bottom="4dp"
+                android:top="4dp"
+                android:left="4dp"
+                android:right="4dp"
+                android:drawable="@drawable/webrtc_call_screen_circle_checked" />
+            <item android:bottom="16dp" android:drawable="@drawable/symbol_headphones_filed_24" android:left="10.86dp" android:right="21.14dp" android:top="16dp" />
+            <item android:bottom="21.14dp" android:drawable="@drawable/symbol_dropdown_triangle_compat_bold_16" android:left="34.86dp" android:right="7.43dp" android:top="21.14dp" />
         </layer-list>
     </item>
     <item app:state_speaker_selected="true">
@@ -53,9 +65,9 @@
                 android:top="4dp"
                 android:left="4dp"
                 android:right="4dp"
-                android:drawable="@drawable/circle_tintable" />
-            <item android:bottom="14dp" android:drawable="@drawable/ic_speaker_solid_28" android:left="11dp" android:right="17dp" android:top="14dp" />
-            <item android:bottom="25dp" android:drawable="@drawable/webrtc_triangle_grey" android:left="43dp" android:right="7dp" android:top="27dp" />
+                android:drawable="@drawable/webrtc_call_screen_circle_checked" />
+            <item android:bottom="16dp" android:drawable="@drawable/symbol_speaker_fill_white_24" android:left="10.86dp" android:right="21.14dp" android:top="16dp" />
+            <item android:bottom="21.14dp" android:drawable="@drawable/symbol_dropdown_triangle_compat_bold_16" android:left="34.86dp" android:right="7.43dp" android:top="21.14dp" />
         </layer-list>
     </item>
 </selector>

@@ -56,8 +56,10 @@ message ManifestRecord {
     Type  type = 2;
   }
 
-           uint64     version     = 1;
-  repeated Identifier identifiers = 2;
+           uint64     version      = 1;
+           uint32     sourceDevice = 3;
+  repeated Identifier identifiers  = 2;
+  // Next ID: 4
 }
 
 message StorageRecord {

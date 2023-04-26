@@ -20,7 +20,7 @@ class StoryGroupReplyDataSource(private val parentStoryId: Long) : PagedDataSour
       cursor.moveToPosition(start - 1)
       val mmsReader = MessageTable.MmsReader(cursor)
       while (cursor.moveToNext() && cursor.position < start + length) {
-        results.add(readRowFromRecord(mmsReader.current as MmsMessageRecord))
+        results.add(readRowFromRecord(mmsReader.getCurrent() as MmsMessageRecord))
       }
     }
 

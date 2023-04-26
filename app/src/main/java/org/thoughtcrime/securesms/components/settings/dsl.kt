@@ -2,7 +2,6 @@
 
 package org.thoughtcrime.securesms.components.settings
 
-import androidx.annotation.CallSuper
 import androidx.annotation.Discouraged
 import androidx.annotation.Px
 import androidx.annotation.StringRes
@@ -20,7 +19,10 @@ fun configure(init: DSLConfiguration.() -> Unit): DSLConfiguration {
   return configuration
 }
 
-@Discouraged("The DSL API can be completely replaced by compose. See ComposeFragment or ComposeBottomSheetFragment for an alternative to this API")
+/**
+ * The DSL API can be completely replaced by compose.
+ * See ComposeFragment or ComposeBottomSheetFragment for an alternative to this API
+ */
 class DSLConfiguration {
   private val children = arrayListOf<MappingModel<*>>()
 
@@ -227,7 +229,6 @@ abstract class PreferenceModel<T : PreferenceModel<T>>(
     }
   }
 
-  @CallSuper
   override fun areContentsTheSame(newItem: T): Boolean {
     return areItemsTheSame(newItem) &&
       newItem.summary == summary &&
@@ -290,8 +291,21 @@ class SwitchPreference(
   val isChecked: Boolean,
   val onClick: () -> Unit
 ) : PreferenceModel<SwitchPreference>() {
+
+  companion object {
+    const val PAYLOAD_CHECKED = "payload_checked"
+  }
+
   override fun areContentsTheSame(newItem: SwitchPreference): Boolean {
-    return super.areContentsTheSame(newItem) && isChecked == newItem.isChecked
+    return false
+  }
+
+  override fun getChangePayload(newItem: SwitchPreference): Any? {
+    return if (super.areContentsTheSame(newItem)) {
+      PAYLOAD_CHECKED
+    } else {
+      null
+    }
   }
 }
 

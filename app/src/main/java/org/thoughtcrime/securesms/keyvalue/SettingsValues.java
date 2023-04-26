@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallBandwidthMode;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
@@ -71,6 +70,7 @@ public final class SettingsValues extends SignalStoreValues {
   private static final String SENT_MEDIA_QUALITY                      = "settings.sentMediaQuality";
   private static final String CENSORSHIP_CIRCUMVENTION_ENABLED        = "settings.censorshipCircumventionEnabled";
   private static final String KEEP_MUTED_CHATS_ARCHIVED               = "settings.keepMutedChatsArchived";
+  private static final String USE_COMPACT_NAVIGATION_BAR              = "settings.useCompactNavigationBar";
 
   private final SingleLiveEvent<String> onConfigurationSettingChanged = new SingleLiveEvent<>();
 
@@ -115,7 +115,8 @@ public final class SettingsValues extends SignalStoreValues {
                          NOTIFY_WHEN_CONTACT_JOINS_SIGNAL,
                          UNIVERSAL_EXPIRE_TIMER,
                          SENT_MEDIA_QUALITY,
-                         KEEP_MUTED_CHATS_ARCHIVED);
+                         KEEP_MUTED_CHATS_ARCHIVED,
+                         USE_COMPACT_NAVIGATION_BAR);
   }
 
   public @NonNull LiveData<String> getOnConfigurationSettingChanged() {
@@ -453,6 +454,14 @@ public final class SettingsValues extends SignalStoreValues {
 
   public boolean shouldKeepMutedChatsArchived() {
     return getBoolean(KEEP_MUTED_CHATS_ARCHIVED, false);
+  }
+
+  public void setUseCompactNavigationBar(boolean enabled) {
+    putBoolean(USE_COMPACT_NAVIGATION_BAR, enabled);
+  }
+
+  public boolean getUseCompactNavigationBar() {
+    return getBoolean(USE_COMPACT_NAVIGATION_BAR, false);
   }
 
   private @Nullable Uri getUri(@NonNull String key) {

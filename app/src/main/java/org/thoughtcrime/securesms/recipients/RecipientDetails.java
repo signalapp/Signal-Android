@@ -63,6 +63,7 @@ public class RecipientDetails {
   final String                       profileAvatar;
   final ProfileAvatarFileDetails     profileAvatarFileDetails;
   final boolean                      profileSharing;
+  final boolean                      isHidden;
   final long                         lastProfileFetch;
   final boolean                      systemContact;
   final boolean                      isSelf;
@@ -122,6 +123,7 @@ public class RecipientDetails {
     this.profileAvatar                = record.getProfileAvatar();
     this.profileAvatarFileDetails     = record.getProfileAvatarFileDetails();
     this.profileSharing               = record.isProfileSharing();
+    this.isHidden                     = record.isHidden();
     this.lastProfileFetch             = record.getLastProfileFetch();
     this.systemContact                = systemContact;
     this.isSelf                       = isSelf;
@@ -176,6 +178,7 @@ public class RecipientDetails {
     this.profileAvatar                = null;
     this.profileAvatarFileDetails     = ProfileAvatarFileDetails.NO_DETAILS;
     this.profileSharing               = false;
+    this.isHidden                     = false;
     this.lastProfileFetch             = 0;
     this.systemContact                = true;
     this.isSelf                       = false;

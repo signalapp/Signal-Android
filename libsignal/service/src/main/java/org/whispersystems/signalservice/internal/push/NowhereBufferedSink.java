@@ -5,6 +5,8 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
+import javax.annotation.Nonnull;
+
 import okio.Buffer;
 import okio.BufferedSink;
 import okio.ByteString;
@@ -114,6 +116,11 @@ public class NowhereBufferedSink implements BufferedSink {
 
   @Override
   public BufferedSink writeHexadecimalUnsignedLong(long v) throws IOException {
+    return this;
+  }
+
+  @Override
+  public BufferedSink write(@Nonnull ByteString byteString, int i, int i1) throws IOException {
     return this;
   }
 

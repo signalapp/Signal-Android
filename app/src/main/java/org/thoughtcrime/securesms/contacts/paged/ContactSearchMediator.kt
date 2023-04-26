@@ -42,9 +42,7 @@ class ContactSearchMediator(
   private val fragment: Fragment,
   private val fixedContacts: Set<ContactSearchKey> = setOf(),
   selectionLimits: SelectionLimits,
-  displayCheckBox: Boolean,
-  displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
-  displaySecondaryInformation: ContactSearchAdapter.DisplaySecondaryInformation,
+  displayOptions: ContactSearchAdapter.DisplayOptions,
   mapStateToConfiguration: (ContactSearchState) -> ContactSearchConfiguration,
   private val callbacks: Callbacks = SimpleCallbacks(),
   performSafetyNumberChecks: Boolean = true,
@@ -69,9 +67,7 @@ class ContactSearchMediator(
   val adapter = adapterFactory.create(
     context = fragment.requireContext(),
     fixedContacts = fixedContacts,
-    displayCheckBox = displayCheckBox,
-    displaySmsTag = displaySmsTag,
-    displaySecondaryInformation = displaySecondaryInformation,
+    displayOptions = displayOptions,
     callbacks = object : ContactSearchAdapter.ClickCallbacks {
       override fun onStoryClicked(view: View, story: ContactSearchData.Story, isSelected: Boolean) {
         toggleStorySelection(view, story, isSelected)
@@ -86,7 +82,8 @@ class ContactSearchMediator(
       }
     },
     longClickCallbacks = ContactSearchAdapter.LongClickCallbacksAdapter(),
-    storyContextMenuCallbacks = StoryContextMenuCallbacks()
+    storyContextMenuCallbacks = StoryContextMenuCallbacks(),
+    callButtonClickCallbacks = ContactSearchAdapter.EmptyCallButtonClickCallbacks
   )
 
   init {
@@ -230,12 +227,11 @@ class ContactSearchMediator(
     fun create(
       context: Context,
       fixedContacts: Set<ContactSearchKey>,
-      displayCheckBox: Boolean,
-      displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
-      displaySecondaryInformation: ContactSearchAdapter.DisplaySecondaryInformation,
+      displayOptions: ContactSearchAdapter.DisplayOptions,
       callbacks: ContactSearchAdapter.ClickCallbacks,
       longClickCallbacks: ContactSearchAdapter.LongClickCallbacks,
-      storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks
+      storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks,
+      callButtonClickCallbacks: ContactSearchAdapter.CallButtonClickCallbacks
     ): PagingMappingAdapter<ContactSearchKey>
   }
 
@@ -243,14 +239,13 @@ class ContactSearchMediator(
     override fun create(
       context: Context,
       fixedContacts: Set<ContactSearchKey>,
-      displayCheckBox: Boolean,
-      displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
-      displaySecondaryInformation: ContactSearchAdapter.DisplaySecondaryInformation,
+      displayOptions: ContactSearchAdapter.DisplayOptions,
       callbacks: ContactSearchAdapter.ClickCallbacks,
       longClickCallbacks: ContactSearchAdapter.LongClickCallbacks,
-      storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks
+      storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks,
+      callButtonClickCallbacks: ContactSearchAdapter.CallButtonClickCallbacks
     ): PagingMappingAdapter<ContactSearchKey> {
-      return ContactSearchAdapter(context, fixedContacts, displayCheckBox, displaySmsTag, displaySecondaryInformation, callbacks, longClickCallbacks, storyContextMenuCallbacks)
+      return ContactSearchAdapter(context, fixedContacts, displayOptions, callbacks, longClickCallbacks, storyContextMenuCallbacks, callButtonClickCallbacks)
     }
   }
 }

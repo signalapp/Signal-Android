@@ -1,0 +1,27 @@
+/**
+ * Copyright (C) 2014-2016 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+
+syntax = "proto2";
+
+package signalservice;
+
+option java_package = "org.whispersystems.signalservice.api.crypto.protos";
+
+message EnvelopeMetadata {
+  required bytes  sourceServiceId      = 1;
+  optional string sourceE164           = 2;
+  required int32  sourceDeviceId       = 3;
+  required bool   sealedSender         = 4;
+  optional bytes  groupId              = 5;
+  required bytes  destinationServiceId = 6;
+}
+
+message CompleteMessage {
+  required bytes            envelope                 = 1;
+  required bytes            content                  = 2;
+  required EnvelopeMetadata metadata                 = 3;
+  required int64            serverDeliveredTimestamp = 4;
+}

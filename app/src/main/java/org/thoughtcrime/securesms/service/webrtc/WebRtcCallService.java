@@ -35,6 +35,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.disposables.Disposable;
+
 /**
  * Provide a foreground service for {@link SignalCallManager} to leverage to run in the background when necessary. Also
  * provides devices listeners needed for during a call (i.e., bluetooth, power button).
@@ -71,7 +73,8 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   private SignalAudioManager              signalAudioManager;
   private int                             lastNotificationId;
   private Notification                    lastNotification;
-  private boolean                         isGroup = true;
+  private boolean                         isGroup                = true;
+  private Disposable                      notificationDisposable = Disposable.empty();
 
   public static void update(@NonNull Context context, int type, @NonNull RecipientId recipientId) {
     Intent intent = new Intent(context, WebRtcCallService.class);
@@ -145,6 +148,8 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     Log.v(TAG, "onDestroy");
     super.onDestroy();
 
+    notificationDisposable.dispose();
+
     if (uncaughtExceptionHandlerManager != null) {
       uncaughtExceptionHandlerManager.unregister();
     }
@@ -184,7 +189,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
       case ACTION_SEND_AUDIO_COMMAND:
         setCallNotification();
         if (signalAudioManager == null) {
-          signalAudioManager = SignalAudioManager.create(this, this, isGroup);
+          signalAudioManager = SignalAudioManager.create(this, this);
         }
         AudioManagerCommand audioCommand = Objects.requireNonNull(intent.getParcelableExtra(EXTRA_AUDIO_COMMAND));
         Log.i(TAG, "Sending audio command [" + audioCommand.getClass().getSimpleName() + "] to " + signalAudioManager.getClass().getSimpleName());
@@ -226,10 +231,14 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   public void setCallInProgressNotification(int type, @NonNull RecipientId id) {
-    lastNotificationId = CallNotificationBuilder.getNotificationId(type);
-    lastNotification   = CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id));
+    notificationDisposable.dispose();
+    notificationDisposable = CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id))
+                                                    .subscribe(notification -> {
+                                                      lastNotificationId = CallNotificationBuilder.getNotificationId(type);
+                                                      lastNotification   = notification;
 
-    startForegroundCompat(lastNotificationId, lastNotification);
+                                                      startForegroundCompat(lastNotificationId, lastNotification);
+                                                    });
   }
 
   private void startForegroundCompat(int notificationId, Notification notification) {

@@ -6,6 +6,7 @@ import android.database.Cursor
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
+import org.signal.core.util.update
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -37,7 +38,7 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
         $DATE_RECEIVED INTEGER NOT NULL,
         UNIQUE($MESSAGE_ID, $AUTHOR_ID) ON CONFLICT REPLACE
       )
-    """.trimIndent()
+    """
 
     private fun readReaction(cursor: Cursor): ReactionRecord {
       return ReactionRecord(
@@ -175,6 +176,14 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
     writableDatabase
       .delete(TABLE_NAME)
       .where("$MESSAGE_ID NOT IN (SELECT ${MessageTable.ID} FROM ${MessageTable.TABLE_NAME})")
+      .run()
+  }
+
+  fun moveReactionsToNewMessage(newMessageId: Long, previousId: Long) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(MESSAGE_ID to newMessageId)
+      .where("$MESSAGE_ID = ?", previousId)
       .run()
   }
 }

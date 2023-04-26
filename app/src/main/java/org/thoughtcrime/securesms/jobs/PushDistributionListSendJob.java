@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
@@ -18,7 +19,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageId;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -119,10 +120,10 @@ public final class PushDistributionListSendJob extends PushSendJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
-                             .putString(KEY_FILTERED_RECIPIENT_IDS, RecipientId.toSerializedList(filterRecipientIds))
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putLong(KEY_MESSAGE_ID, messageId)
+                                    .putString(KEY_FILTERED_RECIPIENT_IDS, RecipientId.toSerializedList(filterRecipientIds))
+                                    .serialize();
   }
 
   @Override
@@ -153,16 +154,17 @@ public final class PushDistributionListSendJob extends PushSendJob {
       return;
     }
 
-    Recipient listRecipient = message.getRecipient().resolve();
+    Recipient listRecipient = message.getThreadRecipient().resolve();
 
     if (!listRecipient.isDistributionList()) {
       throw new MmsException("Message recipient isn't a distribution list!");
     }
 
     try {
-      log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getRecipient().getId() + ", Attachments: " + buildAttachmentString(message.getAttachments()));
+      log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getThreadRecipient().getId() + ", Attachments: " + buildAttachmentString(message.getAttachments()));
 
       List<Recipient> targets;
+      List<RecipientId> skipped = Collections.emptyList();
 
       if (Util.hasItems(filterRecipientIds)) {
         targets = new ArrayList<>(filterRecipientIds.size() + existingNetworkFailures.size());
@@ -171,13 +173,15 @@ public final class PushDistributionListSendJob extends PushSendJob {
       } else if (!existingNetworkFailures.isEmpty()) {
         targets = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).toList();
       } else {
-        targets = Stream.of(Stories.getRecipientsToSendTo(messageId, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies())).distinctBy(Recipient::getId).toList();
+        Stories.SendData data = Stories.getRecipientsToSendTo(messageId, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies());
+        targets = data.getTargets();
+        skipped = data.getSkipped();
       }
 
       List<SendMessageResult> results = deliver(message, targets);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
 
-      PushGroupSendJob.processGroupMessageResults(context, messageId, -1, null, message, results, targets, Collections.emptyList(), existingNetworkFailures, existingIdentityMismatches);
+      PushGroupSendJob.processGroupMessageResults(context, messageId, -1, null, message, results, targets, skipped, existingNetworkFailures, existingIdentityMismatches);
 
     } catch (UntrustedIdentityException | UndeliverableMessageException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
@@ -217,7 +221,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
       Log.d(TAG, "[" + messageId + "] Sending a story message with a manifest of size " + manifestCollection.size());
 
-      return GroupSendUtil.sendStoryMessage(context, message.getRecipient().requireDistributionListId(), destinations, isRecipientUpdate, new MessageId(messageId), message.getSentTimeMillis(), storyMessage, manifestCollection);
+      return GroupSendUtil.sendStoryMessage(context, message.getThreadRecipient().requireDistributionListId(), destinations, isRecipientUpdate, new MessageId(messageId), message.getSentTimeMillis(), storyMessage, manifestCollection);
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);
     }
@@ -225,7 +229,9 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
   public static class Factory implements Job.Factory<PushDistributionListSendJob> {
     @Override
-    public @NonNull PushDistributionListSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull PushDistributionListSendJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       Set<RecipientId> recipientIds = new HashSet<>(RecipientId.fromSerializedList(data.getStringOrDefault(KEY_FILTERED_RECIPIENT_IDS, "")));
       return new PushDistributionListSendJob(parameters, data.getLong(KEY_MESSAGE_ID), recipientIds);
     }

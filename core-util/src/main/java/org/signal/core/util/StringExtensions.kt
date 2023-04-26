@@ -22,6 +22,10 @@ fun String.asListContains(item: String): Boolean {
       .any { item.startsWith(it) }
 }
 
+fun String?.emptyIfNull(): String {
+  return this ?: ""
+}
+
 /**
  * Turns a multi-line string into a single-line string stripped of indentation, separated by spaces instead of newlines.
  *

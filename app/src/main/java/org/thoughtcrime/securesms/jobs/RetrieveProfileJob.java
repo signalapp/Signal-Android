@@ -29,11 +29,12 @@ import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -219,11 +220,11 @@ public class RetrieveProfileJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putStringListAsArray(KEY_RECIPIENTS, Stream.of(recipientIds)
-                                                                         .map(RecipientId::serialize)
-                                                                         .toList())
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putStringListAsArray(KEY_RECIPIENTS, Stream.of(recipientIds)
+                                                                                .map(RecipientId::serialize)
+                                                                                .toList())
+                                    .serialize();
   }
 
   @Override
@@ -462,17 +463,24 @@ public class RetrieveProfileJob extends BaseJob {
         String remoteDisplayName = remoteProfileName.toString();
         String localDisplayName  = localProfileName.toString();
 
-        if (!recipient.isBlocked() &&
-            !recipient.isGroup() &&
-            !recipient.isSelf() &&
-            !localDisplayName.isEmpty() &&
-            !remoteDisplayName.equals(localDisplayName))
-        {
+        boolean writeChangeEvent = !recipient.isBlocked() &&
+                                   !recipient.isGroup() &&
+                                   !recipient.isSelf() &&
+                                   !localDisplayName.isEmpty() &&
+                                   !remoteDisplayName.equals(localDisplayName);
+        if (writeChangeEvent) {
           Log.i(TAG, "Writing a profile name change event for " + recipient.getId());
           SignalDatabase.messages().insertProfileNameChangeMessages(recipient, remoteDisplayName, localDisplayName);
         } else {
           Log.i(TAG, String.format(Locale.US, "Name changed, but wasn't relevant to write an event. blocked: %s, group: %s, self: %s, firstSet: %s, displayChange: %s",
                                    recipient.isBlocked(), recipient.isGroup(), recipient.isSelf(), localDisplayName.isEmpty(), !remoteDisplayName.equals(localDisplayName)));
+        }
+
+        if (writeChangeEvent || localDisplayName.isEmpty()) {
+          Long threadId = SignalDatabase.threads().getThreadIdFor(recipient.getId());
+          if (threadId != null) {
+            ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(threadId));
+          }
         }
 
         return true;
@@ -535,7 +543,9 @@ public class RetrieveProfileJob extends BaseJob {
   public static final class Factory implements Job.Factory<RetrieveProfileJob> {
 
     @Override
-    public @NonNull RetrieveProfileJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull RetrieveProfileJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       String[]         ids          = data.getStringArray(KEY_RECIPIENTS);
       Set<RecipientId> recipientIds = Stream.of(ids).map(RecipientId::from).collect(Collectors.toSet());
 

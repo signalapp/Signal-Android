@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
@@ -12,7 +13,6 @@ import org.thoughtcrime.securesms.databinding.StoriesPostFragmentBinding
 import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
 import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageViewModel
-import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.video.VideoPlayer.PlayerCallback

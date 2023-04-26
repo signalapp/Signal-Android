@@ -7,8 +7,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
+import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.state.SessionRecord;
 import org.signal.libsignal.protocol.state.SessionStore;
@@ -23,7 +25,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
@@ -35,10 +36,11 @@ import org.thoughtcrime.securesms.sms.IncomingIdentityVerifiedMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
-import org.signal.core.util.concurrent.SimpleTask;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.util.List;
 import java.util.Optional;
@@ -173,6 +175,28 @@ public final class IdentityUtil {
         }
       }
     }
+  }
+
+  public static void processVerifiedMessage(Context context, SignalServiceProtos.Verified verified) throws InvalidKeyException {
+    SignalServiceAddress          destination = new SignalServiceAddress(ServiceId.parseOrThrow(verified.getDestinationUuid()));
+    IdentityKey                   identityKey = new IdentityKey(verified.getIdentityKey().toByteArray(), 0);
+    VerifiedMessage.VerifiedState state;
+
+    switch (verified.getState()) {
+      case DEFAULT:
+        state = VerifiedMessage.VerifiedState.DEFAULT;
+        break;
+      case VERIFIED:
+        state = VerifiedMessage.VerifiedState.VERIFIED;
+        break;
+      case UNVERIFIED:
+        state = VerifiedMessage.VerifiedState.UNVERIFIED;
+        break;
+      default:
+        throw new IllegalArgumentException();
+    }
+
+    processVerifiedMessage(context, new VerifiedMessage(destination, identityKey, state, System.currentTimeMillis()));
   }
 
   public static void processVerifiedMessage(Context context, VerifiedMessage verifiedMessage) {

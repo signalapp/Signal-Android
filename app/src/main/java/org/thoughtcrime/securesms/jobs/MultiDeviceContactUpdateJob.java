@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -53,6 +53,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 public class MultiDeviceContactUpdateJob extends BaseJob {
@@ -101,10 +103,10 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_RECIPIENT, recipientId != null ? recipientId.serialize() : null)
-                             .putBoolean(KEY_FORCE_SYNC, forceSync)
-                             .build();
+  public @Nullable byte[] serialize() {
+    return new JsonJobData.Builder().putString(KEY_RECIPIENT, recipientId != null ? recipientId.serialize() : null)
+                                    .putBoolean(KEY_FORCE_SYNC, forceSync)
+                                    .serialize();
   }
 
   @Override
@@ -139,6 +141,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   {
     WriteDetails writeDetails = createTempFile();
 
+    Uri updateUri = null;
     try {
       DeviceContactsOutputStream out       = new DeviceContactsOutputStream(writeDetails.outputStream);
       Recipient                  recipient = Recipient.resolved(recipientId);
@@ -166,18 +169,21 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                   archived.contains(recipientId)));
 
       out.close();
+      updateUri = writeDetails.getUri();
 
-      long length = BlobProvider.getInstance().calculateFileSize(context, writeDetails.uri);
+      long length = BlobProvider.getInstance().calculateFileSize(context, updateUri);
 
       sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(),
-                 BlobProvider.getInstance().getStream(context, writeDetails.uri),
+                 BlobProvider.getInstance().getStream(context, updateUri),
                  length,
                  false);
 
-    } catch(InvalidNumberException e) {
+    } catch(InvalidNumberException | InterruptedException e) {
       Log.w(TAG, e);
     } finally {
-      BlobProvider.getInstance().delete(context, writeDetails.uri);
+      if (updateUri != null) {
+        BlobProvider.getInstance().delete(context, updateUri);
+      }
     }
   }
 
@@ -200,6 +206,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
 
     WriteDetails writeDetails = createTempFile();
 
+    Uri updateUri = null;
     try {
       DeviceContactsOutputStream out            = new DeviceContactsOutputStream(writeDetails.outputStream);
       List<Recipient>            recipients     = SignalDatabase.recipients().getRecipientsForMultiDeviceSync();
@@ -246,16 +253,20 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
 
       out.close();
 
-      long length = BlobProvider.getInstance().calculateFileSize(context, writeDetails.uri);
+      updateUri = writeDetails.getUri();
+
+      long length = BlobProvider.getInstance().calculateFileSize(context, updateUri);
 
       sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(),
-                 BlobProvider.getInstance().getStream(context, writeDetails.uri),
+                 BlobProvider.getInstance().getStream(context, updateUri),
                  length,
                  true);
-    } catch(InvalidNumberException e) {
+    } catch(InvalidNumberException | InterruptedException e) {
       Log.w(TAG, e);
     } finally {
-      BlobProvider.getInstance().delete(context, writeDetails.uri);
+      if (updateUri != null) {
+        BlobProvider.getInstance().delete(context, updateUri);
+      }
     }
   }
 
@@ -375,14 +386,12 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   private @NonNull WriteDetails createTempFile() throws IOException {
     ParcelFileDescriptor[] pipe        = ParcelFileDescriptor.createPipe();
     InputStream            inputStream = new ParcelFileDescriptor.AutoCloseInputStream(pipe[0]);
-    Uri                    uri         = BlobProvider.getInstance()
+    Future<Uri>            futureUri   = BlobProvider.getInstance()
                                                      .forData(inputStream, 0)
                                                      .withFileName("multidevice-contact-update")
-                                                     .createForSingleSessionOnDiskAsync(context,
-                                                                                        () -> Log.i(TAG, "Write successful."),
-                                                                                        e  -> Log.w(TAG, "Error during write.", e));
+                                                     .createForSingleSessionOnDiskAsync(context);
 
-    return new WriteDetails(uri, new ParcelFileDescriptor.AutoCloseOutputStream(pipe[1]));
+    return new WriteDetails(futureUri, new ParcelFileDescriptor.AutoCloseOutputStream(pipe[1]));
   }
 
   private static class NetworkException extends Exception {
@@ -393,18 +402,32 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   }
 
   private static class WriteDetails {
-    private final Uri          uri;
+    private final Future<Uri>  futureUri;
     private final OutputStream outputStream;
 
-    private WriteDetails(@NonNull Uri uri, @NonNull OutputStream outputStream) {
-      this.uri          = uri;
+    private WriteDetails(@NonNull Future<Uri> blobUri, @NonNull OutputStream outputStream) {
+      this.futureUri = blobUri;
       this.outputStream = outputStream;
+    }
+
+    public Uri getUri() throws IOException, InterruptedException {
+      try {
+        return futureUri.get();
+      } catch (ExecutionException e) {
+        if (e.getCause() instanceof IOException) {
+          throw (IOException) e.getCause();
+        } else {
+          throw new RuntimeException(e.getCause());
+        }
+      }
     }
   }
 
   public static final class Factory implements Job.Factory<MultiDeviceContactUpdateJob> {
     @Override
-    public @NonNull MultiDeviceContactUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull MultiDeviceContactUpdateJob create(@NonNull Parameters parameters, @Nullable byte[] serializedData) {
+      JsonJobData data = JsonJobData.deserialize(serializedData);
+
       String      serialized = data.getString(KEY_RECIPIENT);
       RecipientId address    = serialized != null ? RecipientId.from(serialized) : null;
 

@@ -2,10 +2,12 @@ package org.thoughtcrime.securesms.components.settings.app.appearance
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import org.signal.core.util.concurrent.observe
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.app.appearance.navbar.ChooseNavigationBarStyleFragment
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -30,10 +32,25 @@ class AppearanceSettingsFragment : DSLSettingsFragment(R.string.preferences__app
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }
+
+    childFragmentManager.setFragmentResultListener(ChooseNavigationBarStyleFragment.REQUEST_KEY, viewLifecycleOwner) { key, bundle ->
+      if (bundle.getBoolean(key, false)) {
+        viewModel.refreshState()
+      }
+    }
   }
 
   private fun getConfiguration(state: AppearanceSettingsState): DSLConfiguration {
     return configure {
+      radioListPref(
+        title = DSLSettingsText.from(R.string.preferences__language),
+        listItems = languageLabels,
+        selected = languageValues.indexOf(state.language),
+        onSelected = {
+          viewModel.setLanguage(languageValues[it])
+        }
+      )
+
       radioListPref(
         title = DSLSettingsText.from(R.string.preferences__theme),
         listItems = themeLabels,
@@ -59,12 +76,17 @@ class AppearanceSettingsFragment : DSLSettingsFragment(R.string.preferences__app
         }
       )
 
-      radioListPref(
-        title = DSLSettingsText.from(R.string.preferences__language),
-        listItems = languageLabels,
-        selected = languageValues.indexOf(state.language),
-        onSelected = {
-          viewModel.setLanguage(languageValues[it])
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences_navigation_bar_size),
+        summary = DSLSettingsText.from(
+          if (state.isCompactNavigationBar) {
+            R.string.preferences_compact
+          } else {
+            R.string.preferences_normal
+          }
+        ),
+        onClick = {
+          ChooseNavigationBarStyleFragment().show(childFragmentManager, null)
         }
       )
     }

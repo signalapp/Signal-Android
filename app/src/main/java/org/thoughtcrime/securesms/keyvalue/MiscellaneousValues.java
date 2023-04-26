@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata;
+import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraintObserver;
 
 import java.util.Collections;
 import java.util.List;
@@ -110,10 +111,12 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   public void lockChangeNumber() {
     putBoolean(CHANGE_NUMBER_LOCK, true);
+    ChangeNumberConstraintObserver.INSTANCE.onChange();
   }
 
   public void unlockChangeNumber() {
     putBoolean(CHANGE_NUMBER_LOCK, false);
+    ChangeNumberConstraintObserver.INSTANCE.onChange();
   }
 
   public @Nullable PendingChangeNumberMetadata getPendingChangeNumberMetadata() {

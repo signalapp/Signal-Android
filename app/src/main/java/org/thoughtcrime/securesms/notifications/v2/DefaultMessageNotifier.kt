@@ -85,6 +85,10 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     NotificationFactory.notifyMessageDeliveryFailed(context, recipient, conversationId, visibleThread)
   }
 
+  override fun notifyStoryDeliveryFailed(context: Context, recipient: Recipient, conversationId: ConversationId) {
+    NotificationFactory.notifyStoryDeliveryFailed(context, recipient, conversationId)
+  }
+
   override fun notifyProofRequired(context: Context, recipient: Recipient, conversationId: ConversationId) {
     NotificationFactory.notifyProofRequired(context, recipient, conversationId, visibleThread)
   }

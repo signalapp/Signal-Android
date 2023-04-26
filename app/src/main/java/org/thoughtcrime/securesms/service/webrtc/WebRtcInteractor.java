@@ -5,6 +5,7 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
@@ -84,8 +85,8 @@ public class WebRtcInteractor {
     signalCallManager.sendCallMessage(remotePeer, callMessage);
   }
 
-  void sendGroupCallMessage(@NonNull Recipient recipient, @Nullable String groupCallEraId) {
-    signalCallManager.sendGroupCallUpdateMessage(recipient, groupCallEraId);
+  void sendGroupCallMessage(@NonNull Recipient recipient, @Nullable String groupCallEraId, boolean isIncoming, boolean isJoinEvent) {
+    signalCallManager.sendGroupCallUpdateMessage(recipient, groupCallEraId, isIncoming, isJoinEvent);
   }
 
   void updateGroupCallUpdateMessage(@NonNull RecipientId groupId, @Nullable String groupCallEraId, @NonNull Collection<UUID> joinedMembers, boolean isCallFull) {
@@ -152,8 +153,12 @@ public class WebRtcInteractor {
     WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.Start());
   }
 
-  public void setUserAudioDevice(@Nullable RecipientId recipientId, @NonNull SignalAudioManager.AudioDevice userDevice) {
-    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SetUserDevice(recipientId, userDevice));
+  public void setUserAudioDevice(@Nullable RecipientId recipientId, @NonNull SignalAudioManager.ChosenAudioDeviceIdentifier userDevice) {
+    if (userDevice.isLegacy()) {
+      WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SetUserDevice(recipientId, userDevice.getDesiredAudioDeviceLegacy().ordinal(), false));
+    } else {
+      WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SetUserDevice(recipientId, userDevice.getDesiredAudioDevice31(), true));
+    }
   }
 
   public void setDefaultAudioDevice(@NonNull RecipientId recipientId, @NonNull SignalAudioManager.AudioDevice userDevice, boolean clearUserEarpieceSelection) {
