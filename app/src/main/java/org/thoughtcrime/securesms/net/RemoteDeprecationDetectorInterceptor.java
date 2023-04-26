@@ -21,9 +21,8 @@ public final class RemoteDeprecationDetectorInterceptor implements Interceptor {
   public @NonNull Response intercept(@NonNull Chain chain) throws IOException {
     Response response = chain.proceed(chain.request());
 
-    if (response.code() == 499 && !SignalStore.misc().isClientDeprecated()) {
+    if (response.code() == 499 ) {
       Log.w(TAG, "Received 499. Client version is deprecated.");
-      SignalStore.misc().markClientDeprecated();
     }
 
     return response;

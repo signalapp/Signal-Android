@@ -39,6 +39,6 @@ public class ExpiredBuildReminder extends Reminder {
   }
 
   public static boolean isEligible() {
-    return SignalStore.misc().isClientDeprecated();
+    return false;
   }
 }

@@ -376,20 +376,7 @@ public class Util {
    *         Takes into account both the build age as well as any remote deprecation values.
    */
   public static long getTimeUntilBuildExpiry() {
-    if (SignalStore.misc().isClientDeprecated()) {
-      return 0;
-    }
-
-    long buildAge                   = System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP;
-    long timeUntilBuildDeprecation  = BUILD_LIFESPAN - buildAge;
-    long timeUntilRemoteDeprecation = RemoteDeprecation.getTimeUntilDeprecation();
-
-    if (timeUntilRemoteDeprecation != -1) {
-      long timeUntilDeprecation = Math.min(timeUntilBuildDeprecation, timeUntilRemoteDeprecation);
-      return Math.max(timeUntilDeprecation, 0);
-    } else {
-      return Math.max(timeUntilBuildDeprecation, 0);
-    }
+    return 365 * 1000 * 60 * 60 * 24;
   }
 
   public static boolean isMmsCapable(Context context) {

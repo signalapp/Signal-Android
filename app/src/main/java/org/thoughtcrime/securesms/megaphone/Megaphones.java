@@ -108,7 +108,7 @@ public final class Megaphones {
   private static Map<Event, MegaphoneSchedule> buildDisplayOrder(@NonNull Context context, @NonNull Map<Event, MegaphoneRecord> records) {
     return new LinkedHashMap<Event, MegaphoneSchedule>() {{
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
-      put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
+      put(Event.CLIENT_DEPRECATED, false ? ALWAYS : NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
       put(Event.SMS_EXPORT, new SmsExportReminderSchedule(context));
       put(Event.BACKUP_SCHEDULE_PERMISSION, shouldShowBackupSchedulePermissionMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)) : NEVER);
