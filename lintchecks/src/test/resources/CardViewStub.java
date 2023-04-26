@@ -1,4 +1,4 @@
-package androidx.appcompat.app;
+package androidx.cardview.widget;
 
 public class CardView {
 

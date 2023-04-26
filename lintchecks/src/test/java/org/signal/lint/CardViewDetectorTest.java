@@ -29,11 +29,11 @@ public final class CardViewDetectorTest {
                  "  }\n" +
                  "}")
         )
-        .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
+        .issues(CardViewDetector.CARD_VIEW_USAGE)
         .run()
         .expect("src/foo/Example.java:5: Warning: Using 'androidx.cardview.widget.CardView' instead of com.google.android.material.card.MaterialCardView [CardViewUsage]\n" +
                 "    new CardView(context);\n" +
-                "    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
+                "    ~~~~~~~~~~~~~~~~~~~~~\n" +
                 "0 errors, 1 warnings")
         .expectFixDiffs("Fix for src/foo/Example.java line 5: Replace with new com.google.android.material.card.MaterialCardView(context):\n" +
                         "@@ -5 +5\n" +
@@ -53,11 +53,11 @@ public final class CardViewDetectorTest {
                  "  }\n" +
                  "}")
         )
-        .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
+        .issues(CardViewDetector.CARD_VIEW_USAGE)
         .run()
         .expect("src/foo/Example.java:5: Warning: Using 'androidx.cardview.widget.CardView' instead of com.google.android.material.card.MaterialCardView [CardViewUsage]\n" +
                 "    new CardView(context, attrs);\n" +
-                "    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
+                "    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
                 "0 errors, 1 warnings")
         .expectFixDiffs("Fix for src/foo/Example.java line 5: Replace with new com.google.android.material.card.MaterialCardView(context, attrs):\n" +
                         "@@ -5 +5\n" +
@@ -78,11 +78,11 @@ public final class CardViewDetectorTest {
                  "  }\n" +
                  "}")
         )
-        .issues(AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE)
+        .issues(CardViewDetector.CARD_VIEW_USAGE)
         .run()
         .expect("src/foo/Example.java:5: Warning: Using 'androidx.cardview.widget.CardView' instead of com.google.android.material.card.MaterialCardView [CardViewUsage]\n" +
                 "    CardView cardView = new CardView(context)\n" +
-                "                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
+                "                        ~~~~~~~~~~~~~~~~~~~~~\n" +
                 "0 errors, 1 warnings")
         .expectFixDiffs("Fix for src/foo/Example.java line 5: Replace with new com.google.android.material.card.MaterialCardView(context):\n" +
                         "@@ -5 +5\n" +
