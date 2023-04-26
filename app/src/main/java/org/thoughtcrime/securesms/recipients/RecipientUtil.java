@@ -52,7 +52,7 @@ public class RecipientUtil {
   }
 
   /**
-   * This method will do it's best to craft a fully-populated {@link SignalServiceAddress} based on
+   * This method will do its best to craft a fully-populated {@link SignalServiceAddress} based on
    * the provided recipient. This includes performing a possible network request if no UUID is
    * available. If the request to get a UUID fails or the user is not registered, an IOException is thrown.
    */
@@ -62,11 +62,7 @@ public class RecipientUtil {
   {
     recipient = recipient.resolve();
 
-    if (!recipient.getServiceId().isPresent() && !recipient.getE164().isPresent()) {
-      throw new AssertionError(recipient.getId() + " - No UUID or phone number!");
-    }
-
-    if (!recipient.getServiceId().isPresent()) {
+    if (!recipient.hasServiceId()) {
       Log.i(TAG, recipient.getId() + " is missing a UUID...");
       RegisteredState state = ContactDiscovery.refresh(context, recipient, false);
 
@@ -74,11 +70,11 @@ public class RecipientUtil {
       Log.i(TAG, "Successfully performed a UUID fetch for " + recipient.getId() + ". Registered: " + state);
     }
 
-    if (recipient.hasServiceId()) {
-      return new SignalServiceAddress(recipient.requireServiceId(), Optional.ofNullable(recipient.resolve().getE164().orElse(null)));
-    } else {
+    if (!recipient.hasServiceId()) {
       throw new NotFoundException(recipient.getId() + " is not registered!");
     }
+
+    return new SignalServiceAddress(recipient.requireServiceId(), recipient.resolve().getE164());
   }
 
   public static @NonNull List<SignalServiceAddress> toSignalServiceAddresses(@NonNull Context context, @NonNull List<RecipientId> recipients)
