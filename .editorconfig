@@ -2,6 +2,7 @@ root = true
 
 [*]
 end_of_line = lf
+insert_final_newline = true
 
 [*.bat]
 end_of_line = crlf
