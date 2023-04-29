@@ -1,19 +1,23 @@
 # Signal-BA
 
-> For the Signal readme and legal/license information, see here [README](/README.old.md)
+A fork Signal for Android.
 
-Signal-BA is a fork of the popular encrypted messaging app Signal Android.
+## Main differences to the official Signal app
 
-The main difference's between Signal-BA and the original Signal Android app are, Signal BA:
+- Does not send read receipts regardless of if they are enabled
+- Does not send typing indicators regardless of if they are enabled
+- Remotely deleted messages from users will be ignored, and still available on your device
+- Defaults to using high quality mode for sending image`s
+- Allows sending up to 100 media items at one time rather than signal's default 32
 
-- Does not send read receipts
-- Does not send typing indicators
-- Disables other users from remote deleting messages on Signal BA
+All other differences:
 
-Other features which I am hoping to add are:
-
-- Don't compress images and photos which are being sent
+- Doesn't have popups asking for ratings on the play store
+- Disables pin reminders by default
+- Turns on incognito keyboard by default
 
 Feel free to leave an [issue](https://github.com/benarmstead/Signal-BA/issues) if you have any feature requests.
 
 > Note: This fork is primarily developed for my own personal usage, features may or may not be added.
+
+> For the Signal readme and legal/license information, see here [README](/README.old.md)
