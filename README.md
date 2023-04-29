@@ -2,6 +2,8 @@
 
 A fork Signal for Android.
 
+[Install](https://github.com/benarmstead/Signal-BA/releases/latest)
+
 ## Main differences to the official Signal app
 
 - Does not send read receipts regardless of if they are enabled
