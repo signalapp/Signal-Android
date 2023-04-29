@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BackupUtil;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -80,6 +81,7 @@ public class FullBackupImporter extends FullBackupBase {
 
     SQLiteDatabase keyValueDatabase = KeyValueDatabase.getInstance(ApplicationDependencies.getApplication()).getSqlCipherDatabase();
 
+    db.setForeignKeyConstraintsEnabled(false);
     db.beginTransaction();
     keyValueDatabase.beginTransaction();
     try {
@@ -94,7 +96,7 @@ public class FullBackupImporter extends FullBackupBase {
         count++;
 
         if      (frame.version != null)    processVersion(db, frame.version);
-        else if (frame.statement != null)  tryProcessStatement(db, frame.statement);
+        else if (frame.statement != null)  processStatement(db, frame.statement);
         else if (frame.preference != null) processPreference(context, frame.preference);
         else if (frame.attachment != null) processAttachment(context, attachmentSecret, db, frame.attachment, inputStream);
         else if (frame.sticker != null)    processSticker(context, attachmentSecret, db, frame.sticker, inputStream);
@@ -106,8 +108,20 @@ public class FullBackupImporter extends FullBackupBase {
       db.setTransactionSuccessful();
       keyValueDatabase.setTransactionSuccessful();
     } finally {
+      List<SqlUtil.ForeignKeyViolation> violations = SqlUtil.getForeignKeyViolations(db)
+          .stream()
+          .filter(it -> !it.getTable().startsWith("msl_"))
+          .collect(Collectors.toList());
+
+      if (violations.size() > 0) {
+        Log.w(TAG, "Foreign key constraints failed!\n" + Util.join(violations, "\n"));
+        //noinspection ThrowFromFinallyBlock
+        throw new ForeignKeyViolationException(violations);
+      }
+
       db.endTransaction();
       keyValueDatabase.endTransaction();
+      db.setForeignKeyConstraintsEnabled(true);
     }
 
     EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, count, 0));
@@ -127,31 +141,6 @@ public class FullBackupImporter extends FullBackupBase {
     }
 
     db.setVersion(version.version);
-  }
-
-  private static void tryProcessStatement(@NonNull SQLiteDatabase db, SqlStatement statement) {
-    try {
-      processStatement(db, statement);
-    } catch (SQLiteConstraintException e) {
-      String tableName       = "?";
-      String statementString = statement.statement;
-
-      if (statementString != null && statementString.startsWith("INSERT INTO ")) {
-        int nameStart = "INSERT INTO ".length();
-        int nameEnd   = statementString.indexOf(" ", "INSERT INTO ".length());
-
-        if (nameStart < statementString.length() && nameEnd > nameStart) {
-          tableName = statementString.substring(nameStart, nameEnd);
-        }
-      }
-
-      if (tableName.startsWith("msl_")) {
-        Log.w(TAG, "Constraint failed when inserting into " + tableName + ". Ignoring.");
-      } else {
-        Log.w(TAG, "Constraint failed when inserting into " + tableName + ". Throwing!");
-        throw e;
-      }
-    }
   }
 
   private static void processStatement(@NonNull SQLiteDatabase db, SqlStatement statement) {
@@ -371,6 +360,21 @@ public class FullBackupImporter extends FullBackupBase {
   public static class DatabaseDowngradeException extends IOException {
     DatabaseDowngradeException(int currentVersion, int backupVersion) {
       super("Tried to import a backup with version " + backupVersion + " into a database with version " + currentVersion);
+    }
+  }
+
+  public static class ForeignKeyViolationException extends IOException {
+    public ForeignKeyViolationException(List<SqlUtil.ForeignKeyViolation> violations) {
+      super(buildMessage(violations));
+    }
+
+    private static String buildMessage(List<SqlUtil.ForeignKeyViolation> violations) {
+      Set<String> unique = violations
+          .stream()
+          .map(it -> it.getTable() + " -> " + it.getColumn())
+          .collect(Collectors.toSet());
+
+      return Util.join(unique, ", ");
     }
   }
 }

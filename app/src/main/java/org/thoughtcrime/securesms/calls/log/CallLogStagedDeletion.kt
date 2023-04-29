@@ -6,6 +6,7 @@ import androidx.annotation.MainThread
  * Encapsulates a single deletion action
  */
 class CallLogStagedDeletion(
+  private val filter: CallLogFilter,
   private val stateSnapshot: CallLogSelectionState,
   private val repository: CallLogRepository
 ) {
@@ -35,7 +36,7 @@ class CallLogStagedDeletion(
       .toSet()
 
     if (stateSnapshot.isExclusionary()) {
-      repository.deleteAllCallLogsExcept(callRowIds).subscribe()
+      repository.deleteAllCallLogsExcept(callRowIds, filter == CallLogFilter.MISSED).subscribe()
     } else {
       repository.deleteSelectedCallLogs(callRowIds).subscribe()
     }

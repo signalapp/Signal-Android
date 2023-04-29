@@ -69,7 +69,7 @@ class SpoilerFilteringSpannable(private val spannable: Spannable, private val in
   override fun hashCode(): Int = spannable.hashCode()
   override fun equals(other: Any?): Boolean = spannable == other
 
-  interface InOnDrawProvider {
+  fun interface InOnDrawProvider {
     fun isInOnDraw(): Boolean
   }
 }

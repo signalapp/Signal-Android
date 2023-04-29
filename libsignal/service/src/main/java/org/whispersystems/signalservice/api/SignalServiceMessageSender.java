@@ -644,6 +644,12 @@ public class SignalServiceMessageSender {
     return sendSyncMessage(createSelfSendSyncMessage(dataMessage), Optional.empty());
   }
 
+  public SendMessageResult sendSelfSyncEditMessage(SignalServiceEditMessage editMessage)
+      throws IOException, UntrustedIdentityException
+  {
+    return sendSyncMessage(createSelfSendSyncEditMessage(editMessage), Optional.empty());
+  }
+
   public SendMessageResult sendSyncMessage(SignalServiceSyncMessage message, Optional<UnidentifiedAccessPair> unidentifiedAccess)
       throws IOException, UntrustedIdentityException
   {
@@ -958,6 +964,8 @@ public class SignalServiceMessageSender {
       return createStoryContent(transcriptMessage.getStoryMessage().get());
     } else if (transcriptMessage.getDataMessage().isPresent()) {
       return createMessageContent(transcriptMessage.getDataMessage().get());
+    } else if (transcriptMessage.getEditMessage().isPresent()) {
+      return createEditMessageContent(transcriptMessage.getEditMessage().get());
     } else {
       return null;
     }
@@ -1790,7 +1798,8 @@ public class SignalServiceMessageSender {
                                                                  Collections.singletonMap(localAddress.getServiceId(), false),
                                                                  isRecipientUpdate,
                                                                  Optional.of(message),
-                                                                 manifest);
+                                                                 manifest,
+                                                                 Optional.empty());
 
     return SignalServiceSyncMessage.forSentTranscript(transcript);
   }
@@ -1803,7 +1812,21 @@ public class SignalServiceMessageSender {
                                                                  Collections.singletonMap(localAddress.getServiceId(), false),
                                                                  false,
                                                                  Optional.empty(),
-                                                                 Collections.emptySet());
+                                                                 Collections.emptySet(),
+                                                                 Optional.empty());
+    return SignalServiceSyncMessage.forSentTranscript(transcript);
+  }
+
+  private SignalServiceSyncMessage createSelfSendSyncEditMessage(SignalServiceEditMessage message) {
+    SentTranscriptMessage transcript = new SentTranscriptMessage(Optional.of(localAddress),
+                                                                 message.getDataMessage().getTimestamp(),
+                                                                 Optional.empty(),
+                                                                 message.getDataMessage().getExpiresInSeconds(),
+                                                                 Collections.singletonMap(localAddress.getServiceId(), false),
+                                                                 false,
+                                                                 Optional.empty(),
+                                                                 Collections.emptySet(),
+                                                                 Optional.of(message));
     return SignalServiceSyncMessage.forSentTranscript(transcript);
   }
 

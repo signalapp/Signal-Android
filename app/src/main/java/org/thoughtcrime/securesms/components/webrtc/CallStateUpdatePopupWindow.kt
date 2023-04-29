@@ -9,8 +9,11 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.core.view.ViewCompat
+import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.Debouncer
+import org.thoughtcrime.securesms.util.visible
 import java.util.concurrent.TimeUnit
 
 /**
@@ -70,6 +73,7 @@ class CallStateUpdatePopupWindow(private val parent: ViewGroup) : PopupWindow(
       iconView.setImageResource(callStateUpdate.iconRes)
     }
 
+    iconView.visible = callStateUpdate.iconRes != null
     descriptionView.setText(callStateUpdate.stringRes)
   }
 
@@ -78,8 +82,19 @@ class CallStateUpdatePopupWindow(private val parent: ViewGroup) : PopupWindow(
       return
     }
 
-    showAtLocation(parent, Gravity.TOP or Gravity.START, 0, 0)
     measureChild()
+
+    val anchor: View = ViewCompat.requireViewById(parent, R.id.call_screen_footer_gradient_barrier)
+    val pill: View = ViewCompat.requireViewById(contentView, R.id.call_state_pill)
+
+    // 54 is the top margin of the contentView (30) plus the desired padding (24)
+    showAtLocation(
+      parent,
+      Gravity.TOP or Gravity.START,
+      0,
+      anchor.top - 54.dp - pill.measuredHeight
+    )
+
     update()
     dismissDebouncer.publish { dismiss() }
   }

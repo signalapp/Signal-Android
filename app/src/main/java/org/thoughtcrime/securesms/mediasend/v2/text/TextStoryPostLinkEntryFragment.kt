@@ -63,7 +63,7 @@ class TextStoryPostLinkEntryFragment : KeyboardEntryDialogFragment(
       if (linkPreviewState != null) {
         val url = linkPreviewState.linkPreview.map { it.url }.orElseGet { linkPreviewState.activeUrlForError }
 
-        if (LinkUtil.isLegalUrl(url, false, true)) {
+        if (LinkUtil.isValidTextStoryPostPreview(url)) {
           viewModel.setLinkPreview(url)
           dismissAllowingStateLoss()
         } else {

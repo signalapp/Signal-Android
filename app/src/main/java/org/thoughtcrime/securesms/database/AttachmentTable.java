@@ -1485,9 +1485,13 @@ public class AttachmentTable extends DatabaseTable {
     return EncryptedMediaDataSource.createFor(attachmentSecret, dataInfo.file, dataInfo.random, dataInfo.length);
   }
 
-  public void duplicateAttachmentsForMessage(long destinationMessageId, long sourceMessageId) {
+  public void duplicateAttachmentsForMessage(long destinationMessageId, long sourceMessageId, Collection<Long> excludedIds) {
     SQLiteDatabaseExtensionsKt.withinTransaction(getWritableDatabase(), db -> {
       db.execSQL("CREATE TEMPORARY TABLE tmp_part AS SELECT * FROM " + TABLE_NAME + " WHERE " + MMS_ID + " = ?", SqlUtil.buildArgs(sourceMessageId));
+      List<SqlUtil.Query> queries = SqlUtil.buildCollectionQuery(ROW_ID, excludedIds);
+      for (SqlUtil.Query query : queries) {
+        db.delete("tmp_part", query.getWhere(), query.getWhereArgs());
+      }
       db.execSQL("UPDATE tmp_part SET " + ROW_ID + " = NULL, " + MMS_ID + " = ?", SqlUtil.buildArgs(destinationMessageId));
       db.execSQL("INSERT INTO " + TABLE_NAME + " SELECT * FROM tmp_part");
       db.execSQL("DROP TABLE tmp_part");

@@ -56,6 +56,7 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.toOptional
+import org.signal.core.util.toSingleLine
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.IdentityKey
@@ -373,7 +374,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             '${AttachmentTable.UPLOAD_TIMESTAMP}', ${AttachmentTable.TABLE_NAME}.${AttachmentTable.UPLOAD_TIMESTAMP}
           )
         ) AS ${AttachmentTable.ATTACHMENT_JSON_ALIAS}
-      """
+      """.toSingleLine()
 
     private const val IS_STORY_CLAUSE = "$STORY_TYPE > 0 AND $REMOTE_DELETED = 0"
     private const val RAW_ID_WHERE = "$TABLE_NAME.$ID = ?"
@@ -1881,7 +1882,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $where 
       GROUP BY 
         $TABLE_NAME.$ID
-    """
+    """.toSingleLine()
 
     if (reverse) {
       rawQueryString += " ORDER BY $TABLE_NAME.$ID DESC"
@@ -2230,42 +2231,32 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   private fun setMessagesRead(where: String, arguments: Array<String>?): List<MarkedMessageInfo> {
     val releaseChannelId = SignalStore.releaseChannelValues().releaseChannelRecipientId
-    return writableDatabase.withinTransaction { db ->
-      val infos = db
-        .select(ID, FROM_RECIPIENT_ID, DATE_SENT, TYPE, EXPIRES_IN, EXPIRE_STARTED, THREAD_ID, STORY_TYPE)
-        .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_DATE")
-        .where(where, arguments ?: emptyArray())
-        .run()
-        .readToList { cursor ->
-          val threadId = cursor.requireLong(THREAD_ID)
-          val recipientId = RecipientId.from(cursor.requireLong(FROM_RECIPIENT_ID))
-          val dateSent = cursor.requireLong(DATE_SENT)
-          val messageId = cursor.requireLong(ID)
-          val expiresIn = cursor.requireLong(EXPIRES_IN)
-          val expireStarted = cursor.requireLong(EXPIRE_STARTED)
-          val syncMessageId = SyncMessageId(recipientId, dateSent)
-          val expirationInfo = ExpirationInfo(messageId, expiresIn, expireStarted, true)
-          val storyType = fromCode(CursorUtil.requireInt(cursor, STORY_TYPE))
+    return writableDatabase.rawQuery(
+      """
+          UPDATE $TABLE_NAME INDEXED BY $INDEX_THREAD_DATE
+          SET $READ = 1, $REACTIONS_UNREAD = 0, $REACTIONS_LAST_SEEN = ${System.currentTimeMillis()}
+          WHERE $where
+          RETURNING $ID, $FROM_RECIPIENT_ID, $DATE_SENT, $TYPE, $EXPIRES_IN, $EXPIRE_STARTED, $THREAD_ID, $STORY_TYPE
+        """,
+      arguments ?: emptyArray()
+    ).readToList { cursor ->
+      val threadId = cursor.requireLong(THREAD_ID)
+      val recipientId = RecipientId.from(cursor.requireLong(FROM_RECIPIENT_ID))
+      val dateSent = cursor.requireLong(DATE_SENT)
+      val messageId = cursor.requireLong(ID)
+      val expiresIn = cursor.requireLong(EXPIRES_IN)
+      val expireStarted = cursor.requireLong(EXPIRE_STARTED)
+      val syncMessageId = SyncMessageId(recipientId, dateSent)
+      val expirationInfo = ExpirationInfo(messageId, expiresIn, expireStarted, true)
+      val storyType = fromCode(CursorUtil.requireInt(cursor, STORY_TYPE))
 
-          if (recipientId != releaseChannelId) {
-            MarkedMessageInfo(threadId, syncMessageId, MessageId(messageId), expirationInfo, storyType)
-          } else {
-            null
-          }
-        }
-        .filterNotNull()
-
-      db.update("$TABLE_NAME INDEXED BY $INDEX_THREAD_DATE")
-        .values(
-          READ to 1,
-          REACTIONS_UNREAD to 0,
-          REACTIONS_LAST_SEEN to System.currentTimeMillis()
-        )
-        .where(where, arguments ?: emptyArray())
-        .run()
-
-      infos
+      if (recipientId != releaseChannelId) {
+        MarkedMessageInfo(threadId, syncMessageId, MessageId(messageId), expirationInfo, storyType)
+      } else {
+        null
+      }
     }
+      .filterNotNull()
   }
 
   fun getOldestUnreadMentionDetails(threadId: Long): Pair<RecipientId, Long>? {
@@ -2593,7 +2584,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     if (retrieved.attachments.isEmpty() && editedMessage?.id != null && attachments.getAttachmentsForMessage(editedMessage.id).isNotEmpty()) {
-      attachments.duplicateAttachmentsForMessage(messageId, editedMessage.id)
+      val linkPreviewAttachmentIds = editedMessage.linkPreviews.mapNotNull { it.attachmentId?.rowId }.toSet()
+      attachments.duplicateAttachmentsForMessage(messageId, editedMessage.id, linkPreviewAttachmentIds)
     }
 
     val isNotStoryGroupReply = retrieved.parentStoryId == null || !retrieved.parentStoryId.isGroupReply()
@@ -3022,7 +3014,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         contentValues.put(QUOTE_BODY_RANGES, quoteBodyRanges.build().toByteArray())
       }
 
-      quoteAttachments += message.outgoingQuote.attachments
+      if (editedMessage == null) {
+        quoteAttachments += message.outgoingQuote.attachments
+      }
     }
 
     val updatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithPlaceholders(message.body, message.mentions)
@@ -3076,6 +3070,13 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .values(LATEST_REVISION_ID to messageId)
         .where("$ID_WHERE OR $LATEST_REVISION_ID = ?", message.messageToEdit, message.messageToEdit)
         .run()
+
+      val textAttachments = (editedMessage as? MediaMmsMessageRecord)?.slideDeck?.asAttachments()?.filter { it.contentType == MediaUtil.LONG_TEXT }?.mapNotNull { (it as? DatabaseAttachment)?.attachmentId?.rowId } ?: emptyList()
+      val linkPreviewAttachments = (editedMessage as? MediaMmsMessageRecord)?.linkPreviews?.mapNotNull { it.attachmentId?.rowId } ?: emptyList()
+      val excludeIds = HashSet<Long>()
+      excludeIds += textAttachments
+      excludeIds += linkPreviewAttachments
+      attachments.duplicateAttachmentsForMessage(messageId, message.messageToEdit, excludeIds)
 
       reactions.moveReactionsToNewMessage(messageId, message.messageToEdit)
     }
@@ -3192,14 +3193,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return deleteCallUpdatesInternal(messageIds, SqlUtil.CollectionOperator.IN)
   }
 
-  /**
-   * Deletes all call updates except for those specified in the parameter.
-   */
-  fun deleteAllCallUpdatesExcept(excludedMessageIds: Set<Long>): Int {
-    return deleteCallUpdatesInternal(excludedMessageIds, SqlUtil.CollectionOperator.NOT_IN)
-  }
-
-  private fun deleteCallUpdatesInternal(messageIds: Set<Long>, collectionOperator: SqlUtil.CollectionOperator): Int {
+  private fun deleteCallUpdatesInternal(
+    messageIds: Set<Long>,
+    collectionOperator: SqlUtil.CollectionOperator
+  ): Int {
     var rowsDeleted = 0
     val threadIds: Set<Long> = writableDatabase.withinTransaction {
       SqlUtil.buildCollectionQuery(
@@ -3228,6 +3225,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         rowsDeleted += rows
         threadSet
       }.flatten().toSet()
+    }
+
+    threadIds.forEach {
+      threads.update(
+        threadId = it,
+        unarchive = false,
+        allowDeletion = true
+      )
     }
 
     notifyConversationListeners(threadIds)
@@ -5272,7 +5277,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           val updated: UpdatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, quoteText, quoteMentions)
           val styledText = SpannableString(updated.body)
 
-          MessageStyler.style(id = quoteId, messageRanges = bodyRanges.adjustBodyRanges(updated.bodyAdjustments), span = styledText)
+          MessageStyler.style(id = "${MessageStyler.QUOTE_ID}$quoteId", messageRanges = bodyRanges.adjustBodyRanges(updated.bodyAdjustments), span = styledText)
 
           quoteText = styledText
           quoteMentions = updated.mentions

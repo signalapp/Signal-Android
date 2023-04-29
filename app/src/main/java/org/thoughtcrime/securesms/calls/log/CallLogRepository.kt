@@ -51,10 +51,11 @@ class CallLogRepository : CallLogPagedDataSource.CallRepository {
   }
 
   fun deleteAllCallLogsExcept(
-    selectedCallRowIds: Set<Long>
+    selectedCallRowIds: Set<Long>,
+    missedOnly: Boolean
   ): Completable {
     return Completable.fromAction {
-      SignalDatabase.calls.deleteAllCallEventsExcept(selectedCallRowIds)
+      SignalDatabase.calls.deleteAllCallEventsExcept(selectedCallRowIds, missedOnly)
     }.observeOn(Schedulers.io())
   }
 }

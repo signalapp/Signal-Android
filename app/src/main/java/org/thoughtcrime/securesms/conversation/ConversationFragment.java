@@ -179,6 +179,7 @@ import org.thoughtcrime.securesms.stories.StoryViewerArgs;
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
@@ -834,7 +835,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       }));
     }
 
-    if (menuState.shouldShowEditAction()) {
+    if (menuState.shouldShowEditAction() && FeatureFlags.editMessageSending()) {
       items.add(new ActionItem(R.drawable.symbol_edit_24, getResources().getString(R.string.conversation_selection__menu_edit), () -> {
         handleEditMessage(getSelectedConversationMessage());
         if (actionMode != null) {

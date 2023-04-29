@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
 import org.thoughtcrime.securesms.service.webrtc.CallEventSyncMessageUtil
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
 import java.util.Optional
 import java.util.concurrent.TimeUnit
@@ -46,8 +47,7 @@ class CallSyncEventJob private constructor(
       )
     }
 
-    @JvmStatic
-    fun createForDelete(conversationRecipientId: RecipientId, callId: Long, isIncoming: Boolean): CallSyncEventJob {
+    private fun createForDelete(conversationRecipientId: RecipientId, callId: Long, isIncoming: Boolean): CallSyncEventJob {
       return CallSyncEventJob(
         getParameters(conversationRecipientId),
         conversationRecipientId,
@@ -57,16 +57,17 @@ class CallSyncEventJob private constructor(
       )
     }
 
-    @JvmStatic
     fun enqueueDeleteSyncEvents(deletedCalls: Set<CallTable.Call>) {
-      for (call in deletedCalls) {
-        ApplicationDependencies.getJobManager().add(
-          createForDelete(
-            call.peer,
-            call.callId,
-            call.direction == CallTable.Direction.INCOMING
+      if (FeatureFlags.callDeleteSync()) {
+        for (call in deletedCalls) {
+          ApplicationDependencies.getJobManager().add(
+            createForDelete(
+              call.peer,
+              call.callId,
+              call.direction == CallTable.Direction.INCOMING
+            )
           )
-        )
+        }
       }
     }
 

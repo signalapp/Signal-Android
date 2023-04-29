@@ -81,7 +81,8 @@ class MultiDeviceStorySendSyncJob private constructor(parameters: Parameters, pr
       emptyMap(),
       true,
       Optional.empty(),
-      recipientsSet
+      recipientsSet,
+      Optional.empty()
     )
   }
 

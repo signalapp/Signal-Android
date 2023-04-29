@@ -4057,6 +4057,9 @@ public class ConversationParentFragment extends Fragment
     if (isSearchRequested) {
       searchViewItem.collapseActionView();
     }
+    if (inputPanel.inEditMessageMode()) {
+      inputPanel.exitEditMessageMode();
+    }
 
     MessageRecord messageRecord = conversationMessage.getMessageRecord();
 
@@ -4167,6 +4170,7 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onExitEditMode() {
     updateToggleButtonState();
+    draftViewModel.deleteMessageEditDraft();
   }
 
   @Override

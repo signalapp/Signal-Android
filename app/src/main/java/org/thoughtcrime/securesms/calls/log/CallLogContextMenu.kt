@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.calls.log
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
@@ -18,11 +19,15 @@ class CallLogContextMenu(
   private val fragment: Fragment,
   private val callbacks: Callbacks
 ) {
-  fun show(anchor: View, call: CallLogRow.Call) {
+  fun show(recyclerView: RecyclerView, anchor: View, call: CallLogRow.Call) {
+    recyclerView.suppressLayout(true)
     anchor.isSelected = true
     SignalContextMenu.Builder(anchor, anchor.parent as ViewGroup)
       .preferredVerticalPosition(SignalContextMenu.VerticalPosition.BELOW)
-      .onDismiss { anchor.isSelected = false }
+      .onDismiss {
+        anchor.isSelected = false
+        recyclerView.suppressLayout(false)
+      }
       .show(
         listOfNotNull(
           getVideoCallActionItem(call),

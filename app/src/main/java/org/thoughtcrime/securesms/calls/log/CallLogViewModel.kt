@@ -101,6 +101,7 @@ class CallLogViewModel(
     callLogStore.update {
       it.copy(
         stagedDeletion = CallLogStagedDeletion(
+          it.filter,
           CallLogSelectionState.empty().toggle(call.id),
           callLogRepository
         )
@@ -114,6 +115,7 @@ class CallLogViewModel(
     callLogStore.update {
       it.copy(
         stagedDeletion = CallLogStagedDeletion(
+          it.filter,
           it.selectionState,
           callLogRepository
         )

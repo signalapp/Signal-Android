@@ -226,7 +226,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     process((s, p) -> p.handleSetMuteAudio(s, enabled));
   }
 
-  public void setMuteVideo(boolean enabled) {
+  public void setEnableVideo(boolean enabled) {
     process((s, p) -> p.handleSetEnableVideo(s, enabled));
   }
 
@@ -815,6 +815,12 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   @Override
   public void onCameraSwitchCompleted(@NonNull final CameraState newCameraState) {
     process((s, p) -> p.handleCameraSwitchCompleted(s, newCameraState));
+  }
+
+  @Override
+  public void onCameraStopped() {
+    Log.i(TAG, "Camera error. Muting video.");
+    setEnableVideo(false);
   }
 
   @Override

@@ -1,7 +1,11 @@
 package org.thoughtcrime.securesms.mediapreview.caption
 
 import android.content.Context
-import android.text.method.ScrollingMovementMethod
+import android.graphics.Typeface
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.StyleSpan
 import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.core.view.updateLayoutParams
@@ -26,7 +30,10 @@ class ExpandingCaptionView @JvmOverloads constructor(
     }
 
   init {
-    setOnClickListener { toggleExpansion() }
+    movementMethod = LinkMovementMethod.getInstance()
+    val overflow = SpannableString(context.getString(R.string.MediaPreviewFragment_read_more_overflow_text))
+    overflow.setSpan(StyleSpan(Typeface.BOLD), 0, overflow.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    setOverflowText(overflow)
   }
 
   private fun toggleExpansion() {
@@ -40,19 +47,16 @@ class ExpandingCaptionView @JvmOverloads constructor(
 
   private fun updateExpansionState(expand: Boolean) {
     if (expand) {
+      setMaxLength(-1)
       text = fullCaptionText
-      movementMethod = ScrollingMovementMethod()
       scrollTo(0, 0)
       updateLayoutParams { height = expandedHeight }
     } else {
-      text = if (isExpandable()) {
-        context.getString(R.string.MediaPreviewFragment_see_more, fullCaptionText.substring(0, CHAR_LIMIT_MESSAGE_PREVIEW))
-      } else {
-        fullCaptionText
-      }
-      movementMethod = null
+      setMaxLength(CHAR_LIMIT_MESSAGE_PREVIEW)
+      text = fullCaptionText
       updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
     }
+
     if (isExpandable()) {
       setOnClickListener { toggleExpansion() }
     } else {

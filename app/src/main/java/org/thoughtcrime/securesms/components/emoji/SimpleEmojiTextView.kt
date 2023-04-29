@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.emoji
 
 import android.content.Context
 import android.graphics.Canvas
+import android.text.Spannable
 import android.text.Spanned
 import android.text.TextUtils
 import android.util.AttributeSet
@@ -20,6 +21,8 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
   private var bufferType: BufferType? = null
   private val sizeChangeDebouncer: ThrottledDebouncer = ThrottledDebouncer(200)
   private val spoilerRendererDelegate: SpoilerRendererDelegate
+  private var spoilerFilteringSpannableFactory: SpoilerFilteringSpannableFactory? = null
+  private var isInOnDraw: Boolean = false
 
   init {
     isEmojiCompatEnabled = isInEditMode || SignalStore.settings().isPreferSystemEmoji
@@ -27,6 +30,8 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
   }
 
   override fun onDraw(canvas: Canvas) {
+    isInOnDraw = true
+
     if (text is Spanned && layout != null) {
       val checkpoint = canvas.save()
       canvas.translate(totalPaddingLeft.toFloat(), totalPaddingTop.toFloat())
@@ -37,6 +42,8 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
       }
     }
     super.onDraw(canvas)
+
+    isInOnDraw = false
   }
 
   override fun setText(text: CharSequence?, type: BufferType?) {
@@ -56,11 +63,16 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
         EmojiProvider.emojify(newCandidates, text, this, false)
       }
 
-      val newContent = if (width == 0 || maxLines == -1) {
+      var newContent: CharSequence? = if (width == 0 || maxLines == -1) {
         newText
       } else {
         TextUtils.ellipsize(newText, paint, (adjustedWidth * maxLines).toFloat(), TextUtils.TruncateAt.END, false, null)
       }
+
+      if (newContent is Spannable && spoilerFilteringSpannableFactory != null) {
+        newContent = spoilerFilteringSpannableFactory!!.wrap(newContent)
+      }
+
       bufferType = BufferType.SPANNABLE
       super.setText(newContent, type)
     }
@@ -73,5 +85,10 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
         setText(text, bufferType ?: BufferType.SPANNABLE)
       }
     }
+  }
+
+  fun enableSpoilerFiltering() {
+    spoilerFilteringSpannableFactory = SpoilerFilteringSpannableFactory { isInOnDraw }
+    setSpannableFactory(spoilerFilteringSpannableFactory!!)
   }
 }
