@@ -2044,7 +2044,16 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       sharedElement.setTransitionName(MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME);
       requireActivity().setExitSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
       ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), sharedElement, MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME);
-      requireActivity().startActivity(MediaIntentFactory.create(requireActivity(), args), options.toBundle());
+
+      final Intent mediaPreviewIntent = MediaIntentFactory.create(requireActivity(), args);
+
+      if (listener.isInBubble()) {
+        mediaPreviewIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                    Intent.FLAG_ACTIVITY_NEW_TASK |
+                                    Intent.FLAG_ACTIVITY_SINGLE_TOP);
+      }
+
+      requireActivity().startActivity(mediaPreviewIntent, options.toBundle());
     }
 
     @Override
