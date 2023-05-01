@@ -3483,7 +3483,7 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Hamishia akaunti kwenye kifaa kipya cha Android</string>
     <string name="RegistrationActivity_enter_backup_passphrase">ingiza nenosiri la nakalahifadhi</string>
     <string name="RegistrationActivity_restore">Rejesha</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Haiwezi kuagiza nakalahifadhi toka matoleo mapya ya Signal</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Haihamishi hifadhi nakala toka matoleo mapya ya Signal</string>
     <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
     <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Nenosiri la nakalahifadhi sio sahihi</string>
