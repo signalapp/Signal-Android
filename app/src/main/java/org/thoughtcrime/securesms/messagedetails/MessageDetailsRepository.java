@@ -78,7 +78,7 @@ public final class MessageDetailsRepository {
 
     if (!messageRecord.getToRecipient().isGroup() && !messageRecord.getToRecipient().isDistributionList()) {
       recipients.add(new RecipientDeliveryStatus(messageRecord,
-                                                 messageRecord.getToRecipient(),
+                                                 messageRecord.isOutgoing() ? messageRecord.getToRecipient() : messageRecord.getFromRecipient(),
                                                  getStatusFor(messageRecord),
                                                  messageRecord.isUnidentified(),
                                                  messageRecord.getReceiptTimestamp(),

@@ -38,7 +38,7 @@ public final class MessageDetails {
     viewed    = new TreeSet<>(RECIPIENT_COMPARATOR);
     skipped   = new TreeSet<>(RECIPIENT_COMPARATOR);
 
-    if (conversationMessage.getMessageRecord().getToRecipient().isSelf()) {
+    if (conversationMessage.getMessageRecord().getFromRecipient().isSelf() && conversationMessage.getMessageRecord().getToRecipient().isSelf()) {
       read.addAll(recipients);
     } else if (conversationMessage.getMessageRecord().isOutgoing()) {
       for (RecipientDeliveryStatus status : recipients) {
