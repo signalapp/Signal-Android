@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents;
@@ -194,6 +195,8 @@ public class IndividualSendJob extends PushSendJob {
       if (message.isViewOnce()) {
         SignalDatabase.attachments().deleteAttachmentFilesForViewOnceMessage(messageId);
       }
+
+      ConversationShortcutRankingUpdateJob.enqueueForOutgoingIfNecessary(recipient);
 
       log(TAG, String.valueOf(message.getSentTimeMillis()), "Sent message: " + messageId);
 

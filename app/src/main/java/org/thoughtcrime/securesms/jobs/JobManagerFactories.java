@@ -99,6 +99,7 @@ public final class JobManagerFactories {
       put(CheckServiceReachabilityJob.KEY,           new CheckServiceReachabilityJob.Factory());
       put(CleanPreKeysJob.KEY,                       new CleanPreKeysJob.Factory());
       put(ClearFallbackKbsEnclaveJob.KEY,            new ClearFallbackKbsEnclaveJob.Factory());
+      put(ConversationShortcutRankingUpdateJob.KEY, new ConversationShortcutRankingUpdateJob.Factory());
       put(ConversationShortcutUpdateJob.KEY,         new ConversationShortcutUpdateJob.Factory());
       put(CreateReleaseChannelJob.KEY,               new CreateReleaseChannelJob.Factory());
       put(DirectoryRefreshJob.KEY,                   new DirectoryRefreshJob.Factory());
