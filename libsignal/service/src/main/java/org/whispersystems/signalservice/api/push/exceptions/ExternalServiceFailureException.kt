@@ -6,4 +6,8 @@ package org.whispersystems.signalservice.api.push.exceptions
  * providerUnavailable - indicates that the provider could not be reached or did not respond to the request to send a verification code in a timely manner
  * illegalArgument - some part of the request was not understood or accepted by the provider (e.g. the provider did not recognize the phone number as a valid number for the selected transport)
  */
-class ExternalServiceFailureException(val isPermanent: Boolean, val reason: String) : NonSuccessfulResponseCodeException(502)
+class ExternalServiceFailureException(val isPermanent: Boolean, val reason: String) : NonSuccessfulResponseCodeException(502) {
+  override fun toString(): String {
+    return "ExternalServiceFailureException: External service failed to send SMS code ${if (isPermanent) "permanently" else "temporarily"} due to $reason"
+  }
+}
