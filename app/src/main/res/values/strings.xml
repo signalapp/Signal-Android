@@ -1223,10 +1223,6 @@
     <string name="MediaRepository_all_media">All media</string>
     <string name="MediaRepository__camera">Camera</string>
 
-    <!-- MessageDecryptionUtil -->
-    <string name="MessageDecryptionUtil_failed_to_decrypt_message">Failed to decrypt message</string>
-    <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Tap to send a debug log</string>
-
     <!-- MessageRecord -->
     <string name="MessageRecord_unknown">Unknown</string>
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to update to the most recent version and resend the message.</string>

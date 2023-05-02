@@ -26,6 +26,14 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Typing
 object EnvelopeContentValidator {
 
   fun validate(envelope: Envelope, content: Content): Result {
+    if (envelope.type == Envelope.Type.PLAINTEXT_CONTENT) {
+      val result: Result? = createPlaintextResultIfInvalid(content)
+
+      if (result != null) {
+        return result
+      }
+    }
+
     return when {
       envelope.story && !content.meetsStoryFlagCriteria() -> Result.Invalid("Envelope was flagged as a story, but it did not have any story-related content!")
       content.hasDataMessage() -> validateDataMessage(envelope, content.dataMessage)
@@ -285,6 +293,47 @@ object EnvelopeContentValidator {
       this.hasDataMessage() && this.dataMessage.hasStoryContext() && this.dataMessage.hasGroupV2() -> true
       this.hasDataMessage() && this.dataMessage.hasDelete() -> true
       else -> false
+    }
+  }
+
+  private fun createPlaintextResultIfInvalid(content: Content): Result? {
+    val errors: MutableList<String> = mutableListOf()
+
+    if (!content.hasDecryptionErrorMessage()) {
+      errors += "Missing DecryptionErrorMessage"
+    }
+    if (content.hasStoryMessage()) {
+      errors += "Unexpected StoryMessage"
+    }
+    if (content.hasSenderKeyDistributionMessage()) {
+      errors += "Unexpected SenderKeyDistributionMessage"
+    }
+    if (content.hasCallMessage()) {
+      errors += "Unexpected CallMessage"
+    }
+    if (content.hasEditMessage()) {
+      errors += "Unexpected EditMessage"
+    }
+    if (content.hasNullMessage()) {
+      errors += "Unexpected NullMessage"
+    }
+    if (content.hasPniSignatureMessage()) {
+      errors += "Unexpected PniSignatureMessage"
+    }
+    if (content.hasReceiptMessage()) {
+      errors += "Unexpected ReceiptMessage"
+    }
+    if (content.hasSyncMessage()) {
+      errors += "Unexpected SyncMessage"
+    }
+    if (content.hasTypingMessage()) {
+      errors += "Unexpected TypingMessage"
+    }
+
+    return if (errors.isNotEmpty()) {
+      Result.Invalid("Invalid PLAINTEXT_CONTENT! Errors: $errors")
+    } else {
+      null
     }
   }
 
