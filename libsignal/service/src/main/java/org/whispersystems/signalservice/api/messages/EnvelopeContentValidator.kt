@@ -121,6 +121,7 @@ object EnvelopeContentValidator {
       val hasDataGroup = syncMessage.sent.message?.hasGroupV2() ?: false
       val hasStoryGroup = syncMessage.sent.storyMessage?.hasGroup() ?: false
       val hasStoryManifest = syncMessage.sent.storyMessageRecipientsList.isNotEmpty()
+      val hasEditMessageGroup = syncMessage.sent.editMessage?.dataMessage?.hasGroupV2() ?: false
 
       if (hasDataGroup) {
         validateGroupContextV2(syncMessage.sent.message.groupV2, "[SyncMessage.Sent.Message]")?.let { return it }
@@ -130,8 +131,12 @@ object EnvelopeContentValidator {
         validateGroupContextV2(syncMessage.sent.storyMessage.group, "[SyncMessage.Sent.StoryMessage]")?.let { return it }
       }
 
-      if (!validAddress && !hasDataGroup && !hasStoryGroup && !hasStoryManifest) {
-        return Result.Invalid("[SyncMessage] No valid destination! Checked the destination, DataMessage.group, StoryMessage.group, and storyMessageRecipientList")
+      if (hasEditMessageGroup) {
+        validateGroupContextV2(syncMessage.sent.editMessage.dataMessage.groupV2, "[SyncMessage.Sent.EditMessage]")?.let { return it }
+      }
+
+      if (!validAddress && !hasDataGroup && !hasStoryGroup && !hasStoryManifest && !hasEditMessageGroup) {
+        return Result.Invalid("[SyncMessage] No valid destination! Checked the destination, DataMessage.group, StoryMessage.group, EditMessage.group and storyMessageRecipientList")
       }
 
       for (status in syncMessage.sent.unidentifiedStatusList) {
