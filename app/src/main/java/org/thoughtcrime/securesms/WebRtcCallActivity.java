@@ -281,7 +281,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       if (viewModel.canEnterPipMode()) {
         try {
           enterPictureInPictureMode(pipBuilderParams.build());
-        } catch (IllegalStateException e) {
+        } catch (Exception e) {
           Log.w(TAG, "Device lied to us about supporting PiP.", e);
           return false;
         }
@@ -380,7 +380,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
         pipBuilderParams.setAutoEnterEnabled(true);
       }
       if (Build.VERSION.SDK_INT >= 26) {
-        setPictureInPictureParams(pipBuilderParams.build());
+        try {
+          setPictureInPictureParams(pipBuilderParams.build());
+        } catch (Exception e) {
+          Log.w(TAG, "System lied about having PiP available.", e);
+        }
       }
     }
   }
