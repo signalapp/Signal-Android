@@ -11,14 +11,18 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.app.SharedElementCallback
 import androidx.core.view.MenuProvider
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.transition.TransitionInflater
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.Flowables
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
@@ -52,6 +56,7 @@ import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.visible
 import java.util.Objects
+import java.util.concurrent.TimeUnit
 
 /**
  * Call Log tab.
@@ -94,6 +99,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     requireActivity().addMenuProvider(menuProvider, viewLifecycleOwner)
+    initializeSharedElementTransition()
 
     val adapter = CallLogAdapter(this)
     disposables.bindTo(viewLifecycleOwner)
@@ -179,6 +185,26 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     initializeSearchAction()
     ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
     viewModel.markAllCallEventsRead()
+  }
+
+  private fun initializeSharedElementTransition() {
+    ViewCompat.setTransitionName(binding.fab, "new_convo_fab")
+    ViewCompat.setTransitionName(binding.fabSharedElementTarget, "camera_fab")
+
+    sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(R.transition.change_transform_fabs)
+    setEnterSharedElementCallback(object : SharedElementCallback() {
+      override fun onSharedElementStart(sharedElementNames: MutableList<String>?, sharedElements: MutableList<View>?, sharedElementSnapshots: MutableList<View>?) {
+        if (sharedElementNames?.contains("camera_fab") == true) {
+          this@CallLogFragment.binding.fab.setImageResource(R.drawable.symbol_edit_24)
+          disposables += Single.timer(200, TimeUnit.MILLISECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy {
+              this@CallLogFragment.binding.fab.setImageResource(R.drawable.symbol_phone_plus_24)
+              this@CallLogFragment.binding.fabSharedElementTarget.alpha = 0f
+            }
+        }
+      }
+    })
   }
 
   private fun initializeTapToScrollToTop(scrollToPositionDelegate: ScrollToPositionDelegate) {

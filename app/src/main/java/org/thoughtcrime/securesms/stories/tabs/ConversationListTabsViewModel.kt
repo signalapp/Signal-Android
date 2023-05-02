@@ -88,7 +88,7 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
     }
   }
 
-  private fun <T: Any> performStoreUpdate(flowable: Flowable<T>, fn: (T, ConversationListTabsState) -> ConversationListTabsState): Disposable {
+  private fun <T : Any> performStoreUpdate(flowable: Flowable<T>, fn: (T, ConversationListTabsState) -> ConversationListTabsState): Disposable {
     return store.update(flowable) { t, state ->
       fn(t, state.copy(prevTab = state.tab))
     }
