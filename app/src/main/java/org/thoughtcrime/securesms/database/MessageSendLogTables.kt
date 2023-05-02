@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import android.content.Context
-import net.zetetic.database.sqlcipher.SQLiteConstraintException
+import android.database.sqlite.SQLiteConstraintException
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log

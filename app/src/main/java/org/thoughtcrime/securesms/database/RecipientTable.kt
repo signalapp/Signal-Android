@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import android.database.sqlite.SQLiteConstraintException
 import android.net.Uri
 import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
@@ -10,7 +11,6 @@ import androidx.core.content.contentValuesOf
 import app.cash.exhaustive.Exhaustive
 import com.google.protobuf.ByteString
 import com.google.protobuf.InvalidProtocolBufferException
-import net.zetetic.database.sqlcipher.SQLiteConstraintException
 import org.signal.core.util.Bitmask
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
