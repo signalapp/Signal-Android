@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="12dp"
     android:layout_marginVertical="2dp"
+    android:animateLayoutChanges="true"
     android:background="@drawable/selectable_list_item_background"
     android:minHeight="60dp">
 
