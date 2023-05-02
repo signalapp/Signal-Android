@@ -35,7 +35,25 @@ class FcmFetchForegroundService : Service() {
     }
   }
 
+  override fun onCreate() {
+    Log.d(TAG, "onCreate()")
+    postForegroundNotification()
+  }
+
   override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+    Log.d(TAG, "onStartCommand()")
+    postForegroundNotification()
+
+    return if (intent != null && intent.getBooleanExtra(KEY_STOP_SELF, false)) {
+      stopForeground(true)
+      stopSelf()
+      START_NOT_STICKY
+    } else {
+      START_STICKY
+    }
+  }
+
+  private fun postForegroundNotification() {
     startForeground(
       NotificationIds.FCM_FETCH,
       NotificationCompat.Builder(this, NotificationChannels.getInstance().OTHER)
@@ -47,14 +65,6 @@ class FcmFetchForegroundService : Service() {
         .setVibrate(longArrayOf(0))
         .build()
     )
-
-    return if (intent != null && intent.getBooleanExtra(KEY_STOP_SELF, false)) {
-      stopForeground(true)
-      stopSelf()
-      START_NOT_STICKY
-    } else {
-      START_STICKY
-    }
   }
 
   override fun onDestroy() {
