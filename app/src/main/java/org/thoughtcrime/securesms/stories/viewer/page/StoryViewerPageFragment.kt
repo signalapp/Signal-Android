@@ -894,10 +894,12 @@ class StoryViewerPageFragment :
     }
 
     from.setOnClickListener { onSenderClicked(storyPost.sender.id) }
+    from.requestLayout()
   }
 
   private fun presentDate(date: TextView, storyPost: StoryPost) {
     date.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), storyPost.dateInMilliseconds)
+    date.requestLayout()
   }
 
   private fun presentSenderAvatar(senderAvatar: AvatarImageView, post: StoryPost) {
