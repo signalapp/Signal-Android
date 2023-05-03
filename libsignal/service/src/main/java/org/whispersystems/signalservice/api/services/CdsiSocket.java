@@ -2,16 +2,16 @@ package org.whispersystems.signalservice.api.services;
 
 import org.signal.cdsi.proto.ClientRequest;
 import org.signal.cdsi.proto.ClientResponse;
-import org.signal.libsignal.cds2.AttestationDataException;
+import org.signal.libsignal.attest.AttestationDataException;
 import org.signal.libsignal.cds2.Cds2Client;
-import org.signal.libsignal.cds2.Cds2CommunicationFailureException;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
+import org.signal.libsignal.sgxsession.SgxCommunicationFailureException;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidArgumentException;
 import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidTokenException;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.api.util.TlsProxySocketFactory;
 import org.whispersystems.signalservice.internal.configuration.SignalCdsiUrl;
@@ -165,7 +165,7 @@ final class CdsiSocket {
                 webSocket.close(1000, "OK");
                 break;
             }
-          } catch (IOException | AttestationDataException | Cds2CommunicationFailureException e) {
+          } catch (IOException | SgxCommunicationFailureException | AttestationDataException e) {
             Log.w(TAG, e);
             webSocket.close(1000, "OK");
             emitter.tryOnError(e);
