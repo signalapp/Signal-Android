@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.R
  */
 class WebRtcAudioPickerLegacy(private val audioOutputChangedListener: OnAudioOutputChangedListener, private val outputState: ToggleButtonOutputState, private val stateUpdater: AudioStateUpdater) {
 
-  fun showPicker(context: Context, availableModes: List<WebRtcAudioOutput?>): DialogInterface? {
+  fun showPicker(context: Context, availableModes: List<WebRtcAudioOutput?>, dismissListener: DialogInterface.OnDismissListener): DialogInterface? {
     val rv = RecyclerView(context)
     val adapter = AudioOutputAdapter(
       fun(audioDevice: WebRtcAudioDevice) {
@@ -30,6 +30,7 @@ class WebRtcAudioPickerLegacy(private val audioOutputChangedListener: OnAudioOut
       .setTitle(R.string.WebRtcAudioOutputToggle__audio_output)
       .setView(rv)
       .setCancelable(true)
+      .setOnDismissListener(dismissListener)
       .show()
   }
 }

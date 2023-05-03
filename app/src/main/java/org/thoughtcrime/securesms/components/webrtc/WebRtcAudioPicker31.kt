@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 @RequiresApi(31)
 class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputChangedListener, private val outputState: ToggleButtonOutputState, private val stateUpdater: AudioStateUpdater) {
 
-  fun showPicker(fragmentActivity: FragmentActivity, threshold: Int): DialogInterface? {
+  fun showPicker(fragmentActivity: FragmentActivity, threshold: Int, onDismiss: (DialogInterface) -> Unit): DialogInterface? {
     val am = ApplicationDependencies.getAndroidCallAudioManager()
     if (am.availableCommunicationDevices.isEmpty()) {
       Toast.makeText(fragmentActivity, R.string.WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected, Toast.LENGTH_LONG).show()
@@ -36,7 +36,7 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
       onAudioDeviceSelected(devices[(index + 1) % devices.size])
       return null
     } else {
-      return WebRtcAudioOutputBottomSheet.show(fragmentActivity.supportFragmentManager, devices, currentDeviceId, onAudioDeviceSelected)
+      return WebRtcAudioOutputBottomSheet.show(fragmentActivity.supportFragmentManager, devices, currentDeviceId, onAudioDeviceSelected, onDismiss)
     }
   }
 

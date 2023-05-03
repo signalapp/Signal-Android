@@ -27,9 +27,14 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
   private var picker: DialogInterface? = null
 
   private val clickListenerLegacy: OnClickListener = OnClickListener {
+    if (picker != null) {
+      Log.d(TAG, "Tried to launch new audio device picker but one is already present.")
+      return@OnClickListener
+    }
+
     val outputs = outputState.getOutputs()
     if (outputs.size >= SHOW_PICKER_THRESHOLD || !outputState.isEarpieceAvailable) {
-      picker = WebRtcAudioPickerLegacy(audioOutputChangedListener, outputState, this).showPicker(context, outputs)
+      picker = WebRtcAudioPickerLegacy(audioOutputChangedListener, outputState, this).showPicker(context, outputs) { picker = null }
     } else {
       val audioOutput = outputState.peekNext()
       audioOutputChangedListener.audioOutputChanged(WebRtcAudioDevice(audioOutput, null))
@@ -39,9 +44,14 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
 
   @RequiresApi(31)
   private val clickListener31 = OnClickListener {
+    if (picker != null) {
+      Log.d(TAG, "Tried to launch new audio device picker but one is already present.")
+      return@OnClickListener
+    }
+
     val fragmentActivity = context.fragmentActivity()
     if (fragmentActivity != null) {
-      picker = WebRtcAudioPicker31(audioOutputChangedListener, outputState, this).showPicker(fragmentActivity, SHOW_PICKER_THRESHOLD)
+      picker = WebRtcAudioPicker31(audioOutputChangedListener, outputState, this).showPicker(fragmentActivity, SHOW_PICKER_THRESHOLD) { picker = null }
     } else {
       Log.e(TAG, "WebRtcAudioOutputToggleButton instantiated from a context that does not inherit from FragmentActivity.")
       Toast.makeText(context, R.string.WebRtcAudioOutputToggleButton_fragment_activity_error, Toast.LENGTH_LONG).show()
