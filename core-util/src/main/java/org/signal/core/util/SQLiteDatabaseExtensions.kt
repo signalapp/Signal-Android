@@ -35,6 +35,34 @@ fun SupportSQLiteDatabase.getTableRowCount(table: String): Int {
   }
 }
 
+fun SupportSQLiteDatabase.getForeignKeys(): List<ForeignKeyConstraint> {
+  return SqlUtil.getAllTables(this)
+    .map { table ->
+      this.query("PRAGMA foreign_key_list($table)").readToList { cursor ->
+        ForeignKeyConstraint(
+          table = table,
+          column = cursor.requireNonNullString("from"),
+          dependsOnTable = cursor.requireNonNullString("table"),
+          dependsOnColumn = cursor.requireNonNullString("to"),
+          onDelete = cursor.requireString("on_delete") ?: "NOTHING"
+        )
+      }
+    }
+    .flatten()
+}
+
+fun SupportSQLiteDatabase.getIndexes(): List<Index> {
+  return this.query("SELECT name, tbl_name FROM sqlite_master WHERE type='index' ORDER BY name ASC").readToList { cursor ->
+    val indexName = cursor.requireNonNullString("name")
+
+    Index(
+      name = indexName,
+      table = cursor.requireNonNullString("tbl_name"),
+      columns = this.query("PRAGMA index_info($indexName)").readToList { it.requireNonNullString("name") }
+    )
+  }
+}
+
 /**
  * Checks if a row exists that matches the query.
  */
@@ -345,3 +373,17 @@ class InsertBuilderPart2(
     return db.insert(tableName, conflictStrategy, values)
   }
 }
+
+data class ForeignKeyConstraint(
+  val table: String,
+  val column: String,
+  val dependsOnTable: String,
+  val dependsOnColumn: String,
+  val onDelete: String
+)
+
+data class Index(
+  val name: String,
+  val table: String,
+  val columns: List<String>
+)

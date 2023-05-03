@@ -81,7 +81,9 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
     val CREATE_INDEXES = arrayOf(
       "CREATE INDEX call_call_id_index ON $TABLE_NAME ($CALL_ID)",
-      "CREATE INDEX call_message_id_index ON $TABLE_NAME ($MESSAGE_ID)"
+      "CREATE INDEX call_message_id_index ON $TABLE_NAME ($MESSAGE_ID)",
+      "CREATE INDEX call_call_link_index ON $TABLE_NAME ($CALL_LINK)",
+      "CREATE INDEX call_peer_index ON $TABLE_NAME ($PEER)"
     )
   }
 

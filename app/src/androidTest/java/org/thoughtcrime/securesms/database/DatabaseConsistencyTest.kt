@@ -8,6 +8,10 @@ import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.util.ForeignKeyConstraint
+import org.signal.core.util.Index
+import org.signal.core.util.getForeignKeys
+import org.signal.core.util.getIndexes
 import org.signal.core.util.readToList
 import org.signal.core.util.requireNonNullString
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations
@@ -24,7 +28,7 @@ class DatabaseConsistencyTest {
   val harness = SignalActivityRule()
 
   @Test
-  fun test() {
+  fun testUpgradeConsistency() {
     val currentVersionStatements = SignalDatabase.rawDatabase.getAllCreateStatements()
     val testHelper = InMemoryTestHelper(ApplicationDependencies.getApplication()).also {
       it.onUpgrade(it.writableDatabase, 181, SignalDatabaseMigrations.DATABASE_VERSION)
@@ -61,6 +65,30 @@ class DatabaseConsistencyTest {
     }
   }
 
+  @Test
+  fun testForeignKeyIndexCoverage() {
+    /** We may deem certain indexes non-critical if deletion frequency is low or table size is small. */
+    val ignoredColumns: List<Pair<String, String>> = listOf(
+      StorySendTable.TABLE_NAME to StorySendTable.DISTRIBUTION_ID
+    )
+
+    val foreignKeys: List<ForeignKeyConstraint> = SignalDatabase.rawDatabase.getForeignKeys()
+    val indexesByFirstColumn: List<Index> = SignalDatabase.rawDatabase.getIndexes()
+
+    val notFound: List<Pair<String, String>> = foreignKeys
+      .filterNot { ignoredColumns.contains(it.table to it.column) }
+      .filterNot { foreignKey ->
+        indexesByFirstColumn.hasPrimaryIndexFor(foreignKey.table, foreignKey.column)
+      }
+      .map { it.table to it.column }
+
+    assertTrue("Missing indexes to cover: $notFound", notFound.isEmpty())
+  }
+
+  private fun List<Index>.hasPrimaryIndexFor(table: String, column: String): Boolean {
+    return this.any { index -> index.table == table && index.columns[0] == column }
+  }
+
   private data class Statement(
     val name: String,
     val sql: String
@@ -74,6 +102,7 @@ class DatabaseConsistencyTest {
           sql = cursor.requireNonNullString("sql").normalizeSql()
         )
       }
+      .filterNot { it.name.startsWith("sqlite_stat") }
       .sortedBy { it.name }
   }
 

@@ -143,7 +143,8 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
 
     /** Created for [MslPayloadTable.CREATE_TRIGGERS] and [deleteAllRelatedToMessage] */
     val CREATE_INDEXES = arrayOf(
-      "CREATE INDEX msl_message_message_index ON $TABLE_NAME ($MESSAGE_ID, $PAYLOAD_ID)"
+      "CREATE INDEX msl_message_message_index ON $TABLE_NAME ($MESSAGE_ID, $PAYLOAD_ID)",
+      "CREATE INDEX msl_message_payload_index ON $TABLE_NAME ($PAYLOAD_ID)"
     )
   }
 
