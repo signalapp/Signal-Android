@@ -838,7 +838,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       SqlUtil.buildQuery(
         """
         ${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED} = ? AND ${RecipientTable.TABLE_NAME}.${RecipientTable.HIDDEN} = ?
-        """,
+      """,
         0,
         0
       )
