@@ -518,7 +518,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
   fun isRingCancelled(ringId: Long, groupRecipientId: RecipientId): Boolean {
     val call = getCallById(ringId, CallConversationId.Peer(groupRecipientId)) ?: return false
-    return call.event != Event.RINGING
+    return call.event != Event.RINGING && call.event != Event.GENERIC_GROUP_CALL
   }
 
   private fun handleGroupRingState(
