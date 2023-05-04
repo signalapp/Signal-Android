@@ -4,7 +4,6 @@ import android.content.Context
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.paging.PagedData
@@ -24,28 +23,6 @@ class ConversationRepository(context: Context) {
 
   private val applicationContext = context.applicationContext
   private val oldConversationRepository = org.thoughtcrime.securesms.conversation.ConversationRepository()
-
-  /**
-   * Observes the recipient tied to the given thread id, returning an error if
-   * the thread id does not exist or somehow does not have a recipient attached to it.
-   */
-  fun observeRecipientForThread(threadId: Long): Observable<Recipient> {
-    return Observable.create { emitter ->
-      val recipientId = SignalDatabase.threads.getRecipientIdForThreadId(threadId)
-
-      if (recipientId != null) {
-        val disposable = Recipient.live(recipientId).observable()
-          .subscribeOn(Schedulers.io())
-          .subscribeBy(onNext = emitter::onNext)
-
-        emitter.setCancellable {
-          disposable.dispose()
-        }
-      } else {
-        emitter.onError(Exception("Thread $threadId does not exist."))
-      }
-    }.subscribeOn(Schedulers.io())
-  }
 
   /**
    * Loads the details necessary to display the conversation thread.

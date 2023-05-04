@@ -137,23 +137,31 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     ConversationIntents.Args.from(requireArguments())
   }
 
+  private val conversationRecipientRepository: ConversationRecipientRepository by lazy {
+    ConversationRecipientRepository(args.threadId)
+  }
+
   private val disposables = LifecycleDisposable()
   private val binding by ViewBinderDelegate(V2ConversationFragmentBinding::bind)
   private val viewModel: ConversationViewModel by viewModels(
     factoryProducer = {
-      ConversationViewModel.Factory(args, ConversationRepository(requireContext()))
+      ConversationViewModel.Factory(
+        args,
+        ConversationRepository(requireContext()),
+        conversationRecipientRepository
+      )
     }
   )
 
   private val groupCallViewModel: ConversationGroupCallViewModel by viewModels(
     factoryProducer = {
-      ConversationGroupCallViewModel.Factory(args.threadId)
+      ConversationGroupCallViewModel.Factory(args.threadId, conversationRecipientRepository)
     }
   )
 
   private val conversationGroupViewModel: ConversationGroupViewModel by viewModels(
     factoryProducer = {
-      ConversationGroupViewModel.Factory(args.threadId)
+      ConversationGroupViewModel.Factory(args.threadId, conversationRecipientRepository)
     }
   )
 

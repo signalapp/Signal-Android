@@ -34,7 +34,8 @@ import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 class ConversationViewModel(
   private val threadId: Long,
   requestedStartingPosition: Int,
-  private val repository: ConversationRepository
+  private val repository: ConversationRepository,
+  recipientRepository: ConversationRecipientRepository
 ) : ViewModel() {
 
   private val disposables = CompositeDisposable()
@@ -67,7 +68,8 @@ class ConversationViewModel(
     get() = _recipient.value?.wallpaper
 
   init {
-    disposables += repository.observeRecipientForThread(threadId)
+    disposables += recipientRepository
+      .conversationRecipient
       .subscribeBy(onNext = {
         _recipient.onNext(it)
       })
@@ -149,10 +151,18 @@ class ConversationViewModel(
 
   class Factory(
     private val args: Args,
-    private val repository: ConversationRepository
+    private val repository: ConversationRepository,
+    private val recipientRepository: ConversationRecipientRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(ConversationViewModel(args.threadId, args.startingPosition, repository)) as T
+      return modelClass.cast(
+        ConversationViewModel(
+          args.threadId,
+          args.startingPosition,
+          repository,
+          recipientRepository
+        )
+      ) as T
     }
   }
 }

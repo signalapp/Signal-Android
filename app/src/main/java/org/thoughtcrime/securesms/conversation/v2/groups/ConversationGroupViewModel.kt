@@ -8,9 +8,9 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
-import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.thoughtcrime.securesms.conversation.v2.ConversationRecipientRepository
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
@@ -26,7 +26,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  */
 class ConversationGroupViewModel(
   private val threadId: Long,
-  private val groupManagementRepository: GroupManagementRepository = GroupManagementRepository()
+  private val groupManagementRepository: GroupManagementRepository = GroupManagementRepository(),
+  private val recipientRepository: ConversationRecipientRepository
 ) : ViewModel() {
 
   private val disposables = CompositeDisposable()
@@ -39,11 +40,9 @@ class ConversationGroupViewModel(
   private val _reviewState: Subject<ConversationGroupReviewState> = BehaviorSubject.create()
 
   init {
-    disposables += Single
-      .fromCallable { SignalDatabase.threads.getRecipientForThreadId(threadId)!! }
-      .subscribeOn(Schedulers.io())
+    disposables += recipientRepository
+      .conversationRecipient
       .filter { it.isGroup }
-      .flatMapObservable { Recipient.observable(it.id) }
       .subscribeBy(onNext = _recipient::onNext)
 
     disposables += _recipient
@@ -115,9 +114,9 @@ class ConversationGroupViewModel(
     }
   }
 
-  class Factory(private val threadId: Long) : ViewModelProvider.Factory {
+  class Factory(private val threadId: Long, private val recipientRepository: ConversationRecipientRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(ConversationGroupViewModel(threadId)) as T
+      return modelClass.cast(ConversationGroupViewModel(threadId, recipientRepository = recipientRepository)) as T
     }
   }
 }
