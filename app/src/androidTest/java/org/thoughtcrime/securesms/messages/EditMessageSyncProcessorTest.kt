@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.MessageContentFuzzer
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.assertIs
-import org.thoughtcrime.securesms.util.MessageTableUtils
+import org.thoughtcrime.securesms.util.MessageTableTestUtils
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.EditMessage
 import kotlin.time.Duration.Companion.seconds
@@ -238,7 +238,7 @@ class EditMessageSyncProcessorTest {
               else -> cursor.getString(index)
             }
             if (table == MessageTable.TABLE_NAME && column == MessageTable.TYPE) {
-              data = MessageTableUtils.typeColumnToString(cursor.getLong(index))
+              data = MessageTableTestUtils.typeColumnToString(cursor.getLong(index))
             }
 
             column to data

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.messages
 
 import com.google.protobuf.ByteString
+import com.google.protobuf.GeneratedMessageLite
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
@@ -176,5 +177,11 @@ object SignalServiceProtoUtil {
 
   fun Long.toMobileCoinMoney(): Money {
     return Money.picoMobileCoin(this)
+  }
+
+  @Suppress("UNCHECKED_CAST")
+  inline fun <reified MessageType : GeneratedMessageLite<MessageType, BuilderType>, BuilderType : GeneratedMessageLite.Builder<MessageType, BuilderType>> GeneratedMessageLite.Builder<MessageType, BuilderType>.buildWith(block: BuilderType.() -> Unit): MessageType {
+    block(this as BuilderType)
+    return build()
   }
 }
