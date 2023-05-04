@@ -24,19 +24,19 @@ object V186_ForeignKeyIndicesMigration : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     val stopwatch = Stopwatch("migration")
 
-    db.execSQL("CREATE INDEX message_original_message_id_index ON message (original_message_id)")
+    db.execSQL("CREATE INDEX IF NOT EXISTS message_original_message_id_index ON message (original_message_id)")
     stopwatch.split("original_message_id")
 
-    db.execSQL("CREATE INDEX message_latest_revision_id_index ON message (latest_revision_id)")
+    db.execSQL("CREATE INDEX IF NOT EXISTS message_latest_revision_id_index ON message (latest_revision_id)")
     stopwatch.split("latest_revision_id")
 
-    db.execSQL("CREATE INDEX message_from_recipient_id_index ON message (from_recipient_id)")
+    db.execSQL("CREATE INDEX IF NOT EXISTS message_from_recipient_id_index ON message (from_recipient_id)")
     stopwatch.split("from_recipient_id")
 
-    db.execSQL("CREATE INDEX message_to_recipient_id_index ON message (to_recipient_id)")
+    db.execSQL("CREATE INDEX IF NOT EXISTS message_to_recipient_id_index ON message (to_recipient_id)")
     stopwatch.split("to_recipient_id")
 
-    db.execSQL("CREATE INDEX reaction_author_id_index ON reaction (author_id)")
+    db.execSQL("CREATE INDEX IF NOT EXISTS reaction_author_id_index ON reaction (author_id)")
     stopwatch.split("reaction_author")
 
     // Previous migration screwed up an index replacement, so we need to fix that too
