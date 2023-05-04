@@ -1,3 +1,8 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.webrtc.audio
 
 import android.content.BroadcastReceiver
@@ -12,6 +17,8 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.audio.AudioDeviceUpdatedListener
+import org.thoughtcrime.securesms.audio.SignalBluetoothManager
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.safeUnregisterReceiver
@@ -138,7 +145,7 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
  * bluetooth headset is then disconnected, and reconnected, the audio will again automatically switch to
  * the bluetooth headset.
  */
-class FullSignalAudioManager(context: Context, eventListener: EventListener?) : SignalAudioManager(context, eventListener) {
+class FullSignalAudioManager(context: Context, eventListener: EventListener?) : SignalAudioManager(context, eventListener), AudioDeviceUpdatedListener {
   private val signalBluetoothManager = SignalBluetoothManager(context, this, handler)
 
   private var audioDevices: MutableSet<AudioDevice> = mutableSetOf()
@@ -175,7 +182,7 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
 
       signalBluetoothManager.start()
 
-      updateAudioDeviceState()
+      onAudioDeviceUpdated()
 
       wiredHeadsetReceiver = WiredHeadsetReceiver()
       context.registerReceiver(wiredHeadsetReceiver, IntentFilter(AudioManager.ACTION_HEADSET_PLUG))
@@ -239,7 +246,7 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
     Log.d(TAG, "Stopped")
   }
 
-  fun updateAudioDeviceState() {
+  override fun onAudioDeviceUpdated() {
     handler.assertHandlerThread()
 
     Log.i(
@@ -356,7 +363,7 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
     }
 
     Log.d(TAG, "New default: $defaultAudioDevice userSelected: $userSelectedAudioDevice")
-    updateAudioDeviceState()
+    onAudioDeviceUpdated()
   }
 
   override fun selectAudioDevice(recipientId: RecipientId?, device: Int, isId: Boolean) {
@@ -371,7 +378,7 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
       Log.w(TAG, "Can not select $actualDevice from available $audioDevices")
     }
     userSelectedAudioDevice = actualDevice
-    updateAudioDeviceState()
+    onAudioDeviceUpdated()
   }
 
   private fun setAudioDevice(device: AudioDevice) {
@@ -420,7 +427,7 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
   private fun onWiredHeadsetChange(pluggedIn: Boolean, hasMic: Boolean) {
     Log.i(TAG, "onWiredHeadsetChange state: $state plug: $pluggedIn mic: $hasMic")
     hasWiredHeadset = pluggedIn
-    updateAudioDeviceState()
+    onAudioDeviceUpdated()
   }
 
   private inner class WiredHeadsetReceiver : BroadcastReceiver() {

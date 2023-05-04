@@ -1,18 +1,6 @@
 /*
- * Copyright (C) 2011 Whisper Systems
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
  */
 package org.thoughtcrime.securesms.conversation;
 
@@ -101,6 +89,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
@@ -116,6 +105,8 @@ import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment;
 import org.thoughtcrime.securesms.audio.AudioRecorder;
+import org.thoughtcrime.securesms.audio.BluetoothVoiceNoteUtil;
+import org.thoughtcrime.securesms.audio.BluetoothVoiceNoteUtilKt;
 import org.thoughtcrime.securesms.badges.gifts.thanks.GiftThanksSheet;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
@@ -286,11 +277,10 @@ import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.IdentityUtil;
-import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -309,6 +299,7 @@ import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil;
+import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.io.IOException;
@@ -421,8 +412,10 @@ public class ConversationParentFragment extends Fragment
   private   Stub<FrameLayout>            voiceNotePlayerViewStub;
   private   View                         navigationBarBackground;
 
-  private   AttachmentManager        attachmentManager;
-  private   AudioRecorder            audioRecorder;
+  private AttachmentManager      attachmentManager;
+  private BluetoothVoiceNoteUtil bluetoothVoiceNoteUtil;
+  private AudioRecorder          audioRecorder;
+
   private   RecordingSession         recordingSession;
   private   BroadcastReceiver        securityUpdateReceiver;
   private   Stub<MediaKeyboard>      emojiDrawerStub;
@@ -519,6 +512,7 @@ public class ConversationParentFragment extends Fragment
 
     voiceNoteMediaController = new VoiceNoteMediaController(requireActivity(), true);
     voiceRecorderWakeLock    = new VoiceRecorderWakeLock(requireActivity());
+    bluetoothVoiceNoteUtil   = BluetoothVoiceNoteUtil.Companion.create(requireContext(), this::beginRecording, this::onBluetoothPermissionDenied);
 
     // TODO [alex] LargeScreenSupport -- Should be removed once we move to multi-pane layout.
     new FullscreenHelper(requireActivity()).showSystemUI();
@@ -676,8 +670,9 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void onDestroy() {
-    if (securityUpdateReceiver != null)  requireActivity().unregisterReceiver(securityUpdateReceiver);
-    if (pinnedShortcutReceiver != null)  requireActivity().unregisterReceiver(pinnedShortcutReceiver);
+    if (securityUpdateReceiver != null) requireActivity().unregisterReceiver(securityUpdateReceiver);
+    if (pinnedShortcutReceiver != null) requireActivity().unregisterReceiver(pinnedShortcutReceiver);
+    if (bluetoothVoiceNoteUtil != null) bluetoothVoiceNoteUtil.destroy();
     super.onDestroy();
   }
 
@@ -3251,6 +3246,25 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void onRecorderStarted() {
+    final AudioManagerCompat audioManager = ApplicationDependencies.getAndroidCallAudioManager();
+    if (audioManager.isBluetoothAvailable()) {
+      connectToBluetoothAndBeginRecording();
+    } else {
+      Log.d(TAG, "Recording from phone mic because no bluetooth devices were available.");
+      beginRecording();
+    }
+  }
+
+  private void connectToBluetoothAndBeginRecording() {
+      if (bluetoothVoiceNoteUtil != null) {
+        Log.d(TAG, "Initiating Bluetooth SCO connection...");
+        bluetoothVoiceNoteUtil.connectBluetoothScoConnection();
+      } else {
+        Log.e(TAG, "Unable to instantiate BluetoothVoiceNoteUtil.");
+      }
+  }
+
+  private Unit beginRecording() {
     Vibrator vibrator = ServiceUtil.getVibrator(requireContext());
     vibrator.vibrate(20);
 
@@ -3260,6 +3274,18 @@ public class ConversationParentFragment extends Fragment
     voiceNoteMediaController.pausePlayback();
     recordingSession = new RecordingSession(audioRecorder.startRecording());
     disposables.add(recordingSession);
+    return Unit.INSTANCE;
+  }
+
+  private Unit onBluetoothPermissionDenied() {
+    new MaterialAlertDialogBuilder(requireContext())
+        .setTitle(R.string.ConversationParentFragment__bluetooth_permission_denied)
+        .setMessage(R.string.ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call)
+        .setPositiveButton(R.string.ConversationParentFragment__open_settings, (d, w) -> startActivity(Permissions.getApplicationSettingsIntent(requireContext())))
+        .setNegativeButton(R.string.ConversationParentFragment__not_now, null)
+        .show();
+
+    return Unit.INSTANCE;
   }
 
   @Override
@@ -3271,6 +3297,7 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void onRecorderFinished() {
+    bluetoothVoiceNoteUtil.disconnectBluetoothScoConnection();
     voiceRecorderWakeLock.release();
     updateToggleButtonState();
     Vibrator vibrator = ServiceUtil.getVibrator(requireContext());
@@ -4092,7 +4119,7 @@ public class ConversationParentFragment extends Fragment
     } else {
       SlideDeck slideDeck = messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck();
 
-      if (messageRecord.isMms() && ((MmsMessageRecord) messageRecord).isViewOnce()) {
+      if (messageRecord.isMms() && messageRecord.isViewOnce()) {
         Attachment attachment = new TombstoneAttachment(MediaUtil.VIEW_ONCE, true);
         slideDeck = new SlideDeck();
         slideDeck.addSlide(MediaUtil.getSlideForAttachment(requireContext(), attachment));

@@ -1,4 +1,9 @@
-package org.thoughtcrime.securesms.webrtc.audio
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.thoughtcrime.securesms.audio
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
@@ -13,18 +18,19 @@ import android.media.AudioManager
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.util.safeUnregisterReceiver
+import org.thoughtcrime.securesms.webrtc.audio.SignalAudioHandler
 import java.util.concurrent.TimeUnit
 
 /**
  * Manages the bluetooth lifecycle with a headset. This class doesn't make any
  * determination on if bluetooth should be used. It determines if a device is connected,
- * reports that to the [SignalAudioManager], and then handles connecting/disconnecting
- * to the device if requested by [SignalAudioManager].
+ * reports that to the [org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager], and then handles connecting/disconnecting
+ * to the device if requested by [org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager].
  */
 @SuppressLint("MissingPermission") // targetSdkVersion is still 30 (https://issuetracker.google.com/issues/201454155)
 class SignalBluetoothManager(
   private val context: Context,
-  private val audioManager: FullSignalAudioManager,
+  private val audioDeviceUpdatedListener: AudioDeviceUpdatedListener,
   private val handler: SignalAudioHandler
 ) {
 
@@ -139,11 +145,6 @@ class SignalBluetoothManager(
       return false
     }
 
-    if (androidAudioManager.isBluetoothScoOn) {
-      Log.i(TAG, "SCO connection already started")
-      return true
-    }
-
     state = State.CONNECTING
     androidAudioManager.startBluetoothSco()
     androidAudioManager.isBluetoothScoOn = true
@@ -202,10 +203,6 @@ class SignalBluetoothManager(
     }
   }
 
-  private fun updateAudioDeviceState() {
-    audioManager.updateAudioDeviceState()
-  }
-
   private fun startTimer() {
     handler.postDelayed(bluetoothTimeout, SCO_TIMEOUT)
   }
@@ -243,12 +240,12 @@ class SignalBluetoothManager(
       stopScoAudio()
     }
 
-    updateAudioDeviceState()
+    audioDeviceUpdatedListener.onAudioDeviceUpdated()
   }
 
   private fun onServiceConnected(proxy: BluetoothHeadset?) {
     bluetoothHeadset = proxy
-    updateAudioDeviceState()
+    audioDeviceUpdatedListener.onAudioDeviceUpdated()
   }
 
   private fun onServiceDisconnected() {
@@ -256,7 +253,7 @@ class SignalBluetoothManager(
     bluetoothHeadset = null
     bluetoothDevice = null
     state = State.UNAVAILABLE
-    updateAudioDeviceState()
+    audioDeviceUpdatedListener.onAudioDeviceUpdated()
   }
 
   private fun onHeadsetConnectionStateChanged(connectionState: Int) {
@@ -265,12 +262,12 @@ class SignalBluetoothManager(
     when (connectionState) {
       BluetoothHeadset.STATE_CONNECTED -> {
         scoConnectionAttempts = 0
-        updateAudioDeviceState()
+        audioDeviceUpdatedListener.onAudioDeviceUpdated()
       }
 
       BluetoothHeadset.STATE_DISCONNECTED -> {
         stopScoAudio()
-        updateAudioDeviceState()
+        audioDeviceUpdatedListener.onAudioDeviceUpdated()
       }
     }
   }
@@ -284,7 +281,7 @@ class SignalBluetoothManager(
         Log.d(TAG, "Bluetooth audio SCO is now connected")
         state = State.CONNECTED
         scoConnectionAttempts = 0
-        updateAudioDeviceState()
+        audioDeviceUpdatedListener.onAudioDeviceUpdated()
       } else {
         Log.w(TAG, "Unexpected state ${audioState.toStateString()}")
       }
@@ -296,7 +293,7 @@ class SignalBluetoothManager(
         Log.d(TAG, "Ignore ${audioState.toStateString()} initial sticky broadcast.")
         return
       }
-      updateAudioDeviceState()
+      audioDeviceUpdatedListener.onAudioDeviceUpdated()
     }
   }
 
@@ -347,7 +344,9 @@ class SignalBluetoothManager(
         }
       } else if (intent.action == AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED) {
         if (wasScoDisconnected(intent)) {
-          handler.post(::updateAudioDeviceState)
+          handler.post {
+            audioDeviceUpdatedListener.onAudioDeviceUpdated()
+          }
         }
       } else {
         Log.d(TAG, "Received broadcast of ${intent.action}")
