@@ -4,6 +4,8 @@ import android.app.Application
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
+import org.signal.core.util.readToList
+import org.signal.core.util.requireNonNullString
 
 /**
  * We added some foreign keys to the message table (particularly on original_message_id and latest_revision_id)
@@ -22,6 +24,13 @@ object V186_ForeignKeyIndicesMigration : SignalDatabaseMigration {
   private val TAG = Log.tag(V186_ForeignKeyIndicesMigration::class.java)
 
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+    // This was added after a bug was found in V185 that resulted in it not being run for users who restored from backup.
+    // In that case, this column would be missing, and the migration would fail. This is cleaned up in V188.
+    if (!columnExists(db, "message", "from_recipient_id")) {
+      Log.w(TAG, "V185 wasn't run successfully! Skipping the migration for now. It'll run in V188.")
+      return
+    }
+
     val stopwatch = Stopwatch("migration")
 
     db.execSQL("CREATE INDEX IF NOT EXISTS message_original_message_id_index ON message (original_message_id)")
@@ -50,5 +59,11 @@ object V186_ForeignKeyIndicesMigration : SignalDatabaseMigration {
     stopwatch.split("analyze")
 
     stopwatch.stop(TAG)
+  }
+
+  private fun columnExists(db: SQLiteDatabase, table: String, column: String): Boolean {
+    return db.query("PRAGMA table_info($table)", null)
+      .readToList { it.requireNonNullString("name") }
+      .any { it == column }
   }
 }

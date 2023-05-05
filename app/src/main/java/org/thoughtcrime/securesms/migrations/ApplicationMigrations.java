@@ -127,9 +127,10 @@ public class ApplicationMigrations {
     static final int TO_FROM_RECIPIENTS            = 82;
     static final int REBUILD_MESSAGE_FTS_INDEX_4   = 83;
     static final int INDEX_DATABASE_MIGRATION      = 84;
+    static final int ACCOUNT_CONSISTENCY_CHECK     = 85;
   }
 
-  public static final int CURRENT_VERSION = 84;
+  public static final int CURRENT_VERSION = 85;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -565,6 +566,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.INDEX_DATABASE_MIGRATION) {
       jobs.put(Version.INDEX_DATABASE_MIGRATION, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.ACCOUNT_CONSISTENCY_CHECK) {
+      jobs.put(Version.ACCOUNT_CONSISTENCY_CHECK, new AccountConsistencyMigrationJob());
     }
 
     return jobs;

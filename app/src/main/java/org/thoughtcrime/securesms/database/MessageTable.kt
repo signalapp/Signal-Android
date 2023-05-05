@@ -4657,6 +4657,22 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .run()
   }
 
+  fun updatePendingSelfData(placeholder: RecipientId, self: RecipientId) {
+    val fromUpdates = writableDatabase
+      .update(TABLE_NAME)
+      .values(FROM_RECIPIENT_ID to self.serialize())
+      .where("$FROM_RECIPIENT_ID = ?", placeholder)
+      .run()
+
+    val toUpdates = writableDatabase
+      .update(TABLE_NAME)
+      .values(TO_RECIPIENT_ID to self.serialize())
+      .where("$TO_RECIPIENT_ID = ?", placeholder)
+      .run()
+
+    Log.i(TAG, "Updated $fromUpdates FROM_RECIPIENT_ID rows and $toUpdates TO_RECIPIENT_ID rows.")
+  }
+
   private fun getStickyWherePartForParentStoryId(parentStoryId: Long?): String {
     return if (parentStoryId == null) {
       " AND $PARENT_STORY_ID <= 0"

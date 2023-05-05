@@ -14,7 +14,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
 
 /**
  * Performs the networking setup/tear down for the server. This includes
@@ -110,6 +109,8 @@ final class NetworkServerThread extends Thread {
           handler.sendEmptyMessage(NETWORK_CLIENT_DISCONNECTED);
         }
       }
+    } catch (RuntimeException e) {
+      throw e;
     } catch (Exception e) {
       Log.w(TAG, e);
     } finally {

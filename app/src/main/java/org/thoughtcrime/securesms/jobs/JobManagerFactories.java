@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RetrieveProfileJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.SendReadReceiptsJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.SenderKeyDistributionSendJobRecipientMigration;
+import org.thoughtcrime.securesms.migrations.AccountConsistencyMigrationJob;
 import org.thoughtcrime.securesms.migrations.AccountRecordMigrationJob;
 import org.thoughtcrime.securesms.migrations.ApplyUnknownFieldsToSelfMigrationJob;
 import org.thoughtcrime.securesms.migrations.AttachmentCleanupMigrationJob;
@@ -84,6 +85,7 @@ public final class JobManagerFactories {
 
   public static Map<String, Job.Factory> getJobFactories(@NonNull Application application) {
     return new HashMap<String, Job.Factory>() {{
+      put(AccountConsistencyWorkerJob.KEY,           new AccountConsistencyWorkerJob.Factory());
       put(AttachmentCopyJob.KEY,                     new AttachmentCopyJob.Factory());
       put(AttachmentDownloadJob.KEY,                 new AttachmentDownloadJob.Factory());
       put(AttachmentUploadJob.KEY,                   new AttachmentUploadJob.Factory());
@@ -209,6 +211,7 @@ public final class JobManagerFactories {
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());
 
       // Migrations
+      put(AccountConsistencyMigrationJob.KEY,        new AccountConsistencyMigrationJob.Factory());
       put(AccountRecordMigrationJob.KEY,             new AccountRecordMigrationJob.Factory());
       put(ApplyUnknownFieldsToSelfMigrationJob.KEY,  new ApplyUnknownFieldsToSelfMigrationJob.Factory());
       put(AttachmentCleanupMigrationJob.KEY,         new AttachmentCleanupMigrationJob.Factory());

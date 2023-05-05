@@ -835,9 +835,13 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         """
       SqlUtil.buildQuery(selection, 0, 0, glob, glob, glob, glob)
     } else {
-      SqlUtil.buildQuery("""
+      SqlUtil.buildQuery(
+        """
         ${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED} = ? AND ${RecipientTable.TABLE_NAME}.${RecipientTable.HIDDEN} = ?
-      """, 0, 0)
+        """,
+        0,
+        0
+      )
     }
 
     val offsetLimit = if (limit > 0) {

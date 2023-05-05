@@ -168,7 +168,9 @@ public final class LiveRecipientCache {
       }
 
       if (selfId == null) {
+        Log.i(TAG, "Creating self for the first time.");
         selfId = recipientTable.getAndPossiblyMerge(localAci, localE164);
+        recipientTable.updatePendingSelfData(selfId);
       }
 
       synchronized (localRecipientId) {
