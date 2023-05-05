@@ -114,7 +114,7 @@ class DatabaseConsistencyTest {
       .replace(Regex("\\s+"), " ")
       .replace(Regex.fromLiteral("( "), "(")
       .replace(Regex.fromLiteral(" )"), ")")
-      .replace(Regex("CREATE TABLE \"([a-z]+)\""), "CREATE TABLE $1") // for some reason SQLite will wrap table names in quotes for upgraded tables. This unwraps them.
+      .replace(Regex("CREATE TABLE \"([a-zA-Z_]+)\""), "CREATE TABLE $1") // for some reason SQLite will wrap table names in quotes for upgraded tables. This unwraps them.
   }
 
   private class InMemoryTestHelper(private val application: Application) : SQLiteOpenHelper(application, null, null, 1) {

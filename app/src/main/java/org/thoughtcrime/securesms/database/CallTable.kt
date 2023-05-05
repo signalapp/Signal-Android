@@ -67,7 +67,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         $CALL_ID INTEGER NOT NULL,
         $MESSAGE_ID INTEGER DEFAULT NULL REFERENCES ${MessageTable.TABLE_NAME} (${MessageTable.ID}) ON DELETE SET NULL,
         $PEER INTEGER DEFAULT NULL REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
-        $CALL_LINK INTEGER DEFAULT NULL REFERENCES ${CallLinkTable.TABLE_NAME} (${CallLinkTable.ID}) ON DELETE CASCADE,
+        $CALL_LINK TEXT DEFAULT NULL REFERENCES ${CallLinkTable.TABLE_NAME} (${CallLinkTable.ROOM_ID}) ON DELETE CASCADE,
         $TYPE INTEGER NOT NULL,
         $DIRECTION INTEGER NOT NULL,
         $EVENT INTEGER NOT NULL,
