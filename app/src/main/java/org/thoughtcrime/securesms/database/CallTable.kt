@@ -847,7 +847,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     val projection = if (isCount) {
       "COUNT(*),"
     } else {
-      "p.$ID, p.$TIMESTAMP, $EVENT, $DIRECTION, $PEER, p.$TYPE, $CALL_ID, $MESSAGE_ID, $RINGER, children, in_period, ${MessageTable.DATE_RECEIVED}, ${MessageTable.BODY},"
+      "p.$ID, p.$TIMESTAMP, $EVENT, $DIRECTION, $PEER, p.$TYPE, $CALL_ID, $MESSAGE_ID, $RINGER, children, in_period, ${MessageTable.BODY},"
     }
 
     //language=sql
@@ -925,6 +925,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $MESSAGE_ID
       LEFT JOIN ${GroupTable.TABLE_NAME} ON ${GroupTable.TABLE_NAME}.${GroupTable.RECIPIENT_ID} = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
       WHERE true_parent = p.$ID ${if (queryClause.where.isNotEmpty()) "AND ${queryClause.where}" else ""}
+      ORDER BY p.$TIMESTAMP DESC
       $offsetLimit
     """
 
@@ -945,7 +946,6 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     return getCallsCursor(false, offset, limit, searchTerm, filter).readToList { cursor ->
       val call = Call.deserialize(cursor)
       val recipient = Recipient.resolved(call.peer)
-      val date = cursor.requireLong(MessageTable.DATE_RECEIVED)
       val groupCallDetails = GroupCallUpdateDetailsUtil.parse(cursor.requireString(MessageTable.BODY))
 
       val children = cursor.requireNonNullString("children")
@@ -964,7 +964,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       CallLogRow.Call(
         record = call,
         peer = recipient,
-        date = date,
+        date = call.timestamp,
         groupCallState = CallLogRow.GroupCallState.fromDetails(groupCallDetails),
         children = actualChildren.toSet()
       )
