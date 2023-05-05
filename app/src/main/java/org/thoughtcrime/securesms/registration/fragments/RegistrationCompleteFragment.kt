@@ -40,8 +40,8 @@ class RegistrationCompleteFragment : LoggingFragment() {
     val activity = requireActivity()
     val viewModel: RegistrationViewModel by viewModels(ownerProducer = { requireActivity() })
 
-    if (viewModel.isReregister) {
-      SignalStore.misc().shouldShowLinkedDevicesReminder = true
+    if (SignalStore.misc().shouldShowLinkedDevicesReminder) {
+      SignalStore.misc().shouldShowLinkedDevicesReminder = viewModel.isReregister
     }
 
     if (SignalStore.storageService().needsAccountRestore()) {
