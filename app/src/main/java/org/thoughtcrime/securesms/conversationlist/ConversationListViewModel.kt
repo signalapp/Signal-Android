@@ -64,7 +64,7 @@ class ConversationListViewModel(
   val pinnedCount: Int
     get() = store.state.pinnedCount
   val webSocketState: Observable<WebSocketConnectionState>
-    get() = ApplicationDependencies.getSignalWebSocket().webSocketState
+    get() = ApplicationDependencies.getSignalWebSocket().webSocketState.observeOn(AndroidSchedulers.mainThread())
 
   @get:JvmName("currentSelectedConversations")
   val currentSelectedConversations: Set<Conversation>
