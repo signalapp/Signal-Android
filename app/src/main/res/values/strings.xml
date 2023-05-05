@@ -5904,8 +5904,7 @@
     <string name="CallLogFragment__select_all">Select all</string>
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">Delete</string>
-    <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
-    <plurals name="CallLogFragment__delete_d_calls" translatable="false">
+    <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">Delete %1$d call?</item>
         <item quantity="other">Delete %1$d calls?</item>
     </plurals>
