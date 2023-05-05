@@ -130,7 +130,6 @@ task postTranslateIpFetch {
             ext.storage_ips='${staticIpResolver.resolveToBuildConfig("storage.signal.org")}'
             ext.cdn_ips='${staticIpResolver.resolveToBuildConfig("cdn.signal.org")}'
             ext.cdn2_ips='${staticIpResolver.resolveToBuildConfig("cdn2.signal.org")}'
-            ext.cds_ips='${staticIpResolver.resolveToBuildConfig("api.directory.signal.org")}'
             ext.kbs_ips='${staticIpResolver.resolveToBuildConfig("api.backup.signal.org")}'
             ext.sfu_ips='${staticIpResolver.resolveToBuildConfig("sfu.voip.signal.org")}'
             ext.content_proxy_ips='${staticIpResolver.resolveToBuildConfig("contentproxy.signal.org")}'
