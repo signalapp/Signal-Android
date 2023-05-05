@@ -1,3 +1,8 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.annotation.SuppressLint
@@ -169,12 +174,12 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   private val colorizer = Colorizer()
 
   private lateinit var conversationOptionsMenuProvider: ConversationOptionsMenu.Provider
-  private lateinit var layoutManager: SmoothScrollingLinearLayoutManager
+  private lateinit var layoutManager: LinearLayoutManager
   private lateinit var markReadHelper: MarkReadHelper
   private lateinit var giphyMp4ProjectionRecycler: GiphyMp4ProjectionRecycler
   private lateinit var addToContactsLauncher: ActivityResultLauncher<Intent>
   private lateinit var scrollToPositionDelegate: ScrollToPositionDelegate
-  private lateinit var adapter: ConversationAdapter
+  private lateinit var adapter: ConversationAdapterV2
   private lateinit var recyclerViewColorizer: RecyclerViewColorizer
 
   private var animationsAllowed = false
@@ -434,14 +439,12 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     binding.conversationItemRecycler.layoutManager = layoutManager
     binding.conversationItemRecycler.addOnScrollListener(ScrollListener())
 
-    adapter = ConversationAdapter(
-      requireContext(),
-      viewLifecycleOwner,
-      GlideApp.with(this),
-      Locale.getDefault(),
-      ConversationItemClickListener(),
-      args.wallpaper != null,
-      colorizer
+    adapter = ConversationAdapterV2(
+      lifecycleOwner = viewLifecycleOwner,
+      glideRequests = GlideApp.with(this),
+      clickListener = ConversationItemClickListener(),
+      hasWallpaper = args.wallpaper != null,
+      colorizer = colorizer
     )
 
     scrollToPositionDelegate = ScrollToPositionDelegate(
@@ -500,7 +503,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     return callback
   }
 
-  private fun toast(@StringRes toastTextId: Int, toastDuration: Int) {
+  private fun toast(@StringRes toastTextId: Int, toastDuration: Int = Toast.LENGTH_SHORT) {
     ThreadUtil.runOnMain {
       if (context != null) {
         Toast.makeText(context, toastTextId, toastDuration).show()
@@ -570,7 +573,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
       if (quote.isOriginalMissing) {
         Log.i(TAG, "onQuoteClicked: Original message is missing.")
-        toast(R.string.ConversationFragment_quoted_message_not_found, Toast.LENGTH_SHORT)
+        toast(R.string.ConversationFragment_quoted_message_not_found)
         return
       }
 
@@ -594,7 +597,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
           if (it >= 0) {
             moveToPosition(it)
           } else {
-            toast(R.string.ConversationFragment_quoted_message_no_longer_available, Toast.LENGTH_SHORT)
+            toast(R.string.ConversationFragment_quoted_message_no_longer_available)
           }
         }
     }
@@ -998,8 +1001,8 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   }
 
   private class LastSeenPositionUpdater(
-    val adapter: ConversationAdapter,
-    val layoutManager: SmoothScrollingLinearLayoutManager,
+    val adapter: ConversationAdapterV2,
+    val layoutManager: LinearLayoutManager,
     val viewModel: ConversationViewModel
   ) : DefaultLifecycleObserver {
     override fun onPause(owner: LifecycleOwner) {

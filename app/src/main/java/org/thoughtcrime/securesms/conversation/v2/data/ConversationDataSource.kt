@@ -1,3 +1,8 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.conversation.v2.data
 
 import android.content.Context
@@ -20,7 +25,18 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.whispersystems.signalservice.api.push.ServiceId
+
+private typealias ConversationElement = MappingModel<*>
+
+sealed interface ConversationElementKey {
+  companion object {
+    fun forMessage(id: Long): ConversationElementKey = MessageBackedKey(id)
+  }
+}
+
+private data class MessageBackedKey(val id: Long) : ConversationElementKey
 
 /**
  * ConversationDataSource for V2. Assumes that ThreadId is never -1L.
@@ -31,14 +47,14 @@ class ConversationDataSource(
   private val messageRequestData: ConversationData.MessageRequestData,
   private val showUniversalExpireTimerUpdate: Boolean,
   private var baseSize: Int
-) : PagedDataSource<MessageId, ConversationMessage> {
-
-  init {
-    check(threadId > 0)
-  }
+) : PagedDataSource<ConversationElementKey, ConversationElement> {
 
   companion object {
     private val TAG = Log.tag(ConversationDataSource::class.java)
+  }
+
+  init {
+    check(threadId > 0)
   }
 
   private val threadRecipient: Recipient by lazy {
@@ -69,7 +85,7 @@ class ConversationDataSource(
     return SignalDatabase.messages.getMessageCountForThread(threadId)
   }
 
-  override fun load(start: Int, length: Int, cancellationSignal: PagedDataSource.CancellationSignal): List<ConversationMessage> {
+  override fun load(start: Int, length: Int, cancellationSignal: PagedDataSource.CancellationSignal): List<ConversationElement> {
     val stopwatch = Stopwatch("load($start, $length), thread $threadId")
     var records: MutableList<MessageRecord> = ArrayList(length)
     val mentionHelper = MentionHelper()
@@ -146,15 +162,15 @@ class ConversationDataSource(
     referencedIds.forEach { Recipient.resolved(RecipientId.from(it)) }
     stopwatch.split("recipient-resolves")
 
-    val messages = records.map { m ->
+    val messages = records.map { record ->
       ConversationMessageFactory.createWithUnresolvedData(
         context,
-        m,
-        m.getDisplayBody(context),
-        mentionHelper.getMentions(m.id),
-        quotedHelper.isQuoted(m.id),
+        record,
+        record.getDisplayBody(context),
+        mentionHelper.getMentions(record.id),
+        quotedHelper.isQuoted(record.id),
         threadRecipient
-      )
+      ).toMappingModel()
     }
 
     stopwatch.split("conversion")
@@ -163,9 +179,14 @@ class ConversationDataSource(
     return messages
   }
 
-  override fun load(messageId: MessageId): ConversationMessage? {
-    val stopwatch = Stopwatch("load($messageId), thread $threadId")
-    var record = SignalDatabase.messages.getMessageRecordOrNull(messageId.id)
+  override fun load(key: ConversationElementKey): ConversationElement? {
+    if (key !is MessageBackedKey) {
+      Log.w(TAG, "Loading non-message related id $key")
+      return null
+    }
+
+    val stopwatch = Stopwatch("load($key), thread $threadId")
+    var record = SignalDatabase.messages.getMessageRecordOrNull(key.id)
 
     if ((record as? MediaMmsMessageRecord)?.parentStoryId?.isGroupReply() == true) {
       return null
@@ -182,17 +203,17 @@ class ConversationDataSource(
       if (record == null) {
         return null
       } else {
-        val mentions = SignalDatabase.mentions.getMentionsForMessage(messageId.id)
+        val mentions = SignalDatabase.mentions.getMentionsForMessage(key.id)
         stopwatch.split("mentions")
 
         val isQuoted = SignalDatabase.messages.isQuoted(record)
         stopwatch.split("is-quoted")
 
-        val reactions = SignalDatabase.reactions.getReactions(messageId)
+        val reactions = SignalDatabase.reactions.getReactions(MessageId(key.id))
         record = ReactionHelper.recordWithReactions(record, reactions)
         stopwatch.split("reactions")
 
-        val attachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId.id)
+        val attachments = SignalDatabase.attachments.getAttachmentsForMessage(key.id)
         if (attachments.size > 0) {
           record = (record as MediaMmsMessageRecord).withAttachments(context, attachments)
         }
@@ -218,14 +239,35 @@ class ConversationDataSource(
           mentions,
           isQuoted,
           threadRecipient
-        )
+        ).toMappingModel()
       }
     } finally {
       stopwatch.stop(TAG)
     }
   }
 
-  override fun getKey(conversationMessage: ConversationMessage): MessageId {
-    return MessageId(conversationMessage.messageRecord.id)
+  override fun getKey(conversationMessage: ConversationElement): ConversationElementKey {
+    return when (conversationMessage) {
+      is ConversationMessageElement -> MessageBackedKey(conversationMessage.conversationMessage.messageRecord.id)
+      else -> throw AssertionError()
+    }
+  }
+
+  private fun ConversationMessage.toMappingModel(): MappingModel<*> {
+    return if (messageRecord.isUpdate) {
+      ConversationUpdate(this)
+    } else if (messageRecord.isOutgoing) {
+      if (this.isTextOnly(context)) {
+        OutgoingTextOnly(this)
+      } else {
+        OutgoingMedia(this)
+      }
+    } else {
+      if (this.isTextOnly(context)) {
+        IncomingTextOnly(this)
+      } else {
+        IncomingMedia(this)
+      }
+    }
   }
 }

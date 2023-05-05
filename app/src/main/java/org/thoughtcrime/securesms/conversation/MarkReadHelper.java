@@ -1,3 +1,8 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
@@ -5,12 +10,12 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
@@ -72,8 +77,8 @@ public class MarkReadHelper {
    * @return A Present(Long) if there's a timestamp to proceed with, or Empty if this request should be ignored.
    */
   @SuppressWarnings("resource")
-  public static @NonNull Optional<Long> getLatestTimestamp(@NonNull ConversationAdapter conversationAdapter,
-                                                           @NonNull SmoothScrollingLinearLayoutManager layoutManager)
+  public static @NonNull Optional<Long> getLatestTimestamp(@NonNull ConversationAdapterBridge conversationAdapter,
+                                                           @NonNull LinearLayoutManager layoutManager)
   {
     if (conversationAdapter.hasNoConversationMessages()) {
       return Optional.empty();
@@ -84,9 +89,9 @@ public class MarkReadHelper {
       return Optional.empty();
     }
 
-    ConversationMessage item = conversationAdapter.getItem(position);
+    ConversationMessage item = conversationAdapter.getConversationMessage(position);
     if (item == null) {
-      item = conversationAdapter.getItem(position + 1);
+      item = conversationAdapter.getConversationMessage(position + 1);
     }
 
     if (item != null) {

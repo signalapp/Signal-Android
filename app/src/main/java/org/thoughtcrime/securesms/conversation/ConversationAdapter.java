@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.colors.Colorizable;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
+import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
@@ -78,7 +79,8 @@ import java.util.Set;
  */
 public class ConversationAdapter
     extends ListAdapter<ConversationMessage, RecyclerView.ViewHolder>
-    implements StickyHeaderDecoration.StickyHeaderAdapter<ConversationAdapter.StickyHeaderViewHolder>
+    implements StickyHeaderDecoration.StickyHeaderAdapter<ConversationAdapter.StickyHeaderViewHolder>,
+               ConversationAdapterBridge
 {
 
   private static final String TAG = Log.tag(ConversationAdapter.class);
@@ -380,6 +382,10 @@ public class ConversationAdapter
     }
   }
 
+  public @Nullable ConversationMessage getConversationMessage(int position) {
+    return getItem(position);
+  }
+
   public @Nullable ConversationMessage getItem(int position) {
     position = isTypingViewEnabled() ? position - 1 : position;
 
@@ -453,7 +459,7 @@ public class ConversationAdapter
     }
   }
 
-  boolean hasNoConversationMessages() {
+  public boolean hasNoConversationMessages() {
     return super.getItemCount() == 0;
   }
 
@@ -822,37 +828,6 @@ public class ConversationAdapter
   private static class PlaceholderViewHolder extends RecyclerView.ViewHolder {
     PlaceholderViewHolder(@NonNull View itemView) {
       super(itemView);
-    }
-  }
-
-  public static class PulseRequest {
-    private final int     position;
-    private final boolean isOutgoing;
-
-    PulseRequest(int position, boolean isOutgoing) {
-      this.position   = position;
-      this.isOutgoing = isOutgoing;
-    }
-
-    public int getPosition() {
-      return position;
-    }
-
-    public boolean isOutgoing() {
-      return isOutgoing;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      final PulseRequest that = (PulseRequest) o;
-      return position == that.position;
-    }
-
-    @Override
-    public int hashCode() {
-      return Objects.hash(position);
     }
   }
 

@@ -1,3 +1,8 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.conversation.v2
 
 import androidx.lifecycle.ViewModel
@@ -17,8 +22,8 @@ import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.conversation.ConversationIntents.Args
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
+import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
 import org.thoughtcrime.securesms.database.DatabaseObserver
-import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -57,7 +62,7 @@ class ConversationViewModel(
     .onBackpressureBuffer()
     .distinct()
 
-  val pagingController = ProxyPagingController<MessageId>()
+  val pagingController = ProxyPagingController<ConversationElementKey>()
 
   val nameColorsMap: Observable<Map<RecipientId, NameColor>> = _recipient.flatMap { repository.getNameColorsMap(it, groupAuthorNameColorHelper) }
 
@@ -84,10 +89,10 @@ class ConversationViewModel(
       Observable.create<Unit> { emitter ->
         val controller = threadState.items.controller
         val messageUpdateObserver = DatabaseObserver.MessageObserver {
-          controller.onDataItemChanged(it)
+          controller.onDataItemChanged(ConversationElementKey.forMessage(it.id))
         }
         val messageInsertObserver = DatabaseObserver.MessageObserver {
-          controller.onDataItemInserted(it, 0)
+          controller.onDataItemInserted(ConversationElementKey.forMessage(it.id), 0)
         }
         val conversationObserver = DatabaseObserver.Observer {
           controller.onDataInvalidated()
