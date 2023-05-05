@@ -29,12 +29,14 @@ import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsActivity;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.stories.StoryViewerArgs;
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 
@@ -54,16 +56,17 @@ final class RecipientDialogViewModel extends ViewModel {
   private final MutableLiveData<Boolean>        adminActionBusy;
   private final MutableLiveData<StoryViewState> storyViewState;
   private final CompositeDisposable             disposables;
-
+  private final boolean                         isDeprecatedOrUnregistered;
   private RecipientDialogViewModel(@NonNull Context context,
                                    @NonNull RecipientDialogRepository recipientDialogRepository)
   {
-    this.context                   = context;
-    this.recipientDialogRepository = recipientDialogRepository;
-    this.identity                  = new MutableLiveData<>();
-    this.adminActionBusy           = new MutableLiveData<>(false);
-    this.storyViewState            = new MutableLiveData<>();
-    this.disposables               = new CompositeDisposable();
+    this.context                    = context;
+    this.recipientDialogRepository  = recipientDialogRepository;
+    this.identity                   = new MutableLiveData<>();
+    this.adminActionBusy            = new MutableLiveData<>(false);
+    this.storyViewState             = new MutableLiveData<>();
+    this.disposables                = new CompositeDisposable();
+    this.isDeprecatedOrUnregistered = SignalStore.misc().isClientDeprecated() || TextSecurePreferences.isUnauthorizedReceived(context);
 
     boolean recipientIsSelf = recipientDialogRepository.getRecipientId().equals(Recipient.self().getId());
 
@@ -111,6 +114,10 @@ final class RecipientDialogViewModel extends ViewModel {
   @Override protected void onCleared() {
     super.onCleared();
     disposables.clear();
+  }
+
+  boolean isDeprecatedOrUnregistered() {
+    return isDeprecatedOrUnregistered;
   }
 
   LiveData<StoryViewState> getStoryViewState() {

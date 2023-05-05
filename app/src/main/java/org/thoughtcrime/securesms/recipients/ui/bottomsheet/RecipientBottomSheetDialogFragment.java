@@ -49,6 +49,8 @@ import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import kotlin.Unit;
@@ -86,6 +88,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private View                     interactionsContainer;
   private BadgeImageView           badgeImageView;
   private Callback                 callback;
+
+  private ButtonStripPreference.ViewHolder buttonStripViewHolder;
 
   public static BottomSheetDialogFragment create(@NonNull RecipientId recipientId,
                                                  @Nullable GroupId groupId)
@@ -135,6 +139,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     interactionsContainer  = view.findViewById(R.id.interactions_container);
     badgeImageView         = view.findViewById(R.id.rbs_badge);
 
+    buttonStripViewHolder = new ButtonStripPreference.ViewHolder(buttonStrip);
     return view;
   }
 
@@ -245,6 +250,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       ButtonStripPreference.Model buttonStripModel = new ButtonStripPreference.Model(
           buttonStripState,
           DSLSettingsIcon.from(ContextUtil.requireDrawable(requireContext(), R.drawable.selectable_recipient_bottom_sheet_icon_button)),
+          !viewModel.isDeprecatedOrUnregistered(),
           () -> Unit.INSTANCE,
           () -> {
             dismiss();
@@ -267,7 +273,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
           () -> Unit.INSTANCE
       );
 
-      new ButtonStripPreference.ViewHolder(buttonStrip).bind(buttonStripModel);
+      buttonStripViewHolder.bind(buttonStripModel);
 
       if (recipient.isReleaseNotes()) {
         buttonStrip.setVisibility(View.GONE);
@@ -342,12 +348,21 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     viewModel.getAdminActionBusy().observe(getViewLifecycleOwner(), busy -> {
       adminActionBusy.setVisibility(busy ? View.VISIBLE : View.GONE);
 
-      makeGroupAdminButton.setEnabled(!busy);
-      removeAdminButton.setEnabled(!busy);
-      removeFromGroupButton.setEnabled(!busy);
+      boolean userLoggedOut = viewModel.isDeprecatedOrUnregistered();
+      makeGroupAdminButton.setEnabled(!busy && !userLoggedOut);
+      removeAdminButton.setEnabled(!busy && !userLoggedOut);
+      removeFromGroupButton.setEnabled(!busy && !userLoggedOut);
     });
 
     callback = getParentFragment() != null && getParentFragment() instanceof Callback ? (Callback) getParentFragment() : null;
+
+    if (viewModel.isDeprecatedOrUnregistered()) {
+      List<TextView> viewsToDisable = Arrays.asList(blockButton, unblockButton, removeFromGroupButton, makeGroupAdminButton, removeAdminButton, addToGroupButton, viewSafetyNumberButton);
+      for (TextView view : viewsToDisable) {
+        view.setEnabled(false);
+        view.setAlpha(0.5f);
+      }
+    }
   }
 
   @Override

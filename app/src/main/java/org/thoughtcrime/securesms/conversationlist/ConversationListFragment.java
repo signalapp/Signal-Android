@@ -158,6 +158,7 @@ import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -803,6 +804,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       CdsPermanentErrorBottomSheet.show(getChildFragmentManager());
     } else if (reminderActionId == R.id.reminder_action_fix_username) {
       startActivity(ManageProfileActivity.getIntentForUsernameEdit(requireContext()));
+    } else if (reminderActionId == R.id.reminder_action_re_register) {
+      startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()));
     }
   }
 
@@ -1042,10 +1045,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     Context context = requireContext();
 
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
-      if (UnauthorizedReminder.isEligible(context)) {
-        return Optional.of(new UnauthorizedReminder(context));
-      } else if (ExpiredBuildReminder.isEligible()) {
+      if (ExpiredBuildReminder.isEligible()) {
         return Optional.of(new ExpiredBuildReminder(context));
+      } else if (UnauthorizedReminder.isEligible(context)) {
+        return Optional.of(new UnauthorizedReminder(context));
       } else if (ServiceOutageReminder.isEligible(context)) {
         ApplicationDependencies.getJobManager().add(new ServiceOutageDetectionJob());
         return Optional.of(new ServiceOutageReminder(context));

@@ -176,7 +176,7 @@ final class GroupManagerV1 {
 
     OutgoingMessage outgoingMessage = OutgoingMessage.groupUpdateMessage(groupRecipient,
                                                                          new MessageGroupContext(groupContext),
-                                                                         Collections.singletonList(avatarAttachment),
+                                                                         avatarAttachment != null ? Collections.singletonList(avatarAttachment) : Collections.emptyList(),
                                                                          System.currentTimeMillis(),
                                                                          0,
                                                                          false,

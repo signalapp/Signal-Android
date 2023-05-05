@@ -148,6 +148,13 @@
                 android:inflatedId="@+id/sms_export_view"
                 android:layout="@layout/conversation_activity_sms_export_stub" />
 
+            <ViewStub
+                android:id="@+id/logged_out_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inflatedId="@+id/logged_out_view"
+                android:layout="@layout/conversation_activity_logged_out_stub" />
+
             <TextView
                 android:id="@+id/space_left"
                 android:layout_width="fill_parent"

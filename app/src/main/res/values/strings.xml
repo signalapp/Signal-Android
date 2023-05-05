@@ -482,6 +482,10 @@
     <string name="ConversationFragment__cancel">Cancel</string>
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Blocked</string>
+    <!-- Action shown to allow a user to update their application because it has expired -->
+    <string name="ConversationFragment__update_build">Update Signal</string>
+    <!-- Action shown to allow a user to re-register as they are no longer registered -->
+    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Clear filter</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -2251,7 +2255,10 @@
 
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Device no longer registered</string>
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This is likely because you registered your phone number with Signal on a different device. Tap to re-register.</string>
+    <!-- Message shown in a reminder banner when the user's device is no longer registered -->
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <!-- Action in reminder banner that will take user to re-register -->
+    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">You have been logged out of Signal on this device.</string>
@@ -3580,6 +3587,23 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>
     <string name="Recipient_unknown">Unknown</string>
 
+    <!-- Option in settings that will take use to re-register if they are no longer registered -->
+    <string name="preferences_account_reregister">Re-register account</string>
+    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
+    <string name="preferences_account_update_signal">Update Signal</string>
+    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
+    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
+    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <!-- Confirmation action to proceed with application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <!-- Confirmation action to cancel application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <!-- Error message shown when we fail to delete the data for some unknown reason -->
+    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transfer or restore account</string>
     <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">If you have previously registered a Signal account, you can transfer or restore your account and messages</string>
@@ -4636,6 +4660,24 @@
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Couldn\'t add badge. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Please contact support.</string>
+
+    <!-- Title of dialog telling user they need to update signal as it expired -->
+    <string name="UpdateSignalExpiredDialog__title">Update Signal</string>
+    <!-- Message of dialog telling user they need to update signal as it expired -->
+    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <!-- Button text of expiration dialog, will take user to update the app -->
+    <string name="UpdateSignalExpiredDialog__update_action">Update</string>
+    <!-- Button text of expiration dialog to cancel the dialog.  -->
+    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel</string>
+
+    <!-- Title of dialog telling user they need to re-register signal -->
+    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
+    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <!-- Button text of re-registration dialog to re-register the device.  -->
+    <string name="ReregisterSignalDialog__reregister_action">Re-register</string>
+    <!-- Button text of re-registration dialog to cancel the dialog.  -->
+    <string name="ReregisterSignalDialog__cancel_action">Cancel</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost Badge Expired</string>

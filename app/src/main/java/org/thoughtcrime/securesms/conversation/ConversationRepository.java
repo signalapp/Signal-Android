@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -187,7 +188,9 @@ public class ConversationRepository {
                                           registeredState == RecipientTable.RegisteredState.REGISTERED && signalEnabled,
                                           Util.isDefaultSmsProvider(context),
                                           true,
-                                          hasUnexportedInsecureMessages);
+                                          hasUnexportedInsecureMessages,
+                                          SignalStore.misc().isClientDeprecated(),
+                                          TextSecurePreferences.isUnauthorizedReceived(context));
     }).subscribeOn(Schedulers.io());
   }
 

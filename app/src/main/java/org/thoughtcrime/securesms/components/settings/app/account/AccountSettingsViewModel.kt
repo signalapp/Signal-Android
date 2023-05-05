@@ -2,7 +2,9 @@ package org.thoughtcrime.securesms.components.settings.app.account
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class AccountSettingsViewModel : ViewModel() {
@@ -18,7 +20,9 @@ class AccountSettingsViewModel : ViewModel() {
     return AccountSettingsState(
       hasPin = SignalStore.kbsValues().hasPin() && !SignalStore.kbsValues().hasOptedOut(),
       pinRemindersEnabled = SignalStore.pinValues().arePinRemindersEnabled(),
-      registrationLockEnabled = SignalStore.kbsValues().isV2RegistrationLockEnabled
+      registrationLockEnabled = SignalStore.kbsValues().isV2RegistrationLockEnabled,
+      userUnregistered = TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication()),
+      clientDeprecated = SignalStore.misc().isClientDeprecated
     )
   }
 }

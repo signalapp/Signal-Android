@@ -10,7 +10,9 @@
     <color name="core_green">#4caf50</color>
     <color name="core_yellow">#ffd624</color>
     <color name="core_red">#f44336</color>
+    <color name="core_red_50">#80f44336</color>
     <color name="core_red_highlight">#ef5350</color>
+    <color name="core_red_highlight_50">#80ef5350</color>
     <color name="core_red_shade">#e51d0e</color>
 
     <color name="core_white">#ffffff</color>

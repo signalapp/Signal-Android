@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.payments.backup.RecoveryPhraseStates;
 import org.thoughtcrime.securesms.payments.backup.confirm.PaymentsRecoveryPhraseConfirmFragment;
 import org.thoughtcrime.securesms.payments.preferences.model.InfoCard;
 import org.thoughtcrime.securesms.payments.preferences.model.PaymentItem;
+import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
@@ -261,6 +262,8 @@ public class PaymentsHomeFragment extends LoggingFragment {
         reminderView.get().setOnActionClickListener(actionId -> {
           if (actionId == R.id.reminder_action_update_now) {
             PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
+          } else if (actionId == R.id.reminder_action_re_register) {
+            startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()));
           }
         });
       } else {

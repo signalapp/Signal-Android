@@ -399,6 +399,7 @@ public class ConversationParentFragment extends Fragment
   private   ConversationFragment         fragment;
   private   Button                       unblockButton;
   private   Stub<View>                   smsExportStub;
+  private   Stub<View>                   loggedOutStub;
   private   Button                       registerButton;
   private   InputAwareLayout             container;
   protected Stub<ReminderView>           reminderView;
@@ -1728,10 +1729,11 @@ public class ConversationParentFragment extends Fragment
     Integer            actionableRequestingMembers = groupViewModel.getActionableRequestingMembers().getValue();
     List<RecipientId>  gv1MigrationSuggestions     = groupViewModel.getGroupV1MigrationSuggestions().getValue();
 
-    if (UnauthorizedReminder.isEligible(context)) {
-      reminderView.get().showReminder(new UnauthorizedReminder(context));
-    } else if (ExpiredBuildReminder.isEligible()) {
+    if (ExpiredBuildReminder.isEligible()) {
       reminderView.get().showReminder(new ExpiredBuildReminder(context));
+      reminderView.get().setOnActionClickListener(this::handleReminderAction);
+    } else if (UnauthorizedReminder.isEligible(context)) {
+      reminderView.get().showReminder(new UnauthorizedReminder(context));
       reminderView.get().setOnActionClickListener(this::handleReminderAction);
     } else if (ServiceOutageReminder.isEligible(context)) {
       ApplicationDependencies.getJobManager().add(new ServiceOutageDetectionJob());
@@ -1788,6 +1790,8 @@ public class ConversationParentFragment extends Fragment
       InsightsLauncher.showInsightsDashboard(getChildFragmentManager());
     } else if (reminderActionId == R.id.reminder_action_update_now) {
       PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
+    } else if (reminderActionId == R.id.reminder_action_re_register) {
+      startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()));
     } else {
       throw new IllegalArgumentException("Unknown ID: " + reminderActionId);
     }
@@ -1872,6 +1876,7 @@ public class ConversationParentFragment extends Fragment
     attachmentKeyboardStub   = ViewUtil.findStubById(view, R.id.attachment_keyboard_stub);
     unblockButton            = view.findViewById(R.id.unblock_button);
     smsExportStub            = ViewUtil.findStubById(view, R.id.sms_export_stub);
+    loggedOutStub            = ViewUtil.findStubById(view, R.id.logged_out_stub);
     registerButton           = view.findViewById(R.id.register_button);
     container                = view.findViewById(R.id.layout_container);
     reminderView             = ViewUtil.findStubById(view, R.id.reminder_stub);
@@ -2608,16 +2613,46 @@ public class ConversationParentFragment extends Fragment
       return;
     }
 
-    if (!conversationSecurityInfo.isPushAvailable() && isPushGroupConversation()) {
+    if (conversationSecurityInfo.isClientExpired() || conversationSecurityInfo.isUnauthorized()) {
       unblockButton.setVisibility(View.GONE);
       inputPanel.setHideForBlockedState(true);
       smsExportStub.setVisibility(View.GONE);
+      registerButton.setVisibility(View.GONE);
+      loggedOutStub.setVisibility(View.VISIBLE);
+      messageRequestBottomView.setVisibility(View.GONE);
+
+      int color = ContextCompat.getColor(requireContext(), recipient.hasWallpaper() ? R.color.wallpaper_bubble_color : R.color.signal_colorBackground);
+      loggedOutStub.get().setBackgroundColor(color);
+      WindowUtil.setNavigationBarColor(requireActivity(), color);
+
+      TextView       message      = loggedOutStub.get().findViewById(R.id.logged_out_message);
+      MaterialButton actionButton = loggedOutStub.get().findViewById(R.id.logged_out_button);
+
+      if (conversationSecurityInfo.isClientExpired()) {
+        message.setText(R.string.ExpiredBuildReminder_this_version_of_signal_has_expired);
+        actionButton.setText(R.string.ConversationFragment__update_build);
+        actionButton.setOnClickListener(v -> {
+          PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
+        });
+      } else if (conversationSecurityInfo.isUnauthorized()) {
+        message.setText(R.string.UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device);
+        actionButton.setText(R.string.ConversationFragment__reregister_signal);
+        actionButton.setOnClickListener(v -> {
+          startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()));
+        });
+      }
+    } else if (!conversationSecurityInfo.isPushAvailable() && isPushGroupConversation()) {
+      unblockButton.setVisibility(View.GONE);
+      inputPanel.setHideForBlockedState(true);
+      smsExportStub.setVisibility(View.GONE);
+      loggedOutStub.setVisibility(View.GONE);
       registerButton.setVisibility(View.VISIBLE);
     } else if (!conversationSecurityInfo.isPushAvailable() && !(SignalStore.misc().getSmsExportPhase().isSmsSupported() && conversationSecurityInfo.isDefaultSmsApplication()) && (recipient.hasSmsAddress() || recipient.isMmsGroup())) {
       unblockButton.setVisibility(View.GONE);
       inputPanel.setHideForBlockedState(true);
       smsExportStub.setVisibility(View.VISIBLE);
       registerButton.setVisibility(View.GONE);
+      loggedOutStub.setVisibility(View.GONE);
 
       int color = ContextCompat.getColor(requireContext(), recipient.hasWallpaper() ? R.color.wallpaper_bubble_color : R.color.signal_colorBackground);
       smsExportStub.get().setBackgroundColor(color);
