@@ -67,7 +67,7 @@
 
         let history = getQueryHistory();
         history.unshift(query);
-        history = history.slice(0, 10);
+        history = history.slice(0, 25);
 
         localStorage.setItem('query-history', JSON.stringify(history));
       }
