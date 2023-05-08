@@ -66,7 +66,7 @@ object MessageBitmaskColumnTransformer : ColumnTransformer {
     return columnName == "type" || columnName == "msg_box"
   }
 
-  override fun transform(tableName: String?, columnName: String, cursor: Cursor): String {
+  override fun transform(tableName: String?, columnName: String, cursor: Cursor): String? {
     val type = cursor.requireLong(columnName)
 
     val describe = """

@@ -93,3 +93,6 @@ table.device-info, table.device-info tr, table.device-info td {
   font-style: italic;
 }
 
+.null {
+  color: #666
+}

@@ -47,7 +47,7 @@
         {{#each queryResult.rows}}
           <tr>
             {{#each this}}
-              <td><pre>{{{this}}}</pre></td>
+              <td><pre>{{#if (eq this null)}} <em class="null">null</em> {{else}} {{{this}}} {{/if}}</pre></td>
             {{/each}}
           </tr>
         {{/each}}

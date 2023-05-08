@@ -16,7 +16,7 @@ object GV2UpdateTransformer : ColumnTransformer {
     return columnName == MessageTable.BODY && (tableName == null || tableName == MessageTable.TABLE_NAME)
   }
 
-  override fun transform(tableName: String?, columnName: String, cursor: Cursor): String {
+  override fun transform(tableName: String?, columnName: String, cursor: Cursor): String? {
     val type: Long = cursor.getMessageType()
 
     if (type == -1L) {
@@ -32,7 +32,7 @@ object GV2UpdateTransformer : ColumnTransformer {
 
       "${gv2ChangeDescription.spannable}<br><br>${decryptedGroupV2Context.change}"
     } else {
-      body ?: ""
+      body
     }
   }
 }

@@ -10,7 +10,7 @@ object IsStoryTransformer : ColumnTransformer {
     return columnName == MessageTable.STORY_TYPE && (tableName == null || tableName == MessageTable.TABLE_NAME)
   }
 
-  override fun transform(tableName: String?, columnName: String, cursor: Cursor): String {
+  override fun transform(tableName: String?, columnName: String, cursor: Cursor): String? {
     val storyType = fromCode(cursor.requireInt(MessageTable.STORY_TYPE))
     return "${cursor.requireInt(MessageTable.STORY_TYPE)}<br><br>$storyType"
   }
