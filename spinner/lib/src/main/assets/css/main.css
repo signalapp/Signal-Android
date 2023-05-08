@@ -20,6 +20,12 @@ th, td {
   padding: 8px;
 }
 
+th {
+  position: sticky;
+  top: 0;
+  background: #fff;
+}
+
 .query-input {
   width: 100%;
   height: 10rem;
