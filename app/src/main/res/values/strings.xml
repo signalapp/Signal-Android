@@ -4364,7 +4364,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Contacts app not found</string>
     <string name="ConversationSettingsFragment__start_video_call">Start video call</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Start audio call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Start voice call</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Story</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4439,7 +4439,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">Message</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Audio call</string>
+    <string name="NewConversationActivity__audio_call">Voice call</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Video call</string>
     <!-- Context menu item remove -->
@@ -5877,7 +5877,7 @@
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">Return to call</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Audio call</string>
+    <string name="CallContextMenu__audio_call">Voice call</string>
     <!-- Displayed as a context menu item to go to chat -->
     <string name="CallContextMenu__go_to_chat">Go to chat</string>
     <!-- Displayed as a context menu item to see call info -->
