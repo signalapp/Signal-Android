@@ -18,6 +18,8 @@ import org.thoughtcrime.securesms.database.model.PendingRetryReceiptModel;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * Manages the time-based creation of error messages for retries that are pending for messages we couldn't decrypt.
@@ -25,6 +27,8 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 public final class PendingRetryReceiptManager extends TimedEventManager<PendingRetryReceiptModel> {
 
   private static final String TAG = Log.tag(PendingRetryReceiptManager.class);
+
+  private static final long RETRY_RECEIPT_LIFESPAN = TimeUnit.HOURS.toMillis(1);
 
   private final PendingRetryReceiptCache pendingCache;
   private final MessageTable             messageDatabase;
@@ -55,11 +59,15 @@ public final class PendingRetryReceiptManager extends TimedEventManager<PendingR
   @WorkerThread
   @Override
   protected void executeEvent(@NonNull PendingRetryReceiptModel event) {
-    if (SignalDatabase.threads().containsId(event.getThreadId()) && SignalDatabase.recipients().containsId(event.getAuthor())) {
-      Log.w(TAG, "It's been " + (System.currentTimeMillis() - event.getReceivedTimestamp()) + " ms since this retry receipt was received. Showing an error.");
-      messageDatabase.insertBadDecryptMessage(event.getAuthor(), event.getAuthorDevice(), event.getSentTimestamp(), event.getReceivedTimestamp(), event.getThreadId());
+    if (SignalDatabase.messages().messageExists(event.getSentTimestamp(), event.getAuthor())) {
+      Log.w(TAG, "[" + event.getSentTimestamp() + "] We have since received the target message! No longer need to insert an error.");
+    } else if (!SignalDatabase.threads().containsId(event.getThreadId())) {
+      Log.w(TAG, "[" + event.getSentTimestamp() + "] Would normally show an error, but the thread has since been deleted! ThreadId: " + event.getThreadId());
+    } else if (!SignalDatabase.recipients().containsId(event.getAuthor())) {
+      Log.w(TAG, "[" + event.getSentTimestamp() + "] Would normally show an error, but the recipient has since been deleted! RecipientId: " + event.getAuthor());
     } else {
-      Log.w(TAG, "Would normally show an error, but the thread or recipient has since been deleted! ThreadId: " + event.getThreadId() + ", RecipientId: " + event.getAuthor());
+      Log.w(TAG, "[" + event.getSentTimestamp() + "] It's been " + (System.currentTimeMillis() - event.getReceivedTimestamp()) + " ms since this retry receipt was received. Showing an error.");
+      messageDatabase.insertBadDecryptMessage(event.getAuthor(), event.getAuthorDevice(), event.getSentTimestamp() - 1, event.getReceivedTimestamp(), event.getThreadId());
     }
     
     pendingCache.delete(event);
@@ -68,7 +76,7 @@ public final class PendingRetryReceiptManager extends TimedEventManager<PendingR
   @WorkerThread
   @Override
   protected long getDelayForEvent(@NonNull PendingRetryReceiptModel event) {
-    long expiresAt = event.getReceivedTimestamp() + FeatureFlags.retryReceiptLifespan();
+    long expiresAt = event.getReceivedTimestamp() + RETRY_RECEIPT_LIFESPAN;
     long timeLeft  = expiresAt - System.currentTimeMillis();
 
     return Math.max(0, timeLeft);
