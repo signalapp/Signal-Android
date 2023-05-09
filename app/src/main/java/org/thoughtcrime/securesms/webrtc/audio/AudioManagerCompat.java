@@ -122,7 +122,7 @@ public abstract class AudioManagerCompat {
   }
 
   @RequiresApi(31)
-  public boolean setCommunicationDevice(@Nullable AudioDeviceInfo device) {
+  public boolean setCommunicationDevice(@NonNull AudioDeviceInfo device) {
     return audioManager.setCommunicationDevice(device);
   }
 
