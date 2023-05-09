@@ -112,6 +112,11 @@ public class SendDeliveryReceiptJob extends BaseJob {
       return;
     }
 
+    if (!recipient.hasServiceId() && !recipient.hasE164()) {
+      Log.w(TAG, "No serviceId or e164!");
+      return;
+    }
+
     SignalServiceAddress        remoteAddress  = RecipientUtil.toSignalServiceAddress(context, recipient);
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.DELIVERY,
                                                                                  Collections.singletonList(messageSentTimestamp),

@@ -178,6 +178,11 @@ public class SendReadReceiptJob extends BaseJob {
       return;
     }
 
+    if (!recipient.hasServiceId() && !recipient.hasE164()) {
+      Log.w(TAG, "No serviceId or e164!");
+      return;
+    }
+
     SignalServiceMessageSender  messageSender  = ApplicationDependencies.getSignalServiceMessageSender();
     SignalServiceAddress        remoteAddress  = RecipientUtil.toSignalServiceAddress(context, recipient);
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.READ, messageSentTimestamps, timestamp);
