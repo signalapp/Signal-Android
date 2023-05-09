@@ -29,6 +29,11 @@ internal class AccountConsistencyMigrationJob(
       return
     }
 
+    if (!SignalStore.account().isRegistered || SignalStore.account().aci == null) {
+      Log.i(TAG, "Not yet registered, skipping.")
+      return
+    }
+
     ApplicationDependencies.getJobManager().add(AccountConsistencyWorkerJob())
   }
 

@@ -43,6 +43,11 @@ class AccountConsistencyWorkerJob private constructor(parameters: Parameters) : 
       return
     }
 
+    if (!SignalStore.account().isRegistered || SignalStore.account().aci == null) {
+      Log.i(TAG, "Not yet registered, skipping.")
+      return
+    }
+
     val profile: SignalServiceProfile = ProfileUtil.retrieveProfileSync(context, Recipient.self(), SignalServiceProfile.RequestType.PROFILE, false).profile
     val encodedPublicKey = Base64.encodeBytes(SignalStore.account().aciIdentityKey.publicKey.serialize())
 
