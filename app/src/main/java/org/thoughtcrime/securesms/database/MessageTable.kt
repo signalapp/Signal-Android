@@ -288,7 +288,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       "CREATE INDEX IF NOT EXISTS message_original_message_id_index ON $TABLE_NAME ($ORIGINAL_MESSAGE_ID);",
       "CREATE INDEX IF NOT EXISTS message_latest_revision_id_index ON $TABLE_NAME ($LATEST_REVISION_ID)",
       "CREATE INDEX IF NOT EXISTS message_from_recipient_id_index ON $TABLE_NAME ($FROM_RECIPIENT_ID)",
-      "CREATE INDEX IF NOT EXISTS message_to_recipient_id_index ON $TABLE_NAME ($TO_RECIPIENT_ID)"
+      "CREATE INDEX IF NOT EXISTS message_to_recipient_id_index ON $TABLE_NAME ($TO_RECIPIENT_ID)",
+      "CREATE UNIQUE INDEX IF NOT EXISTS message_unique_sent_from_thread ON $TABLE_NAME ($DATE_SENT, $FROM_RECIPIENT_ID, $THREAD_ID)"
     )
 
     private val MMS_PROJECTION_BASE = arrayOf(
@@ -1083,31 +1084,30 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       values.putNull(ORIGINAL_MESSAGE_ID)
     }
 
-    return if (message.isPush && isDuplicate(message, threadId)) {
-      Log.w(TAG, "Duplicate message (" + message.sentTimestampMillis + "), ignoring...")
-      Optional.empty()
-    } else {
-      val messageId = writableDatabase.insert(TABLE_NAME, null, values)
-
-      if (unread && editedMessage == null) {
-        threads.incrementUnread(threadId, 1, 0)
-      }
-
-      if (!silent) {
-        ThreadUpdateJob.enqueue(threadId)
-        TrimThreadJob.enqueueAsync(threadId)
-      }
-
-      if (message.subscriptionId != -1) {
-        recipients.setDefaultSubscriptionId(recipient.id, message.subscriptionId)
-      }
-
-      if (notifyObservers) {
-        notifyConversationListeners(threadId)
-      }
-
-      Optional.of(InsertResult(messageId, threadId))
+    val messageId = writableDatabase.insert(TABLE_NAME, null, values)
+    if (messageId < 0) {
+      Log.w(TAG, "Failed to insert text message (${message.sentTimestampMillis}, ${message.authorId}, ThreadId::$threadId)! Likely a duplicate.")
+      return Optional.empty()
     }
+
+    if (unread && editedMessage == null) {
+      threads.incrementUnread(threadId, 1, 0)
+    }
+
+    if (!silent) {
+      ThreadUpdateJob.enqueue(threadId)
+      TrimThreadJob.enqueueAsync(threadId)
+    }
+
+    if (message.subscriptionId != -1) {
+      recipients.setDefaultSubscriptionId(recipient.id, message.subscriptionId)
+    }
+
+    if (notifyObservers) {
+      notifyConversationListeners(threadId)
+    }
+
+    return Optional.of(InsertResult(messageId, threadId))
   }
 
   fun insertEditMessageInbox(threadId: Long, mediaMessage: IncomingMediaMessage, targetMessage: MediaMmsMessageRecord): Optional<InsertResult> {
@@ -2506,11 +2506,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       candidateThreadId
     }
 
-    if (retrieved.isPushMessage && isDuplicate(retrieved, threadId)) {
-      Log.w(TAG, "Ignoring duplicate media message (" + retrieved.sentTimeMillis + ")")
-      return Optional.empty()
-    }
-
     val silentUpdate = mailbox and MessageTypes.GROUP_UPDATE_BIT > 0
 
     val contentValues = contentValuesOf(
@@ -2573,6 +2568,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       updateThread = retrieved.storyType === StoryType.NONE,
       unarchive = true
     )
+
+    if (messageId < 0) {
+      Log.w(TAG, "Failed to insert media message (${retrieved.sentTimeMillis}, ${retrieved.from}, ThreadId::$threadId})! Likely a duplicate.")
+      return Optional.empty()
+    }
 
     if (editedMessage != null) {
       if (retrieved.quote != null && editedMessage.quote != null) {
@@ -3145,6 +3145,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     val messageId = writableDatabase.withinTransaction { db ->
       val messageId = db.insert(TABLE_NAME, null, contentValues)
+      if (messageId < 0) {
+        Log.w(TAG, "Tried to insert media message but failed. Assuming duplicate.")
+        return@withinTransaction -1
+      }
 
       SignalDatabase.mentions.insert(threadId, messageId, mentions)
 
@@ -3177,6 +3181,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
 
       messageId
+    }
+
+    if (messageId < 0) {
+      return messageId
     }
 
     insertListener?.onComplete()
@@ -3389,20 +3397,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     return linkPreviewJson.toString()
-  }
-
-  private fun isDuplicate(message: IncomingMediaMessage, threadId: Long): Boolean {
-    return readableDatabase
-      .exists(TABLE_NAME)
-      .where("$DATE_SENT = ? AND $FROM_RECIPIENT_ID = ? AND $THREAD_ID = ?", message.sentTimeMillis, message.from!!.serialize(), threadId)
-      .run()
-  }
-
-  private fun isDuplicate(message: IncomingTextMessage, threadId: Long): Boolean {
-    return readableDatabase
-      .exists(TABLE_NAME)
-      .where("$DATE_SENT = ? AND $FROM_RECIPIENT_ID = ? AND $THREAD_ID = ?", message.sentTimestampMillis, message.authorId.serialize(), threadId)
-      .run()
   }
 
   fun isSent(messageId: Long): Boolean {
