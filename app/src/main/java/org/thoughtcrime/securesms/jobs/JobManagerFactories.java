@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.migrations.PinOptOutMigration;
 import org.thoughtcrime.securesms.migrations.PinReminderMigrationJob;
 import org.thoughtcrime.securesms.migrations.PniAccountInitializationMigrationJob;
 import org.thoughtcrime.securesms.migrations.PniMigrationJob;
+import org.thoughtcrime.securesms.migrations.PreKeysSyncMigrationJob;
 import org.thoughtcrime.securesms.migrations.ProfileMigrationJob;
 import org.thoughtcrime.securesms.migrations.ProfileSharingUpdateMigrationJob;
 import org.thoughtcrime.securesms.migrations.RebuildMessageSearchIndexMigrationJob;
@@ -239,6 +240,7 @@ public final class JobManagerFactories {
       put(PinReminderMigrationJob.KEY,               new PinReminderMigrationJob.Factory());
       put(PniAccountInitializationMigrationJob.KEY,  new PniAccountInitializationMigrationJob.Factory());
       put(PniMigrationJob.KEY,                       new PniMigrationJob.Factory());
+      put(PreKeysSyncMigrationJob.KEY,               new PreKeysSyncMigrationJob.Factory());
       put(ProfileMigrationJob.KEY,                   new ProfileMigrationJob.Factory());
       put(ProfileSharingUpdateMigrationJob.KEY,      new ProfileSharingUpdateMigrationJob.Factory());
       put(RebuildMessageSearchIndexMigrationJob.KEY, new RebuildMessageSearchIndexMigrationJob.Factory());

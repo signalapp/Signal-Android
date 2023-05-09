@@ -47,11 +47,14 @@ public final class MiscellaneousValues extends SignalStoreValues {
     return Collections.singletonList(SMS_PHASE_1_START_MS);
   }
 
-  public long getLastPrekeyRefreshTime() {
+  /**
+   * Represents the last time a _full_ prekey refreshed finished. That means signed+one-time prekeys for both ACI and PNI.
+   */
+  public long getLastFullPrekeyRefreshTime() {
     return getLong(LAST_PREKEY_REFRESH_TIME, 0);
   }
 
-  public void setLastPrekeyRefreshTime(long time) {
+  public void setLastFullPrekeyRefreshTime(long time) {
     putLong(LAST_PREKEY_REFRESH_TIME, time);
   }
 
