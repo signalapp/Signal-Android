@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.webrtc.CallBandwidthMode;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 @SuppressWarnings("deprecation")
 public final class SettingsValues extends SignalStoreValues {
@@ -72,6 +73,9 @@ public final class SettingsValues extends SignalStoreValues {
   private static final String KEEP_MUTED_CHATS_ARCHIVED               = "settings.keepMutedChatsArchived";
   private static final String USE_COMPACT_NAVIGATION_BAR              = "settings.useCompactNavigationBar";
 
+  public static final int BACKUP_DEFAULT_HOUR   = 2;
+  public static final int BACKUP_DEFAULT_MINUTE = 0;
+
   private final SingleLiveEvent<String> onConfigurationSettingChanged = new SingleLiveEvent<>();
 
   SettingsValues(@NonNull KeyValueStore store) {
@@ -80,10 +84,15 @@ public final class SettingsValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
-    if (!getStore().containsKey(LINK_PREVIEWS)) {
-      getStore().beginWrite()
-                .putBoolean(LINK_PREVIEWS, true)
-                .apply();
+    final KeyValueStore store = getStore();
+    if (!store.containsKey(LINK_PREVIEWS)) {
+      store.beginWrite()
+           .putBoolean(LINK_PREVIEWS, true)
+           .apply();
+    }
+    if (!store.containsKey(BACKUPS_SCHEDULE_HOUR)) {
+      // Initialize backup time to a 5min interval between 1-5am
+      setBackupSchedule(new Random().nextInt(5) + 1, new Random().nextInt(12) * 5);
     }
   }
 
@@ -267,11 +276,11 @@ public final class SettingsValues extends SignalStoreValues {
   }
 
   public int getBackupHour() {
-    return getInteger(BACKUPS_SCHEDULE_HOUR, 2);
+    return getInteger(BACKUPS_SCHEDULE_HOUR, BACKUP_DEFAULT_HOUR);
   }
 
   public int getBackupMinute() {
-    return getInteger(BACKUPS_SCHEDULE_MINUTE, 0);
+    return getInteger(BACKUPS_SCHEDULE_MINUTE, BACKUP_DEFAULT_MINUTE);
   }
 
   public void setBackupSchedule(int hour, int minute) {
@@ -449,7 +458,7 @@ public final class SettingsValues extends SignalStoreValues {
   }
 
   public void setKeepMutedChatsArchived(boolean enabled) {
-   putBoolean(KEEP_MUTED_CHATS_ARCHIVED, enabled);
+    putBoolean(KEEP_MUTED_CHATS_ARCHIVED, enabled);
   }
 
   public boolean shouldKeepMutedChatsArchived() {
