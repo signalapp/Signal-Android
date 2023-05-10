@@ -1827,6 +1827,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">ഈ നമ്പർ രജിസ്റ്റർ ചെയ്യാൻ നിങ്ങൾ നിരവധി ശ്രമങ്ങൾ നടത്തി. %1$s സമയത്തിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">സേവനത്തിലേക്ക് കണക്റ്റുചെയ്യാനായില്ല. നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
+    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
     <string name="RegistrationActivity_non_standard_number_format">അംഗീകൃതമല്ലാത്ത നമ്പര്‍ രൂപം</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">നിങ്ങൾ നൽകിയ നമ്പർ (%1$s) അംഗീകൃതമല്ലാത്ത നമ്പര്‍ രൂപത്തില്‍ ആണെന്ന് തോന്നുന്നു.\n\nനിങ്ങൾ ഉദ്ദേശിച്ചത് %2$s എന്നാണോ?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal ആൻഡ്രോയിഡ് - ഫോണ്‍ നമ്പര്‍ രുപം</string>

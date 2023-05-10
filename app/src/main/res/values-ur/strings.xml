@@ -1827,6 +1827,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">آپ اس نمبر کو رجسٹر کرنے کے لیے بہت مرتبہ کوششیں کر چکے ہیں۔ براہ کرم %1$s میں دوبارہ کوشش کریں۔</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">سروس سے رابطے کے قابل نہیں۔ براہ کرم نیٹ ورک کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
+    <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
+    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
     <string name="RegistrationActivity_non_standard_number_format">غیر معیاری ہندسوں کی ترتیب</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">آپ کا درج کردہ نمبر (%1$s) غیر معیاری فارمیٹ لگ رہا ہے۔\n\nکیا آپ کا مطلب %2$s ہے؟</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - فون نمبر کا فارمیٹ</string>

@@ -1827,6 +1827,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">ಈ ಸಂಖ್ಯೆಯನ್ನು ನೋಂದಾಯಿಸಲು ನೀವು ತುಂಬಾ ಪ್ರಯತ್ನಗಳನ್ನು ಮಾಡಿದ್ದೀರಿ. ದಯವಿಟ್ಟು %1$s ನಲ್ಲಿ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ಸೇವೆಗೆ ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
+    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
     <string name="RegistrationActivity_non_standard_number_format">ಪ್ರಮಾಣೀಕೃತವಲ್ಲದ ಸಂಖ್ಯಾ ಸ್ವರೂಪ</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">ನೀವು ನಮೂದಿಸಿದ ಸಂಖ್ಯೆ (%1$s) ಪ್ರಮಾಣೀಕೃತವಲ್ಲದ ಸ್ವರೂಪದಲ್ಲಿ ಕಾಣಿಸುತ್ತಿದೆ.\n\nನೀವು ಅಂದುಕೊಂಡಿದ್ದು ಇದೇನಾ %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal ಆಂಡ್ರಾಯ್ಡ್ - ಫೋನ್ ಸಂಖ್ಯೆ ಸ್ವರೂಪ</string>

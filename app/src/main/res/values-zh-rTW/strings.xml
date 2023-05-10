@@ -1763,6 +1763,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">你已多次嘗試註冊此電話號碼。請在 %1$s後再試。</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">無法連接服務。請檢查網路連線並再試一次。</string>
+    <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
+    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
     <string name="RegistrationActivity_non_standard_number_format">非標準數字格式</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">你輸入的數字 (%1$s) 似乎是非標準格式。\n\n你的意思是 %2$s嗎 ?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - 電話號碼格式</string>

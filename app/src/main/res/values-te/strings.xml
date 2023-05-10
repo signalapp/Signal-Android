@@ -1827,6 +1827,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">ఈ నంబర్‌ను నమోదు చేయడానికి మీరు చాలా ఎక్కువ ప్రయత్నాలు చేశారు. దయచేసి %1$sలో మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">కనెక్ట్ చేయడం సాధ్యం కాలేదు. దయచేసి నెట్వర్క్ కనెక్షన్ను తనిఖీ చేసి మళ్ళీ ప్రయత్నించండి.</string>
+    <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
+    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
     <string name="RegistrationActivity_non_standard_number_format">నాన్-స్టాండర్డ్ నెంబర్ ఫార్మెట్</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">మీరు నమోదు చేసిన నెంబరు (%1$s) నాన్-స్టాండర్డ్ ఫార్మెట్‌లో కనిపిస్తోంది.\n\n%2$s అని మీ అర్ధమా?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - ఫోన్ నెంబర్ ఫార్మెట్</string>

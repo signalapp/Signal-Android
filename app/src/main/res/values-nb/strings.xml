@@ -1827,6 +1827,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Du har gjort for mange forsøk på å registrere dette nummeret. Prøv igjen om %1$s minutter.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Klarte ikke å koble til tjenesten. Kontroller at du har en stabil nettilkobling og prøv på nytt.</string>
+    <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
+    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
     <string name="RegistrationActivity_non_standard_number_format">Ikke-standard tallformat</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Tallet du skrev inn (%1$s), ser ut til å være skrevet i et ikke-standard tallformat.\n\nMente du %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android – format for telefonnummer</string>

@@ -1891,6 +1891,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Ai făcut prea multe încercări pentru înregistrarea acestui număr. Încearcă din nou în %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nu s-a putut realiza conexiunea la serviciu. Te rugăm verifică conexiunea la rețea și încearcă din nou.</string>
+    <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
+    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
     <string name="RegistrationActivity_non_standard_number_format">Număr cu format non-standard</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Numărul pe care l-ai introdus (%1$s) pare a fi în format non-standard.\n\nAi vrut să scrii %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Formatul Numărului de Telefon</string>

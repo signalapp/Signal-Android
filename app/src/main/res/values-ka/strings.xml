@@ -1827,6 +1827,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">ამ ნომრის დარეგისტრირება ზედმეტად ბევრჯერ სცადე. გთხოვთ, %1$s-ში თავიდან სცადო.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">სერვისთან დაკავშირება შეუძლებელია. გთხოვთ, შეამოწმოთ ქსელის კავშირი და ხელახლა სცადოთ.</string>
+    <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
+    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
     <string name="RegistrationActivity_non_standard_number_format">ნომრის არასტანდარტული ფორმატი</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">შენ მიერ შეყვანილი ნომერი (%1$s), როგორც ჩანს, არასტანდარტული ფორმატისაა. %2$s-ს გულისხმობდი?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android-ი - ტელეფონის ნომრის ფორმატი</string>

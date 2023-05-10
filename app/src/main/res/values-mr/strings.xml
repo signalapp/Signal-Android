@@ -1827,6 +1827,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">आपण या क्रमांकांची नोंदणी करण्यास असंख्य प्रयत्न केले आहेत. कृपया %1$s मध्ये पुन्हा प्रयत्न करा.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">सेवेसोबत कनेक्ट करण्यात अक्षम. कृपया नेटवर्क कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
+    <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
+    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
     <string name="RegistrationActivity_non_standard_number_format">अ-मानक क्रमांक स्वरूप</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">तुम्ही प्रविष्‍ट केलेला क्रमांक (%1$s) हा अ-मानक स्वरूपाचा असल्याचे दिसते. \n\nतुम्हाला %2$s म्हणायचे होते का?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - फोन नंबर स्वरूप</string>
