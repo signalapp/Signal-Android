@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
-import org.whispersystems.signalservice.internal.registrationpin.PinValidityChecker;
+import org.whispersystems.signalservice.api.kbs.PinValidityChecker;
 
 public final class CreateKbsPinViewModel extends ViewModel implements BaseKbsPinViewModel {
 

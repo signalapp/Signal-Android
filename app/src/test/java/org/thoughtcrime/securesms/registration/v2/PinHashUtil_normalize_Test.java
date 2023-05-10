@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.registration.v2;
 import org.junit.Test;
 import org.signal.core.util.StreamUtil;
 import org.thoughtcrime.securesms.registration.v2.testdata.PinSanitationVector;
-import org.whispersystems.signalservice.internal.registrationpin.PinHasher;
+import org.whispersystems.signalservice.api.kbs.PinHashUtil;
 import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
@@ -14,12 +14,12 @@ import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public final class PinHasher_normalize_Test {
+public final class PinHashUtil_normalize_Test {
 
   @Test
   public void vectors_normalize() throws IOException {
     for (PinSanitationVector vector : getKbsPinSanitationTestVectorList()) {
-      byte[] normalized = PinHasher.normalize(vector.getPin());
+      byte[] normalized = PinHashUtil.normalize(vector.getPin());
 
       if (!Arrays.equals(vector.getBytes(), normalized)) {
         assertEquals(String.format("%s [%s]", vector.getName(), vector.getPin()),

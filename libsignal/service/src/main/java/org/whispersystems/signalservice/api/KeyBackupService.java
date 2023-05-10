@@ -2,10 +2,11 @@ package org.whispersystems.signalservice.api;
 
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.logging.Log;
+import org.signal.libsignal.svr2.PinHash;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
-import org.whispersystems.signalservice.api.kbs.HashedPin;
 import org.whispersystems.signalservice.api.kbs.KbsData;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
+import org.whispersystems.signalservice.api.kbs.PinHashUtil;
 import org.whispersystems.signalservice.internal.contacts.crypto.KeyBackupCipher;
 import org.whispersystems.signalservice.internal.contacts.crypto.Quote;
 import org.whispersystems.signalservice.internal.contacts.crypto.RemoteAttestation;
@@ -122,7 +123,7 @@ public class KeyBackupService {
     }
 
     @Override
-    public KbsPinData restorePin(HashedPin hashedPin)
+    public KbsPinData restorePin(PinHash hashedPin)
       throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException, InvalidKeyException
     {
       int           attempt = 0;
@@ -155,13 +156,13 @@ public class KeyBackupService {
       }
     }
 
-    private KbsPinData restorePin(HashedPin hashedPin, TokenResponse token)
+    private KbsPinData restorePin(PinHash hashedPin, TokenResponse token)
       throws UnauthenticatedResponseException, IOException, TokenException, KeyBackupSystemNoDataException, InvalidKeyException
     {
       try {
         final int               remainingTries    = token.getTries();
         final RemoteAttestation remoteAttestation = getAndVerifyRemoteAttestation();
-        final KeyBackupRequest  request           = KeyBackupCipher.createKeyRestoreRequest(hashedPin.getKbsAccessKey(), token, remoteAttestation, serviceId);
+        final KeyBackupRequest  request           = KeyBackupCipher.createKeyRestoreRequest(hashedPin.accessKey(), token, remoteAttestation, serviceId);
         final KeyBackupResponse response          = pushServiceSocket.putKbsData(authorization, request, remoteAttestation.getCookies(), enclaveName);
         final RestoreResponse   status            = KeyBackupCipher.getKeyRestoreResponse(response, remoteAttestation);
 
@@ -172,7 +173,7 @@ public class KeyBackupService {
         Log.i(TAG, "Restore " + status.getStatus());
         switch (status.getStatus()) {
           case OK:
-            KbsData kbsData = hashedPin.decryptKbsDataIVCipherText(status.getData().toByteArray());
+            KbsData kbsData = PinHashUtil.decryptKbsDataIVCipherText(hashedPin, status.getData().toByteArray());
             MasterKey masterKey = kbsData.getMasterKey();
             return new KbsPinData(masterKey, nextToken);
           case PIN_MISMATCH:
@@ -206,8 +207,8 @@ public class KeyBackupService {
     }
 
     @Override
-    public KbsPinData setPin(HashedPin hashedPin, MasterKey masterKey) throws IOException, UnauthenticatedResponseException {
-      KbsData       newKbsData    = hashedPin.createNewKbsData(masterKey);
+    public KbsPinData setPin(PinHash pinHash, MasterKey masterKey) throws IOException, UnauthenticatedResponseException {
+      KbsData       newKbsData    = PinHashUtil.createNewKbsData(pinHash, masterKey);
       TokenResponse tokenResponse = putKbsData(newKbsData.getKbsAccessKey(),
                                                newKbsData.getCipherText(),
                                                enclaveName,
@@ -274,13 +275,13 @@ public class KeyBackupService {
 
   public interface RestoreSession extends HashSession {
 
-    KbsPinData restorePin(HashedPin hashedPin)
+    KbsPinData restorePin(PinHash hashedPin)
       throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException, InvalidKeyException;
   }
 
   public interface PinChangeSession extends HashSession {
     /** Creates a PIN. Does nothing to registration lock. */
-    KbsPinData setPin(HashedPin hashedPin, MasterKey masterKey) throws IOException, UnauthenticatedResponseException;
+    KbsPinData setPin(PinHash hashedPin, MasterKey masterKey) throws IOException, UnauthenticatedResponseException;
 
     /** Removes the PIN data from KBS. */
     void removePin() throws IOException, UnauthenticatedResponseException;

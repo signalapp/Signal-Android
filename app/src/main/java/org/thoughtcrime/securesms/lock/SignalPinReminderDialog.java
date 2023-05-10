@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.lock.v2.KbsConstants;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.whispersystems.signalservice.api.kbs.PinHashUtil;
 
 import java.util.Objects;
 
@@ -121,7 +122,7 @@ public final class SignalPinReminderDialog {
         if (text.length() >= KbsConstants.MINIMUM_PIN_LENGTH) {
           submit.setEnabled(true);
 
-          if (PinHashing.verifyLocalPinHash(localHash, text)) {
+          if (PinHashUtil.verifyLocalPinHash(localHash, text)) {
             dialog.dismiss();
             mainCallback.onReminderCompleted(text, callback.hadWrongGuess());
           }
@@ -180,7 +181,7 @@ public final class SignalPinReminderDialog {
 
       if (pin.length() < KbsConstants.MINIMUM_PIN_LENGTH) return;
 
-      if (PinHashing.verifyLocalPinHash(localPinHash, pin)) {
+      if (PinHashUtil.verifyLocalPinHash(localPinHash, pin)) {
         callback.onPinCorrect(pin);
       } else {
         callback.onPinWrong();

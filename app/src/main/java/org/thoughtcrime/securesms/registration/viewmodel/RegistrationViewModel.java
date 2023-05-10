@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.jobs.NewRegistrationUsernameSyncJob;
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.pin.KbsRepository;
 import org.thoughtcrime.securesms.pin.KeyBackupSystemWrongPinException;
 import org.thoughtcrime.securesms.pin.TokenData;
@@ -32,6 +31,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
+import org.whispersystems.signalservice.api.kbs.PinHashUtil;
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectCodeException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
@@ -281,7 +281,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
     String localPinHash = SignalStore.kbsValues().getLocalPinHash();
 
     if (hasRecoveryPassword() && localPinHash != null) {
-      if (PinHashing.verifyLocalPinHash(localPinHash, pin)) {
+      if (PinHashUtil.verifyLocalPinHash(localPinHash, pin)) {
         Log.i(TAG, "Local pin matches input, attempting registration");
         return ReRegistrationData.canProceed(new KbsPinData(SignalStore.kbsValues().getOrCreateMasterKey(), SignalStore.kbsValues().getRegistrationLockTokenResponse()));
       } else {

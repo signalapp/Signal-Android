@@ -4,10 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.StringStringSerializer;
-import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
+import org.whispersystems.signalservice.api.kbs.PinHashUtil;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
 import java.io.IOException;
@@ -75,7 +75,7 @@ public final class KbsValues extends SignalStoreValues {
     getStore().beginWrite()
               .putString(TOKEN_RESPONSE, tokenResponse)
               .putBlob(MASTER_KEY, masterKey.serialize())
-              .putString(LOCK_LOCAL_PIN_HASH, PinHashing.localPinHash(pin))
+              .putString(LOCK_LOCAL_PIN_HASH, PinHashUtil.localPinHash(pin))
               .putString(PIN, pin)
               .putLong(LAST_CREATE_FAILED_TIMESTAMP, -1)
               .putBoolean(OPTED_OUT, false)

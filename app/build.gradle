@@ -520,12 +520,6 @@ dependencies {
         exclude group: 'com.google.protobuf'
     }
 
-    implementation(libs.signal.argon2) {
-        artifact {
-            type = "aar"
-        }
-    }
-
     implementation libs.signal.ringrtc
 
     implementation libs.leolin.shortcutbadger
