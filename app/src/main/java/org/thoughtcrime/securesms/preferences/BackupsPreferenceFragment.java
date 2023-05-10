@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.preferences;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -20,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.text.HtmlCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.timepicker.MaterialTimePicker;
@@ -36,7 +39,6 @@ import org.thoughtcrime.securesms.backup.BackupEvent;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
-import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
@@ -262,22 +264,26 @@ public class BackupsPreferenceFragment extends Fragment {
   }
 
   private void pickTime() {
-    int timeFormat = DateFormat.is24HourFormat(requireContext()) ? TimeFormat.CLOCK_24H : TimeFormat.CLOCK_12H;
-    final MaterialTimePicker timePickerFragment = new MaterialTimePicker.Builder()
-        .setTimeFormat(timeFormat)
-        .setHour(SignalStore.settings().getBackupHour())
-        .setMinute(SignalStore.settings().getBackupMinute())
-        .setTitleText("Set Backup Time")
-        .build();
-    timePickerFragment.addOnPositiveButtonClickListener(v -> {
-      int hour = timePickerFragment.getHour();
-      int minute = timePickerFragment.getMinute();
-      SignalStore.settings().setBackupSchedule(SettingsValues.BACKUP_DEFAULT_FREQUENCY, hour, minute);
-      updateTimeLabel();
-      TextSecurePreferences.setNextBackupTime(requireContext(), 0);
-      LocalBackupListener.schedule(requireContext());
+    final DayPickerShitDialogFragment shit = new DayPickerShitDialogFragment();
+    shit.show(getChildFragmentManager(), "SHITFUCK");
+    shit.setOnPositiveButtonClickListener((unused1, unused2) -> {
+      int timeFormat = DateFormat.is24HourFormat(requireContext()) ? TimeFormat.CLOCK_24H : TimeFormat.CLOCK_12H;
+      final MaterialTimePicker timePickerFragment = new MaterialTimePicker.Builder()
+          .setTimeFormat(timeFormat)
+          .setHour(SignalStore.settings().getBackupHour())
+          .setMinute(SignalStore.settings().getBackupMinute())
+          .setTitleText("Set Backup Time")
+          .build();
+      timePickerFragment.addOnPositiveButtonClickListener(v -> {
+        int hour = timePickerFragment.getHour();
+        int minute = timePickerFragment.getMinute();
+        SignalStore.settings().setBackupSchedule(shit.getValue(), hour, minute);
+        updateTimeLabel();
+        TextSecurePreferences.setNextBackupTime(requireContext(), 0);
+        LocalBackupListener.schedule(requireContext());
+      });
+      timePickerFragment.show(getChildFragmentManager(), "TIME_PICKER");
     });
-    timePickerFragment.show(getChildFragmentManager(), "TIME_PICKER");
   }
 
   private void onCreateClickedLegacy() {
