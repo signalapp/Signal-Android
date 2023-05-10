@@ -34,7 +34,7 @@ import io.reactivex.rxjava3.core.Single;
 
 /**
  * Base view model used in registration and change number flow. Handles the storage of all data
- * shared between the two flows, orchestrating verification, and calling to subclasses to peform
+ * shared between the two flows, orchestrating verification, and calling to subclasses to perform
  * the specific verify operations for each flow.
  */
 public abstract class BaseRegistrationViewModel extends ViewModel {
@@ -287,6 +287,7 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
                                           .map(RegistrationSessionProcessor.RegistrationSessionProcessorForSession::new)
                                           .doOnSuccess(createSessionProcessor -> {
                                             if (createSessionProcessor.pushChallengeTimedOut()) {
+                                              Log.w(TAG, "Registration push challenge timed out.");
                                               markPushChallengeTimedOut();
                                             }
                                           });
@@ -300,6 +301,7 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     final String sessionId = processor.getSessionId();
 
     if (processor.isAllowedToRequestCode()) {
+      Log.d(TAG, "All challenges satisfied.");
       return Single.just(processor);
     }
 

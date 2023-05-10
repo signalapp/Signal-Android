@@ -53,6 +53,7 @@ class VerifyAccountRepository(private val context: Application) {
     mcc: String?,
     mnc: String?
   ): Single<ServiceResponse<RegistrationSessionMetadataResponse>> {
+    Log.d(TAG, "Initializing registration session.")
     return Single.fromCallable {
       val fcmToken: String? = FcmUtil.getToken(context).orElse(null)
       val accountManager: SignalServiceAccountManager = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
