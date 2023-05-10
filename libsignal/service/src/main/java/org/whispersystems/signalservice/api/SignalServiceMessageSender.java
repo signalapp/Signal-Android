@@ -688,8 +688,6 @@ public class SignalServiceMessageSender {
     } else if (message.getRequest().isPresent()) {
       content = createRequestContent(message.getRequest().get().getRequest());
       urgent  = message.getRequest().get().isUrgent();
-    } else if (message.getPniIdentity().isPresent()) {
-      content = createPniIdentityContent(message.getPniIdentity().get());
     } else if (message.getCallEvent().isPresent()) {
       content = createCallEventContent(message.getCallEvent().get());
     } else {
@@ -1647,13 +1645,6 @@ public class SignalServiceMessageSender {
 
     Content.Builder     container = Content.newBuilder();
     SyncMessage.Builder builder   = createSyncMessageBuilder().setRequest(request);
-
-    return container.setSyncMessage(builder).build();
-  }
-
-  private Content createPniIdentityContent(SyncMessage.PniIdentity proto) {
-    Content.Builder     container = Content.newBuilder();
-    SyncMessage.Builder builder   = createSyncMessageBuilder().setPniIdentity(proto);
 
     return container.setSyncMessage(builder).build();
   }

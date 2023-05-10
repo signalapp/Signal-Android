@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactSyncJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
-import org.thoughtcrime.securesms.jobs.MultiDevicePniIdentityUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackSyncJob
 import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
@@ -871,7 +870,6 @@ object SyncMessageProcessor {
         ApplicationDependencies.getJobManager().add(MultiDeviceStickerPackSyncJob())
       }
       Request.Type.KEYS -> ApplicationDependencies.getJobManager().add(MultiDeviceKeysUpdateJob())
-      Request.Type.PNI_IDENTITY -> ApplicationDependencies.getJobManager().add(MultiDevicePniIdentityUpdateJob())
       else -> warn(envelopeTimestamp, "Unknown request type: ${message.type}")
     }
   }

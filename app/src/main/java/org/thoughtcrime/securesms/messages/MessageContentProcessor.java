@@ -86,7 +86,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactSyncJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob;
-import org.thoughtcrime.securesms.jobs.MultiDevicePniIdentityUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackSyncJob;
 import org.thoughtcrime.securesms.jobs.NullMessageSendJob;
 import org.thoughtcrime.securesms.jobs.PaymentLedgerUpdateJob;
@@ -1503,10 +1502,6 @@ public class MessageContentProcessor {
 
     if (message.isKeysRequest()) {
       ApplicationDependencies.getJobManager().add(new MultiDeviceKeysUpdateJob());
-    }
-
-    if (message.isPniIdentityRequest()) {
-      ApplicationDependencies.getJobManager().add(new MultiDevicePniIdentityUpdateJob());
     }
   }
 
