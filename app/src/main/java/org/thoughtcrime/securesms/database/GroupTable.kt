@@ -60,6 +60,7 @@ import java.security.SecureRandom
 import java.util.Optional
 import java.util.UUID
 import java.util.stream.Collectors
+import javax.annotation.CheckReturnValue
 
 class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference {
 
@@ -649,20 +650,23 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     }
   }
 
-  fun create(groupId: GroupId.V1, title: String?, members: Collection<RecipientId>, avatar: SignalServiceAttachmentPointer?, relay: String?) {
+  @CheckReturnValue
+  fun create(groupId: GroupId.V1, title: String?, members: Collection<RecipientId>, avatar: SignalServiceAttachmentPointer?, relay: String?): Boolean {
     if (groupExists(groupId.deriveV2MigrationGroupId())) {
       throw LegacyGroupInsertException(groupId)
     }
 
-    create(groupId, title, members, avatar, relay, null, null)
+    return create(groupId, title, members, avatar, relay, null, null)
   }
 
-  fun create(groupId: GroupId.Mms, title: String?, members: Collection<RecipientId>) {
-    create(groupId, if (title.isNullOrEmpty()) null else title, members, null, null, null, null)
+  @CheckReturnValue
+  fun create(groupId: GroupId.Mms, title: String?, members: Collection<RecipientId>): Boolean {
+    return create(groupId, if (title.isNullOrEmpty()) null else title, members, null, null, null, null)
   }
 
   @JvmOverloads
-  fun create(groupMasterKey: GroupMasterKey, groupState: DecryptedGroup, force: Boolean = false): GroupId.V2 {
+  @CheckReturnValue
+  fun create(groupMasterKey: GroupMasterKey, groupState: DecryptedGroup, force: Boolean = false): GroupId.V2? {
     val groupId = GroupId.v2(groupMasterKey)
 
     if (!force && getGroupV1ByExpectedV2(groupId).isPresent) {
@@ -671,9 +675,11 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       Log.w(TAG, "Forcing the creation of a group even though we already have a V1 ID!")
     }
 
-    create(groupId, groupState.title, emptyList(), null, null, groupMasterKey, groupState)
-
-    return groupId
+    return if (create(groupId = groupId, title = groupState.title, memberCollection = emptyList(), avatar = null, relay = null, groupMasterKey = groupMasterKey, groupState = groupState)) {
+      groupId
+    } else {
+      null
+    }
   }
 
   /**
@@ -714,6 +720,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   /**
    * @param groupMasterKey null for V1, must be non-null for V2 (presence dictates group version).
    */
+  @CheckReturnValue
   private fun create(
     groupId: GroupId,
     title: String?,
@@ -722,7 +729,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     relay: String?,
     groupMasterKey: GroupMasterKey?,
     groupState: DecryptedGroup?
-  ) {
+  ): Boolean {
     val membershipValues = mutableListOf<ContentValues>()
     val groupRecipientId = recipients.getOrInsertFromGroupId(groupId)
     val members: List<RecipientId> = memberCollection.toSet().sorted()
@@ -777,16 +784,20 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       }
     }
 
-    writableDatabase.withinTransaction { db ->
-      db.insert(TABLE_NAME, null, values)
-      SqlUtil.buildBulkInsert(
-        MembershipTable.TABLE_NAME,
-        arrayOf(MembershipTable.GROUP_ID, MembershipTable.RECIPIENT_ID),
-        membershipValues
-      )
-        .forEach {
-          db.execSQL(it.where, it.whereArgs)
-        }
+    writableDatabase.beginTransaction()
+    try {
+      val result: Long = writableDatabase.insert(TABLE_NAME, null, values)
+      if (result < 1) {
+        Log.w(TAG, "Unable to create group, group record already exists")
+        return false
+      }
+
+      for (query in SqlUtil.buildBulkInsert(MembershipTable.TABLE_NAME, arrayOf(MembershipTable.GROUP_ID, MembershipTable.RECIPIENT_ID), membershipValues)) {
+        writableDatabase.execSQL(query.where, query.whereArgs)
+      }
+      writableDatabase.setTransactionSuccessful()
+    } finally {
+      writableDatabase.endTransaction()
     }
 
     if (groupState != null && groupState.hasDisappearingMessagesTimer()) {
@@ -799,6 +810,8 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
     Recipient.live(groupRecipientId).refresh()
     notifyConversationListListeners()
+
+    return true
   }
 
   fun update(groupId: GroupId.V1, title: String?, avatar: SignalServiceAttachmentPointer?) {
