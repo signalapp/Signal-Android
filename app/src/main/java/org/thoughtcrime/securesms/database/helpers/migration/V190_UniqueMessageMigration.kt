@@ -126,7 +126,8 @@ object V190_UniqueMessageMigration : SignalDatabaseMigration {
       stopwatch.split("index")
     } catch (e: Exception) {
       logDebugInfo(db)
-      throw e
+      // TODO [greyson] Revisit this
+//      throw e
     }
 
     val foreignKeyViolations: List<SqlUtil.ForeignKeyViolation> = SqlUtil.getForeignKeyViolations(db, "message")
