@@ -107,9 +107,9 @@ public class DeviceListFragment extends ListFragment
     if (data.isEmpty()) {
       empty.setVisibility(View.VISIBLE);
       TextSecurePreferences.setMultiDevice(getActivity(), false);
-      SignalStore.misc().setShouldShowLinkedDevicesReminder(false);
+      SignalStore.misc().setHasLinkedDevices(false);
     } else {
-      SignalStore.misc().setShouldShowLinkedDevicesReminder(true);
+      SignalStore.misc().setHasLinkedDevices(true);
       empty.setVisibility(View.GONE);
     }
   }

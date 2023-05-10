@@ -118,7 +118,7 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
       OldDeviceTransferLockedDialog.show(getSupportFragmentManager());
     }
 
-    if (SignalStore.misc().getShouldShowLinkedDevicesReminder()) {
+    if (SignalStore.misc().getHasLinkedDevices()) {
       SignalStore.misc().setShouldShowLinkedDevicesReminder(false);
       RelinkDevicesReminderBottomSheetFragment.show(getSupportFragmentManager());
     }

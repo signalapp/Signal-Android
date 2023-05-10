@@ -12,26 +12,27 @@ import java.util.List;
 
 public final class MiscellaneousValues extends SignalStoreValues {
 
-  private static final String LAST_PREKEY_REFRESH_TIME        = "last_prekey_refresh_time";
-  private static final String MESSAGE_REQUEST_ENABLE_TIME     = "message_request_enable_time";
-  private static final String LAST_PROFILE_REFRESH_TIME       = "misc.last_profile_refresh_time";
-  private static final String USERNAME_SHOW_REMINDER          = "username.show.reminder";
-  private static final String CLIENT_DEPRECATED               = "misc.client_deprecated";
-  private static final String OLD_DEVICE_TRANSFER_LOCKED      = "misc.old_device.transfer.locked";
-  private static final String HAS_EVER_HAD_AN_AVATAR          = "misc.has.ever.had.an.avatar";
-  private static final String CHANGE_NUMBER_LOCK              = "misc.change_number.lock";
-  private static final String PENDING_CHANGE_NUMBER_METADATA  = "misc.pending_change_number.metadata";
-  private static final String CENSORSHIP_LAST_CHECK_TIME      = "misc.censorship.last_check_time";
-  private static final String CENSORSHIP_SERVICE_REACHABLE    = "misc.censorship.service_reachable";
-  private static final String LAST_GV2_PROFILE_CHECK_TIME     = "misc.last_gv2_profile_check_time";
-  private static final String CDS_TOKEN                       = "misc.cds_token";
-  private static final String CDS_BLOCKED_UNTIL               = "misc.cds_blocked_until";
-  private static final String LAST_FCM_FOREGROUND_TIME        = "misc.last_fcm_foreground_time";
-  private static final String LAST_FOREGROUND_TIME            = "misc.last_foreground_time";
-  private static final String PNI_INITIALIZED_DEVICES         = "misc.pni_initialized_devices";
-  private static final String SMS_PHASE_1_START_MS            = "misc.sms_export.phase_1_start.3";
-  private static final String LINKED_DEVICES_REMINDER         = "misc.linked_devices_reminder";
-  private static final String USERNAME_QR_CODE_COLOR          = "mis.username_qr_color_scheme";
+  private static final String LAST_PREKEY_REFRESH_TIME       = "last_prekey_refresh_time";
+  private static final String MESSAGE_REQUEST_ENABLE_TIME    = "message_request_enable_time";
+  private static final String LAST_PROFILE_REFRESH_TIME      = "misc.last_profile_refresh_time";
+  private static final String USERNAME_SHOW_REMINDER         = "username.show.reminder";
+  private static final String CLIENT_DEPRECATED              = "misc.client_deprecated";
+  private static final String OLD_DEVICE_TRANSFER_LOCKED     = "misc.old_device.transfer.locked";
+  private static final String HAS_EVER_HAD_AN_AVATAR         = "misc.has.ever.had.an.avatar";
+  private static final String CHANGE_NUMBER_LOCK             = "misc.change_number.lock";
+  private static final String PENDING_CHANGE_NUMBER_METADATA = "misc.pending_change_number.metadata";
+  private static final String CENSORSHIP_LAST_CHECK_TIME     = "misc.censorship.last_check_time";
+  private static final String CENSORSHIP_SERVICE_REACHABLE   = "misc.censorship.service_reachable";
+  private static final String LAST_GV2_PROFILE_CHECK_TIME    = "misc.last_gv2_profile_check_time";
+  private static final String CDS_TOKEN                      = "misc.cds_token";
+  private static final String CDS_BLOCKED_UNTIL              = "misc.cds_blocked_until";
+  private static final String LAST_FCM_FOREGROUND_TIME       = "misc.last_fcm_foreground_time";
+  private static final String LAST_FOREGROUND_TIME           = "misc.last_foreground_time";
+  private static final String PNI_INITIALIZED_DEVICES        = "misc.pni_initialized_devices";
+  private static final String SMS_PHASE_1_START_MS           = "misc.sms_export.phase_1_start.3";
+  private static final String LINKED_DEVICES_REMINDER        = "misc.linked_devices_reminder";
+  private static final String HAS_LINKED_DEVICES             = "misc.linked_devices_present";
+  private static final String USERNAME_QR_CODE_COLOR         = "mis.username_qr_color_scheme";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -248,6 +249,14 @@ public final class MiscellaneousValues extends SignalStoreValues {
     long now = System.currentTimeMillis();
     long phase1StartMs = getLong(SMS_PHASE_1_START_MS, now);
     return phase1StartMs + SmsExportPhase.PHASE_3.getDuration();
+  }
+
+  public void setHasLinkedDevices(boolean value) {
+    putBoolean(HAS_LINKED_DEVICES, value);
+  }
+
+  public boolean getHasLinkedDevices() {
+    return getBoolean(HAS_LINKED_DEVICES, false);
   }
 
   public void setShouldShowLinkedDevicesReminder(boolean value) {
