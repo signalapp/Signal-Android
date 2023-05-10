@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.backup.BackupEvent;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
+import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
@@ -271,7 +272,7 @@ public class BackupsPreferenceFragment extends Fragment {
     timePickerFragment.addOnPositiveButtonClickListener(v -> {
       int hour = timePickerFragment.getHour();
       int minute = timePickerFragment.getMinute();
-      SignalStore.settings().setBackupSchedule(hour, minute);
+      SignalStore.settings().setBackupSchedule(SettingsValues.BACKUP_DEFAULT_FREQUENCY, hour, minute);
       updateTimeLabel();
       TextSecurePreferences.setNextBackupTime(requireContext(), 0);
       LocalBackupListener.schedule(requireContext());
