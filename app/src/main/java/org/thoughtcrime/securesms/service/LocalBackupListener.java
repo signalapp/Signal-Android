@@ -55,6 +55,7 @@ public class LocalBackupListener extends PersistentAlarmManagerListener {
     next.plusSeconds(jitter);
 
     if (now.isAfter(next)) {
+      // TODO(farewelltospring) figure out how to incorporate frequency into this
       next = next.plusDays(1);
     }
 
