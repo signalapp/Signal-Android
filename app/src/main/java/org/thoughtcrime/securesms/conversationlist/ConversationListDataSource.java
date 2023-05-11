@@ -66,7 +66,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
   }
 
   @Override
-  public @NonNull List<Conversation> load(int start, int length, @NonNull CancellationSignal cancellationSignal) {
+  public @NonNull List<Conversation> load(int start, int length, int totalSize, @NonNull CancellationSignal cancellationSignal) {
     SignalTrace.beginSection("ConversationListDataSource#load");
     Stopwatch stopwatch = new Stopwatch("load(" + start + ", " + length + "), " + getClass().getSimpleName() + ", " + conversationFilter);
 

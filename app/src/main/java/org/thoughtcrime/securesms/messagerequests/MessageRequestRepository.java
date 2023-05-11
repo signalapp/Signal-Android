@@ -73,6 +73,31 @@ public final class MessageRequestRepository {
   }
 
   @WorkerThread
+  public @NonNull MessageRequestRecipientInfo getRecipientInfo(@NonNull RecipientId recipientId, long threadId) {
+    List<String>          sharedGroups = SignalDatabase.groups().getPushGroupNamesContainingMember(recipientId);
+    Optional<GroupRecord> groupRecord  = SignalDatabase.groups().getGroup(recipientId);
+    GroupInfo             groupInfo    = GroupInfo.ZERO;
+
+    if (groupRecord.isPresent()) {
+      if (groupRecord.get().isV2Group()) {
+        DecryptedGroup decryptedGroup = groupRecord.get().requireV2GroupProperties().getDecryptedGroup();
+        groupInfo = new GroupInfo(decryptedGroup.getMembersCount(), decryptedGroup.getPendingMembersCount(), decryptedGroup.getDescription());
+      } else {
+        groupInfo = new GroupInfo(groupRecord.get().getMembers().size(), 0, "");
+      }
+    }
+
+    Recipient recipient = Recipient.resolved(recipientId);
+
+    return new MessageRequestRecipientInfo(
+        recipient,
+        groupInfo,
+        sharedGroups,
+        getMessageRequestState(recipient, threadId)
+    );
+  }
+
+  @WorkerThread
   public @NonNull MessageRequestState getMessageRequestState(@NonNull Recipient recipient, long threadId) {
     if (recipient.isBlocked()) {
       if (recipient.isGroup()) {

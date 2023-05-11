@@ -247,15 +247,16 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       .flatMapObservable { it.items.data }
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(onNext = {
-        SignalLocalMetrics.ConversationOpen.onDataPostedToMain()
+        if (firstRender) {
+          SignalLocalMetrics.ConversationOpen.onDataPostedToMain()
+        }
 
         adapter.submitList(it) {
           scrollToPositionDelegate.notifyListCommitted()
 
-          binding.conversationItemRecycler.doAfterNextLayout {
-            SignalLocalMetrics.ConversationOpen.onRenderFinished()
-
-            if (firstRender) {
+          if (firstRender) {
+            binding.conversationItemRecycler.doAfterNextLayout {
+              SignalLocalMetrics.ConversationOpen.onRenderFinished()
               firstRender = false
               doAfterFirstRender()
               animationsAllowed = true
@@ -890,6 +891,10 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
     override fun onItemLongClick(itemView: View?, item: MultiselectPart?) {
       // TODO [alex] -- ("Not yet implemented")
+    }
+
+    override fun onShowGroupDescriptionClicked(groupName: String, description: String, shouldLinkifyWebLinks: Boolean) {
+      GroupDescriptionDialog.show(childFragmentManager, groupName, description, shouldLinkifyWebLinks)
     }
   }
 

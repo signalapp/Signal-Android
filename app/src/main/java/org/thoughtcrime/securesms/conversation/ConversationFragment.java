@@ -89,7 +89,6 @@ import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalFragment;
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
@@ -194,7 +193,6 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 
 import java.io.IOException;
@@ -2063,6 +2061,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       } else {
         EditMessageHistoryDialog.show(getChildFragmentManager(), messageRecord.getFromRecipient().getId(), messageRecord.getId());
       }
+    }
+
+    @Override
+    public void onShowGroupDescriptionClicked(@NonNull String groupName, @NonNull String description, boolean shouldLinkifyWebLinks) {
+      GroupDescriptionDialog.show(getChildFragmentManager(), groupName, description, shouldLinkifyWebLinks);
     }
 
     @Override

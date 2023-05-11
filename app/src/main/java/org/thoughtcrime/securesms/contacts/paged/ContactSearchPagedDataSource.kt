@@ -74,7 +74,7 @@ class ContactSearchPagedDataSource(
     return searchSize
   }
 
-  override fun load(start: Int, length: Int, cancellationSignal: PagedDataSource.CancellationSignal): MutableList<ContactSearchData> {
+  override fun load(start: Int, length: Int, totalSize: Int, cancellationSignal: PagedDataSource.CancellationSignal): MutableList<ContactSearchData> {
     val sections: List<ContactSearchConfiguration.Section> = if (displayEmptyState) {
       contactConfiguration.emptyStateSections
     } else {

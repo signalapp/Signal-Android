@@ -12,10 +12,10 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.concurrent.subscribeWithSubject
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.messagerequests.GroupInfo
+import org.thoughtcrime.securesms.messagerequests.MessageRequestRecipientInfo
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel.MessageData
-import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel.RecipientInfo
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel.RequestReviewDisplayState
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel.Status
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil
@@ -70,12 +70,12 @@ class MessageRequestViewModel(
     }
   }.subscribeWithSubject(BehaviorSubject.create(), disposables)
 
-  val recipientInfo: Observable<RecipientInfo> = Observable.combineLatest(
+  val recipientInfo: Observable<MessageRequestRecipientInfo> = Observable.combineLatest(
     recipientRepository.conversationRecipient,
     groupInfo,
     groups,
     messageDataSubject.map { it.messageState },
-    ::RecipientInfo
+    ::MessageRequestRecipientInfo
   )
 
   override fun onCleared() {

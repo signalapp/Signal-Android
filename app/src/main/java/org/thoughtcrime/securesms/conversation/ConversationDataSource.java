@@ -37,7 +37,6 @@ import org.whispersystems.signalservice.api.push.ServiceId;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -99,7 +98,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
   }
 
   @Override
-  public @NonNull List<ConversationMessage> load(int start, int length, @NonNull CancellationSignal cancellationSignal) {
+  public @NonNull List<ConversationMessage> load(int start, int length, int totalSize, @NonNull CancellationSignal cancellationSignal) {
     Stopwatch           stopwatch        = new Stopwatch("load(" + start + ", " + length + "), thread " + threadId);
     List<MessageRecord> records          = new ArrayList<>(length);
     MentionHelper       mentionHelper    = new MentionHelper();
@@ -128,11 +127,11 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
       }
     }
 
-    if (messageRequestData.includeWarningUpdateMessage() && (start + length >= size())) {
+    if (messageRequestData.includeWarningUpdateMessage() && (start + length >= totalSize)) {
       records.add(new InMemoryMessageRecord.NoGroupsInCommon(threadId, messageRequestData.isGroup()));
     }
 
-    if (messageRequestData.isHidden() && (start + length >= size())) {
+    if (messageRequestData.isHidden() && (start + length >= totalSize)) {
       records.add(new InMemoryMessageRecord.RemovedContactHidden(threadId));
     }
 

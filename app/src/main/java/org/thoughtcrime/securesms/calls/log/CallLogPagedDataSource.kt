@@ -19,7 +19,7 @@ class CallLogPagedDataSource(
     return callsCount + hasFilter.toInt() + hasCallLinkRow.toInt()
   }
 
-  override fun load(start: Int, length: Int, cancellationSignal: PagedDataSource.CancellationSignal): MutableList<CallLogRow> {
+  override fun load(start: Int, length: Int, totalSize: Int, cancellationSignal: PagedDataSource.CancellationSignal): MutableList<CallLogRow> {
     val calls = mutableListOf<CallLogRow>()
     val callLimit = length - hasCallLinkRow.toInt()
 

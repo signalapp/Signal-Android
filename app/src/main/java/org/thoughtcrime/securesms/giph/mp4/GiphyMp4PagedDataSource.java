@@ -66,7 +66,7 @@ final class GiphyMp4PagedDataSource implements PagedDataSource<String, GiphyImag
   }
 
   @Override
-  public @NonNull List<GiphyImage> load(int start, int length, @NonNull CancellationSignal cancellationSignal) {
+  public @NonNull List<GiphyImage> load(int start, int length, int totalSize, @NonNull CancellationSignal cancellationSignal) {
     try {
       Log.d(TAG, "Loading from " + start + " to " + (start + length));
       return new LinkedList<>(performFetch(start, length).getData());

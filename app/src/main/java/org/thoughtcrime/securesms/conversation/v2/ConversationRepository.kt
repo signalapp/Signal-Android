@@ -1,3 +1,8 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
@@ -29,9 +34,12 @@ class ConversationRepository(context: Context) {
    */
   fun getConversationThreadState(threadId: Long, requestedStartPosition: Int): Single<ConversationThreadState> {
     return Single.fromCallable {
-      SignalLocalMetrics.ConversationOpen.onMetadataLoadStarted()
       val recipient = SignalDatabase.threads.getRecipientForThreadId(threadId)!!
+
+      SignalLocalMetrics.ConversationOpen.onMetadataLoadStarted()
       val metadata = oldConversationRepository.getConversationData(threadId, recipient, requestedStartPosition)
+      SignalLocalMetrics.ConversationOpen.onMetadataLoaded()
+
       val messageRequestData = metadata.messageRequestData
       val dataSource = ConversationDataSource(
         applicationContext,
@@ -48,9 +56,7 @@ class ConversationRepository(context: Context) {
       ConversationThreadState(
         items = PagedData.createForObservable(dataSource, config),
         meta = metadata
-      ).apply {
-        SignalLocalMetrics.ConversationOpen.onMetadataLoaded()
-      }
+      )
     }.subscribeOn(Schedulers.io())
   }
 

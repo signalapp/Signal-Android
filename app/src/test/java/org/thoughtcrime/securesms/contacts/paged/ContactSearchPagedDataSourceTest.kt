@@ -53,7 +53,7 @@ class ContactSearchPagedDataSourceTest {
   @Test
   fun `Given recentsWHeader and individualsWHeaderWExpand, when I load 12, then I expect properly structured output`() {
     val testSubject = createTestSubject()
-    val result = testSubject.load(0, 12) { false }
+    val result = testSubject.load(0, 12, 20) { false }
 
     val expected = listOf(
       ContactSearchKey.Header(ContactSearchConfiguration.SectionKey.RECENTS),
@@ -78,7 +78,7 @@ class ContactSearchPagedDataSourceTest {
   @Test
   fun `Given recentsWHeader and individualsWHeaderWExpand, when I load 10 with offset 5, then I expect properly structured output`() {
     val testSubject = createTestSubject()
-    val result = testSubject.load(5, 10) { false }
+    val result = testSubject.load(5, 10, 15) { false }
 
     val expected = listOf(
       ContactSearchKey.RecipientSearchKey(RecipientId.UNKNOWN, false),
@@ -101,7 +101,7 @@ class ContactSearchPagedDataSourceTest {
   @Test
   fun `Given storiesWithHeaderAndExtras, when I load 11, then I expect properly structured output`() {
     val testSubject = createStoriesSubject()
-    val result = testSubject.load(0, 12) { false }
+    val result = testSubject.load(0, 12, 12) { false }
 
     val expected = listOf(
       ContactSearchKey.Header(ContactSearchConfiguration.SectionKey.STORIES),
@@ -136,7 +136,7 @@ class ContactSearchPagedDataSourceTest {
   fun `Given only arbitrary elements, when I load 1, then I expect 1`() {
     val testSubject = createArbitrarySubject()
     val expected = ContactSearchData.Arbitrary("two", bundleOf("n" to "two"))
-    val actual = testSubject.load(1, 1) { false }[0] as ContactSearchData.Arbitrary
+    val actual = testSubject.load(1, 1, 1) { false }[0] as ContactSearchData.Arbitrary
 
     Assert.assertEquals(expected.data?.getString("n"), actual.data?.getString("n"))
   }

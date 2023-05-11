@@ -6,7 +6,6 @@ import androidx.annotation.Nullable;
 import org.signal.paging.PagedDataSource;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.UUID;
@@ -25,7 +24,7 @@ class MainDataSource implements PagedDataSource<String, Item> {
   }
 
   @Override
-  public @NonNull List<Item> load(int start, int length, @NonNull CancellationSignal cancellationSignal) {
+  public @NonNull List<Item> load(int start, int length, int totalSize, @NonNull CancellationSignal cancellationSignal) {
     try {
       Thread.sleep(500);
     } catch (InterruptedException e) {
