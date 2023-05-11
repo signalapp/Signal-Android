@@ -6,6 +6,7 @@ import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
+import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageLogEntry
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -219,7 +220,8 @@ open class MessageContentProcessorV2(private val context: Context) {
       metadata: EnvelopeMetadata,
       groupId: GroupId.V2,
       groupV2: SignalServiceProtos.GroupContextV2,
-      senderRecipient: Recipient
+      senderRecipient: Recipient,
+      groupSecretParams: GroupSecretParams? = null
     ): Gv2PreProcessResult {
       val possibleV1OrV2Group = SignalDatabase.groups.getGroupV1OrV2ByExpectedV2(groupId)
       val needsV1Migration = possibleV1OrV2Group.isPresent && possibleV1OrV2Group.get().isV1Group
@@ -227,7 +229,7 @@ open class MessageContentProcessorV2(private val context: Context) {
         GroupsV1MigrationUtil.performLocalMigration(context, possibleV1OrV2Group.get().id.requireV1())
       }
 
-      val groupUpdateResult = updateGv2GroupFromServerOrP2PChange(context, timestamp, groupV2)
+      val groupUpdateResult = updateGv2GroupFromServerOrP2PChange(context, timestamp, groupV2, groupSecretParams)
       if (groupUpdateResult == null) {
         log(timestamp, "Ignoring GV2 message for group we are not currently in $groupId")
         return Gv2PreProcessResult.IGNORE
@@ -266,12 +268,13 @@ open class MessageContentProcessorV2(private val context: Context) {
     fun updateGv2GroupFromServerOrP2PChange(
       context: Context,
       timestamp: Long,
-      groupV2: SignalServiceProtos.GroupContextV2
+      groupV2: SignalServiceProtos.GroupContextV2,
+      groupSecretParams: GroupSecretParams? = null
     ): GroupsV2StateProcessor.GroupUpdateResult? {
       return try {
         val signedGroupChange: ByteArray? = if (groupV2.hasSignedGroupChange) groupV2.signedGroupChange else null
         val updatedTimestamp = if (signedGroupChange != null) timestamp else timestamp - 1
-        GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, groupV2.revision, updatedTimestamp, signedGroupChange)
+        GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, groupSecretParams, groupV2.revision, updatedTimestamp, signedGroupChange)
       } catch (e: GroupNotAMemberException) {
         warn(timestamp, "Ignoring message for a group we're not in")
         null

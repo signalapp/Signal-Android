@@ -9,6 +9,7 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
+import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.signal.libsignal.zkgroup.groups.UuidCiphertext;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
@@ -186,8 +187,20 @@ public final class GroupManager {
                                                                                @Nullable byte[] signedGroupChange)
       throws GroupChangeBusyException, IOException, GroupNotAMemberException
   {
+    return updateGroupFromServer(context, groupMasterKey, null, revision, timestamp, signedGroupChange);
+  }
+
+  @WorkerThread
+  public static GroupsV2StateProcessor.GroupUpdateResult updateGroupFromServer(@NonNull Context context,
+                                                                               @NonNull GroupMasterKey groupMasterKey,
+                                                                               @Nullable GroupSecretParams groupSecretParams,
+                                                                               int revision,
+                                                                               long timestamp,
+                                                                               @Nullable byte[] signedGroupChange)
+      throws GroupChangeBusyException, IOException, GroupNotAMemberException
+  {
     try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
-      return updater.updateLocalToServerRevision(revision, timestamp, signedGroupChange);
+      return updater.updateLocalToServerRevision(revision, timestamp, groupSecretParams, signedGroupChange);
     }
   }
 

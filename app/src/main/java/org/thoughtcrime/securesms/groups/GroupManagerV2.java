@@ -797,10 +797,10 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    GroupsV2StateProcessor.GroupUpdateResult updateLocalToServerRevision(int revision, long timestamp, @Nullable byte[] signedGroupChange)
+    GroupsV2StateProcessor.GroupUpdateResult updateLocalToServerRevision(int revision, long timestamp, @Nullable GroupSecretParams groupSecretParams, @Nullable byte[] signedGroupChange)
         throws IOException, GroupNotAMemberException
     {
-      return new GroupsV2StateProcessor(context).forGroup(serviceIds, groupMasterKey)
+      return new GroupsV2StateProcessor(context).forGroup(serviceIds, groupMasterKey, groupSecretParams)
                                                 .updateLocalGroupToRevision(revision, timestamp, getDecryptedGroupChange(signedGroupChange));
     }
 
