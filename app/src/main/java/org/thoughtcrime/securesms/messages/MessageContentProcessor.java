@@ -1006,6 +1006,11 @@ public class MessageContentProcessor {
       return null;
     }
 
+    if (reaction.getTargetAuthor().isUnknown()) {
+      Log.w(TAG, "Invalid author UUID!");
+      return null;
+    }
+
     Recipient     targetAuthor   = Recipient.externalPush(reaction.getTargetAuthor());
     MessageRecord targetMessage  = SignalDatabase.messages().getMessageFor(reaction.getTargetSentTimestamp(), targetAuthor.getId());
 
@@ -3262,7 +3267,9 @@ public class MessageContentProcessor {
     List<Mention> mentions = new ArrayList<>(signalServiceMentions.size());
 
     for (SignalServiceDataMessage.Mention mention : signalServiceMentions) {
-      mentions.add(new Mention(Recipient.externalPush(mention.getServiceId()).getId(), mention.getStart(), mention.getLength()));
+      if (!mention.getServiceId().isUnknown()) {
+        mentions.add(new Mention(Recipient.externalPush(mention.getServiceId()).getId(), mention.getStart(), mention.getLength()));
+      }
     }
 
     return mentions;
