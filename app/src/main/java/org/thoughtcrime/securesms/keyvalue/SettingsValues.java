@@ -462,7 +462,7 @@ public final class SettingsValues extends SignalStoreValues {
   }
 
   public boolean shouldKeepMutedChatsArchived() {
-    return getBoolean(KEEP_MUTED_CHATS_ARCHIVED, false);
+    return getBoolean(KEEP_MUTED_CHATS_ARCHIVED, true);
   }
 
   public void setUseCompactNavigationBar(boolean enabled) {
