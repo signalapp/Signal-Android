@@ -173,7 +173,7 @@ object SyncMessageProcessor {
       val groupId: GroupId.V2? = if (dataMessage.hasGroupContext) GroupId.v2(dataMessage.groupV2.groupMasterKey) else null
 
       if (groupId != null) {
-        if (MessageContentProcessorV2.handleGv2PreProcessing(context, envelope.timestamp, content, metadata, groupId, dataMessage.groupV2, senderRecipient)) {
+        if (MessageContentProcessorV2.handleGv2PreProcessing(context, envelope.timestamp, content, metadata, groupId, dataMessage.groupV2, senderRecipient) == MessageContentProcessorV2.Gv2PreProcessResult.IGNORE) {
           return
         }
       }
@@ -591,7 +591,7 @@ object SyncMessageProcessor {
     val dataMessage: DataMessage = sent.message
     val groupId: GroupId.V2? = dataMessage.groupV2.groupId
 
-    if (!MessageContentProcessorV2.updateGv2GroupFromServerOrP2PChange(context, envelope.timestamp, dataMessage.groupV2)) {
+    if (MessageContentProcessorV2.updateGv2GroupFromServerOrP2PChange(context, envelope.timestamp, dataMessage.groupV2) == null) {
       log(envelope.timestamp, "Ignoring GV2 message for group we are not currently in $groupId")
     }
   }

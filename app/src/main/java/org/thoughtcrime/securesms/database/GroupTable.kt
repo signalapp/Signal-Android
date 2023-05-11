@@ -287,6 +287,15 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     return getGroup(SqlUtil.Query("$TABLE_NAME.$EXPECTED_V2_ID = ?", buildArgs(gv2Id)))
   }
 
+  /**
+   * @return A gv1 group whose expected v2 ID matches the one provided or a gv2 group whose ID matches the one provided.
+   *
+   * If a gv1 group is present, it will be returned first.
+   */
+  fun getGroupV1OrV2ByExpectedV2(gv2Id: GroupId.V2): Optional<GroupRecord> {
+    return getGroup(SqlUtil.Query("$TABLE_NAME.$EXPECTED_V2_ID = ? OR $TABLE_NAME.$GROUP_ID = ? ORDER BY $TABLE_NAME.$EXPECTED_V2_ID DESC", buildArgs(gv2Id, gv2Id)))
+  }
+
   fun getGroupByDistributionId(distributionId: DistributionId): Optional<GroupRecord> {
     return getGroup(SqlUtil.Query("$TABLE_NAME.$DISTRIBUTION_ID = ?", buildArgs(distributionId)))
   }
@@ -347,7 +356,10 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   fun isUnknownGroup(groupId: GroupId): Boolean {
-    val group = getGroup(groupId)
+    return isUnknownGroup(getGroup(groupId))
+  }
+
+  fun isUnknownGroup(group: Optional<GroupRecord>): Boolean {
     if (!group.isPresent) {
       return true
     }

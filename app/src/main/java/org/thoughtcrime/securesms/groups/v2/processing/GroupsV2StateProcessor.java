@@ -133,7 +133,7 @@ public class GroupsV2StateProcessor {
       this.latestServer = latestServer;
     }
 
-    public GroupState getGroupState() {
+    public @NonNull GroupState getGroupState() {
       return groupState;
     }
 
@@ -229,13 +229,14 @@ public class GroupsV2StateProcessor {
                                                         @Nullable DecryptedGroupChange signedGroupChange)
         throws IOException, GroupNotAMemberException
     {
-      if (localIsAtLeast(revision)) {
+      Optional<GroupRecord> localRecord = groupDatabase.getGroup(groupId);
+
+      if (localIsAtLeast(localRecord, revision)) {
         return new GroupUpdateResult(GroupState.GROUP_CONSISTENT_OR_AHEAD, null);
       }
 
       GlobalGroupState inputGroupState = null;
 
-      Optional<GroupRecord> localRecord = groupDatabase.getGroup(groupId);
       DecryptedGroup        localState  = localRecord.map(g -> g.requireV2GroupProperties().getDecryptedGroup()).orElse(null);
 
       if (signedGroupChange != null &&
@@ -540,11 +541,11 @@ public class GroupsV2StateProcessor {
     /**
      * @return true iff group exists locally and is at least the specified revision.
      */
-    private boolean localIsAtLeast(int revision) {
-      if (groupDatabase.isUnknownGroup(groupId) || revision == LATEST) {
+    private boolean localIsAtLeast(Optional<GroupRecord> localRecord, int revision) {
+      if (revision == LATEST || localRecord.isEmpty() || groupDatabase.isUnknownGroup(localRecord)) {
         return false;
       }
-      int dbRevision = groupDatabase.getGroup(groupId).get().requireV2GroupProperties().getGroupRevision();
+      int dbRevision = localRecord.get().requireV2GroupProperties().getGroupRevision();
       return revision <= dbRevision;
     }
 

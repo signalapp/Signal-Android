@@ -95,6 +95,7 @@ public class Recipient {
   private final DistributionListId           distributionListId;
   private final List<RecipientId>            participantIds;
   private final Optional<Long>               groupAvatarId;
+  private final boolean                      isActiveGroup;
   private final boolean                      isSelf;
   private final boolean                      blocked;
   private final long                         muteUntil;
@@ -433,6 +434,7 @@ public class Recipient {
     this.badges                       = Collections.emptyList();
     this.isReleaseNotesRecipient      = false;
     this.needsPniSignature            = false;
+    this.isActiveGroup                = false;
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -488,6 +490,7 @@ public class Recipient {
     this.badges                       = details.badges;
     this.isReleaseNotesRecipient      = details.isReleaseChannel;
     this.needsPniSignature            = details.needsPniSignature;
+    this.isActiveGroup                = details.isActiveGroup;
   }
 
   public @NonNull RecipientId getId() {
@@ -881,8 +884,14 @@ public class Recipient {
   }
 
   public boolean isActiveGroup() {
-    RecipientId selfId = Recipient.self().getId();
-    return Stream.of(getParticipantIds()).anyMatch(p -> p.equals(selfId));
+    return isActiveGroup;
+  }
+
+  public boolean isUnknownGroup() {
+    boolean noMetadata = (groupAvatarId.isEmpty() || groupAvatarId.get() == - 1) && (groupName == null || groupName.isEmpty());
+    boolean noMembers = participantIds.isEmpty() || (participantIds.size() == 1 && participantIds.contains(Recipient.self().id));
+
+    return noMetadata && noMembers;
   }
 
   public boolean isInactiveGroup() {

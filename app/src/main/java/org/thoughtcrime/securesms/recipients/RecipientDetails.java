@@ -64,6 +64,7 @@ public class RecipientDetails {
   final ProfileAvatarFileDetails     profileAvatarFileDetails;
   final boolean                      profileSharing;
   final boolean                      isHidden;
+  final boolean                      isActiveGroup;
   final long                         lastProfileFetch;
   final boolean                      systemContact;
   final boolean                      isSelf;
@@ -94,7 +95,8 @@ public class RecipientDetails {
                           @NonNull RegisteredState registeredState,
                           @NonNull RecipientRecord record,
                           @Nullable List<RecipientId> participantIds,
-                          boolean isReleaseChannel)
+                          boolean isReleaseChannel,
+                          boolean isActiveGroup)
   {
     this.groupAvatarId                = groupAvatarId;
     this.systemContactPhoto           = Util.uri(record.getSystemContactPhotoUri());
@@ -115,6 +117,7 @@ public class RecipientDetails {
     this.blocked                      = record.isBlocked();
     this.expireMessages               = record.getExpireMessages();
     this.participantIds               = participantIds == null ? new LinkedList<>() : participantIds;
+    this.isActiveGroup                = isActiveGroup;
     this.profileName                  = record.getProfileName();
     this.defaultSubscriptionId        = record.getDefaultSubscriptionId();
     this.registered                   = registeredState;
@@ -200,7 +203,8 @@ public class RecipientDetails {
     this.hasGroupsInCommon            = false;
     this.badges                       = Collections.emptyList();
     this.isReleaseChannel             = false;
-    this.needsPniSignature            = false;
+    this.needsPniSignature = false;
+    this.isActiveGroup     = false;
   }
 
   public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientRecord settings) {
@@ -219,11 +223,11 @@ public class RecipientDetails {
       }
     }
 
-    return new RecipientDetails(null, settings.getSystemDisplayName(), Optional.empty(), systemContact, isSelf, registeredState, settings, null, isReleaseChannel);
+    return new RecipientDetails(null, settings.getSystemDisplayName(), Optional.empty(), systemContact, isSelf, registeredState, settings, null, isReleaseChannel, false);
   }
 
   public static @NonNull RecipientDetails forDistributionList(String title, @Nullable List<RecipientId> members, @NonNull RecipientRecord record) {
-    return new RecipientDetails(title, null, Optional.empty(), false, false, record.getRegistered(), record, members, false);
+    return new RecipientDetails(title, null, Optional.empty(), false, false, record.getRegistered(), record, members, false, false);
   }
 
   public static @NonNull RecipientDetails forUnknown() {
