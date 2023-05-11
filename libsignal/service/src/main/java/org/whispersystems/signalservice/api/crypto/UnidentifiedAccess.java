@@ -21,12 +21,19 @@ public class UnidentifiedAccess {
 
   private final byte[]            unidentifiedAccessKey;
   private final SenderCertificate unidentifiedCertificate;
+  private final boolean           isUnrestrictedForStory;
 
-  public UnidentifiedAccess(byte[] unidentifiedAccessKey, byte[] unidentifiedCertificate)
+  /**
+   * @param isUnrestrictedForStory When sending to a story, we always want to use sealed sender. Receivers will accept it for story messages. However, there are
+   *                               some situations where we need to know if this access key will be correct for non-story purposes. Set this flag to true if
+   *                               the access key is a synthetic one that would only be valid for story messages.
+   */
+  public UnidentifiedAccess(byte[] unidentifiedAccessKey, byte[] unidentifiedCertificate, boolean isUnrestrictedForStory)
       throws InvalidCertificateException
   {
     this.unidentifiedAccessKey   = unidentifiedAccessKey;
     this.unidentifiedCertificate = new SenderCertificate(unidentifiedCertificate);
+    this.isUnrestrictedForStory  = isUnrestrictedForStory;
   }
 
   public byte[] getUnidentifiedAccessKey() {
@@ -35,6 +42,10 @@ public class UnidentifiedAccess {
 
   public SenderCertificate getUnidentifiedCertificate() {
     return unidentifiedCertificate;
+  }
+
+  public boolean isUnrestrictedForStory() {
+    return isUnrestrictedForStory;
   }
 
   public static byte[] deriveAccessKeyFrom(ProfileKey profileKey) {

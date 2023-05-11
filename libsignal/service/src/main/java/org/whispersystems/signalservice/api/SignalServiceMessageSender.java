@@ -2378,9 +2378,15 @@ public class SignalServiceMessageSender {
 
   private List<PreKeyBundle> getPreKeys(SignalServiceAddress recipient, Optional<UnidentifiedAccess> unidentifiedAccess, int deviceId, boolean story) throws IOException {
     try {
+      // If it's only unrestricted because it's a story send, then we know it'll fail
+      if (story && unidentifiedAccess.isPresent() && unidentifiedAccess.get().isUnrestrictedForStory()) {
+        unidentifiedAccess = Optional.empty();
+      }
+
       return socket.getPreKeys(recipient, unidentifiedAccess, deviceId);
     } catch (NonSuccessfulResponseCodeException e) {
       if (e.getCode() == 401 && story) {
+        Log.d(TAG, "Got 401 when fetching prekey for story. Trying without UD.");
         return socket.getPreKeys(recipient, Optional.empty(), deviceId);
       } else {
         throw e;
