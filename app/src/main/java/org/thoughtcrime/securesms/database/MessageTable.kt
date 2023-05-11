@@ -4290,7 +4290,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun incrementViewedStoryReceiptCounts(targetTimestamps: List<Long>, receiptAuthor: RecipientId, receiptSentTimestamp: Long): Set<Long> {
-    val messageUpdates: MutableSet<MessageUpdate> = HashSet()
+    val messageUpdates: MutableSet<MessageReceiptUpdate> = HashSet()
     val unhandled: MutableSet<Long> = HashSet()
 
     writableDatabase.withinTransaction {
@@ -4323,7 +4323,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
    * @return Whether or not some thread was updated.
    */
   private fun incrementReceiptCount(targetTimestamp: Long, receiptAuthor: RecipientId, receiptSentTimestamp: Long, receiptType: ReceiptType, messageQualifier: MessageQualifier = MessageQualifier.ALL): Boolean {
-    var messageUpdates: Set<MessageUpdate> = HashSet()
+    var messageUpdates: Set<MessageReceiptUpdate> = HashSet()
 
     writableDatabase.withinTransaction {
       messageUpdates = incrementReceiptCountInternal(targetTimestamp, receiptAuthor, receiptSentTimestamp, receiptType, messageQualifier)
@@ -4346,13 +4346,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
    * @return All of the target timestamps that couldn't be found in the table.
    */
   private fun incrementReceiptCounts(targetTimestamps: List<Long>, receiptAuthor: RecipientId, receiptSentTimestamp: Long, receiptType: ReceiptType, messageQualifier: MessageQualifier = MessageQualifier.ALL): Set<Long> {
-    val messageUpdates: MutableSet<MessageUpdate> = HashSet()
+    val messageUpdates: MutableSet<MessageReceiptUpdate> = HashSet()
     val missingTargetTimestamps: MutableSet<Long> = HashSet()
 
     writableDatabase.withinTransaction {
       for (targetTimestamp in targetTimestamps) {
-        val updates: Set<MessageUpdate> = incrementReceiptCountInternal(targetTimestamp, receiptAuthor, receiptSentTimestamp, receiptType, messageQualifier)
-
+        val updates: Set<MessageReceiptUpdate> = incrementReceiptCountInternal(targetTimestamp, receiptAuthor, receiptSentTimestamp, receiptType, messageQualifier)
         if (updates.isNotEmpty()) {
           messageUpdates += updates
         } else {
@@ -4361,7 +4360,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
 
       for (update in messageUpdates) {
-        threads.updateSilently(update.threadId, false)
+        if (update.shouldUpdateSnippet) {
+          threads.updateSilently(update.threadId, false)
+        }
       }
     }
 
@@ -4381,8 +4382,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return missingTargetTimestamps
   }
 
-  private fun incrementReceiptCountInternal(targetTimestamp: Long, receiptAuthor: RecipientId, receiptSentTimestamp: Long, receiptType: ReceiptType, messageQualifier: MessageQualifier): Set<MessageUpdate> {
-    val messageUpdates: MutableSet<MessageUpdate> = HashSet()
+  private fun incrementReceiptCountInternal(targetTimestamp: Long, receiptAuthor: RecipientId, receiptSentTimestamp: Long, receiptType: ReceiptType, messageQualifier: MessageQualifier): Set<MessageReceiptUpdate> {
+    val messageUpdates: MutableSet<MessageReceiptUpdate> = HashSet()
 
     val qualifierWhere: String = when (messageQualifier) {
       MessageQualifier.NORMAL -> " AND NOT ($IS_STORY_CLAUSE)"
@@ -4415,16 +4416,17 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             )
           )
           $qualifierWhere
-        RETURNING $ID, $THREAD_ID, $STORY_TYPE
+        RETURNING $ID, $THREAD_ID, $STORY_TYPE, ${receiptType.columnName}
       """,
       buildArgs(Recipient.self().id, receiptAuthor)
     ).forEach { cursor ->
       val messageId = cursor.requireLong(ID)
       val threadId = cursor.requireLong(THREAD_ID)
       val storyType = StoryType.fromCode(cursor.requireInt(STORY_TYPE))
+      val receiptCount = cursor.requireInt(receiptType.columnName)
 
       groupReceipts.update(receiptAuthor, messageId, receiptType.groupStatus, receiptSentTimestamp)
-      messageUpdates += MessageUpdate(threadId, MessageId(messageId))
+      messageUpdates += MessageReceiptUpdate(threadId, MessageId(messageId), receiptType != ReceiptType.VIEWED && receiptCount == 1)
 
       found = true
       hasStory = storyType != StoryType.NONE
@@ -4437,7 +4439,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     if (hasStory) {
       for (messageId in storySends.getStoryMessagesFor(receiptAuthor, targetTimestamp)) {
         groupReceipts.update(receiptAuthor, messageId.id, receiptType.groupStatus, receiptSentTimestamp)
-        messageUpdates += MessageUpdate(-1, messageId)
+        messageUpdates += MessageReceiptUpdate(-1, messageId, false)
       }
     }
 
@@ -4922,9 +4924,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val subscriptionId: Int
   )
 
-  data class MessageUpdate(
+  data class MessageReceiptUpdate(
     val threadId: Long,
-    val messageId: MessageId
+    val messageId: MessageId,
+    val shouldUpdateSnippet: Boolean
   )
 
   data class ReportSpamData(
