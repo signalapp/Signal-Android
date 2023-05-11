@@ -11,7 +11,7 @@ public class AttachmentDatabaseTransformPropertiesTest {
   public void transformProperties_verifyStructure() {
     AttachmentTable.TransformProperties properties = AttachmentTable.TransformProperties.empty();
     assertEquals("Added transform property, need to confirm default behavior for pre-existing payloads in database",
-                 "{\"skipTransform\":false,\"videoTrim\":false,\"videoTrimStartTimeUs\":0,\"videoTrimEndTimeUs\":0,\"sentMediaQuality\":0,\"videoEdited\":false}",
+                 "{\"skipTransform\":false,\"videoTrim\":false,\"videoTrimStartTimeUs\":0,\"videoTrimEndTimeUs\":0,\"sentMediaQuality\":1,\"videoEdited\":false}",
                  properties.serialize());
   }
 
@@ -22,7 +22,7 @@ public class AttachmentDatabaseTransformPropertiesTest {
     AttachmentTable.TransformProperties properties = AttachmentTable.TransformProperties.parse(json);
 
     assertEquals(0, properties.getSentMediaQuality());
-    assertEquals(SentMediaQuality.STANDARD, SentMediaQuality.fromCode(properties.getSentMediaQuality()));
+    assertEquals(SentMediaQuality.HIGH, SentMediaQuality.fromCode(properties.getSentMediaQuality()));
   }
 
 }
