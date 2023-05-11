@@ -594,7 +594,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isUniversalUnidentifiedAccess(Context context) {
-    return getBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, false);
+    return getBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, true);
   }
 
   public static void setShowUnidentifiedDeliveryIndicatorsEnabled(Context context, boolean enabled) {
@@ -602,7 +602,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isShowUnidentifiedDeliveryIndicatorsEnabled(Context context) {
-    return getBooleanPreference(context, SHOW_UNIDENTIFIED_DELIVERY_INDICATORS, false);
+    return getBooleanPreference(context, SHOW_UNIDENTIFIED_DELIVERY_INDICATORS, true);
   }
 
   public static void setIsUnidentifiedDeliveryEnabled(Context context, boolean enabled) {
