@@ -1960,7 +1960,8 @@
     <string name="StickerPackPreviewActivity_untitled">Untitled</string>
     <string name="StickerPackPreviewActivity_unknown">Unknown</string>
     <string name="StickerPackPreviewActivity_install">Install</string>
-    <string name="StickerPackPreviewActivity_remove">Remove</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">Stickers</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Failed to load sticker pack</string>
 
