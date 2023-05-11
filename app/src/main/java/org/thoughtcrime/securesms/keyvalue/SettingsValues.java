@@ -445,7 +445,7 @@ public final class SettingsValues extends SignalStoreValues {
   }
 
   public @NonNull SentMediaQuality getSentMediaQuality() {
-    return SentMediaQuality.fromCode(getInteger(SENT_MEDIA_QUALITY, SentMediaQuality.STANDARD.getCode()));
+    return SentMediaQuality.fromCode(getInteger(SENT_MEDIA_QUALITY, SentMediaQuality.HIGH.getCode()));
   }
 
   public @NonNull CensorshipCircumventionEnabled getCensorshipCircumventionEnabled() {
