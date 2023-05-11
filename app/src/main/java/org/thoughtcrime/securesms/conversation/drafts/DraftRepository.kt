@@ -112,7 +112,8 @@ class DraftRepository(
         }
       } ?: return@fromCallable null
 
-      ConversationMessageFactory.createWithUnresolvedData(context, messageRecord)
+      val threadRecipient = requireNotNull(SignalDatabase.threads.getRecipientForThreadId(messageRecord.threadId))
+      ConversationMessageFactory.createWithUnresolvedData(context, messageRecord, threadRecipient)
     }
   }
 
@@ -120,20 +121,21 @@ class DraftRepository(
     return Maybe.fromCallable {
       val messageId = MessageId.deserialize(serialized)
       val messageRecord: MessageRecord = SignalDatabase.messages.getMessageRecordOrNull(messageId.id) ?: return@fromCallable null
+      val threadRecipient: Recipient = requireNotNull(SignalDatabase.threads.getRecipientForThreadId(messageRecord.threadId))
       if (messageRecord.hasTextSlide()) {
         val textSlide = messageRecord.requireTextSlide()
         if (textSlide.uri != null) {
           try {
             PartAuthority.getAttachmentStream(context, textSlide.uri!!).use { stream ->
               val body = StreamUtil.readFullyAsString(stream)
-              return@fromCallable ConversationMessageFactory.createWithUnresolvedData(context, messageRecord, body)
+              return@fromCallable ConversationMessageFactory.createWithUnresolvedData(context, messageRecord, body, threadRecipient)
             }
           } catch (e: IOException) {
             Log.e(TAG, "Failed to load text slide", e)
           }
         }
       }
-      ConversationMessageFactory.createWithUnresolvedData(context, messageRecord)
+      ConversationMessageFactory.createWithUnresolvedData(context, messageRecord, threadRecipient)
     }
   }
 

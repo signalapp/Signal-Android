@@ -16,13 +16,13 @@ object GV2Transformer : ColumnTransformer {
     return columnName == GroupTable.V2_DECRYPTED_GROUP
   }
 
-  override fun transform(tableName: String?, columnName: String, cursor: Cursor): String {
+  override fun transform(tableName: String?, columnName: String, cursor: Cursor): String? {
     return if (columnName == GroupTable.V2_DECRYPTED_GROUP) {
       val groupBytes = cursor.requireBlob(GroupTable.V2_DECRYPTED_GROUP)
       val group = DecryptedGroup.parseFrom(groupBytes)
       group.formatAsHtml()
     } else {
-      ""
+      null
     }
   }
 }

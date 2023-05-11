@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.profiles.manage.ManageProfileViewModel.AvatarS
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.NameUtil;
+import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
@@ -248,7 +249,7 @@ public class ManageProfileFragment extends LoggingFragment {
       binding.manageProfileUsername.setText(username);
 
       try {
-        binding.manageProfileUsernameSubtitle.setText(getString(R.string.signal_me_username_url_no_scheme, Base64UrlSafe.encodeBytesWithoutPadding(Username.hash(username))));
+        binding.manageProfileUsernameSubtitle.setText(UsernameUtil.generateLink(username));
       } catch (BaseUsernameException e) {
         Log.w(TAG, "Could not format username link", e);
         binding.manageProfileUsernameSubtitle.setText(R.string.ManageProfileFragment_your_username);

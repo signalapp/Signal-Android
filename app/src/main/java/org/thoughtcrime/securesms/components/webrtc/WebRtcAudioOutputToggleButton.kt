@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.components.webrtc
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.DialogInterface
-import android.media.AudioDeviceInfo
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
@@ -13,43 +12,46 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.webrtc.audio.AudioDeviceMapping
-import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
-import kotlin.math.min
 
 /**
  * A UI button that triggers a picker dialog/bottom sheet allowing the user to select the audio output for the ongoing call.
  */
-class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : AppCompatImageView(context, attrs, defStyleAttr) {
+class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : AppCompatImageView(context, attrs, defStyleAttr), AudioStateUpdater {
   private val TAG = Log.tag(WebRtcAudioOutputToggleButton::class.java)
 
-  private var outputState: OutputState = OutputState()
+  private var outputState: ToggleButtonOutputState = ToggleButtonOutputState()
 
-  private var audioOutputChangedListenerLegacy: OnAudioOutputChangedListener? = null
-  private var audioOutputChangedListener31: OnAudioOutputChangedListener31? = null
+  private var audioOutputChangedListener: OnAudioOutputChangedListener = OnAudioOutputChangedListener { Log.e(TAG, "Attempted to call audioOutputChangedListenerLegacy without initializing!") }
   private var picker: DialogInterface? = null
 
   private val clickListenerLegacy: OnClickListener = OnClickListener {
+    if (picker != null) {
+      Log.d(TAG, "Tried to launch new audio device picker but one is already present.")
+      return@OnClickListener
+    }
+
     val outputs = outputState.getOutputs()
     if (outputs.size >= SHOW_PICKER_THRESHOLD || !outputState.isEarpieceAvailable) {
-      showPickerLegacy(outputs)
+      picker = WebRtcAudioPickerLegacy(audioOutputChangedListener, outputState, this).showPicker(context, outputs) { picker = null }
     } else {
-      setAudioOutput(outputState.peekNext(), true)
+      val audioOutput = outputState.peekNext()
+      audioOutputChangedListener.audioOutputChanged(WebRtcAudioDevice(audioOutput, null))
+      updateAudioOutputState(audioOutput)
     }
   }
 
   @RequiresApi(31)
   private val clickListener31 = OnClickListener {
+    if (picker != null) {
+      Log.d(TAG, "Tried to launch new audio device picker but one is already present.")
+      return@OnClickListener
+    }
+
     val fragmentActivity = context.fragmentActivity()
     if (fragmentActivity != null) {
-      showPicker31(fragmentActivity.supportFragmentManager)
+      picker = WebRtcAudioPicker31(audioOutputChangedListener, outputState, this).showPicker(fragmentActivity, SHOW_PICKER_THRESHOLD) { picker = null }
     } else {
       Log.e(TAG, "WebRtcAudioOutputToggleButton instantiated from a context that does not inherit from FragmentActivity.")
       Toast.makeText(context, R.string.WebRtcAudioOutputToggleButton_fragment_activity_error, Toast.LENGTH_LONG).show()
@@ -83,11 +85,22 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
     }
 
     val currentOutput = outputState.getCurrentOutput()
-    val extra = when (currentOutput) {
-      WebRtcAudioOutput.HANDSET -> intArrayOf(R.attr.state_handset_selected)
-      WebRtcAudioOutput.SPEAKER -> intArrayOf(R.attr.state_speaker_selected)
-      WebRtcAudioOutput.BLUETOOTH_HEADSET -> intArrayOf(R.attr.state_bt_headset_selected)
-      WebRtcAudioOutput.WIRED_HEADSET -> intArrayOf(R.attr.state_wired_headset_selected)
+
+    val numberOfOutputs = outputState.getOutputs().size
+    val extra = if (numberOfOutputs < SHOW_PICKER_THRESHOLD) {
+      when (currentOutput) {
+        WebRtcAudioOutput.HANDSET -> intArrayOf(R.attr.state_speaker_off)
+        WebRtcAudioOutput.SPEAKER -> intArrayOf(R.attr.state_speaker_on)
+        WebRtcAudioOutput.BLUETOOTH_HEADSET -> intArrayOf(R.attr.state_bt_headset_selected) // should never be seen in practice.
+        WebRtcAudioOutput.WIRED_HEADSET -> intArrayOf(R.attr.state_wired_headset_selected) // should never be seen in practice.
+      }
+    } else {
+      when (currentOutput) {
+        WebRtcAudioOutput.HANDSET -> intArrayOf(R.attr.state_handset_selected)
+        WebRtcAudioOutput.SPEAKER -> intArrayOf(R.attr.state_speaker_selected)
+        WebRtcAudioOutput.BLUETOOTH_HEADSET -> intArrayOf(R.attr.state_bt_headset_selected)
+        WebRtcAudioOutput.WIRED_HEADSET -> intArrayOf(R.attr.state_wired_headset_selected)
+      }
     }
 
     val label = context.getString(currentOutput.labelRes)
@@ -106,89 +119,19 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
     outputState.isEarpieceAvailable = isEarpieceAvailable
     outputState.isBluetoothHeadsetAvailable = isBluetoothHeadsetAvailable
     outputState.isWiredHeadsetAvailable = isHeadsetAvailable
+    refreshDrawableState()
   }
 
-  fun setAudioOutput(audioOutput: WebRtcAudioOutput, notifyListener: Boolean) {
+  override fun updateAudioOutputState(audioOutput: WebRtcAudioOutput) {
     val oldOutput = outputState.getCurrentOutput()
     if (oldOutput != audioOutput) {
       outputState.setCurrentOutput(audioOutput)
       refreshDrawableState()
-      if (notifyListener) {
-        audioOutputChangedListenerLegacy?.audioOutputChanged(audioOutput)
-      }
     }
   }
 
-  fun setOnAudioOutputChangedListenerLegacy(listener: OnAudioOutputChangedListener?) {
-    audioOutputChangedListenerLegacy = listener
-  }
-
-  @RequiresApi(31)
-  fun setOnAudioOutputChangedListener31(listener: OnAudioOutputChangedListener31?) {
-    audioOutputChangedListener31 = listener
-  }
-
-  private fun showPickerLegacy(availableModes: List<WebRtcAudioOutput?>) {
-    val rv = RecyclerView(context)
-    val adapter = AudioOutputAdapter(
-      { audioOutput: WebRtcAudioOutput ->
-        setAudioOutput(audioOutput, true)
-        hidePicker()
-      },
-      availableModes
-    )
-    adapter.setSelectedOutput(outputState.getCurrentOutput())
-    rv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-    rv.adapter = adapter
-    picker = MaterialAlertDialogBuilder(context)
-      .setTitle(R.string.WebRtcAudioOutputToggle__audio_output)
-      .setView(rv)
-      .setCancelable(true)
-      .show()
-  }
-
-  @RequiresApi(31)
-  private fun showPicker31(fragmentManager: FragmentManager) {
-    val am = ApplicationDependencies.getAndroidCallAudioManager()
-    if (am.availableCommunicationDevices.isEmpty()) {
-      Toast.makeText(context, R.string.WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected, Toast.LENGTH_LONG).show()
-      return
-    }
-
-    val devices: List<AudioOutputOption> = am.availableCommunicationDevices.map { AudioOutputOption(it.toFriendlyName(context).toString(), AudioDeviceMapping.fromPlatformType(it.type), it.id) }
-    picker = WebRtcAudioOutputBottomSheet.show(fragmentManager, devices, am.communicationDevice?.id ?: -1) {
-      audioOutputChangedListener31?.audioOutputChanged(it.deviceId)
-
-      when (it.deviceType) {
-        SignalAudioManager.AudioDevice.WIRED_HEADSET -> {
-          outputState.isWiredHeadsetAvailable = true
-          setAudioOutput(WebRtcAudioOutput.WIRED_HEADSET, true)
-        }
-
-        SignalAudioManager.AudioDevice.EARPIECE -> {
-          outputState.isEarpieceAvailable = true
-          setAudioOutput(WebRtcAudioOutput.HANDSET, true)
-        }
-
-        SignalAudioManager.AudioDevice.BLUETOOTH -> {
-          outputState.isBluetoothHeadsetAvailable = true
-          setAudioOutput(WebRtcAudioOutput.BLUETOOTH_HEADSET, true)
-        }
-
-        SignalAudioManager.AudioDevice.SPEAKER_PHONE, SignalAudioManager.AudioDevice.NONE -> setAudioOutput(WebRtcAudioOutput.SPEAKER, true)
-      }
-    }
-  }
-
-  @RequiresApi(23)
-  private fun AudioDeviceInfo.toFriendlyName(context: Context): CharSequence {
-    return when (this.type) {
-      AudioDeviceInfo.TYPE_BUILTIN_EARPIECE -> context.getString(R.string.WebRtcAudioOutputToggle__phone_earpiece)
-      AudioDeviceInfo.TYPE_BUILTIN_SPEAKER -> context.getString(R.string.WebRtcAudioOutputToggle__speaker)
-      AudioDeviceInfo.TYPE_WIRED_HEADSET -> context.getString(R.string.WebRtcAudioOutputToggle__wired_headset)
-      AudioDeviceInfo.TYPE_USB_HEADSET -> context.getString(R.string.WebRtcAudioOutputToggle__wired_headset_usb)
-      else -> this.productName
-    }
+  fun setOnAudioOutputChangedListener(listener: OnAudioOutputChangedListener) {
+    audioOutputChangedListener = listener
   }
 
   override fun onSaveInstanceState(): Parcelable {
@@ -213,7 +156,7 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
     }
   }
 
-  private fun hidePicker() {
+  override fun hidePicker() {
     try {
       picker?.dismiss()
     } catch (e: IllegalStateException) {
@@ -223,84 +166,9 @@ class WebRtcAudioOutputToggleButton @JvmOverloads constructor(context: Context, 
     picker = null
   }
 
-  inner class OutputState {
-    private val availableOutputs: LinkedHashSet<WebRtcAudioOutput> = linkedSetOf(WebRtcAudioOutput.SPEAKER)
-    private var selectedDevice = 0
-      set(value) {
-        if (value >= availableOutputs.size) {
-          throw IndexOutOfBoundsException("Index: $value, size: ${availableOutputs.size}")
-        }
-        field = value
-      }
-
-    @Deprecated("Used only for onSaveInstanceState.")
-    fun getBackingIndexForBackup(): Int {
-      return selectedDevice
-    }
-
-    @Deprecated("Used only for onRestoreInstanceState.")
-    fun setBackingIndexForRestore(index: Int) {
-      selectedDevice = 0
-    }
-
-    fun getCurrentOutput(): WebRtcAudioOutput {
-      return getOutputs()[selectedDevice]
-    }
-
-    fun setCurrentOutput(outputType: WebRtcAudioOutput): Boolean {
-      val newIndex = getOutputs().indexOf(outputType)
-      return if (newIndex < 0) {
-        false
-      } else {
-        selectedDevice = newIndex
-        true
-      }
-    }
-
-    fun getOutputs(): List<WebRtcAudioOutput> {
-      return availableOutputs.toList()
-    }
-
-    fun peekNext(): WebRtcAudioOutput {
-      val peekIndex = (selectedDevice + 1) % availableOutputs.size
-      return getOutputs()[peekIndex]
-    }
-
-    var isEarpieceAvailable: Boolean
-      get() = availableOutputs.contains(WebRtcAudioOutput.HANDSET)
-      set(value) {
-        if (value) {
-          availableOutputs.add(WebRtcAudioOutput.HANDSET)
-        } else {
-          availableOutputs.remove(WebRtcAudioOutput.HANDSET)
-          selectedDevice = min(selectedDevice, availableOutputs.size - 1)
-        }
-      }
-
-    var isBluetoothHeadsetAvailable: Boolean
-      get() = availableOutputs.contains(WebRtcAudioOutput.BLUETOOTH_HEADSET)
-      set(value) {
-        if (value) {
-          availableOutputs.add(WebRtcAudioOutput.BLUETOOTH_HEADSET)
-        } else {
-          availableOutputs.remove(WebRtcAudioOutput.BLUETOOTH_HEADSET)
-          selectedDevice = min(selectedDevice, availableOutputs.size - 1)
-        }
-      }
-    var isWiredHeadsetAvailable: Boolean
-      get() = availableOutputs.contains(WebRtcAudioOutput.WIRED_HEADSET)
-      set(value) {
-        if (value) {
-          availableOutputs.add(WebRtcAudioOutput.WIRED_HEADSET)
-        } else {
-          availableOutputs.remove(WebRtcAudioOutput.WIRED_HEADSET)
-          selectedDevice = min(selectedDevice, availableOutputs.size - 1)
-        }
-      }
-  }
-
   companion object {
-    private const val SHOW_PICKER_THRESHOLD = 3
+    const val SHOW_PICKER_THRESHOLD = 3
+
     private const val STATE_OUTPUT_INDEX = "audio.output.toggle.state.output.index"
     private const val STATE_HEADSET_ENABLED = "audio.output.toggle.state.headset.enabled"
     private const val STATE_HANDSET_ENABLED = "audio.output.toggle.state.handset.enabled"

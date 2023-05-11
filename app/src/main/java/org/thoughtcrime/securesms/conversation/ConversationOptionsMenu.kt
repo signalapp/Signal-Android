@@ -1,3 +1,8 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.conversation
 
 import android.view.Menu
@@ -8,6 +13,7 @@ import androidx.core.view.MenuProvider
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -17,6 +23,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
  * Delegate object for managing the conversation options menu
  */
 internal object ConversationOptionsMenu {
+
+  private val TAG = Log.tag(ConversationOptionsMenu::class.java)
 
   /**
    * MenuProvider implementation for the conversation options menu.
@@ -43,7 +51,12 @@ internal object ConversationOptionsMenu {
         isInBubble
       ) = callback.getSnapshot()
 
-      if (isInMessageRequest && (recipient != null) && !recipient.isBlocked) {
+      if (recipient == null) {
+        Log.w(TAG, "Recipient is null, no menu")
+        return
+      }
+
+      if (isInMessageRequest && !recipient.isBlocked) {
         if (isActiveGroup) {
           menuInflater.inflate(R.menu.conversation_message_requests_group, menu)
         }

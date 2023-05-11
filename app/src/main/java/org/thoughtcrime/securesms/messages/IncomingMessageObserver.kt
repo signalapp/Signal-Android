@@ -459,9 +459,19 @@ class IncomingMessageObserver(private val context: Application) {
       return null
     }
 
+    override fun onCreate() {
+      postForegroundNotification()
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
       super.onStartCommand(intent, flags, startId)
 
+      postForegroundNotification()
+
+      return START_STICKY
+    }
+
+    private fun postForegroundNotification() {
       val notification = NotificationCompat.Builder(applicationContext, NotificationChannels.getInstance().BACKGROUND)
         .setContentTitle(applicationContext.getString(R.string.MessageRetrievalService_signal))
         .setContentText(applicationContext.getString(R.string.MessageRetrievalService_background_connection_enabled))
@@ -471,8 +481,6 @@ class IncomingMessageObserver(private val context: Application) {
         .build()
 
       startForeground(FOREGROUND_ID, notification)
-
-      return START_STICKY
     }
   }
 

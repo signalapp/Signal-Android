@@ -134,6 +134,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     executeStatements(db, DistributionListTables.CREATE_INDEXES)
     executeStatements(db, PendingPniSignatureMessageTable.CREATE_INDEXES)
     executeStatements(db, CallTable.CREATE_INDEXES)
+    executeStatements(db, ReactionTable.CREATE_INDEXES)
 
     executeStatements(db, SearchTable.CREATE_TRIGGERS)
     executeStatements(db, MessageSendLogTables.CREATE_TRIGGERS)

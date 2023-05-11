@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.testing.InMemoryLogger
 import org.thoughtcrime.securesms.testing.MessageContentFuzzer
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.assertIs
-import org.thoughtcrime.securesms.util.MessageTableUtils
+import org.thoughtcrime.securesms.util.MessageTableTestUtils
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceMetadata
@@ -278,7 +278,7 @@ class MessageContentProcessorTestV2 {
               else -> cursor.getString(index)
             }
             if (table == MessageTable.TABLE_NAME && column == MessageTable.TYPE) {
-              data = MessageTableUtils.typeColumnToString(cursor.getLong(index))
+              data = MessageTableTestUtils.typeColumnToString(cursor.getLong(index))
             }
 
             column to data

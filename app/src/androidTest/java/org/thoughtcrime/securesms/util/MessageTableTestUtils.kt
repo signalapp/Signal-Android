@@ -1,8 +1,21 @@
 package org.thoughtcrime.securesms.util
 
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTypes
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.MessageRecord
 
-object MessageTableUtils {
+/**
+ * Helper methods for interacting with [MessageTable] in tests.
+ */
+object MessageTableTestUtils {
+
+  fun getMessages(threadId: Long): List<MessageRecord> {
+    return MessageTable.mmsReaderFor(SignalDatabase.messages.getConversation(threadId)).use {
+      it.toList()
+    }
+  }
+
   fun typeColumnToString(type: Long): String {
     return """
       isOutgoingMessageType:${MessageTypes.isOutgoingMessageType(type)}

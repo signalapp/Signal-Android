@@ -14,5 +14,5 @@ interface ColumnTransformer {
   /**
    * In certain circumstances (like some queries), the table name may not be guaranteed.
    */
-  fun transform(tableName: String?, columnName: String, cursor: Cursor): String
+  fun transform(tableName: String?, columnName: String, cursor: Cursor): String?
 }

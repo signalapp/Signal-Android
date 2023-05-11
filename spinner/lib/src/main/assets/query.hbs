@@ -35,7 +35,7 @@
         {{#each queryResult.rows}}
           <tr>
             {{#each this}}
-              <td><pre>{{{this}}}</pre></td>
+              <td><pre>{{#if (eq this null)}} <em class="null">null</em> {{else}} {{{this}}} {{/if}}</pre></td>
             {{/each}}
           </tr>
         {{/each}}
@@ -67,7 +67,7 @@
 
         let history = getQueryHistory();
         history.unshift(query);
-        history = history.slice(0, 10);
+        history = history.slice(0, 25);
 
         localStorage.setItem('query-history', JSON.stringify(history));
       }

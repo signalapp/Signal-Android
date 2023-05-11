@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.conversationlist.model.UnreadPaymentsLiveData
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class AppSettingsViewModel(
@@ -22,7 +23,9 @@ class AppSettingsViewModel(
       Recipient.self(),
       0,
       SignalStore.donationsValues().getExpiredGiftBadge() != null,
-      SignalStore.donationsValues().isLikelyASustainer() || InAppDonations.hasAtLeastOnePaymentMethodAvailable()
+      SignalStore.donationsValues().isLikelyASustainer() || InAppDonations.hasAtLeastOnePaymentMethodAvailable(),
+      TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication()),
+      SignalStore.misc().isClientDeprecated
     )
   )
 
@@ -48,6 +51,10 @@ class AppSettingsViewModel(
 
   override fun onCleared() {
     disposables.clear()
+  }
+
+  fun refreshDeprecatedOrUnregistered() {
+    store.update { it.copy(clientDeprecated = SignalStore.misc().isClientDeprecated, userUnregistered = TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication())) }
   }
 
   fun refreshExpiredGiftBadge() {

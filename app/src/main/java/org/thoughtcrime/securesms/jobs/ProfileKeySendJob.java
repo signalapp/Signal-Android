@@ -155,7 +155,13 @@ public class ProfileKeySendJob extends BaseJob {
 
     List<SendMessageResult> results = GroupSendUtil.sendUnresendableDataMessage(context, null, destinations, false, ContentHint.IMPLICIT, dataMessage.build(), false);
 
-    return GroupSendJobHelper.getCompletedSends(destinations, results).completed;
+    GroupSendJobHelper.SendResult groupResult = GroupSendJobHelper.getCompletedSends(destinations, results);
+
+    for (RecipientId unregistered : groupResult.unregistered) {
+      SignalDatabase.recipients().markUnregistered(unregistered);
+    }
+
+    return groupResult.completed;
   }
 
   public static class Factory implements Job.Factory<ProfileKeySendJob> {

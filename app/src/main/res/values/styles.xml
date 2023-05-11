@@ -429,21 +429,25 @@
         </attr>
     </declare-styleable>
 
-    <style name="Widget.Signal.Button.Icon.Circular" parent="Widget.MaterialComponents.Button.Icon">
-        <item name="android:layout_width">48dp</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="iconSize">24dp</item>
+    <style name="Widget.Signal.Button.Icon" parent="Widget.Material3.Button.IconButton">
+        <item name="android:elevation" tools:ignore="NewApi">0dp</item>
+        <item name="android:stateListAnimator" tools:ignore="NewApi">@null</item>
         <item name="android:insetRight">0dp</item>
         <item name="android:insetLeft">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
+    <style name="Widget.Signal.Button.Icon.Circular" parent="Widget.Signal.Button.Icon">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="iconSize">24dp</item>
         <item name="android:elevation" tools:ignore="NewApi">0dp</item>
         <item name="android:stateListAnimator" tools:ignore="NewApi">@null</item>
         <item name="iconTint">@color/white</item>
         <item name="iconTintMode">multiply</item>
-        <item name="iconPadding">0dp</item>
         <item name="rippleColor">@color/core_ultramarine</item>
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.Button.Rounded</item>
     </style>
 
     <style name="Widget.Signal.Button.Icon.Circular.Small">

@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.thoughtcrime.securesms.conversation.v2.data.AttachmentHelper
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
  * Handles retrieving scheduled messages data to be shown in [ScheduledMessagesBottomSheet] and [ConversationParentFragment]
@@ -32,8 +34,9 @@ class ScheduledMessagesRepository {
   @WorkerThread
   private fun getScheduledMessagesSync(context: Context, threadId: Long): List<ConversationMessage> {
     var scheduledMessages: List<MessageRecord> = SignalDatabase.messages.getScheduledMessagesInThread(threadId)
+    val threadRecipient: Recipient = requireNotNull(SignalDatabase.threads.getRecipientForThreadId(threadId))
 
-    val attachmentHelper = ConversationDataSource.AttachmentHelper()
+    val attachmentHelper = AttachmentHelper()
 
     attachmentHelper.addAll(scheduledMessages)
 
@@ -42,7 +45,7 @@ class ScheduledMessagesRepository {
     scheduledMessages = attachmentHelper.buildUpdatedModels(ApplicationDependencies.getApplication(), scheduledMessages)
 
     val replies: List<ConversationMessage> = scheduledMessages
-      .map { ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, it) }
+      .map { ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, it, threadRecipient) }
 
     return replies
   }

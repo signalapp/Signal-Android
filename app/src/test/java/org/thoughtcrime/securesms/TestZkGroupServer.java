@@ -7,7 +7,6 @@ import org.signal.libsignal.zkgroup.groups.GroupPublicParams;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCommitment;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialPresentation;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequest;
-import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialResponse;
 import org.signal.libsignal.zkgroup.profiles.ServerZkProfileOperations;
 import org.whispersystems.signalservice.test.LibSignalLibraryUtil;
 
@@ -33,17 +32,5 @@ public final class TestZkGroupServer {
 
   public ServerPublicParams getServerPublicParams() {
     return serverPublicParams;
-  }
-
-  public ProfileKeyCredentialResponse getProfileKeyCredentialResponse(ProfileKeyCredentialRequest request, UUID uuid, ProfileKeyCommitment commitment) throws VerificationFailedException {
-     return serverZkProfileOperations.issueProfileKeyCredential(request, uuid, commitment);
-  }
-
-  public void assertProfileKeyCredentialPresentation(GroupPublicParams publicParams, ProfileKeyCredentialPresentation profileKeyCredentialPresentation) {
-    try {
-      serverZkProfileOperations.verifyProfileKeyCredentialPresentation(publicParams, profileKeyCredentialPresentation);
-    } catch (VerificationFailedException e) {
-      throw new AssertionError(e);
-    }
   }
 }

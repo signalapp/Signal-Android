@@ -243,7 +243,13 @@ public class ReactionSendJob extends BaseJob {
       results.add(ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage));
     }
 
-    return GroupSendJobHelper.getCompletedSends(destinations, results).completed;
+    GroupSendJobHelper.SendResult groupResult = GroupSendJobHelper.getCompletedSends(destinations, results);
+
+    for (RecipientId unregistered : groupResult.unregistered) {
+      SignalDatabase.recipients().markUnregistered(unregistered);
+    }
+
+    return groupResult.completed;
   }
 
   private static SignalServiceDataMessage.Reaction buildReaction(@NonNull Context context,

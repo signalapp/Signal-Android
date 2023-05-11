@@ -15,12 +15,12 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.Stopwatch;
 
-public final class QrCode {
+public final class QrCodeUtil {
 
-  private QrCode() {
+  private QrCodeUtil() {
   }
 
-  public static final String TAG = Log.tag(QrCode.class);
+  public static final String TAG = Log.tag(QrCodeUtil.class);
 
   public static @NonNull Bitmap create(@Nullable String data) {
     return create(data, Color.BLACK, Color.TRANSPARENT);

@@ -12,6 +12,7 @@ import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
 
 import com.annimon.stream.Stream;
+import com.google.common.collect.Sets;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -29,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -37,11 +37,19 @@ import java.util.stream.Collectors;
  */
 public final class ConversationUtil {
 
-  public static final int CONVERSATION_SUPPORT_VERSION = 30;
-
   private static final String TAG = Log.tag(ConversationUtil.class);
 
+  public static final int CONVERSATION_SUPPORT_VERSION = 30;
+
   private static final String CATEGORY_SHARE_TARGET = "org.thoughtcrime.securesms.sharing.CATEGORY_SHARE_TARGET";
+
+  private static final String CAPABILITY_SEND_MESSAGE    = "actions.intent.SEND_MESSAGE";
+  private static final String CAPABILITY_RECEIVE_MESSAGE = "actions.intent.RECEIVE_MESSAGE";
+
+  private static final String PARAMETER_RECIPIENT_TYPE = "message.recipient.@type";
+  private static final String PARAMETER_SENDER_TYPE    = "message.sender.@type";
+
+  private static final List<String> PARAMETERS_AUDIENCE = Collections.singletonList("Audience");
 
   private ConversationUtil() {}
 
@@ -64,23 +72,16 @@ public final class ConversationUtil {
   }
 
   /**
-   * Synchronously pushes a new dynamic shortcut for the given recipient if one does not already exist.
+   * Synchronously pushes a dynamic shortcut for the given recipient.
    * <p>
-   * If added, this recipient is given a high ranking with the intention of not appearing immediately in results.
+   * The recipient is given a high ranking with the intention of not appearing immediately in results.
+   *
+   * @return True if it succeeded, or false if it was rate-limited.
    */
   @WorkerThread
-  public static void pushShortcutForRecipientIfNeededSync(@NonNull Context context, @NonNull Recipient recipient) {
-    String                   shortcutId = getShortcutId(recipient);
+  public static boolean pushShortcutForRecipientSync(@NonNull Context context, @NonNull Recipient recipient, @NonNull Direction direction ) {
     List<ShortcutInfoCompat> shortcuts  = ShortcutManagerCompat.getDynamicShortcuts(context);
-
-    boolean hasPushedRecipientShortcut = Stream.of(shortcuts)
-                                               .filter(info -> Objects.equals(shortcutId, info.getId()))
-                                               .findFirst()
-                                               .isPresent();
-
-    if (!hasPushedRecipientShortcut) {
-      pushShortcutForRecipientInternal(context, recipient, shortcuts.size());
-    }
+    return pushShortcutForRecipientInternal(context, recipient, shortcuts.size(), direction);
   }
 
   /**
@@ -173,7 +174,7 @@ public final class ConversationUtil {
     List<ShortcutInfoCompat> shortcuts = new ArrayList<>(rankedRecipients.size());
 
     for (int i = 0; i < rankedRecipients.size(); i++) {
-      ShortcutInfoCompat info = buildShortcutInfo(context, rankedRecipients.get(i), i);
+      ShortcutInfoCompat info = buildShortcutInfo(context, rankedRecipients.get(i), i, Direction.NONE);
       shortcuts.add(info);
     }
 
@@ -182,12 +183,14 @@ public final class ConversationUtil {
 
   /**
    * Pushes a dynamic shortcut for a given recipient to the shortcut manager
+   *
+   * @return True if it succeeded, or false if it was rate-limited.
    */
   @WorkerThread
-  private static void pushShortcutForRecipientInternal(@NonNull Context context, @NonNull Recipient recipient, int rank) {
-    ShortcutInfoCompat shortcutInfo = buildShortcutInfo(context, recipient, rank);
+  private static boolean pushShortcutForRecipientInternal(@NonNull Context context, @NonNull Recipient recipient, int rank, @NonNull Direction direction) {
+    ShortcutInfoCompat shortcutInfo = buildShortcutInfo(context, recipient, rank, direction);
 
-    ShortcutManagerCompat.pushDynamicShortcut(context, shortcutInfo);
+    return ShortcutManagerCompat.pushDynamicShortcut(context, shortcutInfo);
   }
 
   /**
@@ -201,7 +204,8 @@ public final class ConversationUtil {
   @WorkerThread
   private static @NonNull ShortcutInfoCompat buildShortcutInfo(@NonNull Context context,
                                                                @NonNull Recipient recipient,
-                                                               int rank)
+                                                               int rank,
+                                                               @NonNull Direction direction)
   {
     Recipient resolved   = recipient.resolve();
     Person[]  persons    = buildPersons(context, resolved);
@@ -209,19 +213,34 @@ public final class ConversationUtil {
     String    shortName  = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getShortDisplayName(context);
     String    longName   = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getDisplayName(context);
     String    shortcutId = getShortcutId(resolved);
-    
-    return new ShortcutInfoCompat.Builder(context, shortcutId)
+
+    ShortcutInfoCompat.Builder builder = new ShortcutInfoCompat.Builder(context, shortcutId)
                                  .setLongLived(true)
                                  .setIntent(ConversationIntents.createBuilder(context, resolved.getId(), threadId != null ? threadId : -1).build())
                                  .setShortLabel(shortName)
                                  .setLongLabel(longName)
                                  .setIcon(AvatarUtil.getIconCompatForShortcut(context, resolved))
                                  .setPersons(persons)
-                                 .setCategories(Collections.singleton(CATEGORY_SHARE_TARGET))
+                                 .setCategories(Sets.newHashSet(CATEGORY_SHARE_TARGET))
                                  .setActivity(new ComponentName(context, "org.thoughtcrime.securesms.RoutingActivity"))
                                  .setRank(rank)
-                                 .setLocusId(new LocusIdCompat(shortcutId))
-                                 .build();
+                                 .setLocusId(new LocusIdCompat(shortcutId));
+
+    if (direction == Direction.OUTGOING) {
+      if (recipient.isGroup()) {
+        builder.addCapabilityBinding(CAPABILITY_SEND_MESSAGE, PARAMETER_RECIPIENT_TYPE, PARAMETERS_AUDIENCE);
+      } else {
+        builder.addCapabilityBinding(CAPABILITY_SEND_MESSAGE);
+      }
+    } else if (direction == Direction.INCOMING) {
+      if (recipient.isGroup()) {
+        builder.addCapabilityBinding(CAPABILITY_RECEIVE_MESSAGE, PARAMETER_SENDER_TYPE, PARAMETERS_AUDIENCE);
+      } else {
+        builder.addCapabilityBinding(CAPABILITY_RECEIVE_MESSAGE);
+      }
+    }
+
+    return builder.build();
   }
 
   /**
@@ -268,5 +287,28 @@ public final class ConversationUtil {
                      .setIcon(AvatarUtil.getIconForNotification(context, recipient))
                      .setUri(recipient.isSystemContact() ? recipient.getContactUri().toString() : null)
                      .build();
+  }
+
+  public enum Direction {
+    NONE(0), INCOMING(1), OUTGOING(2);
+
+    private final int value;
+
+    Direction(int value) {
+      this.value = value;
+    }
+
+    public int serialize() {
+      return value;
+    }
+
+    public static Direction deserialize(int value) {
+      switch (value) {
+        case 0: return NONE;
+        case 1: return INCOMING;
+        case 2: return OUTGOING;
+        default: throw new IllegalArgumentException("Unrecognized value: " + value);
+      }
+    }
   }
 }

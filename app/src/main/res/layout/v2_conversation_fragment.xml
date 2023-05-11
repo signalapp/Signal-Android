@@ -97,6 +97,32 @@
 
     </org.thoughtcrime.securesms.util.views.DarkOverflowToolbar>
 
+    <org.thoughtcrime.securesms.components.ConversationScrollToView
+        android:id="@+id/scroll_to_mention"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="12dp"
+        android:visibility="invisible"
+        app:cstv_scroll_button_src="@drawable/ic_at_20"
+        app:layout_constraintBottom_toTopOf="@id/scroll_to_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_goneMarginBottom="20dp"
+        tools:visibility="visible" />
+
+    <org.thoughtcrime.securesms.components.ConversationScrollToView
+        android:id="@+id/scroll_to_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible"
+        app:cstv_scroll_button_src="@drawable/ic_chevron_down_20"
+        app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
+
+
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/conversation_bottom_panel_barrier"
         android:layout_width="wrap_content"

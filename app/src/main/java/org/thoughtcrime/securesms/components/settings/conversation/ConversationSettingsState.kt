@@ -14,6 +14,7 @@ data class ConversationSettingsState(
   val threadId: Long = -1,
   val storyViewState: StoryViewState = StoryViewState.NONE,
   val recipient: Recipient = Recipient.UNKNOWN,
+  val isDeprecatedOrUnregistered: Boolean = false,
   val buttonStripState: ButtonStripPreference.State = ButtonStripPreference.State(),
   val disappearingMessagesLifespan: Int = 0,
   val canModifyBlockedState: Boolean = false,

@@ -8,8 +8,7 @@
     android:background="@color/signal_background_primary"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:orientation="vertical"
-    tools:viewBindingIgnore="true">
+    android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/input_panel_sticker_suggestion"

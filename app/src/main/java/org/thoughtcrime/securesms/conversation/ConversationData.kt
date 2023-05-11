@@ -1,9 +1,12 @@
 package org.thoughtcrime.securesms.conversation
 
+import org.thoughtcrime.securesms.recipients.Recipient
+
 /**
  * Represents metadata about a conversation.
  */
 data class ConversationData(
+  val threadRecipient: Recipient,
   val threadId: Long,
   val lastSeen: Long,
   val lastSeenPosition: Int,

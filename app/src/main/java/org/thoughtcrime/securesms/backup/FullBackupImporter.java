@@ -11,7 +11,6 @@ import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
-import net.zetetic.database.sqlcipher.SQLiteConstraintException;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;

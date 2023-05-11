@@ -1,18 +1,6 @@
 /*
- * Copyright (C) 2011 Whisper Systems
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
  */
 package org.thoughtcrime.securesms.conversation;
 
@@ -101,6 +89,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
@@ -116,6 +105,7 @@ import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment;
 import org.thoughtcrime.securesms.audio.AudioRecorder;
+import org.thoughtcrime.securesms.audio.BluetoothVoiceNoteUtil;
 import org.thoughtcrime.securesms.badges.gifts.thanks.GiftThanksSheet;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
@@ -163,6 +153,7 @@ import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryChanged
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResultsController;
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewModel;
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel;
+import org.thoughtcrime.securesms.conversation.v2.ConversationDialogs;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.DraftTable.Draft;
@@ -285,11 +276,10 @@ import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.IdentityUtil;
-import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -308,6 +298,7 @@ import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil;
+import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.io.IOException;
@@ -407,6 +398,7 @@ public class ConversationParentFragment extends Fragment
   private   ConversationFragment         fragment;
   private   Button                       unblockButton;
   private   Stub<View>                   smsExportStub;
+  private   Stub<View>                   loggedOutStub;
   private   Button                       registerButton;
   private   InputAwareLayout             container;
   protected Stub<ReminderView>           reminderView;
@@ -420,8 +412,10 @@ public class ConversationParentFragment extends Fragment
   private   Stub<FrameLayout>            voiceNotePlayerViewStub;
   private   View                         navigationBarBackground;
 
-  private   AttachmentManager        attachmentManager;
-  private   AudioRecorder            audioRecorder;
+  private AttachmentManager      attachmentManager;
+  private BluetoothVoiceNoteUtil bluetoothVoiceNoteUtil;
+  private AudioRecorder          audioRecorder;
+
   private   RecordingSession         recordingSession;
   private   BroadcastReceiver        securityUpdateReceiver;
   private   Stub<MediaKeyboard>      emojiDrawerStub;
@@ -518,6 +512,7 @@ public class ConversationParentFragment extends Fragment
 
     voiceNoteMediaController = new VoiceNoteMediaController(requireActivity(), true);
     voiceRecorderWakeLock    = new VoiceRecorderWakeLock(requireActivity());
+    bluetoothVoiceNoteUtil   = BluetoothVoiceNoteUtil.Companion.create(requireContext(), this::beginRecording, this::onBluetoothPermissionDenied);
 
     // TODO [alex] LargeScreenSupport -- Should be removed once we move to multi-pane layout.
     new FullscreenHelper(requireActivity()).showSystemUI();
@@ -675,8 +670,9 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void onDestroy() {
-    if (securityUpdateReceiver != null)  requireActivity().unregisterReceiver(securityUpdateReceiver);
-    if (pinnedShortcutReceiver != null)  requireActivity().unregisterReceiver(pinnedShortcutReceiver);
+    if (securityUpdateReceiver != null) requireActivity().unregisterReceiver(securityUpdateReceiver);
+    if (pinnedShortcutReceiver != null) requireActivity().unregisterReceiver(pinnedShortcutReceiver);
+    if (bluetoothVoiceNoteUtil != null) bluetoothVoiceNoteUtil.destroy();
     super.onDestroy();
   }
 
@@ -1732,10 +1728,11 @@ public class ConversationParentFragment extends Fragment
     Integer            actionableRequestingMembers = groupViewModel.getActionableRequestingMembers().getValue();
     List<RecipientId>  gv1MigrationSuggestions     = groupViewModel.getGroupV1MigrationSuggestions().getValue();
 
-    if (UnauthorizedReminder.isEligible(context)) {
-      reminderView.get().showReminder(new UnauthorizedReminder(context));
-    } else if (ExpiredBuildReminder.isEligible()) {
+    if (ExpiredBuildReminder.isEligible()) {
       reminderView.get().showReminder(new ExpiredBuildReminder(context));
+      reminderView.get().setOnActionClickListener(this::handleReminderAction);
+    } else if (UnauthorizedReminder.isEligible(context)) {
+      reminderView.get().showReminder(new UnauthorizedReminder(context));
       reminderView.get().setOnActionClickListener(this::handleReminderAction);
     } else if (ServiceOutageReminder.isEligible(context)) {
       ApplicationDependencies.getJobManager().add(new ServiceOutageDetectionJob());
@@ -1792,6 +1789,8 @@ public class ConversationParentFragment extends Fragment
       InsightsLauncher.showInsightsDashboard(getChildFragmentManager());
     } else if (reminderActionId == R.id.reminder_action_update_now) {
       PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
+    } else if (reminderActionId == R.id.reminder_action_re_register) {
+      startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()));
     } else {
       throw new IllegalArgumentException("Unknown ID: " + reminderActionId);
     }
@@ -1876,6 +1875,7 @@ public class ConversationParentFragment extends Fragment
     attachmentKeyboardStub   = ViewUtil.findStubById(view, R.id.attachment_keyboard_stub);
     unblockButton            = view.findViewById(R.id.unblock_button);
     smsExportStub            = ViewUtil.findStubById(view, R.id.sms_export_stub);
+    loggedOutStub            = ViewUtil.findStubById(view, R.id.logged_out_stub);
     registerButton           = view.findViewById(R.id.register_button);
     container                = view.findViewById(R.id.layout_container);
     reminderView             = ViewUtil.findStubById(view, R.id.reminder_stub);
@@ -2612,16 +2612,46 @@ public class ConversationParentFragment extends Fragment
       return;
     }
 
-    if (!conversationSecurityInfo.isPushAvailable() && isPushGroupConversation()) {
+    if (conversationSecurityInfo.isClientExpired() || conversationSecurityInfo.isUnauthorized()) {
       unblockButton.setVisibility(View.GONE);
       inputPanel.setHideForBlockedState(true);
       smsExportStub.setVisibility(View.GONE);
+      registerButton.setVisibility(View.GONE);
+      loggedOutStub.setVisibility(View.VISIBLE);
+      messageRequestBottomView.setVisibility(View.GONE);
+
+      int color = ContextCompat.getColor(requireContext(), recipient.hasWallpaper() ? R.color.wallpaper_bubble_color : R.color.signal_colorBackground);
+      loggedOutStub.get().setBackgroundColor(color);
+      WindowUtil.setNavigationBarColor(requireActivity(), color);
+
+      TextView       message      = loggedOutStub.get().findViewById(R.id.logged_out_message);
+      MaterialButton actionButton = loggedOutStub.get().findViewById(R.id.logged_out_button);
+
+      if (conversationSecurityInfo.isClientExpired()) {
+        message.setText(R.string.ExpiredBuildReminder_this_version_of_signal_has_expired);
+        actionButton.setText(R.string.ConversationFragment__update_build);
+        actionButton.setOnClickListener(v -> {
+          PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
+        });
+      } else if (conversationSecurityInfo.isUnauthorized()) {
+        message.setText(R.string.UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device);
+        actionButton.setText(R.string.ConversationFragment__reregister_signal);
+        actionButton.setOnClickListener(v -> {
+          startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()));
+        });
+      }
+    } else if (!conversationSecurityInfo.isPushAvailable() && isPushGroupConversation()) {
+      unblockButton.setVisibility(View.GONE);
+      inputPanel.setHideForBlockedState(true);
+      smsExportStub.setVisibility(View.GONE);
+      loggedOutStub.setVisibility(View.GONE);
       registerButton.setVisibility(View.VISIBLE);
     } else if (!conversationSecurityInfo.isPushAvailable() && !(SignalStore.misc().getSmsExportPhase().isSmsSupported() && conversationSecurityInfo.isDefaultSmsApplication()) && (recipient.hasSmsAddress() || recipient.isMmsGroup())) {
       unblockButton.setVisibility(View.GONE);
       inputPanel.setHideForBlockedState(true);
       smsExportStub.setVisibility(View.VISIBLE);
       registerButton.setVisibility(View.GONE);
+      loggedOutStub.setVisibility(View.GONE);
 
       int color = ContextCompat.getColor(requireContext(), recipient.hasWallpaper() ? R.color.wallpaper_bubble_color : R.color.signal_colorBackground);
       smsExportStub.get().setBackgroundColor(color);
@@ -3250,6 +3280,25 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void onRecorderStarted() {
+    final AudioManagerCompat audioManager = ApplicationDependencies.getAndroidCallAudioManager();
+    if (audioManager.isBluetoothAvailable()) {
+      connectToBluetoothAndBeginRecording();
+    } else {
+      Log.d(TAG, "Recording from phone mic because no bluetooth devices were available.");
+      beginRecording();
+    }
+  }
+
+  private void connectToBluetoothAndBeginRecording() {
+      if (bluetoothVoiceNoteUtil != null) {
+        Log.d(TAG, "Initiating Bluetooth SCO connection...");
+        bluetoothVoiceNoteUtil.connectBluetoothScoConnection();
+      } else {
+        Log.e(TAG, "Unable to instantiate BluetoothVoiceNoteUtil.");
+      }
+  }
+
+  private Unit beginRecording() {
     Vibrator vibrator = ServiceUtil.getVibrator(requireContext());
     vibrator.vibrate(20);
 
@@ -3259,6 +3308,18 @@ public class ConversationParentFragment extends Fragment
     voiceNoteMediaController.pausePlayback();
     recordingSession = new RecordingSession(audioRecorder.startRecording());
     disposables.add(recordingSession);
+    return Unit.INSTANCE;
+  }
+
+  private Unit onBluetoothPermissionDenied() {
+    new MaterialAlertDialogBuilder(requireContext())
+        .setTitle(R.string.ConversationParentFragment__bluetooth_permission_denied)
+        .setMessage(R.string.ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call)
+        .setPositiveButton(R.string.ConversationParentFragment__open_settings, (d, w) -> startActivity(Permissions.getApplicationSettingsIntent(requireContext())))
+        .setNegativeButton(R.string.ConversationParentFragment__not_now, null)
+        .show();
+
+    return Unit.INSTANCE;
   }
 
   @Override
@@ -3270,6 +3331,7 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void onRecorderFinished() {
+    bluetoothVoiceNoteUtil.disconnectBluetoothScoConnection();
     voiceRecorderWakeLock.release();
     updateToggleButtonState();
     Vibrator vibrator = ServiceUtil.getVibrator(requireContext());
@@ -3948,15 +4010,7 @@ public class ConversationParentFragment extends Fragment
           .forMessageRecord(requireContext(), messageRecord)
           .show(getChildFragmentManager());
     } else if (messageRecord.hasFailedWithNetworkFailures()) {
-      new MaterialAlertDialogBuilder(requireContext())
-          .setMessage(R.string.conversation_activity__message_could_not_be_sent)
-          .setNegativeButton(android.R.string.cancel, null)
-          .setPositiveButton(R.string.conversation_activity__send, (dialog, which) -> {
-            SignalExecutors.BOUNDED.execute(() -> {
-              MessageSender.resend(requireContext(), messageRecord);
-            });
-          })
-          .show();
+      ConversationDialogs.INSTANCE.displayMessageCouldNotBeSentDialog(requireContext(), messageRecord);
     } else {
       MessageDetailsFragment.create(messageRecord, recipient.getId()).show(getChildFragmentManager(), null);
     }
@@ -4018,7 +4072,7 @@ public class ConversationParentFragment extends Fragment
 
     SimpleTask.run(() -> {
           //noinspection CodeBlock2Expr
-          return SignalDatabase.messages().checkMessageExists(reactionDelegate.getMessageRecord());
+          return SignalDatabase.messages().messageExists(reactionDelegate.getMessageRecord());
         }, messageExists -> {
           if (!messageExists) {
             reactionDelegate.hide();
@@ -4099,7 +4153,7 @@ public class ConversationParentFragment extends Fragment
     } else {
       SlideDeck slideDeck = messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck();
 
-      if (messageRecord.isMms() && ((MmsMessageRecord) messageRecord).isViewOnce()) {
+      if (messageRecord.isMms() && messageRecord.isViewOnce()) {
         Attachment attachment = new TombstoneAttachment(MediaUtil.VIEW_ONCE, true);
         slideDeck = new SlideDeck();
         slideDeck.addSlide(MediaUtil.getSlideForAttachment(requireContext(), attachment));

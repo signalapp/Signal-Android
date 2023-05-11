@@ -13,7 +13,7 @@ import com.google.zxing.common.BitMatrix;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SquareImageView;
-import org.thoughtcrime.securesms.qr.QrCode;
+import org.thoughtcrime.securesms.qr.QrCodeUtil;
 
 /**
  * Generates a bitmap asynchronously for the supplied {@link BitMatrix} data and displays it.
@@ -59,7 +59,7 @@ public class QrView extends SquareImageView {
   }
 
   public void setQrText(@Nullable String text) {
-    setQrBitmap(QrCode.create(text, foregroundColor, backgroundColor));
+    setQrBitmap(QrCodeUtil.create(text, foregroundColor, backgroundColor));
   }
 
   private void setQrBitmap(@Nullable Bitmap qrBitmap) {

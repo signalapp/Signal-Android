@@ -40,6 +40,11 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
       )
     """
 
+    @JvmField
+    val CREATE_INDEXES = arrayOf(
+      "CREATE INDEX IF NOT EXISTS reaction_author_id_index ON $TABLE_NAME ($AUTHOR_ID)"
+    )
+
     private fun readReaction(cursor: Cursor): ReactionRecord {
       return ReactionRecord(
         emoji = CursorUtil.requireString(cursor, EMOJI),

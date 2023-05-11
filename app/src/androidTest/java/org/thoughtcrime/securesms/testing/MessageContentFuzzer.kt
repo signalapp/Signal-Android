@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.testing
 
 import com.google.protobuf.ByteString
 import org.thoughtcrime.securesms.database.model.toProtoByteString
+import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.buildWith
 import org.thoughtcrime.securesms.messages.TestMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -12,6 +14,8 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Attach
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContextV2
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage
 import java.util.UUID
 import kotlin.random.Random
 import kotlin.random.nextInt
@@ -41,13 +45,13 @@ object MessageContentFuzzer {
   /**
    * Create metadata to match an [Envelope].
    */
-  fun envelopeMetadata(source: RecipientId, destination: RecipientId): EnvelopeMetadata {
+  fun envelopeMetadata(source: RecipientId, destination: RecipientId, groupId: GroupId.V2? = null): EnvelopeMetadata {
     return EnvelopeMetadata(
       sourceServiceId = Recipient.resolved(source).requireServiceId(),
       sourceE164 = null,
       sourceDeviceId = 1,
       sealedSender = true,
-      groupId = null,
+      groupId = groupId?.decodedId,
       destinationServiceId = Recipient.resolved(destination).requireServiceId()
     )
   }
@@ -57,28 +61,58 @@ object MessageContentFuzzer {
    * - An expire timer value
    * - Bold style body ranges
    */
-  fun fuzzTextMessage(): Content {
+  fun fuzzTextMessage(groupContextV2: GroupContextV2? = null): Content {
     return Content.newBuilder()
       .setDataMessage(
-        DataMessage.newBuilder().run {
+        DataMessage.newBuilder().buildWith {
           body = string()
           if (random.nextBoolean()) {
             expireTimer = random.nextInt(0..28.days.inWholeSeconds.toInt())
           }
           if (random.nextBoolean()) {
             addBodyRanges(
-              SignalServiceProtos.BodyRange.newBuilder().run {
+              SignalServiceProtos.BodyRange.newBuilder().buildWith {
                 start = 0
                 length = 1
                 style = SignalServiceProtos.BodyRange.Style.BOLD
-                build()
               }
             )
           }
-          build()
+          if (groupContextV2 != null) {
+            groupV2 = groupContextV2
+          }
         }
       )
       .build()
+  }
+
+  /**
+   * Create a sync sent text message for the given [DataMessage].
+   */
+  fun syncSentTextMessage(
+    textMessage: DataMessage,
+    deliveredTo: List<RecipientId>,
+    recipientUpdate: Boolean = false
+  ): Content {
+    return Content
+      .newBuilder()
+      .setSyncMessage(
+        SyncMessage.newBuilder().buildWith {
+          sent = SyncMessage.Sent.newBuilder().buildWith {
+            timestamp = textMessage.timestamp
+            message = textMessage
+            isRecipientUpdate = recipientUpdate
+            addAllUnidentifiedStatus(
+              deliveredTo.map {
+                SyncMessage.Sent.UnidentifiedDeliveryStatus.newBuilder().buildWith {
+                  destinationUuid = Recipient.resolved(it).requireServiceId().toString()
+                  unidentified = true
+                }
+              }
+            )
+          }
+        }
+      ).build()
   }
 
   /**
@@ -91,7 +125,7 @@ object MessageContentFuzzer {
   fun fuzzMediaMessageWithBody(quoteAble: List<TestMessage> = emptyList()): Content {
     return Content.newBuilder()
       .setDataMessage(
-        DataMessage.newBuilder().run {
+        DataMessage.newBuilder().buildWith {
           if (random.nextBoolean()) {
             body = string()
           }
@@ -99,24 +133,22 @@ object MessageContentFuzzer {
           if (random.nextBoolean() && quoteAble.isNotEmpty()) {
             body = string()
             val quoted = quoteAble.random(random)
-            quote = DataMessage.Quote.newBuilder().run {
+            quote = DataMessage.Quote.newBuilder().buildWith {
               id = quoted.envelope.timestamp
               authorUuid = quoted.metadata.sourceServiceId.toString()
               text = quoted.content.dataMessage.body
               addAllAttachments(quoted.content.dataMessage.attachmentsList)
               addAllBodyRanges(quoted.content.dataMessage.bodyRangesList)
               type = DataMessage.Quote.Type.NORMAL
-              build()
             }
           }
 
           if (random.nextFloat() < 0.1 && quoteAble.isNotEmpty()) {
             val quoted = quoteAble.random(random)
-            quote = DataMessage.Quote.newBuilder().run {
+            quote = DataMessage.Quote.newBuilder().buildWith {
               id = random.nextLong(quoted.envelope.timestamp - 1000000, quoted.envelope.timestamp)
               authorUuid = quoted.metadata.sourceServiceId.toString()
               text = quoted.content.dataMessage.body
-              build()
             }
           }
 
@@ -124,8 +156,6 @@ object MessageContentFuzzer {
             val total = random.nextInt(1, 2)
             (0..total).forEach { _ -> addAttachments(attachmentPointer()) }
           }
-
-          build()
         }
       )
       .build()
@@ -138,19 +168,16 @@ object MessageContentFuzzer {
   fun fuzzMediaMessageNoContent(previousMessages: List<TestMessage> = emptyList()): Content {
     return Content.newBuilder()
       .setDataMessage(
-        DataMessage.newBuilder().run {
+        DataMessage.newBuilder().buildWith {
           if (random.nextFloat() < 0.25) {
             val reactTo = previousMessages.random(random)
-            reaction = DataMessage.Reaction.newBuilder().run {
+            reaction = DataMessage.Reaction.newBuilder().buildWith {
               emoji = emojis.random(random)
               remove = false
               targetAuthorUuid = reactTo.metadata.sourceServiceId.toString()
               targetSentTimestamp = reactTo.envelope.timestamp
-              build()
             }
           }
-
-          build()
         }
       ).build()
   }
@@ -162,18 +189,16 @@ object MessageContentFuzzer {
   fun fuzzMediaMessageNoText(previousMessages: List<TestMessage> = emptyList()): Content {
     return Content.newBuilder()
       .setDataMessage(
-        DataMessage.newBuilder().run {
+        DataMessage.newBuilder().buildWith {
           if (random.nextFloat() < 0.9) {
-            sticker = DataMessage.Sticker.newBuilder().run {
+            sticker = DataMessage.Sticker.newBuilder().buildWith {
               packId = byteString(length = 24)
               packKey = byteString(length = 128)
               stickerId = random.nextInt()
               data = attachmentPointer()
               emoji = emojis.random(random)
-              build()
             }
           }
-          build()
         }
       ).build()
   }

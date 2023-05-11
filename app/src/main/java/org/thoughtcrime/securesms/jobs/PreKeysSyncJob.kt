@@ -3,46 +3,55 @@ package org.thoughtcrime.securesms.jobs
 import androidx.annotation.VisibleForTesting
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.state.SignalProtocolStore
+import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceIdType
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.DurationUnit
 
 /**
  * Regardless of the current state of affairs with respect to prekeys for either ACI or PNI identities, will
  * attempt to make the state valid.
  *
- * If prekeys aren't registered for an identity they will be created.
- *
- * If prekeys are registered but the count is below the minimum threshold, then new ones will be uploaded.
+ * It will rotate/create signed prekeys for both ACI and PNI identities, as well as ensure that the user
+ * has a sufficient number of one-time prekeys available on the service.
  */
-class PreKeysSyncJob private constructor(private val forceRotate: Boolean = false, parameters: Parameters) : BaseJob(parameters) {
+class PreKeysSyncJob private constructor(parameters: Parameters) : BaseJob(parameters) {
 
   companion object {
     const val KEY = "PreKeysSyncJob"
 
     private val TAG = Log.tag(PreKeysSyncJob::class.java)
-    private val KEY_FORCE_ROTATE = "force_rotate"
-    private const val PREKEY_MINIMUM = 10
-    private val REFRESH_INTERVAL = TimeUnit.DAYS.toMillis(3)
 
-    fun create(forceRotate: Boolean = false): PreKeysSyncJob {
-      return PreKeysSyncJob(forceRotate)
+    /** The minimum number of one-time prekeys we want to the service to have. If we have less than this, refill. */
+    private const val ONE_TIME_PREKEY_MINIMUM = 10
+
+    /** How often we want to rotate signed prekeys. */
+    @JvmField
+    val REFRESH_INTERVAL = 2.days.inWholeMilliseconds
+
+    /** If signed prekeys are older than this, we will require rotation before sending messages. */
+    @JvmField
+    val MAXIMUM_ALLOWED_SIGNED_PREKEY_AGE = 14.days.inWholeMilliseconds
+
+    @JvmStatic
+    fun create(): PreKeysSyncJob {
+      return PreKeysSyncJob()
     }
 
     @JvmStatic
-    @JvmOverloads
-    fun enqueue(forceRotate: Boolean = false) {
-      ApplicationDependencies.getJobManager().add(create(forceRotate))
+    fun enqueue() {
+      ApplicationDependencies.getJobManager().add(create())
     }
 
     @JvmStatic
@@ -54,19 +63,20 @@ class PreKeysSyncJob private constructor(private val forceRotate: Boolean = fals
         Log.i(TAG, "Some signed prekeys aren't active yet. Enqueuing a job. ACI: ${SignalStore.account().aciPreKeys.activeSignedPreKeyId >= 0} PNI: ${SignalStore.account().pniPreKeys.activeSignedPreKeyId >= 0}")
         ApplicationDependencies.getJobManager().add(PreKeysSyncJob())
       } else {
-        val timeSinceLastRefresh = System.currentTimeMillis() - SignalStore.misc().lastPrekeyRefreshTime
+        val timeSinceLastFullRefresh = System.currentTimeMillis() - SignalStore.misc().lastFullPrekeyRefreshTime
 
-        if (timeSinceLastRefresh > REFRESH_INTERVAL) {
-          Log.i(TAG, "Scheduling a prekey refresh. Time since last schedule: $timeSinceLastRefresh ms")
+        if (timeSinceLastFullRefresh >= REFRESH_INTERVAL || timeSinceLastFullRefresh < 0) {
+          Log.i(TAG, "Scheduling a prekey refresh. Time since last full refresh: $timeSinceLastFullRefresh ms")
           ApplicationDependencies.getJobManager().add(PreKeysSyncJob())
+        } else {
+          Log.d(TAG, "No prekey job needed. Time since last full refresh: $timeSinceLastFullRefresh ms")
         }
       }
     }
   }
 
   @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-  constructor(forceRotate: Boolean = false) : this(
-    forceRotate,
+  constructor() : this(
     Parameters.Builder()
       .setQueue("PreKeysSyncJob")
       .addConstraint(NetworkConstraint.KEY)
@@ -78,11 +88,7 @@ class PreKeysSyncJob private constructor(private val forceRotate: Boolean = fals
 
   override fun getFactoryKey(): String = KEY
 
-  override fun serialize(): ByteArray? {
-    return JsonJobData.Builder()
-      .putBoolean(KEY_FORCE_ROTATE, forceRotate)
-      .serialize()
-  }
+  override fun serialize(): ByteArray? = null
 
   override fun onRun() {
     if (!SignalStore.account().isRegistered || SignalStore.account().aci == null || SignalStore.account().pni == null) {
@@ -92,7 +98,7 @@ class PreKeysSyncJob private constructor(private val forceRotate: Boolean = fals
 
     syncPreKeys(ServiceIdType.ACI, SignalStore.account().aci, ApplicationDependencies.getProtocolStore().aci(), SignalStore.account().aciPreKeys)
     syncPreKeys(ServiceIdType.PNI, SignalStore.account().pni, ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys)
-    SignalStore.misc().lastPrekeyRefreshTime = System.currentTimeMillis()
+    SignalStore.misc().lastFullPrekeyRefreshTime = System.currentTimeMillis()
   }
 
   private fun syncPreKeys(serviceIdType: ServiceIdType, serviceId: ServiceId?, protocolStore: SignalProtocolStore, metadataStore: PreKeyMetadataStore) {
@@ -101,55 +107,41 @@ class PreKeysSyncJob private constructor(private val forceRotate: Boolean = fals
       return
     }
 
-    if (metadataStore.isSignedPreKeyRegistered && metadataStore.activeSignedPreKeyId >= 0) {
-      if (forceRotate || System.currentTimeMillis() > TextSecurePreferences.getSignedPreKeyRotationTime(context) || metadataStore.signedPreKeyFailureCount > 5) {
-        log(serviceIdType, "Rotating signed prekey...")
-        rotateSignedPreKey(serviceIdType, protocolStore, metadataStore)
-      } else {
-        log(serviceIdType, "Refreshing prekeys...")
-        refreshKeys(serviceIdType, protocolStore, metadataStore)
-      }
-    } else {
-      log(serviceIdType, "Creating signed prekey...")
-      rotateSignedPreKey(serviceIdType, protocolStore, metadataStore)
-    }
-  }
-
-  private fun rotateSignedPreKey(serviceIdType: ServiceIdType, protocolStore: SignalProtocolStore, metadataStore: PreKeyMetadataStore) {
-    val signedPreKeyRecord = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore)
-    ApplicationDependencies.getSignalServiceAccountManager().setSignedPreKey(serviceIdType, signedPreKeyRecord)
-
-    metadataStore.activeSignedPreKeyId = signedPreKeyRecord.id
-    metadataStore.isSignedPreKeyRegistered = true
-    metadataStore.signedPreKeyFailureCount = 0
-  }
-
-  private fun refreshKeys(serviceIdType: ServiceIdType, protocolStore: SignalProtocolStore, metadataStore: PreKeyMetadataStore) {
     val accountManager = ApplicationDependencies.getSignalServiceAccountManager()
-    val availableKeys = accountManager.getPreKeysCount(serviceIdType)
 
-    log(serviceIdType, "Available keys: $availableKeys")
+    val signedPreKeyRegistered = metadataStore.isSignedPreKeyRegistered && metadataStore.activeSignedPreKeyId >= 0
+    val timeSinceLastSignedPreKeyRotation = System.currentTimeMillis() - metadataStore.lastSignedPreKeyRotationTime
 
-    if (availableKeys >= PREKEY_MINIMUM && metadataStore.isSignedPreKeyRegistered) {
-      log(serviceIdType, "Available keys sufficient.")
-      return
+    val activeSignedPreKeyRecord: SignedPreKeyRecord = if (!signedPreKeyRegistered || timeSinceLastSignedPreKeyRotation >= REFRESH_INTERVAL) {
+      log(serviceIdType, "Rotating signed prekey. SignedPreKeyRegistered: $signedPreKeyRegistered, TimeSinceLastRotation: $timeSinceLastSignedPreKeyRotation ms (${timeSinceLastSignedPreKeyRotation.milliseconds.toDouble(DurationUnit.DAYS)} days)")
+
+      val signedPreKeyRecord: SignedPreKeyRecord = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore)
+      accountManager.setSignedPreKey(serviceIdType, signedPreKeyRecord)
+
+      metadataStore.activeSignedPreKeyId = signedPreKeyRecord.id
+      metadataStore.isSignedPreKeyRegistered = true
+      metadataStore.lastSignedPreKeyRotationTime = System.currentTimeMillis()
+
+      signedPreKeyRecord
+    } else {
+      log(serviceIdType, "No need to rotate signed prekey. TimeSinceLastRotation: $timeSinceLastSignedPreKeyRotation ms (${timeSinceLastSignedPreKeyRotation.milliseconds.toDouble(DurationUnit.DAYS)} days)")
+      protocolStore.loadSignedPreKey(metadataStore.activeSignedPreKeyId)
     }
 
-    val preKeyRecords = PreKeyUtil.generateAndStoreOneTimePreKeys(protocolStore, metadataStore)
-    val signedPreKeyRecord = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore)
-    val identityKey = protocolStore.identityKeyPair
+    val availableOneTimePreKeys = accountManager.getPreKeysCount(serviceIdType)
 
-    log(serviceIdType, "Registering new prekeys...")
+    if (availableOneTimePreKeys < ONE_TIME_PREKEY_MINIMUM) {
+      log(serviceIdType, "There are $availableOneTimePreKeys one-time prekeys available, which is not sufficient. Uploading more.")
 
-    accountManager.setPreKeys(serviceIdType, identityKey.publicKey, signedPreKeyRecord, preKeyRecords)
-    metadataStore.activeSignedPreKeyId = signedPreKeyRecord.id
-    metadataStore.isSignedPreKeyRegistered = true
+      val preKeyRecords = PreKeyUtil.generateAndStoreOneTimePreKeys(protocolStore, metadataStore)
+      val identityKey = protocolStore.identityKeyPair
+      accountManager.setPreKeys(serviceIdType, identityKey.publicKey, activeSignedPreKeyRecord, preKeyRecords)
+    } else {
+      log(serviceIdType, "There are $availableOneTimePreKeys one-time prekeys available, which is sufficient. No need to upload.")
+    }
 
     log(serviceIdType, "Cleaning prekeys...")
     PreKeyUtil.cleanSignedPreKeys(protocolStore, metadataStore)
-
-    SignalStore.misc().lastPrekeyRefreshTime = System.currentTimeMillis()
-    log(serviceIdType, "Successfully refreshed prekeys.")
   }
 
   override fun onShouldRetry(e: Exception): Boolean {
@@ -160,15 +152,7 @@ class PreKeysSyncJob private constructor(private val forceRotate: Boolean = fals
     }
   }
 
-  override fun onFailure() {
-    val aciStore = SignalStore.account().aciPreKeys
-    val pniStore = SignalStore.account().pniPreKeys
-
-    if ((aciStore.isSignedPreKeyRegistered || pniStore.isSignedPreKeyRegistered) && forceRotate) {
-      aciStore.signedPreKeyFailureCount++
-      pniStore.signedPreKeyFailureCount++
-    }
-  }
+  override fun onFailure() = Unit
 
   private fun log(serviceIdType: ServiceIdType, message: String) {
     Log.i(TAG, "[$serviceIdType] $message")
@@ -176,8 +160,7 @@ class PreKeysSyncJob private constructor(private val forceRotate: Boolean = fals
 
   class Factory : Job.Factory<PreKeysSyncJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): PreKeysSyncJob {
-      val data = JsonJobData.deserialize(serializedData)
-      return PreKeysSyncJob(data.getBooleanOrDefault(KEY_FORCE_ROTATE, false), parameters)
+      return PreKeysSyncJob(parameters)
     }
   }
 }

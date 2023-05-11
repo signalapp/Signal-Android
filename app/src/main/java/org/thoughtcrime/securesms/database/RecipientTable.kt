@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import android.database.sqlite.SQLiteConstraintException
 import android.net.Uri
 import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
@@ -10,10 +11,10 @@ import androidx.core.content.contentValuesOf
 import app.cash.exhaustive.Exhaustive
 import com.google.protobuf.ByteString
 import com.google.protobuf.InvalidProtocolBufferException
-import net.zetetic.database.sqlcipher.SQLiteConstraintException
 import org.signal.core.util.Bitmask
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.delete
 import org.signal.core.util.exists
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalBlob
@@ -400,6 +401,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $TABLE_NAME.$HIDDEN = 0
       ORDER BY ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC LIMIT 50
       """
+
+    /** Used as a placeholder recipient for self during migrations when self isn't yet available. */
+    private val PLACEHOLDER_SELF_ID = -2L
   }
 
   fun getByE164(e164: String): Optional<RecipientId> {
@@ -911,12 +915,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val recipient = Recipient.externalGroupExact(groupId)
 
     Log.i(TAG, "Creating restore placeholder for $groupId")
-    groups.create(
+    val createdId = groups.create(
       masterKey,
       DecryptedGroup.newBuilder()
         .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
         .build()
     )
+
+    if (createdId == null) {
+      Log.w(TAG, "Unable to create restore placeholder for $groupId, group already exists")
+    }
 
     groups.setShowAsStoryState(groupId, insert.storySendMode.toShowAsStoryState())
     updateExtras(recipient.id) {
@@ -2013,7 +2021,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Associates the provided IDs together. The assumption here is that all of the IDs correspond to the local user and have been verified.
    */
   fun linkIdsForSelf(aci: ACI, pni: PNI, e164: String) {
-    getAndPossiblyMerge(serviceId = aci, pni = pni, e164 = e164, changeSelf = true, pniVerified = true)
+    val id: RecipientId = getAndPossiblyMerge(serviceId = aci, pni = pni, e164 = e164, changeSelf = true, pniVerified = true)
+    updatePendingSelfData(id)
   }
 
   /**
@@ -3907,6 +3916,25 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       if (isInsert) {
         put(AVATAR_COLOR, AvatarColor.random().serialize())
       }
+    }
+  }
+
+  /**
+   * Should be called immediately after we create a recipient for self.
+   * This clears up any placeholders we put in the database for the local user, which is typically only done in database migrations.
+   */
+  fun updatePendingSelfData(selfId: RecipientId) {
+    SignalDatabase.messages.updatePendingSelfData(RecipientId.from(PLACEHOLDER_SELF_ID), selfId)
+
+    val deletes = writableDatabase
+      .delete(TABLE_NAME)
+      .where("$ID = ?", PLACEHOLDER_SELF_ID)
+      .run()
+
+    if (deletes > 0) {
+      Log.w(TAG, "Deleted a PLACEHOLDER_SELF from the table.")
+    } else {
+      Log.i(TAG, "No PLACEHOLDER_SELF in the table.")
     }
   }
 

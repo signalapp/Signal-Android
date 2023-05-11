@@ -28,18 +28,21 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.viewModels
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.navigation.fragment.navArgs
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Scaffolds
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.calls.links.create.CreateCallLinkViewModel
 import org.thoughtcrime.securesms.compose.ComposeDialogFragment
 
 class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
 
-  private val viewModel: CreateCallLinkViewModel by viewModels(
-    ownerProducer = { requireParentFragment() }
-  )
+  companion object {
+    const val RESULT_KEY = "edit_call_link_name"
+  }
+
+  private val args: EditCallLinkNameDialogFragmentArgs by navArgs()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -57,12 +60,11 @@ class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
   @Preview
   @Composable
   override fun DialogContent() {
-    val viewModelCallName by viewModel.callName
     var callName by remember {
       mutableStateOf(
         TextFieldValue(
-          text = viewModelCallName,
-          selection = TextRange(viewModelCallName.length)
+          text = args.name,
+          selection = TextRange(args.name.length)
         )
       )
     }
@@ -97,7 +99,7 @@ class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
           Spacer(modifier = Modifier.weight(1f))
           Buttons.MediumTonal(
             onClick = {
-              viewModel.setCallName(callName.text)
+              setFragmentResult(RESULT_KEY, bundleOf(RESULT_KEY to callName.text))
               dismiss()
             },
             modifier = Modifier.align(End)

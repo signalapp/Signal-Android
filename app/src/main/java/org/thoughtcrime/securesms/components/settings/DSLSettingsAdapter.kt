@@ -64,6 +64,7 @@ abstract class PreferenceViewHolder<T : PreferenceModel<T>>(itemView: View) : Ma
     val icon = model.icon?.resolve(context)
     iconView.setImageDrawable(icon)
     iconView.visible = icon != null
+    iconView.alpha = if (model.isEnabled) 1f else 0.5f
 
     val iconEnd = model.iconEnd?.resolve(context)
     iconEndView?.setImageDrawable(iconEnd)

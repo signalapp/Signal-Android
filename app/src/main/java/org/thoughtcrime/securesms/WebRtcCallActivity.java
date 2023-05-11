@@ -219,10 +219,6 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     Log.i(TAG, "onPause");
     super.onPause();
 
-    if (!isInPipMode() || isFinishing()) {
-      EventBus.getDefault().unregister(this);
-    }
-
     if (!viewModel.isCallStarting()) {
       CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
       if (state != null && state.getCallState().isPreJoinOrNetworkUnavailable()) {
@@ -281,7 +277,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       if (viewModel.canEnterPipMode()) {
         try {
           enterPictureInPictureMode(pipBuilderParams.build());
-        } catch (IllegalStateException e) {
+        } catch (Exception e) {
           Log.w(TAG, "Device lied to us about supporting PiP.", e);
           return false;
         }
@@ -369,6 +365,10 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       viewModel.setIsInPipMode(info.isInPictureInPictureMode());
       participantUpdateWindow.setEnabled(!info.isInPictureInPictureMode());
       callStateUpdatePopupWindow.setEnabled(!info.isInPictureInPictureMode());
+      if (info.isInPictureInPictureMode()) {
+        callScreen.maybeDismissAudioPicker();
+      }
+      viewModel.setIsLandscapeEnabled(info.isInPictureInPictureMode());
     });
   }
 
@@ -380,7 +380,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
         pipBuilderParams.setAutoEnterEnabled(true);
       }
       if (Build.VERSION.SDK_INT >= 26) {
-        setPictureInPictureParams(pipBuilderParams.build());
+        try {
+          setPictureInPictureParams(pipBuilderParams.build());
+        } catch (Exception e) {
+          Log.w(TAG, "System lied about having PiP available.", e);
+        }
       }
     }
   }
@@ -828,7 +832,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     @RequiresApi(31)
     @Override
-    public void onAudioOutputChanged31(@NonNull int audioDeviceInfo) {
+    public void onAudioOutputChanged31(@NonNull Integer audioDeviceInfo) {
       ApplicationDependencies.getSignalCallManager().selectAudioDevice(new SignalAudioManager.ChosenAudioDeviceIdentifier(audioDeviceInfo));
     }
 

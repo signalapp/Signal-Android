@@ -32,6 +32,10 @@ public class UsernameUtil {
   private static final Pattern FULL_PATTERN        = Pattern.compile(String.format(Locale.US, "^[a-zA-Z_][a-zA-Z0-9_]{%d,%d}$", MIN_LENGTH - 1, MAX_LENGTH - 1), Pattern.CASE_INSENSITIVE);
   private static final Pattern DIGIT_START_PATTERN = Pattern.compile("^[0-9].*$");
 
+
+  private static final String BASE_URL_SCHEMELESS = "signal.me/#u/";
+  private static final String BASE_URL            = "https://" + BASE_URL_SCHEMELESS;
+
   public static boolean isValidUsernameForSearch(@Nullable String value) {
     return !TextUtils.isEmpty(value) && !DIGIT_START_PATTERN.matcher(value).matches();
   }
@@ -85,6 +89,13 @@ public class UsernameUtil {
     } catch (IOException e) {
       return Optional.empty();
     }
+  }
+
+  public static String generateLink(String username) throws BaseUsernameException {
+    byte[] hash   = Username.hash(username);
+    String base64 = Base64UrlSafe.encodeBytesWithoutPadding(hash);
+
+    return BASE_URL + base64;
   }
 
   public enum InvalidReason {

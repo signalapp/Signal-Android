@@ -43,6 +43,7 @@ import com.google.common.collect.Sets;
 
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.SetUtil;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
 import org.thoughtcrime.securesms.components.AccessibleToggleButton;
@@ -70,6 +71,8 @@ import java.util.List;
 import java.util.Set;
 
 public class WebRtcCallView extends ConstraintLayout {
+
+  private static final String TAG = Log.tag(WebRtcCallView.class);
 
   private static final long TRANSITION_DURATION_MILLIS          = 250;
   private static final int  SMALL_ONGOING_CALL_BUTTON_MARGIN_DP = 8;
@@ -241,16 +244,21 @@ public class WebRtcCallView extends ConstraintLayout {
     adjustableMarginsSet.add(videoToggle);
     adjustableMarginsSet.add(audioToggle);
 
-
-    if (Build.VERSION.SDK_INT >= 31) {
-      audioToggle.setOnAudioOutputChangedListener31(deviceId -> {
-        runIfNonNull(controlsListener, listener -> listener.onAudioOutputChanged31(deviceId));
+    audioToggle.setOnAudioOutputChangedListener(webRtcAudioDevice -> {
+      runIfNonNull(controlsListener, listener ->
+      {
+        if (Build.VERSION.SDK_INT >= 31) {
+          final Integer deviceId = webRtcAudioDevice.getDeviceId();
+          if (deviceId != null) {
+            listener.onAudioOutputChanged31(deviceId);
+          } else {
+            Log.e(TAG, "Attempted to change audio output to null device ID.");
+          }
+        } else {
+          listener.onAudioOutputChanged(webRtcAudioDevice.getWebRtcAudioOutput());
+        }
       });
-    } else {
-      audioToggle.setOnAudioOutputChangedListenerLegacy(outputMode -> {
-        runIfNonNull(controlsListener, listener -> listener.onAudioOutputChanged(outputMode));
-      });
-    }
+    });
 
     videoToggle.setOnCheckedChangeListener((v, isOn) -> {
       runIfNonNull(controlsListener, listener -> listener.onVideoChanged(isOn));
@@ -409,6 +417,10 @@ public class WebRtcCallView extends ConstraintLayout {
 
   public void setControlsListener(@Nullable ControlsListener controlsListener) {
     this.controlsListener = controlsListener;
+  }
+
+  public void maybeDismissAudioPicker() {
+    audioToggle.hidePicker();
   }
 
   public void setMicEnabled(boolean isMicEnabled) {
@@ -673,7 +685,7 @@ public class WebRtcCallView extends ConstraintLayout {
                                          webRtcControls.isBluetoothHeadsetAvailableForAudioToggle(),
                                          webRtcControls.isWiredHeadsetAvailableForAudioToggle());
 
-      audioToggle.setAudioOutput(webRtcControls.getAudioOutput(), false);
+      audioToggle.updateAudioOutputState(webRtcControls.getAudioOutput());
     }
 
     if (webRtcControls.displayCameraToggle()) {
@@ -1084,7 +1096,7 @@ public class WebRtcCallView extends ConstraintLayout {
     void hideSystemUI();
     void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput);
     @RequiresApi(31)
-    void onAudioOutputChanged31(@NonNull int audioOutputAddress);
+    void onAudioOutputChanged31(@NonNull Integer audioOutputAddress);
     void onVideoChanged(boolean isVideoEnabled);
     void onMicChanged(boolean isMicEnabled);
     void onCameraDirectionChanged();

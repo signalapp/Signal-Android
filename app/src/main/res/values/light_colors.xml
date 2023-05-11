@@ -50,6 +50,7 @@
     <color name="signal_divider_major">@color/core_grey_25</color>
 
     <color name="signal_alert_primary">@color/core_red_highlight</color>
+    <color name="signal_alert_primary_50">@color/core_red_highlight_50</color>
 
     <color name="signal_transparent">@color/transparent</color>
     <color name="signal_transparent_40">@color/transparent_white_40</color>

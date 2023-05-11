@@ -159,6 +159,10 @@ public class RemoteDeleteSendJob extends BaseJob {
       recipients.remove(completion.getId());
     }
 
+    for (RecipientId unregistered : sendResult.unregistered) {
+      SignalDatabase.recipients().markUnregistered(unregistered);
+    }
+
     for (RecipientId skip : skipped) {
       recipients.remove(skip);
     }

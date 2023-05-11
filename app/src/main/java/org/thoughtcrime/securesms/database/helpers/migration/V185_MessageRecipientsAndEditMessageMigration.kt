@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
 import android.preference.PreferenceManager
+import androidx.core.content.contentValuesOf
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.Stopwatch
@@ -40,14 +41,31 @@ object V185_MessageRecipientsAndEditMessageMigration : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     val stopwatch = Stopwatch("migration")
 
-    val selfId: RecipientId? = getSelfId(db)
+    var selfId: RecipientId? = getSelfId(db)
 
     if (selfId == null) {
       val outgoingMessageCount = db.rawQuery("SELECT COUNT(*) FROM message WHERE $outgoingClause").readToSingleInt()
       if (outgoingMessageCount == 0) {
         Log.i(TAG, "Could not find ourselves in the DB! Assuming this is an install that hasn't been registered yet.")
       } else {
-        throw IllegalStateException("Could not find ourselves in the recipient table, but messages exist in the message table!")
+        Log.w(TAG, "There's outgoing messages, but no self recipient! Attempting to repair.")
+
+        val localAci: ACI? = getLocalAci(context)
+        val localE164: String? = getLocalE164(context)
+
+        if (localAci != null || localE164 != null) {
+          Log.w(TAG, "Inserting a recipient for our local data.")
+          val contentValues = contentValuesOf(
+            "uuid" to localAci.toString(),
+            "number" to localE164
+          )
+
+          val id = db.insert("recipient", null, contentValues)
+          selfId = RecipientId.from(id)
+        } else {
+          Log.w(TAG, "No local recipient data at all! Have to bail.")
+          return
+        }
       }
     }
 

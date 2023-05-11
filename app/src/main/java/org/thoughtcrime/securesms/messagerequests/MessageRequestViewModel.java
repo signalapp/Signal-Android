@@ -109,7 +109,7 @@ public class MessageRequestViewModel extends ViewModel {
   @MainThread
   public void onAccept() {
     status.setValue(Status.ACCEPTING);
-    repository.acceptMessageRequest(liveRecipient,
+    repository.acceptMessageRequest(liveRecipient.getId(),
                                     threadId,
                                     () -> status.postValue(Status.ACCEPTED),
                                     this::onGroupChangeError);
@@ -118,7 +118,7 @@ public class MessageRequestViewModel extends ViewModel {
   @MainThread
   public void onDelete() {
     status.setValue(Status.DELETING);
-    repository.deleteMessageRequest(liveRecipient,
+    repository.deleteMessageRequest(liveRecipient.getId(),
                                     threadId,
                                     () -> status.postValue(Status.DELETED),
                                     this::onGroupChangeError);
@@ -127,21 +127,20 @@ public class MessageRequestViewModel extends ViewModel {
   @MainThread
   public void onBlock() {
     status.setValue(Status.BLOCKING);
-    repository.blockMessageRequest(liveRecipient,
+    repository.blockMessageRequest(liveRecipient.getId(),
                                    () -> status.postValue(Status.BLOCKED),
                                    this::onGroupChangeError);
   }
 
   @MainThread
   public void onUnblock() {
-    repository.unblockAndAccept(liveRecipient,
-                                threadId,
+    repository.unblockAndAccept(liveRecipient.getId(),
                                 () -> status.postValue(Status.ACCEPTED));
   }
 
   @MainThread
   public void onBlockAndReportSpam() {
-    repository.blockAndReportSpamMessageRequest(liveRecipient,
+    repository.blockAndReportSpamMessageRequest(liveRecipient.getId(),
                                                 threadId,
                                                 () -> status.postValue(Status.BLOCKED_AND_REPORTED),
                                                 this::onGroupChangeError);
@@ -188,7 +187,7 @@ public class MessageRequestViewModel extends ViewModel {
     @NonNull private final  List<String>        sharedGroups;
     @Nullable private final MessageRequestState messageRequestState;
 
-    private RecipientInfo(@Nullable Recipient recipient, @Nullable GroupInfo groupInfo, @Nullable List<String> sharedGroups, @Nullable MessageRequestState messageRequestState) {
+    public RecipientInfo(@Nullable Recipient recipient, @Nullable GroupInfo groupInfo, @Nullable List<String> sharedGroups, @Nullable MessageRequestState messageRequestState) {
       this.recipient           = recipient;
       this.groupInfo           = groupInfo == null ? GroupInfo.ZERO : groupInfo;
       this.sharedGroups        = sharedGroups == null ? Collections.emptyList() : sharedGroups;

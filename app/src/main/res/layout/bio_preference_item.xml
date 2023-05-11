@@ -35,12 +35,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="12dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/qr_button"
         app:layout_constraintStart_toEndOf="@id/icon"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginEnd="24dp">
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/title"
@@ -71,5 +72,20 @@
             tools:text="+1 (999) 555-1234" />
 
     </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/qr_button"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:icon="@drawable/symbol_qrcode_24"
+        app:iconSize="20dp"
+        app:iconTint="@color/core_black"
+        app:backgroundTint="@color/signal_light_colorSurface3"
+        style="@style/Widget.Signal.Button.Icon"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

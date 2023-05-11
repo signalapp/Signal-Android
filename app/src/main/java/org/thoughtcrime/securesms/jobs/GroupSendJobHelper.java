@@ -20,9 +20,10 @@ final class GroupSendJobHelper {
   }
 
   static @NonNull SendResult getCompletedSends(@NonNull List<Recipient> possibleRecipients, @NonNull Collection<SendMessageResult> results) {
-    RecipientAccessList accessList  = new RecipientAccessList(possibleRecipients);
-    List<Recipient>     completions = new ArrayList<>(results.size());
-    List<RecipientId>   skipped     = new ArrayList<>();
+    RecipientAccessList accessList   = new RecipientAccessList(possibleRecipients);
+    List<Recipient>     completions  = new ArrayList<>(results.size());
+    List<RecipientId>   skipped      = new ArrayList<>();
+    List<RecipientId>   unregistered = new ArrayList<>();
 
     for (SendMessageResult sendMessageResult : results) {
       Recipient recipient = accessList.requireByAddress(sendMessageResult.getAddress());
@@ -34,6 +35,7 @@ final class GroupSendJobHelper {
       if (sendMessageResult.isUnregisteredFailure()) {
         Log.w(TAG, "Unregistered failure for " + recipient.getId());
         skipped.add(recipient.getId());
+        unregistered.add(recipient.getId());
       }
 
       if (sendMessageResult.getProofRequiredFailure() != null) {
@@ -50,16 +52,23 @@ final class GroupSendJobHelper {
       }
     }
 
-    return new SendResult(completions, skipped);
+    return new SendResult(completions, skipped, unregistered);
   }
 
   public static class SendResult {
+    /** Recipients that do not need to be sent to again. Includes certain types of non-retryable failures. Important: items in this list can overlap with other lists in the result. */
     public final List<Recipient>   completed;
+
+    /** Recipients that were not sent to and can be shown as "skipped" in the UI. Important: items in this list can overlap with other lists in the result. */
     public final List<RecipientId> skipped;
 
-    public SendResult(@NonNull List<Recipient> completed, @NonNull List<RecipientId> skipped) {
-      this.completed = completed;
-      this.skipped   = skipped;
+    /** Recipients that were discovered to be unregistered. Important: items in this list can overlap with other lists in the result. */
+    public final List<RecipientId> unregistered;
+
+    public SendResult(@NonNull List<Recipient> completed, @NonNull List<RecipientId> skipped, @NonNull List<RecipientId> unregistered) {
+      this.completed    = completed;
+      this.skipped      = skipped;
+      this.unregistered = unregistered;
     }
   }
 }

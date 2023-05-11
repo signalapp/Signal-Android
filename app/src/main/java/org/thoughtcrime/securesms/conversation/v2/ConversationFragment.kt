@@ -1,5 +1,11 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.conversation.v2
 
+import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.content.Intent
 import android.net.Uri
@@ -14,6 +20,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
+import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -26,6 +33,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -33,16 +41,20 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowActivity
 import org.thoughtcrime.securesms.badges.gifts.viewgift.received.ViewReceivedGiftBottomSheet
 import org.thoughtcrime.securesms.badges.gifts.viewgift.sent.ViewSentGiftBottomSheet
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalFragment
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity
+import org.thoughtcrime.securesms.conversation.BadDecryptLearnMoreDialog
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.ConversationIntents.ConversationScreenType
@@ -50,14 +62,19 @@ import org.thoughtcrime.securesms.conversation.ConversationItem
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationOptionsMenu
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
+import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.ConversationItemAnimator
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectItemDecoration
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
+import org.thoughtcrime.securesms.conversation.quotes.MessageQuotesBottomSheet
+import org.thoughtcrime.securesms.conversation.ui.edit.EditMessageHistoryDialog
+import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupCallViewModel
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewModel
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
@@ -71,6 +88,9 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
+import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkInviteFriendsBottomSheetDialogFragment
+import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog
+import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -78,6 +98,7 @@ import org.thoughtcrime.securesms.longmessage.LongMessageFragment
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory.create
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity
+import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
 import org.thoughtcrime.securesms.mms.AttachmentManager
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
@@ -85,6 +106,7 @@ import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment
 import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientExporter
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
@@ -97,7 +119,9 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.FullscreenHelper
+import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.WindowUtil
+import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.visible
@@ -118,34 +142,47 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     ConversationIntents.Args.from(requireArguments())
   }
 
+  private val conversationRecipientRepository: ConversationRecipientRepository by lazy {
+    ConversationRecipientRepository(args.threadId)
+  }
+
   private val disposables = LifecycleDisposable()
   private val binding by ViewBinderDelegate(V2ConversationFragmentBinding::bind)
   private val viewModel: ConversationViewModel by viewModels(
     factoryProducer = {
-      ConversationViewModel.Factory(args, ConversationRepository(requireContext()))
+      ConversationViewModel.Factory(
+        args,
+        ConversationRepository(requireContext()),
+        conversationRecipientRepository
+      )
     }
   )
 
   private val groupCallViewModel: ConversationGroupCallViewModel by viewModels(
     factoryProducer = {
-      ConversationGroupCallViewModel.Factory(args.threadId)
+      ConversationGroupCallViewModel.Factory(args.threadId, conversationRecipientRepository)
     }
   )
 
   private val conversationGroupViewModel: ConversationGroupViewModel by viewModels(
     factoryProducer = {
-      ConversationGroupViewModel.Factory(args.threadId)
+      ConversationGroupViewModel.Factory(args.threadId, conversationRecipientRepository)
     }
   )
 
   private val conversationTooltips = ConversationTooltips(this)
+  private val colorizer = Colorizer()
+
   private lateinit var conversationOptionsMenuProvider: ConversationOptionsMenu.Provider
-  private lateinit var layoutManager: SmoothScrollingLinearLayoutManager
+  private lateinit var layoutManager: LinearLayoutManager
   private lateinit var markReadHelper: MarkReadHelper
   private lateinit var giphyMp4ProjectionRecycler: GiphyMp4ProjectionRecycler
   private lateinit var addToContactsLauncher: ActivityResultLauncher<Intent>
   private lateinit var scrollToPositionDelegate: ScrollToPositionDelegate
-  private lateinit var adapter: ConversationAdapter
+  private lateinit var adapter: ConversationAdapterV2
+  private lateinit var recyclerViewColorizer: RecyclerViewColorizer
+
+  private var animationsAllowed = false
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
     override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
@@ -154,23 +191,20 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
   }
 
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    SignalLocalMetrics.ConversationOpen.start()
+  }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     registerForResults()
+    disposables.bindTo(viewLifecycleOwner)
+    FullscreenHelper(requireActivity()).showSystemUI()
 
     conversationOptionsMenuProvider = ConversationOptionsMenu.Provider(ConversationOptionsMenuCallback(), disposables)
     markReadHelper = MarkReadHelper(ConversationId.forConversation(args.threadId), requireContext(), viewLifecycleOwner)
 
-    FullscreenHelper(requireActivity()).showSystemUI()
-
-    layoutManager = SmoothScrollingLinearLayoutManager(requireContext(), true)
-    binding.conversationItemRecycler.setHasFixedSize(false)
-    binding.conversationItemRecycler.layoutManager = layoutManager
-
-    val layoutTransitionListener = BubbleLayoutTransitionListener(binding.conversationItemRecycler)
-    viewLifecycleOwner.lifecycle.addObserver(layoutTransitionListener)
-
-    val recyclerViewColorizer = RecyclerViewColorizer(binding.conversationItemRecycler)
-    recyclerViewColorizer.setChatColors(args.chatColors)
+    initializeConversationThreadUi()
 
     val conversationToolbarOnScrollHelper = ConversationToolbarOnScrollHelper(
       requireActivity(),
@@ -178,30 +212,10 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       viewModel::wallpaperSnapshot
     )
     conversationToolbarOnScrollHelper.attach(binding.conversationItemRecycler)
-
-    disposables.bindTo(viewLifecycleOwner)
-    disposables += viewModel.recipient
-      .firstOrError()
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy(onSuccess = {
-        onFirstRecipientLoad(it)
-      })
-
     presentWallpaper(args.wallpaper)
-    disposables += viewModel.recipient
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy(onNext = {
-        recyclerViewColorizer.setChatColors(it.chatColors)
-        presentWallpaper(it.wallpaper)
-        presentConversationTitle(it)
-      })
+    presentActionBarMenu()
 
-    disposables += viewModel.markReadRequests
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy(onNext = markReadHelper::onViewsRevealed)
-
-    EventBus.getDefault().registerForLifecycle(groupCallViewModel, viewLifecycleOwner)
-    presentGroupCallJoinButton()
+    observeConversationThread()
   }
 
   override fun onResume() {
@@ -216,75 +230,57 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
   }
 
-  override fun onPause() {
-    super.onPause()
-    ApplicationDependencies.getMessageNotifier().clearVisibleThread()
-  }
-
-  private fun registerForResults() {
-    addToContactsLauncher = registerForActivityResult(AddToContactsContract()) {}
-  }
-
-  private fun onFirstRecipientLoad(recipient: Recipient) {
-    Log.d(TAG, "onFirstRecipientLoad")
-
-    val colorizer = Colorizer()
-    adapter = ConversationAdapter(
-      requireContext(),
-      viewLifecycleOwner,
-      GlideApp.with(this),
-      Locale.getDefault(),
-      ConversationItemClickListener(),
-      recipient,
-      colorizer
-    )
-
-    scrollToPositionDelegate = ScrollToPositionDelegate(
-      binding.conversationItemRecycler,
-      adapter::canJumpToPosition,
-      adapter::getAdapterPositionForMessagePosition
-    )
-
-    binding.conversationItemRecycler.itemAnimator = ConversationItemAnimator(
-      isInMultiSelectMode = adapter.selectedItems::isNotEmpty,
-      shouldPlayMessageAnimations = {
-        scrollToPositionDelegate.isListCommitted() && binding.conversationItemRecycler.scrollState == RecyclerView.SCROLL_STATE_IDLE
-      },
-      isParentFilled = {
-        binding.conversationItemRecycler.canScrollVertically(1) || binding.conversationItemRecycler.canScrollVertically(-1)
-      }
-    )
-
-    ConversationAdapter.initializePool(binding.conversationItemRecycler.recycledViewPool)
-    adapter.setPagingController(viewModel.pagingController)
-    adapter.registerAdapterDataObserver(DataObserver(scrollToPositionDelegate))
-    viewLifecycleOwner.lifecycle.addObserver(LastSeenPositionUpdater(adapter, layoutManager, viewModel))
-    binding.conversationItemRecycler.adapter = adapter
-    giphyMp4ProjectionRecycler = initializeGiphyMp4()
-
-    val multiselectItemDecoration = MultiselectItemDecoration(
-      requireContext()
-    ) { viewModel.wallpaperSnapshot }
-
-    binding.conversationItemRecycler.addItemDecoration(multiselectItemDecoration)
-    viewLifecycleOwner.lifecycle.addObserver(multiselectItemDecoration)
-
+  private fun observeConversationThread() {
+    var firstRender = true
     disposables += viewModel
       .conversationThreadState
-      .doOnSuccess {
-        scrollToPositionDelegate.requestScrollPosition(
-          position = it.meta.getStartPosition(),
-          smooth = false,
-          awaitLayout = false
-        )
+      .subscribeOn(Schedulers.io())
+      .doOnSuccess { state ->
+        SignalLocalMetrics.ConversationOpen.onDataLoaded()
+        binding.conversationItemRecycler.doOnNextLayout {
+          layoutManager.scrollToPositionWithOffset(
+            adapter.getAdapterPositionForMessagePosition(state.meta.getStartPosition()),
+            binding.conversationItemRecycler.height
+          )
+        }
       }
       .flatMapObservable { it.items.data }
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(onNext = {
+        SignalLocalMetrics.ConversationOpen.onDataPostedToMain()
+
         adapter.submitList(it) {
           scrollToPositionDelegate.notifyListCommitted()
+
+          binding.conversationItemRecycler.doAfterNextLayout {
+            SignalLocalMetrics.ConversationOpen.onRenderFinished()
+
+            if (firstRender) {
+              firstRender = false
+              doAfterFirstRender()
+              animationsAllowed = true
+            }
+          }
         }
       })
+  }
+
+  private fun doAfterFirstRender() {
+    Log.d(TAG, "doAfterFirstRender")
+
+    EventBus.getDefault().registerForLifecycle(groupCallViewModel, viewLifecycleOwner)
+    viewLifecycleOwner.lifecycle.addObserver(LastSeenPositionUpdater(adapter, layoutManager, viewModel))
+
+    disposables += viewModel.recipient
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy(onNext = this::onRecipientChanged)
+
+    disposables += viewModel.markReadRequests
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy(onNext = markReadHelper::onViewsRevealed)
+
+    disposables += viewModel.scrollButtonState
+      .subscribeBy(onNext = this::presentScrollButtons)
 
     disposables += viewModel
       .nameColorsMap
@@ -294,14 +290,32 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
         adapter.notifyItemRangeChanged(0, adapter.itemCount)
       })
 
-    binding.conversationItemRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-      override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-        val timestamp = MarkReadHelper.getLatestTimestamp(adapter, layoutManager)
-        timestamp.ifPresent(viewModel::requestMarkRead)
-      }
-    })
+    presentGroupCallJoinButton()
 
-    presentActionBarMenu()
+    binding.scrollToBottom.setOnClickListener {
+      scrollToPositionDelegate.resetScrollPosition()
+    }
+
+    binding.scrollToMention.setOnClickListener {
+      scrollToNextMention()
+    }
+
+    adapter.registerAdapterDataObserver(DataObserver(scrollToPositionDelegate))
+  }
+
+  override fun onPause() {
+    super.onPause()
+    ApplicationDependencies.getMessageNotifier().clearVisibleThread()
+  }
+
+  private fun registerForResults() {
+    addToContactsLauncher = registerForActivityResult(AddToContactsContract()) {}
+  }
+
+  private fun onRecipientChanged(recipient: Recipient) {
+    presentWallpaper(recipient.wallpaper)
+    presentConversationTitle(recipient)
+    presentChatColors(recipient.chatColors)
   }
 
   private fun invalidateOptionsMenu() {
@@ -352,6 +366,22 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     binding.conversationWallpaper.visible = chatWallpaper != null
+    binding.scrollToBottom.setWallpaperEnabled(chatWallpaper != null)
+    binding.scrollToMention.setWallpaperEnabled(chatWallpaper != null)
+    adapter.onHasWallpaperChanged(chatWallpaper != null)
+  }
+
+  private fun presentChatColors(chatColors: ChatColors) {
+    recyclerViewColorizer.setChatColors(chatColors)
+    binding.scrollToMention.setUnreadCountBackgroundTint(chatColors.asSingleColor())
+    binding.scrollToBottom.setUnreadCountBackgroundTint(chatColors.asSingleColor())
+  }
+
+  private fun presentScrollButtons(scrollButtonState: ConversationScrollButtonState) {
+    Log.d(TAG, "Update scroll state $scrollButtonState")
+    binding.scrollToBottom.setUnreadCount(scrollButtonState.unreadCount)
+    binding.scrollToMention.isShown = scrollButtonState.hasMentions && scrollButtonState.showScrollButtons
+    binding.scrollToBottom.isShown = scrollButtonState.showScrollButtons
   }
 
   private fun presentGroupCallJoinButton() {
@@ -403,6 +433,56 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
   private fun getVoiceNoteMediaController() = requireListener<VoiceNoteMediaControllerOwner>().voiceNoteMediaController
 
+  private fun initializeConversationThreadUi() {
+    layoutManager = SmoothScrollingLinearLayoutManager(requireContext(), true)
+    binding.conversationItemRecycler.setHasFixedSize(false)
+    binding.conversationItemRecycler.layoutManager = layoutManager
+    binding.conversationItemRecycler.addOnScrollListener(ScrollListener())
+
+    adapter = ConversationAdapterV2(
+      lifecycleOwner = viewLifecycleOwner,
+      glideRequests = GlideApp.with(this),
+      clickListener = ConversationItemClickListener(),
+      hasWallpaper = args.wallpaper != null,
+      colorizer = colorizer
+    )
+
+    scrollToPositionDelegate = ScrollToPositionDelegate(
+      binding.conversationItemRecycler,
+      adapter::canJumpToPosition,
+      adapter::getAdapterPositionForMessagePosition
+    )
+
+    ConversationAdapter.initializePool(binding.conversationItemRecycler.recycledViewPool)
+    adapter.setPagingController(viewModel.pagingController)
+
+    binding.conversationItemRecycler.adapter = adapter
+    giphyMp4ProjectionRecycler = initializeGiphyMp4()
+
+    val multiselectItemDecoration = MultiselectItemDecoration(
+      requireContext()
+    ) { viewModel.wallpaperSnapshot }
+
+    binding.conversationItemRecycler.addItemDecoration(multiselectItemDecoration)
+    viewLifecycleOwner.lifecycle.addObserver(multiselectItemDecoration)
+
+    val layoutTransitionListener = BubbleLayoutTransitionListener(binding.conversationItemRecycler)
+    viewLifecycleOwner.lifecycle.addObserver(layoutTransitionListener)
+
+    recyclerViewColorizer = RecyclerViewColorizer(binding.conversationItemRecycler)
+    recyclerViewColorizer.setChatColors(args.chatColors)
+
+    binding.conversationItemRecycler.itemAnimator = ConversationItemAnimator(
+      isInMultiSelectMode = adapter.selectedItems::isNotEmpty,
+      shouldPlayMessageAnimations = {
+        animationsAllowed && scrollToPositionDelegate.isListCommitted() && binding.conversationItemRecycler.scrollState == RecyclerView.SCROLL_STATE_IDLE
+      },
+      isParentFilled = {
+        binding.conversationItemRecycler.canScrollVertically(1) || binding.conversationItemRecycler.canScrollVertically(-1)
+      }
+    )
+  }
+
   private fun initializeGiphyMp4(): GiphyMp4ProjectionRecycler {
     val maxPlayback = GiphyMp4PlaybackPolicy.maxSimultaneousPlaybackInConversation()
     val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(
@@ -423,7 +503,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     return callback
   }
 
-  private fun toast(@StringRes toastTextId: Int, toastDuration: Int) {
+  private fun toast(@StringRes toastTextId: Int, toastDuration: Int = Toast.LENGTH_SHORT) {
     ThreadUtil.runOnMain {
       if (context != null) {
         Toast.makeText(context, toastTextId, toastDuration).show()
@@ -442,6 +522,33 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       smooth = true,
       scrollStrategy = jumpAndPulseScrollStrategy
     )
+  }
+
+  private fun scrollToNextMention() {
+    disposables += viewModel.getNextMentionPosition().subscribeBy {
+      moveToPosition(it)
+    }
+  }
+
+  private fun isScrolledToBottom(): Boolean {
+    return !binding.conversationItemRecycler.canScrollVertically(1)
+  }
+
+  private fun isScrolledPastButtonThreshold(): Boolean {
+    return layoutManager.findFirstCompletelyVisibleItemPosition() > 4
+  }
+
+  private inner class ScrollListener : RecyclerView.OnScrollListener() {
+    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+      if (isScrolledToBottom()) {
+        viewModel.setShowScrollButtons(false)
+      } else if (isScrolledPastButtonThreshold()) {
+        viewModel.setShowScrollButtons(true)
+      }
+
+      val timestamp = MarkReadHelper.getLatestTimestamp(adapter, layoutManager)
+      timestamp.ifPresent(viewModel::requestMarkRead)
+    }
   }
 
   private inner class DataObserver(
@@ -466,7 +573,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
       if (quote.isOriginalMissing) {
         Log.i(TAG, "onQuoteClicked: Original message is missing.")
-        toast(R.string.ConversationFragment_quoted_message_not_found, Toast.LENGTH_SHORT)
+        toast(R.string.ConversationFragment_quoted_message_not_found)
         return
       }
 
@@ -490,7 +597,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
           if (it >= 0) {
             moveToPosition(it)
           } else {
-            toast(R.string.ConversationFragment_quoted_message_no_longer_available, Toast.LENGTH_SHORT)
+            toast(R.string.ConversationFragment_quoted_message_no_longer_available)
           }
         }
     }
@@ -501,7 +608,15 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onQuotedIndicatorClicked(messageRecord: MessageRecord) {
-      // TODO [alex] - ("Not yet implemented")
+      context ?: return
+      activity ?: return
+      val recipientId = viewModel.recipientSnapshot?.id ?: return
+
+      MessageQuotesBottomSheet.show(
+        childFragmentManager,
+        MessageId(messageRecord.id),
+        recipientId
+      )
     }
 
     override fun onMoreTextClicked(conversationRecipientId: RecipientId, messageId: Long, isMms: Boolean) {
@@ -562,7 +677,16 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onMessageWithErrorClicked(messageRecord: MessageRecord) {
-      // TODO [alex] - ("Not yet implemented")
+      val recipientId = viewModel.recipientSnapshot?.id ?: return
+      if (messageRecord.isIdentityMismatchFailure) {
+        SafetyNumberBottomSheet
+          .forMessageRecord(requireContext(), messageRecord)
+          .show(childFragmentManager)
+      } else if (messageRecord.hasFailedWithNetworkFailures()) {
+        ConversationDialogs.displayMessageCouldNotBeSentDialog(requireContext(), messageRecord)
+      } else {
+        MessageDetailsFragment.create(messageRecord, recipientId).show(childFragmentManager, null)
+      }
     }
 
     override fun onMessageWithRecaptchaNeededClicked(messageRecord: MessageRecord) {
@@ -602,55 +726,73 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onGroupMigrationLearnMoreClicked(membershipChange: GroupMigrationMembershipChange) {
-      // TODO [alex] -- ("Not yet implemented")
+      GroupsV1MigrationInfoBottomSheetDialogFragment.show(parentFragmentManager, membershipChange)
     }
 
     override fun onChatSessionRefreshLearnMoreClicked() {
-      // TODO [alex] -- ("Not yet implemented")
+      ConversationDialogs.displayChatSessionRefreshLearnMoreDialog(requireContext())
     }
 
     override fun onBadDecryptLearnMoreClicked(author: RecipientId) {
-      // TODO [alex] -- ("Not yet implemented")
+      val isGroup = viewModel.recipientSnapshot?.isGroup ?: return
+      val recipientName = Recipient.resolved(author).getDisplayName(requireContext())
+      BadDecryptLearnMoreDialog.show(parentFragmentManager, recipientName, isGroup)
     }
 
     override fun onSafetyNumberLearnMoreClicked(recipient: Recipient) {
-      // TODO [alex] -- ("Not yet implemented")
+      ConversationDialogs.displaySafetyNumberLearnMoreDialog(this@ConversationFragment, recipient)
     }
 
     override fun onJoinGroupCallClicked() {
-      // TODO [alex] -- ("Not yet implemented")
+      val activity = activity ?: return
+      val recipient = viewModel.recipientSnapshot ?: return
+      CommunicationActions.startVideoCall(activity, recipient)
     }
 
     override fun onInviteFriendsToGroupClicked(groupId: GroupId.V2) {
-      // TODO [alex] -- ("Not yet implemented")
+      GroupLinkInviteFriendsBottomSheetDialogFragment.show(requireActivity().supportFragmentManager, groupId)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onEnableCallNotificationsClicked() {
-      // TODO [alex] -- ("Not yet implemented")
+      EnableCallNotificationSettingsDialog.fixAutomatically(requireContext())
+      if (EnableCallNotificationSettingsDialog.shouldShow(requireContext())) {
+        EnableCallNotificationSettingsDialog.show(childFragmentManager)
+      } else {
+        adapter.notifyDataSetChanged()
+      }
     }
 
     override fun onPlayInlineContent(conversationMessage: ConversationMessage?) {
-      // TODO [alex] - ("Not yet implemented")
+      adapter.playInlineContent(conversationMessage)
     }
 
     override fun onInMemoryMessageClicked(messageRecord: InMemoryMessageRecord) {
-      // TODO [alex] - ("Not yet implemented")
+      ConversationDialogs.displayInMemoryMessageDialog(requireContext(), messageRecord)
     }
 
     override fun onViewGroupDescriptionChange(groupId: GroupId?, description: String, isMessageRequestAccepted: Boolean) {
-      // TODO [alex] - ("Not yet implemented")
+      if (groupId != null) {
+        GroupDescriptionDialog.show(childFragmentManager, groupId, description, isMessageRequestAccepted)
+      }
     }
 
     override fun onChangeNumberUpdateContact(recipient: Recipient) {
-      // TODO [alex] - ("Not yet implemented")
+      startActivity(RecipientExporter.export(recipient).asAddContactIntent())
     }
 
     override fun onCallToAction(action: String) {
-      // TODO [alex] - ("Not yet implemented")
+      if ("gift_badge" == action) {
+        startActivity(Intent(requireContext(), GiftFlowActivity::class.java))
+      }
     }
 
     override fun onDonateClicked() {
-      // TODO [alex] - ("Not yet implemented")
+      requireActivity()
+        .supportFragmentManager
+        .beginTransaction()
+        .add(DonateToSignalFragment.Dialog.create(DonateToSignalType.ONE_TIME), "one_time_nav")
+        .commitNow()
     }
 
     override fun onBlockJoinRequest(recipient: Recipient) {
@@ -676,7 +818,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       InviteActions.inviteUserToSignal(
         requireContext(),
         recipient,
-        {}, // TODO [alex] -- append to compose
+        binding.conversationInputPanel.embeddedTextEditor::appendInvite,
         this@ConversationFragment::startActivity
       )
     }
@@ -686,17 +828,11 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onSendPaymentClicked(recipientId: RecipientId) {
-      disposables += viewModel.recipient
-        .firstOrError()
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribeBy {
-          AttachmentManager.selectPayment(this@ConversationFragment, it)
-        }
+      val recipient = viewModel.recipientSnapshot ?: return
+      AttachmentManager.selectPayment(this@ConversationFragment, recipient)
     }
 
-    override fun onScheduledIndicatorClicked(view: View, messageRecord: MessageRecord) {
-      // TODO [alex] -- ("Not yet implemented")
-    }
+    override fun onScheduledIndicatorClicked(view: View, conversationMessage: ConversationMessage) = Unit
 
     override fun onUrlClicked(url: String): Boolean {
       return CommunicationActions.handlePotentialGroupLinkUrl(requireActivity(), url) ||
@@ -741,7 +877,11 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onEditedIndicatorClicked(messageRecord: MessageRecord) {
-      // TODO [alex] -- ("Not yet implemented")
+      if (messageRecord.isOutgoing) {
+        EditMessageHistoryDialog.show(childFragmentManager, messageRecord.toRecipient.id, messageRecord.id)
+      } else {
+        EditMessageHistoryDialog.show(childFragmentManager, messageRecord.fromRecipient.id, messageRecord.id)
+      }
     }
 
     override fun onItemClick(item: MultiselectPart?) {
@@ -861,8 +1001,8 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   }
 
   private class LastSeenPositionUpdater(
-    val adapter: ConversationAdapter,
-    val layoutManager: SmoothScrollingLinearLayoutManager,
+    val adapter: ConversationAdapterV2,
+    val layoutManager: LinearLayoutManager,
     val viewModel: ConversationViewModel
   ) : DefaultLifecycleObserver {
     override fun onPause(owner: LifecycleOwner) {

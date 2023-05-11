@@ -15,6 +15,7 @@ import io.reactivex.rxjava3.subjects.Subject
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.conversation.v2.ConversationRecipientRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent
@@ -23,7 +24,10 @@ import org.thoughtcrime.securesms.recipients.Recipient
 /**
  * ViewModel which manages state associated with group calls.
  */
-class ConversationGroupCallViewModel(threadId: Long) : ViewModel() {
+class ConversationGroupCallViewModel(
+  threadId: Long,
+  recipientRepository: ConversationRecipientRepository
+) : ViewModel() {
 
   companion object {
     private val TAG = Log.tag(ConversationGroupCallViewModel::class.java)
@@ -102,9 +106,12 @@ class ConversationGroupCallViewModel(threadId: Long) : ViewModel() {
     _peekRequestProcessor.onNext(Unit)
   }
 
-  class Factory(private val threadId: Long) : ViewModelProvider.Factory {
+  class Factory(
+    private val threadId: Long,
+    private val recipientRepository: ConversationRecipientRepository
+  ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(ConversationGroupCallViewModel(threadId)) as T
+      return modelClass.cast(ConversationGroupCallViewModel(threadId, recipientRepository)) as T
     }
   }
 }

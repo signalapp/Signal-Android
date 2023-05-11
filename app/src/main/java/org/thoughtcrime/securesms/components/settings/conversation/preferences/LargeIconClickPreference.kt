@@ -22,6 +22,7 @@ object LargeIconClickPreference {
     override val title: DSLSettingsText?,
     override val icon: DSLSettingsIcon,
     override val summary: DSLSettingsText? = null,
+    override val isEnabled: Boolean = true,
     val onClick: () -> Unit
   ) : PreferenceModel<Model>()
 

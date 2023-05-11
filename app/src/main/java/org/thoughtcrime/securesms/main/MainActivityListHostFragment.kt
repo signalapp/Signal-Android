@@ -112,7 +112,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
   private fun goToStateFromConversationList(state: ConversationListTabsState, navController: NavController) {
     if (state.tab == ConversationListTab.CHATS) {
       return
-    } else if (state.tab == ConversationListTab.STORIES) {
+    } else {
       val cameraFab = requireView().findViewById<View>(R.id.camera_fab)
       val newConvoFab = requireView().findViewById<View>(R.id.fab)
 
@@ -128,18 +128,17 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
         )
       }
 
+      val destination = if (state.tab == ConversationListTab.STORIES) {
+        R.id.action_conversationListFragment_to_storiesLandingFragment
+      } else {
+        R.id.action_conversationListFragment_to_callLogFragment
+      }
+
       navController.navigate(
-        R.id.action_conversationListFragment_to_storiesLandingFragment,
+        destination,
         null,
         null,
         extras
-      )
-    } else {
-      navController.navigate(
-        R.id.action_conversationListFragment_to_callLogFragment,
-        null,
-        null,
-        null
       )
     }
   }
@@ -350,14 +349,17 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
         conversationListTabsViewModel.isShowingArchived(false)
         presentToolbarForConversationListFragment()
       }
+
       R.id.conversationListArchiveFragment -> {
         conversationListTabsViewModel.isShowingArchived(true)
         presentToolbarForConversationListArchiveFragment()
       }
+
       R.id.storiesLandingFragment -> {
         conversationListTabsViewModel.isShowingArchived(false)
         presentToolbarForStoriesLandingFragment()
       }
+
       R.id.callLogFragment -> {
         conversationListTabsViewModel.isShowingArchived(false)
         presentToolbarForCallLogFragment()

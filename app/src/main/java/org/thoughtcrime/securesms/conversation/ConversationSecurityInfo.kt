@@ -7,5 +7,7 @@ data class ConversationSecurityInfo(
   val isPushAvailable: Boolean = false,
   val isDefaultSmsApplication: Boolean = false,
   val isInitialized: Boolean = false,
-  val hasUnexportedInsecureMessages: Boolean = false
+  val hasUnexportedInsecureMessages: Boolean = false,
+  val isClientExpired: Boolean = false,
+  val isUnauthorized: Boolean = false
 )

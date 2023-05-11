@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.recipients.Recipient
 
 class StoryGroupReplyDataSource(private val parentStoryId: Long) : PagedDataSource<MessageId, ReplyBody> {
   override fun size(): Int {
@@ -36,11 +37,12 @@ class StoryGroupReplyDataSource(private val parentStoryId: Long) : PagedDataSour
   }
 
   private fun readRowFromRecord(record: MmsMessageRecord): ReplyBody {
+    val threadRecipient: Recipient = requireNotNull(SignalDatabase.threads.getRecipientForThreadId(record.threadId))
     return when {
       record.isRemoteDelete -> ReplyBody.RemoteDelete(record)
       MessageTypes.isStoryReaction(record.type) -> ReplyBody.Reaction(record)
       else -> ReplyBody.Text(
-        ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(), record)
+        ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(), record, threadRecipient)
       )
     }
   }

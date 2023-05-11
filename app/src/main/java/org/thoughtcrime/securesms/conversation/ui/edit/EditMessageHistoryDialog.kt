@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
 import org.thoughtcrime.securesms.conversation.ConversationBottomSheetCallback
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
+import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
@@ -68,7 +69,7 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
       GlideApp.with(this),
       Locale.getDefault(),
       ConversationAdapterListener(),
-      conversationRecipient,
+      conversationRecipient.hasWallpaper(),
       colorizer
     ).apply {
       setCondensedMode(ConversationItemDisplayMode.EXTRA_CONDENSED)
@@ -119,7 +120,7 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
 
   private inner class ConversationAdapterListener : ConversationAdapter.ItemClickListener by requireListener<ConversationBottomSheetCallback>().getConversationAdapterListener() {
     override fun onQuoteClicked(messageRecord: MmsMessageRecord) = Unit
-    override fun onScheduledIndicatorClicked(view: View, messageRecord: MessageRecord) = Unit
+    override fun onScheduledIndicatorClicked(view: View, conversationMessage: ConversationMessage) = Unit
     override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) = Unit
     override fun onItemClick(item: MultiselectPart) = Unit
     override fun onItemLongClick(itemView: View, item: MultiselectPart) = Unit

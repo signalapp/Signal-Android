@@ -41,7 +41,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     val CREATE_TABLE: Array<String> = arrayOf(ListTable.CREATE_TABLE, MembershipTable.CREATE_TABLE)
 
     @JvmField
-    val CREATE_INDEXES: Array<String> = arrayOf(MembershipTable.CREATE_INDEX)
+    val CREATE_INDEXES: Array<String> = MembershipTable.CREATE_INDEXES
 
     const val RECIPIENT_ID = ListTable.RECIPIENT_ID
     const val DISTRIBUTION_ID = ListTable.DISTRIBUTION_ID
@@ -123,7 +123,10 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
       )
     """
 
-    const val CREATE_INDEX = "CREATE UNIQUE INDEX distribution_list_member_list_id_recipient_id_privacy_mode_index ON $TABLE_NAME ($LIST_ID, $RECIPIENT_ID, $PRIVACY_MODE)"
+    val CREATE_INDEXES = arrayOf(
+      "CREATE UNIQUE INDEX distribution_list_member_list_id_recipient_id_privacy_mode_index ON $TABLE_NAME ($LIST_ID, $RECIPIENT_ID, $PRIVACY_MODE)",
+      "CREATE INDEX distribution_list_member_recipient_id ON $TABLE_NAME ($RECIPIENT_ID)"
+    )
   }
 
   /**

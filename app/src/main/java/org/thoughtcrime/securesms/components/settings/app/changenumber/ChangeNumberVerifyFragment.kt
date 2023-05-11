@@ -1,11 +1,15 @@
 package org.thoughtcrime.securesms.components.settings.app.changenumber
 
+import android.content.Context
+import android.content.DialogInterface.OnClickListener
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -46,6 +50,7 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
     if (!requestingCaptcha || viewModel.hasCaptchaToken()) {
       requestCode()
     } else {
+      Log.d(TAG, "Captcha required.")
       Toast.makeText(requireContext(), R.string.ChangeNumberVerifyFragment__captcha_required, Toast.LENGTH_SHORT).show()
       findNavController().navigateUp()
     }
@@ -60,6 +65,7 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
       .andThen(viewModel.changeNumberWithRecoveryPassword())
       .flatMap { changed ->
         if (changed) {
+          Log.d(TAG, "Successfully changed number using recovery password.")
           Single.just(RequestCodeResult.RecoveryPasswordWorked)
         } else {
           viewModel.requestVerificationCode(mode, mccMncProducer.mcc, mccMncProducer.mnc)
@@ -83,14 +89,16 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
           requestingCaptcha = true
         } else if (processor.rateLimit()) {
           Log.i(TAG, "Unable to request sms code due to rate limit")
-          Toast.makeText(requireContext(), R.string.RegistrationActivity_rate_limited_to_service, Toast.LENGTH_LONG).show()
-          findNavController().navigateUp()
+          showErrorDialog(requireContext(), R.string.RegistrationActivity_rate_limited_to_service) { _, _ -> findNavController().navigateUp() }
         } else {
           Log.w(TAG, "Unable to request sms code", processor.error)
-          Toast.makeText(requireContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show()
-          findNavController().navigateUp()
+          showErrorDialog(requireContext(), R.string.RegistrationActivity_unable_to_request_verification_code) { _, _ -> findNavController().navigateUp() }
         }
       }
+  }
+
+  private fun showErrorDialog(context: Context, @StringRes message: Int, onPositiveButtonClickListener: OnClickListener?) {
+    MaterialAlertDialogBuilder(context).setMessage(message).setPositiveButton(R.string.ok, onPositiveButtonClickListener).show()
   }
 
   private sealed interface RequestCodeResult {

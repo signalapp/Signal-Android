@@ -13,7 +13,7 @@ dependencyResolutionManagement {
             version('exoplayer', '2.18.1')
             version('glide', '4.13.2')
             version('kotlin', '1.8.10')
-            version('libsignal-client', '0.22.0')
+            version('libsignal-client', '0.23.1')
             version('mp4parser', '1.9.39')
             version('android-gradle-plugin', '7.4.1')
 
@@ -107,8 +107,8 @@ dependencyResolutionManagement {
             alias('libsignal-android').to('org.signal', 'libsignal-android').versionRef('libsignal-client')
             alias('signal-aesgcmprovider').to('org.signal:aesgcmprovider:0.0.3')
             alias('signal-argon2').to('org.signal:argon2:13.1')
-            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.26.1')
-            alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.3-FTS-S3')
+            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.26.3')
+            alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.4-S1')
 
             // Third Party
             alias('greenrobot-eventbus').to('org.greenrobot:eventbus:3.0.0')
@@ -139,6 +139,7 @@ dependencyResolutionManagement {
             alias('lottie').to('com.airbnb.android:lottie:5.2.0')
             alias('dnsjava').to('dnsjava:dnsjava:2.1.9')
             alias('nanohttpd-webserver').to('org.nanohttpd:nanohttpd-webserver:2.3.1')
+            alias('kotlinx-collections-immutable').to('org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5')
 
             // Can't use the newest version because it hits some weird NoClassDefFoundException
             alias('jknack-handlebars').to('com.github.jknack:handlebars:4.0.7')

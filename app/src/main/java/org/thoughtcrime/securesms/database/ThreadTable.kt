@@ -17,7 +17,6 @@ import org.signal.core.util.exists
 import org.signal.core.util.logging.Log
 import org.signal.core.util.or
 import org.signal.core.util.readToList
-import org.signal.core.util.readToSingleLong
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
@@ -60,6 +59,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
+import org.thoughtcrime.securesms.util.LRUCache
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.isScheduled
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -106,6 +106,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     const val LAST_SCROLLED = "last_scrolled"
     const val PINNED = "pinned"
     const val UNREAD_SELF_MENTION_COUNT = "unread_self_mention_count"
+
+    const val MAX_CACHE_SIZE = 1000
 
     @JvmField
     val CREATE_TABLE = """
@@ -178,6 +180,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     const val NO_TRIM_BEFORE_DATE_SET: Long = 0
     const val NO_TRIM_MESSAGE_COUNT_SET = Int.MAX_VALUE
   }
+
+  private val threadIdCache = LRUCache<RecipientId, Long>(MAX_CACHE_SIZE)
 
   private fun createThreadForRecipient(recipientId: RecipientId, group: Boolean, distributionType: Int): Long {
     if (recipientId.isUnknown) {
@@ -1057,6 +1061,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       db.delete(TABLE_NAME)
         .where("$ID = ?", threadId)
         .run()
+      synchronized(threadIdCache) {
+        threadIdCache.remove(recipientIdForThreadId)
+      }
     }
 
     notifyConversationListListeners()
@@ -1080,6 +1087,11 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       mentions.deleteAbandonedMentions()
       drafts.clearDrafts(selectedConversations)
       attachments.deleteAbandonedAttachmentFiles()
+      synchronized(threadIdCache) {
+        for (recipientId in recipientIds) {
+          threadIdCache.remove(recipientId)
+        }
+      }
     }
 
     notifyConversationListListeners()
@@ -1096,6 +1108,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       drafts.clearAllDrafts()
       db.delete(TABLE_NAME, null, null)
       calls.deleteAllCalls()
+      synchronized(threadIdCache) {
+        threadIdCache.clear()
+      }
     }
 
     notifyConversationListListeners()
@@ -1103,12 +1118,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun getThreadIdIfExistsFor(recipientId: RecipientId): Long {
-    return readableDatabase
-      .select(ID)
-      .from(TABLE_NAME)
-      .where("$RECIPIENT_ID = ?", recipientId)
-      .run()
-      .readToSingleLong(-1)
+    return getThreadIdFor(recipientId) ?: -1
   }
 
   fun getOrCreateValidThreadId(recipient: Recipient, candidateId: Long): Long {
@@ -1150,18 +1160,29 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun getThreadIdFor(recipientId: RecipientId): Long? {
-    return readableDatabase
-      .select(ID)
-      .from(TABLE_NAME)
-      .where("$RECIPIENT_ID = ?", recipientId)
-      .run()
-      .use { cursor ->
-        if (cursor.moveToFirst()) {
-          cursor.requireLong(ID)
-        } else {
-          null
+    var threadId: Long? = synchronized(threadIdCache) {
+      threadIdCache[recipientId]
+    }
+    if (threadId == null) {
+      threadId = readableDatabase
+        .select(ID)
+        .from(TABLE_NAME)
+        .where("$RECIPIENT_ID = ?", recipientId)
+        .run()
+        .use { cursor ->
+          if (cursor.moveToFirst()) {
+            cursor.requireLong(ID)
+          } else {
+            null
+          }
+        }
+      if (threadId != null) {
+        synchronized(threadIdCache) {
+          threadIdCache[recipientId] = threadId
         }
       }
+    }
+    return threadId
   }
 
   fun getRecipientIdForThreadId(threadId: Long): RecipientId? {
@@ -1500,6 +1521,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         .values(RECIPIENT_ID to primaryRecipientId.serialize())
         .where("$ID = ?", secondary.threadId)
         .run()
+      synchronized(threadIdCache) {
+        threadIdCache.remove(secondaryRecipientId)
+      }
       MergeResult(threadId = secondary.threadId, previousThreadId = -1, neededMerge = false)
     } else if (primary == null && secondary == null) {
       Log.w(TAG, "[merge] No thread for either.")
@@ -1517,6 +1541,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         .delete(TABLE_NAME)
         .where("$ID = ?", secondary.threadId)
         .run()
+
+      synchronized(threadIdCache) {
+        threadIdCache.remove(secondaryRecipientId)
+      }
 
       if (primary.expiresIn != secondary.expiresIn) {
         val values = ContentValues()

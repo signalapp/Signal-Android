@@ -7,6 +7,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
@@ -24,6 +25,7 @@ object ButtonStripPreference {
   class Model(
     val state: State,
     val background: DSLSettingsIcon? = null,
+    val enabled: Boolean = true,
     val onAddToStoryClick: () -> Unit = {},
     val onMessageClick: () -> Unit = {},
     val onVideoClick: () -> Unit = {},
@@ -85,6 +87,11 @@ object ButtonStripPreference {
         listOf(message, videoCall, audioCall, mute, search).forEach {
           it.background = model.background.resolve(context)
         }
+      }
+
+      listOf(messageContainer, videoContainer, audioContainer, muteContainer, addToStoryContainer, searchContainer).forEach {
+        it.alpha = if (model.enabled) 1.0f else 0.5f
+        ViewUtil.setEnabledRecursive(it, model.enabled)
       }
 
       message.setOnClickListener { model.onMessageClick() }

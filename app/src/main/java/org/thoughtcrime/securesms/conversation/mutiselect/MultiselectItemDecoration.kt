@@ -1,3 +1,8 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.conversation.mutiselect
 
 import android.animation.Animator
@@ -27,8 +32,8 @@ import com.airbnb.lottie.SimpleColorFilter
 import com.google.android.material.animation.ArgbEvaluatorCompat
 import org.signal.core.util.SetUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.conversation.ConversationAdapter
-import org.thoughtcrime.securesms.conversation.ConversationAdapter.PulseRequest
+import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
+import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge.PulseRequest
 import org.thoughtcrime.securesms.conversation.ConversationItem
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -118,7 +123,7 @@ class MultiselectItemDecoration(
   }
 
   private fun getCurrentSelection(parent: RecyclerView): Set<MultiselectPart> {
-    return (parent.adapter as ConversationAdapter).selectedItems
+    return (parent.adapter as ConversationAdapterBridge).selectedItems
   }
 
   override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
@@ -150,7 +155,7 @@ class MultiselectItemDecoration(
     outRect.setEmpty()
     updateChildOffsets(parent, view)
 
-    consumePulseRequest(parent.adapter as ConversationAdapter)
+    consumePulseRequest(parent.adapter as ConversationAdapterBridge)
   }
 
   /**
@@ -158,7 +163,7 @@ class MultiselectItemDecoration(
    */
   @Suppress("DEPRECATION")
   override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-    val adapter = parent.adapter as ConversationAdapter
+    val adapter = parent.adapter as ConversationAdapterBridge
 
     if (adapter.selectedItems.isEmpty()) {
       drawFocusShadeUnderIfNecessary(canvas, parent)
@@ -221,7 +226,7 @@ class MultiselectItemDecoration(
    * Draws the selected check or empty circle.
    */
   override fun onDrawOver(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-    val adapter = parent.adapter as ConversationAdapter
+    val adapter = parent.adapter as ConversationAdapterBridge
     if (adapter.selectedItems.isEmpty()) {
       drawFocusShadeOverIfNecessary(canvas, parent)
     }
@@ -232,7 +237,7 @@ class MultiselectItemDecoration(
     invalidateIfEnterExitAnimatorsAreRunning(parent)
   }
 
-  private fun drawChecks(parent: RecyclerView, canvas: Canvas, adapter: ConversationAdapter) {
+  private fun drawChecks(parent: RecyclerView, canvas: Canvas, adapter: ConversationAdapterBridge) {
     val drawCircleBehindSelector = chatWallpaperProvider()?.isPhoto == true
     val multiselectChildren: Sequence<Multiselectable> = parent.children.filterIsInstance(Multiselectable::class.java)
 
@@ -337,7 +342,7 @@ class MultiselectItemDecoration(
    * called in getItemOffsets to ensure the gutter goes away when multiselect mode ends.
    */
   private fun updateChildOffsets(parent: RecyclerView, child: View) {
-    val adapter = parent.adapter as ConversationAdapter
+    val adapter = parent.adapter as ConversationAdapterBridge
     val isLtr = ViewUtil.isLtr(child)
 
     val isAnimatingSelection = enterExitAnimation != null && isInitialAnimation()
@@ -542,8 +547,8 @@ class MultiselectItemDecoration(
     }
   }
 
-  private fun consumePulseRequest(adapter: ConversationAdapter) {
-    val pulseRequest = adapter.consumePulseRequest()
+  private fun consumePulseRequest(adapter: ConversationAdapterBridge) {
+    val pulseRequest: PulseRequest? = adapter.consumePulseRequest()
     if (pulseRequest != null) {
       val pulseColor = if (pulseRequest.isOutgoing) pulseOutgoingColor else pulseIncomingColor
       pulseRequestAnimators[pulseRequest]?.cancel()

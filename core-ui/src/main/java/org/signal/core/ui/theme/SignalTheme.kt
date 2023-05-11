@@ -1,6 +1,8 @@
 package org.signal.core.ui.theme
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -9,28 +11,32 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 
 private val typography = Typography().run {
   copy(
     headlineLarge = headlineLarge.copy(
+      fontSize = 32.sp,
       lineHeight = 40.sp,
       letterSpacing = 0.sp
     ),
     headlineMedium = headlineMedium.copy(
+      fontSize = 28.sp,
       lineHeight = 36.sp,
       letterSpacing = 0.sp
     ),
     titleLarge = titleLarge.copy(
+      fontSize = 22.sp,
       lineHeight = 28.sp,
       letterSpacing = 0.sp
     ),
     titleMedium = titleMedium.copy(
-      fontFamily = FontFamily.SansSerif,
-      fontStyle = FontStyle.Normal,
       fontSize = 18.sp,
       lineHeight = 24.sp,
-      letterSpacing = 0.0125.sp
+      letterSpacing = 0.0125.sp,
+      fontFamily = FontFamily.SansSerif,
+      fontStyle = FontStyle.Normal
     ),
     titleSmall = titleSmall.copy(
       fontSize = 16.sp,
@@ -38,10 +44,12 @@ private val typography = Typography().run {
       letterSpacing = 0.0125.sp
     ),
     bodyLarge = bodyLarge.copy(
+      fontSize = 16.sp,
       lineHeight = 22.sp,
       letterSpacing = 0.0125.sp
     ),
     bodyMedium = bodyMedium.copy(
+      fontSize = 14.sp,
       lineHeight = 20.sp,
       letterSpacing = 0.0107.sp
     ),
@@ -51,6 +59,7 @@ private val typography = Typography().run {
       letterSpacing = 0.0192.sp
     ),
     labelLarge = labelLarge.copy(
+      fontSize = 14.sp,
       lineHeight = 20.sp,
       letterSpacing = 0.0107.sp
     ),
@@ -60,6 +69,7 @@ private val typography = Typography().run {
       letterSpacing = 0.0192.sp
     ),
     labelSmall = labelSmall.copy(
+      fontSize = 12.sp,
       lineHeight = 16.sp,
       letterSpacing = 0.025.sp
     )
@@ -169,6 +179,63 @@ fun SignalTheme(
       typography = typography,
       content = content
     )
+  }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TypographyPreview() {
+  SignalTheme(isDarkMode = false) {
+    Column {
+      Text(
+        text = "Headline Small",
+        style = MaterialTheme.typography.headlineLarge
+      )
+      Text(
+        text = "Headline Small",
+        style = MaterialTheme.typography.headlineMedium
+      )
+      Text(
+        text = "Headline Small",
+        style = MaterialTheme.typography.headlineSmall
+      )
+      Text(
+        text = "Title Large",
+        style = MaterialTheme.typography.titleLarge
+      )
+      Text(
+        text = "Title Medium",
+        style = MaterialTheme.typography.titleMedium
+      )
+      Text(
+        text = "Title Small",
+        style = MaterialTheme.typography.titleSmall
+      )
+      Text(
+        text = "Body Large",
+        style = MaterialTheme.typography.bodyLarge
+      )
+      Text(
+        text = "Body Medium",
+        style = MaterialTheme.typography.bodyMedium
+      )
+      Text(
+        text = "Body Small",
+        style = MaterialTheme.typography.bodySmall
+      )
+      Text(
+        text = "Label Large",
+        style = MaterialTheme.typography.labelLarge
+      )
+      Text(
+        text = "Label Medium",
+        style = MaterialTheme.typography.labelMedium
+      )
+      Text(
+        text = "Label Small",
+        style = MaterialTheme.typography.labelSmall
+      )
+    }
   }
 }
 

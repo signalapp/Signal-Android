@@ -13,6 +13,12 @@ import org.signal.paging.PagedDataSource;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.conversation.ConversationData.MessageRequestData;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
+import org.thoughtcrime.securesms.conversation.v2.data.AttachmentHelper;
+import org.thoughtcrime.securesms.conversation.v2.data.CallHelper;
+import org.thoughtcrime.securesms.conversation.v2.data.MentionHelper;
+import org.thoughtcrime.securesms.conversation.v2.data.PaymentHelper;
+import org.thoughtcrime.securesms.conversation.v2.data.QuotedHelper;
+import org.thoughtcrime.securesms.conversation.v2.data.ReactionHelper;
 import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -24,24 +30,15 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 /**
  * Core data source for loading an individual conversation.
@@ -58,12 +55,22 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
   /** Used once for the initial fetch, then cleared. */
   private int baseSize;
 
-  public ConversationDataSource(@NonNull Context context, long threadId, @NonNull MessageRequestData messageRequestData, boolean showUniversalExpireTimerUpdate, int baseSize) {
+  private final Recipient threadRecipient;
+
+  public ConversationDataSource(
+      @NonNull Context context,
+      long threadId,
+      @NonNull MessageRequestData messageRequestData,
+      boolean showUniversalExpireTimerUpdate,
+      int baseSize,
+      @NonNull Recipient threadRecipient
+  ) {
     this.context                        = context;
     this.threadId                       = threadId;
     this.messageRequestData             = messageRequestData;
     this.showUniversalExpireTimerUpdate = showUniversalExpireTimerUpdate;
     this.baseSize                       = baseSize;
+    this.threadRecipient                = threadRecipient;
   }
 
   @Override
@@ -171,7 +178,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     stopwatch.split("recipient-resolves");
 
     List<ConversationMessage> messages = Stream.of(records)
-                                               .map(m -> ConversationMessageFactory.createWithUnresolvedData(context, m, m.getDisplayBody(context), mentionHelper.getMentions(m.getId()), quotedHelper.isQuoted(m.getId())))
+                                               .map(m -> ConversationMessageFactory.createWithUnresolvedData(context, m, m.getDisplayBody(context), mentionHelper.getMentions(m.getId()), quotedHelper.isQuoted(m.getId()), threadRecipient))
                                                .toList();
 
     stopwatch.split("conversion");
@@ -233,7 +240,8 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
                                                                                        record,
                                                                                        record.getDisplayBody(ApplicationDependencies.getApplication()),
                                                                                        mentions,
-                                                                                       isQuoted);
+                                                                                       isQuoted,
+                                                                                       threadRecipient);
       } else {
         return null;
       }
@@ -245,192 +253,5 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
   @Override
   public @NonNull MessageId getKey(@NonNull ConversationMessage conversationMessage) {
     return new MessageId(conversationMessage.getMessageRecord().getId());
-  }
-
-  private static class MentionHelper {
-
-    private Collection<Long>         messageIds          = new LinkedList<>();
-    private Map<Long, List<Mention>> messageIdToMentions = new HashMap<>();
-
-    void add(MessageRecord record) {
-      if (record.isMms()) {
-        messageIds.add(record.getId());
-      }
-    }
-
-    void fetchMentions(Context context) {
-      messageIdToMentions = SignalDatabase.mentions().getMentionsForMessages(messageIds);
-    }
-
-    @Nullable List<Mention> getMentions(long id) {
-      return messageIdToMentions.get(id);
-    }
-  }
-
-  private static class QuotedHelper {
-
-    private Collection<MessageRecord> records          = new LinkedList<>();
-    private Set<Long>                 hasBeenQuotedIds = new HashSet<>();
-
-    void add(MessageRecord record) {
-      records.add(record);
-    }
-
-    void fetchQuotedState() {
-      hasBeenQuotedIds = SignalDatabase.messages().isQuoted(records);
-    }
-
-    boolean isQuoted(long id) {
-      return hasBeenQuotedIds.contains(id);
-    }
-  }
-
-  public static class AttachmentHelper {
-
-    private Collection<Long>                    messageIds             = new LinkedList<>();
-    private Map<Long, List<DatabaseAttachment>> messageIdToAttachments = new HashMap<>();
-
-    public void add(MessageRecord record) {
-      if (record.isMms()) {
-        messageIds.add(record.getId());
-      }
-    }
-
-    public void addAll(List<MessageRecord> records) {
-      for (MessageRecord record : records) {
-        add(record);
-      }
-    }
-
-    public void fetchAttachments() {
-      messageIdToAttachments = SignalDatabase.attachments().getAttachmentsForMessages(messageIds);
-    }
-
-    public @NonNull List<MessageRecord> buildUpdatedModels(@NonNull Context context, @NonNull List<MessageRecord> records) {
-      return records.stream()
-                    .map(record -> {
-                      if (record instanceof MediaMmsMessageRecord) {
-                        List<DatabaseAttachment> attachments = messageIdToAttachments.get(record.getId());
-
-                        if (Util.hasItems(attachments)) {
-                          return ((MediaMmsMessageRecord) record).withAttachments(context, attachments);
-                        }
-                      }
-
-                      return record;
-                    })
-                    .collect(Collectors.toList());
-    }
-  }
-
-  public static class ReactionHelper {
-
-    private Collection<MessageId>                messageIds           = new LinkedList<>();
-    private Map<MessageId, List<ReactionRecord>> messageIdToReactions = new HashMap<>();
-
-    public void add(MessageRecord record) {
-      messageIds.add(new MessageId(record.getId()));
-    }
-
-    public void addAll(List<MessageRecord> records) {
-      for (MessageRecord record : records) {
-        add(record);
-      }
-    }
-
-    public void fetchReactions() {
-      messageIdToReactions = SignalDatabase.reactions().getReactionsForMessages(messageIds);
-    }
-
-    public @NonNull List<MessageRecord> buildUpdatedModels(@NonNull List<MessageRecord> records) {
-      return records.stream()
-                    .map(record -> {
-                      MessageId            messageId = new MessageId(record.getId());
-                      List<ReactionRecord> reactions = messageIdToReactions.get(messageId);
-
-                      return recordWithReactions(record, reactions);
-                    })
-                    .collect(Collectors.toList());
-    }
-
-    private static MessageRecord recordWithReactions(@NonNull MessageRecord record, List<ReactionRecord> reactions) {
-      if (Util.hasItems(reactions)) {
-        if (record instanceof MediaMmsMessageRecord) {
-          return ((MediaMmsMessageRecord) record).withReactions(reactions);
-        } else {
-          throw new IllegalStateException("We have reactions for an unsupported record type: " + record.getClass().getName());
-        }
-      } else {
-        return record;
-      }
-    }
-  }
-
-  private static class PaymentHelper {
-    private final Map<UUID, Long>    paymentMessages    = new HashMap<>();
-    private final Map<Long, Payment> messageIdToPayment = new HashMap<>();
-
-    public void add(MessageRecord messageRecord) {
-      if (messageRecord.isMms() && messageRecord.isPaymentNotification()) {
-        UUID paymentUuid = UuidUtil.parseOrNull(messageRecord.getBody());
-        if (paymentUuid != null) {
-          paymentMessages.put(paymentUuid, messageRecord.getId());
-        }
-      }
-    }
-
-    public void fetchPayments() {
-      List<Payment> payments = SignalDatabase.payments().getPayments(paymentMessages.keySet());
-      for (Payment payment : payments) {
-        if (payment != null) {
-          messageIdToPayment.put(paymentMessages.get(payment.getUuid()), payment);
-        }
-      }
-    }
-
-    @NonNull List<MessageRecord> buildUpdatedModels(@NonNull List<MessageRecord> records) {
-      return records.stream()
-                    .map(record -> {
-                      if (record instanceof MediaMmsMessageRecord) {
-                        Payment payment = messageIdToPayment.get(record.getId());
-                        if (payment != null) {
-                          return ((MediaMmsMessageRecord) record).withPayment(payment);
-                        }
-                      }
-                      return record;
-                    })
-                    .collect(Collectors.toList());
-    }
-  }
-
-  private static class CallHelper {
-    private final Collection<Long>          messageIds      = new LinkedList<>();
-    private       Map<Long, CallTable.Call> messageIdToCall = Collections.emptyMap();
-
-    public void add(MessageRecord messageRecord) {
-      if (messageRecord.isCallLog() && !messageRecord.isGroupCall()) {
-        messageIds.add(messageRecord.getId());
-      }
-    }
-
-    public void fetchCalls() {
-      if (!messageIds.isEmpty()) {
-        messageIdToCall = SignalDatabase.calls().getCalls(messageIds);
-      }
-    }
-
-    @NonNull List<MessageRecord> buildUpdatedModels(@NonNull List<MessageRecord> records) {
-      return records.stream()
-                    .map(record -> {
-                      if (record.isCallLog() && record instanceof MediaMmsMessageRecord) {
-                        CallTable.Call call = messageIdToCall.get(record.getId());
-                        if (call != null) {
-                          return ((MediaMmsMessageRecord) record).withCall(call);
-                        }
-                      }
-                      return record;
-                    })
-                    .collect(Collectors.toList());
-    }
   }
 }

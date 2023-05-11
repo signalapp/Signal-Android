@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/call_link_details"
+    app:startDestination="@id/callLinkDetailsFragment">
+
+    <fragment
+        android:id="@+id/callLinkDetailsFragment"
+        android:name="org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsFragment"
+        android:label="call_link_details">
+        <action
+            android:id="@+id/action_callLinkDetailsFragment_to_editCallLinkNameDialogFragment"
+            app:destination="@id/editCallLinkNameDialogFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/editCallLinkNameDialogFragment"
+        android:name="org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment"
+        android:label="edit_call_link_name_dialog">
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="false" />
+    </dialog>
+
+</navigation>

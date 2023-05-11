@@ -14,7 +14,7 @@ object TimestampTransformer : ColumnTransformer {
       columnName.contains("timestamp", true)
   }
 
-  override fun transform(tableName: String?, columnName: String, cursor: Cursor): String {
+  override fun transform(tableName: String?, columnName: String, cursor: Cursor): String? {
     val timestamp: Long = cursor.requireLong(columnName)
 
     return if (timestamp > LocalDateTime.of(2000, 1, 1, 0, 0, 0, 0).toMillis()) {

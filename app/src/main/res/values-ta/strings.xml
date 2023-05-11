@@ -183,7 +183,7 @@
     <string name="CameraContacts_recent_contacts">சமீபத்திய தொடர்புகள்</string>
     <string name="CameraContacts_signal_contacts">Signal தொடர்புகள்</string>
     <string name="CameraContacts_signal_groups">Signal குழுக்கள்</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">நீங்கள் அதிகபட்சம் 1%1$d உரையாடல்களுடன் பகிரலாம்.</string>
+    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
     <string name="CameraContacts_select_signal_recipients">Signal பெறுநர்களைத் தேர்ந்தெடுக்கவும்</string>
     <string name="CameraContacts_no_signal_contacts">Signal தொடர்புகள் இல்லை</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Signal தொடர்புகளுக்கு புகைப்படங்களை அனுப்ப கேமரா பொத்தானை மட்டுமே நீங்கள் பயன்படுத்த முடியும். </string>
@@ -369,9 +369,9 @@
     <string name="ConversationActivity_new_say_it_with_stickers">புதிய! ஒட்டிகளால் சொல்லுங்கள்</string>
 
     <string name="ConversationActivity_cancel">ரத்து</string>
-    <string name="ConversationActivity_delete_conversation">உரையாடலை நீக்க வேண்டுமா?</string>
+    <string name="ConversationActivity_delete_conversation">Delete chat?</string>
     <string name="ConversationActivity_delete_and_leave_group">குழுவை நீக்கி விட்டு வெளியேற வேண்டுமா?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">இந்த உரையாடல் உங்கள் சாதனங்கள் எல்லாவற்றிலிருந்தும் நீக்கப்படும்.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">This chat will be deleted from all of your devices.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">நீங்கள் இந்த குழுவை விட்டு வெளியேறும், மற்றும் இது எல்லாவற்றிலிருந்தும் நீக்கப்படும் உங்கள் சாதனங்கள்.</string>
     <string name="ConversationActivity_delete">நீக்கு</string>
     <string name="ConversationActivity_delete_and_leave">நீக்கி வெளியேறுக</string>
@@ -452,7 +452,7 @@
     <string name="ConversationFragment_delete_on_this_device">இந்த டிவைஸில் நீக்கு</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">எல்லா இடங்களிலும் நீக்கு</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Signal இன் சமீபத்திய பதிப்பில் இருந்தால், உரையாடலில் உள்ள அனைவருக்கும் இந்த மெசேஜ் நீக்கப்படும். நீங்கள் ஒரு மெசேஜை நீக்கியுள்ளதை அவர்களால் பார்க்க முடியும்.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
     <string name="ConversationFragment_quoted_message_not_found">அசல் செய்தி கிடைக்கவில்லை</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">அசல் செய்தி இனி கிடப்பில் இல்லை  </string>
     <string name="ConversationFragment_failed_to_open_message">செய்தியைத் திறப்பதில் தோல்வி</string>
@@ -460,7 +460,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">விரைவாக பதிலளிக்க, எந்த செய்தியிலும் இடதுபுறமாக ஸ்வைப் செய்யலாம்</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">வெளிச்செல்லும் காண்க-ஒருமுறை கோப்புகள் அனுப்பப்பட்ட பின் தானாகவே அகற்றப்படும்</string>
     <string name="ConversationFragment_you_already_viewed_this_message">ஏற்கனவே இந்த மெசேஜைப் பார்த்தீர்கள்</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">இந்த உரையாடலில் உங்களுக்காக குறிப்புகளைச் சேர்க்கலாம். உங்கள் கணக்கில் இணைக்கப்பட்ட பிற சாதனங்கள் இருந்தால், புதிய குறிப்புகள் ஒத்திசைக்கப்படும்.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat.\nIf your account has any linked devices, new notes will be synced.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dகுழு உறுப்பினர்களுக்கு ஒரே பெயர் உண்டு.</string>
     <string name="ConversationFragment__tap_to_review">மதிப்பாய்வு செய்ய தட்டவும்</string>
     <string name="ConversationFragment__review_requests_carefully">கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்</string>
@@ -482,28 +482,32 @@
     <string name="ConversationFragment__cancel">ரத்து</string>
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">தடைசெய்யப்பட்டார்</string>
+    <!-- Action shown to allow a user to update their application because it has expired -->
+    <string name="ConversationFragment__update_build">Update Signal</string>
+    <!-- Action shown to allow a user to re-register as they are no longer registered -->
+    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ஃபில்டரை அழி</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">படிக்காத சாட்ஸ் எதுவுமில்லை</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">தேர்ந்தெடுக்கப்பட்ட உரையாடலை நீக்க வேண்டுமா?</item>
-        <item quantity="other">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகளை நீக்கவா?</item>
+        <item quantity="one">Delete selected chat?</item>
+        <item quantity="other">Delete selected chats?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">இது தேர்ந்தெடுக்கப்பட்ட உரையாடலை நிரந்தரமாக நீக்கும்.</item>
-        <item quantity="other">இது தேர்ந்தெடுக்கப்பட்ட அனைத்து %1$d உரையாடல்களையும் நிரந்தரமாக நீக்கும்.</item>
+        <item quantity="one">This will permanently delete the selected chat.</item>
+        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">நீக்கப்படுகிறது</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகள் நீக்கப்படுகிறது …</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">உரையாடல் காப்பகப்படுத்தப்பட்டது</item>
-        <item quantity="other">%1$d உரையாடல்கள் காப்பகப்படுத்தப்பட்டது</item>
+        <item quantity="one">Chat archived</item>
+        <item quantity="other">%1$d chats archived</item>
     </plurals>
     <string name="ConversationListFragment_undo">செயல்தவிர்</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">உரையாடல் இன்பாக்ஸுக்கு நகர்த்தப்பட்டது</item>
-        <item quantity="other">%1$d உரையாடல்கள் இன்பாக்ஸுக்கு நகர்த்தப்பட்டது</item>
+        <item quantity="one">Moved chat to inbox</item>
+        <item quantity="other">Moved %1$d chats to inbox</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">படித்தவை</item>
@@ -538,7 +542,7 @@
     <string name="ConversationListItem_key_exchange_message">முக்கிய பரிமாற்ற செய்தி</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">பெட்டகப்படுத்தப்பட்ட உரையாடல்கள் (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">சரிபார்க்கப்பட்டது</string>
@@ -1223,10 +1227,6 @@
     <string name="MediaRepository_all_media">அனைத்து ஊடகங்களும்</string>
     <string name="MediaRepository__camera">புகைப்பட கருவி</string>
 
-    <!-- MessageDecryptionUtil -->
-    <string name="MessageDecryptionUtil_failed_to_decrypt_message">செய்தியை மறைகுறியாக்க முடியவில்லை</string>
-    <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">பிழை திருத்தப் பதிவு அனுப்ப தட்டவும்</string>
-
     <!-- MessageRecord -->
     <string name="MessageRecord_unknown">தெரியாத</string>
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ஆதரவில்லா Signal-இன் பழைய பதிப்பைப் பயன்படுத்தி மறையாக்கப்பட்ட செய்தி பெறப்பட்டது. தயவுசெய்து அனுப்புநரிடம் மிகச் சமீபத்திய பதிப்பைப் புதுப்பித்து, செய்தியை மீண்டும் அனுப்பச் சொல்லுங்கள்.</string>
@@ -1504,10 +1504,10 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">உங்களுக்கு %1$s மெசேஜ் அனுப்ப அனுமதிக்கிறீர்களா? நீங்கள் தடை நீக்கம் செய்யும் வரை நீங்கள் எந்த மெசேஜையும் பெறமாட்டீர்கள்.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s -இடமிருந்து அறிவிப்புகள் மற்றும் செய்திகளைப் பெற வேண்டுமா? நீங்கள் தடை நீக்கம் செய்யும் வரை எந்த அறிவிப்புகளையும் பெறமாட்டீர்கள்.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">இந்த குழுவுடன் உங்கள் உரையாடலைத் தொடர, உங்கள் பெயரையும் புகைப்படத்தையும் அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ளவா?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@ குறிப்புகள் மற்றும் நிர்வாகிகள் போன்ற புதிய அம்சங்களை செயல்படுத்த இந்த குழுவை மேம்படுத்தவும். இந்த குழுவில் தங்கள் பெயரையோ புகைப்படத்தையோ பகிர்ந்து கொள்ளாத உறுப்பினர்கள் சேர அழைக்கப்படுவார்கள்.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">இந்த மரபு குழு மிகப் பெரியது, எனவே இதை இனி பயன்படுத்த முடியாது. அதிகபட்ச குழு அளவு: %1$d</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s உடன் உங்கள் உரையாடலைத் தொடரவும். அவருடன் உங்கள் பெயரையும் புகைப்படத்தையும் பகிர்ந்து கொள்ளலாமா?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">இந்த குழுவில் சேர்ந்து உங்கள் பெயர் மற்றும் புகைப்படத்தை அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா? நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்திகளை நீங்கள் பார்த்திருப்பதை அவர்கள் அறிய மாட்டார்கள்.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">இந்த குழுவில் சேர்ந்து உங்கள் பெயரையும் புகைப்படத்தையும் அதன் உறுப்பினர்களுடன் பகிர்ந்துகொள்கிறீர்களா? நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்திகளைப் பார்க்க மாட்டீர்கள்.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">இந்த குழுவில் சேரவா? நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்திகளைப் பார்த்திருப்பதை அவர்கள் அறிய மாட்டார்கள்.</string>
@@ -1689,7 +1689,7 @@
     <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">அழைப்பின் போது புளூடூத்தைப் பயன்படுத்த தயவுசெய்து \"அருகிலுள்ள டிவைஸ்கள்\" அனுமதியை இயக்கவும்.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
     <string name="WebRtcCallActivity__open_settings">அமைப்புகளைத் திறக்கவும்</string>
-    <!-- Negative aciton for bluetooth warning dialog to dismiss dialog -->
+    <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">இப்போது இல்லை</string>
 
     <!-- WebRtcCallView -->
@@ -1827,6 +1827,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">இந்த எண்ணை பதிவு செய்ய நீங்கள் பல முயற்சிகளை செய்துள்ளீர்கள். %1$s இல் மீண்டும் முயற்சிக்கவும்.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">சேவையுடன் இணைக்க முடியவில்லை. பிணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
+    <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
+    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
     <string name="RegistrationActivity_non_standard_number_format">நான்-ஸ்டாண்டர்ட் எண் வடிவம்</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">நீங்கள் உள்ளிட்ட எண் (%1$s) நான்-ஸ்டாண்டர்ட் எண் வடிவத்தைக் கொண்டுள்ளது.\n\nநீங்கள் %2$s-ஐ நினைத்தீர்களா?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">சிக்னல் ஆண்ட்ராய்டு - தொலைபேசி எண் வடிவம்</string>
@@ -1885,7 +1887,7 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">\'%1$s\' க்கான முடிவுகள் எதுவும் கிடைக்கவில்லை</string>
-    <string name="SearchFragment_header_conversations">உரையாடல்கள்</string>
+    <string name="SearchFragment_header_conversations">Chats</string>
     <string name="SearchFragment_header_contacts">தொடர்புகள்</string>
     <string name="SearchFragment_header_messages">செய்திகள்</string>
 
@@ -2149,10 +2151,10 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">செய்தியை நீக்குவதில் பிழை, செய்தி இன்னும் இருக்கலாம்</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">மேலும் வாசிக்க</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d உரையாடல்களில் %1$d புதிய செய்திகள்</string>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
     <string name="MessageNotifier_most_recent_from_s">இதிலிருந்து மிக சமீபத்தியது: %1$s</string>
     <string name="MessageNotifier_locked_message">பூட்டிய செய்தி</string>
     <string name="MessageNotifier_message_delivery_failed">செய்தி விநியோகிப்பது தோல்வியடைந்தது.</string>
@@ -2222,7 +2224,7 @@
     <string name="SearchToolbar_search">தேடு</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">படிக்காத சாட்களைத் தேடுங்கள்</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">உரையாடல்கள், தொடர்புகள் மற்றும் செய்திகளைத் தேடுங்கள்</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">நெருக்கமான</string>
@@ -2251,7 +2253,10 @@
 
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">சாதனம் இனி பதிவு செய்யப்படவில்லை</string>
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">உங்கள் தொலைபேசி எண்ணை Signal வேறு சாதனத்தில் பதிவு செய்ததால் இது நிகழலாம். மீண்டும் பதிவு செய்ய தட்டவும்.</string>
+    <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <!-- Action in reminder banner that will take user to re-register -->
+    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">இந்த டிவைஸில் Signal இல் இருந்து வெளியேறிவிட்டீர்கள்.</string>
@@ -2437,6 +2442,16 @@
     <!-- Label for quoted gift -->
     <string name="QuoteView__donation_for_a_friend">நண்பருக்கு நன்கொடை</string>
 
+    <!-- ConversationParentFragment -->
+    <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
+    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth permission denied</string>
+    <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <!-- Positive action for bluetooth warning dialog to open settings -->
+    <string name="ConversationParentFragment__open_settings">Open settings</string>
+    <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
+    <string name="ConversationParentFragment__not_now">Not now</string>
+
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">கீழே உருட்டவும்</string>
 
@@ -2560,7 +2575,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">முழு உரையாடலைப் பார்க்க</string>
+    <string name="load_more_header__see_full_conversation">See full chat</string>
     <string name="load_more_header__loading">ஏற்றுதல்</string>
 
     <!-- media_overview_activity -->
@@ -2682,13 +2697,8 @@
     <string name="AndroidManifest__message_details">செய்தி விவரங்கள்</string>
     <string name="AndroidManifest__linked_devices">இணைக்கப்பட்ட சாதனங்கள்</string>
     <string name="AndroidManifest__invite_friends">நண்பர்களை அழை</string>
-    <string name="AndroidManifest_archived_conversations">பெட்டகப்படுத்தப்பட்ட உரையாடல்கள்</string>
+    <string name="AndroidManifest_archived_conversations">Archived chats</string>
     <string name="AndroidManifest_remove_photo">புகைப்படத்தை அகற்று</string>
-
-    <!-- Message Requests Megaphone -->
-    <string name="MessageRequestsMegaphone__message_requests">செய்தி கோரிக்கைகள்</string>
-    <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">புதிய உரையாடலின் அழைப்பை ஏற்க பயனர்கள் இப்போது தேர்வு செய்யலாம். சுயவிவரப் பெயர்கள், அவர்களுக்கு யார் செய்தி அனுப்புகிறார்கள் என்பதை மக்களுக்கு தெரியப்படுத்தும்.</string>
-    <string name="MessageRequestsMegaphone__add_profile_name">சுயவிவரப் பெயரைச் சேர்க்கவும்</string>
 
     <!-- HelpFragment -->
     <string name="HelpFragment__have_you_read_our_faq_yet">எங்களிடம் இதுவரை அடிக்கடி கேட்கப்படும் கேள்விகளை நீங்கள் படித்தீர்களா?</string>
@@ -2844,7 +2854,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">கட்டண பூட்டு</string>
     <string name="preferences__payments_beta">பணம் செலுத்தல் (பீட்டா)</string>
-    <string name="preferences__conversation_length_limit">உரையாடலின் நீள அளவு</string>
+    <string name="preferences__conversation_length_limit">Chat length limit</string>
     <string name="preferences__keep_messages">செய்திகள் வைப்பு</string>
     <string name="preferences__clear_message_history">செய்தி வரலாற்றை அழிக்கவும்</string>
     <string name="preferences__linked_devices">இணைக்கப்பட்ட சாதனங்கள்</string>
@@ -2888,7 +2898,7 @@
     <string name="preferences_storage__delete_older_messages">பழைய மெசேஜ்களை நீக்க வேண்டுமா?</string>
     <string name="preferences_storage__clear_message_history">செய்தி வரலாற்றை அழிப்பதா?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">இது உங்கள் டிவைஸில் இருந்து %1$s ஐ விட பழையதாக உள்ள அனைத்து மெசேஜ் வரலாறு மற்றும் மீடியாவை நிரந்தரமாக நீக்கும்.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">இது எல்லா உரையாடல்களையும் மிக சமீபத்திய %1$s செய்திகளுக்கு நிரந்தரமாக நேர்த்தி செய்யும்.</string>
+    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">இது உங்கள் டிவைஸில் இருந்து அனைத்து மெசேஜ் வரலாறு மற்றும் மீடியாவை நிரந்தரமாக நீக்கும்.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">அனைத்து மெசேஜ் வரலாற்றையும் நீக்க விரும்புகிறீர்களா?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">அனைத்து மெசேஜ் வரலாறும் நிரந்தரமாக அகற்றப்படும். இந்த செயலைச் செயல்தவிர்க்க முடியாது.</string>
@@ -3238,7 +3248,7 @@
 
 
     <!-- conversation_list_fragment -->
-    <string name="conversation_list_fragment__fab_content_description">புதிய உரையாடல்</string>
+    <string name="conversation_list_fragment__fab_content_description">New chat</string>
     <string name="conversation_list_fragment__open_camera_description">புகைப்படக்கருவியை திறக்கவும்</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">இதுவரை உரையாடல்கள் எதுவும் இல்லை. நண்பருக்கு செய்தி அனுப்புவதன் மூலம் தொடங்கவும்.</string>
 
@@ -3255,7 +3265,7 @@
     <string name="conversation__menu_group_settings">குழு அமைப்புகள்</string>
     <string name="conversation__menu_leave_group">குழுவிலுருந்து விலகு</string>
     <string name="conversation__menu_view_all_media">அனைத்து ஊடகங்களும்</string>
-    <string name="conversation__menu_conversation_settings">உரையாடல் அமைப்புகள்</string>
+    <string name="conversation__menu_conversation_settings">Chat settings</string>
     <string name="conversation__menu_add_shortcut">முகப்புத் திரையில் சேர்க்கவும்</string>
     <string name="conversation__menu_create_bubble">பபுளை உருவாக்கவும்</string>
 
@@ -3278,7 +3288,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">பெறுநர்கள் பட்டியல்</string>
     <string name="conversation_group_options__delivery">விநியோகம்</string>
-    <string name="conversation_group_options__conversation">உரையாடல்</string>
+    <string name="conversation_group_options__conversation">Chat</string>
     <string name="conversation_group_options__broadcast">ஒளிபரப்பு</string>
 
     <!-- text_secure_normal -->
@@ -3328,11 +3338,11 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">நுண்ணறிவு</string>
     <string name="InsightsDashboardFragment__title">நுண்ணறிவு</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">கடந்த %2$d நாட்களில் Signal நெறிமுறை தானாகவே உங்களின் %1$d%% வெளிச்செல்லும் செய்திகளை பாதுகாத்தது. Signal பயனர்களிடையேயான உரையாடல்கள் எப்போதும் முடிவிலிருந்து-முடிவுவரை மறையாக்கம் செய்யப்படுகின்றன.</string>
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
     <string name="InsightsDashboardFragment__spread_the_word">மற்றவர்களுக்குத் தெரியப்படுத்துங்கள்</string>
     <string name="InsightsDashboardFragment__not_enough_data">போதிய தரவு இல்லை</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">கடந்த %1$d நாட்களில் காணாமல் போகாத அல்லது நீக்கப்படாத வெளிச்செல்லும் செய்திகளின் அடிப்படையில் உங்கள் நுண்ணறிவு சதவீதம் கணக்கிடப்படுகிறது.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">புதிய உரையாடலை தொடங்கு</string>
+    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Signal-க்கு கூடுதல் தொடர்புகளை அழைப்பதன் மூலம் பாதுகாப்பாக தொடர்பு கொள்ளத் தொடங்குங்கள் மற்றும் மறையாக்கபடாத SMS செய்திகளின் வரம்புகளுக்கு அப்பாற்பட்ட புதிய அம்சங்களை இயலச் செய்யுங்கள்.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">இந்த புள்ளிவிவரங்கள் உங்கள் சாதனத்தில் உள்நாட்டில் உருவாக்கப்பட்டன, அவற்றை உங்களால் மட்டுமே காண முடியும். அவை ஒருபோதும் எங்கும் பரவுவதில்லை.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">மறையாக்கப்பட்ட செய்திகள்</string>
@@ -3485,7 +3495,7 @@
     <string name="RegistrationActivity_restore">மீட்க</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Signal இன் புதிய பதிப்புகளில் பேக்அப்களை இறக்க முடியாது</string>
     <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Backup contains malformed data</string>
+    <string name="RegistrationActivity_backup_failure_foreign_key">காப்புப்பிரதியில் தவறான தரவு உள்ளது</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">தவறான காப்புப்பதிவு பயனர் தரவு கடவுச்சொல்</string>
     <string name="RegistrationActivity_checking">சரிபார்க்கிறது…</string>
     <string name="RegistrationActivity_d_messages_so_far">இதுவரை %1$d செய்திகள் …</string>
@@ -3575,6 +3585,23 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">திறக்க தட்டவும்</string>
     <string name="Recipient_unknown">தெரியாத</string>
 
+    <!-- Option in settings that will take use to re-register if they are no longer registered -->
+    <string name="preferences_account_reregister">Re-register account</string>
+    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
+    <string name="preferences_account_update_signal">Update Signal</string>
+    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
+    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
+    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <!-- Confirmation action to proceed with application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <!-- Confirmation action to cancel application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <!-- Error message shown when we fail to delete the data for some unknown reason -->
+    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">கணக்கை நகர்த்தவும் அல்லது மீட்டெடுக்கவும்</string>
     <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">நீங்கள் முன்பு பதிவு செய்திருந்தால் a Signal கணக்கு, உன்னால் முடியும் பரிமாற்றம் அல்லது மீட்டமை உங்கள் கணக்கு மற்றும் செய்திகள்</string>
@@ -3647,7 +3674,7 @@
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">முடியாது பரிமாற்றம் இன் புதிய பதிப்புகளிலிருந்து Signal</string>
     <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">The transferred data was malformed</string>
+    <string name="NewDeviceTransfer__failure_foreign_key">மாற்றப்பட்ட தரவு தவறாக வடிவமைக்கப்பட்டுள்ளது</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">இடமாற்றம் தகவல்கள்</string>
@@ -4335,7 +4362,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">தொடர்புகள் பயன்பாடு காணவில்லை</string>
     <string name="ConversationSettingsFragment__start_video_call">தொடங்கு காணொளி அழைப்பு</string>
-    <string name="ConversationSettingsFragment__start_audio_call">தொடங்கு ஆடியோ அழைப்பு</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Start voice call</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">ஸ்டோரி</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4369,8 +4396,8 @@
     <string name="ConversationSettingsFragment__group_link">குழு இணைப்பு</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">கூட்டு ஒரு தொடர்பாக</string>
     <string name="ConversationSettingsFragment__unmute">ஒலி இயக்கு</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s வரை உரையாடல் ஒலியடக்கப்பட்டது</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">உரையாடல் நிரந்தரமாக ஒலியடக்கப்பட்டது</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">கிளிப்போர்டுக்கு தொலைபேசி எண் நகலெடுக்கப்பட்டது.</string>
     <string name="ConversationSettingsFragment__phone_number">தொலைபேசி எண்</string>
     <string name="ConversationSettingsFragment__get_badges">Signalஐ ஆதரிப்பதன் மூலம் உங்கள் சுயவிவரத்திற்கான பேட்ஜ்களைப் பெறுங்கள். மேலும் அறிய ஒரு பேட்ஜில் தட்டவும்.</string>
@@ -4410,7 +4437,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">செய்தி</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">ஒலி அழைப்பு</string>
+    <string name="NewConversationActivity__audio_call">Voice call</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">காணொளி அழைப்பு</string>
     <!-- Context menu item remove -->
@@ -4631,6 +4658,24 @@
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">பேட்ஜை சேர்க்க முடியவில்லை. %1$s</string>
     <string name="MySupportPreference__please_contact_support">தயவுசெய்து உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
+
+    <!-- Title of dialog telling user they need to update signal as it expired -->
+    <string name="UpdateSignalExpiredDialog__title">Update Signal</string>
+    <!-- Message of dialog telling user they need to update signal as it expired -->
+    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <!-- Button text of expiration dialog, will take user to update the app -->
+    <string name="UpdateSignalExpiredDialog__update_action">Update</string>
+    <!-- Button text of expiration dialog to cancel the dialog.  -->
+    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel</string>
+
+    <!-- Title of dialog telling user they need to re-register signal -->
+    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
+    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <!-- Button text of re-registration dialog to re-register the device.  -->
+    <string name="ReregisterSignalDialog__reregister_action">Re-register</string>
+    <!-- Button text of re-registration dialog to cancel the dialog.  -->
+    <string name="ReregisterSignalDialog__cancel_action">Cancel</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">பூஸ்ட் பேட்ஜ் காலாவதியாகிவிட்டது</string>
@@ -5102,7 +5147,7 @@
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">சிக்னல் இணைப்புகள் நீங்கள் நம்புவதற்குத் தேர்ந்தெடுத்த நபர்களாகும், ஒன்று இதனால்:</string>
     <!-- Signal connections sheet bullet point 1 -->
-    <string name="SignalConnectionsBottomSheet__starting_a_conversation">ஒரு உரையாடலைத் தொடங்குவது</string>
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a chat</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">செய்தி கோரிக்கையை ஏற்கிறது</string>
     <!-- Signal connections sheet bullet point 3 -->
@@ -5218,7 +5263,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">See More</string>
+    <string name="StoryViewerPageFragment__see_more">மேலும் காட்டு</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">பதில் அனுப்பப்படுகிறது…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -5812,9 +5857,9 @@
     <!-- Displayed for incoming calls -->
     <string name="CallLogAdapter__incoming">உள்வரும்</string>
     <!-- Displayed for outgoing calls -->
-    <string name="CallLogAdapter__outgoing">வெளிச்செல்லும்</string>
+    <string name="CallLogAdapter__outgoing">அவுட்கோயிங்</string>
     <!-- Displayed for missed calls -->
-    <string name="CallLogAdapter__missed">தவறவிட்ட அழைப்பு</string>
+    <string name="CallLogAdapter__missed">தவறவிட்டவை</string>
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">சேரவும்</string>
     <!-- Displayed on Group Call button if user is in the call -->
@@ -5830,7 +5875,7 @@
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">அழைப்புக்குத் திரும்பு</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">ஒலி அழைப்பு</string>
+    <string name="CallContextMenu__audio_call">Voice call</string>
     <!-- Displayed as a context menu item to go to chat -->
     <string name="CallContextMenu__go_to_chat">சாட்டிற்குச் செல்</string>
     <!-- Displayed as a context menu item to see call info -->
@@ -5857,11 +5902,10 @@
     <string name="CallLogFragment__select_all">அனைத்தையும் தேர்ந்தெடு</string>
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">நீக்கு</string>
-    <!-- Title on multi-delete protection dialog (TODO - final terminology) -->
-  <!-- Removed by excludeNonTranslatables <plurals name="CallLogFragment__delete_d_calls" translatable="false">
+    <plurals name="CallLogFragment__delete_d_calls">
         <item quantity="one">Delete %1$d call?</item>
         <item quantity="other">Delete %1$d calls?</item>
-    </plurals> -->
+    </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">எனக்கு மட்டும் நீக்கு</string>
     <!-- Snackbar label after deleting call logs -->
@@ -5955,6 +5999,41 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">திருத்தங்களின் வரலாறு</string>
+
+    <!-- CallLinkDetailsFragment -->
+    <!-- Displayed in action bar at the top of the fragment -->
+    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <!-- Displayed in a text row, allowing the user to click and add a call name -->
+    <string name="CallLinkDetailsFragment__add_call_name">Add call name</string>
+    <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
+    <string name="CallLinkDetailsFragment__approve_all_members">Approve all members</string>
+    <!-- Displayed in a text row, allowing the user to share the call link -->
+    <string name="CallLinkDetailsFragment__share_link">Share link</string>
+    <!-- Displayed in a text row, allowing the user to delete the call link -->
+    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+
+    <!-- Button label for the share button in the username link settings -->
+    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <!-- Button label for the color selector button in the username link settings -->
+    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <!-- Description text for QR code and links in the username link settings -->
+    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <!-- Content of a toast that will show after the username is copied to the clipboard -->
+    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
+    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <!-- Button label for a button that will reset your username and give you a new link -->
+    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <!-- Button label for a button that indicates that the user is done changing the current setting -->
+    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <!-- Label for a tab that shows a screen to view your username QR code -->
+    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <!-- Label for a tab that shows a screen to scan a QR code -->
+    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <!-- Description text shown underneath the username QR code scanner -->
+    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <!-- App bar title for the username QR code color picker screen -->
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
 
     <!-- EOF -->
 </resources>

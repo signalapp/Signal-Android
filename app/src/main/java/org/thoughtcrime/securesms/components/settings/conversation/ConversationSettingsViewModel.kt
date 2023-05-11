@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.L
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.model.StoryViewState
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.LiveGroup
 import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
@@ -29,6 +30,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Optional
@@ -46,7 +48,8 @@ sealed class ConversationSettingsViewModel(
 
   protected val store = Store(
     ConversationSettingsState(
-      specificSettingsState = specificSettingsState
+      specificSettingsState = specificSettingsState,
+      isDeprecatedOrUnregistered = SignalStore.misc().isClientDeprecated || TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication())
     )
   )
   protected val internalEvents: Subject<ConversationSettingsEvent> = PublishSubject.create()

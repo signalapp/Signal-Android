@@ -1,21 +1,22 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
-import org.thoughtcrime.securesms.conversation.ConversationDataSource
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
+import org.thoughtcrime.securesms.conversation.v2.data.ConversationDataSource
+import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import kotlin.math.max
 
 class ConversationRepository(context: Context) {
@@ -24,33 +25,12 @@ class ConversationRepository(context: Context) {
   private val oldConversationRepository = org.thoughtcrime.securesms.conversation.ConversationRepository()
 
   /**
-   * Observes the recipient tied to the given thread id, returning an error if
-   * the thread id does not exist or somehow does not have a recipient attached to it.
-   */
-  fun observeRecipientForThread(threadId: Long): Observable<Recipient> {
-    return Observable.create { emitter ->
-      val recipientId = SignalDatabase.threads.getRecipientIdForThreadId(threadId)
-
-      if (recipientId != null) {
-        val disposable = Recipient.live(recipientId).observable()
-          .subscribeOn(Schedulers.io())
-          .subscribeBy(onNext = emitter::onNext)
-
-        emitter.setCancellable {
-          disposable.dispose()
-        }
-      } else {
-        emitter.onError(Exception("Thread $threadId does not exist."))
-      }
-    }.subscribeOn(Schedulers.io())
-  }
-
-  /**
    * Loads the details necessary to display the conversation thread.
    */
   fun getConversationThreadState(threadId: Long, requestedStartPosition: Int): Single<ConversationThreadState> {
     return Single.fromCallable {
-      val recipient = threads.getRecipientForThreadId(threadId)!!
+      SignalLocalMetrics.ConversationOpen.onMetadataLoadStarted()
+      val recipient = SignalDatabase.threads.getRecipientForThreadId(threadId)!!
       val metadata = oldConversationRepository.getConversationData(threadId, recipient, requestedStartPosition)
       val messageRequestData = metadata.messageRequestData
       val dataSource = ConversationDataSource(
@@ -68,8 +48,10 @@ class ConversationRepository(context: Context) {
       ConversationThreadState(
         items = PagedData.createForObservable(dataSource, config),
         meta = metadata
-      )
-    }
+      ).apply {
+        SignalLocalMetrics.ConversationOpen.onMetadataLoaded()
+      }
+    }.subscribeOn(Schedulers.io())
   }
 
   /**
@@ -92,7 +74,7 @@ class ConversationRepository(context: Context) {
   }
 
   fun setLastVisibleMessageTimestamp(threadId: Long, lastVisibleMessageTimestamp: Long) {
-    SignalExecutors.BOUNDED.submit { threads.setLastScrolled(threadId, lastVisibleMessageTimestamp) }
+    SignalExecutors.BOUNDED.submit { SignalDatabase.threads.setLastScrolled(threadId, lastVisibleMessageTimestamp) }
   }
 
   fun markGiftBadgeRevealed(messageId: Long) {
@@ -104,4 +86,36 @@ class ConversationRepository(context: Context) {
       SignalDatabase.messages.getQuotedMessagePosition(threadId, quote.id, quote.author)
     }.subscribeOn(Schedulers.io())
   }
+
+  fun getNextMentionPosition(threadId: Long): Single<Int> {
+    return Single.fromCallable {
+      val details = SignalDatabase.messages.getOldestUnreadMentionDetails(threadId)
+      if (details == null) {
+        -1
+      } else {
+        SignalDatabase.messages.getMessagePositionInConversation(threadId, details.second(), details.first())
+      }
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun getMessageCounts(threadId: Long): Flowable<MessageCounts> {
+    return RxDatabaseObserver.conversationList
+      .map { getUnreadCount(threadId) }
+      .distinctUntilChanged()
+      .map { MessageCounts(it, getUnreadMentionsCount(threadId)) }
+  }
+
+  private fun getUnreadCount(threadId: Long): Int {
+    val threadRecord = SignalDatabase.threads.getThreadRecord(threadId)
+    return threadRecord?.unreadCount ?: 0
+  }
+
+  private fun getUnreadMentionsCount(threadId: Long): Int {
+    return SignalDatabase.messages.getUnreadMentionCount(threadId)
+  }
+
+  data class MessageCounts(
+    val unread: Int,
+    val mentions: Int
+  )
 }

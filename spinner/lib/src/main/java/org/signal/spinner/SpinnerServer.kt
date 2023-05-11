@@ -8,6 +8,8 @@ import com.github.jknack.handlebars.Template
 import com.github.jknack.handlebars.helper.ConditionalHelpers
 import fi.iki.elonen.NanoHTTPD
 import org.signal.core.util.ExceptionUtil
+import org.signal.core.util.ForeignKeyConstraint
+import org.signal.core.util.getForeignKeys
 import org.signal.core.util.logging.Log
 import org.signal.spinner.Spinner.DatabaseConfig
 import java.lang.IllegalArgumentException
@@ -281,13 +283,13 @@ internal class SpinnerServer(
     }
 
     var timeOfFirstRowNanos = 0L
-    val rows = mutableListOf<List<String>>()
+    val rows = mutableListOf<List<String?>>()
     while (moveToNext()) {
       if (timeOfFirstRowNanos == 0L) {
         timeOfFirstRowNanos = System.nanoTime()
       }
 
-      val row = mutableListOf<String>()
+      val row = mutableListOf<String?>()
       for (i in 0 until numColumns) {
         val columnName: String = getColumnName(i)
         try {
@@ -458,7 +460,7 @@ internal class SpinnerServer(
 
   data class QueryResult(
     val columns: List<String>,
-    val rows: List<List<String>>,
+    val rows: List<List<String?>>,
     val rowCount: Int = rows.size,
     val timeToFirstRow: String,
     val timeToReadRows: String

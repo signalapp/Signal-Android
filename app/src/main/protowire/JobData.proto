@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package signal;
+
+option java_package        = "org.thoughtcrime.securesms.jobs.protos";
+option java_multiple_files = true;
+
+message CallSyncEventJobRecord {
+  oneof conversationId {
+    uint64 recipientId = 1;
+    string callLinkId  = 2;
+  }
+
+  uint64 callId    = 3;
+  uint32 direction = 4;
+  uint32 event     = 5;
+}
+
+message CallSyncEventJobData {
+  repeated CallSyncEventJobRecord records = 1;
+}
