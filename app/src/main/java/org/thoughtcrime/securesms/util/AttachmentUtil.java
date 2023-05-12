@@ -94,7 +94,7 @@ public class AttachmentUtil {
       MessageRecord message = SignalDatabase.messages().getMessageRecord(attachment.getMmsId());
 
       Recipient fromRecipient = message.getFromRecipient();
-      Recipient toRecipient   = message.getToRecipient();
+      Recipient toRecipient   = SignalDatabase.threads().getRecipientForThreadId(message.getThreadId());
 
       if (toRecipient != null && toRecipient.isGroup()) {
         return toRecipient.isProfileSharing() || isTrustedIndividual(fromRecipient, message);
