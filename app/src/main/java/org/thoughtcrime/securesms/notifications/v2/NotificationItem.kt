@@ -205,6 +205,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
   override val timestamp: Long = record.timestamp
   override val authorRecipient: Recipient = record.fromRecipient.resolve()
   override val isNewNotification: Boolean = notifiedTimestamp == 0L
+  val hasSelfMention = record.hasSelfMention()
 
   private var thumbnailInfo: ThumbnailInfo? = null
 
