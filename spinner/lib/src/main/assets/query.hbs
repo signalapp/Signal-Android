@@ -7,6 +7,8 @@
     <!-- Query Input -->
     <form action="query" method="post" id="query-form">
       <div class="query-input">{{query}}</div>
+      <button id="grow-button" onclick="onGrowClicked(event)">&nbsp;</button>
+
       <input type="hidden" name="query" id="query" />
       <input type="hidden" name="db" value="{{database}}" />
       <input type="submit" name="action" value="run" />
@@ -97,10 +99,17 @@
         editor.setValue(formatted, formatted.length);
       }
 
-
       function triggerSubmit() {
         onQuerySubmitted();
         document.getElementById('query-form').submit();
+      }
+
+      function onGrowClicked(e) {
+        let element = document.querySelector('.query-input');
+        let currentHeight = parseInt(element.style.height) || 200;
+        element.style.height = currentHeight + 100;
+
+        e.preventDefault();
       }
 
       function onQuerySubmitted() {
