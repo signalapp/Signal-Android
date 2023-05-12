@@ -27,8 +27,10 @@ th {
 }
 
 .query-input {
-  width: 100%;
-  height: 10rem;
+  width: calc(100% - 18px);
+  border: 1px solid black;
+  border-radius: 4px;
+  height: 200px;
   margin-bottom: 8px;
 }
 
