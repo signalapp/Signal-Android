@@ -8,14 +8,15 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 
-class DayPickerShitDialogFragment : DialogFragment() {
-  private var dayOptions = arrayOf("1", "7", "30", "90", "180", "365")
+class DayPickerShitDialogFragment(private val defaultFrequency: Int) : DialogFragment() {
+  private val dayOptions = arrayOf("1", "7", "30", "90", "180", "365")
   private var index: Int = 0
   private var callback: OnClickListener? = null
 
   override fun onCreateDialog(savedInstance: Bundle?): Dialog {
+    val defaultIndex = this.dayOptions.indexOf(this.defaultFrequency.toString())  // preselect the backup frequency choice if it's valid
     return AlertDialog.Builder(requireContext())
-      .setSingleChoiceItems(this.dayOptions, 0) { _, i -> this.index = i }
+      .setSingleChoiceItems(this.dayOptions, defaultIndex) { _, i -> this.index = i }
       .setTitle("Every N days")
       .setPositiveButton("okeydokey") { dialog, i ->
           val backupFrequencyDays = this.dayOptions[this.index].toInt()

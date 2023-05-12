@@ -264,7 +264,7 @@ public class BackupsPreferenceFragment extends Fragment {
   }
 
   private void pickTime() {
-    final DayPickerShitDialogFragment shit = new DayPickerShitDialogFragment();
+    final DayPickerShitDialogFragment shit = new DayPickerShitDialogFragment(SignalStore.settings().getBackupFrequency());
     shit.show(getChildFragmentManager(), "SHITFUCK");
     shit.setOnPositiveButtonClickListener((unused1, unused2) -> {
       int timeFormat = DateFormat.is24HourFormat(requireContext()) ? TimeFormat.CLOCK_24H : TimeFormat.CLOCK_12H;
