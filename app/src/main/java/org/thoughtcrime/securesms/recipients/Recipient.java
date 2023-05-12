@@ -888,10 +888,10 @@ public class Recipient {
   }
 
   public boolean isUnknownGroup() {
-    boolean noMetadata = (groupAvatarId.isEmpty() || groupAvatarId.get() == - 1) && (groupName == null || groupName.isEmpty());
-    boolean noMembers = participantIds.isEmpty() || (participantIds.size() == 1 && participantIds.contains(Recipient.self().id));
-
-    return noMetadata && noMembers;
+    if ((groupAvatarId.isPresent() && groupAvatarId.get() != - 1) || (groupName != null && !groupName.isEmpty())) {
+      return false;
+    }
+    return participantIds.isEmpty() || (participantIds.size() == 1 && participantIds.contains(Recipient.self().id));
   }
 
   public boolean isInactiveGroup() {

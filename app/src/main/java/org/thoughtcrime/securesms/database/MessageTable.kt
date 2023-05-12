@@ -1084,23 +1084,30 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       values.putNull(ORIGINAL_MESSAGE_ID)
     }
 
-    val messageId = writableDatabase.insert(TABLE_NAME, null, values)
-    if (messageId < 0) {
-      Log.w(TAG, "Failed to insert text message (${message.sentTimestampMillis}, ${message.authorId}, ThreadId::$threadId)! Likely a duplicate.")
-      return Optional.empty()
-    }
+    writableDatabase.beginTransaction()
+    val messageId: Long
+    try {
+      messageId = writableDatabase.insert(TABLE_NAME, null, values)
+      if (messageId < 0) {
+        Log.w(TAG, "Failed to insert text message (${message.sentTimestampMillis}, ${message.authorId}, ThreadId::$threadId)! Likely a duplicate.")
+        return Optional.empty()
+      }
 
-    if (unread && editedMessage == null) {
-      threads.incrementUnread(threadId, 1, 0)
+      if (unread && editedMessage == null) {
+        threads.incrementUnread(threadId, 1, 0)
+      }
+
+      if (message.subscriptionId != -1) {
+        recipients.setDefaultSubscriptionId(recipient.id, message.subscriptionId)
+      }
+      writableDatabase.setTransactionSuccessful()
+    } finally {
+      writableDatabase.endTransaction()
     }
 
     if (!silent) {
       ThreadUpdateJob.enqueue(threadId)
       TrimThreadJob.enqueueAsync(threadId)
-    }
-
-    if (message.subscriptionId != -1) {
-      recipients.setDefaultSubscriptionId(recipient.id, message.subscriptionId)
     }
 
     if (notifyObservers) {
