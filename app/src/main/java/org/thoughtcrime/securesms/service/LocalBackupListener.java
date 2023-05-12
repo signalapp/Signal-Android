@@ -46,16 +46,16 @@ public class LocalBackupListener extends PersistentAlarmManagerListener {
 
   public static long setNextBackupTimeToIntervalFromNow(@NonNull Context context) {
     LocalDateTime now    = LocalDateTime.now();
+    int           freq   = SignalStore.settings().getBackupFrequency();
     int           hour   = SignalStore.settings().getBackupHour();
     int           minute = SignalStore.settings().getBackupMinute();
-    LocalDateTime next   = now.withHour(hour).withMinute(minute).withSecond(0);
+    LocalDateTime next   = now.withHour(hour).withMinute(minute).withSecond(0).plusDays(freq);
 
     int jitter = (new Random().nextInt(BACKUP_JITTER_WINDOW_SECONDS)) - (BACKUP_JITTER_WINDOW_SECONDS / 2);
 
     next.plusSeconds(jitter);
 
     if (now.isAfter(next)) {
-      // TODO(farewelltospring) figure out how to incorporate frequency into this
       next = next.plusDays(1);
     }
 
