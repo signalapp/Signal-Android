@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.messages
 
 import android.content.Context
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.SignalProtocolAddress
@@ -300,9 +301,11 @@ open class MessageContentProcessorV2(private val context: Context) {
    */
   @JvmOverloads
   open fun process(envelope: Envelope, content: Content, metadata: EnvelopeMetadata, serverDeliveredTimestamp: Long, processingEarlyContent: Boolean = false) {
+    val stopwatch = Stopwatch("process-content")
+
     val senderRecipient = Recipient.resolved(RecipientId.from(SignalServiceAddress(metadata.sourceServiceId, metadata.sourceE164)))
 
-    handleMessage(senderRecipient, envelope, content, metadata, serverDeliveredTimestamp, processingEarlyContent)
+    handleMessage(senderRecipient, envelope, content, metadata, serverDeliveredTimestamp, processingEarlyContent, stopwatch)
 
     val earlyCacheEntries: List<EarlyMessageCacheEntry>? = ApplicationDependencies
       .getEarlyMessageCache()
@@ -312,9 +315,11 @@ open class MessageContentProcessorV2(private val context: Context) {
     if (!processingEarlyContent && earlyCacheEntries != null) {
       log(envelope.timestamp, "Found " + earlyCacheEntries.size + " dependent item(s) that were retrieved earlier. Processing.")
       for (entry in earlyCacheEntries) {
-        handleMessage(senderRecipient, entry.envelope, entry.content, entry.metadata, entry.serverDeliveredTimestamp, processingEarlyContent = true)
+        handleMessage(senderRecipient, entry.envelope, entry.content, entry.metadata, entry.serverDeliveredTimestamp, processingEarlyContent = true, stopwatch)
       }
+      stopwatch.split("early-entries")
     }
+    stopwatch.stop(TAG)
   }
 
   private fun handleMessage(
@@ -323,7 +328,8 @@ open class MessageContentProcessorV2(private val context: Context) {
     content: Content,
     metadata: EnvelopeMetadata,
     serverDeliveredTimestamp: Long,
-    processingEarlyContent: Boolean
+    processingEarlyContent: Boolean,
+    stopwatch: Stopwatch
   ) {
     val threadRecipient = getMessageDestination(content, senderRecipient)
 
@@ -336,7 +342,7 @@ open class MessageContentProcessorV2(private val context: Context) {
     val receivedTime: Long = handlePendingRetry(pending, envelope.timestamp, threadRecipient)
 
     log(envelope.timestamp, "Beginning message processing. Sender: " + formatSender(senderRecipient.id, metadata.sourceServiceId, metadata.sourceDeviceId))
-
+    stopwatch.split("pre-process")
     when {
       content.hasDataMessage() -> {
         DataMessageProcessor.process(
@@ -349,6 +355,7 @@ open class MessageContentProcessorV2(private val context: Context) {
           receivedTime,
           if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
         )
+        stopwatch.split("data-message")
       }
       content.hasSyncMessage() -> {
         TextSecurePreferences.setMultiDevice(context, true)
@@ -361,6 +368,7 @@ open class MessageContentProcessorV2(private val context: Context) {
           metadata,
           if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
         )
+        stopwatch.split("sync-message")
       }
       content.hasCallMessage() -> {
         log(envelope.timestamp, "Got call message...")
@@ -384,9 +392,11 @@ open class MessageContentProcessorV2(private val context: Context) {
           metadata,
           if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
         )
+        stopwatch.split("receipt-message")
       }
       content.hasTypingMessage() -> {
         handleTypingMessage(envelope, metadata, content.typingMessage, senderRecipient)
+        stopwatch.split("typing-message")
       }
       content.hasStoryMessage() -> {
         StoryMessageProcessor.process(
@@ -396,6 +406,7 @@ open class MessageContentProcessorV2(private val context: Context) {
           senderRecipient,
           threadRecipient
         )
+        stopwatch.split("story-message")
       }
       content.hasDecryptionErrorMessage() -> {
         handleRetryReceipt(envelope, metadata, content.decryptionErrorMessage!!.toDecryptionErrorMessage(metadata), senderRecipient)
