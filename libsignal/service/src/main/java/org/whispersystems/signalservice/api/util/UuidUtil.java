@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 public final class UuidUtil {
 
   public static final UUID UNKNOWN_UUID = new UUID(0, 0);
+  public static final String UNKNOWN_UUID_STRING = UNKNOWN_UUID.toString();
 
   private static final Pattern UUID_PATTERN = Pattern.compile("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", Pattern.CASE_INSENSITIVE);
 
