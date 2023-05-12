@@ -80,11 +80,15 @@ public class MmsReceiveJob extends BaseJob {
       MessageTable     database           = SignalDatabase.messages();
       Pair<Long, Long> messageAndThreadId = database.insertMessageInbox((NotificationInd)pdu, subscriptionId);
 
-      Log.i(TAG, "Inserted received MMS notification...");
+      if (messageAndThreadId.first() > 0) {
+        Log.i(TAG, "Inserted received MMS notification...");
 
-      ApplicationDependencies.getJobManager().add(new MmsDownloadJob(messageAndThreadId.first(),
-                                                                     messageAndThreadId.second(),
-                                                                     true));
+        ApplicationDependencies.getJobManager().add(new MmsDownloadJob(messageAndThreadId.first(),
+                                                                       messageAndThreadId.second(),
+                                                                       true));
+      } else {
+        Log.w(TAG, "Did not insert MMS because it was a duplicate!");
+      }
     } else {
       Log.w(TAG, "Unable to process MMS.");
     }

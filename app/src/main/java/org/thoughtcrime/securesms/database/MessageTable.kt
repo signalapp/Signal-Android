@@ -2725,7 +2725,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         READ to if (Util.isDefaultSmsProvider(context)) 0 else 1,
         SMS_SUBSCRIPTION_ID to subscriptionId
       )
-      .run()
+      .run(SQLiteDatabase.CONFLICT_IGNORE)
 
     return Pair(messageId, threadId)
   }
@@ -3040,6 +3040,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       updateThread = false,
       unarchive = false
     )
+
+    if (messageId < 0) {
+      throw MmsException("Failed to insert message! Likely a duplicate.")
+    }
 
     if (message.threadRecipient.isGroup) {
       val members: MutableSet<RecipientId> = mutableSetOf()

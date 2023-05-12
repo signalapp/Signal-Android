@@ -292,7 +292,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         TIMESTAMP to timestamp,
         DELETION_TIMESTAMP to System.currentTimeMillis()
       )
-      .run()
+      .run(SQLiteDatabase.CONFLICT_ABORT)
 
     ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
   }
@@ -356,7 +356,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           TIMESTAMP to timestamp,
           RINGER to ringer
         )
-        .run()
+        .run(SQLiteDatabase.CONFLICT_ABORT)
     }
 
     ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
@@ -462,7 +462,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
             TIMESTAMP to timestamp,
             RINGER to null
           )
-          .run()
+          .run(SQLiteDatabase.CONFLICT_ABORT)
 
         Log.d(TAG, "Inserted new call event from group call update message. Call Id: $callId")
       } else {
@@ -670,7 +670,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           TIMESTAMP to timestamp,
           RINGER to ringerRecipient.toLong()
         )
-        .run()
+        .run(SQLiteDatabase.CONFLICT_ABORT)
     }
 
     Log.d(TAG, "Inserted a new group ring event for $callId with event $event")
