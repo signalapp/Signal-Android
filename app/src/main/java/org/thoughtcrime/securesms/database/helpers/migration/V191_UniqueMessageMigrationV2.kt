@@ -236,7 +236,8 @@ object V191_UniqueMessageMigrationV2 : SignalDatabaseMigration {
       .sortedByDescending { it.id }
       .drop(1)
       .forEach { duplicate ->
-        while (!isDateAvailable(db, duplicate.dateSent, duplicate.fromRecipientId, duplicate.threadId)) {
+        while (isDateTaken(db, candidateDateSent, duplicate.fromRecipientId, duplicate.threadId)) {
+          Log.d(TAG, "(date=$candidateDateSent, from=${duplicate.fromRecipientId}, thread=${duplicate.threadId} not available! Decrementing.")
           candidateDateSent--
         }
 
@@ -252,7 +253,8 @@ object V191_UniqueMessageMigrationV2 : SignalDatabaseMigration {
       }
   }
 
-  private fun isDateAvailable(db: SQLiteDatabase, dateSent: Long, fromRecipientId: Long, threadId: Long): Boolean {
+  /** True if there already exists a message with the provided tuple, otherwise false. */
+  private fun isDateTaken(db: SQLiteDatabase, dateSent: Long, fromRecipientId: Long, threadId: Long): Boolean {
     return db.rawQuery(
       """
       SELECT EXISTS (
