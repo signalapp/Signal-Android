@@ -368,6 +368,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       if (info.isInPictureInPictureMode()) {
         callScreen.maybeDismissAudioPicker();
       }
+      viewModel.setIsLandscapeEnabled(info.isInPictureInPictureMode());
     });
   }
 

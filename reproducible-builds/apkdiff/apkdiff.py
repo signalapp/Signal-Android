@@ -10,16 +10,15 @@ class ApkDiff:
         "META-INF/MANIFEST.MF",
         "META-INF/CERTIFIC.SF",
         "META-INF/CERTIFIC.RSA",
+        "META-INF/TEXTSECU.RSA",
+        "META-INF/TEXTSECU.SF",
     ]
 
     def compare(self, firstApk, secondApk):
         firstZip = ZipFile(firstApk, 'r')
         secondZip = ZipFile(secondApk, 'r')
 
-        if self.compareEntryNames(firstZip, secondZip) and self.compareEntryContents(firstZip, secondZip) == True:
-            print("APKs match!")
-        else:
-            print("APKs don't match!")
+        return self.compareEntryNames(firstZip, secondZip) and self.compareEntryContents(firstZip, secondZip) == True
 
     def compareEntryNames(self, firstZip, secondZip):
         firstNameListSorted = sorted(firstZip.namelist())
@@ -73,4 +72,9 @@ if __name__ == '__main__':
         print("Usage: apkdiff <pathToFirstApk> <pathToSecondApk>")
         sys.exit(1)
 
-    ApkDiff().compare(sys.argv[1], sys.argv[2])
+    if ApkDiff().compare(sys.argv[1], sys.argv[2]):
+        print("APKs match!")
+        sys.exit(0)
+    else:
+        print("APKs don't match!")
+        sys.exit(1)

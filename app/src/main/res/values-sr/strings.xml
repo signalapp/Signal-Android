@@ -1827,6 +1827,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Превише пута сте покушали да региструјете овај број. Пробајте поново за %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Није могуће успоставити везу са сервисом. Проверите да ли сте повезани на интернет и покушајте поново.</string>
+    <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
+    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
     <string name="RegistrationActivity_non_standard_number_format">Не стандардни формат цифре</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Унета цифра (%1$s) нема стандардни формат.\n\nДа ли сте мислили на %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Формат броја телефона</string>

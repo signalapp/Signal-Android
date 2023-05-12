@@ -169,10 +169,10 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       db.setTransactionSuccessful()
     } finally {
       db.endTransaction()
-    }
 
-    // We have to re-begin the transaction for the calling code (see comment at start of method)
-    db.beginTransaction()
+      // We have to re-begin the transaction for the calling code (see comment at start of method)
+      db.beginTransaction()
+    }
 
     migratePostTransaction(context, oldVersion)
     Log.i(TAG, "Upgrade complete. Took " + (System.currentTimeMillis() - startTime) + " ms.")

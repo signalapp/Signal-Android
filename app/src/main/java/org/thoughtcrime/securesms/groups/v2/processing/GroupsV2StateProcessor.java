@@ -21,11 +21,11 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.thoughtcrime.securesms.database.GroupTable;
-import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupDoesNotExistException;
@@ -554,7 +554,11 @@ public class GroupsV2StateProcessor {
       boolean needsAvatarFetch;
 
       if (inputGroupState.getLocalState() == null) {
-        groupDatabase.create(masterKey, newLocalState);
+        GroupId.V2 groupId = groupDatabase.create(masterKey, newLocalState);
+        if (groupId == null) {
+          Log.w(TAG, "Group create failed, trying to update");
+          groupDatabase.update(masterKey, newLocalState);
+        }
         needsAvatarFetch = !TextUtils.isEmpty(newLocalState.getAvatar());
       } else {
         groupDatabase.update(masterKey, newLocalState);

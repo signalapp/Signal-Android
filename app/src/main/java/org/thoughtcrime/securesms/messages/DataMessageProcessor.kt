@@ -446,6 +446,11 @@ object DataMessageProcessor {
     val targetAuthorServiceId: ServiceId = ServiceId.parseOrThrow(message.reaction.targetAuthorUuid)
     val targetSentTimestamp = message.reaction.targetSentTimestamp
 
+    if (targetAuthorServiceId.isUnknown) {
+      warn(envelope.timestamp, "Reaction was to an unknown UUID! Ignoring the message.")
+      return null
+    }
+
     if (!EmojiUtil.isEmoji(emoji)) {
       warn(envelope.timestamp, "Reaction text is not a valid emoji! Ignoring the message.")
       return null
@@ -962,7 +967,7 @@ object DataMessageProcessor {
       .mapNotNull {
         val serviceId = ServiceId.parseOrNull(it.mentionUuid)
 
-        if (serviceId != null) {
+        if (serviceId != null && !serviceId.isUnknown) {
           val id = Recipient.externalPush(serviceId).id
           Mention(id, it.start, it.length)
         } else {

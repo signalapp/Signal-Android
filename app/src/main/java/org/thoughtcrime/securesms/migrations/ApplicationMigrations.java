@@ -128,9 +128,12 @@ public class ApplicationMigrations {
     static final int INDEX_DATABASE_MIGRATION      = 84;
     static final int ACCOUNT_CONSISTENCY_CHECK     = 85;
     static final int BACKUP_JITTER                 = 86;
+    static final int PREKEY_SYNC                   = 87;
+    static final int DEDUPE_DB_MIGRATION           = 88;
+    static final int DEDUPE_DB_MIGRATION_2         = 89;
   }
 
-  public static final int CURRENT_VERSION = 86;
+  public static final int CURRENT_VERSION = 89;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -574,6 +577,18 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.BACKUP_JITTER) {
       jobs.put(Version.BACKUP_JITTER, new BackupJitterMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.PREKEY_SYNC) {
+      jobs.put(Version.PREKEY_SYNC, new PreKeysSyncMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.DEDUPE_DB_MIGRATION) {
+      jobs.put(Version.DEDUPE_DB_MIGRATION, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.DEDUPE_DB_MIGRATION_2) {
+      jobs.put(Version.DEDUPE_DB_MIGRATION_2, new DatabaseMigrationJob());
     }
 
     return jobs;
