@@ -4174,7 +4174,7 @@
     <string name="HelpSettingsFragment__debug_log">Мүчүлүштүктөр журналы</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Шарттар жана жоболор; Купуялык Саясаты</string>
     <string name="HelpFragment__copyright_signal_messenger">Signal Mesenger автордук укугу</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 лицензиясы бар</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">AGPLv3 лицензиясы бар</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Медиа сапаты</string>

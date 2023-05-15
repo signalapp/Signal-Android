@@ -4174,7 +4174,7 @@
     <string name="HelpSettingsFragment__debug_log">除錯記錄檔</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">使用條款與私隱政策</string>
     <string name="HelpFragment__copyright_signal_messenger">Signal Messenger 版權所有</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">依據 GPLv3 的條款授權</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">依據 AGPLv3 的條款授權</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">媒體的品質</string>

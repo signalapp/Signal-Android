@@ -4265,7 +4265,7 @@
     <string name="HelpSettingsFragment__debug_log">Silumisinfo</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Tingimused ja privaatsuspoliitika</string>
     <string name="HelpFragment__copyright_signal_messenger">Autoriõigus Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">Litsentsitud GPLv3 litsentsiga</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Litsentsitud AGPLv3 litsentsiga</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Meedia kvaliteet</string>

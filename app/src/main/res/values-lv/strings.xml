@@ -4356,7 +4356,7 @@
     <string name="HelpSettingsFragment__debug_log">Atkļūdošanas žurnāls</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Noteikumi &amp; privātuma politika</string>
     <string name="HelpFragment__copyright_signal_messenger">Autortiesības Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">Licencēta saskaņā ar GPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licencēta saskaņā ar AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Multivides kvalitāte</string>

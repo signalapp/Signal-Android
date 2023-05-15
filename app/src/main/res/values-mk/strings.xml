@@ -4265,7 +4265,7 @@
     <string name="HelpSettingsFragment__debug_log">Запис за отстранување грешки</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Услови и Политика на приватност</string>
     <string name="HelpFragment__copyright_signal_messenger">Авторски права Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">Лиценцирано под GPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Лиценцирано под AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Квалитет на медиумски датотеки</string>

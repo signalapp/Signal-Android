@@ -4356,7 +4356,7 @@
     <string name="HelpSettingsFragment__debug_log">Jurnal depanare</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termeni &amp; Politica de confidențialitate</string>
     <string name="HelpFragment__copyright_signal_messenger">Drepturi de autor Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">Sub licența GPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Sub licența AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Calitate Media</string>

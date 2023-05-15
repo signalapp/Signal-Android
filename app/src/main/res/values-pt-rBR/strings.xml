@@ -4265,7 +4265,7 @@
     <string name="HelpSettingsFragment__debug_log">Registro de depuração</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termos e Política de Privacidade</string>
     <string name="HelpFragment__copyright_signal_messenger">Direitos autorais Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">Licenciado nos termos da GPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licenciado nos termos da AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Qualidade das fotos</string>

@@ -4265,7 +4265,7 @@
     <string name="HelpSettingsFragment__debug_log">Virheenkorjausloki</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Käyttöehdot ja yksityisyydensuoja</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">Lisensoitu GPLv3-lisenssillä</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Lisensoitu AGPLv3-lisenssillä</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Median laatu</string>

@@ -4265,7 +4265,7 @@
     <string name="HelpSettingsFragment__debug_log">ਡੀਬੱਗ ਲਾਗ</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">ਸ਼ਰਤਾਂ &amp; ਪਰਦੇਦਾਰੀ ਨੀਤੀ</string>
     <string name="HelpFragment__copyright_signal_messenger">ਕਾਪੀਰਾਈਟ Signal ਮੈਸੰਜਰ</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 ਦੇ ਅਧੀਨ ਲਸੰਸ ਦਿੱਤਾ</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">AGPLv3 ਦੇ ਅਧੀਨ ਲਸੰਸ ਦਿੱਤਾ</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">ਮੀਡੀਆ ਕੁਆਲਟੀ</string>

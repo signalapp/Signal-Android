@@ -4265,7 +4265,7 @@
     <string name="HelpSettingsFragment__debug_log">Hibakeresési napló</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Feltételek &amp; Adatvédelmi irányelvek</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">Szoftverlicenc: GPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Szoftverlicenc: AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Médiafájl minősége</string>

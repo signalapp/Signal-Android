@@ -4174,7 +4174,7 @@
     <string name="HelpSettingsFragment__debug_log">ปูมดีบัก</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">เงื่อนไขและนโยบายความเป็นส่วนตัว</string>
     <string name="HelpFragment__copyright_signal_messenger">ลิขสิทธิ์ Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">อนุญาตให้ใช้ภายใต้ GPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">อนุญาตให้ใช้ภายใต้ AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">คุณภาพของสื่อ</string>
