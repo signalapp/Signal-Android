@@ -280,6 +280,6 @@ class GroupTableTest {
       .setRevision(0)
       .build()
 
-    return groupTable.create(groupMasterKey, decryptedGroupState)
+    return groupTable.create(groupMasterKey, decryptedGroupState)!!
   }
 }

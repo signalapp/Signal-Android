@@ -11,6 +11,7 @@ import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.libsignal.protocol.util.KeyHelper
 import org.signal.libsignal.protocol.util.Medium
+import org.signal.libsignal.svr2.PinHash
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.pin.TokenData
 import org.thoughtcrime.securesms.test.BuildConfig
 import org.whispersystems.signalservice.api.KbsPinData
 import org.whispersystems.signalservice.api.KeyBackupService
-import org.whispersystems.signalservice.api.kbs.HashedPin
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -97,7 +97,7 @@ object MockProvider {
 
     val session: KeyBackupService.RestoreSession = object : KeyBackupService.RestoreSession {
       override fun hashSalt(): ByteArray = Hex.fromStringCondensed("cba811749042b303a6a7efa5ccd160aea5e3ea243c8d2692bd13d515732f51a8")
-      override fun restorePin(hashedPin: HashedPin?): KbsPinData = KbsPinData(MasterKey.createNew(SecureRandom()), null)
+      override fun restorePin(hashedPin: PinHash?): KbsPinData = KbsPinData(MasterKey.createNew(SecureRandom()), null)
     }
 
     val kbsService = ApplicationDependencies.getKeyBackupService(BuildConfig.KBS_ENCLAVE)

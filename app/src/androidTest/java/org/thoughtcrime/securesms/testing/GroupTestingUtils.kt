@@ -31,7 +31,7 @@ object GroupTestingUtils {
       .setTitle(MessageContentFuzzer.string())
       .build()
 
-    val groupId = SignalDatabase.groups.create(groupMasterKey, decryptedGroupState)
+    val groupId = SignalDatabase.groups.create(groupMasterKey, decryptedGroupState)!!
     val groupRecipientId = SignalDatabase.recipients.getOrInsertFromGroupId(groupId)
     SignalDatabase.recipients.setProfileSharing(groupRecipientId, true)
 

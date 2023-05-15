@@ -27,7 +27,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
-        $ROOT_KEY BLOB NOT NULL,
+        $ROOT_KEY BLOB,
         $ROOM_ID TEXT NOT NULL UNIQUE,
         $ADMIN_KEY BLOB,
         $NAME TEXT NOT NULL,
