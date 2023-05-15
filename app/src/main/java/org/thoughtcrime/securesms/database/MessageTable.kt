@@ -4512,7 +4512,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val threads: MutableList<Long> = LinkedList()
 
     readableDatabase
-      .select(ID, THREAD_ID, EXPIRES_IN, EXPIRE_STARTED)
+      .select(ID, THREAD_ID, EXPIRES_IN, EXPIRE_STARTED, LATEST_REVISION_ID)
       .from(TABLE_NAME)
       .where("$DATE_SENT = ? AND ($FROM_RECIPIENT_ID = ? OR ($FROM_RECIPIENT_ID = ? AND $outgoingTypeClause))", messageId.timetamp, messageId.recipientId, Recipient.self().id)
       .run()
@@ -4527,6 +4527,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             proposedExpireStarted
           }
         }
+        val latestRevisionId: Long? = cursor.requireLongOrNull(LATEST_REVISION_ID)
 
         val values = contentValuesOf(
           READ to 1,
@@ -4542,7 +4543,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         writableDatabase
           .update(TABLE_NAME)
           .values(values)
-          .where("$ID = ?", id)
+          .where("$ID = ?", latestRevisionId ?: id)
           .run()
 
         threads += threadId
