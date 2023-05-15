@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.WindowInsets;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -74,6 +75,10 @@ public class InsetAwareConstraintLayout extends ConstraintLayout {
         parentEndGuideline.setGuidelineEnd(insets.left);
       }
     }
+  }
+
+  public void showSoftkey(@NonNull EditText editText) {
+    ViewUtil.focusAndShowKeyboard(editText);
   }
 
   public interface WindowInsetsTypeProvider {

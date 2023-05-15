@@ -43,8 +43,8 @@
         android:overScrollMode="ifContentScrolls"
         android:scrollbars="vertical"
         android:splitMotionEvents="false"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
+        app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="20"
         tools:listitem="@layout/conversation_item_sent_text_only" />
 
@@ -122,19 +122,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:visibility="visible" />
 
-
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/conversation_bottom_panel_barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="conversation_input_panel" />
+        app:constraint_referenced_ids="conversation_input_panel,attachment_editor_stub" />
+
+    <ViewStub
+        android:id="@+id/attachment_editor_stub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inflatedId="@+id/attachment_editor"
+        android:layout="@layout/conversation_activity_attachment_editor_stub"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/conversation_input_panel"/>
 
     <include
         android:id="@+id/conversation_input_panel"
         layout="@layout/conversation_input_panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/navigation_bar_guideline" />
+        app:layout_constraintBottom_toTopOf="@+id/conversation_input_space_left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/conversation_input_space_left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?android:windowBackground"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/navigation_bar_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="160/160 (1)"
+        tools:visibility="visible" />
 
 </org.thoughtcrime.securesms.components.InsetAwareConstraintLayout>

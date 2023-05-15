@@ -411,6 +411,10 @@ public class ConversationIntents {
       return Objects.equals(this, BUBBLE);
     }
 
+    public boolean isInPopup() {
+      return Objects.equals(this, POPUP);
+    }
+
     public boolean isNormal() {
       return Objects.equals(this, NORMAL);
     }

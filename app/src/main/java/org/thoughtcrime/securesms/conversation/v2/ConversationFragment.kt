@@ -8,11 +8,21 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.content.Intent
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.View.OnFocusChangeListener
+import android.view.inputmethod.EditorInfo
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.StringRes
@@ -30,6 +40,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -38,13 +49,21 @@ import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
+import org.signal.core.util.orNull
+import org.signal.libsignal.protocol.InvalidMessageException
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowActivity
 import org.thoughtcrime.securesms.badges.gifts.viewgift.received.ViewReceivedGiftBottomSheet
 import org.thoughtcrime.securesms.badges.gifts.viewgift.sent.ViewSentGiftBottomSheet
+import org.thoughtcrime.securesms.components.AnimatingToggle
+import org.thoughtcrime.securesms.components.ComposeText
+import org.thoughtcrime.securesms.components.HidingLinearLayout
+import org.thoughtcrime.securesms.components.InputPanel
+import org.thoughtcrime.securesms.components.InsetAwareConstraintLayout
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
+import org.thoughtcrime.securesms.components.SendButton
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalFragment
@@ -62,6 +81,7 @@ import org.thoughtcrime.securesms.conversation.ConversationItem
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationOptionsMenu
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
+import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
@@ -93,6 +113,7 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescription
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.longmessage.LongMessageFragment
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
@@ -101,12 +122,14 @@ import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
 import org.thoughtcrime.securesms.mms.AttachmentManager
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment
 import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
@@ -181,6 +204,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   private lateinit var scrollToPositionDelegate: ScrollToPositionDelegate
   private lateinit var adapter: ConversationAdapterV2
   private lateinit var recyclerViewColorizer: RecyclerViewColorizer
+  private lateinit var attachmentManager: AttachmentManager
 
   private var animationsAllowed = false
 
@@ -190,6 +214,21 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       adapter.pulseAtPosition(position)
     }
   }
+
+  private val container: InsetAwareConstraintLayout
+    get() = requireView() as InsetAwareConstraintLayout
+
+  private val inputPanel: InputPanel
+    get() = binding.conversationInputPanel.root
+
+  private val composeText: ComposeText
+    get() = binding.conversationInputPanel.embeddedTextEditor
+
+  private val sendButton: SendButton
+    get() = binding.conversationInputPanel.sendButton
+
+  private val sendEditButton: ImageButton
+    get() = binding.conversationInputPanel.sendEditButton
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -213,6 +252,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     )
     conversationToolbarOnScrollHelper.attach(binding.conversationItemRecycler)
     presentWallpaper(args.wallpaper)
+    presentChatColors(args.chatColors)
     presentActionBarMenu()
 
     observeConversationThread()
@@ -228,6 +268,11 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     if (!args.conversationScreenType.isInBubble) {
       ApplicationDependencies.getMessageNotifier().setVisibleThread(ConversationId.forConversation(args.threadId))
     }
+  }
+
+  override fun onPause() {
+    super.onPause()
+    ApplicationDependencies.getMessageNotifier().clearVisibleThread()
   }
 
   private fun observeConversationThread() {
@@ -255,9 +300,9 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
           scrollToPositionDelegate.notifyListCommitted()
 
           if (firstRender) {
+            firstRender = false
             binding.conversationItemRecycler.doAfterNextLayout {
               SignalLocalMetrics.ConversationOpen.onRenderFinished()
-              firstRender = false
               doAfterFirstRender()
               animationsAllowed = true
             }
@@ -268,6 +313,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
   private fun doAfterFirstRender() {
     Log.d(TAG, "doAfterFirstRender")
+    attachmentManager = AttachmentManager(requireContext(), requireView(), AttachmentManagerListener())
 
     EventBus.getDefault().registerForLifecycle(groupCallViewModel, viewLifecycleOwner)
     viewLifecycleOwner.lifecycle.addObserver(LastSeenPositionUpdater(adapter, layoutManager, viewModel))
@@ -291,6 +337,27 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
         adapter.notifyItemRangeChanged(0, adapter.itemCount)
       })
 
+    val sendButtonListener = SendButtonListener()
+    val composeTextEventsListener = ComposeTextEventsListener()
+
+    composeText.apply {
+      setOnEditorActionListener(sendButtonListener)
+
+      setCursorPositionChangedListener(composeTextEventsListener)
+      setOnKeyListener(composeTextEventsListener)
+      addTextChangedListener(composeTextEventsListener)
+      setOnClickListener(composeTextEventsListener)
+      onFocusChangeListener = composeTextEventsListener
+
+      setMessageSendType(MessageSendType.SignalMessageSendType)
+    }
+
+    sendButton.apply {
+      setOnClickListener(sendButtonListener)
+      isEnabled = true
+      post { sendButton.triggerSelectedChangedEvent() }
+    }
+
     presentGroupCallJoinButton()
 
     binding.scrollToBottom.setOnClickListener {
@@ -304,9 +371,23 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     adapter.registerAdapterDataObserver(DataObserver(scrollToPositionDelegate))
   }
 
-  override fun onPause() {
-    super.onPause()
-    ApplicationDependencies.getMessageNotifier().clearVisibleThread()
+  private fun calculateCharactersRemaining() {
+    val messageBody: String = binding.conversationInputPanel.embeddedTextEditor.textTrimmed.toString()
+    val charactersLeftView: TextView = binding.conversationInputSpaceLeft
+    val characterState = MessageSendType.SignalMessageSendType.calculateCharacters(messageBody)
+
+    if (characterState.charactersRemaining <= 15 || characterState.messagesSpent > 1) {
+      charactersLeftView.text = String.format(
+        Locale.getDefault(),
+        "%d/%d (%d)",
+        characterState.charactersRemaining,
+        characterState.maxTotalMessageSize,
+        characterState.messagesSpent
+      )
+      charactersLeftView.visibility = View.VISIBLE
+    } else {
+      charactersLeftView.visibility = View.GONE
+    }
   }
 
   private fun registerForResults() {
@@ -376,6 +457,10 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     recyclerViewColorizer.setChatColors(chatColors)
     binding.scrollToMention.setUnreadCountBackgroundTint(chatColors.asSingleColor())
     binding.scrollToBottom.setUnreadCountBackgroundTint(chatColors.asSingleColor())
+    binding.conversationInputPanel.buttonToggle.background.apply {
+      colorFilter = PorterDuffColorFilter(chatColors.asSingleColor(), PorterDuff.Mode.MULTIPLY)
+      invalidateSelf()
+    }
   }
 
   private fun presentScrollButtons(scrollButtonState: ConversationScrollButtonState) {
@@ -504,6 +589,97 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     return callback
   }
 
+  private fun updateToggleButtonState() {
+    val buttonToggle: AnimatingToggle = binding.conversationInputPanel.buttonToggle
+    val quickAttachment: HidingLinearLayout = binding.conversationInputPanel.quickAttachmentToggle
+    val inlineAttachment: HidingLinearLayout = binding.conversationInputPanel.inlineAttachmentContainer
+
+    when {
+      inputPanel.isRecordingInLockedMode -> {
+        buttonToggle.display(sendButton)
+        quickAttachment.show()
+        inlineAttachment.hide()
+      }
+
+      inputPanel.inEditMessageMode() -> {
+        buttonToggle.display(sendEditButton)
+        quickAttachment.hide()
+        inlineAttachment.hide()
+      }
+      // todo [cody] draftViewModel.voiceNoteDraft != null) { {
+      // buttonToggle.display(sendButton)
+      // quickAttachment.hide()
+      // inlineAttachment.hide()
+      // }
+      composeText.text?.isEmpty() == true && !attachmentManager.isAttachmentPresent -> {
+        buttonToggle.display(binding.conversationInputPanel.attachButton)
+        quickAttachment.show()
+        inlineAttachment.hide()
+      }
+
+      else -> {
+        buttonToggle.display(sendButton)
+        quickAttachment.hide()
+
+        if (!attachmentManager.isAttachmentPresent) { // todo [cody] && !linkPreviewViewModel.hasLinkPreviewUi()) {
+          inlineAttachment.show()
+        } else {
+          inlineAttachment.hide()
+        }
+      }
+    }
+  }
+
+  private fun sendMessage(metricId: String? = null, scheduledDate: Long = -1) {
+    val slideDeck: SlideDeck? = if (attachmentManager.isAttachmentPresent) attachmentManager.buildSlideDeck() else null
+
+    val send: Completable = viewModel.sendMessage(
+      metricId = metricId,
+      body = composeText.editableText.toString(),
+      slideDeck = slideDeck,
+      scheduledDate = scheduledDate,
+      messageToEdit = inputPanel.editMessageId,
+      quote = inputPanel.quote.orNull(),
+      mentions = composeText.mentions,
+      bodyRanges = composeText.styling
+    )
+
+    disposables += send
+      .doOnSubscribe {
+        composeText.setText("")
+      }
+      .subscribeBy(
+        onError = { t ->
+          Log.w(TAG, "Error sending", t)
+          when (t) {
+            is InvalidMessageException -> toast(R.string.ConversationActivity_message_is_empty_exclamation)
+            is RecipientFormattingException -> toast(R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation, Toast.LENGTH_LONG)
+          }
+        },
+        onComplete = this::onSendComplete
+      )
+  }
+
+  private fun onSendComplete() {
+    if (isDetached || activity?.isFinishing == true) {
+      if (args.conversationScreenType.isInPopup) {
+        activity?.finish()
+      }
+      return
+    }
+
+    // todo [cody] fragment.setLastSeen(0);
+
+    scrollToPositionDelegate.resetScrollPosition()
+    attachmentManager.cleanup()
+
+    // todo [cody] updateLinkPreviewState();
+
+    // todo [cody] draftViewModel.onSendComplete(threadId);
+
+    inputPanel.exitEditMessageMode()
+  }
+
   private fun toast(@StringRes toastTextId: Int, toastDuration: Int = Toast.LENGTH_SHORT) {
     ThreadUtil.runOnMain {
       if (context != null) {
@@ -513,6 +689,8 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       }
     }
   }
+
+  //region Scroll Handling
 
   /**
    * Requests a jump to the desired position, and ensures that the position desired will be visible on the screen.
@@ -563,6 +741,10 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       }
     }
   }
+
+  //endregion Scroll Handling
+
+  // region Conversation Callbacks
 
   private inner class ConversationItemClickListener : ConversationAdapter.ItemClickListener {
     override fun onQuoteClicked(messageRecord: MmsMessageRecord) {
@@ -1005,6 +1187,8 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
   }
 
+  // endregion Conversation Callbacks
+
   private class LastSeenPositionUpdater(
     val adapter: ConversationAdapterV2,
     val layoutManager: LinearLayoutManager,
@@ -1020,6 +1204,95 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       }
 
       viewModel.setLastScrolled(lastVisibleMessageTimestamp)
+    }
+  }
+
+  //region Compose + Send Callbacks
+
+  private inner class SendButtonListener : View.OnClickListener, OnEditorActionListener {
+    override fun onClick(v: View) {
+      val metricId = if (viewModel.recipientSnapshot?.isGroup == true) {
+        SignalLocalMetrics.GroupMessageSend.start()
+      } else {
+        SignalLocalMetrics.IndividualMessageSend.start()
+      }
+
+      sendMessage(metricId)
+    }
+
+    override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent): Boolean {
+      if (actionId == EditorInfo.IME_ACTION_SEND) {
+        if (inputPanel.isInEditMode) {
+          sendEditButton.performClick()
+        } else {
+          sendButton.performClick()
+        }
+        return true
+      }
+      return false
+    }
+  }
+
+  private inner class ComposeTextEventsListener :
+    View.OnKeyListener,
+    View.OnClickListener,
+    TextWatcher,
+    OnFocusChangeListener,
+    ComposeText.CursorPositionChangedListener {
+
+    private var beforeLength = 0
+
+    override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
+      if (event.action == KeyEvent.ACTION_DOWN) {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+          if (SignalStore.settings().isEnterKeySends || event.isCtrlPressed) {
+            sendButton.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER))
+            sendButton.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER))
+            return true
+          }
+        }
+      }
+      return false
+    }
+
+    override fun onClick(v: View) {
+      container.showSoftkey(composeText)
+    }
+
+    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+      beforeLength = composeText.textTrimmed.length
+    }
+
+    override fun afterTextChanged(s: Editable) {
+      calculateCharactersRemaining()
+      if (composeText.textTrimmed.isEmpty() || beforeLength == 0) {
+        composeText.postDelayed({ updateToggleButtonState() }, 50)
+      }
+      // todo [cody] stickerViewModel.onInputTextUpdated(s.toString())
+    }
+
+    override fun onFocusChange(v: View, hasFocus: Boolean) {
+      if (hasFocus) { // && container.getCurrentInput() == emojiDrawerStub.get()) {
+        container.showSoftkey(composeText)
+      }
+    }
+
+    override fun onCursorPositionChanged(start: Int, end: Int) {
+      // todo [cody] linkPreviewViewModel.onTextChanged(requireContext(), composeText.getTextTrimmed().toString(), start, end);
+    }
+
+    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) = Unit
+  }
+
+  //endregion Compose + Send Callbacks
+
+  private inner class AttachmentManagerListener : AttachmentManager.AttachmentListener {
+    override fun onAttachmentChanged() {
+      // TODO [cody] implement
+    }
+
+    override fun onLocationRemoved() {
+      // TODO [cody] implement
     }
   }
 }
