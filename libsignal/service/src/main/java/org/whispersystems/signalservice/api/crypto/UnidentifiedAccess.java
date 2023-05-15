@@ -4,6 +4,7 @@ package org.whispersystems.signalservice.api.crypto;
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.protocol.util.ByteUtil;
+import org.signal.libsignal.zkgroup.internal.ByteArray;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 
 import java.security.InvalidAlgorithmParameterException;
@@ -50,8 +51,8 @@ public class UnidentifiedAccess {
 
   public static byte[] deriveAccessKeyFrom(ProfileKey profileKey) {
     try {
-      byte[]         nonce  = new byte[12];
-      byte[]         input  = new byte[16];
+      byte[] nonce = createEmptyByteArray(12);
+      byte[] input = createEmptyByteArray(16);
 
       Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
       cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(profileKey.serialize(), "AES"), new GCMParameterSpec(128, nonce));
@@ -62,5 +63,10 @@ public class UnidentifiedAccess {
     } catch (NoSuchAlgorithmException | InvalidKeyException | NoSuchPaddingException | InvalidAlgorithmParameterException | BadPaddingException | IllegalBlockSizeException e) {
       throw new AssertionError(e);
     }
+  }
+
+
+  private static byte[] createEmptyByteArray(int length) {
+    return new byte[length];
   }
 }
