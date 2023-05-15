@@ -1943,7 +1943,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val cursor = readableDatabase.select(*MMS_PROJECTION)
       .from(TABLE_NAME)
       .where("$TABLE_NAME.$ID = ? OR $TABLE_NAME.$LATEST_REVISION_ID = ?", id, id)
-      .orderBy("$TABLE_NAME.$ID DESC")
+      .orderBy("$TABLE_NAME.$DATE_SENT ASC")
       .run()
 
     return mmsReaderFor(cursor)

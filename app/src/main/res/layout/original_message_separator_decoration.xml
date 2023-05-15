@@ -8,5 +8,5 @@
     android:paddingHorizontal="24dp"
     android:maxLines="2"
     android:ellipsize="end"
-    android:text="@string/MessageQuotesBottomSheet_replies"
+    android:id="@+id/separator_title"
     style="@style/Signal.Text.TitleSmall"/>

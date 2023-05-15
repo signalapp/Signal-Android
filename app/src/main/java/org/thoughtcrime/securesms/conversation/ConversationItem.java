@@ -1933,10 +1933,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean isFooterVisible(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
-    if (displayMode == ConversationItemDisplayMode.EXTRA_CONDENSED) {
-      return false;
-    }
-
     boolean differentTimestamps = next.isPresent() && !DateUtils.isSameExtendedRelativeTimestamp(next.get().getTimestamp(), current.getTimestamp());
 
     return forceFooter(messageRecord) || current.getExpiresIn() > 0 || !current.isSecure() || current.isPending() || current.isPendingInsecureSmsFallback() ||

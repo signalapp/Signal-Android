@@ -80,7 +80,7 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
       layoutManager = SmoothScrollingLinearLayoutManager(requireContext(), true)
       adapter = messageAdapter
       itemAnimator = null
-      addItemDecoration(MessageQuoteHeaderDecoration(context))
+      addItemDecoration(OriginalMessageSeparatorDecoration(context, R.string.MessageQuotesBottomSheet_replies))
 
       doOnNextLayout {
         // Adding this without waiting for a layout pass would result in an indeterminate amount of padding added to the top of the view

@@ -7,6 +7,7 @@ import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.view.children
 import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
@@ -14,9 +15,9 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ViewUtil
 
 /**
- * Serves as the separator between the original message and the messages that quote it in [MessageQuotesBottomSheet]
+ * Serves as the separator between the original message and other messages. Used in [MessageQuotesBottomSheet] and [EditMessageHistoryDialog]
  */
-class MessageQuoteHeaderDecoration(context: Context) : RecyclerView.ItemDecoration() {
+class OriginalMessageSeparatorDecoration(context: Context, val titleRes: Int) : RecyclerView.ItemDecoration() {
 
   private val dividerMargin = ViewUtil.dpToPx(context, 32)
   private val dividerHeight = ViewUtil.dpToPx(context, 2)
@@ -56,7 +57,9 @@ class MessageQuoteHeaderDecoration(context: Context) : RecyclerView.ItemDecorati
       return it
     }
 
-    val header: View = LayoutInflater.from(parent.context).inflate(R.layout.message_quote_header_decoration, parent, false)
+    val header: View = LayoutInflater.from(parent.context).inflate(R.layout.original_message_separator_decoration, parent, false)
+    val titleView: TextView = header.findViewById(R.id.separator_title)
+    titleView.setText(titleRes)
 
     val widthSpec = View.MeasureSpec.makeMeasureSpec(parent.width, View.MeasureSpec.EXACTLY)
     val heightSpec = View.MeasureSpec.makeMeasureSpec(parent.height, View.MeasureSpec.UNSPECIFIED)

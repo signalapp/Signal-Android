@@ -7,7 +7,7 @@ enum class ConversationItemDisplayMode {
   /** Smaller bubbles, often trimming text and shrinking images. Used for quote threads. */
   CONDENSED,
 
-  /** Smaller bubbles, no footers */
+  /** Smaller bubbles, always singular bubbles, with a footer. Used for edit message history. */
   EXTRA_CONDENSED,
 
   /** Less length restrictions. Used to show more info in message details. */
