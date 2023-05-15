@@ -303,7 +303,7 @@ open class MessageContentProcessorV2(private val context: Context) {
   open fun process(envelope: Envelope, content: Content, metadata: EnvelopeMetadata, serverDeliveredTimestamp: Long, processingEarlyContent: Boolean = false) {
     val stopwatch = Stopwatch("process-content")
 
-    val senderRecipient = Recipient.resolved(RecipientId.from(SignalServiceAddress(metadata.sourceServiceId, metadata.sourceE164)))
+    val senderRecipient = Recipient.externalPush(SignalServiceAddress(metadata.sourceServiceId, metadata.sourceE164))
 
     handleMessage(senderRecipient, envelope, content, metadata, serverDeliveredTimestamp, processingEarlyContent, stopwatch)
 

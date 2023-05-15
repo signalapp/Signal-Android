@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
@@ -271,8 +269,7 @@ public class Recipient {
       throw new AssertionError();
     }
 
-    RecipientTable db          = SignalDatabase.recipients();
-    RecipientId    recipientId = db.getAndPossiblyMerge(serviceId, e164);
+    RecipientId recipientId = RecipientId.from(new SignalServiceAddress(serviceId, e164));
 
     Recipient resolved = resolved(recipientId);
 
@@ -282,7 +279,7 @@ public class Recipient {
 
     if (!resolved.isRegistered() && serviceId != null) {
       Log.w(TAG, "External push was locally marked unregistered. Marking as registered.");
-      db.markRegistered(recipientId, serviceId);
+      SignalDatabase.recipients().markRegistered(recipientId, serviceId);
     } else if (!resolved.isRegistered()) {
       Log.w(TAG, "External push was locally marked unregistered, but we don't have an ACI, so we can't do anything.", new Throwable());
     }
