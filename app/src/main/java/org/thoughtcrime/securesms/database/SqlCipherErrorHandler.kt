@@ -29,6 +29,12 @@ class SqlCipherErrorHandler(private val databaseName: String) : DatabaseErrorHan
 
     if (result is DiagnosticResults.Success) {
       if (result.pragma1Passes && result.pragma2Passes) {
+        var endCount = 0
+        while (db.inTransaction() && endCount < 10) {
+          db.endTransaction()
+          endCount++
+        }
+
         attemptToClearFullTextSearchIndex()
         throw DatabaseCorruptedError_BothChecksPass(lines)
       } else if (!result.pragma1Passes && result.pragma2Passes) {
