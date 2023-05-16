@@ -1316,7 +1316,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       MediaMmsMessageRecord mediaMmsMessageRecord = (MediaMmsMessageRecord) messageRecord;
 
       paymentViewStub.setVisibility(View.VISIBLE);
-      paymentViewStub.get().bindPayment(messageRecord.getFromRecipient(), Objects.requireNonNull(mediaMmsMessageRecord.getPayment()), colorizer);
+      paymentViewStub.get().bindPayment(conversationRecipient.get(), Objects.requireNonNull(mediaMmsMessageRecord.getPayment()), colorizer);
 
       footer.setVisibility(VISIBLE);
     } else {
