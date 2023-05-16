@@ -231,7 +231,13 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
                   updateCount += db.update(MembershipTable.TABLE_NAME)
                     .values(MembershipTable.RECIPIENT_ID to new!!.serialize())
                     .where("${MembershipTable.GROUP_ID} = ? AND ${MembershipTable.RECIPIENT_ID} = ?", groupId, old)
-                    .run()
+                    .run(conflictStrategy = SQLiteDatabase.CONFLICT_IGNORE)
+
+                  if (updateCount == 0) {
+                    db.delete(MembershipTable.TABLE_NAME)
+                      .where("${MembershipTable.GROUP_ID} = ? AND ${MembershipTable.RECIPIENT_ID} = ?", groupId, old)
+                      .run()
+                  }
                 }
               }
             }
