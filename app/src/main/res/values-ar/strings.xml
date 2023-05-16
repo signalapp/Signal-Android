@@ -183,7 +183,7 @@
     <string name="CameraContacts_recent_contacts">جهات الاتصال مؤخّراً</string>
     <string name="CameraContacts_signal_contacts">جهات اتصال Signal</string>
     <string name="CameraContacts_signal_groups">مجموعات Signal</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">يمكنك المشاركة مع %1$d دردشات كحد أقصى.</string>
     <string name="CameraContacts_select_signal_recipients">اختاري المتلقّيين من Signal</string>
     <string name="CameraContacts_no_signal_contacts">لا جهات اتصال في Signal</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">يمكنكم استخدام زر الكاميرا لإرسال الصور إلى جهات الاتصال في Signal فقط. </string>
@@ -227,7 +227,7 @@
     <!-- ConfirmIdentityDialog -->
 
     <!-- ContactsCursorLoader -->
-    <string name="ContactsCursorLoader_recent_chats">المحادثات الأحدث</string>
+    <string name="ContactsCursorLoader_recent_chats">الدردشات الأحدث</string>
     <string name="ContactsCursorLoader_contacts">جهات الاتصال</string>
     <string name="ContactsCursorLoader_groups">المجموعات</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
@@ -513,45 +513,45 @@
     <!-- Action shown to allow a user to update their application because it has expired -->
     <string name="ConversationFragment__update_build">تحديث Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">إعادة-تسجيل Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">مَحوُ تصفية الدردشة</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
-    <string name="ConversationListFragment__no_unread_chats">لا توجد محادثات غير مقروءة</string>
+    <string name="ConversationListFragment__no_unread_chats">لا توجد دردشات غير مقروءة</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="zero">Delete selected chats?</item>
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="two">Delete selected chats?</item>
-        <item quantity="few">Delete selected chats?</item>
-        <item quantity="many">Delete selected chats?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="zero">حذف الدردشات المُحدّدة؟</item>
+        <item quantity="one">حذف دردشة مُحدّدة؟</item>
+        <item quantity="two">حذف الدردشتين المُحدّدتين؟</item>
+        <item quantity="few">حذف الدردشات المُحدّدة؟</item>
+        <item quantity="many">حذف الدردشات المُحدّدة؟</item>
+        <item quantity="other">حذف الدردشات المُحدّدة؟</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="zero">This will permanently delete all %1$d selected chats.</item>
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="two">This will permanently delete all %1$d selected chats.</item>
-        <item quantity="few">This will permanently delete all %1$d selected chats.</item>
-        <item quantity="many">This will permanently delete all %1$d selected chats.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="zero">سيؤدي هذا إلى حذف %1$d دردشات مختارة بشكل نهائي.</item>
+        <item quantity="one">سيؤدي هذا إلى حذف دردشة واحدة مختارة بشكل نهائي.</item>
+        <item quantity="two">سيؤدي هذا إلى حذف %1$d دردشتين مختارتين بشكل نهائي.</item>
+        <item quantity="few">سيؤدي هذا إلى حذف %1$d دردشات مختارة بشكل نهائي.</item>
+        <item quantity="many">سيؤدي هذا إلى حذف %1$d دردشة مختارة بشكل نهائي.</item>
+        <item quantity="other">سيؤدي هذا إلى حذف %1$d دردشة مختارة بشكل نهائي.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">يجري الحذف</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">جارٍ حذف الدردشات المختارة…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="zero">%1$d chats archived</item>
-        <item quantity="one">Chat archived</item>
-        <item quantity="two">%1$d chats archived</item>
-        <item quantity="few">%1$d chats archived</item>
-        <item quantity="many">%1$d chats archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="zero">%1$d دردشات مؤرشفة</item>
+        <item quantity="one">دردشة واحدة مؤرشفة</item>
+        <item quantity="two">%1$d دردشتين مؤرشفتين</item>
+        <item quantity="few">%1$d دردشات مؤرشفة</item>
+        <item quantity="many">%1$d دردشة مؤرشفة</item>
+        <item quantity="other">%1$d دردشة مؤرشفة</item>
     </plurals>
     <string name="ConversationListFragment_undo">تراجع</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="zero">Moved %1$d chats to inbox</item>
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="two">Moved %1$d chats to inbox</item>
-        <item quantity="few">Moved %1$d chats to inbox</item>
-        <item quantity="many">Moved %1$d chats to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="zero">تم نقل %1$d دردشات إلى الوارد</item>
+        <item quantity="one">تم نقل دردشة واحدة إلى الوارد</item>
+        <item quantity="two">تم نقل %1$d دردشتين إلى الوارد</item>
+        <item quantity="few">تم نقل %1$d دردشات إلى الوارد</item>
+        <item quantity="many">تم نقل %1$d دردشة إلى الوارد</item>
+        <item quantity="other">تم نقل %1$d دردشة إلى الوارد</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="zero">مقروءة</item>
@@ -598,7 +598,7 @@
     <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">الدردشات المؤرشفة (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">متحقق منه</string>
@@ -668,7 +668,7 @@
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">امتداد ملف النسخة الاحتياطية باطل.</string>
 
     <!-- BackupsPreferenceFragment -->
-    <string name="BackupsPreferenceFragment__chat_backups">النسخ الاحتياطية للمحادثات</string>
+    <string name="BackupsPreferenceFragment__chat_backups">النسخ الاحتياطية للدردشات</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">تُعمَّى النسخ الاحتياطية بعبارة السر ثم تُخزَّن في جهازك.</string>
     <string name="BackupsPreferenceFragment__create_backup">إنشاء نسخة احتياطية</string>
     <string name="BackupsPreferenceFragment__last_backup">أحدث نسخة احتياطية : %1$s</string>
@@ -753,8 +753,8 @@
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">جارٍ حذف الرسائل المُجدولة…</string>
 
     <!-- DecryptionFailedDialog -->
-    <string name="DecryptionFailedDialog_chat_session_refreshed">لقد تم إنعاش جلسة المحادثة</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">يستخدم Signal التعمية من طرف لطرف ويحتاج بعض اﻷحيان لإنعاش جلسات المحادثات. إن هذا لا يؤثر على أمان محادثتك، لكن قد تفوتك رسالة من جهة الاتصال هذه، لكن يمكن الطلب منها إعادة إرسالها.</string>
+    <string name="DecryptionFailedDialog_chat_session_refreshed">لقد تم إنعاش جلسة الدردشة</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">يَستخدم Signal التعمية من طرف لطرف ويحتاج بعض الأحيان لإنعاش جلسات الدردشات. إن هذا لا يؤثر على أمان دردشتك، لكن قد تفوتك رسالة من جهة الاتصال هذه، لكن يمكن الطلب منها إعادة إرسالها.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">إلغاء ربط \'%1$s\'؟</string>
@@ -1081,7 +1081,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">تلقِّي الإشعارات عندما يُذكَر اسمك في المحادثات الصامتة؟</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">تلقِّي الإشعارات عندما يُذكَر اسمك في الدردشات الصامتة؟</string>
     <string name="GroupMentionSettingDialog_always_notify_me">نبّهني دوماً</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">لا تنبّهني</string>
 
@@ -1432,7 +1432,7 @@
     <string name="MessageRecord_disappearing_message_time_set_to_s">تم ضبط مؤقت اختفاء الرسائل بعد انقضاء %1$s.</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">حُدّثت هذه المجموعة إلى مجموعة جديدة.</string>
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">تعذرت إضافتك إلى المجموعات الجديدة والآن تمت دعوتك إليها.</string>
-    <string name="MessageRecord_chat_session_refreshed">تم إنعاش جلسة المحادثة</string>
+    <string name="MessageRecord_chat_session_refreshed">تم إنعاش جلسة الدردشة</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
         <item quantity="zero">تعذّر إضافة %1$s عضو إلى المجموعة الجديدة وقد تمت دعوته إليها.</item>
         <item quantity="one">تعذّر إضافة عضو واحد إلى المجموعة الجديدة وقد تمت دعوته إليها.</item>
@@ -1712,10 +1712,10 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">هل تود السماح لـ %1$s بإرسال رسالة لك؟ لن تتلقى أي رسالة منه حتى تُلغي حظرك له.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">الحصول على الجديد والتحديثات من %1$s؟ لن تصلك أي تحديثات حتى يُرفَع حظرك عنها.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">مُواصلة مُحادثتك مع هذه المجموعة ومُشاركة اسمك وصورتك مع أعضاءها؟</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">مُواصلة دردشاتك مع هذه المجموعة ومُشاركة اسمك وصورتك مع أعضاءها؟</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">يجب ترقية هذه المجموعة لتفعيل ميزات جديدة مثل ‎@mention والمشرفين عليها. ستتم دعوة اﻷعضاء الذين لم يشاركوا أسمائهم أو صورهم في هذه المجموعة للانضمام إليها.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">لا يمكن استخدام هذه المجموعة القديمة الطراز لأنها كبيرة جدا. الحد الأقصى للمجموعة هو %1$d.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">مُواصلة هذه الدردشة مع %1$s ومُشاركة اسمك وصورتك معه؟</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">الانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن يعرفوا أنك قرأت رسالتهم حتى توافق.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">هل تود الانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن تظهر لك رسائلهم حتى تسمح بذلك.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">هل تود الانضمام إلى هذه المجموعة؟ لن يعرفوا أنك قرأت رسائلهم إلا إذا وافقت.</string>
@@ -2084,7 +2084,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">لقد قمت بمحاولات كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقاً %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. الرجاء التأكد من الإتصال بالشبكة والمحاولة مرة أخرى.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">تعذّر طلب رمز تحقق. يُرجى التحقّق من اتصالك بالانترنت ثم حاول مرة أُخرى.</string>
     <string name="RegistrationActivity_non_standard_number_format">نسق العدد غير المعياري</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">‫يظهر أن العدد الذي قمت بإدخاله (%1$s) ليس بالنسق المعياري.\n\nأ قصدك هو %2$s ؟</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - نسق رقم الهاتف</string>
@@ -2284,7 +2284,7 @@
     <string name="ThreadRecord_voice_message">رسالة صوتية</string>
     <string name="ThreadRecord_file">ملف</string>
     <string name="ThreadRecord_video">فيديو</string>
-    <string name="ThreadRecord_chat_session_refreshed">تم إنعاش جلسة المحادثة</string>
+    <string name="ThreadRecord_chat_session_refreshed">تم إنعاش جلسة الدردشة</string>
     <!-- Displayed in the notification when the user is sent a gift -->
     <string name="ThreadRecord__s_donated_for_you">تبرّع %1$s لك</string>
     <!-- Displayed in the notification when the user sends a gift -->
@@ -2418,7 +2418,7 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">قراءة المزيد</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d رسائل جديدة في %2$d الدردشات</string>
     <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
     <string name="MessageNotifier_locked_message">رسالة مقفلة</string>
     <string name="MessageNotifier_message_delivery_failed">فشل توصيل الرسالة.</string>
@@ -2487,8 +2487,8 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">بحث</string>
     <!-- Hint when searching filtered chat content -->
-    <string name="SearchToolbar_search_unread_chats">البحث في المحادثات غير المقروءة</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_unread_chats">البحث في الدردشات غير المقروءة</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">البحث عن الدردشات، جهات الاتصال، والرسائل</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">إغلاق</string>
@@ -2726,7 +2726,7 @@
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
     <string name="ConversationParentFragment__bluetooth_permission_denied">تم رفض إذن بلوتوث</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">يُرجى تمكين إذن \"الأجهزة المجاورة\" لاستخدام البلوتوث لتسجيل الرسائل الصوتية.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
     <string name="ConversationParentFragment__open_settings">فتح الإعدادات</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
@@ -2737,7 +2737,7 @@
 
     <!-- BubbleOptOutTooltip -->
     <!-- Message to inform the user of what Android chat bubbles are -->
-    <string name="BubbleOptOutTooltip__description">تُعد الفقاعات ميزة في أندرويد يمكنك تشغيلها أو تعطيلها بالنسبة لمحادثات Signal.</string>
+    <string name="BubbleOptOutTooltip__description">تُعد الفقاعات ميزة في أندرويد يمكنك تشغيلها أو تعطيلُها بالنسبة لدردشات Signal.</string>
     <!-- Button to dismiss the tooltip for opting out of using Android bubbles -->
     <string name="BubbleOptOutTooltip__not_now">ليس الآن</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
@@ -2879,7 +2879,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">اطّلع على الدردشة بالكامل</string>
     <string name="load_more_header__loading">جارٍ التحميل</string>
 
     <!-- media_overview_activity -->
@@ -2932,7 +2932,7 @@
     <string name="EditAboutFragment_encrypted">مُعمَّى</string>
     <string name="EditAboutFragment_be_kind">كن لطيفا</string>
     <string name="EditAboutFragment_coffee_lover">من عشاق القهوة</string>
-    <string name="EditAboutFragment_free_to_chat">لدي الوقت للتحدث</string>
+    <string name="EditAboutFragment_free_to_chat">مُتفرّغ للدردشة</string>
     <string name="EditAboutFragment_taking_a_break">أنا في استراحة</string>
     <string name="EditAboutFragment_working_on_something_new">أعمل حاليا على شيء جديد</string>
 
@@ -3103,9 +3103,9 @@
     <string name="preferences__pref_use_address_book_photos">استخدام صور دفتر العناوين</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">عرض صور جهات الاتصال من دفتر عناوينك إذا كان متاحا</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">إبقاء المحادثات المكتومة مُؤرشفة</string>
+    <string name="preferences__pref_keep_muted_chats_archived">إبقاء الدردشات المكتومة مُؤرشفة</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">المحادثات المكتومة المؤرشفة سَتبقى كذلك عند وصول رسالة جديدة.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">سَتبقى الدردشات المكتومة المؤرشفة عند وصول رسالة جديدة.</string>
     <string name="preferences__generate_link_previews">توليد معاينة الوصلات</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">يمكنك جلب معاينة وصلات المواقع مباشرة للرسائل التي سترسلها.</string>
     <string name="preferences__change_passphrase">غير العبارة السرية</string>
@@ -3166,7 +3166,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">قفل عملية الدفع</string>
     <string name="preferences__payments_beta">الدفوعات (الإصدار التجريبي)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">حد طول الدردشة</string>
     <string name="preferences__keep_messages">احتفظ بالرسائل</string>
     <string name="preferences__clear_message_history">محو محفوظات الرسائل</string>
     <string name="preferences__linked_devices">الأجهزة المرتبطة</string>
@@ -3174,7 +3174,7 @@
     <string name="preferences__dark_theme">داكن</string>
     <string name="preferences__appearance">المظهر</string>
     <string name="preferences__theme">المظهر</string>
-    <string name="preferences__chat_color_and_wallpaper">لون المحادثة والخلفية</string>
+    <string name="preferences__chat_color_and_wallpaper">لون الدردشة والخلفية</string>
     <string name="preferences__disable_pin">تعطيل الرقم التعريفي الشخصي</string>
     <string name="preferences__enable_pin">تفعيل الرقم التعريفي الشخصي</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">إذا قمت بتعطيل الرقم التعريفي الشخصي، ستضيع جميع البيانات عند قيامك بإعادة التسجيل إلى Signal إلا إذا قمت باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل الرقم التعريفي الشخصي.</string>
@@ -3210,7 +3210,7 @@
     <string name="preferences_storage__delete_older_messages">حذف الرسائل القديمة؟</string>
     <string name="preferences_storage__clear_message_history">محو محفوظات الرسائل؟</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ستُحذَف جميع محفوظات الرسائل والوسائط الأقدم من %1$s من جهازك بصفة نهائية.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالة.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ستُحذَف جميع محفوظات الرسائل والوسائط من جهازك بصفة نهائية.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">هل أنت متأكد من أنك تريد حذف كل محفوظات الرسائل؟</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ستُحذف محفوظات الرسائل نهائيًا. لن يتم التراجع عن هذا الإجراء.</string>
@@ -3228,14 +3228,14 @@
     <string name="preferences_app_protection__who_can">من يمكنه…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">الدفوعات</string>
-    <string name="preferences_chats__chats">المحادثات</string>
+    <string name="preferences_chats__chats">الدردشات</string>
     <string name="preferences_data_and_storage__manage_storage">إدارة التخزين</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">استخدام بيانات أقل أثناء المكالمات</string>
     <string name="preferences_data_and_storage__never">أبدا</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi وبيانات المحمول</string>
     <string name="preferences_data_and_storage__mobile_data_only">بيانات المحمول فقط</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">يُحسِّن استخدام بيانات أقل جودة المكالمات في الشبكات الضعيفة</string>
-    <string name="preferences_notifications__in_chat_sounds">أصوات خلال المحادثة</string>
+    <string name="preferences_notifications__in_chat_sounds">أصوات خلال الدردشة</string>
     <string name="preferences_notifications__show">اظهار</string>
     <string name="preferences_notifications__ringtone">الرّنة</string>
     <string name="preferences_chats__message_text_size">حجم الخط في الرسائل</string>
@@ -3555,8 +3555,8 @@
     <string name="conversation_list_settings_shortcut">مختصر للإعدادات</string>
     <string name="conversation_list_search_description">بحث</string>
     <string name="conversation_list__pinned">مثبَّت</string>
-    <string name="conversation_list__chats">المحادثات</string>
-    <string name="conversation_list__you_can_only_pin_up_to_d_chats">يمكنك تثبيت ما يصل إلى %1$d محادثات فقط</string>
+    <string name="conversation_list__chats">الدردشات</string>
+    <string name="conversation_list__you_can_only_pin_up_to_d_chats">يمكنك تثبيت ما يصل إلى %1$d دردشات فقط</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">صورة جهة الاتصال</string>
@@ -3566,7 +3566,7 @@
     <!-- conversation_list_fragment -->
     <string name="conversation_list_fragment__fab_content_description">دردشة جديدة</string>
     <string name="conversation_list_fragment__open_camera_description">فتح الكاميرا</string>
-    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">لا محادثات حتى الآن.\nابدأ عن طريق محادثة صديق.</string>
+    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">لا دردشات حتى الآن.\nابدأ عن طريق محادثة صديق.</string>
 
 
     <!-- conversation_secure_verified -->
@@ -3608,7 +3608,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">قائمة المستلمون</string>
     <string name="conversation_group_options__delivery">تسليم</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <string name="conversation_group_options__conversation">دردشة</string>
     <string name="conversation_group_options__broadcast">بث</string>
 
     <!-- text_secure_normal -->
@@ -3618,7 +3618,7 @@
     <string name="text_secure_normal__mark_all_as_read">اعتبارها رسائل مقروءة</string>
     <string name="text_secure_normal__invite_friends">دعوة الأصدقاء</string>
     <!-- Overflow menu entry to filter unread chats -->
-    <string name="text_secure_normal__filter_unread_chats">تصفية المحادثات غير المقروءة</string>
+    <string name="text_secure_normal__filter_unread_chats">تصفية الدردشات غير المقروءة</string>
     <!-- Overflow menu entry to disable unread chats filter -->
     <string name="text_secure_normal__clear_unread_filter">مَحوُ فلتر المحادثات غير المقروءة</string>
 
@@ -3658,11 +3658,11 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">رؤى</string>
     <string name="InsightsDashboardFragment__title">رؤى</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">قام بروتوكول Signal بحماية %1$d%% من رسائلك الصادرة خلال %2$d يوما الماضية. الدردشات بين مستخدمي Signal مُعمَّاة دائمًا من طرف إلى طرف.</string>
     <string name="InsightsDashboardFragment__spread_the_word">انشر الخبر</string>
     <string name="InsightsDashboardFragment__not_enough_data">لا يوجد بيانات كافية</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">نسبة الرؤى الخاصة بك يتم حسابها بناءً على الرسائل المرسلة خلال %1$d يومًا الماضية والتي لم تختفي أو يتم حذفها.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <string name="InsightsDashboardFragment__start_a_conversation">بدء دردشة</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">ابدؤوا بالتواصل بأمان وقوموا بتفعيل الخصائص الجديدة التي تتعدى الحدود التي تفرضها رسائل SMS المُعمَّاة وذلك عن طريق دعوة المزيد من جهات اتصالكم للانضمام إلى Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">تم توليد هذه الإحصائيات محليّاً على جهازك وأنت الوحيد الذى يستطيع رؤيتها. لا يتم نقلها أبدا إلى أي مكان.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">الرسائل المُعمَّاة</string>
@@ -3836,7 +3836,7 @@
     <string name="registration_activity__transfer_or_restore_account">نقل أو استعادة الحساب</string>
     <string name="registration_activity__transfer_account">نقل الحساب</string>
     <string name="registration_activity__skip">تخطّي</string>
-    <string name="preferences_chats__chat_backups">النسخ الاحتياطية للمحادثات</string>
+    <string name="preferences_chats__chat_backups">النسخ الاحتياطية للدردشات</string>
     <string name="preferences_chats__transfer_account">نقل الحساب</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">نقل الحساب نحو جهاز أندرويد جديد</string>
     <string name="RegistrationActivity_enter_backup_passphrase">ادخل العبارة السرية الخاصة بالنسخ الاحتياطية</string>
@@ -3934,7 +3934,7 @@
     <string name="Recipient_unknown">مجهول</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">إعادة-تسجيل الحساب</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
     <string name="preferences_account_update_signal">تحديث Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
@@ -3942,13 +3942,13 @@
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
     <string name="preferences_account_delete_all_data_confirmation_title">حذف جميع البيانات ؟</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">سَيُؤدِّي هَذَا إلى إعادة تَعيِين التَّطبيق وحَذف رَسائِلك. سيتم إغلاق التطبيق بعد اكتمال هذه العملية.</string>
     <!-- Confirmation action to proceed with application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_proceed">واصل</string>
     <!-- Confirmation action to cancel application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_cancel">إلغاء</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">فشلت عملية حذف البيانات</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">نقل أو استعادة الحساب</string>
@@ -4240,21 +4240,21 @@
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">فشل اﻹرسال إلى بعض المستخدمين.</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">يمكنك فقط مشاركة ما لا يزيد عن %1$d محادثات.</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">يُمكنك فقط مشاركة ما لا يزيد عن %1$d دردشات.</string>
 
     <!-- ChatWallpaperActivity -->
 
     <!-- ChatWallpaperFragment -->
-    <string name="ChatWallpaperFragment__chat_color">لون المحادثة</string>
-    <string name="ChatWallpaperFragment__reset_chat_colors">إعادة تعيين ألوان المحادثات</string>
-    <string name="ChatWallpaperFragment__reset_chat_color">إعادة تعيين لون المحادثة</string>
-    <string name="ChatWallpaperFragment__reset_chat_color_question">أأعيد تعيين لون المحادثة ؟</string>
+    <string name="ChatWallpaperFragment__chat_color">لون الدردشة</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">إعادة تعيين ألوان الدردشة</string>
+    <string name="ChatWallpaperFragment__reset_chat_color">إعادة تعيين لون الدردشة</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">إعادة تعيين لون الدردشة؟</string>
     <string name="ChatWallpaperFragment__set_wallpaper">ضبط الخلفية</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">إن الوضع الداكن يعتم الخلفية</string>
     <string name="ChatWallpaperFragment__contact_name">اسم جهة الاتصال</string>
     <string name="ChatWallpaperFragment__reset">إعادة التعيين</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">معاينة الخلفية</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">أ لديك الرغبة في إلغاء جميع ألوان المحادثات ؟</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">هل لديك الرغبة في إلغاء جميع ألوان الدردشات؟</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">أ لديك الرغبة في إلغاء جميع ألوان المحادثات ؟</string>
     <string name="ChatWallpaperFragment__reset_default_colors">إعادة تعيين الألوان الافتراضية</string>
     <string name="ChatWallpaperFragment__reset_all_colors">إعادة تعيين كل الألوان</string>
@@ -4272,7 +4272,7 @@
     <string name="ChatWallpaperPreviewActivity__preview">مُعاينة</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">تعيين خلفية</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">يُرجى السحب لمعاينة بقية الخلفيات</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">ضبط الخلفية لجميع المحادثات</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">ضبط الخلفية لجميع الدردشات</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">ضبط الخلفية لـ %1$s</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">إن إظهار معرض صورك يتطلب إذن الوصول إلى سعة التخزين.</string>
 
@@ -4280,7 +4280,7 @@
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">وسِّع للتكبير، اسحب للتعديل.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">تعيين خلفية لجميع المُحادثات.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">تعيين خلفية لجميع الدردشات.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_s">ضبط الخلفية لـ %1$s.‏</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">حدث خطأ خلال ضبط الخلفية.</string>
     <string name="WallpaperCropActivity__blur_photo">تضبيب الصورة</string>
@@ -4409,7 +4409,7 @@
     <string name="GroupsInCommonMessageRequest__about_message_requests">حول طلبات التراسُل</string>
     <string name="GroupsInCommonMessageRequest__okay">حسنا</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">إليك معاينة لون المحادثة.</string>
+    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">إليك معاينة للون الدردشة.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">إن اللون يظهر عندك فقط.</string>
 
     <!-- GroupDescriptionDialog -->
@@ -4583,8 +4583,8 @@
     <string name="PrivacySettingsFragment__app_security">أمان التطبيق</string>
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">منع لقطات الشاشة داخل التطبيق وفي قائمة الأحدَث</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">محادثات ومكالمات Signal، مناوبة الاتصالات دوما، والمُرسِل المختوم</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">المهلة الافتراضية للمحادثات الجديدة</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">تحديد مدة افتراضية لمؤقت اختفاء الرسائل، لجميع المحادثات الجديدة التي قمت ببدئها.</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">المُهلة الافتراضية للدردشات الجديدة</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">تحديد مدة افتراضية لمؤقت اختفاء الرسائل، لجميع الدردشات الجديدة التي قمت ببدئها.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">اُطلب قفل شاشة هاتفك الأندرويد أو بصمة الإصبع لتحويل المبالغ</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -4602,8 +4602,8 @@
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">عرض أيقونة في تفاصيل الرسالة للرسائل التي تم إيصالها باستخدام المُرسِل المختوم.</string>
 
     <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">عند تفعيلها، سوف تختفي الرسائل الجديدة المُرسلَة أو المُستلَمة في هذه المحادثة، بعد رؤيتها.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">عند التفعيل، فإن الرسائل الجديدة المُرسلَة أو المُستلَمة في هذه المحادثة سوف تختفي بعد رؤيتها.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">عند تفعيلها، سَتختفي الرسائل الجديدة المُرسلَة أو المُستلَمة في هذه الدردشة، بعد رؤيتها.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">عند التفعيل، فإن الرسائل الجديدة المُرسلَة أو المُستلَمة في هذه الدردشة سَتختفي بعد رؤيتها.</string>
     <string name="ExpireTimerSettingsFragment__off">مُعطَّل</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 أسابيع</string>
     <string name="ExpireTimerSettingsFragment__1_week">أسبوع واحد</string>
@@ -4629,7 +4629,7 @@
     <string name="HelpSettingsFragment__debug_log">سِجل التصحيح</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">الشروط وسياسة الخصوصية</string>
     <string name="HelpFragment__copyright_signal_messenger">جميع الحقوق محفوظة لمِرسال Signal‬</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">بموجب « رخصة جْنُو العمومية، الإصدار الثالث »</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">بموجب « رخصة جْنُو العمومية، الإصدار الثالث »</string> -->
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">جودة الوسائط</string>
@@ -4642,18 +4642,18 @@
     <!-- ChatColorSelectionFragment -->
     <string name="ChatColorSelectionFragment__auto">تلقائي</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">استخدام ألوان مخصصة</string>
-    <string name="ChatColorSelectionFragment__chat_color">لون المحادثة</string>
+    <string name="ChatColorSelectionFragment__chat_color">لون الدردشة</string>
     <string name="ChatColorSelectionFragment__edit">تحرير</string>
     <string name="ChatColorSelectionFragment__duplicate">تكرار</string>
     <string name="ChatColorSelectionFragment__delete">حذف</string>
     <string name="ChatColorSelectionFragment__delete_color">حذف اللون</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="zero">هذا اللون المخصص يُستخدَم في %1$d دردشة. هل تريد حذفه من جميع المحادثات؟</item>
-        <item quantity="one">هذا اللون المخصص يُستخدَم في %1$d دردشة. هل تريد حذفه من جميع المحادثات؟</item>
-        <item quantity="two">هذا اللون المخصص يُستخدَم في %1$d دردشتين. هل تريد حذفه من جميع المحادثات؟</item>
-        <item quantity="few">هذا اللون المخصص يُستخدَم في %1$d دردشات. هل تريد حذفه من جميع المحادثات؟</item>
-        <item quantity="many">هذا اللون المخصص يُستخدَم في %1$d دردشة. هل تريد حذفه من جميع المحادثات؟</item>
-        <item quantity="other">هذا اللون المخصص يُستخدَم في %1$d دردشات. هل تريد حذفه من جميع المحادثات؟</item>
+        <item quantity="zero">هذا اللون المخصص يُستخدَم في %1$d دردشة. هل تريد حذفه من جميع الدردشات؟</item>
+        <item quantity="one">هذا اللون المخصص يُستخدَم في %1$d دردشة. هل تريد حذفه من جميع الدردشات؟</item>
+        <item quantity="two">هذا اللون المخصص يُستخدَم في %1$d دردشتين. هل تريد حذفه من جميع الدردشات؟</item>
+        <item quantity="few">هذا اللون المخصص يُستخدَم في %1$d دردشات. هل تريد حذفه من جميع الدردشات؟</item>
+        <item quantity="many">هذا اللون المخصص يُستخدَم في %1$d دردشة. هل تريد حذفه من جميع الدردشات؟</item>
+        <item quantity="other">هذا اللون المخصص يُستخدَم في %1$d دردشة. هل تريد حذفه من جميع الدردشات؟</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">حذف لون الدردشة؟</string>
 
@@ -4667,12 +4667,12 @@
     <string name="CustomChatColorCreatorFragmentPage__save">حفظ</string>
     <string name="CustomChatColorCreatorFragmentPage__edit_color">تحرير الألوان</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-        <item quantity="zero">لا تستخدم أي محادثة هذا اللون المخصص. أ لديك الرغبة في حفظ التغييرات في جميع المحادثات ؟ %1$d</item>
-        <item quantity="one">إن هذا اللون المخصص يُستخدَم في محادثة واحدة. أ لديك الرغبة في حفظ التغييرات في جميع المحادثات ؟ %1$d</item>
-        <item quantity="two">إن هذا اللون المخصص يُستخدَم في محادثتين. أ لديك الرغبة في حفظ التغييرات في جميع المحادثات ؟ %1$d</item>
-        <item quantity="few">إن هذا اللون المخصص يُستخدَم في %1$d محادثات. أ لديك الرغبة في حفظ التغييرات في جميع المحادثات ؟</item>
-        <item quantity="many">إن هذا اللون المخصص يُستخدَم في %1$d محادثة. أ لديك الرغبة في حفظ التغييرات في جميع المحادثات ؟</item>
-        <item quantity="other">إن هذا اللون المخصص يُستخدَم في %1$d محادثة. أ لديك الرغبة في حفظ التغييرات في جميع المحادثات ؟</item>
+        <item quantity="zero">إن هذا اللون المخصص يُستخدَم في %1$d دردشات. هل تريد حفظ التغييرات في جميع الدردشات؟</item>
+        <item quantity="one">إن هذا اللون المخصص يُستخدَم في %1$d دردشة. هل تريد حفظ التغييرات في جميع الدردشات؟</item>
+        <item quantity="two">إن هذا اللون المخصص يُستخدَم في %1$d دردشتين. هل تريد حفظ التغييرات في جميع الدردشات؟</item>
+        <item quantity="few">إن هذا اللون المخصص يُستخدَم في %1$d دردشات. هل تريد حفظ التغييرات في جميع الدردشات؟</item>
+        <item quantity="many">إن هذا اللون المخصص يُستخدَم في %1$d دردشة. هل تريد حفظ التغييرات في جميع الدردشات؟</item>
+        <item quantity="other">إن هذا اللون المخصص يُستخدَم في %1$d دردشة. هل تريد حفظ التغييرات في جميع الدردشات؟</item>
     </plurals>
 
     <!-- ChatColorGradientTool -->
@@ -4768,8 +4768,8 @@
     <string name="ConversationSettingsFragment__group_link">وصلة المجموعة</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">الإضافة كجهة اتصال</string>
     <string name="ConversationSettingsFragment__unmute">إلغاء كتم الدردشات</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">كتم الدردشة حتى %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">كُتمَت الدردشة للأبد</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">لقد نُسخ رقم الهاتف إلى الحافظة.</string>
     <string name="ConversationSettingsFragment__phone_number">رقم الهاتف</string>
     <string name="ConversationSettingsFragment__get_badges">يمكنك الحصول على شارات لحسابك الشخصي عبر دعم Signal. يكفي النقر على شارة لمعرفة المزيد.</string>
@@ -5050,16 +5050,16 @@
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">تحديث Signal</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">لقد انتهت صلاحية هذا الإصدار من Signal. حدِّث الآن للاستمرار في استخدام تطبيق Signal.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
     <string name="UpdateSignalExpiredDialog__update_action">تحديث التطبيق</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
     <string name="UpdateSignalExpiredDialog__cancel_action">إلغاء</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">الجهاز غير مُسجل</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">لم يعد جهازك مُسجلاً. يُرجى إعادة التسجيل للاستمرار في استخدام تطبيق Signal على هذا الجهاز.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
     <string name="ReregisterSignalDialog__reregister_action">إعادة-التسجيل</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
@@ -5307,7 +5307,7 @@
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
     <string name="NotificationProfileCreated__done">تمّ</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">يمكنك تشغيل هيئة إشعارك أو تعطيلها يدويا من خلال القائمة الموجودة فوق لائحة المحادثات.</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">يُمكنك تشغيل حسابك الشخصي أو تعطيله يدويًا من خلال القائمة الموجودة فوق لائحة الدردشات.</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
     <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">يمكنك إضافة جدولة في إعداداتك للاشتغال التلقائي لهيئة إشعارك.</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
@@ -5364,7 +5364,7 @@
     <!-- region "Stories Tab" -->
 
     <!-- Label for Chats tab in home app screen -->
-    <string name="ConversationListTabs__chats">المُحادثات</string>
+    <string name="ConversationListTabs__chats">الدردشات</string>
     <!-- Label for Calls tab in home app screen -->
     <string name="ConversationListTabs__calls">المكالمات</string>
     <!-- Label for Stories tab in home app screen -->
@@ -5388,7 +5388,7 @@
     <!-- Context menu option to share a story -->
     <string name="StoriesLandingItem__share">المشاركة…</string>
     <!-- Context menu option to go to story chat -->
-    <string name="StoriesLandingItem__go_to_chat">الذهاب للمحادثة</string>
+    <string name="StoriesLandingItem__go_to_chat">توجّه للدردشة</string>
     <!-- Context menu option to go to story info -->
     <string name="StoriesLandingItem__info">معلومات</string>
     <!-- Label when a story is pending sending -->
@@ -6353,7 +6353,7 @@
     <!-- Displayed as a context menu item to start an audio call -->
     <string name="CallContextMenu__audio_call">مكالمة صوتية</string>
     <!-- Displayed as a context menu item to go to chat -->
-    <string name="CallContextMenu__go_to_chat">الذهاب للمحادثة</string>
+    <string name="CallContextMenu__go_to_chat">توجّه للدردشة</string>
     <!-- Displayed as a context menu item to see call info -->
     <string name="CallContextMenu__info">معلومات</string>
     <!-- Displayed as a context menu item to select multiple calls -->
@@ -6379,12 +6379,12 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">حذف</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="zero">Delete %1$d calls?</item>
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="two">Delete %1$d calls?</item>
-        <item quantity="few">Delete %1$d calls?</item>
-        <item quantity="many">Delete %1$d calls?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="zero">حذف %1$d مكالمات؟</item>
+        <item quantity="one">حذف %1$d مكالمة؟</item>
+        <item quantity="two">حذف %1$d مكالمتين؟</item>
+        <item quantity="few">حذف %1$d مكالمات؟</item>
+        <item quantity="many">حذف %1$d مكالمة؟</item>
+        <item quantity="other">حذف %1$d مكالمة؟</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">احذف بالنسبة لي</string>
@@ -6486,7 +6486,7 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">تفاصيل المكالمة</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">إضافة اسم المكالمة</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6494,14 +6494,14 @@
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">مشاركة الرابط</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">حذف رابط المكالمة</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">شارك</string>
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">اللون</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">لا تُشارك الرمز المربع الخاص بك والرابط إلاّ مع الأشخاص الذين تثق بهم. عند المشاركة، سيتمكن الآخرون من رؤية اسم المستخدم الخاص بك وبدء محادثة معك.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
     <string name="UsernameLinkSettings_username_copied_toast">تم نسخ اسم المستخدم</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
@@ -6511,11 +6511,11 @@
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
     <string name="UsernameLinkSettings_done_button_label">تمّ</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">الرمز</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">امسح ضوئيًا</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">امسح رمز الاستجابة السريعة المعروض على جهاز جهة اتصالك.</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">اللون</string>
 

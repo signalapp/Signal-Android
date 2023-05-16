@@ -4265,7 +4265,7 @@
     <string name="HelpSettingsFragment__debug_log">ڈی بگ لاگ</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">شرائط &amp;amp:رازداری کی پالیسی</string>
     <string name="HelpFragment__copyright_signal_messenger">کاپی رائٹ Signal میسنجر</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">AGPLv3 کے تحت لائسنس یافتہ</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 کے تحت لائسنس یافتہ</string> -->
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">میڈیا کوالٹی</string>

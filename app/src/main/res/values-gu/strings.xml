@@ -4265,7 +4265,7 @@
     <string name="HelpSettingsFragment__debug_log">ડીબગ લૉગ</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">શરતો &amp; ગોપનીયતા નીતિ</string>
     <string name="HelpFragment__copyright_signal_messenger">કોપીરાઇટ Signal મેસેન્જર</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">AGPLv3 હેઠળ લાયસન્સ</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 હેઠળ લાયસન્સ</string> -->
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">મીડિયા ગુણવત્તા</string>

@@ -4265,7 +4265,7 @@
     <string name="HelpSettingsFragment__debug_log">Fejlsøgningslog</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Vilkår &amp; privatlivspolitik</string>
     <string name="HelpFragment__copyright_signal_messenger">Ophavsret Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licenseret under AGPLv3</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">Licenseret under GPLv3</string> -->
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Mediekvalitet</string>

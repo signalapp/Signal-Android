@@ -4174,7 +4174,7 @@
     <string name="HelpSettingsFragment__debug_log">سازلاش خاتىرىسى</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">شەرتلەر &amp;  مەخپىيەتلىك تۈزۈمى</string>
     <string name="HelpFragment__copyright_signal_messenger">‫Signal Messenger نەشر ھوقۇقىغا ئىگە</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">AGPLv3 ئىجازىتىدە تارقىتىلدى</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 ئىجازىتىدە تارقىتىلدى</string> -->
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">ۋاسىتە سۈپىتى</string>

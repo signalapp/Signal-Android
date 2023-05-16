@@ -4265,7 +4265,7 @@
     <string name="HelpSettingsFragment__debug_log">డీబగ్ సంఘటన లేకరి</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">నిబంధనలు &amp; గోప్యతా విధానం</string>
     <string name="HelpFragment__copyright_signal_messenger">కాపీరైట్ Signal మెసెంజర్</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">AGPLv3 కింద లైసెన్స్ పొందింది</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 కింద లైసెన్స్ పొందింది</string> -->
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">మీడియా నాణ్యత</string>

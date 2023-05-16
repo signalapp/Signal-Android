@@ -183,7 +183,7 @@
     <string name="CameraContacts_recent_contacts">آخرین مخاطبین</string>
     <string name="CameraContacts_signal_contacts">مخاطبین سیگنال</string>
     <string name="CameraContacts_signal_groups">گروه‌‌های سیگنال</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">می‌توانید با حداکثر %1$d گفتگو به اشتراک بگذارید.</string>
     <string name="CameraContacts_select_signal_recipients">گیرندگان سیگنال را انتخاب کنید</string>
     <string name="CameraContacts_no_signal_contacts">هیچ مخاطب سیگنالی وجود ندارد</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">شما تنها با استفاده از دکمهٔ دوربین می‌توانید برای مخاطبین سیگنال عکس ارسال کنید. </string>
@@ -485,29 +485,29 @@
     <!-- Action shown to allow a user to update their application because it has expired -->
     <string name="ConversationFragment__update_build">به‌روزرسانی سیگنال</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">ثبت‌نام دوبارۀ سیگنال</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">برداشتن فیلتر</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">گفتگوی خوانده‌نشده وجود ندارد</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="one">گفتگوی انتخاب‌شده پاک شود؟</item>
+        <item quantity="other">گفتگوهای انتخاب‌شده پاک شوند؟</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="one">این کار موجب پاک شدن دائمی گفتگوی انتخاب‌شده می‌شود.</item>
+        <item quantity="other">این کار موجب پاک شدن دائمی همۀ %1$d گفتگوی انتخاب‌شده می‌شود.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">در حال حذف</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">در حال پاک کردن گفتگوهای انتخاب‌شده…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Chat archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="one">گفتگو بایگانی شد</item>
+        <item quantity="other">%1$d گفتگو بایگانی شد</item>
     </plurals>
     <string name="ConversationListFragment_undo">واگرد</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="one">گفتگو به صندوق ورودی منتقل شد</item>
+        <item quantity="other">%1$d گفتگو به صندوق ورودی منتقل شد</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">خوانده</item>
@@ -542,7 +542,7 @@
     <string name="ConversationListItem_key_exchange_message">پیام تبادل کلید</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">گفتگوهای بایگانی‌شده (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">وارسی شده</string>
@@ -1507,7 +1507,7 @@
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">آیا به گفتگو‌ی خود با این گروه ادامه می‌دهید و نام و عکس خود را با اعضای آن به اشتراک می‌گذارید؟</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">این گروه را برای فعال کردن قابلیت‌ها‌ی جدید همانند اشاره‌ها@ و مدیران ارتقا دهید. اعضایی که که نام یا عکس خود را در این گروه به اشتراک نگذاشته‌اند برای پیوستن دعوت خواهند شد.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">این گروه قدیمی دیگر نمی‌تواند استفاده شود چون بسیار بزرگ است. حداکثر اندازهٔ گروه %1$d است.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">می‌خواهید گفتگویتان با %1$s را ادامه دهید و نام و عکس خود را با او به اشتراک بگذارید؟</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">آیا می‌خواهید به این گروه بپیوندید و نام و عکس خود را با اعضای آن به اشتراک بگذارید؟ تا زمانی که نپذیرید آن‌ها متوجه نمی‌شوند که پیام‌شان را خوانده‌اید.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">به این گروه می‌پیوندید و نام و عکس خود را با اعضای آن به اشتراک می‌گذارید؟ تا زمانی که نپذیرید پیام‌های آنها را نخواهید دید.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">به این گروه می‌پیوندید؟ تا زمانی که نپذیرید آن‌ها متوجه نخواهند شد که پیام‌شان را خوانده‌اید.</string>
@@ -1828,7 +1828,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">دفعات تلاش‌تان برای ثبت این شماره بیش از حد مجاز بوده است. لطفاً بعد از %1$s دوباره تلاش کنید.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">اتصال به سرویس ممکن نیست. لطفاً اتصال شبکه را بررسی کرده و دوباره امتحان کنید.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">امکان درخواست کد تأیید وجود ندارد. لطفاً اتصال شبکه خود را بررسی و دوباره امتحان کنید.</string>
     <string name="RegistrationActivity_non_standard_number_format">قالب شمارهٔ غیر-استاندارد</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">به نظر می‌رسد شماره‌ای که وارد کردید (%1$s) در قالبی غیر-استاندارد باشد.\n\nآیا منظورتان %2$s بود؟</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">سیگنال اندروید - قالب شماره‌تلفن</string>
@@ -2154,7 +2154,7 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">بیشتر بخوانید</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d پیام جدید در %2$d گفتگو</string>
     <string name="MessageNotifier_most_recent_from_s">جدیدترین از: %1$s</string>
     <string name="MessageNotifier_locked_message">پیام قفل شده</string>
     <string name="MessageNotifier_message_delivery_failed">تحویل پیام ناموفق بود.</string>
@@ -2224,7 +2224,7 @@
     <string name="SearchToolbar_search">جستجو</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">جستجوی گفتگوهای خوانده‌نشده</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">جستجوی گفتگوها، تماس‌ها و پیام‌ها</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">بستن</string>
@@ -2446,7 +2446,7 @@
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
     <string name="ConversationParentFragment__bluetooth_permission_denied">مجوز بلوتوث لغو شد</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">لطفاً برای استفاده از بلوتوث جهت ضبط پیام‌های صوتی، مجوز «دستگاه‌های نزدیک» را فعال کنید.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
     <string name="ConversationParentFragment__open_settings">بازکردن تنظیمات</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
@@ -2575,7 +2575,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">مشاهدۀ کل گفتگو</string>
     <string name="load_more_header__loading">در حال بارگیری</string>
 
     <!-- media_overview_activity -->
@@ -2854,7 +2854,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">قفل پرداخت</string>
     <string name="preferences__payments_beta">پرداخت‌ها (بتا)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">محدودیت طول گفتگو</string>
     <string name="preferences__keep_messages">نگاه داشتن پیام‌ها</string>
     <string name="preferences__clear_message_history">پاک کردن تاریخچهٔ پیام</string>
     <string name="preferences__linked_devices">دستگاه‌های پیوند داده شده</string>
@@ -2898,7 +2898,7 @@
     <string name="preferences_storage__delete_older_messages">پاک کردن پیام‌های قدیمی‌تر؟</string>
     <string name="preferences_storage__clear_message_history">تاریخچهٔ پیام پاک شود؟</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">این گزینه تمامی تاریخچهٔ پیام و رسانه‌ها را که از %1$s قدیمی‌ترند از روی دستگاه شما پاک می‌کند.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">این کار موجب کوتاه کردن همۀ گفتگوها به %1$s پیام اخیر می‌شود.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">این گزینه تمامی تاریخچهٔ پیام و رسانه را از روی دستگاه شما پاک می‌کند.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">آیا از پاک کردن کل تاریخچهٔ پیام‌ مطمئن هستید؟</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">کل تاریخچهٔ پیام‌ به طور دائم پاک خواهد شد. این کار بازگشت‌پذیر نیست.</string>
@@ -3288,7 +3288,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">فهرست گیرندگان</string>
     <string name="conversation_group_options__delivery">تحویل</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <string name="conversation_group_options__conversation">گفتگو</string>
     <string name="conversation_group_options__broadcast">پخش</string>
 
     <!-- text_secure_normal -->
@@ -3338,11 +3338,11 @@
     <string name="Insights__percent">٪</string>
     <string name="Insights__title">بینش‌ها</string>
     <string name="InsightsDashboardFragment__title">بینش‌ها</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">پروتکل سیگنال به‌طور خودکار از %1$d درصد از پیام‌های خروجی شما ظرف %2$d روز گذشته محافظت کرده است. گفتگو بین کاربران سیگنال همواره به طور سرتاسری رمزگذاری‌شده است.</string>
     <string name="InsightsDashboardFragment__spread_the_word">خبر را انتشار دهید</string>
     <string name="InsightsDashboardFragment__not_enough_data">داده‌ٔ کافی وجود ندارد</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">درصد بینش‌ها بر اساس تعداد پیام‌های خروجی در %1$d روز گذشته که پاک نشده‌اند یا ناپدید نشده‌اند محاسبه می‌شود.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <string name="InsightsDashboardFragment__start_a_conversation">شروع یک گفتگو</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">ارتباط امن برقرار کنید و قابلیت‌های جدید را که از محدودیت‌های پیامک رمزگذاری نشده فراتر می‌روند با دعوت مخاطبین بیشتر به سیگنال فعال کنید.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">این آمارها به صورت محلی بر روی دستگاه شما تولید شده‌اند و فقط شما توانایی دیدن آن‌ها را دارید. آن‌ها هیچ‌گاه به جایی ارسال نمی‌شوند.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">پیام‌های رمزگذاری شده</string>
@@ -3586,7 +3586,7 @@
     <string name="Recipient_unknown">ناشناخته</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">ثبت دوبارۀ حساب</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
     <string name="preferences_account_update_signal">به‌روزرسانی سیگنال</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
@@ -3594,13 +3594,13 @@
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
     <string name="preferences_account_delete_all_data_confirmation_title">پاک کردن همه اطلاعات؟</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">این کار موجب بازنشانی برنامه و پاک شدن همۀ پیام‌ها می‌شود. پس از اتمام این فرایند، برنامه بسته خواهد شد.</string>
     <!-- Confirmation action to proceed with application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_proceed">ادامه دادن</string>
     <!-- Confirmation action to cancel application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_cancel">لغو</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">اطلاعات پاک نشد</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">انتقال یا بازگردانی حساب کاربری</string>
@@ -4265,7 +4265,7 @@
     <string name="HelpSettingsFragment__debug_log">گزارش عیب‌یابی</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">شرایط و خط مشی حریم خصوصی</string>
     <string name="HelpFragment__copyright_signal_messenger">حق تکثیر پیام‌رسان سیگنال</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">پروانهٔ AGPLv3</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">پروانهٔ GPLv3</string> -->
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">کیفیت رسانه</string>
@@ -4396,8 +4396,8 @@
     <string name="ConversationSettingsFragment__group_link">پیوند گروه</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">افزودن به صورت یک مخاطب</string>
     <string name="ConversationSettingsFragment__unmute">صدادار کردن</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">گفتگو تا %1$s بی‌صدا شد</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">گفتگو به‌طور دائم بی‌صدا شد</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">شماره‌تلفن در کلیپ‌بورد کپی شد.</string>
     <string name="ConversationSettingsFragment__phone_number">شماره‌تلفن</string>
     <string name="ConversationSettingsFragment__get_badges">با حمایت از سیگنال نشان‌هایی برای نمایه‌تان دریافت کنید. برای اطلاعات بیشتر روی نشان ضربه بزنید.</string>
@@ -4662,16 +4662,16 @@
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">به‌روزرسانی سیگنال</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">این نسخه سیگنال منقضی شده است. برای ادامه استفاده از سیگنال، همین حالا به‌روزرسانی کنید.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
     <string name="UpdateSignalExpiredDialog__update_action">به‌روزرسانی</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
     <string name="UpdateSignalExpiredDialog__cancel_action">لغو</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">دستگاه ثبت نشده است</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">این دستگاه دیگر ثبت‌شده نیست. برای ادامه استفاده از سیگنال در این دستگاه، دوباره ثبت‌نام کنید.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
     <string name="ReregisterSignalDialog__reregister_action">ثبت نام دوباره</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
@@ -5903,8 +5903,8 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">پاک کردن</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="one">%1$d تماس پاک شود؟</item>
+        <item quantity="other">%1$d تماس پاک شود؟</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">پاک کردن برای من</string>
@@ -6002,7 +6002,7 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">جزئیات تماس</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">افزودن نام تماس</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6010,14 +6010,14 @@
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">اشتراک‌گذاری پیوند</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">پاک کردن پیوند تماس</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">اشتراک‌گذاری</string>
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">رنگ</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">کد QR و پیوند خود را فقط با افراد مورد اعتمادتان به اشتراک بگذارید. با اشتراک‌گذاری آن‌ها، دیگران می‌توانند نام کاربری‌تان را ببینند و گفتگویی را با شما شروع کنند.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
     <string name="UsernameLinkSettings_username_copied_toast">نام کاربری کپی شد</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
@@ -6027,11 +6027,11 @@
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
     <string name="UsernameLinkSettings_done_button_label">انجام شد</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">کد</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">اسکن</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">کد QR را از دستگاه مخاطب خود اسکن کنید.</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">رنگ</string>
 

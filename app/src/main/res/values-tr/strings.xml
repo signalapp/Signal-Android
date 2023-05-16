@@ -4265,7 +4265,7 @@
     <string name="HelpSettingsFragment__debug_log">Hata ayıklama günlüğü</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Koşullar ve Gizlilik İlkesi</string>
     <string name="HelpFragment__copyright_signal_messenger">Telif hakkı Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">AGPLv3\'e göre lisanslanmıştır</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">GPLv3\'e göre lisanslanmıştır</string> -->
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">İçerik kalitesi</string>
