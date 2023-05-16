@@ -281,7 +281,7 @@ object NotificationFactory {
       setContentTitle(context.getString(R.string.app_name))
       setContentIntent(NotificationPendingIntentHelper.getActivity(context, 0, MainActivity.clearTop(context), PendingIntentFlags.mutable()))
       setGroupSummary(true)
-      setSubText(context.getString(R.string.MessageNotifier_d_new_messages_in_d_conversations, state.messageCount, state.threadCount))
+      setSubText(context.buildSummaryString(state.messageCount, state.threadCount))
       setContentInfo(state.messageCount.toString())
       setNumber(state.messageCount)
       setSummaryContentText(state.mostRecentSender)
@@ -298,6 +298,12 @@ object NotificationFactory {
 
     Log.d(TAG, "showing summary notification")
     NotificationManagerCompat.from(context).safelyNotify(null, NotificationIds.MESSAGE_SUMMARY, builder.build())
+  }
+
+  private fun Context.buildSummaryString(messageCount: Int, threadCount: Int): String {
+    val messageString = resources.getQuantityString(R.plurals.MessageNotifier_d_messages, messageCount, messageCount)
+    val threadString = resources.getQuantityString(R.plurals.MessageNotifier_d_chats, threadCount, threadCount)
+    return getString(R.string.MessageNotifier_s_in_s, messageString, threadString)
   }
 
   private fun notifyInThread(context: Context, recipient: Recipient, lastAudibleNotification: Long) {
