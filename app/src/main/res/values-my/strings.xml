@@ -183,7 +183,10 @@
     <string name="CameraContacts_recent_contacts">နောက်ဆုံး အဆက်အသွယ်များ</string>
     <string name="CameraContacts_signal_contacts">Signal အဆက်အသွယ်များ</string>
     <string name="CameraContacts_signal_groups">Signal အဖွဲ့များ</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">အများဆုံး ချက်(တ်) %1$d ခုထံ မျှဝေနိုင်သည်။</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal လက်ခံရရှိသူများကို ရွေးချယ်ပါ</string>
     <string name="CameraContacts_no_signal_contacts">Signal အဆက်အသွယ်များ မရှိပါ</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Signal အဆက်အသွယ်များထံသို့ ကင်မရာခလုတ်နှိပ်၍သာ ဓာတ်ပုံပို့နိုင်သည်။ </string>
@@ -1891,7 +1894,8 @@
     <string name="StickerPackPreviewActivity_untitled">ခေါင်းစဉ်မဲ့</string>
     <string name="StickerPackPreviewActivity_unknown">မသိ</string>
     <string name="StickerPackPreviewActivity_install">ထည့်သွင်းမယ်+</string>
-    <string name="StickerPackPreviewActivity_remove">ဖယ်ရှားရန်</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">စတစ်ကာများ</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">စတစ်ကာတွဲကို တင်ခြင်းမအောင်မြင်ပါ</string>
 
@@ -2088,6 +2092,16 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">ထပ်မံဖတ်ရှုမယ်</string>
 
     <!-- MessageNotifier -->
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="other">%1$d chats</item>
+    </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">ချက်(တ်) %2$d ခုတွင် မက်ဆေ့ချ်အသစ်ပေါင်း %1$d စောင် ရှိသည်</string>
     <string name="MessageNotifier_most_recent_from_s">%1$s ထံမှ နောက်ဆုံးစာများ</string>
     <string name="MessageNotifier_locked_message">ပိတ်ထားသော စာ</string>
@@ -2820,7 +2834,10 @@
     <string name="preferences_storage__delete_older_messages">မက်ဆေ့ခ်ျအဟောင်းများကို ဖျက်မည်လား။</string>
     <string name="preferences_storage__clear_message_history">မက်ဆေ့ချ်မှတ်တမ်းကို ရှင်းလင်းမည်လား။</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">သင့်စက်ရှိ %1$s ထက်ကြာသော မက်ဆေ့ချ်မှတ်တမ်းနှင့် မီဒီယာများအားလုံးကို အပြီးဖျက်သွားပါမည်။</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">၎င်းသည် ချက်(တ်)များအားလုံးကို နောက်ဆုံးမက်ဆေ့ချ် %1$s စောင်ထိ ဖြတ်လိုက်ပါမည်။</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">သင့်စက်ရှိ မက်ဆေ့ချ်မှတ်တမ်းနှင့် မီဒီယာများအားလုံးကို အပြီးဖျက်သွားပါမည်။</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">မက်ဆေ့ချ်မှတ်တမ်းများ အားလုံးကို ဖျက်လိုသည်မှာ သေချာပါသလား။</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">မက်ဆေ့ချ်မှတ်တမ်းများ အားလုံးကို အပြီးဖယ်ရှားလိုက်ပါမည်။ ဤလုပ်ဆောင်ချက်ကို ပြန်ရုပ်သိမ်း၍ မရပါ။</string>
@@ -3161,6 +3178,7 @@
     <string name="conversation_list_search_description">ရှာဖွေမယ်</string>
     <string name="conversation_list__pinned">မှတ်ထားမယ်</string>
     <string name="conversation_list__chats">ချက်(တ်)များ</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">ချက်(တ်) %1$d ခုထိသာ ပင်တွဲ၍ရပါသည်</string>
 
     <!-- conversation_list_item_view -->
@@ -3208,6 +3226,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">လက်ခံမည့်သူ စာရင်း</string>
     <string name="conversation_group_options__delivery">ပေးပို့ခြင်း</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">ချက်(တ်)</string>
     <string name="conversation_group_options__broadcast">ထုတ်လွှင့်ပါ</string>
 
@@ -3258,10 +3277,12 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">ထင်မြင်ချက်များ</string>
     <string name="InsightsDashboardFragment__title">ထင်မြင်ချက်များ</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal ပရိုတိုကောလ်သည် လွန်ခဲ့သည့် %2$d ရက်အတွင်း သင့်အထွက်မက်ဆေ့ချ်များ၏ %1$d%% ကို အလိုအလျောက် ကာကွယ်ပေးခဲ့ပါသည်။ Signal သုံးစွဲသူများအကြား ချက်(တ်)များကို အမြဲ ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ထားပါသည်။</string>
     <string name="InsightsDashboardFragment__spread_the_word">ဤစကားကို ဖြန့်ရန်</string>
     <string name="InsightsDashboardFragment__not_enough_data">ဒေတာ မလုံလောက်ပါ</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">သင်၏ ထင်မြင်ချက် ရာခိုင်နှုန်းသည် လွန်ခဲ့သည့် %1$d ရက်အတွင်း မပျောက်သွားသေးသော သို့မဟုတ် မဖျက်ထားသော မက်ဆေ့ချ်များပေါ်မူ၍ တွက်ထားပါသည်။</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
     <string name="InsightsDashboardFragment__start_a_conversation">ချက်(တ်)တစ်ခု စတင်ရန်</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">လုံခြုံစွာ ဆက်သွယ်မှုကို စတင်ပါ။ Signal နှင့်ဆက်သွယ်ရန် အဆက်အသွယ်များထပ်မံဖိတ်ခေါ်ခြင်းဖြင့် ကုဒ်ဖြင့်စာမဝှက်ထားသည့် SMS မက်ဆေ့ချ်များ ပေးပို့မှုများ၏ ကန့်သတ်ချက်များထက်ကျော်လွန်သော အင်္ဂါရပ်အသစ်များကို ဖွင့်သုံးစွဲပါ။</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">၎င်းကိန်းဂဏန်းများသည် သင်၏စက်ကိရိယာပေါ်တွင် ထုတ်လုပ်ပြီး သင်သာမြင်နိုင်သည်။ ဘယ်တော့မှ အခြားနေရာကို မကူးစက်ပါဘူး။</string>
@@ -4174,7 +4195,7 @@
     <string name="HelpSettingsFragment__debug_log">ပြစ်ချက်မှတ်တမ်း</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">လိုက်နာဆောင်ရွက်ရမည့် အချက်များ</string>
     <string name="HelpFragment__copyright_signal_messenger">မူပိုင်ခွင့် Signal Messenger</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 အတိုင်း ခွင့်ပြုထားသည်</string> -->
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">ဓာတ်ပုံ အရည်အသွေး</string>
@@ -4303,6 +4324,7 @@
     <string name="ConversationSettingsFragment__group_link">Group link</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">အဆက်အသွယ်အဖြစ် ပေါင်းထည့်ရန်</string>
     <string name="ConversationSettingsFragment__unmute">အသံပြန်ဖွင့်ရန်</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">ချက်(တ်)ကို %1$s မတိုင်မီအထိ အသံပိတ်ထားပါသည်</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">ချက်(တ်)ကို ထာဝရ အသံပိတ်ထားပါသည်</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ဖုန်းနံပါတ်ကို ကလစ်ဘုတ်တွင် ကူးယူပြီး။</string>

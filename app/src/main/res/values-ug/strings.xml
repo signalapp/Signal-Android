@@ -183,7 +183,10 @@
     <string name="CameraContacts_recent_contacts">يېقىنقى ئالاقەداشلار</string>
     <string name="CameraContacts_signal_contacts">Signal ئالاقەداشلار</string>
     <string name="CameraContacts_signal_groups">Signal گۇرۇپپىلىرى</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">كۆپ بولغاندا %1$d پاراڭ بىلەن ئورتاقلىشالايسىز.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal تاپشۇرۇۋالغۇچىلارنى تاللاش</string>
     <string name="CameraContacts_no_signal_contacts">Signal ئالاقەداش يوق</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">سىز پەقەت كامېرا كۇنۇپكىسىنى ئىشلىتىش ئارقىلىق Signal دىكى ئالاقەداشلىرىڭىزغا رەسىم ئەۋەتەلەيسىز. </string>
@@ -1891,7 +1894,8 @@
     <string name="StickerPackPreviewActivity_untitled">ماۋزۇسىز</string>
     <string name="StickerPackPreviewActivity_unknown">نامەلۇم</string>
     <string name="StickerPackPreviewActivity_install">ئورنات</string>
-    <string name="StickerPackPreviewActivity_remove">چىقىرىۋەت</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">چاپلاقلار</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">چىراي ئىپادە بوغچىسىنى يۈكلىيەلمىدى</string>
 
@@ -2088,6 +2092,16 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">تېخىمۇ كۆپ</string>
 
     <!-- MessageNotifier -->
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="other">%1$d chats</item>
+    </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d پاراڭدىكى %1$d يېڭى ئۇچۇر</string>
     <string name="MessageNotifier_most_recent_from_s">يېقىندا ئۇچۇر ئەۋەتكۈچى: %1$s</string>
     <string name="MessageNotifier_locked_message">قۇلۇپلانغان ئۇچۇر</string>
@@ -2820,7 +2834,10 @@
     <string name="preferences_storage__delete_older_messages">كونا ئۇچۇرلارنى ئۆچۈرەمسىز؟</string>
     <string name="preferences_storage__clear_message_history">ئۇچۇر تارىخىنى تازىلامسىز؟</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">بۇ ئۈسكۈىڭىزدىكى %1$s دىن بۇرۇنقى بارلىق ئۇچۇر ۋە ۋاسىتەلەرنى مەڭگۈلۈك ئۆچۈرۈۋېتىدۇ.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">بۇ مەشغۇلات بارلىق پاراڭلارنى %1$s ئەڭ يېقىنقى ئۇچۇرلارغا يىغىنچاقلايدۇ.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">بۇ ئۈسكۈنىڭىزدىكى بارلىق ئۇچۇر تارىخى ۋە ۋاسىتەلەرنى مەڭگۈلۈك ئۆچۈرۈۋېتىدۇ.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">راستلا بارلىق ئۇچۇر تارىخنى ئۆچۈرىۋېتەمسىز؟</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">بارلىق ئۇچۇر تارىخى مەڭگۈلۈك ئۆچۈرىۋېتىلىدۇ. بۇ ھەرىكەتتىن كەينىگە يېنىۋالالمايسىز.</string>
@@ -3161,6 +3178,7 @@
     <string name="conversation_list_search_description">ئىزدە</string>
     <string name="conversation_list__pinned">قوندۇرۇلدى</string>
     <string name="conversation_list__chats">پاراڭلار</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">كۆپ بولغاندا %1$d پاراڭنى مىخلىيالايسىز</string>
 
     <!-- conversation_list_item_view -->
@@ -3208,6 +3226,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">چاقىرىلغۇچىلار تىزىمى</string>
     <string name="conversation_group_options__delivery">يەتكۈزۈش</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">پاراڭ</string>
     <string name="conversation_group_options__broadcast">تارقىتىش</string>
 
@@ -3258,10 +3277,12 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">چۈشىنىش</string>
     <string name="InsightsDashboardFragment__title">چۈشىنىش</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol ئۆتكەن %2$d كۈندە سىز يوللىغان %1$d%% ئۇچۇرنى ئاپتوماتىك قوغدىدى. Signal ئىشلەتكۈچىلىرى ئارىسىدىكى پاراڭلار نۇقتىدىن-نۇقتىغا مەخپىيلەشتۈرۈلگەن بولىدۇ.</string>
     <string name="InsightsDashboardFragment__spread_the_word">تەشۋىق قىلىپ قويۇڭ</string>
     <string name="InsightsDashboardFragment__not_enough_data">سانلىق مەلۇمات يېتەرسىز</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">پەرقلەندۈرۈش قابىلىيىتىڭىز ئۆتكەن %1$d كۈندە يوللانغان غايىب بولمىغان ۋە ئۆچۈرۈلگەن ئۇچۇرلارغا ئاساسەن ھېسابلىنىدۇ.</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
     <string name="InsightsDashboardFragment__start_a_conversation">پاراڭ باشلاش</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">تېخىمۇ كۆپ ئالاقەداشلار Signal غا قوشۇلسا، تېخىمۇ كۆپ يېڭى ئىقتىدارلارنى ئىشلىتەلەيدۇ، شىفىرلانمىغان تېكىست ئۇچۇرنىڭ چەكلىمىسىگە ئۇچرىمايدۇ، بىخەتەر ئالاقىنىڭ يېڭى سەپىرىنى باشلايلى.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">بۇ سىتاتىستىكا ئۇچۇرلار يەرلىك ئۈسكۈنىڭىزدە ھاسىل قىلىندى، پەقەت سىزلا كۆرەلەيسىز. ئۇلار باشقا ھەر قانداق جايغا يوللانمايدۇ.</string>
@@ -4174,7 +4195,7 @@
     <string name="HelpSettingsFragment__debug_log">سازلاش خاتىرىسى</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">شەرتلەر &amp;  مەخپىيەتلىك تۈزۈمى</string>
     <string name="HelpFragment__copyright_signal_messenger">‫Signal Messenger نەشر ھوقۇقىغا ئىگە</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 ئىجازىتىدە تارقىتىلدى</string> -->
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">ۋاسىتە سۈپىتى</string>
@@ -4303,6 +4324,7 @@
     <string name="ConversationSettingsFragment__group_link">گۇرۇپپا ئۇلانمىسى</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">ئالاقەداش سۈپىتىدە قوش</string>
     <string name="ConversationSettingsFragment__unmute">ئۈنلۈك</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">پاراڭ %1$s غىچە ئۈنسىز قىلىنغان</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">پاراڭ مەڭگۈلۈك ئۈنسىز قىلىنغان</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">تېلېفون نومۇرىنى چاپلاش تاختىسىغا كۆچۈر</string>

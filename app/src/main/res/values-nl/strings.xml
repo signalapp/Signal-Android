@@ -183,7 +183,11 @@
     <string name="CameraContacts_recent_contacts">Recente contactpersonen</string>
     <string name="CameraContacts_signal_contacts">Signal-gebruikers</string>
     <string name="CameraContacts_signal_groups">Signal-groepen</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Je kunt delen met maximaal %1$d chats.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Selecteer Signal-ontvangers</string>
     <string name="CameraContacts_no_signal_contacts">Geen Signal-gebruikers</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Je kunt de cameraknop alleen gebruiken om foto\'s te verzenden aan Signal-gebruikers. </string>
@@ -1956,7 +1960,8 @@
     <string name="StickerPackPreviewActivity_untitled">Zonder titel</string>
     <string name="StickerPackPreviewActivity_unknown">Onbekend</string>
     <string name="StickerPackPreviewActivity_install">Stickerpakket installeren</string>
-    <string name="StickerPackPreviewActivity_remove">Verwijderen</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">Stickerpakket</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Laden van stickerpakket mislukt</string>
 
@@ -2154,6 +2159,18 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Meer lezen</string>
 
     <!-- MessageNotifier -->
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d chats</string>
     <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
     <string name="MessageNotifier_locked_message">Nieuw bericht, ontgrendel Signal om het weer te geven</string>
@@ -2898,7 +2915,11 @@
     <string name="preferences_storage__delete_older_messages">Oude berichten verwijderen?</string>
     <string name="preferences_storage__clear_message_history">Berichtengeschiedenis wissen?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit zal alle gespreksgeschiedenis en media ouder dan %1$s permanent van dit apparaat verwijderen.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Hiermee worden alle chats permanent ingekort tot de %1$s meest recente berichten.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dit zal al je gespreksgeschiedenis en media van dit apparaat permanent verwijderen.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Weet je zeker dat je alle gespreksgeschiedenis wilt verwijderen?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle gespreksgeschiedenis zal permanent worden verwijderd. Dit kan niet ongedaan worden gemaakt.</string>
@@ -3240,6 +3261,7 @@
     <string name="conversation_list_search_description">Zoeken</string>
     <string name="conversation_list__pinned">Vastgeprikt</string>
     <string name="conversation_list__chats">Chats</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Je kunt niet meer dan %1$d chats vastprikken</string>
 
     <!-- conversation_list_item_view -->
@@ -3288,6 +3310,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Lijst met ontvangers</string>
     <string name="conversation_group_options__delivery">Verzending</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">Chatten</string>
     <string name="conversation_group_options__broadcast">Uitzenden</string>
 
@@ -3338,10 +3361,12 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Inzichten</string>
     <string name="InsightsDashboardFragment__title">Inzichten</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol beschermde automatisch %1$d%% van je uitgaande berichten in de afgelopen %2$d dagen. Chats tussen Signal-gebruikers zijn altijd end-to-end versleuteld.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Zeg het voort</string>
     <string name="InsightsDashboardFragment__not_enough_data">Niet genoeg gegevens om een inzicht te geven</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Je inzichten-percentage wordt berekend op basis van berichten die niet zijn verlopen en niet handmatig zijn gewist en die je in de afgelopen %1$d dagen hebt verzonden.</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
     <string name="InsightsDashboardFragment__start_a_conversation">Een chat beginnen</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Communiceer voortaan beveiligd en maak gebruik van functionaliteiten die bij onversleutelde sms-berichten niet mogelijk zijn, door meer van je contactpersonen uit te nodigen om Signal te gebruiken.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Deze statistiek is lokaal gegenereerd op jouw apparaat en kan alleen door jou gezien worden. Ze wordt nooit geüpload.</string>
@@ -4265,7 +4290,7 @@
     <string name="HelpSettingsFragment__debug_log">Foutopsporingslog</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Gebruiksvoorwaarden &amp; privacybeleid</string>
     <string name="HelpFragment__copyright_signal_messenger">Auteursrecht Signal Messenger</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">Uitgegeven onder een GPLv3 licentie</string> -->
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Mediakwaliteit</string>
@@ -4396,6 +4421,7 @@
     <string name="ConversationSettingsFragment__group_link">Groepslink</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Als contactpersoon toevoegen</string>
     <string name="ConversationSettingsFragment__unmute">Niet langer dempen</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat gedempt tot %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Chat voor altijd gedempt</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefoonnummer naar klembord gekopieerd.</string>

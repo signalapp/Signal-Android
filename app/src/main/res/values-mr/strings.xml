@@ -183,7 +183,11 @@
     <string name="CameraContacts_recent_contacts">अलीकडील संपर्क</string>
     <string name="CameraContacts_signal_contacts">Signal संपर्क</string>
     <string name="CameraContacts_signal_groups">Signal गट</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">आपण जास्तीत जास्त %1$d चॅट्ससोबत शेअर करु शकता.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal प्राप्तकर्ते निवडा</string>
     <string name="CameraContacts_no_signal_contacts">कुठलेही Signal संपर्क नाहीत</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">आपण फक्त कॅमेरा बटण वापरून Signal संपर्कांना फोटो पाठवू शकता. </string>
@@ -1956,7 +1960,8 @@
     <string name="StickerPackPreviewActivity_untitled">अशीर्षकांकित</string>
     <string name="StickerPackPreviewActivity_unknown">अज्ञात</string>
     <string name="StickerPackPreviewActivity_install">स्थापना करा</string>
-    <string name="StickerPackPreviewActivity_remove">काढून टाका</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">स्टिकर</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">स्टिकर पॅक लोड करण्यात अयशस्वी</string>
 
@@ -2154,6 +2159,18 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">अधिक वाचा</string>
 
     <!-- MessageNotifier -->
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d चॅट्स मध्ये %1$d नवीन संदेश</string>
     <string name="MessageNotifier_most_recent_from_s">याकडून सर्वात अलीकडील: %1$s</string>
     <string name="MessageNotifier_locked_message">लॉक केलेला संदेश</string>
@@ -2898,7 +2915,11 @@
     <string name="preferences_storage__delete_older_messages">जुने संदेश हटवायचे?</string>
     <string name="preferences_storage__clear_message_history">संदेश इतिहास साफ करायचा?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">हे आपल्या डिव्हाईसवरून %1$s पेक्षा जुने सर्व संदेश इतिहास आणि मिडिया कायमचे हटवेल.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">यामुळे सर्व चॅट्स कायमस्वरुपी %1$s मध्ये सर्वात अलीकडील संदेश ट्रिम करेल.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">हे आपल्या डिव्हाईसवरून सर्व संदेश इतिहास आणि मिडिया कायमचे हटवेल.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">आपण खात्रीने सर्व संदेश इतिहास हटवू इच्छिता?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">सर्व संदेश इतिहास कायमचा हटवला जाईल. ही क्रिया मागे घेतली जाऊ शकत नाही.</string>
@@ -3240,6 +3261,7 @@
     <string name="conversation_list_search_description">शोध</string>
     <string name="conversation_list__pinned">पिन केलेला</string>
     <string name="conversation_list__chats">चॅट्स</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">आपण फक्त %1$d पर्यंत चॅट्स पिन करू शकता</string>
 
     <!-- conversation_list_item_view -->
@@ -3288,6 +3310,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">प्राप्तकर्ते यादी</string>
     <string name="conversation_group_options__delivery">पोचवणी</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">चॅट</string>
     <string name="conversation_group_options__broadcast">प्रक्षेपण</string>
 
@@ -3338,10 +3361,12 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">अंतर्दृष्टी</string>
     <string name="InsightsDashboardFragment__title">अंतर्दृष्टी</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal प्राेटाेकाॅलने मागील %2$d दिवसांमध्ये आपल्या %1$d%% बाहेर जाणाऱ्या संदेशांना स्वयंचलितपणे संरक्षित केले. Signal वापरकर्त्यामधील चॅट्स नेहमी एंड-टू-एंड एन्क्रिप्टेड असतात.</string>
     <string name="InsightsDashboardFragment__spread_the_word">प्रसार करा</string>
     <string name="InsightsDashboardFragment__not_enough_data">पुरेसा डेटा नाही</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">मागील %1$d दिवसांचे जाणारे संदेश जे अदृश्य झाले नाहीत किंवा हटविले गेले नाहीत त्यांच्या आधारावर आपली इन्साइट टक्केवारीची गणना केली जाते.</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
     <string name="InsightsDashboardFragment__start_a_conversation">चॅट सुरू करा</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">सुरक्षितपणे परस्परसंवाद चालू करा आणि Signal मध्ये सामील होण्यासाठी अधिक संपर्कांना आमंत्रित करून नवीन वैशिष्ट्ये सक्षम करा जे अनएन्क्रिप्टेड SMS संदेशांच्या मर्यादेच्या पलीकडे जातात.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ही आकडेवारी आपल्या डिव्हाईस वर स्थानिकरीत्या उत्पन्न केली गेली आहे आणि फक्त आपल्या द्वारा बघितली जाऊ शकते. ते कुठेही प्रक्षेपित केले जात नाही.</string>
@@ -4265,7 +4290,7 @@
     <string name="HelpSettingsFragment__debug_log">डीबग लॉग</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">अटी आणि गोपनीयता धोरण</string>
     <string name="HelpFragment__copyright_signal_messenger">कॉपीराईट Signal संदेशक</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 खाली परवानाधारक</string> -->
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">मिडिया दर्जा</string>
@@ -4396,6 +4421,7 @@
     <string name="ConversationSettingsFragment__group_link">गट लिंक</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">संपर्क म्हणून जोडा</string>
     <string name="ConversationSettingsFragment__unmute">अनम्यूट करा</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s पर्यंत चॅट मूक राहतील</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">चॅट कायमस्वरुपी मूक राहतील</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">फोन नंबर क्लिपबोर्डवर कॉपी केले गेले.</string>

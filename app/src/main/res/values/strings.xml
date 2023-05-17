@@ -3265,7 +3265,7 @@
     <string name="conversation_list_search_description">Search</string>
     <string name="conversation_list__pinned">Pinned</string>
     <string name="conversation_list__chats">Chats</string>
-    <!-- A warning shown in a toast that tells you that you can't pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you're allowed to pin. -->
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">You can only pin up to %1$d chats</string>
 
     <!-- conversation_list_item_view -->
@@ -3365,7 +3365,7 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Insights</string>
     <string name="InsightsDashboardFragment__title">Insights</string>
-    <!-- Body text for a page describing how many signal messages you've sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Spread the word</string>
     <string name="InsightsDashboardFragment__not_enough_data">Not enough data</string>
@@ -4425,7 +4425,7 @@
     <string name="ConversationSettingsFragment__group_link">Group link</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Add as a contact</string>
     <string name="ConversationSettingsFragment__unmute">Unmute</string>
-    <!-- The subtitle for a settings item that describes how long the user's chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Copied phone number to clipboard.</string>

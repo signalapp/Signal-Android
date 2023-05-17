@@ -183,7 +183,13 @@
     <string name="CameraContacts_recent_contacts">Нещодавні контакти</string>
     <string name="CameraContacts_signal_contacts">Контакти Signal</string>
     <string name="CameraContacts_signal_groups">Групи Signal</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Ви можете поділитися максимум із %1$d чатами.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="few">You can share with a maximum of %1$d chats.</item>
+        <item quantity="many">You can share with a maximum of %1$d chats.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Оберіть одержувача Signal</string>
     <string name="CameraContacts_no_signal_contacts">Немає контактів Signal</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Ви можете використовувати кнопку Камера лише для відправлення фото контактам Signal. </string>
@@ -2086,7 +2092,8 @@
     <string name="StickerPackPreviewActivity_untitled">Без назви</string>
     <string name="StickerPackPreviewActivity_unknown">Невідомо</string>
     <string name="StickerPackPreviewActivity_install">Встановити</string>
-    <string name="StickerPackPreviewActivity_remove">Вилучити</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">Наліпки</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Не вдалося завантажити набір стікерів</string>
 
@@ -2286,6 +2293,22 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Більше</string>
 
     <!-- MessageNotifier -->
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="few">%1$d messages</item>
+        <item quantity="many">%1$d messages</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chats</item>
+        <item quantity="few">%1$d chats</item>
+        <item quantity="many">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">Нові повідомлення (%1$d) у кількох чатах (%2$d)</string>
     <string name="MessageNotifier_most_recent_from_s">Останнє від: %1$s</string>
     <string name="MessageNotifier_locked_message">Заблоковане повідомлення</string>
@@ -3054,7 +3077,13 @@
     <string name="preferences_storage__delete_older_messages">Видаляти старіші повідомлення?</string>
     <string name="preferences_storage__clear_message_history">Очистити історію повідомлень?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Усі повідомлення і медіа, які старіші ніж %1$s, будуть безповоротно видалені з вашого пристрою.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Ця дія скоротить усі чати до %1$s останніх повідомлень без можливості відновлення.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="few">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="many">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Усі повідомлення та медіа будуть безповоротно видалені з вашого пристрою.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ви дійсно хочете видалити всю історію повідомлень?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Усю історію повідомлень буде безповоротно видалено. Цю дію неможливо скасувати.</string>
@@ -3398,6 +3427,7 @@
     <string name="conversation_list_search_description">Пошук</string>
     <string name="conversation_list__pinned">Закріплено</string>
     <string name="conversation_list__chats">Чати</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Ви можете прикріпити тільки до %1$d чатів</string>
 
     <!-- conversation_list_item_view -->
@@ -3448,6 +3478,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Список одержувачів</string>
     <string name="conversation_group_options__delivery">Доставка</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">Чат</string>
     <string name="conversation_group_options__broadcast">Трансляція</string>
 
@@ -3498,10 +3529,12 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Висновки</string>
     <string name="InsightsDashboardFragment__title">Висновки</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol автоматично захистив %1$d%% надісланих вами повідомлень за останні %2$d дн. Чати між користувачами Signal завжди захищені наскрізним шифруванням.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Поширити</string>
     <string name="InsightsDashboardFragment__not_enough_data">Недостатньо даних</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ваш відсоток в \"Висновках\" вважається на основі вихідних повідомлень, які не зникли або не були видалені за останні %1$d</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
     <string name="InsightsDashboardFragment__start_a_conversation">Розпочати чат</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Почніть спілкуватися безпечно і включіть нові функції, які виходять за межі обмежень незашифрованих SMS, запрошуючи більше контактів приєднатися до Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ця статистика була згенерована локально на вашому пристрої і її видно тільки вам. Вона ніколи нікуди не передається.</string>
@@ -4447,7 +4480,7 @@
     <string name="HelpSettingsFragment__debug_log">Журнал відладки</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Умови та Політика конфіденційності</string>
     <string name="HelpFragment__copyright_signal_messenger">Права захищено Signal Messenger</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">Ліцензовано за GPLv3</string> -->
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Якість медіа</string>
@@ -4582,6 +4615,7 @@
     <string name="ConversationSettingsFragment__group_link">Групове посилання</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Додати як контакт</string>
     <string name="ConversationSettingsFragment__unmute">Сповіщати</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Сповіщення чату вимкнені до %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Сповіщення чату вимкнені назавжди</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Номер телефону скопійовано в буфер обміну.</string>

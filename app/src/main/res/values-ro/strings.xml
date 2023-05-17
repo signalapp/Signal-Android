@@ -183,7 +183,12 @@
     <string name="CameraContacts_recent_contacts">Contacte recente</string>
     <string name="CameraContacts_signal_contacts">Contacte Signal</string>
     <string name="CameraContacts_signal_groups">Grupuri Signal</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Poți distribui cu un maxim de %1$d conversații.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="few">You can share with a maximum of %1$d chats.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Selectează destinatarii Signal</string>
     <string name="CameraContacts_no_signal_contacts">Niciun contact Signal</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Poți utiliza butonul de cameră pentru a trimite fotografii doar contactelor Signal. </string>
@@ -2021,7 +2026,8 @@
     <string name="StickerPackPreviewActivity_untitled">Fără titlu</string>
     <string name="StickerPackPreviewActivity_unknown">Necunoscut</string>
     <string name="StickerPackPreviewActivity_install">Instalează</string>
-    <string name="StickerPackPreviewActivity_remove">Elimină</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">Autocolante</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nu s-a putut încărca pachetul cu autocolante</string>
 
@@ -2220,6 +2226,20 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Citește mai mult</string>
 
     <!-- MessageNotifier -->
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="few">%1$d messages</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chats</item>
+        <item quantity="few">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesaje noi în %2$d conversații</string>
     <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %1$s</string>
     <string name="MessageNotifier_locked_message">Mesaj blocat</string>
@@ -2976,7 +2996,12 @@
     <string name="preferences_storage__delete_older_messages">Șterge mesajele vechi?</string>
     <string name="preferences_storage__clear_message_history">Șterge istoricul mesajelor?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Această acțiune va șterge definitiv tot istoricul mesajelor și fișierele media de pe dispozitiv mai vechi de %1$s.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Această acțiune va șterge definitiv toate conversațiile până la cele mai recente %1$s mesaje.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="few">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Această acțiune va șterge definitiv tot istoricul mesajelor și fișierele media de pe dispozitiv.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Sigur dorești să ștergi tot istoricul mesajelor?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Tot istoricul mesajelor va fi eliminat definitiv. Această acțiune nu poate fi anulată.</string>
@@ -3319,6 +3344,7 @@
     <string name="conversation_list_search_description">Caută</string>
     <string name="conversation_list__pinned">Fixată</string>
     <string name="conversation_list__chats">Conversații</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Poți fixa până la %1$d conversații</string>
 
     <!-- conversation_list_item_view -->
@@ -3368,6 +3394,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Lista destinatari</string>
     <string name="conversation_group_options__delivery">Trimitere</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">Conversație</string>
     <string name="conversation_group_options__broadcast">Difuzare</string>
 
@@ -3418,10 +3445,12 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Statistici</string>
     <string name="InsightsDashboardFragment__title">Statistici</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protocolul Signal a protejat automat %1$d%% din mesajele tale expediate în ultimele %2$d zile. Conversațiile dintre utilizatorii de Signal sunt întotdeauna criptate integral.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Anunță-ți prietenii</string>
     <string name="InsightsDashboardFragment__not_enough_data">Date insuficiente</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Statisticile sunt calculate pe baza mesajelor expediate în ultimele %1$d zile care nu au dispărut sau au fost șterse.</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
     <string name="InsightsDashboardFragment__start_a_conversation">Începe o conversație</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Începe să comunici în siguranță și să activezi funcții noi care depășesc limitările mesajelor SMS necriptate, invitând mai multe persoane de contact să se alăture la Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Aceste statistici au fost generate local pe dispozitivul tău și pot fi văzute doar de tine. Nu se transmit niciodată nicăieri.</string>
@@ -4356,7 +4385,7 @@
     <string name="HelpSettingsFragment__debug_log">Jurnal depanare</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termeni &amp; Politica de confidențialitate</string>
     <string name="HelpFragment__copyright_signal_messenger">Drepturi de autor Signal Messenger</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">Sub licența GPLv3</string> -->
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Calitate Media</string>
@@ -4489,6 +4518,7 @@
     <string name="ConversationSettingsFragment__group_link">Link grup</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Adaugă ca și contact</string>
     <string name="ConversationSettingsFragment__unmute">Activare sunet notificări</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversația este silențioasă până la %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Conversația este silențioasă pentru totdeauna</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numărul de telefon a fost copiat în clipboard.</string>

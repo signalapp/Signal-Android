@@ -183,7 +183,11 @@
     <string name="CameraContacts_recent_contacts">ಇತ್ತೀಚಿನ ಸಂಪರ್ಕಗಳು</string>
     <string name="CameraContacts_signal_contacts">Signal ಸಂಪರ್ಕಗಳು</string>
     <string name="CameraContacts_signal_groups">Signal ಗುಂಪುಗಳು</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">ನೀವು ಗರಿಷ್ಠ %1$d ಚಾಟ್‍‌ಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಬಹುದು.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal ಸ್ವೀಕೃತಿದಾರರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
     <string name="CameraContacts_no_signal_contacts">Signal ಸಂಪರ್ಕಗಳಿಲ್ಲ</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Signal ಸಂಪರ್ಕಗಳಿಗೆ ಫೋಟೋಗಳನ್ನು ಕಳುಹಿಸಲು ನೀವು ಕ್ಯಾಮರಾ ಬಟನ್ ಅನ್ನು ಮಾತ್ರ ಬಳಸಬಹುದು. </string>
@@ -1956,7 +1960,8 @@
     <string name="StickerPackPreviewActivity_untitled">ಶೀರ್ಷಿಕ ರಹಿತ</string>
     <string name="StickerPackPreviewActivity_unknown">ತಿಳಿದಿಲ್ಲ</string>
     <string name="StickerPackPreviewActivity_install">ಸ್ಥಾಪಿಸಿ</string>
-    <string name="StickerPackPreviewActivity_remove">ತೆಗೆದುಹಾಕಿ</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">ಸ್ಟಿಕ್ಕರ್‌‌ ಗಳು</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ಸ್ಟಿಕ್ಕರ್ ಪ್ಯಾಕ್ ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
 
@@ -2154,6 +2159,18 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">ಇನ್ನಷ್ಟು ಓದಿ</string>
 
     <!-- MessageNotifier -->
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d ಚಾಟ್‌ಗಳಲ್ಲಿ %1$d ಹೊಸ ಮೆಸೇಜ್‌ಗಳು</string>
     <string name="MessageNotifier_most_recent_from_s">ಇದರಿಂದ ಅತಿ ಇತ್ತೀಚಿನದು:%1$s</string>
     <string name="MessageNotifier_locked_message">ಲಾಕ್ ಮಾಡಿದ ಸಂದೇಶ</string>
@@ -2898,7 +2915,11 @@
     <string name="preferences_storage__delete_older_messages">ಹಳೆಯ ಮೆಸೇಜ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</string>
     <string name="preferences_storage__clear_message_history">ಸಂದೇಶ ಇತಿಹಾಸವನ್ನು ತೆರವುಗೊಳಿಸುವುದೇ?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$s ಗಿಂತ ಹಳೆಯದಾಗಿರುವ ಎಲ್ಲಾ ಮೆಸೇಜ್‌ನ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">ಇದು ಎಲ್ಲಾ ಚಾಟ್‌ಗಳನ್ನು %1$s ಅತ್ಯಂತ ಇತ್ತೀಚಿನ ಮೆಸೇಜ್‌ಗಳಿಗೆ ಶಾಶ್ವತವಾಗಿ ಟ್ರಿಮ್ ಮಾಡುತ್ತದೆ.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ಎಲ್ಲಾ ಮೆಸೇಜ್‌ಗಳ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತದೆ.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ನೀವು ಖಚಿತವಾಗಿ ಅಳಿಸಲು ಬಯಸುವಿರಾ?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಶಾಶ್ವತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ. ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.</string>
@@ -3240,6 +3261,7 @@
     <string name="conversation_list_search_description">ಹುಡುಕಿ</string>
     <string name="conversation_list__pinned">ಪಿನ್ ಮಾಡಲಾದ</string>
     <string name="conversation_list__chats">ಚಾಟ್‌‌ ಗಳು</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">ನೀವು %1$d ಚಾಟ್‌ಗಳನ್ನು ಮಾತ್ರ ಪಿನ್ ಮಾಡಬಹುದು</string>
 
     <!-- conversation_list_item_view -->
@@ -3288,6 +3310,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">ಸ್ವೀಕೃತದಾರರ ಪಟ್ಟಿ</string>
     <string name="conversation_group_options__delivery">ಡೆಲಿವರಿ</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">ಚಾಟ್</string>
     <string name="conversation_group_options__broadcast">ಪ್ರಸಾರ ಮಾಡಿ</string>
 
@@ -3338,10 +3361,12 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">ಒಳನೋಟಗಳು</string>
     <string name="InsightsDashboardFragment__title">ಒಳನೋಟಗಳು</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal ಪ್ರೊಟೋಕಾಲ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಕಳೆದ %2$d ದಿನಗಳಲ್ಲಿ ನಿಮ್ಮ %1$d%% ಹೊರಹೋಗುವ ಮೆಸೇಜ್‌ಗಳನ್ನು ರಕ್ಷಿಸಿದೆ. Signal ಬಳಕೆದಾರರ ನಡುವಿನ ಚಾಟ್‌ಗಳು ಯಾವತ್ತೂ ಎಂಡ್ ಟು ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಆಗಿರುತ್ತವೆ.</string>
     <string name="InsightsDashboardFragment__spread_the_word">ಪ್ರಚಾರಗೊಳಿಸಿ</string>
     <string name="InsightsDashboardFragment__not_enough_data">ಸಾಕಷ್ಟು ಡೇಟಾ ಇಲ್ಲ</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ನಿಮ್ಮ ಒಳನೋಟಗಳ ಪ್ರತಿಶತ ಪ್ರಮಾಣವನ್ನು ಕಳೆದ %1$d ದಿನಗಳಲ್ಲಿ ಅದೃಶ್ಯವಾಗಿಲ್ಲದ ಅಥವಾ ಅಳಿಸದ ಮೆಸೇಜ್‌ಗಳ ಆಧಾರದ ಮೇಲೆ ಲೆಕ್ಕಹಾಕಲಾಗುತ್ತದೆ.</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
     <string name="InsightsDashboardFragment__start_a_conversation">ಚಾಟ್ ಆರಂಭಿಸಿ</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">ಹೆಚ್ಚಿನ ಸಂಪರ್ಕಗಳನ್ನು Signal ಸೇರಿಕೊಳ್ಳಲು ಆಹ್ವಾನಿಸುವ ಮೂಲಕ ಸುರಕ್ಷಿತವಾಗಿ ಸಂವಹನವನ್ನು ಮಾಡಲು ಆರಂಭಿಸಿ ಮತ್ತು ಎಸ್‌ಎಂಎಸ್ ಸಂದೇಶಗಳಲ್ಲಿ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿಲ್ಲದಿರುವ ಮಿತಿಗಳನ್ನು ಮೀರುವ ಹೊಸ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ಈ ಅಂಕಿಅಂಶಗಳನ್ನು ಸ್ಥಳೀಯವಾಗಿ ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ರಚಿಸಲಾಗಿದೆ ಮತ್ತು ನೀವು ಮಾತ್ರ ನೋಡಬಹುದು. ಅವುಗಳನ್ನು ಎಲ್ಲಿಯೂ ರವಾನಿಸಲಾಗುವುದಿಲ್ಲ.</string>
@@ -4265,7 +4290,7 @@
     <string name="HelpSettingsFragment__debug_log">ಡೀಬಗ್ ಲಾಗ್</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">ನಿಯಮಗಳು &amp; ಖಾಸಗಿತನ ನೀತಿ</string>
     <string name="HelpFragment__copyright_signal_messenger">ಹಕ್ಕುಸ್ವಾಮ್ಯ Signal ಮೆಸೆಂಜರ್</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 ಅಡಿಯಲ್ಲಿ ಲೈಸೆನ್ಸ್‌ ಪಡೆದಿದೆ</string> -->
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">ಮಾಧ್ಯಮ ಗುಣಮಟ್ಟ</string>
@@ -4396,6 +4421,7 @@
     <string name="ConversationSettingsFragment__group_link">ಗುಂಪಿನ ಲಿಂಕ್</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">ಸಂಪರ್ಕವಾಗಿ ಸೇರಿಸಿ</string>
     <string name="ConversationSettingsFragment__unmute">ಅನ್‌ಮ್ಯೂಟ್ ಮಾಡಿ</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s ತನಕ ಚಾಟ್ ಮ್ಯೂಟ್ ಮಾಡಲಾಗಿದೆ</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">ಶಾಶ್ವತವಾಗಿ ಚಾಟ್ ಮ್ಯೂಟ್ ಮಾಡಲಾಗಿದೆ</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ಫೋನ್ ನಂಬರ್ ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ</string>

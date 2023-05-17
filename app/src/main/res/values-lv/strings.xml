@@ -183,7 +183,12 @@
     <string name="CameraContacts_recent_contacts">Pēdējie kontakti</string>
     <string name="CameraContacts_signal_contacts">Signal kontakti</string>
     <string name="CameraContacts_signal_groups">Signal grupas</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Jūs varat kopīgot ar maksimums %1$d sarunām.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="zero">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Izvēlēties Signal adresātus</string>
     <string name="CameraContacts_no_signal_contacts">Nav Signal kontaktu</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Jūs variet izmantot kameru tikai, lai sūtītu attēlus Signal kontaktiem. </string>
@@ -2021,7 +2026,8 @@
     <string name="StickerPackPreviewActivity_untitled">Nenosaukts</string>
     <string name="StickerPackPreviewActivity_unknown">Nezināms</string>
     <string name="StickerPackPreviewActivity_install">Instalēt</string>
-    <string name="StickerPackPreviewActivity_remove">Noņemt</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">Uzlīmes</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Neizdevās ielādēt uzlīmju paku</string>
 
@@ -2220,6 +2226,20 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Lasīt vairāk.</string>
 
     <!-- MessageNotifier -->
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="zero">%1$d messages</item>
+        <item quantity="one">%1$d message</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="zero">%1$d chats</item>
+        <item quantity="one">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d jaunas ziņas %2$d sarunās</string>
     <string name="MessageNotifier_most_recent_from_s">Pēdējā no: %1$s</string>
     <string name="MessageNotifier_locked_message">Slēgta ziņa</string>
@@ -2976,7 +2996,12 @@
     <string name="preferences_storage__delete_older_messages">Dzēst vecākas ziņas?</string>
     <string name="preferences_storage__clear_message_history">Dzēst ziņu vēsturi?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tādējādi no jūsu ierīces tiks neatgriezeniski dzēsta visa ziņu vēsture un multivides saturs, kas ir vecāks par %1$s.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Tiks saīsināta visu sarunu vēsture un tiks paturētas tikai %1$s jaunākās ziņas.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="zero">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tādējādi no jūsu ierīces tiks neatgriezeniski dzēsta visa ziņu vēsture un multivides saturs.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Vai tiešām vēlaties dzēst visu ziņu vēsturi?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Visu ziņu vēsture tiks neatgriezeniski dzēsta. Šo darbību nevar atsaukt.</string>
@@ -3319,6 +3344,7 @@
     <string name="conversation_list_search_description">Meklēt</string>
     <string name="conversation_list__pinned">Piesprausts</string>
     <string name="conversation_list__chats">Sarunas</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Iespējams piespraust tikai līdz %1$d sarunām</string>
 
     <!-- conversation_list_item_view -->
@@ -3368,6 +3394,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Adresātu saraksts</string>
     <string name="conversation_group_options__delivery">Piegāde</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">Saruna</string>
     <string name="conversation_group_options__broadcast">Pārraide</string>
 
@@ -3418,10 +3445,12 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Ieskati</string>
     <string name="InsightsDashboardFragment__title">Ieskati</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal protokols ir automātiski aizsargājis %1$d%% no no jūsu izejošajām ziņām pēdējo %2$d dienu laikā. Sarunas starp Signal lietotājiem vienmēr tiek šifrētas.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Izplati ziņu</string>
     <string name="InsightsDashboardFragment__not_enough_data">Nav pietiekami datu</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Jūsu Ieskatu procenti tiek aprēķināti balstoties uz izejošo ziņu skaita pēdējās %1$d dienās, kuras nav pagaisušas vai izdzēstas.</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
     <string name="InsightsDashboardFragment__start_a_conversation">Sākt sarunu</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Sāciet droši sazināties un iedzīviniet jaunas iespējas, kas pārsniedz nešifrēto SMS ziņu pielietojuma robežas, uzaicinot Signal pievienoties vairāk kontaktus.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Šī statistika tika ģenerēta lokāli uz jūsu ierīces, un tikai jūs varat to redzēt. Šie dati nekur netiek sūtīti.</string>
@@ -4356,7 +4385,7 @@
     <string name="HelpSettingsFragment__debug_log">Atkļūdošanas žurnāls</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Noteikumi &amp; privātuma politika</string>
     <string name="HelpFragment__copyright_signal_messenger">Autortiesības Signal Messenger</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">Licencēta saskaņā ar GPLv3</string> -->
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Multivides kvalitāte</string>
@@ -4489,6 +4518,7 @@
     <string name="ConversationSettingsFragment__group_link">Grupas saite</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Pievienot kā kontaktpersonu</string>
     <string name="ConversationSettingsFragment__unmute">Ieslēgt</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Sarunas paziņojumi izslēgti līdz %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Sarunas paziņojumi izslēgti uz visiem laikiem</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Tālruņa numurs ir nokopēts starpliktuvē.</string>

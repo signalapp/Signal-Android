@@ -183,7 +183,11 @@
     <string name="CameraContacts_recent_contacts">சமீபத்திய தொடர்புகள்</string>
     <string name="CameraContacts_signal_contacts">Signal தொடர்புகள்</string>
     <string name="CameraContacts_signal_groups">Signal குழுக்கள்</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">நீங்கள் அதிகபட்சம் %1$d சாட்களுடன் பகிரலாம்.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal பெறுநர்களைத் தேர்ந்தெடுக்கவும்</string>
     <string name="CameraContacts_no_signal_contacts">Signal தொடர்புகள் இல்லை</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Signal தொடர்புகளுக்கு புகைப்படங்களை அனுப்ப கேமரா பொத்தானை மட்டுமே நீங்கள் பயன்படுத்த முடியும். </string>
@@ -1956,7 +1960,8 @@
     <string name="StickerPackPreviewActivity_untitled">பெயரிடாத</string>
     <string name="StickerPackPreviewActivity_unknown">முன் தெரிந்திராத</string>
     <string name="StickerPackPreviewActivity_install">நிறுவு</string>
-    <string name="StickerPackPreviewActivity_remove">அகற்று</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">ஒட்டிப்படங்கள்</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ஸ்டிக்கர் பேக்கை ஏற்றுவதில் தோல்வி</string>
 
@@ -2154,6 +2159,18 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">மேலும் வாசிக்க</string>
 
     <!-- MessageNotifier -->
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d சாட்களில் %1$d புதிய செய்திகள்</string>
     <string name="MessageNotifier_most_recent_from_s">இதிலிருந்து மிக சமீபத்தியது: %1$s</string>
     <string name="MessageNotifier_locked_message">பூட்டிய செய்தி</string>
@@ -2898,7 +2915,11 @@
     <string name="preferences_storage__delete_older_messages">பழைய மெசேஜ்களை நீக்க வேண்டுமா?</string>
     <string name="preferences_storage__clear_message_history">செய்தி வரலாற்றை அழிப்பதா?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">இது உங்கள் டிவைஸில் இருந்து %1$s ஐ விட பழையதாக உள்ள அனைத்து மெசேஜ் வரலாறு மற்றும் மீடியாவை நிரந்தரமாக நீக்கும்.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">இது அனைத்து சாட்களையும் %1$s மிக சமீபத்திய மெசேஜ்களுக்கு நிரந்தரமாக குறைக்கும்.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">இது உங்கள் டிவைஸில் இருந்து அனைத்து மெசேஜ் வரலாறு மற்றும் மீடியாவை நிரந்தரமாக நீக்கும்.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">அனைத்து மெசேஜ் வரலாற்றையும் நீக்க விரும்புகிறீர்களா?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">அனைத்து மெசேஜ் வரலாறும் நிரந்தரமாக அகற்றப்படும். இந்த செயலைச் செயல்தவிர்க்க முடியாது.</string>
@@ -3240,6 +3261,7 @@
     <string name="conversation_list_search_description">தேடல்</string>
     <string name="conversation_list__pinned">முக்கியமானவை</string>
     <string name="conversation_list__chats">சாட்ஸ்</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">நீங்கள் %1$d சாட்ஸ் வரை மட்டுமே பின் செய்ய முடியும்</string>
 
     <!-- conversation_list_item_view -->
@@ -3288,6 +3310,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">பெறுநர்கள் பட்டியல்</string>
     <string name="conversation_group_options__delivery">விநியோகம்</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">சாட்</string>
     <string name="conversation_group_options__broadcast">ஒளிபரப்பு</string>
 
@@ -3338,10 +3361,12 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">நுண்ணறிவு</string>
     <string name="InsightsDashboardFragment__title">நுண்ணறிவு</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">கடந்த %2$d நாட்களில் Signal நெறிமுறை தானாகவே உங்களின் %1$d%% வெளிச்செல்லும் செய்திகளை பாதுகாத்தது. Signal பயனர்கள் இடையேயான சாட்ஸ் எப்போதும் எண்ட்-டு-எண்ட் குறியாக்கம் செய்யப்படுகின்றன.</string>
     <string name="InsightsDashboardFragment__spread_the_word">மற்றவர்களுக்குத் தெரியப்படுத்துங்கள்</string>
     <string name="InsightsDashboardFragment__not_enough_data">போதிய தரவு இல்லை</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">கடந்த %1$d நாட்களில் காணாமல் போகாத அல்லது நீக்கப்படாத வெளிச்செல்லும் செய்திகளின் அடிப்படையில் உங்கள் நுண்ணறிவு சதவீதம் கணக்கிடப்படுகிறது.</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
     <string name="InsightsDashboardFragment__start_a_conversation">புதிய சாட்டைத் தொடங்கவும்</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Signal-க்கு கூடுதல் தொடர்புகளை அழைப்பதன் மூலம் பாதுகாப்பாக தொடர்பு கொள்ளத் தொடங்குங்கள் மற்றும் மறையாக்கபடாத SMS செய்திகளின் வரம்புகளுக்கு அப்பாற்பட்ட புதிய அம்சங்களை இயலச் செய்யுங்கள்.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">இந்த புள்ளிவிவரங்கள் உங்கள் சாதனத்தில் உள்நாட்டில் உருவாக்கப்பட்டன, அவற்றை உங்களால் மட்டுமே காண முடியும். அவை ஒருபோதும் எங்கும் பரவுவதில்லை.</string>
@@ -4265,7 +4290,7 @@
     <string name="HelpSettingsFragment__debug_log">பிழைத்திருத்த பதிவு</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">விதிமுறைகள் &amp; ஆம்ப்; தனியுரிமைக் கொள்கை</string>
     <string name="HelpFragment__copyright_signal_messenger">பதிப்புரிமை Signal தூதர்</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 இன் கீழ் உரிமம் பெற்றது</string> -->
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">மீடியா தரம்</string>
@@ -4396,6 +4421,7 @@
     <string name="ConversationSettingsFragment__group_link">குழு இணைப்பு</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">கூட்டு ஒரு தொடர்பாக</string>
     <string name="ConversationSettingsFragment__unmute">ஒலி இயக்கு</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s வரை சாட் ஒலியடக்கப்பட்டது</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">சாட் நிரந்தரமாக ஒலியடக்கப்பட்டது</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">கிளிப்போர்டுக்கு தொலைபேசி எண் நகலெடுக்கப்பட்டது.</string>

@@ -183,7 +183,10 @@
     <string name="CameraContacts_recent_contacts">最近联系人</string>
     <string name="CameraContacts_signal_contacts">Signal 联系人</string>
     <string name="CameraContacts_signal_groups">Signal 群组</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">您最多可与 %1$d 个聊天分享。</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">选择 Signal 收件人</string>
     <string name="CameraContacts_no_signal_contacts">没有 Signal 联系人</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">仅可通过相机按钮来发送照片给 Signal 联系人。 </string>
@@ -1891,7 +1894,8 @@
     <string name="StickerPackPreviewActivity_untitled">未命名</string>
     <string name="StickerPackPreviewActivity_unknown">未知</string>
     <string name="StickerPackPreviewActivity_install">安装</string>
-    <string name="StickerPackPreviewActivity_remove">删除</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">表情</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">加载表情包失败</string>
 
@@ -2088,6 +2092,16 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">查看更多</string>
 
     <!-- MessageNotifier -->
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="other">%1$d chats</item>
+    </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d 个聊天中有 %1$d 条新消息</string>
     <string name="MessageNotifier_most_recent_from_s">最新消息来自：%1$s</string>
     <string name="MessageNotifier_locked_message">锁定消息</string>
@@ -2820,7 +2834,10 @@
     <string name="preferences_storage__delete_older_messages">删除更早消息？</string>
     <string name="preferences_storage__clear_message_history">要清除消息记录吗？</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">这将从您的设备中永久删除所有早于 %1$s的消息记录和媒体文件。</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">这将删减所有聊天，使之仅保留最近 %1$s 条消息。</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">这将从您的设备中永久删除所有消息记录和媒体文件。</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">您确定要删除所有消息记录吗？</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">所有消息记录将会被永久删除。此操作无法撤销。</string>
@@ -3161,6 +3178,7 @@
     <string name="conversation_list_search_description">搜索</string>
     <string name="conversation_list__pinned">已置顶</string>
     <string name="conversation_list__chats">聊天</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">您最多只能置顶%1$d个对话。</string>
 
     <!-- conversation_list_item_view -->
@@ -3208,6 +3226,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">接收人列表</string>
     <string name="conversation_group_options__delivery">送达</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">聊天</string>
     <string name="conversation_group_options__broadcast">广播</string>
 
@@ -3258,10 +3277,12 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">见解</string>
     <string name="InsightsDashboardFragment__title">见解</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">在过去 %2$d 天，Signal Protocol 自动为您保护了 %1$d%% 的传出消息。Signal 用户之间的聊天始终享受端对端加密保护。</string>
     <string name="InsightsDashboardFragment__spread_the_word">传播消息</string>
     <string name="InsightsDashboardFragment__not_enough_data">数据不足</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">您的“见解”中计算得到的百分比，来自过去 %1$d 天内未消失或删除的传出消息。</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
     <string name="InsightsDashboardFragment__start_a_conversation">发起聊天</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">邀请更多好友加入 Signal，可使用更多新功能，不受非加密短信的限制，开启安全沟通新旅程。</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">该统计信息为本地生成，仅对您自己可见，不会发布至其他地方。</string>
@@ -4174,7 +4195,7 @@
     <string name="HelpSettingsFragment__debug_log">调试日志</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">条款和隐私政策</string>
     <string name="HelpFragment__copyright_signal_messenger">版权所有 Signal Messenger</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__licenced_under_the_gplv3">根据 GPLv3 授权许可</string> -->
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">媒体质量</string>
@@ -4303,6 +4324,7 @@
     <string name="ConversationSettingsFragment__group_link">群组链接</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">添加为联系人</string>
     <string name="ConversationSettingsFragment__unmute">取消静音</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">聊天静音至 %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">聊天已永久静音</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">已复制手机号码至剪贴板。</string>
