@@ -6,7 +6,6 @@ import androidx.annotation.VisibleForTesting
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.MasterSecret
@@ -281,9 +280,11 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @JvmStatic
     fun runPostBackupRestoreTasks(database: net.zetetic.database.sqlcipher.SQLiteDatabase) {
       synchronized(SignalDatabase::class.java) {
-        database.withinTransaction { db ->
-          instance!!.onUpgrade(db, db.getVersion(), -1)
-          instance!!.markCurrent(db)
+        database.setForeignKeyConstraintsEnabled(false)
+        database.beginTransaction()
+        try {
+          instance!!.onUpgrade(database, database.getVersion(), -1)
+          instance!!.markCurrent(database)
           instance!!.messageTable.deleteAbandonedMessages()
           instance!!.messageTable.trimEntriesForExpiredMessages()
           instance!!.reactionTable.deleteAbandonedReactions()
@@ -293,6 +294,10 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS job_spec")
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS constraint_spec")
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS dependency_spec")
+          database.setTransactionSuccessful()
+        } finally {
+          database.endTransaction()
+          database.setForeignKeyConstraintsEnabled(true)
         }
 
         instance!!.rawWritableDatabase.close()
