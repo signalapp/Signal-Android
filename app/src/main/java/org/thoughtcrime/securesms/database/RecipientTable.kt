@@ -136,6 +136,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val EMAIL = "email"
     const val GROUP_ID = "group_id"
     const val DISTRIBUTION_LIST_ID = "distribution_list_id"
+    private const val CALL_LINK_ROOM_ID = "call_link_room_id"
     const val GROUP_TYPE = "group_type"
     const val BLOCKED = "blocked"
     private const val MESSAGE_RINGTONE = "message_ringtone"
@@ -252,7 +253,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $UNREGISTERED_TIMESTAMP INTEGER DEFAULT 0,
         $HIDDEN INTEGER DEFAULT 0,
         $REPORTING_TOKEN BLOB DEFAULT NULL,
-        $SYSTEM_NICKNAME TEXT DEFAULT NULL
+        $SYSTEM_NICKNAME TEXT DEFAULT NULL,
+        $CALL_LINK_ROOM_ID TEXT DEFAULT NULL
       )
       """
 
@@ -4574,7 +4576,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   enum class GroupType(val id: Int) {
-    NONE(0), MMS(1), SIGNAL_V1(2), SIGNAL_V2(3), DISTRIBUTION_LIST(4);
+    NONE(0), MMS(1), SIGNAL_V1(2), SIGNAL_V2(3), DISTRIBUTION_LIST(4), CALL_LINK(5);
 
     companion object {
       fun fromId(id: Int): GroupType {

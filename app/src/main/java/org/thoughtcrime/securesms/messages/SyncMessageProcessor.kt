@@ -1172,7 +1172,7 @@ object SyncMessageProcessor {
 
     log(envelopeTimestamp, "Synchronize call event call: $callId")
 
-    val call = SignalDatabase.calls.getCallById(callId, CallTable.CallConversationId.Peer(recipientId))
+    val call = SignalDatabase.calls.getCallById(callId, recipientId)
     if (call != null) {
       val typeMismatch = call.type !== type
       val directionMismatch = call.direction !== direction
@@ -1209,9 +1209,8 @@ object SyncMessageProcessor {
 
     val groupId: GroupId = GroupId.push(callEvent.conversationId.toByteArray())
     val recipientId = Recipient.externalGroupExact(groupId).id
-    val conversationId = CallTable.CallConversationId.Peer(recipientId)
 
-    val call = SignalDatabase.calls.getCallById(callId, CallTable.CallConversationId.Peer(recipientId))
+    val call = SignalDatabase.calls.getCallById(callId, recipientId)
 
     if (call != null) {
       if (call.type !== type) {
@@ -1222,7 +1221,7 @@ object SyncMessageProcessor {
         CallTable.Event.DELETE -> SignalDatabase.calls.deleteGroupCall(call)
         CallTable.Event.ACCEPTED -> {
           if (call.timestamp < callEvent.timestamp) {
-            SignalDatabase.calls.setTimestamp(call.callId, conversationId, callEvent.timestamp)
+            SignalDatabase.calls.setTimestamp(call.callId, recipientId, callEvent.timestamp)
           }
           if (callEvent.direction == SyncMessage.CallEvent.Direction.INCOMING) {
             SignalDatabase.calls.acceptIncomingGroupCall(call)
