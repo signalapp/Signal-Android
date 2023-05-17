@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.SignalBaseIdentityKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.SignalKyberPreKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.SignalSenderKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl;
@@ -333,12 +334,14 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
     SignalServiceAccountDataStoreImpl aciStore = new SignalServiceAccountDataStoreImpl(context,
                                                                                        new TextSecurePreKeyStore(localAci),
+                                                                                       new SignalKyberPreKeyStore(localAci),
                                                                                        new SignalIdentityKeyStore(baseIdentityStore, () -> SignalStore.account().getAciIdentityKey()),
                                                                                        new TextSecureSessionStore(localAci),
                                                                                        new SignalSenderKeyStore(context));
 
     SignalServiceAccountDataStoreImpl pniStore = new SignalServiceAccountDataStoreImpl(context,
                                                                                        new TextSecurePreKeyStore(localPni),
+                                                                                       new SignalKyberPreKeyStore(localPni),
                                                                                        new SignalIdentityKeyStore(baseIdentityStore, () -> SignalStore.account().getPniIdentityKey()),
                                                                                        new TextSecureSessionStore(localPni),
                                                                                        new SignalSenderKeyStore(context));
