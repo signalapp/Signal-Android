@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobmanager.JobTracker.JobListener
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil
 import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil.startWhenCapable
 import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
@@ -94,9 +95,16 @@ class IncomingMessageObserver(private val context: Application) {
 
     if (!SignalStore.account().fcmEnabled || SignalStore.internalValues().isWebsocketModeForced) {
       try {
-        startWhenCapable(context, Intent(context, ForegroundService::class.java))
+        ForegroundServiceUtil.start(context, Intent(context, ForegroundService::class.java))
       } catch (e: UnableToStartException) {
-        Log.w(TAG, "Unable to start foreground service for websocket!", e)
+        Log.w(TAG, "Unable to start foreground service for websocket. Deferring to background to try with blocking")
+        SignalExecutors.UNBOUNDED.execute {
+          try {
+            startWhenCapable(context, Intent(context, ForegroundService::class.java))
+          } catch (e: UnableToStartException) {
+            Log.w(TAG, "Unable to start foreground service for websocket!", e)
+          }
+        }
       }
     }
 

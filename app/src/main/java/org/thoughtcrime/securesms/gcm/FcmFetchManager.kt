@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
 object FcmFetchManager {
 
   private val TAG = Log.tag(FcmFetchManager::class.java)
-
+  private const val MAX_BLOCKING_TIME_MS = 500L
   private val EXECUTOR = SerialMonoLifoExecutor(SignalExecutors.UNBOUNDED)
 
   @Volatile
@@ -48,7 +48,7 @@ object FcmFetchManager {
       try {
         if (foreground) {
           Log.i(TAG, "Starting in the foreground.")
-          ForegroundServiceUtil.startWhenCapableOrThrow(context, Intent(context, FcmFetchForegroundService::class.java))
+          ForegroundServiceUtil.startWhenCapableOrThrow(context, Intent(context, FcmFetchForegroundService::class.java), MAX_BLOCKING_TIME_MS)
           startedForeground = true
         } else {
           Log.i(TAG, "Starting in the background.")
