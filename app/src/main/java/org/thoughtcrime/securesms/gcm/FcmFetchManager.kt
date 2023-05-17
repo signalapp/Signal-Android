@@ -72,6 +72,13 @@ object FcmFetchManager {
     return true
   }
 
+  @JvmStatic
+  fun isForegroundStarted(): Boolean {
+    synchronized(this) {
+      return startedForeground
+    }
+  }
+
   private fun fetch(context: Context) {
     retrieveMessages(context)
 
@@ -93,6 +100,25 @@ object FcmFetchManager {
         }
       }
     }
+  }
+
+  @JvmStatic
+  fun tryLegacyFallback(context: Context) {
+    synchronized(this) {
+      if (startedForeground) {
+        val performedReplace = EXECUTOR.enqueue { fetch(context) }
+
+        if (performedReplace) {
+          Log.i(TAG, "Legacy fallback: already have one running and one enqueued. Ignoring.")
+        } else {
+          activeCount++
+          Log.i(TAG, "Legacy fallback: Incrementing active count to $activeCount")
+        }
+        return
+      }
+    }
+    Log.i(TAG, "No foreground running, performing legacy fallback")
+    retrieveMessages(context)
   }
 
   @JvmStatic
