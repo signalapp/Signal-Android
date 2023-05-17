@@ -302,9 +302,7 @@ public class ComposeText extends EmojiEditText {
     addTextChangedListener(mentionValidatorWatcher);
 
     if (FeatureFlags.textFormatting()) {
-      if (FeatureFlags.textFormattingSpoilerSend()) {
-        spoilerRendererDelegate = new SpoilerRendererDelegate(this, true);
-      }
+      spoilerRendererDelegate = new SpoilerRendererDelegate(this, true);
 
       addTextChangedListener(new ComposeTextStyleWatcher());
 
@@ -323,10 +321,7 @@ public class ComposeText extends EmojiEditText {
           menu.add(0, R.id.edittext_italic, largestOrder, getContext().getString(R.string.TextFormatting_italic));
           menu.add(0, R.id.edittext_strikethrough, largestOrder, getContext().getString(R.string.TextFormatting_strikethrough));
           menu.add(0, R.id.edittext_monospace, largestOrder, getContext().getString(R.string.TextFormatting_monospace));
-
-          if (FeatureFlags.textFormattingSpoilerSend()) {
-            menu.add(0, R.id.edittext_spoiler, largestOrder, getContext().getString(R.string.TextFormatting_spoiler));
-          }
+          menu.add(0, R.id.edittext_spoiler, largestOrder, getContext().getString(R.string.TextFormatting_spoiler));
 
           return true;
         }

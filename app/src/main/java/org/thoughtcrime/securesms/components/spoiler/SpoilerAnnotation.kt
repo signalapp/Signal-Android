@@ -1,10 +1,8 @@
 package org.thoughtcrime.securesms.components.spoiler
 
-import android.graphics.Color
 import android.text.Annotation
 import android.text.Selection
 import android.text.Spannable
-import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.style.ClickableSpan
@@ -63,21 +61,15 @@ object SpoilerAnnotation {
 
     override fun onClick(widget: View) {
       revealedSpoilers.add(spoiler.value)
-      if (widget is TextView && Selection.getSelectionStart(widget.text) != -1) {
-        val text: Spannable = if (widget.text is Spannable) {
-          widget.text as Spannable
-        } else {
-          SpannableString(widget.text)
+
+      if (widget is TextView) {
+        val text = widget.text
+        if (text is Spannable) {
+          Selection.removeSelection(text)
         }
-        Selection.removeSelection(text)
-        widget.text = text
       }
     }
 
-    override fun updateDrawState(ds: TextPaint) {
-      if (!spoilerRevealed) {
-        ds.color = Color.TRANSPARENT
-      }
-    }
+    override fun updateDrawState(ds: TextPaint) = Unit
   }
 }
