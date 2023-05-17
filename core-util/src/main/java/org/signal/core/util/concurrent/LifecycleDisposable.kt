@@ -44,3 +44,5 @@ class LifecycleDisposable : DefaultLifecycleObserver {
     add(disposable)
   }
 }
+
+fun Disposable.addTo(lifecycleDisposable: LifecycleDisposable): Disposable = apply { lifecycleDisposable.add(this) }

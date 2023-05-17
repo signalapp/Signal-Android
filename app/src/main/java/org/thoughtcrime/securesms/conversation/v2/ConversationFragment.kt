@@ -24,6 +24,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.StringRes
 import androidx.core.app.ActivityCompat
@@ -31,6 +32,8 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.doOnNextLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -60,8 +63,8 @@ import org.thoughtcrime.securesms.badges.gifts.viewgift.sent.ViewSentGiftBottomS
 import org.thoughtcrime.securesms.components.AnimatingToggle
 import org.thoughtcrime.securesms.components.ComposeText
 import org.thoughtcrime.securesms.components.HidingLinearLayout
+import org.thoughtcrime.securesms.components.InputAwareConstraintLayout
 import org.thoughtcrime.securesms.components.InputPanel
-import org.thoughtcrime.securesms.components.InsetAwareConstraintLayout
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
 import org.thoughtcrime.securesms.components.SendButton
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
@@ -73,6 +76,7 @@ import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity
+import org.thoughtcrime.securesms.conversation.AttachmentKeyboardButton
 import org.thoughtcrime.securesms.conversation.BadDecryptLearnMoreDialog
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
 import org.thoughtcrime.securesms.conversation.ConversationIntents
@@ -93,6 +97,7 @@ import org.thoughtcrime.securesms.conversation.ui.edit.EditMessageHistoryDialog
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupCallViewModel
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewModel
+import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -119,6 +124,8 @@ import org.thoughtcrime.securesms.longmessage.LongMessageFragment
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory.create
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity
+import org.thoughtcrime.securesms.mediasend.Media
+import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
 import org.thoughtcrime.securesms.mms.AttachmentManager
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -215,8 +222,8 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
   }
 
-  private val container: InsetAwareConstraintLayout
-    get() = requireView() as InsetAwareConstraintLayout
+  private val container: InputAwareConstraintLayout
+    get() = requireView() as InputAwareConstraintLayout
 
   private val inputPanel: InputPanel
     get() = binding.conversationInputPanel.root
@@ -256,6 +263,8 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     presentActionBarMenu()
 
     observeConversationThread()
+
+    container.fragmentManager = childFragmentManager
   }
 
   override fun onResume() {
@@ -358,6 +367,12 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       post { sendButton.triggerSelectedChangedEvent() }
     }
 
+    val attachListener = { _: View ->
+      container.toggleInput(AttachmentKeyboardFragmentCreator, composeText)
+    }
+    binding.conversationInputPanel.attachButton.setOnClickListener(attachListener)
+    binding.conversationInputPanel.inlineAttachmentButton.setOnClickListener(attachListener)
+
     presentGroupCallJoinButton()
 
     binding.scrollToBottom.setOnClickListener {
@@ -369,6 +384,17 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     adapter.registerAdapterDataObserver(DataObserver(scrollToPositionDelegate))
+
+    val keyboardEvents = KeyboardEvents()
+    container.listener = keyboardEvents
+    requireActivity()
+      .onBackPressedDispatcher
+      .addCallback(
+        viewLifecycleOwner,
+        keyboardEvents
+      )
+
+    childFragmentManager.setFragmentResultListener(AttachmentKeyboardFragment.RESULT_KEY, viewLifecycleOwner, AttachmentKeyboardFragmentListener())
   }
 
   private fun calculateCharactersRemaining() {
@@ -630,9 +656,11 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
   }
 
-  private fun sendMessage(metricId: String? = null, scheduledDate: Long = -1) {
-    val slideDeck: SlideDeck? = if (attachmentManager.isAttachmentPresent) attachmentManager.buildSlideDeck() else null
-
+  private fun sendMessage(
+    metricId: String? = null,
+    scheduledDate: Long = -1,
+    slideDeck: SlideDeck? = if (attachmentManager.isAttachmentPresent) attachmentManager.buildSlideDeck() else null
+  ) {
     val send: Completable = viewModel.sendMessage(
       metricId = metricId,
       body = composeText.editableText.toString(),
@@ -1286,6 +1314,8 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
   //endregion Compose + Send Callbacks
 
+  //region Attachment + Media Keyboard
+
   private inner class AttachmentManagerListener : AttachmentManager.AttachmentListener {
     override fun onAttachmentChanged() {
       // TODO [cody] implement
@@ -1295,4 +1325,47 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       // TODO [cody] implement
     }
   }
+
+  private object AttachmentKeyboardFragmentCreator : InputAwareConstraintLayout.FragmentCreator {
+    override val id: Int = 1
+    override fun create(): Fragment = AttachmentKeyboardFragment()
+  }
+
+  private inner class AttachmentKeyboardFragmentListener : FragmentResultListener {
+    @Suppress("DEPRECATION")
+    override fun onFragmentResult(requestKey: String, result: Bundle) {
+      val button: AttachmentKeyboardButton? = result.getSerializable(AttachmentKeyboardFragment.BUTTON_RESULT) as? AttachmentKeyboardButton
+      val media: Media? = result.getParcelable(AttachmentKeyboardFragment.MEDIA_RESULT)
+
+      if (button != null) {
+        when (button) {
+          AttachmentKeyboardButton.GALLERY -> AttachmentManager.selectGallery(this@ConversationFragment, 1, viewModel.recipientSnapshot!!, composeText.textTrimmed, sendButton.selectedSendType, inputPanel.quote.isPresent)
+          AttachmentKeyboardButton.FILE -> AttachmentManager.selectDocument(this@ConversationFragment, 1)
+          AttachmentKeyboardButton.CONTACT -> AttachmentManager.selectContactInfo(this@ConversationFragment, 1)
+          AttachmentKeyboardButton.LOCATION -> AttachmentManager.selectLocation(this@ConversationFragment, 1, viewModel.recipientSnapshot!!.chatColors.asSingleColor())
+          AttachmentKeyboardButton.PAYMENT -> AttachmentManager.selectPayment(this@ConversationFragment, viewModel.recipientSnapshot!!)
+        }
+      } else if (media != null) {
+        startActivityForResult(MediaSelectionActivity.editor(requireActivity(), sendButton.selectedSendType, listOf(media), viewModel.recipientSnapshot!!.id, composeText.textTrimmed), 12)
+      }
+
+      container.hideInput()
+    }
+  }
+
+  private inner class KeyboardEvents : OnBackPressedCallback(false), InputAwareConstraintLayout.Listener {
+    override fun handleOnBackPressed() {
+      container.hideInput()
+    }
+
+    override fun onInputShown() {
+      isEnabled = true
+    }
+
+    override fun onInputHidden() {
+      isEnabled = false
+    }
+  }
+
+  //endregion
 }
