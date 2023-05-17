@@ -74,6 +74,7 @@ import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
+import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache;
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
@@ -521,11 +522,11 @@ public class MessageContentProcessor {
   private boolean handleGv2PreProcessing(@NonNull GroupId.V2 groupId, @NonNull SignalServiceContent content, @NonNull SignalServiceGroupV2 groupV2, @NonNull Recipient senderRecipient)
       throws IOException, GroupChangeBusyException
   {
-    GroupTable            groupDatabase = SignalDatabase.groups();
-    Optional<GroupRecord> possibleGv1   = groupDatabase.getGroupV1ByExpectedV2(groupId);
+    GroupTable  groupDatabase = SignalDatabase.groups();
+    GroupRecord possibleGv1   = GroupsV1MigratedCache.getV1GroupByV2Id(groupId);
 
-    if (possibleGv1.isPresent()) {
-      GroupsV1MigrationUtil.performLocalMigration(context, possibleGv1.get().getId().requireV1());
+    if (possibleGv1 != null) {
+      GroupsV1MigrationUtil.performLocalMigration(context, possibleGv1.getId().requireV1());
     }
 
     if (!updateGv2GroupFromServerOrP2PChange(content, groupV2)) {

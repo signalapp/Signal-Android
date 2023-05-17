@@ -77,6 +77,7 @@ import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupId.V1
 import org.thoughtcrime.securesms.groups.GroupId.V2
+import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
@@ -576,7 +577,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       return existing.get()
     } else if (groupId.isV1 && groups.groupExists(groupId.requireV1().deriveV2MigrationGroupId())) {
       throw LegacyGroupInsertException(groupId)
-    } else if (groupId.isV2 && groups.getGroupV1ByExpectedV2(groupId.requireV2()).isPresent) {
+    } else if (groupId.isV2 && GroupsV1MigratedCache.hasV1Group(groupId.requireV2())) {
       throw MissedGroupMigrationInsertException(groupId)
     } else {
       val values = ContentValues().apply {
@@ -641,10 +642,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
 
       if (groupId.isV2) {
-        val v1 = groups.getGroupV1ByExpectedV2(groupId.requireV2())
-        if (v1.isPresent) {
+        val v1 = GroupsV1MigratedCache.getV1GroupByV2Id(groupId.requireV2())
+        if (v1 != null) {
           db.setTransactionSuccessful()
-          return v1.get().recipientId
+          return v1.recipientId
         }
       }
 

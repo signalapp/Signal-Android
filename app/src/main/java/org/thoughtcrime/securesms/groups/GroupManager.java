@@ -32,6 +32,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -187,12 +188,15 @@ public final class GroupManager {
                                                                                @Nullable byte[] signedGroupChange)
       throws GroupChangeBusyException, IOException, GroupNotAMemberException
   {
-    return updateGroupFromServer(context, groupMasterKey, null, revision, timestamp, signedGroupChange);
+    try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
+      return updater.updateLocalToServerRevision(revision, timestamp, null, signedGroupChange);
+    }
   }
 
   @WorkerThread
   public static GroupsV2StateProcessor.GroupUpdateResult updateGroupFromServer(@NonNull Context context,
                                                                                @NonNull GroupMasterKey groupMasterKey,
+                                                                               @NonNull Optional<GroupRecord> groupRecord,
                                                                                @Nullable GroupSecretParams groupSecretParams,
                                                                                int revision,
                                                                                long timestamp,
@@ -200,7 +204,7 @@ public final class GroupManager {
       throws GroupChangeBusyException, IOException, GroupNotAMemberException
   {
     try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
-      return updater.updateLocalToServerRevision(revision, timestamp, groupSecretParams, signedGroupChange);
+      return updater.updateLocalToServerRevision(revision, timestamp, groupRecord, groupSecretParams, signedGroupChange);
     }
   }
 

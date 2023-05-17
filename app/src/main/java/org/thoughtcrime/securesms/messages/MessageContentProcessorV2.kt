@@ -9,6 +9,7 @@ import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.MessageLogEntry
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.PendingRetryReceiptModel
@@ -18,6 +19,7 @@ import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException
+import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobs.NullMessageSendJob
@@ -50,6 +52,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Conten
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.TypingMessage
 import java.io.IOException
+import java.util.Optional
 
 open class MessageContentProcessorV2(private val context: Context) {
 
@@ -224,22 +227,21 @@ open class MessageContentProcessorV2(private val context: Context) {
       senderRecipient: Recipient,
       groupSecretParams: GroupSecretParams? = null
     ): Gv2PreProcessResult {
-      val possibleV1OrV2Group = SignalDatabase.groups.getGroupV1OrV2ByExpectedV2(groupId)
-      val needsV1Migration = possibleV1OrV2Group.isPresent && possibleV1OrV2Group.get().isV1Group
-      if (needsV1Migration) {
-        GroupsV1MigrationUtil.performLocalMigration(context, possibleV1OrV2Group.get().id.requireV1())
+      val v1Group = GroupsV1MigratedCache.getV1GroupByV2Id(groupId)
+      if (v1Group != null) {
+        GroupsV1MigrationUtil.performLocalMigration(context, v1Group.id.requireV1())
       }
-
-      val groupUpdateResult = updateGv2GroupFromServerOrP2PChange(context, timestamp, groupV2, groupSecretParams)
+      val preUpdateGroupRecord = SignalDatabase.groups.getGroup(groupId)
+      val groupUpdateResult = updateGv2GroupFromServerOrP2PChange(context, timestamp, groupV2, preUpdateGroupRecord, groupSecretParams)
       if (groupUpdateResult == null) {
         log(timestamp, "Ignoring GV2 message for group we are not currently in $groupId")
         return Gv2PreProcessResult.IGNORE
       }
 
-      val groupRecord = if (groupUpdateResult.groupState == GroupsV2StateProcessor.GroupState.GROUP_UPDATED || needsV1Migration) {
-        SignalDatabase.groups.getGroup(groupId)
+      val groupRecord = if (groupUpdateResult.groupState == GroupsV2StateProcessor.GroupState.GROUP_CONSISTENT_OR_AHEAD) {
+        preUpdateGroupRecord
       } else {
-        possibleV1OrV2Group
+        SignalDatabase.groups.getGroup(groupId)
       }
 
       if (groupRecord.isPresent && !groupRecord.get().members.contains(senderRecipient.id)) {
@@ -270,12 +272,13 @@ open class MessageContentProcessorV2(private val context: Context) {
       context: Context,
       timestamp: Long,
       groupV2: SignalServiceProtos.GroupContextV2,
+      localRecord: Optional<GroupRecord>,
       groupSecretParams: GroupSecretParams? = null
     ): GroupsV2StateProcessor.GroupUpdateResult? {
       return try {
         val signedGroupChange: ByteArray? = if (groupV2.hasSignedGroupChange) groupV2.signedGroupChange else null
         val updatedTimestamp = if (signedGroupChange != null) timestamp else timestamp - 1
-        GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, groupSecretParams, groupV2.revision, updatedTimestamp, signedGroupChange)
+        GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, localRecord, groupSecretParams, groupV2.revision, updatedTimestamp, signedGroupChange)
       } catch (e: GroupNotAMemberException) {
         warn(timestamp, "Ignoring message for a group we're not in")
         null

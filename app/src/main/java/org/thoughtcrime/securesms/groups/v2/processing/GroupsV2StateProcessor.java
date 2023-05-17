@@ -266,8 +266,21 @@ public class GroupsV2StateProcessor {
                                                         @Nullable DecryptedGroupChange signedGroupChange)
         throws IOException, GroupNotAMemberException
     {
-      Optional<GroupRecord> localRecord = groupDatabase.getGroup(groupId);
+      return updateLocalGroupToRevision(revision, timestamp, groupDatabase.getGroup(groupId), signedGroupChange);
+    }
 
+    /**
+     * Using network where required, will attempt to bring the local copy of the group up to the revision specified.
+     *
+     * @param revision use {@link #LATEST} to get latest.
+     */
+    @WorkerThread
+    public GroupUpdateResult updateLocalGroupToRevision(final int revision,
+                                                        final long timestamp,
+                                                        @NonNull Optional<GroupRecord> localRecord,
+                                                        @Nullable DecryptedGroupChange signedGroupChange)
+        throws IOException, GroupNotAMemberException
+    {
       if (localIsAtLeast(localRecord, revision)) {
         return new GroupUpdateResult(GroupState.GROUP_CONSISTENT_OR_AHEAD, null);
       }

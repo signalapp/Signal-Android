@@ -13,6 +13,7 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.DatabaseId;
 import org.signal.core.util.LongSerializer;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -69,6 +70,16 @@ public class RecipientId implements Parcelable, Comparable<RecipientId>, Databas
     return from(null, identifier);
   }
 
+  public static @NonNull RecipientId from(@NonNull GroupId groupId) {
+    RecipientId recipientId = RecipientIdCache.INSTANCE.get(groupId);
+    if (recipientId == null) {
+      recipientId = SignalDatabase.recipients().getOrInsertFromPossiblyMigratedGroupId(groupId);
+      if (groupId.isV2()) {
+        RecipientIdCache.INSTANCE.put(groupId, recipientId);
+      }
+    }
+    return recipientId;
+  }
   /**
    * Used for when you have a string that could be either a UUID or an e164. This was primarily
    * created for interacting with protocol stores.

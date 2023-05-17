@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint;
@@ -107,7 +108,7 @@ public final class PushProcessMessageJob extends BaseJob {
           int localRevision = SignalDatabase.groups().getGroupV2Revision(groupId.requireV2());
 
           if (signalServiceGroupContext.getRevision() > localRevision ||
-              SignalDatabase.groups().getGroupV1ByExpectedV2(groupId.requireV2()).isPresent())
+              GroupsV1MigratedCache.hasV1Group(groupId.requireV2()))
           {
             Log.i(TAG, "Adding network constraint to group-related job.");
             builder.addConstraint(NetworkConstraint.KEY)

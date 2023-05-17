@@ -6,6 +6,7 @@ import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException
+import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -126,7 +127,7 @@ class PushProcessMessageJobV2 private constructor(
         if (groupId.isV2) {
           val localRevision = groups.getGroupV2Revision(groupId.requireV2())
 
-          if (groupContext.revision > localRevision || groups.getGroupV1ByExpectedV2(groupId.requireV2()).isPresent) {
+          if (groupContext.revision > localRevision || GroupsV1MigratedCache.hasV1Group(groupId)) {
             Log.i(TAG, "Adding network constraint to group-related job.")
             builder.addConstraint(NetworkConstraint.KEY).setLifespan(TimeUnit.DAYS.toMillis(30))
           }

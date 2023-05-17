@@ -336,7 +336,7 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalPossiblyMigratedGroup(@NonNull GroupId groupId) {
-    return Recipient.resolved(SignalDatabase.recipients().getOrInsertFromPossiblyMigratedGroupId(groupId));
+    return Recipient.resolved(RecipientId.from(groupId));
   }
 
   /**

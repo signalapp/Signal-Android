@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.LinkedHashMap;
@@ -48,6 +49,14 @@ final class RecipientIdCache {
     Optional<ServiceId> serviceId   = recipient.getServiceId();
 
     put(recipientId, e164.orElse(null), serviceId.orElse(null));
+  }
+
+  synchronized @Nullable RecipientId get(@NonNull GroupId groupId) {
+    return ids.get(groupId);
+  }
+
+  synchronized void put(@NonNull GroupId groupId, @NonNull RecipientId recipientId) {
+    ids.put(groupId, recipientId);
   }
 
   synchronized @Nullable RecipientId get(@Nullable ServiceId serviceId, @Nullable String e164) {

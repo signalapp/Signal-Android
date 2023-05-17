@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupId.Push
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
+import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -669,7 +670,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   fun create(groupMasterKey: GroupMasterKey, groupState: DecryptedGroup, force: Boolean = false): GroupId.V2? {
     val groupId = GroupId.v2(groupMasterKey)
 
-    if (!force && getGroupV1ByExpectedV2(groupId).isPresent) {
+    if (!force && GroupsV1MigratedCache.hasV1Group(groupId)) {
       throw MissedGroupMigrationInsertException(groupId)
     } else if (force) {
       Log.w(TAG, "Forcing the creation of a group even though we already have a V1 ID!")
@@ -688,7 +689,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
    */
   fun fixMissingMasterKey(groupMasterKey: GroupMasterKey) {
     val groupId = GroupId.v2(groupMasterKey)
-    if (getGroupV1ByExpectedV2(groupId).isPresent) {
+    if (GroupsV1MigratedCache.hasV1Group(groupId)) {
       Log.w(TAG, "There already exists a V1 group that should be migrated into this group. But if the recipient already exists, there's not much we can do here.")
     }
 

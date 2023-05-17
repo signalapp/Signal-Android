@@ -591,7 +591,7 @@ object SyncMessageProcessor {
     val dataMessage: DataMessage = sent.message
     val groupId: GroupId.V2? = dataMessage.groupV2.groupId
 
-    if (MessageContentProcessorV2.updateGv2GroupFromServerOrP2PChange(context, envelope.timestamp, dataMessage.groupV2) == null) {
+    if (MessageContentProcessorV2.updateGv2GroupFromServerOrP2PChange(context, envelope.timestamp, dataMessage.groupV2, SignalDatabase.groups.getGroup(GroupId.v2(dataMessage.groupV2.groupMasterKey))) == null) {
       log(envelope.timestamp, "Ignoring GV2 message for group we are not currently in $groupId")
     }
   }
