@@ -879,7 +879,10 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
     override fun onReactionClicked(multiselectPart: MultiselectPart, messageId: Long, isMms: Boolean) {
       context ?: return
-      ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(parentFragmentManager, null)
+      val reactionsTag = "REACTIONS"
+      if (parentFragmentManager.findFragmentByTag(reactionsTag) == null) {
+        ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(parentFragmentManager, reactionsTag)
+      }
     }
 
     override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) {

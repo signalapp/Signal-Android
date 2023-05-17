@@ -1836,8 +1836,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void onReactionClicked(@NonNull MultiselectPart multiselectPart, long messageId, boolean isMms) {
       if (getParentFragment() == null) return;
+      final String REACTIONS_TAG = "REACTIONS";
 
-      ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(getParentFragmentManager(), null);
+      if (getParentFragmentManager().findFragmentByTag(REACTIONS_TAG) == null) {
+        ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(getParentFragmentManager(), REACTIONS_TAG);
+      }
     }
 
     @Override
