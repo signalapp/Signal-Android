@@ -2028,6 +2028,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void goToMediaPreview(ConversationItem parent, View sharedElement, MediaIntentFactory.MediaPreviewArgs args) {
       if (listener.isInBubble()) {
+        Intent intent = ConversationIntents.createBuilder(requireActivity(), recipient.getId(), threadId)
+                                           .withStartingPosition(list.getChildAdapterPosition(parent))
+                                           .build();
+
+        requireActivity().startActivity(intent);
         requireActivity().startActivity(MediaIntentFactory.create(requireActivity(), args.skipSharedElementTransition(true)));
         return;
       }
@@ -2046,15 +2051,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       requireActivity().setExitSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
       ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), sharedElement, MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME);
 
-      final Intent mediaPreviewIntent = MediaIntentFactory.create(requireActivity(), args);
-
-      if (listener.isInBubble()) {
-        mediaPreviewIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                    Intent.FLAG_ACTIVITY_NEW_TASK |
-                                    Intent.FLAG_ACTIVITY_SINGLE_TOP);
-      }
-
-      requireActivity().startActivity(mediaPreviewIntent, options.toBundle());
+      requireActivity().startActivity(MediaIntentFactory.create(requireActivity(), args), options.toBundle());
     }
 
     @Override
