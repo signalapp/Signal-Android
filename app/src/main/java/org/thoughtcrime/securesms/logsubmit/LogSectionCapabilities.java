@@ -34,8 +34,6 @@ public final class LogSectionCapabilities implements LogSection {
     RecipientRecord.Capabilities   globalCapabilities = SignalDatabase.recipients().getCapabilities(self.getId());
 
     StringBuilder builder = new StringBuilder().append("-- Local").append("\n")
-                                               .append("GV2                : ").append(localCapabilities.getGv2()).append("\n")
-                                               .append("GV1 Migration      : ").append(localCapabilities.getGv1Migration()).append("\n")
                                                .append("Sender Key         : ").append(localCapabilities.getSenderKey()).append("\n")
                                                .append("Announcement Groups: ").append(localCapabilities.getAnnouncementGroup()).append("\n")
                                                .append("Change Number      : ").append(localCapabilities.getChangeNumber()).append("\n")
