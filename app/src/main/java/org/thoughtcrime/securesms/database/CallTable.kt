@@ -875,6 +875,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
                 AND $TABLE_NAME.$PEER = c.$PEER
                 AND $TABLE_NAME.$TIMESTAMP - $TIME_WINDOW <= c.$TIMESTAMP
                 AND $TABLE_NAME.$TIMESTAMP >= c.$TIMESTAMP
+                AND (
+                  ($TABLE_NAME.$EVENT = c.$EVENT AND $TABLE_NAME.$EVENT = ${Event.serialize(Event.MISSED)}) OR
+                  ($TABLE_NAME.$EVENT != ${Event.serialize(Event.MISSED)} AND c.$EVENT != ${Event.serialize(Event.MISSED)})
+                )
                 AND ${filterClause.where}
               ORDER BY
                 $TIMESTAMP DESC
@@ -889,6 +893,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
                 AND $TABLE_NAME.$PEER = c.$PEER
                 AND c.$TIMESTAMP - $TIME_WINDOW <= $TABLE_NAME.$TIMESTAMP
                 AND c.$TIMESTAMP >= $TABLE_NAME.$TIMESTAMP
+                AND (
+                  ($TABLE_NAME.$EVENT = c.$EVENT AND $TABLE_NAME.$EVENT = ${Event.serialize(Event.MISSED)}) OR
+                  ($TABLE_NAME.$EVENT != ${Event.serialize(Event.MISSED)} AND c.$EVENT != ${Event.serialize(Event.MISSED)})
+                )
                 AND ${filterClause.where}
             ) as children,
             (
