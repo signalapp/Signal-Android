@@ -71,7 +71,7 @@
     <string name="AttachmentKeyboard_gallery">المعرض</string>
     <string name="AttachmentKeyboard_file">ملف</string>
     <string name="AttachmentKeyboard_contact">جهة الاتصال</string>
-    <string name="AttachmentKeyboard_location">الموقع الجغرافي</string>
+    <string name="AttachmentKeyboard_location">الموقع</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">يحتاج Signal إلى إذن لإظهار الصور ومقاطع الفيديو الخاصة بك.</string>
     <string name="AttachmentKeyboard_give_access">منح الصلاحيات</string>
     <string name="AttachmentKeyboard_payment">عملية الدفع</string>

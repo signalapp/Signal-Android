@@ -183,7 +183,7 @@
     <string name="CameraContacts_recent_contacts">最近联系人</string>
     <string name="CameraContacts_signal_contacts">Signal 联系人</string>
     <string name="CameraContacts_signal_groups">Signal 群组</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">您最多可与 %1$d 个聊天分享。</string>
     <string name="CameraContacts_select_signal_recipients">选择 Signal 收件人</string>
     <string name="CameraContacts_no_signal_contacts">没有 Signal 联系人</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">仅可通过相机按钮来发送照片给 Signal 联系人。 </string>
@@ -478,25 +478,25 @@
     <!-- Action shown to allow a user to update their application because it has expired -->
     <string name="ConversationFragment__update_build">升级 Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">重新注册 Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">清除筛选</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">没有未读的聊天记录</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="other">要删除选定的聊天吗？</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="other">这将永久删除全部 %1$d 个已选聊天。</item>
     </plurals>
     <string name="ConversationListFragment_deleting">正在删除</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">正在删除选定的聊天…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="other">%1$d 个聊天已存档</item>
     </plurals>
     <string name="ConversationListFragment_undo">撤消</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="other">已将 %1$d 个聊天移至收件箱</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="other">标为已读</item>
@@ -528,7 +528,7 @@
     <string name="ConversationListItem_key_exchange_message">密钥交换消息</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">已存档聊天（%1$d）</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">已验证</string>
@@ -1455,7 +1455,7 @@
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">要参与此群组对话并向其成员分享您的昵称和头像吗？</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">升级此群组来激活@提及和管理员新功能，将邀请未在此群分享名称和头像的成员入群。</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">由于人数太多，此旧版群组已无法使用。人数上限为%1$d。</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">要继续与%1$s聊天并与其分享您的昵称和头像吗？</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">是否加入此群组并与之分享您的名字和头像？接受邀请前群成员无法知道您是否阅读了他们发来的消息。</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">要加入此群组并与群组成员分享您的名称和照片吗？在您接受之前，您将不会看到群组成员的消息。</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">是否加入此群组？接受邀请前群成员无法知道您是否阅读了他们发来的消息。</string>
@@ -1764,7 +1764,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">您尝试注册此号码的次数过多，请在 %1$s 后再试。</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">无法连接到 Signal 服务，请检查网络连接并重试。</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">无法请求验证码。请检查互联网连接并重试。</string>
     <string name="RegistrationActivity_non_standard_number_format">非标准号码格式</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">您输入的号码（%1$s）似乎是非标准格式。\n\n您要输入的是 %2$s 吗？</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - 电话号码格式</string>
@@ -2088,7 +2088,7 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">查看更多</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d 个聊天中有 %1$d 条新消息</string>
     <string name="MessageNotifier_most_recent_from_s">最新消息来自：%1$s</string>
     <string name="MessageNotifier_locked_message">锁定消息</string>
     <string name="MessageNotifier_message_delivery_failed">消息发送失败。</string>
@@ -2158,7 +2158,7 @@
     <string name="SearchToolbar_search">搜索</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">搜索未读聊天</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">搜索聊天、联系人和消息</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">关闭</string>
@@ -2376,7 +2376,7 @@
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
     <string name="ConversationParentFragment__bluetooth_permission_denied">蓝牙权限被拒</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">请启用“附近的设备”权限以便使用蓝牙录制语音消息。</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
     <string name="ConversationParentFragment__open_settings">打开设置</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
@@ -2499,7 +2499,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">查看完整聊天</string>
     <string name="load_more_header__loading">正在加载</string>
 
     <!-- media_overview_activity -->
@@ -2776,7 +2776,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">付款锁</string>
     <string name="preferences__payments_beta">付款（Beta 版）</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">聊天长度限制</string>
     <string name="preferences__keep_messages">保留消息</string>
     <string name="preferences__clear_message_history">清除消息记录</string>
     <string name="preferences__linked_devices">已关联设备</string>
@@ -2820,7 +2820,7 @@
     <string name="preferences_storage__delete_older_messages">删除更早消息？</string>
     <string name="preferences_storage__clear_message_history">要清除消息记录吗？</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">这将从您的设备中永久删除所有早于 %1$s的消息记录和媒体文件。</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">这将删减所有聊天，使之仅保留最近 %1$s 条消息。</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">这将从您的设备中永久删除所有消息记录和媒体文件。</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">您确定要删除所有消息记录吗？</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">所有消息记录将会被永久删除。此操作无法撤销。</string>
@@ -3208,7 +3208,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">接收人列表</string>
     <string name="conversation_group_options__delivery">送达</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <string name="conversation_group_options__conversation">聊天</string>
     <string name="conversation_group_options__broadcast">广播</string>
 
     <!-- text_secure_normal -->
@@ -3258,11 +3258,11 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">见解</string>
     <string name="InsightsDashboardFragment__title">见解</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">在过去 %2$d 天，Signal Protocol 自动为您保护了 %1$d%% 的传出消息。Signal 用户之间的聊天始终享受端对端加密保护。</string>
     <string name="InsightsDashboardFragment__spread_the_word">传播消息</string>
     <string name="InsightsDashboardFragment__not_enough_data">数据不足</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">您的“见解”中计算得到的百分比，来自过去 %1$d 天内未消失或删除的传出消息。</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <string name="InsightsDashboardFragment__start_a_conversation">发起聊天</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">邀请更多好友加入 Signal，可使用更多新功能，不受非加密短信的限制，开启安全沟通新旅程。</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">该统计信息为本地生成，仅对您自己可见，不会发布至其他地方。</string>
     <string name="InsightsDashboardFragment__encrypted_messages">加密消息</string>
@@ -3499,7 +3499,7 @@
     <string name="Recipient_unknown">未知</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">重新注册账户</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
     <string name="preferences_account_update_signal">升级 Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
@@ -3507,13 +3507,13 @@
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
     <string name="preferences_account_delete_all_data_confirmation_title">是否删除所有数据？</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">这将重置应用并删除所有消息。应用将会在这个过程完成后关闭。</string>
     <!-- Confirmation action to proceed with application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_proceed">继续</string>
     <!-- Confirmation action to cancel application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_cancel">取消</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">无法删除数据</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">转移或还原帐户</string>
@@ -4303,8 +4303,8 @@
     <string name="ConversationSettingsFragment__group_link">群组链接</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">添加为联系人</string>
     <string name="ConversationSettingsFragment__unmute">取消静音</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">聊天静音至 %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">聊天已永久静音</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">已复制手机号码至剪贴板。</string>
     <string name="ConversationSettingsFragment__phone_number">手机号码</string>
     <string name="ConversationSettingsFragment__get_badges">欢迎给 Signal 捐款，在个人资料中显示捐款徽章。点击徽章了解详情。</string>
@@ -4565,16 +4565,16 @@
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">升级 Signal</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">此 Signal 版本已过期，请立即更新以继续使用 Signal。</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
     <string name="UpdateSignalExpiredDialog__update_action">更新</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
     <string name="UpdateSignalExpiredDialog__cancel_action">取消</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">设备未注册</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">此设备已注销。请重新注册以继续在此设备上使用 Signal。</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
     <string name="ReregisterSignalDialog__reregister_action">重新注册</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
@@ -5784,7 +5784,7 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">删除</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="other">删除 %1$d 个通话？</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">为我删除</string>
@@ -5881,7 +5881,7 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">通话详情</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">添加通话名称</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -5889,14 +5889,14 @@
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">分享链接</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">删除通话链接</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">分享</string>
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">颜色</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">请只将您的二维码和链接分享给信任的人。分享之后，对方将能看到您的用户名并开始与您聊天。</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
     <string name="UsernameLinkSettings_username_copied_toast">用户名已复制</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
@@ -5906,11 +5906,11 @@
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
     <string name="UsernameLinkSettings_done_button_label">完成</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">二维码</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">扫描</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">请扫描您的联系人设备上的二维码。</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">颜色</string>
 

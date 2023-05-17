@@ -183,7 +183,7 @@
     <string name="CameraContacts_recent_contacts">Hiljutised kontaktid</string>
     <string name="CameraContacts_signal_contacts">Signali kontaktid</string>
     <string name="CameraContacts_signal_groups">Signali grupid</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Sa saad jagada maksimaalselt %1$d vestlusega.</string>
     <string name="CameraContacts_select_signal_recipients">Vali Signali saajad</string>
     <string name="CameraContacts_no_signal_contacts">Signali kontaktid puuduvad</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Sa saad kasutada vaid kaameranuppu, et saata fotosid Signali kontaktidele. </string>
@@ -485,29 +485,29 @@
     <!-- Action shown to allow a user to update their application because it has expired -->
     <string name="ConversationFragment__update_build">Uuenda Signalit</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">Registreeri Signal uuesti</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Eemalda filter</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Lugemata vestlusi ei ole</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="one">Kas kustutada valitud vestlus?</item>
+        <item quantity="other">Kas kustutada valitud vestlused?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="one">See kustutab valitud vestluse jäädavalt.</item>
+        <item quantity="other">See kustutab kõik %1$d valitud vestlust jäädavalt.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Kustutan</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Valitud vestluste kustutamine …</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Chat archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="one">Vestlus arhiveeritud</item>
+        <item quantity="other">%1$d vestlust arhiveeritud</item>
     </plurals>
     <string name="ConversationListFragment_undo">Võta tagasi</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="one">Vestlus postkasti liigutatud</item>
+        <item quantity="other">%1$d vestlust postkasti liigutatud</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Loetuks</item>
@@ -542,7 +542,7 @@
     <string name="ConversationListItem_key_exchange_message">Võtmevahetussõnum</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">Arhiveeritud vestlused (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">Kontrollitud</string>
@@ -1507,7 +1507,7 @@
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Kas jätkata vestlust selle grupiga ja jagada sinu nime ning fotot grupi liikmetele?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uuenda seda gruppi, et aktiveerida uus funktsionaalsus nagu @mainimised ja administraatorid. Liikmed, kes pole selles grupis jaganud enda nime ja fotot kutsutakse liituma.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Seda vana gruppi ei saa rohkem kasutada, sest see on liiga suur. Maksimaalne grupi suurus on %1$d.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Kas jätkata seda vestlust isikuga %1$s ning jagada temaga sinu nime ja fotot?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Kas soovid selle grupiga liituda ja jagada enda nime ning pilti selle liikmetega? Nad ei tea, et oled seda sõnumit näinud enne kui oled sellega nõustunud.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Kas soovid selle grupiga liituda ning jagada enda nime ja pilti selle liikmetega? Sa ei näe nende sõnumeid enne kui oled sellega nõustunud.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Kas liitud grupiga? Nad ei tea, et oled nende sõnumeid näinud, kuni nõustud.</string>
@@ -1828,7 +1828,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Oled proovinud seda numbrit liiga palju kordi registreerida. Palun proovi uuesti %1$s pärast.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Teenusega ei saadud ühendust. Palun kontrolli võrguühendust ja proovi uuesti.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">Kinnituskoodi küsimine nurjus. Palun kontrolli oma võrguühendust ja proovi uuesti.</string>
     <string name="RegistrationActivity_non_standard_number_format">Ebastandardne numbriformaat</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Sisestatud number (%1$s) tundub olevat mittestandardses formaadis.\n\nKas mõtlesid hoopis %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - telefoninumbri formaat</string>
@@ -2154,7 +2154,7 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Loe rohkem</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uut sõnumit %2$d vestluses</string>
     <string name="MessageNotifier_most_recent_from_s">Viimatine kontaktilt %1$s</string>
     <string name="MessageNotifier_locked_message">Lukustatud sõnum</string>
     <string name="MessageNotifier_message_delivery_failed">Sõnumi kohaletoimetamine ebaõnnestus.</string>
@@ -2224,7 +2224,7 @@
     <string name="SearchToolbar_search">Otsi</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Otsi lugemata vestluste hulgast</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Otsi vestlusi, kontakte ja sõnumeid</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Sulge</string>
@@ -2254,9 +2254,9 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Seade ei ole enam registreeritud</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">See seade ei ole enam registreeritud. Tõenäoliselt seepärast, et sa registreerisid oma telefoninumbri Signalis teises seadmes.</string>
     <!-- Action in reminder banner that will take user to re-register -->
-    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
+    <string name="UnauthorizedReminder_reregister_action">Registreeri seade uuesti</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">Oled selles seadmes Signalist välja logitud.</string>
@@ -2446,7 +2446,7 @@
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
     <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetoothi luba tagasi lükatud</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Aktiveeri „Lähedalasuvate seadmete“ luba, et Bluetoothi abil häälsõnumeid salvestada.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
     <string name="ConversationParentFragment__open_settings">Ava sätted</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
@@ -2575,7 +2575,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">Vaata täielikku vestlust</string>
     <string name="load_more_header__loading">Laadimine</string>
 
     <!-- media_overview_activity -->
@@ -2854,7 +2854,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Makse kinnitus</string>
     <string name="preferences__payments_beta">Maksed (beeta)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">Vestluse pikkuse limiit</string>
     <string name="preferences__keep_messages">Säilita sõnumid</string>
     <string name="preferences__clear_message_history">Tühjenda sõnumiajalugu</string>
     <string name="preferences__linked_devices">Lingitud seadmed</string>
@@ -2898,7 +2898,7 @@
     <string name="preferences_storage__delete_older_messages">Kustutad vanemad sõnumid?</string>
     <string name="preferences_storage__clear_message_history">Kas tühjendada sõnumiajalugu?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Sellega kustutad seadmest püsivalt kõik sõnumid ja meediafailid, mis on vanemad kui %1$s.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">See kärbib kõik vestlused %1$s viimase sõnumini.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Sellega kustutad seadmest püsivalt kõik sõnumid ja meediafailid.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Kas soovid tõesti kogu sõnumiajalugu kustutada?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Kogu sõnumiajalugu kustutatakse püsivalt. Seda tegevust ei saa tagasi võtta.</string>
@@ -3288,7 +3288,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Saajate nimekiri</string>
     <string name="conversation_group_options__delivery">Kohaletoimetamine</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <string name="conversation_group_options__conversation">Vestlus</string>
     <string name="conversation_group_options__broadcast">Kanna üle</string>
 
     <!-- text_secure_normal -->
@@ -3338,11 +3338,11 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Pilguheit</string>
     <string name="InsightsDashboardFragment__title">Pilguheit</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signali protokoll kaitses automaatselt %1$d%% väljuvat sõnumit viimase %2$d päeva jooksul. Vestlused Signali kasutajate vahel on alati otspunktkrüptitud.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Levita sõna</string>
     <string name="InsightsDashboardFragment__not_enough_data">Pole piisavalt andmeid</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Sinu Pilguheidu protsent on arvutatud %1$d päeva väljuvate sõnumite põhjal, mis ei ole haihtunud ega kustutatud.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <string name="InsightsDashboardFragment__start_a_conversation">Aalusta vestlust</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Alusta turvalist suhtlemist ning luba uued funktsioonid, mis võimaldavad krüpteerimata SMS-sõnumitest rohkemat, kutsudes rohkem kontakte Signaliga liituma.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">See statistika on antud seadmes kohalikult genereeritud ning ainult sina näed seda. Seda ei saadeta mitte kunagi mitte kuhugi.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">Krüpteeritud sõnumid</string>
@@ -3586,7 +3586,7 @@
     <string name="Recipient_unknown">Tundmatu</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">Registreeri konto uuesti</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
     <string name="preferences_account_update_signal">Uuenda Signalit</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
@@ -3594,13 +3594,13 @@
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
     <string name="preferences_account_delete_all_data_confirmation_title">Kas kustutada kõik andmed?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">See lähtestab rakenduse ja kustutab kõik sõnumid. Rakendus sulgub pärast selle protsessi lõpuleviimist.</string>
     <!-- Confirmation action to proceed with application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_proceed">Jätka</string>
     <!-- Confirmation action to cancel application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_cancel">Loobu</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">Andmete kustutamine nurjus</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Kanna üle või taasta konto</string>
@@ -4396,8 +4396,8 @@
     <string name="ConversationSettingsFragment__group_link">Grupilink</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Lisa kontaktina</string>
     <string name="ConversationSettingsFragment__unmute">Eemalda vaigistus</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Vestlus vaigistatud kuni %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Vestlus jäädavalt vaigistatud</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefoninumber lõikepuhvrisse kopeeritud.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefoninumber</string>
     <string name="ConversationSettingsFragment__get_badges">Toeta Signalit ja teeni oma profiilile märke. Toksa märki, et lähemalt lugeda.</string>
@@ -4662,16 +4662,16 @@
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Uuenda Signalit</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">See Signali versioon on aegunud. Signali kasutamise jätkamiseks uuenda nüüd.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
     <string name="UpdateSignalExpiredDialog__update_action">Uuenda</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
     <string name="UpdateSignalExpiredDialog__cancel_action">Loobu</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">Seade ei ole registreeritud</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">See seade ei ole enam registreeritud. Registreeri uuesti, et jätkata Signali kasutamist selles seadmes.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
     <string name="ReregisterSignalDialog__reregister_action">Eemalda registreerimine</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
@@ -5903,8 +5903,8 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">Kustuta</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="one">Kas kustutada %1$d kõne?</item>
+        <item quantity="other">Kas kustutada %1$d kõnet?</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">Kustuta minu jaoks</string>
@@ -6002,7 +6002,7 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">Kõne andmed</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Lisa kõne nimi</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6010,14 +6010,14 @@
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">Jaga linki</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">Kustuta kõne link</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Jaga</string>
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">Värv</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">Jaga oma QR-koodi ja linki ainult inimestega, kes usaldad. Need, kellega neid jagad, näevad sinu kasutajanime ja saavad sinuga vestlust alustada.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
     <string name="UsernameLinkSettings_username_copied_toast">Kasutajanimi kopeeritud</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
@@ -6027,11 +6027,11 @@
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
     <string name="UsernameLinkSettings_done_button_label">Tehtud</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">Kood</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">Skanni</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Skanni QR-kood oma kontakti seadmest.</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Värv</string>
 

@@ -183,7 +183,7 @@
     <string name="CameraContacts_recent_contacts">Недавние контакты</string>
     <string name="CameraContacts_signal_contacts">Контакты Signal</string>
     <string name="CameraContacts_signal_groups">Группы Signal</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Можно поделиться максимум с %1$d чатами.</string>
     <string name="CameraContacts_select_signal_recipients">Выберите получателей Signal</string>
     <string name="CameraContacts_no_signal_contacts">Нет контактов Signal</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Кнопкой камеры можно отправлять фотографии только тем контактам, которые являются пользователями Signal. </string>
@@ -499,37 +499,37 @@
     <!-- Action shown to allow a user to update their application because it has expired -->
     <string name="ConversationFragment__update_build">Обновить Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">Повторно зарегистрироваться в Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Очистить фильтр</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Нет непрочитанных чатов</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="few">Delete selected chats?</item>
-        <item quantity="many">Delete selected chats?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="one">Удалить выбранный чат?</item>
+        <item quantity="few">Удалить выбранные чаты?</item>
+        <item quantity="many">Удалить выбранные чаты?</item>
+        <item quantity="other">Удалить выбранные чаты?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="few">This will permanently delete all %1$d selected chats.</item>
-        <item quantity="many">This will permanently delete all %1$d selected chats.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="one">Это навсегда удалит выбранный чат.</item>
+        <item quantity="few">Это навсегда удалит все %1$d выбранные чата.</item>
+        <item quantity="many">Это навсегда удалит все %1$d выбранных чатов.</item>
+        <item quantity="other">Это навсегда удалит все %1$d выбранного чата.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Удаление</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Удаляем выбранные чаты…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Chat archived</item>
-        <item quantity="few">%1$d chats archived</item>
-        <item quantity="many">%1$d chats archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="one">Чат архивирован</item>
+        <item quantity="few">%1$d чата архивированы</item>
+        <item quantity="many">%1$d чатов архивированы</item>
+        <item quantity="other">%1$d чата архивированы</item>
     </plurals>
     <string name="ConversationListFragment_undo">Отменить</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="few">Moved %1$d chats to inbox</item>
-        <item quantity="many">Moved %1$d chats to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="one">Чат перемещён во входящие</item>
+        <item quantity="few">%1$d чата перемещены во входящие</item>
+        <item quantity="many">%1$d чатов перемещены во входящие</item>
+        <item quantity="other">%1$d чата перемещены во входящие</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Прочитанные</item>
@@ -570,7 +570,7 @@
     <string name="ConversationListItem_key_exchange_message">Сообщение обмена ключами</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">Архивированные чаты (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">Подтверждён</string>
@@ -1611,7 +1611,7 @@
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Продолжить ваш чат с этой группой и открыть ваше имя и фото её участникам?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Обновите эту группу, чтобы активировать такие новые функции, как @упоминания и администраторы групп. Участники, которые ещё не открыли свои имена или фото этой группе получат приглашение присоединиться.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Эта Старая группа больше не может быть использована, потому что она слишком большая. Максимальный размер группы — %1$d.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Продолжить ваш чат с %1$s и открыть ваши имя и фото этому человеку?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и открыть ваше имя и фото её участникам? Они не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Присоединиться к этой группе и открыть ваше имя и фото её участникам? Вы не увидите их сообщения, пока не примете запрос.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе? Её участники не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
@@ -1956,7 +1956,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Вы сделали слишком много попыток зарегистрировать этот номер. Пожалуйста, попробуйте ещё раз через %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Не удается подключиться к сервису. Пожалуйста, проверьте подключение к сети и повторите попытку.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">Не удаётся запросить код подтверждения. Пожалуйста, проверьте ваше подключение к интернету и попробуйте ещё раз.</string>
     <string name="RegistrationActivity_non_standard_number_format">Нестандартный номер телефона</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Номер, который вы ввели (%1$s), похоже, не в стандартном формате.\n\nВы имели в виду %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Формат номера телефона</string>
@@ -2286,7 +2286,7 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Читать далее</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новое(-ых) сообщение(-я) в %2$d чате(-ах)</string>
     <string name="MessageNotifier_most_recent_from_s">Последнее от: %1$s</string>
     <string name="MessageNotifier_locked_message">Сообщение скрыто</string>
     <string name="MessageNotifier_message_delivery_failed">Доставка сообщения не удалась.</string>
@@ -2356,7 +2356,7 @@
     <string name="SearchToolbar_search">Поиск</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Поиск непрочитанных чатов</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Поиск по чатам, контактам и сообщениям</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Закрыть</string>
@@ -2586,7 +2586,7 @@
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
     <string name="ConversationParentFragment__bluetooth_permission_denied">Разрешение Bluetooth отключено</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Пожалуйста, включите разрешение «Устройства Bluetooth поблизости», чтобы использовать Bluetooth во время записи голосовых сообщений.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
     <string name="ConversationParentFragment__open_settings">Открыть настройки</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
@@ -2727,7 +2727,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">Посмотреть полный чат</string>
     <string name="load_more_header__loading">Загрузка</string>
 
     <!-- media_overview_activity -->
@@ -3010,7 +3010,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Блокировка платежей</string>
     <string name="preferences__payments_beta">Платежи (бета)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">Предел длины чата</string>
     <string name="preferences__keep_messages">Хранить сообщения</string>
     <string name="preferences__clear_message_history">Очистить историю сообщений</string>
     <string name="preferences__linked_devices">Привязанные устройства</string>
@@ -3054,7 +3054,7 @@
     <string name="preferences_storage__delete_older_messages">Удалить старые сообщения?</string>
     <string name="preferences_storage__clear_message_history">Очистить историю сообщений?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Все сообщения и медиафайлы, которые старее, чем %1$s, будут безвозвратно удалены с вашего устройства.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Все чаты будут безвозвратно обрезаны до %1$s самых новых сообщений.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Все сообщения и медиафайлы будут безвозвратно удалены с вашего устройства.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Вы действительно хотите удалить всю историю сообщений?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Вся история сообщений будет безвозвратно удалена. Это действие невозможно отменить.</string>
@@ -3448,7 +3448,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Список получателей</string>
     <string name="conversation_group_options__delivery">Доставка</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <string name="conversation_group_options__conversation">Чат</string>
     <string name="conversation_group_options__broadcast">Вещание</string>
 
     <!-- text_secure_normal -->
@@ -3498,11 +3498,11 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Выводы</string>
     <string name="InsightsDashboardFragment__title">Выводы</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol автоматически защитил %1$d%% ваших исходящих сообщения(-ий) за последние %2$d дня(-ей). Чаты между пользователями Signal всегда защищены сквозным шифрованием.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Расскажите другим</string>
     <string name="InsightsDashboardFragment__not_enough_data">Недостаточно данных</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ваш процент в «Выводах» считается на основе исходящих сообщений, которые не исчезли и не были удалены за последние %1$d дней.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <string name="InsightsDashboardFragment__start_a_conversation">Начать чат</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Начните общаться безопасно и включите новые функции, которые выходят за пределы ограничений незащищённых SMS, приглашая больше контактов присоединиться к Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Эта статистика была сгенерирована локально на вашем устройстве и видна только вам. Она никогда никуда не передаётся.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">Зашифрованных сообщений</string>
@@ -3760,7 +3760,7 @@
     <string name="Recipient_unknown">Неизвестный</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">Повторно зарегистрировать учётную запись</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
     <string name="preferences_account_update_signal">Обновить Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
@@ -3768,13 +3768,13 @@
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
     <string name="preferences_account_delete_all_data_confirmation_title">Удалить все данные?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Приложение будет сброшено, и все ваши сообщения будут удалены. После завершения этого процесса приложение закроется.</string>
     <!-- Confirmation action to proceed with application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_proceed">Продолжить</string>
     <!-- Confirmation action to cancel application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_cancel">Отменить</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">Не удалось удалить данные</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Перенести или восстановить учётную запись</string>
@@ -4582,8 +4582,8 @@
     <string name="ConversationSettingsFragment__group_link">Ссылка на группу</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Добавить в контакты</string>
     <string name="ConversationSettingsFragment__unmute">Включить звук</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Чат отключён до %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Чат отключён навсегда</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Номер телефона был скопирован в буфер обмена.</string>
     <string name="ConversationSettingsFragment__phone_number">Номер телефона</string>
     <string name="ConversationSettingsFragment__get_badges">Получайте значки для своего профиля, поддерживая Signal. Нажмите на значок, чтобы узнать больше.</string>
@@ -4856,16 +4856,16 @@
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Обновить Signal</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">Эта версия Signal устарела. Обновитесь сейчас, чтобы и дальше использовать Signal.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
     <string name="UpdateSignalExpiredDialog__update_action">Обновить</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
     <string name="UpdateSignalExpiredDialog__cancel_action">Отменить</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">Устройство не зарегистрировано</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">Это устройство больше не зарегистрировано. Зарегистрируйтесь повторно, чтобы и дальше использовать Signal на этом устройстве.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
     <string name="ReregisterSignalDialog__reregister_action">Повторно зарегистрироваться</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
@@ -6141,10 +6141,10 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">Удалить</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="few">Delete %1$d calls?</item>
-        <item quantity="many">Delete %1$d calls?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="one">Удалить %1$d звонок?</item>
+        <item quantity="few">Удалить %1$d звонка?</item>
+        <item quantity="many">Удалить %1$d звонков?</item>
+        <item quantity="other">Удалить %1$d звонка?</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">Удалить для меня</string>
@@ -6244,7 +6244,7 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">Подробности звонка</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Добавить имя звонка</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6252,14 +6252,14 @@
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">Поделиться ссылкой</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">Удалить ссылку на звонок</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Поделиться</string>
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">Цвет</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">Передавайте ваш QR-код и ссылку только тем людям, которым вы доверяете. При передаче другие смогут увидеть ваше имя пользователя и начать чат с вами.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
     <string name="UsernameLinkSettings_username_copied_toast">Имя пользователя скопировано</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
@@ -6269,11 +6269,11 @@
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
     <string name="UsernameLinkSettings_done_button_label">Готово</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">Код</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">Сканировать</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Просканируйте QR-код на устройстве собеседника.</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Цвет</string>
 

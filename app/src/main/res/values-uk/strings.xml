@@ -183,7 +183,7 @@
     <string name="CameraContacts_recent_contacts">Нещодавні контакти</string>
     <string name="CameraContacts_signal_contacts">Контакти Signal</string>
     <string name="CameraContacts_signal_groups">Групи Signal</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Ви можете поділитися максимум із %1$d чатами.</string>
     <string name="CameraContacts_select_signal_recipients">Оберіть одержувача Signal</string>
     <string name="CameraContacts_no_signal_contacts">Немає контактів Signal</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Ви можете використовувати кнопку Камера лише для відправлення фото контактам Signal. </string>
@@ -499,37 +499,37 @@
     <!-- Action shown to allow a user to update their application because it has expired -->
     <string name="ConversationFragment__update_build">Оновити Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">Перереєструватись у Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Очистити фільтр</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Немає непрочитаних чатів</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="few">Delete selected chats?</item>
-        <item quantity="many">Delete selected chats?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="one">Видалити вибраний чат?</item>
+        <item quantity="few">Видалити вибрані чати?</item>
+        <item quantity="many">Видалити вибрані чати?</item>
+        <item quantity="other">Видалити вибрані чати?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="few">This will permanently delete all %1$d selected chats.</item>
-        <item quantity="many">This will permanently delete all %1$d selected chats.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="one">%1$d вибраний чат буде видалено назавжди.</item>
+        <item quantity="few">Усі %1$d вибрані чати буде видалено назавжди.</item>
+        <item quantity="many">Усі %1$d вибраних чатів буде видалено назавжди.</item>
+        <item quantity="other">Усі %1$d вибраного чату буде видалено назавжди.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Видалення</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Видаляємо вибрані чати…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Chat archived</item>
-        <item quantity="few">%1$d chats archived</item>
-        <item quantity="many">%1$d chats archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="one">Заархівовано %1$d чат</item>
+        <item quantity="few">Заархівовано %1$d чати</item>
+        <item quantity="many">Заархівовано %1$d чатів</item>
+        <item quantity="other">Заархівовано %1$d чату</item>
     </plurals>
     <string name="ConversationListFragment_undo">Відмінити</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="few">Moved %1$d chats to inbox</item>
-        <item quantity="many">Moved %1$d chats to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="one">До вхідних перенесено %1$d чат</item>
+        <item quantity="few">До вхідних перенесено %1$d чати</item>
+        <item quantity="many">До вхідних перенесено %1$d чатів</item>
+        <item quantity="other">До вхідних перенесено %1$d чату</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Прочитати</item>
@@ -570,7 +570,7 @@
     <string name="ConversationListItem_key_exchange_message">Повідомлення обміну ключам</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">Архівні чати (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">Завірено</string>
@@ -1611,7 +1611,7 @@
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Продовжувати спілкуватися з цією групою та ділитися своїм ім’ям та фото з її учасниками?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Оновіть цю групу, щоб отримати доступ до нових можливостей як-до @згадування та адміністратори. Учасники, які не поділились своїми іменами чи фотографіями у цій групі, будуть запрошені приєднатись.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ця Застаріла Група більше не може використовуватись, тому що вона занадто велика. Максимальний розмір групи це - %1$d.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Продовжити спілкування в чаті з користувачем %1$s та поділитись іменем і фотографією?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Приєднатися до цієї групи та поділитися своїм ім’ям та фото з її учасниками? Вони не знатимуть, що ви бачили їхні повідомлення, поки ви не приймете.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Приєднатися до цієї групи та поділитися своїм ім’ям і фото з її учасниками? Ви не будете бачити повідомлення групи, доки не погодитесь.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Приєднатись до групи? Вони не дізнаються, що ви бачили їх повідомлення допоки ви не приймете запит.</string>
@@ -1956,7 +1956,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Ви зробили забагато спроб зареєструвати цей номер. Будь ласка, повторіть через %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Немає з\'єднання із сервером. Перевірте чи наявність доступу до Інтернет та спробуйте знову.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">Не вдається надіслати запит на код підтвердження. Перевірте підключення до мережі та спробуйте знову.</string>
     <string name="RegistrationActivity_non_standard_number_format">Нестандартний формат номеру</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Введене число (%1$s) виглядає нестандартним.\n\nВи мали на увазі %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android — Формат телефонних номерів</string>
@@ -2286,7 +2286,7 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Більше</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">Нові повідомлення (%1$d) у кількох чатах (%2$d)</string>
     <string name="MessageNotifier_most_recent_from_s">Останнє від: %1$s</string>
     <string name="MessageNotifier_locked_message">Заблоковане повідомлення</string>
     <string name="MessageNotifier_message_delivery_failed">Збій доставки повідомлення.</string>
@@ -2356,7 +2356,7 @@
     <string name="SearchToolbar_search">Пошук</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Пошук непрочитаних чатів</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Пошук чатів, контактів і повідомлень</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Закрити</string>
@@ -2586,7 +2586,7 @@
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
     <string name="ConversationParentFragment__bluetooth_permission_denied">Доступ до Bluetooth не отримано</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Увімкніть дозвіл на пристрої поблизу, щоб використовувати Bluetooth для запису голосового повідомлення.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
     <string name="ConversationParentFragment__open_settings">До налаштувань</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
@@ -2727,7 +2727,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">Переглянути повний чат</string>
     <string name="load_more_header__loading">Завантаження</string>
 
     <!-- media_overview_activity -->
@@ -3010,7 +3010,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Захист платежів</string>
     <string name="preferences__payments_beta">Платежі (Бета)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">Обмеження розміру чату</string>
     <string name="preferences__keep_messages">Зберігати повідомлення</string>
     <string name="preferences__clear_message_history">Очистити історію повідомлень</string>
     <string name="preferences__linked_devices">Прив\'язані пристрої</string>
@@ -3054,7 +3054,7 @@
     <string name="preferences_storage__delete_older_messages">Видаляти старіші повідомлення?</string>
     <string name="preferences_storage__clear_message_history">Очистити історію повідомлень?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Усі повідомлення і медіа, які старіші ніж %1$s, будуть безповоротно видалені з вашого пристрою.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Ця дія скоротить усі чати до %1$s останніх повідомлень без можливості відновлення.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Усі повідомлення та медіа будуть безповоротно видалені з вашого пристрою.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ви дійсно хочете видалити всю історію повідомлень?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Усю історію повідомлень буде безповоротно видалено. Цю дію неможливо скасувати.</string>
@@ -3448,7 +3448,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Список одержувачів</string>
     <string name="conversation_group_options__delivery">Доставка</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <string name="conversation_group_options__conversation">Чат</string>
     <string name="conversation_group_options__broadcast">Трансляція</string>
 
     <!-- text_secure_normal -->
@@ -3498,11 +3498,11 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Висновки</string>
     <string name="InsightsDashboardFragment__title">Висновки</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol автоматично захистив %1$d%% надісланих вами повідомлень за останні %2$d дн. Чати між користувачами Signal завжди захищені наскрізним шифруванням.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Поширити</string>
     <string name="InsightsDashboardFragment__not_enough_data">Недостатньо даних</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ваш відсоток в \"Висновках\" вважається на основі вихідних повідомлень, які не зникли або не були видалені за останні %1$d</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <string name="InsightsDashboardFragment__start_a_conversation">Розпочати чат</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Почніть спілкуватися безпечно і включіть нові функції, які виходять за межі обмежень незашифрованих SMS, запрошуючи більше контактів приєднатися до Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ця статистика була згенерована локально на вашому пристрої і її видно тільки вам. Вона ніколи нікуди не передається.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">Зашифровані повідомлення</string>
@@ -3760,7 +3760,7 @@
     <string name="Recipient_unknown">Невідомо</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">Перереєструвати акаунт</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
     <string name="preferences_account_update_signal">Оновити Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
@@ -3768,13 +3768,13 @@
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
     <string name="preferences_account_delete_all_data_confirmation_title">Видалити усі дані?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Ця дія скине налаштування застосунку і видалить усі повідомлення. Після видалення застосунок закриється.</string>
     <!-- Confirmation action to proceed with application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_proceed">Продовжити</string>
     <!-- Confirmation action to cancel application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_cancel">Скасувати</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">Не вдалося видалити дані</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Перенесення або відновлення акаунту</string>
@@ -4582,8 +4582,8 @@
     <string name="ConversationSettingsFragment__group_link">Групове посилання</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Додати як контакт</string>
     <string name="ConversationSettingsFragment__unmute">Сповіщати</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Сповіщення чату вимкнені до %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Сповіщення чату вимкнені назавжди</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Номер телефону скопійовано в буфер обміну.</string>
     <string name="ConversationSettingsFragment__phone_number">Номер телефону</string>
     <string name="ConversationSettingsFragment__get_badges">Отримайте значки для свого профілю, підтримуючи Signal. Торкніться значка, щоб дізнатися більше.</string>
@@ -4856,16 +4856,16 @@
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Оновити Signal</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">Ця версія Signal застаріла. Оновіть версію, щоб і надалі користуватися застосунком.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
     <string name="UpdateSignalExpiredDialog__update_action">Оновити</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
     <string name="UpdateSignalExpiredDialog__cancel_action">Скасувати</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">Пристрій не зареєстровано</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">Цей пристрій більше не зареєстровано. Перереєструйтеся, щоб і надалі використовувати Signal на цьому пристрої.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
     <string name="ReregisterSignalDialog__reregister_action">Перереєструватись</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
@@ -6141,10 +6141,10 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">Видалити</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="few">Delete %1$d calls?</item>
-        <item quantity="many">Delete %1$d calls?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="one">Видалити %1$d виклик?</item>
+        <item quantity="few">Видалити %1$d виклики?</item>
+        <item quantity="many">Видалити %1$d викликів?</item>
+        <item quantity="other">Видалити %1$d виклику?</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">Видалити для мене</string>
@@ -6244,7 +6244,7 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">Деталі виклику</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Додати назву дзвінка</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
@@ -6252,14 +6252,14 @@
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">Поділитися посиланням</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">Видалити посилання на виклик</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Поділитися</string>
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">Колір</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">Діліться QR-кодом і посиланням лише з людьми, яким ви довіряєте. Якщо ви поділитесь, користувач зможе побачити ваше ім\'я в застосунку і розпочати з вами чат.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
     <string name="UsernameLinkSettings_username_copied_toast">Ім’я користувача скопійовано</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
@@ -6269,11 +6269,11 @@
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
     <string name="UsernameLinkSettings_done_button_label">Готово</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">Код</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">Сканувати</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Проскануйте QR-код на пристрої вашого контакту.</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Колір</string>
 
