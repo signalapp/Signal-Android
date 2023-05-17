@@ -135,7 +135,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       "CREATE UNIQUE INDEX IF NOT EXISTS group_recipient_id_index ON $TABLE_NAME ($RECIPIENT_ID);",
       "CREATE UNIQUE INDEX IF NOT EXISTS expected_v2_id_index ON $TABLE_NAME ($EXPECTED_V2_ID);",
       "CREATE UNIQUE INDEX IF NOT EXISTS group_distribution_id_index ON $TABLE_NAME($DISTRIBUTION_ID);"
-    )
+    ) + MembershipTable.CREATE_INDEXES
 
     private val GROUP_PROJECTION = arrayOf(
       GROUP_ID,
@@ -190,10 +190,14 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         CREATE TABLE $TABLE_NAME (
             $ID INTEGER PRIMARY KEY,
             $GROUP_ID TEXT NOT NULL,
-            $RECIPIENT_ID INTEGER NOT NULL,
+            $RECIPIENT_ID INTEGER NOT NULL REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
             UNIQUE($GROUP_ID, $RECIPIENT_ID)
         )
       """
+
+      val CREATE_INDEXES = arrayOf(
+        "CREATE INDEX IF NOT EXISTS group_membership_recipient_id ON $TABLE_NAME ($RECIPIENT_ID)"
+      )
     }
   }
 
@@ -213,44 +217,22 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       .query(select, query.whereArgs)
       .use { cursor ->
         return if (cursor.moveToFirst()) {
-          var refreshCursor = false
           val groupRecord = getGroup(cursor)
           if (groupRecord.isPresent && RemappedRecords.getInstance().areAnyRemapped(groupRecord.get().members)) {
             val groupId = groupRecord.get().id
             val remaps = RemappedRecords.getInstance().buildRemapDescription(groupRecord.get().members)
             Log.w(TAG, "Found a group with remapped recipients in it's membership list! Updating the list. GroupId: $groupId, Remaps: $remaps", true)
 
-            val oldToNew: List<Pair<RecipientId, RecipientId?>> = groupRecord.get().members.map {
-              it to RemappedRecords.getInstance().getRecipient(it).orElse(null)
-            }.filterNot { (old, new) -> new == null || old == new }
+            val oldToNew: List<Pair<RecipientId, RecipientId>> = groupRecord.get().members
+              .map { it to RemappedRecords.getInstance().getRecipient(it).orElse(null) }
+              .filterNot { (old, new) -> new == null || old == new }
 
-            var updateCount = 0
             if (oldToNew.isNotEmpty()) {
               writableDatabase.withinTransaction { db ->
-                for ((old, new) in oldToNew) {
-                  updateCount += db.update(MembershipTable.TABLE_NAME)
-                    .values(MembershipTable.RECIPIENT_ID to new!!.serialize())
-                    .where("${MembershipTable.GROUP_ID} = ? AND ${MembershipTable.RECIPIENT_ID} = ?", groupId, old)
-                    .run(conflictStrategy = SQLiteDatabase.CONFLICT_IGNORE)
-
-                  if (updateCount == 0) {
-                    db.delete(MembershipTable.TABLE_NAME)
-                      .where("${MembershipTable.GROUP_ID} = ? AND ${MembershipTable.RECIPIENT_ID} = ?", groupId, old)
-                      .run()
-                  }
-                }
+                oldToNew.forEach { remapRecipient(it.first, it.second) }
               }
             }
 
-            if (updateCount > 0) {
-              Log.i(TAG, "Successfully updated $updateCount rows. GroupId: $groupId, Remaps: $remaps", true)
-              refreshCursor = true
-            } else {
-              Log.w(TAG, "Failed to update any rows. GroupId: $groupId, Remaps: $remaps", true)
-            }
-          }
-
-          if (refreshCursor) {
             readableDatabase.query(select, query.whereArgs).use { refreshedCursor ->
               if (refreshedCursor.moveToFirst()) {
                 getGroup(refreshedCursor)
@@ -1131,13 +1113,31 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
-    writableDatabase
-      .update(MembershipTable.TABLE_NAME)
-      .values(RECIPIENT_ID to toId.serialize())
-      .where("${MembershipTable.RECIPIENT_ID} = ?", fromId)
-      .run(conflictStrategy = SQLiteDatabase.CONFLICT_IGNORE)
+    // Remap all recipients that would not result in conflicts
+    writableDatabase.execSQL(
+      """
+        UPDATE ${MembershipTable.TABLE_NAME} AS parent
+        SET ${MembershipTable.RECIPIENT_ID} = ?
+        WHERE
+          ${MembershipTable.RECIPIENT_ID} = ?
+          AND NOT EXISTS (
+            SELECT 1
+            FROM ${MembershipTable.TABLE_NAME} child
+            WHERE 
+              child.${MembershipTable.RECIPIENT_ID} = ?
+              AND parent.${MembershipTable.GROUP_ID} = child.${MembershipTable.GROUP_ID}
+          )
+      """,
+      buildArgs(toId, fromId, toId)
+    )
 
-    for (group in getGroupsContainingMember(fromId, false, true)) {
+    // Delete the remaining fromId's (the only remaining ones should be those in groups where the toId is already present)
+    writableDatabase
+      .delete(MembershipTable.TABLE_NAME)
+      .where("${MembershipTable.RECIPIENT_ID} = ?", fromId)
+      .run()
+
+    for (group in getGroupsContainingMember(fromId, pushOnly = false, includeInactive = true)) {
       if (group.isV2Group) {
         removeUnmigratedV1Members(group.id.requireV2(), listOf(fromId))
       }
