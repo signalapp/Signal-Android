@@ -366,7 +366,9 @@ public class EmojiTextView extends AppCompatTextView {
         newContent.append(getText().subSequence(0, overflowStart).toString())
                   .append(ellipsized.subSequence(0, ellipsized.length()).toString());
 
-        TextUtils.copySpansFrom(getText(newContent.length() - 1), 0, newContent.length() - 1, Object.class, newContent, 0);
+        if (newContent.length() > 0) {
+          TextUtils.copySpansFrom(getText(newContent.length() - 1), 0, newContent.length() - 1, Object.class, newContent, 0);
+        }
 
         newContent.append(Optional.ofNullable(overflowText).orElse(""));
 
