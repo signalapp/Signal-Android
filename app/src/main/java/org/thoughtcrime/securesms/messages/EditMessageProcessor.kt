@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.messages.MessageContentProcessorV2.Companion.l
 import org.thoughtcrime.securesms.messages.MessageContentProcessorV2.Companion.warn
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isMediaMessage
-import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointers
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointersWithinLimit
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.forConversation
@@ -136,7 +136,7 @@ object EditMessageProcessor {
     } else {
       null
     }
-    val attachments = message.attachmentsList.toPointers()
+    val attachments = message.attachmentsList.toPointersWithinLimit()
     attachments.filter {
       MediaUtil.SlideType.LONG_TEXT == MediaUtil.getSlideTypeFromContentType(it.contentType)
     }

@@ -65,7 +65,7 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isUnidentified
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.serviceIdsToUnidentifiedStatus
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toMobileCoinMoney
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointer
-import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointers
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointersWithinLimit
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toSignalServiceAttachmentPointer
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.type
 import org.thoughtcrime.securesms.mms.MmsException
@@ -342,7 +342,7 @@ object SyncMessageProcessor {
     val viewOnce: Boolean = message.isViewOnce
     val bodyRanges: BodyRangeList? = message.bodyRangesList.toBodyRangeList()
 
-    val syncAttachments = message.attachmentsList.toPointers().filter {
+    val syncAttachments = message.attachmentsList.toPointersWithinLimit().filter {
       MediaUtil.SlideType.LONG_TEXT == MediaUtil.getSlideTypeFromContentType(it.contentType)
     }
 
@@ -731,7 +731,7 @@ object SyncMessageProcessor {
     val giftBadge: GiftBadge? = if (sent.message.hasGiftBadge()) GiftBadge.newBuilder().setRedemptionToken(sent.message.giftBadge.receiptCredentialPresentation).build() else null
     val viewOnce: Boolean = sent.message.isViewOnce
     val bodyRanges: BodyRangeList? = sent.message.bodyRangesList.toBodyRangeList()
-    val syncAttachments: List<Attachment> = listOfNotNull(sticker) + if (viewOnce) listOf<Attachment>(TombstoneAttachment(MediaUtil.VIEW_ONCE, false)) else sent.message.attachmentsList.toPointers()
+    val syncAttachments: List<Attachment> = listOfNotNull(sticker) + if (viewOnce) listOf<Attachment>(TombstoneAttachment(MediaUtil.VIEW_ONCE, false)) else sent.message.attachmentsList.toPointersWithinLimit()
 
     val mediaMessage = OutgoingMessage(
       recipient = recipient,

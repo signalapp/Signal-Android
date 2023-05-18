@@ -71,7 +71,7 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isPaymentActiv
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isPaymentActivationRequest
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isStoryReaction
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointer
-import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointers
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointersWithinLimit
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.QuoteModel
@@ -836,7 +836,7 @@ object DataMessageProcessor {
       val linkPreviews: List<LinkPreview> = getLinkPreviews(message.previewList, message.body ?: "", false)
       val mentions: List<Mention> = getMentions(message.bodyRangesList)
       val sticker: Attachment? = getStickerAttachment(envelope.timestamp, message)
-      val attachments: List<Attachment> = message.attachmentsList.toPointers()
+      val attachments: List<Attachment> = message.attachmentsList.toPointersWithinLimit()
       val messageRanges: BodyRangeList? = if (message.bodyRangesCount > 0) message.bodyRangesList.filter { it.hasStyle() }.toList().toBodyRangeList() else null
 
       handlePossibleExpirationUpdate(envelope, metadata, senderRecipient.id, threadRecipient, groupId, message.expireTimer.seconds, receivedTime)
