@@ -1,0 +1,23 @@
+name: Create Yearly Release
+
+on:
+  schedule:
+    # This will run on 1st January every year at 00:00
+    - cron: '0 0 1 1 *'
+
+jobs:
+  create-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set version
+        run: echo "VERSION=$(date +"%Y")" >> $GITHUB_ENV
+
+      - name: Create new branch and push
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git checkout -b v$VERSION
+          git push origin v$VERSION
