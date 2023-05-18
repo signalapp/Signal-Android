@@ -204,7 +204,7 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
 class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : NotificationItem(threadRecipient, record) {
   override val timestamp: Long = record.timestamp
   override val authorRecipient: Recipient = record.fromRecipient.resolve()
-  override val isNewNotification: Boolean = notifiedTimestamp == 0L
+  override val isNewNotification: Boolean = notifiedTimestamp == 0L && !record.isEditMessage
   val hasSelfMention = record.hasSelfMention()
 
   private var thumbnailInfo: ThumbnailInfo? = null
