@@ -65,7 +65,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         $ID INTEGER PRIMARY KEY,
         $CALL_ID INTEGER NOT NULL,
         $MESSAGE_ID INTEGER DEFAULT NULL REFERENCES ${MessageTable.TABLE_NAME} (${MessageTable.ID}) ON DELETE SET NULL,
-        $PEER INTEGER DEFAULT NULL REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
+        $PEER INTEGER NOT NULL REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
         $TYPE INTEGER NOT NULL,
         $DIRECTION INTEGER NOT NULL,
         $EVENT INTEGER NOT NULL,
@@ -270,18 +270,18 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
   fun insertDeletedGroupCallFromSyncEvent(
     callId: Long,
-    recipientId: RecipientId?,
+    recipientId: RecipientId,
     direction: Direction,
     timestamp: Long
   ) {
-    val type = if (recipientId != null) Type.GROUP_CALL else Type.AD_HOC_CALL
+    val type = Type.GROUP_CALL
 
     writableDatabase
       .insertInto(TABLE_NAME)
       .values(
         CALL_ID to callId,
         MESSAGE_ID to null,
-        PEER to recipientId?.toLong(),
+        PEER to recipientId.toLong(),
         EVENT to Event.serialize(Event.DELETE),
         TYPE to Type.serialize(type),
         DIRECTION to Direction.serialize(direction),
@@ -318,16 +318,16 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
   fun insertAcceptedGroupCall(
     callId: Long,
-    recipientId: RecipientId?,
+    recipientId: RecipientId,
     direction: Direction,
     timestamp: Long
   ) {
-    val type = if (recipientId != null) Type.GROUP_CALL else Type.AD_HOC_CALL
+    val type = Type.GROUP_CALL
     val event = if (direction == Direction.OUTGOING) Event.OUTGOING_RING else Event.JOINED
     val ringer = if (direction == Direction.OUTGOING) Recipient.self().id.toLong() else null
 
     writableDatabase.withinTransaction { db ->
-      val messageId: MessageId? = if (recipientId != null) {
+      val messageId: MessageId? = if (type == Type.GROUP_CALL) {
         SignalDatabase.messages.insertGroupCall(
           groupRecipientId = recipientId,
           sender = Recipient.self().id,
@@ -345,7 +345,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         .values(
           CALL_ID to callId,
           MESSAGE_ID to messageId?.id,
-          PEER to recipientId?.toLong(),
+          PEER to recipientId.toLong(),
           EVENT to Event.serialize(event),
           TYPE to Type.serialize(type),
           DIRECTION to Direction.serialize(direction),
