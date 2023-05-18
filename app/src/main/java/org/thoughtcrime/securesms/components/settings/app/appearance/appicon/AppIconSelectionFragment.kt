@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.components.settings.app.appearance.appicon
 
 import android.content.Context
-import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -24,6 +24,7 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -41,12 +42,12 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.signal.core.ui.Scaffolds
+import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.appearance.appicon.util.AppIconPreset
@@ -230,9 +231,9 @@ class AppIconSelectionFragment : ComposeFragment() {
    */
   @Composable
   fun AppIcon(preset: AppIconPreset, isSelected: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
-    val bitmapSize: Dp = if (isSelected) 48.dp else 64.dp
+    val bitmapSize by animateFloatAsState(if (isSelected) 48f else 64f, label = "Icon Size")
     val imageModifier = modifier
-      .size(bitmapSize)
+      .size(bitmapSize.dp)
       .graphicsLayer(
         shape = CircleShape,
         shadowElevation = if (isSelected) 4f else 8f,
@@ -290,10 +291,24 @@ class AppIconSelectionFragment : ComposeFragment() {
     )
   }
 
-  @Preview
+  @Preview(name = "Light Theme")
   @Composable
-  private fun MainScreenPreview() {
-    IconSelectionScreen(AppIconPreset.DEFAULT, onItemConfirmed = {}, onWarningClick = {})
+  private fun MainScreenPreviewLight() {
+    SignalTheme(isDarkMode = false) {
+      Surface {
+        IconSelectionScreen(AppIconPreset.DEFAULT, onItemConfirmed = {}, onWarningClick = {})
+      }
+    }
+  }
+
+  @Preview(name = "Dark Theme")
+  @Composable
+  private fun MainScreenPreviewDark() {
+    SignalTheme(isDarkMode = true) {
+      Surface {
+        IconSelectionScreen(AppIconPreset.DEFAULT, onItemConfirmed = {}, onWarningClick = {})
+      }
+    }
   }
 
   companion object {

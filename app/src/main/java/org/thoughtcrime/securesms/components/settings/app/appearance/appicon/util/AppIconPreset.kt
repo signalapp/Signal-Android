@@ -27,6 +27,6 @@ enum class AppIconPreset(private val componentName: String, @DrawableRes val ico
 
   fun getComponentName(context: Context): ComponentName {
     val applicationContext = context.applicationContext
-    return ComponentName(applicationContext, applicationContext.packageName + componentName)
+    return ComponentName(applicationContext, "org.thoughtcrime.securesms" + componentName)
   }
 }
