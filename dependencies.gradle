@@ -106,7 +106,7 @@ dependencyResolutionManagement {
             alias('libsignal-client').to('org.signal', 'libsignal-client').versionRef('libsignal-client')
             alias('libsignal-android').to('org.signal', 'libsignal-android').versionRef('libsignal-client')
             alias('signal-aesgcmprovider').to('org.signal:aesgcmprovider:0.0.3')
-            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.26.3')
+            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.27.0')
             alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.4-S1')
 
             // Third Party
