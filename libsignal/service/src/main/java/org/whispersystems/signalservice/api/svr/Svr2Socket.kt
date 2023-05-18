@@ -93,7 +93,7 @@ internal class Svr2Socket(
           }
 
           Stage.WAITING_FOR_CONNECTION -> {
-            client = Svr2Client.create_NOT_FOR_PRODUCTION(Hex.fromStringCondensed(mrEnclave), bytes.toByteArray(), Instant.now())
+            client = Svr2Client.create(Hex.fromStringCondensed(mrEnclave), bytes.toByteArray(), Instant.now())
 
             Log.d(TAG, "[onMessage] Sending initial handshake...")
             webSocket.send(client.initialRequest().toByteString())
