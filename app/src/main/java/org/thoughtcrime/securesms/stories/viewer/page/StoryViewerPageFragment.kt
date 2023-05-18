@@ -887,19 +887,24 @@ class StoryViewerPageFragment :
       storyPost.sender.getDisplayName(requireContext())
     }
 
-    if (storyPost.group != null) {
-      from.text = getString(R.string.StoryViewerPageFragment__s_to_s, name, storyPost.group.getDisplayName(requireContext()))
+    val text = if (storyPost.group != null) {
+      getString(R.string.StoryViewerPageFragment__s_to_s, name, storyPost.group.getDisplayName(requireContext()))
     } else {
-      from.text = name
+      name
+    }
+
+    if (from.text != text) {
+      from.text = text
     }
 
     from.setOnClickListener { onSenderClicked(storyPost.sender.id) }
-    from.requestLayout()
   }
 
   private fun presentDate(date: TextView, storyPost: StoryPost) {
-    date.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), storyPost.dateInMilliseconds)
-    date.requestLayout()
+    val formattedDate = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), storyPost.dateInMilliseconds)
+    if (date.text != formattedDate) {
+      date.text = formattedDate
+    }
   }
 
   private fun presentSenderAvatar(senderAvatar: AvatarImageView, post: StoryPost) {
