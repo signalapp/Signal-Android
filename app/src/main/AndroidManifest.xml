@@ -257,6 +257,307 @@
 
     </activity-alias>
 
+        <activity-alias
+            android:name=".RoutingActivityAltYellow"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_alt_yellow"
+            android:targetActivity=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.sec.minimode.icon.portrait.normal"
+                android:resource="@mipmap/ic_launcher_alt_yellow" />
+            <meta-data
+                android:name="com.sec.minimode.icon.landscape.normal"
+                android:resource="@mipmap/ic_launcher_alt_yellow" />
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
+        </activity-alias>
+
+        <activity-alias
+            android:name=".RoutingActivityAltBubbles"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_alt_bubbles"
+            android:targetActivity=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.sec.minimode.icon.portrait.normal"
+                android:resource="@mipmap/ic_launcher_alt_bubbles" />
+            <meta-data
+                android:name="com.sec.minimode.icon.landscape.normal"
+                android:resource="@mipmap/ic_launcher_alt_bubbles" />
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
+        </activity-alias>
+
+        <activity-alias
+            android:name=".RoutingActivityAltChat"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_alt_chat"
+            android:targetActivity=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.sec.minimode.icon.portrait.normal"
+                android:resource="@mipmap/ic_launcher_alt_chat" />
+            <meta-data
+                android:name="com.sec.minimode.icon.landscape.normal"
+                android:resource="@mipmap/ic_launcher_alt_chat" />
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
+        </activity-alias>
+
+        <activity-alias
+            android:name=".RoutingActivityAltNews"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_alt_news"
+            android:label="@string/app_icon_label_news"
+            android:targetActivity=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.sec.minimode.icon.portrait.normal"
+                android:resource="@mipmap/ic_launcher_alt_news" />
+            <meta-data
+                android:name="com.sec.minimode.icon.landscape.normal"
+                android:resource="@mipmap/ic_launcher_alt_news" />
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
+        </activity-alias>
+
+        <activity-alias
+            android:name=".RoutingActivityAltNotes"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_alt_notes"
+            android:label="@string/app_icon_label_notes"
+            android:targetActivity=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.sec.minimode.icon.portrait.normal"
+                android:resource="@mipmap/ic_launcher_alt_notes" />
+            <meta-data
+                android:name="com.sec.minimode.icon.landscape.normal"
+                android:resource="@mipmap/ic_launcher_alt_notes" />
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
+        </activity-alias>
+
+        <activity-alias
+            android:name=".RoutingActivityAltColor"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_alt_signal_color"
+            android:targetActivity=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.sec.minimode.icon.portrait.normal"
+                android:resource="@mipmap/ic_launcher_alt_signal_color" />
+            <meta-data
+                android:name="com.sec.minimode.icon.landscape.normal"
+                android:resource="@mipmap/ic_launcher_alt_signal_color" />
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
+        </activity-alias>
+
+        <activity-alias
+            android:name=".RoutingActivityAltDark"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_alt_signal_dark"
+            android:targetActivity=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.sec.minimode.icon.portrait.normal"
+                android:resource="@mipmap/ic_launcher_alt_signal_dark" />
+            <meta-data
+                android:name="com.sec.minimode.icon.landscape.normal"
+                android:resource="@mipmap/ic_launcher_alt_signal_dark" />
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
+        </activity-alias>
+
+        <activity-alias
+            android:name=".RoutingActivityAltDarkVariant"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_alt_signal_dark_variant"
+            android:targetActivity=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.sec.minimode.icon.portrait.normal"
+                android:resource="@mipmap/ic_launcher_alt_signal_dark_variant" />
+            <meta-data
+                android:name="com.sec.minimode.icon.landscape.normal"
+                android:resource="@mipmap/ic_launcher_alt_signal_dark_variant" />
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
+        </activity-alias>
+
+        <activity-alias
+            android:name=".RoutingActivityAltWhite"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_alt_signal_white"
+            android:targetActivity=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.sec.minimode.icon.portrait.normal"
+                android:resource="@mipmap/ic_launcher_alt_signal_white" />
+            <meta-data
+                android:name="com.sec.minimode.icon.landscape.normal"
+                android:resource="@mipmap/ic_launcher_alt_signal_white" />
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
+        </activity-alias>
+
+        <activity-alias
+            android:name=".RoutingActivityAltWaves"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_alt_waves"
+            android:label="@string/app_icon_label_waves"
+            android:targetActivity=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.sec.minimode.icon.portrait.normal"
+                android:resource="@mipmap/ic_launcher_alt_waves" />
+            <meta-data
+                android:name="com.sec.minimode.icon.landscape.normal"
+                android:resource="@mipmap/ic_launcher_alt_waves" />
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
+        </activity-alias>
+
+        <activity-alias
+            android:name=".RoutingActivityAltWeather"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_alt_weather"
+            android:label="@string/app_icon_label_weather"
+            android:targetActivity=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.sec.minimode.icon.portrait.normal"
+                android:resource="@mipmap/ic_launcher_alt_weather" />
+            <meta-data
+                android:name="com.sec.minimode.icon.landscape.normal"
+                android:resource="@mipmap/ic_launcher_alt_weather" />
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
+        </activity-alias>
+
     <activity android:name=".deeplinks.DeepLinkEntryActivity"
               android:exported="true"
               android:noHistory="true"

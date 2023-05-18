@@ -1,0 +1,19 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!--  This scaling is applied manually to get the desired visual effect. It's not part of the asset.-->
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.68"
+        android:scaleY="0.68">
+        <path
+            android:fillColor="#FF000000"
+            android:pathData="M67.5 82.48c-9.11 0-16.5-7.05-16.5-15.74C51 58.04 58.39 51 67.5 51S84 58.05 84 66.74c0 3.33-1.09 6.42-2.94 8.97-1.7 2.33-2.93 5.15-2.38 8 0.04 0.2-0.16 0.36-0.35 0.26-1.03-0.51-1.54-0.77-1.93-0.93-1.55-0.6-1.23-0.54-2.89-0.65-0.42-0.03-2.15 0.01-5.62 0.09H67.5Z" />
+        <path
+            android:fillColor="#FF000000"
+            android:pathData="M46.87 72.61C46.3 70.76 46 68.8 46 66.74 46 55.07 55.85 46 67.5 46c2.22 0 4.38 0.33 6.42 0.95C72.91 34.66 62.14 25 49 25c-13.8 0-25 10.68-25 23.85 0 5.05 1.65 9.74 4.46 13.6 1.5 2.05 2.25 3.08 2.4 3.31 1.8 2.8 2 3.65 1.54 6.96-0.04 0.28-0.14 0.8-0.34 1.83-0.06 0.3 0.25 0.55 0.53 0.41l1.58-0.8c1.85-0.93 2.78-1.4 3.56-1.63 1-0.31 1.06-0.32 2.1-0.4 0.82-0.07 2.82 0.1 6.82 0.47l0.22 0.01Z" />
+    </group>
+</vector>

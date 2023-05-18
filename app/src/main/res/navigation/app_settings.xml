@@ -237,12 +237,39 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_appearanceSettings_to_appIconActivity"
+            app:destination="@id/appIconSelectionFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <activity
         android:id="@+id/wallpaperActivity"
         android:name="org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity"
         android:label="wallpaper_activity" />
+
+    <!-- App Icon settings and Subpages -->
+
+    <fragment
+        android:id="@+id/appIconSelectionFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.appearance.appicon.AppIconSelectionFragment"
+        android:label="@string/preferences__app_icon">
+        <action
+            android:id="@+id/action_appIconSelectionFragment_to_appIconTutorialFragment"
+            app:destination="@id/appIconTutorialFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/appIconTutorialFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.appearance.appicon.AppIconTutorialFragment"
+        android:label="@string/preferences__app_icon" />
 
     <!-- endregion -->
 
