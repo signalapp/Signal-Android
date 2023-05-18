@@ -16,6 +16,7 @@
     <color name="signal_colorOnSecondaryContainer">@color/signal_dark_colorOnSecondaryContainer</color>
     <color name="signal_colorOnSurface">@color/signal_dark_colorOnSurface</color>
     <color name="signal_colorOnSurfaceVariant">@color/signal_dark_colorOnSurfaceVariant</color>
+    <color name="signal_colorOnSurfaceVariant1">@color/signal_dark_colorOnSurfaceVariant1</color>
     <color name="signal_colorOnBackground">@color/signal_dark_colorOnBackground</color>
     <color name="signal_colorOutline">@color/signal_dark_colorOutline</color>
     <color name="signal_neutralSurface">@color/signal_dark_neutralSurface</color>

@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.kbs;
 
 /**
- * Construct from a {@link HashedPin}.
+ * Construct from a {@link org.signal.libsignal.svr2.PinHash}.
  */
 public final class KbsData {
   private final MasterKey masterKey;

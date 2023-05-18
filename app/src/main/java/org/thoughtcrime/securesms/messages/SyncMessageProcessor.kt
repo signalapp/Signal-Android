@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactSyncJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
-import org.thoughtcrime.securesms.jobs.MultiDevicePniIdentityUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackSyncJob
 import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
@@ -174,7 +173,7 @@ object SyncMessageProcessor {
       val groupId: GroupId.V2? = if (dataMessage.hasGroupContext) GroupId.v2(dataMessage.groupV2.groupMasterKey) else null
 
       if (groupId != null) {
-        if (MessageContentProcessorV2.handleGv2PreProcessing(context, envelope.timestamp, content, metadata, groupId, dataMessage.groupV2, senderRecipient)) {
+        if (MessageContentProcessorV2.handleGv2PreProcessing(context, envelope.timestamp, content, metadata, groupId, dataMessage.groupV2, senderRecipient) == MessageContentProcessorV2.Gv2PreProcessResult.IGNORE) {
           return
         }
       }
@@ -592,7 +591,7 @@ object SyncMessageProcessor {
     val dataMessage: DataMessage = sent.message
     val groupId: GroupId.V2? = dataMessage.groupV2.groupId
 
-    if (!MessageContentProcessorV2.updateGv2GroupFromServerOrP2PChange(context, envelope.timestamp, dataMessage.groupV2)) {
+    if (MessageContentProcessorV2.updateGv2GroupFromServerOrP2PChange(context, envelope.timestamp, dataMessage.groupV2, SignalDatabase.groups.getGroup(GroupId.v2(dataMessage.groupV2.groupMasterKey))) == null) {
       log(envelope.timestamp, "Ignoring GV2 message for group we are not currently in $groupId")
     }
   }
@@ -871,7 +870,6 @@ object SyncMessageProcessor {
         ApplicationDependencies.getJobManager().add(MultiDeviceStickerPackSyncJob())
       }
       Request.Type.KEYS -> ApplicationDependencies.getJobManager().add(MultiDeviceKeysUpdateJob())
-      Request.Type.PNI_IDENTITY -> ApplicationDependencies.getJobManager().add(MultiDevicePniIdentityUpdateJob())
       else -> warn(envelopeTimestamp, "Unknown request type: ${message.type}")
     }
   }
@@ -1174,7 +1172,7 @@ object SyncMessageProcessor {
 
     log(envelopeTimestamp, "Synchronize call event call: $callId")
 
-    val call = SignalDatabase.calls.getCallById(callId, CallTable.CallConversationId.Peer(recipientId))
+    val call = SignalDatabase.calls.getCallById(callId, recipientId)
     if (call != null) {
       val typeMismatch = call.type !== type
       val directionMismatch = call.direction !== direction
@@ -1211,9 +1209,8 @@ object SyncMessageProcessor {
 
     val groupId: GroupId = GroupId.push(callEvent.conversationId.toByteArray())
     val recipientId = Recipient.externalGroupExact(groupId).id
-    val conversationId = CallTable.CallConversationId.Peer(recipientId)
 
-    val call = SignalDatabase.calls.getCallById(callId, CallTable.CallConversationId.Peer(recipientId))
+    val call = SignalDatabase.calls.getCallById(callId, recipientId)
 
     if (call != null) {
       if (call.type !== type) {
@@ -1224,7 +1221,7 @@ object SyncMessageProcessor {
         CallTable.Event.DELETE -> SignalDatabase.calls.deleteGroupCall(call)
         CallTable.Event.ACCEPTED -> {
           if (call.timestamp < callEvent.timestamp) {
-            SignalDatabase.calls.setTimestamp(call.callId, conversationId, callEvent.timestamp)
+            SignalDatabase.calls.setTimestamp(call.callId, recipientId, callEvent.timestamp)
           }
           if (callEvent.direction == SyncMessage.CallEvent.Direction.INCOMING) {
             SignalDatabase.calls.acceptIncomingGroupCall(call)

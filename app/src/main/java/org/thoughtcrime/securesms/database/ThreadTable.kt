@@ -1386,8 +1386,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     val meaningfulMessages = messages.hasMeaningfulMessage(threadId)
 
-    val isPinned = getPinnedThreadIds().contains(threadId)
-    val shouldDelete = allowDeletion && !isPinned && !messages.containsStories(threadId)
+    val isPinned by lazy { getPinnedThreadIds().contains(threadId) }
+    val shouldDelete by lazy { allowDeletion && !isPinned && !messages.containsStories(threadId) }
 
     if (!meaningfulMessages) {
       if (shouldDelete) {
@@ -1780,7 +1780,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             recipientSettings.registered,
             recipientSettings,
             null,
-            false
+            false,
+            group.isActive
           )
           Recipient(recipientId, details, false)
         } ?: Recipient.live(recipientId).get()

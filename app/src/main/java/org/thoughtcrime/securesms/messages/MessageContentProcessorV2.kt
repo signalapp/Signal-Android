@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.messages
 
 import android.content.Context
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
+import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.MessageLogEntry
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.PendingRetryReceiptModel
@@ -16,7 +19,9 @@ import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException
+import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil
+import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobs.NullMessageSendJob
 import org.thoughtcrime.securesms.jobs.ResendMessageJob
 import org.thoughtcrime.securesms.jobs.SenderKeyDistributionSendJob
@@ -47,8 +52,15 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Conten
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.TypingMessage
 import java.io.IOException
+import java.util.Optional
 
 open class MessageContentProcessorV2(private val context: Context) {
+
+  enum class Gv2PreProcessResult {
+    IGNORE,
+    GROUP_UPDATE,
+    GROUP_UP_TO_DATE
+  }
 
   companion object {
     const val TAG = "MessageProcessorV2"
@@ -133,8 +145,7 @@ open class MessageContentProcessorV2(private val context: Context) {
         return if (threadRecipient.isGroup && threadRecipient.isBlocked) {
           true
         } else if (threadRecipient.isGroup) {
-          val groupId = if (message.hasGroupV2()) GroupId.v2(message.groupV2.groupMasterKey) else null
-          if (groupId != null && SignalDatabase.groups.isUnknownGroup(groupId)) {
+          if (threadRecipient.isUnknownGroup) {
             return senderRecipient.isBlocked
           }
 
@@ -143,7 +154,7 @@ open class MessageContentProcessorV2(private val context: Context) {
           val isExpireMessage = message.isExpirationUpdate
           val isGv2Update = message.hasSignedGroupChange
           val isContentMessage = !isGv2Update && !isExpireMessage && (isTextMessage || isMediaMessage)
-          val isGroupActive = groupId != null && SignalDatabase.groups.isActive(groupId)
+          val isGroupActive = threadRecipient.isActiveGroup
 
           isContentMessage && !isGroupActive || senderRecipient.isBlocked && !isGv2Update
         } else {
@@ -213,53 +224,64 @@ open class MessageContentProcessorV2(private val context: Context) {
       metadata: EnvelopeMetadata,
       groupId: GroupId.V2,
       groupV2: SignalServiceProtos.GroupContextV2,
-      senderRecipient: Recipient
-    ): Boolean {
-      val possibleGv1 = SignalDatabase.groups.getGroupV1ByExpectedV2(groupId)
-      if (possibleGv1.isPresent) {
-        GroupsV1MigrationUtil.performLocalMigration(context, possibleGv1.get().id.requireV1())
+      senderRecipient: Recipient,
+      groupSecretParams: GroupSecretParams? = null
+    ): Gv2PreProcessResult {
+      val v1Group = GroupsV1MigratedCache.getV1GroupByV2Id(groupId)
+      if (v1Group != null) {
+        GroupsV1MigrationUtil.performLocalMigration(context, v1Group.id.requireV1())
       }
-
-      if (!updateGv2GroupFromServerOrP2PChange(context, timestamp, groupV2)) {
+      val preUpdateGroupRecord = SignalDatabase.groups.getGroup(groupId)
+      val groupUpdateResult = updateGv2GroupFromServerOrP2PChange(context, timestamp, groupV2, preUpdateGroupRecord, groupSecretParams)
+      if (groupUpdateResult == null) {
         log(timestamp, "Ignoring GV2 message for group we are not currently in $groupId")
-        return true
+        return Gv2PreProcessResult.IGNORE
       }
 
-      val groupRecord = SignalDatabase.groups.getGroup(groupId)
+      val groupRecord = if (groupUpdateResult.groupState == GroupsV2StateProcessor.GroupState.GROUP_CONSISTENT_OR_AHEAD) {
+        preUpdateGroupRecord
+      } else {
+        SignalDatabase.groups.getGroup(groupId)
+      }
+
       if (groupRecord.isPresent && !groupRecord.get().members.contains(senderRecipient.id)) {
         log(timestamp, "Ignoring GV2 message from member not in group $groupId. Sender: ${formatSender(senderRecipient.id, metadata.sourceServiceId, metadata.sourceDeviceId)}")
-        return true
+        return Gv2PreProcessResult.IGNORE
       }
 
       if (groupRecord.isPresent && groupRecord.get().isAnnouncementGroup && !groupRecord.get().admins.contains(senderRecipient)) {
         if (content.hasDataMessage()) {
           if (content.dataMessage.hasDisallowedAnnouncementOnlyContent) {
             Log.w(TAG, "Ignoring message from ${senderRecipient.id} because it has disallowed content, and they're not an admin in an announcement-only group.")
-            return true
+            return Gv2PreProcessResult.IGNORE
           }
         } else if (content.hasTypingMessage()) {
           Log.w(TAG, "Ignoring typing indicator from ${senderRecipient.id} because they're not an admin in an announcement-only group.")
-          return true
+          return Gv2PreProcessResult.IGNORE
         }
       }
 
-      return false
+      return when (groupUpdateResult.groupState) {
+        GroupsV2StateProcessor.GroupState.GROUP_UPDATED -> Gv2PreProcessResult.GROUP_UPDATE
+        GroupsV2StateProcessor.GroupState.GROUP_CONSISTENT_OR_AHEAD -> Gv2PreProcessResult.GROUP_UP_TO_DATE
+      }
     }
 
     @Throws(IOException::class, GroupChangeBusyException::class)
     fun updateGv2GroupFromServerOrP2PChange(
       context: Context,
       timestamp: Long,
-      groupV2: SignalServiceProtos.GroupContextV2
-    ): Boolean {
+      groupV2: SignalServiceProtos.GroupContextV2,
+      localRecord: Optional<GroupRecord>,
+      groupSecretParams: GroupSecretParams? = null
+    ): GroupsV2StateProcessor.GroupUpdateResult? {
       return try {
         val signedGroupChange: ByteArray? = if (groupV2.hasSignedGroupChange) groupV2.signedGroupChange else null
         val updatedTimestamp = if (signedGroupChange != null) timestamp else timestamp - 1
-        GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, groupV2.revision, updatedTimestamp, signedGroupChange)
-        true
+        GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, localRecord, groupSecretParams, groupV2.revision, updatedTimestamp, signedGroupChange)
       } catch (e: GroupNotAMemberException) {
         warn(timestamp, "Ignoring message for a group we're not in")
-        false
+        null
       }
     }
 
@@ -282,9 +304,11 @@ open class MessageContentProcessorV2(private val context: Context) {
    */
   @JvmOverloads
   open fun process(envelope: Envelope, content: Content, metadata: EnvelopeMetadata, serverDeliveredTimestamp: Long, processingEarlyContent: Boolean = false) {
-    val senderRecipient = Recipient.resolved(RecipientId.from(SignalServiceAddress(metadata.sourceServiceId, metadata.sourceE164)))
+    val stopwatch = Stopwatch("process-content")
 
-    handleMessage(senderRecipient, envelope, content, metadata, serverDeliveredTimestamp, processingEarlyContent)
+    val senderRecipient = Recipient.externalPush(SignalServiceAddress(metadata.sourceServiceId, metadata.sourceE164))
+
+    handleMessage(senderRecipient, envelope, content, metadata, serverDeliveredTimestamp, processingEarlyContent, stopwatch)
 
     val earlyCacheEntries: List<EarlyMessageCacheEntry>? = ApplicationDependencies
       .getEarlyMessageCache()
@@ -294,9 +318,11 @@ open class MessageContentProcessorV2(private val context: Context) {
     if (!processingEarlyContent && earlyCacheEntries != null) {
       log(envelope.timestamp, "Found " + earlyCacheEntries.size + " dependent item(s) that were retrieved earlier. Processing.")
       for (entry in earlyCacheEntries) {
-        handleMessage(senderRecipient, entry.envelope, entry.content, entry.metadata, entry.serverDeliveredTimestamp, processingEarlyContent = true)
+        handleMessage(senderRecipient, entry.envelope, entry.content, entry.metadata, entry.serverDeliveredTimestamp, processingEarlyContent = true, stopwatch)
       }
+      stopwatch.split("early-entries")
     }
+    stopwatch.stop(TAG)
   }
 
   private fun handleMessage(
@@ -305,7 +331,8 @@ open class MessageContentProcessorV2(private val context: Context) {
     content: Content,
     metadata: EnvelopeMetadata,
     serverDeliveredTimestamp: Long,
-    processingEarlyContent: Boolean
+    processingEarlyContent: Boolean,
+    stopwatch: Stopwatch
   ) {
     val threadRecipient = getMessageDestination(content, senderRecipient)
 
@@ -318,7 +345,7 @@ open class MessageContentProcessorV2(private val context: Context) {
     val receivedTime: Long = handlePendingRetry(pending, envelope.timestamp, threadRecipient)
 
     log(envelope.timestamp, "Beginning message processing. Sender: " + formatSender(senderRecipient.id, metadata.sourceServiceId, metadata.sourceDeviceId))
-
+    stopwatch.split("pre-process")
     when {
       content.hasDataMessage() -> {
         DataMessageProcessor.process(
@@ -331,6 +358,7 @@ open class MessageContentProcessorV2(private val context: Context) {
           receivedTime,
           if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
         )
+        stopwatch.split("data-message")
       }
       content.hasSyncMessage() -> {
         TextSecurePreferences.setMultiDevice(context, true)
@@ -343,6 +371,7 @@ open class MessageContentProcessorV2(private val context: Context) {
           metadata,
           if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
         )
+        stopwatch.split("sync-message")
       }
       content.hasCallMessage() -> {
         log(envelope.timestamp, "Got call message...")
@@ -366,9 +395,11 @@ open class MessageContentProcessorV2(private val context: Context) {
           metadata,
           if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
         )
+        stopwatch.split("receipt-message")
       }
       content.hasTypingMessage() -> {
         handleTypingMessage(envelope, metadata, content.typingMessage, senderRecipient)
+        stopwatch.split("typing-message")
       }
       content.hasStoryMessage() -> {
         StoryMessageProcessor.process(
@@ -378,6 +409,7 @@ open class MessageContentProcessorV2(private val context: Context) {
           senderRecipient,
           threadRecipient
         )
+        stopwatch.split("story-message")
       }
       content.hasDecryptionErrorMessage() -> {
         handleRetryReceipt(envelope, metadata, content.decryptionErrorMessage!!.toDecryptionErrorMessage(metadata), senderRecipient)

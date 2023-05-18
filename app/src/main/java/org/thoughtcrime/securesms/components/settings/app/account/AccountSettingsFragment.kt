@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.lock.PinHashing
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity
 import org.thoughtcrime.securesms.lock.v2.KbsConstants
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
@@ -39,6 +38,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.whispersystems.signalservice.api.kbs.PinHashUtil
 
 class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFragment__account) {
 
@@ -247,7 +247,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
       pinEditText.typeface = Typeface.DEFAULT
       turnOffButton.setOnClickListener {
         val pin = pinEditText.text.toString()
-        val correct = PinHashing.verifyLocalPinHash(SignalStore.kbsValues().localPinHash!!, pin)
+        val correct = PinHashUtil.verifyLocalPinHash(SignalStore.kbsValues().localPinHash!!, pin)
         if (correct) {
           SignalStore.pinValues().setPinRemindersEnabled(false)
           viewModel.refreshState()

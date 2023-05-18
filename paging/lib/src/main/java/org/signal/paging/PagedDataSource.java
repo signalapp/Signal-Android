@@ -17,15 +17,15 @@ public interface PagedDataSource<Key, Data> {
   int size();
 
   /**
-   * @param start The index of the first item that should be included in your results.
-   * @param length The total number of items you should return.
+   * @param start              The index of the first item that should be included in your results.
+   * @param length             The total number of items you should return.
+   * @param totalSize          The total number of items in the data source
    * @param cancellationSignal An object that you can check to see if the load operation was canceled.
-   *
    * @return A list of length {@code length} that represents the data starting at {@code start}.
-   *         If you don't have the full range, just populate what you can.
+   * If you don't have the full range, just populate what you can.
    */
   @WorkerThread
-  @NonNull List<Data> load(int start, int length, @NonNull CancellationSignal cancellationSignal);
+  @NonNull List<Data> load(int start, int length, int totalSize, @NonNull CancellationSignal cancellationSignal);
 
   @WorkerThread
   @Nullable Data load(Key key);

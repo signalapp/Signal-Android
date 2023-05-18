@@ -183,7 +183,11 @@
     <string name="CameraContacts_recent_contacts">ఇటీవలి పరిచయాలు</string>
     <string name="CameraContacts_signal_contacts">Signal పరిచయాలు</string>
     <string name="CameraContacts_signal_groups">Signal సమూహాలు</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal గ్రహీతలను ఎంచుకోండి</string>
     <string name="CameraContacts_no_signal_contacts">Signal పరిచయాలు లేవు</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Signal పరిచయాలకు చిత్రాలను పంపడానికి మీరు కెమెరా బటన్‌ను మాత్రమే ఉపయోగించవచ్చు. </string>
@@ -227,7 +231,7 @@
     <!-- ConfirmIdentityDialog -->
 
     <!-- ContactsCursorLoader -->
-    <string name="ContactsCursorLoader_recent_chats">ఇటీవలి చాట్లు</string>
+    <string name="ContactsCursorLoader_recent_chats">ఇటీవలి చాట్‌లు</string>
     <string name="ContactsCursorLoader_contacts">కాంటాక్ట్స్</string>
     <string name="ContactsCursorLoader_groups">సమూహాలు</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
@@ -240,7 +244,7 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">కొత్తది</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">చాట్స్</string>
+    <string name="ContactsCursorLoader__chats">చాట్‌లు</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">సందేశాలు</string>
 
@@ -369,9 +373,9 @@
     <string name="ConversationActivity_new_say_it_with_stickers">కొత్త! స్టిక్కర్లతో చెప్పండి</string>
 
     <string name="ConversationActivity_cancel">రద్దు</string>
-    <string name="ConversationActivity_delete_conversation">Delete chat?</string>
+    <string name="ConversationActivity_delete_conversation">చాట్ తొలగించేదా?</string>
     <string name="ConversationActivity_delete_and_leave_group">తొలగించి మరియు గ్రూప్‌ను వదిలివేసేదా?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">This chat will be deleted from all of your devices.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ఈ చాట్ మీ అన్ని పరికరాల నుండి తొలగించబడుతుంది.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">మీరు ఈ గ్రూప్‌ను వదిలి వెళతారు మరియు ఇది మీ పరికరాలు అన్నింటి నుండి తొలగించబడుతుంది.</string>
     <string name="ConversationActivity_delete">తొలగించండి</string>
     <string name="ConversationActivity_delete_and_leave">తొలగించండి మరియు వదిలివేయండి</string>
@@ -452,7 +456,7 @@
     <string name="ConversationFragment_delete_on_this_device">ఈ పరికరంపై తొలగించండి</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">ప్రతిచోటా తొలగించండి</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ఒకవేళ వారు Signal యొక్క ఇటీవలి వెర్షన్‌లో ఉంటే చాట్‌లోని ప్రతి ఒక్కరికీ ఈ సందేశం తొలగించబడుతుంది. మీరు సందేశాన్ని తొలగించినట్లుగా వారు చూడగలుగుతారు.</string>
     <string name="ConversationFragment_quoted_message_not_found">అసలు సందేశం కనుగొనబడలేదు</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">అసలు సందేశం ఇకపై అందుబాటులో లేదు</string>
     <string name="ConversationFragment_failed_to_open_message">సందేశాన్ని తెరవడంలో విఫలమైంది</string>
@@ -460,7 +464,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">త్వరగా సమాధానం ఇవ్వడానికి మీరు ఏదైనా సందేశంలో ఎడమ వైపుకు స్వైప్ చేయవచ్చు</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">అవుట్‌గోయింగ్ ఒకసారి-వీక్షించండి మీడియా ఫైల్స్ పంపబడిన తర్వాత అవి స్వయంచాలకంగా తొలగించబడతాయి</string>
     <string name="ConversationFragment_you_already_viewed_this_message">ఈ సందేశాన్ని మీరు ఇదివరకే వీక్షించారు</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat.\nIf your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ఈ చాట్‌లో మీరు మీ కోసం గమనికలను జోడించవచ్చు. ఒకవేళ మీ ఖాతాలో ఏదైనా లింక్ చేయబడిన పరికరాలు ఉంటే, కొత్త గమనికలు సమకాలీకరించబడతాయి.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d సమూహ సభ్యులకు అదే పేరు ఉంది.</string>
     <string name="ConversationFragment__tap_to_review">సమీక్షించడానికి నొక్కండి</string>
     <string name="ConversationFragment__review_requests_carefully">అభ్యర్థనలను జాగ్రత్తగా సమీక్షించండి</string>
@@ -483,31 +487,31 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">బ్లాక్ చేయబడింది</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
-    <string name="ConversationFragment__update_build">Update Signal</string>
+    <string name="ConversationFragment__update_build">Signal ను నవీకరించండి</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">Signal ను మళ్లీ నమోదు చేసుకోవడం</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ఫిల్టర్‌ను ఖాళీ చేయండి</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
-    <string name="ConversationListFragment__no_unread_chats">చదవని చాట్స్ లేవు</string>
+    <string name="ConversationListFragment__no_unread_chats">చదవని చాట్‌‌లు లేవు</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="one">ఎంపిక చేసిన చాట్‌ను తొలగించేదా?</item>
+        <item quantity="other">ఎంపిక చేసిన చాట్‌లను తొలగించేదా?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="one">ఇది ఎంపిక చేసిన చాట్‌ను శాశ్వతంగా తొలగిస్తుంది.</item>
+        <item quantity="other">ఇది ఎంపిక చేసిన అన్ని %1$d చాట్‌లను శాశ్వతంగా తొలగిస్తుంది.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">తొలగిపోతున్నాయ్</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">ఎంపిక చేసిన చాట్‌లను తొలగిస్తోంది…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Chat archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="one">చాట్ ఆర్కైవ్ చేయబడింది</item>
+        <item quantity="other">%1$d చాట్‌లు ఆర్కైవ్ చేయబడ్డాయి</item>
     </plurals>
     <string name="ConversationListFragment_undo">దిద్దుబాటు</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="one">చాట్ ఇన్‌బాక్స్‌కు తరలించబడింది</item>
+        <item quantity="other">%1$d చాట్‌లు ఇన్‌బాక్స్‌కు తరలించబడ్డాయి</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">చదివినది</item>
@@ -542,7 +546,7 @@
     <string name="ConversationListItem_key_exchange_message">కీ సందేశం మార్పిడి</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">ఆర్కైవ్ చేయబడ్డ చాట్‌లు (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">ధృవీకరించబడింది</string>
@@ -612,7 +616,7 @@
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">బ్యాకప్‌కు చెడ్డ ఎక్స్‌టెన్షన్ ఉంది.</string>
 
     <!-- BackupsPreferenceFragment -->
-    <string name="BackupsPreferenceFragment__chat_backups">చాట్ ప్రత్యామ్నాయ</string>
+    <string name="BackupsPreferenceFragment__chat_backups">చాట్ బ్యాకప్‌లు</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">ప్రత్యామ్నాయములు పాస్‌ఫ్రేజ్‌తో గుప్తీకరించబడతాయి మరియు మీ పరికరంలో నిల్వ చేయబడతాయి.</string>
     <string name="BackupsPreferenceFragment__create_backup">ప్రత్యామ్నాయ సృష్టించు</string>
     <string name="BackupsPreferenceFragment__last_backup">మునుపటి బ్యాకప్: %1$s</string>
@@ -698,7 +702,7 @@
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">చాట్ సెషన్ రిఫ్రెష్ చేయబడింది</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal ఎండ్-టు-ఎండ్ గుప్తీకరణను ఉపయోగిస్తుంది మరియు ఇది కొన్నిసార్లు మీ మాటామంతి సెషన్‌ను రిఫ్రెష్ చేయాల్సి ఉంటుంది. ఇది మీ మాటామంతి యొక్క భద్రతను ప్రభావితం చేయదు, కానీ మీరు ఈ పరిచయం నుండి సందేశాన్ని కోల్పోయి ఉండవచ్చు మరియు మీరు దాన్ని తిరిగి పంపమని వారిని అడగవచ్చు.</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal ఎండ్-టు-ఎండ్ ఎన్‌క్రిప్షన్‌ను ఉపయోగిస్తుంది మరియు ఇది కొన్నిసార్లు మీ చాట్ సెషన్‌ను రిఫ్రెష్ చేయాల్సి ఉంటుంది. ఇది మీ చాట్ భద్రతను ప్రభావితం చేయదు, కానీ మీరు ఈ పరిచయం నుండి సందేశాన్ని తప్పిపోయి ఉండవచ్చు మరియు దానిని తిరిగి పంపమని మీరు వారిని అడగవచ్చు.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">తొలగించరాదనుకుంటే \'%1$s\'?</string>
@@ -946,14 +950,14 @@
     <string name="ManageGroupActivity_legacy_group_upgrade">ఇది లెగసీ గ్రూప్. @ ప్రస్తావనలు మరియు నిర్వాహకులు వంటి క్రొత్త లక్షణాలను ప్రాప్యత చేయడానికి,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">ఈ లెగసీ గ్రూప్ క్రొత్త సమూహానికి అప్‌గ్రేడ్ చేయబడదు ఎందుకంటే ఇది చాలా పెద్దది. గరిష్ట సమూహ పరిమాణం %1$d.</string>
     <string name="ManageGroupActivity_upgrade_this_group">ఈ సమూహాన్ని అప్‌గ్రేడ్ చేయండి</string>
-    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">ఇది అసురక్షిత MMS సమూహం. ప్రైవేట్‌గా మాటామంతీ చేయడానికి, మీ పరిచయాలను సిగ్నల్‌కు ఆహ్వానించండి.</string>
+    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">ఇది ఒక అసురక్షిత MMS గ్రూప్. ప్రైవేట్‌గా చాట్ చేయడానికి, మీ పరిచయాలను Signal కు ఆహ్వానించండి.</string>
     <string name="ManageGroupActivity_invite_now">ఇప్పుడే ఆహ్వానించండి</string>
     <string name="ManageGroupActivity_more">మరింత</string>
     <string name="ManageGroupActivity_add_group_description">సమూహ వివరణను జోడించండి …</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">నాకు ప్రస్తావనల తెలియజేయండి</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">మ్యూట్ చేయబడిన చాట్స్‌లో మీరు పేర్కొనబడినప్పుడు నోటిఫికేషన్‌లను అందుకునేదా?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">మ్యూట్ చేయబడిన చాట్‌ల‌లో మీరు పేర్కొనబడినప్పుడు నోటిఫికేషన్‌లను అందుకునేదా?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">ఎల్లప్పుడూ నాకు తెలియజేయండి</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">నాకు తెలియజేయవద్దు</string>
 
@@ -1446,7 +1450,7 @@
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s తో మీ సందేశ చరిత్ర మరియు వాటి నంబరు %2$s విలీనం చేయబడ్డాయి.</string>
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s తో మీ సందేశ చరిత్ర మరియు వాటికి సంబంధించిన మరో చాట్ విలీనం చేయబడ్డాయి.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s తో మీ సందేశ చరిత్ర మరియు వాటికి సంబంధించిన మరో చాట్ కలిపివేయ బడ్డాయి.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
     <string name="MessageRecord_s_belongs_to_s">%1$s %2$s కు చెందినది</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
@@ -1504,10 +1508,10 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s మీకు సందేశం పంపనివ్వమంటారా? మీరు వారిని అన్‌బ్లాక్ చేసేంతవరకు మీరు ఎలాంటి సందేశాలను అందుకోరు.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s నుంచి అప్‌డేట్స్ మరియు వార్తలను పొందేదా? మీరు వారిని అన్‌బ్లాక్ చేసేంతవరకు మీరు ఎలాంటి అప్‌డేట్‌లను అందుకోలేరు.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ఈ గ్రూప్‌తో మీ చాట్‌ను కొనసాగించండి మరియు మీ పేరు మరియు ఫోటోను దాని సభ్యులతో పంచుకునేదా?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@ప్రస్తావనలు మరియు నిర్వాహకులు వంటి క్రొత్త లక్షణాలను చైతన్యవంతం చేయడానికి ఈ సమూహాన్ని అప్‌గ్రేడ్ చేయండి. ఈ గుంపులో తమ పేరు లేదా ఛాయాచిత్రంను పంచుకోని సభ్యులను చేరడానికి ఆహ్వానించబడతారు.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ఈ లెగసీ సమూహం ఇకపై ఉపయోగించబడదు ఎందుకంటే ఇది చాలా పెద్దది. గరిష్ట సమూహ పరిమాణం %1$d</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s తో మీ చాట్ కొనసాగించి, మీ పేరు మరియు ఫోటోను వారితో పంచుకునేదా?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ఈ గుంపులో చేరండి మరియు మీ పేరు మరియు ఫోటోను దాని సభ్యులతో పంచుకోవాలా? మీరు అంగీకరించే వరకు మీరు వారి సందేశాలను చూశారని వారికి తెలియదు.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">ఈ గ్రూపులో చేరి, మీ పేరు మరియు ఫోటోని దాని సభ్యులతో పంచుకుంటారా? మీరు ఆమోదించేంత వరకు వారి సందేశాలను చూడలేరు.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ఈ గుంపులో చేరాలా? మీరు అంగీకరించే వరకు మీరు వారి సందేశాలను చూశారని వారికి తెలియదు.</string>
@@ -1828,7 +1832,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">ఈ నంబర్‌ను నమోదు చేయడానికి మీరు చాలా ఎక్కువ ప్రయత్నాలు చేశారు. దయచేసి %1$sలో మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">కనెక్ట్ చేయడం సాధ్యం కాలేదు. దయచేసి నెట్వర్క్ కనెక్షన్ను తనిఖీ చేసి మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">ధృవీకరణ కోడ్‌ను అభ్యర్ధించలేకపోయింది. దయచేసి నెట్‌వర్క్ కనెక్షన్ తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationActivity_non_standard_number_format">నాన్-స్టాండర్డ్ నెంబర్ ఫార్మెట్</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">మీరు నమోదు చేసిన నెంబరు (%1$s) నాన్-స్టాండర్డ్ ఫార్మెట్‌లో కనిపిస్తోంది.\n\n%2$s అని మీ అర్ధమా?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - ఫోన్ నెంబర్ ఫార్మెట్</string>
@@ -1887,7 +1891,7 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">\'%1$s\' కోసం ఫలితాలు కనుగొనబడలేదు</string>
-    <string name="SearchFragment_header_conversations">Chats</string>
+    <string name="SearchFragment_header_conversations">చాట్‌లు</string>
     <string name="SearchFragment_header_contacts">కాంటాక్ట్స్</string>
     <string name="SearchFragment_header_messages">సందేశాలు</string>
 
@@ -1956,7 +1960,8 @@
     <string name="StickerPackPreviewActivity_untitled">శీర్షికలేని</string>
     <string name="StickerPackPreviewActivity_unknown">తెలియని</string>
     <string name="StickerPackPreviewActivity_install">వ్యవస్థాపన</string>
-    <string name="StickerPackPreviewActivity_remove">తొలగించండి</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">స్టిక్కర్లు</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">స్టిక్కర్ ప్యాక్ లోడ్ చేయడంలో విఫలమైంది</string>
 
@@ -2154,7 +2159,19 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">ఇంకా చదవండి</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d చాట్‌లలో %1$d కొత్త సందేశాలు</string>
     <string name="MessageNotifier_most_recent_from_s">ఇటీవల నుండి: %1$s</string>
     <string name="MessageNotifier_locked_message">బంధించబడిన సందేశం</string>
     <string name="MessageNotifier_message_delivery_failed">సందేశం పంపుట విఫలమైనది.</string>
@@ -2198,7 +2215,7 @@
     <string name="NotificationChannel_locked_status">స్థితి లాక్</string>
     <string name="NotificationChannel_app_updates">అనువర్తన నవీకరణలు</string>
     <string name="NotificationChannel_other">ఇతర</string>
-    <string name="NotificationChannel_group_chats">మాటామంతి</string>
+    <string name="NotificationChannel_group_chats">చాట్‌లు</string>
     <string name="NotificationChannel_missing_display_name">తెలియని</string>
     <string name="NotificationChannel_voice_notes">స్వర గమనికలు</string>
     <string name="NotificationChannel_contact_joined_signal">పరిచయం Signal లొ చేరారు</string>
@@ -2224,7 +2241,7 @@
     <string name="SearchToolbar_search">వెతకండి</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">చదవని చాట్‌లను శోధించండి</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">చాట్‌లు, పరిచయాలు, మరియు సందేశాల కొరకు శోధించండి</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">మూసివెయ్యి</string>
@@ -2254,9 +2271,9 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">పరికరం నమోదు చేయబడలేదు</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">ఈ పరికరం ఇకపై నమోదు చేయబడలేదు. మీరు వేరే పరికరంలో Signal తో మీ ఫోన్ నంబర్‌ను నమోదు చేయడమే దీనికి కారణం కావచ్చు.</string>
     <!-- Action in reminder banner that will take user to re-register -->
-    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
+    <string name="UnauthorizedReminder_reregister_action">పరికరాన్ని తిరిగి నమోదు చేయడం</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">మీరు ఈ పరికరంపై Signal నుండి లాగ్ అవుట్ అయ్యారు.</string>
@@ -2444,20 +2461,20 @@
 
     <!-- ConversationParentFragment -->
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth permission denied</string>
+    <string name="ConversationParentFragment__bluetooth_permission_denied">బ్లూటూత్ పర్మిషన్ నిరాకరించబడింది</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">స్వర సందేశాలను రికార్డ్ చేయడానికి బ్లూటూత్ ఉపయోగించడానికి దయచేసి \"సమీప పరికరాలు\" అనుమతిని ప్రారంభించండి.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Open settings</string>
+    <string name="ConversationParentFragment__open_settings">సెట్టింగ్‌లను తెరవండి</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Not now</string>
+    <string name="ConversationParentFragment__not_now">ఇప్పుడు కాదు</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">దిగువకు స్క్రోల్ చెయ్యి</string>
 
     <!-- BubbleOptOutTooltip -->
     <!-- Message to inform the user of what Android chat bubbles are -->
-    <string name="BubbleOptOutTooltip__description">బబుల్స్ ఒక Android ఫీచర్, Signal చాట్స్ కొరకు మీరు ఆఫ్ చేయవచ్చు.</string>
+    <string name="BubbleOptOutTooltip__description">బబుల్స్ ఒక ఆండ్రాయిడ్ ఫీచర్, Signal చాట్‌ల కొరకు మీరు ఆఫ్ చేయవచ్చు.</string>
     <!-- Button to dismiss the tooltip for opting out of using Android bubbles -->
     <string name="BubbleOptOutTooltip__not_now">ఇప్పుడు కాదు</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
@@ -2575,7 +2592,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">పూర్తి చాట్ చూడండి</string>
     <string name="load_more_header__loading">లోడ్</string>
 
     <!-- media_overview_activity -->
@@ -2697,7 +2714,7 @@
     <string name="AndroidManifest__message_details">సందేశం వివరాలు</string>
     <string name="AndroidManifest__linked_devices">బంధించిన పరికరాలు</string>
     <string name="AndroidManifest__invite_friends">స్నేహితులను ఆహ్వానించండి</string>
-    <string name="AndroidManifest_archived_conversations">Archived chats</string>
+    <string name="AndroidManifest_archived_conversations">ఆర్కైవ్ చేసిన చాట్‌లు</string>
     <string name="AndroidManifest_remove_photo">ఫోటోను తొలగించండి</string>
 
     <!-- HelpFragment -->
@@ -2791,7 +2808,7 @@
     <string name="preferences__pref_use_address_book_photos">చిరునామా పుస్తక చిత్రాలను ఉపయోగించండి</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">అందుబాటులో ఉంటే మీ చిరునామా పుస్తకం నుండి సంప్రదింపు చిత్రాలను ప్రదర్శించండి</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">మ్యూట్ చేయబడిన చాట్‌లను ఆర్కైవల్‌లో ఉంచండి</string>
+    <string name="preferences__pref_keep_muted_chats_archived">మ్యూట్ చేయబడిన చాట్‌లను ఆర్కైవ్ చేయండి</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">ఆర్కైవ్ చేయబడిన మ్యూటెడ్ చాట్‌లు, కొత్త సందేశం వచ్చినప్పుడు ఆర్కైవ్ చేయబడి ఉంటాయి.</string>
     <string name="preferences__generate_link_previews">లింక్ పూర్వప్రదర్శన రూపొందించండి</string>
@@ -2854,7 +2871,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">చెల్లింపు లాక్</string>
     <string name="preferences__payments_beta">చెల్లింపులు (Beta)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">చాట్ నిడివి పరిమితి</string>
     <string name="preferences__keep_messages">సందేశాలను ఉంచు</string>
     <string name="preferences__clear_message_history">సందేశ చరిత్రను తొలగించండి</string>
     <string name="preferences__linked_devices">పరికరాలు అనుసంధానించు</string>
@@ -2862,7 +2879,7 @@
     <string name="preferences__dark_theme">గుప్తమైన</string>
     <string name="preferences__appearance">స్వరూపం</string>
     <string name="preferences__theme">థీమ్</string>
-    <string name="preferences__chat_color_and_wallpaper">చాట్ కలర్ &amp; వాల్‌పేపర్</string>
+    <string name="preferences__chat_color_and_wallpaper">చాట్ రంగు &amp; వాల్‌పేపర్</string>
     <string name="preferences__disable_pin">పిన్‌ను ఆపివేయి</string>
     <string name="preferences__enable_pin">పిన్ ప్రారంభించండి</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">మీరు పిన్‌ను నిలిపివేస్తే, మీరు మాన్యువల్‌గా ప్రత్యామ్నాయం చేసి పునరుద్ధరించకపోతే సిగ్నల్‌ను తిరిగి నమోదు చేసినప్పుడు మీరు మొత్తం డేటాను కోల్పోతారు. పిన్ నిలిపివేయబడినప్పుడు మీరు రిజిస్ట్రేషన్ లాక్‌ని ఆన్ చేయలేరు.</string>
@@ -2898,7 +2915,11 @@
     <string name="preferences_storage__delete_older_messages">పాత సందేశాలను తొలగించేదా?</string>
     <string name="preferences_storage__clear_message_history">సందేశ చరిత్రను తొలగించాలా?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ఇది మీ పరికరం నుండి %1$s కంటే పాత సందేశ చరిత్ర మరియు మీడియాను అంతటిని శాశ్వతంగా తొలగిస్తుంది.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ఇది మీ పరికరం నుండి సందేశ చరిత్ర మరియు మీడియాను అంతటిని శాశ్వతంగా తొలగిస్తుంది.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">మీరు ఖచ్చితంగా సందేశ చరిత్ర అంతటిని తొలగించాలని అనుకుంటున్నారా?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">సందేశ చరిత్ర అంతా శాశ్వతంగా తొలగించబడుతుంది. ఈ చర్య రద్దు చేయబడదు.</string>
@@ -2916,14 +2937,14 @@
     <string name="preferences_app_protection__who_can">ఎవరు చేయగలరు…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">చెల్లింపులు</string>
-    <string name="preferences_chats__chats">మాటామంతి</string>
+    <string name="preferences_chats__chats">చాట్‌లు</string>
     <string name="preferences_data_and_storage__manage_storage">నిల్వను నిర్వహించండి</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">కాల్‌ల కోసం తక్కువ డేటాను ఉపయోగించండి</string>
     <string name="preferences_data_and_storage__never">ఎప్పుడూ</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi మరియు మొబైల్ డేటా</string>
     <string name="preferences_data_and_storage__mobile_data_only">మొబైల్ డేటా మాత్రమే</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">తక్కువ డేటాను ఉపయోగించడం సరికాని నెట్‌వర్క్‌లలో కాల్‌లను మెరుగుపరుస్తుంది</string>
-    <string name="preferences_notifications__in_chat_sounds">చాట్ శబ్దాలు</string>
+    <string name="preferences_notifications__in_chat_sounds">చాట్‌లో ధ్వనులు</string>
     <string name="preferences_notifications__show">కనబర్చు</string>
     <string name="preferences_notifications__ringtone">రింగ్టోన్</string>
     <string name="preferences_chats__message_text_size">సందేశం ఫాంట్ పరిమాణం</string>
@@ -3239,7 +3260,8 @@
     <string name="conversation_list_settings_shortcut">సెట్టింగుల సత్వరమార్గం</string>
     <string name="conversation_list_search_description">వెతకండి</string>
     <string name="conversation_list__pinned">పిన్ చేయబడింది</string>
-    <string name="conversation_list__chats">మాటామంతి</string>
+    <string name="conversation_list__chats">చాట్‌లు</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">మీరు %1$d చాట్‌ల వరకు మాత్రమే పిన్ చేయవచ్చు</string>
 
     <!-- conversation_list_item_view -->
@@ -3248,9 +3270,9 @@
 
 
     <!-- conversation_list_fragment -->
-    <string name="conversation_list_fragment__fab_content_description">New chat</string>
+    <string name="conversation_list_fragment__fab_content_description">కొత్త చాట్</string>
     <string name="conversation_list_fragment__open_camera_description">కెమెరా తెరువు</string>
-    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ఇంకా చాట్‌లు లేవు. \n స్నేహితుడికి సందేశం పంపడం ద్వారా ప్రారంభించండి.</string>
+    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ఇంకా చాట్‌లు లేవు.\nఒక స్నేహితుడికి సందేశం పంపడం ద్వారా ప్రారంభించండి.</string>
 
 
     <!-- conversation_secure_verified -->
@@ -3265,7 +3287,7 @@
     <string name="conversation__menu_group_settings">సమూహ సెట్టింగులు</string>
     <string name="conversation__menu_leave_group">సమూహాన్ని వదులు</string>
     <string name="conversation__menu_view_all_media">అన్ని మీడియా</string>
-    <string name="conversation__menu_conversation_settings">Chat settings</string>
+    <string name="conversation__menu_conversation_settings">చాట్ సెట్టింగులు</string>
     <string name="conversation__menu_add_shortcut">హోమ్ స్క్రీన్కు జోడించండి</string>
     <string name="conversation__menu_create_bubble">బబుల్ సృష్టించు</string>
 
@@ -3288,7 +3310,8 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">గ్రహీతల జాబితా</string>
     <string name="conversation_group_options__delivery">చేర్చుట</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
+    <string name="conversation_group_options__conversation">చాట్</string>
     <string name="conversation_group_options__broadcast">ప్రసారం</string>
 
     <!-- text_secure_normal -->
@@ -3298,7 +3321,7 @@
     <string name="text_secure_normal__mark_all_as_read">మార్క్ చేసినవన్నీ చదవండి</string>
     <string name="text_secure_normal__invite_friends">స్నేహితులను ఆహ్వానించండి</string>
     <!-- Overflow menu entry to filter unread chats -->
-    <string name="text_secure_normal__filter_unread_chats">చదవని చాట్స్‌ను ఫిల్టర్ చేయండి</string>
+    <string name="text_secure_normal__filter_unread_chats">చదవని చాట్‌ల‌ను ఫిల్టర్ చేయండి</string>
     <!-- Overflow menu entry to disable unread chats filter -->
     <string name="text_secure_normal__clear_unread_filter">చదవని ఫిల్టర్‌ను క్లియర్ చేయండి</string>
 
@@ -3338,11 +3361,13 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">అంతర్దృష్టి</string>
     <string name="InsightsDashboardFragment__title">అంతర్దృష్టి</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">గత %2$d రోజులలో మీ అవుట్‌గోయింగ్ సందేశాలలో %1$d%% ను Signal ప్రోటోకాల్ స్వయంచాలకంగా రక్షించింది. Signal యూజర్ల మధ్య చాట్‌లు ఎల్లప్పుడూ ఎండ్-టు-ఎండ్ ఎన్‌క్రిప్ట్ చేయబడతాయి.</string>
     <string name="InsightsDashboardFragment__spread_the_word">నోటి ప్రచారం చేయండి</string>
     <string name="InsightsDashboardFragment__not_enough_data">తగినంత డేటా లేదు</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">మీ అంతర్దృష్టుల శాతం గత %1$d రోజులలోపల మాయమవని లేదా తొలగించబడని అవుట్‌గోయింగ్ సందేశాల ఆధారంగా లెక్కించబడుతుంది.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
+    <string name="InsightsDashboardFragment__start_a_conversation">ఒక చాట్‌ను ప్రారంభించండి</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">సురక్షితంగా కమ్యూనికేట్ చేయడం ప్రారంభించండి మరియు Signal లో చేరడానికి మరిన్ని పరిచయాలను ఆహ్వానించడం ద్వారా గుప్తీకరించని SMS సందేశాల పరిమితికి మించిన క్రొత్త లక్షణాలను ప్రారంభించండి.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ఈ గణాంకాలు మీ పరికరంలో స్థానికంగా సృష్టించబడ్డాయి మరియు మీరు మాత్రమే చూడగలరు. అవి ఎక్కడా ప్రసారం చేయబడవు.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">గుప్తీకరించిన సందేశాలు</string>
@@ -3488,7 +3513,7 @@
     <string name="registration_activity__transfer_or_restore_account">ఖాతాను బదిలీ చేయండి లేదా పునరుద్ధరించండి</string>
     <string name="registration_activity__transfer_account">ఖాతాను బదిలీ చేయడం</string>
     <string name="registration_activity__skip">వదిలివేయి</string>
-    <string name="preferences_chats__chat_backups">చాట్ ప్రత్యామ్నాయ</string>
+    <string name="preferences_chats__chat_backups">చాట్ బ్యాకప్‌లు</string>
     <string name="preferences_chats__transfer_account">ఖాతాను బదిలీ చేయడం</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">ఖాతాను కొత్త Android పరికరానికి బదిలీ చేయండి</string>
     <string name="RegistrationActivity_enter_backup_passphrase">ప్రత్యామ్నాయ పాస్ఫ్రేజ్ని నమోదు చేయండి</string>
@@ -3586,21 +3611,21 @@
     <string name="Recipient_unknown">తెలియని</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">ఖాతాను తిరిగి నమోదు చేయండి</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Update Signal</string>
+    <string name="preferences_account_update_signal">Signal ను నవీకరించండి</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <string name="preferences_account_delete_all_data">మొత్తం సమాచారమును తొలగించండి</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">మొత్తం సమాచారమును తొలగించేదా?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">ఇది యాప్‌ను రీసెట్ చేస్తుంది మరియు అన్ని సందేశాలను తొలగిస్తుంది. ఈ ప్రక్రియ పూర్తయిన తరువాత యాప్ మూసివేయబడుతుంది.</string>
     <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <string name="preferences_account_delete_all_data_confirmation_proceed">కొనసాగండి</string>
     <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <string name="preferences_account_delete_all_data_confirmation_cancel">రద్దు చేయండి</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">డేటాను తొలగించడం విఫలమైంది</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">ఖాతాను బదిలీ చేయండి లేదా పునరుద్ధరించండి</string>
@@ -3880,21 +3905,21 @@
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">కొంతమంది వినియోగదారులకు పంపడంలో విఫలమైంది</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">మీరు %1$d చాట్‌లతో మాత్రమే భాగస్వామ్యం చేయవచ్చు</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">మీరు %1$d చాట్‌ల వరకు మాత్రమే పంచుకోవచ్చు</string>
 
     <!-- ChatWallpaperActivity -->
 
     <!-- ChatWallpaperFragment -->
-    <string name="ChatWallpaperFragment__chat_color">మాటామంతీ రంగు</string>
-    <string name="ChatWallpaperFragment__reset_chat_colors">చాట్ రంగులను రీసెట్ చేయడం</string>
-    <string name="ChatWallpaperFragment__reset_chat_color">మాటామంతి రంగును రీసెట్ చేయండి</string>
-    <string name="ChatWallpaperFragment__reset_chat_color_question">చాట్ రంగులను రీసెట్ చేయాలా?</string>
+    <string name="ChatWallpaperFragment__chat_color">చాట్ రంగు</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">చాట్ రంగులను రీసెట్ చేయండి</string>
+    <string name="ChatWallpaperFragment__reset_chat_color">చాట్ రంగును రీసెట్ చేయండి</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">చాట్ రంగును రీసెట్ చేసేదా?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">వాల్‌పేపర్‌ను జత చేయండి</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">డార్క్ మోడ్ వల్ల వాల్‌పేపర్ మసకబారుతుంది</string>
     <string name="ChatWallpaperFragment__contact_name">సంప్రదింపు పేరు</string>
     <string name="ChatWallpaperFragment__reset">పునరుద్ధరించు</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">వాల్పేపర్ పూర్వప్రదర్శన</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">మీరు అన్ని మాటామంతి రంగులను భర్తీ చేయాలనుకుంటున్నారా?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">అన్ని చాట్ రంగులను మీరు అధిగమించాలని అనుకుంటున్నారా?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">మీరు అన్ని వాల్‌పేపర్‌లను భర్తీ చేయాలనుకుంటున్నారా?</string>
     <string name="ChatWallpaperFragment__reset_default_colors">డిఫాల్ట్ రంగులను రీసెట్ చేయండి</string>
     <string name="ChatWallpaperFragment__reset_all_colors">అన్ని రంగులను రీసెట్ చేయండి</string>
@@ -3912,7 +3937,7 @@
     <string name="ChatWallpaperPreviewActivity__preview">పూర్వప్రదర్శన</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">వాల్‌పేపర్‌ను జత చేయండి</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">మరిన్ని వాల్‌పేపర్‌లను పూర్వప్రదర్శనం చేయడానికి స్వైప్ చేయండి.</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">అన్ని మాటామంతీ‌ల కోసం వాల్‌పేపర్‌ను నిశ్చిత చేయండి.</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">అన్ని చాట్‌ల కొరకు వాల్‌పేపర్ సెట్ చేయండి</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s కోసం వాల్‌పేపర్‌ను నిశ్చిత చేయండి.</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">మీ చిత్రశాలను చూడడానికి, Storage permssion అవసరమైనది</string>
 
@@ -3920,7 +3945,7 @@
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">జూమ్ చేయడానికి చిటికెడు, సర్దుబాటు చేయడానికి లాగండి.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">అన్ని మాటామంతీ‌ల కోసం వాల్‌పేపర్‌ను నిశ్చిత చేయండి.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">అన్ని చాట్‌ల కొరకు వాల్‌పేపర్ సెట్ చేయండి.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_s">%1$s కోసం వాల్‌పేపర్‌ను నిశ్చిత చేయండి.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">వాల్‌పేపర్‌ను సెట్ చేయడంలో లోపం.</string>
     <string name="WallpaperCropActivity__blur_photo">అస్పష్టమైన ఛాయాచిత్రం</string>
@@ -4041,11 +4066,11 @@
 
     <!-- GroupsInCommonMessageRequest -->
     <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">ఈ వ్యక్తితో మీకు సాధారణ సమూహాలు లేవు. అవాంఛిత సందేశాలను నివారించడానికి అంగీకరించే ముందు అభ్యర్థనలను జాగ్రత్తగా సమీక్షించండి.</string>
-    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">మీ కాంటాక్ట్‌లు లేదా మీరు చాట్ చేసే వ్యక్తులు ఎవరూ ఈ గ్రూపులో లేరు. అవాంఛిత సందేశాలను పరిహరించడానికి ఆమోదించడానికి ముందు అభ్యర్ధనలను జాగ్రత్తగా సమీక్షించండి.</string>
+    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">మీరు చాట్ చేసే మీ పరిచయాలు లేదా వ్యక్తులు ఎవరూ ఈ గ్రూపులో లేరు. అవాంఛిత సందేశాలను నివారించేందుకు అంగీకరించడానికి ముందు అభ్యర్ధనలను జాగ్రత్తగా సమీక్షించండి.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">సందేశం అభ్యర్ధనల గురించి</string>
     <string name="GroupsInCommonMessageRequest__okay">సరే</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">మాటామంతి రంగు యొక్క పూర్వప్రదర్శన ఇక్కడ ఉంది.</string>
+    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">చాట్ రంగు యొక్క ప్రివ్యూ ఇక్కడ ఉంది.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">రంగు మీకు మాత్రమే కనిపిస్తుంది.</string>
 
     <!-- GroupDescriptionDialog -->
@@ -4219,8 +4244,8 @@
     <string name="PrivacySettingsFragment__app_security">యాప్ సెక్యూరిటీ</string>
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ఇటీవలి జాబితాలో మరియు యాప్ లోపల స్క్రీన్‌షాట్‌లను బ్లాక్ చేయండి</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal సందేశాలు మరియు కాల్స్, ఎల్లప్పుడూ రిలే కాల్స్, మరియు సీల్ చేయబడ్డ సెండర్</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">క్రొత్త మాటామంతిల కోసం అప్రమేయ టైమర్</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">మీరు ప్రారంభించిన అన్ని క్రొత్త మాటామంతిల కోసం అప్రమేయంగా అదృశ్యమయ్యే సందేశ టైమర్‌ను సెట్ చేయండి.</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">కొత్త చాట్‌ల కొరకు డిఫాల్ట్ టైమర్</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">మీచే ప్రారంభించబడిన అన్ని కొత్త చాట్‌ల కోసం డిఫాల్ట్‌గా అదృశ్యమయ్యే సందేశ టైమర్‌ను సెట్ చేయండి.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">నిధులు బదిలీ చేయడానికి Android స్క్రీన్ లాక్ లేదా వేలిముద్ర అవసరం</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -4238,8 +4263,8 @@
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">సీల్డ్ సెండర్‌ని ఉపయోగించి అవి డెలివరీ చేయబడినప్పుడు సందేశం వివరాల్లో ఐకాన్‌ని చూపించండి.</string>
 
     <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">ప్రారంభించినప్పుడు, కొత్త చాట్‌లో మీ ద్వారా పంపిన మరియు అందుకున్న కొత్త సందేశాలు వాటిని చూసిన వెంటనే అదృశ్యం అవుతాయి.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">ప్రారంభించబడినప్పుడు, ఈ మాటామంతీ‌లో పంపిన మరియు స్వీకరించిన క్రొత్త సందేశాలు చూసిన తర్వాత అవి అదృశ్యమవుతాయి.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">ప్రారంభించినప్పుడు, మీచే ప్రారంభించబడిన కొత్త చాట్‌లలో పంపబడిన మరియు అందుకున్న కొత్త సందేశాలు వాటిని చూసిన తరువాత అదృశ్యం అవుతాయి.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">ప్రారంభించబడినప్పుడు, ఈ చాట్‌లో పంపబడిన మరియు అందుకున్న క్రొత్త సందేశాలు వాటిని చూసిన తరువాత అదృశ్యం అవుతాయి.</string>
     <string name="ExpireTimerSettingsFragment__off">ఆఫ్</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 వారాలు</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 వారం</string>
@@ -4265,7 +4290,7 @@
     <string name="HelpSettingsFragment__debug_log">డీబగ్ సంఘటన లేకరి</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">నిబంధనలు &amp; గోప్యతా విధానం</string>
     <string name="HelpFragment__copyright_signal_messenger">కాపీరైట్ Signal మెసెంజర్</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 కింద లైసెన్స్ పొందింది</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">మీడియా నాణ్యత</string>
@@ -4278,14 +4303,14 @@
     <!-- ChatColorSelectionFragment -->
     <string name="ChatColorSelectionFragment__auto">ఆటో</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">కస్టమ్ రంగులను ఉపయోగించండి</string>
-    <string name="ChatColorSelectionFragment__chat_color">మాటామంతీ రంగు</string>
+    <string name="ChatColorSelectionFragment__chat_color">చాట్ రంగు</string>
     <string name="ChatColorSelectionFragment__edit">సరిచేయు</string>
     <string name="ChatColorSelectionFragment__duplicate">నకిలీ</string>
     <string name="ChatColorSelectionFragment__delete">తొలగించండి</string>
     <string name="ChatColorSelectionFragment__delete_color">రంగును తొలగించండి</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">ఈ అనుకూల రంగు %1$d చాట్‌లో ఉపయోగించబడింది. అన్ని చాట్స్ కొరకు దీనిని తొలగించాలని మీరు అనుకుంటున్నారా?</item>
-        <item quantity="other">ఈ అనుకూల రంగు %1$d చాట్‌లలో ఉపయోగించబడింది. అన్ని చాట్స్ కొరకు దీనిని తొలగించాలని మీరు అనుకుంటున్నారా?</item>
+        <item quantity="one">ఈ అనుకూల రంగు %1$d చాట్‌లో ఉపయోగించబడింది. అన్ని చాట్‌ల కొరకు దీనిని తొలగించాలని మీరు అనుకుంటున్నారా?</item>
+        <item quantity="other">ఈ అనుకూల రంగు %1$d చాట్‌లలో ఉపయోగించబడింది. అన్ని చాట్‌ల కొరకు దీనిని తొలగించాలని మీరు అనుకుంటున్నారా?</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">చాట్ రంగును తొలగించేదా?</string>
 
@@ -4299,8 +4324,8 @@
     <string name="CustomChatColorCreatorFragmentPage__save">భద్రపరుచు</string>
     <string name="CustomChatColorCreatorFragmentPage__edit_color">రంగును సవరించండి</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-        <item quantity="one">ఈ రంగు %1$dచాట్‌లో ఉపయోగించబడుతుంది. చాట్‌ కొరకు మార్పులను సేవ్ చేయాలని మీరు కోరుకుంటున్నారా?</item>
-        <item quantity="other">ఈ రంగు %1$d చాట్‌ల్లో ఉపయోగించబడుతుంది. అన్ని చాట్‌ల కొరకు మార్పులను సేవ్ చేయాలని మీరు కోరుకుంటున్నారా?</item>
+        <item quantity="one">ఈ రంగు %1$d చాట్‌లో ఉపయోగించబడింది. అన్ని చాట్‌ల కొరకు మార్పులను సేవ్ చేయాలని మీరు కోరుకుంటున్నారా?</item>
+        <item quantity="other">ఈ రంగు %1$d చాట్‌లలో ఉపయోగించబడింది. అన్ని చాట్‌ల కొరకు మార్పులను సేవ్ చేయాలని మీరు కోరుకుంటున్నారా?</item>
     </plurals>
 
     <!-- ChatColorGradientTool -->
@@ -4362,7 +4387,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">కాంటాక్ట్‌ల యాప్‌ను కనుగొనలేకపోయింది</string>
     <string name="ConversationSettingsFragment__start_video_call">వీడియో కాల్ ప్రారంభించాలా</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Start voice call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">వాయిస్ కాల్ ప్రారంభించండి</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">కథ</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4396,8 +4421,9 @@
     <string name="ConversationSettingsFragment__group_link">సమూహ లింక్</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">కాంటాక్ట్ వలే జోడించండి</string>
     <string name="ConversationSettingsFragment__unmute">అన్‌మ్యూట్ చేయండి</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s వరకు చాట్ మ్యూట్ చేయబడింది</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">చాట్ శాశ్వతంగా మ్యూట్ చేయబడింది</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ఫోన్ నెంబర్ క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది</string>
     <string name="ConversationSettingsFragment__phone_number">ఫోను నంబరు</string>
     <string name="ConversationSettingsFragment__get_badges">Signal కు మద్దతు ఇవ్వడం ద్వారా మీ ప్రొఫైల్ కొరకు బ్యాడ్జీలను పొందండి. మరింత తెలుసుకోవడానికి బ్యాడ్జి మీద తట్టండి.</string>
@@ -4437,7 +4463,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">సందేశం</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Voice call</string>
+    <string name="NewConversationActivity__audio_call">వాయిస్ కాల్</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">వి</string>
     <!-- Context menu item remove -->
@@ -4660,22 +4686,22 @@
     <string name="MySupportPreference__please_contact_support">దయచేసి సపోర్ట్‌ని సంప్రదించండి.</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__title">Update Signal</string>
+    <string name="UpdateSignalExpiredDialog__title">Signal ను నవీకరించండి</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">Signal యొక్క ఈ వెర్షన్ గడువు తీరింది. Signal ఉపయోగించడం కొనసాగించడానికి ఇప్పుడు అప్‌డేట్ చేయండి.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
-    <string name="UpdateSignalExpiredDialog__update_action">Update</string>
+    <string name="UpdateSignalExpiredDialog__update_action">నవీకరణ</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
-    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel</string>
+    <string name="UpdateSignalExpiredDialog__cancel_action">రద్దు చేయండి</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">పరికరం నమోదు చేయబడలేదు</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">ఈ పరికరం ఇకపై నమోదు చేయబడలేదు. ఈ పరికరంపై Signal ఉపయోగించడం కొనసాగించేందుకు మళ్ళీ నమోదు చేసుకోండి.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">Re-register</string>
+    <string name="ReregisterSignalDialog__reregister_action">మల్లి నమోదుచేయుత </string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
-    <string name="ReregisterSignalDialog__cancel_action">Cancel</string>
+    <string name="ReregisterSignalDialog__cancel_action">రద్దు చేయండి</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">బూస్ట్ బ్యాడ్జి గడువు తీరింది</string>
@@ -4919,7 +4945,7 @@
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
     <string name="NotificationProfileCreated__done">పూర్తయింది</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">చాట్ లిస్ట్‌లోని మెనూ ద్వారా మీరు మీ ప్రొఫైల్‌ని మాన్యువల్‌గా ఆన్ లేదా ఆఫ్ చేయవచ్చు.</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">చాట్ జాబితాలోని మెనూ ద్వారా మీరు మీ ప్రొఫైల్‌ను మాన్యువల్‌గా ఆన్ లేదా ఆఫ్ చేయవచ్చు.</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
     <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">మీ ప్రొఫైల్‌ని ఆటోమేట్ చేయడానికి సెట్టింగ్‌ల్లో ఒక షెడ్యూల్‌ని జోడించండి.</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
@@ -4976,7 +5002,7 @@
     <!-- region "Stories Tab" -->
 
     <!-- Label for Chats tab in home app screen -->
-    <string name="ConversationListTabs__chats">మాటామంతి</string>
+    <string name="ConversationListTabs__chats">చాట్‌లు</string>
     <!-- Label for Calls tab in home app screen -->
     <string name="ConversationListTabs__calls">కాల్‌లు</string>
     <!-- Label for Stories tab in home app screen -->
@@ -5000,7 +5026,7 @@
     <!-- Context menu option to share a story -->
     <string name="StoriesLandingItem__share">పంచుకోండి…</string>
     <!-- Context menu option to go to story chat -->
-    <string name="StoriesLandingItem__go_to_chat">చాట్‌కు వెళ్లండి</string>
+    <string name="StoriesLandingItem__go_to_chat">చాట్‌కు వెళ్ళండి</string>
     <!-- Context menu option to go to story info -->
     <string name="StoriesLandingItem__info">సమాచారం</string>
     <!-- Label when a story is pending sending -->
@@ -5147,7 +5173,7 @@
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal కనెక్షన్‌లు అనేవి, వీటి ద్వారా మీరు విశ్వసించడానికి ఎంచుకునే వ్యక్తులు:</string>
     <!-- Signal connections sheet bullet point 1 -->
-    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a chat</string>
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">ఒక చాట్‌ను ప్రారంభించడం</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">సందేశం అభ్యర్ధన ఆమోదించడం</string>
     <!-- Signal connections sheet bullet point 3 -->
@@ -5527,7 +5553,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">ఈ స్టోరీను ఎవరు వీక్షించవచ్చు</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"%1$s గ్రూప్ సభ్యులు ఈ స్టోరీను వీక్షించవచ్చు మరియు ప్రత్యుత్తరం ఇవ్వవచ్చు. గ్రూప్‌లో ఈ చాట్ కొరకు మీరు సభ్యత్వాన్ని అప్‌డేట్ చేయవచ్చు."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"%1$s గ్రూప్ సభ్యులు ఈ కథను వీక్షించవచ్చు మరియు ప్రత్యుత్తరం ఇవ్వవచ్చు. గ్రూపులో ఈ చాట్ కొరకు మీరు సభ్యత్వాన్ని అప్‌డేట్ చేయవచ్చు."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">గ్రూప్ కథను తొలగించండి</string>
 
@@ -5627,9 +5653,9 @@
 
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
-    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">చాట్స్‌ను బ్యాకప్ చేయలేం</string>
+    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">చాట్‌ల‌ను బ్యాకప్ చేయలేము</string>
     <!-- The body text of an alert window that tells the user that we are unable to backup their messages -->
-    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">మీ చాట్స్ ఇకపై ఆటోమేటిక్‌గా బ్యాకప్ చేయబడవు.</string>
+    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">మీ చాట్‌లు ఇకపై ఆటోమేటిక్‌గా బ్యాకప్ చేయబడవు.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__back_up_chats">చాట్‌లను బ్యాకప్ చేయండి</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
@@ -5831,7 +5857,7 @@
     <!-- Displayed as body text in the username education screen -->
     <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">యూజర్‌నేమ్స్ అంకెల సెట్‌తో జత చేయబడ్డాయి మరియు మీ ప్రొఫైల్‌లో పంచుకోబడలేదు</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">ప్రతి యూజర్‌నేమ్‌కు ప్రత్యేక QR కోడ్ మరియు మీతో చాట్ ప్రారంభించడానికి మీరు స్నేహితులతో పంచుకోగల లింక్ ఉంటుంది</string>
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">మీతో చాట్ ప్రారంభించడానికి మీరు స్నేహితులతో పంచుకోగల సాటిలేని QR కోడ్ మరియు లింక్ ప్రతి యూజర్‌నేమ్‌కు ఉంటుంది</string>
     <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
     <string name="UsernameEducationFragment__turn_off_phone_number_discovery">ఇతరులు మిమ్మల్ని సంప్రదించడానికి మీ యూజర్‌నేమ్‌ను ప్రాథమిక మార్గంగా ఉపయోగించడానికి, సెట్టింగ్స్ &gt; గోప్యత &gt; ఫోన్ నంబర్ &gt; నా నంబర్‌ను ఎవరు కనుగొనగలరు కింద ఫోన్ నంబర్ కనుగొనడాన్ని ఆఫ్ చేయండి</string>
 
@@ -5875,9 +5901,9 @@
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">కాల్‌కు తిరిగి వెళ్ళండి</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Voice call</string>
+    <string name="CallContextMenu__audio_call">వాయిస్ కాల్</string>
     <!-- Displayed as a context menu item to go to chat -->
-    <string name="CallContextMenu__go_to_chat">చాట్‌కు వెళ్లండి</string>
+    <string name="CallContextMenu__go_to_chat">చాట్‌కు వెళ్ళండి</string>
     <!-- Displayed as a context menu item to see call info -->
     <string name="CallContextMenu__info">సమాచారం</string>
     <!-- Displayed as a context menu item to select multiple calls -->
@@ -5903,8 +5929,8 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">తొలగించండి</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="one">%1$d కాల్ తొలగించేదా?</item>
+        <item quantity="other">%1$d కాల్‌లను తొలగించేదా?</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">నాకు తొలగించండి</string>
@@ -6002,38 +6028,38 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">కాల్ వివరాలు</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
-    <string name="CallLinkDetailsFragment__add_call_name">Add call name</string>
+    <string name="CallLinkDetailsFragment__add_call_name">కాల్ పేరును జోడించండి</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Approve all members</string>
+    <string name="CallLinkDetailsFragment__approve_all_members">సభ్యులందరినీ ఆమోదించండి</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
-    <string name="CallLinkDetailsFragment__share_link">Share link</string>
+    <string name="CallLinkDetailsFragment__share_link">లింక్‌ను పంచుకోండి</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">కాల్ లింక్ తొలగించండి</string>
 
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">పంచుకోండి</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">రంగు</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">మీరు విశ్వసించే వ్యక్తులతో మాత్రమే మీ QR కోడ్ మరియు లింక్‌ను పంచుకోండి. పంచుకున్నప్పుడు ఇతరులు మీ యూజర్‌నేమ్‌ను చూడగలుగుతారు మరియు మీతో చాట్ ప్రారంభిస్తారు.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">యూజర్‌నేమ్ కాపీ చేయబడింది</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">లింక్ కాపీ చేయబడింది</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">పునరుద్ధరించు</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">పూర్తయింది</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">కోడ్</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">స్కాన్</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">మీ పరిచయం యొక్క పరికరంలో QR కోడ్‌ను స్కాన్ చేయండి.</string>
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">రంగు</string>
 
     <!-- EOF -->
 </resources>

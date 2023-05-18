@@ -54,7 +54,7 @@ class HelpSettingsFragment : DSLSettingsFragment(R.string.preferences__help) {
           StringBuilder().apply {
             append(getString(R.string.HelpFragment__copyright_signal_messenger))
             append("\n")
-            append(getString(R.string.HelpFragment__licenced_under_the_gplv3))
+            append(getString(R.string.HelpFragment__licenced_under_the_agplv3))
           }
         )
       )

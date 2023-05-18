@@ -1,10 +1,13 @@
 package org.thoughtcrime.securesms.keyvalue;
 
+import android.preference.PreferenceManager;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme;
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraintObserver;
 
 import java.util.Collections;
@@ -33,6 +36,8 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String LINKED_DEVICES_REMINDER        = "misc.linked_devices_reminder";
   private static final String HAS_LINKED_DEVICES             = "misc.linked_devices_present";
   private static final String USERNAME_QR_CODE_COLOR         = "mis.username_qr_color_scheme";
+  private static final String KEYBOARD_LANDSCAPE_HEIGHT      = "misc.keyboard.landscape_height";
+  private static final String KEYBOARD_PORTRAIT_HEIGHT       = "misc.keyboard.protrait_height";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -277,4 +282,39 @@ public final class MiscellaneousValues extends SignalStoreValues {
     putString(USERNAME_QR_CODE_COLOR, color.serialize());
   }
 
+  public int getKeyboardLandscapeHeight() {
+    int height = getInteger(KEYBOARD_LANDSCAPE_HEIGHT, 0);
+    if (height == 0) {
+      //noinspection deprecation
+      height = PreferenceManager.getDefaultSharedPreferences(ApplicationDependencies.getApplication())
+                                .getInt("keyboard_height_landscape", 0);
+
+      if (height > 0) {
+        setKeyboardLandscapeHeight(height);
+      }
+    }
+    return height;
+  }
+
+  public void setKeyboardLandscapeHeight(int height) {
+    putLong(KEYBOARD_LANDSCAPE_HEIGHT, height);
+  }
+
+  public int getKeyboardPortraitHeight() {
+    int height = (int) getInteger(KEYBOARD_PORTRAIT_HEIGHT, 0);
+    if (height == 0) {
+      //noinspection deprecation
+      height = PreferenceManager.getDefaultSharedPreferences(ApplicationDependencies.getApplication())
+                                .getInt("keyboard_height_portrait", 0);
+
+      if (height > 0) {
+        setKeyboardPortraitHeight(height);
+      }
+    }
+    return height;
+  }
+
+  public void setKeyboardPortraitHeight(int height) {
+    putInteger(KEYBOARD_PORTRAIT_HEIGHT, height);
+  }
 }

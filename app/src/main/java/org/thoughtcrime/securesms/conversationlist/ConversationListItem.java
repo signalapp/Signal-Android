@@ -171,8 +171,6 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     this.thumbTarget             = new GlideLiveDataTarget(thumbSize, thumbSize);
     this.searchStyleFactory      = () -> new CharacterStyle[] { new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface)), SpanUtil.getBoldSpan() };
 
-    this.subjectView.enableSpoilerFiltering();
-
     getLayoutTransition().setDuration(150);
   }
 

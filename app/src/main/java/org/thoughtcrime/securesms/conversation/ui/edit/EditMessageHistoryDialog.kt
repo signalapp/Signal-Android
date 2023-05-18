@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
+import org.thoughtcrime.securesms.conversation.quotes.OriginalMessageSeparatorDecoration
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.databinding.MessageEditHistoryBottomSheetBinding
@@ -76,9 +78,10 @@ class EditMessageHistoryDialog : FixedRoundedCornerBottomSheetDialogFragment() {
     }
 
     binding.editHistoryList.apply {
-      layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+      layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
       adapter = messageAdapter
       itemAnimator = null
+      addItemDecoration(OriginalMessageSeparatorDecoration(context, R.string.EditMessageHistoryDialog_title))
     }
 
     val recyclerViewColorizer = RecyclerViewColorizer(binding.editHistoryList)

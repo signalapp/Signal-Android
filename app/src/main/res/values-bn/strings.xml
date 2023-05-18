@@ -183,7 +183,11 @@
     <string name="CameraContacts_recent_contacts">সাম্প্রতিক যোগাযোগ</string>
     <string name="CameraContacts_signal_contacts">Signal পরিচিতিসমূহ</string>
     <string name="CameraContacts_signal_groups">Signal গ্রুপসমূহ</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal প্রাপকসমূহ নির্বাচন করুন</string>
     <string name="CameraContacts_no_signal_contacts">কোনও Signal পরিচিতি নেই</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">শুধুমাত্র Signal পরিচিতিদের ছবি পাঠাতে ক্যামেরা বোতাম ব্যবহার করতে পারবেন। </string>
@@ -227,7 +231,7 @@
     <!-- ConfirmIdentityDialog -->
 
     <!-- ContactsCursorLoader -->
-    <string name="ContactsCursorLoader_recent_chats">সাম্প্রতিক আলাপসমূহ</string>
+    <string name="ContactsCursorLoader_recent_chats">সাম্প্রতিক চ্যাট</string>
     <string name="ContactsCursorLoader_contacts">পরিচিতিসমূহ</string>
     <string name="ContactsCursorLoader_groups">গ্রুপসমূহ</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
@@ -369,9 +373,9 @@
     <string name="ConversationActivity_new_say_it_with_stickers">নতুন! স্টিকার দিয়ে বলুন</string>
 
     <string name="ConversationActivity_cancel">বাতিল করুন</string>
-    <string name="ConversationActivity_delete_conversation">Delete chat?</string>
+    <string name="ConversationActivity_delete_conversation">চ্যাট মুছে ফেলবেন?</string>
     <string name="ConversationActivity_delete_and_leave_group">গ্রুপ মুছে ফেলবেন এবং ছেড়ে যাবেন?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">This chat will be deleted from all of your devices.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">এই চ্যাটটি আপনার সকল ডিভাইস থেকে মুছে ফেলা হবে।</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">আপনি এই গ্রুপ ছেড়ে চলে যাবেন এবং এটি আপনার সকল ডিভাইস থেকে মুছে ফেলা হবে।</string>
     <string name="ConversationActivity_delete">মুছে ফেলুন</string>
     <string name="ConversationActivity_delete_and_leave">মুছুন এবং ছেড়ে যান</string>
@@ -452,7 +456,7 @@
     <string name="ConversationFragment_delete_on_this_device">এই ডিভাইস থেকে মুছে ফেলুন</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">সব জায়গা থেকে মুছে ফেলুন</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">এই ম্যাসেজটি চ্যাট-এর প্রত্যেকের জন্য মুছে ফেলা হবে, যদি তাদের কাছে Signal-এর কোনো সাম্প্রতিক সংস্করণ থেকে থাকে। তারা দেখতে পাবেন যে আপনি একটি ম্যাসেজ মুছে ফেলেছেন।</string>
     <string name="ConversationFragment_quoted_message_not_found">মূল বার্তাটি পাওয়া যায়নি</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">মূল বার্তাটি আর পাওয়া যাচ্ছে না</string>
     <string name="ConversationFragment_failed_to_open_message">বার্তা দেখাতে ব্যর্থ</string>
@@ -460,7 +464,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">দ্রুত উত্তর দেওয়ার জন্য আপনি কোনও বার্তায় বাম দিকে সোয়াইপ করতে পারেন</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">শুধু-একবার-দেখার-যোগ্য বহির্গামী মিডিয়া ফাইলগুলো প্রেরণের পরে সেগুলো স্বয়ংক্রিয়ভাবে সরিয়ে ফেলা হবে</string>
     <string name="ConversationFragment_you_already_viewed_this_message">আপনি ইতোমধ্যে এই ম্যাসেজটি দেখেছেন</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat.\nIf your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">আপনি এই চ্যাটটিতে আপনার নিজের জন্য টীকা যোগ করতে পারবেন।\nআপনার অ্যাকাউন্টের সাথে সংযুক্ত কোনো ডিভাইস থাকলে, নতুন টীকাগুলো সিঙ্ক করা হবে।</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">গ্রুপের %1$d জনের একই নাম আছে।</string>
     <string name="ConversationFragment__tap_to_review">পর্যালোচনা করতে চাপুন</string>
     <string name="ConversationFragment__review_requests_carefully">তোমার অনুরোধ ভালোভাবে দেখো</string>
@@ -483,31 +487,31 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">ব্লক করা হয়েছে</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
-    <string name="ConversationFragment__update_build">Update Signal</string>
+    <string name="ConversationFragment__update_build">Signal আপডেট করুন</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">পুনরায় Signal-এ নিবন্ধন করুন</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ফিল্টার খালি করুন</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">অপঠিত কোনো চ্যাট নেই</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="one">নির্বাচিত চ্যাট মুছে ফেলবেন?</item>
+        <item quantity="other">নির্বাচিত চ্যাট মুছে ফেলবেন?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="one">এটি নির্বাচিত চ্যাট চিরতরে মুছে ফেলবে।</item>
+        <item quantity="other">এটি %1$dটি নির্বাচিত চ্যাট চিরতরে মুছে ফেলবে।</item>
     </plurals>
     <string name="ConversationListFragment_deleting">মোছা হচ্ছে…</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">নির্বাচিত চ্যাট মুছে ফেলা হচ্ছে…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Chat archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="one">চ্যাট আর্কাইভ করা হয়েছে</item>
+        <item quantity="other">%1$dটি চ্যাট আর্কাইভ করা হয়েছে</item>
     </plurals>
     <string name="ConversationListFragment_undo">পূর্বাবস্থায় ফিরে যান</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="one">চ্যাট ইনবক্সে স্থানান্তর করা হয়েছে</item>
+        <item quantity="other">%1$dটি চ্যাট ইনবক্সে স্থানান্তর করা হয়েছে</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">পড়ুন</item>
@@ -542,7 +546,7 @@
     <string name="ConversationListItem_key_exchange_message">Key বিনিময় বার্তা</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">আর্কাইভকৃত চ্যাট (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">যাচাইকৃত</string>
@@ -612,7 +616,7 @@
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">ব্যাকআপের ত্রুটিপূর্ণ এক্সটেনশন রয়েছে।</string>
 
     <!-- BackupsPreferenceFragment -->
-    <string name="BackupsPreferenceFragment__chat_backups">চ্যাট ব্যাকআপসমূহ</string>
+    <string name="BackupsPreferenceFragment__chat_backups">চ্যাট ব্যাকআপ</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">ব্যাকআপগুলি একটি পাসফ্রেজের সাহায্যে এনক্রিপ্ট করা হয় এবং আপনার ডিভাইসে সঞ্চিত হয়।</string>
     <string name="BackupsPreferenceFragment__create_backup">ব্যাকঅাপ নির্মাণ করুন</string>
     <string name="BackupsPreferenceFragment__last_backup">সর্বশেষ ব্যাকআপ%1$s:</string>
@@ -697,8 +701,8 @@
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">সূচি অনুযায়ী পাঠানোর জন্য নির্বাচিত ম্যাসেজটি মুছে ফেলা হচ্ছে…</string>
 
     <!-- DecryptionFailedDialog -->
-    <string name="DecryptionFailedDialog_chat_session_refreshed">চ্যাট সেশনটি পুনরায় লোড হয়েছে</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal এক প্রান্ত থেকে অপর প্রান্ত এনক্রিপশন ব্যবহার করে এবং কখনও কখনও আপনার চ্যাট সেশনটি পুনরায় লোড করার প্রয়োজন হতে পারে। এটি আপনার চ্যাটের সুরক্ষাকে প্রভাবিত করবে না, তবে আপনি এই পরিচিতির কোনও বার্তা না পেয়ে থাকলে এবং আপনি তাদের এটি পুনরায় পাঠাতে বলতে পারেন।</string>
+    <string name="DecryptionFailedDialog_chat_session_refreshed">চ্যাট সেশনটি রিফ্রেশ করা হয়েছে</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal এন্ড-টু-এন্ড এনক্রিপশন ব্যবহার করে এবং কখনো কখনো আপনার চ্যাট সেশনটি পুনরায় লোড করার প্রয়োজন হতে পারে। এটি আপনার চ্যাটের সুরক্ষাকে প্রভাবিত করবে না, তবে আপনি এই কন্টাক্টের কাছ থেকে কোনো ম্যাসেজ মিস করতে পারেন এবং আপনি তাদের এটি পুনরায় পাঠাতে বলতে পারেন।</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">\'%1$s\' বিচ্ছিন্ন করা হবে?</string>
@@ -946,7 +950,7 @@
     <string name="ManageGroupActivity_legacy_group_upgrade">এটি একটি লিগ্যাসি গ্রুপ। @মেনশন এবং এডমিনের মতো নতুন বৈশিষ্ট্যগুলি অ্যাক্সেস করতে,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">এই লিগ্যাসি গ্রুপটি একটি নতুন গ্রুপে আপগ্রেড করা যাবে না কারণ এটি অনেক বড়। সর্বাধিক গ্রুপের আকার %1$d।</string>
     <string name="ManageGroupActivity_upgrade_this_group">এই গ্রুপটি আপগ্রেড করুন।</string>
-    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">এটি একটি অনিরাপদ এমএমএস গ্রুপ। ব্যক্তিগতভাবে চ্যাট করতে, আপনার পরিচিতিগুলিকে Signal এ আমন্ত্রণ জানান।</string>
+    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">এটি একটি অনিরাপদ MMS গ্রুপ। ব্যক্তিগতভাবে চ্যাট করতে, আপনার কন্টাক্টদেরকে Signal-এ আমন্ত্রণ জানান।</string>
     <string name="ManageGroupActivity_invite_now">এখনই আমন্ত্রণ জানান</string>
     <string name="ManageGroupActivity_more">আরও</string>
     <string name="ManageGroupActivity_add_group_description">গ্রুপের বিবরণ যুক্ত করুন …</string>
@@ -1264,7 +1268,7 @@
     <string name="MessageRecord_disappearing_message_time_set_to_s">অদৃশ্য হয়ে যাওয়া বার্তা টাইমার সেট করা হয়েছে %1$s।</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">এই গ্রুপটি একটি নতুন গ্রুপে আপডেট করা হয়েছে।</string>
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">আপনাকে নতুন গ্রুপে যুক্ত করা যায়নি এবং যোগদানের জন্য আমন্ত্রণ জানানো হয়েছে।</string>
-    <string name="MessageRecord_chat_session_refreshed">চ্যাট সেশনটি পুনরায় লোড হয়েছে</string>
+    <string name="MessageRecord_chat_session_refreshed">চ্যাট সেশনটি রিফ্রেশ করা হয়েছে</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
         <item quantity="one">একজন সদস্যকে নতুন গ্রুপে যোগ করা যায়নি এবং যোগ দেওয়ার জন্য তাকে আমন্ত্রণ জানানো হয়েছে।</item>
         <item quantity="other">%1$s জন সদস্যকে নতুন গ্রুপে যোগ করা যায়নি এবং যোগ দেওয়ার জন্য তাদেরকে আমন্ত্রণ জানানো হয়েছে।</item>
@@ -1446,7 +1450,7 @@
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s-এর সাথে আপনার ম্যাসেজের ইতিহাস এবং তাদের নম্বর %2$s একত্রিত করা হয়েছে।</string>
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s-এর সাথে আপনার ম্যাসেজের ইতিহাস এবং তাদের সাথে সম্পর্কিত অন্য একটি চ্যাট একত্রিত করা হয়েছে।</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s-এর সাথে আপনার ম্যাসেজের ইতিহাস এবং সেগুলোর সাথে সম্পর্কিত অন্য একটি চ্যাট একত্রিত করা হয়েছে।</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
     <string name="MessageRecord_s_belongs_to_s">%1$s নম্বরটি %2$s-এর</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
@@ -1504,10 +1508,10 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s-কে ম্যাসেজ পাঠানোর অনুমতি দিবেন? যতক্ষণ না আপনি তাদের আনব্লক করবেন ততক্ষণ আপনি কোনো ম্যাসেজ পাবেন না।</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s-এর কাছ থেকে আপডেট এবং খবর পেতে চান? যতক্ষণ না আপনি তাদের আনব্লক করবেন ততক্ষণ আপনি কোনো আপডেট পাবেন না।</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">এই গ্রুপের সাথে চ্যাট চালিয়ে যাবেন এবং এর সদস্যদের সাথে আপনার নাম ও ছবি শেয়ার করবেন?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@mentions ও অ্যাডমিনের মতো নতুন ফিচার চালু করতে এই গ্রুপটিকে আপগ্রেড করুন। এই গ্রুপে যেসব সদস্য তাদের নাম ও ছবি শেয়ার করেননি তাদেরকে যোগদানের আমন্ত্রণ জানানো হবে।</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">এই লিগ্যাসি গ্রুপটি অনেক বড় হওয়ায় এটি আর ব্যবহার করা যাবে না। গ্রুপের সর্বোচ্চ আকার হল %1$d।</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s-এর সাথে এই চ্যাট চালিয়ে যাবেন এবং তাদের সাথে আপনার নাম ও ছবি শেয়ার করবেন?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">আপনি কি এই গ্রুপে যোগ দিয়ে এর সদস্যদের সাথে আপনার নাম ও ছবি শেয়ার করবেন? আপনি গ্রহণ না করা পর্যন্ত তারা জানবেন না যে আপনি তাদের মেসেজ দেখেছেন।</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">এই গ্রুপে যোগ দিন এবং এর গ্রুপের সদস্যদের সাথে আপনার নাম এবং ছবি শেয়ার করুন? সহমত প্রকাশ করার আগ পর্যন্ত আপনি তাদের ম্যাসেজ দেখতে পাবেন না।</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">এই গ্রুপে যোগ দেবেন? আপনি স্বীকার না করা পর্যন্ত তারা জানবেন না যে আপনি তাদের মেসেজ দেখেছেন।</string>
@@ -1828,7 +1832,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">আপনি এই নম্বরটি রেজিস্ট্রেশন করার জন্য ইতোমধ্যে অনেকবার চেষ্টা করে ফেলেছেন। অনুগ্রহ করে %1$s মিনিটের মধ্যে আবার চেষ্টা করুন।</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">পরিষেবাতে সংযোগ করতে অক্ষম। নেটওয়ার্ক সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">যাচাইকরণ কোডের জন্য অনুরোধ করতে সক্ষম নয়। অনুগ্রহ করে আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</string>
     <string name="RegistrationActivity_non_standard_number_format">নন-স্ট্যান্ডার্ড নম্বর বিন্যাস</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">আপনি যে নম্বরটি প্রবেশ করেছেন (%1$s) সেটি একটি অ-মানক বিন্যাস বলে মনে হচ্ছে।\n\nআপনি কি %2$s বলতে চান?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">সিগন্যাল অ্যান্ড্রয়েড - ফোন নম্বর ফর্ম্যাট</string>
@@ -1887,7 +1891,7 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">\'%1$s\' এর জন্য কোনও ফলাফল পাওয়া যায়নি</string>
-    <string name="SearchFragment_header_conversations">Chats</string>
+    <string name="SearchFragment_header_conversations">চ্যাট</string>
     <string name="SearchFragment_header_contacts">পরিচিতিসমূহ</string>
     <string name="SearchFragment_header_messages">বার্তা সমূহ</string>
 
@@ -1956,7 +1960,8 @@
     <string name="StickerPackPreviewActivity_untitled">নামহীন</string>
     <string name="StickerPackPreviewActivity_unknown">অজানা</string>
     <string name="StickerPackPreviewActivity_install">ইনস্টল করুন</string>
-    <string name="StickerPackPreviewActivity_remove">সরিয়ে ফেলুন</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">স্টিকার সমূহ</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">স্টিকার প্যাক লোড হয়নি</string>
 
@@ -2024,7 +2029,7 @@
     <string name="ThreadRecord_voice_message">ভয়েস বার্তা</string>
     <string name="ThreadRecord_file">ফাইল</string>
     <string name="ThreadRecord_video">ভিডিও</string>
-    <string name="ThreadRecord_chat_session_refreshed">চ্যাট সেশনটি পুনরায় লোড হয়েছে</string>
+    <string name="ThreadRecord_chat_session_refreshed">চ্যাট সেশনটি রিফ্রেশ করা হয়েছে</string>
     <!-- Displayed in the notification when the user is sent a gift -->
     <string name="ThreadRecord__s_donated_for_you">%1$s আপনার জন্য ডোনেট করেছেন</string>
     <!-- Displayed in the notification when the user sends a gift -->
@@ -2074,7 +2079,7 @@
     <string name="UsernameEditFragment__usernames_let_others_message">ইউজারনেম ব্যবহার করলে আপনার ফোন নাম্বার ছাড়াই অন্যরা আপনাকে ম্যাসেজ দিতে পারবেন৷ আপনার ঠিকানা গোপন রাখতে সাহায্য করার জন্য এগুলো একগুচ্ছ সংখ্যার যুক্ত করা হয়৷</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">এই নম্বরটি কী?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">এই সংখ্যাগুলো আপনার ইউজারনেমটি গোপন রাখতে সাহায্য করে, যাতে আপনি অবাঞ্ছিত ম্যাসেজ এড়িয়ে যেতে পারেন৷ আপনি যে ব্যক্তি ও গ্রুপের সাথে চ্যাট করতে চান শুধুমাত্র তাদের সাথে আপনার ইউজারনেমটি শেয়ার করুন। ব্যবহারকারীর নামটি পরিবর্তন করলে আপনি একগুচ্ছ নতুন সংখ্যা পাবেন।</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">এই সংখ্যাগুলো আপনার ব্যবহারকারীর নামটি গোপন রাখতে সাহায্য করে, যাতে আপনি অবাঞ্ছিত ম্যাসেজ এড়িয়ে যেতে পারেন৷ আপনি যে ব্যক্তি ও গ্রুপের সাথে চ্যাট করতে চান শুধুমাত্র তাদের সাথে আপনার ব্যবহারকারীর নামটি শেয়ার করুন। ব্যবহারকারীর নামটি পরিবর্তন করলে আপনি নতুন একগুচ্ছ সংখ্যা পাবেন।</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">বাদ দিয়ে যান</string>
     <!-- Content description for done button -->
@@ -2154,7 +2159,19 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">আরও পড়ুন</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$dটি চ্যাটে %1$dটি নতুন ম্যাসেজ</string>
     <string name="MessageNotifier_most_recent_from_s">%1$sথেকে অতি সাম্প্রতিক :</string>
     <string name="MessageNotifier_locked_message">লক্ করা বার্তা</string>
     <string name="MessageNotifier_message_delivery_failed">বার্তা পৌছে দিতে ব্যর্থ।</string>
@@ -2198,7 +2215,7 @@
     <string name="NotificationChannel_locked_status">লক্ অবস্থা</string>
     <string name="NotificationChannel_app_updates">অ্যাপ আপডেট সমূহ</string>
     <string name="NotificationChannel_other">অন্যান্য</string>
-    <string name="NotificationChannel_group_chats">আলাপসমূহ</string>
+    <string name="NotificationChannel_group_chats">চ্যাট</string>
     <string name="NotificationChannel_missing_display_name">অজানা</string>
     <string name="NotificationChannel_voice_notes">ভয়েস নোট</string>
     <string name="NotificationChannel_contact_joined_signal">পরিচিতি Signal এ যোগ দিয়েছে</string>
@@ -2223,8 +2240,8 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">খুঁজুন</string>
     <!-- Hint when searching filtered chat content -->
-    <string name="SearchToolbar_search_unread_chats">অপঠিত চ্যাট অনুসন্ধান করুন</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_unread_chats">অপঠিত চ্যাট খুঁজুন</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">চ্যাট, কন্টাক্ট ও ম্যাসেজ খুঁজুন</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">বন্ধ করুন</string>
@@ -2254,9 +2271,9 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">ডিভাইস আর নিবন্ধিত নেই</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">এই ডিভাইসটি আর নিবন্ধিত নয়। এটি হওয়ার সম্ভাব্য কারণ হলো, আপনি হয়তো একটি ভিন্ন ডিভাইসে Signal-এর সাথে আপনার ফোন নম্বর নিবন্ধন করেছেন।</string>
     <!-- Action in reminder banner that will take user to re-register -->
-    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
+    <string name="UnauthorizedReminder_reregister_action">ডিভাইসটি আবারো নিবন্ধন করুন</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">আপনি এই ডিভাইসে Signal থেকে লগ আউট হয়ে গিয়েছেন।</string>
@@ -2444,20 +2461,20 @@
 
     <!-- ConversationParentFragment -->
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth permission denied</string>
+    <string name="ConversationParentFragment__bluetooth_permission_denied">ব্লুটুথ সংযোগের অনুমতি বাতিল করা হয়েছে৷</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">ভয়েস ম্যাসেজ রেকর্ড করতে ব্লুটুথ ব্যবহার করার জন্য অনুগ্রহ করে \"আশেপাশের ডিভাইস\"-এর অনুমতি সচল করুন।</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Open settings</string>
+    <string name="ConversationParentFragment__open_settings">সেটিংস খুলুন</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Not now</string>
+    <string name="ConversationParentFragment__not_now">এখন না</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">স্ক্রোল করে নীচে যান</string>
 
     <!-- BubbleOptOutTooltip -->
     <!-- Message to inform the user of what Android chat bubbles are -->
-    <string name="BubbleOptOutTooltip__description">বাবলস একটি Android বৈশিষ্ট্য যা আপনি Signal চ্যাটের জন্য বন্ধ করতে পারবেন।</string>
+    <string name="BubbleOptOutTooltip__description">বাবলস একটি Android ফিচার যা আপনি Signal চ্যাটের ক্ষেত্রে বন্ধ করতে পারবেন।</string>
     <!-- Button to dismiss the tooltip for opting out of using Android bubbles -->
     <string name="BubbleOptOutTooltip__not_now">এখন না</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
@@ -2575,7 +2592,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">সম্পূর্ণ চ্যাট দেখুন</string>
     <string name="load_more_header__loading">লোড হচ্ছে</string>
 
     <!-- media_overview_activity -->
@@ -2624,7 +2641,7 @@
     <string name="EditAboutFragment_encrypted">এনক্রিপ্ট করা হয়েছে</string>
     <string name="EditAboutFragment_be_kind">দয়ালু হোন</string>
     <string name="EditAboutFragment_coffee_lover">কফি প্রেমিক</string>
-    <string name="EditAboutFragment_free_to_chat">বিনা দ্বিধায় চ্যাট করুন</string>
+    <string name="EditAboutFragment_free_to_chat">ফ্রি-তে চ্যাট করুন</string>
     <string name="EditAboutFragment_taking_a_break">একটি বিরতি নিচ্ছে</string>
     <string name="EditAboutFragment_working_on_something_new">নতুন কিছুতে কাজ করছে</string>
 
@@ -2697,7 +2714,7 @@
     <string name="AndroidManifest__message_details">বার্তার খুঁটিনাটি</string>
     <string name="AndroidManifest__linked_devices">সংযুক্ত ডিভাইস সমূহ</string>
     <string name="AndroidManifest__invite_friends">বন্ধুদের আমন্ত্রণ</string>
-    <string name="AndroidManifest_archived_conversations">Archived chats</string>
+    <string name="AndroidManifest_archived_conversations">আর্কাইভকৃত চ্যাট</string>
     <string name="AndroidManifest_remove_photo">ছবি সরিয়ে ফেলুন</string>
 
     <!-- HelpFragment -->
@@ -2854,7 +2871,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">পেমেন্ট লক</string>
     <string name="preferences__payments_beta">পেমেন্ট (বিটা)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">চ্যাটের দৈর্ঘ্যের সীমা</string>
     <string name="preferences__keep_messages">মেসেজগুলো রাখুন</string>
     <string name="preferences__clear_message_history">ম্যাসেজের ইতিহাস মুছে ফেলুন</string>
     <string name="preferences__linked_devices">সংযুক্ত ডিভাইস সমূহ</string>
@@ -2898,7 +2915,11 @@
     <string name="preferences_storage__delete_older_messages">পুরানো বার্তা মুছে ফেলবেন?</string>
     <string name="preferences_storage__clear_message_history">ম্যাসেজের ইতিহাস মুছে ফেলবেন?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">এটি আপনার ডিভাইস থেকে %1$s থেকে পুরনো সকল বার্তার ইতিহাস ও মিডিয়া চিরতরে মুছে ফেলবে।</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">এটি আপনার ডিভাইস থেকে বার্তার সকল ইতিহাস ও মিডিয়া চিরতরে মুছে ফেলবে।</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">আপনি কি বার্তার সকল ইতিহাস মুছে ফেলার ব্যাপারে নিশ্চিত?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">বার্তার সকল ইতিহাস স্থায়ীভাবে মুছে ফেলা হবে। এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।</string>
@@ -2916,14 +2937,14 @@
     <string name="preferences_app_protection__who_can">যে পারে …</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">পেমেন্ট</string>
-    <string name="preferences_chats__chats">আলাপসমূহ</string>
+    <string name="preferences_chats__chats">চ্যাট</string>
     <string name="preferences_data_and_storage__manage_storage">স্টোরেজ ব্যাবস্থাপনা</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">কলগুলির জন্য কম ডেটা ব্যবহার করুন</string>
     <string name="preferences_data_and_storage__never">কখনোই না</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">ওয়াইফাই এবং মোবাইল ডেটা</string>
     <string name="preferences_data_and_storage__mobile_data_only">কেবল মোবাইল ডেটা</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">কম ডেটা ব্যবহার করা হলে খারাপ নেটওয়ার্কগুলিতে কলের মান উন্নত করতে পারে</string>
-    <string name="preferences_notifications__in_chat_sounds">চ্যাট এর মধ্যের শব্দ</string>
+    <string name="preferences_notifications__in_chat_sounds">চ্যাটের মধ্যকার শব্দ</string>
     <string name="preferences_notifications__show">দেখান</string>
     <string name="preferences_notifications__ringtone">রিংটোন</string>
     <string name="preferences_chats__message_text_size">বার্তার হরফের আকার</string>
@@ -3239,8 +3260,9 @@
     <string name="conversation_list_settings_shortcut">সেটিংস শর্টকাট</string>
     <string name="conversation_list_search_description">খুঁজুন</string>
     <string name="conversation_list__pinned">পিন করা</string>
-    <string name="conversation_list__chats">আলাপসমূহ</string>
-    <string name="conversation_list__you_can_only_pin_up_to_d_chats">আপনি কেবল %1$d টি চ্যাট পিন করতে পারেন</string>
+    <string name="conversation_list__chats">চ্যাট</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
+    <string name="conversation_list__you_can_only_pin_up_to_d_chats">আপনি শুধু %1$dটি চ্যাট পিন করতে পারবেন</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">পরিচিতির ফটো ইমেজ</string>
@@ -3248,9 +3270,9 @@
 
 
     <!-- conversation_list_fragment -->
-    <string name="conversation_list_fragment__fab_content_description">New chat</string>
+    <string name="conversation_list_fragment__fab_content_description">নতুন চ্যাট</string>
     <string name="conversation_list_fragment__open_camera_description">ক্যামেরা চালু করুন</string>
-    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">এখনও কোনও চ্যাট হয়নি।\n বন্ধুর নিকট একটি বার্তা পাঠিয়ে শুরু করুন।</string>
+    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">এখনো কোনো চ্যাট নেই।\nবন্ধুকে ম্যাসেজ পাঠিয়ে শুরু করুন।</string>
 
 
     <!-- conversation_secure_verified -->
@@ -3265,7 +3287,7 @@
     <string name="conversation__menu_group_settings">গ্রুপ সেটিংস</string>
     <string name="conversation__menu_leave_group">গ্রুপ ত্যাগ করুন</string>
     <string name="conversation__menu_view_all_media">সমস্ত মিডিয়া</string>
-    <string name="conversation__menu_conversation_settings">Chat settings</string>
+    <string name="conversation__menu_conversation_settings">চ্যাট সেটিংস</string>
     <string name="conversation__menu_add_shortcut">হোম পর্দায় যোগ করুন</string>
     <string name="conversation__menu_create_bubble">বাবল তৈরি করুন</string>
 
@@ -3288,7 +3310,8 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">প্রাপকদের তালিকা</string>
     <string name="conversation_group_options__delivery">পৌছে দেওয়া</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
+    <string name="conversation_group_options__conversation">চ্যাট</string>
     <string name="conversation_group_options__broadcast">ব্রডকাস্ট</string>
 
     <!-- text_secure_normal -->
@@ -3338,11 +3361,13 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">অন্তর্দৃষ্টি</string>
     <string name="InsightsDashboardFragment__title">অন্তর্দৃষ্টি</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal প্রোটোকল বিগত %2$d দিন যাবত আপনার প্রেরিত ম্যাসেজের %1$d%% স্বয়ংক্রিয়ভাবে সুরক্ষিত করেছে। Signal ব্যবহারকারীদের মধ্যকার চ্যাট সবসময় এন্ড-টু-এন্ড এনক্রিপ্ট করা থাকে।</string>
     <string name="InsightsDashboardFragment__spread_the_word">শব্দটি ছড়িয়ে দিন</string>
     <string name="InsightsDashboardFragment__not_enough_data">পর্যাপ্ত তথ্য নেই</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">আপনার ইনসাইটের শতকরা হার বিগত %1$d দিনের মধ্যে বহির্গামী বার্তাগুলোর মধ্যে অদৃশ্য হয়নি বা মোছা হয়নি, এমন বার্তাগুলোর উপর ভিত্তি করে হিসেব করা হয় যা ।</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
+    <string name="InsightsDashboardFragment__start_a_conversation">চ্যাট শুরু করুন</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">সুরক্ষিতভাবে যোগাযোগ শুরু করুন এবং Signal যোগ দেওয়ার জন্য আরও পরিচিতিগুলিকে আমন্ত্রণ জানিয়ে এনক্রিপ্ট করা এসএমএস বার্তাগুলির সীমা ছাড়িয়ে যাওয়ার মতো নতুন বৈশিষ্ট্য সক্ষম করুন|</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">এই পরিসংখ্যানগুলি স্থানীয়ভাবে আপনার ডিভাইসে তৈরি হয়েছিল এবং কেবলমাত্র আপনার দ্বারা দেখা যেতে পারে। এগুলি কখনই কোথাও সঞ্চারিত হয় না।</string>
     <string name="InsightsDashboardFragment__encrypted_messages">এনক্রিপ্ট করা বার্তা</string>
@@ -3488,7 +3513,7 @@
     <string name="registration_activity__transfer_or_restore_account">অ্যাকাউন্ট স্থানান্তর করুন বা পুনরুদ্ধার করুন</string>
     <string name="registration_activity__transfer_account">অ্যাকাউন্ট স্থানান্তর করুন</string>
     <string name="registration_activity__skip">বাদ দিয়ে যান</string>
-    <string name="preferences_chats__chat_backups">চ্যাট ব্যাকআপসমূহ</string>
+    <string name="preferences_chats__chat_backups">চ্যাট ব্যাকআপ</string>
     <string name="preferences_chats__transfer_account">অ্যাকাউন্ট স্থানান্তর করুন</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">একটি নতুন অ্যান্ড্রয়েড ডিভাইসে অ্যাকাউন্ট স্থানান্তর করুন</string>
     <string name="RegistrationActivity_enter_backup_passphrase">ব্যাকঅাপ পাসফ্রেজ প্রবেশ করান</string>
@@ -3586,21 +3611,21 @@
     <string name="Recipient_unknown">অজানা</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">অ্যাকাউন্ট পুনরায় নিবন্ধন করুন</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Update Signal</string>
+    <string name="preferences_account_update_signal">Signal আপডেট করুন</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <string name="preferences_account_delete_all_data">সকল ডেটা মুছে ফেলুন</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">সকল ডেটা মুছে ফেলবেন?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">এটি অ্যাপটিকে রিসেট করবে এবং সব ম্যাসেজ মুছে ফেলবে। এই প্রক্রিয়াটি সম্পন্ন হওয়ার পর অ্যাপটি বন্ধ হয়ে যাবে।</string>
     <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <string name="preferences_account_delete_all_data_confirmation_proceed">এগিয়ে যান</string>
     <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <string name="preferences_account_delete_all_data_confirmation_cancel">বাতিল করুন</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">ডেটা মুছে ফেলা সফল হয়নি</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">অ্যাকাউন্ট ট্রান্সফার করুন বা পুনরুদ্ধার করুন</string>
@@ -3880,21 +3905,21 @@
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">কিছু ব্যবহারকারীর কাছে প্রেরণে ব্যর্থ হয়েছে</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">আপনি কেবল %1$d জন পর্যন্ত চ্যাট শেয়ার করতে পারেন</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">আপনি শুধু %1$dটি পর্যন্ত চ্যাটের সাথে শেয়ার করতে পারবেন</string>
 
     <!-- ChatWallpaperActivity -->
 
     <!-- ChatWallpaperFragment -->
-    <string name="ChatWallpaperFragment__chat_color">চ্যাট-এর রং</string>
-    <string name="ChatWallpaperFragment__reset_chat_colors">চ্যাটের রঙগুলি রিসেট করুন</string>
-    <string name="ChatWallpaperFragment__reset_chat_color">চ্যাটের রঙ রিসেট করুন</string>
-    <string name="ChatWallpaperFragment__reset_chat_color_question">চ্যাটের রঙ পুনরায় সেট করবেন?</string>
+    <string name="ChatWallpaperFragment__chat_color">চ্যাটের রং</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">চ্যাটের রং রিসেট করুন</string>
+    <string name="ChatWallpaperFragment__reset_chat_color">চ্যাটের রং রিসেট করুন</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">চ্যাটের রং রিসেট করবেন?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">ওয়ালপেপার সেট করুন</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">ডার্ক মোডের ডিম ওয়ালপেপার</string>
     <string name="ChatWallpaperFragment__contact_name">কন্ট্যাক্টের নাম</string>
     <string name="ChatWallpaperFragment__reset">রিসেট</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">ওয়ালপেপার প্রিভিউ</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">আপনি কি সবকটি চ্যাটের রঙ বাতিল করতে চান?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">আপনি কি সবগুলো চ্যাটের রং বাতিল করতে চান?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">আপনি কি সবগুলি ওয়ালপেপার বাতিল করতে চান?</string>
     <string name="ChatWallpaperFragment__reset_default_colors">ডিফল্ট রং রিসেট করুন</string>
     <string name="ChatWallpaperFragment__reset_all_colors">সব রঙ রিসেট করুন</string>
@@ -3912,7 +3937,7 @@
     <string name="ChatWallpaperPreviewActivity__preview">প্রিভিউ</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">ওয়ালপেপার সেট করুন</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">আরও ওয়ালপেপারের প্রিভিউ দেখতে সোয়াইপ করুন</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">সকল বার্তার ওয়ালপেপার হিসেবে সেট করুন</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">সকল চ্যাটের জন্য ওয়ালপেপার সেট করুন</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s এর জন্য ওয়ালপেপার সেট করুন</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">আপনার গ্যালারী দেখার জন্য স্টোরেজের অনুমতি প্রয়োজন।</string>
 
@@ -3920,7 +3945,7 @@
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">জুম করতে পিঞ্চ করুন, সামঞ্জস্য করতে টানুন।</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">সকল বার্তার ওয়ালপেপার হিসেবে সেট করুন।</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">সকল চ্যাটের জন্য ওয়ালপেপার সেট করুন।</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_s">%1$s-এর ওয়ালপেপার সেট করুন।</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">ওয়ালপেপার সেট করতে ত্রুটি।</string>
     <string name="WallpaperCropActivity__blur_photo">অস্পষ্ট ছবি</string>
@@ -4041,11 +4066,11 @@
 
     <!-- GroupsInCommonMessageRequest -->
     <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">আপনার এবং এই ব্যক্তির মধ্যে কোনও কমন গ্রুপ নেই। অনাকাঙ্ক্ষিত মেসেজ পাওয়া এড়াতে গ্রহণ করার পূর্বে অনুরোধগুলো যত্ন সহকারে পর্যালোচনা করুন।</string>
-    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">আপনার কোন কন্ট্যাক্ট বা আপনি যাদের সাথে চ্যাট করেন তারা কেউ এই গ্রুপে নেই। অনাকাঙ্ক্ষিত মেসেজ পাওয়া এড়াতে গ্রহণ করার পূর্বে অনুরোধগুলো যত্ন সহকারে পর্যালোচনা করুন।</string>
+    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">আপনার কোনো কন্টাক্ট বা আপনি চ্যাট করেন এমন কেউ এই গ্রুপে নেই। অনাকাঙ্ক্ষিত ম্যাসেজ পাওয়া এড়াতে অনুরোধগুলো গ্রহণ করার আগে ভালোভাবে রিভিউ করুন।</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">মেসেজের অনুরোধ সম্পর্কে</string>
     <string name="GroupsInCommonMessageRequest__okay">ঠিক আছে</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">চ্যাটের রঙের একটি প্রিভিউ এখানে রয়েছে।</string>
+    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">চ্যাটের রংয়ের একটি প্রিভিউ এখানে রয়েছে।</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">কেবলমাত্র আপনি রঙটি দেখতে পাবেন।</string>
 
     <!-- GroupDescriptionDialog -->
@@ -4220,7 +4245,7 @@
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">রিসেন্ট লিস্ট এবং অ্যাপের মধ্যে স্ক্রীনশট ব্লক করুন</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal মেসেজ ও কল করে, সবসময় কল রিলে করে এবং প্রেরককে সিল করে রাখে</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">নতুন চ্যাটের জন্য ডিফল্ট টাইমার</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">আপনার শুরু করা সব নতুন চ্যাটের জন্য মেসেজ অদৃশ্য হওয়ার ডিফল্ট সময় সেট করুন।</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">আপনার শুরু করা সব নতুন চ্যাটের জন্য ম্যাসেজ অদৃশ্য হওয়ার ডিফল্ট সময় সেট করুন।</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">অর্থ পাঠাতে Android স্ক্রিন লক বা আঙুলের ছাপ দেওয়ার নিয়ম রাখুন</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -4238,8 +4263,8 @@
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">সিল করা প্রেরকের মাধ্যমে কোন মেসেজ পাঠানো হলে মেসেজের বিস্তারিত বিবরণীতে একটি আইকন দেখান।</string>
 
     <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">সক্রিয় থাকা অবস্থায়, নতুন চ্যাট-এ আপনার পাঠানো ও আসা নতুন মেসেজগুলো দেখার পর অদৃশ্য হয়ে যাবে।</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">সক্রিয় থাকা অবস্থায়, এই চ্যাট থেকে পাঠানো ও এখানে আসা নতুন মেসেজ দেখার পর অদৃশ্য হয়ে যাবে।</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">সক্রিয় থাকা অবস্থায়, নতুন চ্যাটে আপনার পাঠানো ও পাওয়া নতুন ম্যাসেজ দেখার পর অদৃশ্য হয়ে যাবে।</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">সক্রিয় থাকা অবস্থায়, এই চ্যাট থেকে পাঠানো ও পাওয়া নতুন ম্যাসেজ দেখার পর অদৃশ্য হয়ে যাবে।</string>
     <string name="ExpireTimerSettingsFragment__off">বন্ধ</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 সপ্তাহ</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 সপ্তাহ</string>
@@ -4265,7 +4290,7 @@
     <string name="HelpSettingsFragment__debug_log">ডিবাগ লগ</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">শর্তাদি এবং গোপনীয়তা নীতি</string>
     <string name="HelpFragment__copyright_signal_messenger">Signal Messenger এর কপিরাইট</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 লাইসেন্সে নথিভুক্ত</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">মিডিয়ার মান</string>
@@ -4278,16 +4303,16 @@
     <!-- ChatColorSelectionFragment -->
     <string name="ChatColorSelectionFragment__auto">স্বয়ংক্রিয়</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">কাস্টম রঙ ব্যবহার করুন</string>
-    <string name="ChatColorSelectionFragment__chat_color">চ্যাটের রঙ</string>
+    <string name="ChatColorSelectionFragment__chat_color">চ্যাটের রং</string>
     <string name="ChatColorSelectionFragment__edit">সম্পাদনা</string>
     <string name="ChatColorSelectionFragment__duplicate">ডুপ্লিকেট</string>
     <string name="ChatColorSelectionFragment__delete">মুছে ফেলুন</string>
     <string name="ChatColorSelectionFragment__delete_color">রঙ মুছে ফেলুন</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">%1$dটি চ্যাট-এ কাস্টম রং ব্যবহার করা হয়েছে। আপনি কি সব চ্যাট-এর জন্য এটি মুছতে চান?</item>
-        <item quantity="other">%1$dটি চ্যাটে এই কাস্টম রঙ ব্যবহার করা হয়েছে। আপনি কি সব চ্যাট থেকে এটি মুছতে চান?</item>
+        <item quantity="one">%1$dটি চ্যাটে এই কাস্টম রং ব্যবহার করা হয়েছে। আপনি কি সব চ্যাটের জন্য এটি মুছতে চান?</item>
+        <item quantity="other">%1$dটি চ্যাটে এই কাস্টম রং ব্যবহার করা হয়েছে। আপনি কি সব চ্যাট থেকে এটি মুছতে চান?</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">চ্যাট-এর রঙ মুছবেন?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">চ্যাটের রং মুছবেন?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">সলিড</string>
@@ -4299,8 +4324,8 @@
     <string name="CustomChatColorCreatorFragmentPage__save">সংরক্ষন</string>
     <string name="CustomChatColorCreatorFragmentPage__edit_color">রঙ সম্পাদনা করুন</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-        <item quantity="one">এই রংটি %1$dটি কথোপকথনে ব্যবহার হয়েছে। আপনি কি সেই কথোপকথনে পরিবর্তন করতে চান?</item>
-        <item quantity="other">এই রংটি %1$dটি কথোপকথনে ব্যবহার হয়েছে। আপনি কি সেই সবকটি কথোপকথনে পরিবর্তন করতে চান?</item>
+        <item quantity="one">এই রংটি %1$dটি চ্যাটে ব্যবহার হয়েছে। আপনি কি সবগুলো চ্যাটের ক্ষেত্রেই এই পরিবর্তন করতে চান?</item>
+        <item quantity="other">এই রংটি %1$dটি চ্যাটে ব্যবহার হয়েছে। আপনি কি সবগুলো চ্যাটের ক্ষেত্রেই এই পরিবর্তন করতে চান?</item>
     </plurals>
 
     <!-- ChatColorGradientTool -->
@@ -4362,7 +4387,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">কন্ট্যাক্ট অ্যাপ পাওয়া যায়নি</string>
     <string name="ConversationSettingsFragment__start_video_call">ভিডিও কল শুরু করুন</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Start voice call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">ভয়েস কল শুরু করুন</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">স্টোরি</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4396,8 +4421,9 @@
     <string name="ConversationSettingsFragment__group_link">গ্রুপের লিংক</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">কন্ট্যাক্ট হিসেবে যোগ করুন</string>
     <string name="ConversationSettingsFragment__unmute">আনমিউট করুন</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s পর্যন্ত চ্যাট মিউট করা হয়েছে</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">চ্যাট সবসময়ের জন্য মিউট করা হয়েছে</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ফোন নাম্বার ক্লিপবোর্ডে কপি করা হয়েছে।</string>
     <string name="ConversationSettingsFragment__phone_number">ফোন নাম্বার</string>
     <string name="ConversationSettingsFragment__get_badges">Signal-কে সমর্থন করে আপনার প্রোফাইলের জন্য ব্যাজ অর্জন করুন। আরও জানতে একটি ব্যাজে ট্যাপ করুন।</string>
@@ -4437,7 +4463,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">বার্তা</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Voice call</string>
+    <string name="NewConversationActivity__audio_call">ভয়েস কল</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">ভিডিও কল</string>
     <!-- Context menu item remove -->
@@ -4660,22 +4686,22 @@
     <string name="MySupportPreference__please_contact_support">অনুগ্রহ করে সহায়তা কেন্দ্রে যোগাযোগ করুন।</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__title">Update Signal</string>
+    <string name="UpdateSignalExpiredDialog__title">Signal আপডেট করুন</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">Signal-এর এই সংস্করণটির মেয়াদ শেষ হয়ে গেছে। Signal ব্যবহার চালিয়ে যেতে এখনই আপডেট করুন।</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
-    <string name="UpdateSignalExpiredDialog__update_action">Update</string>
+    <string name="UpdateSignalExpiredDialog__update_action">আপডেট করুন</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
-    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel</string>
+    <string name="UpdateSignalExpiredDialog__cancel_action">বাতিল করুন</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">ডিভাইসটি নিবন্ধিত নয়</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">এই ডিভাইসটি আর নিবন্ধিত নয়। এই ডিভাইসে Signal ব্যবহার চালিয়ে যেতে পুনরায় নিবন্ধন করুন।</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">Re-register</string>
+    <string name="ReregisterSignalDialog__reregister_action">পূনঃ নিবন্ধন করুন</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
-    <string name="ReregisterSignalDialog__cancel_action">Cancel</string>
+    <string name="ReregisterSignalDialog__cancel_action">বাতিল করুন</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">বুস্ট ব্যাজের মেয়াদ শেষ</string>
@@ -4919,7 +4945,7 @@
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
     <string name="NotificationProfileCreated__done">শেষ</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">আপনি চ্যাট তালিকার মেন্যুর মাধ্যমে ম্যানুয়ালি আপনার প্রোফাইল চালু বা বন্ধ করতে পারেন।</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">আপনি চ্যাট তালিকার মেন্যুর মাধ্যমে ম্যানুয়ালি আপনার প্রোফাইল চালু বা বন্ধ করতে পারবেন।</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
     <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">আপনার প্রোফাইল স্বয়ংক্রিয় করতে সেটিংসে একটি সময়সূচী যোগ করুন।</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
@@ -5000,7 +5026,7 @@
     <!-- Context menu option to share a story -->
     <string name="StoriesLandingItem__share">শেয়ার করুন…</string>
     <!-- Context menu option to go to story chat -->
-    <string name="StoriesLandingItem__go_to_chat">চ্যাট-এ যান</string>
+    <string name="StoriesLandingItem__go_to_chat">চ্যাটে যান</string>
     <!-- Context menu option to go to story info -->
     <string name="StoriesLandingItem__info">তথ্য</string>
     <!-- Label when a story is pending sending -->
@@ -5147,7 +5173,7 @@
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal কানেকশন হল এমন ব্যক্তি যাদের আপনি বিশ্বাস করে বেছে নিয়েছেন, যেসব কারণে:</string>
     <!-- Signal connections sheet bullet point 1 -->
-    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a chat</string>
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">চ্যাট শুরু করা হচ্ছে</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">ম্যাসেজ অনুরোধ গ্রহণ</string>
     <!-- Signal connections sheet bullet point 3 -->
@@ -5527,7 +5553,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">যারা এই স্টোরি দেখতে পাবেন</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"\"%1$s\" গ্রুপের সদস্যরা এই স্টোরি দেখতে এবং উত্তর দিতে পারবেন। আপনি গ্রুপে এই চ্যাটের সদস্যতা আপডেট করতে পারবেন।"</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"\"%1$s\" গ্রুপের সদস্যরা এই স্টোরি দেখতে ও উত্তর দিতে পারবেন। আপনি গ্রুপে এই চ্যাটের সদস্যপদ আপডেট করতে পারবেন।"</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">গ্ৰুপ স্টোরি সরিয়ে ফেলুন</string>
 
@@ -5786,7 +5812,7 @@
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
     <string name="ChatFilter__pull_to_filter">ফিল্টার করতে নিচে টানুন</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
-    <string name="ChatFilter__tip_pull_down">পরামর্শ: ফিল্টার করতে চ্যাট লিস্টে টেনে আনুন</string>
+    <string name="ChatFilter__tip_pull_down">পরামর্শ: ফিল্টার করতে চ্যাট-এর তালিকায় টেনে আনুন</string>
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
     <string name="SmsRemoval_title_going_away">এসএমএস সুবিধা আর থাকছে না</string>
@@ -5831,7 +5857,7 @@
     <!-- Displayed as body text in the username education screen -->
     <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">ব্যবহারকারীর নাম সংখ্যার একটি সেটের সাথে সংযুক্ত থাকে এবং আপনার প্রোফাইলে তা শেয়ার করা হয় না</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">প্রত্যেক ব্যবহারকারীর নামের একটি বিশেষ QR কোড ও লিঙ্ক থাকে এবং এটি আপনি আপনার বন্ধুদের সাথে শেয়ার করতে পারেন যাতে তাঁরা আপনার সাথে চ্যাট শুরু করতে পারেন</string>
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">প্রত্যেক ব্যবহারকারীর নামের একটি আলাদা QR কোড ও লিঙ্ক থাকে এবং এটি আপনি আপনার বন্ধুদের সাথে শেয়ার করতে পারেন যাতে তারা আপনার সাথে চ্যাট শুরু করতে পারেন</string>
     <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
     <string name="UsernameEducationFragment__turn_off_phone_number_discovery">অন্যরা আপনার সাথে যোগাযোগ করার প্রাথমিক উপায় হিসেবে আপনার \'ব্যবহারকারীর নাম\' যাতে ব্যবহার করতে না পারেন, তার জন্য \'সেটিংস &gt; গোপনীয়তা &gt; ফোন নম্বর &gt; কে আমার নম্বর খুঁজে পেতে পারেন\'-এর মধ্যে থেকে ফোন নম্বর দেখতে পাওয়ার সুযোগটি বন্ধ করুন</string>
 
@@ -5875,9 +5901,9 @@
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">কলে ফেরত যান</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Voice call</string>
+    <string name="CallContextMenu__audio_call">ভয়েস কল</string>
     <!-- Displayed as a context menu item to go to chat -->
-    <string name="CallContextMenu__go_to_chat">চ্যাট-এ যান</string>
+    <string name="CallContextMenu__go_to_chat">চ্যাটে যান</string>
     <!-- Displayed as a context menu item to see call info -->
     <string name="CallContextMenu__info">তথ্য</string>
     <!-- Displayed as a context menu item to select multiple calls -->
@@ -5903,8 +5929,8 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">মুছে ফেলুন</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="one">%1$d কল মুছবেন?</item>
+        <item quantity="other">%1$d কল মুছবেন?</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">আমার জন্য মুছে ফেলুন</string>
@@ -6002,38 +6028,38 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">কলের বিস্তারিত</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
-    <string name="CallLinkDetailsFragment__add_call_name">Add call name</string>
+    <string name="CallLinkDetailsFragment__add_call_name">কলের নাম যোগ করুন</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Approve all members</string>
+    <string name="CallLinkDetailsFragment__approve_all_members">সকল সদস্যকে অনুমোদন দিন</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
-    <string name="CallLinkDetailsFragment__share_link">Share link</string>
+    <string name="CallLinkDetailsFragment__share_link">লিংক শেয়ার করুন</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">কলের লিংক মুছুন</string>
 
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">শেয়ার করুন</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">রঙ</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">শুধু তাদের সাথেই আপনার কোড ও লিংক শেয়ার করুন যাদের উপর আপনি আস্থা রাখতে পারেন। শেয়ার করা হলে অন্যরা আপনার ব্যবহারকারীর নাম দেখতে পাবেন এবং আপনার সাথে চ্যাট শুরু করতে পারবেন।</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">ইউজারনেম কপি করা হয়েছে</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">লিংক কপি করা হয়েছে</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">রিসেট</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">সম্পন্ন হয়েছে</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">কোড</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">স্ক্যান করুন</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">আপনার কন্টাক্টের ডিভাইসে প্রদর্শিত QR কোডটি স্ক্যান করুন।</string>
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">রঙ</string>
 
     <!-- EOF -->
 </resources>

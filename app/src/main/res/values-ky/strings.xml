@@ -183,7 +183,10 @@
     <string name="CameraContacts_recent_contacts">Соңку байланыштар</string>
     <string name="CameraContacts_signal_contacts">Signal\'дагы байланыштар</string>
     <string name="CameraContacts_signal_groups">Signal\'дагы топтор</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal\'дагы алуучуларды тандаңыз</string>
     <string name="CameraContacts_no_signal_contacts">Signal байланыштары жок</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Сүрөттөрдү камеранын баскычы менен Signal\'дын колдонуучуларына гана жөнөтө аласыз. </string>
@@ -368,9 +371,9 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Жаңы мүмкүнчүлүк! Эми стикерлер менен жазышыңыз!</string>
 
     <string name="ConversationActivity_cancel">Жокко чыгаруу</string>
-    <string name="ConversationActivity_delete_conversation">Delete chat?</string>
+    <string name="ConversationActivity_delete_conversation">Маекти өчүрөсүзбү?</string>
     <string name="ConversationActivity_delete_and_leave_group">Өчүрүп, топтон чыгасызбы?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">This chat will be deleted from all of your devices.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Бул маек бардык түзмөктөрүңүздөн өчүрүлөт.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Бул топтон чыгасыз жана ал бардык түзмөктөрүңүздөн өчүрүлөт.</string>
     <string name="ConversationActivity_delete">Өчүрүү</string>
     <string name="ConversationActivity_delete_and_leave">Өчүрүп, топтон чыгам</string>
@@ -445,7 +448,7 @@
     <string name="ConversationFragment_delete_on_this_device">Бул түзмөктө өчүрүү</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Бардык жерде өчүрүү</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Бул билдирүү Signal\'дын акыркы версиясын колдонуп жаткандардын баары үчүн өчүрүлөт. Билдирүүнү өчүргөнүңүз аларга көрүнөт.</string>
     <string name="ConversationFragment_quoted_message_not_found">Баштапкы билдирүү табылган жок</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Баштапкы билдирүү мындан ары жеткиликсиз</string>
     <string name="ConversationFragment_failed_to_open_message">Билдирүү ачылган жок</string>
@@ -453,7 +456,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Тез жооп берүү үчүн билдирүүнү солго сүрүп коюңуз</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Бир жолу көрүлүүчү чыгуучу медиафайлдар жөнөтүлөрү менен дароо өчүп калат</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Бул билдирүүнү карагансыз</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat.\nIf your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Бул маекте өзүңүзгө бир нерселерди белгилеп жазып алсаңыз болот. Аккаунтуңузга байланган түзмөктөр бар болсо, жазып алган нерселериңиз алардын баарында көрүнөт.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">Топтун %1$d катышуучусунун ысымдары бирдей.</string>
     <string name="ConversationFragment__tap_to_review">Басып карап көрүңүз</string>
     <string name="ConversationFragment__review_requests_carefully">Сурамдарды этияттап караңыз</string>
@@ -476,27 +479,27 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Бөгөттөлдү</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
-    <string name="ConversationFragment__update_build">Update Signal</string>
+    <string name="ConversationFragment__update_build">Signal\'ды жаңыртуу</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">Signal\'га кайра катталыңыз</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Иргемени өчүрүү</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Окула элек маектер жок</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="other">Тандалган маектерди өчүрөсүзбү?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="other">Бардык тандалган %1$d маек биротоло өчөт.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Өчүрүлүүдө</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Тандалган маектер өчүүдө…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="other">%1$d маек архивделди</item>
     </plurals>
     <string name="ConversationListFragment_undo">Токтотуу</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="other">%1$d маек Келген каттар кутусуна жылды</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="other">Окуу</item>
@@ -528,7 +531,7 @@
     <string name="ConversationListItem_key_exchange_message">Ачкыч алмашуу билдирүүсү</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">Архивделген маектер (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">Ырасталды</string>
@@ -1452,10 +1455,10 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s сиз менен жазыша берсинби? Аны бөгөттөн чыгармайынча, билдирүүлөрдү албайсыз.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s жаңыртууларын жана жаңылыктарын аласызбы? Аны бөгөттөн чыгармайынча, билдирүүлөрдү албайсыз.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Бул топ менен маектешүүнү улантып, атыңыз менен сүрөтүңүз топтогуларга көрүнө берсинби?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">\@айтыпөтүүлөр жана топтордун администраторлору сыяктуу жаңы функцияларды иштетүү үчүн бул топту жаңыртыңыз. Атын же сүрөтүн ушул топтогуларга ачыктай элек мүчөлөр топко кошулуу чакыруусун алышат.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Бул эски топ өтө чоң болгондуктан, аны колдоно албайсыз. Топтун көлөмү %1$d ашпаш керек.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Бул маекти %1$s менен улантып, атыңыз менен сүрөтүңүздү аларга көрсөтө бересизби?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Бул топко кошулуп, атыңыз менен сүрөтүңүз анын мүчөлөрүнө көрүнө берсинби? Топко кошулмайынча, алардын билдирүүлөрүн көрүп, көрбөгөнүңүздү билишпейт.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Бул топко кошулуп, атыңыз менен сүрөтүңүз топтогуларга көрүнө берсинби? Топко кошулмайынча, алардын билдирүүлөрүн көрбөйсүз.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Бул топко кошуласызбы? Топко кошулмайынча, алардын билдирүүлөрүн көрүп, көрбөгөнүңүздү билишпейт.</string>
@@ -1764,7 +1767,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Бул номерди каттаганга өтө көп жолу аракет кылдыңыз. %1$s кийин кайталап көрүңүз.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Сервиске туташылбай жатат. Тармактык туташууну текшерип, дагы бир жолу аракет кылып көрүңүз.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">Ырастоо коду суралган жок. Байланышыңызды текшерип, кайталап көрүңүз.</string>
     <string name="RegistrationActivity_non_standard_number_format">Телефон номери туура эмес</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Телефон номерин туура эмес киргиздиңиз окшойт (%1$s).\n\nМындай эмес беле %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Телефон номеринин форматы</string>
@@ -1822,7 +1825,7 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">\'%1$s\' боюнча эч нерсе табылган жок</string>
-    <string name="SearchFragment_header_conversations">Chats</string>
+    <string name="SearchFragment_header_conversations">Маектер</string>
     <string name="SearchFragment_header_contacts">Байланыштар</string>
     <string name="SearchFragment_header_messages">Билдирүүлөр</string>
 
@@ -1891,7 +1894,8 @@
     <string name="StickerPackPreviewActivity_untitled">Аталышы жок</string>
     <string name="StickerPackPreviewActivity_unknown">Белгисиз</string>
     <string name="StickerPackPreviewActivity_install">Орнотуу</string>
-    <string name="StickerPackPreviewActivity_remove">Алып салуу</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">Стикерлер</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Стикерлер топтому жүктөлгөн жок</string>
 
@@ -2088,7 +2092,17 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Дагы</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d маекте %1$d жаңы билдирүү</string>
     <string name="MessageNotifier_most_recent_from_s">Акыркы билдирүү кимден: %1$s</string>
     <string name="MessageNotifier_locked_message">Кулпуланган билдирүү</string>
     <string name="MessageNotifier_message_delivery_failed">Билдирүү жетпей калды.</string>
@@ -2158,7 +2172,7 @@
     <string name="SearchToolbar_search">Издөө</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Окула элек маектерди издөө</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Маектерди, байланыштарды жана билдирүүлөрдү издөө</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Жабуу</string>
@@ -2187,9 +2201,9 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Түзмөк катталбай калды</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Бул түзмөк каттоодон чыгарылды. Телефон номериңизди Signal\'га башка түзмөктөн каттаган окшойсуз.</string>
     <!-- Action in reminder banner that will take user to re-register -->
-    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
+    <string name="UnauthorizedReminder_reregister_action">Түзмөктү кайра каттаңыз</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">Бул түзмөктө Signal\'дан чыгып кеттиңиз.</string>
@@ -2374,13 +2388,13 @@
 
     <!-- ConversationParentFragment -->
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth permission denied</string>
+    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth\'га уруксат берилген жок</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Аудио билдирүүлөрдү Bluetooth менен жаздыруу үчүн \"Жакын жердеги түзмөктөр\" уруксатын иштетиңиз.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Open settings</string>
+    <string name="ConversationParentFragment__open_settings">Параметрлерди ачуу</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Not now</string>
+    <string name="ConversationParentFragment__not_now">Азыр эмес</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Ылдый сыдыруу</string>
@@ -2499,7 +2513,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">Маекти толугу менен көрүү</string>
     <string name="load_more_header__loading">Жүктөлүүдө</string>
 
     <!-- media_overview_activity -->
@@ -2620,7 +2634,7 @@
     <string name="AndroidManifest__message_details">Билдирүүнүн чоо-жайы</string>
     <string name="AndroidManifest__linked_devices">Байланышкан түзмөктөр</string>
     <string name="AndroidManifest__invite_friends">Досторду чакыруу</string>
-    <string name="AndroidManifest_archived_conversations">Archived chats</string>
+    <string name="AndroidManifest_archived_conversations">Архивделген маектер</string>
     <string name="AndroidManifest_remove_photo">Сүрөттү алып салуу</string>
 
     <!-- HelpFragment -->
@@ -2776,7 +2790,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Төлөм кулпусу</string>
     <string name="preferences__payments_beta">Төлөмдөр (Бета)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">Маектин узундугун чектөө</string>
     <string name="preferences__keep_messages">Билдирүүлөрдү сактоо</string>
     <string name="preferences__clear_message_history">Билдирүүлөр таржымалын тазалоо</string>
     <string name="preferences__linked_devices">Байланышкан түзмөктөр</string>
@@ -2820,7 +2834,10 @@
     <string name="preferences_storage__delete_older_messages">Эски билдирүүлөрдү өчүрөсүзбү?</string>
     <string name="preferences_storage__clear_message_history">Билдирүүлөр таржымалын тазалайсызбы?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Түзмөгүңүздөн %1$s эскирген бардык билдирүүлөр жана медиа файлдар өчүрүлөт.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Түзмөгүңүздөн бардык билдирүүлөр жана медиа файлдар биротоло өчүрүлөт.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Бардык билдирүүлөрдү чын эле өчүрөсүзбү?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Бардык билдирүүлөр биротоло өчүп, аларды кайра калыбына келтире албайсыз.</string>
@@ -3161,6 +3178,7 @@
     <string name="conversation_list_search_description">Издөө</string>
     <string name="conversation_list__pinned">Кадалган</string>
     <string name="conversation_list__chats">Маектер</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Сиз болгону %1$d маекти кадап кое аласыз</string>
 
     <!-- conversation_list_item_view -->
@@ -3169,7 +3187,7 @@
 
 
     <!-- conversation_list_fragment -->
-    <string name="conversation_list_fragment__fab_content_description">New chat</string>
+    <string name="conversation_list_fragment__fab_content_description">Жаңы маек</string>
     <string name="conversation_list_fragment__open_camera_description">Камераны ачуу</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Азырынча маектер жок.\nДосуңузга жазуудан баштаңыз.</string>
 
@@ -3186,7 +3204,7 @@
     <string name="conversation__menu_group_settings">Топ тууралоолору</string>
     <string name="conversation__menu_leave_group">Топтон чыгуу</string>
     <string name="conversation__menu_view_all_media">Бардык медиафайлдар</string>
-    <string name="conversation__menu_conversation_settings">Chat settings</string>
+    <string name="conversation__menu_conversation_settings">Маек параметрлери</string>
     <string name="conversation__menu_add_shortcut">Башкы экранга кошуу</string>
     <string name="conversation__menu_create_bubble">Калкып чыкма маек түзүү</string>
 
@@ -3208,7 +3226,8 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Алуучулар тизмеси</string>
     <string name="conversation_group_options__delivery">Жеткирүү</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
+    <string name="conversation_group_options__conversation">Маек</string>
     <string name="conversation_group_options__broadcast">Берүү</string>
 
     <!-- text_secure_normal -->
@@ -3258,11 +3277,13 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Аналитикалык маалымат</string>
     <string name="InsightsDashboardFragment__title">Аналитикалык маалымат</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Протоколу соңку %2$d күндө жөнөткөн билдирүүлөрүңүздүн %1$d%% автоматтык түрдө коргоду. Signal\'дагы колдонуучулардын маектешүүлөрү баштан аяк корголот.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Башкалар менен бөлүшүү</string>
     <string name="InsightsDashboardFragment__not_enough_data">Берилмелер жетишсиз</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Аналитикалык пайыздык чен акыркы %1$d күндө жоголбогон же жок кылынбаган чыгуучу каттардын негизинде эсептелет.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
+    <string name="InsightsDashboardFragment__start_a_conversation">Маектешип баштоо</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Коопсуз байланышты баштаңыз жана сигналга кошулууга көбүрөөк байланыштарды чакыруу менен кооптуу SMS чектөөлөрүнүн чегинен чыккан жаңы функцияларды иштетиңиз.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Бул статистика түзмөгүңүздө жергиликтүү түрдө түзүлгөн жана аларды сиз гана көрө аласыз. Алар эч качан эч жакка берилбейт.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">Шифрленген билдирүүлөр</string>
@@ -3499,21 +3520,21 @@
     <string name="Recipient_unknown">Белгисиз</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">Аккаунтту кайра каттоо</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Update Signal</string>
+    <string name="preferences_account_update_signal">Signal\'ды жаңыртуу</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <string name="preferences_account_delete_all_data">Бардык берилмелерди өчүрүү</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">Бардык берилмелер өчүрөсүзбү?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Колдонмо кайра орнотулуп, бардык билдирүүлөр өчүп калат. Бул процесс аяктагандан кийин колдонмо жабылат.</string>
     <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Улантуу</string>
     <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Жок</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">Өчпөй калды</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Аккаунтту өткөрүп берүү же калыбына келтирүү</string>
@@ -4174,7 +4195,7 @@
     <string name="HelpSettingsFragment__debug_log">Мүчүлүштүктөр журналы</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Шарттар жана жоболор; Купуялык Саясаты</string>
     <string name="HelpFragment__copyright_signal_messenger">Signal Mesenger автордук укугу</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 лицензиясы бар</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Медиа сапаты</string>
@@ -4269,7 +4290,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Байланыштар колдонмосу табылган жок</string>
     <string name="ConversationSettingsFragment__start_video_call">Видео чалууну баштоо</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Start voice call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Аудио режиминде чалуу</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Окуя</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4303,8 +4324,9 @@
     <string name="ConversationSettingsFragment__group_link">Топтун шилтемеси</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Байланыш катары кошуу</string>
     <string name="ConversationSettingsFragment__unmute">Үнүн чыгаруу</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Маектин үнү %1$s чейин басылды</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Маектин үнү биротоло басылды</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Телефон номери буферге көчүрүлдү.</string>
     <string name="ConversationSettingsFragment__phone_number">Телефон номериңиз</string>
     <string name="ConversationSettingsFragment__get_badges">Signal\'ды колдоп, профилиңизге төшбелгилерди алыңыз. Көбүрөөк билүү үчүн төшбелгини басыңыз.</string>
@@ -4344,7 +4366,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">Билдирүү</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Voice call</string>
+    <string name="NewConversationActivity__audio_call">Үн чалуу</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Видео чалуу</string>
     <!-- Context menu item remove -->
@@ -4563,22 +4585,22 @@
     <string name="MySupportPreference__please_contact_support">Кардарларды колдоо кызматына кайрылыңыз.</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__title">Update Signal</string>
+    <string name="UpdateSignalExpiredDialog__title">Signal\'ды жаңыртуу</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">Signal\'дын бул версиясы эскирип калды. Signal\'ды колдоно берүү үчүн аны жаңыртыңыз.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
-    <string name="UpdateSignalExpiredDialog__update_action">Update</string>
+    <string name="UpdateSignalExpiredDialog__update_action">Жаңыртуу</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
-    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel</string>
+    <string name="UpdateSignalExpiredDialog__cancel_action">Жок</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">Түзмөк катталган жок</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">Бул түзмөк каттоодон чыгарылды. Бул түзмөктө Signal\'ды колдоно берүү үчүн аны каттаңыз.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">Re-register</string>
+    <string name="ReregisterSignalDialog__reregister_action">Кайра каттоо</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
-    <string name="ReregisterSignalDialog__cancel_action">Cancel</string>
+    <string name="ReregisterSignalDialog__cancel_action">Жок</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Колдоочу төшбелгисинин мөөнөтү бүттү</string>
@@ -5044,7 +5066,7 @@
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal байланыштары — төмөнкүдөй жолдордун бири аркылуу ишене турган адамдар:</string>
     <!-- Signal connections sheet bullet point 1 -->
-    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a chat</string>
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Маектешип баштоо</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Билдирүү өтүнүчүн кабыл алуу</string>
     <!-- Signal connections sheet bullet point 3 -->
@@ -5756,7 +5778,7 @@
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">Чалууга кайтуу</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Voice call</string>
+    <string name="CallContextMenu__audio_call">Үн чалуу</string>
     <!-- Displayed as a context menu item to go to chat -->
     <string name="CallContextMenu__go_to_chat">Маектешүүгө өтүү</string>
     <!-- Displayed as a context menu item to see call info -->
@@ -5784,7 +5806,7 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">Өчүрүү</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="other">%1$d чалууну өчүрөсүзбү?</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">Менде эле өчсүн</string>
@@ -5881,38 +5903,38 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">Чалуунун чоо-жайы</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
-    <string name="CallLinkDetailsFragment__add_call_name">Add call name</string>
+    <string name="CallLinkDetailsFragment__add_call_name">Чалуунун аталышын кошуу</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Approve all members</string>
+    <string name="CallLinkDetailsFragment__approve_all_members">Бардык мүчөлөрдү жактыруу</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
-    <string name="CallLinkDetailsFragment__share_link">Share link</string>
+    <string name="CallLinkDetailsFragment__share_link">Шилтеме бөлүшүү</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">Чалуунун шилтемесин өчүрүү</string>
 
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">Бөлүшүү</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">Түс</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">Жөн гана QR кодуңузду бөлүшүп, ишенген адамдарыңыз менен байланышыңыз. Ошондо гана башкалар колдонуучу атыңызды көрүп, сиз менен маектеше алат.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Колдонуучу аты көчүрүлдү</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">Шилтеме көчүрүлдү</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">Баштапкы абалга келтирүү</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">Бүттү</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">Код</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">Скандоо</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Байланышыңыздын түзмөгүндөгү QR кодду скандаңыз.</string>
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Түс</string>
 
     <!-- EOF -->
 </resources>

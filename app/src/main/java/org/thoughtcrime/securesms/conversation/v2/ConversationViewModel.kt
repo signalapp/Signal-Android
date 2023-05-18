@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.conversation.v2
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
@@ -24,9 +25,14 @@ import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
 import org.thoughtcrime.securesms.database.DatabaseObserver
+import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.mms.QuoteModel
+import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.hasGiftBadge
@@ -78,6 +84,11 @@ class ConversationViewModel(
       .subscribeBy(onNext = {
         _recipient.onNext(it)
       })
+
+    disposables += recipientRepository
+      .conversationRecipient
+      .skip(1) // We can safely skip the first emission since this is used for updating the header on future changes
+      .subscribeBy { pagingController.onDataItemChanged(ConversationElementKey.threadHeader) }
 
     disposables += repository.getConversationThreadState(threadId, requestedStartingPosition)
       .subscribeBy(onSuccess = {
@@ -152,6 +163,30 @@ class ConversationViewModel(
   }
 
   fun requestMarkRead(timestamp: Long) {
+  }
+
+  fun sendMessage(
+    metricId: String?,
+    body: String,
+    slideDeck: SlideDeck?,
+    scheduledDate: Long,
+    messageToEdit: MessageId?,
+    quote: QuoteModel?,
+    mentions: List<Mention>,
+    bodyRanges: BodyRangeList?
+  ): Completable {
+    return repository.sendMessage(
+      threadId = threadId,
+      threadRecipient = recipientSnapshot,
+      metricId = metricId,
+      body = body,
+      slideDeck = slideDeck,
+      scheduledDate = scheduledDate,
+      messageToEdit = messageToEdit,
+      quote = quote,
+      mentions = mentions,
+      bodyRanges = bodyRanges
+    ).observeOn(AndroidSchedulers.mainThread())
   }
 
   class Factory(

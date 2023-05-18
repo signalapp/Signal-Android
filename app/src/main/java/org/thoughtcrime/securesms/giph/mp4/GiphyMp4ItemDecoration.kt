@@ -4,6 +4,7 @@ import android.graphics.Canvas
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
+import org.thoughtcrime.securesms.conversation.v2.ConversationAdapterV2
 import kotlin.math.min
 
 /**
@@ -28,7 +29,7 @@ class GiphyMp4ItemDecoration(
     } else {
       val footerViewHolder = parent.children
         .map { parent.getChildViewHolder(it) }
-        .filterIsInstance(ConversationAdapter.FooterViewHolder::class.java)
+        .filter { it is ConversationAdapter.FooterViewHolder || it is ConversationAdapterV2.ThreadHeaderViewHolder }
         .firstOrNull()
 
       if (footerViewHolder == null) {

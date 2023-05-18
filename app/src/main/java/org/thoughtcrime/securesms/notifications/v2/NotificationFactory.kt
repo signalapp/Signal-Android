@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
@@ -34,6 +35,8 @@ import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Given a notification state consisting of conversations of messages, show appropriate system notifications.
@@ -41,6 +44,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 object NotificationFactory {
 
   val TAG: String = Log.tag(NotificationFactory::class.java)
+
+  private val STILL_DECRYPTING_INDIVIDUAL_THROTTLE: Duration = 5.seconds
+  private val GROUP_THROTTLE: Duration = 20.seconds
 
   fun notify(
     context: Context,
@@ -51,7 +57,8 @@ object NotificationFactory {
     lastAudibleNotification: Long,
     notificationConfigurationChanged: Boolean,
     alertOverrides: Set<ConversationId>,
-    previousState: NotificationState
+    previousState: NotificationState,
+    lastThreadNotification: MutableMap<ConversationId, Long>
   ): Set<ConversationId> {
     if (state.isEmpty) {
       Log.d(TAG, "State is empty, bailing")
@@ -68,7 +75,8 @@ object NotificationFactory {
         defaultBubbleState = defaultBubbleState,
         lastAudibleNotification = lastAudibleNotification,
         alertOverrides = alertOverrides,
-        nonVisibleThreadCount = nonVisibleThreadCount
+        nonVisibleThreadCount = nonVisibleThreadCount,
+        lastThreadNotification = lastThreadNotification
       )
     } else {
       notify24(
@@ -81,7 +89,8 @@ object NotificationFactory {
         notificationConfigurationChanged = notificationConfigurationChanged,
         alertOverrides = alertOverrides,
         nonVisibleThreadCount = nonVisibleThreadCount,
-        previousState = previousState
+        previousState = previousState,
+        lastThreadNotification = lastThreadNotification
       )
     }
   }
@@ -94,7 +103,8 @@ object NotificationFactory {
     defaultBubbleState: BubbleUtil.BubbleState,
     lastAudibleNotification: Long,
     alertOverrides: Set<ConversationId>,
-    nonVisibleThreadCount: Int
+    nonVisibleThreadCount: Int,
+    lastThreadNotification: MutableMap<ConversationId, Long>
   ): Set<ConversationId> {
     val threadsThatNewlyAlerted: MutableSet<ConversationId> = mutableSetOf()
 
@@ -107,12 +117,17 @@ object NotificationFactory {
 
     if (nonVisibleThreadCount == 1) {
       state.conversations.first { it.thread != visibleThread }.let { conversation ->
+        val shouldAlert = shouldAlert(conversation, lastThreadNotification.getOrDefault(conversation.thread, 0), alertOverrides.contains(conversation.thread))
+        if (shouldAlert) {
+          lastThreadNotification[conversation.thread] = System.currentTimeMillis()
+        }
+
         notifyForConversation(
           context = context,
           conversation = conversation,
           targetThread = targetThread,
           defaultBubbleState = defaultBubbleState,
-          shouldAlert = (conversation.hasNewNotifications() || alertOverrides.contains(conversation.thread)) && !conversation.mostRecentNotification.authorRecipient.isSelf
+          shouldAlert = shouldAlert
         )
         if (conversation.hasNewNotifications()) {
           threadsThatNewlyAlerted += conversation.thread
@@ -138,7 +153,8 @@ object NotificationFactory {
     notificationConfigurationChanged: Boolean,
     alertOverrides: Set<ConversationId>,
     nonVisibleThreadCount: Int,
-    previousState: NotificationState
+    previousState: NotificationState,
+    lastThreadNotification: MutableMap<ConversationId, Long>
   ): Set<ConversationId> {
     val threadsThatNewlyAlerted: MutableSet<ConversationId> = mutableSetOf()
 
@@ -152,12 +168,22 @@ object NotificationFactory {
         }
 
         try {
+          val shouldAlert = shouldAlert(
+            conversation = conversation,
+            lastNotificationTimestamp = lastThreadNotification.getOrDefault(conversation.thread, 0),
+            alertOverride = alertOverrides.contains(conversation.thread)
+          )
+
+          if (shouldAlert) {
+            lastThreadNotification[conversation.thread] = System.currentTimeMillis()
+          }
+
           notifyForConversation(
             context = context,
             conversation = conversation,
             targetThread = targetThread,
             defaultBubbleState = defaultBubbleState,
-            shouldAlert = (conversation.hasNewNotifications() || alertOverrides.contains(conversation.thread)) && !conversation.mostRecentNotification.authorRecipient.isSelf
+            shouldAlert = shouldAlert
           )
         } catch (e: SecurityException) {
           Log.w(TAG, "Too many pending intents device quirk", e)
@@ -170,6 +196,17 @@ object NotificationFactory {
     }
 
     return threadsThatNewlyAlerted
+  }
+
+  private fun shouldAlert(conversation: NotificationConversation, lastNotificationTimestamp: Long, alertOverride: Boolean): Boolean {
+    val throttle: Duration = when {
+      conversation.recipient.isGroup && (conversation.mostRecentNotification as? MessageNotification)?.hasSelfMention == false -> GROUP_THROTTLE
+      ApplicationDependencies.getIncomingMessageObserver().decryptionDrained -> STILL_DECRYPTING_INDIVIDUAL_THROTTLE
+      else -> 0.seconds
+    }
+    val canAlertBasedOnTime: Boolean = lastNotificationTimestamp < System.currentTimeMillis() - throttle.inWholeMilliseconds || lastNotificationTimestamp > System.currentTimeMillis()
+
+    return ((conversation.hasNewNotifications() && canAlertBasedOnTime) || alertOverride) && !conversation.mostRecentNotification.authorRecipient.isSelf
   }
 
   private fun notifyForConversation(
@@ -244,7 +281,7 @@ object NotificationFactory {
       setContentTitle(context.getString(R.string.app_name))
       setContentIntent(NotificationPendingIntentHelper.getActivity(context, 0, MainActivity.clearTop(context), PendingIntentFlags.mutable()))
       setGroupSummary(true)
-      setSubText(context.getString(R.string.MessageNotifier_d_new_messages_in_d_conversations, state.messageCount, state.threadCount))
+      setSubText(context.buildSummaryString(state.messageCount, state.threadCount))
       setContentInfo(state.messageCount.toString())
       setNumber(state.messageCount)
       setSummaryContentText(state.mostRecentSender)
@@ -261,6 +298,12 @@ object NotificationFactory {
 
     Log.d(TAG, "showing summary notification")
     NotificationManagerCompat.from(context).safelyNotify(null, NotificationIds.MESSAGE_SUMMARY, builder.build())
+  }
+
+  private fun Context.buildSummaryString(messageCount: Int, threadCount: Int): String {
+    val messageString = resources.getQuantityString(R.plurals.MessageNotifier_d_messages, messageCount, messageCount)
+    val threadString = resources.getQuantityString(R.plurals.MessageNotifier_d_chats, threadCount, threadCount)
+    return getString(R.string.MessageNotifier_s_in_s, messageString, threadString)
   }
 
   private fun notifyInThread(context: Context, recipient: Recipient, lastAudibleNotification: Long) {

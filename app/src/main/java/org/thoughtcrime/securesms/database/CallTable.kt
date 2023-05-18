@@ -52,7 +52,6 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     private const val CALL_ID = "call_id"
     private const val MESSAGE_ID = "message_id"
     private const val PEER = "peer"
-    private const val CALL_LINK = "call_link"
     private const val TYPE = "type"
     private const val DIRECTION = "direction"
     private const val EVENT = "event"
@@ -67,22 +66,19 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         $CALL_ID INTEGER NOT NULL,
         $MESSAGE_ID INTEGER DEFAULT NULL REFERENCES ${MessageTable.TABLE_NAME} (${MessageTable.ID}) ON DELETE SET NULL,
         $PEER INTEGER DEFAULT NULL REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
-        $CALL_LINK TEXT DEFAULT NULL REFERENCES ${CallLinkTable.TABLE_NAME} (${CallLinkTable.ROOM_ID}) ON DELETE CASCADE,
         $TYPE INTEGER NOT NULL,
         $DIRECTION INTEGER NOT NULL,
         $EVENT INTEGER NOT NULL,
         $TIMESTAMP INTEGER NOT NULL,
         $RINGER INTEGER DEFAULT NULL,
         $DELETION_TIMESTAMP INTEGER DEFAULT 0,
-        UNIQUE ($CALL_ID, $PEER, $CALL_LINK) ON CONFLICT FAIL,
-        CHECK (($PEER IS NULL AND $CALL_LINK IS NOT NULL) OR ($PEER IS NOT NULL AND $CALL_LINK IS NULL))
+        UNIQUE ($CALL_ID, $PEER) ON CONFLICT FAIL
       )
     """
 
     val CREATE_INDEXES = arrayOf(
       "CREATE INDEX call_call_id_index ON $TABLE_NAME ($CALL_ID)",
       "CREATE INDEX call_message_id_index ON $TABLE_NAME ($MESSAGE_ID)",
-      "CREATE INDEX call_call_link_index ON $TABLE_NAME ($CALL_LINK)",
       "CREATE INDEX call_peer_index ON $TABLE_NAME ($PEER)"
     )
   }
@@ -139,8 +135,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     }
   }
 
-  fun getCallById(callId: Long, conversationId: CallConversationId): Call? {
-    val query = getCallSelectionQuery(callId, conversationId)
+  fun getCallById(callId: Long, recipientId: RecipientId): Call? {
+    val query = getCallSelectionQuery(callId, recipientId)
 
     return readableDatabase
       .select()
@@ -292,7 +288,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         TIMESTAMP to timestamp,
         DELETION_TIMESTAMP to System.currentTimeMillis()
       )
-      .run()
+      .run(SQLiteDatabase.CONFLICT_ABORT)
 
     ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
   }
@@ -356,7 +352,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           TIMESTAMP to timestamp,
           RINGER to ringer
         )
-        .run()
+        .run(SQLiteDatabase.CONFLICT_ABORT)
     }
 
     ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
@@ -393,7 +389,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       }
 
       val callId = CallId.fromEra(peekGroupCallEraId).longValue()
-      val call = getCallById(callId, CallConversationId.Peer(groupRecipientId))
+      val call = getCallById(callId, groupRecipientId)
       val messageId: MessageId = if (call != null) {
         if (call.event == Event.DELETE) {
           Log.d(TAG, "Dropping group call update for deleted call.")
@@ -444,9 +440,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     groupRecipientId: RecipientId,
     timestamp: Long
   ) {
-    val conversationId = CallConversationId.Peer(groupRecipientId)
     if (messageId != null) {
-      val call = getCallById(callId, conversationId)
+      val call = getCallById(callId, groupRecipientId)
       if (call == null) {
         val direction = if (sender == Recipient.self().id) Direction.OUTGOING else Direction.INCOMING
 
@@ -462,12 +457,12 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
             TIMESTAMP to timestamp,
             RINGER to null
           )
-          .run()
+          .run(SQLiteDatabase.CONFLICT_ABORT)
 
         Log.d(TAG, "Inserted new call event from group call update message. Call Id: $callId")
       } else {
         if (timestamp < call.timestamp) {
-          setTimestamp(callId, conversationId, timestamp)
+          setTimestamp(callId, groupRecipientId, timestamp)
           Log.d(TAG, "Updated call event timestamp for call id $callId")
         }
 
@@ -519,7 +514,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   }
 
   fun isRingCancelled(ringId: Long, groupRecipientId: RecipientId): Boolean {
-    val call = getCallById(ringId, CallConversationId.Peer(groupRecipientId)) ?: return false
+    val call = getCallById(ringId, groupRecipientId) ?: return false
     return call.event != Event.RINGING && call.event != Event.GENERIC_GROUP_CALL
   }
 
@@ -532,7 +527,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   ) {
     Log.d(TAG, "Processing group ring state update for $ringId in state $ringState")
 
-    val call = getCallById(ringId, CallConversationId.Peer(groupRecipientId))
+    val call = getCallById(ringId, groupRecipientId)
     if (call != null) {
       if (call.event == Event.DELETE) {
         Log.d(TAG, "Ignoring ring request for $ringId since its event has been deleted.")
@@ -670,15 +665,15 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           TIMESTAMP to timestamp,
           RINGER to ringerRecipient.toLong()
         )
-        .run()
+        .run(SQLiteDatabase.CONFLICT_ABORT)
     }
 
     Log.d(TAG, "Inserted a new group ring event for $callId with event $event")
   }
 
-  fun setTimestamp(callId: Long, conversationId: CallConversationId, timestamp: Long) {
+  fun setTimestamp(callId: Long, recipientId: RecipientId, timestamp: Long) {
     writableDatabase.withinTransaction { db ->
-      val call = getCallById(callId, conversationId)
+      val call = getCallById(callId, recipientId)
       if (call == null || call.event == Event.DELETE) {
         Log.d(TAG, "Refusing to update deleted call event.")
         return@withinTransaction
@@ -788,11 +783,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .run()
   }
 
-  private fun getCallSelectionQuery(callId: Long, conversationId: CallConversationId): SqlUtil.Query {
-    return when (conversationId) {
-      is CallConversationId.CallLink -> SqlUtil.Query("$CALL_ID = ? AND $CALL_LINK = ?", SqlUtil.buildArgs(callId, conversationId.callLinkId))
-      is CallConversationId.Peer -> SqlUtil.Query("$CALL_ID = ? AND $PEER = ?", SqlUtil.buildArgs(callId, conversationId.recipientId))
-    }
+  private fun getCallSelectionQuery(callId: Long, recipientId: RecipientId): SqlUtil.Query {
+    return SqlUtil.Query("$CALL_ID = ? AND $PEER = ?", SqlUtil.buildArgs(callId, recipientId))
   }
 
   private fun getMessageIds(callRowIds: Set<Long>): Set<Long> {
@@ -883,6 +875,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
                 AND $TABLE_NAME.$PEER = c.$PEER
                 AND $TABLE_NAME.$TIMESTAMP - $TIME_WINDOW <= c.$TIMESTAMP
                 AND $TABLE_NAME.$TIMESTAMP >= c.$TIMESTAMP
+                AND (
+                  ($TABLE_NAME.$EVENT = c.$EVENT AND $TABLE_NAME.$EVENT = ${Event.serialize(Event.MISSED)}) OR
+                  ($TABLE_NAME.$EVENT != ${Event.serialize(Event.MISSED)} AND c.$EVENT != ${Event.serialize(Event.MISSED)})
+                )
                 AND ${filterClause.where}
               ORDER BY
                 $TIMESTAMP DESC
@@ -897,6 +893,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
                 AND $TABLE_NAME.$PEER = c.$PEER
                 AND c.$TIMESTAMP - $TIME_WINDOW <= $TABLE_NAME.$TIMESTAMP
                 AND c.$TIMESTAMP >= $TABLE_NAME.$TIMESTAMP
+                AND (
+                  ($TABLE_NAME.$EVENT = c.$EVENT AND $TABLE_NAME.$EVENT = ${Event.serialize(Event.MISSED)}) OR
+                  ($TABLE_NAME.$EVENT != ${Event.serialize(Event.MISSED)} AND c.$EVENT != ${Event.serialize(Event.MISSED)})
+                )
                 AND ${filterClause.where}
             ) as children,
             (
@@ -1097,11 +1097,6 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         }
       }
     }
-  }
-
-  sealed interface CallConversationId {
-    data class Peer(val recipientId: RecipientId) : CallConversationId
-    data class CallLink(val callLinkId: Int) : CallConversationId
   }
 
   enum class Event(private val code: Int) {

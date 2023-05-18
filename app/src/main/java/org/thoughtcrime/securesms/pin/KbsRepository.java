@@ -8,15 +8,15 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidKeyException;
+import org.signal.libsignal.svr2.PinHash;
 import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.PinHashing;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.KeyBackupServicePinException;
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
-import org.whispersystems.signalservice.api.kbs.HashedPin;
+import org.whispersystems.signalservice.api.kbs.PinHashUtil;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
@@ -162,7 +162,7 @@ public class KbsRepository {
     try {
       Log.i(TAG, "Restoring pin from KBS");
 
-      HashedPin  hashedPin = PinHashing.hashPin(pin, session);
+      PinHash    hashedPin = PinHashUtil.hashPin(pin, session.hashSalt());
       KbsPinData kbsData   = session.restorePin(hashedPin);
 
       if (kbsData != null) {

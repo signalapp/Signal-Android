@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.components.InsetAwareConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.components.InputAwareConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -36,15 +36,17 @@
 
     <org.thoughtcrime.securesms.conversation.mutiselect.MultiselectRecyclerView
         android:id="@+id/conversation_item_recycler"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dip"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:overScrollMode="ifContentScrolls"
         android:scrollbars="vertical"
         android:splitMotionEvents="false"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="20"
         tools:listitem="@layout/conversation_item_sent_text_only" />
 
@@ -106,7 +108,7 @@
         android:visibility="invisible"
         app:cstv_scroll_button_src="@drawable/ic_at_20"
         app:layout_constraintBottom_toTopOf="@id/scroll_to_bottom"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
         app:layout_goneMarginBottom="20dp"
         tools:visibility="visible" />
 
@@ -119,22 +121,56 @@
         android:visibility="invisible"
         app:cstv_scroll_button_src="@drawable/ic_chevron_down_20"
         app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
         tools:visibility="visible" />
-
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/conversation_bottom_panel_barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="conversation_input_panel" />
+        app:constraint_referenced_ids="conversation_input_panel,attachment_editor_stub" />
+
+    <ViewStub
+        android:id="@+id/attachment_editor_stub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inflatedId="@+id/attachment_editor"
+        android:layout="@layout/conversation_activity_attachment_editor_stub"
+        app:layout_constraintBottom_toTopOf="@+id/conversation_input_panel"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
 
     <include
         android:id="@+id/conversation_input_panel"
         layout="@layout/conversation_input_panel"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/navigation_bar_guideline" />
+        app:layout_constraintBottom_toTopOf="@+id/conversation_input_space_left"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
 
-</org.thoughtcrime.securesms.components.InsetAwareConstraintLayout>
+    <TextView
+        android:id="@+id/conversation_input_space_left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?android:windowBackground"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/keyboard_guideline"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        tools:text="160/160 (1)"
+        tools:visibility="visible" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/input_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/navigation_bar_guideline"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintTop_toTopOf="@id/keyboard_guideline" />
+
+</org.thoughtcrime.securesms.components.InputAwareConstraintLayout>

@@ -15,6 +15,7 @@
     <color name="signal_light_colorOnSecondaryContainer">#151D2C</color>
     <color name="signal_light_colorOnSurface">#1B1B1D</color>
     <color name="signal_light_colorOnSurfaceVariant">#545863</color>
+    <color name="signal_light_colorOnSurfaceVariant1">#BBBFC8</color>
     <color name="signal_light_colorOnBackground">#1B1D1D</color>
     <color name="signal_light_colorOutline">#808389</color>
     <color name="signal_light_neutralSurface">#99FFFFFF</color>

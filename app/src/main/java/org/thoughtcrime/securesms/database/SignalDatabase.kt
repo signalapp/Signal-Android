@@ -74,6 +74,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val remoteMegaphoneTable: RemoteMegaphoneTable = RemoteMegaphoneTable(context, this)
   val pendingPniSignatureMessageTable: PendingPniSignatureMessageTable = PendingPniSignatureMessageTable(context, this)
   val callTable: CallTable = CallTable(context, this)
+  val kyberPreKeyTable: KyberPreKeyTable = KyberPreKeyTable(context, this)
 
   override fun onOpen(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     db.setForeignKeyConstraintsEnabled(true)
@@ -110,6 +111,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     db.execSQL(PendingPniSignatureMessageTable.CREATE_TABLE)
     db.execSQL(CallLinkTable.CREATE_TABLE)
     db.execSQL(CallTable.CREATE_TABLE)
+    db.execSQL(KyberPreKeyTable.CREATE_TABLE)
     executeStatements(db, SearchTable.CREATE_TABLE)
     executeStatements(db, RemappedRecordTables.CREATE_TABLE)
     executeStatements(db, MessageSendLogTables.CREATE_TABLE)
@@ -135,6 +137,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     executeStatements(db, PendingPniSignatureMessageTable.CREATE_INDEXES)
     executeStatements(db, CallTable.CREATE_INDEXES)
     executeStatements(db, ReactionTable.CREATE_INDEXES)
+    executeStatements(db, KyberPreKeyTable.CREATE_INDEXES)
 
     executeStatements(db, SearchTable.CREATE_TRIGGERS)
     executeStatements(db, MessageSendLogTables.CREATE_TRIGGERS)
@@ -168,7 +171,9 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       db.version = newVersion
       db.setTransactionSuccessful()
     } finally {
-      db.endTransaction()
+      if (db.inTransaction()) {
+        db.endTransaction()
+      }
 
       // We have to re-begin the transaction for the calling code (see comment at start of method)
       db.beginTransaction()
@@ -400,6 +405,11 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("identities")
     val identities: IdentityTable
       get() = instance!!.identityTable
+
+    @get:JvmStatic
+    @get:JvmName("kyberPreKeys")
+    val kyberPreKeys: KyberPreKeyTable
+      get() = instance!!.kyberPreKeyTable
 
     @get:JvmStatic
     @get:JvmName("media")

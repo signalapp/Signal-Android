@@ -1084,23 +1084,30 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       values.putNull(ORIGINAL_MESSAGE_ID)
     }
 
-    val messageId = writableDatabase.insert(TABLE_NAME, null, values)
-    if (messageId < 0) {
-      Log.w(TAG, "Failed to insert text message (${message.sentTimestampMillis}, ${message.authorId}, ThreadId::$threadId)! Likely a duplicate.")
-      return Optional.empty()
-    }
+    writableDatabase.beginTransaction()
+    val messageId: Long
+    try {
+      messageId = writableDatabase.insert(TABLE_NAME, null, values)
+      if (messageId < 0) {
+        Log.w(TAG, "Failed to insert text message (${message.sentTimestampMillis}, ${message.authorId}, ThreadId::$threadId)! Likely a duplicate.")
+        return Optional.empty()
+      }
 
-    if (unread && editedMessage == null) {
-      threads.incrementUnread(threadId, 1, 0)
+      if (unread && editedMessage == null) {
+        threads.incrementUnread(threadId, 1, 0)
+      }
+
+      if (message.subscriptionId != -1) {
+        recipients.setDefaultSubscriptionId(recipient.id, message.subscriptionId)
+      }
+      writableDatabase.setTransactionSuccessful()
+    } finally {
+      writableDatabase.endTransaction()
     }
 
     if (!silent) {
       ThreadUpdateJob.enqueue(threadId)
       TrimThreadJob.enqueueAsync(threadId)
-    }
-
-    if (message.subscriptionId != -1) {
-      recipients.setDefaultSubscriptionId(recipient.id, message.subscriptionId)
     }
 
     if (notifyObservers) {
@@ -1936,7 +1943,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val cursor = readableDatabase.select(*MMS_PROJECTION)
       .from(TABLE_NAME)
       .where("$TABLE_NAME.$ID = ? OR $TABLE_NAME.$LATEST_REVISION_ID = ?", id, id)
-      .orderBy("$TABLE_NAME.$ID DESC")
+      .orderBy("$TABLE_NAME.$DATE_SENT ASC")
       .run()
 
     return mmsReaderFor(cursor)
@@ -2725,7 +2732,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         READ to if (Util.isDefaultSmsProvider(context)) 0 else 1,
         SMS_SUBSCRIPTION_ID to subscriptionId
       )
-      .run()
+      .run(SQLiteDatabase.CONFLICT_IGNORE)
 
     return Pair(messageId, threadId)
   }
@@ -3040,6 +3047,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       updateThread = false,
       unarchive = false
     )
+
+    if (messageId < 0) {
+      throw MmsException("Failed to insert message! Likely a duplicate.")
+    }
 
     if (message.threadRecipient.isGroup) {
       val members: MutableSet<RecipientId> = mutableSetOf()
@@ -4286,7 +4297,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun incrementViewedStoryReceiptCounts(targetTimestamps: List<Long>, receiptAuthor: RecipientId, receiptSentTimestamp: Long): Set<Long> {
-    val messageUpdates: MutableSet<MessageUpdate> = HashSet()
+    val messageUpdates: MutableSet<MessageReceiptUpdate> = HashSet()
     val unhandled: MutableSet<Long> = HashSet()
 
     writableDatabase.withinTransaction {
@@ -4319,7 +4330,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
    * @return Whether or not some thread was updated.
    */
   private fun incrementReceiptCount(targetTimestamp: Long, receiptAuthor: RecipientId, receiptSentTimestamp: Long, receiptType: ReceiptType, messageQualifier: MessageQualifier = MessageQualifier.ALL): Boolean {
-    var messageUpdates: Set<MessageUpdate> = HashSet()
+    var messageUpdates: Set<MessageReceiptUpdate> = HashSet()
 
     writableDatabase.withinTransaction {
       messageUpdates = incrementReceiptCountInternal(targetTimestamp, receiptAuthor, receiptSentTimestamp, receiptType, messageQualifier)
@@ -4342,13 +4353,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
    * @return All of the target timestamps that couldn't be found in the table.
    */
   private fun incrementReceiptCounts(targetTimestamps: List<Long>, receiptAuthor: RecipientId, receiptSentTimestamp: Long, receiptType: ReceiptType, messageQualifier: MessageQualifier = MessageQualifier.ALL): Set<Long> {
-    val messageUpdates: MutableSet<MessageUpdate> = HashSet()
+    val messageUpdates: MutableSet<MessageReceiptUpdate> = HashSet()
     val missingTargetTimestamps: MutableSet<Long> = HashSet()
 
     writableDatabase.withinTransaction {
       for (targetTimestamp in targetTimestamps) {
-        val updates: Set<MessageUpdate> = incrementReceiptCountInternal(targetTimestamp, receiptAuthor, receiptSentTimestamp, receiptType, messageQualifier)
-
+        val updates: Set<MessageReceiptUpdate> = incrementReceiptCountInternal(targetTimestamp, receiptAuthor, receiptSentTimestamp, receiptType, messageQualifier)
         if (updates.isNotEmpty()) {
           messageUpdates += updates
         } else {
@@ -4357,7 +4367,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
 
       for (update in messageUpdates) {
-        threads.updateSilently(update.threadId, false)
+        if (update.shouldUpdateSnippet) {
+          threads.updateSilently(update.threadId, false)
+        }
       }
     }
 
@@ -4377,8 +4389,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return missingTargetTimestamps
   }
 
-  private fun incrementReceiptCountInternal(targetTimestamp: Long, receiptAuthor: RecipientId, receiptSentTimestamp: Long, receiptType: ReceiptType, messageQualifier: MessageQualifier): Set<MessageUpdate> {
-    val messageUpdates: MutableSet<MessageUpdate> = HashSet()
+  private fun incrementReceiptCountInternal(targetTimestamp: Long, receiptAuthor: RecipientId, receiptSentTimestamp: Long, receiptType: ReceiptType, messageQualifier: MessageQualifier): Set<MessageReceiptUpdate> {
+    val messageUpdates: MutableSet<MessageReceiptUpdate> = HashSet()
 
     val qualifierWhere: String = when (messageQualifier) {
       MessageQualifier.NORMAL -> " AND NOT ($IS_STORY_CLAUSE)"
@@ -4411,16 +4423,17 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             )
           )
           $qualifierWhere
-        RETURNING $ID, $THREAD_ID, $STORY_TYPE
+        RETURNING $ID, $THREAD_ID, $STORY_TYPE, ${receiptType.columnName}
       """,
       buildArgs(Recipient.self().id, receiptAuthor)
     ).forEach { cursor ->
       val messageId = cursor.requireLong(ID)
       val threadId = cursor.requireLong(THREAD_ID)
       val storyType = StoryType.fromCode(cursor.requireInt(STORY_TYPE))
+      val receiptCount = cursor.requireInt(receiptType.columnName)
 
       groupReceipts.update(receiptAuthor, messageId, receiptType.groupStatus, receiptSentTimestamp)
-      messageUpdates += MessageUpdate(threadId, MessageId(messageId))
+      messageUpdates += MessageReceiptUpdate(threadId, MessageId(messageId), receiptType != ReceiptType.VIEWED && receiptCount == 1)
 
       found = true
       hasStory = storyType != StoryType.NONE
@@ -4433,7 +4446,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     if (hasStory) {
       for (messageId in storySends.getStoryMessagesFor(receiptAuthor, targetTimestamp)) {
         groupReceipts.update(receiptAuthor, messageId.id, receiptType.groupStatus, receiptSentTimestamp)
-        messageUpdates += MessageUpdate(-1, messageId)
+        messageUpdates += MessageReceiptUpdate(-1, messageId, false)
       }
     }
 
@@ -4499,7 +4512,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val threads: MutableList<Long> = LinkedList()
 
     readableDatabase
-      .select(ID, THREAD_ID, EXPIRES_IN, EXPIRE_STARTED)
+      .select(ID, THREAD_ID, EXPIRES_IN, EXPIRE_STARTED, LATEST_REVISION_ID)
       .from(TABLE_NAME)
       .where("$DATE_SENT = ? AND ($FROM_RECIPIENT_ID = ? OR ($FROM_RECIPIENT_ID = ? AND $outgoingTypeClause))", messageId.timetamp, messageId.recipientId, Recipient.self().id)
       .run()
@@ -4514,6 +4527,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             proposedExpireStarted
           }
         }
+        val latestRevisionId: Long? = cursor.requireLongOrNull(LATEST_REVISION_ID)
 
         val values = contentValuesOf(
           READ to 1,
@@ -4529,7 +4543,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         writableDatabase
           .update(TABLE_NAME)
           .values(values)
-          .where("$ID = ?", id)
+          .where("$ID = ?", latestRevisionId ?: id)
           .run()
 
         threads += threadId
@@ -4918,9 +4932,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val subscriptionId: Int
   )
 
-  data class MessageUpdate(
+  data class MessageReceiptUpdate(
     val threadId: Long,
-    val messageId: MessageId
+    val messageId: MessageId,
+    val shouldUpdateSnippet: Boolean
   )
 
   data class ReportSpamData(

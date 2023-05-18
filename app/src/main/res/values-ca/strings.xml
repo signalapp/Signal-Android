@@ -183,7 +183,11 @@
     <string name="CameraContacts_recent_contacts">Contactes recents</string>
     <string name="CameraContacts_signal_contacts">Contactes de Signal</string>
     <string name="CameraContacts_signal_groups">Grups de Signal</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Seleccioneu els destinataris de Signal</string>
     <string name="CameraContacts_no_signal_contacts">No hi ha contactes de Signal</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Només podeu usar el botó de la càmera per enviar fotografies a contactes de Signal. </string>
@@ -227,7 +231,7 @@
     <!-- ConfirmIdentityDialog -->
 
     <!-- ContactsCursorLoader -->
-    <string name="ContactsCursorLoader_recent_chats">Converses recents</string>
+    <string name="ContactsCursorLoader_recent_chats">Xats recents</string>
     <string name="ContactsCursorLoader_contacts">Contactes</string>
     <string name="ContactsCursorLoader_groups">Grups</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
@@ -369,9 +373,9 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Nou! Digueu-ho amb adhesius.</string>
 
     <string name="ConversationActivity_cancel">Cancel·la</string>
-    <string name="ConversationActivity_delete_conversation">Delete chat?</string>
+    <string name="ConversationActivity_delete_conversation">Vols eliminar el xat?</string>
     <string name="ConversationActivity_delete_and_leave_group">Vols esborrar i sortir del grup?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">This chat will be deleted from all of your devices.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Aquest xat s\'eliminarà de tots els dispositius.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abandonaràs aquest grup i s\'esborrarà de tots els dispositius.</string>
     <string name="ConversationActivity_delete">Esborra</string>
     <string name="ConversationActivity_delete_and_leave">Esborra i surt</string>
@@ -452,7 +456,7 @@
     <string name="ConversationFragment_delete_on_this_device">Suprimir en aquest dispositiu</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Suprimir a tot arreu</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Aquest missatge s\'eliminarà per a tots els membres del xat si utilitzen una versió recent de Signal. Podran veure que has eliminat un missatge.</string>
     <string name="ConversationFragment_quoted_message_not_found">No s\'ha trobat el missatge original.</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">El missatge original ja no està disponible.</string>
     <string name="ConversationFragment_failed_to_open_message">Ha fallat obrir el missatge.</string>
@@ -460,7 +464,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Podeu lliscar cap a l’esquerra en qualsevol missatge per respondre ràpidament.</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Els fitxers multimèdia d\'una sola visualització se suprimeixen automàticament un cop enviats.</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Ja has vist aquest missatge</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat.\nIf your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Pots afegir notes per a tu mateix en aquest xat. Si hi ha algun dispositiu enllaçat, s\'hi sincronitzaran les notes noves.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membres del grup tenen el mateix nom.</string>
     <string name="ConversationFragment__tap_to_review">Feu un toc per revisar-ho</string>
     <string name="ConversationFragment__review_requests_carefully">Reviseu les sol·licituds amb atenció.</string>
@@ -483,31 +487,31 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Bloquejat</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
-    <string name="ConversationFragment__update_build">Update Signal</string>
+    <string name="ConversationFragment__update_build">Actualitza el Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">Torna a registrar Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Restablir filtres</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">No hi ha xats sense llegir</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="one">Vols eliminar el xat seleccionat?</item>
+        <item quantity="other">Vols eliminar els xats seleccionats?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="one">S\'eliminarà de manera permanent el xat seleccionat.</item>
+        <item quantity="other">S\'eliminarà de manera permanent els %1$d xats seleccionats.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Se suprimeix</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Eliminant els xats seleccionats…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Chat archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="one">Xat arxivat</item>
+        <item quantity="other">%1$d xats arxivats</item>
     </plurals>
     <string name="ConversationListFragment_undo">Desfés</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="one">S\'ha mogut el xat a la safata d\'entrada</item>
+        <item quantity="other">S\'han mogut %1$d xats a la safata d\'entrada</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Llegit</item>
@@ -542,7 +546,7 @@
     <string name="ConversationListItem_key_exchange_message">Missatge d\'intercanvi de clau</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">Xats arxivats (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">Verificat</string>
@@ -612,7 +616,7 @@
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">La còpia de seguretat té una extensió incorrecta.</string>
 
     <!-- BackupsPreferenceFragment -->
-    <string name="BackupsPreferenceFragment__chat_backups">Còpies de seguretat de converses</string>
+    <string name="BackupsPreferenceFragment__chat_backups">Còpies de seguretat de xats</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Les còpies de seguretat s\'encripten amb una contrasenya i es desen al dispositiu.</string>
     <string name="BackupsPreferenceFragment__create_backup">Crea una còpia de seguretat</string>
     <string name="BackupsPreferenceFragment__last_backup">Darrera còpia de seguretat: %1$s</string>
@@ -698,7 +702,7 @@
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">S\'ha refrescat la sessió.</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">El Signal usa encriptació d\'extrem a extrem i és possible que de vegades hagi d’actualitzar la sessió de conversa. Això no n\'afecta la seguretat, però és possible que perdeu algun missatge d’aquest contacte. Podeu demanar que el torni a enviar.</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal usa xifratge d\'extrem a extrem i és possible que de vegades hagis d’actualitzar la sessió del xat. Això no afecta la seguretat, però és possible que perdis algun missatge d’aquest contacte. Sempre pots demanar-li que te\'l torni a enviar.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Voleu desenllaçar «%1$s»?</string>
@@ -946,14 +950,14 @@
     <string name="ManageGroupActivity_legacy_group_upgrade">Aquest és un grup de llegat. Per accedir a funcions noves com ara les @mencions i als administradors,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">Aquest grup de llegat no es pot actualitzar a un grup nou perquè és massa gros. La mida màxima d\'un grup és %1$d.</string>
     <string name="ManageGroupActivity_upgrade_this_group">actualitzeu aquest grup.</string>
-    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Aquest és un grup d\'MMS no segur. Per conversar privadament, convideu els contactes al Signal.</string>
+    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Aquest és un grup d\'MMS no segur. Per xatejar privadament, convida els contactes al Signal.</string>
     <string name="ManageGroupActivity_invite_now">Convida ara</string>
     <string name="ManageGroupActivity_more">més</string>
     <string name="ManageGroupActivity_add_group_description">Afegiu-hi una descripció del grup.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notifica\'m les mencions</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vols rebre notificacions quan se\'t mencioni en converses silenciades?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vols rebre notificacions quan se\'t mencioni en xats silenciats?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Notifica-m\'ho sempre</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">No m\'ho notifiquis mai</string>
 
@@ -1504,10 +1508,10 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Vols permetre que %1$s t\'enviï missatges? No en rebràs cap missatge fins que no el desbloquegis.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Vols rebre actualitzacions i notícies de %1$s? No en rebràs cap actualització fins que no les desbloquegis.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Vols continuar el xat amb aquest grup i compartir-hi el nom i la fotografia?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Actualitzeu aquest grup i activeu-ne les funcions noves com ara les @mencions i els administradors. Els membres que no hi han compartit el nom o la fotografia es convidaran a afegir-s\'hi.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Aquest grup de llegat ja no es pot usar perquè és massa gros. La mida màxima d\'un grup és %1$d.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Vols continuar el xat amb %1$s i compartir-hi el nom i la fotografia?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos a aquest grup i compartir el nom i la fotografia amb els seus membres? No sabran que heu vist els seus missatges fins que no ho accepteu.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Voleu afegir-vos a aquest grup i compartir el nom i la fotografia amb els seus membres? No veureu els seus missatges fins que no ho accepteu.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos a aquest grup? No sabran que n\'heu vist els missatges fins que no ho accepteu.</string>
@@ -1828,7 +1832,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Has fet massa intents per registrar aquest número. Si us plau, torna-ho a provar en %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">No es pot connectar al servei. Si us plau, comproveu la connexió de xarxa i torneu-ho a provar.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">No s\'ha pogut sol·licitar un codi de verificació. Comprova la connexió de xarxa i torna-ho a provar.</string>
     <string name="RegistrationActivity_non_standard_number_format">Format de número no estàndard</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">El número que heu introduït (%1$s) sembla d\'un format no estàndard.\n\nVoleu dir %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal d\'Android. Format del número de telèfon</string>
@@ -1887,7 +1891,7 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">No s\'ha trobat cap resultat per a «%1$s»</string>
-    <string name="SearchFragment_header_conversations">Chats</string>
+    <string name="SearchFragment_header_conversations">Xats</string>
     <string name="SearchFragment_header_contacts">Contactes</string>
     <string name="SearchFragment_header_messages">Missatges</string>
 
@@ -1956,7 +1960,8 @@
     <string name="StickerPackPreviewActivity_untitled">Sense títol</string>
     <string name="StickerPackPreviewActivity_unknown">Desconegut</string>
     <string name="StickerPackPreviewActivity_install">Instal·la</string>
-    <string name="StickerPackPreviewActivity_remove">Suprimeix</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">Adhesius</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Ha fallat carregar el paquet d\'adhesius.</string>
 
@@ -2154,7 +2159,19 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Llegiu-ne més.</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d missatges nous en %2$d xats</string>
     <string name="MessageNotifier_most_recent_from_s">Més recent de %1$s</string>
     <string name="MessageNotifier_locked_message">Missatge blocat</string>
     <string name="MessageNotifier_message_delivery_failed">El missatge no s\'ha pogut entregar.</string>
@@ -2198,7 +2215,7 @@
     <string name="NotificationChannel_locked_status">Estat del bloqueig</string>
     <string name="NotificationChannel_app_updates">Actualitzacions de l\'aplicació</string>
     <string name="NotificationChannel_other">Altres</string>
-    <string name="NotificationChannel_group_chats">Converses</string>
+    <string name="NotificationChannel_group_chats">Xats</string>
     <string name="NotificationChannel_missing_display_name">Desconegut</string>
     <string name="NotificationChannel_voice_notes">Notes de veu</string>
     <string name="NotificationChannel_contact_joined_signal">El contacte s\'ha afegit al Signal.</string>
@@ -2224,7 +2241,7 @@
     <string name="SearchToolbar_search">Cerca</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Buscar xats sense llegir</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Cerca xats, contactes i missatges</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Tanca</string>
@@ -2254,9 +2271,9 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">El dispositiu ja no està registrat.</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Aquest dispositiu ja no està registrat. Segurament vas registrar el número de telèfon a Signal des d\'un altre dispositiu.</string>
     <!-- Action in reminder banner that will take user to re-register -->
-    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
+    <string name="UnauthorizedReminder_reregister_action">Tornar a registrar dispositiu</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">S\'ha tancat la teva sessió de Signal en aquest dispositiu.</string>
@@ -2444,20 +2461,20 @@
 
     <!-- ConversationParentFragment -->
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth permission denied</string>
+    <string name="ConversationParentFragment__bluetooth_permission_denied">S\'ha denegat el permís del Bluetooth.</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Activa el permís \"Dispositius propers\" per utilitzar el Bluetooth per enregistrar missatges de veu.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Open settings</string>
+    <string name="ConversationParentFragment__open_settings">Obre els ajustos</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Not now</string>
+    <string name="ConversationParentFragment__not_now">Ara no</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Desplaça al final</string>
 
     <!-- BubbleOptOutTooltip -->
     <!-- Message to inform the user of what Android chat bubbles are -->
-    <string name="BubbleOptOutTooltip__description">Les bombolles són una funció d\'Android que podeu desactivar per a les converses del Signal.</string>
+    <string name="BubbleOptOutTooltip__description">Les bombolles són una funció d\'Android que pots desactivar per als xats de Signal.</string>
     <!-- Button to dismiss the tooltip for opting out of using Android bubbles -->
     <string name="BubbleOptOutTooltip__not_now">Ara no</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
@@ -2575,7 +2592,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">Mostra tot el xat</string>
     <string name="load_more_header__loading">Es carrega</string>
 
     <!-- media_overview_activity -->
@@ -2624,7 +2641,7 @@
     <string name="EditAboutFragment_encrypted">Encriptat</string>
     <string name="EditAboutFragment_be_kind">Sigueu amables</string>
     <string name="EditAboutFragment_coffee_lover">Amant del cafè</string>
-    <string name="EditAboutFragment_free_to_chat">Lliure per conversar-hi</string>
+    <string name="EditAboutFragment_free_to_chat">Lliure per xatejar-hi</string>
     <string name="EditAboutFragment_taking_a_break">Faig un descans.</string>
     <string name="EditAboutFragment_working_on_something_new">Treballo en una cosa nova.</string>
 
@@ -2697,7 +2714,7 @@
     <string name="AndroidManifest__message_details">Detalls del missatge</string>
     <string name="AndroidManifest__linked_devices">Dispositius enllaçats</string>
     <string name="AndroidManifest__invite_friends">Convideu-hi amistats</string>
-    <string name="AndroidManifest_archived_conversations">Archived chats</string>
+    <string name="AndroidManifest_archived_conversations">Xats arxivats</string>
     <string name="AndroidManifest_remove_photo">Suprimeix la foto</string>
 
     <!-- HelpFragment -->
@@ -2791,9 +2808,9 @@
     <string name="preferences__pref_use_address_book_photos">Usa les fotos de l\'agenda de contactes</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Mostra les fotos dels contactes de l\'agenda si estan disponibles</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Mantenir arxivades les converses silenciades</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Mantenir arxivats els xats silenciats</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Les converses silenciades que estiguin arxivades romandran arxivades quan arribi un missatge nou.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Els xats silenciats que estiguin arxivats romandran arxivats quan arribi un missatge nou.</string>
     <string name="preferences__generate_link_previews">Genera previsualitzacions d\'enllaç</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupereu les previsualitzacions d’enllaços directament des de qualsevol lloc web per als missatges que envieu.</string>
     <string name="preferences__change_passphrase">Canvia la contrasenya</string>
@@ -2854,7 +2871,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Bloqueig de pagament</string>
     <string name="preferences__payments_beta">Pagaments (beta)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">Límit de la mida del xat</string>
     <string name="preferences__keep_messages">Mantén els missatges</string>
     <string name="preferences__clear_message_history">Neteja l\'historial dels missatges</string>
     <string name="preferences__linked_devices">Dispositius enllaçats</string>
@@ -2862,7 +2879,7 @@
     <string name="preferences__dark_theme">Fosc</string>
     <string name="preferences__appearance">Aparença</string>
     <string name="preferences__theme">Tema</string>
-    <string name="preferences__chat_color_and_wallpaper">Color i fons de la conversa</string>
+    <string name="preferences__chat_color_and_wallpaper">Color i fons del xat</string>
     <string name="preferences__disable_pin">Desactiva el PIN</string>
     <string name="preferences__enable_pin">Activa el PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Si desactiveu el PIN, perdreu totes les dades quan torneu a registrar-vos al Signal, si no és que en feu una còpia de seguretat i una restauració manualment. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string>
@@ -2898,7 +2915,11 @@
     <string name="preferences_storage__delete_older_messages">Vols esborrar els missatges més antics?</string>
     <string name="preferences_storage__clear_message_history">Vols netejar l\'historial dels missatges?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Això esborrarà permanentment l\'historial dels missatges i el contingut del dispositiu més antic de %1$s.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Això esborrarà permanentment tot l\'historial dels missatges i tot el contingut del dispositiu.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Segur que vols esborrar tot l\'historial dels missatges?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">S\'esborrarà permanentment tot l\'historial dels missatges. Aquesta acció no es pot desfer.</string>
@@ -2916,14 +2937,14 @@
     <string name="preferences_app_protection__who_can">Qui pot…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Pagaments</string>
-    <string name="preferences_chats__chats">Converses</string>
+    <string name="preferences_chats__chats">Xats</string>
     <string name="preferences_data_and_storage__manage_storage">Gestioneu l\'emmagatzematge</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Usa menys dades per a les trucades</string>
     <string name="preferences_data_and_storage__never">Mai</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Sense fil i dades mòbils</string>
     <string name="preferences_data_and_storage__mobile_data_only">Només amb dades mòbils</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">L\'ús de menys dades pot millorar les trucades en xarxes amb poca capacitat.</string>
-    <string name="preferences_notifications__in_chat_sounds">Sons de la conversa</string>
+    <string name="preferences_notifications__in_chat_sounds">Sons del xat</string>
     <string name="preferences_notifications__show">Mostra</string>
     <string name="preferences_notifications__ringtone">To de trucada</string>
     <string name="preferences_chats__message_text_size">Mida de la lletra dels missatges</string>
@@ -3239,8 +3260,9 @@
     <string name="conversation_list_settings_shortcut">Drecera de configuració</string>
     <string name="conversation_list_search_description">Cerca</string>
     <string name="conversation_list__pinned">Fixat</string>
-    <string name="conversation_list__chats">Converses</string>
-    <string name="conversation_list__you_can_only_pin_up_to_d_chats">Només podeu fixar fins a %1$d converses.</string>
+    <string name="conversation_list__chats">Xats</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
+    <string name="conversation_list__you_can_only_pin_up_to_d_chats">Només podeu fixar fins a %1$d xats.</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Fotografia del contacte</string>
@@ -3248,9 +3270,9 @@
 
 
     <!-- conversation_list_fragment -->
-    <string name="conversation_list_fragment__fab_content_description">New chat</string>
+    <string name="conversation_list_fragment__fab_content_description">Nou xat</string>
     <string name="conversation_list_fragment__open_camera_description">Obre la càmera</string>
-    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Encara no teniu cap conversa.\nComenceu enviant un missatge a algú.</string>
+    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Encara no tens cap xat.\nComença enviant un missatge a algú.</string>
 
 
     <!-- conversation_secure_verified -->
@@ -3265,7 +3287,7 @@
     <string name="conversation__menu_group_settings">Configuració del grup</string>
     <string name="conversation__menu_leave_group">Abandona el grup</string>
     <string name="conversation__menu_view_all_media">Tot el contingut</string>
-    <string name="conversation__menu_conversation_settings">Chat settings</string>
+    <string name="conversation__menu_conversation_settings">Ajustos del xat</string>
     <string name="conversation__menu_add_shortcut">Afegeix a la pantalla d\'inici</string>
     <string name="conversation__menu_create_bubble">Crea una bombolla</string>
 
@@ -3288,7 +3310,8 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Llista de destinataris</string>
     <string name="conversation_group_options__delivery">Lliurament</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
+    <string name="conversation_group_options__conversation">Xat</string>
     <string name="conversation_group_options__broadcast">Difusió</string>
 
     <!-- text_secure_normal -->
@@ -3338,11 +3361,13 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Interior</string>
     <string name="InsightsDashboardFragment__title">Interior</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El Protocol de Signal ha protegit automàticament %1$d%% dels missatges de sortida durant els darrers %2$d dies. Els xats entre usuaris de Signal sempre estan xifrats d\'extrem a extrem.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Escampeu-ho</string>
     <string name="InsightsDashboardFragment__not_enough_data">Dades insuficients</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">El percentatge d’Interior es calcula a partir dels missatges de sortida dels darrers %1$d dies que no han desaparegut ni s’han esborrat.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
+    <string name="InsightsDashboardFragment__start_a_conversation">Començar un xat</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Comenceu a comunicar-vos de manera segura i activeu funcions noves que vagin més enllà de les limitacions dels missatges d\'SMS no encriptats convidant més contactes a unir-se al Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Aquestes estadístiques es van generar localment al dispositiu i només vosaltres les podreu veure. Mai es transmeten enlloc.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">Missatges encriptats</string>
@@ -3488,7 +3513,7 @@
     <string name="registration_activity__transfer_or_restore_account">Transfereix o restaura el compte</string>
     <string name="registration_activity__transfer_account">Transfereix el compte</string>
     <string name="registration_activity__skip">Omet</string>
-    <string name="preferences_chats__chat_backups">Còpies de seguretat de converses</string>
+    <string name="preferences_chats__chat_backups">Còpies de seguretat de xats</string>
     <string name="preferences_chats__transfer_account">Transfereix el compte</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Transfereix el compte a un dispositiu d\'Android nou</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Escriviu la contrasenya de la còpia de seguretat.</string>
@@ -3586,21 +3611,21 @@
     <string name="Recipient_unknown">Desconegut</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">Torna a registrar el compte</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Update Signal</string>
+    <string name="preferences_account_update_signal">Actualitza el Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <string name="preferences_account_delete_all_data">Suprimeix totes les dades</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">Vols suprimir totes les dades?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Això restablirà l\'app eliminant tots els missatges. L\'app es tancarà un cop finalitzat aquest procés.</string>
     <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Continua</string>
     <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel·lar</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">No s\'han pogut eliminar les dades</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transfereix o restaura el compte</string>
@@ -3880,21 +3905,21 @@
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">Ha fallat l\'enviament a alguns usuaris.</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Només podeu compartir fins a %1$d converses.</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Només pots compartir amb un màxim de %1$d xats.</string>
 
     <!-- ChatWallpaperActivity -->
 
     <!-- ChatWallpaperFragment -->
-    <string name="ChatWallpaperFragment__chat_color">Color de la conversa</string>
-    <string name="ChatWallpaperFragment__reset_chat_colors">Restableix els colors de la conversa</string>
-    <string name="ChatWallpaperFragment__reset_chat_color">Restableix el color de la conversa</string>
-    <string name="ChatWallpaperFragment__reset_chat_color_question">Voleu restablir el color de la conversa?</string>
+    <string name="ChatWallpaperFragment__chat_color">Color del xat</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">Restableix els colors del xat</string>
+    <string name="ChatWallpaperFragment__reset_chat_color">Restableix el color del xat</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">Vols restablir el color del xat?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">Estableix el fons</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">El mode fosc enfosqueix el fons.</string>
     <string name="ChatWallpaperFragment__contact_name">Nom de contacte</string>
     <string name="ChatWallpaperFragment__reset">Restableix</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Previsualització del fons</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Voleu substituir tots els colors de la conversa?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vols substituir tots els colors del xat?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Voleu substituir tots els fons?</string>
     <string name="ChatWallpaperFragment__reset_default_colors">Restableix els colors per defecte</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Restableix tots els colors</string>
@@ -3912,7 +3937,7 @@
     <string name="ChatWallpaperPreviewActivity__preview">Previsualitza</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">Estableix el fons</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Llisqueu per previsualitzar més fons.</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Estableix el fons per a totes les converses</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Estableix el fons per a tots els xats</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Estableix el fons per a %1$s</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Veure la galeria necessita permís de l\'emmagatzematge.</string>
 
@@ -3920,7 +3945,7 @@
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pessigueu per ampliar i arrossegueu per ajustar.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Estableix el fons per a totes les converses.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Estableix el fons per a tots els xats.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_s">Estableix el fons per a %1$s.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">Error en establir el fons.</string>
     <string name="WallpaperCropActivity__blur_photo">Difumina la fotografia</string>
@@ -4041,11 +4066,11 @@
 
     <!-- GroupsInCommonMessageRequest -->
     <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">No teniu cap grup en comú amb aquesta persona. Reviseu les sol·licituds amb atenció abans d’acceptar-les per evitar missatges no desitjats.</string>
-    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Cap dels vostres contactes o persones amb qui converseu no forma part d\'aquest grup. Reviseu les sol·licituds amb atenció abans d’acceptar-les per evitar missatges no desitjats.</string>
+    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Cap dels teus contactes o persones amb qui xateges forma part d\'aquest grup. Revisa les sol·licituds amb atenció abans d’acceptar-les per evitar missatges no desitjats.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">Quant a les sol·licituds de missatges</string>
     <string name="GroupsInCommonMessageRequest__okay">D\'acord</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Aquí teniu una previsualització del color de la conversa.</string>
+    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Aquí tens una previsualització del color del xat.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">El color només el veieu vós.</string>
 
     <!-- GroupDescriptionDialog -->
@@ -4219,8 +4244,8 @@
     <string name="PrivacySettingsFragment__app_security">Seguretat de l\'aplicació</string>
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloqueja les captures de pantalla a les llistes de recents i dins de l\'aplicació</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Missatges i trucades del Signal: sempre retransmissió de trucades i remitent segellat</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Temporitzador per defecte per a les converses noves</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Establiu un temporitzador per defecte de desaparició de missatges per a totes les converses noves que hàgiu iniciat.</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Temporitzador per defecte per als xats nous</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Estableix un temporitzador per defecte de desaparició de missatges per a tots els xats nous que hagis iniciat.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Demana el bloqueig de pantalla d\'Android o l\'empremta dactilar per transferir fons.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -4238,8 +4263,8 @@
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostra una icona als detalls del missatge quan es lliuri mitjançant un remitent segellat.</string>
 
     <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Quan s\'activa, els missatges enviats i rebuts nous en converses noves que hàgiu iniciat desapareixeran després de ser vistos.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Quan s\'activa, els missatges nous enviats i rebuts en aquesta conversa desapareixeran després de ser vistos.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Quan s\'activa, els nous missatges enviats i rebuts als nous xats que hagis iniciat desapareixeran després de ser vistos.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Quan s\'activa, els nous missatges enviats i rebuts en aquest xat desapareixeran després de ser vistos.</string>
     <string name="ExpireTimerSettingsFragment__off">Inactiu</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 setmanes</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 setmana</string>
@@ -4265,7 +4290,7 @@
     <string name="HelpSettingsFragment__debug_log">Registre de depuració</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termes i política de privadesa</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">Amb llicència de GPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Qualitat dels mitjans</string>
@@ -4278,14 +4303,14 @@
     <!-- ChatColorSelectionFragment -->
     <string name="ChatColorSelectionFragment__auto">Automàtic</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">Usa els colors personalitzats</string>
-    <string name="ChatColorSelectionFragment__chat_color">Color de la conversa</string>
+    <string name="ChatColorSelectionFragment__chat_color">Color del xat</string>
     <string name="ChatColorSelectionFragment__edit">Edita</string>
     <string name="ChatColorSelectionFragment__duplicate">Duplica</string>
     <string name="ChatColorSelectionFragment__delete">Suprimeix</string>
     <string name="ChatColorSelectionFragment__delete_color">Suprimeix el color</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">Aquest color personalitzat s\'utilitza en %1$d conversa. Voleu suprimir-lo per a totes?</item>
-        <item quantity="other">Aquest color personalitzat s\'utilitza en %1$d converses. Voleu suprimir-lo per a totes?</item>
+        <item quantity="one">Aquest color personalitzat s\'utilitza en %1$d xat. Vols eliminar-lo per a tots?</item>
+        <item quantity="other">Aquest color personalitzat s\'utilitza en %1$d xats. Vols eliminar-lo per a tots?</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">Vols suprimir el color de la conversa?</string>
 
@@ -4299,8 +4324,8 @@
     <string name="CustomChatColorCreatorFragmentPage__save">Desa</string>
     <string name="CustomChatColorCreatorFragmentPage__edit_color">Edita el color</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-        <item quantity="one">Aquest color s\'usa en %1$d conversa. Voleu desar els canvis per a totes?</item>
-        <item quantity="other">Aquest color s\'usa en %1$d converses. Voleu desar els canvis per a totes?</item>
+        <item quantity="one">Aquest color s\'utilitza en %1$d xat. Vols eliminar-lo per a tots?</item>
+        <item quantity="other">Aquest color s\'utilitza en %1$d xats. Vols eliminar-lo per a tots?</item>
     </plurals>
 
     <!-- ChatColorGradientTool -->
@@ -4362,7 +4387,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">No s\'ha trobat l\'app de contactes</string>
     <string name="ConversationSettingsFragment__start_video_call">Inicia una trucada de vídeo</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Start voice call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Iniciar trucada de veu</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Història</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4396,8 +4421,9 @@
     <string name="ConversationSettingsFragment__group_link">Enllaç del grup</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Afegeix com a contacte</string>
     <string name="ConversationSettingsFragment__unmute">No la silenciïs</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Xat s\'ha silenciat fins a %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Xat silenciat per sempre</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">S\'ha copiat el número de telèfon al porta-retalls.</string>
     <string name="ConversationSettingsFragment__phone_number">Número de telèfon</string>
     <string name="ConversationSettingsFragment__get_badges">Aconsegueix insígnies per al perfil donant suport a Signal. Toca una insígnia per obtenir-ne més informació.</string>
@@ -4437,7 +4463,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">Missatge</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Voice call</string>
+    <string name="NewConversationActivity__audio_call">Trucada de veu</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Trucada de vídeo</string>
     <!-- Context menu item remove -->
@@ -4660,22 +4686,22 @@
     <string name="MySupportPreference__please_contact_support">Poseu-vos en contacte amb l\'assistència.</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__title">Update Signal</string>
+    <string name="UpdateSignalExpiredDialog__title">Actualitza el Signal</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">Aquesta versió de Signal ha caducat. Actualitza-la ara per continuar utilitzant Signal.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
-    <string name="UpdateSignalExpiredDialog__update_action">Update</string>
+    <string name="UpdateSignalExpiredDialog__update_action">Actualitza-la</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
-    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel</string>
+    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel·lar</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">Dispositiu no registrat</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">Aquest dispositiu ja no està registrat. Torna a registrar-lo per continuar utilitzant Signal en aquest dispositiu.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">Re-register</string>
+    <string name="ReregisterSignalDialog__reregister_action">Torna a registrar</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
-    <string name="ReregisterSignalDialog__cancel_action">Cancel</string>
+    <string name="ReregisterSignalDialog__cancel_action">Cancel·lar</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Insígnia Boost vençuda</string>
@@ -4919,7 +4945,7 @@
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
     <string name="NotificationProfileCreated__done">Fet</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Podeu activar o desactivar el perfil manualment mitjançant el menú de la llista de converses.</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Pots activar o desactivar el perfil manualment mitjançant el menú de la llista de xats.</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
     <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Afegiu una programació a la configuració per automatitzar el perfil.</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
@@ -4976,7 +5002,7 @@
     <!-- region "Stories Tab" -->
 
     <!-- Label for Chats tab in home app screen -->
-    <string name="ConversationListTabs__chats">Converses</string>
+    <string name="ConversationListTabs__chats">Xats</string>
     <!-- Label for Calls tab in home app screen -->
     <string name="ConversationListTabs__calls">Trucades</string>
     <!-- Label for Stories tab in home app screen -->
@@ -5000,7 +5026,7 @@
     <!-- Context menu option to share a story -->
     <string name="StoriesLandingItem__share">Comparteix…</string>
     <!-- Context menu option to go to story chat -->
-    <string name="StoriesLandingItem__go_to_chat">Ves a la conversa</string>
+    <string name="StoriesLandingItem__go_to_chat">Ves al xat</string>
     <!-- Context menu option to go to story info -->
     <string name="StoriesLandingItem__info">Informació</string>
     <!-- Label when a story is pending sending -->
@@ -5147,7 +5173,7 @@
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Els contactes de Signal són aquelles persones en les quals has indicat que confies, ja sigui:</string>
     <!-- Signal connections sheet bullet point 1 -->
-    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a chat</string>
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Començar xat</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">acceptar un missatge de sol·icitud</string>
     <!-- Signal connections sheet bullet point 3 -->
@@ -5875,9 +5901,9 @@
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">Tornar a la trucada</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Voice call</string>
+    <string name="CallContextMenu__audio_call">Trucada de veu</string>
     <!-- Displayed as a context menu item to go to chat -->
-    <string name="CallContextMenu__go_to_chat">Anar al xat</string>
+    <string name="CallContextMenu__go_to_chat">Ves al xat</string>
     <!-- Displayed as a context menu item to see call info -->
     <string name="CallContextMenu__info">Informació</string>
     <!-- Displayed as a context menu item to select multiple calls -->
@@ -5903,8 +5929,8 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">Eliminar</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="one">Eliminar %1$d trucada?</item>
+        <item quantity="other">Eliminar %1$d trucades?</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">Eliminar per a mi</string>
@@ -6002,36 +6028,36 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">Detalls de la trucada</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
-    <string name="CallLinkDetailsFragment__add_call_name">Add call name</string>
+    <string name="CallLinkDetailsFragment__add_call_name">Afegir nom de trucada</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Approve all members</string>
+    <string name="CallLinkDetailsFragment__approve_all_members">Aprovar tots els membres</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
-    <string name="CallLinkDetailsFragment__share_link">Share link</string>
+    <string name="CallLinkDetailsFragment__share_link">Compatir enllaç</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">Eliminar enllaç de trucada</string>
 
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">Comparteix</string>
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">Color</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">Comparteix el teu codi QR i enllaç només amb persones de confiança. Quan ho comparteixis, els altres podran veure el teu nom d\'usuari i iniciar un xat amb tu.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">S\'ha copiat el nom d\'usuari</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">Enllaç copiat</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">Restableix</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">Fet</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">Codi</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">Escanejar</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Escaneja el codi QR del dispositiu del teu contacte.</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
 

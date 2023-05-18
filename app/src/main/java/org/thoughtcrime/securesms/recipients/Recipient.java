@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
@@ -95,6 +93,7 @@ public class Recipient {
   private final DistributionListId           distributionListId;
   private final List<RecipientId>            participantIds;
   private final Optional<Long>               groupAvatarId;
+  private final boolean                      isActiveGroup;
   private final boolean                      isSelf;
   private final boolean                      blocked;
   private final long                         muteUntil;
@@ -270,8 +269,7 @@ public class Recipient {
       throw new AssertionError();
     }
 
-    RecipientTable db          = SignalDatabase.recipients();
-    RecipientId    recipientId = db.getAndPossiblyMerge(serviceId, e164);
+    RecipientId recipientId = RecipientId.from(new SignalServiceAddress(serviceId, e164));
 
     Recipient resolved = resolved(recipientId);
 
@@ -281,7 +279,7 @@ public class Recipient {
 
     if (!resolved.isRegistered() && serviceId != null) {
       Log.w(TAG, "External push was locally marked unregistered. Marking as registered.");
-      db.markRegistered(recipientId, serviceId);
+      SignalDatabase.recipients().markRegistered(recipientId, serviceId);
     } else if (!resolved.isRegistered()) {
       Log.w(TAG, "External push was locally marked unregistered, but we don't have an ACI, so we can't do anything.", new Throwable());
     }
@@ -338,7 +336,7 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalPossiblyMigratedGroup(@NonNull GroupId groupId) {
-    return Recipient.resolved(SignalDatabase.recipients().getOrInsertFromPossiblyMigratedGroupId(groupId));
+    return Recipient.resolved(RecipientId.from(groupId));
   }
 
   /**
@@ -433,6 +431,7 @@ public class Recipient {
     this.badges                       = Collections.emptyList();
     this.isReleaseNotesRecipient      = false;
     this.needsPniSignature            = false;
+    this.isActiveGroup                = false;
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -488,6 +487,7 @@ public class Recipient {
     this.badges                       = details.badges;
     this.isReleaseNotesRecipient      = details.isReleaseChannel;
     this.needsPniSignature            = details.needsPniSignature;
+    this.isActiveGroup                = details.isActiveGroup;
   }
 
   public @NonNull RecipientId getId() {
@@ -881,8 +881,14 @@ public class Recipient {
   }
 
   public boolean isActiveGroup() {
-    RecipientId selfId = Recipient.self().getId();
-    return Stream.of(getParticipantIds()).anyMatch(p -> p.equals(selfId));
+    return isActiveGroup;
+  }
+
+  public boolean isUnknownGroup() {
+    if ((groupAvatarId.isPresent() && groupAvatarId.get() != - 1) || (groupName != null && !groupName.isEmpty())) {
+      return false;
+    }
+    return participantIds.isEmpty() || (participantIds.size() == 1 && participantIds.contains(Recipient.self().id));
   }
 
   public boolean isInactiveGroup() {

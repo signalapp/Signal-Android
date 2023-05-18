@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.components.emoji;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Annotation;
@@ -70,9 +72,8 @@ public class EmojiTextView extends AppCompatTextView {
   private boolean                forceJumboEmoji;
   private boolean                isInOnDraw;
 
-  private       MentionRendererDelegate          mentionRendererDelegate;
-  private final SpoilerRendererDelegate          spoilerRendererDelegate;
-  private       SpoilerFilteringSpannableFactory spoilerFilteringSpannableFactory;
+  private       MentionRendererDelegate mentionRendererDelegate;
+  private final SpoilerRendererDelegate spoilerRendererDelegate;
 
   public EmojiTextView(Context context) {
     this(context, null);
@@ -113,11 +114,6 @@ public class EmojiTextView extends AppCompatTextView {
     setText(getText());
   }
 
-  public void enableSpoilerFiltering() {
-    spoilerFilteringSpannableFactory = new SpoilerFilteringSpannableFactory(() -> isInOnDraw);
-    setSpannableFactory(spoilerFilteringSpannableFactory);
-  }
-
   @Override
   protected void onDraw(Canvas canvas) {
     isInOnDraw = true;
@@ -126,7 +122,10 @@ public class EmojiTextView extends AppCompatTextView {
     boolean hasLayout      = getLayout() != null;
 
     if (hasSpannedText && hasLayout) {
-      drawSpecialRenderers(canvas, mentionRendererDelegate, spoilerRendererDelegate);
+      Path textClipPath = drawSpecialRenderers(canvas, mentionRendererDelegate, spoilerRendererDelegate);
+      canvas.translate(getTotalPaddingLeft(), getTotalPaddingTop());
+      canvas.clipPath(textClipPath, Region.Op.DIFFERENCE);
+      canvas.translate(-getTotalPaddingLeft(), -getTotalPaddingTop());
     }
 
     super.onDraw(canvas);
@@ -138,14 +137,14 @@ public class EmojiTextView extends AppCompatTextView {
     isInOnDraw = false;
   }
 
-  private void drawSpecialRenderers(@NonNull Canvas canvas, @Nullable MentionRendererDelegate mentionDelegate, @NonNull SpoilerRendererDelegate spoilerDelegate) {
+  private Path drawSpecialRenderers(@NonNull Canvas canvas, @Nullable MentionRendererDelegate mentionDelegate, @NonNull SpoilerRendererDelegate spoilerDelegate) {
     int checkpoint = canvas.save();
     canvas.translate(getTotalPaddingLeft(), getTotalPaddingTop());
     try {
       if (mentionDelegate != null) {
         mentionDelegate.draw(canvas, (Spanned) getText(), getLayout());
       }
-      spoilerDelegate.draw(canvas, (Spanned) getText(), getLayout());
+      return spoilerDelegate.draw(canvas, (Spanned) getText(), getLayout());
     } finally {
       canvas.restoreToCount(checkpoint);
     }
@@ -187,9 +186,6 @@ public class EmojiTextView extends AppCompatTextView {
       textToSet = new SpannableStringBuilder(EmojiProvider.emojify(candidates, text, this, isJumbomoji || forceJumboEmoji));
     }
 
-    if (spoilerFilteringSpannableFactory != null) {
-      textToSet = spoilerFilteringSpannableFactory.wrap(textToSet);
-    }
     super.setText(textToSet, BufferType.SPANNABLE);
 
     // Android fails to ellipsize spannable strings. (https://issuetracker.google.com/issues/36991688)
@@ -333,11 +329,7 @@ public class EmojiTextView extends AppCompatTextView {
         newTextToSet = EmojiProvider.emojify(newCandidates, newContent, this, isJumbomoji || forceJumboEmoji);
       }
 
-      if (spoilerFilteringSpannableFactory != null) {
-        spoilerFilteringSpannableFactory.wrap(newTextToSet);
-      }
-
-      super.setText(newContent, BufferType.SPANNABLE);
+      super.setText(newTextToSet, BufferType.SPANNABLE);
     }
   }
 
@@ -366,7 +358,9 @@ public class EmojiTextView extends AppCompatTextView {
         newContent.append(getText().subSequence(0, overflowStart).toString())
                   .append(ellipsized.subSequence(0, ellipsized.length()).toString());
 
-        TextUtils.copySpansFrom(getText(newContent.length() - 1), 0, newContent.length() - 1, Object.class, newContent, 0);
+        if (newContent.length() > 0) {
+          TextUtils.copySpansFrom(getText(newContent.length() - 1), 0, newContent.length() - 1, Object.class, newContent, 0);
+        }
 
         newContent.append(Optional.ofNullable(overflowText).orElse(""));
 

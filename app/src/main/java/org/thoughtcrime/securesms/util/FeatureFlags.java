@@ -15,8 +15,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
-import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
-import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messageprocessingalarm.MessageProcessReceiver;
@@ -107,7 +105,6 @@ public final class FeatureFlags {
   private static final String TEXT_FORMATTING                   = "android.textFormatting";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
   private static final String CALLS_TAB                         = "android.calls.tab.2";
-  private static final String TEXT_FORMATTING_SPOILER_SEND      = "android.textFormatting.spoilerSend";
   private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc";
   private static final String EDIT_MESSAGE_RECEIVE              = "android.editMessage.receive";
   private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send";
@@ -170,7 +167,6 @@ public final class FeatureFlags {
       TEXT_FORMATTING,
       ANY_ADDRESS_PORTS_KILL_SWITCH,
       CALLS_TAB,
-      TEXT_FORMATTING_SPOILER_SEND,
       EDIT_MESSAGE_RECEIVE,
       EDIT_MESSAGE_SEND
   );
@@ -238,7 +234,6 @@ public final class FeatureFlags {
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       CDS_HARD_LIMIT,
       TEXT_FORMATTING,
-      TEXT_FORMATTING_SPOILER_SEND,
       EDIT_MESSAGE_RECEIVE,
       EDIT_MESSAGE_SEND
   );
@@ -585,13 +580,6 @@ public final class FeatureFlags {
    */
   public static boolean textFormatting() {
     return getBoolean(TEXT_FORMATTING, false);
-  }
-
-  /**
-   * Whether or not we should show spoiler text formatting option.
-   */
-  public static boolean textFormattingSpoilerSend() {
-    return getBoolean(TEXT_FORMATTING_SPOILER_SEND, false);
   }
 
   /**

@@ -688,8 +688,6 @@ public class SignalServiceMessageSender {
     } else if (message.getRequest().isPresent()) {
       content = createRequestContent(message.getRequest().get().getRequest());
       urgent  = message.getRequest().get().isUrgent();
-    } else if (message.getPniIdentity().isPresent()) {
-      content = createPniIdentityContent(message.getPniIdentity().get());
     } else if (message.getCallEvent().isPresent()) {
       content = createCallEventContent(message.getCallEvent().get());
     } else {
@@ -1651,13 +1649,6 @@ public class SignalServiceMessageSender {
     return container.setSyncMessage(builder).build();
   }
 
-  private Content createPniIdentityContent(SyncMessage.PniIdentity proto) {
-    Content.Builder     container = Content.newBuilder();
-    SyncMessage.Builder builder   = createSyncMessageBuilder().setPniIdentity(proto);
-
-    return container.setSyncMessage(builder).build();
-  }
-
   private Content createCallEventContent(SyncMessage.CallEvent proto) {
     Content.Builder     container = Content.newBuilder();
     SyncMessage.Builder builder   = createSyncMessageBuilder().setCallEvent(proto);
@@ -2378,9 +2369,15 @@ public class SignalServiceMessageSender {
 
   private List<PreKeyBundle> getPreKeys(SignalServiceAddress recipient, Optional<UnidentifiedAccess> unidentifiedAccess, int deviceId, boolean story) throws IOException {
     try {
+      // If it's only unrestricted because it's a story send, then we know it'll fail
+      if (story && unidentifiedAccess.isPresent() && unidentifiedAccess.get().isUnrestrictedForStory()) {
+        unidentifiedAccess = Optional.empty();
+      }
+
       return socket.getPreKeys(recipient, unidentifiedAccess, deviceId);
     } catch (NonSuccessfulResponseCodeException e) {
       if (e.getCode() == 401 && story) {
+        Log.d(TAG, "Got 401 when fetching prekey for story. Trying without UD.");
         return socket.getPreKeys(recipient, Optional.empty(), deviceId);
       } else {
         throw e;

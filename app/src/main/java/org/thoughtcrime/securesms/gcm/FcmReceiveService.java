@@ -102,7 +102,7 @@ public class FcmReceiveService extends FirebaseMessagingService {
 
     if (!enqueueSuccessful) {
       Log.w(TAG, "Unable to start service. Falling back to legacy approach.");
-      FcmFetchManager.retrieveMessages(context);
+      FcmFetchManager.tryLegacyFallback(context);
     }
   }
 

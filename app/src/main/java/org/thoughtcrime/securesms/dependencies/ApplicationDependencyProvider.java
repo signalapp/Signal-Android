@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.SignalBaseIdentityKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.SignalKyberPreKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.SignalSenderKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl;
@@ -41,6 +42,7 @@ import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.IndividualSendJob;
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
+import org.thoughtcrime.securesms.jobs.PushProcessMessageJobV2;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -175,7 +177,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                                                   .setConstraintObservers(JobManagerFactories.getConstraintObservers(context))
                                                                   .setJobStorage(new FastJobStorage(JobDatabase.getInstance(context)))
                                                                   .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
-                                                                  .addReservedJobRunner(new FactoryJobPredicate(PushDecryptMessageJob.KEY, PushProcessMessageJob.KEY, MarkerJob.KEY))
+                                                                  .addReservedJobRunner(new FactoryJobPredicate(PushDecryptMessageJob.KEY, PushProcessMessageJob.KEY, PushProcessMessageJobV2.KEY, MarkerJob.KEY))
                                                                   .addReservedJobRunner(new FactoryJobPredicate(IndividualSendJob.KEY, PushGroupSendJob.KEY, ReactionSendJob.KEY, TypingSendJob.KEY, GroupCallUpdateSendJob.KEY))
                                                                   .build();
     return new JobManager(context, config);
@@ -332,12 +334,14 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
     SignalServiceAccountDataStoreImpl aciStore = new SignalServiceAccountDataStoreImpl(context,
                                                                                        new TextSecurePreKeyStore(localAci),
+                                                                                       new SignalKyberPreKeyStore(localAci),
                                                                                        new SignalIdentityKeyStore(baseIdentityStore, () -> SignalStore.account().getAciIdentityKey()),
                                                                                        new TextSecureSessionStore(localAci),
                                                                                        new SignalSenderKeyStore(context));
 
     SignalServiceAccountDataStoreImpl pniStore = new SignalServiceAccountDataStoreImpl(context,
                                                                                        new TextSecurePreKeyStore(localPni),
+                                                                                       new SignalKyberPreKeyStore(localPni),
                                                                                        new SignalIdentityKeyStore(baseIdentityStore, () -> SignalStore.account().getPniIdentityKey()),
                                                                                        new TextSecureSessionStore(localPni),
                                                                                        new SignalSenderKeyStore(context));

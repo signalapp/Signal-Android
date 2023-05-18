@@ -556,11 +556,6 @@ message SyncMessage {
     optional bytes storageService = 1;
   }
 
-  message PniIdentity {
-    optional bytes publicKey  = 1;
-    optional bytes privateKey = 2;
-  }
-
   message MessageRequestResponse {
     enum Type {
       UNKNOWN          = 0;
@@ -650,7 +645,7 @@ message SyncMessage {
   optional MessageRequestResponse messageRequestResponse = 14;
   optional OutgoingPayment        outgoingPayment        = 15;
   repeated Viewed                 viewed                 = 16;
-  optional PniIdentity            pniIdentity            = 17;
+  reserved                      /*pniIdentity*/            17;
   optional PniChangeNumber        pniChangeNumber        = 18;
   optional CallEvent              callEvent              = 19;
 }

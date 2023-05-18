@@ -71,10 +71,10 @@ class MyStoriesFragment : DSLSettingsFragment(
               DSLSettingsText.from(distributionSet.label)
             }
           )
-          distributionSet.stories.forEach { conversationMessage ->
+          distributionSet.stories.forEach { distributionStory ->
             customPref(
               MyStoriesItem.Model(
-                distributionStory = conversationMessage,
+                distributionStory = distributionStory,
                 onClick = { it, preview ->
                   openStoryViewer(it, preview, false)
                 },
@@ -85,7 +85,7 @@ class MyStoriesFragment : DSLSettingsFragment(
                 onForwardClick = { item ->
                   MultiselectForwardFragmentArgs.create(
                     requireContext(),
-                    item.distributionStory.multiselectCollection.toSet()
+                    item.distributionStory.message.multiselectCollection.toSet()
                   ) {
                     MultiselectForwardFragment.showBottomSheet(childFragmentManager, it)
                   }

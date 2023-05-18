@@ -8,6 +8,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidKeyException;
+import org.signal.libsignal.svr2.PinHash;
 import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
@@ -16,15 +17,14 @@ import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob;
 import org.thoughtcrime.securesms.keyvalue.KbsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.KeyBackupService;
-import org.whispersystems.signalservice.api.kbs.HashedPin;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
+import org.whispersystems.signalservice.api.kbs.PinHashUtil;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 
 import java.io.IOException;
@@ -119,8 +119,8 @@ public final class PinState {
     MasterKey                         masterKey        = kbsValues.getOrCreateMasterKey();
     KeyBackupService                  keyBackupService = ApplicationDependencies.getKeyBackupService(kbsEnclave);
     KeyBackupService.PinChangeSession pinChangeSession = keyBackupService.newPinChangeSession();
-    HashedPin                         hashedPin        = PinHashing.hashPin(pin, pinChangeSession);
-    KbsPinData                        kbsData          = pinChangeSession.setPin(hashedPin, masterKey);
+    PinHash                           pinHash          = PinHashUtil.hashPin(pin, pinChangeSession.hashSalt());
+    KbsPinData                        kbsData          = pinChangeSession.setPin(pinHash, masterKey);
 
     kbsValues.setKbsMasterKey(kbsData, pin);
     kbsValues.setPinForgottenOrSkipped(false);
@@ -221,8 +221,8 @@ public final class PinState {
     MasterKey                         masterKey        = kbsValues.getOrCreateMasterKey();
     KeyBackupService                  keyBackupService = ApplicationDependencies.getKeyBackupService(kbsEnclave);
     KeyBackupService.PinChangeSession pinChangeSession = keyBackupService.newPinChangeSession();
-    HashedPin                         hashedPin        = PinHashing.hashPin(pin, pinChangeSession);
-    KbsPinData                        kbsData          = pinChangeSession.setPin(hashedPin, masterKey);
+    PinHash                           pinHash          = PinHashUtil.hashPin(pin, pinChangeSession.hashSalt());
+    KbsPinData                        kbsData          = pinChangeSession.setPin(pinHash, masterKey);
 
     pinChangeSession.enableRegistrationLock(masterKey);
 
@@ -299,8 +299,8 @@ public final class PinState {
 
     KeyBackupService                  kbs              = ApplicationDependencies.getKeyBackupService(enclave);
     KeyBackupService.PinChangeSession pinChangeSession = kbs.newPinChangeSession();
-    HashedPin                         hashedPin        = PinHashing.hashPin(pin, pinChangeSession);
-    KbsPinData                        newData          = pinChangeSession.setPin(hashedPin, masterKey);
+    PinHash                           pinHash          = PinHashUtil.hashPin(pin, pinChangeSession.hashSalt());
+    KbsPinData                        newData          = pinChangeSession.setPin(pinHash, masterKey);
 
     SignalStore.kbsValues().setKbsMasterKey(newData, pin);
 

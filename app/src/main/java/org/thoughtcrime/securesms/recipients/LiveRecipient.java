@@ -216,10 +216,10 @@ public final class LiveRecipient {
         avatarId = Optional.of(groupRecord.get().getAvatarId());
       }
 
-      return new RecipientDetails(title, null,  avatarId, false, false, record.getRegistered(), record, members, false);
+      return new RecipientDetails(title, null,  avatarId, false, false, record.getRegistered(), record, members, false, groupRecord.get().isActive());
     }
 
-    return new RecipientDetails(null, null, Optional.empty(), false, false, record.getRegistered(), record, null, false);
+    return new RecipientDetails(null, null, Optional.empty(), false, false, record.getRegistered(), record, null, false, false);
   }
 
   @WorkerThread

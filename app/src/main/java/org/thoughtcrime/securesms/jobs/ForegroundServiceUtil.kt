@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.SystemClock
+import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
@@ -73,6 +74,7 @@ object ForegroundServiceUtil {
   @JvmOverloads
   @JvmStatic
   @Throws(UnableToStartException::class)
+  @WorkerThread
   fun startWhenCapable(context: Context, intent: Intent, timeout: Long = DEFAULT_TIMEOUT) {
     try {
       start(context, intent)
@@ -91,6 +93,7 @@ object ForegroundServiceUtil {
    */
   @JvmOverloads
   @JvmStatic
+  @WorkerThread
   fun startWhenCapableOrThrow(context: Context, intent: Intent, timeout: Long = DEFAULT_TIMEOUT) {
     try {
       startWhenCapable(context, intent, timeout)

@@ -66,6 +66,7 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
 
     final int loadStart;
     final int loadEnd;
+    final int totalSize;
 
     synchronized (loadState) {
       if (loadState.size() == 0) {
@@ -94,7 +95,7 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
         return;
       }
 
-      int totalSize = loadState.size();
+      totalSize = loadState.size();
 
       loadState.markRange(loadStart, loadEnd);
 
@@ -107,7 +108,7 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
         return;
       }
 
-      List<Data> loaded = dataSource.load(loadStart, loadEnd - loadStart, () -> invalidated);
+      List<Data> loaded = dataSource.load(loadStart, loadEnd - loadStart, totalSize, () -> invalidated);
 
       if (invalidated) {
         Log.w(TAG, buildDataNeededLog(aroundIndex, "Invalidated! Just after data was loaded."));

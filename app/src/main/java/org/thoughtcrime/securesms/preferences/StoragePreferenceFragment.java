@@ -276,7 +276,7 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
       if (newTrimLength > 0 && (!trimLengthEnabled || newTrimLength < trimLength)) {
         new MaterialAlertDialogBuilder(activity)
             .setTitle(R.string.preferences_storage__delete_older_messages)
-            .setMessage(activity.getString(R.string.preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages, NumberFormat.getInstance().format(newTrimLength)))
+            .setMessage(activity.getResources().getQuantityString(R.plurals.preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages, newTrimLength, newTrimLength))
             .setPositiveButton(R.string.delete, (d, w) -> updateTrimByLength(newTrimLength))
             .setNegativeButton(android.R.string.cancel, null)
             .show();

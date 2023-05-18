@@ -5,6 +5,7 @@ import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.groups.state.SenderKeyRecord
 import org.signal.libsignal.protocol.state.IdentityKeyStore
+import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.libsignal.protocol.state.SessionRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
@@ -28,6 +29,7 @@ class BufferedSignalServiceAccountDataStore(selfServiceId: ServiceId) : SignalSe
 
   private val oneTimePreKeyStore: BufferedOneTimePreKeyStore = BufferedOneTimePreKeyStore(selfServiceId)
   private val signedPreKeyStore: BufferedSignedPreKeyStore = BufferedSignedPreKeyStore(selfServiceId)
+  private val kyberPreKeyStore: BufferedKyberPreKeyStore = BufferedKyberPreKeyStore(selfServiceId)
   private val sessionStore: BufferedSessionStore = BufferedSessionStore(selfServiceId)
   private val senderKeyStore: BufferedSenderKeyStore = BufferedSenderKeyStore()
 
@@ -113,6 +115,26 @@ class BufferedSignalServiceAccountDataStore(selfServiceId: ServiceId) : SignalSe
 
   override fun removeSignedPreKey(signedPreKeyId: Int) {
     signedPreKeyStore.removeSignedPreKey(signedPreKeyId)
+  }
+
+  override fun loadKyberPreKey(kyberPreKeyId: Int): KyberPreKeyRecord {
+    return kyberPreKeyStore.loadKyberPreKey(kyberPreKeyId)
+  }
+
+  override fun loadKyberPreKeys(): List<KyberPreKeyRecord> {
+    return kyberPreKeyStore.loadKyberPreKeys()
+  }
+
+  override fun storeKyberPreKey(kyberPreKeyId: Int, record: KyberPreKeyRecord) {
+    kyberPreKeyStore.storeKyberPreKey(kyberPreKeyId, record)
+  }
+
+  override fun containsKyberPreKey(kyberPreKeyId: Int): Boolean {
+    return kyberPreKeyStore.containsKyberPreKey(kyberPreKeyId)
+  }
+
+  override fun markKyberPreKeyUsed(kyberPreKeyId: Int) {
+    return kyberPreKeyStore.markKyberPreKeyUsed(kyberPreKeyId)
   }
 
   override fun storeSenderKey(sender: SignalProtocolAddress, distributionId: UUID, record: SenderKeyRecord) {

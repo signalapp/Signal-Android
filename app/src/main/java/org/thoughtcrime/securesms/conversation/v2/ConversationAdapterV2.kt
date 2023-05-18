@@ -5,8 +5,10 @@
 
 package org.thoughtcrime.securesms.conversation.v2
 
+import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.exoplayer2.MediaItem
 import org.signal.core.util.logging.Log
@@ -15,6 +17,7 @@ import org.thoughtcrime.securesms.BindableConversationItem
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
+import org.thoughtcrime.securesms.conversation.ConversationBannerView
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.Colorizable
@@ -27,11 +30,17 @@ import org.thoughtcrime.securesms.conversation.v2.data.IncomingMedia
 import org.thoughtcrime.securesms.conversation.v2.data.IncomingTextOnly
 import org.thoughtcrime.securesms.conversation.v2.data.OutgoingMedia
 import org.thoughtcrime.securesms.conversation.v2.data.OutgoingTextOnly
+import org.thoughtcrime.securesms.conversation.v2.data.ThreadHeader
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer
+import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil
+import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CachedInflater
+import org.thoughtcrime.securesms.util.HtmlUtil
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
@@ -65,6 +74,8 @@ class ConversationAdapterV2(
   private val condensedMode: ConversationItemDisplayMode? = null
 
   init {
+    registerFactory(ThreadHeader::class.java, ::ThreadHeaderViewHolder, R.layout.conversation_item_banner)
+
     registerFactory(ConversationUpdate::class.java) { parent ->
       val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_update, parent, false)
       ConversationUpdateViewHolder(view)
@@ -91,14 +102,14 @@ class ConversationAdapterV2(
     }
   }
 
-  fun getAdapterPositionForMessagePosition(startPosition: Int): Int {
-    return startPosition - 1
+  /** [messagePosition] is one-based index and adapter is zero-based. */
+  fun getAdapterPositionForMessagePosition(messagePosition: Int): Int {
+    return messagePosition - 1
   }
 
   fun getLastVisibleConversationMessage(position: Int): ConversationMessage? {
     return try {
-      // todo [cody] handle conversation banner adjustment
-      getConversationMessage(position)
+      getConversationMessage(position) ?: getConversationMessage(position - 1)
     } catch (e: IndexOutOfBoundsException) {
       Log.w(TAG, "Race condition changed size of conversation", e)
       null
@@ -131,6 +142,7 @@ class ConversationAdapterV2(
   override fun getConversationMessage(position: Int): ConversationMessage? {
     return when (val item = getItem(position)) {
       is ConversationMessageElement -> item.conversationMessage
+      is ThreadHeader -> null
       null -> null
       else -> throw AssertionError("Invalid item: ${item.javaClass}")
     }
@@ -324,6 +336,77 @@ class ConversationAdapterV2(
 
     override fun getColorizerProjections(coordinateRoot: ViewGroup): ProjectionList {
       return bindable.getColorizerProjections(coordinateRoot)
+    }
+  }
+
+  inner class ThreadHeaderViewHolder(itemView: View) : MappingViewHolder<ThreadHeader>(itemView) {
+    private val conversationBanner: ConversationBannerView = itemView as ConversationBannerView
+
+    override fun bind(model: ThreadHeader) {
+      val (recipient, groupInfo, sharedGroups, messageRequestState) = model.recipientInfo
+      val isSelf = recipient.id == Recipient.self().id
+
+      conversationBanner.setAvatar(glideRequests, recipient)
+      conversationBanner.showBackgroundBubble(recipient.hasWallpaper())
+      val title: String = conversationBanner.setTitle(recipient)
+      conversationBanner.setAbout(recipient)
+
+      if (recipient.isGroup) {
+        if (groupInfo.pendingMemberCount > 0) {
+          val invited = context.resources.getQuantityString(R.plurals.MessageRequestProfileView_invited, groupInfo.pendingMemberCount, groupInfo.pendingMemberCount)
+          conversationBanner.setSubtitle(context.resources.getQuantityString(R.plurals.MessageRequestProfileView_members_and_invited, groupInfo.fullMemberCount, groupInfo.fullMemberCount, invited))
+        } else if (groupInfo.fullMemberCount > 0) {
+          conversationBanner.setSubtitle(context.resources.getQuantityString(R.plurals.MessageRequestProfileView_members, groupInfo.fullMemberCount, groupInfo.fullMemberCount))
+        } else {
+          conversationBanner.setSubtitle(null)
+        }
+      } else if (isSelf) {
+        conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation))
+      } else {
+        val subtitle: String? = recipient.e164.map { e164: String? -> PhoneNumberFormatter.prettyPrint(e164!!) }.orElse(null)
+        if (subtitle == null || subtitle == title) {
+          conversationBanner.hideSubtitle()
+        } else {
+          conversationBanner.setSubtitle(subtitle)
+        }
+      }
+
+      if (sharedGroups.isEmpty() || isSelf) {
+        if (TextUtils.isEmpty(groupInfo.description)) {
+          conversationBanner.setLinkifyDescription(false)
+          conversationBanner.hideDescription()
+        } else {
+          conversationBanner.setLinkifyDescription(true)
+          val linkifyWebLinks = messageRequestState == MessageRequestState.NONE
+          conversationBanner.showDescription()
+
+          GroupDescriptionUtil.setText(
+            context,
+            conversationBanner.description,
+            groupInfo.description,
+            linkifyWebLinks
+          ) {
+            clickListener.onShowGroupDescriptionClicked(recipient.getDisplayName(context), groupInfo.description, linkifyWebLinks)
+          }
+        }
+      } else {
+        val description: String = when (sharedGroups.size) {
+          1 -> context.getString(R.string.MessageRequestProfileView_member_of_one_group, HtmlUtil.bold(sharedGroups[0]))
+          2 -> context.getString(R.string.MessageRequestProfileView_member_of_two_groups, HtmlUtil.bold(sharedGroups[0]), HtmlUtil.bold(sharedGroups[1]))
+          3 -> context.getString(R.string.MessageRequestProfileView_member_of_many_groups, HtmlUtil.bold(sharedGroups[0]), HtmlUtil.bold(sharedGroups[1]), HtmlUtil.bold(sharedGroups[2]))
+          else -> {
+            val others: Int = sharedGroups.size - 2
+            context.getString(
+              R.string.MessageRequestProfileView_member_of_many_groups,
+              HtmlUtil.bold(sharedGroups[0]),
+              HtmlUtil.bold(sharedGroups[1]),
+              context.resources.getQuantityString(R.plurals.MessageRequestProfileView_member_of_d_additional_groups, others, others)
+            )
+          }
+        }
+        conversationBanner.setDescription(HtmlCompat.fromHtml(description, 0))
+        conversationBanner.showDescription()
+      }
     }
   }
 }

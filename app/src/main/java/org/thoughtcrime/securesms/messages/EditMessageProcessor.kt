@@ -78,7 +78,7 @@ object EditMessageProcessor {
       return
     }
 
-    if (groupId != null && MessageContentProcessorV2.handleGv2PreProcessing(context, envelope.timestamp, content, metadata, groupId, message.groupV2, senderRecipient)) {
+    if (groupId != null && MessageContentProcessorV2.handleGv2PreProcessing(context, envelope.timestamp, content, metadata, groupId, message.groupV2, senderRecipient) == MessageContentProcessorV2.Gv2PreProcessResult.IGNORE) {
       warn(envelope.timestamp, "[handleEditMessage] Group processor indicated we should ignore this.")
       return
     }

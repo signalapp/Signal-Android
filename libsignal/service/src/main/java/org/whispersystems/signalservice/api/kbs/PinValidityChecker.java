@@ -1,4 +1,9 @@
-package org.whispersystems.signalservice.internal.registrationpin;
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.whispersystems.signalservice.api.kbs;
 
 public final class PinValidityChecker {
 

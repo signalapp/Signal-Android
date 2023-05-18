@@ -125,7 +125,7 @@ class SignalClient {
 
     val outgoingPushMessage: OutgoingPushMessage = cipher.encrypt(
       SignalProtocolAddress(to.serviceId.toString(), 1),
-      Optional.of(UnidentifiedAccess(to.unidentifiedAccessKey, senderCertificate.serialized)),
+      Optional.of(UnidentifiedAccess(to.unidentifiedAccessKey, senderCertificate.serialized, false)),
       EnvelopeContent.encrypted(content, ContentHint.RESENDABLE, Optional.empty())
     )
 

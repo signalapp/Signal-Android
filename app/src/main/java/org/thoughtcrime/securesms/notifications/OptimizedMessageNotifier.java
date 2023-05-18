@@ -29,7 +29,7 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   @MainThread
   public OptimizedMessageNotifier(@NonNull Application context) {
-    this.limiter                = new LeakyBucketLimiter(5, 1000, new Handler(SignalExecutors.getAndStartHandlerThread("signal-notifier", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD).getLooper()));
+    this.limiter                = new LeakyBucketLimiter(3, 1000, new Handler(SignalExecutors.getAndStartHandlerThread("signal-notifier", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD).getLooper()));
     this.defaultMessageNotifier = new DefaultMessageNotifier(context);
   }
 

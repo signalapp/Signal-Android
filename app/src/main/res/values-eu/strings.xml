@@ -183,7 +183,11 @@
     <string name="CameraContacts_recent_contacts">Azkenaldiko kontaktuak</string>
     <string name="CameraContacts_signal_contacts">Signal kontaktuak</string>
     <string name="CameraContacts_signal_groups">Signal taldeak</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Aukeratu Signal hartzaileak</string>
     <string name="CameraContacts_no_signal_contacts">Signal kontakturik ez</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Signal kontaktuei argazkiak bidaltzeko kamerako botoia erabil dezakezu soilik. </string>
@@ -369,9 +373,9 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Berria! Esan eranskailuen bidez</string>
 
     <string name="ConversationActivity_cancel">Utzi</string>
-    <string name="ConversationActivity_delete_conversation">Delete chat?</string>
+    <string name="ConversationActivity_delete_conversation">Txata ezabatu nahi duzu?</string>
     <string name="ConversationActivity_delete_and_leave_group">Taldea ezabatu, eta bertatik irten nahi duzu?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">This chat will be deleted from all of your devices.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Txat hau zure gailu guztietatik ezabatuko da.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Talde honetatik irtengo zara, eta gailu guztietatik ezabatuko da.</string>
     <string name="ConversationActivity_delete">Ezabatu</string>
     <string name="ConversationActivity_delete_and_leave">Ezabatu eta irten</string>
@@ -452,7 +456,7 @@
     <string name="ConversationFragment_delete_on_this_device">Ezabatu gailu honetan</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Ezabatu gailu guztietan</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Mezu hau txatean dauden guztientzat ezabatuko da Signal-en bertsio berrienetan badaude. Ezabatu duzula ikusi ahal izango dute.</string>
     <string name="ConversationFragment_quoted_message_not_found">Jatorrizko mezua ez da aurkitu</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Jatorrizko mezua ez dago eskuragarri jada</string>
     <string name="ConversationFragment_failed_to_open_message">Akatsa mezua irekitzean</string>
@@ -460,7 +464,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Azkar erantzuteko, irristatu hatza ezkerretara edozein mezuren gainean</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Behin bakarrik ikustekoak diren multimedia-fitxategiak bidali ondoren, automatikoki kenduko dira</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Dagoeneko ikusi duzu mezu hau</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat.\nIf your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Zuretzako oharrak gehi ditzakezu txat honetan.\n Zure kontuak gailuren bat badauka lotuta, ohar berriak sinkronizatu egingo dira.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d taldeko kide izen bera dute.</string>
     <string name="ConversationFragment__tap_to_review">Sakatu berrikusteko</string>
     <string name="ConversationFragment__review_requests_carefully">Berrikusi eskaerak kontu handiz</string>
@@ -483,31 +487,31 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Blokeatuta</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
-    <string name="ConversationFragment__update_build">Update Signal</string>
+    <string name="ConversationFragment__update_build">Eguneratu Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">Erregistratu Signal berriro</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Garbitu iragazkia</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Ez dago irakurri gabeko txatik</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="one">Hautatutako txata ezabatu nahi duzu?</item>
+        <item quantity="other">Hautatutako txatak ezabatu nahi dituzu?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="one">Behin betiko ezabatuko da hautatutako txata.</item>
+        <item quantity="other">Behin betiko ezabatuko dira hautatutako %1$d txatak.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Ezabatzen</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Hautatutako txatak ezabatzen…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Chat archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="one">Txata artxibatu da</item>
+        <item quantity="other">%1$d txat artxibatu dira</item>
     </plurals>
     <string name="ConversationListFragment_undo">Desegin</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="one">Txata sarrera-ontzira eraman da</item>
+        <item quantity="other">%1$d txat sarrera-ontzira eraman dira</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Irakurrita</item>
@@ -542,7 +546,7 @@
     <string name="ConversationListItem_key_exchange_message">Gakoaren trukatzerako mezua</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">Artxibatutako txatak (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">Egiaztatua</string>
@@ -697,8 +701,8 @@
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Programatutako mezua ezabatzen…</string>
 
     <!-- DecryptionFailedDialog -->
-    <string name="DecryptionFailedDialog_chat_session_refreshed">Txataren sesioa eguneratu egin da</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signalek muturretik-muturrerako zifratzea erabiltzen dut eta noizbehinka txataren sesioa eguneratu beharko duzu. Honek ez du zure txataren segurtasunean eraginik baina agian kontaktu horren mezuren bat galdu egingo zenuen eta berriz bidaltzeko eskatu beharko zenioke zure kontaktuari.</string>
+    <string name="DecryptionFailedDialog_chat_session_refreshed">Txat-saioa eguneratu da</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signalek muturretik-muturrerako enkriptatzea erabiltzen du eta noizbehinka txat-saioa eguneratu beharko duzu. Horrek ez du eraginik zure txataren segurtasunean, baina agian kontaktu horren mezuren bat galdu duzu, eta berriz bidaltzeko eskatu beharko zenioke.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">\'%1$s\'-rekin lotura ezabatu?</string>
@@ -946,7 +950,7 @@
     <string name="ManageGroupActivity_legacy_group_upgrade">Hau Jarauntsitako Talde bat da. Talde administratzaile eta @aipamenak moduko ezaugarriak erabili ahal izateko,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">Jarauntsitako Talde Hau ezin da Talde Berrira eguneratu oso handia delako. Gehienezko talde tamaina %1$d da.</string>
     <string name="ManageGroupActivity_upgrade_this_group">eguneratu talde hau.</string>
-    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Hau segurtasunik gabeko MMS Talde bat da. Modu pribatuan txateatzeko eta gonbidatu Signalera zure kontaktuak.</string>
+    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Hau segurtasunik gabeko MMS talde bat da. Modu pribatuan txateatzeko, gonbidatu kontaktuak Signal-era.</string>
     <string name="ManageGroupActivity_invite_now">Gonbidatu orain</string>
     <string name="ManageGroupActivity_more">gehiago</string>
     <string name="ManageGroupActivity_add_group_description">Gehitu taldearen deskribapena…</string>
@@ -1186,7 +1190,7 @@
     <string name="Megaphones_new_group">Talde berria</string>
     <string name="Megaphones_invite_friends">Gonbidatu lagunak</string>
     <string name="Megaphones_use_sms">SMSa erabili</string>
-    <string name="Megaphones_chat_colors">Txataren koloreak</string>
+    <string name="Megaphones_chat_colors">Txat-koloreak</string>
     <string name="Megaphones_add_a_profile_photo">Gehitu profileko argazkia</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -1264,7 +1268,7 @@
     <string name="MessageRecord_disappearing_message_time_set_to_s">Desagertzen diren mezuen tenporizadorea honela ezarri da: %1$s</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">Talde hau eguneratu da eta Talde Berria bilakatu da.</string>
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Ezin izan zaituzte Talde Berrira gehitu eta taldean sartzeko gonbidapena bidali zaizu.</string>
-    <string name="MessageRecord_chat_session_refreshed">Txataren sesioa eguneratu egin da</string>
+    <string name="MessageRecord_chat_session_refreshed">Txat-saioa eguneratu da</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
         <item quantity="one">Kide bat ezin izan da gehitu Talde Berrian, eta sartzeko gonbidapen bat bidali zaio.</item>
         <item quantity="other">%1$s kide ezin izan dira gehitu Talde Berrian, eta sartzeko gonbidapenak bidali zaizkie.</item>
@@ -1446,7 +1450,7 @@
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s(r)ekin eta %2$s zenbakiarekin izandako mezuen historiak bateratu egin dira.</string>
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s(r)ekin izandako mezuen historia eta hari zegokion beste txat bat bateratu egin dira.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s erabiltzailearekin duzun mezu-historia eta hari zegokion beste txat bat bateratu egin dira.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
     <string name="MessageRecord_s_belongs_to_s">%1$s zenbakia %2$s erabiltzailearena da</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
@@ -1504,10 +1508,10 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Zuri mezuak bidaltzeko baimena eman nahi diozu %1$s erabiltzaileari? Desblokeatu arte, ez duzu jasoko haren mezurik.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s erabiltzailearen berritasun eta albisteak jaso nahi dituzu? Desblokeatzen duzun arte, ez duzu eguneratzerik jasoko.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Talde honekin duzun txatean jarraitu, eta zure izena eta argazkia hartako kideekin partekatu nahi dituzu?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Eguneratu talde hau ezaugarri berriak, hala nola @aipamenak eta administratzaileak, aktibatzeko. Bere izen edo argazkia partekatu ez duten kideek taldera sartzeko gonbidatuak izango dira.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Jarauntsitako Talde Hau ezin da erabili jadanik oso handia delako. Gehienezko talde tamaina %1$d da.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s erabiltzailearekin txateatzen jarraitu, eta zure izena eta argazkia harekin partekatu nahi dituzu?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetara sartu eta zure izena eta argazkia kideekin partekatu nahi duzu? Zuk onartu arte, ez dute jakingo beraien mezuak ikusi duzunik.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Talde honetan sartu, eta izena eta argazkia bertako kideekin partekatu nahi duzu? Onartu arte, ez duzu haien mezurik ikusiko.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetara sartu nahi duzu? Onartu arte ez dute jakingo beraien mezuak ikusi dituzunik.</string>
@@ -1828,7 +1832,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Saiakera gehiegi egin dituzu zenbaki hau erregistratzeko. Saiatu berriro denbora hau igarotakoan: %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Ezin da zerbitzura konektatu. Egiaztatu sarearen ezarpenak eta saiatu berriz.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">Ezin da egiaztapen-koderik eskatu. Egiaztatu sarera konektatuta zaudela eta saiatu berriro.</string>
     <string name="RegistrationActivity_non_standard_number_format">Zenbaki-formatu ez-estandarra</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Idatzi duzun zenbakiak (%1$s) formatu ez-estandar bat du.\n\n%2$s esan nahi al zenuen?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefono-zenbakien formatua</string>
@@ -1887,7 +1891,7 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">Ez dago emaitzarik \'%1$s\' bilatuta</string>
-    <string name="SearchFragment_header_conversations">Chats</string>
+    <string name="SearchFragment_header_conversations">Txatak</string>
     <string name="SearchFragment_header_contacts">Kontaktuak</string>
     <string name="SearchFragment_header_messages">Mezuak</string>
 
@@ -1956,7 +1960,8 @@
     <string name="StickerPackPreviewActivity_untitled">Izenbururi gabe</string>
     <string name="StickerPackPreviewActivity_unknown">Ezezaguna</string>
     <string name="StickerPackPreviewActivity_install">Instalatu</string>
-    <string name="StickerPackPreviewActivity_remove">Kendu</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">Eranskailuak</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Huts egin du eranskailuen multzoa kargatzean</string>
 
@@ -2024,7 +2029,7 @@
     <string name="ThreadRecord_voice_message">Ahots-mezua</string>
     <string name="ThreadRecord_file">Artxiboa</string>
     <string name="ThreadRecord_video">Bideoa</string>
-    <string name="ThreadRecord_chat_session_refreshed">Txataren sesioa eguneratu egin da</string>
+    <string name="ThreadRecord_chat_session_refreshed">Txat-saioa eguneratu da</string>
     <!-- Displayed in the notification when the user is sent a gift -->
     <string name="ThreadRecord__s_donated_for_you">%1$s erabiltzaileak dohaintza bat egin dizu</string>
     <!-- Displayed in the notification when the user sends a gift -->
@@ -2074,7 +2079,7 @@
     <string name="UsernameEditFragment__usernames_let_others_message">Erabiltzaile-izenei esker, beste erabiltzaileek zure telefono-zenbakiaren beharrik gabe bidal diezazkizukete mezuak. Digitu multzo batekin parekatuta daude, zure helbidea pribatu mantentzeko.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Zer da zenbaki hau?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Digitu hauen bidez, zure erabiltzaile-izena pribatuan mantentzen da, nahi ez dituzun mezuak jaso ez ditzazun. Partekatu erabiltzaile-izena zurekin txateatzea nahi duzun pertsona eta taldeekin bakarrik. Erabiltzaile-izena aldatzen baduzu, digitu multzo berri bat izango duzu.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">Digitu hauei esker, zure erabiltzaile-izena pribatu mantentzen da, nahi ez dituzun mezuak saihestu ahal izateko. Partekatu erabiltzaile-izena zurekin txateatzea nahi duzun pertsonekin eta taldeekin soilik. Erabiltzaile-izena aldatzen baduzu, digitu-multzo berri bat jasoko duzu.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Saltatu</string>
     <!-- Content description for done button -->
@@ -2154,7 +2159,19 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Irakurri Gehiago</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mezu berri %2$d txatetan</string>
     <string name="MessageNotifier_most_recent_from_s">Berriena %1$s-(e)tik</string>
     <string name="MessageNotifier_locked_message">Mezua blokeatuta</string>
     <string name="MessageNotifier_message_delivery_failed">Mezuaren banaketak huts egin du.</string>
@@ -2224,7 +2241,7 @@
     <string name="SearchToolbar_search">Bilatu</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Bilatu irakurri gabeko txatak</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Bilatu txatak, kontaktuak eta mezuak</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Itxi</string>
@@ -2254,9 +2271,9 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Gailua ez dago erregistratuta</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Gailu hau jada ez dago erregistratuta. Ziurrenik zure telefono-zenbakia Signal-ekin beste gailu batean erregistratu duzulako gertatu da hori.</string>
     <!-- Action in reminder banner that will take user to re-register -->
-    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
+    <string name="UnauthorizedReminder_reregister_action">Erregistratu gailua berriro</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">Gailu honetan Signal-eko saioa amaitu duzu.</string>
@@ -2444,20 +2461,20 @@
 
     <!-- ConversationParentFragment -->
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth permission denied</string>
+    <string name="ConversationParentFragment__bluetooth_permission_denied">Ez da eman Bluetootha erabiltzeko baimena</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Ahots-mezuak grabatu ahal izateko Bluetootha erabiltzeko, gaitu \"Inguruko gailuak\" baimena.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Open settings</string>
+    <string name="ConversationParentFragment__open_settings">Ireki ezarpenak</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Not now</string>
+    <string name="ConversationParentFragment__not_now">Orain ez</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Hondora korritu</string>
 
     <!-- BubbleOptOutTooltip -->
     <!-- Message to inform the user of what Android chat bubbles are -->
-    <string name="BubbleOptOutTooltip__description">Burbuilak Android-en eginbide bat dira, eta Signal-eko txatetan desaktibatu egin ditzakezu.</string>
+    <string name="BubbleOptOutTooltip__description">Burbuilak Android-eko eginbide bat dira, eta Signal-en txatetarako desaktibatu egin ditzakezu.</string>
     <!-- Button to dismiss the tooltip for opting out of using Android bubbles -->
     <string name="BubbleOptOutTooltip__not_now">Orain ez</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
@@ -2575,7 +2592,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">Ikusi txat osoa</string>
     <string name="load_more_header__loading">Kargatzen</string>
 
     <!-- media_overview_activity -->
@@ -2697,7 +2714,7 @@
     <string name="AndroidManifest__message_details">Mezuaren xehetasunak</string>
     <string name="AndroidManifest__linked_devices">Lotutako gailuak</string>
     <string name="AndroidManifest__invite_friends">Gonbidatu lagunak</string>
-    <string name="AndroidManifest_archived_conversations">Archived chats</string>
+    <string name="AndroidManifest_archived_conversations">Artxibatutako txatak</string>
     <string name="AndroidManifest_remove_photo">Kendu argazkia</string>
 
     <!-- HelpFragment -->
@@ -2793,7 +2810,7 @@
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Mantendu jakinarazpenak desaktibatuta dauzkaten txatak artxibatuta</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Mezu berriak jasotzean, artxibatuta dauden eta jakinarazpenak desaktibatuta dauzkaten txatek artxibatuta jarraituko dute.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Jakinarazpenak desaktibatuta dauzkaten txatek artxibatuta jarraituko dute mezu berri bat iristen denean.</string>
     <string name="preferences__generate_link_previews">Sortu esteken aurrebistak</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Eskuratu esteken aurrebistak zuzenean webguneetatik eta erabili bidaltzen dituzun mezuetan.</string>
     <string name="preferences__change_passphrase">Aldatu pasaesaldia</string>
@@ -2854,7 +2871,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Ordainketen babesa</string>
     <string name="preferences__payments_beta">Ordainketak (Beta)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">Txataren gehieneko luzera</string>
     <string name="preferences__keep_messages">Mezuak gorde</string>
     <string name="preferences__clear_message_history">Garbitu mezuen historia</string>
     <string name="preferences__linked_devices">Lotutako gailuak</string>
@@ -2862,7 +2879,7 @@
     <string name="preferences__dark_theme">Iluna</string>
     <string name="preferences__appearance">Itxura</string>
     <string name="preferences__theme">Gaia</string>
-    <string name="preferences__chat_color_and_wallpaper">Txataren kolorea eta horma-papera</string>
+    <string name="preferences__chat_color_and_wallpaper">Txat-kolorea eta horma-papera</string>
     <string name="preferences__disable_pin">Desaktibatu PINa</string>
     <string name="preferences__enable_pin">Aktibatu PINa</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ez baduzu modu manualean segurtasun kopiak egiten, PINa desaktibatzen baduzu, datu guztiak galduko dituzu signal berriro erregistratzen duzunean. Ezin duzu erregistratzeko blokeoa aktibatu PINa desaktibatuta dagoen bitartean.</string>
@@ -2898,7 +2915,11 @@
     <string name="preferences_storage__delete_older_messages">Mezu zaharragoak ezabatu nahi dituzu?</string>
     <string name="preferences_storage__clear_message_history">Mezuen historia garbitu nahi duzu?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Betiko ezabatuko dira gailutik %1$s baino zaharragoak diren mezuen historia eta multimedia-edukiak.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Betiko ezabatuko dira gailutik mezuen historia eta multimedia-edukiak.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ziur zaude mezuen historia osoa ezabatu nahi duzula?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Betiko kenduko da mezuen historia osoa. Ekintza hau ezin da desegin.</string>
@@ -3240,7 +3261,8 @@
     <string name="conversation_list_search_description">Bilatu</string>
     <string name="conversation_list__pinned">Finkatuta</string>
     <string name="conversation_list__chats">Txatak</string>
-    <string name="conversation_list__you_can_only_pin_up_to_d_chats">Gehienez %1$d txat finka ditzakezu</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
+    <string name="conversation_list__you_can_only_pin_up_to_d_chats">Gehienez %1$d txat aingura ditzakezu</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Kontaktuaren argazkia</string>
@@ -3248,9 +3270,9 @@
 
 
     <!-- conversation_list_fragment -->
-    <string name="conversation_list_fragment__fab_content_description">New chat</string>
+    <string name="conversation_list_fragment__fab_content_description">Txat berria</string>
     <string name="conversation_list_fragment__open_camera_description">Ireki kamera</string>
-    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ez dago txatik.\nHasi lagun bati mezua bidaliz.</string>
+    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ez dago txatik.\nBidali mezu bat lagun bati.</string>
 
 
     <!-- conversation_secure_verified -->
@@ -3265,7 +3287,7 @@
     <string name="conversation__menu_group_settings">Taldeko ezarpenak</string>
     <string name="conversation__menu_leave_group">Taldea utzi</string>
     <string name="conversation__menu_view_all_media">Multimedia fitxategi guztiak</string>
-    <string name="conversation__menu_conversation_settings">Chat settings</string>
+    <string name="conversation__menu_conversation_settings">Txaten ezarpenak</string>
     <string name="conversation__menu_add_shortcut">Gehitu hasiera pantailara</string>
     <string name="conversation__menu_create_bubble">Sortu burbuila</string>
 
@@ -3288,7 +3310,8 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Hartzaileen zerrenda</string>
     <string name="conversation_group_options__delivery">Banatu</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
+    <string name="conversation_group_options__conversation">Txata</string>
     <string name="conversation_group_options__broadcast">Difusioa</string>
 
     <!-- text_secure_normal -->
@@ -3338,11 +3361,13 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Estatistikak</string>
     <string name="InsightsDashboardFragment__title">Estatistikak</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-en protokoloak automatikoki babestu ditu zure irteerako mezuen %% %1$d azken %2$d egunetan. Signal-eko erabiltzaileen arteko txatak beti enkriptatzen dira.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Zabaldu hitza</string>
     <string name="InsightsDashboardFragment__not_enough_data">Ez dago datu nahikorik</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Zure estatistiken ehunekoaren kalkulua azkenengo %1$d egunetan bidali diren mezuetan oinarritzen da; desagertu ez diren edo ezabatu ez diren mezuak bakarrik hartzen dira kontuan.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
+    <string name="InsightsDashboardFragment__start_a_conversation">Hasi txat bat</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Modu seguruan komunikatzen hasi eta SMS mezuen mugak gainditzeko ahalbidetzen duten ezaugarriak gaitu. Horretarako, kontaktu gehiago gonbidatu Signal-era.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Estatistika hauek zure gailuan sortu dira modu lokalean eta bakarrik zuk ikus ditzakezu. Ez dira inoiz inora bidaltzen.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">Enkriptatutako mezuak</string>
@@ -3586,21 +3611,21 @@
     <string name="Recipient_unknown">Ezezaguna</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">Erregistratu kontua berriro</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Update Signal</string>
+    <string name="preferences_account_update_signal">Eguneratu Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <string name="preferences_account_delete_all_data">Garbitu datu guztiak</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">Datu guztiak garbitu nahi dituzu?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Aplikazioa berrezarri, eta mezu guztiak ezabatuko dira. Prozesua amaitu ondoren, aplikazioa itxi egingo da.</string>
     <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Jarraitu</string>
     <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Utzi</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">Ezin izan dira ezabatu datuak</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transferitu edo berrezarri kontua</string>
@@ -3880,15 +3905,15 @@
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">Huts egin du erabiltzaile batzuei bidaltzean</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Gehienez ere %1$d elkarrizketarekin parteka dezakezu</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Gehienez %1$d txatetan parteka dezakezu</string>
 
     <!-- ChatWallpaperActivity -->
 
     <!-- ChatWallpaperFragment -->
-    <string name="ChatWallpaperFragment__chat_color">Txat-aren kolorea</string>
-    <string name="ChatWallpaperFragment__reset_chat_colors">Berrezarri txataren koloreak</string>
-    <string name="ChatWallpaperFragment__reset_chat_color">Berrezarri txataren kolorea</string>
-    <string name="ChatWallpaperFragment__reset_chat_color_question">Berrezarri txataren kolorea?</string>
+    <string name="ChatWallpaperFragment__chat_color">Txat-kolorea</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">Berrezarri txat-koloreak</string>
+    <string name="ChatWallpaperFragment__reset_chat_color">Berrezarri txat-kolorea</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">Txat-kolorea berrezarri nahi duzu?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">Ezarri hormairudia</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Itxura ilunak hormairudia leundu egingo du</string>
     <string name="ChatWallpaperFragment__contact_name">Kontaktuaren izena</string>
@@ -3912,7 +3937,7 @@
     <string name="ChatWallpaperPreviewActivity__preview">Aurrebista</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">Ezarri hormairudia</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Mugitu alde batera hormairudi gehiago ikusteko</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Ezarri hormairudia elkarrizketa guztientzat</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Ezarri horma-papera txat guztietarako</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Ezarri hormairudia %1$s elkarrizketarentzat</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Zure galeria ikusteko biltegian sartzeko baimena behar da.</string>
 
@@ -3920,7 +3945,7 @@
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Egin zoom, arrastatu doitzeko</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Ezarri hormairudia elkarrizketa guztientzat</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Ezarri horma-papera txat guztietarako.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_s">Errorea gertatu da %1$s elkarrizketan hormairudia ezartzean.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">Errorea gertatu da hormairudia ezartzean.</string>
     <string name="WallpaperCropActivity__blur_photo">Lausotu argazkia</string>
@@ -4041,11 +4066,11 @@
 
     <!-- GroupsInCommonMessageRequest -->
     <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Ez duzu talde komunik pertsona honekin. Eskaerak onartu aurretik, azter itzazu ondo, nahi ez diren mezuak saihesteko.</string>
-    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Zure kontaktuak edo txateatzen duzun pertsona bat ere ez dago talde honetan. Berrikusi eskaerak arretaz onartu aurretik, nahi ez diren mezuak saihesteko.</string>
+    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Talde honetan ez dago kontakturik edo zurekin txateatzen duen inor. Berrikusi eskaerak arretaz haiek onartu aurretik, nahi ez dituzun mezuak saihesteko.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">Mezu-eskaerei buruz</string>
     <string name="GroupsInCommonMessageRequest__okay">Ados</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Hona hemen txataren kolorearen aurrebista.</string>
+    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Hona hemen txat-kolorearen aurrebista.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Kolorea zuk bakarrik ikusten duzu.</string>
 
     <!-- GroupDescriptionDialog -->
@@ -4220,7 +4245,7 @@
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokeatu pantaila-argazkiak azkenaldikoen zerrendan eta aplikazioaren barruan</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal mezuak eta deiak, beti deiak transmititu, eta igorle zigilatua</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Txat berrietarako tenporizadore lehenetsia</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ezarri lehenetsitako desagerpen mezuen tenporizadore bat zuk hasitako txat berri guztientzat.</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ezarri desagertzen diren mezuen tenporizadore lehenetsia zuk hasitako txat berri guztietarako.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Funtsak transferitzeko, Android-eko pantaila-blokeoa edo hatz-marka behar da</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -4238,8 +4263,8 @@
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Erakutsi ikono bat mezuen xehetasunetan bidaltzaile itxia erabiliz bidaltzen direnean.</string>
 
     <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Gaituta dagoenean, zuk hasitako txat berrietan bidalitako eta jasotako mezu berriak desagertuko dira ikusi ondoren.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Aktibatuta dagoenean, txat honetan bidalitako eta jasotako mezuak desagertuko dira behin ikusita.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Gaituta dagoenean, zuk hasitako txat berrietan bidalitako eta jasotako mezu berriak desagertu egingo dira ikusi ondoren.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Gaituta dagoenean, txat honetan bidalitako eta jasotako mezu berriak desagertu egingo dira ikusi ondoren.</string>
     <string name="ExpireTimerSettingsFragment__off">Desaktibatuta</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 aste</string>
     <string name="ExpireTimerSettingsFragment__1_week">astebete</string>
@@ -4265,7 +4290,7 @@
     <string name="HelpSettingsFragment__debug_log">Arazteko informazioa</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Baldintzak eta Pribatutasun Arauak</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 lizentziapean</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Media kalitatea</string>
@@ -4278,16 +4303,16 @@
     <!-- ChatColorSelectionFragment -->
     <string name="ChatColorSelectionFragment__auto">Auto</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">Erabili kolore pertsonalizatuak</string>
-    <string name="ChatColorSelectionFragment__chat_color">Txat-aren kolorea</string>
+    <string name="ChatColorSelectionFragment__chat_color">Txat-kolorea</string>
     <string name="ChatColorSelectionFragment__edit">Editatu</string>
     <string name="ChatColorSelectionFragment__duplicate">Bikoiztu</string>
     <string name="ChatColorSelectionFragment__delete">Ezabatu</string>
     <string name="ChatColorSelectionFragment__delete_color">Ezabatu kolorea</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">Kolore pertsonalizatu hau %1$d txatetan erabiltzen da. Txat guztietarako ezabatu nahi duzu?</item>
-        <item quantity="other">Kolore pertsonalizatu hau %1$d txatetan erabiltzen da. Txat guztietarako ezabatu nahi duzu?</item>
+        <item quantity="one">Kolore pertsonalizatu hau %1$d txatetan erabiltzen da. Txat guztietan ezabatu nahi duzu?</item>
+        <item quantity="other">Kolore pertsonalizatu hau %1$d txatetan erabiltzen da. Txat guztietan ezabatu nahi duzu?</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">Txataren kolorea ezabatu nahi duzu?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">Txat-kolorea ezabatu nahi duzu?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">Solidoa</string>
@@ -4299,8 +4324,8 @@
     <string name="CustomChatColorCreatorFragmentPage__save">Gorde</string>
     <string name="CustomChatColorCreatorFragmentPage__edit_color">Editatu kolorea</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-        <item quantity="one">Kolore hau txat %1$dean erabilia izan da. Txat guztietarako ezabatu nahi duzu?</item>
-        <item quantity="other">Kolore hau %1$d txatetan erabilia izan da. Txat guztietarako ezabatu nahi duzu?</item>
+        <item quantity="one">Kolore hau %1$d txatetan erabiltzen da. Txat guztietan ezabatu nahi duzu?</item>
+        <item quantity="other">Kolore hau %1$d txatetan erabiltzen da. Txat guztietan ezabatu nahi duzu?</item>
     </plurals>
 
     <!-- ChatColorGradientTool -->
@@ -4362,7 +4387,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Ez da aurkitu kontaktu-aplikaziorik</string>
     <string name="ConversationSettingsFragment__start_video_call">Hasi bideo-deia</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Start voice call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Hasi ahots-deia</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Istorioa</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4396,8 +4421,9 @@
     <string name="ConversationSettingsFragment__group_link">Talderako esteka</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Gehitu kontaktu gisa</string>
     <string name="ConversationSettingsFragment__unmute">Aktibatu jakinarazpenak</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Txataren jakinarazpenak desaktibatuta daude %1$s arte</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Txataren jakinarazpenak betiko desaktibatuta daude</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefono-zenbakia arbelean kopiatu da.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefono zenbakia</string>
     <string name="ConversationSettingsFragment__get_badges">Lortu zure profilerako bereizgarriak Signal-i lagunduz. Sakatu bereizgarri bat gehiago jakiteko.</string>
@@ -4437,7 +4463,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">Mezua</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Voice call</string>
+    <string name="NewConversationActivity__audio_call">Ahots deia</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Bideodeia</string>
     <!-- Context menu item remove -->
@@ -4660,22 +4686,22 @@
     <string name="MySupportPreference__please_contact_support">Mesedez, jarri harremanetan laguntzarekin.</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__title">Update Signal</string>
+    <string name="UpdateSignalExpiredDialog__title">Eguneratu Signal</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">Signal-en bertsio hau zaharkituta dago. Eguneratu orain Signal erabiltzen jarraitzeko.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
-    <string name="UpdateSignalExpiredDialog__update_action">Update</string>
+    <string name="UpdateSignalExpiredDialog__update_action">Eguneratu</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
-    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel</string>
+    <string name="UpdateSignalExpiredDialog__cancel_action">Utzi</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">Gailua ez dago erregistratuta</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">Gailu hau jada ez dago erregistratuta. Erregistra ezazu berriro gailu honetan Signal erabiltzen jarraitzeko.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">Re-register</string>
+    <string name="ReregisterSignalDialog__reregister_action">Bierregistratu</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
-    <string name="ReregisterSignalDialog__cancel_action">Cancel</string>
+    <string name="ReregisterSignalDialog__cancel_action">Utzi</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Emaile-bereizgarria iraungi egin da</string>
@@ -4919,7 +4945,7 @@
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
     <string name="NotificationProfileCreated__done">Eginda</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Zure profila eskuz aktibatu edo desaktibatu dezakezu txat zerrendako menuaren bidez.</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Txat zerrendako menuaren bidez, zure profila eskuz aktibatu edo desaktiba dezakezu.</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
     <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Gehitu programazio bat ezarpenetan zure profila automatizatzeko.</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
@@ -5147,7 +5173,7 @@
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-eko konexioak fidagarri deritzezun pertsonak dira, arrazoi hauengatik:</string>
     <!-- Signal connections sheet bullet point 1 -->
-    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a chat</string>
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Txat bat hasten</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Mezu eskaera onartzen</string>
     <!-- Signal connections sheet bullet point 3 -->
@@ -5767,11 +5793,11 @@
     <!-- Displayed as the title of the education bottom sheet -->
     <string name="GroupStoryEducationSheet__introducing_group_stories">Aurkezpena: Taldeko istorioak</string>
     <!-- Line item on the sheet explaining group stories -->
-    <string name="GroupStoryEducationSheet__share_story_updates_to">Partekatu istorioen eguneratzeak kide zaituen taldeko txat batean.</string>
+    <string name="GroupStoryEducationSheet__share_story_updates_to">Partekatu istorioen eguneratzeak kide zaituen talde-txat batean.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
-    <string name="GroupStoryEducationSheet__anyone_in_the_group">Taldeko txatean dagoen edonork gehi dezake edukia istorioan.</string>
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">Taldeko txatean dagoen edonork edukia gehi dezake istorioan.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">Taldeko txateko kide guztiek ikus ditzakete istorioaren erantzunak.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">Taldeko txateko kide guztiek istorioaren erantzunak ikus ditzakete.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Hurrengoa</string>
     <string name="Registration_country_code_entry_hint">+0</string>
@@ -5875,7 +5901,7 @@
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">Deira itzuli</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Voice call</string>
+    <string name="CallContextMenu__audio_call">Ahots deia</string>
     <!-- Displayed as a context menu item to go to chat -->
     <string name="CallContextMenu__go_to_chat">Joan txatera</string>
     <!-- Displayed as a context menu item to see call info -->
@@ -5903,8 +5929,8 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">Ezabatu</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="one">%1$d dei ezabatu nahi duzu?</item>
+        <item quantity="other">%1$d dei ezabatu nahi dituzu?</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">Ezabatu niretzat</string>
@@ -6002,38 +6028,38 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">Deiaren xehetasunak</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
-    <string name="CallLinkDetailsFragment__add_call_name">Add call name</string>
+    <string name="CallLinkDetailsFragment__add_call_name">Gehitu deiaren izena</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Approve all members</string>
+    <string name="CallLinkDetailsFragment__approve_all_members">Kide guztiak onartu</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
-    <string name="CallLinkDetailsFragment__share_link">Share link</string>
+    <string name="CallLinkDetailsFragment__share_link">Partekatu esteka</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">Ezabatu deiaren esteka</string>
 
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">Partekatu</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">Kolorea</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">Partekatu zure QR kodea eta esteka konfiantzazko pertsonekin. Partekatzen denean, besteek zure erabiltzaile-izena ikusi ahalko dute, eta zurekin txateatzen hasi ahalko dira.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Kopiatu da erabiltzaile-izena</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">Kopiatu da esteka</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">Berrabiarazi</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">Eginda</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">Kodea</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">Eskaneatu</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Eskaneatu QR kodea kontaktuaren gailuarekin.</string>
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Kolorea</string>
 
     <!-- EOF -->
 </resources>

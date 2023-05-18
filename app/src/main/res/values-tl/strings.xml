@@ -183,7 +183,11 @@
     <string name="CameraContacts_recent_contacts">Mga bagong kontak</string>
     <string name="CameraContacts_signal_contacts">Mga kontak sa Signal</string>
     <string name="CameraContacts_signal_groups">Mga grupo sa Signal</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Pumili ng mga tatanggap sa Signal</string>
     <string name="CameraContacts_no_signal_contacts">Walang kontak sa Signal</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Maaari mo lang gamitin ang camera button para magpadala ng mga larawan sa mga kontak sa Signal. </string>
@@ -227,7 +231,7 @@
     <!-- ConfirmIdentityDialog -->
 
     <!-- ContactsCursorLoader -->
-    <string name="ContactsCursorLoader_recent_chats">Mga kamakailang chat</string>
+    <string name="ContactsCursorLoader_recent_chats">Recent chats</string>
     <string name="ContactsCursorLoader_contacts">Mga Kontak</string>
     <string name="ContactsCursorLoader_groups">Mga Grupo</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
@@ -369,9 +373,9 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Bago! Makipag-usap gamit ang mga sticker</string>
 
     <string name="ConversationActivity_cancel">Kanselahin</string>
-    <string name="ConversationActivity_delete_conversation">Delete chat?</string>
+    <string name="ConversationActivity_delete_conversation">Gusto mo bang burahin ang chat?</string>
     <string name="ConversationActivity_delete_and_leave_group">Burahin at umalis sa grupo?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">This chat will be deleted from all of your devices.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Mabubura ang chat sa lahat ng devices mo.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Aalis ka sa grupong ito, at ito\'y mabubura sa lahat ng iyong mga device.</string>
     <string name="ConversationActivity_delete">Burahin</string>
     <string name="ConversationActivity_delete_and_leave">Burahin at umalis</string>
@@ -452,7 +456,7 @@
     <string name="ConversationFragment_delete_on_this_device">Burahin sa device na ito</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Burahin sa lahat ng devices</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Mabubura ang message na ito sa lahat ng nasa chat kung sila\'y nasa recent version ng Signal. Makikita nilang nag-delete ka ng message.</string>
     <string name="ConversationFragment_quoted_message_not_found">Ang orihinal na mensahe ay hindi mahanap</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Ang orihinal na mensahe ay wala na</string>
     <string name="ConversationFragment_failed_to_open_message">Nabigong buksan ang mensahe</string>
@@ -460,7 +464,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Maaari kang mag-swipe pakaliwa sa alinmang mensahe upang mabilisang makatugon</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Ang mga papalabas na view-once na media file ay awtomatikong matatanggal matapos ipadala ang mga ito</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Nakita mo na ang message na ito</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat.\nIf your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Pwede kang maglagay ng notes para sa sarili mo sa chat na ito.\nKung may linked devices ang account mo, masi-sync ang bagong notes.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d na group members ay may parehong pangalan.</string>
     <string name="ConversationFragment__tap_to_review">I-tap para ma-review</string>
     <string name="ConversationFragment__review_requests_carefully">I-review ang requests nang maigi</string>
@@ -483,31 +487,31 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Naka-block</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
-    <string name="ConversationFragment__update_build">Update Signal</string>
+    <string name="ConversationFragment__update_build">I-update ang Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">Mag-register ulit sa Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">I-clear ang filter</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Walang unread chats</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="one">Gusto mo bang burahin ang selected chat?</item>
+        <item quantity="other">Gusto mo bang burahin ang selected chats?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="one">Permanente nitong buburahin ang selected chat.</item>
+        <item quantity="other">Permanente nitong buburahin ang %1$d selected chats.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Binubura</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Binubura ang selected chats…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Chat archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="one">Na-archive na ang chat</item>
+        <item quantity="other">Na-archive na ang %1$d chats</item>
     </plurals>
     <string name="ConversationListFragment_undo">Undo</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="one">Nailipat na ang chat sa inbox</item>
+        <item quantity="other">Nailipat na ang %1$d chats sa inbox</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Read</item>
@@ -612,7 +616,7 @@
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">Ang backup ay may bad extension.</string>
 
     <!-- BackupsPreferenceFragment -->
-    <string name="BackupsPreferenceFragment__chat_backups">Mga backup ng chat</string>
+    <string name="BackupsPreferenceFragment__chat_backups">Chat backups</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Ang backups ay encrypted na may kasamang passphrase at nakalagay sa iyong device.</string>
     <string name="BackupsPreferenceFragment__create_backup">Lumikha ng backup</string>
     <string name="BackupsPreferenceFragment__last_backup">Huling backup: %1$s</string>
@@ -698,7 +702,7 @@
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Chat session refreshed</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Ang Signal ay gumagamit ng end-to-end encryption at baka kinakailangan mong i-refresh ang iyong chat session paminsan-minsan. Hindi ito nakakaapekto sa security ng iyong chat, pero maaaring may hindi ka ma-receive na message mula sa contact na ito, kaya sabihan siya na i-resend ito.</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Ang Signal ay gumagamit ng end-to-end encryption at maaaring kailanganin mong i-refresh ang iyong chat session paminsan-minsan. Hindi ito nakakaapekto sa security ng iyong chat, pero maaaring may hindi ka ma-receive na message mula sa contact na ito, kaya sabihan siyang i-resend ito.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">I-unlik ang \'%1$s\'?</string>
@@ -1504,10 +1508,10 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Hayaang mag-message si %1$s sa\'yo? Hindi ka makakatanggap ng anumang message hanggang sa i-unblock mo siya.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Gusto mo bang makakuha ng updates at news mula kay %1$s? Hindi ka makakatanggap ng anumang update hanggang sa i-unblock mo siya.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Gusto mo bang ipagpatuloy ang iyong chat sa group na ito at i-share ang pangalan at photo mo sa members nito?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">I-upgrade ang group na ito para ma-activate ang bagong features gaya ng @mentions at admins. Ang members na hindi nai-share ang kanilang pangalan at photo sa group na ito ay iimbitahang mag-join.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ang Legacy Group na ito\'y hindi na pwedeng gamitin dahil masyado na itong malaki. Ang maximum group size ay %1$d.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Gusto mo bang ipagpatuloy ang chat ninyo ni %1$s at i-share ang pangalan at photo mo sa kanya?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang mag-join sa group na ito at i-share sa members ang pangalan at photo mo? Hindi nila malalaman na nakita mo ang kanilang messages hanggang sa i-accept mo ito.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Gusto mo bang mag-join sa group na ito at i-share sa members ang pangalan at photo mo? Hindi mo makikita ang kanilang messages hanggang sa i-accept mo ito.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang mag-join sa group na ito? Hindi nila malalaman na nakita mo ang kanilang messages hanggang sa i-accept mo ito.</string>
@@ -1828,7 +1832,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Masyadong maraming beses mo nang sinubukang i-register ang number na ito. Subukan ulit pagkatapos ng %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Hindi makakonekta sa serbisyo. Pakisuri ang koneksyon ng network at subukang muli.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">Hindi makapag-request ng verification code. Paki-check ng iyong network connection at subukan ulit.</string>
     <string name="RegistrationActivity_non_standard_number_format">Non-standard number format</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Ang number na nilagay mo (%1$s) ay mukhang isang non-standard format.\n\nDid you mean %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Phone Number Format</string>
@@ -1956,7 +1960,8 @@
     <string name="StickerPackPreviewActivity_untitled">Walang pamagat</string>
     <string name="StickerPackPreviewActivity_unknown">Hindi alam</string>
     <string name="StickerPackPreviewActivity_install">I-install</string>
-    <string name="StickerPackPreviewActivity_remove">Tanggalin</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">Mga Sticker</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nabigong i-load ang sticker pack</string>
 
@@ -2074,7 +2079,7 @@
     <string name="UsernameEditFragment__usernames_let_others_message">Sa pamamagitan ng usernames, pwede kang i-message ng ibang tao nang hindi nalalaman ang phone number mo. Nakakonekta ito sa isang set ng mga number para tulungan kang mapanatiling private ang address mo.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">Para saan ang number na ito?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Ang mga number na ito\'y nakatutulong para mapanatiling private ang username mo para makaiwas ka sa anumang mensaheng hindi mo gustong matanggap. I-share lang ang iyong username sa mga tao at groups na gusto mong maka-chat. Kung magpapalit ka ng username, magkakaroon ka ng bagong set ng mga number.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">Ang numbers na ito\'y nakatutulong para mapanatiling private ang username mo at makaiwas ka sa anumang mensaheng hindi mo gustong matanggap. I-share lamang ang iyong username sa mga tao at groups na gusto mong maka-chat. Kung magpapalit ka ng username, magkakaroon ka ng bagong set of digits.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Laktawan</string>
     <!-- Content description for done button -->
@@ -2154,7 +2159,19 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Magbasa pa</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages sa %2$d chats</string>
     <string name="MessageNotifier_most_recent_from_s">Pinakabago mula: %1$s</string>
     <string name="MessageNotifier_locked_message">Naka-lock na mensahe</string>
     <string name="MessageNotifier_message_delivery_failed">Nabigo ang paghahatid ng mensahe.</string>
@@ -2198,7 +2215,7 @@
     <string name="NotificationChannel_locked_status">Lock na status</string>
     <string name="NotificationChannel_app_updates">Mga update sa app</string>
     <string name="NotificationChannel_other">Iba pa</string>
-    <string name="NotificationChannel_group_chats">Mga chat</string>
+    <string name="NotificationChannel_group_chats">Chats</string>
     <string name="NotificationChannel_missing_display_name">Hindi alam</string>
     <string name="NotificationChannel_voice_notes">Voice Notes</string>
     <string name="NotificationChannel_contact_joined_signal">Sumali ang kontak sa Signal</string>
@@ -2224,7 +2241,7 @@
     <string name="SearchToolbar_search">Maghanap</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">I-search ang unread chats</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Mag-search ng chats, contacts, at messages</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Isara</string>
@@ -2254,9 +2271,9 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Ang device ay hindi na rehistrado</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Hindi na registered ang device na ito. Maaaring ito ay dahil na-register mo ang iyong phone number sa Signal sa ibang device.</string>
     <!-- Action in reminder banner that will take user to re-register -->
-    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
+    <string name="UnauthorizedReminder_reregister_action">Mag-register ulit ng device</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">Na-log out ka sa Signal sa device na ito.</string>
@@ -2446,18 +2463,18 @@
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
     <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth permission denied</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">I-enable ang \"Nearby devices\" permission para magamit ang bluetooth sa pag-record ng voice messages.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Open settings</string>
+    <string name="ConversationParentFragment__open_settings">Buksan ang settings</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Not now</string>
+    <string name="ConversationParentFragment__not_now">Hindi na muna</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Mag-scroll pababa</string>
 
     <!-- BubbleOptOutTooltip -->
     <!-- Message to inform the user of what Android chat bubbles are -->
-    <string name="BubbleOptOutTooltip__description">Ang bubbles ay isang Android feature na pwede mong i-turn off sa Signal chats.</string>
+    <string name="BubbleOptOutTooltip__description">Ang bubbles ay isang Android feature na pwede mong i-off sa Signal chats.</string>
     <!-- Button to dismiss the tooltip for opting out of using Android bubbles -->
     <string name="BubbleOptOutTooltip__not_now">Hindi ngayon</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
@@ -2575,7 +2592,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">Ipakita ang full chat</string>
     <string name="load_more_header__loading">Naglo-load</string>
 
     <!-- media_overview_activity -->
@@ -2697,7 +2714,7 @@
     <string name="AndroidManifest__message_details">Mga detalye ng mensahe</string>
     <string name="AndroidManifest__linked_devices">Mga naka-link na device</string>
     <string name="AndroidManifest__invite_friends">Imbitahan ang mga kaibigan</string>
-    <string name="AndroidManifest_archived_conversations">Archived chats</string>
+    <string name="AndroidManifest_archived_conversations">Archived Chats</string>
     <string name="AndroidManifest_remove_photo">Tanggalin ang photo</string>
 
     <!-- HelpFragment -->
@@ -2791,7 +2808,7 @@
     <string name="preferences__pref_use_address_book_photos">Use address book photos</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">I-display ang contact photos mula sa address book mo kung available</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Panatilihinng Naka-archive ang Muted Chats</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Panatilihing Naka-archive ang Muted Chats</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Mananatili sa archive ang muted chats kahit may bagong message na dumating.</string>
     <string name="preferences__generate_link_previews">Mag-generate ng link previews</string>
@@ -2898,7 +2915,11 @@
     <string name="preferences_storage__delete_older_messages">Gusto mo bang burahin ang mga lumang message?</string>
     <string name="preferences_storage__clear_message_history">Gusto mo bang i-clear ang message history?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Permanente nitong buburahin ang lahat ng message history at media na humigit %1$s mula sa device mo.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Permanente nitong buburahin ang lahat ng message history at media mula sa device mo.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Sigurado ka bang gusto mong burahin ang buong message history?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Ang buong message history ay permanenteng tatanggalin. Hindi na pwedeng bawiin ang action na ito.</string>
@@ -2916,14 +2937,14 @@
     <string name="preferences_app_protection__who_can">Who can…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Payments</string>
-    <string name="preferences_chats__chats">Mga chat</string>
+    <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_data_and_storage__manage_storage">I-manage ang storage</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
     <string name="preferences_data_and_storage__never">Hindi kailanman</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi at mobile data</string>
     <string name="preferences_data_and_storage__mobile_data_only">Mobile data only</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Ang paggamit ng less data ay maaaring mag-improve ng calls sa bad networks</string>
-    <string name="preferences_notifications__in_chat_sounds">Mga tunog sa chat</string>
+    <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
     <string name="preferences_notifications__show">Ipakita</string>
     <string name="preferences_notifications__ringtone">Ringtone</string>
     <string name="preferences_chats__message_text_size">Laki ng font ng mensahe</string>
@@ -3239,7 +3260,8 @@
     <string name="conversation_list_settings_shortcut">Shortcut ng settings</string>
     <string name="conversation_list_search_description">Maghanap</string>
     <string name="conversation_list__pinned">Pinned</string>
-    <string name="conversation_list__chats">Mga chat</string>
+    <string name="conversation_list__chats">Chats</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Up to %1$d chats ang pwede mong i-pin</string>
 
     <!-- conversation_list_item_view -->
@@ -3248,9 +3270,9 @@
 
 
     <!-- conversation_list_fragment -->
-    <string name="conversation_list_fragment__fab_content_description">New chat</string>
+    <string name="conversation_list_fragment__fab_content_description">Bagong chat</string>
     <string name="conversation_list_fragment__open_camera_description">Buksan ang Camera</string>
-    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Wala pang chats.\nGet started by messaging a friend.</string>
+    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Wala pang chats.\nMag-message ng friend para magsimula.</string>
 
 
     <!-- conversation_secure_verified -->
@@ -3288,6 +3310,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Listahan ng mga tatanggap</string>
     <string name="conversation_group_options__delivery">Paghahatid</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">Chat</string>
     <string name="conversation_group_options__broadcast">Broadcast</string>
 
@@ -3338,11 +3361,13 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Insights</string>
     <string name="InsightsDashboardFragment__title">Insights</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Automatic na pinrotektahan ng Signal Protocol ang %1$d%% ng iyong outgoing messages noong naraaang %2$d araw. Ang Chats sa pagitan ng Signal users ay palaging end-to-end encrypted.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Spread the word</string>
     <string name="InsightsDashboardFragment__not_enough_data">Hindi sapat ang data</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ang porsyento ng iyong Insights ay kalkulado batay sa mga ipinapadalang message sa loob ng nakaraang %1$d araw na hindi naglaho o hindi binura.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
+    <string name="InsightsDashboardFragment__start_a_conversation">Magsimula ng chat</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Simulan ang ligtas na komunikasyon at mag-enable ng mga bagong feature na lampas sa mga limitasyon ng hindi encryped na mensaheng SMS sa pamamagitan ng pag-iimbita sa mas maraming kontak na sumali sa Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ang mga istatistikang ito ay lokal na nabuo sa iyong device at ikaw lang ang makakakita nito. Hindi kailanman ipinapadala ang mga ito saanman.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">Mga encrypted na mensahe</string>
@@ -3488,7 +3513,7 @@
     <string name="registration_activity__transfer_or_restore_account">Transfer or restore account</string>
     <string name="registration_activity__transfer_account">Transfer account</string>
     <string name="registration_activity__skip">Laktawan</string>
-    <string name="preferences_chats__chat_backups">Mga backup ng chat</string>
+    <string name="preferences_chats__chat_backups">Chat backups</string>
     <string name="preferences_chats__transfer_account">Transfer account</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">I-transfer ang account sa bagong Android device</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Ilagay ang passphrase ng backup</string>
@@ -3586,21 +3611,21 @@
     <string name="Recipient_unknown">Hindi alam</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">Mag-register ulit ng account</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Update Signal</string>
+    <string name="preferences_account_update_signal">I-update ang Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <string name="preferences_account_delete_all_data">Burahin ang lahat ng data</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">Gusto mo bang i-burahin ang lahat ng data?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Mare-reset ang app at mabubura ang lahat ng messages. Magsasara ang app kapag natapos na ang prosesong ito.</string>
     <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Magpatuloy</string>
     <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <string name="preferences_account_delete_all_data_confirmation_cancel">I-cancel</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">Hindi mabura ang data</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transfer or restore account</string>
@@ -3880,7 +3905,7 @@
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">Failed to send to some users</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Pwede kang mag-share with up to %1$d chats</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Pwede kang mag-share ng hanggang %1$d chats</string>
 
     <!-- ChatWallpaperActivity -->
 
@@ -3912,7 +3937,7 @@
     <string name="ChatWallpaperPreviewActivity__preview">Preview</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">Set wallpaper</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">I-swipe para mag-preview ng iba pang wallpapers</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">I-set ang wallpaper for all chats</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">I-set ang wallpaper para sa lahat ng chats</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">I-set ang wallpaper for %1$s</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Ang pag-view ng iyong gallery ay nangangailangan ng storage permission.</string>
 
@@ -3920,7 +3945,7 @@
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pinch to zoom, drag to adjust.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">I-set ang wallpaper for all chats.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">I-set ang wallpaper para sa lahat ng chats.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_s">I-set ang wallpaper for %1$s.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">Error setting wallpaper.</string>
     <string name="WallpaperCropActivity__blur_photo">Blur photo</string>
@@ -4041,11 +4066,11 @@
 
     <!-- GroupsInCommonMessageRequest -->
     <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">You have no groups in common with this person. I-review ang requests carefully bago mag-accept para makaiwas sa unwanted messages.</string>
-    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">None of your contacts or people you chat with are in this group. I-review ang requests carefully bago mag-accept para makaiwas sa unwanted messages.</string>
+    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Wala kang contact o ka-chat sa group na ito. I-review ang requests nang mabuti bago mag-accept para makaiwas sa unwanted messages.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">About message requests</string>
     <string name="GroupsInCommonMessageRequest__okay">Okay</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">ito ang preview ng chat color.</string>
+    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Narito ang preview ng chat color.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Ang color na ito\'y visible lang sa\'yo.</string>
 
     <!-- GroupDescriptionDialog -->
@@ -4238,8 +4263,8 @@
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Magpakita ng icon sa message details when they were delivered gamit ang sealed sender.</string>
 
     <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">When enabled, mawawala ang bagong messages na na-send at na-receive sa new chats na sinimulan mo kapag na-seen na nila ito.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">When enabled, mawawala ang bagong messages na na-send at na-receive dito sa chat na sinimulan mo kapag na-seen na niya ito.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Kapag naka-enable ito, mawawala ang bagong messages na na-send at na-receive sa sinimulan mong bagong chats kapag na-seen na nila ang mga ito.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Kapag naka-enable ito, mawawala ang bagong messages na na-send at na-receive sa chat na ito kapag na-seen na niya ito.</string>
     <string name="ExpireTimerSettingsFragment__off">Off</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 weeks</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
@@ -4265,7 +4290,7 @@
     <string name="HelpSettingsFragment__debug_log">Debug log</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Mga Tuntunin at Patakaran sa Privacy</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">Licensed under the GPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
@@ -4285,7 +4310,7 @@
     <string name="ChatColorSelectionFragment__delete_color">Burahin ang color</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
         <item quantity="one">Ginamit ang custom color na ito sa %1$d chat. Gusto mo bang burahin ito sa lahat ng chats?</item>
-        <item quantity="other">Ginamit ang custom color na ito sa %1$d chat. Gusto mo bang burahin ito sa lahat ng chats?</item>
+        <item quantity="other">Ginamit ang custom color na ito sa %1$d chats. Gusto mo bang burahin ito sa lahat ng chats?</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">Gusto mo bang burahin ang chat color?</string>
 
@@ -4362,7 +4387,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Walang nakitang contacts app</string>
     <string name="ConversationSettingsFragment__start_video_call">Start video call</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Start voice call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Simulan ang voice call</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Story</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4396,8 +4421,9 @@
     <string name="ConversationSettingsFragment__group_link">Link ng group</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">I-add as a contact</string>
     <string name="ConversationSettingsFragment__unmute">I-unmute</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Naka-mute ang chat hanggang %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Naka-mute ang chat forever</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Copied phone number to clipboard.</string>
     <string name="ConversationSettingsFragment__phone_number">Numero ng telepono</string>
     <string name="ConversationSettingsFragment__get_badges">Makakuha ng badges para sa profile mo sa pamamagitan ng pagsuporta sa Signal. I-tap ang isang badge para matuto pa tungkol dito.</string>
@@ -4660,22 +4686,22 @@
     <string name="MySupportPreference__please_contact_support">I-contact ang support.</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__title">Update Signal</string>
+    <string name="UpdateSignalExpiredDialog__title">I-update ang Signal</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">Expired na itong version ng Signal. Mag-update na para patuloy na magamit ang Signal.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
-    <string name="UpdateSignalExpiredDialog__update_action">Update</string>
+    <string name="UpdateSignalExpiredDialog__update_action">I-update</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
-    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel</string>
+    <string name="UpdateSignalExpiredDialog__cancel_action">I-cancel</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">Hindi registered ang device</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">Hindi na registered ang device na ito. Mag-register ulit para patuloy na magamit ang Signal sa device na ito.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">Re-register</string>
+    <string name="ReregisterSignalDialog__reregister_action">Mag-register ulit</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
-    <string name="ReregisterSignalDialog__cancel_action">Cancel</string>
+    <string name="ReregisterSignalDialog__cancel_action">I-cancel</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Expired na ang Boost Badge</string>
@@ -4976,7 +5002,7 @@
     <!-- region "Stories Tab" -->
 
     <!-- Label for Chats tab in home app screen -->
-    <string name="ConversationListTabs__chats">Mga chat</string>
+    <string name="ConversationListTabs__chats">Chats</string>
     <!-- Label for Calls tab in home app screen -->
     <string name="ConversationListTabs__calls">Calls</string>
     <!-- Label for Stories tab in home app screen -->
@@ -5000,7 +5026,7 @@
     <!-- Context menu option to share a story -->
     <string name="StoriesLandingItem__share">Share…</string>
     <!-- Context menu option to go to story chat -->
-    <string name="StoriesLandingItem__go_to_chat">Go to chat</string>
+    <string name="StoriesLandingItem__go_to_chat">Pumunta sa chat</string>
     <!-- Context menu option to go to story info -->
     <string name="StoriesLandingItem__info">Info</string>
     <!-- Label when a story is pending sending -->
@@ -5147,7 +5173,7 @@
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Ang Signal Connections ay ang mga taong pinagkakatiwalaan mo, sa pamamagitan ng:</string>
     <!-- Signal connections sheet bullet point 1 -->
-    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a chat</string>
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Pagsimula ng chat</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Accepting a message request</string>
     <!-- Signal connections sheet bullet point 3 -->
@@ -5903,8 +5929,8 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">Burahin</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="one">Gusto mo bang burahin ang %1$d call?</item>
+        <item quantity="other">Gusto mo bang burahin ang %1$d calls?</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">Burahin sa \'kin</string>
@@ -6004,26 +6030,26 @@
     <!-- Displayed in action bar at the top of the fragment -->
     <string name="CallLinkDetailsFragment__call_details">Call details</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
-    <string name="CallLinkDetailsFragment__add_call_name">Add call name</string>
+    <string name="CallLinkDetailsFragment__add_call_name">Maglagay ng pangalan ng call</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Approve all members</string>
+    <string name="CallLinkDetailsFragment__approve_all_members">I-approve ang lahat ng members</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
-    <string name="CallLinkDetailsFragment__share_link">Share link</string>
+    <string name="CallLinkDetailsFragment__share_link">I-share ang link</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">Burahin ang call link</string>
 
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">Ibahagi</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">Kulay</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">I-share lamang ang iyong QR code at link sa mga taong pinagkakatiwalaan mo. Kapag shinare mo ito, makikita nila ang iyong username at pwede ka nilang maka-chat.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Nakopya na ang username</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">Nakopya na ang link</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">I-reset</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
     <string name="UsernameLinkSettings_done_button_label">Done</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
@@ -6031,9 +6057,9 @@
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">I-scan ang QR Code sa device ng iyong contact.</string>
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Kulay</string>
 
     <!-- EOF -->
 </resources>

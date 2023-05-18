@@ -183,7 +183,10 @@
     <string name="CameraContacts_recent_contacts">ผู้ที่ติดต่อล่าสุด</string>
     <string name="CameraContacts_signal_contacts">รายชื่อผู้ติดต่อใน Signal</string>
     <string name="CameraContacts_signal_groups">กลุ่ม Signal</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">เลือกผู้รับใน Signal</string>
     <string name="CameraContacts_no_signal_contacts">ไม่มีรายชื่อใน Signal</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">คุณสามารถใช้ปุ่มกล้องสำหรับส่งรูปให้รายชื่อผู้ติดต่อใน Signal เท่านั้น </string>
@@ -227,7 +230,7 @@
     <!-- ConfirmIdentityDialog -->
 
     <!-- ContactsCursorLoader -->
-    <string name="ContactsCursorLoader_recent_chats">การพูดคุยล่าสุด</string>
+    <string name="ContactsCursorLoader_recent_chats">แชทล่าสุด</string>
     <string name="ContactsCursorLoader_contacts">ผู้ติดต่อ</string>
     <string name="ContactsCursorLoader_groups">กลุ่ม</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
@@ -368,9 +371,9 @@
     <string name="ConversationActivity_new_say_it_with_stickers">ใหม่! พูดด้วยสติกเกอร์</string>
 
     <string name="ConversationActivity_cancel">ยกเลิก</string>
-    <string name="ConversationActivity_delete_conversation">Delete chat?</string>
+    <string name="ConversationActivity_delete_conversation">ลบแชทใช่หรือไม่</string>
     <string name="ConversationActivity_delete_and_leave_group">ลบและออกจากกลุ่มหรือไม่</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">This chat will be deleted from all of your devices.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">แชทนี้จะถูกลบออกจากอุปกรณ์ทุกเครื่องของคุณ</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">คุณจะออกจากกลุ่มนี้และระบบจะลบกลุ่มออกจากอุปกรณ์ทุกเครื่องของคุณ</string>
     <string name="ConversationActivity_delete">ลบ</string>
     <string name="ConversationActivity_delete_and_leave">ลบและออก</string>
@@ -445,7 +448,7 @@
     <string name="ConversationFragment_delete_on_this_device">ลบออกจากอุปกรณ์นี้</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">ลบออกจากอุปกรณ์ทุกเครื่อง</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ระบบจะลบข้อความนี้สำหรับทุกคนในแชทที่ใช้ Signal รุ่นล่าสุด และผู้ใช้จะเห็นว่าคุณลบข้อความ</string>
     <string name="ConversationFragment_quoted_message_not_found">ไม่พบข้อความเดิม</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">เข้าถึงข้อความเดิมไม่ได้แล้ว</string>
     <string name="ConversationFragment_failed_to_open_message">การเปิดข้อความล้มเหลว</string>
@@ -453,7 +456,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">คุณสามารถปัดด้านซ้ายเพื่อตอบข้อความอย่างรวดเร็ว</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ไฟล์สื่อแบบที่ดูได้ครั้งเดียวขาออกจะถูกลบอัตโนมัติหลังจากส่งแล้ว</string>
     <string name="ConversationFragment_you_already_viewed_this_message">คุณเปิดดูข้อความนี้แล้ว</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat.\nIf your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">คุณสามารถเพิ่มบันทึกถึงตัวเองได้ในแชทนี้\nและหากบัญชีของคุณมีอุปกรณ์ที่เชื่อมโยงอยู่ บันทึกใหม่ก็จะถูกซิงค์ด้วยเช่นกัน</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">สมาชิกกลุ่ม %1$d คนมีชื่อเหมือนกัน</string>
     <string name="ConversationFragment__tap_to_review">แตะเพื่อทบทวน</string>
     <string name="ConversationFragment__review_requests_carefully">พิจารณาคำขออย่างระวัง</string>
@@ -476,27 +479,27 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">ถูกบล็อก</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
-    <string name="ConversationFragment__update_build">Update Signal</string>
+    <string name="ConversationFragment__update_build">ปรับรุ่น Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">ลงทะเบียน Signal อีกครั้ง</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ล้างตัวกรอง</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">ไม่มีแชทที่ยังไม่ได้อ่าน</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="other">ลบแชทที่เลือกใช่หรือไม่</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="other">การดำเนินการนี้จะลบแชทที่เลือกไว้ทั้งหมด %1$d รายการอย่างถาวร</item>
     </plurals>
     <string name="ConversationListFragment_deleting">กำลังลบ</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">กำลังลบแชทที่เลือก…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="other">จัดเก็บแชท %1$d รายการในที่เก็บถาวร</item>
     </plurals>
     <string name="ConversationListFragment_undo">เลิกทำ</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="other">ย้ายแชท %1$d รายการไปยังกล่องขาเข้า</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="other">อ่านแล้ว</item>
@@ -528,7 +531,7 @@
     <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนกุญแจ</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">แชทที่ถูกเก็บในที่เก็บถาวร (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">ตรวจยืนยันแล้ว</string>
@@ -598,7 +601,7 @@
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">ข้อมูลสำรองมีส่วนขยายที่ไม่ดี</string>
 
     <!-- BackupsPreferenceFragment -->
-    <string name="BackupsPreferenceFragment__chat_backups">ข้อมูลสำรองของการสนทนา</string>
+    <string name="BackupsPreferenceFragment__chat_backups">ข้อมูลสำรองของแชท</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">ข้อมูลสำรองถูกเข้ารหัสด้วยวลีรหัสผ่านและเก็บในอุปกรณ์ของคุณ</string>
     <string name="BackupsPreferenceFragment__create_backup">สร้างข้อมูลสำรอง</string>
     <string name="BackupsPreferenceFragment__last_backup">สำรองข้อมูลล่าสุด: %1$s</string>
@@ -683,8 +686,8 @@
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">กำลังลบข้อความที่ตั้งเวลาไว้…</string>
 
     <!-- DecryptionFailedDialog -->
-    <string name="DecryptionFailedDialog_chat_session_refreshed">ข้อมูลสนทนาถูกเรียกขึ้นใหม่</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal เข้ารหัสลับจากต้นทางถึงปลายทางและมันอาจต้องเรียกสมัยการสนทนาของคุณใหม่เป็นบางครั้ง สิ่งนี้ไม่ส่งผลต่อความปลอดภัยของการสนทนา แต่เป็นได้ว่าคุณอาจพลาดข้อความหนึ่งข้อความจากผู้ติดต่อรายนี้ คุณสามารถขอให้เขาส่งข้อความอีกครั้งได้</string>
+    <string name="DecryptionFailedDialog_chat_session_refreshed">รีเฟรชแชทเซสชันใหม่แล้ว</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal ใช้การเข้ารหัสตั้งแต่ต้นทางถึงปลายทางและอาจต้องเริ่มต้นแชทเซสชันใหม่ให้คุณในบางครั้ง กระบวนการนี้ไม่มีผลต่อความปลอดภัยของแชทคุณ แต่อาจทำให้คุณไม่ได้รับข้อความบางข้อความจากผู้ติดต่อคนนี้ โดยคุณสามารถขอให้ผู้ติดต่อส่งข้อความอีกครั้ง</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">เลิกเชื่อมโยง \'%1$s\' หรือไม่?</string>
@@ -914,7 +917,7 @@
     <string name="ManageGroupActivity_legacy_group_upgrade">นี่คือกลุ่มแบบเก่า เพื่อเข้าถึงความสามารถใหม่ เช่นการ @กล่าวถึง และระบบผู้ดูแลกลุ่ม</string>
     <string name="ManageGroupActivity_legacy_group_too_large">กลุ่มแบบเก่านี้ไม่สามารถปรับรุ่นให้เป็นกลุ่มแบบใหม่ได้ เพราะมีขนาดใหญ่เกินไป ขนาดกลุ่มที่ใหญ่ที่สุดคือ %1$d</string>
     <string name="ManageGroupActivity_upgrade_this_group">ปรับรุ่นกลุ่มนี้</string>
-    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">กลุ่ม MMS นี้ไม่ปลอดภัย หากต้องการแชตเป็นการส่วนตัว ท่านจะต้องเชิญผู้ติดต่อของท่านมายัง Signal</string>
+    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">นี่เป็นกลุ่ม MMS ที่ไม่ปลอดภัย หากต้องการแชทอย่างเป็นส่วนตัว ให้เชิญผู้ติดต่อของคุณมาเริ่มใช้ Signal</string>
     <string name="ManageGroupActivity_invite_now">เชิญเดี๋ยวนี้</string>
     <string name="ManageGroupActivity_more">มีอีก</string>
     <string name="ManageGroupActivity_add_group_description">เพิ่มคำอธิบายกลุ่ม…</string>
@@ -1222,7 +1225,7 @@
     <string name="MessageRecord_disappearing_message_time_set_to_s">เวลาข้อความลบตัวเองถูกตั้งไว้ที่ %1$s</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">กลุ่มนี้ได้ปรับรุ่นเป็นกลุ่มแบบใหม่</string>
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">คุณไม่สามารถถูกเพิ่มไปยังกลุ่มแบบใหม่ได้และได้ถูกเชิญให้เข้าร่วม</string>
-    <string name="MessageRecord_chat_session_refreshed">ข้อมูลสนทนาถูกเรียกขึ้นใหม่</string>
+    <string name="MessageRecord_chat_session_refreshed">รีเฟรชแชทเซสชันใหม่แล้ว</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
         <item quantity="other">สมาชิก %1$s คนไม่สามารถถูกเพิ่มไปยังกลุ่มแบบใหม่ได้ และได้ถูกเชิญให้เข้าร่วม</item>
     </plurals>
@@ -1452,10 +1455,10 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">อนุญาตให้ %1$s ส่งข้อความหาคุณหรือไม่ คุณจะไม่ได้รับข้อความจนกว่าจะเลิกบล็อกผู้ใช้รายนี้</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">รับข้อมูลอัปเดตและข่าวสารจาก %1$s หรือไม่ คุณจะไม่ได้รับข้อมูลใดๆ จนกว่าจะเลิกบล็อกผู้ใช้คนนี้</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ต้องการแชทกับกลุ่มนี้ต่อไปและแชร์ชื่อกับรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">ปรับรุ่นกลุ่มนี้เพื่อเปิดใช้ความสามารถใหม่ เช่น @กล่าวถึง และระบบผู้ดูแล สมาชิกที่ไม่ได้เปิดเผยชื่อหรือรูปภาพในกลุ่มนี้จะได้รับคำเชิญให้เข้าร่วม</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">กลุ่มแบบเก่านี้ไม่สามารถใช้งานได้อีกต่อไป เนื่องจากมีขนาดใหญ่เกินไป ขนาดที่ใหญ่ที่สุดของกลุ่มคือ %1$d</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">ต้องการแชทกับ %1$s ต่อไปและแชร์ชื่อกับรูปภาพให้ผู้ใช้คนนี้เห็นหรือไม่</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">เข้าร่วมกลุ่มนี้และเปิดเผยชื่อและรูปถ่ายของคุณให้สมาชิกในกลุ่มเห็นหรือไม่? พวกเขาจะไม่รู้ว่าคุณเห็นข้อความของพวกเขาจนกว่าคุณจะตอบรับ</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">เข้าร่วมกลุ่มนี้และแชร์ชื่อกับรูปภาพให้กับสมาชิกในกลุ่มหรือไม่ คุณจะไม่เห็นข้อความของพวกเขาจนกว่าคุณจะรับ</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">เข้าร่วมกลุ่มนี้หรือไม่? พวกเขาจะไม่รู้ว่าคุณเห็นข้อความของพวกเขาจนกว่าคุณจะตอบรับ</string>
@@ -1764,7 +1767,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">คุณพยายามลงทะเบียนด้วยหมายเลขนี้หลายครั้งเกินไป โปรดลองอีกครั้งใน %1$s</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ไม่สามารถเชื่อมต่อบริการได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายและลองอีกครั้ง</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">ไม่สามารถขอรหัสยืนยันได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายและลองอีกครั้ง</string>
     <string name="RegistrationActivity_non_standard_number_format">ฟอร์แมทหมายเลขที่ไม่มีมาตรฐาน</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">ตัวเลขที่คุณป้อน (%1$s) เป็นฟอร์แมทที่ไม่ได้มาตรฐาน\n\n คุณต้องการใส่ %2$sหรือเปล่า</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - ฟอร์แมทหมายเลขโทรศัพท์</string>
@@ -1822,7 +1825,7 @@
 
     <!-- Search -->
     <string name="SearchFragment_no_results">ไม่พบข้อมูลเกี่ยวกับ \'%1$s\'</string>
-    <string name="SearchFragment_header_conversations">Chats</string>
+    <string name="SearchFragment_header_conversations">แชท</string>
     <string name="SearchFragment_header_contacts">ผู้ติดต่อ</string>
     <string name="SearchFragment_header_messages">ข้อความ</string>
 
@@ -1891,7 +1894,8 @@
     <string name="StickerPackPreviewActivity_untitled">ไม่มีชื่อ</string>
     <string name="StickerPackPreviewActivity_unknown">ไม่ทราบ</string>
     <string name="StickerPackPreviewActivity_install">ติดตั้ง</string>
-    <string name="StickerPackPreviewActivity_remove">ลบ</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">สติกเกอร์</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">การโหลดสติกเกอร์ล้มเหลว</string>
 
@@ -1959,7 +1963,7 @@
     <string name="ThreadRecord_voice_message">ข้อความเสียง</string>
     <string name="ThreadRecord_file">แฟ้ม</string>
     <string name="ThreadRecord_video">วิดีโอ</string>
-    <string name="ThreadRecord_chat_session_refreshed">ข้อมูลสนทนาถูกเรียกขึ้นใหม่</string>
+    <string name="ThreadRecord_chat_session_refreshed">รีเฟรชแชทเซสชันใหม่แล้ว</string>
     <!-- Displayed in the notification when the user is sent a gift -->
     <string name="ThreadRecord__s_donated_for_you">%1$s บริจาคในนามของคุณ</string>
     <!-- Displayed in the notification when the user sends a gift -->
@@ -2009,7 +2013,7 @@
     <string name="UsernameEditFragment__usernames_let_others_message">ชื่อผู้ใช้จะช่วยให้ผู้ใช้รายอื่นส่งข้อความหาคุณได้โดยไม่จำเป็นต้องมีหมายเลขโทรศัพท์ของคุณ ชื่อผู้ใช้จะถูกผูกเข้ากับกลุ่มตัวเลขเพื่อช่วยรักษาความเป็นส่วนตัวของข้อมูลคุณ</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">ตัวเลขนี้คืออะไร</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">ตัวเลขนี้จะช่วยรักษาความเป็นส่วนตัวให้ชื่อผู้ใช้ของคุณ ป้องกันไม่ให้คุณได้รับข้อความที่ไม่ต้องการ เราขอแนะนำให้แชร์ชื่อผู้ใช้ของคุณเฉพาะกับคนและกลุ่มที่คุณอยากติดต่อด้วยเท่านั้น โดยหากเปลี่ยนชื่อผู้ใช้ คุณจะได้รับตัวเลขใหม่</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">ตัวเลขนี้จะช่วยรักษาความเป็นส่วนตัวให้ชื่อผู้ใช้ของคุณ ป้องกันไม่ให้คุณได้รับข้อความที่ไม่พึงประสงค์ เราขอแนะนำให้แชร์ชื่อผู้ใช้ของคุณเฉพาะกับคนและกลุ่มที่คุณอยากติดต่อด้วยเท่านั้น โดยหากเปลี่ยนชื่อผู้ใช้ คุณก็จะได้รับชุดตัวเลขใหม่</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">ข้าม</string>
     <!-- Content description for done button -->
@@ -2088,7 +2092,17 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">อ่านเพิ่มเติม</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">มี %1$d ข้อความใหม่ใน %2$d แชท</string>
     <string name="MessageNotifier_most_recent_from_s">ล่าสุดจาก: %1$s</string>
     <string name="MessageNotifier_locked_message">ข้อความที่ถูกล็อก</string>
     <string name="MessageNotifier_message_delivery_failed">การส่งข้อความล้มเหลว</string>
@@ -2132,7 +2146,7 @@
     <string name="NotificationChannel_locked_status">สถานะล็อก</string>
     <string name="NotificationChannel_app_updates">การปรับรุ่นแอป</string>
     <string name="NotificationChannel_other">อื่น</string>
-    <string name="NotificationChannel_group_chats">การสนทนา</string>
+    <string name="NotificationChannel_group_chats">แชท</string>
     <string name="NotificationChannel_missing_display_name">ไม่ทราบ</string>
     <string name="NotificationChannel_voice_notes">ข้อความเสียง</string>
     <string name="NotificationChannel_contact_joined_signal">มีผู้ติดต่อเริ่มใช้ Signal</string>
@@ -2158,7 +2172,7 @@
     <string name="SearchToolbar_search">ค้นหา</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">ค้นหาแชทที่ยังไม่ได้อ่าน</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">ค้นหาแชท ผู้ติดต่อ และข้อความ</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">ปิด</string>
@@ -2187,9 +2201,9 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">อุปกรณ์นี้ไม่ได้ลงทะเบียนอีกต่อไป</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">อุปกรณ์เครื่องนี้ไม่ได้ลงทะเบียนอีกต่อไป นี่น่าจะเป็นเพราะคุณลงทะเบียนหมายเลขโทรศัพท์นี้กับ Signal ไว้บนอุปกรณ์เครื่องอื่น</string>
     <!-- Action in reminder banner that will take user to re-register -->
-    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
+    <string name="UnauthorizedReminder_reregister_action">ลงทะเบียนอุปกรณ์อีกครั้ง</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">คุณออกจากระบบ Signal บนอุปกรณ์เครื่องนี้แล้ว</string>
@@ -2374,20 +2388,20 @@
 
     <!-- ConversationParentFragment -->
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth permission denied</string>
+    <string name="ConversationParentFragment__bluetooth_permission_denied">การอนุญาตบลูทูธถูกปฏิเสธ</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">โปรดอนุญาตสิทธิ์การเข้าถึง \"อุปกรณ์ใกล้เคียง\" เพื่อใช้บลูทูธในการบันทึกข้อความเสียง</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Open settings</string>
+    <string name="ConversationParentFragment__open_settings">เปิดการตั้งค่า</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Not now</string>
+    <string name="ConversationParentFragment__not_now">ไว้ทีหลัง</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">เลื่อนลงล่างสุด</string>
 
     <!-- BubbleOptOutTooltip -->
     <!-- Message to inform the user of what Android chat bubbles are -->
-    <string name="BubbleOptOutTooltip__description">การแจ้งเตือนข้อความแบบ Bubble เป็นฟีเจอร์ของแอนดรอยด์ที่คุณปิดได้สำหรับการแชตของ Signal</string>
+    <string name="BubbleOptOutTooltip__description">การแจ้งเตือนข้อความแบบ Bubble เป็นฟีเจอร์ของ Android ที่คุณปิดได้สำหรับการแชทของ Signal</string>
     <!-- Button to dismiss the tooltip for opting out of using Android bubbles -->
     <string name="BubbleOptOutTooltip__not_now">ไม่ใช่ตอนนี้</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
@@ -2499,7 +2513,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">ดูแชทแบบเต็ม</string>
     <string name="load_more_header__loading">กำลังโหลด</string>
 
     <!-- media_overview_activity -->
@@ -2620,7 +2634,7 @@
     <string name="AndroidManifest__message_details">รายละเอียดข้อความ</string>
     <string name="AndroidManifest__linked_devices">อุปกรณ์ที่เชื่อมโยงอยู่</string>
     <string name="AndroidManifest__invite_friends">เชิญเพื่อน</string>
-    <string name="AndroidManifest_archived_conversations">Archived chats</string>
+    <string name="AndroidManifest_archived_conversations">แชทที่ถูกเก็บในที่เก็บถาวร</string>
     <string name="AndroidManifest_remove_photo">ลบรูป</string>
 
     <!-- HelpFragment -->
@@ -2776,7 +2790,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">การล็อกการชำระเงิน</string>
     <string name="preferences__payments_beta">การชำระเงิน (รุ่นทดสอบ)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">ขีดจำกัดความยาวของแชท</string>
     <string name="preferences__keep_messages">เก็บข้อความ</string>
     <string name="preferences__clear_message_history">ล้างประวัติการส่งข้อความ</string>
     <string name="preferences__linked_devices">อุปกรณ์ที่เชื่อมโยงอยู่</string>
@@ -2784,7 +2798,7 @@
     <string name="preferences__dark_theme">มืด</string>
     <string name="preferences__appearance">ลักษณะ</string>
     <string name="preferences__theme">ธีม</string>
-    <string name="preferences__chat_color_and_wallpaper">สีและพื้นหลังแชต</string>
+    <string name="preferences__chat_color_and_wallpaper">สีและภาพพื้นหลังแชท</string>
     <string name="preferences__disable_pin">ปิดใช้งาน PIN</string>
     <string name="preferences__enable_pin">เปิดใช้งาน PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">หากคุณปิดใช้งาน PIN คุณจะสูญเสียข้อมูลเมื่อคุณลงทะเบียนบัญชี Signal ใหม่ นอกจากว่าคุณได้สำรองข้อมูลและกู้มันคืนมาเอง คุณไม่สามารถเปิดการใช้งานกุญแจลงทะเบียนในขณะที่ PIN ปิดการใช้งานอยู่</string>
@@ -2820,7 +2834,10 @@
     <string name="preferences_storage__delete_older_messages">ลบข้อความเก่าหรือไม่</string>
     <string name="preferences_storage__clear_message_history">ล้างประวัติการส่งข้อความหรือไม่</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">การดำเนินการนี้จะทำให้ประวัติการส่งข้อความและสื่อในอุปกรณ์ของคุณซึ่งเก่ากว่า %1$s ถูกลบอย่างถาวร</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">การดำเนินการนี้จะทำให้ประวัติการส่งข้อความและสื่อในอุปกรณ์ของคุณถูกลบอย่างถาวร</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">คุณแน่ใจหรือไม่ว่าต้องการลบประวัติการส่งข้อความทั้งหมด</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ประวัติการส่งข้อความทั้งหมดจะถูกลบอย่างถาวร การดำเนินการนี้ไม่สามารถยกเลิกได้</string>
@@ -2838,14 +2855,14 @@
     <string name="preferences_app_protection__who_can">ใครสามารถ…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">การจ่ายเงิน</string>
-    <string name="preferences_chats__chats">การพูดคุย</string>
+    <string name="preferences_chats__chats">แชท</string>
     <string name="preferences_data_and_storage__manage_storage">จัดการพื้นที่จัดเก็บ</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">ใช้ข้อมูลน้อยลงสำหรับการโทร</string>
     <string name="preferences_data_and_storage__never">ไม่เลย</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi และข้อมูลมือถือ</string>
     <string name="preferences_data_and_storage__mobile_data_only">ข้อมูลมือถือเท่านั้น</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">การใช้ข้อมูลน้อยลงอาจช่วยปรับปรุงการโทรในเครือข่ายที่ไม่ดี</string>
-    <string name="preferences_notifications__in_chat_sounds">เสียงในการแช็ต</string>
+    <string name="preferences_notifications__in_chat_sounds">เสียงในแชท</string>
     <string name="preferences_notifications__show">แสดง</string>
     <string name="preferences_notifications__ringtone">เสียงเรียกเข้า</string>
     <string name="preferences_chats__message_text_size">ขนาดอักษรของข้อความ</string>
@@ -3160,8 +3177,9 @@
     <string name="conversation_list_settings_shortcut">ตั้งค่าปุ่มลัด</string>
     <string name="conversation_list_search_description">ค้นหา</string>
     <string name="conversation_list__pinned">ปักหมุด</string>
-    <string name="conversation_list__chats">การพูดคุย</string>
-    <string name="conversation_list__you_can_only_pin_up_to_d_chats">คุณปักหมุดแชตได้ %1$d อันเท่านั้น</string>
+    <string name="conversation_list__chats">แชท</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
+    <string name="conversation_list__you_can_only_pin_up_to_d_chats">คุณปักหมุดแชทได้ %1$d รายการเท่านั้น</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">รูปภาพของผู้ติดต่อ</string>
@@ -3169,9 +3187,9 @@
 
 
     <!-- conversation_list_fragment -->
-    <string name="conversation_list_fragment__fab_content_description">New chat</string>
+    <string name="conversation_list_fragment__fab_content_description">แชทใหม่</string>
     <string name="conversation_list_fragment__open_camera_description">เปิดกล้อง</string>
-    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ยังไม่มีข้อความ\nเริ่มต้นด้วยการส่งข้อความหาเพื่อนสักคน</string>
+    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ยังไม่มีแชท\nเริ่มต้นด้วยการส่งข้อความหาเพื่อนสักคน</string>
 
 
     <!-- conversation_secure_verified -->
@@ -3186,7 +3204,7 @@
     <string name="conversation__menu_group_settings">การตั้งค่ากลุ่ม</string>
     <string name="conversation__menu_leave_group">ออกจากกลุ่ม</string>
     <string name="conversation__menu_view_all_media">สื่อทั้งหมด</string>
-    <string name="conversation__menu_conversation_settings">Chat settings</string>
+    <string name="conversation__menu_conversation_settings">การตั้งค่าแชท</string>
     <string name="conversation__menu_add_shortcut">เพิ่มไปยังหน้าจอหลัก</string>
     <string name="conversation__menu_create_bubble">สร้าง bubble</string>
 
@@ -3208,7 +3226,8 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">รายชื่อผู้รับ</string>
     <string name="conversation_group_options__delivery">ส่ง</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
+    <string name="conversation_group_options__conversation">แชท</string>
     <string name="conversation_group_options__broadcast">เผยแพร่</string>
 
     <!-- text_secure_normal -->
@@ -3258,11 +3277,13 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Insights</string>
     <string name="InsightsDashboardFragment__title">Insights</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">โปรโตคอลของ Signal ปกป้อง %1$d%% ของข้อความส่งออกของคุณโดยอัตโนมัติมาอย่างต่อเนื่องเป็นเวลา %2$d วัน แชทระหว่างผู้ใช้ Signal จะถูกเข้ารหัสตั้งแต่ต้นทางถึงปลายทางเสมอ</string>
     <string name="InsightsDashboardFragment__spread_the_word">กระจ่ายข่าว</string>
     <string name="InsightsDashboardFragment__not_enough_data">ข้อมูลไม่พอ</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">เปอร์เซ็นต์ข้อมูล insights ของคุณถูกคำนวณจากข้อความส่งออกที่ไม่ได้ลบตัวเองหรือถูกลบภายใน %1$d วันที่ผ่านมา</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
+    <string name="InsightsDashboardFragment__start_a_conversation">เริ่มต้นแชท</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">เริ่มต้นสื่อสารอย่างปลอดภัยและเปิดใช้งานคุณสมบัติใหม่ ๆ ที่มีความสามารถเหนือกว่าข้อความ SMS ที่ไม่ได้เข้ารหัส ด้วยการชวนผู้ติดต่อให้มาใช้ Signal กันมากขึ้น</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">สถิติเหล่านี้ถูกรวบรวมบนอุปกรณ์ของคุณ และมีแต่คุณที่เห็นข้อมูลเหล่านี้ ข้อมูลเหล่านี้จะไม่ถูกส่งไปที่ไหน</string>
     <string name="InsightsDashboardFragment__encrypted_messages">ข้อความเข้ารหัส</string>
@@ -3401,7 +3422,7 @@
     <string name="registration_activity__transfer_or_restore_account">ถ่ายโอนหรือกู้คืนบัญชี</string>
     <string name="registration_activity__transfer_account">ถ่ายโอนบัญชี</string>
     <string name="registration_activity__skip">ข้าม</string>
-    <string name="preferences_chats__chat_backups">ข้อมูลสำรองของการสนทนา</string>
+    <string name="preferences_chats__chat_backups">ข้อมูลสำรองของแชท</string>
     <string name="preferences_chats__transfer_account">ถ่ายโอนบัญชี</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">ถ่ายโอนบัญชีไปยังอุปกรณ์ Android เครื่องใหม่</string>
     <string name="RegistrationActivity_enter_backup_passphrase">ใส่วลีรหัสผ่านสำหรับข้อมูลสำรอง</string>
@@ -3499,21 +3520,21 @@
     <string name="Recipient_unknown">ไม่ทราบ</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">ลงทะเบียนบัญชีอีกครั้ง</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Update Signal</string>
+    <string name="preferences_account_update_signal">ปรับรุ่น Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <string name="preferences_account_delete_all_data">ลบข้อมูลทั้งหมด</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">ลบข้อมูลทั้งหมดหรือไม่</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">นี่จะเป็นการรีเซ็ตแอปและลบข้อความทั้งหมด โดยแอปจะปิดลงหลังจากที่กระบวนการนี้เสร็จสิ้น</string>
     <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <string name="preferences_account_delete_all_data_confirmation_proceed">ดำเนินการต่อ</string>
     <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <string name="preferences_account_delete_all_data_confirmation_cancel">ยกเลิก</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">ลบข้อมูลไม่สำเร็จ</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">ถ่ายโอนหรือกู้คืนบัญชี</string>
@@ -3790,21 +3811,21 @@
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">การส่งไปยังผู้ใช้อื่นล้มเหลว</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">คุณสามารถแบ่งปันได้สูงสุดแค่ %1$d แชต เท่านั้น</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">คุณแชร์กับแชทได้สูงสุด %1$d รายการเท่านั้น</string>
 
     <!-- ChatWallpaperActivity -->
 
     <!-- ChatWallpaperFragment -->
-    <string name="ChatWallpaperFragment__chat_color">สีแชต</string>
-    <string name="ChatWallpaperFragment__reset_chat_colors">รีเซ็ตสีแชต</string>
-    <string name="ChatWallpaperFragment__reset_chat_color">รีเซ็ตสีแชต</string>
-    <string name="ChatWallpaperFragment__reset_chat_color_question">รีเซ็ตสีแชตหรือไม่?</string>
+    <string name="ChatWallpaperFragment__chat_color">สีแชท</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">รีเซ็ตสีแชท</string>
+    <string name="ChatWallpaperFragment__reset_chat_color">รีเซ็ตสีแชท</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">รีเซ็ตสีแชทหรือไม่</string>
     <string name="ChatWallpaperFragment__set_wallpaper">ตั้งภาพพื้นหลัง</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">ภาพพื้นหลังธีมมืดสลัว</string>
     <string name="ChatWallpaperFragment__contact_name">ชื่อผู้ติดต่อ</string>
     <string name="ChatWallpaperFragment__reset">รีเซ็ต</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">ภาพตัวอย่างพื้นหลัง</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">คุณต้องการยกเลิกสีแชตทั้งหมดใช่หรือไม่?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">คุณต้องการยกเลิกสีแชททั้งหมดใช่หรือไม่</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">คุณต้องการยกเลิกภาพพื้นหลังทั้งหมดใช่หรือไม่?</string>
     <string name="ChatWallpaperFragment__reset_default_colors">รีเซ็ตสีเริ่มต้น</string>
     <string name="ChatWallpaperFragment__reset_all_colors">รีเซ็ตสีทั้งหมด</string>
@@ -3822,7 +3843,7 @@
     <string name="ChatWallpaperPreviewActivity__preview">ภาพตัวอย่าง</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">ตั้งภาพพื้นหลัง</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">ปัดเพื่อดูภาพตัวอย่างของพื้นหลังเพิ่มเติม</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">ตั้งภาพพื้นหลังให้ทุกแชต</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">ตั้งภาพพื้นหลังให้ทุกแชท</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">ตั้งภาพพื้นหลังให้ %1$s</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">การดูรูปภาพจะต้องให้อนุญาตการเข้าถึงพื้นที่เก็บข้อมูล</string>
 
@@ -3830,7 +3851,7 @@
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">หยิกขยายเพื่อซูมและลากเพื่อปรับตำแแหน่ง</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">ตั้งภาพพื้นหลังให้ทุกแชต</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">ตั้งภาพพื้นหลังให้ทุกแชท</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_s">ตั้งภาพพื้นหลังสำหรับ %1$s</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">เกิดข้อผิดพาดในการตั้งภาพพื้นหลัง</string>
     <string name="WallpaperCropActivity__blur_photo">เบลอภาพ</string>
@@ -3950,11 +3971,11 @@
 
     <!-- GroupsInCommonMessageRequest -->
     <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">คุณไม่ได้อยู่ในกลุ่มใดที่เหมือนกับบุคคลนี้เลย โปรดพิจารณาคำขออย่างถี่ถ้วน ก่อนจะยอมรับ เพื่อเลี่ยงข้อความไม่พึงประสงค์</string>
-    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">ไม่มีผู้ติดต่อหรือผู้ที่คุณแชตด้วยอยู่ในกลุ่มนี้เลย พิจารณาคำขออย่างถี่ถ้วนก่อนจะยอมรับ เพื่อเลี่ยงข้อความไม่พึงประสงค์</string>
+    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">ไม่มีผู้ติดต่อหรือคนที่คุณแชทด้วยอยู่ในกลุ่มนี้เลย โปรดตรวจสอบคำขออย่างถี่ถ้วนก่อนตอบรับเพื่อป้องกันการได้รับข้อความที่ไม่พึงประสงค์</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">เกี่ยวกับคำขอส่งข้อความ</string>
     <string name="GroupsInCommonMessageRequest__okay">ตกลง</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">นี่คือตัวอย่างสีแชต</string>
+    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">นี่คือตัวอย่างสีแชท</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">สีที่คุณเห็นคนเดียว</string>
 
     <!-- GroupDescriptionDialog -->
@@ -4128,8 +4149,8 @@
     <string name="PrivacySettingsFragment__app_security">ความปลอดภัยของแอป</string>
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ไม่อนุญาตให้ถ่ายภาพหน้าจอในรายการสนทนาล่าสุดและภายในแอป</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ส่งข้อความและโทร ถ่ายทอดการโทร และผู้ส่งที่ถูกปกปิด</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">ตัวจับเวลาค่าเริ่มต้นสำหรับแชตใหม่</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ตั้งค่าเริ่มต้นของตัวจับเวลาข้อความหายไปสำหรับแชตใหม่ที่คุณเริ่มต้น</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">ค่าเริ่มต้นของตัวจับเวลาสำหรับแชทใหม่</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ตั้งค่าเริ่มต้นของตัวจับเวลาข้อความที่จะหายไปสำหรับแชทใหม่ทั้งหมดที่คุณเป็นคนเริ่ม</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">ต้องปลดล็อกหน้าจอหรือสแกนลายนิ้วมือในอุปกรณ์ Android เพื่อโอนเงิน</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -4147,8 +4168,8 @@
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">แสดงไอคอนในรายละเอียดข้อความเมื่อเป็นข้อความที่ส่งโดยใช้ผู้ส่งที่ถูกปกปิด</string>
 
     <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">เมื่อเปิดใช้งาน ข้อความใหม่ที่ส่งและรับในการแชตใหม่ที่คุณเริ่มจะหายไปหลังจากที่ได้เห็นแล้ว</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">เมื่อเปิดใช้งาน ข้อความใหม่ที่ส่งและได้รับในแชตนี้จะหายไปหลังจากที่ได้เห็นแล้ว</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">เมื่อเปิดใช้งาน ข้อความใหม่ที่ส่งและได้รับในแชทใหม่ที่คุณเป็นคนเริ่มจะหายไปหลังจากที่ได้เห็นแล้ว</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">เมื่อเปิดใช้งาน ข้อความใหม่ที่ส่งและได้รับในแชทนี้จะหายไปหลังจากที่ได้เห็นแล้ว</string>
     <string name="ExpireTimerSettingsFragment__off">ปิด</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 สัปดาห์</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 สัปดาห์</string>
@@ -4174,7 +4195,7 @@
     <string name="HelpSettingsFragment__debug_log">ปูมดีบัก</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">เงื่อนไขและนโยบายความเป็นส่วนตัว</string>
     <string name="HelpFragment__copyright_signal_messenger">ลิขสิทธิ์ Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">อนุญาตให้ใช้ภายใต้ GPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">คุณภาพของสื่อ</string>
@@ -4187,7 +4208,7 @@
     <!-- ChatColorSelectionFragment -->
     <string name="ChatColorSelectionFragment__auto">อัตโนมัติ</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">ใช้สีที่กำหนดเอง</string>
-    <string name="ChatColorSelectionFragment__chat_color">สีแชต</string>
+    <string name="ChatColorSelectionFragment__chat_color">สีแชท</string>
     <string name="ChatColorSelectionFragment__edit">แก้ไข</string>
     <string name="ChatColorSelectionFragment__duplicate">ทำซ้ำ</string>
     <string name="ChatColorSelectionFragment__delete">ลบ</string>
@@ -4207,7 +4228,7 @@
     <string name="CustomChatColorCreatorFragmentPage__save">บันทึก</string>
     <string name="CustomChatColorCreatorFragmentPage__edit_color">แก้สี</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-        <item quantity="other">สีนี้มีการใช้งานใน %1$d แชต คุณต้องการบันทึกการเปลี่ยนแปลงสำหรับแชตทั้งหมดหรือไม่?</item>
+        <item quantity="other">สีนี้มีการใช้งานใน %1$d แชท คุณต้องการบันทึกการเปลี่ยนแปลงสำหรับแชททั้งหมดหรือไม่</item>
     </plurals>
 
     <!-- ChatColorGradientTool -->
@@ -4269,7 +4290,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">ไม่พบแอปรายชื่อติดต่อ</string>
     <string name="ConversationSettingsFragment__start_video_call">เริ่มโทรวิดีโอ</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Start voice call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">เริ่มการโทรด้วยเสียง</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">สตอรี่</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4303,8 +4324,9 @@
     <string name="ConversationSettingsFragment__group_link">ลิงก์กลุ่ม</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">เพิ่มเป็นผู้ติดต่อ</string>
     <string name="ConversationSettingsFragment__unmute">เปิดเสียง</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">ปิดเสียงแชทจนถึง %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">ปิดเสียงแชทตลอด</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">คัดลอกหมายเลขโทรศัพท์ไปยังคลิปบอร์ดแล้ว</string>
     <string name="ConversationSettingsFragment__phone_number">หมายเลขโทรศัพท์</string>
     <string name="ConversationSettingsFragment__get_badges">รับโล่ติดโปรไฟล์ด้วยการสนับสนุน Signal แตะที่โล่เพื่อเรียนรู้เพิ่มเติม</string>
@@ -4344,7 +4366,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">ข้อความ</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Voice call</string>
+    <string name="NewConversationActivity__audio_call">โทรเสียง</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">โทรวิดีโอ</string>
     <!-- Context menu item remove -->
@@ -4563,22 +4585,22 @@
     <string name="MySupportPreference__please_contact_support">กรุณาฝ่ายสนับสนุน</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__title">Update Signal</string>
+    <string name="UpdateSignalExpiredDialog__title">ปรับรุ่น Signal</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">Signal เวอร์ชันนี้หมดอายุแล้ว อัปเดต Signal ตอนนี้เพื่อใช้งานต่อ</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
-    <string name="UpdateSignalExpiredDialog__update_action">Update</string>
+    <string name="UpdateSignalExpiredDialog__update_action">ปรับรุ่น</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
-    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel</string>
+    <string name="UpdateSignalExpiredDialog__cancel_action">ยกเลิก</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">อุปกรณ์ไม่ได้ลงทะเบียน</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">อุปกรณ์เครื่องนี้ไม่ได้ลงทะเบียนอีกต่อไป โปรดลงทะเบียนอีกครั้งเพื่อใช้งาน Signal บนอุปกรณ์เครื่องนี้</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">Re-register</string>
+    <string name="ReregisterSignalDialog__reregister_action">ลงทะเบียนอีกรอบ</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
-    <string name="ReregisterSignalDialog__cancel_action">Cancel</string>
+    <string name="ReregisterSignalDialog__cancel_action">ยกเลิก</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">โล่ Boost หมดอายุแล้ว</string>
@@ -4822,7 +4844,7 @@
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
     <string name="NotificationProfileCreated__done">เสร็จสิ้น</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">คุณสามารถเปิดหรือปิดโปรไฟล์ได้ด้วยตัวเองทางเมนูที่อยู่บนรายการสนทนา</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">คุณสามารถเปิดหรือปิดโปรไฟล์ได้ด้วยตัวเองผ่านทางเมนูที่อยู่บนรายการแชท</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
     <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">เพิ่มกำหนดการในการตั้งค่าเพื่อทำให้โปรไฟล์เป็นอัตโนมัติ</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
@@ -4879,7 +4901,7 @@
     <!-- region "Stories Tab" -->
 
     <!-- Label for Chats tab in home app screen -->
-    <string name="ConversationListTabs__chats">การสนทนา</string>
+    <string name="ConversationListTabs__chats">แชท</string>
     <!-- Label for Calls tab in home app screen -->
     <string name="ConversationListTabs__calls">การโทร</string>
     <!-- Label for Stories tab in home app screen -->
@@ -4903,7 +4925,7 @@
     <!-- Context menu option to share a story -->
     <string name="StoriesLandingItem__share">แชร์…</string>
     <!-- Context menu option to go to story chat -->
-    <string name="StoriesLandingItem__go_to_chat">ไปที่แชต</string>
+    <string name="StoriesLandingItem__go_to_chat">ไปที่แชท</string>
     <!-- Context menu option to go to story info -->
     <string name="StoriesLandingItem__info">ข้อมูล</string>
     <!-- Label when a story is pending sending -->
@@ -5044,7 +5066,7 @@
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">เครือข่าย Signal คือคนที่คุณได้เลือกที่จะไว้ใจ ด้วยการ:</string>
     <!-- Signal connections sheet bullet point 1 -->
-    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a chat</string>
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">เริ่มต้นการแชท</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">รับคำขอส่งข้อความ</string>
     <!-- Signal connections sheet bullet point 3 -->
@@ -5712,7 +5734,7 @@
     <!-- Displayed as body text in the username education screen -->
     <string name="UsernameEducationFragment__usernames_are_paired_with_a_set_of_digits">ชื่อผู้ใช้จะถูกผูกเข้ากับชุดตัวเลขและจะไม่แสดงบนโปรไฟล์ของคุณ</string>
     <!-- Displayed as body text in the username education screen -->
-    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">ชื่อผู้ใช้แต่ละชื่อจะมีคิวอาร์โค้ดและลิงก์เฉพาะที่คุณสามารถแชร์เพื่อให้เพื่อนเริ่มการสนทนากับคุณได้</string>
+    <string name="UsernameEducationFragment__each_username_has_a_unique_qr_code">ชื่อผู้ใช้แต่ละชื่อจะมีคิวอาร์โค้ดและลิงก์เฉพาะที่คุณสามารถแชร์เพื่อให้เพื่อนเริ่มแชทกับคุณได้</string>
     <!-- Displayed as body text in the username education screen. The string references the names of settings, so they should match our translations for those settings. -->
     <string name="UsernameEducationFragment__turn_off_phone_number_discovery">ปิดใช้งานการค้นหาด้วยหมายโทรศัพท์ โดยไปที่การตั้งค่า &gt; ความเป็นส่วนตัว &gt; หมายเลขโทรศัพท์ &gt; ใครบ้างที่สามารถค้นหาหมายเลขโทรศัพท์ฉันได้ ซึ่งวิธีนี้จะตั้งให้ชื่อผู้ใช้ของคุณเป็นวิธีหลักที่ผู้ใช้คนอื่นจะติดต่อคุณได้</string>
 
@@ -5756,7 +5778,7 @@
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">กลับไปยังสายที่โทรอยู่</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Voice call</string>
+    <string name="CallContextMenu__audio_call">โทรเสียง</string>
     <!-- Displayed as a context menu item to go to chat -->
     <string name="CallContextMenu__go_to_chat">ไปที่แชท</string>
     <!-- Displayed as a context menu item to see call info -->
@@ -5784,7 +5806,7 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">ลบ</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="other">ลบการโทร %1$d รายการใช่หรือไม่</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">ลบของฉัน</string>
@@ -5881,38 +5903,38 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">รายละเอียดการโทร</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
-    <string name="CallLinkDetailsFragment__add_call_name">Add call name</string>
+    <string name="CallLinkDetailsFragment__add_call_name">เพิ่มชื่อการโทร</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Approve all members</string>
+    <string name="CallLinkDetailsFragment__approve_all_members">อนุมัติสำหรับสมาชิกทุกคน</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
-    <string name="CallLinkDetailsFragment__share_link">Share link</string>
+    <string name="CallLinkDetailsFragment__share_link">แชร์ลิงก์</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">ลบลิงก์การโทร</string>
 
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">แบ่งปัน</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">สี</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">เราขอแนะนำให้แชร์คิวอาร์โค้ดและลิงก์ของคุณกับคนที่ไว้วางใจเท่านั้น นี่จะเป็นการเปิดเผยให้ผู้อื่นเห็นชื่อผู้ใช้ของคุณและเริ่มต้นแชทกับคุณได้</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">คัดลอกชื่อผู้ใช้แล้ว</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">คัดลอกลิงก์แล้ว</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">รีเซ็ต</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">เสร็จสิ้น</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">โค้ด</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">สแกน</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">สแกนคิวอาร์โค้ดบนอุปกรณ์ของผู้ติดต่อของคุณ</string>
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">สี</string>
 
     <!-- EOF -->
 </resources>

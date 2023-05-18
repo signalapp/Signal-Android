@@ -9,6 +9,7 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
+import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.signal.libsignal.zkgroup.groups.UuidCiphertext;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
@@ -18,6 +19,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
+import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -30,6 +32,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -178,15 +181,30 @@ public final class GroupManager {
    *                                  processing deny messages.
    */
   @WorkerThread
-  public static void updateGroupFromServer(@NonNull Context context,
-                                           @NonNull GroupMasterKey groupMasterKey,
-                                           int revision,
-                                           long timestamp,
-                                           @Nullable byte[] signedGroupChange)
+  public static GroupsV2StateProcessor.GroupUpdateResult updateGroupFromServer(@NonNull Context context,
+                                                                               @NonNull GroupMasterKey groupMasterKey,
+                                                                               int revision,
+                                                                               long timestamp,
+                                                                               @Nullable byte[] signedGroupChange)
       throws GroupChangeBusyException, IOException, GroupNotAMemberException
   {
     try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
-      updater.updateLocalToServerRevision(revision, timestamp, signedGroupChange);
+      return updater.updateLocalToServerRevision(revision, timestamp, null, signedGroupChange);
+    }
+  }
+
+  @WorkerThread
+  public static GroupsV2StateProcessor.GroupUpdateResult updateGroupFromServer(@NonNull Context context,
+                                                                               @NonNull GroupMasterKey groupMasterKey,
+                                                                               @NonNull Optional<GroupRecord> groupRecord,
+                                                                               @Nullable GroupSecretParams groupSecretParams,
+                                                                               int revision,
+                                                                               long timestamp,
+                                                                               @Nullable byte[] signedGroupChange)
+      throws GroupChangeBusyException, IOException, GroupNotAMemberException
+  {
+    try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
+      return updater.updateLocalToServerRevision(revision, timestamp, groupRecord, groupSecretParams, signedGroupChange);
     }
   }
 

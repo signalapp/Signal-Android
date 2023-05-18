@@ -13,7 +13,7 @@ dependencyResolutionManagement {
             version('exoplayer', '2.18.1')
             version('glide', '4.13.2')
             version('kotlin', '1.8.10')
-            version('libsignal-client', '0.23.1')
+            version('libsignal-client', '0.24.0')
             version('mp4parser', '1.9.39')
             version('android-gradle-plugin', '7.4.1')
 
@@ -106,7 +106,6 @@ dependencyResolutionManagement {
             alias('libsignal-client').to('org.signal', 'libsignal-client').versionRef('libsignal-client')
             alias('libsignal-android').to('org.signal', 'libsignal-android').versionRef('libsignal-client')
             alias('signal-aesgcmprovider').to('org.signal:aesgcmprovider:0.0.3')
-            alias('signal-argon2').to('org.signal:argon2:13.1')
             alias('signal-ringrtc').to('org.signal:ringrtc-android:2.26.3')
             alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.4-S1')
 

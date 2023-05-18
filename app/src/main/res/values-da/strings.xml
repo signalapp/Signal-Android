@@ -183,7 +183,11 @@
     <string name="CameraContacts_recent_contacts">Seneste kontakter</string>
     <string name="CameraContacts_signal_contacts">Signal-kontakter</string>
     <string name="CameraContacts_signal_groups">Signal-grupper</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Vælg Signal-modtagere</string>
     <string name="CameraContacts_no_signal_contacts">Ingen Signal-kontakter</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Du kan kun bruge kameraknappen til at sende billeder til Signal-kontakter. </string>
@@ -227,7 +231,7 @@
     <!-- ConfirmIdentityDialog -->
 
     <!-- ContactsCursorLoader -->
-    <string name="ContactsCursorLoader_recent_chats">Seneste samtaler</string>
+    <string name="ContactsCursorLoader_recent_chats">Seneste chats</string>
     <string name="ContactsCursorLoader_contacts">Kontakter</string>
     <string name="ContactsCursorLoader_groups">Grupper</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
@@ -240,7 +244,7 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">Ny</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">Samtaler</string>
+    <string name="ContactsCursorLoader__chats">Chats</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">Beskeder</string>
 
@@ -369,9 +373,9 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Nyt! Udtryk dig med klistermærker</string>
 
     <string name="ConversationActivity_cancel">Annuller</string>
-    <string name="ConversationActivity_delete_conversation">Delete chat?</string>
+    <string name="ConversationActivity_delete_conversation">Slet chat?</string>
     <string name="ConversationActivity_delete_and_leave_group">Slet og forlad gruppe?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">This chat will be deleted from all of your devices.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Chatten vil blive slettet fra alle dine enheder.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Du forlader gruppen, og den vil blive slettet fra alle dine enheder.</string>
     <string name="ConversationActivity_delete">Slet</string>
     <string name="ConversationActivity_delete_and_leave">Slet og forlad</string>
@@ -452,7 +456,7 @@
     <string name="ConversationFragment_delete_on_this_device">Slet på denne enhed</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Slet overalt</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Denne besked slettes for alle i chatten, hvis de har den seneste version af Signal. De kan se at du har slettet en besked.</string>
     <string name="ConversationFragment_quoted_message_not_found">Oprindelig besked blev ikke fundet</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Oprindelig besked er ikke længere tilgængelig</string>
     <string name="ConversationFragment_failed_to_open_message">Fejl ved åbning af besked</string>
@@ -460,7 +464,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan swipe til venstre på enhver besked, for at svare hurtigt</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Udgående mediebeskeder, der kun vises én gang, bliver automatisk fjernet, når de er sendt</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Du har allerede set denne besked</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat.\nIf your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan tilføje dine egne noter i denne chat. Hvis din konto har forbundne enheder, vil noterne blive synkroniseret.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d gruppemedlemmer har samme navn.</string>
     <string name="ConversationFragment__tap_to_review">Tryk for at gennemgå</string>
     <string name="ConversationFragment__review_requests_carefully">Gennemgå anmodninger omhyggeligt</string>
@@ -483,31 +487,31 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Blokering</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
-    <string name="ConversationFragment__update_build">Update Signal</string>
+    <string name="ConversationFragment__update_build">Opdater Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">Genregistrering af signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Ryd filter</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Ingen ulæste chats</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="one">Slet valgt chat?</item>
+        <item quantity="other">Slet valgte chats?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="one">Dette sletter den valgte chat permanent.</item>
+        <item quantity="other">Dette sletter de %1$d valgte chats permanent.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Sletter</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Sletter valgte chats…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Chat archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="one">Chat arkiveret</item>
+        <item quantity="other">%1$d chats arkiveret</item>
     </plurals>
     <string name="ConversationListFragment_undo">Fortryd</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="one">Chat flyttet til indbakke</item>
+        <item quantity="other">%1$d chats flyttet til indbakke</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Læst</item>
@@ -542,7 +546,7 @@
     <string name="ConversationListItem_key_exchange_message">Nøgleudvekslingsbesked</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">Arkiverede chats (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">Verificeret</string>
@@ -612,7 +616,7 @@
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">Sikkerhedskopi har et filtypenavn, som ikke er understøttet.</string>
 
     <!-- BackupsPreferenceFragment -->
-    <string name="BackupsPreferenceFragment__chat_backups">Sikkerhedskopier af samtaler</string>
+    <string name="BackupsPreferenceFragment__chat_backups">Sikkerhedskopiér af chats</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Sikkerhedskopier krypteres med en adgangssætning og gemmes på din enhed.</string>
     <string name="BackupsPreferenceFragment__create_backup">Opret sikkerhedskopi</string>
     <string name="BackupsPreferenceFragment__last_backup">Seneste sikkerhedskopi: %1$s</string>
@@ -697,8 +701,8 @@
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Sletter planlagte beskeder…</string>
 
     <!-- DecryptionFailedDialog -->
-    <string name="DecryptionFailedDialog_chat_session_refreshed">Samtalesession genopfrisket</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal bruger end-to-end kryptering, og det kan undertiden være nødvendigt at genopfriske din samtalesession. Dette påvirker ikke din samtales sikkerhed, men du har muligvis gået glip af en besked fra denne kontakt, og du kan bede dem om at sende det igen.</string>
+    <string name="DecryptionFailedDialog_chat_session_refreshed">Chatsession genindlæst</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal bruger E2E-kryptering, og det kan undertiden være nødvendigt at genopfriske din chatsession. Dette påvirker ikke din chats sikkerhed, men du har muligvis gået glip af en besked fra denne kontakt, og du kan bede vedkommende om at sende den igen.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Frakobl \"%1$s\"?</string>
@@ -946,14 +950,14 @@
     <string name="ManageGroupActivity_legacy_group_upgrade">Dette er en forældet gruppe. For adgang til nye funktioner som @omtaler og administrator,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">Denne forældede gruppe er for stor til at kunne opgraderes til en Ny gruppe. Den maksimale størrelse på grupper er %1$d</string>
     <string name="ManageGroupActivity_upgrade_this_group">opgrader denne gruppe.</string>
-    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikker MMS-gruppe. Inviter dine kontakter til Signal for at skrive og tale privat.</string>
+    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikker mms-gruppe. Inviter dine kontakter til Signal for at skrive og tale privat.</string>
     <string name="ManageGroupActivity_invite_now">Inviter nu</string>
     <string name="ManageGroupActivity_more">mere</string>
     <string name="ManageGroupActivity_add_group_description">Tilføj gruppebeskrivelse …</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Underret mig ved omtaler</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vil du modtage notifikationer, når du bliver tagget i ignorerede samtaler?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vil du modtage notifikationer, når du bliver tagget i ignorerede chats?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Underret mig altid</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Underret mig ikke</string>
 
@@ -1264,7 +1268,7 @@
     <string name="MessageRecord_disappearing_message_time_set_to_s">Udløbstiden for forsvindende beskeder er indstillet til %1$s.</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">Gruppen blev opdateret til en ny gruppe.</string>
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunne ikke føjes til den nye gruppe og er blevet inviteret til at deltage.</string>
-    <string name="MessageRecord_chat_session_refreshed">Samtalesession genopfrisket</string>
+    <string name="MessageRecord_chat_session_refreshed">Chatsession genindlæst</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
         <item quantity="one">Et medlem kunne ikke tilføjes den nye gruppe og er blevet inviteret til at deltage.</item>
         <item quantity="other">%1$s medlemmer kunne ikke tilføjes den nye gruppe og er blevet inviteret til at deltage.</item>
@@ -1446,7 +1450,7 @@
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Din meddelelseshistorik med %1$s og vedkommendes nummer %2$s er slået sammen.</string>
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Din meddelelseshistorik med %1$s og en anden chat, der tilhørte vedkommende, er slået sammen.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Din beskedhistorik med %1$s og en anden chat, der tilhørte vedkommende, er slået sammen.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
     <string name="MessageRecord_s_belongs_to_s">%1$s tilhører %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
@@ -1504,10 +1508,10 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Vil du give %1$s tilladelse til at sende dig beskeder? Du vil ingen beskeder modtage før blokeringen fjernes.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Få opdateringer og nyheder fra %1$s? Du vil ikke modtage opdateringer, før du ophæver din blokering.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Vil du fortsætte chatten med gruppen og dele dit navn og billede med dens medlemmer?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Opgrader gruppen for adgang til nye funktioner, som @omtaler og administrator. Medlemmer som ikke har delt deres navn eller billede i gruppen, vil blive inviteret til at deltage</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Denne forældede gruppe kan ikke bruges længere, da den er for stor. Den maksimale størrelse på grupper er %1$d</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsæt chatten med %1$s, og del dit navn og billede?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Tilmeld dig gruppen og del dit navn og billede med dens medlemmer? De ved ikke, at du har set deres beskeder, før du accepterer.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Tilmeld dig gruppen og del dit navn og billede med dens medlemmer? Du vil ikke se deres beskeder, før du accepterer.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bliv medlem af gruppen? De ved ikke at du har set deres beskeder, før du accepterer</string>
@@ -1828,7 +1832,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Du har forsøgt at registrere dette nummer for mange gange. Prøv igen om %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Ikke muligt at få forbindelse til service. Tjek venligst din netværksforbindelse og prøv igen.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">Kunne ikke anmode om verificeringskoden. Tjek din netværksforbindelse, og prøv igen.</string>
     <string name="RegistrationActivity_non_standard_number_format">Ikke-standardiseret nummerformat</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Det nummer du har indtastet (%1$s) ser ud til at være et ikke-standardiseret format.\n\nMente du %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefonnummerformat</string>
@@ -1956,7 +1960,8 @@
     <string name="StickerPackPreviewActivity_untitled">Ingen titel</string>
     <string name="StickerPackPreviewActivity_unknown">Ukendt</string>
     <string name="StickerPackPreviewActivity_install">Installér</string>
-    <string name="StickerPackPreviewActivity_remove">Fjern</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">Klistermærker</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Fejl ved hentning af klistermærker</string>
 
@@ -2024,7 +2029,7 @@
     <string name="ThreadRecord_voice_message">Talebesked</string>
     <string name="ThreadRecord_file">Fil</string>
     <string name="ThreadRecord_video">Video</string>
-    <string name="ThreadRecord_chat_session_refreshed">Samtalesession genopfrisket</string>
+    <string name="ThreadRecord_chat_session_refreshed">Chatsession genindlæst</string>
     <!-- Displayed in the notification when the user is sent a gift -->
     <string name="ThreadRecord__s_donated_for_you">%1$s donerede for dig</string>
     <!-- Displayed in the notification when the user sends a gift -->
@@ -2154,7 +2159,19 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Læs mere</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye beskeder i %2$d chats</string>
     <string name="MessageNotifier_most_recent_from_s">Seneste fra: %1$s</string>
     <string name="MessageNotifier_locked_message">Låst besked</string>
     <string name="MessageNotifier_message_delivery_failed">Levering af besked mislykkedes.</string>
@@ -2198,7 +2215,7 @@
     <string name="NotificationChannel_locked_status">Låsestatus</string>
     <string name="NotificationChannel_app_updates">App-opdateringer</string>
     <string name="NotificationChannel_other">Andet</string>
-    <string name="NotificationChannel_group_chats">Samtaler</string>
+    <string name="NotificationChannel_group_chats">Chats</string>
     <string name="NotificationChannel_missing_display_name">Ukendt</string>
     <string name="NotificationChannel_voice_notes">Stemmenoter</string>
     <string name="NotificationChannel_contact_joined_signal">Kontakt bruger nu Signal</string>
@@ -2224,7 +2241,7 @@
     <string name="SearchToolbar_search">Søg</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Søg i ulæste chats</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Søg efter chats, kontakter og beskeder</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Luk</string>
@@ -2254,9 +2271,9 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Enhed ikke længere registreret</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Denne enhed er ikke længere registreret. Det skyldes sandsynligvis, at du har registreret dit telefonnummer på Signal med en anden enhed.</string>
     <!-- Action in reminder banner that will take user to re-register -->
-    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
+    <string name="UnauthorizedReminder_reregister_action">Registrér enheden igen</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">Du er blevet logget ud af Signal på denne enhed.</string>
@@ -2444,20 +2461,20 @@
 
     <!-- ConversationParentFragment -->
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth permission denied</string>
+    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth-tilladelse nægtet</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Aktivér \"Enheder i nærheden\" for at bruge bluetooth til at optage talebeskeder.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Open settings</string>
+    <string name="ConversationParentFragment__open_settings">Åbn indstillinger</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Not now</string>
+    <string name="ConversationParentFragment__not_now">Ikke nu</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll til bunden</string>
 
     <!-- BubbleOptOutTooltip -->
     <!-- Message to inform the user of what Android chat bubbles are -->
-    <string name="BubbleOptOutTooltip__description">Bobler er en Android-funktion, som du kan slå fra for Signal-samtaler.</string>
+    <string name="BubbleOptOutTooltip__description">Bobler er en Android-funktion, som du kan slå fra for Signal-chats.</string>
     <!-- Button to dismiss the tooltip for opting out of using Android bubbles -->
     <string name="BubbleOptOutTooltip__not_now">Ikke nu</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
@@ -2575,7 +2592,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">Se hele chatten</string>
     <string name="load_more_header__loading">Henter</string>
 
     <!-- media_overview_activity -->
@@ -2624,7 +2641,7 @@
     <string name="EditAboutFragment_encrypted">Krypteret</string>
     <string name="EditAboutFragment_be_kind">Vær venlig</string>
     <string name="EditAboutFragment_coffee_lover">Kaffeelsker</string>
-    <string name="EditAboutFragment_free_to_chat">Ledig til samtale</string>
+    <string name="EditAboutFragment_free_to_chat">Klar til en chat</string>
     <string name="EditAboutFragment_taking_a_break">Tager en pause</string>
     <string name="EditAboutFragment_working_on_something_new">Arbejder på noget nyt</string>
 
@@ -2697,7 +2714,7 @@
     <string name="AndroidManifest__message_details">Beskeddetaljer</string>
     <string name="AndroidManifest__linked_devices">Forbundne enheder</string>
     <string name="AndroidManifest__invite_friends">Inviter venner</string>
-    <string name="AndroidManifest_archived_conversations">Archived chats</string>
+    <string name="AndroidManifest_archived_conversations">Arkiverede chats</string>
     <string name="AndroidManifest_remove_photo">Fjern billede</string>
 
     <!-- HelpFragment -->
@@ -2791,9 +2808,9 @@
     <string name="preferences__pref_use_address_book_photos">Brug billeder fra adressebog</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis kontaktbilleder fra din adressebog, hvis de er tilgængelige.</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Lad ignorerede samtaler forblive arkiverede</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Lad ignorerede chats forblive arkiverede</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Ignorerede samtaler, der er arkiveret, forbliver arkiveret, når der kommer en ny besked.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Ignorerede chats, der er arkiveret, forbliver arkiverede, når der kommer en ny besked.</string>
     <string name="preferences__generate_link_previews">Generér forhåndsvisninger af links</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent forhåndsvisninger direkte fra websteder for links, du sender i beskeder.</string>
     <string name="preferences__change_passphrase">Skift adgangssætning</string>
@@ -2854,7 +2871,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Betalingslås</string>
     <string name="preferences__payments_beta">Betalinger (Beta)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">Grænse for chatlængde</string>
     <string name="preferences__keep_messages">Bevar beskeder</string>
     <string name="preferences__clear_message_history">Ryd meddelelseshistorik</string>
     <string name="preferences__linked_devices">Forbundne enheder</string>
@@ -2862,7 +2879,7 @@
     <string name="preferences__dark_theme">Mørkt</string>
     <string name="preferences__appearance">Udseende</string>
     <string name="preferences__theme">Tema</string>
-    <string name="preferences__chat_color_and_wallpaper">Samtalefarve &amp; baggrund</string>
+    <string name="preferences__chat_color_and_wallpaper">Chatfarve og baggrund</string>
     <string name="preferences__disable_pin">Deaktiver pinkode</string>
     <string name="preferences__enable_pin">Aktiver pinkode</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer pinkoden mister du alle data, når du omregistrerer Signal. Medmindre du sikkerhedskopierer og gendanner manuelt. Du kan ikke aktivere registreringslås, mens pinkoden er deaktiveret.</string>
@@ -2898,7 +2915,11 @@
     <string name="preferences_storage__delete_older_messages">Slet ældre beskeder?</string>
     <string name="preferences_storage__clear_message_history">Ryd meddelelseshistorik?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette sletter permanent al meddelelseshistorik og alle medier, der er ældre end %1$s.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dette sletter permanent al beskedhistorik og alle medier fra din enhed.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Er du sikker på, du vil slette al meddelelseshistorik?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Al beskedhistorik fjernes permanent. Handlingen kan ikke fortrydes</string>
@@ -2916,14 +2937,14 @@
     <string name="preferences_app_protection__who_can">Hvem kan…</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Betalinger</string>
-    <string name="preferences_chats__chats">Samtaler</string>
+    <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_data_and_storage__manage_storage">Administrer lagerplads</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Brug færre data til opkald</string>
     <string name="preferences_data_and_storage__never">Aldrig</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi og mobildata</string>
     <string name="preferences_data_and_storage__mobile_data_only">Kun mobildata</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Brug af færre data kan forbedre opkald på dårlige netværk</string>
-    <string name="preferences_notifications__in_chat_sounds">Samtalelyde</string>
+    <string name="preferences_notifications__in_chat_sounds">Chatlyde</string>
     <string name="preferences_notifications__show">Vis</string>
     <string name="preferences_notifications__ringtone">Ringetone</string>
     <string name="preferences_chats__message_text_size">Skriftstørrelse på beskeder</string>
@@ -3239,8 +3260,9 @@
     <string name="conversation_list_settings_shortcut">Genvej til indstillinger</string>
     <string name="conversation_list_search_description">Søg</string>
     <string name="conversation_list__pinned">Fastgjort</string>
-    <string name="conversation_list__chats">Samtaler</string>
-    <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan kun fastgøre op til %1$d samtaler</string>
+    <string name="conversation_list__chats">Chats</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
+    <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan kun fastgøre op til %1$d chats</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Kontaktbillede</string>
@@ -3248,9 +3270,9 @@
 
 
     <!-- conversation_list_fragment -->
-    <string name="conversation_list_fragment__fab_content_description">New chat</string>
+    <string name="conversation_list_fragment__fab_content_description">Ny chat</string>
     <string name="conversation_list_fragment__open_camera_description">Åbn kamera</string>
-    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Der er ingen samtaler endnu.\nKom i gang ved at sende en besked til en ven.</string>
+    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Der er ingen chats endnu.\nKom i gang ved at sende en besked til en ven.</string>
 
 
     <!-- conversation_secure_verified -->
@@ -3265,7 +3287,7 @@
     <string name="conversation__menu_group_settings">Gruppeindstillinger</string>
     <string name="conversation__menu_leave_group">Forlad gruppe</string>
     <string name="conversation__menu_view_all_media">Alle mediefiler</string>
-    <string name="conversation__menu_conversation_settings">Chat settings</string>
+    <string name="conversation__menu_conversation_settings">Chatindstillinger</string>
     <string name="conversation__menu_add_shortcut">Føj til startskærm</string>
     <string name="conversation__menu_create_bubble">Opret boble</string>
 
@@ -3288,6 +3310,7 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Modtagerliste</string>
     <string name="conversation_group_options__delivery">Levering</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">Chat</string>
     <string name="conversation_group_options__broadcast">Transmission</string>
 
@@ -3338,11 +3361,13 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Indblik</string>
     <string name="InsightsDashboardFragment__title">Indblik</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol beskyttede automatisk %1$d %% af dine sendte beskeder de seneste %2$d dage. Chats mellem Signal-brugere er altid E2\"-krypterede.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Spred budskabet</string>
     <string name="InsightsDashboardFragment__not_enough_data">Ikke tilstrækkeligt data</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procentværdien for dit indblik er beregnet ud fra antallet af sendte beskeder, der de seneste %1$d dage ikke er udløbet eller blevet slettet.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
+    <string name="InsightsDashboardFragment__start_a_conversation">Start en chat</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Begynd at kommunikere sikkert og aktivér nye funktioner, der ikke har samme begrænsninger som ukrypterede SMS-beskeder, ved at invitere flere kontakter til at bruge Signal.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Disse statistikker blev genereret lokalt på din enhed og kan kun ses af dig. De bliver aldrig sendt nogen steder hen.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">Krypterede beskeder</string>
@@ -3488,7 +3513,7 @@
     <string name="registration_activity__transfer_or_restore_account">Overfør eller gendan konto</string>
     <string name="registration_activity__transfer_account">Overfør konto</string>
     <string name="registration_activity__skip">Spring over</string>
-    <string name="preferences_chats__chat_backups">Sikkerhedskopier af samtaler</string>
+    <string name="preferences_chats__chat_backups">Sikkerhedskopier af chats</string>
     <string name="preferences_chats__transfer_account">Overfør konto</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Overfør konto til en ny Android-enhed</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Indtast adgangssætning til sikkerhedskopi</string>
@@ -3586,21 +3611,21 @@
     <string name="Recipient_unknown">Ukendt</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">Genregistrering af konto</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Update Signal</string>
+    <string name="preferences_account_update_signal">Opdater Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <string name="preferences_account_delete_all_data">Slet alle data</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">Slet alle data?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Dette vil nulstille applikationen ved at slette alle beskeder. Appen lukkes, når denne proces er afsluttet.</string>
     <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Fortsæt</string>
     <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Annuller</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">Kunne ikke slette data</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Overfør eller gendan konto</string>
@@ -3880,21 +3905,21 @@
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">Det kunne ikke sendes til nogle brugere</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan kun dele med op til %1$d samtaler</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan kun dele med op til %1$d chats</string>
 
     <!-- ChatWallpaperActivity -->
 
     <!-- ChatWallpaperFragment -->
-    <string name="ChatWallpaperFragment__chat_color">Samtalefarve</string>
-    <string name="ChatWallpaperFragment__reset_chat_colors">Nulstil samtalefarver</string>
-    <string name="ChatWallpaperFragment__reset_chat_color">Nulstil samtalefarve</string>
-    <string name="ChatWallpaperFragment__reset_chat_color_question">Nulstil samtalefarve?</string>
+    <string name="ChatWallpaperFragment__chat_color">Chatfarve</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">Nulstil chatfarver</string>
+    <string name="ChatWallpaperFragment__reset_chat_color">Nulstil chatfarve</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">Nulstil chatfarve?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">Indstil baggrund</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Mørkt tema dæmper baggrund</string>
     <string name="ChatWallpaperFragment__contact_name">Kontaktnavn</string>
     <string name="ChatWallpaperFragment__reset">Nulstil</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Forhåndsvisning af baggrund</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vil du tilsidesætte alle samtalefarver?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vil du tilsidesætte alle chatfarver?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Vil du tilsidesætte alle baggrunde?</string>
     <string name="ChatWallpaperFragment__reset_default_colors">Nulstil standardfarver</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Nulstil alle farver</string>
@@ -3912,7 +3937,7 @@
     <string name="ChatWallpaperPreviewActivity__preview">Forhåndsvisning</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">Indstil baggrund</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Stryg for at få vist flere baggrunde</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Indstil baggrund for alle samtaler.</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Indstil baggrund for alle chats</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Indstil baggrund for %1$s</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">For at kunne se dit galleri kræves lagertilladelse.</string>
 
@@ -3920,7 +3945,7 @@
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Klem for at zoome, træk for at justere.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Indstil baggrund for alle samtaler.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Indstil baggrund for alle chats.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_s">Indstil baggrund for %1$s.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">Fejl ved opsætning af baggrund.</string>
     <string name="WallpaperCropActivity__blur_photo">Slør billede</string>
@@ -4045,7 +4070,7 @@
     <string name="GroupsInCommonMessageRequest__about_message_requests">Ang. beskedanmodninger</string>
     <string name="GroupsInCommonMessageRequest__okay">Okay</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Her er et smugkig på samtalefarven.</string>
+    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Her er et smugkig på chatfarven.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Farven er kun synlig for dig.</string>
 
     <!-- GroupDescriptionDialog -->
@@ -4219,8 +4244,8 @@
     <string name="PrivacySettingsFragment__app_security">App-sikkerhed</string>
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloker muligheden for skærmbilleder i oversigten over senest anvendte apps og i Signal-appen</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-beskeder og opkald, videresend altid opkald og forseglet afsender.</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardudløbstid for nye samtaler</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Indstil en udløbstid for forsvindende beskeder, der skal gælde som standard for alle nye samtaler startet af dig.</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardudløbstid for nye chats</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Indstil en udløbstid for forsvindende beskeder, der skal gælde som standard for alle nye chats startet af dig.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Bed Android om at kræve skærmlås eller fingeraftryk for at overføre penge</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -4238,8 +4263,8 @@
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis et ikon i beskedoplysninger, når de blev leveret ved hjælp af forseglet afsender.</string>
 
     <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Når aktiveret vil sendte og modtagne beskeder, i nye samtaler du starter, forsvinde efter at de er blevet set.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Når aktiveret vil sendte og modtagne beskeder, i nye samtaler du starter, forsvinde efter at de er blevet set.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Når aktiveret vil sendte og modtagne beskeder i nye chats, du starter, forsvinde efter at de er blevet set.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Når aktiveret vil sendte og modtagne beskeder i nye chats, du starter, forsvinde efter at de er blevet set.</string>
     <string name="ExpireTimerSettingsFragment__off">Fra</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 uger</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 uge</string>
@@ -4265,7 +4290,7 @@
     <string name="HelpSettingsFragment__debug_log">Fejlsøgningslog</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Vilkår &amp; privatlivspolitik</string>
     <string name="HelpFragment__copyright_signal_messenger">Ophavsret Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">Licenseret under GPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Mediekvalitet</string>
@@ -4278,16 +4303,16 @@
     <!-- ChatColorSelectionFragment -->
     <string name="ChatColorSelectionFragment__auto">Auto</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">Brug tilpassede farver</string>
-    <string name="ChatColorSelectionFragment__chat_color">Samtalefarve</string>
+    <string name="ChatColorSelectionFragment__chat_color">Chatfarve</string>
     <string name="ChatColorSelectionFragment__edit">Redigér</string>
     <string name="ChatColorSelectionFragment__duplicate">Duplikér</string>
     <string name="ChatColorSelectionFragment__delete">Slet</string>
     <string name="ChatColorSelectionFragment__delete_color">Slet farve</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
         <item quantity="one">Denne tilpassede farve bruges i %1$d chat. Vil du slette det for alle chats?</item>
-        <item quantity="other">Denne tilpassede farve bruges i %1$d samtaler. Vil du slette den for alle samtaler?</item>
+        <item quantity="other">Denne tilpassede farve bruges i %1$d chats. Vil du slette den for alle chats?</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">Slet samtalefarve?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">Slet chatfarve?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">Solid</string>
@@ -4300,7 +4325,7 @@
     <string name="CustomChatColorCreatorFragmentPage__edit_color">Rediger farve</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
         <item quantity="one">Denne farve bruges i %1$d chat. Vil du gemme ændringer for alle chats?</item>
-        <item quantity="other">Denne farve bruges i %1$d samtaler. Vil du gemme ændringer for alle samtaler?</item>
+        <item quantity="other">Denne farve bruges i %1$d chats. Vil du gemme ændringer for alle chats?</item>
     </plurals>
 
     <!-- ChatColorGradientTool -->
@@ -4362,7 +4387,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Appen Kontakter blev ikke fundet</string>
     <string name="ConversationSettingsFragment__start_video_call">Start videoopkald</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Start voice call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Start stemmeopkald</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Historie</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4396,8 +4421,9 @@
     <string name="ConversationSettingsFragment__group_link">Gruppelink</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Tilføj som en kontakt</string>
     <string name="ConversationSettingsFragment__unmute">Slå notifikationer til</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat ignoreres indtil %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat ignoreret for evigt</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Kopierede telefonnummer til udklipsholder.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
     <string name="ConversationSettingsFragment__get_badges">Få badges til din profil ved at støtte Signal. Tryk på et badge for at få mere at vide.</string>
@@ -4437,7 +4463,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">Besked</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Voice call</string>
+    <string name="NewConversationActivity__audio_call">Taleopkald</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Videoopkald</string>
     <!-- Context menu item remove -->
@@ -4660,22 +4686,22 @@
     <string name="MySupportPreference__please_contact_support">Kontakt venligst support.</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__title">Update Signal</string>
+    <string name="UpdateSignalExpiredDialog__title">Opdater Signal</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">Denne version af Signal er udløbet. Opdatér nu for at fortsætte med at bruge Signal.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
-    <string name="UpdateSignalExpiredDialog__update_action">Update</string>
+    <string name="UpdateSignalExpiredDialog__update_action">Opdatér</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
-    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel</string>
+    <string name="UpdateSignalExpiredDialog__cancel_action">Annuller</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">Enheden er ikke registreret</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">Denne enhed er ikke længere registreret. Genregistrer for at fortsætte med at bruge Signal på denne enhed.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">Re-register</string>
+    <string name="ReregisterSignalDialog__reregister_action">Genregistrering</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
-    <string name="ReregisterSignalDialog__cancel_action">Cancel</string>
+    <string name="ReregisterSignalDialog__cancel_action">Annuller</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost-badge udløbet</string>
@@ -4919,7 +4945,7 @@
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
     <string name="NotificationProfileCreated__done">Udført</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Du kan manuelt slå din profil til eller fra via menuen på samtalelisten.</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Du kan manuelt slå din profil til eller fra via menuen på chatlisten.</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
     <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Tilføj en tidsplan i indstillinger for at automatisere din profil.</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
@@ -4976,7 +5002,7 @@
     <!-- region "Stories Tab" -->
 
     <!-- Label for Chats tab in home app screen -->
-    <string name="ConversationListTabs__chats">Samtaler</string>
+    <string name="ConversationListTabs__chats">Chats</string>
     <!-- Label for Calls tab in home app screen -->
     <string name="ConversationListTabs__calls">Opkald</string>
     <!-- Label for Stories tab in home app screen -->
@@ -5000,7 +5026,7 @@
     <!-- Context menu option to share a story -->
     <string name="StoriesLandingItem__share">Del…</string>
     <!-- Context menu option to go to story chat -->
-    <string name="StoriesLandingItem__go_to_chat">Gå til samtale</string>
+    <string name="StoriesLandingItem__go_to_chat">Gå til chat</string>
     <!-- Context menu option to go to story info -->
     <string name="StoriesLandingItem__info">Information</string>
     <!-- Label when a story is pending sending -->
@@ -5147,7 +5173,7 @@
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-forbindelser er personer, som du har valgt at have tillid til, enten ved:</string>
     <!-- Signal connections sheet bullet point 1 -->
-    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a chat</string>
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starter en chat</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Acceptere en beskedanmodning</string>
     <!-- Signal connections sheet bullet point 3 -->
@@ -5771,7 +5797,7 @@
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
     <string name="GroupStoryEducationSheet__anyone_in_the_group">Alle i gruppechatten kan føje noget til historien.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">Alle gruppechatmedlemmer kan se historiesvar.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">Alle medlemmer i gruppechatten kan se historiesvar.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Næste</string>
     <string name="Registration_country_code_entry_hint">+0</string>
@@ -5875,7 +5901,7 @@
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">Tilbage til opkald</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Voice call</string>
+    <string name="CallContextMenu__audio_call">Taleopkald</string>
     <!-- Displayed as a context menu item to go to chat -->
     <string name="CallContextMenu__go_to_chat">Gå til chat</string>
     <!-- Displayed as a context menu item to see call info -->
@@ -5903,8 +5929,8 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">Slet</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="one">Slet %1$d opkald?</item>
+        <item quantity="other">Slet %1$d opkald?</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">Slet for mig</string>
@@ -6002,38 +6028,38 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">Opkaldsoplysninger</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
-    <string name="CallLinkDetailsFragment__add_call_name">Add call name</string>
+    <string name="CallLinkDetailsFragment__add_call_name">Tilføj opkaldsnavn</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Approve all members</string>
+    <string name="CallLinkDetailsFragment__approve_all_members">Godkend alle medlemmer</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
-    <string name="CallLinkDetailsFragment__share_link">Share link</string>
+    <string name="CallLinkDetailsFragment__share_link">Del link</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">Slet opkaldslink</string>
 
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">Del</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">Farve</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">Del kun din QR-kode og dit link med personer, du stoler på. Når de deles, kan andre se dit brugernavn og starte en chat med dig.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Brugernavn kopieret</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">Link kopieret</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">Nulstil</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">Færdig</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">Kode</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Scan QR-koden på din kontakts enhed.</string>
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Farve</string>
 
     <!-- EOF -->
 </resources>

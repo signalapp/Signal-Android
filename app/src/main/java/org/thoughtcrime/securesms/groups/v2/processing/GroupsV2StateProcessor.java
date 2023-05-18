@@ -107,9 +107,15 @@ public class GroupsV2StateProcessor {
   }
 
   public StateProcessorForGroup forGroup(@NonNull ServiceIds serviceIds, @NonNull GroupMasterKey groupMasterKey) {
-    ProfileAndMessageHelper profileAndMessageHelper = new ProfileAndMessageHelper(context, serviceIds.getAci(), groupMasterKey, GroupId.v2(groupMasterKey), recipientTable);
+    return forGroup(serviceIds, groupMasterKey, null);
+  }
 
-    return new StateProcessorForGroup(serviceIds, context, groupDatabase, groupsV2Api, groupsV2Authorization, groupMasterKey, profileAndMessageHelper);
+  public StateProcessorForGroup forGroup(@NonNull ServiceIds serviceIds, @NonNull GroupMasterKey groupMasterKey, @Nullable GroupSecretParams groupSecretParams) {
+    if (groupSecretParams == null) {
+      return new StateProcessorForGroup(serviceIds, context, groupDatabase, groupsV2Api, groupsV2Authorization, groupMasterKey, recipientTable);
+    } else {
+      return new StateProcessorForGroup(serviceIds, context, groupDatabase, groupsV2Api, groupsV2Authorization, groupMasterKey, groupSecretParams, recipientTable);
+    }
   }
 
   public enum GroupState {
@@ -133,7 +139,7 @@ public class GroupsV2StateProcessor {
       this.latestServer = latestServer;
     }
 
-    public GroupState getGroupState() {
+    public @NonNull GroupState getGroupState() {
       return groupState;
     }
 
@@ -153,6 +159,37 @@ public class GroupsV2StateProcessor {
     private final GroupSecretParams       groupSecretParams;
     private final ProfileAndMessageHelper profileAndMessageHelper;
 
+    private StateProcessorForGroup(@NonNull ServiceIds serviceIds,
+                                              @NonNull Context context,
+                                              @NonNull GroupTable groupDatabase,
+                                              @NonNull GroupsV2Api groupsV2Api,
+                                              @NonNull GroupsV2Authorization groupsV2Authorization,
+                                              @NonNull GroupMasterKey groupMasterKey,
+                                              @NonNull RecipientTable recipientTable)
+    {
+      this(serviceIds, context, groupDatabase, groupsV2Api, groupsV2Authorization, groupMasterKey, GroupSecretParams.deriveFromMasterKey(groupMasterKey), recipientTable);
+    }
+
+    private StateProcessorForGroup(@NonNull ServiceIds serviceIds,
+                                              @NonNull Context context,
+                                              @NonNull GroupTable groupDatabase,
+                                              @NonNull GroupsV2Api groupsV2Api,
+                                              @NonNull GroupsV2Authorization groupsV2Authorization,
+                                              @NonNull GroupMasterKey groupMasterKey,
+                                              @NonNull GroupSecretParams groupSecretParams,
+                                              @NonNull RecipientTable recipientTable)
+    {
+      this.serviceIds              = serviceIds;
+      this.context                 = context;
+      this.groupDatabase           = groupDatabase;
+      this.groupsV2Api             = groupsV2Api;
+      this.groupsV2Authorization   = groupsV2Authorization;
+      this.masterKey               = groupMasterKey;
+      this.groupSecretParams       = groupSecretParams;
+      this.groupId                 = GroupId.v2(groupSecretParams.getPublicParams().getGroupIdentifier());
+      this.profileAndMessageHelper = new ProfileAndMessageHelper(context, serviceIds.getAci(), groupMasterKey, groupId, recipientTable);
+    }
+
     @VisibleForTesting StateProcessorForGroup(@NonNull ServiceIds serviceIds,
                                               @NonNull Context context,
                                               @NonNull GroupTable groupDatabase,
@@ -167,8 +204,8 @@ public class GroupsV2StateProcessor {
       this.groupsV2Api             = groupsV2Api;
       this.groupsV2Authorization   = groupsV2Authorization;
       this.masterKey               = groupMasterKey;
-      this.groupId                 = GroupId.v2(masterKey);
       this.groupSecretParams       = GroupSecretParams.deriveFromMasterKey(groupMasterKey);
+      this.groupId                 = GroupId.v2(groupSecretParams.getPublicParams().getGroupIdentifier());
       this.profileAndMessageHelper = profileAndMessageHelper;
     }
 
@@ -229,13 +266,27 @@ public class GroupsV2StateProcessor {
                                                         @Nullable DecryptedGroupChange signedGroupChange)
         throws IOException, GroupNotAMemberException
     {
-      if (localIsAtLeast(revision)) {
+      return updateLocalGroupToRevision(revision, timestamp, groupDatabase.getGroup(groupId), signedGroupChange);
+    }
+
+    /**
+     * Using network where required, will attempt to bring the local copy of the group up to the revision specified.
+     *
+     * @param revision use {@link #LATEST} to get latest.
+     */
+    @WorkerThread
+    public GroupUpdateResult updateLocalGroupToRevision(final int revision,
+                                                        final long timestamp,
+                                                        @NonNull Optional<GroupRecord> localRecord,
+                                                        @Nullable DecryptedGroupChange signedGroupChange)
+        throws IOException, GroupNotAMemberException
+    {
+      if (localIsAtLeast(localRecord, revision)) {
         return new GroupUpdateResult(GroupState.GROUP_CONSISTENT_OR_AHEAD, null);
       }
 
       GlobalGroupState inputGroupState = null;
 
-      Optional<GroupRecord> localRecord = groupDatabase.getGroup(groupId);
       DecryptedGroup        localState  = localRecord.map(g -> g.requireV2GroupProperties().getDecryptedGroup()).orElse(null);
 
       if (signedGroupChange != null &&
@@ -540,11 +591,11 @@ public class GroupsV2StateProcessor {
     /**
      * @return true iff group exists locally and is at least the specified revision.
      */
-    private boolean localIsAtLeast(int revision) {
-      if (groupDatabase.isUnknownGroup(groupId) || revision == LATEST) {
+    private boolean localIsAtLeast(Optional<GroupRecord> localRecord, int revision) {
+      if (revision == LATEST || localRecord.isEmpty() || groupDatabase.isUnknownGroup(localRecord)) {
         return false;
       }
-      int dbRevision = groupDatabase.getGroup(groupId).get().requireV2GroupProperties().getGroupRevision();
+      int dbRevision = localRecord.get().requireV2GroupProperties().getGroupRevision();
       return revision <= dbRevision;
     }
 

@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
 object FcmFetchManager {
 
   private val TAG = Log.tag(FcmFetchManager::class.java)
-
+  private const val MAX_BLOCKING_TIME_MS = 500L
   private val EXECUTOR = SerialMonoLifoExecutor(SignalExecutors.UNBOUNDED)
 
   @Volatile
@@ -48,7 +48,7 @@ object FcmFetchManager {
       try {
         if (foreground) {
           Log.i(TAG, "Starting in the foreground.")
-          ForegroundServiceUtil.startWhenCapableOrThrow(context, Intent(context, FcmFetchForegroundService::class.java))
+          ForegroundServiceUtil.startWhenCapableOrThrow(context, Intent(context, FcmFetchForegroundService::class.java), MAX_BLOCKING_TIME_MS)
           startedForeground = true
         } else {
           Log.i(TAG, "Starting in the background.")
@@ -72,6 +72,13 @@ object FcmFetchManager {
     return true
   }
 
+  @JvmStatic
+  fun isForegroundStarted(): Boolean {
+    synchronized(this) {
+      return startedForeground
+    }
+  }
+
   private fun fetch(context: Context) {
     retrieveMessages(context)
 
@@ -93,6 +100,25 @@ object FcmFetchManager {
         }
       }
     }
+  }
+
+  @JvmStatic
+  fun tryLegacyFallback(context: Context) {
+    synchronized(this) {
+      if (startedForeground) {
+        val performedReplace = EXECUTOR.enqueue { fetch(context) }
+
+        if (performedReplace) {
+          Log.i(TAG, "Legacy fallback: already have one running and one enqueued. Ignoring.")
+        } else {
+          activeCount++
+          Log.i(TAG, "Legacy fallback: Incrementing active count to $activeCount")
+        }
+        return
+      }
+    }
+    Log.i(TAG, "No foreground running, performing legacy fallback")
+    retrieveMessages(context)
   }
 
   @JvmStatic

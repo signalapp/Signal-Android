@@ -88,8 +88,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   private fun getMigrationJob(): JobSpec? {
     return jobs
       .filter { it.queueKey == Job.Parameters.MIGRATION_QUEUE_KEY }
-      .filter { firstInQueue(it) }
-      .firstOrNull()
+      .firstOrNull { firstInQueue(it) }
   }
 
   private fun firstInQueue(job: JobSpec): Boolean {

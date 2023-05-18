@@ -17,6 +17,7 @@ class ConversationRecipientRepository(threadId: Long) {
       .flatMapObservable { Recipient.observable(it) }
       .subscribeOn(Schedulers.io())
       .observeOn(Schedulers.io())
+      .distinctUntilChanged { previous, next -> previous === next || previous.hasSameContent(next) }
       .replay(1)
       .refCount()
       .observeOn(Schedulers.io())

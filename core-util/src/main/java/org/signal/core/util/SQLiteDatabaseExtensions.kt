@@ -369,7 +369,7 @@ class InsertBuilderPart2(
   private val tableName: String,
   private val values: ContentValues
 ) {
-  fun run(conflictStrategy: Int = SQLiteDatabase.CONFLICT_NONE): Long {
+  fun run(conflictStrategy: Int = SQLiteDatabase.CONFLICT_IGNORE): Long {
     return db.insert(tableName, conflictStrategy, values)
   }
 }

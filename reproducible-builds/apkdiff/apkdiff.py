@@ -12,6 +12,8 @@ class ApkDiff:
         "META-INF/CERTIFIC.RSA",
         "META-INF/TEXTSECU.RSA",
         "META-INF/TEXTSECU.SF",
+        # Dynamically-generated file for AOT compilation. Doesn't affect app code.
+        "assets/dexopt/baseline.profm"
     ]
 
     def compare(self, firstApk, secondApk):

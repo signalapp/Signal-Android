@@ -183,7 +183,11 @@
     <string name="CameraContacts_recent_contacts">Recente contactpersonen</string>
     <string name="CameraContacts_signal_contacts">Signal-gebruikers</string>
     <string name="CameraContacts_signal_groups">Signal-groepen</string>
-    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %1$d chats.</string>
+    <!-- A warning shown in a toast when  -->
+    <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
+        <item quantity="one">You can share with a maximum of %1$d chat.</item>
+        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+    </plurals>
     <string name="CameraContacts_select_signal_recipients">Selecteer Signal-ontvangers</string>
     <string name="CameraContacts_no_signal_contacts">Geen Signal-gebruikers</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Je kunt de cameraknop alleen gebruiken om foto\'s te verzenden aan Signal-gebruikers. </string>
@@ -227,7 +231,7 @@
     <!-- ConfirmIdentityDialog -->
 
     <!-- ContactsCursorLoader -->
-    <string name="ContactsCursorLoader_recent_chats">Recente gesprekken</string>
+    <string name="ContactsCursorLoader_recent_chats">Recente chat</string>
     <string name="ContactsCursorLoader_contacts">Contacten</string>
     <string name="ContactsCursorLoader_groups">Groepen</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
@@ -240,7 +244,7 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">Nieuw</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">Gesprekken</string>
+    <string name="ContactsCursorLoader__chats">Chats</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">Berichten</string>
 
@@ -369,9 +373,9 @@
     <string name="ConversationActivity_new_say_it_with_stickers">Nieuw: zeg het met stickers</string>
 
     <string name="ConversationActivity_cancel">Annuleren</string>
-    <string name="ConversationActivity_delete_conversation">Delete chat?</string>
+    <string name="ConversationActivity_delete_conversation">Chat verwijderen?</string>
     <string name="ConversationActivity_delete_and_leave_group">Groep verwijderen en verlaten?</string>
-    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">This chat will be deleted from all of your devices.</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Deze chat zal op al je eigen apparaten worden verwijderd.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Je zult deze groep verlaten en het gesprek zal op al je eigen apparaten worden verwijderd.</string>
     <string name="ConversationActivity_delete">Wissen</string>
     <string name="ConversationActivity_delete_and_leave">Verwijderen en verlaten</string>
@@ -452,7 +456,7 @@
     <string name="ConversationFragment_delete_on_this_device">Wissen van dit apparaat</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Overal wissen</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Dit bericht wordt verwijderd voor iedereen in de chat als ze een recente versie van Signal gebruiken. Ze kunnen zien dat je een bericht hebt verwijderd.</string>
     <string name="ConversationFragment_quoted_message_not_found">Oorspronkelijk bericht niet gevonden</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Het oorspronkelijke bericht is niet langer beschikbaar</string>
     <string name="ConversationFragment_failed_to_open_message">Openen van bericht is mislukt</string>
@@ -460,7 +464,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Je kunt elk bericht naar links vegen om snel een reactie te schijven</string>
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Uitgaande eenmaligeweergave-media worden onmiddellijk gewist zodra ze zijn verzonden</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit bericht al bekeken</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this chat.\nIf your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in deze chat notities voor jezelf achterlaten. Voeg teksten toe en lees ze terug vanaf al je gekoppelde apparaten. Alle nieuwe notities worden gesynchroniseerd met de apparaten die gekoppeld zijn met je account.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam.</string>
     <string name="ConversationFragment__tap_to_review">Tik hier om ze te vergelijken</string>
     <string name="ConversationFragment__review_requests_carefully">Overweeg dit gespreksverzoek zorgvuldig:</string>
@@ -483,31 +487,31 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Geblokkeerd</string>
     <!-- Action shown to allow a user to update their application because it has expired -->
-    <string name="ConversationFragment__update_build">Update Signal</string>
+    <string name="ConversationFragment__update_build">Signal bijwerken</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
-    <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <string name="ConversationFragment__reregister_signal">Signal opnieuw registreren</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Filter verwijderen</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Geen ongelezen chats</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected chat?</item>
-        <item quantity="other">Delete selected chats?</item>
+        <item quantity="one">Geselecteerde chat verwijderen?</item>
+        <item quantity="other">Geselecteerde chats verwijderen?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected chat.</item>
-        <item quantity="other">This will permanently delete all %1$d selected chats.</item>
+        <item quantity="one">Hiermee wordt de geselecteerde chat permanent verwijderd.</item>
+        <item quantity="other">Hiermee worden de geselecteerde chats permanent verwijderd.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Aan het wissen</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected chats…</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Geselecteerde chats verwijderen…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Chat archived</item>
-        <item quantity="other">%1$d chats archived</item>
+        <item quantity="one">Chat gearchiveerd</item>
+        <item quantity="other">%1$d chats gearchiveerd</item>
     </plurals>
     <string name="ConversationListFragment_undo">Ongedaan maken</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved chat to inbox</item>
-        <item quantity="other">Moved %1$d chats to inbox</item>
+        <item quantity="one">Chat verplaatst naar inbox</item>
+        <item quantity="other">%1$d chats verplaatst naar inbox</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Gelezen</item>
@@ -542,7 +546,7 @@
     <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht</string>
 
     <!-- ConversationListItemAction -->
-    <string name="ConversationListItemAction_archived_conversations_d">Archived chats (%1$d)</string>
+    <string name="ConversationListItemAction_archived_conversations_d">Gearchiveerde chats (%1$d)</string>
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">Geverifieerd</string>
@@ -697,8 +701,8 @@
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Gepland bericht verwijderen…</string>
 
     <!-- DecryptionFailedDialog -->
-    <string name="DecryptionFailedDialog_chat_session_refreshed">Gesprekssessie vernieuwd</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Het kan soms nodig zijn om je gesprekssessie te vernieuwen. Dit heeft geen invloed op de beveiliging van je gesprek, maar het is mogelijk dat je een bericht van je contactpersoon hebt gemist. Vraag je contactpersoon eventueel om zijn of haar meest recente berichten opnieuw te zenden.</string>
+    <string name="DecryptionFailedDialog_chat_session_refreshed">Chatsessie vernieuwd</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Het kan soms nodig zijn om je chatsessie te vernieuwen. Dit heeft geen invloed op de beveiliging van je chat, maar het is mogelijk dat je een bericht van je contactpersoon hebt gemist. Vraag je contactpersoon eventueel om zijn of haar meest recente berichten opnieuw te zenden.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">‘%1$s’ ontkoppelen?</string>
@@ -953,7 +957,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meldingen bij naamsvermeldingen</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Wil je toch meldingen ontvangen als iemand je naam in een gedempt gesprek vermeldt?</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Wil je toch meldingen ontvangen als iemand je naam in een gedempt chat vermeldt?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Geef me altijd een melding</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Geen meldingen als gedempt</string>
 
@@ -1186,7 +1190,7 @@
     <string name="Megaphones_new_group">Nieuwe-stijl groep</string>
     <string name="Megaphones_invite_friends">Kennissen uitnodigen</string>
     <string name="Megaphones_use_sms">Sms gebruiken</string>
-    <string name="Megaphones_chat_colors">Gesprekskleur</string>
+    <string name="Megaphones_chat_colors">Chatkleur</string>
     <string name="Megaphones_add_a_profile_photo">Voeg een profielfoto toe</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
@@ -1264,7 +1268,7 @@
     <string name="MessageRecord_disappearing_message_time_set_to_s">De tijdsspanne voor verlopende berichten is op %1$s ingesteld.</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">Deze groep is omgezet in een nieuwe-stijl groep.</string>
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Je kon niet toegevoegd worden aan de nieuwe groep en je hebt daarom een uitnodiging gekregen om opnieuw lid te worden.</string>
-    <string name="MessageRecord_chat_session_refreshed">Gesprekssessie vernieuwd</string>
+    <string name="MessageRecord_chat_session_refreshed">Chatsessie vernieuwd</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
         <item quantity="one">Een lid kan niet worden toegevoegd aan de nieuwe groep en is uitgenodigd om lid te worden.</item>
         <item quantity="other">%1$s leden konden niet worden toegevoegd aan de nieuwe groep en zijn uitgenodigd om lid te worden.</item>
@@ -1504,10 +1508,10 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Wil je berichten van %1$s ontvangen? Totdat je diegene hebt gedeblokkeerd, zul je geen berichten ontvangen.</string>
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Wil je updates en nieuws van %1$s ontvangen? Je zult geen berichten ontvangen totdat je diegene hebt gedeblokkeerd.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your chat with this group and share your name and photo with its members?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wil je je profielnaam, -foto en -omschrijving voor deze groep zichtbaar maken om je chat met de groep voort te kunnen zetten?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Zet deze groep om om nieuwe functionaliteiten te kunnen gebruiken zoals @vermeldingen en beheerders. Groepsleden die hun profielnaam, -foto en -omschrijving niet voor deze groep zichtbaar hebben gemaakt, zullen worden uitgenodigd om tot deze groep toe te treden.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Deze verouderde groep kan niet langer gebruikt worden omdat hij teveel leden heeft. Het maximum ledenaantal voor een groep is %1$d.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continue your chat with %1$s and share your name and photo with them?</string>
+    <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Doorgaan met deze chat met %1$s en je naam en foto met hen delen?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Als je leesbevestigingen hebt ingeschakeld kunnen de leden van deze groep die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Je kunt hun berichten nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Je bent door iemand met wie je eerder een gesprek hebt gehad of met wie je in dezelfde groep zat toegevoegd aan deze groep. Wil je lid blijven van deze groep? Als je leesbevestigingen hebt ingeschakeld kunnen de leden van deze groep die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
@@ -1828,7 +1832,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Je hebt te vaak geprobeerd dit nummer te registreren. Probeer het opnieuw over %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Het lukt niet om te verbinden met Signals servers. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Unable to request a verification code. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">Kan geen verificatiecode aanvragen. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
     <string name="RegistrationActivity_non_standard_number_format">Afwijkend telefoonnummerformaat</string>
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Het door jou ingevulde telefoonnummer (%1$s) heeft een afwijkend formaat.\n\nBedoelde je %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefoonnummerformaat</string>
@@ -1956,7 +1960,8 @@
     <string name="StickerPackPreviewActivity_untitled">Zonder titel</string>
     <string name="StickerPackPreviewActivity_unknown">Onbekend</string>
     <string name="StickerPackPreviewActivity_install">Stickerpakket installeren</string>
-    <string name="StickerPackPreviewActivity_remove">Verwijderen</string>
+    <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
+    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
     <string name="StickerPackPreviewActivity_stickers">Stickerpakket</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Laden van stickerpakket mislukt</string>
 
@@ -2024,7 +2029,7 @@
     <string name="ThreadRecord_voice_message">Audiobericht</string>
     <string name="ThreadRecord_file">Bestand</string>
     <string name="ThreadRecord_video">Video</string>
-    <string name="ThreadRecord_chat_session_refreshed">Gespreks­sessie vernieuwd</string>
+    <string name="ThreadRecord_chat_session_refreshed">Chatsessie vernieuwd</string>
     <!-- Displayed in the notification when the user is sent a gift -->
     <string name="ThreadRecord__s_donated_for_you">%1$s heeft namens jou gedoneerd</string>
     <!-- Displayed in the notification when the user sends a gift -->
@@ -2154,7 +2159,19 @@
     <string name="MediaPreviewFragment_read_more_overflow_text">Meer lezen</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
+    <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
+    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Text shown in a system notification that is used to summary how many messages you received. -->
+    <plurals name="MessageNotifier_d_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
+    <plurals name="MessageNotifier_d_chats">
+        <item quantity="one">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d chats</string>
     <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
     <string name="MessageNotifier_locked_message">Nieuw bericht, ontgrendel Signal om het weer te geven</string>
     <string name="MessageNotifier_message_delivery_failed">Berichtaflevering mislukt.</string>
@@ -2198,7 +2215,7 @@
     <string name="NotificationChannel_locked_status">Vergrendelingstoestand</string>
     <string name="NotificationChannel_app_updates">Nieuwe versies van de app</string>
     <string name="NotificationChannel_other">Anders</string>
-    <string name="NotificationChannel_group_chats">Gesprekken</string>
+    <string name="NotificationChannel_group_chats">Chats</string>
     <string name="NotificationChannel_missing_display_name">Onbekend</string>
     <string name="NotificationChannel_voice_notes">Audioberichten</string>
     <string name="NotificationChannel_contact_joined_signal">Nieuw persoon bereikbaar via Signal</string>
@@ -2224,7 +2241,7 @@
     <string name="SearchToolbar_search">Zoeken</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Zoek ongelezen chats</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for chats, contacts, and messages</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Zoeken naar chats, contacten en berichten</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Sluiten</string>
@@ -2254,9 +2271,9 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Apparaat niet langer geregistreerd</string>
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This device is no longer registered. This is likely because you registered your phone number with Signal on a different device.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit apparaat is niet meer geregistreerd. Dit komt waarschijnlijk omdat je je telefoonnummer bij Signal op een ander apparaat hebt geregistreerd.</string>
     <!-- Action in reminder banner that will take user to re-register -->
-    <string name="UnauthorizedReminder_reregister_action">Re-register device</string>
+    <string name="UnauthorizedReminder_reregister_action">Registreer het apparaat opnieuw</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">Je bent uitgelogd bij Signal op dit apparaat.</string>
@@ -2444,20 +2461,20 @@
 
     <!-- ConversationParentFragment -->
     <!-- Title for dialog warning about lacking bluetooth permissions during a voice message -->
-    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth permission denied</string>
+    <string name="ConversationParentFragment__bluetooth_permission_denied">Bluetooth-machtiging is nog niet gegeven</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a voice message and references the permission needed by name -->
-    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Please enable the \"Nearby devices\" permission to use bluetooth to record voice messages.</string>
+    <string name="ConversationParentFragment__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">Schakel de machtiging Apparaten in de buurt in om bluetooth te gebruiken om spraakberichten op te nemen.</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="ConversationParentFragment__open_settings">Open settings</string>
+    <string name="ConversationParentFragment__open_settings">Instellingen openen</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
-    <string name="ConversationParentFragment__not_now">Not now</string>
+    <string name="ConversationParentFragment__not_now">Niet nu</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll naar bodem</string>
 
     <!-- BubbleOptOutTooltip -->
     <!-- Message to inform the user of what Android chat bubbles are -->
-    <string name="BubbleOptOutTooltip__description">Bubbels zijn een Android functionaliteit die je voor elk Signal-gesprek afzonderlijk kunt in- of uitschakelen.</string>
+    <string name="BubbleOptOutTooltip__description">Bubbels zijn een Android functionaliteit die je voor elke Signal-chat afzonderlijk kunt in- of uitschakelen.</string>
     <!-- Button to dismiss the tooltip for opting out of using Android bubbles -->
     <string name="BubbleOptOutTooltip__not_now">Niet nu</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
@@ -2575,7 +2592,7 @@
 
 
     <!-- load_more_header -->
-    <string name="load_more_header__see_full_conversation">See full chat</string>
+    <string name="load_more_header__see_full_conversation">Zie volledige chat</string>
     <string name="load_more_header__loading">Aan het laden</string>
 
     <!-- media_overview_activity -->
@@ -2697,7 +2714,7 @@
     <string name="AndroidManifest__message_details">Bericht­details</string>
     <string name="AndroidManifest__linked_devices">Gekoppelde apparaten</string>
     <string name="AndroidManifest__invite_friends">Kennissen uitnodigen</string>
-    <string name="AndroidManifest_archived_conversations">Archived chats</string>
+    <string name="AndroidManifest_archived_conversations">Gearchiveerde chats</string>
     <string name="AndroidManifest_remove_photo">Foto verwijderen</string>
 
     <!-- HelpFragment -->
@@ -2791,9 +2808,9 @@
     <string name="preferences__pref_use_address_book_photos">Profielfoto uit systeemcontactenlijst gebruiken</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar de profielfoto uit je eigen systeemcontactenlijst weer, in plaats van de profielfoto welke anderen voor henzelf hebben ingesteld.</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Gedempte gesprekken gearchiveerd houden</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Gedempte chats gearchiveerd houden</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Gedempte gesprekken die zijn gearchiveerd, blijven gearchiveerd als er een nieuw bericht binnenkomt.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Gedempte chats die zijn gearchiveerd, blijven gearchiveerd als er een nieuw bericht binnenkomt.</string>
     <string name="preferences__generate_link_previews">Voorbeeld van website meesturen</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Door dit in te schakelen wordt voor elke link naar een website die je verzendt een voorbeeldafbeelding gegenereerd en met je bericht meegestuurd. Een nadeel is wel dat als je dit inschakelt websites zouden kunnen detecteren dat je hen in je bericht vermeldt en ook welke pagina je vermeldt.</string>
     <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
@@ -2854,7 +2871,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Betalingsslot</string>
     <string name="preferences__payments_beta">Overschrijvingen (Bèta)</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">Limiet voor chatlengte</string>
     <string name="preferences__keep_messages">Bewaartermijn voor berichten</string>
     <string name="preferences__clear_message_history">Alle gespreksgeschiedenis wissen</string>
     <string name="preferences__linked_devices">Gekoppelde apparaten</string>
@@ -2862,7 +2879,7 @@
     <string name="preferences__dark_theme">Donker</string>
     <string name="preferences__appearance">Uiterlijk</string>
     <string name="preferences__theme">Thema</string>
-    <string name="preferences__chat_color_and_wallpaper">Gesprekskleur &amp; -achtergrond</string>
+    <string name="preferences__chat_color_and_wallpaper">Chatkleur &amp; -achtergrond</string>
     <string name="preferences__disable_pin">Pincode uitschakelen</string>
     <string name="preferences__enable_pin">Pincode inschakelen</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-upbestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
@@ -2898,7 +2915,11 @@
     <string name="preferences_storage__delete_older_messages">Oude berichten verwijderen?</string>
     <string name="preferences_storage__clear_message_history">Berichtengeschiedenis wissen?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit zal alle gespreksgeschiedenis en media ouder dan %1$s permanent van dit apparaat verwijderen.</string>
-    <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all chats to the %1$s most recent messages.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dit zal al je gespreksgeschiedenis en media van dit apparaat permanent verwijderen.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Weet je zeker dat je alle gespreksgeschiedenis wilt verwijderen?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle gespreksgeschiedenis zal permanent worden verwijderd. Dit kan niet ongedaan worden gemaakt.</string>
@@ -2916,14 +2937,14 @@
     <string name="preferences_app_protection__who_can">Wie mogen …</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Overschrijvingen</string>
-    <string name="preferences_chats__chats">Gesprekken</string>
+    <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_data_and_storage__manage_storage">Opslag beheren</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Minder dataoverdracht bij oproepen</string>
     <string name="preferences_data_and_storage__never">Nooit</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Bij zowel wifi als mobiele-dataoverdracht</string>
     <string name="preferences_data_and_storage__mobile_data_only">Alleen bij mobiele-dataoverdracht</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Wanneer je een slechte verbinding hebt kan het instellen van minder dataoverdracht de kwaliteit van een oproep verbeteren</string>
-    <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopend gesprek</string>
+    <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopend chat</string>
     <string name="preferences_notifications__show">Laat zien</string>
     <string name="preferences_notifications__ringtone">Oproepgeluid</string>
     <string name="preferences_chats__message_text_size">Tekstgrootte voor berichten</string>
@@ -3239,8 +3260,9 @@
     <string name="conversation_list_settings_shortcut">Snelkoppeling naar instellingen</string>
     <string name="conversation_list_search_description">Zoeken</string>
     <string name="conversation_list__pinned">Vastgeprikt</string>
-    <string name="conversation_list__chats">Gesprekken</string>
-    <string name="conversation_list__you_can_only_pin_up_to_d_chats">Je kunt niet meer dan %1$d gesprekken vastprikken</string>
+    <string name="conversation_list__chats">Chats</string>
+    <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
+    <string name="conversation_list__you_can_only_pin_up_to_d_chats">Je kunt niet meer dan %1$d chats vastprikken</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Afbeelding van contactpersoon</string>
@@ -3248,9 +3270,9 @@
 
 
     <!-- conversation_list_fragment -->
-    <string name="conversation_list_fragment__fab_content_description">New chat</string>
+    <string name="conversation_list_fragment__fab_content_description">Nieuwe chat</string>
     <string name="conversation_list_fragment__open_camera_description">Camera openen</string>
-    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Nog geen gesprekken.\nBegin door een vriend of kennis een bericht te zenden.</string>
+    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Nog geen chats.\nBegin door een vriend of kennis een bericht te zenden.</string>
 
 
     <!-- conversation_secure_verified -->
@@ -3265,7 +3287,7 @@
     <string name="conversation__menu_group_settings">Groepsgesprek-instellingen</string>
     <string name="conversation__menu_leave_group">Groep verlaten</string>
     <string name="conversation__menu_view_all_media">Alle media</string>
-    <string name="conversation__menu_conversation_settings">Chat settings</string>
+    <string name="conversation__menu_conversation_settings">Chatinstellingen</string>
     <string name="conversation__menu_add_shortcut">Aan thuisscherm toevoegen</string>
     <string name="conversation__menu_create_bubble">Bubbel aanmaken</string>
 
@@ -3288,7 +3310,8 @@
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">Lijst met ontvangers</string>
     <string name="conversation_group_options__delivery">Verzending</string>
-    <string name="conversation_group_options__conversation">Chat</string>
+    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
+    <string name="conversation_group_options__conversation">Chatten</string>
     <string name="conversation_group_options__broadcast">Uitzenden</string>
 
     <!-- text_secure_normal -->
@@ -3338,11 +3361,13 @@
     <string name="Insights__percent">%</string>
     <string name="Insights__title">Inzichten</string>
     <string name="InsightsDashboardFragment__title">Inzichten</string>
-    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Chats between Signal users are always end-to-end encrypted.</string>
+    <!-- Body text for a page describing how many signal messages you\'ve sent. The first placeholder represents the number of signal messages sent, and the second placeholder represents how many days have passed. -->
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol beschermde automatisch %1$d%% van je uitgaande berichten in de afgelopen %2$d dagen. Chats tussen Signal-gebruikers zijn altijd end-to-end versleuteld.</string>
     <string name="InsightsDashboardFragment__spread_the_word">Zeg het voort</string>
     <string name="InsightsDashboardFragment__not_enough_data">Niet genoeg gegevens om een inzicht te geven</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Je inzichten-percentage wordt berekend op basis van berichten die niet zijn verlopen en niet handmatig zijn gewist en die je in de afgelopen %1$d dagen hebt verzonden.</string>
-    <string name="InsightsDashboardFragment__start_a_conversation">Start a chat</string>
+    <!-- Label for a button that, when pressed, will begin a chat with a person whose name is showed on the screen. -->
+    <string name="InsightsDashboardFragment__start_a_conversation">Een chat beginnen</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Communiceer voortaan beveiligd en maak gebruik van functionaliteiten die bij onversleutelde sms-berichten niet mogelijk zijn, door meer van je contactpersonen uit te nodigen om Signal te gebruiken.</string>
     <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Deze statistiek is lokaal gegenereerd op jouw apparaat en kan alleen door jou gezien worden. Ze wordt nooit geüpload.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">Versleutelde berichten</string>
@@ -3586,21 +3611,21 @@
     <string name="Recipient_unknown">Onbekend</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">Account opnieuw registreren</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Update Signal</string>
+    <string name="preferences_account_update_signal">Signal bijwerken</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <string name="preferences_account_delete_all_data">Alle gegevens wissen</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">Alle gegevens wissen?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Hiermee wordt de app gereset en worden alle berichten verwijderd. De app wordt gesloten nadat dit proces is voltooid.</string>
     <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Doorgaan</string>
     <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Annuleren</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
-    <string name="preferences_account_delete_all_data_failed">Failed to delete data</string>
+    <string name="preferences_account_delete_all_data_failed">Kan gegevens niet verwijderen</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Signalgegevens herstellen of overzetten</string>
@@ -3880,21 +3905,21 @@
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">Het verzenden is naar sommige personen mislukt</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Je kunt dit niet naar meer dan %1$d gesprekken tegelijk delen</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Je kunt dit niet naar meer dan %1$d chats tegelijk delen</string>
 
     <!-- ChatWallpaperActivity -->
 
     <!-- ChatWallpaperFragment -->
-    <string name="ChatWallpaperFragment__chat_color">Gesprekskleur kiezen</string>
-    <string name="ChatWallpaperFragment__reset_chat_colors">Kleurinstellingen verwijderen</string>
-    <string name="ChatWallpaperFragment__reset_chat_color">Kleurinstelling verwijderen</string>
-    <string name="ChatWallpaperFragment__reset_chat_color_question">Kleurinstelling verwijderen?</string>
+    <string name="ChatWallpaperFragment__chat_color">Chatkleur</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">Chatkleuren verwijderen</string>
+    <string name="ChatWallpaperFragment__reset_chat_color">Chatkleur verwijderen</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">Chatkleur verwijderen?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">Gespreksachtergrond kiezen</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Achtergrond dimmen bij donkere modus</string>
     <string name="ChatWallpaperFragment__contact_name">Naam van contactpersoon</string>
     <string name="ChatWallpaperFragment__reset">Voor dit gesprek verwijderen</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Achtergrond-voorbeeld</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Wil je alleen de standaardkleur verwijderen of wil je de kleurinstellingen van alle gesprekken verwijderen?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Wil je alleen de standaardkleur verwijderen of wil je alle chatkleuren verwijderen?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Wil je alleen de standaardachtergrond verwijderen of wil je alle achtergronden van alle gesprekken verwijderen?</string>
     <string name="ChatWallpaperFragment__reset_default_colors">Standaardkleur verwijderen</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Alle kleurinstellingen verwijderen</string>
@@ -3912,7 +3937,7 @@
     <string name="ChatWallpaperPreviewActivity__preview">Voorbeeld</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">Gespreksachtergrond kiezen</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Veeg om meer achtergronden weer te geven.</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Je staat op het punt om deze standaard achtergrond in te stellen voor al je gesprekken.</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Achtergrond instellen voor alle chats</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Deze standaard achtergrond instellen voor %1$s.</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Om je galerij te bekijken is toestemming nodig om de opslag te gebruiken.</string>
 
@@ -3920,7 +3945,7 @@
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Knijp met twee vingers om te vergroten of te draaien, sleep met één vinger om te verschuiven.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Je staat op het punt om deze zelf gemaakte achtergrond in te stellen voor al je gesprekken.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Achtergrond instellen voor alle chats.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_s">Deze zelf gemaakte achtergrond instellen voor %1$s.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">Het instellen van een achtergrond is mislukt.</string>
     <string name="WallpaperCropActivity__blur_photo">Afbeelding vervagen</string>
@@ -4041,11 +4066,11 @@
 
     <!-- GroupsInCommonMessageRequest -->
     <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Je hebt geen gemeenschappelijke groep met deze persoon. Overweeg zorgvuldig of je dit gespreksverzoek wilt accepteren om ongewenste berichten te vermijden.</string>
-    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Er zijn geen leden met wie je al een gesprek voert in deze groep. Overweeg zorgvuldig of je deze groepsuitnodiging wilt accepteren om ongewenste berichten te vermijden.</string>
+    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Er zijn geen leden met wie je al een chat voert in deze groep. Overweeg zorgvuldig of je deze groepsuitnodiging wilt accepteren om ongewenste berichten te vermijden.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">Over gespreksverzoeken</string>
     <string name="GroupsInCommonMessageRequest__okay">Oké</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Hier zie je een voorbeeld van de gesprekskleur.</string>
+    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Hier zie je een voorbeeld van de chatkleur.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">De kleur is alleen voor jou zichtbaar.</string>
 
     <!-- GroupDescriptionDialog -->
@@ -4219,8 +4244,8 @@
     <string name="PrivacySettingsFragment__app_security">App-beveiliging</string>
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Screenshots in de lijst van recent geopende apps en in de app blokkeren</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle omroepen omleiden en verzegelde afzender</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor toekomstige gesprekken</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat berichten in alle toekomstige gesprekken die jij zelf begint een bepaalde tijd nadat ze gezien zijn voor zowel jou als je gesprekspartner vanzelf worden gewist.</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor toekomstige chats</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat berichten in alle toekomstige chats die jij zelf begint een bepaalde tijd nadat ze gezien zijn voor zowel jou als je chatpartner vanzelf worden gewist.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Vraag om een Android-schermvergrendeling of vingerafdruk om geld over te maken.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
@@ -4238,8 +4263,8 @@
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>
 
     <!-- ExpireTimerSettingsFragment -->
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Hiermee stel je voor alle toekomstige gesprekken die jij zelf begint in dat berichten voor iedereen worden gewist nadat de ingestelde tijdspanne is verlopen. De tijdspanne begint voor iedere persoon individueel pas te lopen vanaf het moment dat hij of zij het bericht heeft gezien. — Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
-    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Nieuwe berichten in dit gesprek zullen voor iedereen worden gewist nadat de ingestelde tijdspanne is verlopen. De tijdspanne begint voor iedere persoon individueel pas te lopen vanaf het moment dat hij of zij het bericht heeft gezien. — Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Indien ingeschakeld, zullen nieuwe berichten die zijn verstuurd en ontvangen in nieuwe chats die door jou zijn gestart, verdwijnen nadat ze zijn gezien.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Indien ingeschakeld, zullen nieuwe berichten die in deze chat zijn verstuurd en ontvangen, verdwijnen nadat ze zijn gezien.</string>
     <string name="ExpireTimerSettingsFragment__off">Uit</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 weken</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
@@ -4265,7 +4290,7 @@
     <string name="HelpSettingsFragment__debug_log">Foutopsporingslog</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Gebruiksvoorwaarden &amp; privacybeleid</string>
     <string name="HelpFragment__copyright_signal_messenger">Auteursrecht Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_gplv3">Uitgegeven onder een GPLv3 licentie</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Mediakwaliteit</string>
@@ -4278,16 +4303,16 @@
     <!-- ChatColorSelectionFragment -->
     <string name="ChatColorSelectionFragment__auto">Auto</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">Zelfgekozen kleur gebruiken</string>
-    <string name="ChatColorSelectionFragment__chat_color">Gesprekskleur</string>
+    <string name="ChatColorSelectionFragment__chat_color">Chatkleur</string>
     <string name="ChatColorSelectionFragment__edit">Aanpassen</string>
     <string name="ChatColorSelectionFragment__duplicate">Kopie maken</string>
     <string name="ChatColorSelectionFragment__delete">Wissen</string>
     <string name="ChatColorSelectionFragment__delete_color">Kleur wissen</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">Deze zelfgekozen kleur wordt nog in %1$d gesprek gebruikt. Wil je het voor alle gesprekken wissen?</item>
-        <item quantity="other">Deze zelfgekozen kleur wordt nog in %1$d gesprekken gebruikt. Wil je het voor alle gesprekken wissen?</item>
+        <item quantity="one">Deze zelfgekozen kleur wordt nog in %1$d chat gebruikt. Wil je het voor alle chats wissen?</item>
+        <item quantity="other">Deze zelfgekozen kleur wordt nog in %1$d chats gebruikt. Wil je het voor alle chats wissen?</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">Gesprekskleur wissen?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">Chatkleur wissen?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">Effen</string>
@@ -4299,8 +4324,8 @@
     <string name="CustomChatColorCreatorFragmentPage__save">Opslaan</string>
     <string name="CustomChatColorCreatorFragmentPage__edit_color">Kleur aanpassen</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-        <item quantity="one">Deze kleur wordt in %1$d gesprek gebruikt. Wil je de wijziging ook op dat gesprek toepassen?</item>
-        <item quantity="other">Deze kleur wordt in %1$d gesprekken gebruikt. Wil je de wijziging ook op die gesprekken toepassen?</item>
+        <item quantity="one">Deze kleur wordt in %1$d chat gebruikt. Wil je de wijziging ook op dat chat toepassen?</item>
+        <item quantity="other">Deze kleur wordt in %1$d chats gebruikt. Wil je de wijziging ook op die chats toepassen?</item>
     </plurals>
 
     <!-- ChatColorGradientTool -->
@@ -4362,7 +4387,7 @@
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Contacten-app kon niet worden gevonden.</string>
     <string name="ConversationSettingsFragment__start_video_call">Video-oproep beginnen</string>
-    <string name="ConversationSettingsFragment__start_audio_call">Start voice call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Spraakgesprek beginnen?</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Verhaal</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4396,8 +4421,9 @@
     <string name="ConversationSettingsFragment__group_link">Groepslink</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Als contactpersoon toevoegen</string>
     <string name="ConversationSettingsFragment__unmute">Niet langer dempen</string>
-    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat muted until %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat muted forever</string>
+    <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat gedempt tot %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Chat voor altijd gedempt</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefoonnummer naar klembord gekopieerd.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefoonnummer</string>
     <string name="ConversationSettingsFragment__get_badges">Door Signal te ondersteunen verdien je badges om op je profiel weer te geven. Tik op een badge om er meer over te leren.</string>
@@ -4437,7 +4463,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">Berichten</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Voice call</string>
+    <string name="NewConversationActivity__audio_call">Audio-oproep</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Video-oproep</string>
     <!-- Context menu item remove -->
@@ -4660,22 +4686,22 @@
     <string name="MySupportPreference__please_contact_support">Neem contact op met de ondersteuning.</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__title">Update Signal</string>
+    <string name="UpdateSignalExpiredDialog__title">Signal bijwerken</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="UpdateSignalExpiredDialog__message">Deze versie van Signal is verlopen. Update nu om Signal te blijven gebruiken.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
-    <string name="UpdateSignalExpiredDialog__update_action">Update</string>
+    <string name="UpdateSignalExpiredDialog__update_action">Bijwerken</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
-    <string name="UpdateSignalExpiredDialog__cancel_action">Cancel</string>
+    <string name="UpdateSignalExpiredDialog__cancel_action">Annuleren</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">Device not registered</string>
+    <string name="ReregisterSignalDialog__title">Toestel niet geregistreerd</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">This device is no longer registered. Re-register to continue using Signal on this device.</string>
+    <string name="ReregisterSignalDialog__message">Dit apparaat is niet meer geregistreerd. Registreer je opnieuw om Signal op dit apparaat te blijven gebruiken.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">Re-register</string>
+    <string name="ReregisterSignalDialog__reregister_action">Opnieuw registreren.</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
-    <string name="ReregisterSignalDialog__cancel_action">Cancel</string>
+    <string name="ReregisterSignalDialog__cancel_action">Annuleren</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Je Boost-badge is verlopen</string>
@@ -4919,7 +4945,7 @@
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
     <string name="NotificationProfileCreated__done">Klaar</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Je kunt een meldingsprofiel handmatig in- en uitschakelen via het menu in de gesprekkenlijst.</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Je kunt een meldingsprofiel handmatig in- en uitschakelen via het menu in de chatlijst.</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
     <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Voeg eventueel een tijdsplanning toe aan dit meldingsprofiel om het automatisch op bepaalde momenten te activeren en te deactiveren.</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
@@ -4976,7 +5002,7 @@
     <!-- region "Stories Tab" -->
 
     <!-- Label for Chats tab in home app screen -->
-    <string name="ConversationListTabs__chats">Gesprekken</string>
+    <string name="ConversationListTabs__chats">Chats</string>
     <!-- Label for Calls tab in home app screen -->
     <string name="ConversationListTabs__calls">Oproepen</string>
     <!-- Label for Stories tab in home app screen -->
@@ -5000,7 +5026,7 @@
     <!-- Context menu option to share a story -->
     <string name="StoriesLandingItem__share">Delen …</string>
     <!-- Context menu option to go to story chat -->
-    <string name="StoriesLandingItem__go_to_chat">Gesprek openen</string>
+    <string name="StoriesLandingItem__go_to_chat">Chat openen</string>
     <!-- Context menu option to go to story info -->
     <string name="StoriesLandingItem__info">Bericht­details</string>
     <!-- Label when a story is pending sending -->
@@ -5147,7 +5173,7 @@
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-contacten zijn mensen die je vertrouwt, hetzij door:</string>
     <!-- Signal connections sheet bullet point 1 -->
-    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a chat</string>
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Een chat beginnen</string>
     <!-- Signal connections sheet bullet point 2 -->
     <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Een één-op-één-gespreksverzoek van hem of haar te accepteren</string>
     <!-- Signal connections sheet bullet point 3 -->
@@ -5631,7 +5657,7 @@
     <!-- The body text of an alert window that tells the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Van je chats wordt niet langer automatisch een back-up gemaakt.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
-    <string name="BackupSchedulePermissionMegaphone__back_up_chats">Maak chat back-ups</string>
+    <string name="BackupSchedulePermissionMegaphone__back_up_chats">Maak back-up van chats</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__not_now">Niet nu</string>
     <!-- Re-enable backup permission bottom sheet title -->
@@ -5875,9 +5901,9 @@
     <!-- Displayed as a context menu item to return to active call -->
     <string name="CallContextMenu__return_to_call">Naar oproep terugkeren</string>
     <!-- Displayed as a context menu item to start an audio call -->
-    <string name="CallContextMenu__audio_call">Voice call</string>
+    <string name="CallContextMenu__audio_call">Audio-oproep</string>
     <!-- Displayed as a context menu item to go to chat -->
-    <string name="CallContextMenu__go_to_chat">Gesprek openen</string>
+    <string name="CallContextMenu__go_to_chat">Chat openen</string>
     <!-- Displayed as a context menu item to see call info -->
     <string name="CallContextMenu__info">Berichtdetails</string>
     <!-- Displayed as a context menu item to select multiple calls -->
@@ -5903,8 +5929,8 @@
     <!-- Bottom bar option to delete all selected call entries -->
     <string name="CallLogFragment__delete">Wissen</string>
     <plurals name="CallLogFragment__delete_d_calls">
-        <item quantity="one">Delete %1$d call?</item>
-        <item quantity="other">Delete %1$d calls?</item>
+        <item quantity="one">%1$d oproep verwijderen?</item>
+        <item quantity="other">%1$d oproepen verwijderen?</item>
     </plurals>
     <!-- Positive action on multi-delete protection dialog -->
     <string name="CallLogFragment__delete_for_me">Voor mij wissen</string>
@@ -6002,38 +6028,38 @@
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
-    <string name="CallLinkDetailsFragment__call_details">Call details</string>
+    <string name="CallLinkDetailsFragment__call_details">Gegevens van oproep</string>
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
-    <string name="CallLinkDetailsFragment__add_call_name">Add call name</string>
+    <string name="CallLinkDetailsFragment__add_call_name">Oproepnaam toevoegen</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Approve all members</string>
+    <string name="CallLinkDetailsFragment__approve_all_members">Alle leden goedkeuren</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
-    <string name="CallLinkDetailsFragment__share_link">Share link</string>
+    <string name="CallLinkDetailsFragment__share_link">Groepslink delen</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
-    <string name="CallLinkDetailsFragment__delete_call_link">Delete call link</string>
+    <string name="CallLinkDetailsFragment__delete_call_link">Oproeplink verwijderen</string>
 
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">Naar gesprekken delen</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">Kleur</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">Deel je QR-code en link alleen met mensen die je vertrouwt. Wanneer gedeeld, kunnen anderen je gebruikersnaam zien en een chat met je starten.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Gebruikersnaam gekopieerd.</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">Link gekopieerd</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">Standaardinstelling herstellen</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">Klaar</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
     <string name="UsernameLinkSettings_code_tab_name">Code</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">Scannen</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Scan de QR-code op het apparaat van je chatpartner.</string>
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">Kleur</string>
 
     <!-- EOF -->
 </resources>
