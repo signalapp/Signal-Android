@@ -1,4 +1,4 @@
-# Signal Android 
+# Signal Android
 
 Signal is a simple, powerful, and secure messenger.
 
@@ -9,11 +9,13 @@ Currently available on the Play Store and [signal.org](https://signal.org/androi
 <a href='https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='80px'/></a>
 
 ## Contributing Bug reports
+
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
 
 https://github.com/signalapp/Signal-Android/issues
 
 ## Joining the Beta
+
 Want to live life on the bleeding edge and help out with testing?
 
 You can subscribe to Signal Android Beta releases here:
@@ -28,21 +30,25 @@ If you're new to the Signal codebase, we recommend going through our issues and 
 For larger changes and feature ideas, we ask that you propose it on the [unofficial Community Forum](https://community.signalusers.org) for a high-level discussion with the wider community before implementation.
 
 ## Contributing Ideas
+
 Have something you want to say about Signal projects or want to be part of the conversation? Get involved in the [community forum](https://community.signalusers.org).
 
-Help
-====
+# Help
+
 ## Support
+
 For troubleshooting and questions, please visit our support center!
 
 https://support.signal.org/
 
 ## Documentation
+
 Looking for documentation? Check out the wiki!
 
 https://github.com/signalapp/Signal-Android/wiki
 
 # Legal things
+
 ## Cryptography Notice
 
 This distribution includes cryptographic software. The country in which you currently reside may have restrictions on the import, possession, use, and/or re-export to another country, of encryption software.
@@ -54,8 +60,8 @@ The form and manner of this distribution makes it eligible for export under the 
 
 ## License
 
-Copyright 2013-2022 Signal
+Copyright 2013-2023 Signal
 
-Licensed under the GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
+Licensed under the GNU AGPLv3: https://www.gnu.org/licenses/agpl-3.0.html
 
 Google Play and the Google Play logo are trademarks of Google LLC.
