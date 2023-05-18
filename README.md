@@ -1,8 +1,8 @@
-# Signal-BA
+# Signal-LTS
 
 A fork Signal for Android.
 
-[Install](https://github.com/benarmstead/Signal-BA/releases/latest)
+[Install](https://github.com/benarmstead/Signal-LTS/releases/latest)
 
 ## Main differences to the official Signal app
 
@@ -18,7 +18,7 @@ All other differences:
 - Disables pin reminders by default
 - Turns on incognito keyboard by default
 
-Feel free to leave an [issue](https://github.com/benarmstead/Signal-BA/issues) if you have any feature requests.
+Feel free to leave an [issue](https://github.com/benarmstead/Signal-LTS/issues) if you have any feature requests.
 
 > Note: This fork is primarily developed for my own personal usage, features may or may not be added.
 

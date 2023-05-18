@@ -85,7 +85,7 @@ project(':contacts-app').projectDir = file('contacts/app')
 project(':qr').projectDir = file('qr/lib')
 project(':qr-app').projectDir = file('qr/app')
 
-rootProject.name='Signal'
+rootProject.name='Signal LTS'
 
 apply from: 'dependencies.gradle'
 include ':microbenchmark'
