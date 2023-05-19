@@ -22,7 +22,7 @@
     <string name="delete">Sil</string>
     <string name="please_wait">Zəhmət olmasa gözləyin…</string>
     <string name="save">Saxla</string>
-    <string name="note_to_self">Özümə qeyd</string>
+    <string name="note_to_self">Özüm üçün qeyd</string>
 
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
     <string name="app_icon_label_weather">Weather</string>
@@ -40,13 +40,13 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal yenilənir…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hələ ki, parol tənzimləmədiniz!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">Parol sıradan çıxarılsın?</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hələlik parol təyin etməmisiniz!</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">Parol qeyri-aktiv edilsin?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Bu, Signal-ın və mesaj bildirişlərinin kilidini birdəfəlik açacaq.</string>
-    <string name="ApplicationPreferencesActivity_disable">Sıradan çıxart</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal mesaj və zəngləri sıradan çıxarılsın?</string>
-    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Serverdən qeydiyyatı silərək Signal mesajlarını və zənglərini sıradan çıxardın. Gələcəkdə onları təkrar istifadə etmək üçün telefon nömrənizlə yenidən qeydiyyatdan keçməli olacaqsınız.</string>
-    <string name="ApplicationPreferencesActivity_error_connecting_to_server">Serverlə bağlantı qurma xətası!</string>
+    <string name="ApplicationPreferencesActivity_disable">Qeyri-aktiv et</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal mesajları və zəngləri qeyri-aktiv edilsin?</string>
+    <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Serverdə qeydiyyatdan çıxaraq Signal mesajlarını və zənglərini qeyri-aktiv edin. Gələcəkdə onları təkrar istifadə etmək üçün telefon nömrənizlə təkrar qeydiyyatdan keçməli olacaqsınız.</string>
+    <string name="ApplicationPreferencesActivity_error_connecting_to_server">Serverə qoşulma xətası!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-lər qeydiyyat kilidi üçün tələb olunur. PIN-ləri sıradan çıxartmaq üçün əvvəlcə zəhmət olmasa qeydiyyat kilidini sıradan çıxardın.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN yaradıldı.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN sıradan çıxarıldı.</string>

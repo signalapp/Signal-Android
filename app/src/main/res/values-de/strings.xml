@@ -25,13 +25,13 @@
     <string name="note_to_self">Notiz an mich</string>
 
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
+    <string name="app_icon_label_weather">Wetter</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
     <string name="app_icon_label_notes">Notizen</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
+    <string name="app_icon_label_news">Neu</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <string name="app_icon_label_waves">Wellen</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,8 +194,8 @@
     <string name="CameraContacts_signal_groups">Signal-Gruppen</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">Du kannst mit maximal %1$d Chat teilen.</item>
+        <item quantity="other">Du kannst mit maximal %1$d Chats teilen.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal-Empfänger auswählen</string>
     <string name="CameraContacts_no_signal_contacts">Keine Signal-Kontakte</string>
@@ -2172,13 +2172,13 @@
     <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="one">%1$d message</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="one">%1$d Nachricht</item>
+        <item quantity="other">%1$d Nachrichten</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d Chat</item>
+        <item quantity="other">%1$d Chats</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neue Nachrichten in %2$d Chats</string>
     <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
@@ -2890,27 +2890,27 @@
     <string name="preferences__theme">Design</string>
     <string name="preferences__chat_color_and_wallpaper">Chat-Farbe und Hintergrund</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">App-Icon</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">OK</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">Abbrechen</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">Ändere App-Icon und Name zu »%1$s«</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">Signal muss beendet werden, um das App-Icon und den Namen zu ändern. Bei Benachrichtigungen werden immer das Standard-Icon von Signal und der Name angezeigt.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">Wähle ein App-Icon und einen Namen aus, die dann auf dem Startbildschirm und im App-Drawer deines Mobiltelefons angezeigt werden. Bei Benachrichtigungen werden immer das Standard-Icon von Signal und der Name angezeigt. Mehr erfahren</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">App-Icons und Namen werden auf dem Startbildschirm und im App-Drawer deines Mobiltelefons angezeigt.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">Bei Benachrichtigungen werden immer das Standard-Icon von Signal und der Name angezeigt.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">Mehr erfahren</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">Icon für %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafik, die zeigt, wo das neue App-Icon zu sehen sein wird.</string>
     <string name="preferences__disable_pin">PIN deaktivieren</string>
     <string name="preferences__enable_pin">PIN aktivieren</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Falls du deine PIN deaktivierst, wirst du bei erneutem Registrieren von Signal alle Daten verlieren, sofern du sie nicht manuell per Datensicherung sicherst und wiederherstellst. Bei deaktivierter PIN kannst du die Registrierungssperre nicht einschalten.</string>
@@ -2948,8 +2948,8 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dies wird alle Nachrichtenverläufe und Medieninhalte, die älter sind als %1$s, unwiderruflich von deinem Gerät löschen.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">Dies wird alle Chats bis auf die letzte %1$s Nachricht je Chat unwiderruflich löschen.</item>
+        <item quantity="other">Dies wird alle Chats bis auf die letzten %1$s Nachrichten je Chat unwiderruflich löschen.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dies wird alle Nachrichtenverläufe und Medieninhalte unwiderruflich von deinem Gerät löschen.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Möchtest du wirklich alle Nachrichtenverläufe löschen?</string>
@@ -4321,7 +4321,7 @@
     <string name="HelpSettingsFragment__debug_log">Diagnoseprotokoll</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Nutzungsbedingungen und Datenschutzerklärung</string>
     <string name="HelpFragment__copyright_signal_messenger">Urheberrecht Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Lizenziert unter GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Medienqualität</string>
