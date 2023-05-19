@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.ConversationListTabsBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -105,7 +104,7 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
       binding.callsUnreadIndicator,
       binding.callsTabTouchPoint
     ).forEach {
-      it.visible = FeatureFlags.callsTab()
+      it.visible = true
     }
 
     listOf(
@@ -141,10 +140,8 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
       binding.storiesPill.isSelected = state.tab == ConversationListTab.STORIES
     }
 
-    if (FeatureFlags.callsTab()) {
-      binding.callsTabIcon.isSelected = state.tab == ConversationListTab.CALLS
-      binding.callsPill.isSelected = state.tab == ConversationListTab.CALLS
-    }
+    binding.callsTabIcon.isSelected = state.tab == ConversationListTab.CALLS
+    binding.callsPill.isSelected = state.tab == ConversationListTab.CALLS
 
     val hasStateChange = state.tab != state.prevTab
     if (immediate) {
@@ -156,16 +153,14 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
         binding.storiesTabIcon.progress = if (state.tab == ConversationListTab.STORIES) 1f else 0f
       }
 
-      if (FeatureFlags.callsTab()) {
-        binding.callsTabIcon.pauseAnimation()
-        binding.callsTabIcon.progress = if (state.tab == ConversationListTab.CALLS) 1f else 0f
-      }
+      binding.callsTabIcon.pauseAnimation()
+      binding.callsTabIcon.progress = if (state.tab == ConversationListTab.CALLS) 1f else 0f
 
       runPillAnimation(
         0,
         listOfNotNull(
           binding.chatsPill,
-          binding.callsPill.takeIf { FeatureFlags.callsTab() },
+          binding.callsPill,
           binding.storiesPill.takeIf { Stories.isFeatureEnabled() }
         )
       )
@@ -173,7 +168,7 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
       runLottieAnimations(
         listOfNotNull(
           binding.chatsTabIcon,
-          binding.callsTabIcon.takeIf { FeatureFlags.callsTab() },
+          binding.callsTabIcon,
           binding.storiesTabIcon.takeIf { Stories.isFeatureEnabled() }
         )
       )
@@ -182,7 +177,7 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
         150,
         listOfNotNull(
           binding.chatsPill,
-          binding.callsPill.takeIf { FeatureFlags.callsTab() },
+          binding.callsPill,
           binding.storiesPill.takeIf { Stories.isFeatureEnabled() }
         )
       )
@@ -196,10 +191,8 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
       binding.storiesUnreadIndicator.text = if (state.hasFailedStory) "!" else formatCount(state.unreadStoriesCount)
     }
 
-    if (FeatureFlags.callsTab()) {
-      binding.callsUnreadIndicator.visible = state.unreadCallsCount > 0
-      binding.callsUnreadIndicator.text = formatCount(state.unreadCallsCount)
-    }
+    binding.callsUnreadIndicator.visible = state.unreadCallsCount > 0
+    binding.callsUnreadIndicator.text = formatCount(state.unreadCallsCount)
 
     requireView().visible = state.visibilityState.isVisible()
   }

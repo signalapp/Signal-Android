@@ -104,7 +104,6 @@ public final class FeatureFlags {
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
   private static final String TEXT_FORMATTING                   = "android.textFormatting";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
-  private static final String CALLS_TAB                         = "android.calls.tab.2";
   private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc";
   private static final String EDIT_MESSAGE_RECEIVE              = "android.editMessage.receive";
   private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send";
@@ -166,7 +165,6 @@ public final class FeatureFlags {
       PAYPAL_RECURRING_DONATIONS,
       TEXT_FORMATTING,
       ANY_ADDRESS_PORTS_KILL_SWITCH,
-      CALLS_TAB,
       EDIT_MESSAGE_RECEIVE,
       EDIT_MESSAGE_SEND
   );
@@ -595,13 +593,6 @@ public final class FeatureFlags {
 
   public static boolean editMessageSending() {
     return getBoolean(EDIT_MESSAGE_SEND, false);
-  }
-
-  /**
-   * Whether or not the calls tab is enabled
-   */
-  public static boolean callsTab() {
-    return getBoolean(CALLS_TAB, false);
   }
 
   /**
