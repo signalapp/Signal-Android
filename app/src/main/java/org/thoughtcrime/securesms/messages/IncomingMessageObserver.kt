@@ -50,6 +50,8 @@ import java.util.concurrent.TimeoutException
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * The application-level manager of our websocket connection.
@@ -61,12 +63,25 @@ class IncomingMessageObserver(private val context: Application) {
 
   companion object {
     private val TAG = Log.tag(IncomingMessageObserver::class.java)
-    private val WEBSOCKET_READ_TIMEOUT = TimeUnit.MINUTES.toMillis(1)
-    private val KEEP_ALIVE_TOKEN_MAX_AGE = TimeUnit.MINUTES.toMillis(5)
-    private val MAX_BACKGROUND_TIME = TimeUnit.MINUTES.toMillis(2)
+
+    /** How long we wait for the websocket to time out before we try to connect again. */
+    private val websocketReadTimeout: Long
+      get() = if (censored) 30.seconds.inWholeMilliseconds else 1.minutes.inWholeMilliseconds
+
+    /** How long a keep-alive token is allowed to keep the websocket open for. These are usually used for calling + FCM messages. */
+    private val keepAliveTokenMaxAge: Long
+      get() = if (censored) 2.minutes.inWholeMilliseconds else 5.minutes.inWholeMilliseconds
+
+    /** How long the websocket is allowed to keep running after the user backgrounds the app. Higher numbers allow us to rely on FCM less. */
+    private val maxBackgroundTime: Long
+      get() = if (censored) 10.seconds.inWholeMilliseconds else 2.minutes.inWholeMilliseconds
+
     private val INSTANCE_COUNT = AtomicInteger(0)
 
     const val FOREGROUND_ID = 313399
+
+    private val censored: Boolean
+      get() = ApplicationDependencies.getSignalServiceNetworkAccess().isCensored()
   }
 
   private val decryptionDrainedListeners: MutableList<Runnable> = CopyOnWriteArrayList()
@@ -187,7 +202,7 @@ class IncomingMessageObserver(private val context: Application) {
       appVisibleSnapshot = appVisible
       timeIdle = if (appVisibleSnapshot) 0 else System.currentTimeMillis() - lastInteractionTime
 
-      val keepAliveCutoffTime = System.currentTimeMillis() - KEEP_ALIVE_TOKEN_MAX_AGE
+      val keepAliveCutoffTime = System.currentTimeMillis() - keepAliveTokenMaxAge
       val removedKeepAliveToken = keepAliveTokens.entries.removeIf { (_, createTime) -> createTime < keepAliveCutoffTime }
       if (removedKeepAliveToken) {
         Log.d(TAG, "Removed old keep web socket open requests.")
@@ -203,9 +218,9 @@ class IncomingMessageObserver(private val context: Application) {
     val forceWebsocket = SignalStore.internalValues().isWebsocketModeForced
     val decryptQueueEmpty = ApplicationDependencies.getJobManager().isQueueEmpty(PushDecryptMessageJob.QUEUE)
 
-    val lastInteractionString = if (appVisibleSnapshot) "N/A" else timeIdle.toString() + " ms (" + (if (timeIdle < MAX_BACKGROUND_TIME) "within limit" else "over limit") + ")"
+    val lastInteractionString = if (appVisibleSnapshot) "N/A" else timeIdle.toString() + " ms (" + (if (timeIdle < maxBackgroundTime) "within limit" else "over limit") + ")"
     val conclusion = registered &&
-      (appVisibleSnapshot || timeIdle < MAX_BACKGROUND_TIME || !fcmEnabled || keepAliveEntries.isNotEmpty()) &&
+      (appVisibleSnapshot || timeIdle < maxBackgroundTime || !fcmEnabled || keepAliveEntries.isNotEmpty()) &&
       hasNetwork &&
       decryptQueueEmpty
 
@@ -381,7 +396,7 @@ class IncomingMessageObserver(private val context: Application) {
             try {
               Log.d(TAG, "Reading message...")
 
-              val hasMore = signalWebSocket.readMessageBatch(WEBSOCKET_READ_TIMEOUT, 30) { batch ->
+              val hasMore = signalWebSocket.readMessageBatch(websocketReadTimeout, 30) { batch ->
                 Log.i(TAG, "Retrieved ${batch.size} envelopes!")
                 val bufferedStore = BufferedProtocolStore.create()
 
