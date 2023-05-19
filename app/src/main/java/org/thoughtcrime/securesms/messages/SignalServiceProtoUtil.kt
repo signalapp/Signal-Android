@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.stickers.StickerLocator
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.InvalidMessageStructureException
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
@@ -30,8 +31,6 @@ private val ByteString.isNotEmpty: Boolean
   get() = !this.isEmpty
 
 object SignalServiceProtoUtil {
-
-  const val MAX_ALLOWED_ATTACHMENTS = 100
 
   /** Contains some user data that affects the conversation  */
   val DataMessage.hasRenderableContent: Boolean
@@ -161,7 +160,7 @@ object SignalServiceProtoUtil {
   }
 
   fun List<AttachmentPointer>.toPointersWithinLimit(): List<Attachment> {
-    return mapNotNull { it.toPointer() }.take(MAX_ALLOWED_ATTACHMENTS)
+    return mapNotNull { it.toPointer() }.take(FeatureFlags.maxAttachmentCount())
   }
 
   fun AttachmentPointer.toPointer(stickerLocator: StickerLocator? = null): Attachment? {

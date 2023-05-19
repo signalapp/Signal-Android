@@ -108,6 +108,8 @@ public final class FeatureFlags {
   private static final String EDIT_MESSAGE_RECEIVE              = "android.editMessage.receive";
   private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send";
   private static final String CALL_DELETE_SYNC                  = "android.calling.deleteSync";
+  private static final String MAX_ATTACHMENT_COUNT              = "android.attachments.maxCount";
+  private static final String MAX_ATTACHMENT_SIZE_MB            = "android.attachments.maxSize";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -166,7 +168,9 @@ public final class FeatureFlags {
       TEXT_FORMATTING,
       ANY_ADDRESS_PORTS_KILL_SWITCH,
       EDIT_MESSAGE_RECEIVE,
-      EDIT_MESSAGE_SEND
+      EDIT_MESSAGE_SEND,
+      MAX_ATTACHMENT_COUNT,
+      MAX_ATTACHMENT_SIZE_MB
   );
 
   @VisibleForTesting
@@ -233,7 +237,9 @@ public final class FeatureFlags {
       CDS_HARD_LIMIT,
       TEXT_FORMATTING,
       EDIT_MESSAGE_RECEIVE,
-      EDIT_MESSAGE_SEND
+      EDIT_MESSAGE_SEND,
+      MAX_ATTACHMENT_COUNT,
+      MAX_ATTACHMENT_SIZE_MB
   );
 
   /**
@@ -607,6 +613,16 @@ public final class FeatureFlags {
    */
   public static boolean callDeleteSync() {
     return getBoolean(CALL_DELETE_SYNC, false);
+  }
+
+  /** Maximum number of attachments allowed to be sent/received. */
+  public static int maxAttachmentCount() {
+    return getInteger(MAX_ATTACHMENT_COUNT, 32);
+  }
+
+  /** Maximum attachment size, in mebibytes. */
+  public static int maxAttachmentSizeMb() {
+    return getInteger(MAX_ATTACHMENT_SIZE_MB, 100);
   }
 
   /** Only for rendering debug info. */

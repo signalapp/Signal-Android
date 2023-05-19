@@ -17,9 +17,9 @@ import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
-import org.thoughtcrime.securesms.mediasend.MediaSendConstants
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.UriUtil
 import org.thoughtcrime.securesms.util.Util
@@ -91,7 +91,7 @@ class ShareRepository(context: Context) {
     }
 
     val media: List<Media> = mimeTypes.toList()
-      .take(MediaSendConstants.MAX_PUSH)
+      .take(FeatureFlags.maxAttachmentCount())
       .map { (uri, mimeType) ->
         val stream: InputStream = try {
           appContext.contentResolver.openInputStream(uri)
