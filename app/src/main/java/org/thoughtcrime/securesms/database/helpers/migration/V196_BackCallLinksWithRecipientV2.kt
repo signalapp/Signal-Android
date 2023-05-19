@@ -45,6 +45,17 @@ object V196_BackCallLinksWithRecipientV2 : SignalDatabaseMigration {
     // drop all call events with a null peer.
     db.execSQL("DELETE FROM call WHERE peer IS NULL")
 
+    // drop all call events that have a later (by insertion) duplicate (by peer and call_id)
+    db.execSQL(
+      """
+      DELETE FROM call
+      WHERE _id < (
+          SELECT MAX(_id) FROM call c2
+          WHERE c2.peer = call.peer AND c2.call_id = call.call_id
+      )
+      """.trimIndent()
+    )
+
     // recreate the call table dropping the call_link column
     db.execSQL(
       """
