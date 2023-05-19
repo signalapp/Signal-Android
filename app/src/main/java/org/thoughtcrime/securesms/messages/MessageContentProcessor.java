@@ -121,6 +121,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData;
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -133,8 +134,8 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.LinkUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -1336,8 +1337,27 @@ public class MessageContentProcessor {
       return;
     }
 
-    GroupId                      groupId            = GroupId.push(callEvent.getConversationId().toByteArray());
-    RecipientId                  recipientId        = Recipient.externalGroupExact(groupId).getId();
+    RecipientId recipientId;
+    switch (type) {
+      case AD_HOC_CALL:
+        CallLinkRoomId callLinkRoomId = CallLinkRoomId.fromBytes(callEvent.getConversationId().toByteArray());
+
+        recipientId = SignalDatabase.recipients().getByCallLinkRoomId(callLinkRoomId).orElse(null);
+        break;
+      case GROUP_CALL:
+        GroupId groupId = GroupId.push(callEvent.getConversationId().toByteArray());
+
+        recipientId = Recipient.externalGroupExact(groupId).getId();
+        break;
+      default:
+        warn(envelopeTimestamp, "Group/Ad-hoc call event has a bad type " + type + ". Ignoring.");
+        return;
+    }
+
+    if (recipientId == null) {
+      Log.w(TAG, "Could not find a matching group or ad-hoc call. Dropping sync event.");
+      return;
+    }
 
     CallTable.Call call = SignalDatabase.calls().getCallById(callId, recipientId);
     if (call != null) {

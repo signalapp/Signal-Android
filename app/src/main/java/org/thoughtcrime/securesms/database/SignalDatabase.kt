@@ -74,6 +74,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val pendingPniSignatureMessageTable: PendingPniSignatureMessageTable = PendingPniSignatureMessageTable(context, this)
   val callTable: CallTable = CallTable(context, this)
   val kyberPreKeyTable: KyberPreKeyTable = KyberPreKeyTable(context, this)
+  val callLinkTable: CallLinkTable = CallLinkTable(context, this)
 
   override fun onOpen(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     db.setForeignKeyConstraintsEnabled(true)
@@ -536,5 +537,10 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("calls")
     val calls: CallTable
       get() = instance!!.callTable
+
+    @get:JvmStatic
+    @get:JvmName("callLinks")
+    val callLinks: CallLinkTable
+      get() = instance!!.callLinkTable
   }
 }

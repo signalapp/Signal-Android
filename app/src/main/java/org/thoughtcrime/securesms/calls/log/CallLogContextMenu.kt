@@ -51,7 +51,7 @@ class CallLogContextMenu(
   }
 
   private fun getAudioCallActionItem(call: CallLogRow.Call): ActionItem? {
-    if (call.peer.isGroup) {
+    if (call.peer.isCallLink || call.peer.isGroup) {
       return null
     }
 
@@ -63,12 +63,15 @@ class CallLogContextMenu(
     }
   }
 
-  private fun getGoToChatActionItem(call: CallLogRow.Call): ActionItem {
-    return ActionItem(
-      iconRes = R.drawable.symbol_open_24,
-      title = fragment.getString(R.string.CallContextMenu__go_to_chat)
-    ) {
-      fragment.startActivity(ConversationIntents.createBuilder(fragment.requireContext(), call.peer.id, -1L).build())
+  private fun getGoToChatActionItem(call: CallLogRow.Call): ActionItem? {
+    return when {
+      call.peer.isCallLink -> null
+      else -> ActionItem(
+        iconRes = R.drawable.symbol_open_24,
+        title = fragment.getString(R.string.CallContextMenu__go_to_chat)
+      ) {
+        fragment.startActivity(ConversationIntents.createBuilder(fragment.requireContext(), call.peer.id, -1L).build())
+      }
     }
   }
 
@@ -77,7 +80,10 @@ class CallLogContextMenu(
       iconRes = R.drawable.symbol_info_24,
       title = fragment.getString(R.string.CallContextMenu__info)
     ) {
-      val intent = ConversationSettingsActivity.forCall(fragment.requireContext(), call.peer, longArrayOf(call.record.messageId!!))
+      val intent = when {
+        call.peer.isCallLink -> throw NotImplementedError("Launch CallLinkDetailsActivity")
+        else -> ConversationSettingsActivity.forCall(fragment.requireContext(), call.peer, longArrayOf(call.record.messageId!!))
+      }
       fragment.startActivity(intent)
     }
   }

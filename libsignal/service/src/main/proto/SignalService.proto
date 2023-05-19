@@ -629,6 +629,11 @@ message SyncMessage {
     optional Event     event          = 6;
   }
 
+  message CallLinkUpdate {
+    optional bytes rootKey      = 1;
+    optional bytes adminPassKey = 2;
+  }
+
   optional Sent                   sent                   = 1;
   optional Contacts               contacts               = 2;
   optional Groups                 groups                 = 3;
@@ -648,6 +653,7 @@ message SyncMessage {
   reserved                      /*pniIdentity*/            17;
   optional PniChangeNumber        pniChangeNumber        = 18;
   optional CallEvent              callEvent              = 19;
+  optional CallLinkUpdate         callLinkUpdate         = 20;
 }
 
 message AttachmentPointer {

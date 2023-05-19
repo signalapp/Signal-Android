@@ -87,6 +87,7 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.storage.StorageRecordUpdate
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.storage.StorageSyncModels
@@ -421,6 +422,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return getByColumn(SERVICE_ID, serviceId.toString())
   }
 
+  fun getByCallLinkRoomId(callLinkRoomId: CallLinkRoomId): Optional<RecipientId> {
+    return getByColumn(CALL_LINK_ROOM_ID, callLinkRoomId.serialize())
+  }
+
   /**
    * Will return a recipient matching the PNI, but only in the explicit [PNI_COLUMN]. This should only be checked in conjunction with [getByServiceId] as a way
    * to avoid creating a recipient we already merged.
@@ -556,6 +561,18 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         put(STORAGE_SERVICE_ID, Base64.encodeBytes(storageId ?: StorageSyncHelper.generateKey()))
         put(PROFILE_SHARING, 1)
       }
+    ).recipientId
+  }
+
+  fun getOrInsertFromCallLinkRoomId(callLinkRoomId: CallLinkRoomId): RecipientId {
+    return getOrInsertByColumn(
+      CALL_LINK_ROOM_ID,
+      callLinkRoomId.serialize(),
+      contentValuesOf(
+        GROUP_TYPE to GroupType.CALL_LINK.id,
+        CALL_LINK_ROOM_ID to callLinkRoomId.serialize(),
+        PROFILE_SHARING to 1
+      )
     ).recipientId
   }
 

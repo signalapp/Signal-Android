@@ -599,6 +599,14 @@
             <data android:scheme="sgnl"
                 android:host="signal.me" />
         </intent-filter>
+
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https"
+                android:host="signal.link" />
+        </intent-filter>
     </activity>
 
     <activity android:name=".conversation.v2.ConversationActivity"

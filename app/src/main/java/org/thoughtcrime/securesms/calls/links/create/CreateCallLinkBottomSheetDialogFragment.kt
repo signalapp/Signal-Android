@@ -1,3 +1,8 @@
+/**
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.calls.links.create
 
 import android.content.ActivityNotFoundException
@@ -28,9 +33,13 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Rows
+import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.logging.Log
+import org.signal.ringrtc.CallLinkState
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
@@ -39,6 +48,7 @@ import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.CallLinkTable
+import org.thoughtcrime.securesms.service.webrtc.links.CreateCallLinkResult
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.util.Util
 
@@ -47,14 +57,20 @@ import org.thoughtcrime.securesms.util.Util
  */
 class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment() {
 
+  companion object {
+    private val TAG = Log.tag(CreateCallLinkBottomSheetDialogFragment::class.java)
+  }
+
   private val viewModel: CreateCallLinkViewModel by viewModels()
+  private val lifecycleDisposable = LifecycleDisposable()
 
   override val peekHeightPercentage: Float = 1f
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
     parentFragmentManager.setFragmentResultListener(EditCallLinkNameDialogFragment.RESULT_KEY, viewLifecycleOwner) { resultKey, bundle ->
       if (bundle.containsKey(resultKey)) {
-        viewModel.setCallName(bundle.getString(resultKey)!!)
+        setCallName(bundle.getString(resultKey)!!)
       }
     }
   }
@@ -94,10 +110,10 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
       )
 
       Rows.ToggleRow(
-        checked = callLink.isApprovalRequired,
+        checked = callLink.state.restrictions == CallLinkState.Restrictions.ADMIN_APPROVAL,
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__approve_all_members),
-        onCheckChanged = viewModel::setApproveAllMembers,
-        modifier = Modifier.clickable(onClick = viewModel::toggleApproveAllMembers)
+        onCheckChanged = this@CreateCallLinkBottomSheetDialogFragment::setApproveAllMembers,
+        modifier = Modifier.clickable(onClick = this@CreateCallLinkBottomSheetDialogFragment::toggleApproveAllMembers)
       )
 
       Dividers.Default()
@@ -133,54 +149,82 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
     }
   }
 
+  private fun setCallName(callName: String) {
+    lifecycleDisposable += viewModel.setCallName(callName).subscribeBy {
+    }
+  }
+
+  private fun setApproveAllMembers(approveAllMembers: Boolean) {
+    lifecycleDisposable += viewModel.setApproveAllMembers(approveAllMembers).subscribeBy {
+    }
+  }
+
+  private fun toggleApproveAllMembers() {
+    lifecycleDisposable += viewModel.toggleApproveAllMembers().subscribeBy {
+    }
+  }
+
   private fun onAddACallNameClicked() {
     val snapshot = viewModel.callLink.value
     findNavController().navigate(
-      CreateCallLinkBottomSheetDialogFragmentDirections.actionCreateCallLinkBottomSheetToEditCallLinkNameDialogFragment(snapshot.name)
+      CreateCallLinkBottomSheetDialogFragmentDirections.actionCreateCallLinkBottomSheetToEditCallLinkNameDialogFragment(snapshot.state.name)
     )
   }
 
   private fun onJoinClicked() {
+    lifecycleDisposable += viewModel.commitCallLink().subscribeBy {
+    }
   }
 
   private fun onDoneClicked() {
+    lifecycleDisposable += viewModel.commitCallLink().subscribeBy {
+      when (it) {
+        is EnsureCallLinkCreatedResult.Success -> dismissAllowingStateLoss()
+        is EnsureCallLinkCreatedResult.Failure -> handleCreateCallLinkFailure(it.failure)
+      }
+    }
+  }
+
+  private fun handleCreateCallLinkFailure(failure: CreateCallLinkResult.Failure) {
+    Log.w(TAG, "Failed to create call link: $failure")
   }
 
   private fun onShareViaSignalClicked() {
-    val snapshot = viewModel.callLink.value
-
-    MultiselectForwardFragment.showFullScreen(
-      childFragmentManager,
-      MultiselectForwardFragmentArgs(
-        canSendToNonPush = false,
-        multiShareArgs = listOf(
-          MultiShareArgs.Builder()
-            .withDraftText(snapshot.identifier)
-            .build()
+    lifecycleDisposable += viewModel.commitCallLink().subscribeBy {
+      MultiselectForwardFragment.showFullScreen(
+        childFragmentManager,
+        MultiselectForwardFragmentArgs(
+          canSendToNonPush = false,
+          multiShareArgs = listOf(
+            MultiShareArgs.Builder()
+              .withDraftText(CallLinks.url(viewModel.linkKeyBytes))
+              .build()
+          )
         )
       )
-    )
+    }
   }
 
   private fun onCopyLinkClicked() {
-    val snapshot = viewModel.callLink.value
-    Util.copyToClipboard(requireContext(), CallLinks.url(snapshot.identifier))
-    Toast.makeText(requireContext(), R.string.CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard, Toast.LENGTH_LONG).show()
+    lifecycleDisposable += viewModel.commitCallLink().subscribeBy {
+      Util.copyToClipboard(requireContext(), CallLinks.url(viewModel.linkKeyBytes))
+      Toast.makeText(requireContext(), R.string.CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard, Toast.LENGTH_LONG).show()
+    }
   }
 
   private fun onShareLinkClicked() {
-    val snapshot = viewModel.callLink.value
-    val mimeType = Intent.normalizeMimeType("text/plain")
-    val shareIntent = ShareCompat.IntentBuilder(requireContext())
-      .setText(CallLinks.url(snapshot.identifier))
-      .setType(mimeType)
-      .createChooserIntent()
-      .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+    lifecycleDisposable += viewModel.commitCallLink().subscribeBy {
+      val mimeType = Intent.normalizeMimeType("text/plain")
+      val shareIntent = ShareCompat.IntentBuilder(requireContext())
+        .setText(CallLinks.url(viewModel.linkKeyBytes))
+        .setType(mimeType)
+        .createChooserIntent()
 
-    try {
-      startActivity(shareIntent)
-    } catch (e: ActivityNotFoundException) {
-      Toast.makeText(requireContext(), R.string.CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet, Toast.LENGTH_LONG).show()
+      try {
+        startActivity(shareIntent)
+      } catch (e: ActivityNotFoundException) {
+        Toast.makeText(requireContext(), R.string.CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet, Toast.LENGTH_LONG).show()
+      }
     }
   }
 }

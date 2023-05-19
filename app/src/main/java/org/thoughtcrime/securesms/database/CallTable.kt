@@ -244,9 +244,10 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   }
 
   // region Group / Ad-Hoc Calling
-
   fun deleteGroupCall(call: Call) {
     checkIsGroupOrAdHocCall(call)
+
+    val filter: SqlUtil.Query = getCallSelectionQuery(call.callId, call.peer)
 
     writableDatabase.withinTransaction { db ->
       db
@@ -255,7 +256,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           EVENT to Event.serialize(Event.DELETE),
           DELETION_TIMESTAMP to System.currentTimeMillis()
         )
-        .where("$CALL_ID = ? AND $PEER = ?", call.callId, call.peer)
+        .where(filter.where, filter.whereArgs)
         .run()
 
       if (call.messageId != null) {
@@ -274,7 +275,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     direction: Direction,
     timestamp: Long
   ) {
-    val type = Type.GROUP_CALL
+    val recipient = Recipient.resolved(recipientId)
+    val type = if (recipient.isCallLink) Type.AD_HOC_CALL else Type.GROUP_CALL
 
     writableDatabase
       .insertInto(TABLE_NAME)
@@ -322,7 +324,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     direction: Direction,
     timestamp: Long
   ) {
-    val type = Type.GROUP_CALL
+    val recipient = Recipient.resolved(recipientId)
+    val type = if (recipient.isCallLink) Type.AD_HOC_CALL else Type.GROUP_CALL
     val event = if (direction == Direction.OUTGOING) Event.OUTGOING_RING else Event.JOINED
     val ringer = if (direction == Direction.OUTGOING) Recipient.self().id.toLong() else null
 
@@ -951,7 +954,6 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   fun getCalls(offset: Int, limit: Int, searchTerm: String?, filter: CallLogFilter): List<CallLogRow.Call> {
     return getCallsCursor(false, offset, limit, searchTerm, filter).readToList { cursor ->
       val call = Call.deserialize(cursor)
-      val recipient = Recipient.resolved(call.peer)
       val groupCallDetails = GroupCallUpdateDetailsUtil.parse(cursor.requireString(MessageTable.BODY))
 
       val children = cursor.requireNonNullString("children")
@@ -969,8 +971,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
       CallLogRow.Call(
         record = call,
-        peer = recipient,
         date = call.timestamp,
+        peer = Recipient.resolved(call.peer),
         groupCallState = CallLogRow.GroupCallState.fromDetails(groupCallDetails),
         children = actualChildren.toSet()
       )

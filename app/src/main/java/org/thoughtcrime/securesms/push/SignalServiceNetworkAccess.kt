@@ -150,6 +150,12 @@ open class SignalServiceNetworkAccess(context: Context) {
     throw AssertionError(e)
   }
 
+  private val genericServerPublicParams: ByteArray = try {
+    Base64.decode(BuildConfig.GENERIC_SERVER_PUBLIC_PARAMS)
+  } catch (e: IOException) {
+    throw AssertionError(e)
+  }
+
   private val baseGHostConfigs: List<HostConfig> = listOf(
     HostConfig("https://www.google.com", G_HOST, GMAIL_CONNECTION_SPEC),
     HostConfig("https://android.clients.google.com", G_HOST, PLAY_CONNECTION_SPEC),
@@ -173,7 +179,8 @@ open class SignalServiceNetworkAccess(context: Context) {
     networkInterceptors = interceptors,
     dns = Optional.of(DNS),
     signalProxy = Optional.empty(),
-    zkGroupServerPublicParams = zkGroupServerPublicParams
+    zkGroupServerPublicParams = zkGroupServerPublicParams,
+    genericServerPublicParams = genericServerPublicParams
   )
 
   private val censorshipConfiguration: Map<Int, SignalServiceConfiguration> = mapOf(
@@ -224,7 +231,8 @@ open class SignalServiceNetworkAccess(context: Context) {
     networkInterceptors = interceptors,
     dns = Optional.of(DNS),
     signalProxy = if (SignalStore.proxy().isProxyEnabled) Optional.ofNullable(SignalStore.proxy().proxy) else Optional.empty(),
-    zkGroupServerPublicParams = zkGroupServerPublicParams
+    zkGroupServerPublicParams = zkGroupServerPublicParams,
+    genericServerPublicParams = genericServerPublicParams
   )
 
   open fun getConfiguration(): SignalServiceConfiguration {
@@ -291,7 +299,8 @@ open class SignalServiceNetworkAccess(context: Context) {
       networkInterceptors = interceptors,
       dns = Optional.of(DNS),
       signalProxy = Optional.empty(),
-      zkGroupServerPublicParams = zkGroupServerPublicParams
+      zkGroupServerPublicParams = zkGroupServerPublicParams,
+      genericServerPublicParams = genericServerPublicParams
     )
   }
 

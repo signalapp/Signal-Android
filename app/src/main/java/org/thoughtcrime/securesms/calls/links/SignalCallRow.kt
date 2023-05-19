@@ -1,3 +1,8 @@
+/**
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.calls.links
 
 import androidx.compose.foundation.Image
@@ -30,21 +35,34 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorPair
 import org.thoughtcrime.securesms.database.CallLinkTable
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
+import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
+import java.time.Instant
 
 @Preview
 @Composable
 private fun SignalCallRowPreview() {
   val avatarColor = remember { AvatarColor.random() }
   val callLink = remember {
+    val credentials = CallLinkCredentials.generate()
     CallLinkTable.CallLink(
-      name = "Call Name",
-      identifier = "blahblahblah",
-      avatarColor = avatarColor,
-      isApprovalRequired = false
+      recipientId = RecipientId.UNKNOWN,
+      roomId = CallLinkRoomId.fromCallLinkRootKey(CallLinkRootKey(credentials.linkKeyBytes)),
+      credentials = credentials,
+      state = SignalCallLinkState(
+        name = "Call Name",
+        restrictions = org.signal.ringrtc.CallLinkState.Restrictions.NONE,
+        expiration = Instant.MAX,
+        revoked = false
+      ),
+      avatarColor = avatarColor
     )
   }
   SignalTheme(false) {
@@ -95,10 +113,10 @@ fun SignalCallRow(
         .align(CenterVertically)
     ) {
       Text(
-        text = callLink.name.ifEmpty { stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__signal_call) }
+        text = callLink.state.name.ifEmpty { stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__signal_call) }
       )
       Text(
-        text = CallLinks.url(callLink.identifier),
+        text = callLink.credentials?.let { CallLinks.url(it.linkKeyBytes) } ?: "",
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant
       )

@@ -25,10 +25,15 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
+import org.signal.ringrtc.CallLinkRootKey;
+import org.signal.ringrtc.CallLinkState;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.calls.links.CallLinks;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
+import org.thoughtcrime.securesms.database.CallLinkTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -39,11 +44,16 @@ import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.proxy.ProxyBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials;
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
+import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.Optional;
 
 public class CommunicationActions {
@@ -327,6 +337,39 @@ public class CommunicationActions {
         }
       });
     }
+  }
+
+  public static void handlePotentialCallLinkUrl(@NonNull FragmentActivity activity, @NonNull String potentialUrl) {
+    CallLinkRootKey rootKey = CallLinks.parseUrl(potentialUrl);
+    if (rootKey == null) {
+      Log.w(TAG, "Failed to parse root key from call link.");
+      // TODO [alex] -- Display a dialog informing them that the URL was invalid.
+      return;
+    }
+
+    SimpleTask.run(() -> {
+      CallLinkRoomId roomId = CallLinkRoomId.fromBytes(rootKey.deriveRoomId());
+      if (!SignalDatabase.callLinks().callLinkExists(roomId)) {
+        SignalDatabase.callLinks().insertCallLink(new CallLinkTable.CallLink(
+            RecipientId.UNKNOWN,
+            roomId,
+            new CallLinkCredentials(
+                rootKey.getKeyBytes(),
+                null
+            ),
+            new SignalCallLinkState("", CallLinkState.Restrictions.UNKNOWN, false, Instant.MIN),
+            AvatarColor.random()
+        ));
+      }
+
+      return SignalDatabase.recipients().getByCallLinkRoomId(roomId).map(Recipient::resolved);
+    }, callLinkRecipient -> {
+      if (callLinkRecipient.isEmpty()) {
+        // TODO [alex] -- Display a dialog informing them some error happened.
+      } else {
+        startVideoCall(activity, callLinkRecipient.get());
+      }
+    });
   }
 
   private static void startInsecureCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient) {

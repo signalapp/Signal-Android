@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.CameraEventListener;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
+import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkManager;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
@@ -81,6 +82,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -990,6 +992,10 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
         }
       });
     }
+  }
+
+  public @NonNull SignalCallLinkManager getCallLinkManager() {
+    return new SignalCallLinkManager(Objects.requireNonNull(callManager));
   }
 
   private void processSendMessageFailureWithChangeDetection(@NonNull RemotePeer remotePeer,

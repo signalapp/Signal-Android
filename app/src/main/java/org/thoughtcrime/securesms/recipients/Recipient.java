@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
@@ -1205,6 +1206,14 @@ public class Recipient {
 
   public boolean needsPniSignature() {
     return FeatureFlags.phoneNumberPrivacy() && needsPniSignature;
+  }
+
+  public boolean isCallLink() {
+    throw new UnsupportedOperationException();
+  }
+
+  public @NonNull CallLinkRoomId requireCallLinkRoomId() {
+    throw new UnsupportedOperationException();
   }
 
   @Override

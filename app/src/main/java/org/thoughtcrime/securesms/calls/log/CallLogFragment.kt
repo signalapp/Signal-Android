@@ -311,9 +311,15 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   override fun onCallClicked(callLogRow: CallLogRow.Call) {
     if (viewModel.selectionStateSnapshot.isNotEmpty(binding.recycler.adapter!!.itemCount)) {
       viewModel.toggleSelected(callLogRow.id)
-    } else {
-      val intent = ConversationSettingsActivity.forCall(requireContext(), callLogRow.peer, (callLogRow.id as CallLogRow.Id.Call).children.toLongArray())
+    } else if (!callLogRow.peer.isCallLink) {
+      val intent = ConversationSettingsActivity.forCall(
+        requireContext(),
+        callLogRow.peer,
+        (callLogRow.id as CallLogRow.Id.Call).children.toLongArray()
+      )
       startActivity(intent)
+    } else {
+      throw NotImplementedError("On call link event clicked.")
     }
   }
 
@@ -327,12 +333,12 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     binding.recyclerCoordinatorAppBar.setExpanded(false, true)
   }
 
-  override fun onStartAudioCallClicked(peer: Recipient) {
-    CommunicationActions.startVoiceCall(this, peer)
+  override fun onStartAudioCallClicked(recipient: Recipient) {
+    CommunicationActions.startVoiceCall(this, recipient)
   }
 
-  override fun onStartVideoCallClicked(peer: Recipient) {
-    CommunicationActions.startVideoCall(this, peer)
+  override fun onStartVideoCallClicked(recipient: Recipient) {
+    CommunicationActions.startVideoCall(this, recipient)
   }
 
   override fun startSelection(call: CallLogRow.Call) {

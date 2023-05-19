@@ -153,11 +153,15 @@ class CallLogAdapter(
         return
       }
 
-      binding.callRecipientAvatar.setAvatar(GlideApp.with(binding.callRecipientAvatar), model.call.peer, true)
-      binding.callRecipientBadge.setBadgeFromRecipient(model.call.peer)
-      binding.callRecipientName.text = model.call.peer.getDisplayName(context)
+      presentRecipientDetails(model.call.peer)
       presentCallInfo(model.call, model.call.date)
       presentCallType(model)
+    }
+
+    private fun presentRecipientDetails(recipient: Recipient) {
+      binding.callRecipientAvatar.setAvatar(GlideApp.with(binding.callRecipientAvatar), recipient, true)
+      binding.callRecipientBadge.setBadgeFromRecipient(recipient)
+      binding.callRecipientName.text = recipient.getDisplayName(context)
     }
 
     private fun presentCallInfo(call: CallLogRow.Call, date: Long) {
@@ -321,11 +325,11 @@ class CallLogAdapter(
     /**
      * Invoked when user presses the audio icon
      */
-    fun onStartAudioCallClicked(peer: Recipient)
+    fun onStartAudioCallClicked(recipient: Recipient)
 
     /**
      * Invoked when user presses the video icon
      */
-    fun onStartVideoCallClicked(peer: Recipient)
+    fun onStartVideoCallClicked(recipient: Recipient)
   }
 }

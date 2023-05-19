@@ -1,7 +1,15 @@
+/**
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.calls.links.details
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -16,19 +24,27 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.setFragmentResultListener
+import androidx.core.app.ShareCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Rows
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.ringrtc.CallLinkState.Restrictions
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
 import org.thoughtcrime.securesms.calls.links.SignalCallRow
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.CallLinkTable
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
+import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
+import java.time.Instant
 
 /**
  * Provides detailed info about a call link and allows the owner of that link
@@ -36,24 +52,24 @@ import org.thoughtcrime.securesms.database.CallLinkTable
  */
 class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
 
-  private val viewModel: CallLinkViewModel by viewModels()
+  private val viewModel: CallLinkDetailsViewModel by viewModels()
+  private val lifecycleDisposable = LifecycleDisposable()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
     parentFragmentManager.setFragmentResultListener(EditCallLinkNameDialogFragment.RESULT_KEY, viewLifecycleOwner) { resultKey, bundle ->
       if (bundle.containsKey(resultKey)) {
-        viewModel.setName(bundle.getString(resultKey)!!)
+        setName(bundle.getString(resultKey)!!)
       }
     }
   }
 
   @Composable
   override fun FragmentContent() {
-    val isLoading by viewModel.isLoading
-    val callLink by viewModel.callLink
+    val state by viewModel.state
 
     CallLinkDetails(
-      isLoading,
-      callLink,
+      state,
       this
     )
   }
@@ -67,22 +83,39 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
   }
 
   override fun onEditNameClicked() {
-    val name = viewModel.callLink.value.name
+    val name = viewModel.nameSnapshot
     findNavController().navigate(
       CallLinkDetailsFragmentDirections.actionCallLinkDetailsFragmentToEditCallLinkNameDialogFragment(name)
     )
   }
 
   override fun onShareClicked() {
-    // TODO("Not yet implemented")
+    val mimeType = Intent.normalizeMimeType("text/plain")
+    val shareIntent = ShareCompat.IntentBuilder(requireContext())
+      .setText(CallLinks.url(viewModel.rootKeySnapshot))
+      .setType(mimeType)
+      .createChooserIntent()
+
+    try {
+      startActivity(shareIntent)
+    } catch (e: ActivityNotFoundException) {
+      Toast.makeText(requireContext(), R.string.CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet, Toast.LENGTH_LONG).show()
+    }
   }
 
   override fun onDeleteClicked() {
-    // TODO("Not yet implemented")
+    lifecycleDisposable += viewModel.revoke().subscribeBy {
+    }
   }
 
   override fun onApproveAllMembersChanged(checked: Boolean) {
-    // TODO("Not yet implemented")
+    lifecycleDisposable += viewModel.setApproveAllMembers(checked).subscribeBy {
+    }
+  }
+
+  private fun setName(name: String) {
+    lifecycleDisposable += viewModel.setName(name).subscribeBy {
+    }
   }
 }
 
@@ -103,18 +136,26 @@ private fun CallLinkDetailsPreview() {
   }
 
   val callLink = remember {
+    val credentials = CallLinkCredentials.generate()
     CallLinkTable.CallLink(
-      name = "Call Name",
-      identifier = "call-id-1",
-      isApprovalRequired = false,
+      recipientId = RecipientId.UNKNOWN,
+      roomId = credentials.roomId,
+      credentials = credentials,
+      state = SignalCallLinkState(
+        name = "Call Name",
+        revoked = false,
+        restrictions = Restrictions.NONE,
+        expiration = Instant.MAX
+      ),
       avatarColor = avatarColor
     )
   }
 
   SignalTheme(false) {
     CallLinkDetails(
-      false,
-      callLink,
+      CallLinkDetailsState(
+        callLink
+      ),
       object : CallLinkDetailsCallback {
         override fun onNavigationClicked() = Unit
         override fun onJoinClicked() = Unit
@@ -129,8 +170,7 @@ private fun CallLinkDetailsPreview() {
 
 @Composable
 private fun CallLinkDetails(
-  isLoading: Boolean,
-  callLink: CallLinkTable.CallLink,
+  state: CallLinkDetailsState,
   callback: CallLinkDetailsCallback
 ) {
   Scaffolds.Settings(
@@ -138,13 +178,13 @@ private fun CallLinkDetails(
     onNavigationClick = callback::onNavigationClicked,
     navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24)
   ) { paddingValues ->
-    if (isLoading) {
+    if (state.callLink == null) {
       return@Settings
     }
 
     Column(modifier = Modifier.padding(paddingValues)) {
       SignalCallRow(
-        callLink = callLink,
+        callLink = state.callLink,
         onJoinClicked = callback::onJoinClicked,
         modifier = Modifier.padding(top = 16.dp, bottom = 12.dp)
       )
@@ -155,7 +195,7 @@ private fun CallLinkDetails(
       )
 
       Rows.ToggleRow(
-        checked = callLink.isApprovalRequired,
+        checked = state.callLink.state.restrictions == Restrictions.ADMIN_APPROVAL,
         text = stringResource(id = R.string.CallLinkDetailsFragment__approve_all_members),
         onCheckChanged = callback::onApproveAllMembersChanged
       )
