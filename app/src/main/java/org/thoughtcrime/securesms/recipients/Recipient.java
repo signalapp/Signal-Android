@@ -1209,7 +1209,7 @@ public class Recipient {
   }
 
   public boolean isCallLink() {
-    throw new UnsupportedOperationException();
+    return false;
   }
 
   public @NonNull CallLinkRoomId requireCallLinkRoomId() {

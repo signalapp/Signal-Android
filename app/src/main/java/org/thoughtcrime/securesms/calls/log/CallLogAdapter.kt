@@ -185,7 +185,7 @@ class CallLogAdapter(
         if (call.record.event == CallTable.Event.MISSED) {
           R.color.signal_colorError
         } else {
-          R.color.signal_colorOnSurface
+          R.color.signal_colorOnSurfaceVariant
         }
       )
 
