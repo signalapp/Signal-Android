@@ -974,7 +974,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         date = call.timestamp,
         peer = Recipient.resolved(call.peer),
         groupCallState = CallLogRow.GroupCallState.fromDetails(groupCallDetails),
-        children = actualChildren.toSet()
+        children = actualChildren.toSet(),
+        searchQuery = searchTerm
       )
     }
   }

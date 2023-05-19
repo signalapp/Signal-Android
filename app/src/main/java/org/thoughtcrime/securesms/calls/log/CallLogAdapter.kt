@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.calls.log
 
 import android.content.res.ColorStateList
+import android.text.style.TextAppearanceSpan
 import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -15,6 +16,7 @@ import org.thoughtcrime.securesms.databinding.ConversationListItemClearFilterBin
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.SearchUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.BindingViewHolder
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
@@ -153,15 +155,25 @@ class CallLogAdapter(
         return
       }
 
-      presentRecipientDetails(model.call.peer)
+      presentRecipientDetails(model.call.peer, model.call.searchQuery)
       presentCallInfo(model.call, model.call.date)
       presentCallType(model)
     }
 
-    private fun presentRecipientDetails(recipient: Recipient) {
+    private fun presentRecipientDetails(recipient: Recipient, searchQuery: String?) {
       binding.callRecipientAvatar.setAvatar(GlideApp.with(binding.callRecipientAvatar), recipient, true)
       binding.callRecipientBadge.setBadgeFromRecipient(recipient)
-      binding.callRecipientName.text = recipient.getDisplayName(context)
+      binding.callRecipientName.text = if (searchQuery != null) {
+        SearchUtil.getHighlightedSpan(
+          Locale.getDefault(),
+          { arrayOf(TextAppearanceSpan(context, R.style.Signal_Text_TitleSmall)) },
+          recipient.getDisplayName(context),
+          searchQuery,
+          SearchUtil.MATCH_ALL
+        )
+      } else {
+        recipient.getDisplayName(context)
+      }
     }
 
     private fun presentCallInfo(call: CallLogRow.Call, date: Long) {

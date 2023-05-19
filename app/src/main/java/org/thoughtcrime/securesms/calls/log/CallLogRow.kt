@@ -25,6 +25,7 @@ sealed class CallLogRow {
     val date: Long,
     val groupCallState: GroupCallState,
     val children: Set<Long>,
+    val searchQuery: String?,
     override val id: Id = Id.Call(children)
   ) : CallLogRow()
 
