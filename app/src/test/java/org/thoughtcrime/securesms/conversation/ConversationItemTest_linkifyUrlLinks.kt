@@ -22,8 +22,8 @@ class ConversationItemTest_linkifyUrlLinks(private val input: String, private va
     ConversationItem.linkifyUrlLinks(spannableStringBuilder, true, UrlHandler)
 
     val spans = spannableStringBuilder.getSpans(0, expectedUrl.length, URLSpan::class.java)
-    assertEquals(2, spans.size)
-    assertEquals(expectedUrl, spans.get(0).url)
+    assertEquals(1, spans.size)
+    assertEquals(expectedUrl, spans[0].url)
   }
 
   private object UrlHandler : UrlClickHandler {

@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.components.emoji;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Annotation;
@@ -70,7 +68,6 @@ public class EmojiTextView extends AppCompatTextView {
   private TextDirectionHeuristic textDirection;
   private boolean                isJumbomoji;
   private boolean                forceJumboEmoji;
-  private boolean                isInOnDraw;
 
   private       MentionRendererDelegate mentionRendererDelegate;
   private final SpoilerRendererDelegate spoilerRendererDelegate;
@@ -116,16 +113,11 @@ public class EmojiTextView extends AppCompatTextView {
 
   @Override
   protected void onDraw(Canvas canvas) {
-    isInOnDraw = true;
-
     boolean hasSpannedText = getText() instanceof Spanned;
     boolean hasLayout      = getLayout() != null;
 
     if (hasSpannedText && hasLayout) {
-      Path textClipPath = drawSpecialRenderers(canvas, mentionRendererDelegate, spoilerRendererDelegate);
-      canvas.translate(getTotalPaddingLeft(), getTotalPaddingTop());
-      canvas.clipPath(textClipPath, Region.Op.DIFFERENCE);
-      canvas.translate(-getTotalPaddingLeft(), -getTotalPaddingTop());
+      drawSpecialRenderers(canvas, mentionRendererDelegate, spoilerRendererDelegate);
     }
 
     super.onDraw(canvas);
@@ -133,18 +125,16 @@ public class EmojiTextView extends AppCompatTextView {
     if (hasSpannedText && !hasLayout && getLayout() != null) {
       drawSpecialRenderers(canvas, null, spoilerRendererDelegate);
     }
-
-    isInOnDraw = false;
   }
 
-  private Path drawSpecialRenderers(@NonNull Canvas canvas, @Nullable MentionRendererDelegate mentionDelegate, @NonNull SpoilerRendererDelegate spoilerDelegate) {
+  private void drawSpecialRenderers(@NonNull Canvas canvas, @Nullable MentionRendererDelegate mentionDelegate, @NonNull SpoilerRendererDelegate spoilerDelegate) {
     int checkpoint = canvas.save();
     canvas.translate(getTotalPaddingLeft(), getTotalPaddingTop());
     try {
       if (mentionDelegate != null) {
         mentionDelegate.draw(canvas, (Spanned) getText(), getLayout());
       }
-      return spoilerDelegate.draw(canvas, (Spanned) getText(), getLayout());
+      spoilerDelegate.draw(canvas, (Spanned) getText(), getLayout());
     } finally {
       canvas.restoreToCount(checkpoint);
     }

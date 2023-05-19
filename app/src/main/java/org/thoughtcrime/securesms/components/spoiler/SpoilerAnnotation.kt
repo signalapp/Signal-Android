@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.components.spoiler
 
+import android.graphics.Color
 import android.text.Annotation
 import android.text.Selection
 import android.text.Spannable
 import android.text.Spanned
 import android.text.TextPaint
-import android.text.style.ClickableSpan
+import android.text.style.MetricAffectingSpan
 import android.view.View
 import android.widget.TextView
 
@@ -55,11 +56,11 @@ object SpoilerAnnotation {
     revealedSpoilers.clear()
   }
 
-  class SpoilerClickableSpan(private val spoiler: Annotation) : ClickableSpan() {
+  class SpoilerClickableSpan(private val spoiler: Annotation) : MetricAffectingSpan() {
     val spoilerRevealed
       get() = revealedSpoilers.contains(spoiler.value)
 
-    override fun onClick(widget: View) {
+    fun onClick(widget: View) {
       revealedSpoilers.add(spoiler.value)
 
       if (widget is TextView) {
@@ -70,6 +71,12 @@ object SpoilerAnnotation {
       }
     }
 
-    override fun updateDrawState(ds: TextPaint) = Unit
+    override fun updateDrawState(ds: TextPaint) {
+      if (!spoilerRevealed) {
+        ds.color = Color.TRANSPARENT
+      }
+    }
+
+    override fun updateMeasureState(textPaint: TextPaint) = Unit
   }
 }

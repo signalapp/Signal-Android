@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components.spoiler
 
 import android.animation.ValueAnimator
 import android.graphics.Canvas
-import android.graphics.Path
 import android.text.Annotation
 import android.text.Layout
 import android.text.Spanned
@@ -39,8 +38,6 @@ class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextVi
     repeatMode = ValueAnimator.REVERSE
   }
 
-  private val textClipPath: Path = Path()
-
   init {
     textColor = view.textColors.defaultColor
     spoilerDrawable = SpoilerDrawable(textColor)
@@ -65,11 +62,10 @@ class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextVi
     }
   }
 
-  fun draw(canvas: Canvas, text: Spanned, layout: Layout): Path {
+  fun draw(canvas: Canvas, text: Spanned, layout: Layout) {
     var hasSpoilersToRender = false
     val annotations: Map<Annotation, SpoilerClickableSpan?> = cachedAnnotations.getFromCache(text) { SpoilerAnnotation.getSpoilerAndClickAnnotations(text) }
 
-    textClipPath.reset()
     for ((annotation, clickSpan) in annotations.entries) {
       if (clickSpan?.spoilerRevealed == true) {
         continue
@@ -92,7 +88,7 @@ class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextVi
         )
       }
 
-      renderer.draw(canvas, layout, measurements.startLine, measurements.endLine, measurements.startOffset, measurements.endOffset, textClipPath)
+      renderer.draw(canvas, layout, measurements.startLine, measurements.endLine, measurements.startOffset, measurements.endOffset)
       hasSpoilersToRender = true
     }
 
@@ -104,8 +100,6 @@ class SpoilerRendererDelegate @JvmOverloads constructor(private val view: TextVi
     } else {
       stopAnimating()
     }
-
-    return textClipPath
   }
 
   private fun stopAnimating() {

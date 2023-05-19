@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components.spoiler
 
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.graphics.Path
 import android.text.Layout
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
@@ -28,8 +27,7 @@ class SpoilerRenderer(
     startLine: Int,
     endLine: Int,
     startOffset: Int,
-    endOffset: Int,
-    textClipPath: Path
+    endOffset: Int
   ) {
     if (startLine == endLine) {
       val lineTop = lineTopCache.get(startLine, layout) { getLineTop(layout, startLine) }
@@ -40,7 +38,6 @@ class SpoilerRenderer(
       if (renderForComposing) {
         canvas.drawComposeBackground(left, lineTop, right, lineBottom)
       } else {
-        textClipPath.addRect(left, lineTop, right, lineBottom)
         spoilerDrawable.setBounds(left, lineTop, right, lineBottom)
         spoilerDrawable.draw(canvas)
       }
@@ -53,7 +50,7 @@ class SpoilerRenderer(
     val lineEndOffset: Float = if (paragraphDirection == Layout.DIR_RIGHT_TO_LEFT) layout.getLineLeft(startLine) else layout.getLineRight(startLine)
     var lineBottom = lineBottomCache.get(startLine, layout) { getLineBottom(layout, startLine) }
     var lineTop = lineTopCache.get(startLine, layout) { getLineTop(layout, startLine) }
-    drawPartialLine(canvas, startOffset, lineTop, lineEndOffset.toInt(), lineBottom, textClipPath)
+    drawPartialLine(canvas, startOffset, lineTop, lineEndOffset.toInt(), lineBottom)
 
     for (line in startLine + 1 until endLine) {
       val left: Int = layout.getLineLeft(line).toInt()
@@ -65,7 +62,6 @@ class SpoilerRenderer(
       if (renderForComposing) {
         canvas.drawComposeBackground(left, lineTop, right, lineBottom)
       } else {
-        textClipPath.addRect(left, lineTop, right, lineBottom)
         spoilerDrawable.setBounds(left, lineTop, right, lineBottom)
         spoilerDrawable.draw(canvas)
       }
@@ -74,20 +70,18 @@ class SpoilerRenderer(
     val lineStartOffset: Float = if (paragraphDirection == Layout.DIR_RIGHT_TO_LEFT) layout.getLineRight(startLine) else layout.getLineLeft(startLine)
     lineBottom = lineBottomCache.get(endLine, layout) { getLineBottom(layout, endLine) }
     lineTop = lineTopCache.get(endLine, layout) { getLineTop(layout, endLine) }
-    drawPartialLine(canvas, lineStartOffset.toInt(), lineTop, endOffset, lineBottom, textClipPath)
+    drawPartialLine(canvas, lineStartOffset.toInt(), lineTop, endOffset, lineBottom)
   }
 
-  private fun drawPartialLine(canvas: Canvas, start: Int, top: Int, end: Int, bottom: Int, textClipPath: Path) {
+  private fun drawPartialLine(canvas: Canvas, start: Int, top: Int, end: Int, bottom: Int) {
     if (renderForComposing) {
       canvas.drawComposeBackground(start, top, end, bottom)
       return
     }
 
     if (start > end) {
-      textClipPath.addRect(end, top, start, bottom)
       spoilerDrawable.setBounds(end, top, start, bottom)
     } else {
-      textClipPath.addRect(start, top, end, bottom)
       spoilerDrawable.setBounds(start, top, end, bottom)
     }
     spoilerDrawable.draw(canvas)
@@ -115,9 +109,5 @@ class SpoilerRenderer(
       padding.toFloat(),
       paint
     )
-  }
-
-  private fun Path.addRect(left: Int, top: Int, end: Int, bottom: Int) {
-    addRect(left.toFloat() - padding, top.toFloat() - padding, end.toFloat() + padding, bottom.toFloat() + padding, Path.Direction.CCW)
   }
 }

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.TextPaint;
 import android.text.style.URLSpan;
 import android.view.View;
@@ -41,6 +42,10 @@ public class LongClickCopySpan extends URLSpan {
 
   @Override
   public void updateDrawState(@NonNull TextPaint ds) {
+    if (ds.getColor() == Color.TRANSPARENT) {
+      return;
+    }
+
     super.updateDrawState(ds);
     if (textColor != null) {
       ds.setColor(textColor);
