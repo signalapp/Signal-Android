@@ -6,7 +6,9 @@
 package org.thoughtcrime.securesms.components.settings.app.appearance.appicon
 
 import android.content.Context
+import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -240,7 +242,11 @@ fun IconGridElement(preset: AppIconPreset, isSelected: Boolean, onClickHandler: 
  */
 @Composable
 fun AppIcon(preset: AppIconPreset, isSelected: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
-  val bitmapSize by animateFloatAsState(if (isSelected) 48f else 64f, label = "Icon Size")
+  val bitmapSize by animateFloatAsState(
+    targetValue = if (isSelected) 48f else 64f,
+    label = "Icon Size",
+    animationSpec = tween(durationMillis = 150, easing = CubicBezierEasing(0.17f, 0.17f, 0f, 1f))
+  )
   val imageModifier = modifier
     .size(bitmapSize.dp)
     .graphicsLayer(
