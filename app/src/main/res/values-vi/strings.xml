@@ -24,6 +24,15 @@
     <string name="save">Lưu</string>
     <string name="note_to_self">Ghi chú</string>
 
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <string name="app_icon_label_weather">Weather</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <string name="app_icon_label_notes">Notes</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <string name="app_icon_label_news">News</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <string name="app_icon_label_waves">Waves</string>
+
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
@@ -1895,7 +1904,7 @@
     <string name="StickerPackPreviewActivity_unknown">Không rõ</string>
     <string name="StickerPackPreviewActivity_install">Cài đặt</string>
     <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
-    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
+    <string name="StickerPackPreviewActivity_remove">Gỡ cài đặt</string>
     <string name="StickerPackPreviewActivity_stickers">Nhãn dán</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Không thể tải gói nhãn dán</string>
 
@@ -2093,7 +2102,7 @@
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
-    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <string name="MessageNotifier_s_in_s">%1$s trong %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
         <item quantity="other">%1$d messages</item>
@@ -2799,6 +2808,28 @@
     <string name="preferences__appearance">Diện mạo</string>
     <string name="preferences__theme">Chủ đề</string>
     <string name="preferences__chat_color_and_wallpaper">Màu cuộc trò chuyện &amp; hình nền</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">App Icon</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">OK</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">Hủy</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <!--Text description of the app icon option for visually impaired users. -->
+    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
     <string name="preferences__disable_pin">Tắt PIN</string>
     <string name="preferences__enable_pin">Bật PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Nếu bạn tắt PIN, bạn sẽ mất toàn bộ dữ liệu khi bạn đăng kí lại với Signal trừ khi bạn sao lưu và khôi phục dữ liệu thủ công. Bạn không thể bật Khóa đăng kí khi PIN đang tắt.</string>

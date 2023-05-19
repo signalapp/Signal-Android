@@ -24,13 +24,13 @@
     <string name="save">Save</string>
     <string name="note_to_self">Note to Self</string>
 
-    <!-- Alternate label for the Signal Application in the device's home screen launcher -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
     <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device's home screen launcher -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
     <string name="app_icon_label_notes">Notes</string>
-    <!-- Alternate label for the Signal Application in the device's home screen launcher -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
     <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device's home screen launcher -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
     <string name="app_icon_label_waves">Waves</string>
 
     <!-- AlbumThumbnailView -->
@@ -2893,7 +2893,7 @@
     <string name="preferences__appearance">Appearance</string>
     <string name="preferences__theme">Theme</string>
     <string name="preferences__chat_color_and_wallpaper">Chat color &amp; wallpaper</string>
-    <!-- Clickable settings text allowing the user to change the icon visible on their phone's home screen. -->
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
     <string name="preferences__app_icon">App Icon</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">OK</string>

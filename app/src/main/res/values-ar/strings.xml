@@ -24,6 +24,15 @@
     <string name="save">حفظ</string>
     <string name="note_to_self">الملاحظات الشخصية</string>
 
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <string name="app_icon_label_weather">Weather</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <string name="app_icon_label_notes">ملاحظات</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <string name="app_icon_label_news">News</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <string name="app_icon_label_waves">Waves</string>
+
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
@@ -80,7 +89,7 @@
     <string name="AttachmentManager_cant_open_media_selection">تعذر العثور على تطبيق لتحديد الوسائط.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">يحتاج Signal إلى إذن الوصول إلى التخزين من أجل إرفاق الصور والفيديوهات والملفّات الصوتيّة، ولكن الإذن لم يُمنح بشكل دائم. الّرجاء زيارة قائمة إعدادات التطبيق، واختيار \"الأذونات\"، ومن ثمّ تفعيل \"سعة التخزين\".</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">يحتاج Signal إلى إذن الوصول لِ جهات الاتصال من أجل إرفاق بيانات جهة اتصال، لكن الإذن لم يُمنح بشكل دائم. الّرجاء زيارة قائمة إعدادات التطبيق، واختيار \"الأذونات\"، ومن ثم تفعيل \"جهات الاتصال\".</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">يحتاج Signal إلى إذن الوصول إلى الموقع من أجل إرفاق الموقع الجغرافي ولكن تم إيقاف الإذن على نحو دائم. يرجى زيارة قائمة إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الموقع\".</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">يحتاج Signal إلى إذن الوصول إلى الموقع من أجل إرفاق الموقع ولكن تم إيقاف الإذن على نحو دائم. يرجى زيارة قائمة إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الموقع\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">لم يُفعّل %1$s عمليات الدفع </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
@@ -2225,7 +2234,7 @@
     <string name="StickerPackPreviewActivity_unknown">مجهول</string>
     <string name="StickerPackPreviewActivity_install">تثبيت</string>
     <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
-    <string name="StickerPackPreviewActivity_remove">Uninstall</string>
+    <string name="StickerPackPreviewActivity_remove">إلغاء التثبيت</string>
     <string name="StickerPackPreviewActivity_stickers">ملصقات</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">فشل في تحميل مجموعة الملصقات</string>
 
@@ -2428,7 +2437,7 @@
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
-    <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <string name="MessageNotifier_s_in_s">%1$s في %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
         <item quantity="zero">%1$d messages</item>
@@ -3204,6 +3213,28 @@
     <string name="preferences__appearance">المظهر</string>
     <string name="preferences__theme">المظهر</string>
     <string name="preferences__chat_color_and_wallpaper">لون الدردشة والخلفية</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">App Icon</string>
+    <!-- Approval for changing the app icon. -->
+    <string name="preferences__app_icon_dialog_ok">موافق</string>
+    <!-- Cancelling the operation of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_cancel">إلغاء</string>
+    <!-- Title for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <!-- Description for the confirmation dialog of changing the app icon. -->
+    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
+    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <!-- Visible warning label for the limitations of changing the app icon. -->
+    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
+    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
+    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <!--Text description of the app icon option for visually impaired users. -->
+    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
     <string name="preferences__disable_pin">تعطيل الرقم التعريفي الشخصي</string>
     <string name="preferences__enable_pin">تفعيل الرقم التعريفي الشخصي</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">إذا قمت بتعطيل الرقم التعريفي الشخصي، ستضيع جميع البيانات عند قيامك بإعادة التسجيل إلى Signal إلا إذا قمت باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل الرقم التعريفي الشخصي.</string>
