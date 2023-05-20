@@ -1,4 +1,4 @@
-# Signal Android 
+# Signal Android app
 
 Signal is a simple, powerful, and secure messenger.
 
