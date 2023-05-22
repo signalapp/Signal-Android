@@ -5,9 +5,10 @@
 
 package org.thoughtcrime.securesms.calls.links.create
 
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.links.CreateCallLinkResult
 
 sealed interface EnsureCallLinkCreatedResult {
-  object Success : EnsureCallLinkCreatedResult
+  data class Success(val recipient: Recipient) : EnsureCallLinkCreatedResult
   data class Failure(val failure: CreateCallLinkResult.Failure) : EnsureCallLinkCreatedResult
 }

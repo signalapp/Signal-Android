@@ -136,6 +136,7 @@ public class Recipient {
   private final List<Badge>                  badges;
   private final boolean                      isReleaseNotesRecipient;
   private final boolean                      needsPniSignature;
+  private final CallLinkRoomId               callLinkRoomId;
 
   /**
    * Returns a {@link LiveRecipient}, which contains a {@link Recipient} that may or may not be
@@ -433,6 +434,7 @@ public class Recipient {
     this.isReleaseNotesRecipient      = false;
     this.needsPniSignature            = false;
     this.isActiveGroup                = false;
+    this.callLinkRoomId               = null;
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -489,6 +491,7 @@ public class Recipient {
     this.isReleaseNotesRecipient      = details.isReleaseChannel;
     this.needsPniSignature            = details.needsPniSignature;
     this.isActiveGroup                = details.isActiveGroup;
+    this.callLinkRoomId               = details.callLinkRoomId;
   }
 
   public @NonNull RecipientId getId() {
@@ -541,6 +544,8 @@ public class Recipient {
       return Util.join(names, ", ");
     } else if (!resolving && isMyStory()) {
       return context.getString(R.string.Recipient_my_story);
+    } else if (!resolving && Util.isEmpty(this.groupName) && isCallLink()){
+      return context.getString(R.string.Recipient_signal_call);
     } else {
       return this.groupName;
     }
@@ -932,6 +937,7 @@ public class Recipient {
     if      (isSelf)                                return fallbackPhotoProvider.getPhotoForLocalNumber();
     else if (isResolving())                         return fallbackPhotoProvider.getPhotoForResolvingRecipient();
     else if (isDistributionList())                  return fallbackPhotoProvider.getPhotoForDistributionList();
+    else if (isCallLink())                          return fallbackPhotoProvider.getPhotoForCallLink();
     else if (isGroupInternal())                     return fallbackPhotoProvider.getPhotoForGroup();
     else if (isGroup())                             return fallbackPhotoProvider.getPhotoForGroup();
     else if (!TextUtils.isEmpty(groupName))         return fallbackPhotoProvider.getPhotoForRecipientWithName(groupName, targetSize);
@@ -1209,11 +1215,11 @@ public class Recipient {
   }
 
   public boolean isCallLink() {
-    return false;
+    return callLinkRoomId != null;
   }
 
   public @NonNull CallLinkRoomId requireCallLinkRoomId() {
-    throw new UnsupportedOperationException();
+    return Objects.requireNonNull(callLinkRoomId);
   }
 
   @Override
@@ -1348,7 +1354,8 @@ public class Recipient {
            Objects.equals(aboutEmoji, other.aboutEmoji) &&
            Objects.equals(extras, other.extras) &&
            hasGroupsInCommon == other.hasGroupsInCommon &&
-           Objects.equals(badges, other.badges);
+           Objects.equals(badges, other.badges) &&
+           Objects.equals(callLinkRoomId, other.callLinkRoomId);
   }
 
   private static boolean allContentsAreTheSame(@NonNull List<Recipient> a, @NonNull List<Recipient> b) {
@@ -1389,6 +1396,10 @@ public class Recipient {
 
     public @NonNull FallbackContactPhoto getPhotoForDistributionList() {
       return new ResourceContactPhoto(R.drawable.symbol_stories_24, R.drawable.symbol_stories_24, R.drawable.symbol_stories_24);
+    }
+
+    public @NonNull FallbackContactPhoto getPhotoForCallLink() {
+      return new ResourceContactPhoto(R.drawable.symbol_video_24, R.drawable.symbol_video_24, R.drawable.symbol_video_24);
     }
   }
 

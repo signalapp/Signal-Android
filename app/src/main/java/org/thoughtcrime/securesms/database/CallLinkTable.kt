@@ -5,8 +5,10 @@ import android.content.Context
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.Serializer
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
+import org.signal.core.util.readToList
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBlob
@@ -20,8 +22,10 @@ import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.ringrtc.CallLinkState.Restrictions
+import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
@@ -88,7 +92,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     callLink: CallLink
   ) {
     writableDatabase.withinTransaction { db ->
-      val recipientId = SignalDatabase.recipients.getOrInsertFromCallLinkRoomId(callLink.roomId)
+      val recipientId = SignalDatabase.recipients.getOrInsertFromCallLinkRoomId(callLink.roomId, callLink.avatarColor)
 
       db
         .insertInto(TABLE_NAME)
@@ -97,6 +101,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     }
 
     ApplicationDependencies.getDatabaseObserver().notifyCallLinkObservers(callLink.roomId)
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
 
   fun updateCallLinkCredentials(
@@ -115,6 +120,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       .run()
 
     ApplicationDependencies.getDatabaseObserver().notifyCallLinkObservers(roomId)
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
 
   fun updateCallLinkState(
@@ -128,6 +134,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       .run()
 
     ApplicationDependencies.getDatabaseObserver().notifyCallLinkObservers(roomId)
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
 
   fun callLinkExists(
@@ -169,6 +176,59 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     } else {
       callLink
     }
+  }
+
+  fun getCallLinksCount(query: String?): Int {
+    return queryCallLinks(query, -1, -1, true).readToSingleInt(0)
+  }
+
+  fun getCallLinks(query: String?, offset: Int, limit: Int): List<CallLogRow.CallLink> {
+    return queryCallLinks(query, offset, limit, false).readToList {
+      val callLink = CallLinkDeserializer.deserialize(it)
+      CallLogRow.CallLink(callLink, Recipient.resolved(callLink.recipientId), query)
+    }
+  }
+
+  private fun queryCallLinks(query: String?, offset: Int, limit: Int, asCount: Boolean): Cursor {
+    //language=sql
+    val noCallEvent = """
+      NOT EXISTS (
+          SELECT 1 
+          FROM ${CallTable.TABLE_NAME} 
+          WHERE ${CallTable.PEER} = $TABLE_NAME.$RECIPIENT_ID 
+            AND ${CallTable.TYPE} = ${CallTable.Type.serialize(CallTable.Type.AD_HOC_CALL)}
+            AND ${CallTable.EVENT} != ${CallTable.Event.serialize(CallTable.Event.DELETE)}
+      )
+    """.trimIndent()
+
+    val searchFilter = if (!query.isNullOrEmpty()) {
+      SqlUtil.buildQuery("AND $NAME GLOB ?", SqlUtil.buildCaseInsensitiveGlobPattern(query))
+    } else {
+      null
+    }
+
+    val limitOffset = if (limit >= 0 && offset >= 0) {
+      //language=sql
+      "LIMIT $limit OFFSET $offset"
+    } else {
+      ""
+    }
+
+    val projection = if (asCount) {
+      "COUNT(*)"
+    } else {
+      "*"
+    }
+
+    //language=sql
+    val statement = """
+      SELECT $projection
+      FROM $TABLE_NAME
+      WHERE $noCallEvent AND NOT $REVOKED ${searchFilter?.where ?: ""}
+      $limitOffset
+    """.trimIndent()
+
+    return readableDatabase.query(statement, searchFilter?.whereArgs)
   }
 
   private object CallLinkSerializer : Serializer<CallLink, ContentValues> {

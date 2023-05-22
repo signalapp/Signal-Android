@@ -47,14 +47,14 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     private val TAG = Log.tag(CallTable::class.java)
     private val TIME_WINDOW = TimeUnit.HOURS.toMillis(4)
 
-    private const val TABLE_NAME = "call"
+    const val TABLE_NAME = "call"
     private const val ID = "_id"
     private const val CALL_ID = "call_id"
     private const val MESSAGE_ID = "message_id"
-    private const val PEER = "peer"
-    private const val TYPE = "type"
+    const val PEER = "peer"
+    const val TYPE = "type"
     private const val DIRECTION = "direction"
-    private const val EVENT = "event"
+    const val EVENT = "event"
     private const val TIMESTAMP = "timestamp"
     private const val RINGER = "ringer"
     private const val DELETION_TIMESTAMP = "deletion_timestamp"

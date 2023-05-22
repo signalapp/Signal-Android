@@ -319,7 +319,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       DISTRIBUTION_LIST_ID,
       NEEDS_PNI_SIGNATURE,
       HIDDEN,
-      REPORTING_TOKEN
+      REPORTING_TOKEN,
+      CALL_LINK_ROOM_ID
     )
 
     private val ID_PROJECTION = arrayOf(ID)
@@ -564,14 +565,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     ).recipientId
   }
 
-  fun getOrInsertFromCallLinkRoomId(callLinkRoomId: CallLinkRoomId): RecipientId {
+  fun getOrInsertFromCallLinkRoomId(callLinkRoomId: CallLinkRoomId, avatarColor: AvatarColor): RecipientId {
     return getOrInsertByColumn(
       CALL_LINK_ROOM_ID,
       callLinkRoomId.serialize(),
       contentValuesOf(
         GROUP_TYPE to GroupType.CALL_LINK.id,
         CALL_LINK_ROOM_ID to callLinkRoomId.serialize(),
-        PROFILE_SHARING to 1
+        PROFILE_SHARING to 1,
+        AVATAR_COLOR to avatarColor.serialize()
       )
     ).recipientId
   }
@@ -4172,7 +4174,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       hasGroupsInCommon = cursor.requireBoolean(GROUPS_IN_COMMON),
       badges = parseBadgeList(cursor.requireBlob(BADGES)),
       needsPniSignature = cursor.requireBoolean(NEEDS_PNI_SIGNATURE),
-      isHidden = cursor.requireBoolean(HIDDEN)
+      isHidden = cursor.requireBoolean(HIDDEN),
+      callLinkRoomId = cursor.requireString(CALL_LINK_ROOM_ID)?.let { CallLinkRoomId.DatabaseSerializer.deserialize(it) }
     )
   }
 

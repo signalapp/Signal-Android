@@ -52,8 +52,8 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
     Log.i(TAG, "handleOutgoingCall():");
 
     Recipient recipient = Recipient.resolved(remotePeer.getId());
-    if (recipient.isGroup()) {
-      Log.w(TAG, "Aborting attempt to start 1:1 call for group recipient: " + remotePeer.getId());
+    if (recipient.isGroup() || recipient.isCallLink()) {
+      Log.w(TAG, "Aborting attempt to start 1:1 call for group or call link recipient: " + remotePeer.getId());
       return currentState;
     }
 
@@ -65,7 +65,7 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handlePreJoinCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     Log.i(TAG, "handlePreJoinCall():");
 
-    boolean               isGroupCall = remotePeer.getRecipient().isPushV2Group();
+    boolean               isGroupCall = remotePeer.getRecipient().isPushV2Group() || remotePeer.getRecipient().isCallLink();
     WebRtcActionProcessor processor   = isGroupCall ? new GroupPreJoinActionProcessor(webRtcInteractor)
                                                     : new PreJoinActionProcessor(webRtcInteractor);
 

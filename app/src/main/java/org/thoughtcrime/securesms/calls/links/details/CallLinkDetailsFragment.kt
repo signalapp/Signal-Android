@@ -24,15 +24,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityCompat
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Rows
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallLinkState.Restrictions
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.CallLinks
@@ -44,6 +49,8 @@ import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
 import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
+import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
+import org.thoughtcrime.securesms.util.CommunicationActions
 import java.time.Instant
 
 /**
@@ -52,7 +59,14 @@ import java.time.Instant
  */
 class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
 
-  private val viewModel: CallLinkDetailsViewModel by viewModels()
+  companion object {
+    private val TAG = Log.tag(CallLinkDetailsFragment::class.java)
+  }
+
+  private val args: CallLinkDetailsFragmentArgs by navArgs()
+  private val viewModel: CallLinkDetailsViewModel by viewModels(factoryProducer = {
+    CallLinkDetailsViewModel.Factory(args.roomId)
+  })
   private val lifecycleDisposable = LifecycleDisposable()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -75,11 +89,14 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
   }
 
   override fun onNavigationClicked() {
-    findNavController().popBackStack()
+    ActivityCompat.finishAfterTransition(requireActivity())
   }
 
   override fun onJoinClicked() {
-    // TODO("Not yet implemented")
+    val recipientSnapshot = viewModel.recipientSnapshot
+    if (recipientSnapshot != null) {
+      CommunicationActions.startVideoCall(this, recipientSnapshot)
+    }
   }
 
   override fun onEditNameClicked() {
@@ -104,18 +121,53 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
   }
 
   override fun onDeleteClicked() {
-    lifecycleDisposable += viewModel.revoke().subscribeBy {
-    }
+    viewModel.setDisplayRevocationDialog(true)
+  }
+
+  override fun onDeleteConfirmed() {
+    viewModel.setDisplayRevocationDialog(false)
+    lifecycleDisposable += viewModel.revoke().observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
+      when (it) {
+        is UpdateCallLinkResult.Success -> ActivityCompat.finishAfterTransition(requireActivity())
+        else -> {
+          Log.w(TAG, "Failed to revoke. $it")
+          toastFailure()
+        }
+      }
+    }, onError = handleError("onDeleteClicked"))
+  }
+
+  override fun onDeleteCanceled() {
+    viewModel.setDisplayRevocationDialog(false)
   }
 
   override fun onApproveAllMembersChanged(checked: Boolean) {
-    lifecycleDisposable += viewModel.setApproveAllMembers(checked).subscribeBy {
-    }
+    lifecycleDisposable += viewModel.setApproveAllMembers(checked).observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
+      if (it !is UpdateCallLinkResult.Success) {
+        Log.w(TAG, "Failed to change restrictions. $it")
+        toastFailure()
+      }
+    }, onError = handleError("onApproveAllMembersChanged"))
   }
 
   private fun setName(name: String) {
-    lifecycleDisposable += viewModel.setName(name).subscribeBy {
+    lifecycleDisposable += viewModel.setName(name).observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
+      if (it !is UpdateCallLinkResult.Success) {
+        Log.w(TAG, "Failed to set name. $it")
+        toastFailure()
+      }
+    }, onError = handleError("setName"))
+  }
+
+  private fun handleError(method: String): (throwable: Throwable) -> Unit {
+    return {
+      Log.w(TAG, "Failure during $method", it)
+      toastFailure()
     }
+  }
+
+  private fun toastFailure() {
+    Toast.makeText(requireContext(), R.string.CallLinkDetailsFragment__couldnt_save_changes, Toast.LENGTH_LONG).show()
   }
 }
 
@@ -125,6 +177,8 @@ private interface CallLinkDetailsCallback {
   fun onEditNameClicked()
   fun onShareClicked()
   fun onDeleteClicked()
+  fun onDeleteConfirmed()
+  fun onDeleteCanceled()
   fun onApproveAllMembersChanged(checked: Boolean)
 }
 
@@ -154,9 +208,12 @@ private fun CallLinkDetailsPreview() {
   SignalTheme(false) {
     CallLinkDetails(
       CallLinkDetailsState(
+        false,
         callLink
       ),
       object : CallLinkDetailsCallback {
+        override fun onDeleteConfirmed() = Unit
+        override fun onDeleteCanceled() = Unit
         override fun onNavigationClicked() = Unit
         override fun onJoinClicked() = Unit
         override fun onEditNameClicked() = Unit
@@ -213,6 +270,17 @@ private fun CallLinkDetails(
         icon = ImageVector.vectorResource(id = R.drawable.symbol_trash_24),
         foregroundTint = MaterialTheme.colorScheme.error,
         modifier = Modifier.clickable(onClick = callback::onDeleteClicked)
+      )
+    }
+
+    if (state.displayRevocationDialog) {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.CallLinkDetailsFragment__delete_link),
+        body = stringResource(id = R.string.CallLinkDetailsFragment__this_link_will_no_longer_work),
+        confirm = stringResource(id = R.string.delete),
+        dismiss = stringResource(id = android.R.string.cancel),
+        onConfirm = callback::onDeleteConfirmed,
+        onDismiss = callback::onDeleteCanceled
       )
     }
   }

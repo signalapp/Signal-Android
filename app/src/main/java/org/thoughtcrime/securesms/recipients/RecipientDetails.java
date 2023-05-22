@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
@@ -86,6 +87,7 @@ public class RecipientDetails {
   final List<Badge>                  badges;
   final boolean                      isReleaseChannel;
   final boolean                      needsPniSignature;
+  final CallLinkRoomId               callLinkRoomId;
 
   public RecipientDetails(@Nullable String groupName,
                           @Nullable String systemContactName,
@@ -150,6 +152,7 @@ public class RecipientDetails {
     this.badges                       = record.getBadges();
     this.isReleaseChannel             = isReleaseChannel;
     this.needsPniSignature            = record.needsPniSignature();
+    this.callLinkRoomId               = record.getCallLinkRoomId();
   }
 
   private RecipientDetails() {
@@ -203,8 +206,9 @@ public class RecipientDetails {
     this.hasGroupsInCommon            = false;
     this.badges                       = Collections.emptyList();
     this.isReleaseChannel             = false;
-    this.needsPniSignature = false;
-    this.isActiveGroup     = false;
+    this.needsPniSignature            = false;
+    this.isActiveGroup                = false;
+    this.callLinkRoomId               = null;
   }
 
   public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientRecord settings) {
@@ -228,6 +232,10 @@ public class RecipientDetails {
 
   public static @NonNull RecipientDetails forDistributionList(String title, @Nullable List<RecipientId> members, @NonNull RecipientRecord record) {
     return new RecipientDetails(title, null, Optional.empty(), false, false, record.getRegistered(), record, members, false, false);
+  }
+
+  public static @NonNull RecipientDetails forCallLink(String name, @NonNull RecipientRecord record) {
+    return new RecipientDetails(name, null, Optional.empty(), false, false, record.getRegistered(), record, Collections.emptyList(), false, false);
   }
 
   public static @NonNull RecipientDetails forUnknown() {

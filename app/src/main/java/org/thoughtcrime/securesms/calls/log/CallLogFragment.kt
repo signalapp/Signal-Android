@@ -28,6 +28,7 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
 import org.thoughtcrime.securesms.calls.new.NewCallActivity
 import org.thoughtcrime.securesms.components.Material3SearchToolbar
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
@@ -319,12 +320,25 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       )
       startActivity(intent)
     } else {
-      throw NotImplementedError("On call link event clicked.")
+      startActivity(CallLinkDetailsActivity.createIntent(requireContext(), callLogRow.peer.requireCallLinkRoomId()))
+    }
+  }
+
+  override fun onCallLinkClicked(callLogRow: CallLogRow.CallLink) {
+    if (viewModel.selectionStateSnapshot.isNotEmpty(binding.recycler.adapter!!.itemCount)) {
+      viewModel.toggleSelected(callLogRow.id)
+    } else {
+      startActivity(CallLinkDetailsActivity.createIntent(requireContext(), callLogRow.record.roomId))
     }
   }
 
   override fun onCallLongClicked(itemView: View, callLogRow: CallLogRow.Call): Boolean {
     callLogContextMenu.show(binding.recycler, itemView, callLogRow)
+    return true
+  }
+
+  override fun onCallLinkLongClicked(itemView: View, callLinkLogRow: CallLogRow.CallLink): Boolean {
+    callLogContextMenu.show(binding.recycler, itemView, callLinkLogRow)
     return true
   }
 
@@ -341,12 +355,12 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     CommunicationActions.startVideoCall(this, recipient)
   }
 
-  override fun startSelection(call: CallLogRow.Call) {
+  override fun startSelection(call: CallLogRow) {
     callLogActionMode.start()
     viewModel.toggleSelected(call.id)
   }
 
-  override fun deleteCall(call: CallLogRow.Call) {
+  override fun deleteCall(call: CallLogRow) {
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, 1, 1))
       .setPositiveButton(R.string.CallLogFragment__delete_for_me) { _, _ ->

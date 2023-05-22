@@ -96,7 +96,7 @@ class CallLogViewModel(
   }
 
   @MainThread
-  fun stageCallDeletion(call: CallLogRow.Call) {
+  fun stageCallDeletion(call: CallLogRow) {
     callLogStore.state.stagedDeletion?.commit()
     callLogStore.update {
       it.copy(

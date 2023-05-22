@@ -5,11 +5,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.CallTable
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CommunicationActions
 
 /**
@@ -30,23 +32,42 @@ class CallLogContextMenu(
       }
       .show(
         listOfNotNull(
-          getVideoCallActionItem(call),
+          getVideoCallActionItem(call.peer),
           getAudioCallActionItem(call),
           getGoToChatActionItem(call),
-          getInfoActionItem(call),
+          getInfoActionItem(call.peer, (call.id as CallLogRow.Id.Call).children.toLongArray()),
           getSelectActionItem(call),
           getDeleteActionItem(call)
         )
       )
   }
 
-  private fun getVideoCallActionItem(call: CallLogRow.Call): ActionItem {
+  fun show(recyclerView: RecyclerView, anchor: View, callLink: CallLogRow.CallLink) {
+    recyclerView.suppressLayout(true)
+    anchor.isSelected = true
+    SignalContextMenu.Builder(anchor, anchor.parent as ViewGroup)
+      .preferredVerticalPosition(SignalContextMenu.VerticalPosition.BELOW)
+      .onDismiss {
+        anchor.isSelected = false
+        recyclerView.suppressLayout(false)
+      }
+      .show(
+        listOfNotNull(
+          getVideoCallActionItem(callLink.recipient),
+          getInfoActionItem(callLink.recipient, longArrayOf()),
+          getSelectActionItem(callLink),
+          getDeleteActionItem(callLink)
+        )
+      )
+  }
+
+  private fun getVideoCallActionItem(peer: Recipient): ActionItem {
     // TODO [alex] -- Need group calling disposition to make this correct
     return ActionItem(
       iconRes = R.drawable.symbol_video_24,
       title = fragment.getString(R.string.CallContextMenu__video_call)
     ) {
-      CommunicationActions.startVideoCall(fragment, call.peer)
+      CommunicationActions.startVideoCall(fragment, peer)
     }
   }
 
@@ -75,20 +96,20 @@ class CallLogContextMenu(
     }
   }
 
-  private fun getInfoActionItem(call: CallLogRow.Call): ActionItem {
+  private fun getInfoActionItem(peer: Recipient, messageIds: LongArray): ActionItem {
     return ActionItem(
       iconRes = R.drawable.symbol_info_24,
       title = fragment.getString(R.string.CallContextMenu__info)
     ) {
       val intent = when {
-        call.peer.isCallLink -> throw NotImplementedError("Launch CallLinkDetailsActivity")
-        else -> ConversationSettingsActivity.forCall(fragment.requireContext(), call.peer, longArrayOf(call.record.messageId!!))
+        peer.isCallLink -> CallLinkDetailsActivity.createIntent(fragment.requireContext(), peer.requireCallLinkRoomId())
+        else -> ConversationSettingsActivity.forCall(fragment.requireContext(), peer, messageIds)
       }
       fragment.startActivity(intent)
     }
   }
 
-  private fun getSelectActionItem(call: CallLogRow.Call): ActionItem {
+  private fun getSelectActionItem(call: CallLogRow): ActionItem {
     return ActionItem(
       iconRes = R.drawable.symbol_check_circle_24,
       title = fragment.getString(R.string.CallContextMenu__select)
@@ -97,8 +118,8 @@ class CallLogContextMenu(
     }
   }
 
-  private fun getDeleteActionItem(call: CallLogRow.Call): ActionItem? {
-    if (call.record.event == CallTable.Event.ONGOING) {
+  private fun getDeleteActionItem(call: CallLogRow): ActionItem? {
+    if (call is CallLogRow.Call && call.record.event == CallTable.Event.ONGOING) {
       return null
     }
 
@@ -111,7 +132,7 @@ class CallLogContextMenu(
   }
 
   interface Callbacks {
-    fun startSelection(call: CallLogRow.Call)
-    fun deleteCall(call: CallLogRow.Call)
+    fun startSelection(call: CallLogRow)
+    fun deleteCall(call: CallLogRow)
   }
 }

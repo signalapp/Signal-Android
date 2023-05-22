@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
 import org.thoughtcrime.securesms.service.webrtc.links.CreateCallLinkResult
@@ -24,13 +25,13 @@ class CreateCallLinkRepository(
   private val callLinkManager: SignalCallLinkManager = ApplicationDependencies.getSignalCallManager().callLinkManager
 ) {
   fun ensureCallLinkCreated(credentials: CallLinkCredentials, avatarColor: AvatarColor): Single<EnsureCallLinkCreatedResult> {
-    val doesCallLinkExistInLocalDatabase = Single.fromCallable {
-      SignalDatabase.callLinks.callLinkExists(credentials.roomId)
+    val callLinkRecipientId = Single.fromCallable {
+      SignalDatabase.recipients.getByCallLinkRoomId(credentials.roomId)
     }
 
-    return doesCallLinkExistInLocalDatabase.flatMap { exists ->
-      if (exists) {
-        Single.just(EnsureCallLinkCreatedResult.Success)
+    return callLinkRecipientId.flatMap { recipientId ->
+      if (recipientId.isPresent) {
+        Single.just(EnsureCallLinkCreatedResult.Success(Recipient.resolved(recipientId.get())))
       } else {
         callLinkManager.createCallLink(credentials).map {
           when (it) {
@@ -45,7 +46,11 @@ class CreateCallLinkRepository(
                 )
               )
 
-              EnsureCallLinkCreatedResult.Success
+              EnsureCallLinkCreatedResult.Success(
+                Recipient.resolved(
+                  SignalDatabase.recipients.getByCallLinkRoomId(credentials.roomId).get()
+                )
+              )
             }
 
             is CreateCallLinkResult.Failure -> EnsureCallLinkCreatedResult.Failure(it)
