@@ -48,8 +48,12 @@ object FcmFetchManager {
       try {
         if (foreground) {
           Log.i(TAG, "Starting in the foreground.")
-          ForegroundServiceUtil.startWhenCapableOrThrow(context, Intent(context, FcmFetchForegroundService::class.java), MAX_BLOCKING_TIME_MS)
-          startedForeground = true
+          if (!startedForeground) {
+            ForegroundServiceUtil.startWhenCapableOrThrow(context, Intent(context, FcmFetchForegroundService::class.java), MAX_BLOCKING_TIME_MS)
+            startedForeground = true
+          } else {
+            Log.i(TAG, "Already started foreground service")
+          }
         } else {
           Log.i(TAG, "Starting in the background.")
           context.startService(Intent(context, FcmFetchBackgroundService::class.java))
@@ -70,13 +74,6 @@ object FcmFetchManager {
     }
 
     return true
-  }
-
-  @JvmStatic
-  fun isForegroundStarted(): Boolean {
-    synchronized(this) {
-      return startedForeground
-    }
   }
 
   private fun fetch(context: Context) {
