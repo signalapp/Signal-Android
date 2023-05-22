@@ -1092,9 +1092,9 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
     override fun onEditedIndicatorClicked(messageRecord: MessageRecord) {
       if (messageRecord.isOutgoing) {
-        EditMessageHistoryDialog.show(childFragmentManager, messageRecord.toRecipient.id, messageRecord.id)
+        EditMessageHistoryDialog.show(childFragmentManager, messageRecord.toRecipient.id, messageRecord)
       } else {
-        EditMessageHistoryDialog.show(childFragmentManager, messageRecord.fromRecipient.id, messageRecord.id)
+        EditMessageHistoryDialog.show(childFragmentManager, messageRecord.fromRecipient.id, messageRecord)
       }
     }
 

@@ -1942,7 +1942,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun getMessageEditHistory(id: Long): MmsReader {
     val cursor = readableDatabase.select(*MMS_PROJECTION)
       .from(TABLE_NAME)
-      .where("$TABLE_NAME.$ID = ? OR $TABLE_NAME.$LATEST_REVISION_ID = ?", id, id)
+      .where("$TABLE_NAME.$ID = ? OR $TABLE_NAME.$ORIGINAL_MESSAGE_ID = ?", id, id)
       .orderBy("$TABLE_NAME.$DATE_SENT ASC")
       .run()
 

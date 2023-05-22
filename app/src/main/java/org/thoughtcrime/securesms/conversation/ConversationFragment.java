@@ -2057,9 +2057,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void onEditedIndicatorClicked(@NonNull MessageRecord messageRecord) {
       if (messageRecord.isOutgoing()) {
-        EditMessageHistoryDialog.show(getChildFragmentManager(), messageRecord.getToRecipient().getId(), messageRecord.getId());
+        EditMessageHistoryDialog.show(getChildFragmentManager(), messageRecord.getToRecipient().getId(), messageRecord);
       } else {
-        EditMessageHistoryDialog.show(getChildFragmentManager(), messageRecord.getFromRecipient().getId(), messageRecord.getId());
+        EditMessageHistoryDialog.show(getChildFragmentManager(), messageRecord.getFromRecipient().getId(), messageRecord);
       }
     }
 
