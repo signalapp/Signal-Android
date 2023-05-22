@@ -82,10 +82,12 @@ class InstrumentationApplicationDependencyProvider(application: Application, def
       arrayOf(SignalKeyBackupServiceUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
       arrayOf(SignalStorageUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
       arrayOf(SignalCdsiUrl(baseUrl, "localhost", serviceTrustStore, ConnectionSpec.CLEARTEXT)),
+      emptyArray(),
       emptyList(),
       Optional.of(SignalServiceNetworkAccess.DNS),
       Optional.empty(),
-      Base64.decode(BuildConfig.ZKGROUP_SERVER_PUBLIC_PARAMS)
+      Base64.decode(BuildConfig.ZKGROUP_SERVER_PUBLIC_PARAMS),
+      Base64.decode(BuildConfig.GENERIC_SERVER_PUBLIC_PARAMS)
     )
 
     serviceNetworkAccessMock = mock {
