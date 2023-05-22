@@ -404,8 +404,10 @@ object SyncMessageProcessor {
       SignalDatabase.messages.endTransaction()
     }
     if (syncAttachments.isNotEmpty()) {
-      for (attachment in attachments) {
-        ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(messageId, attachment.attachmentId, false))
+      SignalDatabase.runPostSuccessfulTransaction {
+        for (attachment in attachments) {
+          ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(messageId, attachment.attachmentId, false))
+        }
       }
     }
   }
@@ -511,9 +513,10 @@ object SyncMessageProcessor {
     } finally {
       SignalDatabase.messages.endTransaction()
     }
-
-    for (attachment in attachments) {
-      ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(messageId, attachment.attachmentId, false))
+    SignalDatabase.runPostSuccessfulTransaction {
+      for (attachment in attachments) {
+        ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(messageId, attachment.attachmentId, false))
+      }
     }
   }
 
@@ -799,12 +802,13 @@ object SyncMessageProcessor {
     } finally {
       SignalDatabase.messages.endTransaction()
     }
+    SignalDatabase.runPostSuccessfulTransaction {
+      for (attachment in attachments) {
+        ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(messageId, attachment.attachmentId, false))
+      }
 
-    for (attachment in attachments) {
-      ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(messageId, attachment.attachmentId, false))
+      DataMessageProcessor.forceStickerDownloadIfNecessary(context, messageId, stickerAttachments)
     }
-
-    DataMessageProcessor.forceStickerDownloadIfNecessary(context, messageId, stickerAttachments)
 
     return threadId
   }

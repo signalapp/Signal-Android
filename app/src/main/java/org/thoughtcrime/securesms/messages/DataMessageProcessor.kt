@@ -874,21 +874,23 @@ object DataMessageProcessor {
     }
 
     return if (insertResult != null) {
-      val allAttachments = SignalDatabase.attachments.getAttachmentsForMessage(insertResult.messageId)
-      val stickerAttachments = allAttachments.filter { it.isSticker }.toList()
-      val attachments = allAttachments.filterNot { it.isSticker }.toList()
+      SignalDatabase.runPostSuccessfulTransaction {
+        val allAttachments = SignalDatabase.attachments.getAttachmentsForMessage(insertResult.messageId)
+        val stickerAttachments = allAttachments.filter { it.isSticker }.toList()
+        val otherAttachments = allAttachments.filterNot { it.isSticker }.toList()
 
-      forceStickerDownloadIfNecessary(context, insertResult.messageId, stickerAttachments)
+        forceStickerDownloadIfNecessary(context, insertResult.messageId, stickerAttachments)
 
-      for (attachment in attachments) {
-        ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(insertResult.messageId, attachment.attachmentId, false))
-      }
+        for (attachment in otherAttachments) {
+          ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(insertResult.messageId, attachment.attachmentId, false))
+        }
 
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
-      TrimThreadJob.enqueueAsync(insertResult.threadId)
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
+        TrimThreadJob.enqueueAsync(insertResult.threadId)
 
-      if (message.isViewOnce) {
-        ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary()
+        if (message.isViewOnce) {
+          ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary()
+        }
       }
 
       MessageId(insertResult.messageId)
