@@ -1032,15 +1032,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       type = type or MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT
     }
 
-    val recipient = Recipient.resolved(message.authorId)
-
-    val groupRecipient: Recipient? = if (message.groupId == null) {
-      null
-    } else {
-      val id = recipients.getOrInsertFromPossiblyMigratedGroupId(message.groupId!!)
-      Recipient.resolved(id)
-    }
-
     val silent = message.isIdentityUpdate ||
       message.isIdentityVerified ||
       message.isIdentityDefault ||
@@ -1053,7 +1044,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         Util.isDefaultSmsProvider(context)
       )
 
-    val threadId: Long = if (groupRecipient == null) threads.getOrCreateThreadIdFor(recipient) else threads.getOrCreateThreadIdFor(groupRecipient)
+    val threadId: Long = if (message.groupId == null) threads.getOrCreateThreadIdFor(message.authorId, false) else threads.getOrCreateThreadIdFor(RecipientId.from(message.groupId!!), true)
 
     if (tryToCollapseJoinRequestEvents) {
       val result = collapseJoinRequestEventsIfPossible(threadId, message as IncomingGroupUpdateMessage)
@@ -1098,7 +1089,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
 
       if (message.subscriptionId != -1) {
-        recipients.setDefaultSubscriptionId(recipient.id, message.subscriptionId)
+        recipients.setDefaultSubscriptionId(message.authorId, message.subscriptionId)
       }
       writableDatabase.setTransactionSuccessful()
     } finally {

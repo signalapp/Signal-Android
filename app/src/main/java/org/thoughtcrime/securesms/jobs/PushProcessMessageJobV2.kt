@@ -1,18 +1,18 @@
 package org.thoughtcrime.securesms.jobs
 
-import androidx.annotation.WorkerThread
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupsV1MigratedCache
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.messages.MessageContentProcessorV2
+import org.thoughtcrime.securesms.messages.MessageDecryptor
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
@@ -33,14 +33,6 @@ class PushProcessMessageJobV2 private constructor(
   private val metadata: EnvelopeMetadata,
   private val serverDeliveredTimestamp: Long
 ) : BaseJob(parameters) {
-
-  @WorkerThread
-  constructor(
-    envelope: Envelope,
-    content: Content,
-    metadata: EnvelopeMetadata,
-    serverDeliveredTimestamp: Long
-  ) : this(createParameters(content, metadata), envelope.toBuilder().clearContent().build(), content, metadata, serverDeliveredTimestamp)
 
   override fun shouldTrace() = true
 
@@ -107,40 +99,66 @@ class PushProcessMessageJobV2 private constructor(
 
     private val TAG = Log.tag(PushProcessMessageJobV2::class.java)
 
+    /**
+     * Cache to keep track of empty 1:1 processing queues. Once a 1:1 queue is empty
+     * we no longer enqueue jobs on it and instead process inline. This is not
+     * true for groups, as with groups we may have to do network fetches
+     * to get group state up to date.
+     */
+    private val empty1to1QueueCache = HashSet<String>()
+
     private fun getQueueName(recipientId: RecipientId): String {
       return QUEUE_PREFIX + recipientId.toQueueKey()
     }
 
-    @WorkerThread
-    private fun createParameters(content: Content, metadata: EnvelopeMetadata): Parameters {
+    fun processOrDefer(messageProcessor: MessageContentProcessorV2, result: MessageDecryptor.Result.Success): PushProcessMessageJobV2? {
       val queueName: String
-      val builder = Parameters.Builder()
-        .setMaxAttempts(Parameters.UNLIMITED)
-        .addConstraint(ChangeNumberConstraint.KEY)
 
-      val groupContext = GroupUtil.getGroupContextIfPresent(content)
+      val groupContext = GroupUtil.getGroupContextIfPresent(result.content)
       val groupId = groupContext?.groupId
+      var requireNetwork = false
 
-      if (groupContext != null && groupId != null) {
-        queueName = getQueueName(Recipient.externalPossiblyMigratedGroup(groupId).id)
+      if (groupId != null) {
+        queueName = getQueueName(RecipientId.from(groupId))
 
         if (groupId.isV2) {
           val localRevision = groups.getGroupV2Revision(groupId.requireV2())
 
           if (groupContext.revision > localRevision || GroupsV1MigratedCache.hasV1Group(groupId)) {
             Log.i(TAG, "Adding network constraint to group-related job.")
-            builder.addConstraint(NetworkConstraint.KEY).setLifespan(TimeUnit.DAYS.toMillis(30))
+            requireNetwork = true
           }
         }
-      } else if (content.hasSyncMessage() && content.syncMessage.hasSent() && content.syncMessage.sent.hasDestinationUuid()) {
-        queueName = getQueueName(RecipientId.from(ServiceId.parseOrThrow(content.syncMessage.sent.destinationUuid)))
+      } else if (result.content.hasSyncMessage() && result.content.syncMessage.hasSent() && result.content.syncMessage.sent.hasDestinationUuid()) {
+        queueName = getQueueName(RecipientId.from(ServiceId.parseOrThrow(result.content.syncMessage.sent.destinationUuid)))
       } else {
-        queueName = getQueueName(RecipientId.from(metadata.sourceServiceId))
+        queueName = getQueueName(RecipientId.from(result.metadata.sourceServiceId))
       }
 
-      builder.setQueue(queueName)
+      return if (requireNetwork || !isQueueEmpty(queueName = queueName, isGroup = groupId != null)) {
+        val builder = Parameters.Builder()
+          .setMaxAttempts(Parameters.UNLIMITED)
+          .addConstraint(ChangeNumberConstraint.KEY)
+          .setQueue(queueName)
+        if (requireNetwork) {
+          builder.addConstraint(NetworkConstraint.KEY).setLifespan(TimeUnit.DAYS.toMillis(30))
+        }
+        PushProcessMessageJobV2(builder.build(), result.envelope.toBuilder().clearContent().build(), result.content, result.metadata, result.serverDeliveredTimestamp)
+      } else {
+        messageProcessor.process(result.envelope, result.content, result.metadata, result.serverDeliveredTimestamp)
+        null
+      }
+    }
 
-      return builder.build()
+    private fun isQueueEmpty(queueName: String, isGroup: Boolean): Boolean {
+      if (!isGroup && empty1to1QueueCache.contains(queueName)) {
+        return true
+      }
+      val queueEmpty = ApplicationDependencies.getJobManager().isQueueEmpty(queueName)
+      if (!isGroup && queueEmpty) {
+        empty1to1QueueCache.add(queueName)
+      }
+      return queueEmpty
     }
   }
 }

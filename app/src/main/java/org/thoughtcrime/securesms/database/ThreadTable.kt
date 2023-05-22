@@ -1152,6 +1152,11 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return threadId ?: createThreadForRecipient(recipient.id, recipient.isGroup, distributionType)
   }
 
+  fun getOrCreateThreadIdFor(recipientId: RecipientId, isGroup: Boolean, distributionType: Int = DistributionTypes.DEFAULT): Long {
+    val threadId = getThreadIdFor(recipientId)
+    return threadId ?: createThreadForRecipient(recipientId, isGroup, distributionType)
+  }
+
   fun areThreadIdAndRecipientAssociated(threadId: Long, recipient: Recipient): Boolean {
     return readableDatabase
       .exists(TABLE_NAME)

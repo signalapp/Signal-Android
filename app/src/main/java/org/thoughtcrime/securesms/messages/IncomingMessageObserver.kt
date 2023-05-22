@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.jobs.PushProcessMessageJobV2
 import org.thoughtcrime.securesms.jobs.UnableToStartException
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.MessageDecryptor.FollowUpOperation
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
 import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -90,6 +91,8 @@ class IncomingMessageObserver(private val context: Application) {
 
   private val lock: ReentrantLock = ReentrantLock()
   private val connectionNecessarySemaphore = Semaphore(0)
+
+  private val messageContentProcessor = MessageContentProcessorV2(context)
 
   private var appVisible = false
   private var lastInteractionTime: Long = System.currentTimeMillis()
@@ -300,33 +303,33 @@ class IncomingMessageObserver(private val context: Application) {
 
   private fun processMessage(bufferedProtocolStore: BufferedProtocolStore, envelope: SignalServiceProtos.Envelope, serverDeliveredTimestamp: Long): List<FollowUpOperation> {
     val result = MessageDecryptor.decrypt(context, bufferedProtocolStore, envelope, serverDeliveredTimestamp)
-
-    val extraJob: Job? = when (result) {
+    when (result) {
       is MessageDecryptor.Result.Success -> {
-        PushProcessMessageJobV2(result.envelope, result.content, result.metadata, result.serverDeliveredTimestamp)
+        val job = PushProcessMessageJobV2.processOrDefer(messageContentProcessor, result)
+        if (job != null) {
+          return result.followUpOperations + FollowUpOperation { job }
+        }
       }
-
       is MessageDecryptor.Result.Error -> {
-        PushProcessMessageJob(
-          result.toMessageState(),
-          null,
-          result.errorMetadata.toExceptionMetadata(),
-          -1,
-          result.envelope.timestamp
-        )
+        return result.followUpOperations + FollowUpOperation {
+          PushProcessMessageJob(
+            result.toMessageState(),
+            null,
+            result.errorMetadata.toExceptionMetadata(),
+            -1,
+            result.envelope.timestamp
+          )
+        }
       }
-
       is MessageDecryptor.Result.Ignore -> {
         // No action needed
-        null
       }
-
       else -> {
         throw AssertionError("Unexpected result! ${result.javaClass.simpleName}")
       }
     }
 
-    return result.followUpOperations + FollowUpOperation { extraJob }
+    return result.followUpOperations
   }
 
   private fun processReceipt(envelope: SignalServiceProtos.Envelope) {
