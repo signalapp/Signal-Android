@@ -1806,11 +1806,19 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun markHidden(id: RecipientId) {
-    val contentValues = contentValuesOf(
-      HIDDEN to 1,
-      PROFILE_SHARING to 0
-    )
+  fun markHidden(id: RecipientId, clearProfileKey: Boolean = false) {
+    val contentValues = if (clearProfileKey) {
+      contentValuesOf(
+        HIDDEN to 1,
+        PROFILE_SHARING to 0,
+        PROFILE_KEY to null
+      )
+    } else {
+      contentValuesOf(
+        HIDDEN to 1,
+        PROFILE_SHARING to 0
+      )
+    }
 
     val updated = writableDatabase.update(TABLE_NAME, contentValues, "$ID_WHERE AND $GROUP_TYPE = ?", SqlUtil.buildArgs(id, GroupType.NONE.id)) > 0
     if (updated) {
