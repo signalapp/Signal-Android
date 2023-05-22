@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.messages.protocol
 
 import org.signal.libsignal.protocol.NoSessionException
 import org.signal.libsignal.protocol.SignalProtocolAddress
-import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.signal.libsignal.protocol.state.SessionRecord
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
@@ -72,7 +71,7 @@ class BufferedSessionStore(private val selfServiceId: ServiceId) : SignalService
 
       if (fromDatabase != null) {
         store[address] = fromDatabase
-        return fromDatabase.hasSenderChain() && fromDatabase.sessionVersion == CiphertextMessage.CURRENT_VERSION
+        return fromDatabase.hasSenderChain()
       } else {
         false
       }

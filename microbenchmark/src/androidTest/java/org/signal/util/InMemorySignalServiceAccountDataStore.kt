@@ -4,7 +4,6 @@ import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.groups.state.SenderKeyRecord
-import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.signal.libsignal.protocol.state.IdentityKeyStore
 import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.libsignal.protocol.state.SessionRecord
@@ -150,7 +149,7 @@ class InMemorySignalServiceAccountDataStore : SignalServiceAccountDataStore {
   }
 
   private fun SessionRecord.isValid(): Boolean {
-    return this.hasSenderChain() && this.sessionVersion == CiphertextMessage.CURRENT_VERSION
+    return this.hasSenderChain()
   }
 
   private data class SenderKeyLocator(val address: SignalProtocolAddress, val distributionId: UUID)
