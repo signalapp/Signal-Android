@@ -25,11 +25,15 @@ import org.signal.libsignal.protocol.InvalidKeyIdException;
 import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECKeyPair;
 import org.signal.libsignal.protocol.ecc.ECPrivateKey;
+import org.signal.libsignal.protocol.kem.KEMKeyPair;
+import org.signal.libsignal.protocol.kem.KEMKeyType;
+import org.signal.libsignal.protocol.state.KyberPreKeyRecord;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
 import org.signal.libsignal.protocol.state.SignalProtocolStore;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.protocol.util.Medium;
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore;
+import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -44,11 +48,11 @@ public class PreKeyUtil {
   private static final int  BATCH_SIZE  = 100;
   private static final long ARCHIVE_AGE = TimeUnit.DAYS.toMillis(30);
 
-  public synchronized static @NonNull List<PreKeyRecord> generateAndStoreOneTimePreKeys(@NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore) {
-    Log.i(TAG, "Generating one-time prekeys...");
+  public synchronized static @NonNull List<PreKeyRecord> generateAndStoreOneTimeEcPreKeys(@NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore) {
+    Log.i(TAG, "Generating one-time EC prekeys...");
 
     List<PreKeyRecord> records        = new LinkedList<>();
-    int                preKeyIdOffset = metadataStore.getNextOneTimePreKeyId();
+    int                preKeyIdOffset = metadataStore.getNextEcOneTimePreKeyId();
 
     for (int i = 0; i < BATCH_SIZE; i++) {
       int          preKeyId = (preKeyIdOffset + i) % Medium.MAX_VALUE;
@@ -59,7 +63,27 @@ public class PreKeyUtil {
       records.add(record);
     }
 
-    metadataStore.setNextOneTimePreKeyId((preKeyIdOffset + BATCH_SIZE + 1) % Medium.MAX_VALUE);
+    metadataStore.setNextEcOneTimePreKeyId((preKeyIdOffset + BATCH_SIZE + 1) % Medium.MAX_VALUE);
+
+    return records;
+  }
+
+  public synchronized static @NonNull List<KyberPreKeyRecord> generateAndStoreOneTimeKyberPreKeys(@NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore) {
+    Log.i(TAG, "Generating one-time kyber prekeys...");
+
+    List<KyberPreKeyRecord> records        = new LinkedList<>();
+    int                     preKeyIdOffset = metadataStore.getNextKyberPreKeyId();
+
+
+    for (int i = 0; i < BATCH_SIZE; i++) {
+      int               preKeyId  = (preKeyIdOffset + i) % Medium.MAX_VALUE;
+      KyberPreKeyRecord record    = generateKyberPreKey(preKeyId, protocolStore.getIdentityKeyPair().getPrivateKey());
+
+      protocolStore.storeKyberPreKey(preKeyId, record);
+      records.add(record);
+    }
+
+    metadataStore.setNextKyberPreKeyId((preKeyIdOffset + BATCH_SIZE + 1) % Medium.MAX_VALUE);
 
     return records;
   }
@@ -94,6 +118,31 @@ public class PreKeyUtil {
     }
   }
 
+  public synchronized static @NonNull KyberPreKeyRecord generateAndStoreLastResortKyberPreKey(@NonNull SignalServiceAccountDataStore protocolStore, @NonNull PreKeyMetadataStore metadataStore) {
+    return generateAndStoreLastResortKyberPreKey(protocolStore, metadataStore, protocolStore.getIdentityKeyPair().getPrivateKey());
+  }
+
+  public synchronized static @NonNull KyberPreKeyRecord generateAndStoreLastResortKyberPreKey(@NonNull SignalServiceAccountDataStore protocolStore,
+                                                                                              @NonNull PreKeyMetadataStore metadataStore,
+                                                                                              @NonNull ECPrivateKey privateKey)
+  {
+    int               id     = metadataStore.getNextKyberPreKeyId();
+    KyberPreKeyRecord record = generateKyberPreKey(id, privateKey);
+
+    protocolStore.storeKyberPreKey(id, record);
+    metadataStore.setNextKyberPreKeyId((id + 1) % Medium.MAX_VALUE);
+
+    return record;
+  }
+
+  public synchronized static @NonNull KyberPreKeyRecord generateKyberPreKey(int id, @NonNull ECPrivateKey privateKey) {
+    KEMKeyPair keyPair   = KEMKeyPair.generate(KEMKeyType.KYBER_1024);
+    byte[]     signature = privateKey.calculateSignature(keyPair.getPublicKey().serialize());
+
+    return new KyberPreKeyRecord(id, System.currentTimeMillis(), keyPair, signature);
+  }
+
+
   /**
    * Finds all of the signed prekeys that are older than the archive age, and archive all but the youngest of those.
    */
@@ -118,6 +167,36 @@ public class PreKeyUtil {
                 .forEach(record -> {
                   Log.i(TAG, "Removing signed prekey record: " + record.getId() + " with timestamp: " + record.getTimestamp());
                   protocolStore.removeSignedPreKey(record.getId());
+                });
+    } catch (InvalidKeyIdException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  /**
+   * Finds all of the signed prekeys that are older than the archive age, and archive all but the youngest of those.
+   */
+  public synchronized static void cleanLastResortKyberPreKeys(@NonNull SignalServiceAccountDataStore protocolStore, @NonNull PreKeyMetadataStore metadataStore) {
+    Log.i(TAG, "Cleaning kyber prekeys...");
+
+    int activeLastResortKeyId = metadataStore.getLastResortKyberPreKeyId();
+    if (activeLastResortKeyId < 0) {
+      return;
+    }
+
+    try {
+      long                    now           = System.currentTimeMillis();
+      KyberPreKeyRecord       currentRecord = protocolStore.loadKyberPreKey(activeLastResortKeyId);
+      List<KyberPreKeyRecord> allRecords    = protocolStore.loadLastResortKyberPreKeys();
+
+      allRecords.stream()
+                .filter(r -> r.getId() != currentRecord.getId())
+                .filter(r -> (now - r.getTimestamp()) > ARCHIVE_AGE)
+                .sorted(Comparator.comparingLong(KyberPreKeyRecord::getTimestamp).reversed())
+                .skip(1)
+                .forEach(record -> {
+                  Log.i(TAG, "Removing kyber prekey record: " + record.getId() + " with timestamp: " + record.getTimestamp());
+                  protocolStore.removeKyberPreKey(record.getId());
                 });
     } catch (InvalidKeyIdException e) {
       Log.w(TAG, e);

@@ -9,6 +9,7 @@ import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationManagerCompat;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.state.KyberPreKeyRecord;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
 import org.signal.libsignal.protocol.state.SignalProtocolStore;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
@@ -36,7 +37,9 @@ import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.KbsPinData;
+import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
@@ -185,14 +188,21 @@ public final class RegistrationRepository {
 
   private void generateAndRegisterPreKeys(@NonNull ServiceIdType serviceIdType,
                                           @NonNull SignalServiceAccountManager accountManager,
-                                          @NonNull SignalProtocolStore protocolStore,
+                                          @NonNull SignalServiceAccountDataStore protocolStore,
                                           @NonNull PreKeyMetadataStore metadataStore)
       throws IOException
   {
-    SignedPreKeyRecord signedPreKey   = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore);
-    List<PreKeyRecord> oneTimePreKeys = PreKeyUtil.generateAndStoreOneTimePreKeys(protocolStore, metadataStore);
+    SignedPreKeyRecord      signedPreKey          = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore);
+    List<PreKeyRecord>      oneTimeEcPreKeys      = PreKeyUtil.generateAndStoreOneTimeEcPreKeys(protocolStore, metadataStore);
+    KyberPreKeyRecord       lastResortKyberPreKey = PreKeyUtil.generateAndStoreLastResortKyberPreKey(protocolStore, metadataStore);
+    List<KyberPreKeyRecord> oneTimeKyberPreKeys   = PreKeyUtil.generateAndStoreOneTimeKyberPreKeys(protocolStore, metadataStore);
 
-    accountManager.setPreKeys(serviceIdType, protocolStore.getIdentityKeyPair().getPublicKey(), signedPreKey, oneTimePreKeys);
+    accountManager.setPreKeys(new PreKeyUpload(serviceIdType,
+                                               protocolStore.getIdentityKeyPair().getPublicKey(),
+                                               signedPreKey,
+                                               oneTimeEcPreKeys,
+                                               lastResortKyberPreKey,
+                                               oneTimeKyberPreKeys));
     metadataStore.setActiveSignedPreKeyId(signedPreKey.getId());
     metadataStore.setSignedPreKeyRegistered(true);
   }

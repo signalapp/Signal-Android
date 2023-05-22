@@ -31,6 +31,7 @@ import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest
+import org.whispersystems.signalservice.api.account.PreKeyUpload
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceIdType
@@ -244,10 +245,19 @@ class ChangeNumberRepository(
       SignalStore.account().setPniIdentityKeyAfterChangeNumber(pniIdentityKeyPair)
 
       val signedPreKey = pniProtocolStore.loadSignedPreKey(pniSignedPreyKeyId)
-      val oneTimePreKeys = PreKeyUtil.generateAndStoreOneTimePreKeys(pniProtocolStore, pniMetadataStore)
+      val oneTimePreKeys = PreKeyUtil.generateAndStoreOneTimeEcPreKeys(pniProtocolStore, pniMetadataStore)
 
       pniMetadataStore.activeSignedPreKeyId = signedPreKey.id
-      accountManager.setPreKeys(ServiceIdType.PNI, pniProtocolStore.identityKeyPair.publicKey, signedPreKey, oneTimePreKeys)
+      accountManager.setPreKeys(
+        PreKeyUpload(
+          serviceIdType = ServiceIdType.PNI,
+          identityKey = pniProtocolStore.identityKeyPair.publicKey,
+          signedPreKey = signedPreKey,
+          oneTimeEcPreKeys = oneTimePreKeys,
+          lastResortKyberPreKey = null,
+          oneTimeKyberPreKeys = null
+        )
+      )
       pniMetadataStore.isSignedPreKeyRegistered = true
 
       pniProtocolStore.identities().saveIdentityWithoutSideEffects(

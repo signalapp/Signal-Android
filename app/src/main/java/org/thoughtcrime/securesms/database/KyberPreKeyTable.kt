@@ -9,6 +9,7 @@ import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.select
+import org.signal.core.util.toInt
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.whispersystems.signalservice.api.push.ServiceId
 
@@ -71,6 +72,20 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
       }
   }
 
+  fun getAllLastResort(serviceId: ServiceId): List<KyberPreKey> {
+    return readableDatabase
+      .select(LAST_RESORT, SERIALIZED)
+      .from("$TABLE_NAME INDEXED BY $INDEX_ACCOUNT_KEY")
+      .where("$ACCOUNT_ID = ? AND $LAST_RESORT = ?", serviceId, 1)
+      .run()
+      .readToList { cursor ->
+        KyberPreKey(
+          record = KyberPreKeyRecord(cursor.requireNonNullBlob(SERIALIZED)),
+          lastResort = cursor.requireBoolean(LAST_RESORT)
+        )
+      }
+  }
+
   fun contains(serviceId: ServiceId, keyId: Int): Boolean {
     return readableDatabase
       .exists("$TABLE_NAME INDEXED BY $INDEX_ACCOUNT_KEY")
@@ -78,14 +93,15 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
       .run()
   }
 
-  fun insert(serviceId: ServiceId, keyId: Int, record: KyberPreKeyRecord) {
+  fun insert(serviceId: ServiceId, keyId: Int, record: KyberPreKeyRecord, lastResort: Boolean) {
     writableDatabase
       .insertInto(TABLE_NAME)
       .values(
         ACCOUNT_ID to serviceId.toString(),
         KEY_ID to keyId,
         TIMESTAMP to record.timestamp,
-        SERIALIZED to record.serialize()
+        SERIALIZED to record.serialize(),
+        LAST_RESORT to lastResort.toInt()
       )
       .run(SQLiteDatabase.CONFLICT_REPLACE)
   }

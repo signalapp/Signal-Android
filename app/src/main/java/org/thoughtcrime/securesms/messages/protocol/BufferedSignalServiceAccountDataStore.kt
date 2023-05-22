@@ -129,12 +129,24 @@ class BufferedSignalServiceAccountDataStore(selfServiceId: ServiceId) : SignalSe
     kyberPreKeyStore.storeKyberPreKey(kyberPreKeyId, record)
   }
 
+  override fun storeLastResortKyberPreKey(kyberPreKeyId: Int, kyberPreKeyRecord: KyberPreKeyRecord) {
+    kyberPreKeyStore.storeKyberPreKey(kyberPreKeyId, kyberPreKeyRecord)
+  }
+
   override fun containsKyberPreKey(kyberPreKeyId: Int): Boolean {
     return kyberPreKeyStore.containsKyberPreKey(kyberPreKeyId)
   }
 
   override fun markKyberPreKeyUsed(kyberPreKeyId: Int) {
     return kyberPreKeyStore.markKyberPreKeyUsed(kyberPreKeyId)
+  }
+
+  override fun removeKyberPreKey(kyberPreKeyId: Int) {
+    kyberPreKeyStore.removeKyberPreKey(kyberPreKeyId)
+  }
+
+  override fun loadLastResortKyberPreKeys(): List<KyberPreKeyRecord> {
+    return kyberPreKeyStore.loadLastResortKyberPreKeys()
   }
 
   override fun storeSenderKey(sender: SignalProtocolAddress, distributionId: UUID, record: SenderKeyRecord) {

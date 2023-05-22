@@ -9,17 +9,16 @@ package org.whispersystems.signalservice.api;
 
 import com.google.protobuf.ByteString;
 
-import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.protocol.logging.Log;
-import org.signal.libsignal.protocol.state.PreKeyRecord;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
+import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
@@ -36,7 +35,6 @@ import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
-import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
@@ -59,6 +57,7 @@ import org.whispersystems.signalservice.internal.push.AuthCredentials;
 import org.whispersystems.signalservice.internal.push.BackupAuthCheckRequest;
 import org.whispersystems.signalservice.internal.push.BackupAuthCheckResponse;
 import org.whispersystems.signalservice.internal.push.CdsiAuthResponse;
+import org.whispersystems.signalservice.internal.push.OneTimePreKeyCounts;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse;
@@ -80,7 +79,6 @@ import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper
 import org.whispersystems.util.Base64;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -98,7 +96,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -351,23 +348,19 @@ public class SignalServiceAccountManager {
    * Register an identity key, signed prekey, and list of one time prekeys
    * with the server.
    *
-   * @param identityKey The client's long-term identity keypair.
-   * @param signedPreKey The client's signed prekey.
-   * @param oneTimePreKeys The client's list of one-time prekeys.
-   *
    * @throws IOException
    */
-  public void setPreKeys(ServiceIdType serviceIdType, IdentityKey identityKey, SignedPreKeyRecord signedPreKey, List<PreKeyRecord> oneTimePreKeys)
+  public void setPreKeys(PreKeyUpload preKeyUpload)
       throws IOException
   {
-    this.pushServiceSocket.registerPreKeys(serviceIdType, identityKey, signedPreKey, oneTimePreKeys);
+    this.pushServiceSocket.registerPreKeys(preKeyUpload);
   }
 
   /**
    * @return The server's count of currently available (eg. unused) prekeys for this user.
    * @throws IOException
    */
-  public int getPreKeysCount(ServiceIdType serviceIdType) throws IOException {
+  public OneTimePreKeyCounts getPreKeyCounts(ServiceIdType serviceIdType) throws IOException {
     return this.pushServiceSocket.getAvailablePreKeys(serviceIdType);
   }
 
@@ -379,14 +372,6 @@ public class SignalServiceAccountManager {
    */
   public void setSignedPreKey(ServiceIdType serviceIdType, SignedPreKeyRecord signedPreKey) throws IOException {
     this.pushServiceSocket.setCurrentSignedPreKey(serviceIdType, signedPreKey);
-  }
-
-  /**
-   * @return The server's view of the client's current signed prekey.
-   * @throws IOException
-   */
-  public SignedPreKeyEntity getSignedPreKey(ServiceIdType serviceIdType) throws IOException {
-    return this.pushServiceSocket.getCurrentSignedPreKey(serviceIdType);
   }
 
   /**
