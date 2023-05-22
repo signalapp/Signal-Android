@@ -409,6 +409,13 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_helpSettingsFragment_to_licenseFragment"
+            app:destination="@id/licenseFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <fragment
@@ -422,6 +429,11 @@
             app:argType="integer"
             app:nullable="false" />
     </fragment>
+
+    <fragment
+        android:id="@+id/licenseFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.help.LicenseFragment"
+        android:label="license_fragment" />
 
     <activity
         android:id="@+id/submitDebugLogActivity"
