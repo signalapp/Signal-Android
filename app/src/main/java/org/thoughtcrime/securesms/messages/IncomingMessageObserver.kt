@@ -3,11 +3,8 @@ package org.thoughtcrime.securesms.messages
 import android.annotation.SuppressLint
 import android.app.Application
 import android.app.Service
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.net.ConnectivityManager
 import android.os.IBinder
 import androidx.annotation.VisibleForTesting
 import androidx.core.app.NotificationCompat
@@ -87,10 +84,19 @@ class IncomingMessageObserver(private val context: Application) {
 
   private val decryptionDrainedListeners: MutableList<Runnable> = CopyOnWriteArrayList()
   private val keepAliveTokens: MutableMap<String, Long> = mutableMapOf()
-  private val connectionReceiver: BroadcastReceiver
 
   private val lock: ReentrantLock = ReentrantLock()
   private val connectionNecessarySemaphore = Semaphore(0)
+  private val networkConnectionListener = NetworkConnectionListener(context) { isNetworkAvailable ->
+    lock.withLock {
+      if (isNetworkAvailable()) {
+        Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.")
+        decryptionDrained = false
+        disconnect()
+      }
+      connectionNecessarySemaphore.release()
+    }
+  }
 
   private val messageContentProcessor = MessageContentProcessorV2(context)
 
@@ -136,20 +142,7 @@ class IncomingMessageObserver(private val context: Application) {
       }
     })
 
-    connectionReceiver = object : BroadcastReceiver() {
-      override fun onReceive(context: Context, intent: Intent) {
-        lock.withLock {
-          if (!NetworkConstraint.isMet(context)) {
-            Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.")
-            decryptionDrained = false
-            disconnect()
-          }
-          connectionNecessarySemaphore.release()
-        }
-      }
-    }
-
-    context.registerReceiver(connectionReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    networkConnectionListener.register()
   }
 
   fun notifyRegistrationChanged() {
@@ -250,8 +243,7 @@ class IncomingMessageObserver(private val context: Application) {
   fun terminateAsync() {
     Log.w(TAG, "Termination Enqueued! ${this.hashCode()}", Throwable())
     INSTANCE_COUNT.decrementAndGet()
-    context.unregisterReceiver(connectionReceiver)
-
+    networkConnectionListener.unregister()
     SignalExecutors.BOUNDED.execute {
       Log.w(TAG, "Beginning termination. ${this.hashCode()}")
       terminated = true
