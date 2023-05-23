@@ -486,6 +486,18 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     return SWIPE_RECT.contains((int) downX, (int) downY);
   }
 
+  public @Nullable ConversationItemBodyBubble getBodyBubble() {
+    return bodyBubble;
+  }
+
+  public @Nullable View getQuotedIndicator() {
+    return quotedIndicator;
+  }
+
+  public @Nullable ReactionsConversationView getReactionsView() {
+    return reactionsView;
+  }
+
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);

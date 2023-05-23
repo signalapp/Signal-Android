@@ -178,6 +178,18 @@ class ConversationAdapterV2(
     // todo [cody] implement
   }
 
+  fun clearSelection() {
+    _selected.clear()
+  }
+
+  fun toggleSelection(multiselectPart: MultiselectPart) {
+    if (multiselectPart in _selected) {
+      _selected.remove(multiselectPart)
+    } else {
+      _selected.add(multiselectPart)
+    }
+  }
+
   private inner class ConversationUpdateViewHolder(itemView: View) : ConversationViewHolder<ConversationUpdate>(itemView) {
     override fun bind(model: ConversationUpdate) {
       bindable.setEventListener(clickListener)
@@ -305,6 +317,20 @@ class ConversationAdapterV2(
 
     protected val displayMode: ConversationItemDisplayMode
       get() = condensedMode ?: ConversationItemDisplayMode.STANDARD
+
+    init {
+      itemView.setOnClickListener {
+        clickListener.onItemClick(bindable.getMultiselectPartForLatestTouch())
+      }
+
+      itemView.setOnLongClickListener {
+        clickListener.onItemLongClick(
+          it,
+          bindable.getMultiselectPartForLatestTouch()
+        )
+        true
+      }
+    }
 
     override fun showProjectionArea() {
       bindable.showProjectionArea()

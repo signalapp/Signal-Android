@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
+import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -59,6 +60,8 @@ class ConversationViewModel(
   val scrollButtonState: Flowable<ConversationScrollButtonState> = scrollButtonStateStore.stateFlowable
     .distinctUntilChanged()
     .observeOn(AndroidSchedulers.mainThread())
+  val showScrollButtonsSnapshot: Boolean
+    get() = scrollButtonStateStore.state.showScrollButtons
 
   private val _recipient: BehaviorSubject<Recipient> = BehaviorSubject.create()
   val recipient: Observable<Recipient> = _recipient
@@ -82,6 +85,10 @@ class ConversationViewModel(
     get() = _recipient.value?.wallpaper
 
   val inputReadyState: Observable<InputReadyState>
+
+  private val hasMessageRequestStateSubject: BehaviorSubject<Boolean> = BehaviorSubject.createDefault(false)
+  val hasMessageRequestState: Boolean
+    get() = hasMessageRequestStateSubject.value ?: false
 
   init {
     disposables += recipientRepository
@@ -146,6 +153,8 @@ class ConversationViewModel(
         isClientExpired = SignalStore.misc().isClientDeprecated,
         isUnauthorized = TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication())
       )
+    }.doOnNext {
+      hasMessageRequestStateSubject.onNext(it.messageRequestState != MessageRequestState.NONE)
     }.observeOn(AndroidSchedulers.mainThread())
   }
 

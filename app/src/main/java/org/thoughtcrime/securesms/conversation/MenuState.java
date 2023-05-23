@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.util.MessageConstraintsUtil;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-final class MenuState {
+public final class MenuState {
 
   private static final int MAX_FORWARDABLE_COUNT = 32;
 
@@ -41,50 +41,50 @@ final class MenuState {
     edit           = builder.edit;
   }
 
-  boolean shouldShowForwardAction() {
+  public boolean shouldShowForwardAction() {
     return forward;
   }
 
-  boolean shouldShowReplyAction() {
+  public boolean shouldShowReplyAction() {
     return reply;
   }
 
-  boolean shouldShowDetailsAction() {
+  public boolean shouldShowDetailsAction() {
     return details;
   }
 
-  boolean shouldShowSaveAttachmentAction() {
+  public boolean shouldShowSaveAttachmentAction() {
     return saveAttachment;
   }
 
-  boolean shouldShowResendAction() {
+  public boolean shouldShowResendAction() {
     return resend;
   }
 
-  boolean shouldShowCopyAction() {
+  public boolean shouldShowCopyAction() {
     return copy;
   }
 
-  boolean shouldShowDeleteAction() {
+  public boolean shouldShowDeleteAction() {
     return delete;
   }
 
-  boolean shouldShowReactions() {
+  public boolean shouldShowReactions() {
     return reactions;
   }
 
-  boolean shouldShowPaymentDetails() {
+  public boolean shouldShowPaymentDetails() {
     return paymentDetails;
   }
 
-  boolean shouldShowEditAction() {
+  public boolean shouldShowEditAction() {
     return edit;
   }
 
-  static MenuState getMenuState(@NonNull Recipient conversationRecipient,
-                                @NonNull Set<MultiselectPart> selectedParts,
-                                boolean shouldShowMessageRequest,
-                                boolean isNonAdminInAnnouncementGroup)
+  public static MenuState getMenuState(@NonNull Recipient conversationRecipient,
+                                       @NonNull Set<MultiselectPart> selectedParts,
+                                       boolean shouldShowMessageRequest,
+                                       boolean isNonAdminInAnnouncementGroup)
   {
     
     Builder builder         = new Builder();
