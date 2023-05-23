@@ -497,6 +497,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
   private fun presentNavigationIconForNormal() {
     binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_left_24)
+    binding.toolbar.setNavigationContentDescription(R.string.ConversationFragment__content_description_back_button)
     binding.toolbar.setNavigationOnClickListener {
       requireActivity().finishAfterTransition()
     }
@@ -507,6 +508,8 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       ContextUtil.requireDrawable(requireContext(), R.drawable.ic_notification),
       ContextCompat.getColor(requireContext(), R.color.signal_accent_primary)
     )
+
+    binding.toolbar.setNavigationContentDescription(R.string.ConversationFragment__content_description_launch_signal_button)
 
     binding.toolbar.setNavigationOnClickListener {
       startActivity(MainActivity.clearTop(requireContext()))

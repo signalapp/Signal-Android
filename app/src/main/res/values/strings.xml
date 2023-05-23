@@ -499,6 +499,10 @@
     <string name="ConversationFragment__update_build">Update Signal</string>
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">Re-register Signal</string>
+    <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
+    <string name="ConversationFragment__content_description_back_button">Navigate back.</string>
+    <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
+    <string name="ConversationFragment__content_description_launch_signal_button">Open Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Clear filter</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -6113,6 +6117,7 @@
     <string name="UsernameLinkSettings_qr_result_not_found">A user with username $1$s could not be found.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
+
 
     <!-- EOF -->
 </resources>

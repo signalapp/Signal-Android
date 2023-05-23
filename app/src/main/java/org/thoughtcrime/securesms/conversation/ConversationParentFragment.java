@@ -2102,7 +2102,7 @@ public class ConversationParentFragment extends Fragment
   protected void initializeActionBar() {
     invalidateOptionsMenu();
     toolbar.setOnMenuItemClickListener(menuProvider::onMenuItemSelected);
-
+    toolbar.setNavigationContentDescription(R.string.ConversationFragment__content_description_back_button);
     if (isInBubble()) {
       toolbar.setNavigationIcon(DrawableUtil.tint(ContextUtil.requireDrawable(requireContext(), R.drawable.ic_notification),
                                                   ContextCompat.getColor(requireContext(), R.color.signal_accent_primary)));
