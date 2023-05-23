@@ -479,10 +479,6 @@ message SyncMessage {
     optional bool              complete = 2 [default = false];
   }
 
-  message Groups {
-    optional AttachmentPointer blob = 1;
-  }
-
   message Blocked {
     repeated string numbers  = 1;
     repeated string uuids    = 3;
@@ -493,7 +489,7 @@ message SyncMessage {
     enum Type {
       UNKNOWN       = 0;
       CONTACTS      = 1;
-      GROUPS        = 2;
+//      GROUPS        = 2;
       BLOCKED       = 3;
       CONFIGURATION = 4;
       KEYS          = 5;
@@ -636,7 +632,7 @@ message SyncMessage {
 
   optional Sent                   sent                   = 1;
   optional Contacts               contacts               = 2;
-  optional Groups                 groups                 = 3;
+  reserved                      /*groups*/                 3;
   optional Request                request                = 4;
   repeated Read                   read                   = 5;
   optional Blocked                blocked                = 6;

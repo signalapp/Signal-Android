@@ -85,7 +85,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactSyncJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackSyncJob;
 import org.thoughtcrime.securesms.jobs.NullMessageSendJob;
@@ -1507,10 +1506,6 @@ public class MessageContentProcessor {
 
     if (message.isContactsRequest()) {
       ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(true));
-    }
-
-    if (message.isGroupsRequest()) {
-      ApplicationDependencies.getJobManager().add(new MultiDeviceGroupUpdateJob());
     }
 
     if (message.isBlockedListRequest()) {

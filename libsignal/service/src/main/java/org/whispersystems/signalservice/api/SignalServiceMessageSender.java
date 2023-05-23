@@ -658,8 +658,6 @@ public class SignalServiceMessageSender {
 
     if (message.getContacts().isPresent()) {
       content = createMultiDeviceContactsContent(message.getContacts().get().getContactsStream().asStream(), message.getContacts().get().isComplete());
-    } else if (message.getGroups().isPresent()) {
-      content = createMultiDeviceGroupsContent(message.getGroups().get().asStream());
     } else if (message.getRead().isPresent()) {
       content = createMultiDeviceReadContent(message.getRead().get());
       urgent  = true;
@@ -1300,16 +1298,6 @@ public class SignalServiceMessageSender {
     builder.setContacts(SyncMessage.Contacts.newBuilder()
                                             .setBlob(createAttachmentPointer(contacts))
                                             .setComplete(complete));
-
-    return container.setSyncMessage(builder).build();
-  }
-
-  private Content createMultiDeviceGroupsContent(SignalServiceAttachmentStream groups) throws IOException {
-    Content.Builder     container = Content.newBuilder();
-    SyncMessage.Builder builder   = createSyncMessageBuilder();
-
-    builder.setGroups(SyncMessage.Groups.newBuilder()
-                                        .setBlob(createAttachmentPointer(groups)));
 
     return container.setSyncMessage(builder).build();
   }

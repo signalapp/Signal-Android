@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactSyncJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
-import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackSyncJob
 import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
@@ -868,7 +867,6 @@ object SyncMessageProcessor {
 
     when (message.type) {
       Request.Type.CONTACTS -> ApplicationDependencies.getJobManager().add(MultiDeviceContactUpdateJob(true))
-      Request.Type.GROUPS -> ApplicationDependencies.getJobManager().add(MultiDeviceGroupUpdateJob())
       Request.Type.BLOCKED -> ApplicationDependencies.getJobManager().add(MultiDeviceBlockedUpdateJob())
       Request.Type.CONFIGURATION -> {
         ApplicationDependencies.getJobManager().add(

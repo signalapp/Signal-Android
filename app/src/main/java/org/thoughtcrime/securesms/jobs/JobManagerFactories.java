@@ -136,7 +136,6 @@ public final class JobManagerFactories {
       put(MultiDeviceConfigurationUpdateJob.KEY,     new MultiDeviceConfigurationUpdateJob.Factory());
       put(MultiDeviceContactSyncJob.KEY,             new MultiDeviceContactSyncJob.Factory());
       put(MultiDeviceContactUpdateJob.KEY,           new MultiDeviceContactUpdateJob.Factory());
-      put(MultiDeviceGroupUpdateJob.KEY,             new MultiDeviceGroupUpdateJob.Factory());
       put(MultiDeviceKeysUpdateJob.KEY,              new MultiDeviceKeysUpdateJob.Factory());
       put(MultiDeviceMessageRequestResponseJob.KEY,  new MultiDeviceMessageRequestResponseJob.Factory());
       put(MultiDeviceOutgoingPaymentSyncJob.KEY,     new MultiDeviceOutgoingPaymentSyncJob.Factory());
@@ -283,6 +282,7 @@ public final class JobManagerFactories {
       put("RecipientChangedNumberJob",               new FailingJob.Factory());
       put("PushTextSendJob",                         new IndividualSendJob.Factory());
       put("MultiDevicePniIdentityUpdateJob",         new FailingJob.Factory());
+      put("MultiDeviceGroupUpdateJob",               new FailingJob.Factory());
     }};
   }
 
