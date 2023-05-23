@@ -771,7 +771,6 @@ object SyncMessageProcessor {
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
     val messageId: Long
     val attachments: List<DatabaseAttachment>
-    val stickerAttachments: List<DatabaseAttachment>
 
     SignalDatabase.messages.beginTransaction()
     try {
@@ -785,9 +784,7 @@ object SyncMessageProcessor {
 
       SignalDatabase.messages.markAsSent(messageId, true)
 
-      val allAttachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
-      stickerAttachments = allAttachments.filter { it.isSticker }
-      attachments = allAttachments.filterNot { it.isSticker }
+      attachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
 
       if (sent.message.expireTimer > 0) {
         SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp)
@@ -803,11 +800,10 @@ object SyncMessageProcessor {
       SignalDatabase.messages.endTransaction()
     }
     SignalDatabase.runPostSuccessfulTransaction {
+      val downloadJobs: List<AttachmentDownloadJob> = attachments.map { AttachmentDownloadJob(messageId, it.attachmentId, false) }
       for (attachment in attachments) {
-        ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(messageId, attachment.attachmentId, false))
+        ApplicationDependencies.getJobManager().addAll(downloadJobs)
       }
-
-      DataMessageProcessor.forceStickerDownloadIfNecessary(context, messageId, stickerAttachments)
     }
 
     return threadId

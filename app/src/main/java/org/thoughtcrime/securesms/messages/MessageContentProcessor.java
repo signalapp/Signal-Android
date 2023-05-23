@@ -794,7 +794,7 @@ public class MessageContentProcessor {
       insertResult = smsDatabase.insertMessageInbox(incomingEndSessionMessage);
     } else {
       smsDatabase.markAsEndSession(smsMessageId.get());
-      insertResult = Optional.of(new InsertResult(smsMessageId.get(), smsDatabase.getThreadIdForMessage(smsMessageId.get())));
+      insertResult = Optional.of(new InsertResult(smsMessageId.get(), smsDatabase.getThreadIdForMessage(smsMessageId.get()), null));
     }
 
     if (insertResult.isPresent()) {

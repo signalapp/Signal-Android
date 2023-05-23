@@ -12,7 +12,6 @@ import org.signal.core.util.toOptional
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.attachments.Attachment
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
@@ -875,14 +874,19 @@ object DataMessageProcessor {
 
     return if (insertResult != null) {
       SignalDatabase.runPostSuccessfulTransaction {
-        val allAttachments = SignalDatabase.attachments.getAttachmentsForMessage(insertResult.messageId)
-        val stickerAttachments = allAttachments.filter { it.isSticker }.toList()
-        val otherAttachments = allAttachments.filterNot { it.isSticker }.toList()
-
-        forceStickerDownloadIfNecessary(context, insertResult.messageId, stickerAttachments)
-
-        for (attachment in otherAttachments) {
-          ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(insertResult.messageId, attachment.attachmentId, false))
+        if (insertResult.insertedAttachments != null) {
+          val downloadJobs: List<AttachmentDownloadJob> = insertResult.insertedAttachments.mapNotNull { (attachment, attachmentId) ->
+            if (attachment.isSticker) {
+              if (attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
+                AttachmentDownloadJob(insertResult.messageId, attachmentId, true)
+              } else {
+                null
+              }
+            } else {
+              AttachmentDownloadJob(insertResult.messageId, attachmentId, false)
+            }
+          }
+          ApplicationDependencies.getJobManager().addAll(downloadJobs)
         }
 
         ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.threadId))
@@ -988,24 +992,6 @@ object DataMessageProcessor {
           null
         }
       }
-  }
-
-  fun forceStickerDownloadIfNecessary(context: Context, messageId: Long, stickerAttachments: List<DatabaseAttachment>) {
-    if (stickerAttachments.isEmpty()) {
-      return
-    }
-
-    val stickerAttachment = stickerAttachments[0]
-    if (stickerAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
-      val downloadJob = AttachmentDownloadJob(messageId, stickerAttachment.attachmentId, true)
-      try {
-        downloadJob.setContext(context)
-        downloadJob.doWork()
-      } catch (e: Exception) {
-        warn("Failed to download sticker inline. Scheduling.")
-        ApplicationDependencies.getJobManager().add(downloadJob)
-      }
-    }
   }
 
   private fun insertPlaceholder(sender: RecipientId, senderDevice: Int, timestamp: Long, groupId: GroupId?): InsertResult? {

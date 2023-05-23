@@ -2552,7 +2552,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       quoteAttachments += retrieved.quote.attachments
     }
 
-    val messageId = insertMediaMessage(
+    val (messageId, insertedAttachments) = insertMediaMessage(
       threadId = threadId,
       body = retrieved.body,
       attachments = retrieved.attachments,
@@ -2607,7 +2607,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(threads.getRecipientIdForThreadId(threadId)!!)
     }
 
-    return Optional.of(InsertResult(messageId, threadId))
+    return Optional.of(InsertResult(messageId, threadId, insertedAttachments = insertedAttachments))
   }
 
   @Throws(MmsException::class)
@@ -3024,7 +3024,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     val updatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithPlaceholders(message.body, message.mentions)
     val bodyRanges = message.bodyRanges.adjustBodyRanges(updatedBodyAndMentions.bodyAdjustments)
-    val messageId = insertMediaMessage(
+    val (messageId, insertedAttachments) = insertMediaMessage(
       threadId = threadId,
       body = updatedBodyAndMentions.bodyAsString,
       attachments = message.attachments,
@@ -3131,7 +3131,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     insertListener: InsertListener?,
     updateThread: Boolean,
     unarchive: Boolean
-  ): Long {
+  ): kotlin.Pair<Long, Map<Attachment, AttachmentId>?> {
     val mentionsSelf = mentions.any { Recipient.resolved(it.recipientId).isSelf }
     val allAttachments: MutableList<Attachment> = mutableListOf()
 
@@ -3145,11 +3145,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       contentValues.put(MESSAGE_RANGES, messageRanges.toByteArray())
     }
 
-    val messageId = writableDatabase.withinTransaction { db ->
+    val (messageId, insertedAttachments) = writableDatabase.withinTransaction { db ->
       val messageId = db.insert(TABLE_NAME, null, contentValues)
       if (messageId < 0) {
         Log.w(TAG, "Tried to insert media message but failed. Assuming duplicate.")
-        return@withinTransaction -1
+        return@withinTransaction kotlin.Pair(-1L, null)
       }
 
       SignalDatabase.mentions.insert(threadId, messageId, mentions)
@@ -3182,11 +3182,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         }
       }
 
-      messageId
+      kotlin.Pair(messageId, insertedAttachments)
     }
 
     if (messageId < 0) {
-      return messageId
+      return kotlin.Pair(messageId, insertedAttachments)
     }
 
     insertListener?.onComplete()
@@ -3198,7 +3198,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       threads.update(threadId, unarchive)
     }
 
-    return messageId
+    return kotlin.Pair(messageId, insertedAttachments)
   }
 
   /**
@@ -4913,7 +4913,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   data class InsertResult(
     val messageId: Long,
-    val threadId: Long
+    val threadId: Long,
+    val insertedAttachments: Map<Attachment, AttachmentId>? = null
   )
 
   data class MmsNotificationInfo(
