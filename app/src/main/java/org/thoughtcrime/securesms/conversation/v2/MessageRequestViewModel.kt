@@ -1,27 +1,15 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import io.reactivex.rxjava3.subjects.BehaviorSubject
-import io.reactivex.rxjava3.subjects.PublishSubject
-import org.signal.core.util.concurrent.subscribeWithSubject
+import org.signal.core.util.Result
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
-import org.thoughtcrime.securesms.messagerequests.GroupInfo
-import org.thoughtcrime.securesms.messagerequests.MessageRequestRecipientInfo
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
-import org.thoughtcrime.securesms.messagerequests.MessageRequestState
-import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel.MessageData
-import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel.RequestReviewDisplayState
-import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel.Status
-import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil
+import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
- * MessageRequestViewModel for ConversationFragment V2
+ * View model for interacting with a message request displayed in ConversationFragment V2
  */
 class MessageRequestViewModel(
   private val threadId: Long,
@@ -29,152 +17,51 @@ class MessageRequestViewModel(
   private val messageRequestRepository: MessageRequestRepository
 ) : ViewModel() {
 
-  private val disposables = CompositeDisposable()
-
-  private val statusSubject = PublishSubject.create<Status>()
-  val status: Observable<Status> = statusSubject
-
-  private val failureSubject = PublishSubject.create<GroupChangeFailureReason>()
-  val failure: Observable<GroupChangeFailureReason> = failureSubject
-
-  private val groupInfo: Observable<GroupInfo> = recipientRepository
-    .conversationRecipient
-    .flatMap { recipient ->
-      Single.create { emitter ->
-        messageRequestRepository.getGroupInfo(recipient.id, emitter::onSuccess)
-      }.toObservable()
+  private val recipientId: Single<RecipientId>
+    get() {
+      return recipientRepository
+        .conversationRecipient
+        .map { it.id }
+        .firstOrError()
     }
 
-  private val groups: Observable<List<String>> = recipientRepository
-    .conversationRecipient
-    .flatMap { recipient ->
-      Single.create<List<String>> { emitter ->
-        messageRequestRepository.getGroups(recipient.id, emitter::onSuccess)
-      }.toObservable()
-    }
-
-  private val messageDataSubject: BehaviorSubject<MessageData> = recipientRepository.conversationRecipient.map {
-    val state = messageRequestRepository.getMessageRequestState(it, threadId)
-    MessageData(it, state)
-  }.subscribeWithSubject(BehaviorSubject.create(), disposables)
-
-  private val requestReviewDisplayStateSubject: BehaviorSubject<RequestReviewDisplayState> = messageDataSubject.map { holder ->
-    if (holder.messageState == MessageRequestState.INDIVIDUAL) {
-      if (ReviewUtil.isRecipientReviewSuggested(holder.recipient.id)) {
-        RequestReviewDisplayState.SHOWN
-      } else {
-        RequestReviewDisplayState.HIDDEN
+  fun onAccept(): Single<Result<Unit, GroupChangeFailureReason>> {
+    return recipientId
+      .flatMap { recipientId ->
+        messageRequestRepository.acceptMessageRequest(recipientId, threadId)
       }
-    } else {
-      RequestReviewDisplayState.NONE
-    }
-  }.subscribeWithSubject(BehaviorSubject.create(), disposables)
-
-  val recipientInfo: Observable<MessageRequestRecipientInfo> = Observable.combineLatest(
-    recipientRepository.conversationRecipient,
-    groupInfo,
-    groups,
-    messageDataSubject.map { it.messageState },
-    ::MessageRequestRecipientInfo
-  )
-
-  override fun onCleared() {
-    disposables.clear()
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
-  fun shouldShowMessageRequest(): Boolean {
-    val messageData = messageDataSubject.value
-    return messageData != null && messageData.messageState != MessageRequestState.NONE
-  }
-
-  fun onAccept() {
-    statusSubject.onNext(Status.ACCEPTING)
-    disposables += recipientRepository
-      .conversationRecipient
-      .firstOrError()
-      .map { it.id }
-      .subscribeBy { recipientId ->
-        messageRequestRepository.acceptMessageRequest(
-          recipientId,
-          threadId,
-          { statusSubject.onNext(Status.ACCEPTED) },
-          this::onGroupChangeError
-        )
+  fun onDelete(): Single<Result<Unit, GroupChangeFailureReason>> {
+    return recipientId
+      .flatMap { recipientId ->
+        messageRequestRepository.deleteMessageRequest(recipientId, threadId)
       }
-  }
-  fun onDelete() {
-    statusSubject.onNext(Status.DELETING)
-    disposables += recipientRepository
-      .conversationRecipient
-      .firstOrError()
-      .map { it.id }
-      .subscribeBy { recipientId ->
-        messageRequestRepository.deleteMessageRequest(
-          recipientId,
-          threadId,
-          { statusSubject.onNext(Status.DELETED) },
-          this::onGroupChangeError
-        )
-      }
-  }
-  fun onBlock() {
-    statusSubject.onNext(Status.BLOCKING)
-    disposables += recipientRepository
-      .conversationRecipient
-      .firstOrError()
-      .map { it.id }
-      .subscribeBy { recipientId ->
-        messageRequestRepository.blockMessageRequest(
-          recipientId,
-          { statusSubject.onNext(Status.BLOCKED) },
-          this::onGroupChangeError
-        )
-      }
-  }
-  fun onUnblock() {
-    disposables += recipientRepository
-      .conversationRecipient
-      .firstOrError()
-      .map { it.id }
-      .subscribeBy { recipientId ->
-        messageRequestRepository.unblockAndAccept(
-          recipientId
-        ) { statusSubject.onNext(Status.ACCEPTED) }
-      }
-  }
-  fun onBlockAndReportSpam() {
-    disposables += recipientRepository
-      .conversationRecipient
-      .firstOrError()
-      .map { it.id }
-      .subscribeBy { recipientId ->
-        messageRequestRepository.blockAndReportSpamMessageRequest(
-          recipientId,
-          threadId,
-          { statusSubject.onNext(Status.BLOCKED_AND_REPORTED) },
-          this::onGroupChangeError
-        )
-      }
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
-  private fun onGroupChangeError(error: GroupChangeFailureReason) {
-    statusSubject.onNext(Status.IDLE)
-    failureSubject.onNext(error)
+  fun onBlock(): Single<Result<Unit, GroupChangeFailureReason>> {
+    return recipientId
+      .flatMap { recipientId ->
+        messageRequestRepository.blockMessageRequest(recipientId)
+      }
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
-  class Factory(
-    private val threadId: Long,
-    private val recipientRepository: ConversationRecipientRepository,
-    private val messageRequestRepository: MessageRequestRepository
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(
-        MessageRequestViewModel(
-          threadId,
-          recipientRepository,
-          messageRequestRepository
-        )
-      ) as T
-    }
+  fun onUnblock(): Single<Result<Unit, GroupChangeFailureReason>> {
+    return recipientId
+      .flatMap { recipientId ->
+        messageRequestRepository.unblockAndAccept(recipientId)
+      }
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun onBlockAndReportSpam(): Single<Result<Unit, GroupChangeFailureReason>> {
+    return recipientId
+      .flatMap { recipientId ->
+        messageRequestRepository.blockAndReportSpamMessageRequest(recipientId, threadId)
+      }
+      .observeOn(AndroidSchedulers.mainThread())
   }
 }

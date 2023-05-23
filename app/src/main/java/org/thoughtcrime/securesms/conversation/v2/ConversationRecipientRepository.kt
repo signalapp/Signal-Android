@@ -4,7 +4,9 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.recipients.Recipient
+import java.util.Optional
 
 class ConversationRecipientRepository(threadId: Long) {
 
@@ -17,7 +19,22 @@ class ConversationRecipientRepository(threadId: Long) {
       .flatMapObservable { Recipient.observable(it) }
       .subscribeOn(Schedulers.io())
       .observeOn(Schedulers.io())
-      .distinctUntilChanged { previous, next -> previous === next || previous.hasSameContent(next) }
+      .replay(1)
+      .refCount()
+      .observeOn(Schedulers.io())
+  }
+
+  val groupRecord: Observable<Optional<GroupRecord>> by lazy {
+    conversationRecipient
+      .switchMapSingle {
+        Single.fromCallable {
+          if (it.isGroup) {
+            SignalDatabase.groups.getGroup(it.id)
+          } else {
+            Optional.empty()
+          }
+        }
+      }
       .replay(1)
       .refCount()
       .observeOn(Schedulers.io())

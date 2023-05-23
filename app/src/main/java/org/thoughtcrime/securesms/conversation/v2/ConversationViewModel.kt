@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
@@ -19,8 +18,8 @@ import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
-import org.thoughtcrime.securesms.conversation.ConversationIntents.Args
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
@@ -31,10 +30,13 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
@@ -46,7 +48,8 @@ class ConversationViewModel(
   private val threadId: Long,
   requestedStartingPosition: Int,
   private val repository: ConversationRepository,
-  recipientRepository: ConversationRecipientRepository
+  recipientRepository: ConversationRecipientRepository,
+  messageRequestRepository: MessageRequestRepository
 ) : ViewModel() {
 
   private val disposables = CompositeDisposable()
@@ -77,6 +80,8 @@ class ConversationViewModel(
 
   val wallpaperSnapshot: ChatWallpaper?
     get() = _recipient.value?.wallpaper
+
+  val inputReadyState: Observable<InputReadyState>
 
   init {
     disposables += recipientRepository
@@ -129,6 +134,19 @@ class ConversationViewModel(
         hasMentions = counts.mentions != 0
       )
     }
+
+    inputReadyState = Observable.combineLatest(
+      recipientRepository.conversationRecipient,
+      recipientRepository.groupRecord
+    ) { recipient, groupRecord ->
+      InputReadyState(
+        conversationRecipient = recipient,
+        messageRequestState = messageRequestRepository.getMessageRequestState(recipient, threadId),
+        groupRecord = groupRecord.orNull(),
+        isClientExpired = SignalStore.misc().isClientDeprecated,
+        isUnauthorized = TextSecurePreferences.isUnauthorizedReceived(ApplicationDependencies.getApplication())
+      )
+    }.observeOn(AndroidSchedulers.mainThread())
   }
 
   override fun onCleared() {
@@ -187,22 +205,5 @@ class ConversationViewModel(
       mentions = mentions,
       bodyRanges = bodyRanges
     ).observeOn(AndroidSchedulers.mainThread())
-  }
-
-  class Factory(
-    private val args: Args,
-    private val repository: ConversationRepository,
-    private val recipientRepository: ConversationRecipientRepository
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(
-        ConversationViewModel(
-          args.threadId,
-          args.startingPosition,
-          repository,
-          recipientRepository
-        )
-      ) as T
-    }
   }
 }

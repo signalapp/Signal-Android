@@ -4275,24 +4275,10 @@ public class ConversationParentFragment extends Fragment
       return;
     }
 
-    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(requireContext())
-                                                 .setNeutralButton(R.string.ConversationActivity_cancel, (d, w) -> d.dismiss());
-
-    if (recipient.isGroup() && recipient.isBlocked()) {
-      builder.setTitle(R.string.ConversationActivity_delete_conversation);
-      builder.setMessage(R.string.ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices);
-      builder.setPositiveButton(R.string.ConversationActivity_delete, (d, w) -> requestModel.onDelete());
-    } else if (recipient.isGroup()) {
-      builder.setTitle(R.string.ConversationActivity_delete_and_leave_group);
-      builder.setMessage(R.string.ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices);
-      builder.setNegativeButton(R.string.ConversationActivity_delete_and_leave, (d, w) -> requestModel.onDelete());
-    } else {
-      builder.setTitle(R.string.ConversationActivity_delete_conversation);
-      builder.setMessage(R.string.ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices);
-      builder.setNegativeButton(R.string.ConversationActivity_delete, (d, w) -> requestModel.onDelete());
-    }
-
-    builder.show();
+    ConversationDialogs.displayDeleteDialog(requireContext(), recipient, () -> {
+      requestModel.onDelete();
+      return Unit.INSTANCE;
+    });
   }
 
   private void onMessageRequestBlockClicked(@NonNull MessageRequestViewModel requestModel) {

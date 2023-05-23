@@ -155,17 +155,7 @@ public class Recipient {
   @AnyThread
   public static @NonNull Observable<Recipient> observable(@NonNull RecipientId id) {
     Preconditions.checkNotNull(id, "ID cannot be null");
-    return Observable.<Recipient>create(emitter -> {
-      LiveRecipient live = live(id);
-      emitter.onNext(live.resolve());
-
-      RecipientForeverObserver observer = emitter::onNext;
-
-      live.observeForever(observer);
-      emitter.setCancellable(() -> {
-        live.removeForeverObserver(observer);
-      });
-    }).subscribeOn(Schedulers.io());
+    return live(id).observable().subscribeOn(Schedulers.io());
   }
 
   /**
@@ -1355,6 +1345,7 @@ public class Recipient {
            Objects.equals(extras, other.extras) &&
            hasGroupsInCommon == other.hasGroupsInCommon &&
            Objects.equals(badges, other.badges) &&
+           isActiveGroup == other.isActiveGroup &&
            Objects.equals(callLinkRoomId, other.callLinkRoomId);
   }
 

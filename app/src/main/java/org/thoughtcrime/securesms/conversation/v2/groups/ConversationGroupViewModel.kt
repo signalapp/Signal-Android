@@ -7,14 +7,15 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
-import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.signal.core.util.Result
+import org.signal.core.util.concurrent.subscribeWithSubject
 import org.thoughtcrime.securesms.conversation.v2.ConversationRecipientRepository
 import org.thoughtcrime.securesms.database.GroupTable
-import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil
+import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil
@@ -31,43 +32,36 @@ class ConversationGroupViewModel(
 ) : ViewModel() {
 
   private val disposables = CompositeDisposable()
-  private val _recipient: Subject<Recipient> = BehaviorSubject.create()
-  private val _groupRecord: Subject<GroupRecord> = BehaviorSubject.create()
+  private val _groupRecord: Subject<GroupRecord>
+  private val _reviewState: Subject<ConversationGroupReviewState>
+
   private val _groupActiveState: Subject<ConversationGroupActiveState> = BehaviorSubject.create()
   private val _memberLevel: BehaviorSubject<ConversationGroupMemberLevel> = BehaviorSubject.create()
   private val _actionableRequestingMembersCount: Subject<Int> = BehaviorSubject.create()
   private val _gv1MigrationSuggestions: Subject<List<RecipientId>> = BehaviorSubject.create()
-  private val _reviewState: Subject<ConversationGroupReviewState> = BehaviorSubject.create()
 
   init {
-    disposables += recipientRepository
-      .conversationRecipient
-      .filter { it.isGroup }
-      .subscribeBy(onNext = _recipient::onNext)
+    _groupRecord = recipientRepository
+      .groupRecord
+      .filter { it.isPresent }
+      .map { it.get() }
+      .subscribeWithSubject(BehaviorSubject.create(), disposables)
 
-    disposables += _recipient
-      .switchMap {
-        Observable.fromCallable {
-          SignalDatabase.groups.getGroup(it.id).get()
-        }
-      }
-      .subscribeBy(onNext = _groupRecord::onNext)
-
-    val duplicates = _groupRecord.map {
-      if (it.isV2Group) {
-        ReviewUtil.getDuplicatedRecipients(it.id.requireV2()).map { it.recipient }
+    val duplicates = _groupRecord.map { groupRecord ->
+      if (groupRecord.isV2Group) {
+        ReviewUtil.getDuplicatedRecipients(groupRecord.id.requireV2()).map { it.recipient }
       } else {
         emptyList()
       }
     }
 
-    disposables += Observable.combineLatest(_groupRecord, duplicates) { record, dupes ->
+    _reviewState = Observable.combineLatest(_groupRecord, duplicates) { record, dupes ->
       if (dupes.isEmpty()) {
         ConversationGroupReviewState.EMPTY
       } else {
         ConversationGroupReviewState(record.id.requireV2(), dupes[0], dupes.size)
       }
-    }.subscribeBy(onNext = _reviewState::onNext)
+    }.subscribeWithSubject(BehaviorSubject.create(), disposables)
 
     disposables += _groupRecord.subscribe { groupRecord ->
       _groupActiveState.onNext(ConversationGroupActiveState(groupRecord.isActive, groupRecord.isV2Group))
@@ -87,9 +81,12 @@ class ConversationGroupViewModel(
   }
 
   fun blockJoinRequests(recipient: Recipient): Single<GroupBlockJoinRequestResult> {
-    return _recipient.firstOrError().flatMap {
-      groupManagementRepository.blockJoinRequests(it.requireGroupId().requireV2(), recipient)
-    }.observeOn(AndroidSchedulers.mainThread())
+    return _groupRecord
+      .firstOrError()
+      .flatMap {
+        groupManagementRepository.blockJoinRequests(it.id.requireV2(), recipient)
+      }
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   private fun getActionableRequestingMembersCount(groupRecord: GroupRecord): Int {
@@ -112,6 +109,15 @@ class ConversationGroupViewModel(
         .filter { GroupsV1MigrationUtil.isAutoMigratable(it) }
         .map { it.id }
     }
+  }
+
+  fun cancelJoinRequest(): Single<Result<Unit, GroupChangeFailureReason>> {
+    return _groupRecord
+      .firstOrError()
+      .flatMap { group ->
+        groupManagementRepository.cancelJoinRequest(group.id.requireV2())
+      }
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   class Factory(private val threadId: Long, private val recipientRepository: ConversationRecipientRepository) : ViewModelProvider.Factory {

@@ -129,7 +129,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="conversation_input_panel,attachment_editor_stub" />
+        app:constraint_referenced_ids="conversation_input_panel,attachment_editor_stub,conversation_disabled_input " />
 
     <ViewStub
         android:id="@+id/attachment_editor_stub"
@@ -147,6 +147,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/conversation_input_space_left"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
+
+    <org.thoughtcrime.securesms.conversation.v2.DisabledInputView
+        android:id="@+id/conversation_disabled_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/keyboard_guideline"
         app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
         app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
 

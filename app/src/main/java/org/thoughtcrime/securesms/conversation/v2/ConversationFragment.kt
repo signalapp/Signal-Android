@@ -46,14 +46,18 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.util.Result
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.InvalidMessageException
+import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
@@ -86,6 +90,7 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationOptionsMenu
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
 import org.thoughtcrime.securesms.conversation.MessageSendType
+import org.thoughtcrime.securesms.conversation.ShowAdminsBottomSheetDialog
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
@@ -112,10 +117,12 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
+import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkInviteFriendsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment
+import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInitiationBottomSheetDialogFragment
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -127,6 +134,8 @@ import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
+import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
+import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.mms.AttachmentManager
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.SlideDeck
@@ -139,6 +148,7 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
+import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity
@@ -149,11 +159,13 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.FullscreenHelper
+import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.hasGiftBadge
+import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
@@ -176,17 +188,21 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     ConversationRecipientRepository(args.threadId)
   }
 
+  private val messageRequestRepository: MessageRequestRepository by lazy {
+    MessageRequestRepository(requireContext())
+  }
+
   private val disposables = LifecycleDisposable()
   private val binding by ViewBinderDelegate(V2ConversationFragmentBinding::bind)
-  private val viewModel: ConversationViewModel by viewModels(
-    factoryProducer = {
-      ConversationViewModel.Factory(
-        args,
-        ConversationRepository(requireContext()),
-        conversationRecipientRepository
-      )
-    }
-  )
+  private val viewModel: ConversationViewModel by viewModel {
+    ConversationViewModel(
+      args.threadId,
+      args.startingPosition,
+      ConversationRepository(requireContext()),
+      conversationRecipientRepository,
+      messageRequestRepository
+    )
+  }
 
   private val groupCallViewModel: ConversationGroupCallViewModel by viewModels(
     factoryProducer = {
@@ -199,6 +215,10 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       ConversationGroupViewModel.Factory(args.threadId, conversationRecipientRepository)
     }
   )
+
+  private val messageRequestViewModel: MessageRequestViewModel by viewModel {
+    MessageRequestViewModel(args.threadId, conversationRecipientRepository, messageRequestRepository)
+  }
 
   private val conversationTooltips = ConversationTooltips(this)
   private val colorizer = Colorizer()
@@ -263,6 +283,13 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     presentActionBarMenu()
 
     observeConversationThread()
+
+    viewModel
+      .inputReadyState
+      .subscribeBy(
+        onNext = this::presentInputReadyState
+      )
+      .addTo(disposables)
 
     container.fragmentManager = childFragmentManager
   }
@@ -346,6 +373,9 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
         adapter.notifyItemRangeChanged(0, adapter.itemCount)
       })
 
+    val disabledInputListener = DisabledInputListener()
+    binding.conversationDisabledInput.listener = disabledInputListener
+
     val sendButtonListener = SendButtonListener()
     val composeTextEventsListener = ComposeTextEventsListener()
 
@@ -395,6 +425,28 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       )
 
     childFragmentManager.setFragmentResultListener(AttachmentKeyboardFragment.RESULT_KEY, viewLifecycleOwner, AttachmentKeyboardFragmentListener())
+  }
+
+  private fun presentInputReadyState(inputReadyState: InputReadyState) {
+    val disabledInputView = binding.conversationDisabledInput
+
+    var inputDisabled = true
+    when {
+      inputReadyState.isClientExpired || inputReadyState.isUnauthorized -> disabledInputView.showAsExpiredOrUnauthorized(inputReadyState.isClientExpired, inputReadyState.isUnauthorized)
+      inputReadyState.messageRequestState != MessageRequestState.NONE -> disabledInputView.showAsMessageRequest(inputReadyState.conversationRecipient, inputReadyState.messageRequestState)
+      inputReadyState.isActiveGroup == false -> disabledInputView.showAsNoLongerAMember()
+      inputReadyState.isRequestingMember == true -> disabledInputView.showAsRequestingMember()
+      inputReadyState.isAnnouncementGroup == true && inputReadyState.isAdmin == false -> disabledInputView.showAsAnnouncementGroupAdminsOnly()
+      else -> inputDisabled = false
+    }
+
+    inputPanel.setHideForMessageRequestState(inputDisabled)
+
+    if (inputDisabled) {
+      WindowUtil.setNavigationBarColor(requireActivity(), disabledInputView.color)
+    } else {
+      disabledInputView.clear()
+    }
   }
 
   private fun calculateCharactersRemaining() {
@@ -473,10 +525,13 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       binding.conversationWallpaperDim.visible = false
     }
 
-    binding.conversationWallpaper.visible = chatWallpaper != null
-    binding.scrollToBottom.setWallpaperEnabled(chatWallpaper != null)
-    binding.scrollToMention.setWallpaperEnabled(chatWallpaper != null)
-    adapter.onHasWallpaperChanged(chatWallpaper != null)
+    val wallpaperEnabled = chatWallpaper != null
+    binding.conversationWallpaper.visible = wallpaperEnabled
+    binding.scrollToBottom.setWallpaperEnabled(wallpaperEnabled)
+    binding.scrollToMention.setWallpaperEnabled(wallpaperEnabled)
+    binding.conversationDisabledInput.setWallpaperEnabled(wallpaperEnabled)
+
+    adapter.onHasWallpaperChanged(wallpaperEnabled)
   }
 
   private fun presentChatColors(chatColors: ChatColors) {
@@ -1237,6 +1292,128 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       viewModel.setLastScrolled(lastVisibleMessageTimestamp)
     }
   }
+
+  //region Disabled Input Callbacks
+
+  private inner class DisabledInputListener : DisabledInputView.Listener {
+    override fun onUpdateAppClicked() {
+      PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
+    }
+
+    override fun onReRegisterClicked() {
+      startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()))
+    }
+
+    override fun onCancelGroupRequestClicked() {
+      conversationGroupViewModel
+        .cancelJoinRequest()
+        .subscribeBy { result ->
+          when (result) {
+            is Result.Success -> Log.d(TAG, "Cancel request complete")
+            is Result.Failure -> {
+              Log.d(TAG, "Cancel join request failed ${result.failure}")
+              toast(GroupErrors.getUserDisplayMessage(result.failure))
+            }
+          }
+        }
+        .addTo(disposables)
+    }
+
+    override fun onShowAdminsBottomSheetDialog() {
+      viewModel.recipientSnapshot?.let { recipient ->
+        ShowAdminsBottomSheetDialog.show(childFragmentManager, recipient.requireGroupId().requireV2())
+      }
+    }
+
+    override fun onAcceptMessageRequestClicked() {
+      messageRequestViewModel
+        .onAccept()
+        .subscribeWithShowProgress("accept message request")
+        .addTo(disposables)
+    }
+
+    override fun onDeleteGroupClicked() {
+      val recipient = viewModel.recipientSnapshot
+      if (recipient == null) {
+        Log.w(TAG, "[onDeleteGroupClicked] No recipient!")
+        return
+      }
+
+      ConversationDialogs.displayDeleteDialog(requireContext(), recipient) {
+        messageRequestViewModel
+          .onDelete()
+          .subscribeWithShowProgress("delete message request")
+      }
+    }
+
+    override fun onBlockClicked() {
+      val recipient = viewModel.recipientSnapshot
+      if (recipient == null) {
+        Log.w(TAG, "[onBlockClicked] No recipient!")
+        return
+      }
+
+      BlockUnblockDialog.showBlockAndReportSpamFor(
+        requireContext(),
+        lifecycle,
+        recipient,
+        {
+          messageRequestViewModel
+            .onBlock()
+            .subscribeWithShowProgress("block")
+        },
+        {
+          messageRequestViewModel
+            .onBlockAndReportSpam()
+            .subscribeWithShowProgress("block")
+        }
+      )
+    }
+
+    override fun onUnblockClicked() {
+      val recipient = viewModel.recipientSnapshot
+      if (recipient == null) {
+        Log.w(TAG, "[onUnblockClicked] No recipient!")
+        return
+      }
+
+      BlockUnblockDialog.showUnblockFor(
+        requireContext(),
+        lifecycle,
+        recipient
+      ) {
+        messageRequestViewModel
+          .onUnblock()
+          .subscribeWithShowProgress("unblock")
+      }
+    }
+
+    override fun onGroupV1MigrationClicked() {
+      val recipient = viewModel.recipientSnapshot
+      if (recipient == null) {
+        Log.w(TAG, "[onGroupV1MigrationClicked] No recipient!")
+        return
+      }
+
+      GroupsV1MigrationInitiationBottomSheetDialogFragment.showForInitiation(childFragmentManager, recipient.id)
+    }
+
+    private fun Single<Result<Unit, GroupChangeFailureReason>>.subscribeWithShowProgress(logMessage: String): Disposable {
+      return doOnSubscribe { binding.conversationDisabledInput.showBusy() }
+        .doOnTerminate { binding.conversationDisabledInput.hideBusy() }
+        .subscribeBy { result ->
+          when (result) {
+            is Result.Success -> Log.d(TAG, "$logMessage complete")
+            is Result.Failure -> {
+              Log.d(TAG, "$logMessage failed ${result.failure}")
+              toast(GroupErrors.getUserDisplayMessage(result.failure))
+            }
+          }
+        }
+    }
+  }
+
+  //endregion
 
   //region Compose + Send Callbacks
 

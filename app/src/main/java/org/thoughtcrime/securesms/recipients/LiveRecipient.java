@@ -88,7 +88,7 @@ public final class LiveRecipient {
    * @return An rx-flavored {@link Observable}.
    */
   public @NonNull Observable<Recipient> observable() {
-    return subject.distinctUntilChanged(Recipient::hasSameContent);
+    return subject;
   }
 
   /**
