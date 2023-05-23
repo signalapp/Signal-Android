@@ -3334,11 +3334,16 @@ public class ConversationParentFragment extends Fragment
     bluetoothVoiceNoteUtil.disconnectBluetoothScoConnection();
     voiceRecorderWakeLock.release();
     updateToggleButtonState();
-    Vibrator vibrator = ServiceUtil.getVibrator(requireContext());
-    vibrator.vibrate(20);
 
-    requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+    Activity activity = getActivity();
+    if (activity != null) {
+      Vibrator vibrator = ServiceUtil.getVibrator(activity);
+      vibrator.vibrate(20);
+
+      activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+      activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+    }
+
     if (recordingSession != null) {
       recordingSession.completeRecording();
     }
@@ -3348,11 +3353,15 @@ public class ConversationParentFragment extends Fragment
   public void onRecorderCanceled(boolean byUser) {
     voiceRecorderWakeLock.release();
     updateToggleButtonState();
-    Vibrator vibrator = ServiceUtil.getVibrator(requireContext());
-    vibrator.vibrate(50);
 
-    requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+    Activity activity = getActivity();
+    if (activity != null) {
+      Vibrator vibrator = ServiceUtil.getVibrator(activity);
+      vibrator.vibrate(50);
+
+      activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+      activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+    }
 
     if (recordingSession != null) {
       if (byUser) {
