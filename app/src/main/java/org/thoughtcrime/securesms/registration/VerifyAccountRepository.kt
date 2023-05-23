@@ -77,19 +77,24 @@ class VerifyAccountRepository(private val context: Application) {
       return response
     }
 
-    subscriber.latch.await(PUSH_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
-
+    val receivedPush = subscriber.latch.await(PUSH_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
     eventBus.unregister(subscriber)
 
-    val challenge = subscriber.challenge
-
-    return if (challenge != null) {
-      accountManager.submitPushChallengeToken(response.result.get().body.id, challenge)
+    if (receivedPush) {
+      val challenge = subscriber.challenge
+      if (challenge != null) {
+        Log.w(TAG, "Push challenge token received.")
+        return accountManager.submitPushChallengeToken(response.result.get().body.id, challenge)
+      } else {
+        Log.w(TAG, "Push received but challenge token was null.")
+      }
     } else {
-      val registrationSessionState = RegistrationSessionState(pushChallengeTimedOut = true)
-      val rawResponse: RegistrationSessionMetadataResponse = response.result.get()
-      ServiceResponse.forResult(rawResponse.copy(state = registrationSessionState), 200, null)
+      Log.i(TAG, "Push challenge timed out.")
     }
+    Log.i(TAG, "Push challenge unsuccessful. Updating registration state accordingly.")
+    val registrationSessionState = RegistrationSessionState(pushChallengeTimedOut = true)
+    val rawResponse: RegistrationSessionMetadataResponse = response.result.get()
+    return ServiceResponse.forResult(rawResponse.copy(state = registrationSessionState), 200, null)
   }
 
   fun requestAndVerifyPushToken(

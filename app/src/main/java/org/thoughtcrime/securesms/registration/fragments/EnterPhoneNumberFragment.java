@@ -34,6 +34,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -46,7 +47,6 @@ import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.PlayServicesUtil;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -252,6 +252,17 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
         }
         debouncer.clear();
       });
+
+      task.addOnCanceledListener(() -> {
+        if (!handled.getAndSet(true)) {
+          Log.w(TAG, "SMS listener registration canceled.");
+          requestVerificationCode(Mode.SMS_WITHOUT_LISTENER);
+        } else {
+          Log.w(TAG, "SMS listener registration canceled after timeout.");
+        }
+        debouncer.clear();
+      });
+
     } else {
       Log.i(TAG, "FCM is not supported, using no SMS listener");
       requestVerificationCode(Mode.SMS_WITHOUT_LISTENER);
