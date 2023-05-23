@@ -256,12 +256,12 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     @JvmStatic
     fun runPostSuccessfulTransaction(dedupeKey: String, task: Runnable) {
-      instance!!.signalReadableDatabase.runPostSuccessfulTransaction(dedupeKey, task)
+      instance!!.signalWritableDatabase.runPostSuccessfulTransaction(dedupeKey, task)
     }
 
     @JvmStatic
     fun runPostSuccessfulTransaction(task: Runnable) {
-      instance!!.signalReadableDatabase.runPostSuccessfulTransaction(task)
+      instance!!.signalWritableDatabase.runPostSuccessfulTransaction(task)
     }
 
     @JvmStatic

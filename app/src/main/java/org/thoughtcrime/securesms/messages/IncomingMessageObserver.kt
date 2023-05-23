@@ -12,7 +12,6 @@ import kotlinx.collections.immutable.toImmutableSet
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -397,7 +396,7 @@ class IncomingMessageObserver(private val context: Application) {
 
                 val startTime = System.currentTimeMillis()
                 ReentrantSessionLock.INSTANCE.acquire().use {
-                  SignalDatabase.rawDatabase.withinTransaction {
+                  SignalDatabase.runInTransaction {
                     val followUpOperations: List<FollowUpOperation> = batch
                       .mapNotNull { processEnvelope(bufferedStore, it.envelope, it.serverDeliveredTimestamp) }
                       .flatten()
