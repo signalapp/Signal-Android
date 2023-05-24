@@ -590,9 +590,12 @@ message SyncMessage {
   }
 
   message PniChangeNumber {
-    optional bytes  identityKeyPair = 1; // Serialized libsignal-client IdentityKeyPair
-    optional bytes  signedPreKey    = 2; // Serialized libsignal-client SignedPreKeyRecord
-    optional uint32 registrationId  = 3;
+    optional bytes  identityKeyPair       = 1; // Serialized libsignal-client IdentityKeyPair
+    optional bytes  signedPreKey          = 2; // Serialized libsignal-client SignedPreKeyRecord
+    optional bytes  lastResortKyberPreKey = 5; // Serialized libsignal-client KyberPreKeyRecord
+    optional uint32 registrationId        = 3;
+    optional string newE164               = 4; // The e164 we have changed our number to
+    // Next ID: 6
   }
 
   message CallEvent {

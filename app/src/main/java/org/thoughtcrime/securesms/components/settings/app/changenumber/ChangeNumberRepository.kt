@@ -7,7 +7,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
+import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignalProtocolStore
+import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.libsignal.protocol.util.KeyHelper
 import org.signal.libsignal.protocol.util.Medium
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
@@ -38,6 +40,7 @@ import org.whispersystems.signalservice.api.push.ServiceIdType
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
 import org.whispersystems.signalservice.internal.ServiceResponse
+import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage
@@ -320,6 +323,7 @@ class ChangeNumberRepository(
     val pniIdentity: IdentityKeyPair = if (pniUpdateMode) SignalStore.account().pniIdentityKey else IdentityKeyUtil.generateIdentityKeyPair()
     val deviceMessages = mutableListOf<OutgoingPushMessage>()
     val devicePniSignedPreKeys = mutableMapOf<Int, SignedPreKeyEntity>()
+    val devicePniLastResortKyberPreKeys = mutableMapOf<Int, KyberPreKeyEntity>()
     val pniRegistrationIds = mutableMapOf<Int, Int>()
     val primaryDeviceId: Int = SignalServiceAddress.DEFAULT_DEVICE_ID
 
@@ -329,7 +333,7 @@ class ChangeNumberRepository(
       .filter { it == primaryDeviceId || aciProtocolStore.containsSession(SignalProtocolAddress(selfIdentifier, it)) }
       .forEach { deviceId ->
         // Signed Prekeys
-        val signedPreKeyRecord = if (deviceId == primaryDeviceId) {
+        val signedPreKeyRecord: SignedPreKeyRecord = if (deviceId == primaryDeviceId) {
           if (pniUpdateMode) {
             ApplicationDependencies.getProtocolStore().pni().loadSignedPreKey(SignalStore.account().pniPreKeys.activeSignedPreKeyId)
           } else {
@@ -339,6 +343,18 @@ class ChangeNumberRepository(
           PreKeyUtil.generateSignedPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
         }
         devicePniSignedPreKeys[deviceId] = SignedPreKeyEntity(signedPreKeyRecord.id, signedPreKeyRecord.keyPair.publicKey, signedPreKeyRecord.signature)
+
+        // Last-resort kyber prekeys
+        val lastResortKyberPreKeyRecord: KyberPreKeyRecord = if (deviceId == primaryDeviceId) {
+          if (pniUpdateMode) {
+            ApplicationDependencies.getProtocolStore().pni().loadKyberPreKey(SignalStore.account().pniPreKeys.lastResortKyberPreKeyId)
+          } else {
+            PreKeyUtil.generateAndStoreLastResortKyberPreKey(ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys, pniIdentity.privateKey)
+          }
+        } else {
+          PreKeyUtil.generateKyberPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
+        }
+        devicePniLastResortKyberPreKeys[deviceId] = KyberPreKeyEntity(lastResortKyberPreKeyRecord.id, lastResortKyberPreKeyRecord.keyPair.publicKey, lastResortKyberPreKeyRecord.signature)
 
         // Registration Ids
         var pniRegistrationId = if (deviceId == primaryDeviceId && pniUpdateMode) {
@@ -357,7 +373,9 @@ class ChangeNumberRepository(
           val pniChangeNumber = SyncMessage.PniChangeNumber.newBuilder()
             .setIdentityKeyPair(pniIdentity.serialize().toProtoByteString())
             .setSignedPreKey(signedPreKeyRecord.serialize().toProtoByteString())
+            .setLastResortKyberPreKey(lastResortKyberPreKeyRecord.serialize().toProtoByteString())
             .setRegistrationId(pniRegistrationId)
+            .setNewE164(newE164)
             .build()
 
           deviceMessages += messageSender.getEncryptedSyncPniChangeNumberMessage(deviceId, pniChangeNumber)
@@ -372,6 +390,7 @@ class ChangeNumberRepository(
       pniIdentity.publicKey,
       deviceMessages,
       devicePniSignedPreKeys.mapKeys { it.key.toString() },
+      devicePniLastResortKyberPreKeys.mapKeys { it.key.toString() },
       pniRegistrationIds.mapKeys { it.key.toString() }
     )
 
