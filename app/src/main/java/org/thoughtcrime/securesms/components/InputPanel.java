@@ -17,6 +17,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,8 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
@@ -44,6 +47,7 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdapter;
 import org.thoughtcrime.securesms.conversation.VoiceNoteDraftView;
 import org.thoughtcrime.securesms.database.DraftTable;
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
@@ -52,9 +56,11 @@ import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.QuoteModel;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -94,8 +100,9 @@ public class InputPanel extends LinearLayout
   private View            recordingContainer;
   private View            recordLockCancel;
   private ViewGroup       composeContainer;
-  private View            editMessageLabel;
   private View            editMessageCancel;
+  private ImageView       editMessageThumbnail;
+  private View            editMessageHeader;
 
   private MicrophoneRecorderView microphoneRecorderView;
   private SlideToCancel          slideToCancel;
@@ -153,8 +160,9 @@ public class InputPanel extends LinearLayout
                                                  findViewById(R.id.microphone),
                                                  TimeUnit.HOURS.toSeconds(1),
                                                  () -> microphoneRecorderView.cancelAction(false));
-    this.editMessageLabel       = findViewById(R.id.edit_message);
     this.editMessageCancel      = findViewById(R.id.input_panel_exit_edit_mode);
+    this.editMessageHeader      = findViewById(R.id.edit_message_compose_header);
+    this.editMessageThumbnail   = findViewById(R.id.edit_message_thumbnail);
 
     this.recordLockCancel.setOnClickListener(v -> microphoneRecorderView.cancelAction(true));
 
@@ -385,20 +393,41 @@ public class InputPanel extends LinearLayout
     quoteView.setWallpaperEnabled(enabled);
   }
 
-  public void enterEditMessageMode(@NonNull GlideRequests glideRequests, @NonNull ConversationMessage messageToEdit, boolean fromDraft) {
-    SpannableString textToEdit = messageToEdit.getDisplayBody(getContext());
+  public void enterEditMessageMode(@NonNull GlideRequests glideRequests, @NonNull ConversationMessage conversationMessageToEdit, boolean fromDraft) {
+    SpannableString textToEdit = conversationMessageToEdit.getDisplayBody(getContext());
     if (!fromDraft) {
       composeText.setText(textToEdit);
       composeText.setSelection(textToEdit.length());
     }
-    Quote quote = MessageRecordUtil.getQuote(messageToEdit.getMessageRecord());
+    Quote quote = MessageRecordUtil.getQuote(conversationMessageToEdit.getMessageRecord());
     if (quote == null) {
       clearQuote();
     } else {
       setQuote(glideRequests, quote.getId(), Recipient.resolved(quote.getAuthor()), quote.getDisplayText(), quote.getAttachment(), quote.getQuoteType());
     }
-    this.messageToEdit = messageToEdit.getMessageRecord();
+    this.messageToEdit = conversationMessageToEdit.getMessageRecord();
+    updateEditModeThumbnail(glideRequests);
     updateEditModeUi();
+  }
+
+  private void updateEditModeThumbnail(@NonNull GlideRequests glideRequests) {
+    if (messageToEdit instanceof MediaMmsMessageRecord) {
+      MediaMmsMessageRecord mediaEditMessage = (MediaMmsMessageRecord) messageToEdit;
+      SlideDeck             slideDeck        = mediaEditMessage.getSlideDeck();
+      Slide                 imageVideoSlide  = slideDeck.getSlides().stream().filter(s -> s.hasImage() || s.hasVideo() || s.hasSticker()).findFirst().orElse(null);
+
+      if (imageVideoSlide != null && imageVideoSlide.getUri() != null) {
+        editMessageThumbnail.setVisibility(VISIBLE);
+        glideRequests.load(new DecryptableStreamUriLoader.DecryptableUri(imageVideoSlide.getUri()))
+                     .centerCrop()
+                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                     .into(editMessageThumbnail);
+      } else {
+        editMessageThumbnail.setVisibility(View.GONE);
+      }
+    } else {
+      editMessageThumbnail.setVisibility(View.GONE);
+    }
   }
 
   public void exitEditMessageMode() {
@@ -413,13 +442,13 @@ public class InputPanel extends LinearLayout
   private void updateEditModeUi() {
     if (inEditMessageMode()) {
       ViewUtil.focusAndShowKeyboard(composeText);
-      editMessageLabel.setVisibility(View.VISIBLE);
+      editMessageHeader.setVisibility(View.VISIBLE);
       editMessageCancel.setVisibility(View.VISIBLE);
       if (listener != null) {
         listener.onEnterEditMode();
       }
     } else {
-      editMessageLabel.setVisibility(View.GONE);
+      editMessageHeader.setVisibility(View.GONE);
       editMessageCancel.setVisibility(View.GONE);
       if (listener != null) {
         listener.onExitEditMode();

@@ -569,6 +569,11 @@
         <item name="cornerSize">18dp</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.Signal.EditMessageMediaThumbnail" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
     <style name="Widget.Signal.BottomSheet.Rounded" parent="Widget.Material3.BottomSheet">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
         <item name="backgroundTint">@color/signal_colorSurface1</item>
