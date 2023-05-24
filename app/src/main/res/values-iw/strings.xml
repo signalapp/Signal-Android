@@ -24,14 +24,14 @@
     <string name="save">שמור</string>
     <string name="note_to_self">הערות לעצמי</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">מזג אוויר</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
     <string name="app_icon_label_notes">הערות</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">חדשות</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">גלים</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,10 +194,10 @@
     <string name="CameraContacts_signal_groups">קבוצות Signal</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="two">You can share with a maximum of %1$d chats.</item>
-        <item quantity="many">You can share with a maximum of %1$d chats.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">אפשר לשתף עם מקסימום צ׳אט %1$d.</item>
+        <item quantity="two">אפשר לשתף עם מקסימום %1$d צ׳אטים.</item>
+        <item quantity="many">אפשר לשתף עם מקסימום %1$d צ׳אטים.</item>
+        <item quantity="other">אפשר לשתף עם מקסימום %1$d צ׳אטים.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">בחר מקבלי Signal</string>
     <string name="CameraContacts_no_signal_contacts">אין אנשי קשר של Signal</string>
@@ -2306,17 +2306,17 @@
     <string name="MessageNotifier_s_in_s">%1$s בקבוצה %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="one">%1$d message</item>
-        <item quantity="two">%1$d messages</item>
-        <item quantity="many">%1$d messages</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="one">הודעה %1$d</item>
+        <item quantity="two">%1$d הודעות</item>
+        <item quantity="many">%1$d הודעות</item>
+        <item quantity="other">%1$d הודעות</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
-        <item quantity="two">%1$d chats</item>
-        <item quantity="many">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">צ׳אט %1$d</item>
+        <item quantity="two">%1$d צ׳אטים</item>
+        <item quantity="many">%1$d צ׳אטים</item>
+        <item quantity="other">%1$d צ׳אטים</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d הודעות חדשות ב–%2$d צ׳אטים</string>
     <string name="MessageNotifier_most_recent_from_s">הודעה אחרונה מאת: %1$s</string>
@@ -3052,27 +3052,27 @@
     <string name="preferences__theme">ערכת נושא</string>
     <string name="preferences__chat_color_and_wallpaper">צבע צ׳אט ורקע</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">סמל האפליקציה</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">אישור</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">ביטול</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">שינוי סמל ושם אפליקציה ל״%1$s״</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">צריך לסגור את Signal כדי לשנות את סמל ושם האפליקציה. התראות יציגו תמיד את סמל ושם ברירת המחדל של Signal.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">בוחרים שם וסמל אפליקציה שיהיו גלויים במסך הבית ובמגירת האפליקציות של הטלפון שלך. התראות יציגו תמיד את סמל ושם ברירת המחדל של Signal. למידע נוסף</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">סמלי ושמות אפליקציות גלויים במסך הבית ובמגירת האפליקציות.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">התראות יציגו תמיד את סמל ושם ברירת המחדל של Signal.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">למידע נוסף</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">סמל עבור %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">גרפיקה שממחישה איפה סמל האפליקציה החלופי יהיה גלוי.</string>
     <string name="preferences__disable_pin">השבת PIN</string>
     <string name="preferences__enable_pin">אפשר PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">אם תשבית את ה־PIN, תאבד את כל הנתונים כאשר תירשם מחדש אל Signal אלא אם תגבה ותשחזר באופן ידני. אינך יכול להפעיל נעילת הרשמה בזמן שה־PIN מושבת.</string>
@@ -3110,10 +3110,10 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">זה ימחק לצמיתות את כל היסטוריית ההודעות והמדיה מהמכשיר שלך שישנים יותר מ%1$s.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="two">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="many">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">זה יקצץ לצמיתות את כל הצ׳אטים שלך להודעה האחרונה בלבד.</item>
+        <item quantity="two">זה יקצץ לצמיתות את כל הצ׳אטים שלך ל–%1$s ההודעות האחרונות.</item>
+        <item quantity="many">זה יקצץ לצמיתות את כל הצ׳אטים שלך ל–%1$s ההודעות האחרונות.</item>
+        <item quantity="other">זה יקצץ לצמיתות את כל הצ׳אטים שלך ל–%1$s ההודעות האחרונות.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">זה ימחק לצמיתות את כל היסטוריית ההודעות והמדיה מהמכשיר שלך.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">בטוח שבא לך למחוק את כל היסטוריית ההודעות?</string>
@@ -4511,7 +4511,7 @@
     <string name="HelpSettingsFragment__debug_log">יומן תקלים</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">תנאים ומדיניות פרטיות</string>
     <string name="HelpFragment__copyright_signal_messenger">זכויות יוצרים Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">ברישיון תחת GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">איכות מדיה</string>

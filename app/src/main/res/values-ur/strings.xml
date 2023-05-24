@@ -24,14 +24,14 @@
     <string name="save">محفوظ کریں</string>
     <string name="note_to_self">خود کے لیے نوٹ</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_notes">Notes</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">موسم</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">نوٹس</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">خبریں</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">ویوز</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,8 +194,8 @@
     <string name="CameraContacts_signal_groups">Signal گروپس</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">آپ زیادہ سے زیادہ %1$d کے ساتھ چیٹ شیئر کر سکتے ہیں۔</item>
+        <item quantity="other">آپ زیادہ سے زیادہ %1$d چیٹس شیئر کر سکتے ہیں۔</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal وصول کنندگان منتخب کریں</string>
     <string name="CameraContacts_no_signal_contacts">کوئی Signal رابطے نہیں ہیں</string>
@@ -2172,13 +2172,13 @@
     <string name="MessageNotifier_s_in_s">%1$s میں %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="one">%1$d message</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="one">%1$d پيغام</item>
+        <item quantity="other">%1$d پيغامات</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d چیٹس</item>
+        <item quantity="other">%1$d چیٹس</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d چیٹس میں %1$d نئے میسجز</string>
     <string name="MessageNotifier_most_recent_from_s">سب سے حالیہ کی طرف سے:%1$s</string>
@@ -2890,27 +2890,27 @@
     <string name="preferences__theme">موضوع</string>
     <string name="preferences__chat_color_and_wallpaper">چیٹ کا رنگ اور وال پیپر</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">ایپ آئیکن</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">ٹھیک ہے</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">منسوخ کریں</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">ایپ آئیکن اور نام کو \"%1$s\" سے تبدیل کریں</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">ایپ آئیکن اور نام کو تبدیل کرنے کے لیے Signal کو بند کرنے کی ضرورت ہو گی۔ اطلاعات ہمیشہ Signal کے ڈیفالٹ آئیکن اور نام کو ظاہر کریں گی۔</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">وہ ایپ آئیکن اور نام منتخب کریں، جو آپ کے فون کی ہوم اسکرین اور ایپ ڈرار پر نظر آئیں گے۔ اطلاعات ہمیشہ Signal کے ڈیفالٹ آئیکن اور نام کو ظاہر کریں گی۔ مزید جانیں</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">ایپ آئیکنز اور نام ہوم اسکرین اور ایپ ڈرار پر نظر آتے ہیں۔</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">اطلاعات ہمیشہ Signal کے ڈیفالٹ آئیکن اور نام کو ظاہر کریں گی۔</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">مزید جانیں</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">%1$s کے لیے آئیکن</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">گرافک وہ جگہ ظاہر کر رہی ہے جہاں تبدیل کیا گیا ایپ آئیکن نظر آئے گا۔</string>
     <string name="preferences__disable_pin">PIN کو غیر فعال کریں</string>
     <string name="preferences__enable_pin">PIN کو فعال کریں</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">اگر آپ PIN کو غیر فعال کردیتے ہیں تو ، آپ جب تک دستی طور پر بیک اپ اور بحالی نہیں کرتے ہیں تب تک آپ تمام اعداد و شمار کو کھو دیں گے۔ جب PIN غیر فعال ہو تو آپ رجسٹریشن لاک آن نہیں کرسکتے ہیں۔</string>
@@ -2948,8 +2948,8 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">یہ آپ کی ڈیوائس سے میسج کی تمام ہسٹری اور میڈیا کو مستقل طور پر ڈیلیٹ کر دے گا جو %1$s سے زیادہ پرانے ہیں۔</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">اس سے تمام چیٹس مستقل طور پر حالیہ ترین میسج تک کم ہو جائیں گی۔</item>
+        <item quantity="other">اس سے تمام چیٹس مستقل طور پر %1$s حالیہ ترین میسجز تک کم ہو جائیں گی۔</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">یہ آپ کی ڈیوائس سے میسج کی تمام ہسٹری اور میڈیا کو مستقل طور پر ڈیلیٹ کردے گا۔</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">کیا آپ واقعی میسج کی ساری ہسٹری کو ڈیلیٹ کرنا چاہتے ہیں؟</string>
@@ -4321,7 +4321,7 @@
     <string name="HelpSettingsFragment__debug_log">ڈی بگ لاگ</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">شرائط &amp;amp:رازداری کی پالیسی</string>
     <string name="HelpFragment__copyright_signal_messenger">کاپی رائٹ Signal میسنجر</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 کے تحت لائسنس یافتہ</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">میڈیا کوالٹی</string>

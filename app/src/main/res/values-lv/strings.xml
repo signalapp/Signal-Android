@@ -24,14 +24,14 @@
     <string name="save">Saglabāt</string>
     <string name="note_to_self">Piezīme sev</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Laikapstākļi</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
     <string name="app_icon_label_notes">Piezīmes</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Jaunumi</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Viļņi</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,9 +194,9 @@
     <string name="CameraContacts_signal_groups">Signal grupas</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="zero">You can share with a maximum of %1$d chats.</item>
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="zero">Jūs varat kopīgot ar maksimums %1$d sarunām.</item>
+        <item quantity="one">Jūs varat kopīgot ar maksimums %1$d sarunu.</item>
+        <item quantity="other">Jūs varat kopīgot ar maksimums %1$d sarunām.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Izvēlēties Signal adresātus</string>
     <string name="CameraContacts_no_signal_contacts">Nav Signal kontaktu</string>
@@ -2239,15 +2239,15 @@
     <string name="MessageNotifier_s_in_s">%1$s grupā %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="zero">%1$d messages</item>
-        <item quantity="one">%1$d message</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="zero">%1$d ziņas</item>
+        <item quantity="one">%1$d ziņa</item>
+        <item quantity="other">%1$d ziņas</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="zero">%1$d chats</item>
-        <item quantity="one">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="zero">%1$d sarunas</item>
+        <item quantity="one">%1$d saruna</item>
+        <item quantity="other">%1$d sarunas</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d jaunas ziņas %2$d sarunās</string>
     <string name="MessageNotifier_most_recent_from_s">Pēdējā no: %1$s</string>
@@ -2971,27 +2971,27 @@
     <string name="preferences__theme">Dizains</string>
     <string name="preferences__chat_color_and_wallpaper">Sarunas krāsa un fona tapete</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">Lietotnes ikona</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">Ok</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">Atcelt</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">Mainīt lietotnes ikonu un nosaukumu uz \"%1$s\"</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">Lai mainītu lietotnes ikonu un nosaukumu, Signal būs jāaizver. Paziņojumos vienmēr tiks rādīta Signal noklusējuma ikona un nosaukums.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">Atlasiet lietotnes ikonu un nosaukumu, kas būs redzams tālruņa sākuma ekrānā un lietotņu panelī. Paziņojumos vienmēr tiks rādīta Signal noklusējuma ikona un nosaukums. Lasīt vairāk</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">Lietotņu ikonas un nosaukumi ir redzami sākuma ekrānā un lietotņu panelī.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">Paziņojumos vienmēr tiks rādīta Signal noklusējuma ikona un nosaukums.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">Lasīt vairāk</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">%1$s ikona</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafika, kas demonstrē, kur būs redzama nomainītā lietotnes ikona.</string>
     <string name="preferences__disable_pin">Atspējot PIN</string>
     <string name="preferences__enable_pin">Iespējot PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ja atspējosiet PIN, jūs zaudēsiet visus datus, atkārtoti reģistrējoties lietotnē Signal, ja vien manuāli tos nedublēsiet un neatjaunosiet. Reģistrācijas bloķēšanu nevar ieslēgt, kamēr PIN ir atspējots.</string>
@@ -3029,9 +3029,9 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tādējādi no jūsu ierīces tiks neatgriezeniski dzēsta visa ziņu vēsture un multivides saturs, kas ir vecāks par %1$s.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="zero">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="zero">Tiks saīsināta visu sarunu vēsture un tiks paturētas tikai %1$s jaunākās ziņas.</item>
+        <item quantity="one">Tiks saīsināta visu sarunu vēsture un tiks paturētas tikai jaunākā ziņa.</item>
+        <item quantity="other">Tiks saīsināta visu sarunu vēsture un tiks paturētas tikai %1$s jaunākās ziņas.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tādējādi no jūsu ierīces tiks neatgriezeniski dzēsta visa ziņu vēsture un multivides saturs.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Vai tiešām vēlaties dzēst visu ziņu vēsturi?</string>
@@ -4416,7 +4416,7 @@
     <string name="HelpSettingsFragment__debug_log">Atkļūdošanas žurnāls</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Noteikumi &amp; privātuma politika</string>
     <string name="HelpFragment__copyright_signal_messenger">Autortiesības Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licencēta saskaņā ar GPLv3 AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Multivides kvalitāte</string>

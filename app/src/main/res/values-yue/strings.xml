@@ -24,14 +24,14 @@
     <string name="save">儲存</string>
     <string name="note_to_self">俾自己嘅筆記</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_notes">Notes</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">天氣</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">筆記</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">新聞</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">波浪</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,7 +194,7 @@
     <string name="CameraContacts_signal_groups">Signal 谷</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="other">你可以分享至最多 %1$d 個聊天。</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">揀選 Signal 收件人</string>
     <string name="CameraContacts_no_signal_contacts">無 Signal 聯絡人</string>
@@ -2105,11 +2105,11 @@
     <string name="MessageNotifier_s_in_s">%2$s 入面嘅 %1$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="other">%1$d messages</item>
+        <item quantity="other">%1$d 個訊息</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="other">%1$d chats</item>
+        <item quantity="other">%1$d 聊天</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">總共 %1$d 個新訊息，嚟自 %2$d 個聊天</string>
     <string name="MessageNotifier_most_recent_from_s">最新來自：%1$s</string>
@@ -2809,27 +2809,27 @@
     <string name="preferences__theme">色系</string>
     <string name="preferences__chat_color_and_wallpaper">傾偈顏色同背景</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">App 圖示</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">確定</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">取消</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">將 app 圖示同個名轉做「%1$s」</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">要閂咗 Signal 先可以更改個 app 嘅圖示同名。通知都係會用返預設嘅 Signal 圖示同埋個名嚟顯示。</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">揀個 app 圖示同名，佢哋會顯示喺手機嘅主螢幕同埋應用抽屜嗰度。通知都係會用返預設嘅 Signal 圖示同埋個名嚟顯示。了解 詳情</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">App 圖示同個名可以喺手機嘅主螢幕同埋應用抽屜裡面見到。</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">通知都係會用返預設嘅 Signal 圖示同埋個名嚟顯示。</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">了解 詳情</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">啱 %1$s 用的圖示</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">圖解顯示咗替代 app 圖示可以見到嘅位置。</string>
     <string name="preferences__disable_pin">停用 PIN 碼</string>
     <string name="preferences__enable_pin">啟用 PIN 碼</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">若然您停用 PIN 碼，咁當您重新註冊 Signal 嘅時候，除非話您自己手動備份同還原啦，否則您將會遺失所有資料。當 PIN 碼停用嘅時候，冇得開啟註冊鎖。</string>
@@ -2867,7 +2867,7 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">咁做嘅話，%1$s之前嘅所有訊息紀錄同埋媒體就會喺你部機度永久刪除㗎喇。</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="other">咁做嘅話，所有聊天將會永久刪減至剩返最近期嗰 %1$s 個訊息。</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">咁做嘅話，所有訊息紀錄同埋媒體就會喺你部機度永久刪除㗎喇。</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">真係要刪除所有訊息紀錄？</string>
@@ -4226,7 +4226,7 @@
     <string name="HelpSettingsFragment__debug_log">除錯記錄檔</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">使用條款同私隱政策</string>
     <string name="HelpFragment__copyright_signal_messenger">Signal Messenger 版權所有</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">根據 GNU AGPLv3 嘅協議授權</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">多媒體檔案嘅畫質</string>

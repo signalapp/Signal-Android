@@ -24,14 +24,14 @@
     <string name="save">Сохранить</string>
     <string name="note_to_self">Заметка для себя</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Погода</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
     <string name="app_icon_label_notes">Заметки</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Новости</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Волны</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,10 +194,10 @@
     <string name="CameraContacts_signal_groups">Группы Signal</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="few">You can share with a maximum of %1$d chats.</item>
-        <item quantity="many">You can share with a maximum of %1$d chats.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">Можно поделиться максимум с %1$d чатом.</item>
+        <item quantity="few">Можно поделиться максимум с %1$d чатами.</item>
+        <item quantity="many">Можно поделиться максимум с %1$d чатами.</item>
+        <item quantity="other">Можно поделиться максимум с %1$d чата.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Выберите получателей Signal</string>
     <string name="CameraContacts_no_signal_contacts">Нет контактов Signal</string>
@@ -2306,17 +2306,17 @@
     <string name="MessageNotifier_s_in_s">%1$s в %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="one">%1$d message</item>
-        <item quantity="few">%1$d messages</item>
-        <item quantity="many">%1$d messages</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="one">%1$d сообщение</item>
+        <item quantity="few">%1$d сообщения</item>
+        <item quantity="many">%1$d сообщений</item>
+        <item quantity="other">%1$d сообщения</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
-        <item quantity="few">%1$d chats</item>
-        <item quantity="many">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d чат</item>
+        <item quantity="few">%1$d чата</item>
+        <item quantity="many">%1$d чатов</item>
+        <item quantity="other">%1$d чата</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новое(-ых) сообщение(-я) в %2$d чате(-ах)</string>
     <string name="MessageNotifier_most_recent_from_s">Последнее от: %1$s</string>
@@ -3052,27 +3052,27 @@
     <string name="preferences__theme">Тема</string>
     <string name="preferences__chat_color_and_wallpaper">Цвет и обои чата</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">Значок приложения</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">ОК</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">Отменить</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">Изменить значок и название приложения на «%1$s»</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">Signal нужно будет закрыть, чтобы изменить значок и название приложения. В уведомлениях всегда будут отображаться значок и название Signal по умолчанию.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">Выберите значок и название приложения, которые будут отображаться на главном экране телефона и панели приложений. В уведомлениях всегда будут отображаться значок и название Signal по умолчанию. Узнать больше</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">Значки и названия приложений отображаются на главном экране и панели приложений.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">В уведомлениях всегда будут отображаться значок и название Signal по умолчанию.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">Узнать больше</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">Значок для %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Графика, иллюстрирующая, где будет виден заменяющий значок приложения.</string>
     <string name="preferences__disable_pin">Отключить PIN-код</string>
     <string name="preferences__enable_pin">Включить PIN-код</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то потеряете все данные, когда переустановите Signal (если вручную не создадите и не восстановите резервную копию). Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
@@ -3110,10 +3110,10 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Все сообщения и медиафайлы, которые старее, чем %1$s, будут безвозвратно удалены с вашего устройства.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="few">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="many">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">Все чаты будут безвозвратно обрезаны до самого нового сообщения.</item>
+        <item quantity="few">Все чаты будут безвозвратно обрезаны до %1$s самых новых сообщений.</item>
+        <item quantity="many">Все чаты будут безвозвратно обрезаны до %1$s самых новых сообщений.</item>
+        <item quantity="other">Все чаты будут безвозвратно обрезаны до %1$s самого нового сообщения.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Все сообщения и медиафайлы будут безвозвратно удалены с вашего устройства.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Вы действительно хотите удалить всю историю сообщений?</string>
@@ -4511,7 +4511,7 @@
     <string name="HelpSettingsFragment__debug_log">Журнал отладки</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Условия и Политика конфиденциальности</string>
     <string name="HelpFragment__copyright_signal_messenger">Авторские права Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Лицензировано под GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Качество медиа</string>

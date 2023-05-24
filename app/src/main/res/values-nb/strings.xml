@@ -24,14 +24,14 @@
     <string name="save">Lagre</string>
     <string name="note_to_self">Notat til meg selv</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Vær</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
     <string name="app_icon_label_notes">Notater</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Nyheter</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Bølger</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,8 +194,8 @@
     <string name="CameraContacts_signal_groups">Signal grupper</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">Du kan dele med maksimalt %1$d samtale.</item>
+        <item quantity="other">Du kan dele med maksimalt %1$d samtaler.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Velg Signal mottakere</string>
     <string name="CameraContacts_no_signal_contacts">Ingen Signal-kontakter</string>
@@ -2172,13 +2172,13 @@
     <string name="MessageNotifier_s_in_s">%1$s i %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="one">%1$d message</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="one">%1$d melding</item>
+        <item quantity="other">%1$d meldinger</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d samtale</item>
+        <item quantity="other">%1$d samtaler</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldinger i %2$d samtaler</string>
     <string name="MessageNotifier_most_recent_from_s">Nyeste fra: %1$s</string>
@@ -2890,27 +2890,27 @@
     <string name="preferences__theme">Tema</string>
     <string name="preferences__chat_color_and_wallpaper">Samtalefarge &amp; -bakgrunn</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">App-ikon</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">OK</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">Avbryt</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">Bytt appikonet og -navnet til «%1$s»</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">Signal må starte på nytt for at endringene skal tre i kraft. Varslene vil fremdeles vise standardikonet og navnet til Signal.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">Velg et annet ikon og navn som skal vises på telefonens startskjerm og i oversikten over apper. Varslene vil fremdeles vise standardikonet og navnet til Signal. Les mer</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">Appikonene og -navnene vises på startskjermen og oversikten over apper.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">Varslene vil fremdeles vise standardikonet og navnet til Signal.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">Les mer</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">Ikon for %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Bilde som viser hvor det nye appikonet blir vist.</string>
     <string name="preferences__disable_pin">Deaktiver PIN-kode</string>
     <string name="preferences__enable_pin">Aktiver PIN-kode</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN-koden vil du miste all informasjon når du gjennomfører Signal-registrering på nytt, med mindre du manuelt tar en sikkerhetskopi og gjenoppretter innholdet. Du kan ikke skru på registreringslås mens PIN-koden er deaktivert.</string>
@@ -2948,8 +2948,8 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette vil permanent slette alle meldingslogger og mediefiler som er eldre enn %1$s fra denne enheten.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">Dette vil forkorte alle samtaler til den siste meldingen.</item>
+        <item quantity="other">Dette vil forkorte alle samtaler til de %1$s siste meldingene.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dette vil permanent slette alle meldingslogger og mediefiler fra denne enheten.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Er du sikker på at du vil slette alle meldingslogger?</string>
@@ -4321,7 +4321,7 @@
     <string name="HelpSettingsFragment__debug_log">Feilsøkingslogg</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Vilkår og personvernerklæring</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Lisensiert under GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Mediekvalitet</string>

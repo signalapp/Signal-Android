@@ -24,14 +24,14 @@
     <string name="save">Spremi</string>
     <string name="note_to_self">Osobna bilješka</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Prognoza</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
     <string name="app_icon_label_notes">Bilješke</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Novosti</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Valovi</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,10 +194,10 @@
     <string name="CameraContacts_signal_groups">Signal grupe</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="few">You can share with a maximum of %1$d chats.</item>
-        <item quantity="many">You can share with a maximum of %1$d chats.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">Moguće je podijeliti s najviše %1$d razgovorom.</item>
+        <item quantity="few">Moguće je podijeliti s najviše %1$d razgovora.</item>
+        <item quantity="many">Moguće je podijeliti s najviše %1$d razgovora.</item>
+        <item quantity="other">Moguće je podijeliti s najviše %1$d razgovora.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Odaberi Signal primatelje</string>
     <string name="CameraContacts_no_signal_contacts">Nema Signal kontakata</string>
@@ -2306,17 +2306,17 @@
     <string name="MessageNotifier_s_in_s">%1$s u %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="one">%1$d message</item>
-        <item quantity="few">%1$d messages</item>
-        <item quantity="many">%1$d messages</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="one">%1$d poruka</item>
+        <item quantity="few">%1$d poruke</item>
+        <item quantity="many">%1$d poruka</item>
+        <item quantity="other">%1$d poruka</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
-        <item quantity="few">%1$d chats</item>
-        <item quantity="many">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d razgovor</item>
+        <item quantity="few">%1$d razgovora</item>
+        <item quantity="many">%1$d razgovora</item>
+        <item quantity="other">%1$d razgovora</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novih poruka u %2$d razgovora</string>
     <string name="MessageNotifier_most_recent_from_s">Najnovije od: %1$s</string>
@@ -3052,27 +3052,27 @@
     <string name="preferences__theme">Tema</string>
     <string name="preferences__chat_color_and_wallpaper">Boja razgovora i pozadina</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">Ikona aplikacije</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">U redu</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">Poništi</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">Promjena ikone i naziva aplikacije u \"%1$s\"</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">Signal će se morati zatvoriti kako bi se ažurirali ikona i naziv aplikacije. Obavijesti će uvijek prikazivati zadanu ikonu i naziv Signala.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">Odaberite ikonu i naziv aplikacije koji će biti vidljivi na početnom zaslonu vašeg telefona i u ladici za aplikacije. Obavijesti će uvijek prikazivati zadanu ikonu i naziv Signala. Saznajte više</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">Ikone i nazivi aplikacije će biti vidljivi na početnom zaslonu vašeg telefona i u ladici za aplikacije.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">Obavijesti će uvijek prikazivati zadanu ikonu i naziv Signala.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">Saznajte više</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">Ikona za %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafika koja prikazuje gdje će biti vidljiva ikona zamjenske aplikacije.</string>
     <string name="preferences__disable_pin">Onemogući PIN</string>
     <string name="preferences__enable_pin">Omogući PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ako onemogućite PIN, izgubiti će te sve podatke prilikom ponovne registracije Signala osim ako ručno ne napravite sigurnosnu kopiju i vratite podatke. Ne možete uključiti Zaključavanje registracije dok je PIN onemogućen.</string>
@@ -3110,10 +3110,10 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ovo će trajno izbrisati svu povijest razgovora i medijske zapise s vašeg uređaja starije od %1$s.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="few">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="many">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">Ovo će trajno skratiti sve razgovore na najnoviju poruku.</item>
+        <item quantity="few">Ovo će trajno skratiti sve razgovore na %1$s najnovije poruke.</item>
+        <item quantity="many">Ovo će trajno skratiti sve razgovore na %1$s najnovijih poruka.</item>
+        <item quantity="other">Ovo će trajno skratiti sve razgovore na %1$s najnovijih poruka.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ovo će trajno izbrisati svu povijest razgovora i medijske zapise s vašeg uređaja.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Jeste li sigurni da želite izbrisati svu povijest razgovora?</string>
@@ -4511,7 +4511,7 @@
     <string name="HelpSettingsFragment__debug_log">Zapisnik pogreške</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Uvjeti korištenja i Politika privatnosti</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licencirano pod licencom GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Kvaliteta medija</string>

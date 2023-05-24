@@ -24,14 +24,14 @@
     <string name="save">حفظ</string>
     <string name="note_to_self">الملاحظات الشخصية</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">طقس</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
     <string name="app_icon_label_notes">ملاحظات</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">أخبار</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">أمواج</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,12 +194,12 @@
     <string name="CameraContacts_signal_groups">مجموعات Signal</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="zero">You can share with a maximum of %1$d chats.</item>
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="two">You can share with a maximum of %1$d chats.</item>
-        <item quantity="few">You can share with a maximum of %1$d chats.</item>
-        <item quantity="many">You can share with a maximum of %1$d chats.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="zero">يمكنك المشاركة مع %1$d دردشات كحد أقصى.</item>
+        <item quantity="one">يمكنك المشاركة مع %1$d دردشة كحد أقصى.</item>
+        <item quantity="two">يمكنك المشاركة مع %1$d دردشتين كحد أقصى.</item>
+        <item quantity="few">يمكنك المشاركة مع %1$d دردشات كحد أقصى.</item>
+        <item quantity="many">يمكنك المشاركة مع %1$d دردشة كحد أقصى.</item>
+        <item quantity="other">يمكنك المشاركة مع %1$d دردشة كحد أقصى.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">اختاري المتلقّيين من Signal</string>
     <string name="CameraContacts_no_signal_contacts">لا جهات اتصال في Signal</string>
@@ -2440,21 +2440,21 @@
     <string name="MessageNotifier_s_in_s">%1$s في %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="zero">%1$d messages</item>
-        <item quantity="one">%1$d message</item>
-        <item quantity="two">%1$d messages</item>
-        <item quantity="few">%1$d messages</item>
-        <item quantity="many">%1$d messages</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="zero">%1$d رسائل</item>
+        <item quantity="one">%1$d رسالة</item>
+        <item quantity="two">%1$d رسالتين</item>
+        <item quantity="few">%1$d رسائل</item>
+        <item quantity="many">%1$d رسالة</item>
+        <item quantity="other">%1$d رسالة</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="zero">%1$d chats</item>
-        <item quantity="one">%1$d chats</item>
-        <item quantity="two">%1$d chats</item>
-        <item quantity="few">%1$d chats</item>
-        <item quantity="many">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="zero">%1$d دردشات</item>
+        <item quantity="one">%1$d دردشة</item>
+        <item quantity="two">%1$d دردشتين</item>
+        <item quantity="few">%1$d دردشات</item>
+        <item quantity="many">%1$d دردشة</item>
+        <item quantity="other">%1$d دردشة</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d رسائل جديدة في %2$d الدردشات</string>
     <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
@@ -3214,27 +3214,27 @@
     <string name="preferences__theme">المظهر</string>
     <string name="preferences__chat_color_and_wallpaper">لون الدردشة والخلفية</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">أيقونة التطبيق</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">موافق</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">إلغاء</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">غيّر أيقونة واسم التطبيق إلى \"%1$s\"</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">سيتعيّن إغلاق Signal لتغيير أيقونة واسم التطبيق. ستُظهر الإشعارات أيقونة واسم Signal الافتراضيين دائمًا.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">اختر أيقونة واسم تطبيق اللذيْن سَيظهران على شاشة هاتفك الرئيسية ودرج التطبيقات. ستُظهر الإشعارات أيقونة واسم Signal الافتراضيين دائمًا. معرفة المزيد</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">تظهر أيقونات وأسماء التطبيقات على الشاشة الرئيسية ودرج التطبيقات.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">ستُظهر الإشعارات أيقونة واسم Signal الافتراضيين دائمًا.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">معرفة المزيد</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">أيقونة %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">رسم يُوضح المكان الذي سَتظهر فيه أيقونة التطبيق البديلة.</string>
     <string name="preferences__disable_pin">تعطيل الرقم التعريفي الشخصي</string>
     <string name="preferences__enable_pin">تفعيل الرقم التعريفي الشخصي</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">إذا قمت بتعطيل الرقم التعريفي الشخصي، ستضيع جميع البيانات عند قيامك بإعادة التسجيل إلى Signal إلا إذا قمت باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل الرقم التعريفي الشخصي.</string>
@@ -3272,12 +3272,12 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ستُحذَف جميع محفوظات الرسائل والوسائط الأقدم من %1$s من جهازك بصفة نهائية.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="zero">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="two">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="few">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="many">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="zero">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالة.</item>
+        <item quantity="one">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالة.</item>
+        <item quantity="two">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالتين.</item>
+        <item quantity="few">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسائل.</item>
+        <item quantity="many">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالة.</item>
+        <item quantity="other">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالة.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ستُحذَف جميع محفوظات الرسائل والوسائط من جهازك بصفة نهائية.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">هل أنت متأكد من أنك تريد حذف كل محفوظات الرسائل؟</string>
@@ -4701,7 +4701,7 @@
     <string name="HelpSettingsFragment__debug_log">سِجل التصحيح</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">الشروط وسياسة الخصوصية</string>
     <string name="HelpFragment__copyright_signal_messenger">جميع الحقوق محفوظة لمِرسال Signal‬</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">بموجب رخصة GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">جودة الوسائط</string>

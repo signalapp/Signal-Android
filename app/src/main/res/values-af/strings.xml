@@ -24,14 +24,14 @@
     <string name="save">Stoor</string>
     <string name="note_to_self">Nota aan myself</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_notes">Notes</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Weer</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Notas</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Nuus</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Golwe</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,8 +194,8 @@
     <string name="CameraContacts_signal_groups">Signal-groepe</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">Jy kan met \'n maksimum van %1$d klets deel.</item>
+        <item quantity="other">Jy kan met \'n maksimum van %1$d kletse deel.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Kies Signal-ontvangers</string>
     <string name="CameraContacts_no_signal_contacts">Geen Signal-kontakte nie</string>
@@ -2172,13 +2172,13 @@
     <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="one">%1$d message</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="one">%1$d boodskap</item>
+        <item quantity="other">%1$d boodskappe</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d klets</item>
+        <item quantity="other">%1$d kletse</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nuwe boodskappe in %2$d kletse</string>
     <string name="MessageNotifier_most_recent_from_s">Mees onlangse van: %1$s</string>
@@ -2890,27 +2890,27 @@
     <string name="preferences__theme">Tema</string>
     <string name="preferences__chat_color_and_wallpaper">Kletskleur &amp; amp; muurpapier</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">Toepassingikoon</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">Goed</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">Kanselleer</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">Verander toepassingikoon en naam na \"%1$s\"</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">Signal sal moet toemaak om die toepassingikoon en -naam te verander. Kennisgewings sal altyd die verstek-Signal-ikoon en -naam vertoon.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">Kies \'n toepassingikoon en -naam wat op jou foon se tuisskerm en toepassingkassie sigbaar sal wees. Kennisgewings sal altyd die verstek-Signal-ikoon en -naam vertoon. Vind meer uit</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">Toepassingikone en -name is sigbaar op die tuisskerm en toepassingkassie.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">Kennisgewings sal altyd die verstek-Signal-ikoon en -naam vertoon.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">Vind meer uit</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">Ikoon vir %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafiese illustrasie waar die plaasvervangende toepassingikoon sigbaar sal wees.</string>
     <string name="preferences__disable_pin">Deaktiveer PIN</string>
     <string name="preferences__enable_pin">Aktiveer PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Indien jy die PIN deaktiveer sal jy alle data verloor wanneer jy Signal herregistreer, tensy jy met die hand \'n rugsteun maak en dit herwin. Jy kan nie Registrasiesluiting aanskakel terwyl die PIN gedeaktiveer is nie.</string>
@@ -2948,8 +2948,8 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit sal permanent alle boodskapgeskiedenis en media ouer as %1$s van jou toestel af verwyder.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">Dit sal alle kletse permanent tot die mees onlangse boodskap besnoei.</item>
+        <item quantity="other">Dit sal alle kletse permanent tot die mees onlangse %1$s boodskappe besnoei.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dit sal permanent alle boodskapgeskiedenis en media van jou toestel skrap.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Is jy seker jy wil alle boodskapgeskiedenis skrap?</string>
@@ -4321,7 +4321,7 @@
     <string name="HelpSettingsFragment__debug_log">Ontfoutlog</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Bepalings &amp; Privaatheidsbeleid</string>
     <string name="HelpFragment__copyright_signal_messenger">Kopiereg Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Gelisensieer onder die GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Mediakwaliteit</string>

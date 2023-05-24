@@ -24,14 +24,14 @@
     <string name="save">భద్రపరుచు</string>
     <string name="note_to_self">స్వీయ గమనిక</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_notes">Notes</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">వాతావరణం</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">గమనికలు</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">వార్తలు</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">తరంగాలు</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,8 +194,8 @@
     <string name="CameraContacts_signal_groups">Signal సమూహాలు</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">మీరు గరిష్టంగా %1$d చాట్‌తో పంచుకోవచ్చు.</item>
+        <item quantity="other">మీరు గరిష్టంగా %1$d చాట్‌లతో పంచుకోవచ్చు.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal గ్రహీతలను ఎంచుకోండి</string>
     <string name="CameraContacts_no_signal_contacts">Signal పరిచయాలు లేవు</string>
@@ -2172,13 +2172,13 @@
     <string name="MessageNotifier_s_in_s">%2$s లో %1$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="one">%1$d message</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="one">%1$d సందేశం</item>
+        <item quantity="other">%1$d సందేశాలు</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d చాట్</item>
+        <item quantity="other">%1$d చాట్‌లు</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d చాట్‌లలో %1$d కొత్త సందేశాలు</string>
     <string name="MessageNotifier_most_recent_from_s">ఇటీవల నుండి: %1$s</string>
@@ -2890,27 +2890,27 @@
     <string name="preferences__theme">థీమ్</string>
     <string name="preferences__chat_color_and_wallpaper">చాట్ రంగు &amp; వాల్‌పేపర్</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">యాప్ ఐకాన్</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">సరే</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">రద్దు చేయండి</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">యాప్ ఐకాన్ మరియు పేరును \"%1$s\"కు మార్చండి</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">యాప్ ఐకాన్ మరియు పేరును మార్చడానికి Signal ను మూసివేయాల్సి ఉంటుంది. నోటిఫికేషన్లు ఎల్లప్పుడూ డిఫాల్ట్ Signal ఐకాన్ మరియు పేరును ప్రదర్శిస్తాయి.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">యాప్ ఐకాన్ మరియు పేరును ఎంచుకోండి, ఇది మీ ఫోన్ యొక్క హోమ్ స్క్రీన్ మరియు యాప్ డ్రాయర్‌పై కనిపిస్తుంది. నోటిఫికేషన్లు ఎల్లప్పుడూ డిఫాల్ట్ Signal ఐకాన్ మరియు పేరును ప్రదర్శిస్తాయి. మరింత తెలుసుకోండి</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">యాప్ ఐకాన్స్ మరియు పేర్లు హోమ్ స్క్రీన్ మరియు యాప్ డ్రాయర్‌పై కనిపిస్తాయి.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">నోటిఫికేషన్లు ఎల్లప్పుడూ డిఫాల్ట్ Signal ఐకాన్ మరియు పేరును ప్రదర్శిస్తాయి.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">మరింత తెలుసుకోండి</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">%1$s కొరకు ఐకాన్</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">రీప్లేస్‌మెంట్ యాప్ ఐకాన్ ఎక్కడ కనిపిస్తుందో వివరించే గ్రాఫిక్.</string>
     <string name="preferences__disable_pin">పిన్‌ను ఆపివేయి</string>
     <string name="preferences__enable_pin">పిన్ ప్రారంభించండి</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">మీరు పిన్‌ను నిలిపివేస్తే, మీరు మాన్యువల్‌గా ప్రత్యామ్నాయం చేసి పునరుద్ధరించకపోతే సిగ్నల్‌ను తిరిగి నమోదు చేసినప్పుడు మీరు మొత్తం డేటాను కోల్పోతారు. పిన్ నిలిపివేయబడినప్పుడు మీరు రిజిస్ట్రేషన్ లాక్‌ని ఆన్ చేయలేరు.</string>
@@ -2948,8 +2948,8 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ఇది మీ పరికరం నుండి %1$s కంటే పాత సందేశ చరిత్ర మరియు మీడియాను అంతటిని శాశ్వతంగా తొలగిస్తుంది.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">ఇది అత్యంత ఇటీవలి సందేశానికి అన్ని చాట్‌లను శాశ్వతంగా ట్రిమ్ చేస్తుంది.</item>
+        <item quantity="other">ఇది %1$s అత్యంత ఇటీవలి సందేశాలకు అన్ని చాట్‌లను శాశ్వతంగా ట్రిమ్ చేస్తుంది.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ఇది మీ పరికరం నుండి సందేశ చరిత్ర మరియు మీడియాను అంతటిని శాశ్వతంగా తొలగిస్తుంది.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">మీరు ఖచ్చితంగా సందేశ చరిత్ర అంతటిని తొలగించాలని అనుకుంటున్నారా?</string>
@@ -4321,7 +4321,7 @@
     <string name="HelpSettingsFragment__debug_log">డీబగ్ సంఘటన లేకరి</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">నిబంధనలు &amp; గోప్యతా విధానం</string>
     <string name="HelpFragment__copyright_signal_messenger">కాపీరైట్ Signal మెసెంజర్</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 కింద లైసెన్స్ పొందింది</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">మీడియా నాణ్యత</string>

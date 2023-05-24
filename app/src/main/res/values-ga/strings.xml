@@ -24,14 +24,14 @@
     <string name="save">Cuir i dtaisce é</string>
     <string name="note_to_self">Nóta Chugam Féin</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_notes">Notes</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">An Aimsir</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Nótaí</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Nuacht</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Tonnta</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,11 +194,11 @@
     <string name="CameraContacts_signal_groups">Braislí Signal</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="two">You can share with a maximum of %1$d chats.</item>
-        <item quantity="few">You can share with a maximum of %1$d chats.</item>
-        <item quantity="many">You can share with a maximum of %1$d chats.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">Is féidir leat comhroinnt le %1$d chomhrá ar a mhéad.</item>
+        <item quantity="two">Is féidir leat comhroinnt le %1$d chomhrá ar a mhéad.</item>
+        <item quantity="few">Is féidir leat comhroinnt le %1$d chomhrá ar a mhéad.</item>
+        <item quantity="many">Is féidir leat comhroinnt le %1$d gcomhrá ar a mhéad.</item>
+        <item quantity="other">Is féidir leat comhroinnt le %1$d comhrá ar a mhéad.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Roghnaigh faighteoirí Signal</string>
     <string name="CameraContacts_no_signal_contacts">Níl aon teagmhálaithe Signal ann</string>
@@ -2373,19 +2373,19 @@
     <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="one">%1$d message</item>
-        <item quantity="two">%1$d messages</item>
-        <item quantity="few">%1$d messages</item>
-        <item quantity="many">%1$d messages</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="one">%1$d teachtaireacht</item>
+        <item quantity="two">%1$d theachtaireacht</item>
+        <item quantity="few">%1$d theachtaireacht</item>
+        <item quantity="many">%1$d dteachtaireacht</item>
+        <item quantity="other">%1$d teachtaireacht</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
-        <item quantity="two">%1$d chats</item>
-        <item quantity="few">%1$d chats</item>
-        <item quantity="many">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d chomhrá</item>
+        <item quantity="two">%1$d chomhrá</item>
+        <item quantity="few">%1$d chomhrá</item>
+        <item quantity="many">%1$d gcomhrá</item>
+        <item quantity="other">%1$d comhrá</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">Teachtaireachtaí nua: %1$d i gcomhráite nua: %2$d</string>
     <string name="MessageNotifier_most_recent_from_s">Is deanaí ó: %1$s</string>
@@ -3133,27 +3133,27 @@
     <string name="preferences__theme">Téama</string>
     <string name="preferences__chat_color_and_wallpaper">Chat Color &amp; Wallpaper</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">Deilbhín na haipe</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">CGL</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">Cuir ar ceal</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">Athraigh deilbhín agus ainm na haipe go \"%1$s\"</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">Beidh ar Signal dúnadh chun deilbhín agus ainm na haipe a athrú. Taispeánfar deilbhín agus ainm réamhshocraithe Signal i gcónaí i bhFógraí.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">Roghnaigh deilbhín agus ainm aipe, rud a bheidh infheicthe ar scáileán baile agus tarraiceán aipeanna do ghléis. Taispeánfar deilbhín agus ainm réamhshocraithe Signal i gcónaí i bhFógraí. Tuilleadh faisnéise</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">Tá deilbhíní agus ainmneacha aipe infheicthe ar an scáileán baile agus tarraiceán aipeanna.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">Taispeánfar deilbhín agus ainm réamhshocraithe Signal i gcónaí i bhFógraí.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">Tuilleadh faisnéise</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">Deilbhín do %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafach a léiríonn an áit a mbeidh deilbhín ionaid na haipe le feiceáil.</string>
     <string name="preferences__disable_pin">Díchumasaigh an UAP</string>
     <string name="preferences__enable_pin">Cumasaigh UAP</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Má dhíchumasaíonn tú an UAP, caillfidh tú na sonraí go léir nuair a athchláraíonn tú Signal mura ndéanann tú cúltacú agus aischur de láimh. Ní féidir leat Glasáil Clárúcháin a chasadh air leis an UAP díchumasaithe.</string>
@@ -3191,11 +3191,11 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Scriosfar go buan an stair teachtaireachtaí ar fad agus meáin níos sine ná %1$s ó do ghléas leis sin.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="two">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="few">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="many">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">Bearrfar gach comhrá go buan chuig an teachtaireacht is déanaí leis sin.</item>
+        <item quantity="two">Bearrfar gach comhrá go buan chuig an %1$s theachtaireacht is déanaí leis sin.</item>
+        <item quantity="few">Bearrfar gach comhrá go buan chuig na %1$s theachtaireacht is déanaí leis sin.</item>
+        <item quantity="many">Bearrfar gach comhrá go buan chuig na %1$s dteachtaireacht is déanaí leis sin.</item>
+        <item quantity="other">Bearrfar gach comhrá go buan chuig na %1$s teachtaireacht is déanaí leis sin.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Scriosfar go buan an stair teachtaireachtaí ar fad agus na meáin go léir ó do ghléas leis sin.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">An bhfuil tú cinnte gur mhaith leat an stair teachtaireachtaí ar fad a scriosadh?</string>
@@ -4606,7 +4606,7 @@
     <string name="HelpSettingsFragment__debug_log">Logchomhad dífhabhtaithe</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Téarmaí Úsáide ⁊ Polasaí Príobháideachais</string>
     <string name="HelpFragment__copyright_signal_messenger">Cóipcheart Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Ceadúnaithe faoi GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Media Quality</string>

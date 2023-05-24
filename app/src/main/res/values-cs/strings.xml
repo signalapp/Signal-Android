@@ -24,14 +24,14 @@
     <string name="save">Uložit</string>
     <string name="note_to_self">Poznámka pro sebe</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Počasí</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
     <string name="app_icon_label_notes">Poznámky</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Zprávy</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Vlny</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,10 +194,10 @@
     <string name="CameraContacts_signal_groups">Signal skupiny</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="few">You can share with a maximum of %1$d chats.</item>
-        <item quantity="many">You can share with a maximum of %1$d chats.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">Lze sdílet maximálně v %1$d chatu.</item>
+        <item quantity="few">Lze sdílet maximálně v %1$d chatech.</item>
+        <item quantity="many">Lze sdílet maximálně v %1$d chatů.</item>
+        <item quantity="other">Lze sdílet maximálně v %1$d chatech.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Vyberte Signal příjemce</string>
     <string name="CameraContacts_no_signal_contacts">Žádné Signal kontakty</string>
@@ -2306,17 +2306,17 @@
     <string name="MessageNotifier_s_in_s">%1$s ve skupině %2$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="one">%1$d message</item>
-        <item quantity="few">%1$d messages</item>
-        <item quantity="many">%1$d messages</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="one">%1$d zpráva</item>
+        <item quantity="few">%1$d zprávy</item>
+        <item quantity="many">%1$d zpráv</item>
+        <item quantity="other">%1$d zpráv</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
-        <item quantity="few">%1$d chats</item>
-        <item quantity="many">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d chat</item>
+        <item quantity="few">%1$d chaty</item>
+        <item quantity="many">%1$d chatů</item>
+        <item quantity="other">%1$d chatů</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nové zprávy v %2$d chatech</string>
     <string name="MessageNotifier_most_recent_from_s">Poslední od: %1$s</string>
@@ -3052,27 +3052,27 @@
     <string name="preferences__theme">Motiv</string>
     <string name="preferences__chat_color_and_wallpaper">Barva chatu a tapeta</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">Ikona aplikace</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">OK</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">Zrušit</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">Změnit ikonu a název aplikace na „%1$s“</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">Aby bylo možné ikonu a název aplikace Signal změnit, bude nutné ji zavřít. Oznámení budou vždy zobrazovat výchozí ikonu a název Signal.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">Vyberte si ikonu a název aplikace, které se budou zobrazovat na domovské obrazovce vašeho telefonu a ve složce s aplikacemi. Oznámení budou vždy zobrazovat výchozí ikonu a název Signal. Více informací</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">Ikony a názvy aplikací se zobrazují na domovské obrazovce a ve složce s aplikacemi.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">Oznámení budou vždy zobrazovat výchozí ikonu a název Signal.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">Více informací</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">Ikona pro: %1$s</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafika znázorňující, kde se bude nová ikona aplikace zobrazovat.</string>
     <string name="preferences__disable_pin">Deaktivovat PIN</string>
     <string name="preferences__enable_pin">Povolit PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Pokud PIN deaktivujete, tak při opětovné registraci Signal ztratíte všechna data, jestliže si je ručně nezazálohujete a neobnovíte. Když je PIN deaktivován, nemůžete si zapnout zámek registrace.</string>
@@ -3110,10 +3110,10 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tímto trvale odstraníte veškerou historii zpráv a mediální soubory z vašeho zařízení, které jsou starší než %1$s.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="few">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="many">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">Tím se trvale zkrátí všechny chaty na nejnovější zprávu.</item>
+        <item quantity="few">Tím se trvale zkrátí všechny chaty na %1$s nejnovější zprávy.</item>
+        <item quantity="many">Tím se trvale zkrátí všechny chaty na %1$s nejnovějších zpráv.</item>
+        <item quantity="other">Tím se trvale zkrátí všechny chaty na %1$s nejnovějších zpráv.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tímto trvale odstraníte veškerou historii zpráv a mediální soubory z vašeho zařízení.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Opravdu chcete odstranit veškerou historii zpráv?</string>
@@ -4511,7 +4511,7 @@
     <string name="HelpSettingsFragment__debug_log">Ladící log</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Podmínky a zásady ochrany osobních údajů</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">Licencováno pod GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Kvalita médií</string>

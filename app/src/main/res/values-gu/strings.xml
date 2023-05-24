@@ -24,14 +24,14 @@
     <string name="save">સેવ કરો</string>
     <string name="note_to_self">પોતાના માટે નોંધ</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_notes">Notes</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">હવામાન</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">નોંધ</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">સમાચાર</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">તરંગો</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -82,7 +82,7 @@
     <string name="AttachmentKeyboard_contact">સંપર્ક</string>
     <string name="AttachmentKeyboard_location">સ્થળ</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">તમારા ફોટા અને વિડિયો બતાવવા માટે Signal ને પરવાનગીની જરૂર છે.</string>
-    <string name="AttachmentKeyboard_give_access">પરવાનગી આપો</string>
+    <string name="AttachmentKeyboard_give_access">ઍક્સેસ આપો</string>
     <string name="AttachmentKeyboard_payment">પેમેન્ટ</string>
 
     <!-- AttachmentManager -->
@@ -194,8 +194,8 @@
     <string name="CameraContacts_signal_groups">Signal ગ્રુપ</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">You can share with a maximum of %1$d chat.</item>
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="one">તમે મહત્તમ %1$d ચેટ શેર કરી શકો છો.</item>
+        <item quantity="other">તમે મહત્તમ %1$d ચેટ શેર કરી શકો છો.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal પ્રાપ્તકર્તાઓ પસંદ કરો</string>
     <string name="CameraContacts_no_signal_contacts">કોઈ Signal સંપર્કો નથી</string>
@@ -2172,13 +2172,13 @@
     <string name="MessageNotifier_s_in_s">%2$sમાં %1$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="one">%1$d message</item>
-        <item quantity="other">%1$d messages</item>
+        <item quantity="one">%1$d મેસેજ</item>
+        <item quantity="other">%1$d મેસેજ</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d ચેટ</item>
+        <item quantity="other">%1$d ચેટ</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d ચેટમાં %1$d નવા મેસેજ</string>
     <string name="MessageNotifier_most_recent_from_s">%1$s: થી તાજેતરનાં</string>
@@ -2294,7 +2294,7 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">કૉલનો જવાબ આપવા માટે, Signalને તમારા માઇક્રોફોન પર ઍક્સેસ આપો.</string>
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%1$s ના કોલનો જવાબ આપવા માટે, તમારા માઇક્રોફોનને Signal એક્સેસ આપો.</string>
+    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%1$s ના કૉલનો જવાબ આપવા માટે, તમારા માઇક્રોફોનને Signalનો ઍક્સેસ આપો.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">કૉલ કરવા અથવા પ્રાપ્ત કરવા માટે Signal ને માઇક્રોફોન અને કેમેરાની પરવાનગીની જરૂર હોય છે, પરંતુ તેઓને કાયમી નામંજૂર કરવામાં આવ્યા છે. કૃપા કરીને એપ્લિકેશન સેટિંગ્સ ચાલુ રાખો, \"પરવાનગી\" પસંદ કરો અને \"માઇક્રોફોન\" અને \"કેમેરો\" સક્ષમ કરો.</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">લિંક્ડ ડિવાઇસ પર જવાબ આપ્યો.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">લિંક્ડ ડિવાઇસ પર નકારી.</string>
@@ -2890,27 +2890,27 @@
     <string name="preferences__theme">થીમ</string>
     <string name="preferences__chat_color_and_wallpaper">ચેટ કલર &amp; amp; વૉલપેપર</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">ઍપ આઇકન</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">ઓકે</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">રદ કરો</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">ઍપ આઇકન અને નામને બદલીને \"%1$s\" કરો</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">ઍપ આઇકન અને નામ બદલવા માટે Signalને બંધ કરવાની જરૂર પડશે. નોટિફિકેશન હંમેશા ડિફોલ્ટ Signal આઇકન અને નામ પ્રદર્શિત કરશે.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">એવું ઍપ આઇકન અને નામ પસંદ કરો, જે તમારા ફોનની હોમ સ્ક્રીન અને ઍપ ડ્રોઅર પર દેખાશે. નોટિફિકેશન હંમેશા ડિફોલ્ટ Signal આઇકન અને નામ પ્રદર્શિત કરશે. વધુ જાણો</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">ઍપ આઇકન અને નામ હોમ સ્ક્રીન અને ઍપ ડ્રોઅર પર દેખાય છે.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">નોટિફિકેશન હંમેશા ડિફોલ્ટ Signal આઇકન અને નામ પ્રદર્શિત કરશે.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">વધુ જાણો</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">%1$s માટે આઇકન</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">રિપ્લેસમેન્ટ ઍપ આઇકન ક્યાં દેખાશે તે દર્શાવતું ગ્રાફિક.</string>
     <string name="preferences__disable_pin">PIN અક્ષમ કરો</string>
     <string name="preferences__enable_pin">PIN ને અક્ષમ કરો</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">જો તમે PIN ને અક્ષમ કરો છો, તો જ્યારે તમે Signal ને ફરીથી રજીસ્ટર કરશો ત્યારે તમે તમામ ડેટા ગુમાવશો જ્યાં સુધી તમે તેને મેન્યુઅલી સ્થાનાંતરિત ન કરો. જ્યારે PIN અક્ષમ હોય ત્યારે તમે રજીસ્ટ્રેશન લૉક ચાલુ કરી શકતા નથી.</string>
@@ -2948,8 +2948,8 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">આનાથી તમારા ડિવાઇસમાંથી %1$s પહેલાંની તમામ મેસેજ હિસ્ટ્રી અને મીડિયા કાયમ માટે ડિલીટ થઈ જશે.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">આ તમામ ચેટને સૌથી તાજેતરના મેસેજ માટે કાયમી રીતે ટ્રિમ કરશે.</item>
+        <item quantity="other">આ તમામ ચેટને %1$s સૌથી તાજેતરના મેસેજ માટે કાયમી રીતે ટ્રિમ કરશે.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">આનાથી તમારા ડિવાઇસમાંથી તમામ મેસેજ હિસ્ટ્રી અને મીડિયા કાયમ માટે ડિલીટ થઈ જશે.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">તમે ખરેખર આ બધી મેસેજ હિસ્ટ્રી ડિલીટ કરવા માંગો છો?</string>
@@ -3615,7 +3615,7 @@
     <string name="PhoneNumberPrivacy_everyone_see_description">તમારો ફોન નંબર તે બધા લોકો અને ગ્રુપને દેખાશે જે તમે મેસેજ કરે છે.</string>
     <string name="PhoneNumberPrivacy_everyone_find_description">કોઈપણ કે જેમના સંપર્કમાં તમારો ફોન નંબર છે તેઓ તમને Signal પર સંપર્ક તરીકે જોશે. અન્ય લોકો તમને સર્ચમાં શોધી શકશે.</string>
     <string name="preferences_app_protection__screen_lock">સ્ક્રીન લૉક</string>
-    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android સ્ક્રીન લૉક અથવા ફિંગરપ્રિન્ટથી Signal એક્સેસને લૉક કરો</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android સ્ક્રીન લૉક અથવા ફિંગરપ્રિન્ટથી Signal ઍક્સેસને લૉક કરો</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">સ્ક્રીન લૉક નિષ્ક્રિયતાનો સમય સમાપ્ત</string>
     <string name="preferences_app_protection__signal_pin">Signal PIN</string>
     <string name="preferences_app_protection__create_a_pin">એક PIN બનાવો</string>
@@ -3992,7 +3992,7 @@
     <string name="payment_info_card_hide">છુપાવો</string>
     <!-- Title of save recovery phrase card -->
     <string name="payment_info_card_save_recovery_phrase">રિકવરી ફ્રેઝ સેવ કરો</string>
-    <string name="payment_info_card_your_recovery_phrase_gives_you">તમારો રિકવરી ફ્રેઝ તમને તમારા પેમેન્ટ ખાતાને રિસ્ટોર કરવાની બીજી રીત આપે છે.</string>
+    <string name="payment_info_card_your_recovery_phrase_gives_you">તમારો રિકવરી ફ્રેઝ તમને તમારા પેમેન્ટ એકાઉન્ટને રિસ્ટોર કરવાની બીજી રીત આપે છે.</string>
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">તમારો ફ્રેઝ સેવ કરો</string>
     <string name="payment_info_card_update_your_pin">તમારો PIN અપડેટ કરો</string>
@@ -4321,7 +4321,7 @@
     <string name="HelpSettingsFragment__debug_log">ડીબગ લૉગ</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">શરતો &amp; ગોપનીયતા નીતિ</string>
     <string name="HelpFragment__copyright_signal_messenger">કોપીરાઇટ Signal મેસેન્જર</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 હેઠળ લાઇસન્સ પ્રાપ્ત</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">મીડિયા ગુણવત્તા</string>

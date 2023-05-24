@@ -24,14 +24,14 @@
     <string name="save">Сактоо</string>
     <string name="note_to_self">Өзүм үчүн белгилеп коюу</string>
 
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_weather">Weather</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_notes">Notes</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_news">News</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher -->
-    <string name="app_icon_label_waves">Waves</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
+    <string name="app_icon_label_weather">Аба ырайы</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
+    <string name="app_icon_label_notes">Эскертүүлөр</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
+    <string name="app_icon_label_news">Жаңылыктар</string>
+    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
+    <string name="app_icon_label_waves">Толкундар</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -194,7 +194,7 @@
     <string name="CameraContacts_signal_groups">Signal\'дагы топтор</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="other">You can share with a maximum of %1$d chats.</item>
+        <item quantity="other">Эң көп дегенде %1$d маекте бөлүшө аласыз.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Signal\'дагы алуучуларды тандаңыз</string>
     <string name="CameraContacts_no_signal_contacts">Signal байланыштары жок</string>
@@ -2105,11 +2105,11 @@
     <string name="MessageNotifier_s_in_s">%2$s ичинде %1$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
-        <item quantity="other">%1$d messages</item>
+        <item quantity="other">%1$d билдирүү</item>
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="other">%1$d chats</item>
+        <item quantity="other">%1$d маек</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d маекте %1$d жаңы билдирүү</string>
     <string name="MessageNotifier_most_recent_from_s">Акыркы билдирүү кимден: %1$s</string>
@@ -2809,27 +2809,27 @@
     <string name="preferences__theme">Тема</string>
     <string name="preferences__chat_color_and_wallpaper">Маектин түсү жана тушкагазы</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences__app_icon">Колдонмонун сүрөтчөсү</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">OK</string>
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">Жок</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">Колдонмонун сүрөтчөсү жана аталышы \"%1$s\" болуп өзгөрүлөт</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">Колдонмонун сүрөтчөсү менен аталышы өзгөрүшү үчүн Signal\'ды жабышыңыз керек. Билдирмелерде такай демейки Signal сүрөтчөсү менен аталышы көрүнүп турат.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">Телефонуңуздун башкы экранында жана колдонмонун тактасында көрүнө турган колдонмонун сүрөтчөсү менен аталышын тандаңыз. Билдирмелерде такай демейки Signal сүрөтчөсү менен аталышы көрүнүп турат. Кененирээк маалымат</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">Колдонмолордун сүрөтчөлөрү менен аталыштары башкы экранда жана колдонмонун тактасында көрүнөт.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">Билдирмелерде такай демейки Signal сүрөтчөсү менен аталышы көрүнүп турат.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">Кененирээк маалымат</string>
     <!--Text description of the app icon option for visually impaired users. -->
-    <string name="preferences__app_icon_content_description">Icon for %1$s</string>
+    <string name="preferences__app_icon_content_description">%1$s үчүн сүрөтчө</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Колдонмонун сүрөтчөсү кайсы жерде көрүнөрүн чагылдырган графика.</string>
     <string name="preferences__disable_pin">PIN кодду өчүрүү</string>
     <string name="preferences__enable_pin">PIN кодду иштетүү</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN кодду өчүрүп салсаңыз, Signal колдонмосун кайра орноткондо аккаунтуңуздагы бардык нерселер өчүп калат (эгер алардын көчүрмөсүн кол менен башка жерге сактап койбосоңуз). PIN код өчүк болгондо, Катталууга жол бербөө функциясын иштете албай каласыз.</string>
@@ -2867,7 +2867,7 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Түзмөгүңүздөн %1$s эскирген бардык билдирүүлөр жана медиа файлдар өчүрүлөт.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="other">Бардык маектер эң акыркы %1$s билдирүүгө чейин кыскарат.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Түзмөгүңүздөн бардык билдирүүлөр жана медиа файлдар биротоло өчүрүлөт.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Бардык билдирүүлөрдү чын эле өчүрөсүзбү?</string>
@@ -4226,7 +4226,7 @@
     <string name="HelpSettingsFragment__debug_log">Мүчүлүштүктөр журналы</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Шарттар жана жоболор; Купуялык Саясаты</string>
     <string name="HelpFragment__copyright_signal_messenger">Signal Mesenger автордук укугу</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 боюнча уруксаттамаланган</string>
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Медиа сапаты</string>
