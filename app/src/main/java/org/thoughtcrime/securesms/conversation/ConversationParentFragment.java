@@ -2806,8 +2806,9 @@ public class ConversationParentFragment extends Fragment
       fragment.reload(recipient.get(), threadId);
       setVisibleThread(threadId);
     }
-
-    fragment.scrollToBottom();
+    if (!inputPanel.inEditMessageMode()) {
+      fragment.scrollToBottom();
+    }
     attachmentManager.cleanup();
 
     updateLinkPreviewState();

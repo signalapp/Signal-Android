@@ -700,6 +700,9 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       },
       isParentFilled = {
         binding.conversationItemRecycler.canScrollVertically(1) || binding.conversationItemRecycler.canScrollVertically(-1)
+      },
+      shouldUseSlideAnimation = { viewHolder ->
+        true
       }
     )
   }

@@ -32,11 +32,11 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/input_panel_exit_edit_mode"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="bottom"
             android:layout_marginEnd="12dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/circle_tintable"
             android:backgroundTint="@color/signal_colorOnSurfaceVariant"
             android:foreground="?attr/selectableItemBackgroundBorderless"
