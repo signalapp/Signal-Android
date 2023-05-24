@@ -5,7 +5,6 @@ import io.reactivex.rxjava3.core.SingleEmitter
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import okio.ByteString
@@ -21,6 +20,7 @@ import org.whispersystems.signalservice.api.util.Tls12SocketFactory
 import org.whispersystems.signalservice.api.util.TlsProxySocketFactory
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.configuration.SignalSvr2Url
+import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager
 import org.whispersystems.signalservice.internal.util.Hex
 import org.whispersystems.signalservice.internal.util.Util
@@ -33,6 +33,7 @@ import java.util.concurrent.atomic.AtomicReference
 import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.X509TrustManager
+import okhttp3.Response as OkHttpResponse
 import org.signal.svr2.proto.Request as Svr2Request
 import org.signal.svr2.proto.Response as Svr2Response
 
@@ -46,11 +47,11 @@ internal class Svr2Socket(
   private val svr2Url: SignalSvr2Url = chooseUrl(configuration.signalSvr2Urls)
   private val okhttp: OkHttpClient = buildOkHttpClient(configuration, svr2Url)
 
-  fun makeRequest(authorization: String, clientRequest: Svr2Request): Single<Svr2Response> {
+  fun makeRequest(authorization: AuthCredentials, clientRequest: (Svr2PinHasher) -> Svr2Request): Single<Response> {
     return Single.create { emitter ->
       val openRequest: Request.Builder = Request.Builder()
         .url("${svr2Url.url}/v1/$mrEnclave")
-        .addHeader("Authorization", authorization)
+        .addHeader("Authorization", authorization.asBasic())
 
       if (svr2Url.hostHeader.isPresent) {
         openRequest.addHeader("Host", svr2Url.hostHeader.get())
@@ -60,6 +61,7 @@ internal class Svr2Socket(
       val webSocket = okhttp.newWebSocket(
         openRequest.build(),
         SvrWebSocketListener(
+          authorization = authorization,
           mrEnclave = mrEnclave,
           clientRequest = clientRequest,
           emitter = emitter
@@ -71,15 +73,17 @@ internal class Svr2Socket(
   }
 
   private class SvrWebSocketListener(
+    private val authorization: AuthCredentials,
     private val mrEnclave: String,
-    private val clientRequest: Svr2Request,
-    private val emitter: SingleEmitter<Svr2Response>
+    private val clientRequest: (Svr2PinHasher) -> Svr2Request,
+    private val emitter: SingleEmitter<Response>
   ) : WebSocketListener() {
 
     private val stage = AtomicReference(Stage.WAITING_TO_INITIALIZE)
     private lateinit var client: Svr2Client
+    private lateinit var pinHasher: Svr2PinHasher
 
-    override fun onOpen(webSocket: WebSocket, response: Response) {
+    override fun onOpen(webSocket: WebSocket, response: OkHttpResponse) {
       Log.d(TAG, "[onOpen]")
       stage.set(Stage.WAITING_FOR_CONNECTION)
     }
@@ -94,6 +98,7 @@ internal class Svr2Socket(
 
           Stage.WAITING_FOR_CONNECTION -> {
             client = Svr2Client.create(Hex.fromStringCondensed(mrEnclave), bytes.toByteArray(), Instant.now())
+            pinHasher = Svr2PinHasher(authorization, client)
 
             Log.d(TAG, "[onMessage] Sending initial handshake...")
             webSocket.send(client.initialRequest().toByteString())
@@ -104,7 +109,7 @@ internal class Svr2Socket(
             client.completeHandshake(bytes.toByteArray())
             Log.d(TAG, "[onMessage] Handshake read success. Sending request...")
 
-            val ciphertextBytes = client.establishedSend(clientRequest.encode())
+            val ciphertextBytes = client.establishedSend(clientRequest(pinHasher).encode())
             webSocket.send(ciphertextBytes.toByteString())
 
             Log.d(TAG, "[onMessage] Request sent.")
@@ -113,7 +118,12 @@ internal class Svr2Socket(
 
           Stage.WAITING_FOR_RESPONSE -> {
             Log.d(TAG, "[onMessage] Received response for our request.")
-            emitter.onSuccess(Svr2Response.ADAPTER.decode(client.establishedRecv(bytes.toByteArray())))
+            emitter.onSuccess(
+              Response(
+                response = Svr2Response.ADAPTER.decode(client.establishedRecv(bytes.toByteArray())),
+                pinHasher = pinHasher
+              )
+            )
           }
 
           Stage.CLOSED -> {
@@ -155,7 +165,7 @@ internal class Svr2Socket(
       }
     }
 
-    override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+    override fun onFailure(webSocket: WebSocket, t: Throwable, response: OkHttpResponse?) {
       if (emitter.tryOnError(t)) {
         Log.w(TAG, "[onFailure] response? " + (response != null), t)
         stage.set(Stage.FAILED)
@@ -172,6 +182,11 @@ internal class Svr2Socket(
     CLOSED,
     FAILED
   }
+
+  data class Response(
+    val response: Svr2Response,
+    val pinHasher: Svr2PinHasher
+  )
 
   companion object {
     private val TAG = Svr2Socket::class.java.simpleName

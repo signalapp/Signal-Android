@@ -429,11 +429,11 @@ public class PushServiceSocket {
     return JsonUtil.fromJsonResponse(body, CdsiAuthResponse.class);
   }
 
-  public String getSvr2Authorization() throws IOException {
+  public AuthCredentials getSvr2Authorization() throws IOException {
     String          body        = makeServiceRequest(SVR2_AUTH, "GET", null);
     AuthCredentials credentials = JsonUtil.fromJsonResponse(body, AuthCredentials.class);
 
-    return credentials.asBasic();
+    return credentials;
   }
 
   public VerifyAccountResponse changeNumber(@Nonnull ChangePhoneNumberRequest changePhoneNumberRequest)

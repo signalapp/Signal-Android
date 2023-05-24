@@ -8,6 +8,7 @@ message Request {
 
   oneof inner {
     BackupRequest backup = 2;
+    ExposeRequest expose = 5;
     RestoreRequest restore = 3;
     DeleteRequest delete = 4;
   }
@@ -16,6 +17,7 @@ message Request {
 message Response {
   oneof inner {
     BackupResponse backup = 1;
+    ExposeResponse expose = 4;
     RestoreResponse restore = 2;
     DeleteResponse delete = 3;
   }
@@ -71,4 +73,27 @@ message DeleteRequest {
 }
 
 message DeleteResponse {
+}
+
+message ExposeRequest {
+  bytes data = 1;
+}
+
+//
+// expose
+//
+
+message ExposeResponse {
+  enum Status {
+    UNSET = 0;  // never returned
+    OK = 1;  // successfully restored, [data] will be set
+
+    // If this status comes back after a successful Backup() call,
+    // this should be cause for concern.
+    // It means that someone has either reset, deleted, or tried to brute-force
+    // the backup since it was created.
+    ERROR = 2;
+  }
+
+  Status status = 1;
 }
