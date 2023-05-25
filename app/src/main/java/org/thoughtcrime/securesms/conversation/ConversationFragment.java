@@ -240,7 +240,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private ConversationScrollToView    scrollToBottomButton;
   private ConversationScrollToView    scrollToMentionButton;
   private TextView                    scrollDateHeader;
-  private ConversationBannerView      conversationBanner;
+  private ConversationHeaderView      conversationHeader;
   private MessageRequestViewModel     messageRequestViewModel;
   private MessageCountsViewModel      messageCountsViewModel;
   private ConversationViewModel       conversationViewModel;
@@ -350,7 +350,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     getViewLifecycleOwner().getLifecycle().addObserver(multiselectItemDecoration);
 
     snapToTopDataObserver = new ConversationSnapToTopDataObserver(list, new ConversationScrollRequestValidator());
-    conversationBanner    = (ConversationBannerView) inflater.inflate(R.layout.conversation_item_banner, container, false);
+    conversationHeader    = (ConversationHeaderView) inflater.inflate(R.layout.conversation_item_banner, container, false);
     topLoadMoreView       = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
     bottomLoadMoreView    = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
 
@@ -586,7 +586,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     listener.onMessageRequest(messageRequestViewModel);
 
     messageRequestViewModel.getRecipientInfo().observe(getViewLifecycleOwner(), recipientInfo -> {
-      presentMessageRequestProfileView(requireContext(), recipientInfo, conversationBanner);
+      presentMessageRequestProfileView(requireContext(), recipientInfo, conversationHeader);
     });
 
     messageRequestViewModel.getMessageData().observe(getViewLifecycleOwner(), data -> {
@@ -597,7 +597,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     });
   }
 
-  private void presentMessageRequestProfileView(@NonNull Context context, @NonNull MessageRequestViewModel.RecipientInfo recipientInfo, @Nullable ConversationBannerView conversationBanner) {
+  private void presentMessageRequestProfileView(@NonNull Context context, @NonNull MessageRequestViewModel.RecipientInfo recipientInfo, @Nullable ConversationHeaderView conversationBanner) {
     if (conversationBanner == null) {
       return;
     }
@@ -1223,7 +1223,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       return;
     }
 
-    adapter.setFooterView(conversationBanner);
+    adapter.setFooterView(conversationHeader);
 
     Runnable afterScroll = () -> {
       if (!conversation.getMessageRequestData().isMessageRequestAccepted()) {
@@ -1384,7 +1384,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         Rect rect = new Rect();
         toolbar.getGlobalVisibleRect(rect);
         conversationViewModel.setToolbarBottom(rect.bottom);
-        ViewUtil.setTopMargin(conversationBanner, rect.bottom + ViewUtil.dpToPx(16));
+        ViewUtil.setTopMargin(conversationHeader, rect.bottom + ViewUtil.dpToPx(16));
         toolbar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
       }
     });

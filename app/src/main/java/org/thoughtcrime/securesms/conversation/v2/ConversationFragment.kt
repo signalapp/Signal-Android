@@ -13,6 +13,7 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
@@ -141,10 +142,12 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
+import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndRequestingMembersActivity
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkInviteFriendsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInitiationBottomSheetDialogFragment
+import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -225,11 +228,11 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   private val binding by ViewBinderDelegate(V2ConversationFragmentBinding::bind)
   private val viewModel: ConversationViewModel by viewModel {
     ConversationViewModel(
-      args.threadId,
-      args.startingPosition,
-      ConversationRepository(requireContext()),
-      conversationRecipientRepository,
-      messageRequestRepository
+      threadId = args.threadId,
+      requestedStartingPosition = args.startingPosition,
+      repository = ConversationRepository(context = requireContext(), isInBubble = args.conversationScreenType == ConversationScreenType.BUBBLE),
+      recipientRepository = conversationRecipientRepository,
+      messageRequestRepository = messageRequestRepository
     )
   }
 
@@ -321,12 +324,14 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     conversationToolbarOnScrollHelper.attach(binding.conversationItemRecycler)
     presentWallpaper(args.wallpaper)
     presentChatColors(args.chatColors)
+    presentConversationTitle(viewModel.recipientSnapshot)
     presentActionBarMenu()
 
     observeConversationThread()
 
     viewModel
       .inputReadyState
+      .distinctUntilChanged()
       .subscribeBy(
         onNext = this::presentInputReadyState
       )
@@ -400,6 +405,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
     disposables += viewModel.recipient
       .observeOn(AndroidSchedulers.mainThread())
+      .distinctUntilChanged { r1, r2 -> r1 === r2 || r1.hasSameContent(r2) }
       .subscribeBy(onNext = this::onRecipientChanged)
 
     disposables += viewModel.markReadRequests
@@ -473,9 +479,23 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     val conversationReactionStub = Stub<ConversationReactionOverlay>(binding.conversationReactionScrubberStub)
     reactionDelegate = ConversationReactionDelegate(conversationReactionStub)
     reactionDelegate.setOnReactionSelectedListener(OnReactionsSelectedListener())
+
+    binding.conversationBanner.listener = ConversationBannerListener()
+    viewModel
+      .reminder
+      .subscribeBy { reminder ->
+        if (reminder.isPresent) {
+          binding.conversationBanner.showAsReminder(reminder.get())
+        } else {
+          binding.conversationBanner.clear()
+        }
+      }
+      .addTo(disposables)
   }
 
   private fun presentInputReadyState(inputReadyState: InputReadyState) {
+    presentConversationTitle(inputReadyState.conversationRecipient)
+
     val disabledInputView = binding.conversationDisabledInput
 
     var inputDisabled = true
@@ -564,7 +584,11 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
   }
 
-  private fun presentConversationTitle(recipient: Recipient) {
+  private fun presentConversationTitle(recipient: Recipient?) {
+    if (recipient == null) {
+      return
+    }
+
     binding.conversationTitleView.root.setTitle(GlideApp.with(this), recipient)
   }
 
@@ -1777,6 +1801,49 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       viewModel.setLastScrolled(lastVisibleMessageTimestamp)
     }
   }
+
+  //region Conversation Banner Callbacks
+
+  private inner class ConversationBannerListener : ConversationBannerView.Listener {
+    override fun updateAppAction() {
+      PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
+    }
+
+    override fun reRegisterAction() {
+      startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()))
+    }
+
+    override fun reviewJoinRequestsAction() {
+      viewModel.recipientSnapshot?.let { recipient ->
+        val intent = ManagePendingAndRequestingMembersActivity.newIntent(requireContext(), recipient.requireGroupId().requireV2())
+        startActivity(intent)
+      }
+    }
+
+    override fun gv1SuggestionsAction(actionId: Int) {
+      if (actionId == R.id.reminder_action_gv1_suggestion_add_members) {
+        conversationGroupViewModel.groupRecordSnapshot?.let { groupRecord ->
+          GroupsV1MigrationSuggestionsDialog.show(requireActivity(), groupRecord.id.requireV2(), groupRecord.gv1MigrationSuggestions)
+        }
+      } else if (actionId == R.id.reminder_action_gv1_suggestion_no_thanks) {
+        conversationGroupViewModel.onSuggestedMembersBannerDismissed()
+      }
+    }
+
+    @SuppressLint("InlinedApi")
+    override fun changeBubbleSettingAction(disableSetting: Boolean) {
+      SignalStore.tooltips().markBubbleOptOutTooltipSeen()
+
+      if (disableSetting) {
+        val intent = Intent(Settings.ACTION_APP_NOTIFICATION_BUBBLE_SETTINGS)
+          .putExtra(Settings.EXTRA_APP_PACKAGE, requireContext().packageName)
+          .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+      }
+    }
+  }
+
+  //endregion
 
   //region Disabled Input Callbacks
 

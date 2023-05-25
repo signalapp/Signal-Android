@@ -100,7 +100,7 @@ import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
 import org.thoughtcrime.securesms.components.reminder.CdsPermanentErrorReminder;
-import org.thoughtcrime.securesms.components.reminder.CdsTemporyErrorReminder;
+import org.thoughtcrime.securesms.components.reminder.CdsTemporaryErrorReminder;
 import org.thoughtcrime.securesms.components.reminder.DozeReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.OutdatedBuildReminder;
@@ -1051,19 +1051,19 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         return Optional.of(new UnauthorizedReminder(context));
       } else if (ServiceOutageReminder.isEligible(context)) {
         ApplicationDependencies.getJobManager().add(new ServiceOutageDetectionJob());
-        return Optional.of(new ServiceOutageReminder(context));
+        return Optional.of(new ServiceOutageReminder());
       } else if (OutdatedBuildReminder.isEligible()) {
         return Optional.of(new OutdatedBuildReminder(context));
-      } else if (PushRegistrationReminder.isEligible(context)) {
+      } else if (PushRegistrationReminder.isEligible()) {
         return Optional.of((new PushRegistrationReminder(context)));
       } else if (DozeReminder.isEligible(context)) {
         return Optional.of(new DozeReminder(context));
-      } else if (CdsTemporyErrorReminder.isEligible()) {
-        return Optional.of(new CdsTemporyErrorReminder(context));
+      } else if (CdsTemporaryErrorReminder.isEligible()) {
+        return Optional.of(new CdsTemporaryErrorReminder());
       } else if (CdsPermanentErrorReminder.isEligible()) {
-        return Optional.of(new CdsPermanentErrorReminder(context));
+        return Optional.of(new CdsPermanentErrorReminder());
       } else if (UsernameOutOfSyncReminder.isEligible()) {
-        return Optional.of(new UsernameOutOfSyncReminder(context));
+        return Optional.of(new UsernameOutOfSyncReminder());
       } else {
         return Optional.<Reminder>empty();
       }

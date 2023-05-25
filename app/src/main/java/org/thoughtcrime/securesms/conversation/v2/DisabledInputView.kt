@@ -153,15 +153,15 @@ class DisabledInputView @JvmOverloads constructor(
     announcementGroupOnly = null
   }
 
-  private fun <VIEW : View> show(existingView: VIEW?, create: () -> VIEW, bind: VIEW.() -> Unit = {}): VIEW {
+  private fun <V : View> show(existingView: V?, create: () -> V, bind: V.() -> Unit = {}): V {
     if (existingView != currentView) {
       removeIfNotNull(currentView)
     }
 
-    val view: VIEW = if (existingView != null) {
+    val view: V = if (existingView != null) {
       existingView
     } else {
-      val newView: VIEW = create()
+      val newView: V = create()
       addView(newView, defaultLayoutParams())
       newView
     }

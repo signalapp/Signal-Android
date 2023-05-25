@@ -6,6 +6,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
@@ -14,13 +15,11 @@ import org.signal.core.util.concurrent.subscribeWithSubject
 import org.thoughtcrime.securesms.conversation.v2.ConversationRecipientRepository
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.model.GroupRecord
-import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Manages group state and actions for conversations.
@@ -32,13 +31,14 @@ class ConversationGroupViewModel(
 ) : ViewModel() {
 
   private val disposables = CompositeDisposable()
-  private val _groupRecord: Subject<GroupRecord>
+  private val _groupRecord: BehaviorSubject<GroupRecord>
   private val _reviewState: Subject<ConversationGroupReviewState>
 
   private val _groupActiveState: Subject<ConversationGroupActiveState> = BehaviorSubject.create()
   private val _memberLevel: BehaviorSubject<ConversationGroupMemberLevel> = BehaviorSubject.create()
-  private val _actionableRequestingMembersCount: Subject<Int> = BehaviorSubject.create()
-  private val _gv1MigrationSuggestions: Subject<List<RecipientId>> = BehaviorSubject.create()
+
+  val groupRecordSnapshot: GroupRecord?
+    get() = _groupRecord.value
 
   init {
     _groupRecord = recipientRepository
@@ -66,8 +66,6 @@ class ConversationGroupViewModel(
     disposables += _groupRecord.subscribe { groupRecord ->
       _groupActiveState.onNext(ConversationGroupActiveState(groupRecord.isActive, groupRecord.isV2Group))
       _memberLevel.onNext(ConversationGroupMemberLevel(groupRecord.memberLevel(Recipient.self()), groupRecord.isAnnouncementGroup))
-      _actionableRequestingMembersCount.onNext(getActionableRequestingMembersCount(groupRecord))
-      _gv1MigrationSuggestions.onNext(getGv1MigrationSuggestions(groupRecord))
     }
   }
 
@@ -89,28 +87,6 @@ class ConversationGroupViewModel(
       .observeOn(AndroidSchedulers.mainThread())
   }
 
-  private fun getActionableRequestingMembersCount(groupRecord: GroupRecord): Int {
-    return if (groupRecord.isV2Group && groupRecord.memberLevel(Recipient.self()) == GroupTable.MemberLevel.ADMINISTRATOR) {
-      groupRecord.requireV2GroupProperties()
-        .decryptedGroup
-        .requestingMembersCount
-    } else {
-      0
-    }
-  }
-
-  private fun getGv1MigrationSuggestions(groupRecord: GroupRecord): List<RecipientId> {
-    return if (!groupRecord.isActive || !groupRecord.isV2Group || groupRecord.isPendingMember(Recipient.self())) {
-      emptyList()
-    } else {
-      groupRecord.unmigratedV1Members
-        .filterNot { groupRecord.members.contains(it) }
-        .map { Recipient.resolved(it) }
-        .filter { GroupsV1MigrationUtil.isAutoMigratable(it) }
-        .map { it.id }
-    }
-  }
-
   fun cancelJoinRequest(): Single<Result<Unit, GroupChangeFailureReason>> {
     return _groupRecord
       .firstOrError()
@@ -118,6 +94,16 @@ class ConversationGroupViewModel(
         groupManagementRepository.cancelJoinRequest(group.id.requireV2())
       }
       .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun onSuggestedMembersBannerDismissed() {
+    _groupRecord
+      .firstOrError()
+      .flatMapCompletable { group ->
+        groupManagementRepository.removeUnmigratedV1Members(group.id.requireV2())
+      }
+      .subscribe()
+      .addTo(disposables)
   }
 
   class Factory(private val threadId: Long, private val recipientRepository: ConversationRecipientRepository) : ViewModelProvider.Factory {

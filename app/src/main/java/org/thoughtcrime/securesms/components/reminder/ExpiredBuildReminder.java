@@ -19,18 +19,13 @@ import java.util.List;
 public class ExpiredBuildReminder extends Reminder {
 
   public ExpiredBuildReminder(final Context context) {
-    super(null, context.getString(R.string.ExpiredBuildReminder_this_version_of_signal_has_expired));
-    addAction(new Action(context.getString(R.string.ExpiredBuildReminder_update_now), R.id.reminder_action_update_now));
+    super(R.string.ExpiredBuildReminder_this_version_of_signal_has_expired);
+    addAction(new Action(R.string.ExpiredBuildReminder_update_now, R.id.reminder_action_update_now));
   }
 
   @Override
   public boolean isDismissable() {
     return false;
-  }
-
-  @Override
-  public List<Action> getActions() {
-    return super.getActions();
   }
 
   @Override

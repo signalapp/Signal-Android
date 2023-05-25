@@ -17,9 +17,12 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.signal.core.util.concurrent.subscribeWithSubject
 import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
+import org.thoughtcrime.securesms.components.reminder.Reminder
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
@@ -41,6 +44,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
+import java.util.Optional
 
 /**
  * ConversationViewModel, which operates solely off of a thread id that never changes.
@@ -63,8 +67,7 @@ class ConversationViewModel(
   val showScrollButtonsSnapshot: Boolean
     get() = scrollButtonStateStore.state.showScrollButtons
 
-  private val _recipient: BehaviorSubject<Recipient> = BehaviorSubject.create()
-  val recipient: Observable<Recipient> = _recipient
+  val recipient: Observable<Recipient> = recipientRepository.conversationRecipient
 
   private val _conversationThreadState: Subject<ConversationThreadState> = BehaviorSubject.create()
   val conversationThreadState: Single<ConversationThreadState> = _conversationThreadState.firstOrError()
@@ -76,13 +79,14 @@ class ConversationViewModel(
 
   val pagingController = ProxyPagingController<ConversationElementKey>()
 
-  val nameColorsMap: Observable<Map<RecipientId, NameColor>> = _recipient.flatMap { repository.getNameColorsMap(it, groupAuthorNameColorHelper) }
+  val nameColorsMap: Observable<Map<RecipientId, NameColor>> = recipient.flatMap { repository.getNameColorsMap(it, groupAuthorNameColorHelper) }
 
-  val recipientSnapshot: Recipient?
-    get() = _recipient.value
+  @Volatile
+  var recipientSnapshot: Recipient? = null
+    private set
 
   val wallpaperSnapshot: ChatWallpaper?
-    get() = _recipient.value?.wallpaper
+    get() = recipientSnapshot?.wallpaper
 
   val inputReadyState: Observable<InputReadyState>
 
@@ -90,12 +94,15 @@ class ConversationViewModel(
   val hasMessageRequestState: Boolean
     get() = hasMessageRequestStateSubject.value ?: false
 
+  private val refreshReminder: Subject<Unit> = PublishSubject.create()
+
+  val reminder: Observable<Optional<Reminder>>
+
   init {
-    disposables += recipientRepository
-      .conversationRecipient
-      .subscribeBy(onNext = {
-        _recipient.onNext(it)
-      })
+    disposables += recipient
+      .subscribeBy {
+        recipientSnapshot = it
+      }
 
     disposables += recipientRepository
       .conversationRecipient
@@ -156,6 +163,13 @@ class ConversationViewModel(
     }.doOnNext {
       hasMessageRequestStateSubject.onNext(it.messageRequestState != MessageRequestState.NONE)
     }.observeOn(AndroidSchedulers.mainThread())
+
+    recipientRepository.conversationRecipient.map { Unit }.subscribeWithSubject(refreshReminder, disposables)
+
+    reminder = Observable.combineLatest(refreshReminder.startWithItem(Unit), recipientRepository.groupRecord) { _, groupRecord -> groupRecord }
+      .subscribeOn(Schedulers.io())
+      .flatMapMaybe { groupRecord -> repository.getReminder(groupRecord.orNull()) }
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   override fun onCleared() {

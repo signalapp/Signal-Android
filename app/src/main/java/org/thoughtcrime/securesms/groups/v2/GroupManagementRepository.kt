@@ -2,12 +2,14 @@ package org.thoughtcrime.securesms.groups.v2
 
 import android.content.Context
 import androidx.core.util.Consumer
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.Result
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupChangeException
@@ -96,6 +98,12 @@ class GroupManagementRepository @JvmOverloads constructor(private val context: C
         Log.i(TAG, "Unable to cancel request", gcbe)
         emitter.onSuccess(Result.failure(GroupChangeFailureReason.fromException(gcbe)))
       }
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun removeUnmigratedV1Members(groupId: GroupId.V2): Completable {
+    return Completable.fromCallable {
+      SignalDatabase.groups.removeUnmigratedV1Members(groupId)
     }.subscribeOn(Schedulers.io())
   }
 }

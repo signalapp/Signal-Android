@@ -38,6 +38,7 @@ public final class ReminderView extends FrameLayout {
   private Space                 space;
   private RecyclerView          actionsRecycler;
   private OnActionClickListener actionClickListener;
+  private OnHideListener        onHideListener;
 
   public ReminderView(Context context) {
     super(context);
@@ -67,8 +68,8 @@ public final class ReminderView extends FrameLayout {
   }
 
   public void showReminder(final Reminder reminder) {
-    if (!TextUtils.isEmpty(reminder.getTitle())) {
-      title.setText(reminder.getTitle());
+    if (!TextUtils.isEmpty(reminder.getTitle(getContext()))) {
+      title.setText(reminder.getTitle(getContext()));
       title.setVisibility(VISIBLE);
       space.setVisibility(GONE);
     } else {
@@ -82,7 +83,7 @@ public final class ReminderView extends FrameLayout {
       space.setVisibility(GONE);
     }
 
-    text.setText(reminder.getText());
+    text.setText(reminder.getText(getContext()));
     switch (reminder.getImportance()) {
       case NORMAL:
         title.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface));
@@ -153,11 +154,19 @@ public final class ReminderView extends FrameLayout {
     this.actionClickListener = actionClickListener;
   }
 
+  public void setOnHideListener(@Nullable OnHideListener onHideListener) {
+    this.onHideListener = onHideListener;
+  }
+
   public void requestDismiss() {
     closeButton.performClick();
   }
 
   public void hide() {
+    if (onHideListener != null && onHideListener.onHide()) {
+      return;
+    }
+
     container.setVisibility(View.GONE);
   }
 
@@ -167,5 +176,9 @@ public final class ReminderView extends FrameLayout {
 
   public interface OnActionClickListener {
     void onActionClick(@IdRes int actionId);
+  }
+
+  public interface OnHideListener {
+    boolean onHide();
   }
 }

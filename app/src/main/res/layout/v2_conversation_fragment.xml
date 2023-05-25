@@ -100,11 +100,13 @@
 
     </org.thoughtcrime.securesms.util.views.DarkOverflowToolbar>
 
-    <!-- TODO [alex] - Placeholder for banner container -->
-    <View
-        android:id="@+id/conversation_banner_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <org.thoughtcrime.securesms.conversation.v2.ConversationBannerView
+        android:id="@+id/conversation_banner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <FrameLayout
         android:id="@+id/reactions_shade"

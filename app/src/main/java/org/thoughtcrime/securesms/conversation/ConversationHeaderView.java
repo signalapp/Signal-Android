@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.SpanUtil;
 
-public class ConversationBannerView extends ConstraintLayout {
+public class ConversationHeaderView extends ConstraintLayout {
 
   private AvatarImageView contactAvatar;
   private TextView        contactTitle;
@@ -35,15 +35,15 @@ public class ConversationBannerView extends ConstraintLayout {
   private View            tapToView;
   private BadgeImageView  contactBadge;
 
-  public ConversationBannerView(Context context) {
+  public ConversationHeaderView(Context context) {
     this(context, null);
   }
 
-  public ConversationBannerView(Context context, AttributeSet attrs) {
+  public ConversationHeaderView(Context context, AttributeSet attrs) {
     this(context, attrs, 0);
   }
 
-  public ConversationBannerView(Context context, AttributeSet attrs, int defStyleAttr) {
+  public ConversationHeaderView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
 
     inflate(getContext(), R.layout.conversation_banner_view, this);

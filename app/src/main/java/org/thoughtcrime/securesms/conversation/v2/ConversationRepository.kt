@@ -6,25 +6,38 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
+import android.os.Build
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.toOptional
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
+import org.thoughtcrime.securesms.components.reminder.BubbleOptOutReminder
+import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder
+import org.thoughtcrime.securesms.components.reminder.GroupsV1MigrationSuggestionsReminder
+import org.thoughtcrime.securesms.components.reminder.PendingGroupJoinRequestsReminder
+import org.thoughtcrime.securesms.components.reminder.Reminder
+import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder
+import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationDataSource
 import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.SlideDeck
@@ -33,10 +46,14 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
+import java.util.Optional
 import kotlin.math.max
 import kotlin.time.Duration.Companion.seconds
 
-class ConversationRepository(context: Context) {
+class ConversationRepository(
+  context: Context,
+  private val isInBubble: Boolean
+) {
 
   private val applicationContext = context.applicationContext
   private val oldConversationRepository = org.thoughtcrime.securesms.conversation.ConversationRepository()
@@ -182,6 +199,31 @@ class ConversationRepository(context: Context) {
 
   private fun getUnreadMentionsCount(threadId: Long): Int {
     return SignalDatabase.messages.getUnreadMentionCount(threadId)
+  }
+
+  fun getReminder(groupRecord: GroupRecord?): Maybe<Optional<Reminder>> {
+    return Maybe.fromCallable {
+      val reminder: Reminder? = when {
+        ExpiredBuildReminder.isEligible() -> ExpiredBuildReminder(applicationContext)
+        UnauthorizedReminder.isEligible(applicationContext) -> UnauthorizedReminder(applicationContext)
+        ServiceOutageReminder.isEligible(applicationContext) -> {
+          ApplicationDependencies.getJobManager().add(ServiceOutageDetectionJob())
+          ServiceOutageReminder()
+        }
+        groupRecord != null && groupRecord.actionableRequestingMembersCount > 0 -> {
+          PendingGroupJoinRequestsReminder(groupRecord.actionableRequestingMembersCount)
+        }
+        groupRecord != null && groupRecord.gv1MigrationSuggestions.isNotEmpty() -> {
+          GroupsV1MigrationSuggestionsReminder(groupRecord.gv1MigrationSuggestions)
+        }
+        isInBubble && !SignalStore.tooltips().hasSeenBubbleOptOutTooltip() && Build.VERSION.SDK_INT > 29 -> {
+          BubbleOptOutReminder()
+        }
+        else -> null
+      }
+
+      reminder.toOptional()
+    }
   }
 
   data class MessageCounts(

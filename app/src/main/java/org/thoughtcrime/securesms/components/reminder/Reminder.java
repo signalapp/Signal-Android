@@ -1,36 +1,57 @@
 package org.thoughtcrime.securesms.components.reminder;
 
+import android.content.Context;
 import android.view.View.OnClickListener;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+
+import org.whispersystems.signalservice.api.util.Preconditions;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Reminder {
-  private CharSequence title;
-  private CharSequence text;
+  public static final int NO_RESOURCE = -1;
+
+  private int title;
+  private int text;
 
   private OnClickListener okListener;
   private OnClickListener dismissListener;
 
   private final List<Action> actions = new LinkedList<>();
 
-  public Reminder(@Nullable CharSequence title,
-                  @NonNull  CharSequence text)
-  {
-    this.title = title;
-    this.text  = text;
+  /**
+   * For a reminder that wishes to generate it's own strings by overwriting
+   * {@link #getText(Context)} and {@link #getTitle(Context)}
+   */
+  public Reminder() {
+    this(NO_RESOURCE, NO_RESOURCE);
   }
 
-  public @Nullable CharSequence getTitle() {
-    return title;
+  public Reminder(@StringRes int textRes) {
+    this(NO_RESOURCE, textRes);
   }
 
-  public CharSequence getText() {
-    return text;
+  public Reminder(@StringRes int titleRes, @StringRes int textRes) {
+    this.title = titleRes;
+    this.text  = textRes;
+  }
+
+  public @Nullable CharSequence getTitle(@NonNull Context context) {
+    if (title == NO_RESOURCE) {
+      return null;
+    }
+
+    return context.getString(title);
+  }
+
+  public @NonNull CharSequence getText(@NonNull Context context) {
+    Preconditions.checkArgument(text != NO_RESOURCE);
+    return context.getString(text);
   }
 
   public OnClickListener getOkListener() {
@@ -73,17 +94,22 @@ public abstract class Reminder {
     NORMAL, ERROR, TERMINAL
   }
 
-  public static final class Action {
-    private final CharSequence title;
-    private final int          actionId;
+  public static class Action {
+    private final int title;
+    private final int actionId;
 
-    public Action(CharSequence title, @IdRes int actionId) {
+    public Action(@IdRes int actionId) {
+      this(NO_RESOURCE, actionId);
+    }
+
+    public Action(@StringRes int title, @IdRes int actionId) {
       this.title    = title;
       this.actionId = actionId;
     }
 
-    public CharSequence getTitle() {
-      return title;
+    public CharSequence getTitle(@NonNull Context context) {
+      Preconditions.checkArgument(title != NO_RESOURCE);
+      return context.getText(title);
     }
 
     public int getActionId() {

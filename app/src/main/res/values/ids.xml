@@ -13,8 +13,8 @@
     <item name="reminder_action_gv1_suggestion_no_thanks" type="id" />
     <item name="reminder_action_gv1_suggestion_add_members" type="id" />
 
-    <item name="reminder_action_not_now" type="id" />
-    <item name="reminder_action_turn_off" type="id" />
+    <item name="reminder_action_bubble_not_now" type="id" />
+    <item name="reminder_action_bubble_turn_off" type="id" />
 
     <item name="reminder_action_cds_temporary_error_learn_more" type="id" />
     <item name="reminder_action_cds_permanent_error_learn_more" type="id" />
