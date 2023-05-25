@@ -3352,6 +3352,7 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void onRecorderCanceled(boolean byUser) {
+    bluetoothVoiceNoteUtil.disconnectBluetoothScoConnection();
     voiceRecorderWakeLock.release();
     updateToggleButtonState();
 
