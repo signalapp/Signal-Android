@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
 
@@ -23,7 +25,7 @@ public final class GroupRightsDialog {
   {
     rights = currentRights;
 
-    builder = new AlertDialog.Builder(context)
+    builder = new MaterialAlertDialogBuilder(context)
                              .setTitle(type.message)
                              .setSingleChoiceItems(type.choices, currentRights.ordinal(), (dialog, which) -> rights = GroupAccessControl.values()[which])
                              .setNegativeButton(android.R.string.cancel, (dialog, which) -> {

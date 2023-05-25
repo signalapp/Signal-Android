@@ -6,6 +6,8 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.thoughtcrime.securesms.R;
 
 /**
@@ -22,7 +24,7 @@ public final class CanNotSendPaymentDialog {
   }
 
   public static void show(@NonNull Context context, @Nullable Runnable onSendAMessageClicked) {
-    AlertDialog.Builder builder = new AlertDialog.Builder(context)
+    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
                                                  .setTitle(R.string.CanNotSendPaymentDialog__cant_send_payment)
                                                  .setMessage(R.string.CanNotSendPaymentDialog__to_send_a_payment_to_this_user);
 

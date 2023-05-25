@@ -319,7 +319,7 @@ public class PaymentsHomeFragment extends LoggingFragment {
   }
 
   private void showPaymentsDisabledDialog() {
-    new AlertDialog.Builder(requireActivity())
+    new MaterialAlertDialogBuilder(requireActivity())
                    .setMessage(R.string.PaymentsHomeFragment__payments_not_available)
                    .setPositiveButton(android.R.string.ok, null)
                    .show();

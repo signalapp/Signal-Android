@@ -27,9 +27,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
@@ -37,6 +38,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.AppInitialization;
 import org.thoughtcrime.securesms.LoggingFragment;
@@ -54,7 +56,6 @@ import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Util;
-import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
@@ -251,7 +252,7 @@ public final class RestoreBackupFragment extends LoggingFragment {
 
     prompt.addTextChangedListener(new PassphraseAsYouTypeFormatter());
 
-    new AlertDialog.Builder(context)
+    new MaterialAlertDialogBuilder(context)
                    .setTitle(R.string.RegistrationActivity_enter_backup_passphrase)
                    .setView(view)
                    .setPositiveButton(R.string.RegistrationActivity_restore, (dialog, which) -> {
@@ -395,7 +396,7 @@ public final class RestoreBackupFragment extends LoggingFragment {
 
   @RequiresApi(29)
   private void displayConfirmationDialog(@NonNull Context context) {
-    new AlertDialog.Builder(context)
+    new MaterialAlertDialogBuilder(context)
                    .setTitle(R.string.RestoreBackupFragment__restore_complete)
                    .setMessage(R.string.RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder)
                    .setPositiveButton(R.string.RestoreBackupFragment__choose_folder, (dialog, which) -> {

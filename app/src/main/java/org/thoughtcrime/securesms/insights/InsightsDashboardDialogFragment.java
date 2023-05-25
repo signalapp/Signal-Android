@@ -13,13 +13,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
@@ -228,7 +228,7 @@ public final class InsightsDashboardDialogFragment extends DialogFragment {
   }
 
   private void handleInviteRecipient(final @NonNull Recipient recipient) {
-    new AlertDialog.Builder(requireContext())
+    new MaterialAlertDialogBuilder(requireContext())
                    .setTitle(getResources().getQuantityString(R.plurals.InviteActivity_send_sms_invites, 1, 1))
                    .setMessage(getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)))
                    .setPositiveButton(R.string.InsightsDashboardFragment__send, (dialog, which) -> viewModel.sendSmsInvite(recipient))

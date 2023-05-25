@@ -125,7 +125,7 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
           RecipientHasNotEnabledPaymentsDialog.show(requireContext());
           break;
         case CAN_NOT_GET_FEE:
-          new AlertDialog.Builder(requireContext())
+          new MaterialAlertDialogBuilder(requireContext())
                          .setMessage(R.string.ConfirmPaymentFragment__unable_to_request_a_network_fee)
                          .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                            dialog.dismiss();

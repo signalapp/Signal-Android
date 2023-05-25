@@ -28,6 +28,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class PlayServicesProblemFragment extends DialogFragment {
 
@@ -37,7 +38,7 @@ public class PlayServicesProblemFragment extends DialogFragment {
     Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(getActivity(), code, 9111);
 
     if (dialog == null) {
-      return new AlertDialog.Builder(requireActivity())
+      return new MaterialAlertDialogBuilder(requireActivity())
               .setNegativeButton(android.R.string.ok, null)
               .setMessage(R.string.PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning)
               .create();

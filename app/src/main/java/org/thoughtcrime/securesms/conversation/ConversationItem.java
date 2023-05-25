@@ -2608,7 +2608,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(context);
     builder.setTitle(title);
 
     if (message > -1) builder.setMessage(message);
