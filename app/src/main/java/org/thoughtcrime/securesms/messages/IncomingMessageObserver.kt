@@ -48,6 +48,7 @@ import java.util.concurrent.TimeoutException
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
+import kotlin.math.round
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
@@ -412,7 +413,8 @@ class IncomingMessageObserver(private val context: Application) {
                   }
                 }
                 val duration = System.currentTimeMillis() - startTime
-                Log.d(TAG, "Decrypted ${batch.size} envelopes in $duration ms (~${duration / batch.size} ms per message)")
+                val timePerMessage: Float = duration / batch.size.toFloat()
+                Log.d(TAG, "Decrypted ${batch.size} envelopes in $duration ms (~${round(timePerMessage * 100) / 100} ms per message)")
               }
 
               attempts = 0
