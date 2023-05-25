@@ -50,6 +50,7 @@ private class BluetoothVoiceNoteUtil31(val listener: () -> Unit) : BluetoothVoic
   }
 
   override fun disconnectBluetoothScoConnection() {
+    Log.d(TAG, "Clearing call manager communication device.")
     ApplicationDependencies.getAndroidCallAudioManager().clearCommunicationDevice()
   }
 
