@@ -120,6 +120,10 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Invalid attachments!")
     }
 
+    if (dataMessage.hasGroupV2()) {
+      validateGroupContextV2(dataMessage.groupV2, "[DataMessage]")?.let { return it }
+    }
+
     return Result.Valid
   }
 
