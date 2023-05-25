@@ -1849,24 +1849,28 @@ public class SignalServiceMessageSender {
         results.add(futureResult.get());
       } catch (ExecutionException e) {
         if (e.getCause() instanceof UntrustedIdentityException) {
-          Log.w(TAG, e);
+          Log.w(TAG, "[" + timestamp + "] Hit identity mismatch: " + recipient.getIdentifier(), e);
           results.add(SendMessageResult.identityFailure(recipient, ((UntrustedIdentityException) e.getCause()).getIdentityKey()));
         } else if (e.getCause() instanceof UnregisteredUserException) {
-          Log.w(TAG, "[" + timestamp + "] Found unregistered user.");
+          Log.w(TAG, "[" + timestamp + "] Hit unregistered user: " + recipient.getIdentifier());
           results.add(SendMessageResult.unregisteredFailure(recipient));
         } else if (e.getCause() instanceof PushNetworkException) {
-          Log.w(TAG, e);
+          Log.w(TAG, "[" + timestamp + "] Hit network failure: " + recipient.getIdentifier(), e);
           results.add(SendMessageResult.networkFailure(recipient));
         } else if (e.getCause() instanceof ServerRejectedException) {
-          Log.w(TAG, e);
+          Log.w(TAG, "[" + timestamp + "] Hit server rejection: " + recipient.getIdentifier(), e);
           throw ((ServerRejectedException) e.getCause());
         } else if (e.getCause() instanceof ProofRequiredException) {
-          Log.w(TAG, e);
+          Log.w(TAG, "[" + timestamp + "] Hit proof required: " + recipient.getIdentifier(), e);
           results.add(SendMessageResult.proofRequiredFailure(recipient, (ProofRequiredException) e.getCause()));
         } else if (e.getCause() instanceof RateLimitException) {
-          Log.w(TAG, e);
+          Log.w(TAG, "[" + timestamp + "] Hit rate limit: " + recipient.getIdentifier(), e);
           results.add(SendMessageResult.rateLimitFailure(recipient, (RateLimitException) e.getCause()));
+        } else if (e.getCause() instanceof InvalidPreKeyException) {
+          Log.w(TAG, "[" + timestamp + "] Hit invalid prekey: " + recipient.getIdentifier(), e);
+          results.add(SendMessageResult.invalidPreKeyFailure(recipient));
         } else {
+          Log.w(TAG, "[" + timestamp + "] Hit unknown exception: " + recipient.getIdentifier(), e);
           throw new IOException(e);
         }
       } catch (InterruptedException e) {
@@ -2317,10 +2321,10 @@ public class SignalServiceMessageSender {
 
   // Visible for testing only
   public OutgoingPushMessage getEncryptedMessage(SignalServiceAddress         recipient,
-                                                  Optional<UnidentifiedAccess> unidentifiedAccess,
-                                                  int                          deviceId,
-                                                  EnvelopeContent              plaintext,
-                                                  boolean                      story)
+                                                 Optional<UnidentifiedAccess> unidentifiedAccess,
+                                                 int                          deviceId,
+                                                 EnvelopeContent              plaintext,
+                                                 boolean                      story)
       throws IOException, InvalidKeyException, UntrustedIdentityException
   {
     SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(recipient.getIdentifier(), deviceId);
@@ -2331,6 +2335,8 @@ public class SignalServiceMessageSender {
         List<PreKeyBundle> preKeys = getPreKeys(recipient, unidentifiedAccess, deviceId, story);
 
         for (PreKeyBundle preKey : preKeys) {
+          Log.d(TAG, "Initializing prekey session for " + signalProtocolAddress);
+
           try {
             SignalProtocolAddress preKeyAddress  = new SignalProtocolAddress(recipient.getIdentifier(), preKey.getDeviceId());
             SignalSessionBuilder  sessionBuilder = new SignalSessionBuilder(sessionLock, new SessionBuilder(aciStore, preKeyAddress));
@@ -2344,7 +2350,7 @@ public class SignalServiceMessageSender {
           eventListener.get().onSecurityEvent(recipient);
         }
       } catch (InvalidKeyException e) {
-        throw new IOException(e);
+        throw new InvalidPreKeyException(signalProtocolAddress, e);
       }
     }
 
