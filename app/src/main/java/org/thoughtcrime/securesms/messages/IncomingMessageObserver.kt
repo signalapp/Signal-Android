@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.groups.GroupsV2ProcessingLock
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobmanager.JobTracker.JobListener
@@ -395,16 +396,18 @@ class IncomingMessageObserver(private val context: Application) {
                 val bufferedStore = BufferedProtocolStore.create()
 
                 val startTime = System.currentTimeMillis()
-                ReentrantSessionLock.INSTANCE.acquire().use {
-                  SignalDatabase.runInTransaction {
-                    val followUpOperations: List<FollowUpOperation> = batch
-                      .mapNotNull { processEnvelope(bufferedStore, it.envelope, it.serverDeliveredTimestamp) }
-                      .flatten()
+                GroupsV2ProcessingLock.acquireGroupProcessingLock().use {
+                  ReentrantSessionLock.INSTANCE.acquire().use {
+                    SignalDatabase.runInTransaction {
+                      val followUpOperations: List<FollowUpOperation> = batch
+                        .mapNotNull { processEnvelope(bufferedStore, it.envelope, it.serverDeliveredTimestamp) }
+                        .flatten()
 
-                    bufferedStore.flushToDisk()
+                      bufferedStore.flushToDisk()
 
-                    val jobs = followUpOperations.mapNotNull { it.run() }
-                    ApplicationDependencies.getJobManager().addAll(jobs)
+                      val jobs = followUpOperations.mapNotNull { it.run() }
+                      ApplicationDependencies.getJobManager().addAll(jobs)
+                    }
                   }
                 }
 

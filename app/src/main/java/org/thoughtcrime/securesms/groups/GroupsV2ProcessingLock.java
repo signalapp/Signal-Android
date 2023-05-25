@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-final class GroupsV2ProcessingLock {
+public final class GroupsV2ProcessingLock {
 
   private static final String TAG = Log.tag(GroupsV2ProcessingLock.class);
 
@@ -20,7 +20,7 @@ final class GroupsV2ProcessingLock {
   private static final Lock lock = new ReentrantLock();
 
   @WorkerThread
-  static Closeable acquireGroupProcessingLock() throws GroupChangeBusyException {
+  public static Closeable acquireGroupProcessingLock() throws GroupChangeBusyException {
     return acquireGroupProcessingLock(5000);
   }
 
