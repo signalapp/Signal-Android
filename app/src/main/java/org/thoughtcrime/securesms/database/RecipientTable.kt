@@ -23,6 +23,7 @@ import org.signal.core.util.optionalInt
 import org.signal.core.util.optionalLong
 import org.signal.core.util.optionalString
 import org.signal.core.util.or
+import org.signal.core.util.readToList
 import org.signal.core.util.readToSet
 import org.signal.core.util.readToSingleBoolean
 import org.signal.core.util.readToSingleLong
@@ -3138,6 +3139,21 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       db.endTransaction()
       updates.entries.forEach { ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(it.key) }
     }
+  }
+
+  fun queryByInternalFields(query: String): List<RecipientRecord> {
+    if (query.isBlank()) {
+      return emptyList()
+    }
+
+    return readableDatabase
+      .select()
+      .from(TABLE_NAME)
+      .where("$ID LIKE ? OR $SERVICE_ID LIKE ? OR $PNI_COLUMN LIKE ?", "%$query%", "%$query%", "%$query%")
+      .run()
+      .readToList { cursor ->
+        getRecord(context, cursor)
+      }
   }
 
   fun getSignalContacts(includeSelf: Boolean): Cursor? {

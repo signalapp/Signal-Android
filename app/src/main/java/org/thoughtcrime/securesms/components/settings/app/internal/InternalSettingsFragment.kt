@@ -128,6 +128,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       sectionHeaderPref(DSLSettingsText.from("Miscellaneous"))
 
+      clickPref(
+        title = DSLSettingsText.from("Search for a recipient"),
+        summary = DSLSettingsText.from("Search by ID, ACI, or PNI."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSearchFragment())
+        }
+      )
+
       switchPref(
         title = DSLSettingsText.from("'Internal Details' button"),
         summary = DSLSettingsText.from("Show a button in conversation settings that lets you see more information about a user."),
