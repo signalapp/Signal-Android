@@ -27,7 +27,7 @@
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
     <string name="app_icon_label_weather">מזג אוויר</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">הערות</string>
+    <string name="app_icon_label_notes">פתקים</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
     <string name="app_icon_label_news">חדשות</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
@@ -6359,7 +6359,7 @@
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">The QR code was invalid.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">A user with username $1$s could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">A user with username %1$s could not be found.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
 
