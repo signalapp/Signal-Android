@@ -4393,7 +4393,7 @@ public class ConversationParentFragment extends Fragment
 
         AlertDialog.Builder builder = new MaterialAlertDialogBuilder(requireContext());
         builder.setIcon(R.drawable.ic_warning);
-        builder.setTitle("No longer verified");
+        builder.setTitle(R.string.ConversationFragment__no_longer_verified);
         builder.setItems(unverifiedNames, (dialog, which) -> {
           startActivity(VerifyIdentityActivity.newIntent(requireContext(), unverifiedIdentities.get(which), false));
         });

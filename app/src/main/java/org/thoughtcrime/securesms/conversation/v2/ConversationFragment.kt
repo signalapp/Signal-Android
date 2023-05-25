@@ -60,6 +60,8 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.Result
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -125,6 +127,7 @@ import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSe
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupCallViewModel
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewModel
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
+import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageId
@@ -198,6 +201,7 @@ import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.util.views.Stub
 import org.thoughtcrime.securesms.util.visible
+import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
 import java.util.Locale
@@ -345,6 +349,9 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
     WindowUtil.setLightNavigationBarFromTheme(requireActivity())
     WindowUtil.setLightStatusBarFromTheme(requireActivity())
+
+    EventBus.getDefault().register(this)
+
     groupCallViewModel.peekGroupCall()
 
     if (!args.conversationScreenType.isInBubble) {
@@ -352,12 +359,20 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     motionEventRelay.setDrain(MotionEventRelayDrain())
+
+    viewModel.updateIdentityRecords()
   }
 
   override fun onPause() {
     super.onPause()
     ApplicationDependencies.getMessageNotifier().clearVisibleThread()
     motionEventRelay.setDrain(null)
+    EventBus.getDefault().unregister(this)
+  }
+
+  override fun onStop() {
+    super.onStop()
+    EventBus.getDefault().unregister(this)
   }
 
   private fun observeConversationThread() {
@@ -485,12 +500,30 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       .reminder
       .subscribeBy { reminder ->
         if (reminder.isPresent) {
-          binding.conversationBanner.showAsReminder(reminder.get())
+          binding.conversationBanner.showReminder(reminder.get())
         } else {
-          binding.conversationBanner.clear()
+          binding.conversationBanner.clearReminder()
         }
       }
       .addTo(disposables)
+
+    viewModel
+      .identityRecords
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy { presentIdentityRecordsState(it) }
+      .addTo(disposables)
+  }
+
+  private fun presentIdentityRecordsState(identityRecordsState: IdentityRecordsState) {
+    if (!identityRecordsState.isGroup) {
+      binding.conversationTitleView.root.setVerified(identityRecordsState.isVerified)
+    }
+
+    if (identityRecordsState.isUnverified) {
+      binding.conversationBanner.showUnverifiedBanner(identityRecordsState.identityRecords)
+    } else {
+      binding.conversationBanner.clearUnverifiedBanner()
+    }
   }
 
   private fun presentInputReadyState(inputReadyState: InputReadyState) {
@@ -589,7 +622,14 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       return
     }
 
-    binding.conversationTitleView.root.setTitle(GlideApp.with(this), recipient)
+    val titleView = binding.conversationTitleView.root
+
+    titleView.setTitle(GlideApp.with(this), recipient)
+    if (recipient.expiresInSeconds > 0) {
+      titleView.showExpiring(recipient)
+    } else {
+      titleView.clearExpiring()
+    }
   }
 
   private fun presentWallpaper(chatWallpaper: ChatWallpaper?) {
@@ -1714,13 +1754,8 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       // TODO [alex] - ("Not yet implemented")
     }
 
-    override fun showExpiring(recipient: Recipient) {
-      binding.conversationTitleView.root.showExpiring(recipient)
-    }
-
-    override fun clearExpiring() {
-      binding.conversationTitleView.root.clearExpiring()
-    }
+    override fun showExpiring(recipient: Recipient) = Unit
+    override fun clearExpiring() = Unit
 
     override fun showGroupCallingTooltip() {
       conversationTooltips.displayGroupCallingTooltip(requireView().findViewById(R.id.menu_video_secure))
@@ -1840,6 +1875,26 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
           .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
       }
+    }
+
+    override fun onUnverifiedBannerClicked(unverifiedIdentities: List<IdentityRecord>) {
+      if (unverifiedIdentities.size == 1) {
+        startActivity(VerifyIdentityActivity.newIntent(requireContext(), unverifiedIdentities[0], false))
+      } else {
+        val unverifiedNames = unverifiedIdentities
+          .map { Recipient.resolved(it.recipientId).getDisplayName(requireContext()) }
+          .toTypedArray()
+
+        MaterialAlertDialogBuilder(requireContext())
+          .setIcon(R.drawable.ic_warning)
+          .setTitle(R.string.ConversationFragment__no_longer_verified)
+          .setItems(unverifiedNames) { _, which: Int -> startActivity(VerifyIdentityActivity.newIntent(requireContext(), unverifiedIdentities[which], false)) }
+          .show()
+      }
+    }
+
+    override fun onUnverifiedBannerDismissed(unverifiedIdentities: List<IdentityRecord>) {
+      viewModel.resetVerifiedStatusToDefault(unverifiedIdentities)
     }
   }
 
@@ -2097,6 +2152,15 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     override fun onInputHidden() {
       isEnabled = false
     }
+  }
+
+  //endregion
+
+  //region Event Bus
+
+  @Subscribe(threadMode = ThreadMode.POSTING)
+  fun onIdentityRecordUpdate(event: IdentityRecord?) {
+    viewModel.updateIdentityRecords()
   }
 
   //endregion

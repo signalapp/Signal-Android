@@ -28,9 +28,14 @@ import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationDataSource
+import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
+import org.thoughtcrime.securesms.database.GroupTable
+import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
+import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.Quote
@@ -224,6 +229,36 @@ class ConversationRepository(
 
       reminder.toOptional()
     }
+  }
+
+  @Suppress("IfThenToElvis")
+  fun getIdentityRecords(recipient: Recipient, groupRecord: GroupRecord?): Single<IdentityRecordsState> {
+    return Single.fromCallable {
+      val recipients = if (groupRecord == null) {
+        listOf(recipient)
+      } else {
+        groupRecord.requireV2GroupProperties().getMemberRecipients(GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)
+      }
+
+      val records = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients)
+      val isVerified = recipient.registered == RecipientTable.RegisteredState.REGISTERED &&
+        Recipient.self().isRegistered &&
+        records.isVerified &&
+        !recipient.isSelf
+
+      IdentityRecordsState(isVerified, records, isGroup = groupRecord != null)
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun resetVerifiedStatusToDefault(unverifiedIdentities: List<IdentityRecord>): Completable {
+    return Completable.fromCallable {
+      ReentrantSessionLock.INSTANCE.acquire().use {
+        val identityStore = ApplicationDependencies.getProtocolStore().aci().identities()
+        for ((recipientId, identityKey) in unverifiedIdentities) {
+          identityStore.setVerified(recipientId, identityKey, VerifiedStatus.DEFAULT)
+        }
+      }
+    }.subscribeOn(Schedulers.io())
   }
 
   data class MessageCounts(
