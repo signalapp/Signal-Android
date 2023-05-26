@@ -502,7 +502,7 @@
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
     <string name="ConversationFragment__content_description_back_button">Navigate back.</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
-    <string name="ConversationFragment__content_description_launch_signal_button">Open Signal</string>
+    <string name="ConversationFragment__content_description_launch_signal_button">Buksan ang Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">I-clear ang filter</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->

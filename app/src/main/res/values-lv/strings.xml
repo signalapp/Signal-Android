@@ -510,7 +510,7 @@
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
     <string name="ConversationFragment__content_description_back_button">Navigate back.</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
-    <string name="ConversationFragment__content_description_launch_signal_button">Open Signal</string>
+    <string name="ConversationFragment__content_description_launch_signal_button">Atvērt Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Noņemt filtru</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -1730,7 +1730,7 @@
     <!-- Name of recipient representing user\'s \'My Story\' -->
     <string name="Recipient_my_story">Mans stāsts</string>
     <!-- Name of recipient for a call link without a name -->
-    <string name="Recipient_signal_call">Signal call</string>
+    <string name="Recipient_signal_call">Signal audiozvans</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">Bloķēt</string>
