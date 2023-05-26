@@ -175,6 +175,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.profiles.spoofing.ReviewCardDialogFragment
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment
 import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -381,11 +382,6 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     EventBus.getDefault().unregister(this)
   }
 
-  override fun onStop() {
-    super.onStop()
-    EventBus.getDefault().unregister(this)
-  }
-
   private fun observeConversationThread() {
     var firstRender = true
     disposables += viewModel
@@ -523,18 +519,11 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy { presentIdentityRecordsState(it) }
       .addTo(disposables)
-  }
 
-  private fun presentIdentityRecordsState(identityRecordsState: IdentityRecordsState) {
-    if (!identityRecordsState.isGroup) {
-      binding.conversationTitleView.root.setVerified(identityRecordsState.isVerified)
-    }
-
-    if (identityRecordsState.isUnverified) {
-      binding.conversationBanner.showUnverifiedBanner(identityRecordsState.identityRecords)
-    } else {
-      binding.conversationBanner.clearUnverifiedBanner()
-    }
+    viewModel
+      .getRequestReviewState()
+      .subscribeBy { presentRequestReviewState(it) }
+      .addTo(disposables)
   }
 
   private fun presentInputReadyState(inputReadyState: InputReadyState) {
@@ -558,6 +547,26 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       WindowUtil.setNavigationBarColor(requireActivity(), disabledInputView.color)
     } else {
       disabledInputView.clear()
+    }
+  }
+
+  private fun presentIdentityRecordsState(identityRecordsState: IdentityRecordsState) {
+    if (!identityRecordsState.isGroup) {
+      binding.conversationTitleView.root.setVerified(identityRecordsState.isVerified)
+    }
+
+    if (identityRecordsState.isUnverified) {
+      binding.conversationBanner.showUnverifiedBanner(identityRecordsState.identityRecords)
+    } else {
+      binding.conversationBanner.clearUnverifiedBanner()
+    }
+  }
+
+  private fun presentRequestReviewState(requestReviewState: RequestReviewState) {
+    if (requestReviewState.shouldShowReviewBanner()) {
+      binding.conversationBanner.showReviewBanner(requestReviewState)
+    } else {
+      binding.conversationBanner.clearRequestReview()
     }
   }
 
@@ -1968,6 +1977,14 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
     override fun onUnverifiedBannerDismissed(unverifiedIdentities: List<IdentityRecord>) {
       viewModel.resetVerifiedStatusToDefault(unverifiedIdentities)
+    }
+
+    override fun onRequestReviewIndividual(recipientId: RecipientId) {
+      ReviewCardDialogFragment.createForReviewRequest(recipientId).show(childFragmentManager, null)
+    }
+
+    override fun onReviewGroupMembers(groupId: GroupId.V2) {
+      ReviewCardDialogFragment.createForReviewMembers(groupId).show(childFragmentManager, null)
     }
   }
 

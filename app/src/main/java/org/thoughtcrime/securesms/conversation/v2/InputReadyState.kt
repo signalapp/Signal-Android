@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 data class InputReadyState(
   val conversationRecipient: Recipient,
   val messageRequestState: MessageRequestState,
-  private val groupRecord: GroupRecord?,
+  val groupRecord: GroupRecord?,
   val isClientExpired: Boolean,
   val isUnauthorized: Boolean
 ) {

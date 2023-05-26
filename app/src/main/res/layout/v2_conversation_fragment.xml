@@ -114,7 +114,30 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
         app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <ViewStub
+            android:id="@+id/unverified_banner_stub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inflatedId="@+id/unverified_banner"
+            android:layout="@layout/conversation_activity_unverified_banner_stub" />
+
+        <ViewStub
+            android:id="@+id/reminder_stub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inflatedId="@+id/reminder"
+            android:layout="@layout/conversation_activity_reminderview_stub" />
+
+        <ViewStub
+            android:id="@+id/review_banner_stub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inflatedId="@+id/review_banner"
+            android:layout="@layout/review_banner_view" />
+
+    </org.thoughtcrime.securesms.conversation.v2.ConversationBannerView>
 
     <org.thoughtcrime.securesms.components.ConversationScrollToView
         android:id="@+id/scroll_to_mention"

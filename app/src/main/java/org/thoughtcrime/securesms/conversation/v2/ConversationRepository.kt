@@ -33,6 +33,8 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
+import org.thoughtcrime.securesms.conversation.v2.RequestReviewState.GroupReviewState
+import org.thoughtcrime.securesms.conversation.v2.RequestReviewState.IndividualReviewState
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationDataSource
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.database.GroupTable
@@ -53,10 +55,12 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.SlideDeck
+import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException
@@ -282,6 +286,35 @@ class ConversationRepository(
           identityStore.setVerified(recipientId, identityKey, VerifiedStatus.DEFAULT)
         }
       }
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun getRequestReviewState(recipient: Recipient, group: GroupRecord?, messageRequest: MessageRequestState): Single<RequestReviewState> {
+    return Single.fromCallable {
+      if (group == null && messageRequest != MessageRequestState.INDIVIDUAL) {
+        return@fromCallable RequestReviewState()
+      }
+
+      if (group == null && ReviewUtil.isRecipientReviewSuggested(recipient.id)) {
+        return@fromCallable RequestReviewState(individualReviewState = IndividualReviewState(recipient))
+      }
+
+      if (group != null && group.isV2Group) {
+        val groupId = group.id.requireV2()
+        val duplicateRecipients: List<Recipient> = ReviewUtil.getDuplicatedRecipients(groupId).map { it.recipient }
+
+        if (duplicateRecipients.isNotEmpty()) {
+          return@fromCallable RequestReviewState(
+            groupReviewState = GroupReviewState(
+              groupId,
+              duplicateRecipients[0],
+              duplicateRecipients.size
+            )
+          )
+        }
+      }
+
+      RequestReviewState()
     }.subscribeOn(Schedulers.io())
   }
 

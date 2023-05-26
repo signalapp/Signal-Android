@@ -94,6 +94,7 @@ class ConversationViewModel(
   val wallpaperSnapshot: ChatWallpaper?
     get() = recipientSnapshot?.wallpaper
 
+  private val _inputReadyState: Observable<InputReadyState>
   val inputReadyState: Observable<InputReadyState>
 
   private val hasMessageRequestStateSubject: BehaviorSubject<Boolean> = BehaviorSubject.createDefault(false)
@@ -157,7 +158,7 @@ class ConversationViewModel(
       )
     }
 
-    inputReadyState = Observable.combineLatest(
+    _inputReadyState = Observable.combineLatest(
       recipientRepository.conversationRecipient,
       recipientRepository.groupRecord
     ) { recipient, groupRecord ->
@@ -170,7 +171,8 @@ class ConversationViewModel(
       )
     }.doOnNext {
       hasMessageRequestStateSubject.onNext(it.messageRequestState != MessageRequestState.NONE)
-    }.observeOn(AndroidSchedulers.mainThread())
+    }
+    inputReadyState = _inputReadyState.observeOn(AndroidSchedulers.mainThread())
 
     recipientRepository.conversationRecipient.map { Unit }.subscribeWithSubject(refreshReminder, disposables)
 
@@ -263,5 +265,12 @@ class ConversationViewModel(
 
   fun copyToClipboard(context: Context, messageParts: Set<MultiselectPart>): Maybe<CharSequence> {
     return repository.copyToClipboard(context, messageParts)
+  }
+
+  fun getRequestReviewState(): Observable<RequestReviewState> {
+    return _inputReadyState
+      .flatMapSingle { (recipient, messageRequestState, group) -> repository.getRequestReviewState(recipient, group, messageRequestState) }
+      .distinctUntilChanged()
+      .observeOn(AndroidSchedulers.mainThread())
   }
 }
