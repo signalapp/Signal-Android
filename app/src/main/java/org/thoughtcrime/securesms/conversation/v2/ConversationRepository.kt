@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
+import android.net.Uri
 import android.os.Build
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
@@ -14,6 +15,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.paging.PagedData
@@ -31,26 +33,33 @@ import org.thoughtcrime.securesms.conversation.v2.data.ConversationDataSource
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.attachments
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.OutgoingMessage
+import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.SlideDeck
+import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
+import java.io.IOException
 import java.util.Optional
 import kotlin.math.max
 import kotlin.time.Duration.Companion.seconds
@@ -59,6 +68,10 @@ class ConversationRepository(
   context: Context,
   private val isInBubble: Boolean
 ) {
+
+  companion object {
+    private val TAG = Log.tag(ConversationRepository::class.java)
+  }
 
   private val applicationContext = context.applicationContext
   private val oldConversationRepository = org.thoughtcrime.securesms.conversation.ConversationRepository()
@@ -258,6 +271,33 @@ class ConversationRepository(
           identityStore.setVerified(recipientId, identityKey, VerifiedStatus.DEFAULT)
         }
       }
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun getTemporaryViewOnceUri(mmsMessageRecord: MmsMessageRecord): Maybe<Uri> {
+    return Maybe.fromCallable<Uri> {
+      Log.i(TAG, "Copying the view-once photo to temp storage and deleting underlying media.")
+
+      try {
+        val thumbnailSlide = mmsMessageRecord.slideDeck.thumbnailSlide ?: return@fromCallable null
+        val thumbnailUri = thumbnailSlide.uri ?: return@fromCallable null
+
+        val inputStream = PartAuthority.getAttachmentStream(applicationContext, thumbnailUri)
+        val tempUri = BlobProvider.getInstance().forData(inputStream, thumbnailSlide.fileSize)
+          .withMimeType(thumbnailSlide.contentType)
+          .createForSingleSessionOnDisk(applicationContext)
+
+        attachments.deleteAttachmentFilesForViewOnceMessage(mmsMessageRecord.id)
+        ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary()
+        ApplicationDependencies.getJobManager().add(MultiDeviceViewOnceOpenJob(MessageTable.SyncMessageId(mmsMessageRecord.fromRecipient.id, mmsMessageRecord.dateSent)))
+
+        tempUri
+      } catch (e: IOException) {
+        null
+      }
+    }.doOnComplete {
+      Log.w(TAG, "Failed to open view-once photo. Deleting the attachments for the message just in case.")
+      attachments.deleteAttachmentFilesForViewOnceMessage(mmsMessageRecord.id)
     }.subscribeOn(Schedulers.io())
   }
 

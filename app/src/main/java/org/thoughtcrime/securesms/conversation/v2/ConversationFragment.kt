@@ -121,6 +121,8 @@ import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.ConversationItemAnimator
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectItemDecoration
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
+import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
+import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.conversation.quotes.MessageQuotesBottomSheet
 import org.thoughtcrime.securesms.conversation.ui.edit.EditMessageHistoryDialog
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog
@@ -177,6 +179,8 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity
+import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity
+import org.thoughtcrime.securesms.revealable.ViewOnceUtil
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity
@@ -185,6 +189,7 @@ import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
+import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
@@ -580,7 +585,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   }
 
   private fun invalidateOptionsMenu() {
-    // TODO [alex] -- Handle search... is there a better way to manage this state? Maybe an event system?
+    // TODO [cfv2] -- Handle search... is there a better way to manage this state? Maybe an event system?
     conversationOptionsMenuProvider.onCreateMenu(binding.toolbar.menu, requireActivity().menuInflater)
   }
 
@@ -808,7 +813,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
         quickAttachment.hide()
         inlineAttachment.hide()
       }
-      // todo [cody] draftViewModel.voiceNoteDraft != null) { {
+      // todo [cfv2] draftViewModel.voiceNoteDraft != null) { {
       // buttonToggle.display(sendButton)
       // quickAttachment.hide()
       // inlineAttachment.hide()
@@ -823,7 +828,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
         buttonToggle.display(sendButton)
         quickAttachment.hide()
 
-        if (!attachmentManager.isAttachmentPresent) { // todo [cody] && !linkPreviewViewModel.hasLinkPreviewUi()) {
+        if (!attachmentManager.isAttachmentPresent) { // todo [cfv2] && !linkPreviewViewModel.hasLinkPreviewUi()) {
           inlineAttachment.show()
         } else {
           inlineAttachment.hide()
@@ -872,14 +877,14 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       return
     }
 
-    // todo [cody] fragment.setLastSeen(0);
+    // todo [cfv2] fragment.setLastSeen(0);
 
     scrollToPositionDelegate.resetScrollPosition()
     attachmentManager.cleanup()
 
-    // todo [cody] updateLinkPreviewState();
+    // todo [cfv2] updateLinkPreviewState();
 
-    // todo [cody] draftViewModel.onSendComplete(threadId);
+    // todo [cfv2] draftViewModel.onSendComplete(threadId);
 
     inputPanel.exitEditMessageMode()
   }
@@ -1087,7 +1092,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     composeText.clearFocus()
 
     /*
-    // TODO [alex]
+    // TODO [cfv2]
     if (attachmentKeyboardStub.resolved()) {
       attachmentKeyboardStub.get().hide(true);
     }
@@ -1097,31 +1102,39 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   //region Message action handling
 
   private fun handleReplyToMessage(conversationMessage: ConversationMessage) {
-    // TODO [alex] -- Not implemented yet.
+    // TODO [cfv2] -- Not implemented yet.
   }
 
   private fun handleEditMessage(conversationMessage: ConversationMessage) {
-    // TODO [alex] -- Not implemented yet.
+    // TODO [cfv2] -- Not implemented yet.
   }
 
   private fun handleForwardMessageParts(messageParts: Set<MultiselectPart>) {
-    // TODO [alex] -- Not implemented yet.
+    inputPanel.clearQuote()
+
+    MultiselectForwardFragmentArgs.create(requireContext(), messageParts) { args ->
+      MultiselectForwardFragment.showBottomSheet(childFragmentManager, args)
+    }
   }
 
   private fun handleSaveAttachment(record: MediaMmsMessageRecord) {
-    // TODO [alex] -- Not implemented yet.
+    // TODO [cfv2] -- Not implemented yet.
   }
 
   private fun handleCopyMessage(messageParts: Set<MultiselectPart>) {
-    // TODO [alex] -- Not implemented yet.
+    // TODO [cfv2] -- Not implemented yet.
   }
 
   private fun handleDisplayDetails(conversationMessage: ConversationMessage) {
-    // TODO [alex] -- Not implemented yet.
+    val recipientSnapshot = viewModel.recipientSnapshot ?: return
+    MessageDetailsFragment.create(conversationMessage.messageRecord, recipientSnapshot.id).show(parentFragmentManager, null)
   }
 
   private fun handleDeleteMessages(messageParts: Set<MultiselectPart>) {
-    // TODO [alex] -- Not implemented yet.
+    disposables += DeleteDialog.show(
+      context = requireContext(),
+      messageRecords = messageParts.map(MultiselectPart::getMessageRecord).toSet()
+    ).subscribe()
   }
 
   //endregion
@@ -1249,7 +1262,28 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onViewOnceMessageClicked(messageRecord: MmsMessageRecord) {
-      // TODO [alex] - ("Not yet implemented")
+      if (!messageRecord.isViewOnce) {
+        error("Non-revealable message clicked.")
+      }
+
+      if (!ViewOnceUtil.isViewable(messageRecord)) {
+        val toastText = if (messageRecord.isOutgoing) {
+          R.string.ConversationFragment_outgoing_view_once_media_files_are_automatically_removed
+        } else {
+          R.string.ConversationFragment_you_already_viewed_this_message
+        }
+
+        toast(toastText)
+      }
+
+      disposables += viewModel.getTemporaryViewOnceUri(messageRecord).subscribeBy(
+        onSuccess = {
+          startActivity(ViewOnceMessageActivity.getIntent(requireContext(), messageRecord.id, it))
+        },
+        onComplete = {
+          toast(R.string.ConversationFragment_failed_to_open_message)
+        }
+      )
     }
 
     override fun onSharedContactDetailsClicked(contact: Contact, avatarTransitionView: View) {
@@ -1507,7 +1541,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onItemClick(item: MultiselectPart?) {
-      // TODO [alex] -- ("Not yet implemented")
+      // TODO [cfv2] -- ("Not yet implemented")
     }
 
     override fun onItemLongClick(itemView: View, item: MultiselectPart) {
@@ -1554,7 +1588,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
           val snapshot = ConversationItemSelection.snapshotView(itemView, binding.conversationItemRecycler, messageRecord, videoBitmap)
 
-          // TODO [alex] -- Should only have a focused view if the keyboard was open.
+          // TODO [cfv2] -- Should only have a focused view if the keyboard was open.
           val focusedView = null // itemView.rootView.findFocus()
           val bodyBubble = itemView.bodyBubble!!
           val selectedConversationModel = SelectedConversationModel(
@@ -1585,7 +1619,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
           }
 
           val conversationItem: ConversationItem = itemView
-          val isAttachmentKeyboardOpen = false /* TODO [alex] -- isAttachmentKeyboardOpen */
+          val isAttachmentKeyboardOpen = false /* TODO [cfv2] -- isAttachmentKeyboardOpen */
           handleReaction(
             item.conversationMessage,
             ReactionsToolbarListener(item.conversationMessage),
@@ -1665,7 +1699,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       val recipient: Recipient? = viewModel.recipientSnapshot
       return ConversationOptionsMenu.Snapshot(
         recipient = recipient,
-        isPushAvailable = true, // TODO [alex]
+        isPushAvailable = true, // TODO [cfv2]
         canShowAsBubble = Observable.empty(),
         isActiveGroup = recipient?.isActiveGroup == true,
         isActiveV2Group = recipient?.let { it.isActiveGroup && it.isPushV2Group } == true,
@@ -1679,7 +1713,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onOptionsMenuCreated(menu: Menu) {
-      // TODO [alex]
+      // TODO [cfv2]
     }
 
     override fun handleVideo() {
@@ -1687,71 +1721,71 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun handleDial(isSecure: Boolean) {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleViewMedia() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleAddShortcut() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleSearch() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleAddToContacts() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleDisplayGroupRecipients() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleDistributionBroadcastEnabled(menuItem: MenuItem) {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleDistributionConversationEnabled(menuItem: MenuItem) {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleManageGroup() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleLeavePushGroup() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleInviteLink() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleMuteNotifications() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleUnmuteNotifications() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleConversationSettings() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleSelectMessageExpiration() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleCreateBubble() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun handleGoHome() {
-      // TODO [alex] - ("Not yet implemented")
+      // TODO [cfv2] - ("Not yet implemented")
     }
 
     override fun showExpiring(recipient: Recipient) = Unit
@@ -1800,7 +1834,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   inner class ActionModeCallback : ActionMode.Callback {
     override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
       mode.title = calculateSelectedItemCount()
-      // TODO [alex] listener.onMessageActionToolbarOpened();
+      // TODO [cfv2] listener.onMessageActionToolbarOpened();
       setCorrectActionModeMenuVisibility()
       return true
     }
@@ -1812,7 +1846,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     override fun onDestroyActionMode(mode: ActionMode) {
       adapter.clearSelection()
       setBottomActionBarVisibility(false)
-      // TODO [alex] listener.onMessageActionToolbarClosed();
+      // TODO [cfv2] listener.onMessageActionToolbarClosed();
       binding.conversationItemRecycler.invalidateItemDecorations()
       actionMode = null
     }
@@ -2083,7 +2117,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       if (composeText.textTrimmed.isEmpty() || beforeLength == 0) {
         composeText.postDelayed({ updateToggleButtonState() }, 50)
       }
-      // todo [cody] stickerViewModel.onInputTextUpdated(s.toString())
+      // todo [cfv2] stickerViewModel.onInputTextUpdated(s.toString())
     }
 
     override fun onFocusChange(v: View, hasFocus: Boolean) {
@@ -2093,7 +2127,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onCursorPositionChanged(start: Int, end: Int) {
-      // todo [cody] linkPreviewViewModel.onTextChanged(requireContext(), composeText.getTextTrimmed().toString(), start, end);
+      // todo [cfv2] linkPreviewViewModel.onTextChanged(requireContext(), composeText.getTextTrimmed().toString(), start, end);
     }
 
     override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) = Unit
@@ -2105,11 +2139,11 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
   private inner class AttachmentManagerListener : AttachmentManager.AttachmentListener {
     override fun onAttachmentChanged() {
-      // TODO [cody] implement
+      // TODO [cfv2] implement
     }
 
     override fun onLocationRemoved() {
-      // TODO [cody] implement
+      // TODO [cfv2] implement
     }
   }
 
