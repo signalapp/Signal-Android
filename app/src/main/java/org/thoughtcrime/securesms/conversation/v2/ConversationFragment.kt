@@ -95,6 +95,7 @@ import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
 import org.thoughtcrime.securesms.contactshare.Contact
@@ -150,6 +151,7 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
+import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndRequestingMembersActivity
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkInviteFriendsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog
@@ -161,6 +163,7 @@ import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.longmessage.LongMessageFragment
+import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory.create
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity
@@ -183,6 +186,7 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
+import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil
@@ -192,6 +196,7 @@ import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.BottomSheetUtil
+import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.DeleteDialog
@@ -1773,7 +1778,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun handleViewMedia() {
-      // TODO [cfv2] - ("Not yet implemented")
+      startActivity(MediaOverviewActivity.forThread(requireContext(), args.threadId))
     }
 
     override fun handleAddShortcut() {
@@ -1801,15 +1806,39 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun handleManageGroup() {
-      // TODO [cfv2] - ("Not yet implemented")
+      val recipient = viewModel.recipientSnapshot ?: return
+      val intent = ConversationSettingsActivity.forGroup(requireContext(), recipient.requireGroupId())
+      val bundle = ConversationSettingsActivity.createTransitionBundle(
+        requireContext(),
+        binding.conversationTitleView.root.findViewById(R.id.contact_photo_image),
+        binding.toolbar
+      )
+
+      ActivityCompat.startActivity(requireContext(), intent, bundle)
     }
 
     override fun handleLeavePushGroup() {
-      // TODO [cfv2] - ("Not yet implemented")
+      val recipient = viewModel.recipientSnapshot
+      if (recipient == null) {
+        toast(R.string.ConversationActivity_invalid_recipient, toastDuration = Toast.LENGTH_LONG)
+        return
+      }
+
+      LeaveGroupDialog.handleLeavePushGroup(
+        requireActivity(),
+        recipient.requireGroupId().requirePush()
+      ) { requireActivity().finish() }
     }
 
     override fun handleInviteLink() {
-      // TODO [cfv2] - ("Not yet implemented")
+      val recipient = viewModel.recipientSnapshot ?: return
+
+      InviteActions.inviteUserToSignal(
+        context = requireContext(),
+        recipient = recipient,
+        appendInviteToComposer = composeText::appendInvite,
+        launchIntent = this@ConversationFragment::startActivity
+      )
     }
 
     override fun handleMuteNotifications() {
@@ -1821,19 +1850,44 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun handleConversationSettings() {
-      // TODO [cfv2] - ("Not yet implemented")
+      val recipient = viewModel.recipientSnapshot ?: return
+      if (recipient.isGroup) {
+        handleManageGroup()
+        return
+      }
+
+      if (viewModel.hasMessageRequestState && !recipient.isBlocked) {
+        return
+      }
+
+      val intent = ConversationSettingsActivity.forRecipient(requireContext(), recipient.id)
+      val bundle = ConversationSettingsActivity.createTransitionBundle(
+        requireActivity(),
+        binding.conversationTitleView.root.findViewById(R.id.contact_photo_image),
+        binding.toolbar
+      )
+
+      ActivityCompat.startActivity(requireActivity(), intent, bundle)
     }
 
     override fun handleSelectMessageExpiration() {
-      // TODO [cfv2] - ("Not yet implemented")
+      val recipient = viewModel.recipientSnapshot ?: return
+      if (recipient.isPushGroup && !recipient.isActiveGroup) {
+        return
+      }
+
+      startActivity(RecipientDisappearingMessagesActivity.forRecipient(requireContext(), recipient.id))
     }
 
     override fun handleCreateBubble() {
-      // TODO [cfv2] - ("Not yet implemented")
+      val recipientId = viewModel.recipientSnapshot?.id ?: return
+
+      BubbleUtil.displayAsBubble(requireContext(), recipientId, args.threadId)
+      requireActivity().finish()
     }
 
     override fun handleGoHome() {
-      // TODO [cfv2] - ("Not yet implemented")
+      requireActivity().finish()
     }
 
     override fun showExpiring(recipient: Recipient) = Unit
