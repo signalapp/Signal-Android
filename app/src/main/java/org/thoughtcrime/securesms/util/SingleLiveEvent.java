@@ -39,6 +39,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *
  * @deprecated Use a PublishSubject or PublishProcessor instead.
  */
+@Deprecated
 public class SingleLiveEvent<T> extends MutableLiveData<T> {
 
   private static final String TAG = Log.tag(SingleLiveEvent.class);
