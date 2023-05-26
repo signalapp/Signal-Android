@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <org.thoughtcrime.securesms.components.ProgressCard
+        android:id="@+id/progress_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="18dp" />

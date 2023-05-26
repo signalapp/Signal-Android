@@ -33,7 +33,7 @@ import androidx.vectordrawable.graphics.drawable.AnimatorInflaterCompat;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.DimensionUnit;
-import org.signal.core.util.logging.Log;
+import org.signal.glide.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
@@ -394,7 +394,8 @@ public final class ConversationReactionOverlay extends FrameLayout {
 
   private void updateToolbarShade(@NonNull Activity activity) {
     View toolbar         = activity.findViewById(R.id.toolbar);
-    View bannerContainer = activity.findViewById(R.id.conversation_banner_container);
+    View bannerContainer = activity.findViewById(SignalStore.internalValues().useConversationFragmentV2() ? R.id.conversation_banner
+                                                                                                          : R.id.conversation_banner_container);
 
     LayoutParams layoutParams = (LayoutParams) toolbarShade.getLayoutParams();
     layoutParams.height = toolbar.getHeight() + bannerContainer.getHeight();
@@ -410,9 +411,9 @@ public final class ConversationReactionOverlay extends FrameLayout {
 
   private int getInputPanelHeight(@NonNull Activity activity) {
     if (SignalStore.internalValues().useConversationFragmentV2()) {
-      Barrier conversationBottomPanelBarrier = activity.findViewById(R.id.conversation_bottom_panel_barrier);
+      View bottomPanel = activity.findViewById(R.id.conversation_input_panel);
 
-      return activity.getResources().getDisplayMetrics().heightPixels - conversationBottomPanelBarrier.getTop();
+      return bottomPanel.getHeight();
     }
 
     View bottomPanel = activity.findViewById(R.id.conversation_activity_panel_parent);

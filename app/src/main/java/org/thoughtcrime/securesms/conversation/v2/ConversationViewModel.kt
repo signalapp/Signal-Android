@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.conversation.v2
 
+import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -27,6 +28,7 @@ import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.components.reminder.Reminder
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.model.IdentityRecord
@@ -257,5 +259,9 @@ class ConversationViewModel(
 
   fun getTemporaryViewOnceUri(mmsMessageRecord: MmsMessageRecord): Maybe<Uri> {
     return repository.getTemporaryViewOnceUri(mmsMessageRecord).observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun copyToClipboard(context: Context, messageParts: Set<MultiselectPart>): Maybe<CharSequence> {
+    return repository.copyToClipboard(context, messageParts)
   }
 }

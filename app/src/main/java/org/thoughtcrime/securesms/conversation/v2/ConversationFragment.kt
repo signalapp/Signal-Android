@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.conversation.v2
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.content.Intent
@@ -84,6 +85,8 @@ import org.thoughtcrime.securesms.components.ComposeText
 import org.thoughtcrime.securesms.components.HidingLinearLayout
 import org.thoughtcrime.securesms.components.InputAwareConstraintLayout
 import org.thoughtcrime.securesms.components.InputPanel
+import org.thoughtcrime.securesms.components.ProgressCardDialogFragment
+import org.thoughtcrime.securesms.components.ProgressCardDialogFragmentArgs
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
 import org.thoughtcrime.securesms.components.SendButton
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
@@ -171,6 +174,7 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
+import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment
 import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -194,7 +198,9 @@ import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.PlayStoreUtil
+import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
+import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.WindowUtil
@@ -743,9 +749,10 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     ConversationAdapter.initializePool(binding.conversationItemRecycler.recycledViewPool)
     adapter.setPagingController(viewModel.pagingController)
 
-    binding.conversationItemRecycler.adapter = adapter
-    giphyMp4ProjectionRecycler = initializeGiphyMp4()
+    recyclerViewColorizer = RecyclerViewColorizer(binding.conversationItemRecycler)
+    recyclerViewColorizer.setChatColors(args.chatColors)
 
+    binding.conversationItemRecycler.adapter = adapter
     multiselectItemDecoration = MultiselectItemDecoration(
       requireContext()
     ) { viewModel.wallpaperSnapshot }
@@ -756,11 +763,10 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     binding.conversationItemRecycler.addItemDecoration(multiselectItemDecoration)
     viewLifecycleOwner.lifecycle.addObserver(multiselectItemDecoration)
 
+    giphyMp4ProjectionRecycler = initializeGiphyMp4()
+
     val layoutTransitionListener = BubbleLayoutTransitionListener(binding.conversationItemRecycler)
     viewLifecycleOwner.lifecycle.addObserver(layoutTransitionListener)
-
-    recyclerViewColorizer = RecyclerViewColorizer(binding.conversationItemRecycler)
-    recyclerViewColorizer.setChatColors(args.chatColors)
 
     binding.conversationItemRecycler.itemAnimator = ConversationItemAnimator(
       isInMultiSelectMode = adapter.selectedItems::isNotEmpty,
@@ -1118,11 +1124,44 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   }
 
   private fun handleSaveAttachment(record: MediaMmsMessageRecord) {
-    // TODO [cfv2] -- Not implemented yet.
+    if (record.isViewOnce) {
+      error("Cannot save a view-once message")
+    }
+
+    val attachments = SaveAttachmentUtil.getAttachmentsForRecord(record)
+
+    SaveAttachmentUtil.showWarningDialog(requireContext(), attachments.size) { _, _ ->
+      if (StorageUtil.canWriteToMediaStore()) {
+        performAttachmentSave(attachments)
+      } else {
+        Permissions.with(this)
+          .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+          .ifNecessary()
+          .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
+          .onAnyDenied { toast(R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, toastDuration = Toast.LENGTH_LONG) }
+          .onAllGranted { performAttachmentSave(attachments) }
+          .execute()
+      }
+    }
+  }
+
+  private fun performAttachmentSave(attachments: Set<SaveAttachmentUtil.SaveAttachment>) {
+    val progressDialog = ProgressCardDialogFragment()
+    progressDialog.arguments = ProgressCardDialogFragmentArgs.Builder(
+      resources.getQuantityString(R.plurals.ConversationFragment_saving_n_attachments_to_sd_card, attachments.size, attachments.size)
+    ).build().toBundle()
+
+    SaveAttachmentUtil.saveAttachments(attachments)
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .doOnSubscribe { progressDialog.show(parentFragmentManager, null) }
+      .doOnTerminate { progressDialog.dismissAllowingStateLoss() }
+      .subscribeBy { it.toast(requireContext()) }
+      .addTo(disposables)
   }
 
   private fun handleCopyMessage(messageParts: Set<MultiselectPart>) {
-    // TODO [cfv2] -- Not implemented yet.
+    viewModel.copyToClipboard(requireContext(), messageParts).subscribe().addTo(disposables)
   }
 
   private fun handleDisplayDetails(conversationMessage: ConversationMessage) {

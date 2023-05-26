@@ -8,12 +8,14 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.content.Context
 import android.net.Uri
 import android.os.Build
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.StreamUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
@@ -27,8 +29,10 @@ import org.thoughtcrime.securesms.components.reminder.PendingGroupJoinRequestsRe
 import org.thoughtcrime.securesms.components.reminder.Reminder
 import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder
+import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationDataSource
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.database.GroupTable
@@ -59,6 +63,9 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
+import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.hasTextSlide
+import org.thoughtcrime.securesms.util.requireTextSlide
 import java.io.IOException
 import java.util.Optional
 import kotlin.math.max
@@ -228,15 +235,19 @@ class ConversationRepository(
           ApplicationDependencies.getJobManager().add(ServiceOutageDetectionJob())
           ServiceOutageReminder()
         }
+
         groupRecord != null && groupRecord.actionableRequestingMembersCount > 0 -> {
           PendingGroupJoinRequestsReminder(groupRecord.actionableRequestingMembersCount)
         }
+
         groupRecord != null && groupRecord.gv1MigrationSuggestions.isNotEmpty() -> {
           GroupsV1MigrationSuggestionsReminder(groupRecord.gv1MigrationSuggestions)
         }
+
         isInBubble && !SignalStore.tooltips().hasSeenBubbleOptOutTooltip() && Build.VERSION.SDK_INT > 29 -> {
           BubbleOptOutReminder()
         }
+
         else -> null
       }
 
@@ -299,6 +310,50 @@ class ConversationRepository(
       Log.w(TAG, "Failed to open view-once photo. Deleting the attachments for the message just in case.")
       attachments.deleteAttachmentFilesForViewOnceMessage(mmsMessageRecord.id)
     }.subscribeOn(Schedulers.io())
+  }
+
+  /**
+   * Copies the selected content to the clipboard. Maybe will emit either the copied contents or
+   * a complete which means there were no contents to be copied.
+   */
+  fun copyToClipboard(context: Context, messageParts: Set<MultiselectPart>): Maybe<CharSequence> {
+    return Maybe.fromCallable { extractBodies(context, messageParts) }
+      .subscribeOn(Schedulers.computation())
+      .observeOn(AndroidSchedulers.mainThread())
+      .doOnSuccess {
+        Util.copyToClipboard(context, it)
+      }
+  }
+
+  private fun extractBodies(context: Context, messageParts: Set<MultiselectPart>): CharSequence {
+    return messageParts
+      .asSequence()
+      .sortedBy { it.getMessageRecord().dateReceived }
+      .map { it.conversationMessage }
+      .distinct()
+      .mapNotNull { message ->
+        if (message.messageRecord.hasTextSlide()) {
+          val textSlideUri = message.messageRecord.requireTextSlide().uri
+          if (textSlideUri == null) {
+            message.getDisplayBody(context)
+          } else {
+            try {
+              PartAuthority.getAttachmentStream(context, textSlideUri).use {
+                val body = StreamUtil.readFullyAsString(it)
+                ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, message.messageRecord, body, message.threadRecipient)
+                  .getDisplayBody(context)
+              }
+            } catch (e: IOException) {
+              Log.w(TAG, "failed to read text slide data.")
+              null
+            }
+          }
+        } else {
+          message.getDisplayBody(context)
+        }
+      }
+      .filterNot(Util::isEmpty)
+      .joinToString("\n")
   }
 
   data class MessageCounts(
