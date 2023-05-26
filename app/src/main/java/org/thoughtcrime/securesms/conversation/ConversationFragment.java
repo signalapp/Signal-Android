@@ -190,6 +190,7 @@ import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.TopToastPopup;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewExtensionsKt;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -207,6 +208,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import kotlin.Unit;
@@ -386,8 +388,22 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
       ConversationAdapter adapter = getListAdapter();
       if (adapter != null) {
+        final AtomicBoolean firstRender = new AtomicBoolean(true);
         List<ConversationMessage> messages = messageData.getMessages();
         getListAdapter().submitList(messages, () -> {
+
+          if (firstRender.get()) {
+            firstRender.set(false);
+            ViewExtensionsKt.doAfterNextLayout(list, () -> {
+              startupStopwatch.split("first-render");
+              startupStopwatch.stop(TAG);
+              SignalLocalMetrics.ConversationOpen.onRenderFinished();
+              listener.onFirstRender();
+              SignalTrace.endSection();
+              return Unit.INSTANCE;
+            });
+          }
+
           list.post(() -> {
             conversationViewModel.onMessagesCommitted(messages);
           });
@@ -738,13 +754,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         public void onItemRangeInserted(int positionStart, int itemCount) {
           adapter.unregisterAdapterDataObserver(this);
           startupStopwatch.split("data-set");
-          list.post(() -> {
-            startupStopwatch.split("first-render");
-            startupStopwatch.stop(TAG);
-            SignalLocalMetrics.ConversationOpen.onRenderFinished();
-            listener.onFirstRender();
-            SignalTrace.endSection();
-          });
         }
       });
     }
