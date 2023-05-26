@@ -4,7 +4,6 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.protobuf'
-    id 'com.google.android.gms.oss-licenses-plugin'
     id 'androidx.navigation.safeargs'
     id 'org.jlleitschuh.gradle.ktlint'
     id 'org.jetbrains.kotlin.android'
