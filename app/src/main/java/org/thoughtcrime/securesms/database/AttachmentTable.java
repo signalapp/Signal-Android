@@ -1265,7 +1265,7 @@ public class AttachmentTable extends DatabaseTable {
                                               MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType),
                                               contentType,
                                               object.getInt(TRANSFER_STATE),
-                                              object.getLong(SIZE),
+                                              object.isNull(SIZE) ? 0L : object.getLong(SIZE),
                                               object.getString(FILE_NAME),
                                               object.getInt(CDN_NUMBER),
                                               object.getString(CONTENT_LOCATION),
