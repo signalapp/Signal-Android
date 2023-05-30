@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.webrtc.audio;
 
 import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothHeadset;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
@@ -52,11 +54,16 @@ public abstract class AudioManagerCompat {
     audioManager.stopBluetoothSco();
   }
 
-  public boolean isBluetoothAvailable() {
+  public boolean isBluetoothHeadsetAvailable() {
     if (Build.VERSION.SDK_INT >= 31) {
       return audioManager.getAvailableCommunicationDevices().stream().anyMatch(it -> AudioDeviceMapping.fromPlatformType(it.getType()) == SignalAudioManager.AudioDevice.BLUETOOTH);
     } else {
-      return isBluetoothScoAvailableOffCall();
+      BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+      return mBluetoothAdapter != null &&
+             mBluetoothAdapter.isEnabled() &&
+             // noinspection MissingPermission
+             mBluetoothAdapter.getProfileConnectionState(BluetoothHeadset.HEADSET) == BluetoothAdapter.STATE_CONNECTED &&
+             isBluetoothScoAvailableOffCall();
     }
   }
 

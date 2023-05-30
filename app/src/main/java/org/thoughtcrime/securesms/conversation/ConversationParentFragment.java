@@ -3282,7 +3282,7 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onRecorderStarted() {
     final AudioManagerCompat audioManager = ApplicationDependencies.getAndroidCallAudioManager();
-    if (audioManager.isBluetoothAvailable()) {
+    if (audioManager.isBluetoothHeadsetAvailable()) {
       connectToBluetoothAndBeginRecording();
     } else {
       Log.d(TAG, "Recording from phone mic because no bluetooth devices were available.");
