@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
 import android.net.Uri
+import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
@@ -43,6 +44,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
+import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -228,6 +230,12 @@ class ConversationViewModel(
         repository.setConversationMuted(it.id, until)
       }
       .addTo(disposables)
+  }
+
+  fun getContactPhotoIcon(context: Context, glideRequests: GlideRequests): Single<ShortcutInfoCompat> {
+    return recipient.firstOrError().flatMap {
+      repository.getRecipientContactPhotoBitmap(context, glideRequests, it)
+    }
   }
 
   fun requestMarkRead(timestamp: Long) {

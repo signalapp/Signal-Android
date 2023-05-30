@@ -6,22 +6,32 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
+import androidx.core.content.pm.ShortcutInfoCompat
+import androidx.core.graphics.drawable.IconCompat
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.SingleEmitter
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
+import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.ShortcutLauncherActivity
 import org.thoughtcrime.securesms.components.reminder.BubbleOptOutReminder
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder
 import org.thoughtcrime.securesms.components.reminder.GroupsV1MigrationSuggestionsReminder
@@ -57,6 +67,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
+import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.QuoteModel
@@ -67,6 +78,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.util.BitmapUtil
+import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.hasTextSlide
@@ -392,6 +405,91 @@ class ConversationRepository(
       }
       .filterNot(Util::isEmpty)
       .joinToString("\n")
+  }
+
+  fun getRecipientContactPhotoBitmap(context: Context, glideRequests: GlideRequests, recipient: Recipient): Single<ShortcutInfoCompat> {
+    val fallback = recipient.fallbackContactPhoto.asDrawable(context, recipient.avatarColor, false)
+
+    return Single
+      .create { emitter ->
+        glideRequests
+          .asBitmap()
+          .load(recipient.contactPhoto)
+          .error(fallback)
+          .into(ContactPhotoTarget(recipient.id, emitter))
+      }
+      .flatMap(ContactPhotoResult::transformToFinalBitmap)
+      .map(IconCompat::createWithAdaptiveBitmap)
+      .map {
+        val name = if (recipient.isSelf) context.getString(R.string.note_to_self) else recipient.getDisplayName(context)
+
+        ShortcutInfoCompat.Builder(context, "${recipient.id.serialize()}-${System.currentTimeMillis()}")
+          .setShortLabel(name)
+          .setIcon(it)
+          .setIntent(ShortcutLauncherActivity.createIntent(context, recipient.id))
+          .build()
+      }
+      .subscribeOn(Schedulers.computation())
+  }
+
+  /**
+   * Glide target for a contact photo which expects an error drawable, and publishes
+   * the result to the given emitter.
+   *
+   * The recipient is only used for displaying logging information.
+   */
+  private class ContactPhotoTarget(
+    private val recipientId: RecipientId,
+    private val emitter: SingleEmitter<ContactPhotoResult>
+  ) : CustomTarget<Bitmap>() {
+    override fun onLoadFailed(errorDrawable: Drawable?) {
+      requireNotNull(errorDrawable)
+      Log.w(TAG, "Utilizing fallback photo for shortcut for recipient $recipientId")
+      emitter.onSuccess(ContactPhotoResult.DrawableResult(errorDrawable))
+    }
+
+    override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+      emitter.onSuccess(ContactPhotoResult.BitmapResult(resource))
+    }
+
+    override fun onLoadCleared(placeholder: Drawable?) = Unit
+  }
+
+  /**
+   * The result of the Glide load to get a user's contact photo. This can then be transformed into
+   * something that the Android system likes via [transformToFinalBitmap]
+   */
+  sealed interface ContactPhotoResult {
+
+    companion object {
+      private val SHORTCUT_ICON_SIZE = if (Build.VERSION.SDK_INT >= 26) 72.dp else (48 + 16 * 2).dp
+    }
+
+    class DrawableResult(private val drawable: Drawable) : ContactPhotoResult {
+      override fun transformToFinalBitmap(): Single<Bitmap> {
+        return Single.create {
+          val bitmap = DrawableUtil.toBitmap(drawable, SHORTCUT_ICON_SIZE, SHORTCUT_ICON_SIZE)
+          it.setCancellable {
+            bitmap.recycle()
+          }
+          it.onSuccess(bitmap)
+        }
+      }
+    }
+
+    class BitmapResult(private val bitmap: Bitmap) : ContactPhotoResult {
+      override fun transformToFinalBitmap(): Single<Bitmap> {
+        return Single.create {
+          val bitmap = BitmapUtil.createScaledBitmap(bitmap, SHORTCUT_ICON_SIZE, SHORTCUT_ICON_SIZE)
+          it.setCancellable {
+            bitmap.recycle()
+          }
+          it.onSuccess(bitmap)
+        }
+      }
+    }
+
+    fun transformToFinalBitmap(): Single<Bitmap>
   }
 
   data class MessageCounts(

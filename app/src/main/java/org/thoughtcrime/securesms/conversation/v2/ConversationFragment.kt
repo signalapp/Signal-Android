@@ -8,7 +8,11 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.ActivityOptions
+import android.app.PendingIntent
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Bitmap
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
@@ -37,6 +41,7 @@ import androidx.appcompat.view.ActionMode
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
@@ -63,6 +68,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.Result
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -72,6 +78,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.thoughtcrime.securesms.BlockUnblockDialog
+import org.thoughtcrime.securesms.GroupMembersDialog
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.MuteDialog
@@ -232,6 +239,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
   companion object {
     private val TAG = Log.tag(ConversationFragment::class.java)
+    private const val ACTION_PINNED_SHORTCUT = "action_pinned_shortcut"
   }
 
   private val args: ConversationIntents.Args by lazy {
@@ -291,6 +299,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
   private var animationsAllowed = false
   private var actionMode: ActionMode? = null
+  private var pinnedShortcutReceiver: BroadcastReceiver? = null
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
     override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
@@ -386,6 +395,13 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     ApplicationDependencies.getMessageNotifier().clearVisibleThread()
     motionEventRelay.setDrain(null)
     EventBus.getDefault().unregister(this)
+  }
+
+  override fun onDestroyView() {
+    super.onDestroyView()
+    if (pinnedShortcutReceiver != null) {
+      requireActivity().unregisterReceiver(pinnedShortcutReceiver)
+    }
   }
 
   private fun observeConversationThread() {
@@ -1783,7 +1799,29 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun handleAddShortcut() {
-      // TODO [cfv2] - ("Not yet implemented")
+      val recipient: Recipient = viewModel.recipientSnapshot ?: return
+      Log.i(TAG, "Creating home screen shortcut for recipient ${recipient.id}")
+
+      if (pinnedShortcutReceiver == null) {
+        pinnedShortcutReceiver = object : BroadcastReceiver() {
+          override fun onReceive(context: Context, intent: Intent?) {
+            toast(
+              toastTextId = R.string.ConversationActivity_added_to_home_screen,
+              toastDuration = Toast.LENGTH_LONG
+            )
+          }
+        }
+
+        requireActivity().registerReceiver(pinnedShortcutReceiver, IntentFilter(ACTION_PINNED_SHORTCUT))
+      }
+
+      viewModel.getContactPhotoIcon(requireContext(), GlideApp.with(this@ConversationFragment))
+        .subscribe { infoCompat ->
+          val intent = Intent(ACTION_PINNED_SHORTCUT)
+          val callback = PendingIntent.getBroadcast(requireContext(), 902, intent, PendingIntentFlags.mutable())
+          ShortcutManagerCompat.requestPinShortcut(requireContext(), infoCompat, callback.intentSender)
+        }
+        .addTo(disposables)
     }
 
     override fun handleSearch() {
@@ -1801,16 +1839,13 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun handleDisplayGroupRecipients() {
-      // TODO [cfv2] - ("Not yet implemented")
+      val recipientSnapshot = viewModel.recipientSnapshot?.takeIf { it.isGroup } ?: return
+      GroupMembersDialog(requireActivity(), recipientSnapshot).display()
     }
 
-    override fun handleDistributionBroadcastEnabled(menuItem: MenuItem) {
-      // TODO [cfv2] - ("Not yet implemented")
-    }
+    override fun handleDistributionBroadcastEnabled(menuItem: MenuItem) = error("This fragment does not support this action.")
 
-    override fun handleDistributionConversationEnabled(menuItem: MenuItem) {
-      // TODO [cfv2] - ("Not yet implemented")
-    }
+    override fun handleDistributionConversationEnabled(menuItem: MenuItem) = error("This fragment does not support this action.")
 
     override fun handleManageGroup() {
       val recipient = viewModel.recipientSnapshot ?: return
