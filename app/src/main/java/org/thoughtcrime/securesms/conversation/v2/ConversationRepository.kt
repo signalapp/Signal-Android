@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.attachments
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.Mention
@@ -343,6 +344,10 @@ class ConversationRepository(
       Log.w(TAG, "Failed to open view-once photo. Deleting the attachments for the message just in case.")
       attachments.deleteAttachmentFilesForViewOnceMessage(mmsMessageRecord.id)
     }.subscribeOn(Schedulers.io())
+  }
+
+  fun setConversationMuted(recipientId: RecipientId, until: Long) {
+    SignalExecutors.BOUNDED_IO.execute { recipients.setMuted(recipientId, until) }
   }
 
   /**

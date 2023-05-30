@@ -840,6 +840,13 @@ public class Recipient {
     return lastProfileFetch;
   }
 
+  /**
+   * Denotes that this Recipient represents another person.
+   */
+  public boolean isIndividual() {
+    return !isGroup() && !isCallLink() && !isDistributionList() && !isReleaseNotes();
+  }
+
   public boolean isGroup() {
     return resolve().groupId != null;
   }

@@ -15,6 +15,7 @@ import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.processors.PublishProcessor
@@ -219,6 +220,14 @@ class ConversationViewModel(
     if (messageRecord.isOutgoing && messageRecord.hasGiftBadge()) {
       repository.markGiftBadgeRevealed(messageRecord.id)
     }
+  }
+
+  fun muteConversation(until: Long) {
+    recipient.firstOrError()
+      .subscribeBy {
+        repository.setConversationMuted(it.id, until)
+      }
+      .addTo(disposables)
   }
 
   fun requestMarkRead(timestamp: Long) {

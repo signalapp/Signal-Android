@@ -74,6 +74,7 @@ import org.signal.libsignal.protocol.InvalidMessageException
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.MainActivity
+import org.thoughtcrime.securesms.MuteDialog
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.gifts.OpenableGift
 import org.thoughtcrime.securesms.badges.gifts.OpenableGiftItemDecoration
@@ -1790,7 +1791,13 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun handleAddToContacts() {
-      // TODO [cfv2] - ("Not yet implemented")
+      val recipient = viewModel.recipientSnapshot?.takeIf { it.isIndividual } ?: return
+
+      AddToContactsContract.createIntentAndLaunch(
+        fragment = this@ConversationFragment,
+        launcher = addToContactsLauncher,
+        recipient = recipient
+      )
     }
 
     override fun handleDisplayGroupRecipients() {
@@ -1842,11 +1849,11 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun handleMuteNotifications() {
-      // TODO [cfv2] - ("Not yet implemented")
+      MuteDialog.show(requireContext(), viewModel::muteConversation)
     }
 
     override fun handleUnmuteNotifications() {
-      // TODO [cfv2] - ("Not yet implemented")
+      viewModel.muteConversation(0L)
     }
 
     override fun handleConversationSettings() {
