@@ -398,23 +398,21 @@ class IncomingMessageObserver(private val context: Application) {
                 val startTime = System.currentTimeMillis()
                 GroupsV2ProcessingLock.acquireGroupProcessingLock().use {
                   ReentrantSessionLock.INSTANCE.acquire().use {
-                    SignalDatabase.runInTransaction {
-                      val followUpOperations: List<FollowUpOperation> = batch
-                        .mapNotNull { processEnvelope(bufferedStore, it.envelope, it.serverDeliveredTimestamp) }
-                        .flatten()
-
-                      bufferedStore.flushToDisk()
-
-                      val jobs = followUpOperations.mapNotNull { it.run() }
-                      ApplicationDependencies.getJobManager().addAll(jobs)
+                    batch.forEach {
+                      SignalDatabase.runInTransaction {
+                        val followUpOperations: List<FollowUpOperation>? = processEnvelope(bufferedStore, it.envelope, it.serverDeliveredTimestamp)
+                        bufferedStore.flushToDisk()
+                        if (followUpOperations != null) {
+                          val jobs = followUpOperations.mapNotNull { it.run() }
+                          ApplicationDependencies.getJobManager().addAll(jobs)
+                        }
+                      }
+                      signalWebSocket.sendAck(it)
                     }
                   }
                 }
-
                 val duration = System.currentTimeMillis() - startTime
                 Log.d(TAG, "Decrypted ${batch.size} envelopes in $duration ms (~${duration / batch.size} ms per message)")
-
-                true
               }
 
               attempts = 0
