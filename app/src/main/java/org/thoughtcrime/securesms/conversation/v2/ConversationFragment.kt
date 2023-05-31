@@ -585,10 +585,12 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
             composeText.setDraftText(it.text)
             setMedia(it.media, it.mediaType)
           }
+
           is ShareOrDraftData.SetQuote -> {
             composeText.setDraftText(it.draftText)
             handleReplyToMessage(it.quote)
           }
+
           is ShareOrDraftData.SetText -> composeText.setDraftText(it.text)
           is ShareOrDraftData.StartSendMedia -> {
             val recipientId = viewModel.recipientSnapshot?.id ?: return@subscribeBy
@@ -931,11 +933,13 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
         quickAttachment.hide()
         inlineAttachment.hide()
       }
-      // todo [cfv2] draftViewModel.voiceNoteDraft != null) { {
-      // buttonToggle.display(sendButton)
-      // quickAttachment.hide()
-      // inlineAttachment.hide()
-      // }
+
+      draftViewModel.voiceNoteDraft != null -> {
+        buttonToggle.display(sendButton)
+        quickAttachment.hide()
+        inlineAttachment.hide()
+      }
+
       composeText.text?.isEmpty() == true && !attachmentManager.isAttachmentPresent -> {
         buttonToggle.display(binding.conversationInputPanel.attachButton)
         quickAttachment.show()
