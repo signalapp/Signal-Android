@@ -169,7 +169,8 @@ class ConversationRepository(
     messageToEdit: MessageId?,
     quote: QuoteModel?,
     mentions: List<Mention>,
-    bodyRanges: BodyRangeList?
+    bodyRanges: BodyRangeList?,
+    contacts: List<Contact>
   ): Completable {
     val sendCompletable = Completable.create { emitter ->
       if (body.isEmpty() && slideDeck?.containsMediaSlide() != true) {
@@ -193,7 +194,8 @@ class ConversationRepository(
         scheduledDate = scheduledDate,
         outgoingQuote = quote,
         messageToEdit = messageToEdit?.id ?: 0,
-        mentions = mentions
+        mentions = mentions,
+        sharedContacts = contacts
       )
 
       MessageSender.send(

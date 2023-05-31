@@ -116,7 +116,7 @@ class StoryLinkPreviewView @JvmOverloads constructor(
 
     notImage.visible = false
 
-    val imageSlide: Slide? = linkPreview.thumbnail.map { ImageSlide(context, it) }.orElse(null)
+    val imageSlide: Slide? = linkPreview.thumbnail.map { ImageSlide(it) }.orElse(null)
     if (imageSlide != null) {
       if (loadThumbnail) {
         future = image.setImageResource(

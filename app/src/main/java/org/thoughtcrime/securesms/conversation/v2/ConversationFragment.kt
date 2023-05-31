@@ -98,6 +98,7 @@ import org.thoughtcrime.securesms.components.ProgressCardDialogFragmentArgs
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
 import org.thoughtcrime.securesms.components.SendButton
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
+import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
@@ -126,11 +127,15 @@ import org.thoughtcrime.securesms.conversation.ConversationReactionOverlay.OnHid
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
 import org.thoughtcrime.securesms.conversation.MenuState
 import org.thoughtcrime.securesms.conversation.MessageSendType
+import org.thoughtcrime.securesms.conversation.MessageStyler.getStyling
 import org.thoughtcrime.securesms.conversation.SelectedConversationModel
 import org.thoughtcrime.securesms.conversation.ShowAdminsBottomSheetDialog
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
+import org.thoughtcrime.securesms.conversation.drafts.DraftRepository
+import org.thoughtcrime.securesms.conversation.drafts.DraftRepository.ShareOrDraftData
+import org.thoughtcrime.securesms.conversation.drafts.DraftViewModel
 import org.thoughtcrime.securesms.conversation.mutiselect.ConversationItemAnimator
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectItemDecoration
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
@@ -145,10 +150,13 @@ import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFra
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
+import org.thoughtcrime.securesms.database.model.StickerRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
@@ -177,13 +185,18 @@ import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory.create
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity
 import org.thoughtcrime.securesms.mediasend.Media
+import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.mms.AttachmentManager
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.mms.MediaConstraints
+import org.thoughtcrime.securesms.mms.QuoteModel
+import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
+import org.thoughtcrime.securesms.mms.SlideFactory
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -208,10 +221,12 @@ import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
+import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.DrawableUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
+import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
@@ -232,6 +247,7 @@ import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
 import java.util.Locale
+import java.util.Optional
 import java.util.concurrent.ExecutionException
 
 /**
@@ -284,14 +300,20 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     MessageRequestViewModel(args.threadId, conversationRecipientRepository, messageRequestRepository)
   }
 
+  private val draftViewModel: DraftViewModel by viewModel {
+    DraftViewModel(threadId = args.threadId, repository = DraftRepository(conversationArguments = args))
+  }
+
   private val conversationTooltips = ConversationTooltips(this)
   private val colorizer = Colorizer()
+  private val textDraftSaveDebouncer = Debouncer(500)
 
   private lateinit var conversationOptionsMenuProvider: ConversationOptionsMenu.Provider
   private lateinit var layoutManager: LinearLayoutManager
   private lateinit var markReadHelper: MarkReadHelper
   private lateinit var giphyMp4ProjectionRecycler: GiphyMp4ProjectionRecycler
   private lateinit var addToContactsLauncher: ActivityResultLauncher<Intent>
+  private lateinit var conversationActivityResultContracts: ConversationActivityResultContracts
   private lateinit var scrollToPositionDelegate: ScrollToPositionDelegate
   private lateinit var adapter: ConversationAdapterV2
   private lateinit var recyclerViewColorizer: RecyclerViewColorizer
@@ -483,8 +505,6 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       addTextChangedListener(composeTextEventsListener)
       setOnClickListener(composeTextEventsListener)
       onFocusChangeListener = composeTextEventsListener
-
-      setMessageSendType(MessageSendType.SignalMessageSendType)
     }
 
     sendButton.apply {
@@ -553,6 +573,30 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       SwipeAvailabilityProvider(),
       this::handleReplyToMessage
     ).attachToRecyclerView(binding.conversationItemRecycler)
+
+    draftViewModel.loadShareOrDraftData()
+      .subscribeBy {
+        when (it) {
+          is ShareOrDraftData.SendKeyboardImage -> sendMessageWithoutComposeInput(slide = it.slide, clearCompose = false)
+          is ShareOrDraftData.SendSticker -> sendMessageWithoutComposeInput(slide = it.slide, clearCompose = true)
+          is ShareOrDraftData.SetEditMessage -> inputPanel.enterEditMessageMode(GlideApp.with(this), it.messageEdit, true)
+          is ShareOrDraftData.SetLocation -> attachmentManager.setLocation(it.location, MediaConstraints.getPushMediaConstraints())
+          is ShareOrDraftData.SetMedia -> {
+            composeText.setDraftText(it.text)
+            setMedia(it.media, it.mediaType)
+          }
+          is ShareOrDraftData.SetQuote -> {
+            composeText.setDraftText(it.draftText)
+            handleReplyToMessage(it.quote)
+          }
+          is ShareOrDraftData.SetText -> composeText.setDraftText(it.text)
+          is ShareOrDraftData.StartSendMedia -> {
+            val recipientId = viewModel.recipientSnapshot?.id ?: return@subscribeBy
+            conversationActivityResultContracts.launchMediaEditor(it.mediaList, recipientId, it.text)
+          }
+        }
+      }
+      .addTo(disposables)
   }
 
   private fun presentInputReadyState(inputReadyState: InputReadyState) {
@@ -577,6 +621,8 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     } else {
       disabledInputView.clear()
     }
+
+    composeText.setMessageSendType(MessageSendType.SignalMessageSendType)
   }
 
   private fun presentIdentityRecordsState(identityRecordsState: IdentityRecordsState) {
@@ -596,6 +642,33 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       binding.conversationBanner.showReviewBanner(requestReviewState)
     } else {
       binding.conversationBanner.clearRequestReview()
+    }
+  }
+
+  private fun setMedia(uri: Uri, mediaType: SlideFactory.MediaType, width: Int = 0, height: Int = 0, borderless: Boolean = false, videoGif: Boolean = false) {
+    val recipientId: RecipientId = viewModel.recipientSnapshot?.id ?: return
+
+    if (mediaType == SlideFactory.MediaType.VCARD) {
+      conversationActivityResultContracts.launchContactShareEditor(uri, viewModel.recipientSnapshot!!.chatColors)
+    } else if (mediaType == SlideFactory.MediaType.IMAGE || mediaType == SlideFactory.MediaType.GIF || mediaType == SlideFactory.MediaType.VIDEO) {
+      val mimeType = MediaUtil.getMimeType(requireContext(), uri) ?: mediaType.toFallbackMimeType()
+      val media = Media(
+        uri,
+        mimeType,
+        0,
+        width,
+        height,
+        0,
+        0,
+        borderless,
+        videoGif,
+        Optional.empty(),
+        Optional.empty(),
+        Optional.empty()
+      )
+      conversationActivityResultContracts.launchMediaEditor(listOf(media), recipientId, composeText.textTrimmed)
+    } else {
+      attachmentManager.setMedia(GlideApp.with(this), uri, mediaType, MediaConstraints.getPushMediaConstraints(), width, height)
     }
   }
 
@@ -620,6 +693,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
   private fun registerForResults() {
     addToContactsLauncher = registerForActivityResult(AddToContactsContract()) {}
+    conversationActivityResultContracts = ConversationActivityResultContracts(this, ActivityResultCallbacks())
   }
 
   private fun onRecipientChanged(recipient: Recipient) {
@@ -881,26 +955,54 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
   }
 
-  private fun sendMessage(
-    metricId: String? = null,
-    scheduledDate: Long = -1,
-    slideDeck: SlideDeck? = if (attachmentManager.isAttachmentPresent) attachmentManager.buildSlideDeck() else null
+  private fun sendMessageWithoutComposeInput(
+    slide: Slide? = null,
+    contacts: List<Contact> = emptyList(),
+    clearCompose: Boolean = true
   ) {
+    sendMessage(
+      slideDeck = slide?.let { SlideDeck().apply { addSlide(slide) } },
+      contacts = contacts,
+      clearCompose = clearCompose,
+      body = "",
+      mentions = emptyList(),
+      bodyRanges = null,
+      messageToEdit = null,
+      quote = null
+    )
+  }
+
+  private fun sendMessage(
+    body: String = composeText.editableText.toString(),
+    mentions: List<Mention> = composeText.mentions,
+    bodyRanges: BodyRangeList? = composeText.styling,
+    messageToEdit: MessageId? = inputPanel.editMessageId,
+    quote: QuoteModel? = inputPanel.quote.orNull(),
+    scheduledDate: Long = -1,
+    slideDeck: SlideDeck? = if (attachmentManager.isAttachmentPresent) attachmentManager.buildSlideDeck() else null,
+    contacts: List<Contact> = emptyList(),
+    clearCompose: Boolean = true
+  ) {
+    val metricId = viewModel.recipientSnapshot?.let { if (it.isGroup == true) SignalLocalMetrics.GroupMessageSend.start() else SignalLocalMetrics.IndividualMessageSend.start() }
+
     val send: Completable = viewModel.sendMessage(
       metricId = metricId,
-      body = composeText.editableText.toString(),
+      body = body,
       slideDeck = slideDeck,
       scheduledDate = scheduledDate,
-      messageToEdit = inputPanel.editMessageId,
-      quote = inputPanel.quote.orNull(),
-      mentions = composeText.mentions,
-      bodyRanges = composeText.styling
+      messageToEdit = messageToEdit,
+      quote = quote,
+      mentions = mentions,
+      bodyRanges = bodyRanges,
+      contacts = contacts
     )
 
     disposables += send
       .doOnSubscribe {
-        composeText.setText("")
-        inputPanel.clearQuote()
+        if (clearCompose) {
+          composeText.setText("")
+          inputPanel.clearQuote()
+        }
       }
       .subscribeBy(
         onError = { t ->
@@ -929,7 +1031,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
     // todo [cfv2] updateLinkPreviewState();
 
-    // todo [cfv2] draftViewModel.onSendComplete(threadId);
+    draftViewModel.onSendComplete()
 
     inputPanel.exitEditMessageMode()
   }
@@ -2067,6 +2169,23 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   }
   // endregion Conversation Callbacks
 
+  //region Activity Results Callbacks
+
+  private inner class ActivityResultCallbacks : ConversationActivityResultContracts.Callbacks {
+    override fun onSendContacts(contacts: List<Contact>) {
+      sendMessageWithoutComposeInput(
+        contacts = contacts,
+        clearCompose = false
+      )
+    }
+
+    override fun onMediaSend(result: MediaSendActivityResult) {
+      // TODO [cfv2] media send
+    }
+  }
+
+  //endregion
+
   private class LastSeenPositionUpdater(
     val adapter: ConversationAdapterV2,
     val layoutManager: LinearLayoutManager,
@@ -2282,13 +2401,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
   private inner class SendButtonListener : View.OnClickListener, OnEditorActionListener {
     override fun onClick(v: View) {
-      val metricId = if (viewModel.recipientSnapshot?.isGroup == true) {
-        SignalLocalMetrics.GroupMessageSend.start()
-      } else {
-        SignalLocalMetrics.IndividualMessageSend.start()
-      }
-
-      sendMessage(metricId)
+      sendMessage()
     }
 
     override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent): Boolean {
@@ -2312,6 +2425,9 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     ComposeText.CursorPositionChangedListener {
 
     private var beforeLength = 0
+    private var previousText = ""
+
+    var typingStatusEnabled = true
 
     override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
       if (event.action == KeyEvent.ACTION_DOWN) {
@@ -2352,10 +2468,113 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       // todo [cfv2] linkPreviewViewModel.onTextChanged(requireContext(), composeText.getTextTrimmed().toString(), start, end);
     }
 
-    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) = Unit
+    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+      handleSaveDraftOnTextChange(composeText.textTrimmed)
+      handleTypingIndicatorOnTextChange(s.toString())
+    }
+
+    private fun handleSaveDraftOnTextChange(text: CharSequence) {
+      textDraftSaveDebouncer.publish {
+        if (inputPanel.inEditMessageMode()) {
+          draftViewModel.setMessageEditDraft(inputPanel.editMessageId!!, text.toString(), MentionAnnotation.getMentionsFromAnnotations(text), getStyling(text))
+        } else {
+          draftViewModel.setTextDraft(text.toString(), MentionAnnotation.getMentionsFromAnnotations(text), getStyling(text))
+        }
+      }
+    }
+
+    private fun handleTypingIndicatorOnTextChange(text: String) {
+      val recipient = viewModel.recipientSnapshot
+
+      if (recipient == null || !typingStatusEnabled || recipient.isBlocked || recipient.isSelf) {
+        return
+      }
+
+      val typingStatusSender = ApplicationDependencies.getTypingStatusSender()
+      if (text.length == 0) {
+        typingStatusSender.onTypingStoppedWithNotify(args.threadId)
+      } else if (text.length < previousText.length && previousText.contains(text)) {
+        typingStatusSender.onTypingStopped(args.threadId)
+      } else {
+        typingStatusSender.onTypingStarted(args.threadId)
+      }
+
+      previousText = text
+    }
   }
 
   //endregion Compose + Send Callbacks
+
+  //region Input Panel Callbacks
+
+  private inner class InputPanelListener : InputPanel.Listener {
+    override fun onVoiceNoteDraftPlay(audioUri: Uri, progress: Double) {
+      // TODO [cfv2] Not yet implemented
+    }
+
+    override fun onVoiceNoteDraftSeekTo(audioUri: Uri, progress: Double) {
+      // TODO [cfv2] Not yet implemented
+    }
+
+    override fun onVoiceNoteDraftPause(audioUri: Uri) {
+      // TODO [cfv2] Not yet implemented
+    }
+
+    override fun onVoiceNoteDraftDelete(audioUri: Uri) {
+      // TODO [cfv2] Not yet implemented
+    }
+
+    override fun onRecorderStarted() {
+      // TODO [cfv2] Not yet implemented
+    }
+
+    override fun onRecorderLocked() {
+      // TODO [cfv2] Not yet implemented
+    }
+
+    override fun onRecorderFinished() {
+      // TODO [cfv2] Not yet implemented
+    }
+
+    override fun onRecorderCanceled(byUser: Boolean) {
+      // TODO [cfv2] Not yet implemented
+    }
+
+    override fun onRecorderPermissionRequired() {
+      // TODO [cfv2] Not yet implemented
+    }
+
+    override fun onEmojiToggle() {
+      // TODO [cfv2] Not yet implemented
+    }
+
+    override fun onLinkPreviewCanceled() {
+      // TODO [cfv2] Not yet implemented
+    }
+
+    override fun onStickerSuggestionSelected(sticker: StickerRecord) {
+      // TODO [cfv2] Not yet implemented
+    }
+
+    override fun onQuoteChanged(id: Long, author: RecipientId) {
+      draftViewModel.setQuoteDraft(id, author)
+    }
+
+    override fun onQuoteCleared() {
+      draftViewModel.clearQuoteDraft()
+    }
+
+    override fun onEnterEditMode() {
+      // TODO [cfv2] Not yet implemented
+    }
+
+    override fun onExitEditMode() {
+      updateToggleButtonState()
+      draftViewModel.deleteMessageEditDraft()
+    }
+  }
+
+  //endregion
 
   //region Attachment + Media Keyboard
 
@@ -2365,7 +2584,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun onLocationRemoved() {
-      // TODO [cfv2] implement
+      draftViewModel.clearLocationDraft()
     }
   }
 

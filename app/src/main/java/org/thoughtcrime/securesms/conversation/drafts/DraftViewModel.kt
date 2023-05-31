@@ -25,10 +25,11 @@ import org.thoughtcrime.securesms.util.rx.RxStore
  * management pattern going forward for drafts.
  */
 class DraftViewModel @JvmOverloads constructor(
+  threadId: Long = -1,
   private val repository: DraftRepository = DraftRepository()
 ) : ViewModel() {
 
-  private val store = RxStore(DraftState())
+  private val store = RxStore(DraftState(threadId = threadId))
 
   val state: Flowable<DraftState> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
 
@@ -39,10 +40,12 @@ class DraftViewModel @JvmOverloads constructor(
     store.dispose()
   }
 
+  @Deprecated("Not needed for CFv2")
   fun setThreadId(threadId: Long) {
     store.update { it.copy(threadId = threadId) }
   }
 
+  @Deprecated("Not needed for CFv2")
   fun setDistributionType(distributionType: Int) {
     store.update { it.copy(distributionType = distributionType) }
   }
@@ -64,6 +67,7 @@ class DraftViewModel @JvmOverloads constructor(
     }
   }
 
+  @Deprecated("Not needed for CFv2")
   fun onRecipientChanged(recipient: Recipient) {
     store.update { it.copy(recipientId = recipient.id) }
   }
@@ -130,16 +134,17 @@ class DraftViewModel @JvmOverloads constructor(
     }
   }
 
-  fun onSendComplete(threadId: Long) {
+  fun onSendComplete(threadId: Long = store.state.threadId) {
     repository.deleteVoiceNoteDraftData(store.state.voiceNoteDraft)
     store.update { saveDrafts(it.copyAndClearDrafts(threadId)) }
   }
 
   private fun saveDrafts(state: DraftState): DraftState {
-    repository.saveDrafts(Recipient.resolved(state.recipientId), state.threadId, state.distributionType, state.toDrafts())
+    repository.saveDrafts(state.recipientId?.let { Recipient.resolved(it) }, state.threadId, state.distributionType, state.toDrafts())
     return state
   }
 
+  @Deprecated("Not needed for CFv2")
   fun loadDrafts(threadId: Long): Single<DraftRepository.DatabaseDraft> {
     return repository
       .loadDrafts(threadId)
@@ -149,15 +154,28 @@ class DraftViewModel @JvmOverloads constructor(
       .observeOn(AndroidSchedulers.mainThread())
   }
 
+  @Deprecated("Not needed for CFv2")
   fun loadDraftQuote(serialized: String): Maybe<ConversationMessage> {
     return repository.loadDraftQuote(serialized)
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
   }
 
+  @Deprecated("Not needed for CFv2")
   fun loadDraftEditMessage(serialized: String): Maybe<ConversationMessage> {
     return repository.loadDraftMessageEdit(serialized)
       .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun loadShareOrDraftData(): Maybe<DraftRepository.ShareOrDraftData> {
+    return repository.getShareOrDraftData()
+      .doOnSuccess { (_, drafts) ->
+        if (drafts != null) {
+          store.update { saveDrafts(it.copyAndSetDrafts(drafts = drafts)) }
+        }
+      }
+      .map { (data, _) -> data }
       .observeOn(AndroidSchedulers.mainThread())
   }
 }

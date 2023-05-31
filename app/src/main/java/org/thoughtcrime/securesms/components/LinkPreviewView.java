@@ -205,7 +205,7 @@ public class LinkPreviewView extends FrameLayout {
     if (showThumbnail && linkPreview.getThumbnail().isPresent()) {
       thumbnail.setVisibility(VISIBLE);
       thumbnailState.applyState(thumbnail);
-      thumbnail.get().setImageResource(glideRequests, new ImageSlide(getContext(), linkPreview.getThumbnail().get()), type == TYPE_CONVERSATION, false);
+      thumbnail.get().setImageResource(glideRequests, new ImageSlide(linkPreview.getThumbnail().get()), type == TYPE_CONVERSATION, false);
       thumbnail.get().showDownloadText(false);
     } else {
       thumbnail.setVisibility(GONE);

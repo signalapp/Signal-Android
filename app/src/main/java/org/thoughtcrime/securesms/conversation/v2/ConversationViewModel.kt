@@ -28,6 +28,7 @@ import org.signal.core.util.concurrent.subscribeWithSubject
 import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.components.reminder.Reminder
+import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
@@ -42,6 +43,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
@@ -117,11 +119,6 @@ class ConversationViewModel(
         recipientSnapshot = it
       }
 
-    disposables += recipientRepository
-      .conversationRecipient
-      .skip(1) // We can safely skip the first emission since this is used for updating the header on future changes
-      .subscribeBy { pagingController.onDataItemChanged(ConversationElementKey.threadHeader) }
-
     disposables += repository.getConversationThreadState(threadId, requestedStartingPosition)
       .subscribeBy(onSuccess = {
         pagingController.set(it.items.controller)
@@ -152,6 +149,18 @@ class ConversationViewModel(
         }
       }
     }.subscribeOn(Schedulers.io()).subscribe()
+
+    recipientRepository
+      .conversationRecipient
+      .filter { it.isRegistered }
+      .take(1)
+      .subscribeBy { RetrieveProfileJob.enqueue(it.id) }
+      .addTo(disposables)
+
+    disposables += recipientRepository
+      .conversationRecipient
+      .skip(1) // We can safely skip the first emission since this is used for updating the header on future changes
+      .subscribeBy { pagingController.onDataItemChanged(ConversationElementKey.threadHeader) }
 
     disposables += scrollButtonStateStore.update(
       repository.getMessageCounts(threadId)
@@ -250,7 +259,8 @@ class ConversationViewModel(
     messageToEdit: MessageId?,
     quote: QuoteModel?,
     mentions: List<Mention>,
-    bodyRanges: BodyRangeList?
+    bodyRanges: BodyRangeList?,
+    contacts: List<Contact>
   ): Completable {
     return repository.sendMessage(
       threadId = threadId,
@@ -262,7 +272,8 @@ class ConversationViewModel(
       messageToEdit = messageToEdit,
       quote = quote,
       mentions = mentions,
-      bodyRanges = bodyRanges
+      bodyRanges = bodyRanges,
+      contacts = contacts
     ).observeOn(AndroidSchedulers.mainThread())
   }
 

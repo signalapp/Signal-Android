@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
+import org.thoughtcrime.securesms.mms.SlideFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
@@ -105,6 +106,9 @@ public class ConversationIntents {
     private final RecipientId            recipientId;
     private final long                   threadId;
     private final String                 draftText;
+    private final Uri                    draftMedia;
+    private final String                 draftContentType;
+    private final SlideFactory.MediaType draftMediaType;
     private final ArrayList<Media>       media;
     private final StickerLocator         stickerLocator;
     private final boolean                isBorderless;
@@ -124,6 +128,8 @@ public class ConversationIntents {
                         null,
                         null,
                         null,
+                        null,
+                        null,
                         false,
                         ThreadTable.DistributionTypes.DEFAULT,
                         -1,
@@ -137,6 +143,8 @@ public class ConversationIntents {
       return new Args(RecipientId.from(Objects.requireNonNull(arguments.getString(EXTRA_RECIPIENT))),
                       arguments.getLong(EXTRA_THREAD_ID, -1),
                       arguments.getString(EXTRA_TEXT),
+                      ConversationIntents.getIntentData(arguments),
+                      ConversationIntents.getIntentType(arguments),
                       arguments.getParcelableArrayList(EXTRA_MEDIA),
                       arguments.getParcelable(EXTRA_STICKER),
                       arguments.getBoolean(EXTRA_BORDERLESS, false),
@@ -152,6 +160,8 @@ public class ConversationIntents {
     private Args(@NonNull RecipientId recipientId,
                  long threadId,
                  @Nullable String draftText,
+                 @Nullable Uri draftMedia,
+                 @Nullable String draftContentType,
                  @Nullable ArrayList<Media> media,
                  @Nullable StickerLocator stickerLocator,
                  boolean isBorderless,
@@ -166,6 +176,8 @@ public class ConversationIntents {
       this.recipientId                 = recipientId;
       this.threadId                    = threadId;
       this.draftText                   = draftText;
+      this.draftMedia                  = draftMedia;
+      this.draftContentType            = draftContentType;
       this.media                       = media;
       this.stickerLocator              = stickerLocator;
       this.isBorderless                = isBorderless;
@@ -176,6 +188,7 @@ public class ConversationIntents {
       this.giftBadge                   = giftBadge;
       this.shareDataTimestamp          = shareDataTimestamp;
       this.conversationScreenType      = conversationScreenType;
+      this.draftMediaType              = SlideFactory.MediaType.from(draftContentType);
     }
 
     public @NonNull RecipientId getRecipientId() {
@@ -188,6 +201,18 @@ public class ConversationIntents {
 
     public @Nullable String getDraftText() {
       return draftText;
+    }
+
+    public @Nullable Uri getDraftMedia() {
+      return draftMedia;
+    }
+
+    public @Nullable String getDraftContentType() {
+      return draftContentType;
+    }
+
+    public @Nullable SlideFactory.MediaType getDraftMediaType() {
+      return draftMediaType;
     }
 
     public @Nullable ArrayList<Media> getMedia() {
@@ -236,6 +261,10 @@ public class ConversationIntents {
 
     public @NonNull ConversationScreenType getConversationScreenType() {
       return conversationScreenType;
+    }
+
+    public boolean canInitializeFromDatabase() {
+      return draftText == null && (draftMedia == null || ConversationIntents.isBubbleIntentUri(draftMedia) || ConversationIntents.isNotificationIntentUri(draftMedia)) && draftMediaType == null;
     }
   }
 
