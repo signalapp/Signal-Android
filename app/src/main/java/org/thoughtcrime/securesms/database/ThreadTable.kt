@@ -1405,48 +1405,43 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         }
       }
 
-      val record: MessageRecord = try {
+      val record: MessageRecord? = try {
         messages.getConversationSnippet(threadId)
       } catch (e: NoSuchMessageException) {
         val scheduledMessage: MessageRecord? = messages.getScheduledMessagesInThread(threadId).lastOrNull()
 
-        if (scheduledMessage == null) {
-          Log.w(TAG, "Failed to get a conversation snippet for thread $threadId")
-          if (shouldDelete) {
-            deleteConversation(threadId)
-          } else if (isPinned) {
-            updateThread(
-              threadId = threadId,
-              meaningfulMessages = meaningfulMessages,
-              body = null,
-              attachment = null,
-              contentType = null,
-              extra = null,
-              date = 0,
-              status = 0,
-              deliveryReceiptCount = 0,
-              type = 0,
-              unarchive = unarchive,
-              expiresIn = 0,
-              readReceiptCount = 0
-            )
-          }
-          return@withinTransaction true
-        } else {
+        if (scheduledMessage != null) {
           Log.i(TAG, "Using scheduled message for conversation snippet")
-          scheduledMessage
         }
+        scheduledMessage
       }
 
-      val drafts: DraftTable.Drafts = SignalDatabase.drafts.getDrafts(threadId)
-      if (drafts.isNotEmpty()) {
-        val threadRecord: ThreadRecord? = getThreadRecord(threadId)
-        if (threadRecord != null &&
-          threadRecord.type == MessageTypes.BASE_DRAFT_TYPE &&
-          threadRecord.date > record.timestamp
-        ) {
-          return@withinTransaction false
+      if (record == null) {
+        Log.w(TAG, "Failed to get a conversation snippet for thread $threadId")
+        if (shouldDelete) {
+          deleteConversation(threadId)
+        } else if (isPinned) {
+          updateThread(
+            threadId = threadId,
+            meaningfulMessages = meaningfulMessages,
+            body = null,
+            attachment = null,
+            contentType = null,
+            extra = null,
+            date = 0,
+            status = 0,
+            deliveryReceiptCount = 0,
+            type = 0,
+            unarchive = unarchive,
+            expiresIn = 0,
+            readReceiptCount = 0
+          )
         }
+        return@withinTransaction true
+      }
+
+      if (hasMoreRecentDraft(threadId, record.timestamp)) {
+        return@withinTransaction false
       }
 
       val threadBody: ThreadBody = ThreadBodyUtil.getFormattedBodyFor(context, record)
@@ -1472,6 +1467,20 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
       return@withinTransaction false
     }
+  }
+
+  private fun hasMoreRecentDraft(threadId: Long, timestamp: Long): Boolean {
+    val drafts: DraftTable.Drafts = SignalDatabase.drafts.getDrafts(threadId)
+    if (drafts.isNotEmpty()) {
+      val threadRecord: ThreadRecord? = getThreadRecord(threadId)
+      if (threadRecord != null &&
+        threadRecord.type == MessageTypes.BASE_DRAFT_TYPE &&
+        threadRecord.date > timestamp
+      ) {
+        return true
+      }
+    }
+    return false
   }
 
   fun updateSnippetTypeSilently(threadId: Long) {
