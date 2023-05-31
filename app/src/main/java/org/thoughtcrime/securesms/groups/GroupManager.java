@@ -118,12 +118,12 @@ public final class GroupManager {
   }
 
   @WorkerThread
-  public static void leaveGroup(@NonNull Context context, @NonNull GroupId.Push groupId)
+  public static void leaveGroup(@NonNull Context context, @NonNull GroupId.Push groupId, boolean sendToMembers)
       throws GroupChangeBusyException, GroupChangeFailedException, IOException
   {
     if (groupId.isV2()) {
       try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
-        edit.leaveGroup();
+        edit.leaveGroup(sendToMembers);
         Log.i(TAG, "Left group " + groupId);
       } catch (GroupInsufficientRightsException e) {
         Log.w(TAG, "Unexpected prevention from leaving " + groupId + " due to rights", e);
@@ -146,7 +146,7 @@ public final class GroupManager {
       throws IOException, GroupChangeBusyException, GroupChangeFailedException
   {
     if (groupId.isV2()) {
-      leaveGroup(context, groupId.requireV2());
+      leaveGroup(context, groupId.requireV2(), true);
     } else {
       if (!GroupManagerV1.silentLeaveGroup(context, groupId.requireV1())) {
         throw new GroupChangeFailedException();
@@ -169,7 +169,7 @@ public final class GroupManager {
       throws GroupChangeBusyException, GroupChangeFailedException, GroupInsufficientRightsException, GroupNotAMemberException, IOException
   {
     try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
-      edit.ejectMember(recipient.requireServiceId(), false, true);
+      edit.ejectMember(recipient.requireServiceId(), false, true, true);
       Log.i(TAG, "Member removed from group " + groupId);
     }
   }
