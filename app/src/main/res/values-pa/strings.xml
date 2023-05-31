@@ -315,7 +315,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">ਵੀਡੀਓ ਨੂੰ ਡਾਊਨਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ। ਤੁਹਾਨੂੰ ਇਹ ਦੁਬਾਰਾ ਭੇਜਣੀ ਪਵੇਗੀ।</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">ਸੋਧਿਆ ਗਿਆ %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">ਅਟੈਚਮੈਂਟ ਨੂੰ ਜੋੜੋ</string>
@@ -500,7 +500,7 @@
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">Signal ਨੂੰ ਮੁੜ-ਰਜਿਸਟਰ ਕਰੋ</string>
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
-    <string name="ConversationFragment__content_description_back_button">Navigate back.</string>
+    <string name="ConversationFragment__content_description_back_button">ਪਿੱਛੇ ਜਾਓ।</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Signal ਖੋਲ੍ਹੋ</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
@@ -2249,7 +2249,7 @@
     <string name="QuickResponseService_problem_sending_message">ਸੁਨੇਹਾ ਭੇਜਣ ਵਿੱਚ ਸਮੱਸਿਆ!</string>
 
     <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
-    <string name="SaveAttachmentTask_saved">Media saved</string>
+    <string name="SaveAttachmentTask_saved">ਮੀਡੀਆ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਗਿਆ</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">ਖੋਜੋ</string>
@@ -4325,7 +4325,7 @@
     <string name="HelpSettingsFragment__version">ਸੰਸਕਰਣ</string>
     <string name="HelpSettingsFragment__debug_log">ਡੀਬੱਗ ਲਾਗ</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licenses</string>
+    <string name="HelpSettingsFragment__licenses">ਲਾਇਸੰਸ</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">ਸ਼ਰਤਾਂ &amp; ਪਰਦੇਦਾਰੀ ਨੀਤੀ</string>
     <string name="HelpFragment__copyright_signal_messenger">ਕਾਪੀਰਾਈਟ Signal ਮੈਸੰਜਰ</string>
     <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 ਅਧੀਨ ਲਾਇਸੰਸ ਦਿੱਤਾ ਗਿਆ</string>
@@ -5931,7 +5931,7 @@
     <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
-    <string name="CallLogAdapter__call_link">Call link</string>
+    <string name="CallLogAdapter__call_link">ਕਾਲ ਦਾ ਲਿੰਕ</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6078,11 +6078,11 @@
     <!-- Displayed in a text row, allowing the user to delete the call link -->
     <string name="CallLinkDetailsFragment__delete_call_link">ਕਾਲ ਦਾ ਲਿੰਕ ਮਿਟਾਓ</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
-    <string name="CallLinkDetailsFragment__couldnt_save_changes">Couldn\'t save changes. Check your network connection and try again.</string>
+    <string name="CallLinkDetailsFragment__couldnt_save_changes">ਤਬਦੀਲੀਆਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਨਹੀਂ ਕਰ ਸਕੇ। ਆਪਣੇ ਨੈੱਟਵਰਕ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__delete_link">Delete link?</string>
+    <string name="CallLinkDetailsFragment__delete_link">ਕੀ ਲਿੰਕ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">This link will no longer work for anyone who as it.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">ਇਹ ਲਿੰਕ ਜਿਸ ਕੋਲ ਵੀ ਹੈ ਉਸਦੇ ਲਈ ਕੰਮ ਨਹੀਂ ਕਰੇਗਾ।</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">ਸਾਂਝਾ ਕਰੋ</string>
@@ -6107,11 +6107,11 @@
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">ਰੰਗ</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">The QR code was invalid.</string>
+    <string name="UsernameLinkSettings_qr_result_invalid">QR ਕੋਡ ਅਵੈਧ ਸੀ।</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">A user with username %1$s could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">ਵਰਤੋਂਕਾਰ ਨਾਂ %1$s ਵਾਲਾ ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਲੱਭਿਆ।</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
+    <string name="UsernameLinkSettings_qr_result_network_error">ਨੈੱਟਵਰਕ ਗੜਬੜੀ ਪੇਸ਼ ਆਈ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ|</string>
 
 
     <!-- EOF -->

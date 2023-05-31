@@ -314,7 +314,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Không thể tải video xuống. Bạn cần gửi lại.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">đã chỉnh sửa %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Thêm tệp đính kèm</string>
@@ -492,7 +492,7 @@
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">Đăng ký lại Signal</string>
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
-    <string name="ConversationFragment__content_description_back_button">Navigate back.</string>
+    <string name="ConversationFragment__content_description_back_button">Quay lại.</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Mở Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
@@ -2180,7 +2180,7 @@
     <string name="QuickResponseService_problem_sending_message">Có vấn đề khi gửi tin nhắn!</string>
 
     <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
-    <string name="SaveAttachmentTask_saved">Media saved</string>
+    <string name="SaveAttachmentTask_saved">Đã lưu tệp đa phương tiện</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Tìm kiếm</string>
@@ -4230,7 +4230,7 @@
     <string name="HelpSettingsFragment__version">Phiên bản</string>
     <string name="HelpSettingsFragment__debug_log">Nhật ký gỡ lỗi</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licenses</string>
+    <string name="HelpSettingsFragment__licenses">Các loại giấy phép</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Điều khoản &amp; Quyền riêng tư</string>
     <string name="HelpFragment__copyright_signal_messenger">Bản quyền Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_agplv3">Được cấp phép GNU AGPLv3</string>
@@ -5808,7 +5808,7 @@
     <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
-    <string name="CallLogAdapter__call_link">Call link</string>
+    <string name="CallLogAdapter__call_link">Đường dẫn cuộc gọi</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5953,11 +5953,11 @@
     <!-- Displayed in a text row, allowing the user to delete the call link -->
     <string name="CallLinkDetailsFragment__delete_call_link">Xóa đường dẫn cuộc gọi</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
-    <string name="CallLinkDetailsFragment__couldnt_save_changes">Couldn\'t save changes. Check your network connection and try again.</string>
+    <string name="CallLinkDetailsFragment__couldnt_save_changes">Không thể lưu các thay đổi. Kiểm tra kết nối mạng của bạn và thử lại.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__delete_link">Delete link?</string>
+    <string name="CallLinkDetailsFragment__delete_link">Xóa liên kết?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">This link will no longer work for anyone who as it.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Liên kết này sẽ không còn hoạt động với bất kỳ ai.</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Chia sẻ</string>
@@ -5982,11 +5982,11 @@
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Màu</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">The QR code was invalid.</string>
+    <string name="UsernameLinkSettings_qr_result_invalid">Mã QR không hợp lệ.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">A user with username %1$s could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">Không thể tìm thấy người dùng có tên người dùng %1$s .</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
+    <string name="UsernameLinkSettings_qr_result_network_error">Lỗi mạng. Xin hãy thử lại.</string>
 
 
     <!-- EOF -->

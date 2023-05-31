@@ -314,7 +314,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">동영상을 다운로드할 수 없습니다. 다시 공유해 주세요.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">%1$s 전 수정함</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">파일 첨부</string>
@@ -492,7 +492,7 @@
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">Signal 다시 등록</string>
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
-    <string name="ConversationFragment__content_description_back_button">Navigate back.</string>
+    <string name="ConversationFragment__content_description_back_button">돌아가기</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Signal 열기</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
@@ -2180,7 +2180,7 @@
     <string name="QuickResponseService_problem_sending_message">메시지를 보내는 중에 오류가 발생했습니다!</string>
 
     <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
-    <string name="SaveAttachmentTask_saved">Media saved</string>
+    <string name="SaveAttachmentTask_saved">미디어를 저장했습니다.</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">검색</string>
@@ -4230,7 +4230,7 @@
     <string name="HelpSettingsFragment__version">버전</string>
     <string name="HelpSettingsFragment__debug_log">디버그 로그</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licenses</string>
+    <string name="HelpSettingsFragment__licenses">라이선스</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">이용 약관 &amp; 개인 정보 보호 정책</string>
     <string name="HelpFragment__copyright_signal_messenger">Signal Messenger 저작권</string>
     <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3에 따라 라이선스가 부여됨</string>
@@ -5808,7 +5808,7 @@
     <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
     <string name="CallLogAdapter__d_s">%2$s(%1$d통)</string>
     <!-- Status text on call links -->
-    <string name="CallLogAdapter__call_link">Call link</string>
+    <string name="CallLogAdapter__call_link">통화 링크</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5953,11 +5953,11 @@
     <!-- Displayed in a text row, allowing the user to delete the call link -->
     <string name="CallLinkDetailsFragment__delete_call_link">통화 링크 삭제</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
-    <string name="CallLinkDetailsFragment__couldnt_save_changes">Couldn\'t save changes. Check your network connection and try again.</string>
+    <string name="CallLinkDetailsFragment__couldnt_save_changes">변경 내용을 저장할 수 없습니다. 네트워크 연결을 확인하고 다시 시도하세요.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__delete_link">Delete link?</string>
+    <string name="CallLinkDetailsFragment__delete_link">링크를 삭제할까요?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">This link will no longer work for anyone who as it.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">이 링크는 더 이상 누구도 사용할 수 없습니다.</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">공유</string>
@@ -5982,11 +5982,11 @@
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">색상</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">The QR code was invalid.</string>
+    <string name="UsernameLinkSettings_qr_result_invalid">QR 코드가 잘못되었습니다.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">A user with username %1$s could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">사용자 이름이 %1$s인 사용자를 찾을 수 없습니다.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
+    <string name="UsernameLinkSettings_qr_result_network_error">네트워크 오류가 발생했습니다. 다시 시도해 주세요.</string>
 
 
     <!-- EOF -->

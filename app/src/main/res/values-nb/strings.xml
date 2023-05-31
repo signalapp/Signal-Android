@@ -315,7 +315,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Kunne ikke laste ned videoen. Du må sende den på nytt.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">redigert %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Legg til vedlegg</string>
@@ -500,7 +500,7 @@
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">Registrer deg for Signal på nytt</string>
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
-    <string name="ConversationFragment__content_description_back_button">Navigate back.</string>
+    <string name="ConversationFragment__content_description_back_button">Gå tilbake.</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Åpne Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
@@ -2249,7 +2249,7 @@
     <string name="QuickResponseService_problem_sending_message">Det oppstod et problem under sending av melding.</string>
 
     <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
-    <string name="SaveAttachmentTask_saved">Media saved</string>
+    <string name="SaveAttachmentTask_saved">Mediet er lagret</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Søk</string>
@@ -4325,7 +4325,7 @@
     <string name="HelpSettingsFragment__version">Versjon</string>
     <string name="HelpSettingsFragment__debug_log">Feilsøkingslogg</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licenses</string>
+    <string name="HelpSettingsFragment__licenses">Lisenser</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Vilkår og personvernerklæring</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_agplv3">Lisensiert under GNU AGPLv3</string>
@@ -5931,7 +5931,7 @@
     <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
-    <string name="CallLogAdapter__call_link">Call link</string>
+    <string name="CallLogAdapter__call_link">Samtalelenke</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -6078,11 +6078,11 @@
     <!-- Displayed in a text row, allowing the user to delete the call link -->
     <string name="CallLinkDetailsFragment__delete_call_link">Slett anropslenken</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
-    <string name="CallLinkDetailsFragment__couldnt_save_changes">Couldn\'t save changes. Check your network connection and try again.</string>
+    <string name="CallLinkDetailsFragment__couldnt_save_changes">Kunne ikke lagre endringene. Sjekk internettilkoblingen og prøv igjen.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__delete_link">Delete link?</string>
+    <string name="CallLinkDetailsFragment__delete_link">Vil du slette lenken?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">This link will no longer work for anyone who as it.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Denne lenken vil slutte å fungere for alle.</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Del</string>
@@ -6107,11 +6107,11 @@
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Farge</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">The QR code was invalid.</string>
+    <string name="UsernameLinkSettings_qr_result_invalid">QR-koden er ikke gyldig.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">A user with username %1$s could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">Fant ingen bruker med brukernavn %1$s.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
+    <string name="UsernameLinkSettings_qr_result_network_error">Det oppstod en nettverksfeil. Prøv igjen.</string>
 
 
     <!-- EOF -->

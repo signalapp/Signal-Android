@@ -314,7 +314,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">下載唔到影片。你要再傳送多次。</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">編輯咗 (%1$s前)</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">加附件</string>
@@ -492,7 +492,7 @@
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">重新註冊 Signal</string>
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
-    <string name="ConversationFragment__content_description_back_button">Navigate back.</string>
+    <string name="ConversationFragment__content_description_back_button">返去上一頁。</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">開啟 Signal</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
@@ -2180,7 +2180,7 @@
     <string name="QuickResponseService_problem_sending_message">訊息傳送有問題！</string>
 
     <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
-    <string name="SaveAttachmentTask_saved">Media saved</string>
+    <string name="SaveAttachmentTask_saved">媒體已經儲存咗</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">搜尋</string>
@@ -4230,7 +4230,7 @@
     <string name="HelpSettingsFragment__version">版本</string>
     <string name="HelpSettingsFragment__debug_log">除錯記錄檔</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licenses</string>
+    <string name="HelpSettingsFragment__licenses">授權</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">使用條款同私隱政策</string>
     <string name="HelpFragment__copyright_signal_messenger">Signal Messenger 版權所有</string>
     <string name="HelpFragment__licenced_under_the_agplv3">根據 GNU AGPLv3 嘅協議授權</string>
@@ -5808,7 +5808,7 @@
     <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
-    <string name="CallLogAdapter__call_link">Call link</string>
+    <string name="CallLogAdapter__call_link">通話連結</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5953,11 +5953,11 @@
     <!-- Displayed in a text row, allowing the user to delete the call link -->
     <string name="CallLinkDetailsFragment__delete_call_link">刪除通話連結</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
-    <string name="CallLinkDetailsFragment__couldnt_save_changes">Couldn\'t save changes. Check your network connection and try again.</string>
+    <string name="CallLinkDetailsFragment__couldnt_save_changes">儲存唔到變更。請檢查你嘅網絡連線，然後再試多次啦。</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__delete_link">Delete link?</string>
+    <string name="CallLinkDetailsFragment__delete_link">係咪要刪除連結呀？</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">This link will no longer work for anyone who as it.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">呢個連結將會失效，任何人都唔會再用到。</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">分享</string>
@@ -5982,11 +5982,11 @@
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">顏色</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">The QR code was invalid.</string>
+    <string name="UsernameLinkSettings_qr_result_invalid">二維碼無效。</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">A user with username %1$s could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">揾唔到用戶名稱叫「 %1$s 」嘅用戶。</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
+    <string name="UsernameLinkSettings_qr_result_network_error">網絡出現問題，請你再試多次啦。</string>
 
 
     <!-- EOF -->

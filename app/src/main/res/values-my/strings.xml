@@ -314,7 +314,7 @@
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">ဗီဒီယို ဒေါင်းလုဒ်လုပ်၍ မရပါ။ ၎င်းကို ထပ်ပို့ရန် လိုအပ်ပါသည်။</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
-    <string name="ConversationItem_edited_timestamp_footer">edited %1$s</string>
+    <string name="ConversationItem_edited_timestamp_footer">တည်းဖြတ်ထား %1$s</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">ပူးတွဲဖိုင် ထည့်ရန်</string>
@@ -492,7 +492,7 @@
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">Signal ကို ပြန်လည်၍မှတ်ပုံတင်ရန်</string>
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
-    <string name="ConversationFragment__content_description_back_button">Navigate back.</string>
+    <string name="ConversationFragment__content_description_back_button">အနောက်သို့ ပြန်သွားပါ။</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Signal ကို ဖွင့်ရန်</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
@@ -2180,7 +2180,7 @@
     <string name="QuickResponseService_problem_sending_message">စာပို့ခြင်းအခက်အခဲ</string>
 
     <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
-    <string name="SaveAttachmentTask_saved">Media saved</string>
+    <string name="SaveAttachmentTask_saved">မီဒီယာ သိမ်းဆည်းပြီး</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">ရှာရန်</string>
@@ -4230,7 +4230,7 @@
     <string name="HelpSettingsFragment__version">ဗားရှင်း</string>
     <string name="HelpSettingsFragment__debug_log">ပြစ်ချက်မှတ်တမ်း</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licenses</string>
+    <string name="HelpSettingsFragment__licenses">လိုင်စင်များ</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">လိုက်နာဆောင်ရွက်ရမည့် အချက်များ</string>
     <string name="HelpFragment__copyright_signal_messenger">မူပိုင်ခွင့် Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 အတိုင်း ခွင့်ပြုထားသည်</string>
@@ -5808,7 +5808,7 @@
     <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
     <string name="CallLogAdapter__d_s">(%1$d) ကောလ် %2$s</string>
     <!-- Status text on call links -->
-    <string name="CallLogAdapter__call_link">Call link</string>
+    <string name="CallLogAdapter__call_link">ကောလ်လင့်ခ်</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -5953,11 +5953,11 @@
     <!-- Displayed in a text row, allowing the user to delete the call link -->
     <string name="CallLinkDetailsFragment__delete_call_link">ကောလ်လင့်ခ် ဖျက်ရန်</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
-    <string name="CallLinkDetailsFragment__couldnt_save_changes">Couldn\'t save changes. Check your network connection and try again.</string>
+    <string name="CallLinkDetailsFragment__couldnt_save_changes">အပြောင်းအလဲများကို သိမ်းဆည်း၍မရပါ။ သင့်ကွန်ရက် ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားပါ။</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__delete_link">Delete link?</string>
+    <string name="CallLinkDetailsFragment__delete_link">လင့်ခ်ကို ဖျက်မည်လား။</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">This link will no longer work for anyone who as it.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">ဤလင့်ခ်သည် ၎င်းကို ရရှိထားသူမှန်သမျှအတွက် အလုပ်လုပ်တော့မည်မဟုတ်ပါ။</string>
 
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">ဝေမျှမယ်</string>
@@ -5982,11 +5982,11 @@
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">အရောင်</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">The QR code was invalid.</string>
+    <string name="UsernameLinkSettings_qr_result_invalid">QR ကုဒ် မမှန်ကန်ပါ။</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">A user with username %1$s could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">သုံးစွဲသူအမည် %1$s ဖြင့် သုံးစွဲသူကို ရှာမတွေ့ပါ။</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
+    <string name="UsernameLinkSettings_qr_result_network_error">ကွန်ရက် အမှားအယွင်းတစ်ခု ကြုံတွေ့ခဲ့ရပါသည်။ ထပ်ကြိုးစားကြည့်ပါ။</string>
 
 
     <!-- EOF -->
