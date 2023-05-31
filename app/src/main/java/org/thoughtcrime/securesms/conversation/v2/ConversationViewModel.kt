@@ -28,6 +28,7 @@ import org.signal.core.util.concurrent.subscribeWithSubject
 import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.components.reminder.Reminder
+import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
@@ -289,5 +290,9 @@ class ConversationViewModel(
       .flatMapSingle { (recipient, messageRequestState, group) -> repository.getRequestReviewState(recipient, group, messageRequestState) }
       .distinctUntilChanged()
       .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun getSlideDeckAndBodyForReply(context: Context, conversationMessage: ConversationMessage): Pair<SlideDeck, CharSequence> {
+    return repository.getSlideDeckAndBodyForReply(context, conversationMessage)
   }
 }

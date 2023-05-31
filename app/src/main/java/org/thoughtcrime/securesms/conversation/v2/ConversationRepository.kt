@@ -32,6 +32,8 @@ import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.ShortcutLauncherActivity
+import org.thoughtcrime.securesms.attachments.TombstoneAttachment
+import org.thoughtcrime.securesms.components.emoji.EmojiStrings
 import org.thoughtcrime.securesms.components.reminder.BubbleOptOutReminder
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder
 import org.thoughtcrime.securesms.components.reminder.GroupsV1MigrationSuggestionsReminder
@@ -39,6 +41,8 @@ import org.thoughtcrime.securesms.components.reminder.PendingGroupJoinRequestsRe
 import org.thoughtcrime.securesms.components.reminder.Reminder
 import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder
+import org.thoughtcrime.securesms.contactshare.Contact
+import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.GroupAuthorNameColorHelper
 import org.thoughtcrime.securesms.conversation.colors.NameColor
@@ -80,9 +84,13 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.DrawableUtil
+import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.hasLinkPreview
+import org.thoughtcrime.securesms.util.hasSharedContact
 import org.thoughtcrime.securesms.util.hasTextSlide
+import org.thoughtcrime.securesms.util.isViewOnceMessage
 import org.thoughtcrime.securesms.util.requireTextSlide
 import java.io.IOException
 import java.util.Optional
@@ -430,6 +438,46 @@ class ConversationRepository(
           .build()
       }
       .subscribeOn(Schedulers.computation())
+  }
+
+  fun getSlideDeckAndBodyForReply(context: Context, conversationMessage: ConversationMessage): Pair<SlideDeck, CharSequence> {
+    val messageRecord = conversationMessage.messageRecord
+
+    return if (messageRecord.isMms && messageRecord.hasSharedContact()) {
+      val contact: Contact = (messageRecord as MmsMessageRecord).sharedContacts.first()
+      val displayName: String = ContactUtil.getDisplayName(contact)
+      val body: String = context.getString(R.string.ConversationActivity_quoted_contact_message, EmojiStrings.BUST_IN_SILHOUETTE, displayName)
+      val slideDeck = SlideDeck()
+
+      if (contact.avatarAttachment != null) {
+        slideDeck.addSlide(MediaUtil.getSlideForAttachment(context, contact.avatarAttachment))
+      }
+
+      slideDeck to body
+    } else if (messageRecord.isMms && messageRecord.hasLinkPreview()) {
+      val linkPreview = (messageRecord as MmsMessageRecord).linkPreviews.first()
+      val slideDeck = SlideDeck()
+
+      linkPreview.thumbnail.ifPresent {
+        slideDeck.addSlide(MediaUtil.getSlideForAttachment(context, it))
+      }
+
+      slideDeck to conversationMessage.getDisplayBody(context)
+    } else {
+      var slideDeck = if (messageRecord.isMms) {
+        (messageRecord as MmsMessageRecord).slideDeck
+      } else {
+        SlideDeck()
+      }
+
+      if (messageRecord.isViewOnceMessage()) {
+        val attachment = TombstoneAttachment(MediaUtil.VIEW_ONCE, true)
+        slideDeck = SlideDeck()
+        slideDeck.addSlide(MediaUtil.getSlideForAttachment(context, attachment))
+      }
+
+      slideDeck to conversationMessage.getDisplayBody(context)
+    }
   }
 
   /**

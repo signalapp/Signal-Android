@@ -116,6 +116,7 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.ConversationIntents.ConversationScreenType
 import org.thoughtcrime.securesms.conversation.ConversationItem
 import org.thoughtcrime.securesms.conversation.ConversationItemSelection
+import org.thoughtcrime.securesms.conversation.ConversationItemSwipeCallback
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationOptionsMenu
 import org.thoughtcrime.securesms.conversation.ConversationReactionDelegate
@@ -221,6 +222,7 @@ import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
+import org.thoughtcrime.securesms.util.getRecordQuoteType
 import org.thoughtcrime.securesms.util.hasAudio
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.viewModel
@@ -546,6 +548,11 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       .getRequestReviewState()
       .subscribeBy { presentRequestReviewState(it) }
       .addTo(disposables)
+
+    ConversationItemSwipeCallback(
+      SwipeAvailabilityProvider(),
+      this::handleReplyToMessage
+    ).attachToRecyclerView(binding.conversationItemRecycler)
   }
 
   private fun presentInputReadyState(inputReadyState: InputReadyState) {
@@ -893,6 +900,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     disposables += send
       .doOnSubscribe {
         composeText.setText("")
+        inputPanel.clearQuote()
       }
       .subscribeBy(
         onError = { t ->
@@ -1139,7 +1147,30 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   //region Message action handling
 
   private fun handleReplyToMessage(conversationMessage: ConversationMessage) {
-    // TODO [cfv2] -- Not implemented yet.
+    /*
+    TODO [cfv2]
+    if (isSearchRequested) {
+      searchViewItem.collapseActionView();
+    }
+     */
+
+    if (inputPanel.inEditMessageMode()) {
+      inputPanel.exitEditMessageMode()
+    }
+
+    val (slideDeck, body) = viewModel.getSlideDeckAndBodyForReply(requireContext(), conversationMessage)
+    val author = conversationMessage.messageRecord.fromRecipient
+
+    inputPanel.setQuote(
+      GlideApp.with(this),
+      conversationMessage.messageRecord.dateSent,
+      author,
+      body,
+      slideDeck,
+      conversationMessage.messageRecord.getRecordQuoteType()
+    )
+
+    inputPanel.clickOnComposeInput()
   }
 
   private fun handleEditMessage(conversationMessage: ConversationMessage) {
@@ -1205,6 +1236,20 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       context = requireContext(),
       messageRecords = messageParts.map(MultiselectPart::getMessageRecord).toSet()
     ).subscribe()
+  }
+
+  private inner class SwipeAvailabilityProvider : ConversationItemSwipeCallback.SwipeAvailabilityProvider {
+    override fun isSwipeAvailable(conversationMessage: ConversationMessage): Boolean {
+      val recipient = viewModel.recipientSnapshot ?: return false
+
+      return actionMode == null && MenuState.canReplyToMessage(
+        recipient,
+        MenuState.isActionMessage(conversationMessage.messageRecord),
+        conversationMessage.messageRecord,
+        viewModel.hasMessageRequestState,
+        conversationGroupViewModel.isNonAdminInAnnouncementGroup()
+      )
+    }
   }
 
   //endregion
