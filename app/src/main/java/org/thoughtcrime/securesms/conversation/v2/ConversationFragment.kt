@@ -1174,7 +1174,22 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   }
 
   private fun handleEditMessage(conversationMessage: ConversationMessage) {
-    // TODO [cfv2] -- Not implemented yet.
+    if (!FeatureFlags.editMessageSending()) {
+      return
+    }
+
+    /*
+    TODO [cfv2]
+     if (isSearchRequested) {
+      searchViewItem.collapseActionView();
+    }
+     */
+
+    viewModel.resolveMessageToEdit(conversationMessage)
+      .subscribeBy { updatedMessage ->
+        inputPanel.enterEditMessageMode(GlideApp.with(this), updatedMessage, false)
+      }
+      .addTo(disposables)
   }
 
   private fun handleForwardMessageParts(messageParts: Set<MultiselectPart>) {

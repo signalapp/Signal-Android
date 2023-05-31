@@ -295,4 +295,8 @@ class ConversationViewModel(
   fun getSlideDeckAndBodyForReply(context: Context, conversationMessage: ConversationMessage): Pair<SlideDeck, CharSequence> {
     return repository.getSlideDeckAndBodyForReply(context, conversationMessage)
   }
+
+  fun resolveMessageToEdit(conversationMessage: ConversationMessage): Single<ConversationMessage> {
+    return repository.resolveMessageToEdit(conversationMessage)
+  }
 }

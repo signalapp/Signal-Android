@@ -480,6 +480,10 @@ class ConversationRepository(
     }
   }
 
+  fun resolveMessageToEdit(conversationMessage: ConversationMessage): Single<ConversationMessage> {
+    return oldConversationRepository.resolveMessageToEdit(conversationMessage)
+  }
+
   /**
    * Glide target for a contact photo which expects an error drawable, and publishes
    * the result to the given emitter.
