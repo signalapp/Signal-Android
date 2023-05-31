@@ -1389,8 +1389,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       return false
     }
 
-    writableDatabase.beginTransaction()
-    try {
+    return writableDatabase.withinTransaction {
       val meaningfulMessages = messages.hasMeaningfulMessage(threadId)
 
       val isPinned by lazy { getPinnedThreadIds().contains(threadId) }
@@ -1400,10 +1399,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         if (shouldDelete) {
           Log.d(TAG, "Deleting thread $threadId because it has no meaningful messages.")
           deleteConversation(threadId)
-          writableDatabase.setTransactionSuccessful()
-          return true
+          return@withinTransaction true
         } else if (!isPinned) {
-          return false
+          return@withinTransaction false
         }
       }
 
@@ -1416,7 +1414,6 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           Log.w(TAG, "Failed to get a conversation snippet for thread $threadId")
           if (shouldDelete) {
             deleteConversation(threadId)
-            writableDatabase.setTransactionSuccessful()
           } else if (isPinned) {
             updateThread(
               threadId = threadId,
@@ -1433,9 +1430,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
               expiresIn = 0,
               readReceiptCount = 0
             )
-            writableDatabase.setTransactionSuccessful()
           }
-          return true
+          return@withinTransaction true
         } else {
           Log.i(TAG, "Using scheduled message for conversation snippet")
           scheduledMessage
@@ -1449,7 +1445,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           threadRecord.type == MessageTypes.BASE_DRAFT_TYPE &&
           threadRecord.date > record.timestamp
         ) {
-          return false
+          return@withinTransaction false
         }
       }
 
@@ -1474,10 +1470,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       if (notifyListeners) {
         notifyConversationListListeners()
       }
-      writableDatabase.setTransactionSuccessful()
-      return false
-    } finally {
-      writableDatabase.endTransaction()
+      return@withinTransaction false
     }
   }
 
