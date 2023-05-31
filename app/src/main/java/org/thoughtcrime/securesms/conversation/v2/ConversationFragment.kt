@@ -1963,7 +1963,13 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     }
 
     override fun handleDial(isSecure: Boolean) {
-      // TODO [cfv2] - ("Not yet implemented")
+      val recipient: Recipient = viewModel.recipientSnapshot ?: return
+
+      if (isSecure) {
+        CommunicationActions.startVoiceCall(this@ConversationFragment, recipient)
+      } else {
+        CommunicationActions.startInsecureCall(this@ConversationFragment, recipient)
+      }
     }
 
     override fun handleViewMedia() {
