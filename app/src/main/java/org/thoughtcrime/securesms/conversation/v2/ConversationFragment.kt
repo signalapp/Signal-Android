@@ -2519,19 +2519,19 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
   private inner class InputPanelListener : InputPanel.Listener {
     override fun onVoiceNoteDraftPlay(audioUri: Uri, progress: Double) {
-      // TODO [cfv2] Not yet implemented
+      getVoiceNoteMediaController().startSinglePlaybackForDraft(audioUri, args.threadId, progress)
     }
 
     override fun onVoiceNoteDraftSeekTo(audioUri: Uri, progress: Double) {
-      // TODO [cfv2] Not yet implemented
+      getVoiceNoteMediaController().seekToPosition(audioUri, progress)
     }
 
     override fun onVoiceNoteDraftPause(audioUri: Uri) {
-      // TODO [cfv2] Not yet implemented
+      getVoiceNoteMediaController().pausePlayback(audioUri)
     }
 
     override fun onVoiceNoteDraftDelete(audioUri: Uri) {
-      // TODO [cfv2] Not yet implemented
+      getVoiceNoteMediaController().stopPlaybackAndReset(audioUri)
     }
 
     override fun onRecorderStarted() {
