@@ -1670,8 +1670,18 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       }
     }
 
-    override fun onItemClick(item: MultiselectPart?) {
-      // TODO [cfv2] -- ("Not yet implemented")
+    override fun onItemClick(item: MultiselectPart) {
+      if (actionMode != null) {
+        adapter.toggleSelection(item)
+        binding.conversationItemRecycler.invalidateItemDecorations()
+
+        if (adapter.selectedItems.isEmpty()) {
+          actionMode?.finish()
+        } else {
+          setCorrectActionModeMenuVisibility()
+          actionMode?.title = calculateSelectedItemCount()
+        }
+      }
     }
 
     override fun onItemLongClick(itemView: View, item: MultiselectPart) {
