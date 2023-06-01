@@ -122,6 +122,15 @@ public class CallNotificationBuilder {
     }
   }
 
+  public static @NonNull Notification getStartingNotification(@NonNull Context context) {
+    return new NotificationCompat.Builder(context, NotificationChannels.getInstance().CALL_STATUS)
+                                 .setSmallIcon(R.drawable.ic_call_secure_white_24dp)
+                                 .setOngoing(true)
+                                 .setContentTitle(context.getString(R.string.NotificationBarManager__starting_signal_call_service))
+                                 .setPriority(NotificationCompat.PRIORITY_MIN)
+                                 .build();
+  }
+
   public static @NonNull Notification getStoppingNotification(@NonNull Context context) {
     Intent contentIntent = new Intent(context, MainActivity.class);
     contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);

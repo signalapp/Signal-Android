@@ -231,6 +231,12 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   public void setCallInProgressNotification(int type, @NonNull RecipientId id) {
+    if (lastNotificationId == INVALID_NOTIFICATION_ID) {
+      lastNotificationId = CallNotificationBuilder.getStartingStoppingNotificationId();
+      lastNotification   = CallNotificationBuilder.getStartingNotification(this);
+      startForegroundCompat(lastNotificationId, lastNotification);
+    }
+
     notificationDisposable.dispose();
     notificationDisposable = CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id))
                                                     .subscribe(notification -> {
