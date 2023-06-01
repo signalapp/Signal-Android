@@ -4,14 +4,19 @@ import androidx.annotation.MainThread
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.processors.BehaviorProcessor
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.paging.ObservablePagedData
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.ProxyPagingController
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.rx.RxStore
+import java.util.concurrent.TimeUnit
 
 /**
  * ViewModel for call log management.
@@ -69,6 +74,22 @@ class CallLogViewModel(
 
     disposables += callLogRepository.listenForChanges().subscribe {
       controller.onDataInvalidated()
+    }
+
+    if (FeatureFlags.adHocCalling()) {
+      disposables += Observable
+        .interval(30, TimeUnit.SECONDS, Schedulers.computation())
+        .flatMapCompletable { callLogRepository.peekCallLinks() }
+        .subscribe()
+
+      disposables += ApplicationDependencies
+        .getSignalCallManager()
+        .peekInfoCache
+        .observeOn(Schedulers.computation())
+        .distinctUntilChanged()
+        .subscribe {
+          controller.onDataInvalidated()
+        }
     }
   }
 

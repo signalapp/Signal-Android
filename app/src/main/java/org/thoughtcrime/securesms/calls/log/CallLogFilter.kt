@@ -12,5 +12,10 @@ enum class CallLogFilter {
   /**
    * Only missed calls will be displayed
    */
-  MISSED
+  MISSED,
+
+  /**
+   * Only ad-hoc calls will be returned
+   */
+  AD_HOC
 }

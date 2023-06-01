@@ -7,6 +7,7 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.CallLinkPeekJob
 
 class CallLogRepository : CallLogPagedDataSource.CallRepository {
   override fun getCallsCount(query: String?, filter: CallLogFilter): Int {
@@ -20,14 +21,14 @@ class CallLogRepository : CallLogPagedDataSource.CallRepository {
   override fun getCallLinksCount(query: String?, filter: CallLogFilter): Int {
     return when (filter) {
       CallLogFilter.MISSED -> 0
-      CallLogFilter.ALL -> SignalDatabase.callLinks.getCallLinksCount(query)
+      CallLogFilter.ALL, CallLogFilter.AD_HOC -> SignalDatabase.callLinks.getCallLinksCount(query)
     }
   }
 
   override fun getCallLinks(query: String?, filter: CallLogFilter, start: Int, length: Int): List<CallLogRow> {
     return when (filter) {
       CallLogFilter.MISSED -> emptyList()
-      CallLogFilter.ALL -> SignalDatabase.callLinks.getCallLinks(query, start, length)
+      CallLogFilter.ALL, CallLogFilter.AD_HOC -> SignalDatabase.callLinks.getCallLinks(query, start, length)
     }
   }
 
@@ -70,6 +71,31 @@ class CallLogRepository : CallLogPagedDataSource.CallRepository {
   ): Completable {
     return Completable.fromAction {
       SignalDatabase.calls.deleteAllCallEventsExcept(selectedCallRowIds, missedOnly)
+    }.observeOn(Schedulers.io())
+  }
+
+  fun peekCallLinks(): Completable {
+    return Completable.fromAction {
+      val callLinks: List<CallLogRow.CallLink> = SignalDatabase.callLinks.getCallLinks(
+        query = null,
+        offset = 0,
+        limit = 10
+      )
+
+      val callEvents: List<CallLogRow.Call> = SignalDatabase.calls.getCalls(
+        offset = 0,
+        limit = 10,
+        searchTerm = null,
+        filter = CallLogFilter.AD_HOC
+      )
+
+      val recipients = (callLinks.map { it.recipient } + callEvents.map { it.peer }).toSet()
+
+      val jobs = recipients.take(10).map {
+        CallLinkPeekJob(it.id)
+      }
+
+      ApplicationDependencies.getJobManager().addAll(jobs)
     }.observeOn(Schedulers.io())
   }
 }

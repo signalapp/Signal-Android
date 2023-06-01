@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.service.webrtc.CallLinkPeekInfo
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 
 /**
@@ -25,6 +26,7 @@ sealed class CallLogRow {
     val record: CallLinkTable.CallLink,
     val recipient: Recipient,
     val searchQuery: String?,
+    val callLinkPeekInfo: CallLinkPeekInfo?,
     override val id: Id = Id.CallLink(record.roomId)
   ) : CallLogRow()
 
@@ -38,6 +40,7 @@ sealed class CallLogRow {
     val groupCallState: GroupCallState,
     val children: Set<Long>,
     val searchQuery: String?,
+    val callLinkPeekInfo: CallLinkPeekInfo?,
     override val id: Id = Id.Call(children)
   ) : CallLogRow()
 

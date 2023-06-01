@@ -97,6 +97,7 @@ public final class JobManagerFactories {
       put(AvatarGroupsV1DownloadJob.KEY,             new AvatarGroupsV1DownloadJob.Factory());
       put(AvatarGroupsV2DownloadJob.KEY,             new AvatarGroupsV2DownloadJob.Factory());
       put(BoostReceiptRequestResponseJob.KEY,        new BoostReceiptRequestResponseJob.Factory());
+      put(CallLinkPeekJob.KEY,                       new CallLinkPeekJob.Factory());
       put("CallSyncEventJob",                        new FailingJob.Factory());
       put(CallSyncEventJob.KEY,                      new CallSyncEventJob.Factory());
       put(CheckServiceReachabilityJob.KEY,           new CheckServiceReachabilityJob.Factory());

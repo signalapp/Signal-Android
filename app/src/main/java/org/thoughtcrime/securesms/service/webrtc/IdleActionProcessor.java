@@ -65,9 +65,16 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handlePreJoinCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     Log.i(TAG, "handlePreJoinCall():");
 
-    boolean               isGroupCall = remotePeer.getRecipient().isPushV2Group() || remotePeer.getRecipient().isCallLink();
-    WebRtcActionProcessor processor   = isGroupCall ? new GroupPreJoinActionProcessor(webRtcInteractor)
-                                                    : new PreJoinActionProcessor(webRtcInteractor);
+    boolean isGroupCall = remotePeer.getRecipient().isPushV2Group() || remotePeer.getRecipient().isCallLink();
+
+    final WebRtcActionProcessor processor;
+    if (remotePeer.getRecipient().isCallLink()) {
+      processor = new CallLinkPreJoinActionProcessor(webRtcInteractor);
+    } else if (remotePeer.getRecipient().isPushV2Group()) {
+      processor = new GroupPreJoinActionProcessor(webRtcInteractor);
+    } else {
+      processor = new PreJoinActionProcessor(webRtcInteractor);
+    }
 
     currentState = WebRtcVideoUtil.initializeVanityCamera(WebRtcVideoUtil.initializeVideo(context,
                                                                                           webRtcInteractor.getCameraEventListener(),

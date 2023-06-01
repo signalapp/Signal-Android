@@ -814,6 +814,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     val filterClause: SqlUtil.Query = when (filter) {
       CallLogFilter.ALL -> SqlUtil.buildQuery("$DELETION_TIMESTAMP = 0")
       CallLogFilter.MISSED -> SqlUtil.buildQuery("$EVENT = ${Event.serialize(Event.MISSED)} AND $DELETION_TIMESTAMP = 0")
+      CallLogFilter.AD_HOC -> SqlUtil.buildQuery("$TYPE = ${Type.serialize(Type.AD_HOC_CALL)} AND $DELETION_TIMESTAMP = 0")
     }
 
     val queryClause: SqlUtil.Query = if (!searchTerm.isNullOrEmpty()) {
@@ -968,14 +969,16 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         .toSet()
 
       val actualChildren = inPeriod.takeWhile { children.contains(it) }
+      val peer = Recipient.resolved(call.peer)
 
       CallLogRow.Call(
         record = call,
         date = call.timestamp,
-        peer = Recipient.resolved(call.peer),
+        peer = peer,
         groupCallState = CallLogRow.GroupCallState.fromDetails(groupCallDetails),
         children = actualChildren.toSet(),
-        searchQuery = searchTerm
+        searchQuery = searchTerm,
+        callLinkPeekInfo = ApplicationDependencies.getSignalCallManager().peekInfoSnapshot[peer.id]
       )
     }
   }

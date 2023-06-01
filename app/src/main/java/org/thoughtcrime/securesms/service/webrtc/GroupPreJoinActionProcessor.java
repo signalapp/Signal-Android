@@ -207,7 +207,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
   public @NonNull WebRtcServiceState handleNetworkChanged(@NonNull WebRtcServiceState currentState, boolean available) {
     if (!available) {
       return currentState.builder()
-                         .actionProcessor(new GroupNetworkUnavailableActionProcessor(webRtcInteractor))
+                         .actionProcessor(getGroupNetworkUnavailableActionProcessor())
                          .changeCallInfoState()
                          .callState(WebRtcViewModel.State.NETWORK_FAILURE)
                          .build();

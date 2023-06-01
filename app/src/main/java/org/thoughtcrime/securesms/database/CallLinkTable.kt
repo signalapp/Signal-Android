@@ -185,7 +185,13 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
   fun getCallLinks(query: String?, offset: Int, limit: Int): List<CallLogRow.CallLink> {
     return queryCallLinks(query, offset, limit, false).readToList {
       val callLink = CallLinkDeserializer.deserialize(it)
-      CallLogRow.CallLink(callLink, Recipient.resolved(callLink.recipientId), query)
+      val peer = Recipient.resolved(callLink.recipientId)
+      CallLogRow.CallLink(
+        record = callLink,
+        recipient = peer,
+        searchQuery = query,
+        callLinkPeekInfo = ApplicationDependencies.getSignalCallManager().peekInfoSnapshot[peer.id]
+      )
     }
   }
 

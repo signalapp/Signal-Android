@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
  * This class will check the network status when handlePreJoinCall is invoked, and transition to
  * GroupPreJoinActionProcessor as network becomes available again.
  */
-class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcessor {
+public class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcessor {
 
   private static final String TAG = Log.tag(GroupNetworkUnavailableActionProcessor.class);
 
@@ -38,7 +38,7 @@ class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcessor {
     NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
 
     if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-      GroupPreJoinActionProcessor processor = new GroupPreJoinActionProcessor(webRtcInteractor);
+      GroupPreJoinActionProcessor processor = createGroupPreJoinActionProcessor();
       return processor.handlePreJoinCall(currentState.builder().actionProcessor(processor).build(), remotePeer);
     }
 
@@ -72,12 +72,16 @@ class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcessor {
   public @NonNull WebRtcServiceState handleNetworkChanged(@NonNull WebRtcServiceState currentState, boolean available) {
     if (available) {
       return currentState.builder()
-                         .actionProcessor(new GroupPreJoinActionProcessor(webRtcInteractor))
+                         .actionProcessor(createGroupPreJoinActionProcessor())
                          .changeCallInfoState()
                          .callState(WebRtcViewModel.State.CALL_PRE_JOIN)
                          .build();
     } else {
       return currentState;
     }
+  }
+
+  protected @NonNull GroupPreJoinActionProcessor createGroupPreJoinActionProcessor() {
+    return new GroupPreJoinActionProcessor(webRtcInteractor);
   }
 }

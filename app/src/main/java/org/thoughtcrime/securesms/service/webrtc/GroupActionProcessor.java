@@ -295,7 +295,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
       VideoState videoState       = currentState.getVideoState();
 
       currentState = terminateGroupCall(currentState, false).builder()
-                                                            .actionProcessor(new GroupNetworkUnavailableActionProcessor(webRtcInteractor))
+                                                            .actionProcessor(getGroupNetworkUnavailableActionProcessor())
                                                             .changeVideoState()
                                                             .eglBase(videoState.getLockableEglBase())
                                                             .camera(videoState.getCamera())
@@ -320,5 +320,9 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
     webRtcInteractor.postStateUpdate(currentState);
 
     return terminateGroupCall(currentState);
+  }
+
+  public @NonNull GroupNetworkUnavailableActionProcessor getGroupNetworkUnavailableActionProcessor() {
+    return new GroupNetworkUnavailableActionProcessor(webRtcInteractor);
   }
 }
