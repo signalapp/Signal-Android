@@ -1,16 +1,16 @@
 package org.thoughtcrime.securesms.webrtc;
 
 /**
- * Represents the user's desired bandwidth mode for calls.
+ * Represents the user's desired data mode for calls.
  */
-public enum CallBandwidthMode {
+public enum CallDataMode {
   LOW_ALWAYS(0),
   HIGH_ON_WIFI(1),
   HIGH_ALWAYS(2);
 
   private final int code;
 
-  CallBandwidthMode(int code) {
+  CallDataMode(int code) {
     this.code = code;
   }
 
@@ -18,7 +18,7 @@ public enum CallBandwidthMode {
     return code;
   }
 
-  public static CallBandwidthMode fromCode(int code) {
+  public static CallDataMode fromCode(int code) {
     switch (code) {
       case 1:
         return HIGH_ON_WIFI;

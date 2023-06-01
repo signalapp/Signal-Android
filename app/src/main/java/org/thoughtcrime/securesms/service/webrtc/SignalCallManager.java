@@ -264,8 +264,8 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     process((s, p) -> p.handleNetworkChanged(s, available));
   }
 
-  public void bandwidthModeUpdate() {
-    process((s, p) -> p.handleBandwidthModeUpdate(s));
+  public void dataModeUpdate() {
+    process((s, p) -> p.handleDataModeUpdate(s));
   }
 
   public void screenOff() {

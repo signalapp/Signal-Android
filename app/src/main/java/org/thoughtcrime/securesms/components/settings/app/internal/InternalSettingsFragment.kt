@@ -400,10 +400,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       radioListPref(
         title = DSLSettingsText.from("Bandwidth mode"),
-        listItems = CallManager.BandwidthMode.values().map { it.name }.toTypedArray(),
-        selected = CallManager.BandwidthMode.values().indexOf(state.callingBandwidthMode),
+        listItems = CallManager.DataMode.values().map { it.name }.toTypedArray(),
+        selected = CallManager.DataMode.values().indexOf(state.callingDataMode),
         onSelected = {
-          viewModel.setInternalCallingBandwidthMode(CallManager.BandwidthMode.values()[it])
+          viewModel.setInternalCallingDataMode(CallManager.DataMode.values()[it])
         }
       )
 

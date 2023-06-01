@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.webrtc.CallBandwidthMode;
+import org.thoughtcrime.securesms.webrtc.CallDataMode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,8 +38,7 @@ public final class SettingsValues extends SignalStoreValues {
 
   private static final String SIGNAL_BACKUP_DIRECTORY        = "settings.signal.backup.directory";
   private static final String SIGNAL_LATEST_BACKUP_DIRECTORY = "settings.signal.backup.directory,latest";
-
-  private static final String CALL_BANDWIDTH_MODE = "settings.signal.call.bandwidth.mode";
+  private static final String CALL_DATA_MODE                 = "settings.signal.call.bandwidth.mode";
 
   public static final String THREAD_TRIM_LENGTH  = "pref_trim_length";
   public static final String THREAD_TRIM_ENABLED = "pref_trim_threads";
@@ -101,7 +100,7 @@ public final class SettingsValues extends SignalStoreValues {
     return Arrays.asList(LINK_PREVIEWS,
                          KEEP_MESSAGES_DURATION,
                          PREFER_SYSTEM_CONTACT_PHOTOS,
-                         CALL_BANDWIDTH_MODE,
+                         CALL_DATA_MODE,
                          THREAD_TRIM_LENGTH,
                          THREAD_TRIM_ENABLED,
                          LANGUAGE,
@@ -189,12 +188,12 @@ public final class SettingsValues extends SignalStoreValues {
     putString(SIGNAL_BACKUP_DIRECTORY, null);
   }
 
-  public void setCallBandwidthMode(@NonNull CallBandwidthMode callBandwidthMode) {
-    putInteger(CALL_BANDWIDTH_MODE, callBandwidthMode.getCode());
+  public void setCallDataMode(@NonNull CallDataMode callDataMode) {
+    putInteger(CALL_DATA_MODE, callDataMode.getCode());
   }
 
-  public @NonNull CallBandwidthMode getCallBandwidthMode() {
-    return CallBandwidthMode.fromCode(getInteger(CALL_BANDWIDTH_MODE, CallBandwidthMode.HIGH_ALWAYS.getCode()));
+  public @NonNull CallDataMode getCallDataMode() {
+    return CallDataMode.fromCode(getInteger(CALL_DATA_MODE, CallDataMode.HIGH_ALWAYS.getCode()));
   }
 
   public @NonNull Theme getTheme() {

@@ -366,7 +366,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
       NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
 
       ApplicationDependencies.getSignalCallManager().networkChange(activeNetworkInfo != null && activeNetworkInfo.isConnected());
-      ApplicationDependencies.getSignalCallManager().bandwidthModeUpdate();
+      ApplicationDependencies.getSignalCallManager().dataModeUpdate();
     }
   }
 

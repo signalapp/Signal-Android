@@ -5,7 +5,6 @@ import android.os.ResultReceiver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import com.annimon.stream.Stream;
 
@@ -55,7 +54,6 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
-import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.Collection;
 import java.util.List;
@@ -561,9 +559,9 @@ public abstract class WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleNetworkRouteChanged(@NonNull WebRtcServiceState currentState, @NonNull NetworkRoute networkRoute) {
     Log.i(tag, "onNetworkRouteChanged: localAdapterType: " + networkRoute.getLocalAdapterType());
     try {
-      webRtcInteractor.getCallManager().updateBandwidthMode(NetworkUtil.getCallingBandwidthMode(context, networkRoute.getLocalAdapterType()));
+      webRtcInteractor.getCallManager().updateDataMode(NetworkUtil.getCallingDataMode(context, networkRoute.getLocalAdapterType()));
     } catch (CallException e) {
-      Log.w(tag, "Unable to update bandwidth mode on CallManager", e);
+      Log.w(tag, "Unable to update data mode on CallManager", e);
     }
 
     PeerConnection.AdapterType type = networkRoute.getLocalAdapterType();
@@ -574,11 +572,11 @@ public abstract class WebRtcActionProcessor {
                        .build();
   }
 
-  protected @NonNull WebRtcServiceState handleBandwidthModeUpdate(@NonNull WebRtcServiceState currentState) {
+  protected @NonNull WebRtcServiceState handleDataModeUpdate(@NonNull WebRtcServiceState currentState) {
     try {
-      webRtcInteractor.getCallManager().updateBandwidthMode(NetworkUtil.getCallingBandwidthMode(context));
+      webRtcInteractor.getCallManager().updateDataMode(NetworkUtil.getCallingDataMode(context));
     } catch (CallException e) {
-      Log.i(tag, "handleBandwidthModeUpdate: could not update bandwidth mode.");
+      Log.i(tag, "handleDataModeUpdate: could not update data mode.");
     }
 
     return currentState;
