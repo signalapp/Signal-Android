@@ -18,7 +18,7 @@ object PinHashUtil {
    */
   @JvmStatic
   fun hashPin(pin: String, salt: ByteArray): PinHash {
-    return Pin.hash(normalize(pin), salt)
+    return PinHash.svr1(normalize(pin), salt)
   }
 
   /**

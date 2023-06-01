@@ -6,7 +6,6 @@
 package org.whispersystems.signalservice.api.svr
 
 import org.signal.libsignal.svr2.PinHash
-import org.signal.libsignal.svr2.Svr2Client
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 
 /**
@@ -14,9 +13,9 @@ import org.whispersystems.signalservice.internal.push.AuthCredentials
  */
 internal class Svr2PinHasher(
   private val authCredentials: AuthCredentials,
-  private val client: Svr2Client
+  private val mrEnclave: ByteArray
 ) {
   fun hash(normalizedPin: ByteArray): PinHash {
-    return client.hashPin(normalizedPin, authCredentials.username().toByteArray(Charsets.UTF_8))
+    return PinHash.svr2(normalizedPin, authCredentials.username(), mrEnclave)
   }
 }

@@ -97,8 +97,9 @@ internal class Svr2Socket(
           }
 
           Stage.WAITING_FOR_CONNECTION -> {
-            client = Svr2Client.create(Hex.fromStringCondensed(mrEnclave), bytes.toByteArray(), Instant.now())
-            pinHasher = Svr2PinHasher(authorization, client)
+            val mrEnclave: ByteArray = Hex.fromStringCondensed(mrEnclave)
+            client = Svr2Client(mrEnclave, bytes.toByteArray(), Instant.now())
+            pinHasher = Svr2PinHasher(authorization, mrEnclave)
 
             Log.d(TAG, "[onMessage] Sending initial handshake...")
             webSocket.send(client.initialRequest().toByteString())

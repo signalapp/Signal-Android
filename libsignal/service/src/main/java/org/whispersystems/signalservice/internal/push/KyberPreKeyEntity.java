@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.kem.KEMPublicKey;
 import org.whispersystems.util.Base64;
 
@@ -66,7 +67,11 @@ public class KyberPreKeyEntity {
   private static class KEMPublicKeyDeserializer extends JsonDeserializer<KEMPublicKey> {
     @Override
     public KEMPublicKey deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-      return new KEMPublicKey(Base64.decodeWithoutPadding(p.getValueAsString()), 0);
+      try {
+        return new KEMPublicKey(Base64.decodeWithoutPadding(p.getValueAsString()), 0);
+      } catch (InvalidKeyException e) {
+        throw new IOException(e);
+      }
     }
   }
 
