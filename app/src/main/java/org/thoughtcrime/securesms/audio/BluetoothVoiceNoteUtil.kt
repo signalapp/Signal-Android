@@ -81,46 +81,31 @@ private class BluetoothVoiceNoteUtilLegacy(val context: Context, val listener: (
   private var hasWarnedAboutBluetooth = false
 
   init {
-    if (Build.VERSION.SDK_INT < 31) {
-      audioHandler.post {
-        signalBluetoothManager.start()
-        Log.d(TAG, "Bluetooth manager started.")
-      }
+    audioHandler.post {
+      signalBluetoothManager.start()
+      Log.d(TAG, "Bluetooth manager started.")
     }
   }
 
   override fun connectBluetoothScoConnection() {
-    if (Build.VERSION.SDK_INT >= 31) {
-      val audioManager = ApplicationDependencies.getAndroidCallAudioManager()
-      val device: AudioDeviceInfo? = audioManager.connectedBluetoothDevice
-      if (device != null) {
-        val result: Boolean = audioManager.setCommunicationDevice(device)
-        if (result) {
-          Log.d(TAG, "Successfully set Bluetooth device as active communication device.")
-        } else {
-          Log.d(TAG, "Found Bluetooth device but failed to set it as active communication device.")
-        }
-      } else {
-        Log.d(TAG, "Could not find Bluetooth device in list of communications devices, falling back to current input.")
+    audioHandler.post {
+      if (signalBluetoothManager.state.shouldUpdate()) {
+        Log.d(TAG, "Bluetooth manager updating devices.")
+        signalBluetoothManager.updateDevice()
       }
-      listener()
-    } else {
-      audioHandler.post {
-        if (signalBluetoothManager.state.shouldUpdate()) {
-          signalBluetoothManager.updateDevice()
-        }
-        val currentState = signalBluetoothManager.state
-        if (currentState == SignalBluetoothManager.State.AVAILABLE) {
-          signalBluetoothManager.startScoAudio()
-        } else {
-          Log.d(TAG, "Recording from phone mic because bluetooth state was " + currentState + ", not " + SignalBluetoothManager.State.AVAILABLE)
-          uiThreadHandler.post {
-            if (currentState == SignalBluetoothManager.State.PERMISSION_DENIED && !hasWarnedAboutBluetooth) {
-              bluetoothPermissionDeniedHandler()
-              hasWarnedAboutBluetooth = true
-            }
-            listener()
+      val currentState = signalBluetoothManager.state
+      if (currentState == SignalBluetoothManager.State.AVAILABLE) {
+        Log.d(TAG, "Bluetooth manager state is AVAILABLE. Starting SCO connection.")
+        signalBluetoothManager.startScoAudio()
+      } else {
+        Log.d(TAG, "Recording from phone mic because bluetooth state was " + currentState + ", not " + SignalBluetoothManager.State.AVAILABLE)
+        uiThreadHandler.post {
+          if (currentState == SignalBluetoothManager.State.PERMISSION_DENIED && !hasWarnedAboutBluetooth) {
+            Log.d(TAG, "Warning about Bluetooth permissions.")
+            bluetoothPermissionDeniedHandler()
+            hasWarnedAboutBluetooth = true
           }
+          listener()
         }
       }
     }
