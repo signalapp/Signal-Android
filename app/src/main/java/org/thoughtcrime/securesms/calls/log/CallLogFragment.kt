@@ -88,6 +88,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
       when (menuItem.itemId) {
+        R.id.action_clear_call_history -> clearCallHistory()
         R.id.action_settings -> startActivity(AppSettingsActivity.home(requireContext()))
         R.id.action_notification_profile -> NotificationProfileSelectionFragment.show(parentFragmentManager)
         R.id.action_filter_missed_calls -> filterMissedCalls()
@@ -384,6 +385,29 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   private fun filterMissedCalls() {
     binding.pullView.toggle()
     binding.recyclerCoordinatorAppBar.setExpanded(false, true)
+  }
+
+  private fun clearCallHistory() {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.CallLogFragment__clear_call_history_question)
+      .setMessage(R.string.CallLogFragment__this_will_permanently_delete_all_call_history)
+      .setPositiveButton(android.R.string.ok) { _, _ ->
+        callLogActionMode.end()
+        viewModel.stageDeleteAll()
+        Snackbar
+          .make(
+            binding.root,
+            R.string.CallLogFragment__cleared_call_history,
+            Snackbar.LENGTH_SHORT
+          )
+          .addCallback(SnackbarDeletionCallback())
+          .setAction(R.string.CallLogFragment__undo) {
+            viewModel.cancelStagedDeletion()
+          }
+          .show()
+      }
+      .setNegativeButton(android.R.string.cancel, null)
+      .show()
   }
 
   private fun isSearchOpen(): Boolean {

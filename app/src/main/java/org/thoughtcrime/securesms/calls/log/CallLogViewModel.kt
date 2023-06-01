@@ -123,6 +123,20 @@ class CallLogViewModel(
     }
   }
 
+  fun stageDeleteAll() {
+    callLogStore.state.stagedDeletion?.cancel()
+    callLogStore.update {
+      it.copy(
+        selectionState = CallLogSelectionState.empty(),
+        stagedDeletion = CallLogStagedDeletion(
+          it.filter,
+          CallLogSelectionState.selectAll(),
+          callLogRepository
+        )
+      )
+    }
+  }
+
   fun commitStagedDeletion() {
     callLogStore.state.stagedDeletion?.commit()
     callLogStore.update {
