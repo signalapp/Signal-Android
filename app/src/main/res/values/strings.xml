@@ -2187,7 +2187,7 @@
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d chats</item>
+        <item quantity="one">%1$d chat</item>
         <item quantity="other">%1$d chats</item>
     </plurals>
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d chats</string>
