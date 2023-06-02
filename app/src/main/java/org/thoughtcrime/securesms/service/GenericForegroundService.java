@@ -56,6 +56,14 @@ public final class GenericForegroundService extends Service {
   private @Nullable Entry lastPosted;
 
   @Override
+  public void onCreate() {
+    super.onCreate();
+    synchronized (GenericForegroundService.class) {
+      updateNotification();
+    }
+  }
+
+  @Override
   public int onStartCommand(Intent intent, int flags, int startId) {
     if (intent == null) {
       throw new IllegalStateException("Intent needs to be non-null.");
