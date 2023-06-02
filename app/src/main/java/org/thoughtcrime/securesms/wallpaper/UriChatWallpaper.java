@@ -70,21 +70,24 @@ final class UriChatWallpaper implements ChatWallpaper, Parcelable {
     } else {
       Log.d(TAG, "Not in cache. Fetching using Glide.");
       GlideApp.with(imageView)
+              .asBitmap()
               .load(new DecryptableStreamUriLoader.DecryptableUri(uri))
-              .addListener(new RequestListener<Drawable>() {
+              .addListener(new RequestListener<>() {
                 @Override
-                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
                   Log.w(TAG, "Failed to load wallpaper " + uri);
                   return false;
                 }
 
                 @Override
-                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
                   Log.i(TAG, "Loaded wallpaper " + uri);
+                  imageView.setImageBitmap(resource);
+                  CACHE.put(uri, resource);
                   return false;
                 }
               })
-              .into(imageView);
+              .submit();
     }
   }
 
