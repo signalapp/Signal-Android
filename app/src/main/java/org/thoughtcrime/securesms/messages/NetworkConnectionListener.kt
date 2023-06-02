@@ -49,6 +49,12 @@ class NetworkConnectionListener(private val context: Context, private val onNetw
       Log.d(TAG, "ConnectivityManager.NetworkCallback onLost()")
       onNetworkLost { true }
     }
+
+    override fun onBlockedStatusChanged(network: Network, blocked: Boolean) {
+      super.onBlockedStatusChanged(network, blocked);
+      Log.d(TAG, "ConnectivityManager.NetworkCallback onBlockedStatusChanged($blocked)")
+      onNetworkLost { blocked }
+    }
   }
 
   private val connectionReceiver = object : BroadcastReceiver() {

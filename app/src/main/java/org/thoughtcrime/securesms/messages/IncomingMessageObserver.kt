@@ -87,9 +87,9 @@ class IncomingMessageObserver(private val context: Application) {
 
   private val lock: ReentrantLock = ReentrantLock()
   private val connectionNecessarySemaphore = Semaphore(0)
-  private val networkConnectionListener = NetworkConnectionListener(context) { isNetworkAvailable ->
+  private val networkConnectionListener = NetworkConnectionListener(context) { isNetworkLost ->
     lock.withLock {
-      if (isNetworkAvailable()) {
+      if (isNetworkLost()) {
         Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.")
         decryptionDrained = false
         disconnect()
