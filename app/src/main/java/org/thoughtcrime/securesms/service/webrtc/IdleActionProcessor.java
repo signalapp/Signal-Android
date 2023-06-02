@@ -7,7 +7,6 @@ import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
-import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -69,9 +68,9 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
 
     final WebRtcActionProcessor processor;
     if (remotePeer.getRecipient().isCallLink()) {
-      processor = new CallLinkPreJoinActionProcessor(webRtcInteractor);
+      processor = MultiPeerActionProcessorFactory.CallLinkActionProcessorFactory.INSTANCE.createPreJoinActionProcessor(webRtcInteractor);
     } else if (remotePeer.getRecipient().isPushV2Group()) {
-      processor = new GroupPreJoinActionProcessor(webRtcInteractor);
+      processor = MultiPeerActionProcessorFactory.GroupActionProcessorFactory.INSTANCE.createPreJoinActionProcessor(webRtcInteractor);
     } else {
       processor = new PreJoinActionProcessor(webRtcInteractor);
     }

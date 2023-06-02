@@ -12,11 +12,9 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState
  * Process actions for when the call link has at least once been connected and joined.
  */
 class CallLinkConnectedActionProcessor(
+  actionProcessorFactory: MultiPeerActionProcessorFactory,
   webRtcInteractor: WebRtcInteractor
-) : GroupConnectedActionProcessor(webRtcInteractor) {
-  override fun getGroupNetworkUnavailableActionProcessor(): GroupNetworkUnavailableActionProcessor {
-    return CallLinkNetworkUnavailableActionProcessor(webRtcInteractor)
-  }
+) : GroupConnectedActionProcessor(actionProcessorFactory, webRtcInteractor) {
 
   override fun handleGroupRequestUpdateMembers(currentState: WebRtcServiceState): WebRtcServiceState {
     Log.i(tag, "handleGroupRequestUpdateMembers():")

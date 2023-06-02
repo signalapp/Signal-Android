@@ -26,8 +26,9 @@ import java.io.IOException
  * Process actions while the user is in the pre-join lobby for the call link.
  */
 class CallLinkPreJoinActionProcessor(
+  actionProcessorFactory: MultiPeerActionProcessorFactory,
   webRtcInteractor: WebRtcInteractor
-) : GroupPreJoinActionProcessor(webRtcInteractor) {
+) : GroupPreJoinActionProcessor(actionProcessorFactory, webRtcInteractor) {
 
   companion object {
     private val TAG = Log.tag(CallLinkPreJoinActionProcessor::class.java)
@@ -97,9 +98,5 @@ class CallLinkPreJoinActionProcessor(
     Log.i(tag, "handleGroupRequestUpdateMembers():")
 
     return currentState
-  }
-
-  override fun getGroupNetworkUnavailableActionProcessor(): GroupNetworkUnavailableActionProcessor {
-    return CallLinkNetworkUnavailableActionProcessor(webRtcInteractor)
   }
 }

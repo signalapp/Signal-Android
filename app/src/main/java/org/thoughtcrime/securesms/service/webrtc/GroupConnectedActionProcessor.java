@@ -34,8 +34,8 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
 
   private static final String TAG = Log.tag(GroupConnectedActionProcessor.class);
 
-  public GroupConnectedActionProcessor(@NonNull WebRtcInteractor webRtcInteractor) {
-    super(webRtcInteractor, TAG);
+  public GroupConnectedActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory, @NonNull WebRtcInteractor webRtcInteractor) {
+    super(actionProcessorFactory, webRtcInteractor, TAG);
   }
 
   @Override

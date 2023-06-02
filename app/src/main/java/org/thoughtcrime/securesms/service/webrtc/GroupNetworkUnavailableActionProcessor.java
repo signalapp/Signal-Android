@@ -26,8 +26,13 @@ public class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcesso
 
   private static final String TAG = Log.tag(GroupNetworkUnavailableActionProcessor.class);
 
-  public GroupNetworkUnavailableActionProcessor(@NonNull WebRtcInteractor webRtcInteractor) {
+  private final MultiPeerActionProcessorFactory actionProcessorFactory;
+
+  public GroupNetworkUnavailableActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory,
+                                                @NonNull WebRtcInteractor webRtcInteractor)
+  {
     super(webRtcInteractor, TAG);
+    this.actionProcessorFactory = actionProcessorFactory;
   }
 
   @Override
@@ -38,7 +43,7 @@ public class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcesso
     NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
 
     if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-      GroupPreJoinActionProcessor processor = createGroupPreJoinActionProcessor();
+      GroupPreJoinActionProcessor processor = actionProcessorFactory.createPreJoinActionProcessor(webRtcInteractor);
       return processor.handlePreJoinCall(currentState.builder().actionProcessor(processor).build(), remotePeer);
     }
 
@@ -72,16 +77,12 @@ public class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcesso
   public @NonNull WebRtcServiceState handleNetworkChanged(@NonNull WebRtcServiceState currentState, boolean available) {
     if (available) {
       return currentState.builder()
-                         .actionProcessor(createGroupPreJoinActionProcessor())
+                         .actionProcessor(actionProcessorFactory.createPreJoinActionProcessor(webRtcInteractor))
                          .changeCallInfoState()
                          .callState(WebRtcViewModel.State.CALL_PRE_JOIN)
                          .build();
     } else {
       return currentState;
     }
-  }
-
-  protected @NonNull GroupPreJoinActionProcessor createGroupPreJoinActionProcessor() {
-    return new GroupPreJoinActionProcessor(webRtcInteractor);
   }
 }

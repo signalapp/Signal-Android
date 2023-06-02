@@ -223,7 +223,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
     }
 
     return currentState.builder()
-                       .actionProcessor(new GroupJoiningActionProcessor(webRtcInteractor))
+                       .actionProcessor(MultiPeerActionProcessorFactory.GroupActionProcessorFactory.INSTANCE.createJoiningActionProcessor(webRtcInteractor))
                        .changeCallInfoState()
                        .callState(WebRtcViewModel.State.CALL_OUTGOING)
                        .groupCallState(WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINING)

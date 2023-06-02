@@ -33,8 +33,8 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
   private static final String TAG = Log.tag(GroupPreJoinActionProcessor.class);
 
-  public GroupPreJoinActionProcessor(@NonNull WebRtcInteractor webRtcInteractor) {
-    super(webRtcInteractor, TAG);
+  public GroupPreJoinActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory, @NonNull WebRtcInteractor webRtcInteractor) {
+    super(actionProcessorFactory, webRtcInteractor, TAG);
   }
 
   @Override
@@ -170,7 +170,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
     }
 
     return currentState.builder()
-                       .actionProcessor(new GroupJoiningActionProcessor(webRtcInteractor))
+                       .actionProcessor(actionProcessorFactory.createJoiningActionProcessor(webRtcInteractor))
                        .changeCallInfoState()
                        .callState(WebRtcViewModel.State.CALL_OUTGOING)
                        .groupCallState(WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINING)
@@ -207,7 +207,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
   public @NonNull WebRtcServiceState handleNetworkChanged(@NonNull WebRtcServiceState currentState, boolean available) {
     if (!available) {
       return currentState.builder()
-                         .actionProcessor(getGroupNetworkUnavailableActionProcessor())
+                         .actionProcessor(actionProcessorFactory.createNetworkUnavailableActionProcessor(webRtcInteractor))
                          .changeCallInfoState()
                          .callState(WebRtcViewModel.State.NETWORK_FAILURE)
                          .build();
