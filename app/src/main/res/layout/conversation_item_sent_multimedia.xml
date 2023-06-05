@@ -171,6 +171,12 @@
             app:scaleEmojis="true"
             tools:text="Mango pickle lorem ipsum" />
 
+        <ViewStub
+            android:id="@+id/conversation_item_join_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/conversation_item_join_button" />
+
         <org.thoughtcrime.securesms.components.ConversationItemFooter
             android:id="@+id/conversation_item_footer"
             android:layout_width="wrap_content"

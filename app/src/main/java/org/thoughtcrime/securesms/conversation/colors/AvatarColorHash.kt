@@ -37,6 +37,7 @@ object AvatarColorHash {
     return forData(seed.toByteArray())
   }
 
+  @JvmStatic
   fun forCallLink(rootKey: ByteArray): AvatarColor {
     return forIndex(rootKey.first().toInt())
   }

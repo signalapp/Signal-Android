@@ -21,9 +21,11 @@ import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
+import org.signal.ringrtc.CallLinkRootKey
 import org.signal.ringrtc.CallLinkState.Restrictions
 import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
+import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -157,6 +159,30 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       .where("$ROOM_ID = ?", callLinkRoomId.serialize())
       .run()
       .readToSingleObject { CallLinkDeserializer.deserialize(it) }
+  }
+
+  fun getOrCreateCallLinkByRootKey(
+    callLinkRootKey: CallLinkRootKey
+  ): CallLink {
+    val roomId = CallLinkRoomId.fromBytes(callLinkRootKey.deriveRoomId())
+    val callLink = getCallLinkByRoomId(roomId)
+    return if (callLink == null) {
+      val link = CallLink(
+        recipientId = RecipientId.UNKNOWN,
+        roomId = roomId,
+        credentials = CallLinkCredentials(
+          linkKeyBytes = callLinkRootKey.keyBytes,
+          adminPassBytes = null
+        ),
+        state = SignalCallLinkState(),
+        avatarColor = AvatarColorHash.forCallLink(callLinkRootKey.keyBytes)
+      )
+
+      insertCallLink(link)
+      return getCallLinkByRoomId(roomId)!!
+    } else {
+      callLink
+    }
   }
 
   fun getOrCreateCallLinkByRoomId(

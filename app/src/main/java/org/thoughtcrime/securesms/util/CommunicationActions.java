@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash;
 import org.thoughtcrime.securesms.database.CallLinkTable;
+import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -347,27 +348,39 @@ public class CommunicationActions {
       return;
     }
 
+    startVideoCall(new ActivityCallContext(activity), rootKey);
+  }
+
+  /**
+   * Attempts to start a video call for the given call link via root key. This will insert a call link into
+   * the user's database if one does not already exist.
+   *
+   * @param fragment The fragment, which will be used for context and permissions routing.
+   * @param rootKey  The root key of the call link.
+   */
+  public static void startVideoCall(@NonNull Fragment fragment, @NonNull CallLinkRootKey rootKey) {
+    startVideoCall(new FragmentCallContext(fragment), rootKey);
+  }
+
+  private static void startVideoCall(@NonNull CallContext callContext, @NonNull CallLinkRootKey rootKey) {
     SimpleTask.run(() -> {
-      CallLinkRoomId roomId = CallLinkRoomId.fromBytes(rootKey.deriveRoomId());
-      if (!SignalDatabase.callLinks().callLinkExists(roomId)) {
-        SignalDatabase.callLinks().insertCallLink(new CallLinkTable.CallLink(
-            RecipientId.UNKNOWN,
-            roomId,
-            new CallLinkCredentials(
-                rootKey.getKeyBytes(),
-                null
-            ),
-            new SignalCallLinkState("", CallLinkState.Restrictions.UNKNOWN, false, Instant.MIN),
-            AvatarColorHash.INSTANCE.forCallLink(rootKey.getKeyBytes())
-        ));
+      CallLinkRoomId         roomId   = CallLinkRoomId.fromBytes(rootKey.deriveRoomId());
+      CallLinkTable.CallLink callLink = SignalDatabase.callLinks().getOrCreateCallLinkByRootKey(rootKey);
+
+      if (callLink.getState().hasBeenRevoked()) {
+        return Optional.<Recipient>empty();
       }
 
       return SignalDatabase.recipients().getByCallLinkRoomId(roomId).map(Recipient::resolved);
     }, callLinkRecipient -> {
       if (callLinkRecipient.isEmpty()) {
-        // TODO [alex] -- Display a dialog informing them some error happened.
+        new MaterialAlertDialogBuilder(callContext.getContext())
+            .setTitle(R.string.CommunicationActions_cant_join_call)
+            .setMessage(R.string.CommunicationActions_this_call_link_is_no_longer_valid)
+            .setPositiveButton(android.R.string.ok, null)
+            .show();
       } else {
-        startVideoCall(activity, callLinkRecipient.get());
+        startVideoCall(callContext, callLinkRecipient.get());
       }
     });
   }

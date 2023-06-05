@@ -76,6 +76,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
+import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -2086,6 +2087,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void onShowGroupDescriptionClicked(@NonNull String groupName, @NonNull String description, boolean shouldLinkifyWebLinks) {
       GroupDescriptionDialog.show(getChildFragmentManager(), groupName, description, shouldLinkifyWebLinks);
+    }
+
+    @Override
+    public void onJoinCallLink(@NonNull CallLinkRootKey callLinkRootKey) {
+      CommunicationActions.startVideoCall(ConversationFragment.this, callLinkRootKey);
     }
 
     @Override

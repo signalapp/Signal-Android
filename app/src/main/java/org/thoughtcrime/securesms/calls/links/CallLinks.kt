@@ -21,10 +21,11 @@ import java.net.URLDecoder
  */
 object CallLinks {
   private const val ROOT_KEY = "key"
+  private const val LINK_PREFIX = "https://signal.link/call/#key="
 
   private val TAG = Log.tag(CallLinks::class.java)
 
-  fun url(linkKeyBytes: ByteArray) = "https://signal.link/call/#key=${Hex.dump(linkKeyBytes)}"
+  fun url(linkKeyBytes: ByteArray) = "$LINK_PREFIX${Hex.dump(linkKeyBytes)}"
 
   fun watchCallLink(roomId: CallLinkRoomId): Observable<CallLinkTable.CallLink> {
     return Observable.create { emitter ->
@@ -51,6 +52,10 @@ object CallLinks {
 
   @JvmStatic
   fun parseUrl(url: String): CallLinkRootKey? {
+    if (!url.startsWith(LINK_PREFIX)) {
+      return null
+    }
+
     val parts = url.split("#")
     if (parts.size != 2) {
       Log.w(TAG, "Invalid fragment delimiter count in url.")
