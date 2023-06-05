@@ -98,7 +98,7 @@ public enum AvatarColor {
   }
 
   /** Colors that can be assigned via {@link #random()}. */
-  private static final AvatarColor[] RANDOM_OPTIONS = new AvatarColor[] {
+  static final AvatarColor[] RANDOM_OPTIONS = new AvatarColor[] {
       A100,
       A110,
       A120,

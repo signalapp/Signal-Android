@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.calls.links.CallLinks;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
-import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash;
 import org.thoughtcrime.securesms.database.CallLinkTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
@@ -358,7 +358,7 @@ public class CommunicationActions {
                 null
             ),
             new SignalCallLinkState("", CallLinkState.Restrictions.UNKNOWN, false, Instant.MIN),
-            AvatarColor.random()
+            AvatarColorHash.INSTANCE.forCallLink(rootKey.getKeyBytes())
         ));
       }
 

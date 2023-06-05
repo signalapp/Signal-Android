@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.contactshare.Contact
-import org.thoughtcrime.securesms.conversation.colors.AvatarColor
+import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
 import org.thoughtcrime.securesms.crypto.SecurityEvent
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.CallTable
@@ -1206,7 +1206,7 @@ object SyncMessageProcessor {
           revoked = false,
           expiration = Instant.MIN
         ),
-        avatarColor = AvatarColor.random()
+        avatarColor = AvatarColorHash.forCallLink(callLinkRootKey.keyBytes)
       )
     )
 
