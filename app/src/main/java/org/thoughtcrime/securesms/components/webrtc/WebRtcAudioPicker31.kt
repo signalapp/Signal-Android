@@ -6,6 +6,7 @@ import android.media.AudioDeviceInfo
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentActivity
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.webrtc.audio.AudioDeviceMapping
@@ -18,6 +19,10 @@ import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 @RequiresApi(31)
 class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputChangedListener, private val outputState: ToggleButtonOutputState, private val stateUpdater: AudioStateUpdater) {
 
+  companion object {
+    const val TAG = "WebRtcAudioPicker31"
+  }
+
   fun showPicker(fragmentActivity: FragmentActivity, threshold: Int, onDismiss: (DialogInterface) -> Unit): DialogInterface? {
     val am = ApplicationDependencies.getAndroidCallAudioManager()
     if (am.availableCommunicationDevices.isEmpty()) {
@@ -25,9 +30,10 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
       return null
     }
 
-    val devices: List<AudioOutputOption> = am.availableCommunicationDevices.map { AudioOutputOption(it.toFriendlyName(fragmentActivity).toString(), AudioDeviceMapping.fromPlatformType(it.type), it.id) }
+    val devices: List<AudioOutputOption> = am.availableCommunicationDevices.map { AudioOutputOption(it.toFriendlyName(fragmentActivity).toString(), AudioDeviceMapping.fromPlatformType(it.type), it.id) }.distinct()
     val currentDeviceId = am.communicationDevice?.id ?: -1
     if (devices.size < threshold) {
+      Log.d(TAG, "Only found $devices devices,\nnot showing picker.")
       if (devices.isEmpty()) return null
 
       val index = devices.indexOfFirst { it.deviceId == currentDeviceId }
@@ -36,6 +42,7 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
       onAudioDeviceSelected(devices[(index + 1) % devices.size])
       return null
     } else {
+      Log.d(TAG, "Found $devices devices,\nshowing picker.")
       return WebRtcAudioOutputBottomSheet.show(fragmentActivity.supportFragmentManager, devices, currentDeviceId, onAudioDeviceSelected, onDismiss)
     }
   }

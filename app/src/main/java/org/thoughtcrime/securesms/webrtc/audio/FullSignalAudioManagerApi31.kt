@@ -58,7 +58,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
       userSelectedAudioDevice = null
     }
 
-    Log.d(TAG, "New default: $defaultAudioDevice userSelected: $userSelectedAudioDevice")
+    Log.d(TAG, "New default: $defaultAudioDevice userSelected: ${userSelectedAudioDevice?.id} of type ${userSelectedAudioDevice?.type}")
     updateAudioDeviceState()
   }
 
