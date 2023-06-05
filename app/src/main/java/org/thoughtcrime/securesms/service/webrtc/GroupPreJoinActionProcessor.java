@@ -34,12 +34,16 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
   private static final String TAG = Log.tag(GroupPreJoinActionProcessor.class);
 
   public GroupPreJoinActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory, @NonNull WebRtcInteractor webRtcInteractor) {
-    super(actionProcessorFactory, webRtcInteractor, TAG);
+    this(actionProcessorFactory, webRtcInteractor, TAG);
+  }
+
+  protected GroupPreJoinActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory, @NonNull WebRtcInteractor webRtcInteractor, @NonNull String tag) {
+    super(actionProcessorFactory, webRtcInteractor, tag);
   }
 
   @Override
   protected @NonNull WebRtcServiceState handlePreJoinCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
-    Log.i(TAG, "handlePreJoinCall():");
+    Log.i(tag, "handlePreJoinCall():");
 
     byte[]      groupId = currentState.getCallInfoState().getCallRecipient().requireGroupId().getDecodedId();
     GroupCall groupCall = webRtcInteractor.getCallManager().createGroupCall(groupId,
@@ -54,7 +58,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
       groupCall.setOutgoingVideoMuted(true);
       groupCall.setDataMode(NetworkUtil.getCallingDataMode(context, groupCall.getLocalDeviceState().getNetworkRoute().getLocalAdapterType()));
 
-      Log.i(TAG, "Connecting to group call: " + currentState.getCallInfoState().getCallRecipient().getId());
+      Log.i(tag, "Connecting to group call: " + currentState.getCallInfoState().getCallRecipient().getId());
       groupCall.connect();
     } catch (CallException e) {
       return groupCallFailure(currentState, "Unable to connect to group call", e);
@@ -71,7 +75,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleCancelPreJoinCall(@NonNull WebRtcServiceState currentState) {
-    Log.i(TAG, "handleCancelPreJoinCall():");
+    Log.i(tag, "handleCancelPreJoinCall():");
 
     GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
     try {
@@ -148,7 +152,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                                                            @NonNull RemotePeer remotePeer,
                                                            @NonNull OfferMessage.Type offerType)
   {
-    Log.i(TAG, "handleOutgoingCall():");
+    Log.i(tag, "handleOutgoingCall():");
 
     GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
 
@@ -181,7 +185,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleSetEnableVideo(@NonNull WebRtcServiceState currentState, boolean enable) {
-    Log.i(TAG, "handleSetEnableVideo(): Changing for pre-join group call. enable: " + enable);
+    Log.i(tag, "handleSetEnableVideo(): Changing for pre-join group call. enable: " + enable);
 
     currentState.getVideoState().requireCamera().setEnabled(enable);
     return currentState.builder()
@@ -195,7 +199,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleSetMuteAudio(@NonNull WebRtcServiceState currentState, boolean muted) {
-    Log.i(TAG, "handleSetMuteAudio(): Changing for pre-join group call. muted: " + muted);
+    Log.i(tag, "handleSetMuteAudio(): Changing for pre-join group call. muted: " + muted);
 
     return currentState.builder()
                        .changeLocalDeviceState()

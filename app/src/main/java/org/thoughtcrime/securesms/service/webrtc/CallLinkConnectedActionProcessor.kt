@@ -14,7 +14,11 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState
 class CallLinkConnectedActionProcessor(
   actionProcessorFactory: MultiPeerActionProcessorFactory,
   webRtcInteractor: WebRtcInteractor
-) : GroupConnectedActionProcessor(actionProcessorFactory, webRtcInteractor) {
+) : GroupConnectedActionProcessor(actionProcessorFactory, webRtcInteractor, TAG) {
+
+  companion object {
+    private val TAG = Log.tag(CallLinkConnectedActionProcessor::class.java)
+  }
 
   override fun handleGroupRequestUpdateMembers(currentState: WebRtcServiceState): WebRtcServiceState {
     Log.i(tag, "handleGroupRequestUpdateMembers():")

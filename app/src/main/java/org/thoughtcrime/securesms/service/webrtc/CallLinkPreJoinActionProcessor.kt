@@ -28,7 +28,7 @@ import java.io.IOException
 class CallLinkPreJoinActionProcessor(
   actionProcessorFactory: MultiPeerActionProcessorFactory,
   webRtcInteractor: WebRtcInteractor
-) : GroupPreJoinActionProcessor(actionProcessorFactory, webRtcInteractor) {
+) : GroupPreJoinActionProcessor(actionProcessorFactory, webRtcInteractor, TAG) {
 
   companion object {
     private val TAG = Log.tag(CallLinkPreJoinActionProcessor::class.java)

@@ -26,7 +26,11 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
   private static final String TAG = Log.tag(GroupJoiningActionProcessor.class);
 
   public GroupJoiningActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory, @NonNull WebRtcInteractor webRtcInteractor) {
-    super(actionProcessorFactory, webRtcInteractor, TAG);
+    this(actionProcessorFactory, webRtcInteractor, TAG);
+  }
+
+  protected GroupJoiningActionProcessor(@NonNull MultiPeerActionProcessorFactory actionProcessorFactory, @NonNull WebRtcInteractor webRtcInteractor, @NonNull String tag) {
+    super(actionProcessorFactory, webRtcInteractor, tag);
   }
 
   @Override
