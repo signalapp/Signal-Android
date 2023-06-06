@@ -8,6 +8,14 @@
     android:layout_height="match_parent"
     tools:context="org.thoughtcrime.securesms.maps.PlacePickerActivity">
 
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map_view"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"

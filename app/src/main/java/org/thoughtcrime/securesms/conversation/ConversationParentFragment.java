@@ -734,9 +734,13 @@ public class ConversationParentFragment extends Fragment
       }, nothing -> onRecipientChanged(recipient.get()));
       break;
     case PICK_LOCATION:
-      SignalPlace place = new SignalPlace(PlacePickerActivity.addressFromData(data));
-      attachmentManager.setLocation(place, getCurrentMediaConstraints());
-      draftViewModel.setLocationDraft(place);
+      if (data.getData() != null) {
+        SignalPlace place = new SignalPlace(PlacePickerActivity.addressFromData(data));
+        attachmentManager.setLocation(place, data.getData());
+        draftViewModel.setLocationDraft(place);
+      } else {
+        Log.w(TAG, "Location missing thumbnail");
+      }
       break;
     case SMS_DEFAULT:
       viewModel.updateSecurityInfo();
