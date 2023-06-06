@@ -42,10 +42,18 @@ object BackupVerifier {
 
         frame = inputStream.readFrame()
       }
+      if (frame.end == true) {
+        count++
+      }
     }
 
     if (cancellationSignal.isCanceled) {
       throw FullBackupExporter.BackupCanceledException()
+    }
+
+    if (count != expectedCount) {
+      Log.e(TAG, "Incorrect number of frames expected $expectedCount but only $count")
+      return false
     }
 
     return true
