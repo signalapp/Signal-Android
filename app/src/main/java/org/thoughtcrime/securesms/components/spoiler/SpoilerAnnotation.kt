@@ -45,10 +45,11 @@ object SpoilerAnnotation {
   }
 
   @JvmStatic
-  fun getSpoilerAnnotations(spanned: Spanned, start: Int, end: Int): List<Annotation> {
+  @JvmOverloads
+  fun getSpoilerAnnotations(spanned: Spanned, start: Int, end: Int, unrevealedOnly: Boolean = false): List<Annotation> {
     return spanned
       .getSpans(start, end, Annotation::class.java)
-      .filter { isSpoilerAnnotation(it) }
+      .filter { isSpoilerAnnotation(it) && !(unrevealedOnly && revealedSpoilers.contains(it.value)) }
   }
 
   @JvmStatic
