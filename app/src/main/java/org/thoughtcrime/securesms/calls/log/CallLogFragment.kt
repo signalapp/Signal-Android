@@ -84,6 +84,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       val isFiltered = viewModel.filterSnapshot == CallLogFilter.MISSED
       menu.findItem(R.id.action_clear_missed_call_filter).isVisible = isFiltered
       menu.findItem(R.id.action_filter_missed_calls).isVisible = !isFiltered
+      menu.findItem(R.id.action_clear_call_history).isVisible = !viewModel.isEmpty
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

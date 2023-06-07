@@ -40,8 +40,12 @@ class CallLogViewModel(
     .stateFlowable
     .map { it.selectionState to it.stagedDeletion }
 
+  private val _isEmpty: BehaviorProcessor<Boolean> = BehaviorProcessor.createDefault(false)
+  val isEmpty: Boolean get() = _isEmpty.value ?: false
+
   val totalCount: Flowable<Int> = Flowable.combineLatest(distinctQueryFilterPairs, data) { a, _ -> a }
     .map { (query, filter) -> callLogRepository.getCallsCount(query, filter) }
+    .doOnNext { _isEmpty.onNext(it <= 0) }
 
   val selectionStateSnapshot: CallLogSelectionState
     get() = callLogStore.state.selectionState
