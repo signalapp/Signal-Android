@@ -102,7 +102,7 @@ public final class FeatureFlags {
   private static final String CHAT_FILTERS                      = "android.chat.filters.3";
   private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations.2";
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.3";
-  private static final String TEXT_FORMATTING                   = "android.textFormatting";
+  private static final String TEXT_FORMATTING                   = "android.textFormatting.2";
   private static final String ANY_ADDRESS_PORTS_KILL_SWITCH     = "android.calling.fieldTrial.anyAddressPortsKillSwitch";
   private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc";
   private static final String EDIT_MESSAGE_RECEIVE              = "android.editMessage.receive";
