@@ -528,78 +528,80 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     dateReceived: Long,
     ringState: RingUpdate
   ) {
-    Log.d(TAG, "Processing group ring state update for $ringId in state $ringState")
+    writableDatabase.withinTransaction {
+      Log.d(TAG, "Processing group ring state update for $ringId in state $ringState")
 
-    val call = getCallById(ringId, groupRecipientId)
-    if (call != null) {
-      if (call.event == Event.DELETE) {
-        Log.d(TAG, "Ignoring ring request for $ringId since its event has been deleted.")
-        return
+      val call = getCallById(ringId, groupRecipientId)
+      if (call != null) {
+        if (call.event == Event.DELETE) {
+          Log.d(TAG, "Ignoring ring request for $ringId since its event has been deleted.")
+          return@withinTransaction
+        }
+
+        when (ringState) {
+          RingUpdate.REQUESTED -> {
+            when (call.event) {
+              Event.GENERIC_GROUP_CALL -> updateEventFromRingState(ringId, Event.RINGING, ringerRecipient)
+              Event.JOINED -> updateEventFromRingState(ringId, Event.ACCEPTED, ringerRecipient)
+              else -> Log.w(TAG, "Received a REQUESTED ring event while in ${call.event}. Ignoring.")
+            }
+          }
+
+          RingUpdate.EXPIRED_REQUEST, RingUpdate.CANCELLED_BY_RINGER -> {
+            when (call.event) {
+              Event.GENERIC_GROUP_CALL, Event.RINGING -> updateEventFromRingState(ringId, Event.MISSED, ringerRecipient)
+              Event.OUTGOING_RING -> Log.w(TAG, "Received an expiration or cancellation while in OUTGOING_RING state. Ignoring.")
+              else -> Unit
+            }
+          }
+
+          RingUpdate.BUSY_LOCALLY, RingUpdate.BUSY_ON_ANOTHER_DEVICE -> {
+            when (call.event) {
+              Event.JOINED -> updateEventFromRingState(ringId, Event.ACCEPTED)
+              Event.GENERIC_GROUP_CALL, Event.RINGING -> updateEventFromRingState(ringId, Event.MISSED)
+              else -> Log.w(TAG, "Received a busy event we can't process. Ignoring.")
+            }
+          }
+
+          RingUpdate.ACCEPTED_ON_ANOTHER_DEVICE -> {
+            updateEventFromRingState(ringId, Event.ACCEPTED)
+          }
+
+          RingUpdate.DECLINED_ON_ANOTHER_DEVICE -> {
+            when (call.event) {
+              Event.RINGING, Event.MISSED -> updateEventFromRingState(ringId, Event.DECLINED)
+              Event.OUTGOING_RING -> Log.w(TAG, "Received DECLINED_ON_ANOTHER_DEVICE while in OUTGOING_RING state.")
+              else -> Unit
+            }
+          }
+        }
+      } else {
+        val event: Event = when (ringState) {
+          RingUpdate.REQUESTED -> Event.RINGING
+          RingUpdate.EXPIRED_REQUEST -> Event.MISSED
+          RingUpdate.ACCEPTED_ON_ANOTHER_DEVICE -> {
+            Log.w(TAG, "Missed original ring request for $ringId")
+            Event.ACCEPTED
+          }
+
+          RingUpdate.DECLINED_ON_ANOTHER_DEVICE -> {
+            Log.w(TAG, "Missed original ring request for $ringId")
+            Event.DECLINED
+          }
+
+          RingUpdate.BUSY_LOCALLY, RingUpdate.BUSY_ON_ANOTHER_DEVICE -> {
+            Log.w(TAG, "Missed original ring request for $ringId")
+            Event.MISSED
+          }
+
+          RingUpdate.CANCELLED_BY_RINGER -> {
+            Log.w(TAG, "Missed original ring request for $ringId")
+            Event.MISSED
+          }
+        }
+
+        createEventFromRingState(ringId, groupRecipientId, ringerRecipient, event, dateReceived)
       }
-
-      when (ringState) {
-        RingUpdate.REQUESTED -> {
-          when (call.event) {
-            Event.GENERIC_GROUP_CALL -> updateEventFromRingState(ringId, Event.RINGING, ringerRecipient)
-            Event.JOINED -> updateEventFromRingState(ringId, Event.ACCEPTED, ringerRecipient)
-            else -> Log.w(TAG, "Received a REQUESTED ring event while in ${call.event}. Ignoring.")
-          }
-        }
-
-        RingUpdate.EXPIRED_REQUEST, RingUpdate.CANCELLED_BY_RINGER -> {
-          when (call.event) {
-            Event.GENERIC_GROUP_CALL, Event.RINGING -> updateEventFromRingState(ringId, Event.MISSED, ringerRecipient)
-            Event.OUTGOING_RING -> Log.w(TAG, "Received an expiration or cancellation while in OUTGOING_RING state. Ignoring.")
-            else -> Unit
-          }
-        }
-
-        RingUpdate.BUSY_LOCALLY, RingUpdate.BUSY_ON_ANOTHER_DEVICE -> {
-          when (call.event) {
-            Event.JOINED -> updateEventFromRingState(ringId, Event.ACCEPTED)
-            Event.GENERIC_GROUP_CALL, Event.RINGING -> updateEventFromRingState(ringId, Event.MISSED)
-            else -> Log.w(TAG, "Received a busy event we can't process. Ignoring.")
-          }
-        }
-
-        RingUpdate.ACCEPTED_ON_ANOTHER_DEVICE -> {
-          updateEventFromRingState(ringId, Event.ACCEPTED)
-        }
-
-        RingUpdate.DECLINED_ON_ANOTHER_DEVICE -> {
-          when (call.event) {
-            Event.RINGING, Event.MISSED -> updateEventFromRingState(ringId, Event.DECLINED)
-            Event.OUTGOING_RING -> Log.w(TAG, "Received DECLINED_ON_ANOTHER_DEVICE while in OUTGOING_RING state.")
-            else -> Unit
-          }
-        }
-      }
-    } else {
-      val event: Event = when (ringState) {
-        RingUpdate.REQUESTED -> Event.RINGING
-        RingUpdate.EXPIRED_REQUEST -> Event.MISSED
-        RingUpdate.ACCEPTED_ON_ANOTHER_DEVICE -> {
-          Log.w(TAG, "Missed original ring request for $ringId")
-          Event.ACCEPTED
-        }
-
-        RingUpdate.DECLINED_ON_ANOTHER_DEVICE -> {
-          Log.w(TAG, "Missed original ring request for $ringId")
-          Event.DECLINED
-        }
-
-        RingUpdate.BUSY_LOCALLY, RingUpdate.BUSY_ON_ANOTHER_DEVICE -> {
-          Log.w(TAG, "Missed original ring request for $ringId")
-          Event.MISSED
-        }
-
-        RingUpdate.CANCELLED_BY_RINGER -> {
-          Log.w(TAG, "Missed original ring request for $ringId")
-          Event.MISSED
-        }
-      }
-
-      createEventFromRingState(ringId, groupRecipientId, ringerRecipient, event, dateReceived)
     }
 
     ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
