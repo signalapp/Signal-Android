@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.exoplayer2.MediaItem
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
@@ -74,7 +75,7 @@ class ConversationAdapterV2(
   private val condensedMode: ConversationItemDisplayMode? = null
 
   init {
-    registerFactory(ThreadHeader::class.java, ::ThreadHeaderViewHolder, R.layout.conversation_item_banner)
+    registerFactory(ThreadHeader::class.java, ::ThreadHeaderViewHolder, R.layout.conversation_item_thread_header)
 
     registerFactory(ConversationUpdate::class.java) { parent ->
       val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_update, parent, false)
@@ -99,6 +100,27 @@ class ConversationAdapterV2(
     registerFactory(IncomingMedia::class.java) { parent ->
       val view = CachedInflater.from(parent.context).inflate<View>(R.layout.conversation_item_received_multimedia, parent, false)
       IncomingMediaViewHolder(view)
+    }
+  }
+
+  override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+    super.onAttachedToRecyclerView(recyclerView)
+
+    for ((model, type) in itemTypes) {
+      val count: Int = when (model) {
+        ThreadHeader::class.java -> 1
+        ConversationUpdate::class.java -> 5
+        OutgoingTextOnly::class.java -> 25
+        OutgoingMedia::class.java -> 15
+        IncomingTextOnly::class.java -> 25
+        IncomingMedia::class.java -> 15
+        Placeholder::class.java -> 5
+        else -> 0
+      }
+
+      if (count > 0) {
+        recyclerView.recycledViewPool.setMaxRecycledViews(type, count)
+      }
     }
   }
 

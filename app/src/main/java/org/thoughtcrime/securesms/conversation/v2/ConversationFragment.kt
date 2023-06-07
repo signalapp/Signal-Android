@@ -13,9 +13,11 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -38,6 +40,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
@@ -114,6 +117,7 @@ import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity
 import org.thoughtcrime.securesms.conversation.AttachmentKeyboardButton
 import org.thoughtcrime.securesms.conversation.BadDecryptLearnMoreDialog
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
+import org.thoughtcrime.securesms.conversation.ConversationHeaderView
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.ConversationIntents.ConversationScreenType
 import org.thoughtcrime.securesms.conversation.ConversationItem
@@ -321,6 +325,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   private lateinit var attachmentManager: AttachmentManager
   private lateinit var multiselectItemDecoration: MultiselectItemDecoration
   private lateinit var openableGiftItemDecoration: OpenableGiftItemDecoration
+  private lateinit var threadHeaderMarginDecoration: ThreadHeaderMarginDecoration
 
   private var animationsAllowed = false
   private var actionMode: ActionMode? = null
@@ -394,6 +399,8 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       .addTo(disposables)
 
     container.fragmentManager = childFragmentManager
+
+    ToolbarDependentMarginListener(binding.toolbar)
   }
 
   override fun onResume() {
@@ -420,6 +427,11 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     ApplicationDependencies.getMessageNotifier().clearVisibleThread()
     motionEventRelay.setDrain(null)
     EventBus.getDefault().unregister(this)
+  }
+
+  override fun onConfigurationChanged(newConfig: Configuration) {
+    super.onConfigurationChanged(newConfig)
+    ToolbarDependentMarginListener(binding.toolbar)
   }
 
   override fun onDestroyView() {
@@ -861,7 +873,6 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       adapter::getAdapterPositionForMessagePosition
     )
 
-    ConversationAdapter.initializePool(binding.conversationItemRecycler.recycledViewPool)
     adapter.setPagingController(viewModel.pagingController)
 
     recyclerViewColorizer = RecyclerViewColorizer(binding.conversationItemRecycler)
@@ -895,6 +906,9 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
         true
       }
     )
+
+    threadHeaderMarginDecoration = ThreadHeaderMarginDecoration()
+    binding.conversationItemRecycler.addItemDecoration(threadHeaderMarginDecoration)
   }
 
   private fun initializeGiphyMp4(): GiphyMp4ProjectionRecycler {
@@ -2654,4 +2668,30 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   }
 
   //endregion
+
+  private inner class ToolbarDependentMarginListener(private val toolbar: Toolbar) : ViewTreeObserver.OnGlobalLayoutListener {
+
+    init {
+      toolbar.viewTreeObserver.addOnGlobalLayoutListener(this)
+    }
+
+    override fun onGlobalLayout() {
+      val rect = Rect()
+      toolbar.getGlobalVisibleRect(rect)
+      threadHeaderMarginDecoration.toolbarMargin = rect.bottom + 16.dp
+      binding.conversationItemRecycler.invalidateItemDecorations()
+      toolbar.viewTreeObserver.removeOnGlobalLayoutListener(this)
+    }
+  }
+
+  private inner class ThreadHeaderMarginDecoration : RecyclerView.ItemDecoration() {
+    var toolbarMargin: Int = 0
+
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+      super.getItemOffsets(outRect, view, parent, state)
+      if (view is ConversationHeaderView) {
+        outRect.top = toolbarMargin
+      }
+    }
+  }
 }

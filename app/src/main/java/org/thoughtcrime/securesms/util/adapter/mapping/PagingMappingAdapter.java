@@ -93,7 +93,7 @@ public class PagingMappingAdapter<Key> extends MappingAdapter {
     return getItem(position) != null;
   }
 
-  private static class Placeholder implements MappingModel<Placeholder> {
+  protected static class Placeholder implements MappingModel<Placeholder> {
     @Override
     public boolean areItemsTheSame(@NonNull Placeholder newItem) {
       return false;
