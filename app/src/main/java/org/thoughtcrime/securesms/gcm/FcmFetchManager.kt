@@ -39,6 +39,9 @@ object FcmFetchManager {
   @Volatile
   private var startedForeground = false
 
+  @Volatile
+  private var stoppingForeground = false
+
   /**
    * @return True if a service was successfully started, otherwise false.
    */
@@ -89,6 +92,7 @@ object FcmFetchManager {
         if (startedForeground) {
           try {
             context.startService(FcmFetchForegroundService.buildStopIntent(context))
+            stoppingForeground = true
           } catch (e: IllegalStateException) {
             Log.w(TAG, "Failed to stop the foreground notification!", e)
           }
@@ -102,7 +106,10 @@ object FcmFetchManager {
   @JvmStatic
   fun tryLegacyFallback(context: Context) {
     synchronized(this) {
-      if (startedForeground) {
+      if (startedForeground || stoppingForeground) {
+        if (stoppingForeground) {
+          Log.i(TAG, "Legacy fallback: foreground service is stopping, but trying to run in background anyways.")
+        }
         val performedReplace = EXECUTOR.enqueue { fetch(context) }
 
         if (performedReplace) {
@@ -132,6 +139,13 @@ object FcmFetchManager {
         Log.w(TAG, "[API ${Build.VERSION.SDK_INT}] Failed to retrieve messages. Scheduling on JobManager (API " + Build.VERSION.SDK_INT + ").")
         ApplicationDependencies.getJobManager().add(PushNotificationReceiveJob())
       }
+    }
+  }
+
+  fun onForegroundFetchServiceStop() {
+    synchronized(this) {
+      stoppingForeground = false
+      Log.i(TAG, "Foreground service stopped successfully")
     }
   }
 }
