@@ -130,7 +130,12 @@ public abstract class AudioManagerCompat {
 
   @RequiresApi(31)
   public boolean setCommunicationDevice(@NonNull AudioDeviceInfo device) {
-    return audioManager.setCommunicationDevice(device);
+    try {
+      return audioManager.setCommunicationDevice(device);
+    } catch (IllegalArgumentException e) {
+      Log.w(TAG, "Invalid device chosen.", e);
+      return false;
+    }
   }
 
   @RequiresApi(31)
