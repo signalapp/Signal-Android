@@ -69,6 +69,7 @@ import org.whispersystems.signalservice.api.push.exceptions.ExternalServiceFailu
 import org.whispersystems.signalservice.api.push.exceptions.HttpConflictException;
 import org.whispersystems.signalservice.api.push.exceptions.IncorrectRegistrationRecoveryPasswordException;
 import org.whispersystems.signalservice.api.push.exceptions.InvalidTransportModeException;
+import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestException;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
 import org.whispersystems.signalservice.api.push.exceptions.MustRequestNewCodeException;
@@ -82,6 +83,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushChallengeRequire
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.RangeException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
+import org.whispersystems.signalservice.api.push.exceptions.RegistrationRetryException;
 import org.whispersystems.signalservice.api.push.exceptions.RemoteAttestationResponseExpiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
@@ -2553,7 +2555,10 @@ public class PushServiceSocket {
 
     @Override
     public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
-      if (responseCode == 403) {
+
+      if (responseCode == 400) {
+        throw new MalformedRequestException();
+      } else if (responseCode == 403) {
         throw new IncorrectRegistrationRecoveryPasswordException();
       } else if (responseCode == 404) {
         throw new NoSuchSessionException();
@@ -2572,13 +2577,17 @@ public class PushServiceSocket {
         } else {
           throw new HttpConflictException();
         }
-      } else if (responseCode == 502) {
+      } else if (responseCode == 418) {
+        throw new InvalidTransportModeException();
+      } else if (responseCode == 429) {
+        throw new RegistrationRetryException();
+      } else if (responseCode == 440) {
         VerificationCodeFailureResponseBody response;
         try {
           response = JsonUtil.fromJson(body.string(), VerificationCodeFailureResponseBody.class);
         } catch (IOException e) {
           Log.e(TAG, "Unable to read response body.", e);
-          throw new NonSuccessfulResponseCodeException(502);
+          throw new NonSuccessfulResponseCodeException(responseCode);
         }
         throw new ExternalServiceFailureException(response.getPermanentFailure(), response.getReason());
       }
@@ -2615,7 +2624,9 @@ public class PushServiceSocket {
   }
 
   private static class RegistrationCodeRequestResponseHandler implements ResponseCodeHandler {
-    @Override public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+    @Override
+    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+
       switch (responseCode) {
         case 400:
           throw new InvalidTransportModeException();
@@ -2637,13 +2648,13 @@ public class PushServiceSocket {
           } else {
             throw new HttpConflictException();
           }
-        case 502:
+        case 440:
           VerificationCodeFailureResponseBody codeFailureResponse;
           try {
             codeFailureResponse = JsonUtil.fromJson(body.string(), VerificationCodeFailureResponseBody.class);
           } catch (IOException e) {
             Log.e(TAG, "Unable to read response body.", e);
-            throw new NonSuccessfulResponseCodeException(502);
+            throw new NonSuccessfulResponseCodeException(responseCode);
           }
 
           throw new ExternalServiceFailureException(codeFailureResponse.getPermanentFailure(), codeFailureResponse.getReason());

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -286,8 +287,9 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   private void requestVerificationCode(@NonNull Mode mode) {
-    NavController  navController  = NavHostFragment.findNavController(this);
-    MccMncProducer mccMncProducer = new MccMncProducer(requireContext());
+    NavController                         navController       = NavHostFragment.findNavController(this);
+    MccMncProducer                        mccMncProducer      = new MccMncProducer(requireContext());
+    final DialogInterface.OnClickListener proceedToNextScreen = (dialog, which) -> SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
     Disposable request = viewModel.requestVerificationCode(mode, mccMncProducer.getMcc(), mccMncProducer.getMnc())
                                   .doOnSubscribe(unused -> SignalStore.account().setRegistered(false))
                                   .observeOn(AndroidSchedulers.mainThread())
@@ -314,11 +316,23 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                     } else if (processor.isTokenRejected()) {
                                       Log.i(TAG, "The server did not accept the information.", processor.getError());
                                       showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human));
-                                    } else if (processor instanceof RegistrationSessionProcessor.RegistrationSessionProcessorForVerification
-                                               && ((RegistrationSessionProcessor.RegistrationSessionProcessorForVerification) processor).externalServiceFailure())
-                                    {
+                                    } else if (processor.externalServiceFailure()) {
                                       Log.w(TAG, "The server reported a failure with an external service.", processor.getError());
-                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_external_service_error));
+                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_unable_to_connect_to_service), proceedToNextScreen);
+                                    } else if (processor.invalidTransportModeFailure()) {
+                                      Log.w(TAG, "The server reported an invalid transport mode failure.", processor.getError());
+                                      new MaterialAlertDialogBuilder(register.getContext())
+                                          .setMessage(R.string.RegistrationActivity_we_couldnt_send_you_a_verification_code)
+                                          .setPositiveButton(R.string.RegistrationActivity_voice_call, (dialog, which) -> requestVerificationCode(Mode.PHONE_CALL))
+                                          .setNegativeButton(R.string.RegistrationActivity_cancel, null)
+                                          .show();
+                                    } else if ( processor.isMalformedRequest()){
+                                      Log.w(TAG, "The server reported a malformed request.", processor.getError());
+                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_unable_to_connect_to_service), proceedToNextScreen);
+
+                                    } else if (processor.isRetryException()) {
+                                      Log.w(TAG, "The server reported a failure that is retryable.", processor.getError());
+                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_unable_to_connect_to_service), proceedToNextScreen);
                                     } else {
                                       Log.i(TAG, "Unknown error during verification code request", processor.getError());
                                       showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_unable_to_connect_to_service));
@@ -343,7 +357,11 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   public void showErrorDialog(Context context, String msg) {
-    new MaterialAlertDialogBuilder(context).setMessage(msg).setPositiveButton(R.string.ok, null).show();
+    showErrorDialog(context, msg, null);
+  }
+
+  public void showErrorDialog(Context context, String msg, DialogInterface.OnClickListener positiveButtonListener) {
+    new MaterialAlertDialogBuilder(context).setMessage(msg).setPositiveButton(R.string.ok, positiveButtonListener).show();
   }
 
   @Override
