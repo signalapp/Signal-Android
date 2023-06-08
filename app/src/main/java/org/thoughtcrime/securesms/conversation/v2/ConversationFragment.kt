@@ -326,6 +326,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   private lateinit var multiselectItemDecoration: MultiselectItemDecoration
   private lateinit var openableGiftItemDecoration: OpenableGiftItemDecoration
   private lateinit var threadHeaderMarginDecoration: ThreadHeaderMarginDecoration
+  private lateinit var dateHeaderDecoration: DateHeaderDecoration
 
   private var animationsAllowed = false
   private var actionMode: ActionMode? = null
@@ -464,6 +465,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
         adapter.submitList(it) {
           scrollToPositionDelegate.notifyListCommitted()
+          dateHeaderDecoration.currentItems = it
 
           if (firstRender) {
             firstRender = false
@@ -785,6 +787,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     binding.conversationDisabledInput.setWallpaperEnabled(wallpaperEnabled)
 
     adapter.onHasWallpaperChanged(wallpaperEnabled)
+    dateHeaderDecoration.hasWallpaper = wallpaperEnabled
   }
 
   private fun presentChatColors(chatColors: ChatColors) {
@@ -909,6 +912,9 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
 
     threadHeaderMarginDecoration = ThreadHeaderMarginDecoration()
     binding.conversationItemRecycler.addItemDecoration(threadHeaderMarginDecoration)
+
+    dateHeaderDecoration = DateHeaderDecoration(hasWallpaper = args.wallpaper != null)
+    binding.conversationItemRecycler.addItemDecoration(dateHeaderDecoration, 0)
   }
 
   private fun initializeGiphyMp4(): GiphyMp4ProjectionRecycler {
