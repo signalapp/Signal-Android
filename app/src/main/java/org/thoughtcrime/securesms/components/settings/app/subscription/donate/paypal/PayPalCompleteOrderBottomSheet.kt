@@ -35,6 +35,7 @@ class PayPalCompleteOrderBottomSheet : DSLSettingsBottomSheetFragment() {
   }
 
   override fun onDismiss(dialog: DialogInterface) {
+    super.onDismiss(dialog)
     setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to didConfirmOrder))
   }
 
