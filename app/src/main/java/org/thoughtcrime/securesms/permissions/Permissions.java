@@ -232,7 +232,7 @@ public class Permissions {
     }
 
 
-    fragment.requestPermissions(filterNotGranted(fragment.requireContext(), permissions), requestCode);
+    fragment.requestPermissions(neededPermissions, requestCode);
   }
 
   private static String[] filterNotGranted(@NonNull Context context, String... permissions) {
