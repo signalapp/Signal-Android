@@ -76,7 +76,7 @@ private fun SignalCallRowPreview() {
 @Composable
 fun SignalCallRow(
   callLink: CallLinkTable.CallLink,
-  onJoinClicked: () -> Unit,
+  onJoinClicked: (() -> Unit)?,
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -122,13 +122,15 @@ fun SignalCallRow(
       )
     }
 
-    Spacer(modifier = Modifier.width(10.dp))
+    if (onJoinClicked != null) {
+      Spacer(modifier = Modifier.width(10.dp))
 
-    Buttons.Small(
-      onClick = onJoinClicked,
-      modifier = Modifier.align(CenterVertically)
-    ) {
-      Text(text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__join))
+      Buttons.Small(
+        onClick = onJoinClicked,
+        modifier = Modifier.align(CenterVertically)
+      ) {
+        Text(text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__join))
+      }
     }
   }
 }

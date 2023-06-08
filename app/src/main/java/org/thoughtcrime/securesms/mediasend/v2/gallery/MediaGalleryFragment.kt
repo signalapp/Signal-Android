@@ -9,7 +9,7 @@ import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.map
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import org.signal.core.util.Stopwatch
@@ -140,8 +140,8 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     }
 
     val galleryItemsWithSelection = LiveDataUtil.combineLatest(
-      Transformations.map(viewModel.state) { it.items },
-      Transformations.map(viewStateLiveData) { it.selectedMedia }
+      viewModel.state.map { it.items },
+      viewStateLiveData.map { it.selectedMedia }
     ) { galleryItems, selectedMedia ->
       galleryItems.map {
         if (it is MediaGallerySelectableItem.FileModel) {

@@ -34,6 +34,7 @@ import androidx.core.app.ShareCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Rows
@@ -86,7 +87,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
     ) {
       val callLink: CallLinkTable.CallLink by viewModel.callLink
 
-      Handle(modifier = Modifier.align(Alignment.CenterHorizontally))
+      BottomSheets.Handle(modifier = Modifier.align(Alignment.CenterHorizontally))
 
       Spacer(modifier = Modifier.height(20.dp))
 

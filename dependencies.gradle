@@ -27,6 +27,7 @@ dependencyResolutionManagement {
             alias('androidx-compose-material3').to('androidx.compose.material3', 'material3').withoutVersion();
             alias('androidx-compose-ui-tooling-preview').to('androidx.compose.ui', 'ui-tooling-preview').withoutVersion()
             alias('androidx-compose-ui-tooling-core').to('androidx.compose.ui', 'ui-tooling').withoutVersion()
+            alias('androidx-compose-runtime-livedata').to('androidx.compose.runtime', 'runtime-livedata').withoutVersion()
             alias('androidx-compose-rxjava3').to('androidx.compose.runtime:runtime-rxjava3:1.4.2')
             alias('ktlint-twitter-compose').to('com.twitter.compose.rules:ktlint:0.0.26')
 

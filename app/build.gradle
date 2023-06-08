@@ -470,6 +470,7 @@ dependencies {
     implementation libs.androidx.gridlayout
     implementation libs.androidx.exifinterface
     implementation libs.androidx.compose.rxjava3
+    implementation libs.androidx.compose.runtime.livedata
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.multidex
     implementation libs.androidx.navigation.fragment.ktx

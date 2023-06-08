@@ -55,6 +55,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
+import org.thoughtcrime.securesms.components.webrtc.CallLinkInfoSheet;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
 import org.thoughtcrime.securesms.components.webrtc.CallStateUpdatePopupWindow;
@@ -71,6 +72,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.messagerequests.CalleeMustAcceptMessageRequestActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet;
@@ -901,7 +903,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     @Override
     public void onCallInfoClicked() {
-      CallParticipantsListDialog.show(getSupportFragmentManager());
+      LiveRecipient liveRecipient = viewModel.getRecipient();
+
+      if (liveRecipient.get().isCallLink()) {
+        CallLinkInfoSheet.show(getSupportFragmentManager(), liveRecipient.get().requireCallLinkRoomId());
+      } else {
+        CallParticipantsListDialog.show(getSupportFragmentManager());
+      }
     }
 
     @Override
