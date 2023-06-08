@@ -145,7 +145,11 @@ class PushProcessMessageJobV2 private constructor(
         }
         PushProcessMessageJobV2(builder.build(), result.envelope.toBuilder().clearContent().build(), result.content, result.metadata, result.serverDeliveredTimestamp)
       } else {
-        messageProcessor.process(result.envelope, result.content, result.metadata, result.serverDeliveredTimestamp)
+        try {
+          messageProcessor.process(result.envelope, result.content, result.metadata, result.serverDeliveredTimestamp)
+        } catch (e: Exception) {
+          Log.e(TAG, "Failed to process message with timestamp ${result.envelope.timestamp}. Dropping.")
+        }
         null
       }
     }
