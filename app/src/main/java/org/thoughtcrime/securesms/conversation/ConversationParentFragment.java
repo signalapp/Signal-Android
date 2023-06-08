@@ -304,6 +304,7 @@ import org.whispersystems.signalservice.api.SignalSessionLock;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -449,6 +450,7 @@ public class ConversationParentFragment extends Fragment
   private GroupCallViewModel           groupCallViewModel;
   private VoiceRecorderWakeLock        voiceRecorderWakeLock;
   private DraftViewModel               draftViewModel;
+  private KeyboardPagerViewModel       keyboardPagerViewModel;
   private VoiceNoteMediaController     voiceNoteMediaController;
   private VoiceNotePlayerView          voiceNotePlayerView;
   private Material3OnScrollHelper      material3OnScrollHelper;
@@ -471,6 +473,8 @@ public class ConversationParentFragment extends Fragment
   private RecentEmojiPageModel recentEmojis;
 
   private ConversationOptionsMenu.Provider menuProvider;
+
+  private Set<KeyboardPage> previousPages;
 
   public static ConversationParentFragment create(Intent intent) {
     ConversationParentFragment fragment = new ConversationParentFragment();
@@ -2724,7 +2728,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void initializeMediaKeyboardProviders() {
-    KeyboardPagerViewModel keyboardPagerViewModel = new ViewModelProvider(requireActivity()).get(KeyboardPagerViewModel.class);
+    keyboardPagerViewModel = new ViewModelProvider(requireActivity()).get(KeyboardPagerViewModel.class);
 
     switch (TextSecurePreferences.getMediaKeyboardMode(requireContext())) {
       case EMOJI:
@@ -4234,12 +4238,19 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onEnterEditMode() {
     updateToggleButtonState();
+    previousPages = keyboardPagerViewModel.pages().getValue();
+    keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI);
+    onKeyboardChanged(KeyboardPage.EMOJI);
   }
 
   @Override
   public void onExitEditMode() {
     updateToggleButtonState();
     draftViewModel.deleteMessageEditDraft();
+    if (previousPages != null) {
+      keyboardPagerViewModel.setPages(previousPages);
+      previousPages = null;
+    }
   }
 
   @Override
