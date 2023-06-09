@@ -318,7 +318,7 @@
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">แก้ไข %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
-    <string name="ConversationItem__join_call">Join call</string>
+    <string name="ConversationItem__join_call">เข้าร่วมการโทร</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">เพิ่มแฟ้มแนบ</string>
@@ -1074,7 +1074,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">วาดเพื่อมัวหน้าหรือพื้นที่เพิ่มเติม</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">แตะค้างไว้เพื่ออัดข้อความเสียง ปล่อยเพื่อส่ง</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">แตะค้างไว้เพื่อบันทึกข้อความเสียง แล้วปล่อยเพื่อส่ง</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
     <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal ไม่รองรับการส่งข้อความ SMS อีกต่อไป</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
@@ -1433,12 +1433,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ได้เริ่มการโทรแบบกลุ่ม %2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s อยู่ในการโทรแบบกลุ่ม %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">คุณอยู่ในการโทรแบบกลุ่ม %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s และ %2$s ได้อยู่ในการโทรแบบกลุ่ม %3$s</string>
     <string name="MessageRecord_group_call_s">โทรกลุ่ม · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s ได้เริ่มการโทรแบบกลุ่ม</string>
+    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s อยู่ในการโทรแบบกลุ่ม</string>
     <string name="MessageRecord_you_are_in_the_group_call">คุณอยู่ในการโทรแบบกลุ่ม</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s และ %2$s ได้อยู่ในการโทรแบบกลุ่ม</string>
@@ -1810,9 +1812,9 @@
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
     <string name="RegistrationActivity_external_service_error">Signal ไม่สามารถส่งรหัสทาง SMS ได้เนื่องจากมีความผิดพลาดจากภายนอกแอป</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Voice Call</string>
+    <string name="RegistrationActivity_voice_call">โทรเสียง</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Cancel</string>
+    <string name="RegistrationActivity_cancel">ยกเลิก</string>
     <string name="RegistrationActivity_next">ต่อไป</string>
     <string name="RegistrationActivity_continue">ทำต่อ</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">นำความเป็นส่วนตัวไปกับคุณทุกที่\nเป็นตัวคุณในทุกข้อความ</string>
@@ -2272,7 +2274,9 @@
     <string name="WebRtcAudioOutputToggle__speaker">ลำโพง</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">บลูทูธ</string>
-    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">ชุดหูฟังพร้อมไมโครโฟนแบบมีสาย</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">ชุดหูฟังพร้อมไมโครโฟนแบบมีสาย (USB)</string>
@@ -2819,7 +2823,7 @@
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">การล็อกการชำระเงิน</string>
     <string name="preferences__payments_beta">การชำระเงิน (รุ่นทดสอบ)</string>
-    <string name="preferences__conversation_length_limit">ขีดจำกัดความยาวของแชท</string>
+    <string name="preferences__conversation_length_limit">จำกัดจำนวนข้อความในแชทสูงสุด</string>
     <string name="preferences__keep_messages">เก็บข้อความ</string>
     <string name="preferences__clear_message_history">ล้างประวัติการส่งข้อความ</string>
     <string name="preferences__linked_devices">อุปกรณ์ที่เชื่อมโยงอยู่</string>

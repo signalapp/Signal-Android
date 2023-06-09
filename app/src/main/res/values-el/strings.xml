@@ -319,7 +319,7 @@
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp will go from \'11m\' to \'edited 11m\' -->
     <string name="ConversationItem_edited_timestamp_footer">επεξεργασία %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
-    <string name="ConversationItem__join_call">Join call</string>
+    <string name="ConversationItem__join_call">Είσοδος στην κλήση</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Προσθήκη συνημμένου</string>
@@ -1484,12 +1484,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">Είσαι στην ομαδική κλήση · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">Οι %1$s και %2$s είναι στην ομαδική κλήση · %3$s</string>
     <string name="MessageRecord_group_call_s">Ομαδική κλήση · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση</string>
+    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
     <string name="MessageRecord_s_is_in_the_group_call">Ο/Η %1$s είναι στην ομαδική κλήση</string>
     <string name="MessageRecord_you_are_in_the_group_call">Είσαι στην ομαδική κλήση</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">Οι %1$s και %2$s είναι στην ομαδική κλήση</string>
@@ -1876,9 +1878,9 @@
     <!-- An error shown when the request was valid, but due to an issue with a partner vendor, the server is unable to send an SMS code -->
     <string name="RegistrationActivity_external_service_error">Το Signal δεν μπόρεσε να στείλει κωδικό SMS λόγω εξωτερικής αποτυχίας.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Voice Call</string>
+    <string name="RegistrationActivity_voice_call">Βιντεοκλήση</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Cancel</string>
+    <string name="RegistrationActivity_cancel">Ακύρωση</string>
     <string name="RegistrationActivity_next">Επόμενο</string>
     <string name="RegistrationActivity_continue">Συνέχεια</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Πάρε την ιδιωτικότητα μαζί σου.\nΝα είσαι ο εαυτός σου σε κάθε μήνυμα.</string>
@@ -2342,7 +2344,9 @@
     <string name="WebRtcAudioOutputToggle__speaker">Μεγάφωνο</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
-    <!-- Audio output option referring to an external headset connected via a 3.5mm headphone jack -->
+    <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
+    <string name="WebRtcAudioOutputToggle__wired_headphones">Wired Headphones</string>
+    <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headset">Ενσύρματο ακουστικό</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">Ενσύρματο ακουστικό (USB)</string>
