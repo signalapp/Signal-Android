@@ -6,8 +6,8 @@
 package org.thoughtcrime.securesms.calls.links
 
 import io.reactivex.rxjava3.core.Observable
-import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
+import org.signal.ringrtc.CallException
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.DatabaseObserver
@@ -25,7 +25,7 @@ object CallLinks {
 
   private val TAG = Log.tag(CallLinks::class.java)
 
-  fun url(linkKeyBytes: ByteArray) = "$LINK_PREFIX${Hex.dump(linkKeyBytes)}"
+  fun url(linkKeyBytes: ByteArray) = "$LINK_PREFIX${CallLinkRootKey(linkKeyBytes)}"
 
   fun watchCallLink(roomId: CallLinkRoomId): Observable<CallLinkTable.CallLink> {
     return Observable.create { emitter ->
@@ -82,7 +82,11 @@ object CallLinks {
       return null
     }
 
-    // TODO Parse the key into a byte array
-    return null
+    return try {
+      CallLinkRootKey(key)
+    } catch (e: CallException) {
+      Log.w(TAG, "Invalid root key found in fragment query string.")
+      null
+    }
   }
 }

@@ -602,10 +602,13 @@
 
         <intent-filter android:autoVerify="true">
             <action android:name="android.intent.action.VIEW" />
+
             <category android:name="android.intent.category.DEFAULT" />
             <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="https"
-                android:host="signal.link" />
+
+            <data android:scheme="sgnl" />
+            <data android:scheme="https" />
+            <data android:host="signal.link" />
         </intent-filter>
     </activity>
 
