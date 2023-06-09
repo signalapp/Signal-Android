@@ -1432,7 +1432,7 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       }
 
       val timestamp = MarkReadHelper.getLatestTimestamp(adapter, layoutManager)
-      timestamp.ifPresent(viewModel::requestMarkRead)
+      timestamp.ifPresent(markReadHelper::onViewsRevealed)
     }
   }
 

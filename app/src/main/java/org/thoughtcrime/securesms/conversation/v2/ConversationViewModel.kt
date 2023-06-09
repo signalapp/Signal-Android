@@ -248,9 +248,6 @@ class ConversationViewModel(
     }
   }
 
-  fun requestMarkRead(timestamp: Long) {
-  }
-
   fun sendMessage(
     metricId: String?,
     body: String,
