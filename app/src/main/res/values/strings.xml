@@ -1484,12 +1484,14 @@
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s started a group call · %2$s</string>
+    <string name="MessageRecord_you_started_a_group_call_s">You started a group call · %1$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s is in the group call · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">You are in the group call · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s and %2$s are in the group call · %3$s</string>
     <string name="MessageRecord_group_call_s">Group call · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s started a group call</string>
+    <string name="MessageRecord_you_started_a_group_call">You started a group call</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s is in the group call</string>
     <string name="MessageRecord_you_are_in_the_group_call">You are in the group call</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s and %2$s are in the group call</string>
