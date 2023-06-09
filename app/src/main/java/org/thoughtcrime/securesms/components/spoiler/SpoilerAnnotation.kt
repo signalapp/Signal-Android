@@ -69,6 +69,7 @@ object SpoilerAnnotation {
         if (text is Spannable) {
           Selection.removeSelection(text)
         }
+        widget.text = text
       }
     }
 

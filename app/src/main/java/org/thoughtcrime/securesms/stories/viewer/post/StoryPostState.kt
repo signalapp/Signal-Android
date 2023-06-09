@@ -10,6 +10,7 @@ import kotlin.time.Duration
 
 sealed class StoryPostState {
   data class TextPost(
+    val storyTextPostId: Long = 0L,
     val storyTextPost: StoryTextPost? = null,
     val linkPreview: LinkPreview? = null,
     val typeface: Typeface? = null,
