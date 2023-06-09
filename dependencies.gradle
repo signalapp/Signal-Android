@@ -112,7 +112,7 @@ dependencyResolutionManagement {
             alias('libsignal-android').to('org.signal', 'libsignal-android').versionRef('libsignal-client')
             alias('signal-aesgcmprovider').to('org.signal:aesgcmprovider:0.0.3')
             alias('signal-ringrtc').to('org.signal:ringrtc-android:2.28.0')
-            alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.4-S1')
+            alias('signal-android-database-sqlcipher').to('org.signal:sqlcipher-android:4.5.4-S2')
 
             // Third Party
             alias('greenrobot-eventbus').to('org.greenrobot:eventbus:3.0.0')
