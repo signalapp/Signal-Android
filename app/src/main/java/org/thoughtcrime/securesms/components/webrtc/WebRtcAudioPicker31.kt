@@ -30,7 +30,7 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
       return null
     }
 
-    val devices: List<AudioOutputOption> = am.availableCommunicationDevices.map { AudioOutputOption(it.toFriendlyName(fragmentActivity).toString(), AudioDeviceMapping.fromPlatformType(it.type), it.id) }.distinct()
+    val devices: List<AudioOutputOption> = am.availableCommunicationDevices.map { AudioOutputOption(it.toFriendlyName(fragmentActivity).toString(), AudioDeviceMapping.fromPlatformType(it.type), it.id) }.distinct().filterNot { it.deviceType == SignalAudioManager.AudioDevice.NONE }
     val currentDeviceId = am.communicationDevice?.id ?: -1
     if (devices.size < threshold) {
       Log.d(TAG, "Only found $devices devices,\nnot showing picker.")
@@ -75,6 +75,7 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
     return when (this.type) {
       AudioDeviceInfo.TYPE_BUILTIN_EARPIECE -> context.getString(R.string.WebRtcAudioOutputToggle__phone_earpiece)
       AudioDeviceInfo.TYPE_BUILTIN_SPEAKER -> context.getString(R.string.WebRtcAudioOutputToggle__speaker)
+      AudioDeviceInfo.TYPE_WIRED_HEADPHONES -> context.getString(R.string.WebRtcAudioOutputToggle__wired_headphones)
       AudioDeviceInfo.TYPE_WIRED_HEADSET -> context.getString(R.string.WebRtcAudioOutputToggle__wired_headset)
       AudioDeviceInfo.TYPE_USB_HEADSET -> context.getString(R.string.WebRtcAudioOutputToggle__wired_headset_usb)
       else -> this.productName
