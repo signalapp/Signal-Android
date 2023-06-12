@@ -208,6 +208,7 @@ import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewCardDialogFragment
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment
 import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment
+import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException
@@ -258,7 +259,10 @@ import java.util.concurrent.ExecutionException
 /**
  * A single unified fragment for Conversations.
  */
-class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) {
+class ConversationFragment :
+  LoggingFragment(R.layout.v2_conversation_fragment),
+  ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
+  ReactionsBottomSheetDialogFragment.Callback {
 
   companion object {
     private val TAG = Log.tag(ConversationFragment::class.java)
@@ -440,6 +444,18 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
     if (pinnedShortcutReceiver != null) {
       requireActivity().unregisterReceiver(pinnedShortcutReceiver)
     }
+  }
+
+  override fun onReactWithAnyEmojiDialogDismissed() {
+    reactionDelegate.hide()
+  }
+
+  override fun onReactWithAnyEmojiSelected(emoji: String) {
+    reactionDelegate.hide()
+  }
+
+  override fun onReactionsDialogDismissed() {
+    clearFocusedItem()
   }
 
   private fun observeConversationThread() {
@@ -1580,13 +1596,13 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
       context ?: return
       val reactionsTag = "REACTIONS"
       if (parentFragmentManager.findFragmentByTag(reactionsTag) == null) {
-        ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(parentFragmentManager, reactionsTag)
+        ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(childFragmentManager, reactionsTag)
       }
     }
 
     override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) {
       context ?: return
-      RecipientBottomSheetDialogFragment.create(recipientId, groupId).show(parentFragmentManager, "BOTTOM")
+      RecipientBottomSheetDialogFragment.create(recipientId, groupId).show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
     }
 
     override fun onMessageWithErrorClicked(messageRecord: MessageRecord) {
@@ -2150,10 +2166,23 @@ class ConversationFragment : LoggingFragment(R.layout.v2_conversation_fragment) 
   private inner class OnReactionsSelectedListener : ConversationReactionOverlay.OnReactionSelectedListener {
     override fun onReactionSelected(messageRecord: MessageRecord, emoji: String?) {
       reactionDelegate.hide()
+
+      if (emoji != null) {
+        disposables += viewModel.updateReaction(messageRecord, emoji).subscribe()
+      }
     }
 
     override fun onCustomReactionSelected(messageRecord: MessageRecord, hasAddedCustomEmoji: Boolean) {
       reactionDelegate.hide()
+      disposables += viewModel.updateCustomReaction(messageRecord, hasAddedCustomEmoji)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeBy(
+          onSuccess = {
+            ReactWithAnyEmojiBottomSheetDialogFragment
+              .createForMessageRecord(messageRecord, -1)
+              .show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+          }
+        )
     }
   }
 

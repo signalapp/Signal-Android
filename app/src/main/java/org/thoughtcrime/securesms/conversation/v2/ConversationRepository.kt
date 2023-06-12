@@ -63,8 +63,10 @@ import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
+import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
@@ -157,6 +159,26 @@ class ConversationRepository(
         }
       }
       .subscribeOn(Schedulers.io())
+  }
+
+  fun sendReactionRemoval(messageRecord: MessageRecord, oldRecord: ReactionRecord): Completable {
+    return Completable.fromAction {
+      MessageSender.sendReactionRemoval(
+        applicationContext,
+        MessageId(messageRecord.id),
+        oldRecord
+      )
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun sendNewReaction(messageRecord: MessageRecord, emoji: String): Completable {
+    return Completable.fromAction {
+      MessageSender.sendNewReaction(
+        applicationContext,
+        MessageId(messageRecord.id),
+        emoji
+      )
+    }.subscribeOn(Schedulers.io())
   }
 
   fun sendMessage(

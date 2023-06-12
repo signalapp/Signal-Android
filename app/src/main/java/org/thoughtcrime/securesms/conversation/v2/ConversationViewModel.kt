@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
+import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
@@ -246,6 +247,33 @@ class ConversationViewModel(
     return recipient.firstOrError().flatMap {
       repository.getRecipientContactPhotoBitmap(context, glideRequests, it)
     }
+  }
+
+  fun updateReaction(messageRecord: MessageRecord, emoji: String): Completable {
+    val oldRecord = messageRecord.oldReactionRecord()
+
+    return if (oldRecord != null && oldRecord.emoji == emoji) {
+      repository.sendReactionRemoval(messageRecord, oldRecord)
+    } else {
+      repository.sendNewReaction(messageRecord, emoji)
+    }
+  }
+
+  /**
+   * @return Maybe which only emits if the "React with any" sheet should be displayed.
+   */
+  fun updateCustomReaction(messageRecord: MessageRecord, hasAddedCustomEmoji: Boolean): Maybe<Unit> {
+    val oldRecord = messageRecord.oldReactionRecord()
+
+    return if (oldRecord != null && hasAddedCustomEmoji) {
+      repository.sendReactionRemoval(messageRecord, oldRecord).toMaybe()
+    } else {
+      Maybe.just(Unit)
+    }
+  }
+
+  private fun MessageRecord.oldReactionRecord(): ReactionRecord? {
+    return reactions.firstOrNull { it.author == Recipient.self().id }
   }
 
   fun sendMessage(
