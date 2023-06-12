@@ -49,7 +49,7 @@ public class NetworkConstraint implements Constraint {
   public static boolean isMet(@NonNull Context context) {
     ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-    if (Build.VERSION.SDK_INT >= 23) {
+    if (Build.VERSION.SDK_INT >= 29) {
       Network             activeNetwork       = connectivityManager.getActiveNetwork();
       NetworkCapabilities networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork);
       return networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
