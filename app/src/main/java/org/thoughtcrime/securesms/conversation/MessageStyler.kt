@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.util.PlaceholderURLSpan
 object MessageStyler {
 
   const val MONOSPACE = "monospace"
-  const val SPAN_FLAGS = Spanned.SPAN_EXCLUSIVE_INCLUSIVE
+  const val SPAN_FLAGS = Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
   const val DRAFT_ID = "DRAFT"
   const val COMPOSE_ID = "COMPOSE"
   const val QUOTE_ID = "QUOTE"

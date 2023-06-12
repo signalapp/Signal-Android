@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.conversation.MessageStyler.isSupportedStyle
 /**
  * Formatting should only grow when appending until a white space character is entered/pasted.
  *
- * This watcher observes changes to the text and will shrink supported style ranges as necessary
+ * This watcher observes changes to the text and will grow supported style ranges as necessary
  * to provide the desired behavior.
  */
 class ComposeTextStyleWatcher : TextWatcher {
@@ -45,32 +45,29 @@ class ComposeTextStyleWatcher : TextWatcher {
     s.removeSpan(markerAnnotation)
 
     try {
-      if (editStart < 0 || editEnd < 0 || editStart >= editEnd || (editStart == 0 && editEnd == s.length)) {
+      if (editStart <= 0 || editEnd < 0 || editStart >= editEnd) {
         return
       }
 
       val change = s.subSequence(editStart, editEnd)
-      if (change.isEmpty() || textSnapshotPriorToChange == null || (editEnd - editStart == 1 && !StringUtil.isVisuallyEmpty(change[0])) || TextUtils.equals(textSnapshotPriorToChange, change)) {
-        textSnapshotPriorToChange = null
+      if (change.isEmpty() || textSnapshotPriorToChange == null || (editEnd - editStart == 1 && StringUtil.isVisuallyEmpty(change[0])) || TextUtils.equals(textSnapshotPriorToChange, change)) {
         return
       }
-      textSnapshotPriorToChange = null
 
       var newEnd = editStart
       for (i in change.indices) {
-        if (StringUtil.isVisuallyEmpty(change[i])) {
-          newEnd = editStart + i
-          break
+        if (!StringUtil.isVisuallyEmpty(change[i])) {
+          newEnd++
         }
       }
 
-      s.getSpans(editStart, editEnd, Object::class.java)
+      s.getSpans(editStart - 1, editStart, Object::class.java)
         .filter { it.isSupportedStyle() }
         .forEach { style ->
           val styleStart = s.getSpanStart(style)
           val styleEnd = s.getSpanEnd(style)
 
-          if (styleEnd == editEnd && styleStart < styleEnd) {
+          if (styleEnd == editStart && styleStart < styleEnd) {
             s.removeSpan(style)
             s.setSpan(style, styleStart, newEnd, MessageStyler.SPAN_FLAGS)
           } else if (styleStart >= styleEnd) {
@@ -78,6 +75,7 @@ class ComposeTextStyleWatcher : TextWatcher {
           }
         }
     } finally {
+      textSnapshotPriorToChange = null
       s.getSpans(editStart, editEnd, Object::class.java)
         .filter { it.isSupportedStyle() }
         .forEach { style ->
