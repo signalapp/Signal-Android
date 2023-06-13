@@ -428,6 +428,23 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     peekJoinedUuids: Collection<UUID>,
     isCallFull: Boolean
   ) {
+    val recipient = Recipient.resolved(groupRecipientId)
+    if (recipient.isCallLink) {
+      handleCallLinkUpdate(recipient, timestamp, peekGroupCallEraId)
+    } else {
+      handleGroupUpdate(recipient, sender, timestamp, peekGroupCallEraId, peekJoinedUuids, isCallFull)
+    }
+  }
+
+  private fun handleGroupUpdate(
+    groupRecipient: Recipient,
+    sender: RecipientId,
+    timestamp: Long,
+    peekGroupCallEraId: String?,
+    peekJoinedUuids: Collection<UUID>,
+    isCallFull: Boolean
+  ) {
+    check(groupRecipient.isPushV2Group)
     writableDatabase.withinTransaction {
       if (peekGroupCallEraId.isNullOrEmpty()) {
         Log.w(TAG, "Dropping local call event with null era id.")
@@ -435,7 +452,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       }
 
       val callId = CallId.fromEra(peekGroupCallEraId).longValue()
-      val call = getCallById(callId, groupRecipientId)
+      val call = getCallById(callId, groupRecipient.id)
       val messageId: MessageId = if (call != null) {
         if (call.event == Event.DELETE) {
           Log.d(TAG, "Dropping group call update for deleted call.")
@@ -460,7 +477,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         )
       } else {
         SignalDatabase.messages.insertGroupCall(
-          groupRecipientId,
+          groupRecipient.id,
           sender,
           timestamp,
           peekGroupCallEraId,
@@ -473,10 +490,41 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         callId,
         messageId,
         sender,
-        groupRecipientId,
+        groupRecipient.id,
         timestamp
       )
     }
+  }
+
+  private fun handleCallLinkUpdate(
+    callLinkRecipient: Recipient,
+    timestamp: Long,
+    peekGroupCallEraId: String?
+  ) {
+    check(callLinkRecipient.isCallLink)
+
+    val callId = peekGroupCallEraId?.let { CallId.fromEra(it).longValue() } ?: return
+
+    writableDatabase.withinTransaction { db ->
+      db.delete(TABLE_NAME)
+        .where("$PEER = ?", callLinkRecipient.id.serialize())
+        .run()
+
+      db.insertInto(TABLE_NAME)
+        .values(
+          CALL_ID to callId,
+          MESSAGE_ID to null,
+          PEER to callLinkRecipient.id.toLong(),
+          EVENT to Event.serialize(Event.GENERIC_GROUP_CALL),
+          TYPE to Type.serialize(Type.AD_HOC_CALL),
+          DIRECTION to Direction.serialize(Direction.OUTGOING),
+          TIMESTAMP to timestamp,
+          RINGER to null
+        ).run(SQLiteDatabase.CONFLICT_ABORT)
+    }
+
+    Log.d(TAG, "Inserted new call event for call link. Call Id: $callId")
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
 
   private fun insertCallEventFromGroupUpdate(
@@ -690,6 +738,9 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     timestamp: Long
   ) {
     val direction = if (ringerRecipient == Recipient.self().id) Direction.OUTGOING else Direction.INCOMING
+
+    val recipient = Recipient.resolved(groupRecipientId)
+    check(recipient.isPushV2Group)
 
     writableDatabase.withinTransaction { db ->
       val messageId = SignalDatabase.messages.insertGroupCall(
@@ -977,7 +1028,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
           cte
       ) p
       INNER JOIN ${RecipientTable.TABLE_NAME} ON ${RecipientTable.TABLE_NAME}.${RecipientTable.ID} = $PEER
-      INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $MESSAGE_ID
+      LEFT JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $MESSAGE_ID
       LEFT JOIN ${GroupTable.TABLE_NAME} ON ${GroupTable.TABLE_NAME}.${GroupTable.RECIPIENT_ID} = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
       WHERE true_parent = p.$ID ${if (queryClause.where.isNotEmpty()) "AND ${queryClause.where}" else ""}
       ORDER BY p.$TIMESTAMP DESC
@@ -1050,12 +1101,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
 
     companion object Deserializer : Serializer<Call, Cursor> {
       fun getMessageType(type: Type, direction: Direction, event: Event): Long {
-        if (type == Type.GROUP_CALL) {
+        if (type == Type.GROUP_CALL || type == Type.AD_HOC_CALL) {
           return MessageTypes.GROUP_CALL_TYPE
-        }
-
-        if (type == Type.AD_HOC_CALL) {
-          error("Ad-Hoc calls are not linked to messages.")
         }
 
         return if (direction == Direction.INCOMING && event == Event.MISSED) {
