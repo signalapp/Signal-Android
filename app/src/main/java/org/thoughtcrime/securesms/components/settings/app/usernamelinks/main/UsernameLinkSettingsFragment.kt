@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import androidx.compose.animation.AnimatedVisibility
@@ -32,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ShareCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -47,6 +50,9 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.compose.ScreenshotController
+import org.thoughtcrime.securesms.providers.BlobProvider
+import java.io.ByteArrayOutputStream
 
 @OptIn(
   ExperimentalMaterial3Api::class,
@@ -56,6 +62,8 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
 
   private val viewModel: UsernameLinkSettingsViewModel by viewModels()
   private val disposables: LifecycleDisposable = LifecycleDisposable()
+
+  private val screenshotController = ScreenshotController()
 
   @Composable
   override fun FragmentContent() {
@@ -83,7 +91,11 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
           snackbarHostState = snackbarHostState,
           scope = scope,
           modifier = Modifier.padding(contentPadding),
-          navController = navController
+          navController = navController,
+          onShareBadge = {
+            shareQrBadge(it)
+          },
+          screenshotController = screenshotController
         )
       }
 
@@ -184,5 +196,30 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
   @Composable
   fun PreviewAll() {
     FragmentContent()
+  }
+
+  private fun shareQrBadge(badge: Bitmap) {
+    try {
+      ByteArrayOutputStream().use { byteArrayOutputStream ->
+        badge.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+        byteArrayOutputStream.flush()
+        val bytes = byteArrayOutputStream.toByteArray()
+        val shareUri = BlobProvider.getInstance()
+          .forData(bytes)
+          .withMimeType("image/png")
+          .withFileName("SignalGroupQr.png")
+          .createForSingleSessionInMemory()
+
+        val intent = ShareCompat.IntentBuilder.from(requireActivity())
+          .setType("image/png")
+          .setStream(shareUri)
+          .createChooserIntent()
+          .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+        startActivity(intent)
+      }
+    } finally {
+      badge.recycle()
+    }
   }
 }
