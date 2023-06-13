@@ -124,6 +124,11 @@ class ConversationAdapterV2(
     }
   }
 
+  fun updateSearchQuery(searchQuery: String?) {
+    this.searchQuery = searchQuery
+    notifyItemRangeChanged(0, itemCount)
+  }
+
   /** [messagePosition] is one-based index and adapter is zero-based. */
   fun getAdapterPositionForMessagePosition(messagePosition: Int): Int {
     return messagePosition - 1
@@ -151,7 +156,12 @@ class ConversationAdapterV2(
       return false
     }
 
-    return isRangeAvailable(position - 10, position + 5)
+    if (!isRangeAvailable(position - 10, position + 5)) {
+      getItem(absolutePosition)
+      return false
+    }
+
+    return true
   }
 
   fun playInlineContent(conversationMessage: ConversationMessage?) {

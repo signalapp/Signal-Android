@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.search.MessageResult
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -113,6 +114,9 @@ class ConversationViewModel(
 
   private val refreshIdentityRecords: Subject<Unit> = PublishSubject.create()
   val identityRecords: Observable<IdentityRecordsState>
+
+  private val _searchQuery = BehaviorSubject.createDefault("")
+  val searchQuery: Observable<String> = _searchQuery
 
   init {
     disposables += recipient
@@ -204,6 +208,10 @@ class ConversationViewModel(
       .distinctUntilChanged()
   }
 
+  fun setSearchQuery(query: String?) {
+    _searchQuery.onNext(query ?: "")
+  }
+
   override fun onCleared() {
     disposables.clear()
   }
@@ -216,6 +224,10 @@ class ConversationViewModel(
 
   fun getQuotedMessagePosition(quote: Quote): Single<Int> {
     return repository.getQuotedMessagePosition(threadId, quote)
+  }
+
+  fun moveToSearchResult(messageResult: MessageResult): Single<Int> {
+    return repository.getMessageResultPosition(threadId, messageResult)
   }
 
   fun getNextMentionPosition(): Single<Int> {

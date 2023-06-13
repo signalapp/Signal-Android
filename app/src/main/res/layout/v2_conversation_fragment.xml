@@ -190,6 +190,16 @@
         app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
         app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
 
+    <include
+        android:id="@+id/conversation_search_bottom_bar"
+        layout="@layout/conversation_search_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/keyboard_guideline"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
+
     <org.thoughtcrime.securesms.conversation.v2.DisabledInputView
         android:id="@+id/conversation_disabled_input"
         android:layout_width="0dp"

@@ -40,6 +40,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
@@ -79,6 +80,7 @@ import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
+import org.signal.core.util.setActionItemTint
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.BlockUnblockDialog
@@ -94,6 +96,7 @@ import org.thoughtcrime.securesms.badges.gifts.viewgift.received.ViewReceivedGif
 import org.thoughtcrime.securesms.badges.gifts.viewgift.sent.ViewSentGiftBottomSheet
 import org.thoughtcrime.securesms.components.AnimatingToggle
 import org.thoughtcrime.securesms.components.ComposeText
+import org.thoughtcrime.securesms.components.ConversationSearchBottomBar
 import org.thoughtcrime.securesms.components.HidingLinearLayout
 import org.thoughtcrime.securesms.components.InputAwareConstraintLayout
 import org.thoughtcrime.securesms.components.InputPanel
@@ -129,6 +132,7 @@ import org.thoughtcrime.securesms.conversation.ConversationReactionDelegate
 import org.thoughtcrime.securesms.conversation.ConversationReactionOverlay
 import org.thoughtcrime.securesms.conversation.ConversationReactionOverlay.OnActionSelectedListener
 import org.thoughtcrime.securesms.conversation.ConversationReactionOverlay.OnHideListener
+import org.thoughtcrime.securesms.conversation.ConversationSearchViewModel
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
 import org.thoughtcrime.securesms.conversation.MenuState
 import org.thoughtcrime.securesms.conversation.MessageSendType
@@ -267,6 +271,7 @@ class ConversationFragment :
   companion object {
     private val TAG = Log.tag(ConversationFragment::class.java)
     private const val ACTION_PINNED_SHORTCUT = "action_pinned_shortcut"
+    private const val SAVED_STATE_IS_SEARCH_REQUESTED = "is_search_requested"
   }
 
   private val args: ConversationIntents.Args by lazy {
@@ -313,6 +318,10 @@ class ConversationFragment :
     DraftViewModel(threadId = args.threadId, repository = DraftRepository(conversationArguments = args))
   }
 
+  private val searchViewModel: ConversationSearchViewModel by viewModel {
+    ConversationSearchViewModel(getString(R.string.note_to_self))
+  }
+
   private val conversationTooltips = ConversationTooltips(this)
   private val colorizer = Colorizer()
   private val textDraftSaveDebouncer = Debouncer(500)
@@ -335,6 +344,8 @@ class ConversationFragment :
   private var animationsAllowed = false
   private var actionMode: ActionMode? = null
   private var pinnedShortcutReceiver: BroadcastReceiver? = null
+  private var searchMenuItem: MenuItem? = null
+  private var isSearchRequested: Boolean = false
 
   private val jumpAndPulseScrollStrategy = object : ScrollToPositionDelegate.ScrollStrategy {
     override fun performScroll(recyclerView: RecyclerView, layoutManager: LinearLayoutManager, position: Int, smooth: Boolean) {
@@ -364,6 +375,9 @@ class ConversationFragment :
 
   private val bottomActionBar: SignalBottomActionBar
     get() = binding.conversationBottomActionBar
+
+  private val searchNav: ConversationSearchBottomBar
+    get() = binding.conversationSearchBottomBar.root
 
   private lateinit var reactionDelegate: ConversationReactionDelegate
 
@@ -406,6 +420,18 @@ class ConversationFragment :
     container.fragmentManager = childFragmentManager
 
     ToolbarDependentMarginListener(binding.toolbar)
+  }
+
+  override fun onViewStateRestored(savedInstanceState: Bundle?) {
+    super.onViewStateRestored(savedInstanceState)
+
+    isSearchRequested = savedInstanceState?.getBoolean(SAVED_STATE_IS_SEARCH_REQUESTED, false) ?: false
+  }
+
+  override fun onSaveInstanceState(outState: Bundle) {
+    super.onSaveInstanceState(outState)
+
+    outState.putBoolean(SAVED_STATE_IS_SEARCH_REQUESTED, isSearchRequested)
   }
 
   override fun onResume() {
@@ -630,6 +656,8 @@ class ConversationFragment :
         }
       }
       .addTo(disposables)
+
+    initializeSearch()
   }
 
   private fun presentInputReadyState(inputReadyState: InputReadyState) {
@@ -736,8 +764,9 @@ class ConversationFragment :
   }
 
   private fun invalidateOptionsMenu() {
-    // TODO [cfv2] -- Handle search... is there a better way to manage this state? Maybe an event system?
-    conversationOptionsMenuProvider.onCreateMenu(binding.toolbar.menu, requireActivity().menuInflater)
+    if (!isSearchRequested && activity != null) {
+      conversationOptionsMenuProvider.onCreateMenu(binding.toolbar.menu, requireActivity().menuInflater)
+    }
   }
 
   private fun presentActionBarMenu() {
@@ -795,6 +824,18 @@ class ConversationFragment :
     } else {
       binding.conversationWallpaperDim.visible = false
     }
+
+    val toolbarTint = ContextCompat.getColor(
+      requireContext(),
+      if (chatWallpaper != null) {
+        R.color.signal_colorNeutralInverse
+      } else {
+        R.color.signal_colorOnSurface
+      }
+    )
+
+    binding.toolbar.setTitleTextColor(toolbarTint)
+    binding.toolbar.setActionItemTint(toolbarTint)
 
     val wallpaperEnabled = chatWallpaper != null
     binding.conversationWallpaper.visible = wallpaperEnabled
@@ -951,6 +992,32 @@ class ConversationFragment :
       0
     )
     return callback
+  }
+
+  private fun initializeSearch() {
+    searchViewModel.searchResults.observe(viewLifecycleOwner) { result ->
+      if (result == null) {
+        return@observe
+      }
+
+      if (result.results.isNotEmpty()) {
+        val messageResult = result.results[result.position]
+        disposables += viewModel
+          .moveToSearchResult(messageResult)
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribeBy {
+            moveToPosition(it)
+          }
+      }
+
+      searchNav.setData(result.position, result.results.size)
+    }
+
+    searchNav.setEventListener(SearchEventListener())
+
+    disposables += viewModel.searchQuery.subscribeBy {
+      adapter.updateSearchQuery(it)
+    }
   }
 
   private fun updateToggleButtonState() {
@@ -1290,12 +1357,9 @@ class ConversationFragment :
   //region Message action handling
 
   private fun handleReplyToMessage(conversationMessage: ConversationMessage) {
-    /*
-    TODO [cfv2]
     if (isSearchRequested) {
-      searchViewItem.collapseActionView();
+      searchMenuItem?.collapseActionView()
     }
-     */
 
     if (inputPanel.inEditMessageMode()) {
       inputPanel.exitEditMessageMode()
@@ -1321,12 +1385,9 @@ class ConversationFragment :
       return
     }
 
-    /*
-    TODO [cfv2]
-     if (isSearchRequested) {
-      searchViewItem.collapseActionView();
+    if (isSearchRequested) {
+      searchMenuItem?.collapseActionView()
     }
-     */
 
     viewModel.resolveMessageToEdit(conversationMessage)
       .subscribeBy { updatedMessage ->
@@ -1982,6 +2043,7 @@ class ConversationFragment :
   }
 
   private inner class ConversationOptionsMenuCallback : ConversationOptionsMenu.Callback {
+
     override fun getSnapshot(): ConversationOptionsMenu.Snapshot {
       val recipient: Recipient? = viewModel.recipientSnapshot
       return ConversationOptionsMenu.Snapshot(
@@ -2000,7 +2062,73 @@ class ConversationFragment :
     }
 
     override fun onOptionsMenuCreated(menu: Menu) {
-      // TODO [cfv2]
+      searchMenuItem = menu.findItem(R.id.menu_search)
+
+      val searchView: SearchView = searchMenuItem!!.actionView as SearchView
+      val queryListener: SearchView.OnQueryTextListener = object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String): Boolean {
+          searchViewModel.onQueryUpdated(query, args.threadId, true)
+          searchNav.showLoading()
+          viewModel.setSearchQuery(query)
+          return true
+        }
+
+        override fun onQueryTextChange(newText: String): Boolean {
+          searchViewModel.onQueryUpdated(newText, args.threadId, false)
+          searchNav.showLoading()
+          viewModel.setSearchQuery(newText)
+          return true
+        }
+      }
+
+      searchMenuItem!!.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+        override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+          searchView.setOnQueryTextListener(queryListener)
+          isSearchRequested = true
+          searchViewModel.onSearchOpened()
+          searchNav.visible = true
+          searchNav.setData(0, 0)
+          inputPanel.setHideForSearch(true)
+
+          (0 until menu.size()).forEach {
+            if (menu.getItem(it) != searchMenuItem) {
+              menu.getItem(it).isVisible = false
+            }
+          }
+
+          return true
+        }
+
+        override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+          searchView.setOnQueryTextListener(null)
+          isSearchRequested = false
+          searchViewModel.onSearchClosed()
+          searchNav.visible = false
+          inputPanel.setHideForSearch(false)
+          viewModel.setSearchQuery(null)
+          invalidateOptionsMenu()
+          return true
+        }
+      })
+
+      searchView.maxWidth = Integer.MAX_VALUE
+
+      if (isSearchRequested) {
+        if (searchMenuItem!!.expandActionView()) {
+          searchViewModel.onSearchOpened()
+        }
+      }
+
+      val toolbarTextAndIconColor = ContextCompat.getColor(
+        requireContext(),
+        if (viewModel.wallpaperSnapshot != null) {
+          R.color.signal_colorNeutralInverse
+        } else {
+          R.color.signal_colorOnSurface
+        }
+      )
+
+      binding.toolbar.setActionItemTint(toolbarTextAndIconColor)
     }
 
     override fun handleVideo() {
@@ -2703,6 +2831,16 @@ class ConversationFragment :
   }
 
   //endregion
+
+  private inner class SearchEventListener : ConversationSearchBottomBar.EventListener {
+    override fun onSearchMoveUpPressed() {
+      searchViewModel.onMoveUp()
+    }
+
+    override fun onSearchMoveDownPressed() {
+      searchViewModel.onMoveDown()
+    }
+  }
 
   private inner class ToolbarDependentMarginListener(private val toolbar: Toolbar) : ViewTreeObserver.OnGlobalLayoutListener {
 

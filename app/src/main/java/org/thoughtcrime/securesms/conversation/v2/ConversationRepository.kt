@@ -83,6 +83,7 @@ import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.search.MessageResult
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.DrawableUtil
@@ -247,6 +248,12 @@ class ConversationRepository(
   fun getQuotedMessagePosition(threadId: Long, quote: Quote): Single<Int> {
     return Single.fromCallable {
       SignalDatabase.messages.getQuotedMessagePosition(threadId, quote.id, quote.author) + 1
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun getMessageResultPosition(threadId: Long, messageResult: MessageResult): Single<Int> {
+    return Single.fromCallable {
+      SignalDatabase.messages.getMessagePositionInConversation(threadId, messageResult.receivedTimestampMs) + 1
     }.subscribeOn(Schedulers.io())
   }
 
