@@ -72,10 +72,9 @@ public class CallNotificationBuilder {
       builder.setContentText(context.getString(recipient.isGroup() ? R.string.NotificationBarManager__incoming_signal_group_call : R.string.NotificationBarManager__incoming_signal_call));
       builder.setPriority(NotificationCompat.PRIORITY_HIGH);
       builder.setCategory(NotificationCompat.CATEGORY_CALL);
+      builder.setFullScreenIntent(pendingIntent, true);
 
-      if (deviceVersionSupportsIncomingCallStyle() &&
-          ServiceUtil.getPowerManager(context).isInteractive() &&
-          !ServiceUtil.getKeyguardManager(context).isDeviceLocked())
+      if (deviceVersionSupportsIncomingCallStyle())
       {
         return Single.fromCallable(() -> ConversationUtil.buildPerson(context, recipient))
                      .subscribeOn(Schedulers.io())
@@ -89,7 +88,7 @@ public class CallNotificationBuilder {
                        return builder.build();
                      });
       } else {
-        return Single.just(builder.setFullScreenIntent(pendingIntent, true).build());
+        return Single.just(builder.build());
       }
     } else if (type == TYPE_OUTGOING_RINGING) {
       builder.setContentText(context.getString(R.string.NotificationBarManager__establishing_signal_call));
