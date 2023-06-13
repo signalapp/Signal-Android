@@ -32,6 +32,10 @@ class CallLinkRoomId private constructor(private val roomId: ByteArray) : Parcel
     return roomId.contentHashCode()
   }
 
+  override fun toString(): String {
+    return DatabaseSerializer.serialize(this)
+  }
+
   object DatabaseSerializer : Serializer<CallLinkRoomId, String> {
     override fun serialize(data: CallLinkRoomId): String {
       return Base64.encodeBytes(data.roomId)

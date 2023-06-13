@@ -6,6 +6,7 @@ import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.Serializer
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.delete
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
-import org.thoughtcrime.securesms.util.Base64
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 
@@ -221,6 +221,64 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     }
   }
 
+  fun deleteNonAdminCallLinks(roomIds: Set<CallLinkRoomId>) {
+    val queries = SqlUtil.buildCollectionQuery(ROOM_ID, roomIds)
+
+    queries.forEach {
+      writableDatabase.delete(TABLE_NAME)
+        .where("${it.where} AND $ADMIN_KEY IS NULL", it.whereArgs)
+        .run()
+    }
+  }
+
+  fun getAdminCallLinks(roomIds: Set<CallLinkRoomId>): Set<CallLink> {
+    val queries = SqlUtil.buildCollectionQuery(ROOM_ID, roomIds)
+
+    return queries.map {
+      writableDatabase
+        .select()
+        .from(TABLE_NAME)
+        .where("${it.where} AND $ADMIN_KEY IS NOT NULL", it.whereArgs)
+        .run()
+        .readToList { CallLinkDeserializer.deserialize(it) }
+    }.flatten().toSet()
+  }
+
+  fun deleteAllNonAdminCallLinksExcept(roomIds: Set<CallLinkRoomId>) {
+    if (roomIds.isEmpty()) {
+      writableDatabase.delete(TABLE_NAME)
+        .where("$ADMIN_KEY IS NULL")
+        .run()
+    } else {
+      SqlUtil.buildCollectionQuery(ROOM_ID, roomIds, collectionOperator = SqlUtil.CollectionOperator.NOT_IN).forEach {
+        writableDatabase.delete(TABLE_NAME)
+          .where("${it.where} AND $ADMIN_KEY IS NULL", it.whereArgs)
+          .run()
+      }
+    }
+  }
+
+  fun getAllAdminCallLinksExcept(roomIds: Set<CallLinkRoomId>): Set<CallLink> {
+    return if (roomIds.isEmpty()) {
+      writableDatabase
+        .select()
+        .from(TABLE_NAME)
+        .where("$ADMIN_KEY IS NOT NULL")
+        .run()
+        .readToList { CallLinkDeserializer.deserialize(it) }
+        .toSet()
+    } else {
+      SqlUtil.buildCollectionQuery(ROOM_ID, roomIds, collectionOperator = SqlUtil.CollectionOperator.NOT_IN).map {
+        writableDatabase
+          .select()
+          .from(TABLE_NAME)
+          .where("${it.where} AND $ADMIN_KEY IS NOT NULL", it.whereArgs)
+          .run()
+          .readToList { CallLinkDeserializer.deserialize(it) }
+      }.flatten().toSet()
+    }
+  }
+
   private fun queryCallLinks(query: String?, offset: Int, limit: Int, asCount: Boolean): Cursor {
     //language=sql
     val noCallEvent = """
@@ -289,7 +347,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     override fun deserialize(data: Cursor): CallLink {
       return CallLink(
         recipientId = data.requireLong(RECIPIENT_ID).let { if (it > 0) RecipientId.from(it) else RecipientId.UNKNOWN },
-        roomId = CallLinkRoomId.fromBytes(Base64.decode(data.requireNonNullString(ROOM_ID))),
+        roomId = CallLinkRoomId.DatabaseSerializer.deserialize(data.requireNonNullString(ROOM_ID)),
         credentials = CallLinkCredentials(
           linkKeyBytes = data.requireNonNullBlob(ROOT_KEY),
           adminPassBytes = data.requireBlob(ADMIN_KEY)

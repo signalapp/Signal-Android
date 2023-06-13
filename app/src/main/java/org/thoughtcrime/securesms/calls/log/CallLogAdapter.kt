@@ -75,12 +75,10 @@ class CallLogAdapter(
   fun submitCallRows(
     rows: List<CallLogRow?>,
     selectionState: CallLogSelectionState,
-    stagedDeletion: CallLogStagedDeletion?,
     onCommit: () -> Unit
   ): Int {
     val filteredRows = rows
       .filterNotNull()
-      .filterNot { stagedDeletion?.isStagedForDeletion(it.id) == true }
       .map {
         when (it) {
           is CallLogRow.Call -> CallModel(it, selectionState, itemCount)

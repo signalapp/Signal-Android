@@ -14,6 +14,14 @@ import org.thoughtcrime.securesms.R
  */
 class ProgressCardDialogFragment : DialogFragment(R.layout.progress_card_dialog) {
 
+  companion object {
+    fun create(title: String): ProgressCardDialogFragment {
+      return ProgressCardDialogFragment().apply {
+        arguments = ProgressCardDialogFragmentArgs.Builder(title).build().toBundle()
+      }
+    }
+  }
+
   private val args: ProgressCardDialogFragmentArgs by navArgs()
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

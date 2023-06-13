@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.CallSyncEventJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.CallEvent
 import java.util.UUID
@@ -205,6 +206,48 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .delete(TABLE_NAME)
       .where("$DELETION_TIMESTAMP > 0 AND $DELETION_TIMESTAMP <= ?", threshold)
       .run()
+  }
+
+  fun getCallLinkRoomIdsFromCallRowIds(callRowIds: Set<Long>): Set<CallLinkRoomId> {
+    return SqlUtil.buildCollectionQuery("$TABLE_NAME.$ID", callRowIds).map { query ->
+      //language=sql
+      val statement = """
+        SELECT ${CallLinkTable.ROOM_ID} FROM $TABLE_NAME
+        INNER JOIN ${CallLinkTable.TABLE_NAME} ON ${CallLinkTable.TABLE_NAME}.${CallLinkTable.RECIPIENT_ID} = $PEER
+        WHERE $TYPE = ${Type.serialize(Type.AD_HOC_CALL)} AND ${query.where}
+      """.toSingleLine()
+
+      readableDatabase.query(statement, query.whereArgs).readToList {
+        CallLinkRoomId.DatabaseSerializer.deserialize(it.requireNonNullString(CallLinkTable.ROOM_ID))
+      }
+    }.flatten().toSet()
+  }
+
+  /**
+   * If a call link has been revoked, or if we do not have a CallLink table entry for an AD_HOC_CALL type
+   * event, we mark it deleted.
+   */
+  fun updateAdHocCallEventDeletionTimestamps() {
+    //language=sql
+    val statement = """
+      UPDATE $TABLE_NAME
+      SET $DELETION_TIMESTAMP = ${System.currentTimeMillis()}, $EVENT = ${Event.serialize(Event.DELETE)}
+      WHERE $TYPE = ${Type.serialize(Type.AD_HOC_CALL)}
+      AND (
+        (NOT EXISTS (SELECT 1 FROM ${CallLinkTable.TABLE_NAME} WHERE ${CallLinkTable.RECIPIENT_ID} = $PEER))
+        OR
+        (SELECT ${CallLinkTable.REVOKED} FROM ${CallLinkTable.TABLE_NAME} WHERE ${CallLinkTable.RECIPIENT_ID} = $PEER)
+      )
+      RETURNING *
+    """.toSingleLine()
+
+    val toSync = writableDatabase.query(statement).readToList {
+      Call.deserialize(it)
+    }.toSet()
+
+    CallSyncEventJob.enqueueDeleteSyncEvents(toSync)
+    ApplicationDependencies.getDeletedCallEventManager().scheduleIfNecessary()
+    ApplicationDependencies.getDatabaseObserver().notifyCallUpdateObservers()
   }
 
   /**
@@ -706,13 +749,13 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .run()
   }
 
-  fun deleteCallEvents(callRowIds: Set<Long>) {
+  fun deleteNonAdHocCallEvents(callRowIds: Set<Long>) {
     val messageIds = getMessageIds(callRowIds)
     SignalDatabase.messages.deleteCallUpdates(messageIds)
     updateCallEventDeletionTimestamps()
   }
 
-  fun deleteAllCallEventsExcept(callRowIds: Set<Long>, missedOnly: Boolean) {
+  fun deleteAllNonAdHocCallEventsExcept(callRowIds: Set<Long>, missedOnly: Boolean) {
     val callFilter = if (missedOnly) {
       "$EVENT = ${Event.serialize(Event.MISSED)} AND $DELETION_TIMESTAMP = 0"
     } else {
