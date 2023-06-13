@@ -38,6 +38,8 @@ class LinkUtilTest_isValidPreviewUrl(private val input: String, private val outp
         arrayOf("кц.рф\u25AA", false),
         arrayOf("кц.рф\u25FF", false),
         arrayOf("", false),
+        arrayOf("https://…", false),
+        arrayOf("https://...", false),
         arrayOf("https://cool.example", false),
         arrayOf("https://cool.example.com", false),
         arrayOf("https://cool.example.net", false),
