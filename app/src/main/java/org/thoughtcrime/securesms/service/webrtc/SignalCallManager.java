@@ -973,6 +973,11 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   }
 
   public void sendGroupCallUpdateMessage(@NonNull Recipient recipient, @Nullable String groupCallEraId, boolean isIncoming, boolean isJoinEvent) {
+    if (recipient.isCallLink()) {
+      Log.i(TAG, "sendGroupCallUpdateMessage -- ignoring for call link");
+      return;
+    }
+
     SignalExecutors.BOUNDED.execute(() -> {
       GroupCallUpdateSendJob updateSendJob = GroupCallUpdateSendJob.create(recipient.getId(), groupCallEraId);
       JobManager.Chain       chain         = ApplicationDependencies.getJobManager().startChain(updateSendJob);
