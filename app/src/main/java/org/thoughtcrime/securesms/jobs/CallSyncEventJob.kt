@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.jobs.protos.CallSyncEventJobRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
 import org.thoughtcrime.securesms.service.webrtc.CallEventSyncMessageUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import java.util.Optional
@@ -62,12 +61,10 @@ class CallSyncEventJob private constructor(
     }
 
     fun enqueueDeleteSyncEvents(deletedCalls: Set<CallTable.Call>) {
-      if (FeatureFlags.callDeleteSync()) {
-        deletedCalls.chunked(50).forEach {
-          ApplicationDependencies.getJobManager().add(
-            createForDelete(it)
-          )
-        }
+      deletedCalls.chunked(50).forEach {
+        ApplicationDependencies.getJobManager().add(
+          createForDelete(it)
+        )
       }
     }
 
@@ -128,12 +125,14 @@ class CallSyncEventJob private constructor(
         isOutgoing = callSyncEvent.deserializeDirection() == CallTable.Direction.OUTGOING,
         isVideoCall = callType != CallTable.Type.AUDIO_CALL
       )
+
       CallTable.Event.DELETE -> CallEventSyncMessageUtil.createDeleteCallEvent(
         remotePeer = RemotePeer(callSyncEvent.deserializeRecipientId(), CallId(callSyncEvent.callId)),
         timestamp = syncTimestamp,
         isOutgoing = callSyncEvent.deserializeDirection() == CallTable.Direction.OUTGOING,
         isVideoCall = callType != CallTable.Type.AUDIO_CALL
       )
+
       else -> throw Exception("Unsupported event: ${callSyncEvent.event}")
     }
   }

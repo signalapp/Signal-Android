@@ -107,7 +107,6 @@ public final class FeatureFlags {
   private static final String AD_HOC_CALLING                    = "android.calling.ad.hoc";
   private static final String EDIT_MESSAGE_RECEIVE              = "android.editMessage.receive";
   private static final String EDIT_MESSAGE_SEND                 = "android.editMessage.send";
-  private static final String CALL_DELETE_SYNC                  = "android.calling.deleteSync";
   private static final String MAX_ATTACHMENT_COUNT              = "android.attachments.maxCount";
   private static final String MAX_ATTACHMENT_SIZE_MB            = "android.attachments.maxSize";
 
@@ -176,8 +175,7 @@ public final class FeatureFlags {
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
       PHONE_NUMBER_PRIVACY,
-      AD_HOC_CALLING,
-      CALL_DELETE_SYNC
+      AD_HOC_CALLING
   );
 
   /**
@@ -606,13 +604,6 @@ public final class FeatureFlags {
    */
   public static boolean adHocCalling() {
     return getBoolean(AD_HOC_CALLING, false);
-  }
-
-  /**
-   * Whether sending deletion sync events is supported
-   */
-  public static boolean callDeleteSync() {
-    return getBoolean(CALL_DELETE_SYNC, false);
   }
 
   /** Maximum number of attachments allowed to be sent/received. */
